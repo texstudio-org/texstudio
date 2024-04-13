@@ -1,6 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.8.0
 
+- AI chat assistant added
 - use moveable/**splitable** docks for sidepanel
 - extended search can now also search in all files in one folder
 - add basic syntax highlighting for latex3 code

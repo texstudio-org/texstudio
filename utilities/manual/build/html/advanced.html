@@ -7,8 +7,8 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="advanced.html" />
 <meta property="og:site_name" content="TeXstudio" />
-<meta property="og:description" content="Sessions: TeXstudio uses “Sessions” to store and restore the set-up of open documents. Session are stored as.txss2 files. By default, the session is stored when exiting from TeXstudio and restored ..." />
-<meta name="description" content="Sessions: TeXstudio uses “Sessions” to store and restore the set-up of open documents. Session are stored as.txss2 files. By default, the session is stored when exiting from TeXstudio and restored ..." />
+<meta property="og:description" content="AI chat assistant: set-up: TeXstudio offers an interface for AI chat assistant. It supports Mistral AI or ChatGPT as AI provider. The communication to those servers is done using the official API w..." />
+<meta name="description" content="AI chat assistant: set-up: TeXstudio offers an interface for AI chat assistant. It supports Mistral AI or ChatGPT as AI provider. The communication to those servers is done using the official API w..." />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Configuring TeXstudio" href="configuration.html" /><link rel="prev" title="Viewing a document (pdf)" href="viewing.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
@@ -211,6 +211,100 @@
         <article role="main">
           <section id="advanced-features">
 <h1>Advanced features<a class="headerlink" href="#advanced-features" title="Permalink to this heading">#</a></h1>
+<section id="ai-chat-assistant">
+<h2>AI chat assistant<a class="headerlink" href="#ai-chat-assistant" title="Permalink to this heading">#</a></h2>
+<section id="set-up">
+<h3>set-up<a class="headerlink" href="#set-up" title="Permalink to this heading">#</a></h3>
+<p>TeXstudio offers an interface for AI chat assistant. It supports <a class="reference external" href="https://mistral.ai">Mistral AI</a> or <a class="reference external" href="https://openai.com/chatgpt">ChatGPT</a> as AI provider. The communication to those servers is done using the official API which incur costs. The user must set up an account and enter payment information. The cost is based on the number of words (tokens) in the question and answer, please refer the ai provider for details.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Using an AI assistant means both questions and selected text is sent to that provider !</p>
+</div>
+<p>Once an account is registered, an “API key” is provided which needs to be entered into TeXstudio configuration.
+There also the AI provider needs to be chosen as well as the desired ai model.</p>
+<p><img alt="AI configuration" src="_images/conf_ai.png" /></p>
+<p>The conversation is stored on disk, so that results can be reused later on. This can be disabled.</p>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h3>
+<p>The ai chat assistant is called via the menu “Wizards/AI chat…”.</p>
+<p><img alt="AI assistant" src="_images/ai_wizard.png" /></p>
+<p>The wizard is split in three parts.
+The lower half allows entering queries which will be sent to the ai provider by pressing “send”.
+The responses are shown in the upper right widget which presents the whole conversation which may consist of more than one question/answer.
+The upper left part gives access to old conversation in order to repeat or reuse questions or answers.</p>
+<p>The “insert” button only inserts the last answer into the current editor. If explicit latex-code is given in the answer, only the latex-code is inserted and thereof also only the part between <code class="docutils literal notranslate"><span class="pre">\begin{document}</span></code> and <code class="docutils literal notranslate"><span class="pre">\end{document}</span></code> as the tools tend to answer with complete documents which contain the relevant code like tables, etc.</p>
+<p>If a TeXstudio-macro is detected, TeXstudio offers to execute that code directly.</p>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<section id="manipulating-texts">
+<h4>Manipulating texts<a class="headerlink" href="#manipulating-texts" title="Permalink to this heading">#</a></h4>
+<p>TeXstudio predefines selected text as “text”.
+Queries can refer to that text (as text) directly and receive any transformed results.</p>
+<p>E.g.</p>
+<p>Selected text: <code class="docutils literal notranslate"><span class="pre">TeXstudio</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">highly</span> <span class="pre">popular</span> <span class="pre">and</span> <span class="pre">powerful</span> <span class="pre">cross-platform</span> <span class="pre">open-source</span> <span class="pre">LaTeX</span> <span class="pre">editor,</span> <span class="pre">widely</span> <span class="pre">used</span> <span class="pre">by</span> <span class="pre">academics,</span> <span class="pre">researchers,</span> <span class="pre">and</span> <span class="pre">professionals</span> <span class="pre">for</span> <span class="pre">creating</span> <span class="pre">complex</span> <span class="pre">mathematical</span> <span class="pre">and</span> <span class="pre">scientific</span> <span class="pre">documents.</span> <span class="pre">Its</span> <span class="pre">user-friendly</span> <span class="pre">interface</span> <span class="pre">and</span> <span class="pre">rich</span> <span class="pre">features</span> <span class="pre">make</span> <span class="pre">it</span> <span class="pre">an</span> <span class="pre">ideal</span> <span class="pre">choice</span> <span class="pre">for</span> <span class="pre">both</span> <span class="pre">beginners</span> <span class="pre">and</span> <span class="pre">advanced</span> <span class="pre">LaTeX</span> <span class="pre">users.</span></code></p>
+<p>Query: <code class="docutils literal notranslate"><span class="pre">Extend</span> <span class="pre">the</span> <span class="pre">text</span></code></p>
+<p>Result (mistral.ai/open-mistral-7b): <code class="docutils literal notranslate"><span class="pre">TeXstudio</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">highly</span> <span class="pre">popular</span> <span class="pre">and</span> <span class="pre">powerful</span> <span class="pre">cross-platform</span> <span class="pre">open-source</span> <span class="pre">LaTeX</span> <span class="pre">editor,</span> <span class="pre">widely</span> <span class="pre">used</span> <span class="pre">by</span> <span class="pre">academics,</span> <span class="pre">researchers,</span> <span class="pre">and</span> <span class="pre">professionals</span> <span class="pre">for</span> <span class="pre">creating</span> <span class="pre">complex</span> <span class="pre">mathematical</span> <span class="pre">and</span> <span class="pre">scientific</span> <span class="pre">documents.</span> <span class="pre">Its</span> <span class="pre">user-friendly</span> <span class="pre">interface,</span> <span class="pre">which</span> <span class="pre">includes</span> <span class="pre">features</span> <span class="pre">such</span> <span class="pre">as</span> <span class="pre">a</span> <span class="pre">spell</span> <span class="pre">checker,</span> <span class="pre">code</span> <span class="pre">completion,</span> <span class="pre">and</span> <span class="pre">a</span> <span class="pre">built-in</span> <span class="pre">document</span> <span class="pre">viewer,</span> <span class="pre">makes</span> <span class="pre">it</span> <span class="pre">an</span> <span class="pre">approachable</span> <span class="pre">choice</span> <span class="pre">for</span> <span class="pre">beginners.</span> <span class="pre">For</span> <span class="pre">more</span> <span class="pre">advanced</span> <span class="pre">LaTeX</span> <span class="pre">users,</span> <span class="pre">TeXstudio</span> <span class="pre">offers</span> <span class="pre">additional</span> <span class="pre">functionality</span> <span class="pre">such</span> <span class="pre">as</span> <span class="pre">a</span> <span class="pre">built-in</span> <span class="pre">compiler,</span> <span class="pre">project</span> <span class="pre">management</span> <span class="pre">tools,</span> <span class="pre">and</span> <span class="pre">support</span> <span class="pre">for</span> <span class="pre">various</span> <span class="pre">external</span> <span class="pre">packages.</span> <span class="pre">TeXstudio</span> <span class="pre">is</span> <span class="pre">also</span> <span class="pre">customizable,</span> <span class="pre">allowing</span> <span class="pre">users</span> <span class="pre">to</span> <span class="pre">tailor</span> <span class="pre">the</span> <span class="pre">editor</span> <span class="pre">to</span> <span class="pre">their</span> <span class="pre">specific</span> <span class="pre">needs</span> <span class="pre">and</span> <span class="pre">preferences.</span> <span class="pre">Overall,</span> <span class="pre">TeXstudio</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">versatile</span> <span class="pre">and</span> <span class="pre">feature-rich</span> <span class="pre">tool</span> <span class="pre">that</span> <span class="pre">is</span> <span class="pre">well-suited</span> <span class="pre">for</span> <span class="pre">creating</span> <span class="pre">professional-level</span> <span class="pre">LaTeX</span> <span class="pre">documents.</span></code></p>
+<p>Similarly request like <code class="docutils literal notranslate"><span class="pre">summarize</span> <span class="pre">the</span> <span class="pre">text</span></code>,<code class="docutils literal notranslate"><span class="pre">shorten</span> <span class="pre">the</span> <span class="pre">text</span></code> should work well.</p>
+</section>
+<section id="generating-latex-code">
+<h4>Generating LaTeX code<a class="headerlink" href="#generating-latex-code" title="Permalink to this heading">#</a></h4>
+<p>The assistant should provide an easy way to answer general LaTeX questions tailored to the real current situation.</p>
+<p>E.g.</p>
+<p>Query: “Generate a latex table with 4 rows and 3 columns.”</p>
+<p>Result (mistral.ai/open-mistral-7b): <code class="docutils literal notranslate"><span class="pre">To</span> <span class="pre">create</span> <span class="pre">a</span> <span class="pre">LaTeX</span> <span class="pre">table</span> <span class="pre">with</span> <span class="pre">5</span> <span class="pre">rows</span> <span class="pre">and</span> <span class="pre">3</span> <span class="pre">columns,</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">use</span> <span class="pre">the</span> <span class="pre">following</span> <span class="pre">code</span> <span class="pre">as</span> <span class="pre">a</span> <span class="pre">starting</span> <span class="pre">point:</span></code></p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>tabularx<span class="nb">}</span> <span class="c">% For fixed width columns</span>
+
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>table<span class="nb">}</span>[h]
+<span class="k">\centering</span>
+<span class="k">\begin</span><span class="nb">{</span>tabularx<span class="nb">}{</span><span class="k">\textwidth</span><span class="nb">}{</span>|X|X|X|<span class="nb">}</span> <span class="c">% Set width of table to textwidth</span>
+<span class="c">% X is used for columns that adjust width to content</span>
+
+<span class="c">% Table header</span>
+<span class="k">\hline</span>
+Column 1 <span class="nb">&amp;</span> Column 2 <span class="nb">&amp;</span> Column 3 <span class="k">\\</span>
+<span class="k">\hline</span>
+<span class="c">% Table content</span>
+Row 1, Column 1 <span class="nb">&amp;</span> Row 1, Column 2 <span class="nb">&amp;</span> Row 1, Column 3 <span class="k">\\</span>
+Row 2, Column 1 <span class="nb">&amp;</span> Row 2, Column 2 <span class="nb">&amp;</span> Row 2, Column 3 <span class="k">\\</span>
+Row 3, Column 1 <span class="nb">&amp;</span> Row 3, Column 2 <span class="nb">&amp;</span> Row 3, Column 3 <span class="k">\\</span>
+Row 4, Column 1 <span class="nb">&amp;</span> Row 4, Column 2 <span class="nb">&amp;</span> Row 4, Column 3 <span class="k">\\</span>
+Row 5, Column 1 <span class="nb">&amp;</span> Row 5, Column 2 <span class="nb">&amp;</span> Row 5, Column 3 <span class="k">\\</span>
+
+<span class="c">% Table footer</span>
+<span class="k">\hline</span>
+<span class="k">\end</span><span class="nb">{</span>tabularx<span class="nb">}</span>
+<span class="k">\caption</span><span class="nb">{</span>Your table caption<span class="nb">}</span>
+<span class="k">\label</span><span class="nb">{</span>table:your<span class="nb">_</span>label<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>table<span class="nb">}</span>
+
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Replace</span> <span class="pre">Column</span> <span class="pre">1,</span> <span class="pre">Column</span> <span class="pre">2,</span> <span class="pre">Column</span> <span class="pre">3,</span> <span class="pre">Row</span> <span class="pre">1,</span> <span class="pre">Column</span> <span class="pre">1,</span> <span class="pre">etc.,</span> <span class="pre">with</span> <span class="pre">your</span> <span class="pre">actual</span> <span class="pre">content.</span> <span class="pre">The</span> <span class="pre">tabularx</span> <span class="pre">package</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">here</span> <span class="pre">to</span> <span class="pre">ensure</span> <span class="pre">that</span> <span class="pre">the</span> <span class="pre">table</span> <span class="pre">fits</span> <span class="pre">within</span> <span class="pre">the</span> <span class="pre">text</span> <span class="pre">width,</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">X</span> <span class="pre">column</span> <span class="pre">type</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">allow</span> <span class="pre">columns</span> <span class="pre">to</span> <span class="pre">expand</span> <span class="pre">and</span> <span class="pre">fill</span> <span class="pre">the</span> <span class="pre">available</span> <span class="pre">space.</span> <span class="pre">Update</span> <span class="pre">the</span> <span class="pre">caption,</span> <span class="pre">label,</span> <span class="pre">and</span> <span class="pre">table</span> <span class="pre">width</span> <span class="pre">as</span> <span class="pre">needed.</span> </code></p>
+<p>TeXstudio only inserts the part between begin/end document which is what you likely want.
+Please be aware that packages which are used in the result but not set in <em>your</em> document are not automatically included in <em>your</em> document.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The quality of the result may be not as expected and AI models do have the tendency to hallucinate, i.e. they invent code which is not working at all. Specifying what you want in more details may help to get what you want.</p>
+<p>Wizards in TeXstudio are tailored for generating LaTeX code. The results are reproducible, faster and cheaper, so it is usually preferable to use these first.</p>
+</div>
+</section>
+<section id="macro-generation">
+<h4>Macro generation<a class="headerlink" href="#macro-generation" title="Permalink to this heading">#</a></h4>
+<p>The ai chat assistant can generate complete TeXstudio macros (scripts) which can solve specific problems.
+Here the result quality varies a lot and non-working code is generated often, less so with newer, larger models.</p>
+<p>E.g.</p>
+<p>Query: <code class="docutils literal notranslate"><span class="pre">Write</span> <span class="pre">a</span> <span class="pre">macro</span> <span class="pre">for</span> <span class="pre">texstudio</span> <span class="pre">which</span> <span class="pre">converts</span> <span class="pre">the</span> <span class="pre">first</span> <span class="pre">letter</span> <span class="pre">of</span> <span class="pre">every</span> <span class="pre">word</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">text-selection</span> <span class="pre">to</span> <span class="pre">uppercase.</span></code></p>
+<p>The results have been disappointing with mistral.ai, though it was was possible to get better results in the chat on the internet.
+The assumption is that this may get better (or better queries are needed).</p>
+</section>
+</section>
+</section>
 <section id="sessions">
 <h2>Sessions<a class="headerlink" href="#sessions" title="Permalink to this heading">#</a></h2>
 <p>TeXstudio uses “Sessions” to store and restore the set-up of open documents.
@@ -241,7 +335,7 @@ document.</p>
 <p>TeXstudio provides some basic support for version control management with git or subversion (svn).</p>
 <p>Once <a class="reference internal" href="configuration.html#configuring-svn-git-support"><span class="std std-doc">set up</span></a>, saving the document will also generate a check-in.
 This is only the case with explicit saves via “File/Save” (or the shortcut <code class="docutils literal notranslate"><span class="pre">CTRL+S</span></code>), saving via a compile run is not checked in. This allows tweaking the document around compilation runs without overflowing the version management.</p>
-<p>Newly saved documents are automatically added to an exsiting repository, if no repository exist, a new one will be generated at the directory level of the document.</p>
+<p>Newly saved documents are automatically added to an existing repository, if no repository exist, a new one will be generated at the directory level of the document.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You cannot checkout/clone a repository via TeXstudio. Just use the
@@ -345,7 +439,7 @@ that the pseudo-command needs to start with a backslash (”\”).</p>
 macro: When the last written characters match this expression, they are
 removed and the macro is inserted/executed. (see
 <a class="reference internal" href="#triggers"><span class="std std-doc">below</span></a> for more details).</p>
-<p>Some macros can be directly downloaded from an internet repository. The
+<p>Some macros can be directly downloaded from an <a class="reference external" href="https://github.com/texstudio-org/texstudio-macro">internet repository</a>. The
 dialog is started with the button “Browse”. For easier data exchange,
 macros can be im- and exported to a file. If you want to add a macro of
 your own to that repository, you can hand it in as a feature request on
@@ -1111,6 +1205,17 @@ to html” tool.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Advanced features</a><ul>
+<li><a class="reference internal" href="#ai-chat-assistant">AI chat assistant</a><ul>
+<li><a class="reference internal" href="#set-up">set-up</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#manipulating-texts">Manipulating texts</a></li>
+<li><a class="reference internal" href="#generating-latex-code">Generating LaTeX code</a></li>
+<li><a class="reference internal" href="#macro-generation">Macro generation</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#sessions">Sessions</a></li>
 <li><a class="reference internal" href="#user-fold-marker">User Fold Marker</a></li>
 <li><a class="reference internal" href="#bibliography">Bibliography</a></li>

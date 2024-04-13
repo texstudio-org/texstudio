@@ -1,5 +1,119 @@
 # Advanced features
 
+## AI chat assistant
+
+### set-up
+
+TeXstudio offers an interface for AI chat assistant. It supports [Mistral AI](https://mistral.ai) or [ChatGPT](https://openai.com/chatgpt) as AI provider. The communication to those servers is done using the official API which incur costs. The user must set up an account and enter payment information. The cost is based on the number of words (tokens) in the question and answer, please refer the ai provider for details.
+
+```{warning}
+Using an AI assistant means both questions and selected text is sent to that provider !
+```
+
+Once an account is registered, an "API key" is provided which needs to be entered into TeXstudio configuration.
+There also the AI provider needs to be chosen as well as the desired ai model.
+
+![AI configuration](images/conf_ai.png)
+
+The conversation is stored on disk, so that results can be reused later on. This can be disabled.
+
+### Usage
+
+The ai chat assistant is called via the menu "Wizards/AI chat...".
+
+![AI assistant](images/ai_wizard.png)
+
+The wizard is split in three parts.
+The lower half allows entering queries which will be sent to the ai provider by pressing "send".
+The responses are shown in the upper right widget which presents the whole conversation which may consist of more than one question/answer.
+The upper left part gives access to old conversation in order to repeat or reuse questions or answers.
+
+The "insert" button only inserts the last answer into the current editor. If explicit latex-code is given in the answer, only the latex-code is inserted and thereof also only the part between `\begin{document}` and `\end{document}` as the tools tend to answer with complete documents which contain the relevant code like tables, etc.
+
+If a TeXstudio-macro is detected, TeXstudio offers to execute that code directly.
+
+### Examples
+
+#### Manipulating texts
+
+TeXstudio predefines selected text as "text".
+Queries can refer to that text (as text) directly and receive any transformed results.
+
+E.g.
+
+Selected text: `TeXstudio is a highly popular and powerful cross-platform open-source LaTeX editor, widely used by academics, researchers, and professionals for creating complex mathematical and scientific documents. Its user-friendly interface and rich features make it an ideal choice for both beginners and advanced LaTeX users.`
+
+Query: `Extend the text`
+
+Result (mistral.ai/open-mistral-7b): `TeXstudio is a highly popular and powerful cross-platform open-source LaTeX editor, widely used by academics, researchers, and professionals for creating complex mathematical and scientific documents. Its user-friendly interface, which includes features such as a spell checker, code completion, and a built-in document viewer, makes it an approachable choice for beginners. For more advanced LaTeX users, TeXstudio offers additional functionality such as a built-in compiler, project management tools, and support for various external packages. TeXstudio is also customizable, allowing users to tailor the editor to their specific needs and preferences. Overall, TeXstudio is a versatile and feature-rich tool that is well-suited for creating professional-level LaTeX documents.`
+
+Similarly request like `summarize the text`,`shorten the text` should work well.
+
+#### Generating LaTeX code
+
+The assistant should provide an easy way to answer general LaTeX questions tailored to the real current situation.
+
+E.g.
+
+Query: "Generate a latex table with 4 rows and 3 columns."
+
+Result (mistral.ai/open-mistral-7b): `To create a LaTeX table with 5 rows and 3 columns, you can use the following code as a starting point:`
+```latex
+\documentclass{article}
+\usepackage{tabularx} % For fixed width columns
+
+\begin{document}
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{|X|X|X|} % Set width of table to textwidth
+% X is used for columns that adjust width to content
+
+% Table header
+\hline
+Column 1 & Column 2 & Column 3 \\
+\hline
+% Table content
+Row 1, Column 1 & Row 1, Column 2 & Row 1, Column 3 \\
+Row 2, Column 1 & Row 2, Column 2 & Row 2, Column 3 \\
+Row 3, Column 1 & Row 3, Column 2 & Row 3, Column 3 \\
+Row 4, Column 1 & Row 4, Column 2 & Row 4, Column 3 \\
+Row 5, Column 1 & Row 5, Column 2 & Row 5, Column 3 \\
+
+% Table footer
+\hline
+\end{tabularx}
+\caption{Your table caption}
+\label{table:your_label}
+\end{table}
+
+\end{document}
+```
+
+`Replace Column 1, Column 2, Column 3, Row 1, Column 1, etc., with your actual content. The tabularx package is used here to ensure that the table fits within the text width, and the X column type is used to allow columns to expand and fill the available space. Update the caption, label, and table width as needed. `
+
+TeXstudio only inserts the part between begin/end document which is what you likely want.
+Please be aware that packages which are used in the result but not set in *your* document are not automatically included in *your* document.
+
+```{warning}
+The quality of the result may be not as expected and AI models do have the tendency to hallucinate, i.e. they invent code which is not working at all. Specifying what you want in more details may help to get what you want.
+
+Wizards in TeXstudio are tailored for generating LaTeX code. The results are reproducible, faster and cheaper, so it is usually preferable to use these first.
+```
+
+#### Macro generation
+
+The ai chat assistant can generate complete TeXstudio macros (scripts) which can solve specific problems.
+Here the result quality varies a lot and non-working code is generated often, less so with newer, larger models.
+
+E.g.
+
+Query: `Write a macro for texstudio which converts the first letter of every word in a text-selection to uppercase.`
+
+The results have been disappointing with mistral.ai, though it was was possible to get better results in the chat on the internet.
+The assumption is that this may get better (or better queries are needed).
+
+
 ## Sessions
 
 TeXstudio uses "Sessions" to store and restore the set-up of open documents.
@@ -36,7 +150,7 @@ TeXstudio provides some basic support for version control management with git or
 Once [set up](configuration.md#configuring-svngit-support), saving the document will also generate a check-in.
 This is only the case with explicit saves via "File/Save" (or the shortcut `CTRL+S`), saving via a compile run is not checked in. This allows tweaking the document around compilation runs without overflowing the version management.
 
-Newly saved documents are automatically added to an exsiting repository, if no repository exist, a new one will be generated at the directory level of the document.
+Newly saved documents are automatically added to an existing repository, if no repository exist, a new one will be generated at the directory level of the document.
 
 ```{note}
 You cannot checkout/clone a repository via TeXstudio. Just use the

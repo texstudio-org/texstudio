@@ -403,6 +403,8 @@ QString AIChatAssistant::getConversationForBrowser()
  *  - detect new document/insert all
  *  - add to macros
  *  - modeltree for conversations
+ *   + split conversations over time (yesterday,last week, last month, etc.)
+ *   + show summary of conversation in titles ?
  *  - search in questions/answers
  *  - icons/QToolbuttons for actions
  */
