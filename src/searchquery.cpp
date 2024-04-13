@@ -124,6 +124,7 @@ SearchInfo SearchQuery::searchInFile(QString file, const QRegularExpression &reg
         if(match.hasMatch()){
             result.textlines<<line;
             result.lineNumberHints<<lineNr;
+            result.checked<<false;
         }
         ++lineNr;
     }
