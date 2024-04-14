@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/03/25 for v2.7
+# Matthew Bertucci 2024/04/14 for v2.8
 
 #include:l3keys2e
 #include:luatexbase
@@ -36,11 +36,23 @@ beamer#true,false
 
 \PitonInputFile{file}
 \PitonInputFile[options%keyvals]{file}
+\PitonInputFileTF{file}{true code}{false code}
+\PitonInputFileTF[options%keyvals]{file}{true code}{false code}
+\PitonInputFileT{file}{true code}
+\PitonInputFileT[options%keyvals]{file}{true code}
+\PitonInputFileF{file}{false code}
+\PitonInputFileF[options%keyvals]{file}{false code}
 # beamer only
 \PitonInputFile<overlay spec>{file}#*
 \PitonInputFile<overlay spec>[options%keyvals]{file}#*
+\PitonInputFileTF<overlay spec>{file}{true code}{false code}#*
+\PitonInputFileTF<overlay spec>[options%keyvals]{file}{true code}{false code}#*
+\PitonInputFileT<overlay spec>{file}{true code}#*
+\PitonInputFileT<overlay spec>[options%keyvals]{file}{true code}#*
+\PitonInputFileF<overlay spec>{file}{false code}#*
+\PitonInputFileF<overlay spec>[options%keyvals]{file}{false code}#*
 
-#keyvals:\PitonInputFile
+#keyvals:\PitonInputFile,\PitonInputFileTF,\PitonInputFileT,\PitonInputFileF
 first-line=%<integer%>
 last-line=%<integer%>
 begin-range=%<content%>
@@ -64,7 +76,7 @@ begin-escape=%<character%>
 end-escape=%<character%>
 begin-escape-math=%<character%>
 end-escape-math=%<character%>
-path=%<file path%>
+path={%<list of paths%>}
 #endkeyvals
 
 # keys for \begin{Piton} only
