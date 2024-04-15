@@ -92,6 +92,7 @@ public:
 			QString wrd = getCurWord();
 			completer->filterList(wrd, showMostUsed);
 			completer->widget->show();
+            completer->widget->raise();
 			if (showMostUsed == 1 && completer->countWords() == 0) { // if prefered list is empty, take next more extensive one
                 completer->setTab(0); // typical
 			}
@@ -704,6 +705,7 @@ public:
 		completer->filterList(getCurWord());
 		if (showAlways) {
 			completer->widget->show();
+            completer->widget->raise(); // fix #3598 - problem with qdocks
 			select(completer->list->model()->index(0, 0, QModelIndex()));
 		}
 	}
