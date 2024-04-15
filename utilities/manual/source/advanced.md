@@ -110,7 +110,7 @@ E.g.
 
 Query: `Write a macro for texstudio which converts the first letter of every word in a text-selection to uppercase.`
 
-The results have been disappointing with mistral.ai, though it was was possible to get better results in the chat on the internet.
+The results have been disappointing with mistral.ai, though it was possible to get better results in the chat on the internet.
 The assumption is that this may get better (or better queries are needed).
 
 
