@@ -24,6 +24,14 @@ private:
     QDir m_storageDirectory;
     QStringList m_files;
 
+    struct TimeFrame
+    {
+        QString name;
+        int index;
+    };
+    QList<TimeFrame>m_segments;
+
+
     // QAbstractItemModel interface
 };
 

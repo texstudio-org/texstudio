@@ -329,6 +329,9 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
         }else{
             btInsert->setText(tr("Insert"));
         }
+    }else{
+        // no query sent yet
+        textBrowser->clear();
     }
 }
 /*!
