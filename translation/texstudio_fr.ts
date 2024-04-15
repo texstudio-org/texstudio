@@ -7,7 +7,7 @@
         <location filename="../src/aichatassistant.cpp" line="264"/>
         <location filename="../src/aichatassistant.cpp" line="300"/>
         <source>Send</source>
-        <translation type="unfinished"/>
+        <translation>Envoyer</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="28"/>
@@ -24,17 +24,17 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="52"/>
         <source>AI chat assistant</source>
-        <translation type="unfinished"/>
+        <translation>Assistant de conversation IA</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="167"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Stop</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="242"/>
         <source>Temperature</source>
-        <translation type="unfinished"/>
+        <translation>Température</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="247"/>
@@ -45,7 +45,7 @@
         <location filename="../src/aichatassistant.cpp" line="292"/>
         <location filename="../src/aichatassistant.cpp" line="328"/>
         <source>Execute</source>
-        <translation type="unfinished"/>
+        <translation>Exécuter</translation>
     </message>
 </context>
 <context>
@@ -5842,7 +5842,7 @@ Veuillez ouvrir l&apos;emplacement du modèle et décompresser le modèle pour m
     <message>
         <location filename="../src/texstudio.cpp" line="1269"/>
         <source>AI &amp;Chat...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Conversation IA</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1272"/>
@@ -6524,12 +6524,12 @@ Voulez-vous continuer ?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="5424"/>
         <source>AI Chat</source>
-        <translation type="unfinished"/>
+        <translation>Conversation IA</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5424"/>
         <source>Please set the API key in the settings.</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez définir la clé API dans les paramètres.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5512"/>

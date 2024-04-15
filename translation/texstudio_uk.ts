@@ -7,7 +7,7 @@
         <location filename="../src/aichatassistant.cpp" line="264"/>
         <location filename="../src/aichatassistant.cpp" line="300"/>
         <source>Send</source>
-        <translation type="unfinished"/>
+        <translation>Надіслати</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="28"/>
@@ -24,17 +24,17 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="52"/>
         <source>AI chat assistant</source>
-        <translation type="unfinished"/>
+        <translation>Помічник чату зі ШІ</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="167"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Зупинити</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="242"/>
         <source>Temperature</source>
-        <translation type="unfinished"/>
+        <translation>Температура</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="247"/>
@@ -45,7 +45,7 @@
         <location filename="../src/aichatassistant.cpp" line="292"/>
         <location filename="../src/aichatassistant.cpp" line="328"/>
         <source>Execute</source>
-        <translation type="unfinished"/>
+        <translation>Виконати</translation>
     </message>
 </context>
 <context>
@@ -5849,7 +5849,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1269"/>
         <source>AI &amp;Chat...</source>
-        <translation type="unfinished"/>
+        <translation>Чат зі ШІ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1272"/>
@@ -6533,12 +6533,12 @@ Do you want to continue?</source>
     <message>
         <location filename="../src/texstudio.cpp" line="5424"/>
         <source>AI Chat</source>
-        <translation type="unfinished"/>
+        <translation>Чат зі ШІ</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5424"/>
         <source>Please set the API key in the settings.</source>
-        <translation type="unfinished"/>
+        <translation>Будь ласка, задайте ключ API у цих налаштуваннях.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5512"/>
