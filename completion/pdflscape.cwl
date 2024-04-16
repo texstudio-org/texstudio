@@ -1,6 +1,5 @@
 # pdflscape package
-# Matthew Bertucci 8/29/2021 for v0.12
+# Matthew Bertucci 2024/04/16 for v0.13
 
 #include:iftex
 #include:lscape
-#include:atbegshi
