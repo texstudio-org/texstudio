@@ -1,5 +1,5 @@
 # ltugboat class
-# Matthew Bertucci 2023/10/31 for v2.31
+# Matthew Bertucci 2024/04/16 for v2.32
 
 #include:mflogo
 #include:gettitlestring
@@ -420,6 +420,8 @@ runningoff
 \tubomitdoioptiontrue#*
 \tubraggedfoot#*
 \tubreflect{text}#*
+\tubruninglue#*
+\tubruninsecfmt#*
 \tubrunningauthor#*
 \tubsecfmt#*
 \tubsechook#*
@@ -472,5 +474,6 @@ runningoff
 \XSL
 \XSLFO
 \XSLT
+\YAML
 \ylap{text}
 \zlap{text}
