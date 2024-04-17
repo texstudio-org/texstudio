@@ -1389,6 +1389,7 @@
 <file>completion/envmath.cwl</file>
 <file>completion/eolang.cwl</file>
 <file>completion/eolgrab.cwl</file>
+<file>completion/epcqrcode.cwl</file>
 <file>completion/epic.cwl</file>
 <file>completion/epigrafica.cwl</file>
 <file>completion/epigraph.cwl</file>
@@ -1972,6 +1973,7 @@
 <file>completion/jslectureplanner.cwl</file>
 <file>completion/jslogo.cwl</file>
 <file>completion/jsmembertable.cwl</file>
+<file>completion/jsonparse.cwl</file>
 <file>completion/jsverb.cwl</file>
 <file>completion/jumplines.cwl</file>
 <file>completion/junicode.cwl</file>
@@ -2167,6 +2169,7 @@
 <file>completion/lplfitch.cwl</file>
 <file>completion/lsabon.cwl</file>
 <file>completion/lscape.cwl</file>
+<file>completion/lscapeenhanced.cwl</file>
 <file>completion/lstautogobble.cwl</file>
 <file>completion/lstbayes.cwl</file>
 <file>completion/lstdoc.cwl</file>

@@ -1,5 +1,5 @@
 # gitinfo-lua package
-# Matthew Bertucci 2023/11/11 for v1.0.0
+# Matthew Bertucci 2024/04/12 for v1.1.0
 
 #include:luacode
 #include:pgfopts
@@ -9,6 +9,7 @@ contrib
 alpha
 authors
 titlepage
+rootdir
 #endkeyvals
 
 \gitdirectory{path%definition}
