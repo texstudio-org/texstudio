@@ -49,6 +49,31 @@
     </message>
 </context>
 <context>
+    <name>AIQueryStorageModel</name>
+    <message>
+        <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
+        <location filename="../src/aiquerystoragemodel.cpp" line="146"/>
+        <location filename="../src/aiquerystoragemodel.cpp" line="148"/>
+        <source>Today</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
+        <source>Last Week</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
+        <source>Last Month</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/aiquerystoragemodel.cpp" line="115"/>
+        <source>Older</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>AboutDialog</name>
     <message>
         <location filename="../src/aboutdialog.cpp" line="59"/>
@@ -140,6 +165,16 @@
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/aboutdialog.ui" line="14"/>
+        <source>About TeXstudio</source>
+        <translation>درباره‌ی TeXstudio</translation>
+    </message>
+    <message>
+        <location filename="../src/aboutdialog.ui" line="81"/>
+        <source>OK</source>
+        <translation>تأیید</translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -147,6 +182,64 @@
         <location filename="../src/arraydialog.cpp" line="108"/>
         <source>Quick Array</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="31"/>
+        <source>Num of Columns</source>
+        <translation>تعداد ستون‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="48"/>
+        <source>Columns Alignment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="62"/>
+        <source>Environment</source>
+        <translation>محیط‌</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="75"/>
+        <source>In case of an array environment sets the alignment for the column of the currently selected cell.
+For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="86"/>
+        <source>Num of Rows</source>
+        <translation>تعداد سطرها</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="96"/>
+        <source>Choose environment to be created (s. window title).
+Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
+Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="128"/>
+        <source>OK</source>
+        <translation>تأیید</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="135"/>
+        <source>Cancel</source>
+        <translation>لغو</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.h" line="35"/>
+        <source>Center</source>
+        <translation>وسط‌چین</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.h" line="35"/>
+        <source>Left</source>
+        <translation>چپ‌چین</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.h" line="35"/>
+        <source>Right</source>
+        <translation>راست‌چین</translation>
     </message>
 </context>
 <context>
@@ -328,6 +421,36 @@
     <message>
         <location filename="../src/bibtexdialog.cpp" line="371"/>
         <source>New BibTeX Entry</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="20"/>
+        <source>Insert in File:</source>
+        <translation>وارد کردن در فایل:</translation>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="27"/>
+        <source>Entry Type:</source>
+        <translation>نوع ورودی:</translation>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="50"/>
+        <source>Fields:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="67"/>
+        <source>Field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="72"/>
+        <source>Value</source>
+        <translation>مقدار</translation>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="80"/>
+        <source>Insert Empty, Optional Fields</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -669,6 +792,36 @@ Please change your configuration and define command lists only at &apos;Options 
         <source>For your own safety clean will not delete the files with the following extensions:</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="14"/>
+        <source>Clean</source>
+        <translation>تمیز کن</translation>
+    </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="20"/>
+        <source>Scope</source>
+        <translation>افق</translation>
+    </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="30"/>
+        <source>File Extensions</source>
+        <translation>پسوند پرونده</translation>
+    </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="42"/>
+        <source>Restore default</source>
+        <translation>به حالت پیش فرض باز گردان</translation>
+    </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="58"/>
+        <source>Delete the auxiliary files generated by LaTeX:</source>
+        <translation>فایل‌های کمکی تولید شده توسط لاتک را حذف کن:</translation>
+    </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="88"/>
+        <source>Files to Delete</source>
+        <translation>فایل‌هایی که باید حذف شوند</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet_PlaceHolder</name>
@@ -688,40 +841,2102 @@ Please change your configuration and define command lists only at &apos;Options 
 <context>
     <name>ConfigDialog</name>
     <message>
+        <location filename="../src/configdialog.ui" line="14"/>
+        <source>Configure TeXstudio</source>
+        <translation>پیکربندی TeXstudio</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="166"/>
+        <location filename="../src/configdialog.ui" line="2069"/>
+        <source>Appearance</source>
+        <translation>ظاهر</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="182"/>
+        <location filename="../src/configdialog.ui" line="4877"/>
+        <source>Color Scheme:</source>
+        <translation>شِمای رنگ</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="215"/>
+        <source>Style:</source>
+        <translation>قالب:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="238"/>
+        <location filename="../src/configdialog.ui" line="3810"/>
+        <source>Language:</source>
+        <translation>زبان:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="251"/>
+        <source>Font:</source>
+        <translation>خط:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="259"/>
+        <source>Classic</source>
+        <translation>قدیمی</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="264"/>
+        <source>Modern</source>
+        <translation>به‌روز</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="269"/>
+        <source>Modern - dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="283"/>
+        <location filename="../src/configdialog.ui" line="1808"/>
+        <location filename="../src/configdialog.ui" line="4905"/>
+        <source>Font Size:</source>
+        <translation>اندازه‎ی خط:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="295"/>
+        <source>Ignore Most System Colors</source>
+        <translation>رنگ‌های سیستمی را در نظر نگیر</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="305"/>
+        <source>Use System Theme Icons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="330"/>
+        <source>Icon Theme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="338"/>
+        <source>Colibre</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="343"/>
+        <source>Oxygen Modern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="348"/>
+        <source>Oxygen Classic</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="359"/>
+        <source>Files</source>
+        <translation>پرونده‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="374"/>
+        <source>Max. Recent Root Documents:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="381"/>
+        <source>Remember selected file filter in open/save dialog </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="410"/>
+        <source>Max. Recent Documents:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="430"/>
+        <source>Use system file dialogs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="437"/>
+        <source>Always Show Structure of Root Document</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="447"/>
+        <source>MRU Document Chooser</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="460"/>
+        <source>Session</source>
+        <translation>جلسه</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="469"/>
+        <source>Restore Previous Session at Startup</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="476"/>
+        <source>Store relative paths</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="489"/>
+        <source>Startup</source>
+        <translation>راه اندازی</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="495"/>
+        <source>Check LaTeX Configuration</source>
+        <translation>پیکربندی LaTeX را بررسی کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="505"/>
+        <source>Update</source>
+        <translation>به‌روز رسانی</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="517"/>
+        <source>Defines the kinds of update notifications you will receive:
+- Stable Releases: Choose this if stability is most important to you.
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="524"/>
+        <source>Stable Releases</source>
+        <translation>نسخه‌ی پایدار</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="529"/>
+        <source>Release Candidates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="534"/>
+        <source>Development Versions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="555"/>
+        <source>Check Now</source>
+        <translation>الان بررسی کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="582"/>
+        <source>Last Checked:</source>
+        <translation>آخرین بررسی:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="589"/>
+        <source> days</source>
+        <translation>روزها</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="602"/>
+        <source>Automatically check every</source>
+        <translation>همه را یه صورت خودکار بررسی کن.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="609"/>
+        <source>Update Level:</source>
+        <translation>سطح به روز رسانی</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="664"/>
+        <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="671"/>
+        <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="678"/>
+        <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="688"/>
+        <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="704"/>
+        <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="785"/>
+        <source>Meta Commands</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="798"/>
+        <source>User Commands</source>
+        <translation>دستورهای کاربر</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="808"/>
+        <source>Build Options</source>
+        <translation>امکانات پردازش</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="820"/>
+        <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="823"/>
+        <source>Check and update bibliography before compiling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="830"/>
+        <source>Show messages when starting compiling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="855"/>
+        <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="864"/>
+        <source>Show stdout:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="872"/>
+        <location filename="../src/configdialog.ui" line="2317"/>
+        <location filename="../src/configdialog.ui" line="4086"/>
+        <source>Never</source>
+        <translation>هرگز</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="877"/>
+        <source>Only For User Commands</source>
+        <translation>فقط برای دستورهای کاربر</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="882"/>
+        <source>Always (If not redirected &gt; /dev/null)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="890"/>
+        <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="893"/>
+        <source>Maximum Compile Repetitions:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="949"/>
+        <source>Commands ($PATH)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="956"/>
+        <source>PDF File</source>
+        <translation>فایل PDF</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1000"/>
+        <source>Log File</source>
+        <translation>فایل جزئیات</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1009"/>
+        <source>Additional Search Paths:</source>
+        <translation>مسیرهای جست‌وجوی اضافی:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1016"/>
+        <source>Replaces environment variables in commands.The behavior is OS-specific.
+
+Windows:
+Variables are written as: %MYVAR%. They are case-insensitive.
+
+Linux, OS X:
+Variables are written as: $MYVAR. They are case-sensitive.
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1026"/>
+        <source>Replace Environment Variables</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1033"/>
+        <source>Show log in case of compile error</source>
+        <translation>در صورت خطا در اجرا فایل گزارش را نشان بده</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1040"/>
+        <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1043"/>
+        <source>Interpret command definition in magic comments</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1073"/>
         <location filename="../src/configdialog.cpp" line="534"/>
         <source>Shortcuts</source>
         <translation>میانبرها</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1080"/>
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+Then you can select a new shortcut by one of the following ways:
+(1) select from the dropdown list
+(2) hit the shortcut combination
+(3) type the string of the shortcut</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1097"/>
+        <location filename="../src/configdialog.ui" line="1344"/>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1102"/>
+        <source>2</source>
+        <translation>2</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1107"/>
+        <source>3</source>
+        <translation>3</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1112"/>
+        <source>4</source>
+        <translation>4</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1120"/>
+        <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1123"/>
+        <source>Close Element (Esc)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1129"/>
+        <source>Close Log-View</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1136"/>
+        <source>Close Embedded Viewer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1143"/>
+        <source>Close Full Screen Mode</source>
+        <translation>از حالت تمام صفحه خارج شو</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1153"/>
+        <source>Show Shortcuts in Tooltips</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1176"/>
         <location filename="../src/configdialog.cpp" line="535"/>
         <source>Menus</source>
         <translation>منوها</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1183"/>
+        <source>Here the menu items are listed and can be hidden or edited.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1196"/>
+        <source>Name</source>
+        <translation>نام</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1201"/>
         <location filename="../src/configdialog.cpp" line="523"/>
         <source>Command</source>
         <translation>دستور</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1206"/>
+        <source>Slot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1214"/>
+        <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1217"/>
+        <source>Show All</source>
+        <translation>همه را نمایش بده</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1240"/>
+        <source>Toolbar Customization</source>
+        <translation>سفارشی سازی نوار ابزار</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1249"/>
+        <source>This shows all actions on the currently edited toolbar.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1274"/>
+        <source>This adds an action to the toolbar.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1288"/>
+        <source>This removes an action from the toolbar.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1317"/>
+        <source>Here you can choose a toolbar to modify.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1324"/>
+        <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1331"/>
+        <source>This shows available actions to map on a toolbar.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1379"/>
+        <source>Note: The change of symbols can be monitored live</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1386"/>
+        <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1417"/>
+        <source>Main Toolbar</source>
+        <translation>نوار ابزار اصلی</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1424"/>
+        <location filename="../src/configdialog.ui" line="1431"/>
+        <location filename="../src/configdialog.ui" line="1488"/>
+        <location filename="../src/configdialog.ui" line="1541"/>
+        <source>Reset</source>
+        <translation>دوباره راه‌انذازی کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1438"/>
+        <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1460"/>
+        <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1495"/>
+        <source>Symbol Grid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1502"/>
+        <source>Secondary Toolbars</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1509"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1534"/>
+        <source>Embedded PDF Toolbar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1629"/>
         <location filename="../src/configdialog.cpp" line="538"/>
         <location filename="../src/configmanager.cpp" line="1520"/>
         <source>Editor</source>
         <translation>ویرایشگر</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1641"/>
+        <source>Inline Checking:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1651"/>
+        <source>Show Line Numbers:</source>
+        <translation>شماره ی خطوط را نمایش بده:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1659"/>
+        <source>No Line Numbers</source>
+        <translation>خطوط را شماره گذاری نکن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1664"/>
+        <source>All Line Numbers</source>
+        <translation>شماره‌های تمام خطوط</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1669"/>
+        <source>Only Important Line Numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1677"/>
+        <source>Check non tex files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1687"/>
+        <source>Scan LaTeX distribution for installed packages</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1697"/>
+        <source>Folding</source>
+        <translation>جهت تاخوردن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1704"/>
+        <source>Replace Indentation Tab by Spaces</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1711"/>
+        <location filename="../src/configdialog.ui" line="4891"/>
+        <source>Font Family:</source>
+        <translation>خانواده‌ی خط</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1718"/>
+        <source>Replace Double Quotes:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1731"/>
+        <source>Default Font Encoding:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1738"/>
+        <source>Indentation Mode:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1745"/>
+        <source>Automatic Encoding Detection:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1755"/>
+        <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1762"/>
+        <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1765"/>
+        <source>Analyze Characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1789"/>
+        <location filename="../src/configdialog.ui" line="4167"/>
+        <location filename="../src/configdialog.ui" line="4264"/>
+        <source>%</source>
+        <translation>%</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1815"/>
+        <source>Line Spacing:</source>
+        <translation>فاصله خطوط:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1826"/>
+        <source>No Replacement</source>
+        <translation>بدون جایگزین</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1831"/>
+        <source>English Quotes:  `` &apos;&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1836"/>
+        <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1841"/>
+        <source>German Quotes:  &quot;` &quot;&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1846"/>
+        <source>French Quotes (babel): \og{} \fg{}</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1851"/>
+        <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1856"/>
+        <source>Package csquotes: \enquote{  }</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1861"/>
+        <source>English Quotes (unicode): “ ”</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1866"/>
+        <source>Polish Quotes: ,, &apos;&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1871"/>
+        <source>Polish Quotes (unicode): „ ”</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1879"/>
+        <source>Show Only Monospaced Fonts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1890"/>
+        <source>Ignore Indentation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1895"/>
+        <source>Keep Indentation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1900"/>
+        <source>Indent and Unindent Automatically</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1920"/>
+        <source>Spelling</source>
+        <translation>املاء</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1927"/>
+        <source>Grammar</source>
+        <translation>دستور زبان</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1934"/>
+        <source>Citations</source>
+        <translation>ارجاعات</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1941"/>
+        <source>References</source>
+        <translation>مراجع</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1948"/>
+        <source>Syntax</source>
+        <translation>قائده</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1955"/>
+        <source>Package</source>
+        <translation>بسته</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1965"/>
+        <source>Replace Tab in Text by Spaces</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1972"/>
+        <source>Hide grammar errors in non-text environments</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1982"/>
+        <source>Hide spelling errors in non-text environments</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1992"/>
+        <source>Remove Trailing Whitespace on Save</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1999"/>
+        <source>Automatically load included files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2009"/>
+        <source>Cache documents for faster reopening</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2092"/>
+        <source>Show State Panel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2104"/>
+        <source>Tab Width:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2139"/>
+        <source>Show Whitespace</source>
+        <translation>فضاهای سفید را نشان بده</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2152"/>
+        <source>Show Line Change State</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2162"/>
+        <source>Draw cursor as a thick line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2165"/>
+        <source>Bold Cursor</source>
+        <translation>مکان‌نمای پهن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2181"/>
+        <source>Search Panel</source>
+        <translation>تابلوی جست‌و‌جو</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2187"/>
+        <source>Close search and replace panel together</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2197"/>
+        <source>Use single line selection as Search Word</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2207"/>
+        <source>Restrict search scope to an existing selection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2217"/>
+        <source>Special options</source>
+        <translation>امکانات ویژه</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2226"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2229"/>
+        <source>Safe writing of files</source>
+        <translation>امن نوشتن فایل‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2236"/>
+        <source>Show preview as tooltip on formulas in editor</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2243"/>
+        <source>Show image tooltip on image files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2250"/>
+        <source>Smooth Scrolling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2257"/>
+        <source>Show log markers when clicking log entry</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2264"/>
+        <source>Overwrite Opening Bracket Followed by a Placeholder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2276"/>
+        <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2285"/>
+        <source>Monitor open files for external changes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2292"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2295"/>
+        <source>Latex Command for pushed citations:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2303"/>
+        <source>Add Entries Directly To Context  Menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2308"/>
+        <source>Create Dedicated Submenu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2322"/>
+        <source>1 minute</source>
+        <translation>1 دقیقه</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2327"/>
+        <source>2 minutes</source>
+        <translation>2 دقیقه</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2332"/>
+        <source>5 minutes</source>
+        <translation>5 دقیقه</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2337"/>
+        <source>10 minutes</source>
+        <translation>10 دقیقه</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2342"/>
+        <source>20 minutes</source>
+        <translation>20 دقیقه</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2347"/>
+        <source>60 minutes</source>
+        <translation>60 دقیقه</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2355"/>
+        <source>When using unicode characters in the source code, LaTeX still has
+to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2359"/>
+        <source>Insert Symbol as Unicode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2366"/>
+        <source>Line Wrapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2373"/>
+        <source>Mouse Wheel Zoom</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2380"/>
+        <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2383"/>
+        <source>Center Document in Editor</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2393"/>
+        <source>Triple-Click Selection:</source>
+        <translation>انتخاب سه ضربه‌ای:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2403"/>
+        <source>Show help on commands in internal pdf viewer (texdoc)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2410"/>
+        <source>Vertical Overscroll (Scroll below end of file)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2418"/>
+        <source>Select Word</source>
+        <translation>کلمه را انتخاب  کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2423"/>
+        <source>Select Word or Command</source>
+        <translation>دستور یا کلمه را انتخاب  کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2428"/>
+        <source>Select Parentheses Content</source>
+        <translation>محتویات داخل پرانتز را انتخاب کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2433"/>
+        <source>Select Parentheses</source>
+        <translation>پرانتزها را انتخاب کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2438"/>
+        <source>Select Line</source>
+        <translation>خط را انتخاب کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2446"/>
+        <source>Maximal Characters:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2456"/>
+        <source>Overwrite Closing Bracket Following a Placeholder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2463"/>
+        <source>Default Log Encoding</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2470"/>
+        <source>Auto Save All Files:</source>
+        <translation>به صورت خودکار تمام فایل‌ها را ذخیره کن:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2491"/>
+        <source>No Line Wrap</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2496"/>
+        <source>Soft Line Wrap at Window Edge</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2501"/>
+        <source>Soft Line Wrap after max. Characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2506"/>
+        <source>Hard Line Wrap after max. Characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2514"/>
+        <source>Show help as tooltip on text in editor</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2521"/>
+        <source>Go to error when displaying log</source>
+        <translation>زمان نمایش گزارش به محل خطا برو.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2528"/>
+        <source>Spellchecking via context menu:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2535"/>
+        <source>Auto Complete Parentheses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2542"/>
+        <source>Allow Drag and Drop</source>
+        <translation>کشیدن و انداختن را فعال کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2549"/>
+        <source>Double-Click Selection: Include Leading Backslash</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2559"/>
+        <source>Structure Panel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2565"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2569"/>
+        <source>No Color Background</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2574"/>
+        <source>Green Background</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2579"/>
+        <source>Blue Background</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2587"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2590"/>
+        <source>Mark structure elements beyond \end{document}</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2597"/>
+        <source>Reference commands in context menu:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2610"/>
+        <source>Regular expression for TODO comment: </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2617"/>
+        <source>Keep indentation of includes in structure tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2624"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2627"/>
+        <source>Scroll to current cursor position</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2634"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2637"/>
+        <source>Mark structure elements in appendix</source>
+        <translation>در پیوست عناصر ساختار را نشان‌گذاری کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2644"/>
+        <source>Use color in global TOC:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2664"/>
+        <source>Bibliography</source>
+        <translation>کتاب شناسی</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2670"/>
+        <source>bib File Encoding:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2677"/>
+        <source>Parse BibTeX</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2690"/>
+        <source>Table Autoformating</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2696"/>
+        <source>One Line Per Cell</source>
+        <translation>یک خط در سلول</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2704"/>
+        <source>Behind Line Break</source>
+        <translation>قبل از شکست خط</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2709"/>
+        <source>Separate Line (No Indent)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2714"/>
+        <source>Separate Line (Indented to First Column)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2722"/>
+        <source>Special Commands Position:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2732"/>
+        <source>Special Commands:</source>
+        <translation>دستورات ویژه</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2742"/>
+        <source>Additional Search Paths</source>
+        <translation>مسیرهای جست و جوی بیشتر</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2751"/>
+        <source>Bib Files:</source>
+        <translation>فایل‌های مرجع‌شناسی</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2764"/>
+        <source>Image Files:</source>
+        <translation>فایل‌های تصویری</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2802"/>
+        <source>Bi-Di</source>
+        <translation>دو جهته</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2808"/>
+        <source>Automatically insert LRM characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2815"/>
+        <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2822"/>
+        <source>Automatically switch keyboard layout: </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2829"/>
+        <source>depending on character direction</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2836"/>
+        <source>depending on text/math mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2846"/>
+        <source>Hacks/Workarounds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2852"/>
+        <source>Disable work-around on accent typing (Mac OS X only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2859"/>
+        <source>Try to automatically choose best display options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2877"/>
+        <source>Render Mode:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2885"/>
+        <source>QCE (recommended)</source>
+        <translation>QCE(پیشنهاد شده)</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2890"/>
+        <source>Qt</source>
+        <translation>کیو تی</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2895"/>
+        <source>Single Letter</source>
+        <translation>تک حرفی</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2903"/>
+        <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2906"/>
+        <source>Disable cache of rendered lines</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2913"/>
+        <source>Disable fixed pitch mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2920"/>
+        <source>Disable cache of character width</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2927"/>
+        <source>Use QImage as cache type</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2990"/>
+        <source>Formats</source>
+        <translation>انواع</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3019"/>
         <location filename="../src/configdialog.cpp" line="541"/>
         <source>Completion</source>
         <translation>تکمیل شدن</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="3025"/>
+        <source>Allows in-place substitution of commands. Example:&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
+&lt;li&gt;Start completer by Ctrl+Space&lt;/li&gt;
+&lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
+&lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
+&lt;/ul&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3035"/>
+        <source>Auto Replace Latex-Commands</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3042"/>
+        <source>Insert Arguments</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3052"/>
+        <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3055"/>
+        <source>ToolTip-Preview</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3062"/>
+        <source>Arguments as Placeholders</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3072"/>
+        <source>Shows a tooltip with a description of the selected completer command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3075"/>
+        <source>ToolTip-Help</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3085"/>
+        <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3088"/>
+        <source>Automatically start completer when typing LaTeX-Commands</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3097"/>
+        <source>Size of the tab bar at the bottom or top of the completer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3100"/>
+        <source>Tab Bar Size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3110"/>
+        <source>Size of the command set tabs at the bottom or top of the completer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3144"/>
+        <source>Complete selected text when non-word character is pressed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3154"/>
+        <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3157"/>
+        <source>Auto Complete Common Prefix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3169"/>
+        <source>Preferred Commands Set:</source>
+        <translation>مجموعه دستورات ترجیح داده شده:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3177"/>
+        <source>Typical</source>
+        <translation>معمول</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3182"/>
+        <source>Most Used</source>
+        <translation>بیشتر استفاده شده</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3187"/>
+        <source>Fuzzy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3192"/>
+        <source>All</source>
+        <translation>همه</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3215"/>
+        <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3218"/>
+        <source>Auto Insert Math Delimiters where needed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3230"/>
+        <location filename="../src/configdialog.ui" line="3268"/>
+        <source>TXS tries to automatically load completion files for packages if a
+\usepackage{} command is found. These automatically included files
+are not shown here. Checking additional packages here is usually not
+necessary. However if automatic detection fails or you want to include
+specfic user completion files, you can enforce their usage by activating
+them here.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3238"/>
+        <source>Permanently active completion files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3248"/>
+        <source>Filter list below</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3359"/>
+        <source>Spell Check</source>
+        <translation>بررسی املاء</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3365"/>
+        <source>Default Language:</source>
+        <translation>زبان پیش‌فرض</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3392"/>
+        <source>Spelling Dictionary Directories:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3399"/>
+        <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3409"/>
+        <source>*.dat</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3416"/>
+        <source>Thesaurus Database:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3446"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3459"/>
+        <source>Import Dictionary...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3469"/>
+        <source>Internal Grammar Check</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3475"/>
+        <source>Words repeated within a paragraph will be highlighted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3478"/>
+        <source>Check for Word Repetitions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3485"/>
+        <source>Words Between Repetitions:</source>
+        <translation>کلمات با تکرارهای میانٍ:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3495"/>
+        <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3505"/>
+        <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3515"/>
+        <source>Only words with have this length are checked for long range repetitions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3525"/>
+        <source>Long Range Repetitions:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3535"/>
+        <source>Min Length of Words with Long Repetition:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3545"/>
+        <source>Wordlist Directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3552"/>
+        <source>Certain informal or weak words will be highlighted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3555"/>
+        <source>Check for Bad Words</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3562"/>
+        <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3589"/>
+        <source>Store the conversation with AI provider on disk to allow later retrieval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3592"/>
+        <source>AI chat assistant</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3599"/>
+        <source>open-mistral-7b</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3604"/>
+        <source>open-mixtral-8x7b</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3609"/>
+        <source>mistral-small-latest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3614"/>
+        <source>mistral-medium-latest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3619"/>
+        <source>mistral-large-latest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3628"/>
+        <source>Mistral AI</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3633"/>
+        <source>OpenAI</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3641"/>
+        <source>AI provider:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3648"/>
+        <source>Preferred model:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3658"/>
+        <source>API key:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3665"/>
+        <source>Record Conversation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3675"/>
+        <source>LanguageTool</source>
+        <translation>ابزار زبان</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3681"/>
+        <source>Path containing the LanguageTool java archive.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3688"/>
+        <source>LT Path:</source>
+        <translation>مسیر ابزار زبان</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3695"/>
+        <source>Start LanguageTool if not running</source>
+        <translation>اگر ابزار زبان در حال اجرا نیست آن را باز کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3702"/>
+        <source>Server URL: </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3709"/>
+        <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3733"/>
+        <source>Ignored Rules:</source>
+        <translation>قوانین نادید گرفته شده</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3740"/>
+        <location filename="../src/configdialog.ui" line="3750"/>
+        <location filename="../src/configdialog.ui" line="3760"/>
+        <location filename="../src/configdialog.ui" line="3790"/>
+        <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3770"/>
+        <source>Special Rules 3:</source>
+        <translation>قانون خاص 3:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3780"/>
+        <source>Special Rules 2:</source>
+        <translation>قانون خاص 2:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3800"/>
+        <source>Special Rules 1:</source>
+        <translation>قانون خاص 1:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3817"/>
+        <source>Special Rules 4:</source>
+        <translation>قانون خاص 4:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3827"/>
+        <source>Will be inferred from the language of the spell checker used in the document.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3834"/>
+        <source>Java executable, used to start LanguageTool, if it is not running.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3841"/>
+        <source>Java:</source>
+        <translation>جاوا:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3848"/>
+        <location filename="../src/configdialog.ui" line="3896"/>
+        <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3851"/>
+        <source>LT Arguments:</source>
+        <translation>آرگومان‌های LT:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3875"/>
+        <location filename="../src/configdialog.ui" line="3903"/>
+        <source>Restore Default</source>
+        <translation>به حالت پیش فرض باز گردان</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3889"/>
+        <source>Url to connect to LanguageTool. </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3986"/>
+        <source>Command:</source>
+        <translation>دستور:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3997"/>
+        <source>Preview with dvipng</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4002"/>
+        <source>Preview with dvipng --follow (parallel)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4007"/>
+        <source>Preview with dvips/ghostscript</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4012"/>
+        <source>Preview with pdflatex</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4017"/>
+        <source>Preview with lualatex</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4025"/>
+        <source>Display Mode:</source>
+        <translation>نحوه نمایش:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4035"/>
+        <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4042"/>
+        <source>Show preview as tooltip if panel is hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4047"/>
+        <source>Always show preview in preview panel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4052"/>
+        <source>Always show preview as tool tip</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4057"/>
+        <source>Always show both</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4062"/>
+        <source>Inline</source>
+        <translation>در خط</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4067"/>
+        <source>Show in embedded viewer</source>
+        <extracomment>Only available if pdflatex is used for compilation</extracomment>
+        <translation>در ویرایشگر داخلی نمایش بده</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4075"/>
+        <source>Update the preview on text change</source>
+        <translation>پیش نمایش را با تغییر متن به روزرسانی کن.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4078"/>
+        <source>Auto Update:</source>
+        <translation>به صورت خودکار بروزرسانی کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4091"/>
+        <source>Previously previewed text</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4099"/>
+        <source>Auto Update Delay:</source>
+        <translation>تاخیر بروز رسانی خودکار:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4109"/>
+        <source> ms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4125"/>
+        <source>Replace beamer class by article</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4138"/>
+        <source>Precompile Preamble</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4154"/>
+        <location filename="../src/configdialog.ui" line="4277"/>
+        <source>Scaling:</source>
+        <translation>مقیاس‌گذاری:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4249"/>
         <location filename="../src/configdialog.cpp" line="544"/>
         <source>Internal PDF Viewer</source>
         <translation>نمایشگر PDF داخلی</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="4284"/>
+        <source>Load Strategy:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4294"/>
+        <source>Auto-recompile document on changes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4301"/>
+        <source>Cache Size:</source>
+        <translation>اندازه Cache:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4311"/>
+        <location filename="../src/configdialog.ui" line="4676"/>
+        <source> px</source>
+        <translation>px</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4333"/>
+        <source>Infinite</source>
+        <translation>بی‌نهایت</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4352"/>
+        <source> dpi</source>
+        <translation>dpi</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4362"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4372"/>
+        <source>Buffered</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4377"/>
+        <source>Direct</source>
+        <translation>مستقیم</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4382"/>
+        <source>Hybrid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4390"/>
+        <source>Highlight Duration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4400"/>
+        <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4403"/>
+        <source>\#HHHHHHHH;_</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4417"/>
+        <source>Rectangle</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4422"/>
+        <source>Circle</source>
+        <translation>دایره</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4443"/>
+        <source>Highlight Color</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4453"/>
+        <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4478"/>
+        <source>Border</source>
+        <translation>مرز</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4485"/>
+        <source>Shadow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4508"/>
+        <source>Original Size</source>
+        <translation>اندازه‌ی اصلی</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4513"/>
+        <source>Fit to Window Width</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4518"/>
+        <source>Fit to Window Size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4523"/>
+        <source>Scaled Size</source>
+        <translation>اندازه‌ی مقیاس شده</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4528"/>
+        <source>Fit to Text Width</source>
+        <translation>با پهنای متن هم اندازه کن</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4536"/>
+        <source> MB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4558"/>
+        <source>Synchronized Files Types:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4568"/>
+        <source>Paper Color</source>
+        <translation>رنگ کاغذ</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4578"/>
+        <location filename="../src/configdialog.ui" line="4632"/>
+        <source>The Render Backend used by the PDF library poppler.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
+Note: Changing this setting will only affect documents that are opened afterwards.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4584"/>
+        <source>Render Backend:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4594"/>
+        <source>Presentation Laser Pointer Size:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4601"/>
+        <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4608"/>
+        <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4618"/>
+        <source>Scale Option:</source>
+        <translation>امکانات مقیاس‌بندی:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4625"/>
+        <source>Magnifier Shape:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4655"/>
+        <source>Magnifier Size:</source>
+        <translation>اندازه بزرگ‌نمایی:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4662"/>
+        <source>Auto-hide Toolbars in Embedded Mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4669"/>
+        <source>Presentation Laser Pointer Color:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4759"/>
+        <source>Use SVN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4764"/>
+        <source>Use GIT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4772"/>
+        <source>Select how txs checks in saved files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4776"/>
+        <source>No automatic check-in after save</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4781"/>
+        <source>Check-in after File/Save only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4786"/>
+        <source>Check-in after all save operations, i.e. also before compiles.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4794"/>
+        <source>Use SVN/GIT revisions to undo before last saved version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4801"/>
+        <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4804"/>
+        <source>Substitute Keywords with Properties (on svn add)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4813"/>
+        <source>SVN Directory Search Depth: </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4871"/>
         <location filename="../src/configdialog.cpp" line="547"/>
         <source>Internal Terminal</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4922"/>
+        <source>Shell:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4978"/>
+        <source>Show Advanced Options</source>
+        <translation>نمایش امکانات پیشرفته</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="5004"/>
+        <source>OK</source>
+        <translation>تأیید</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="5014"/>
+        <source>Cancel</source>
+        <translation>لغو</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="202"/>
@@ -796,6 +3011,7 @@ to set the key anyway?</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="3980"/>
         <location filename="../src/configdialog.cpp" line="501"/>
         <location filename="../src/configdialog.cpp" line="543"/>
         <source>Preview</source>
@@ -862,6 +3078,7 @@ to set the key anyway?</source>
         <translation>نوار ابزار</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1370"/>
         <location filename="../src/configdialog.cpp" line="537"/>
         <source>GUI Scaling</source>
         <translation>مقیاس بندی رابط کاربری تصویری</translation>
@@ -882,6 +3099,7 @@ to set the key anyway?</source>
         <translation>بررسی زبان</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="4752"/>
         <location filename="../src/configdialog.cpp" line="545"/>
         <source>SVN/GIT</source>
         <translation type="unfinished"/>
@@ -2295,6 +4513,94 @@ Do you want to remove them?</source>
     </message>
 </context>
 <context>
+    <name>EditorConfig</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="23"/>
+        <source>Font</source>
+        <translation>فونت</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="79"/>
+        <source>text which &lt;i&gt;should&lt;/i&gt; be a &lt;b&gt;fair&lt;/b&gt; test of the font</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="114"/>
+        <source>Tabulators &amp;&amp; Whitespaces</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="131"/>
+        <source>Tab width</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="163"/>
+        <source>Show leading whitespaces</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="173"/>
+        <source>Show tabs which are neither leading nor trailing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="183"/>
+        <source>Show trailing whitespaces</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="193"/>
+        <source>Replace tabs by blanks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="203"/>
+        <source>Load &amp;&amp; Save</source>
+        <translation>بارگذاری &amp;&amp; ذخیره</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="209"/>
+        <source>Default encoding</source>
+        <translation>رمزینه‌ی پیش فرض</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="219"/>
+        <source>Preserve line endings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="233"/>
+        <source>Local</source>
+        <translation>محلی</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="238"/>
+        <source>Unix/Linux</source>
+        <translation>یونکس/لینوکس</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="243"/>
+        <source>DOS/Windows</source>
+        <translation>داس/ویندوز</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="248"/>
+        <source>Old Mac</source>
+        <translation>مک قدیمی</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="256"/>
+        <source>Remove trailing spaces</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="266"/>
+        <source>Preserve trailing indent</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Editors</name>
     <message>
         <location filename="../src/editors.cpp" line="389"/>
@@ -2362,6 +4668,52 @@ These changes will be lost, if you reload it with the new encoding.
 Are you sure you want to undo all changes?</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="14"/>
+        <source>Select File Encoding</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="20"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="27"/>
+        <source>View With</source>
+        <translation>نمایش با</translation>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="34"/>
+        <source>Reload With</source>
+        <translation>دوباره بارگذاری کن با</translation>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="41"/>
+        <source>Cancel</source>
+        <translation>لغو</translation>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="48"/>
+        <source>Change To</source>
+        <translation>تغییر بده به</translation>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="90"/>
+        <source>File Encoding</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="95"/>
+        <source>inputenc Parameter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="98"/>
+        <source>The codec names as the inputenc package expects them. The names are only given for reference.
+You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileChooser</name>
@@ -2369,6 +4721,70 @@ Are you sure you want to undo all changes?</source>
         <location filename="../src/filechooser.cpp" line="51"/>
         <source>Select a File</source>
         <translation>یک فایل را انتخاب کنید</translation>
+    </message>
+    <message>
+        <location filename="../src/filechooser.ui" line="55"/>
+        <source>File</source>
+        <translation>پرونده</translation>
+    </message>
+    <message>
+        <location filename="../src/filechooser.ui" line="130"/>
+        <source>OK</source>
+        <translation>تأیید</translation>
+    </message>
+    <message>
+        <location filename="../src/filechooser.ui" line="137"/>
+        <source>Cancel</source>
+        <translation>لغو</translation>
+    </message>
+</context>
+<context>
+    <name>FormatConfig</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/formatconfig.ui" line="20"/>
+        <source>Form</source>
+        <translation>فرم</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/formatconfig.ui" line="35"/>
+        <source>Scheme :</source>
+        <translation>طرح:</translation>
+    </message>
+</context>
+<context>
+    <name>GotoDialog</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="19"/>
+        <source>Goto line ...</source>
+        <translation>برو به خط ...</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="31"/>
+        <source>Select the line you want to go to :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="57"/>
+        <source>line </source>
+        <translation>خط</translation>
+    </message>
+</context>
+<context>
+    <name>GotoLine</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="14"/>
+        <source>Form</source>
+        <translation>فرم</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="27"/>
+        <source>&amp;Go to line :</source>
+        <translation>&amp;برو به خط :</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="53"/>
+        <source>G&amp;o</source>
+        <translation>ب&amp;رو</translation>
     </message>
 </context>
 <context>
@@ -2466,6 +4882,157 @@ The wizard does not support command </source>
         <comment>Wizard</comment>
         <translation>یک فایل را انتخاب کنید</translation>
     </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="40"/>
+        <source>File</source>
+        <translation>پرونده</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="94"/>
+        <location filename="../src/insertgraphics.ui" line="176"/>
+        <source>Defines the options for \includegraphics[options]{file}.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="97"/>
+        <source>Graphics Options</source>
+        <translation>امکانات تصویر</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="103"/>
+        <source>Width/Height</source>
+        <translation>پهنا/طول</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="113"/>
+        <source>Width</source>
+        <translation>پهنا</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="146"/>
+        <source>Height</source>
+        <translation>طول</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="183"/>
+        <source>User Defined</source>
+        <translation>تعریف شده توسط کاربر</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="195"/>
+        <source>Center Horizontally</source>
+        <translation>افقی وسط‌چین کن</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="219"/>
+        <source>Place in Figure Environment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="228"/>
+        <source>Caption</source>
+        <translation>عنوان</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="239"/>
+        <source>Above graphic</source>
+        <translation>بالای تصویر</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="244"/>
+        <source>Below graphic</source>
+        <translation>پایین تصویر</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="271"/>
+        <source>Caption for the image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="278"/>
+        <source>Label</source>
+        <translation>برچسب</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="285"/>
+        <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="292"/>
+        <source>Span Two Columns</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="299"/>
+        <source>Position</source>
+        <translation>موقعیت</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="324"/>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="331"/>
+        <source>  Short</source>
+        <translation>کوتاه</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="338"/>
+        <source>  Long</source>
+        <translation>بلند</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="369"/>
+        <source>Top</source>
+        <translation>بالا</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="376"/>
+        <source>Bottom</source>
+        <translation>پایین</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="383"/>
+        <source>Page</source>
+        <translation>صفحه</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="390"/>
+        <source>Here</source>
+        <translation>این‌جا</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="397"/>
+        <source>Here (H)</source>
+        <translation>اینجا (H)</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="404"/>
+        <source>Override Internal Layout Parameters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="440"/>
+        <source>Save current settings as default.</source>
+        <translation>این تنظیمات را به عنوان پیش‌فرض ذخیره کن</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="443"/>
+        <source>as Default</source>
+        <translation>مثل پیش‌فرض</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="467"/>
+        <source>OK</source>
+        <translation>تأیید</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="477"/>
+        <source>Cancel</source>
+        <translation>لغو</translation>
+    </message>
 </context>
 <context>
     <name>LabelSearchQuery</name>
@@ -2478,52 +5045,52 @@ The wizard does not support command </source>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1476"/>
-        <location filename="../src/latexcompleter.cpp" line="1486"/>
+        <location filename="../src/latexcompleter.cpp" line="1478"/>
+        <location filename="../src/latexcompleter.cpp" line="1488"/>
         <source>typical</source>
         <translation>معمول</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1477"/>
-        <location filename="../src/latexcompleter.cpp" line="1487"/>
+        <location filename="../src/latexcompleter.cpp" line="1479"/>
+        <location filename="../src/latexcompleter.cpp" line="1489"/>
         <source>most used</source>
         <translation>بیشتر استفاده شده</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1478"/>
-        <location filename="../src/latexcompleter.cpp" line="1488"/>
+        <location filename="../src/latexcompleter.cpp" line="1480"/>
+        <location filename="../src/latexcompleter.cpp" line="1490"/>
         <source>fuzzy</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1479"/>
-        <location filename="../src/latexcompleter.cpp" line="1489"/>
+        <location filename="../src/latexcompleter.cpp" line="1481"/>
+        <location filename="../src/latexcompleter.cpp" line="1491"/>
         <source>all</source>
         <translation>همه</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1480"/>
-        <location filename="../src/latexcompleter.cpp" line="1490"/>
+        <location filename="../src/latexcompleter.cpp" line="1482"/>
+        <location filename="../src/latexcompleter.cpp" line="1492"/>
         <source>press shift+space to change view</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1691"/>
+        <location filename="../src/latexcompleter.cpp" line="1693"/>
         <source> (Usertag)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2053"/>
+        <location filename="../src/latexcompleter.cpp" line="2055"/>
         <source>label missing!</source>
         <translation>برچسب فراموش شده است!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2055"/>
+        <location filename="../src/latexcompleter.cpp" line="2057"/>
         <source>label defined multiple times!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2065"/>
+        <location filename="../src/latexcompleter.cpp" line="2067"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation type="unfinished"/>
@@ -2940,6 +5507,36 @@ The wizard does not support command </source>
         <source>Quick Letter</source>
         <translation>نامه سریع</translation>
     </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="42"/>
+        <source>Typeface Size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="57"/>
+        <source>Encoding</source>
+        <translation>رمزینه</translation>
+    </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="64"/>
+        <source>AMS Packages</source>
+        <translation>بسته‌های AMS</translation>
+    </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="85"/>
+        <source>Paper Size</source>
+        <translation>سایز کاغذ</translation>
+    </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="115"/>
+        <source>OK</source>
+        <translation>تأیید</translation>
+    </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="122"/>
+        <source>Cancel</source>
+        <translation>لغو</translation>
+    </message>
 </context>
 <context>
     <name>MacroBrowserUI</name>
@@ -2975,6 +5572,51 @@ The wizard does not support command </source>
         <location filename="../src/maketemplatedialog.cpp" line="46"/>
         <source>A template with the given name already exists.
 Do you want to overwrite it?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="14"/>
+        <source>Make Template</source>
+        <translation>قالب بساز</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="20"/>
+        <source>Create a template from the current file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="27"/>
+        <source>Meta Data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="33"/>
+        <source>Name</source>
+        <translation>نام</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="43"/>
+        <source>Author</source>
+        <translation>نویسنده</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="53"/>
+        <source>Version</source>
+        <translation>نسخه</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="63"/>
+        <source>Description</source>
+        <translation>توضیحات</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="77"/>
+        <source>License</source>
+        <translation>مجوز</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="126"/>
+        <source>LaTeX Project Public License (LPPL)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3035,6 +5677,754 @@ Do you want to overwrite it?</source>
     </message>
 </context>
 <context>
+    <name>PDFAnnotation</name>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="30"/>
+        <source>Text</source>
+        <translation>متن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="32"/>
+        <source>Line</source>
+        <translation>خط</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="34"/>
+        <source>Geometric</source>
+        <translation>هندسی</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="36"/>
+        <source>Highlight</source>
+        <translation>برجسته کن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="38"/>
+        <source>Stamp</source>
+        <translation>استامپ</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="40"/>
+        <source>Ink</source>
+        <translation>جوهر</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="42"/>
+        <source>Link</source>
+        <translation>لینک</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="44"/>
+        <source>Caret</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="46"/>
+        <source>Attachment</source>
+        <translation>پیوست</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="48"/>
+        <source>Sound</source>
+        <translation>صدا</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="50"/>
+        <source>Movie</source>
+        <translation>فیلم</translation>
+    </message>
+</context>
+<context>
+    <name>PDFAnnotationDlg</name>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotationdlg.ui" line="14"/>
+        <source>Annotation</source>
+        <translation>حاشیه نویسی</translation>
+    </message>
+</context>
+<context>
+    <name>PDFAnnotationModel</name>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="232"/>
+        <source>Author</source>
+        <translation>نویسنده</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="234"/>
+        <source>Text</source>
+        <translation>متن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="236"/>
+        <source>Type</source>
+        <translation>نوع</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="238"/>
+        <source>Modified</source>
+        <translation>اصلاح شده</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="240"/>
+        <source>Created</source>
+        <translation>ساخته شده</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="242"/>
+        <source>Page</source>
+        <translation>صفحه</translation>
+    </message>
+</context>
+<context>
+    <name>PDFBaseSearchDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="462"/>
+        <source>Search</source>
+        <translation>جست و جو</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="529"/>
+        <source>Enables case sensitive search.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="540"/>
+        <source>Text or pattern to search for</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="541"/>
+        <source>Find next occurrence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="542"/>
+        <source>Find previous occurrence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="544"/>
+        <source> Find :</source>
+        <translation>جست‌و‌جو :</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="546"/>
+        <source>Case</source>
+        <translation>در ضورت</translation>
+    </message>
+</context>
+<context>
+    <name>PDFClockDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="952"/>
+        <source>Set Interval...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="953"/>
+        <source>Set Page Count...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="954"/>
+        <source>Restart</source>
+        <translation>شروع دوباره</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="969"/>
+        <source>Clock</source>
+        <translation>ساعت</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="991"/>
+        <source>Start time</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="992"/>
+        <source>New clock interval (in minutes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1011"/>
+        <source>Page count (negative subtracts)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1042"/>
+        <source>wait</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1044"/>
+        <source>%1 sec</source>
+        <translation>%1 ثانیه</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1046"/>
+        <source>%1 min</source>
+        <translation>%1 دقیقه</translation>
+    </message>
+</context>
+<context>
+    <name>PDFDocument</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2924"/>
+        <source>Toolbar</source>
+        <translation>نوار ابزار</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2978"/>
+        <source>&amp;File</source>
+        <translation>&amp;پوشه</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2979"/>
+        <source>&amp;Edit</source>
+        <translation>&amp;ویرایش</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2980"/>
+        <source>&amp;View</source>
+        <translation>&amp;نمایش</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2981"/>
+        <source>Grid</source>
+        <translation>شبکه</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2982"/>
+        <source>&amp;Window</source>
+        <translation>&amp; پنجره</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2983"/>
+        <source>&amp;Configure</source>
+        <translation>&amp;پیکربندی کن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2984"/>
+        <source>&amp;Help</source>
+        <translation>&amp;راهنما</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2990"/>
+        <source>User &amp;Manual...</source>
+        <translation>راهنمای&amp; کاربر</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2993"/>
+        <source>About</source>
+        <translation>درباره</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2994"/>
+        <source>&amp;Open...</source>
+        <translation>&amp;باز کردن...</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2995"/>
+        <source>Split &amp;&amp; Merge...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2996"/>
+        <source>&amp;Close</source>
+        <translation>&amp;خارج شو</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2998"/>
+        <source>&amp;Quit TeXstudio</source>
+        <translation>&amp;TeXstudio را ببند</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2999"/>
+        <source>&amp;Configure TeXstudio</source>
+        <translation>&amp;پیکربندی TeXstudio</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3001"/>
+        <source>Scrolling follows cursor</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3003"/>
+        <source>Cursor follows scrolling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3005"/>
+        <source>Synchronize multiple views</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3007"/>
+        <source>Ignore for synchronization</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3010"/>
+        <source>Invert Colors</source>
+        <translation>رنگ‌ها را برگردان</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3012"/>
+        <source>Grayscale</source>
+        <translation>سیاه سفید</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3016"/>
+        <source>&amp;Magnify</source>
+        <translation>&amp;بزرگ‌بینی</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3019"/>
+        <source>&amp;Scroll</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3024"/>
+        <source>&amp;First Page</source>
+        <translation>&amp;صفحه اول</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3025"/>
+        <source>Back</source>
+        <translation>عقب</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3026"/>
+        <source>&amp;Previous Page</source>
+        <translation>&amp;صفحه‌ی قبلی</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3027"/>
+        <source>&amp;Next Page</source>
+        <translation>صفحه &amp;بعد</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3028"/>
+        <source>Forward</source>
+        <translation>جلو</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3029"/>
+        <source>&amp;Last Page</source>
+        <translation>صفحه &amp;آخر</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3031"/>
+        <source>&amp;Go to Page...</source>
+        <translation>&amp;برو به صفحه‌ی ...</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3033"/>
+        <source>Zoom &amp;In</source>
+        <translation>بزرگنمایی را &amp;زیاد کن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3034"/>
+        <source>Zoom &amp;Out</source>
+        <translation>بزرگنمایی را &amp;کم کن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3035"/>
+        <source>&amp;Actual Size</source>
+        <translation>&amp;اندازه‌ی واقعی</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3036"/>
+        <source>Fit to Wi&amp;dth</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3038"/>
+        <source>Fit to &amp;Text Width</source>
+        <translation>با پهنای متن&amp; هم اندازه کن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3040"/>
+        <source>Fit to &amp;Window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3042"/>
+        <source>&amp;Continuous</source>
+        <translation>&amp;پیوسته</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3047"/>
+        <source>Full &amp;Screen</source>
+        <translation>تمام &amp;صفحه</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3048"/>
+        <source>Presentation</source>
+        <translation>ارائه</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3049"/>
+        <source>External Viewer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3050"/>
+        <source>Enlarge Viewer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3051"/>
+        <source>Shrink Viewer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3052"/>
+        <source>Windowed/Embedded</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3053"/>
+        <source>Auto-hide Toolbar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3069"/>
+        <source>Custom...</source>
+        <translation>سفارشی...</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3074"/>
+        <source>Single Page Step</source>
+        <translation>یکی یکی صفحه را جلو ببر</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3077"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3079"/>
+        <source>&amp;Close something</source>
+        <translation>&amp;چیزی را ببند</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3082"/>
+        <source>Stac&amp;k</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3083"/>
+        <source>&amp;Tile</source>
+        <translation>&amp;کاشی</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3084"/>
+        <source>&amp;Side by Side</source>
+        <translation>&amp;کنار یکدیگر</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3086"/>
+        <source>&amp;Go to Source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3087"/>
+        <source>Focus Editor</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3089"/>
+        <source>New Window</source>
+        <translation>پنجره‌ی جدید</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3090"/>
+        <source>&amp;Find</source>
+        <translation>&amp;جست‌و‌جو</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3091"/>
+        <source>Find &amp;again</source>
+        <translation>دوباره&amp; پیداکن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3093"/>
+        <source>Quick Build</source>
+        <translation>ساخت سریع</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3142"/>
+        <source>Show</source>
+        <translation>نشان دهید</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3165"/>
+        <source>Windowed Viewer</source>
+        <translation>نمایشگر پنجره‌ای</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3168"/>
+        <source>Embedded Viewer</source>
+        <translation>نمایشگر نهفته</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3231"/>
+        <source>of</source>
+        <comment>separator for page number: 1 of 3</comment>
+        <translation>از</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3254"/>
+        <source>Scale</source>
+        <translation>مقیاس</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3272"/>
+        <source>Zoom Out</source>
+        <translation>کوچک کردن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3282"/>
+        <source>Zoom</source>
+        <translation>بزرگنمایی</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3291"/>
+        <source>Zoom In</source>
+        <translation>بزرگنمایی کردن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3319"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3322"/>
+        <source>Annotations</source>
+        <translation>حاشیه‌نویسی</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3462"/>
+        <source>Page Down</source>
+        <translation>صفحه را پایین ببر</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3466"/>
+        <source>Page Up</source>
+        <translation>صفحه را بالا ببر</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3656"/>
+        <source>Retry</source>
+        <translation>تلاش دوباره</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3659"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4850"/>
+        <source>Close</source>
+        <translation>بستن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3662"/>
+        <source>%1
+does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3676"/>
+        <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3679"/>
+        <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3682"/>
+        <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3685"/>
+        <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3688"/>
+        <source>PDF file &quot;%1&quot; is locked.</source>
+        <translation>فایل PDF &quot;%1&quot; قفل شده است.</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3690"/>
+        <source>PDF password</source>
+        <translation>رمز عبور PDF</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3690"/>
+        <source>PDF file &quot;%1&quot; is locked.
+You can now enter the password:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4079"/>
+        <source>Searching for</source>
+        <translation>جست‌وجوی</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4191"/>
+        <source>No SyncTeX data available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4193"/>
+        <source>SyncTeX: &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4284"/>
+        <source>%1[*] - %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4371"/>
+        <source>Page %1 of %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4372"/>
+        <source>Pages %1 to %2 of %3</source>
+        <translation>صفحات %1 تا %2 از %3</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4397"/>
+        <source>Open PDF</source>
+        <translation>PDF را باز کن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4672"/>
+        <source>Print</source>
+        <translation>چاپ کن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4851"/>
+        <source>Close Message</source>
+        <translation>پیغام را ببند</translation>
+    </message>
+</context>
+<context>
+    <name>PDFFontsDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
+        <source>Name</source>
+        <translation>نام</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
+        <source>Type</source>
+        <translation>نوع</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
+        <source>Subset</source>
+        <translation>زیرمجموعه</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
+        <source>File</source>
+        <translation>پرونده</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="427"/>
+        <source>[none]</source>
+        <translation>[هیچ کدام]</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="432"/>
+        <source>yes</source>
+        <translation>بلی</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="432"/>
+        <source>no</source>
+        <translation>خیر</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="433"/>
+        <source>[embedded]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="205"/>
+        <source>Fonts</source>
+        <translation>فونت‌ها</translation>
+    </message>
+</context>
+<context>
+    <name>PDFInfoDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="147"/>
+        <source>PDF Info</source>
+        <translation>اطلاعات PDF</translation>
+    </message>
+</context>
+<context>
+    <name>PDFMovie</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="617"/>
+        <source>File %1 does not exists</source>
+        <translation>فایل %1 وجود ندارد</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="698"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="704"/>
+        <source>Volume:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="714"/>
+        <source>Time:</source>
+        <translation>زمان:</translation>
+    </message>
+</context>
+<context>
+    <name>PDFOutlineDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="204"/>
+        <source>No TOC</source>
+        <translation>بدون جدول محتویات</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="107"/>
+        <source>Contents</source>
+        <translation>محتویات</translation>
+    </message>
+</context>
+<context>
+    <name>PDFOverviewDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="328"/>
+        <source>Overview</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>PDFSearchDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="646"/>
+        <source>Words</source>
+        <translation>واژه‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="647"/>
+        <source>Only searches for whole words.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="654"/>
+        <source>Sync</source>
+        <translation>همگام سازی کن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="655"/>
+        <source>Synchronize editor when jumping to search results.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PDFSplitMergeTool</name>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="43"/>
@@ -3065,6 +6455,135 @@ Do you want to overwrite it?</source>
         <location filename="../src/pdfsplittool.cpp" line="254"/>
         <source>To:</source>
         <translation>تا:</translation>
+    </message>
+</context>
+<context>
+    <name>PDFSplitTool</name>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="14"/>
+        <source>Split &amp; Merge</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="39"/>
+        <source>Split &amp;&amp; Merge</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="46"/>
+        <source>Backend:</source>
+        <translation>پشت صحنه:</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="86"/>
+        <source>Cancel</source>
+        <translation>لغو</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="95"/>
+        <source>Output file:</source>
+        <translation>فایل خروجی:</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="108"/>
+        <source>Add input file</source>
+        <translation>فایل ورودی را اضافه کن</translation>
+    </message>
+</context>
+<context>
+    <name>PDFVideoWidget</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="594"/>
+        <source>&amp;Play</source>
+        <translation>&amp;اجرا</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="595"/>
+        <source>P&amp;ause</source>
+        <translation>ت&amp;وقف</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="596"/>
+        <source>&amp;Stop</source>
+        <translation>&amp;ایست</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="598"/>
+        <source>S&amp;eek</source>
+        <translation>گ&amp;شتن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="599"/>
+        <source>Set &amp;volume</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>PDFWidget</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="818"/>
+        <source>Zoom In</source>
+        <translation>بزرگنمایی کردن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="820"/>
+        <source>Zoom Out</source>
+        <translation>کوچک کردن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="823"/>
+        <source>Actual Size</source>
+        <translation>اندازه‌ی اصلی</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="826"/>
+        <source>Fit to Width</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="829"/>
+        <source>Fit to Window</source>
+        <translation>با اندازه‌ی پنجره هم اندازه کن</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1434"/>
+        <source>Opening external files is currently only supported for PDFs.</source>
+        <translation>باز کردن فایل های خارجی هم اکنون تنها برای فرمت PDF پشتیبانی می شود.</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1453"/>
+        <source>Error</source>
+        <translation>خطا</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1453"/>
+        <source>Could not open link:</source>
+        <translation>امکان باز کردن لینک وجود ندارد:</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1569"/>
+        <source>Go to Source</source>
+        <translation>به منبع برو </translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2377"/>
+        <source>Go to Page</source>
+        <translation>برو به صفحه‌ی</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2378"/>
+        <source>Page number:</source>
+        <translation>شماره صفحه:</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2767"/>
+        <source>Calculating text width</source>
+        <translation>پهنای متن محاسبه می شود.</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2767"/>
+        <source>Cancel</source>
+        <translation>لغو</translation>
     </message>
 </context>
 <context>
@@ -3154,6 +6673,674 @@ Do you want to overwrite it?</source>
         <location filename="../src/utilsUI.cpp" line="167"/>
         <source>none</source>
         <translation>هیچ کدام</translation>
+    </message>
+</context>
+<context>
+    <name>QCodeCompletionEngine</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/qcodecompletionengine.cpp" line="35"/>
+        <location filename="../src/qcodeedit/lib/qcodecompletionengine.cpp" line="63"/>
+        <source>&amp;Trigger completion</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QDocumentSearch</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="783"/>
+        <source>Replacement prompt</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="784"/>
+        <source>Shall it be replaced?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="789"/>
+        <source>Replacing Canceled</source>
+        <translation>جایگزینی لغو شد</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="789"/>
+        <source>%1 (of %2 found so far) occurrences have been replaced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="828"/>
+        <source>Start of scope reached with no match.
+Restart from the end?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="833"/>
+        <source>End of scope reached with no match.
+Restart from the beginning?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="840"/>
+        <source>Failure</source>
+        <translation>شکست</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="860"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="882"/>
+        <source>Replacing Finished</source>
+        <translation>جایگزینی تمام شد</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="861"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="882"/>
+        <source>%1 (of %2) occurrences have been replaced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="862"/>
+        <source>Do you want to continue replacing from the beginning?</source>
+        <translation>آیا می خواهید جایگزینی را از ابتدا انجام دهید؟</translation>
+    </message>
+</context>
+<context>
+    <name>QEditor</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="199"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="701"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1468"/>
+        <source>Default</source>
+        <translation>پیش فرض</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="521"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1441"/>
+        <source>&amp;Undo</source>
+        <translation>&amp;برگردان</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="532"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1442"/>
+        <source>&amp;Redo</source>
+        <translation>&amp;دوباره انجام بده</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="547"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1444"/>
+        <source>Cu&amp;t</source>
+        <translation>بر&amp;ش</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="558"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1445"/>
+        <source>&amp;Copy</source>
+        <translation>&amp;رونوشت</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="569"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1446"/>
+        <source>&amp;Paste</source>
+        <translation>&amp;بچسبان</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="585"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1448"/>
+        <source>&amp;Indent</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="593"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1449"/>
+        <source>&amp;Unindent</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="605"/>
+        <source>Toggle &amp;Comment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="610"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1450"/>
+        <source>Co&amp;mment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="618"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1451"/>
+        <source>Unc&amp;omment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="630"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1453"/>
+        <source>&amp;Select all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="642"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1455"/>
+        <source>&amp;Find</source>
+        <translation>&amp;جست‌و‌جو</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="650"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1456"/>
+        <source>Fin&amp;d next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="658"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1457"/>
+        <source>&amp;Replace</source>
+        <translation>&amp;جایگزین کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="670"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1459"/>
+        <source>&amp;Goto line...</source>
+        <translation>به خط... &amp;برو</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="682"/>
+        <source>Dynamic line wrapping</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="694"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1465"/>
+        <source>Input binding</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="719"/>
+        <source>Line endings</source>
+        <translation>انتهای خطوط</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="726"/>
+        <source>Conservative</source>
+        <translation>محافظه کارانه</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="727"/>
+        <source>Local</source>
+        <translation>محلی</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="728"/>
+        <source>Unix/Linux</source>
+        <translation>یونکس/لینوکس</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="729"/>
+        <source>Dos/Windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="730"/>
+        <source>Old Mac</source>
+        <translation>مک قدیمی</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="920"/>
+        <source>Conflict!</source>
+        <translation>تناقض!</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="921"/>
+        <source>%1
+has been modified by another application.
+Press &quot;Save&quot; to overwrite the file on disk
+Press &quot;Reset&quot; to reload the file from disk.
+Press &quot;Diff&quot; to show differences in the editor.
+Press &quot;Ignore&quot; to ignore this warning.
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="933"/>
+        <source>Diff</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1012"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1022"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1051"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1088"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1110"/>
+        <source>Saving failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1013"/>
+        <source>%1
+Could not be written. Error (%2): %3.
+If the file already existed on disk, it was not modified by this operation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1022"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1088"/>
+        <source>Could not get write permissions on file
+%1.
+
+Perhaps it is read-only or opened in another program?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1052"/>
+        <source>There seems to be not enough space to save the file at
+%1
+
+File size: %2 kB
+Free space: %3 kB
+
+You should clean up some space and retry. Alternatively you can
+cancel the save operation and save to another location instead.
+When ignoring this warning TeXstudio will try save to the specified
+location. However if there is really not enough space, this will
+result in data loss.
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1077"/>
+        <source>Warning</source>
+        <translation>هشدار</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1078"/>
+        <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1101"/>
+        <source>Writing the document to file
+%1
+failed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1106"/>
+        <source>The original file on disk was destroyed during the save operation.
+You'll find a copy at
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1233"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1237"/>
+        <source>File deleted</source>
+        <translation>فایل حذف شد</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1233"/>
+        <source>The file %1 has been deleted on disk.
+Should I save the document as it is to restore the file?
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1237"/>
+        <source>Well, this is strange: The file %1 is not deleted anymore.
+Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1263"/>
+        <source>File changed</source>
+        <translation>فایل تغییر داده شد.</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1264"/>
+        <source>%1
+was changed outside of TeXstudio. Reload from disk?
+
+Notes:
+- Reloading overwrites the editor content with the file from disk. This cannot be undone.
+- You can permanently enable silent reloading in the options.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1338"/>
+        <source>Print Source Code</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1471"/>
+        <source>&amp;Edit</source>
+        <translation>&amp;ویرایش</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1472"/>
+        <source>&amp;Search</source>
+        <translation>&amp;جست و جو</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1474"/>
+        <source>Edit</source>
+        <translation>ویرایش</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1475"/>
+        <source>Search</source>
+        <translation>جست و جو</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1597"/>
+        <source>Windows</source>
+        <translation>ویندوز</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1599"/>
+        <source>Unix</source>
+        <translation>یونیکس</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>
+        <source>None</source>
+        <translation>هیچ کدام</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4755"/>
+        <source>Invalid</source>
+        <translation>بی اعتبار</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4757"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4774"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4791"/>
+        <source>Internal</source>
+        <translation>داخلی</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4759"/>
+        <source>Move cursor up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4760"/>
+        <source>Move cursor down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4761"/>
+        <source>Move cursor left (1 character)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4762"/>
+        <source>Move cursor right (1 character)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4763"/>
+        <source>Move cursor left (1 word)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4764"/>
+        <source>Move cursor right (1 word)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4765"/>
+        <source>Move cursor to line start</source>
+        <translation>اشاره‌گر را به شروع خط بفرست</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4766"/>
+        <source>Move cursor to first character in line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4767"/>
+        <source>Move cursor to line end</source>
+        <translation>اشاره‌گر را به پایان خط بفرست</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4768"/>
+        <source>Move cursor to document start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4769"/>
+        <source>Move cursor to document end</source>
+        <translation>اشاره گر را به انتهای سند ببر</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4771"/>
+        <source>Move cursor one page up</source>
+        <translation>اشاره گر را یک صفحه بالا ببر</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4772"/>
+        <source>Move cursor one page down</source>
+        <translation>اشاره گر را یک صفحه پایین ببر</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4776"/>
+        <source>Select up</source>
+        <translation>بالایی ها را انتخاب کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4777"/>
+        <source>Select down</source>
+        <translation>پایینی‌ها را انتخاب کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4778"/>
+        <source>Select left (1 character)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
+        <source>Select right (1 character)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
+        <source>Select left (1 word)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4781"/>
+        <source>Select right (1 word)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4782"/>
+        <source>Select to line start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4783"/>
+        <source>Select to first character in line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
+        <source>Select to line end</source>
+        <translation>تا آخر خط را انتخاب کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
+        <source>Select to document start</source>
+        <translation>تا ابتدا پرونده را انتخواب کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
+        <source>Select to document end</source>
+        <translation>تا انتها پرونده را انتخواب کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
+        <source>Select page up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4789"/>
+        <source>Select page down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4793"/>
+        <source>Delete left character</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4794"/>
+        <source>Delete right character</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4795"/>
+        <source>Delete left word</source>
+        <translation>کلمه چپ را حذف کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4796"/>
+        <source>Delete right word</source>
+        <translation>کلمه‌ی سمت راست را پاک کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4797"/>
+        <source>New line</source>
+        <translation>خط جدید</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4799"/>
+        <source>Change overwrite mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
+        <source>Undo</source>
+        <translation>برگردان</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4801"/>
+        <source>Redo</source>
+        <translation>دوباره انجام بده</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4802"/>
+        <source>Copy</source>
+        <translation>رونوشت</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4803"/>
+        <source>Paste</source>
+        <translation>بچسبان</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4804"/>
+        <source>Cut</source>
+        <translation>بِبُر</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4805"/>
+        <source>Print</source>
+        <translation>چاپ کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4806"/>
+        <source>Select all</source>
+        <translation>همه را انتخاب کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4807"/>
+        <source>Find</source>
+        <translation>جست و جو</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4808"/>
+        <source>Find next</source>
+        <translation>بعدی را پیدا کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4809"/>
+        <source>Find previous</source>
+        <translation>قبلی را پیدا کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4810"/>
+        <source>Replace</source>
+        <translation>جایگزین کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4812"/>
+        <source>Create cursor mirror up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4813"/>
+        <source>Create cursor mirror down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4814"/>
+        <source>Next placeholder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4815"/>
+        <source>Previous placeholder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4816"/>
+        <source>Next placeholder or one word right</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4817"/>
+        <source>Previous placeholder or one word left</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4818"/>
+        <source>Next placeholder or character</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4819"/>
+        <source>Previous placeholder or character</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4820"/>
+        <source>Tab or Indent selection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4821"/>
+        <source>Insert tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4822"/>
+        <source>Indent selection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4823"/>
+        <source>Unindent selection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4826"/>
+        <source>Unknown</source>
+        <translation>ناشناس</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="265"/>
+        <source>Panels</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="267"/>
+        <source>&amp;View</source>
+        <translation>&amp;نمایش</translation>
     </message>
 </context>
 <context>
@@ -3618,6 +7805,114 @@ Do you want to overwrite it?</source>
         <source>normal</source>
         <translation>معمولی</translation>
     </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="59"/>
+        <source>Identifier</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="60"/>
+        <source>Bold</source>
+        <translation>برجسته</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="62"/>
+        <source>Italic</source>
+        <translation>ایتالیک</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="64"/>
+        <source>Underline</source>
+        <translation>زیرخط بکش</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="66"/>
+        <source>Overline</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="68"/>
+        <source>Strikeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="70"/>
+        <source>Wave underline</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="72"/>
+        <source>Text color (aka foreground)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="74"/>
+        <source>Background color</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="76"/>
+        <source>Lines color (used by all lines formatting : underline, overline, ...)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="78"/>
+        <source>Font Family</source>
+        <translation>خانواده خط</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="79"/>
+        <source>Size</source>
+        <translation>اندازه</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="80"/>
+        <source>Font size relative to editor font size.
+
+Note: If the size is larger than the line spacing, characters may be clipped.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
+        <source>Prio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="82"/>
+        <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="281"/>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="325"/>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="560"/>
+        <source>&lt;default&gt;</source>
+        <translation>&lt;پیش‌فرض&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="598"/>
+        <source>Unsaved changes</source>
+        <translation>تغییرات ذخیره نشده</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="599"/>
+        <source>There are unsaved changes in this format scheme.
+Do you want them to be saved?</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QLanguageFactory</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/qlanguagefactory.cpp" line="86"/>
+        <source>%1 files (*.%2)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qlanguagefactory.cpp" line="88"/>
+        <source>All files (*)</source>
+        <translation>تمام فایل‌ها (*)</translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -3664,12 +7959,241 @@ Do you want to overwrite it?</source>
 Error: </source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/latexrepository.h" line="103"/>
+        <source> (Free)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/latexrepository.h" line="103"/>
+        <source> (Not free)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QSearchReplacePanel</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="163"/>
+        <source>Enables case sensitive search.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="172"/>
+        <source>Only searches for whole words.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="182"/>
+        <source>This interprets the search text as a regular expression.
+Some common regexps:
+ r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
+ () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
+You can use \1 to \9 in the replace text to insert a submatch.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="193"/>
+        <source>Highlights search matches and replaced text.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="202"/>
+        <source>Starts the search from the current cursor position.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="212"/>
+        <source>Only searches in the selected text.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="221"/>
+        <source>Only searches in selected text type (math, commands, etc.)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="242"/>
+        <source>Extended Search</source>
+        <translation>جست و جوی گسترش یافته</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
+        <source>Ask before any match is replaced.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
+        <source>Enables the use of escape characters. These are:
+ \n = new line, \r = carriage return, \t = tab, \\ = \</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="358"/>
+        <source>Close search/replace panel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="359"/>
+        <source>Text or pattern to search for</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="360"/>
+        <source>Find next</source>
+        <translation>بعدی را پیدا کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="361"/>
+        <source>Find previous</source>
+        <translation>قبلی را پیدا کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="362"/>
+        <source>Count occurrences</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="363"/>
+        <source>Replacement text</source>
+        <translation>متن جایگزین</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="364"/>
+        <source>Replace and find next</source>
+        <translation>جایگزین کن و بعدی را پیدا کن.</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="365"/>
+        <source>Replace and find previous</source>
+        <translation>جایگزین کن و قبلی را پیدا کن.</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="366"/>
+        <source>Replace all</source>
+        <translation>همه را جایگزین کن</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="368"/>
+        <source>Find:</source>
+        <translation>جست‌و‌جو:</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="369"/>
+        <source>Replace:</source>
+        <translation>جایگزین کردن:</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="629"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="634"/>
+        <source>Count result</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="629"/>
+        <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="634"/>
+        <source>The search text occurs %1 times within the search scope.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="867"/>
+        <source> (col. %1)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QStatusPanel</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="132"/>
+        <source>Line: %1</source>
+        <translation>خط: %1</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="133"/>
+        <source>Column: %1</source>
+        <translation>ستون: %1</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="137"/>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="143"/>
+        <source>Selected: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
+        <source>Lines: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
+        <source>RTL</source>
+        <comment>Abbreviation for Right-To-Left used in status bar.</comment>
+        <translation>راست به چپ</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="159"/>
+        <source>(%1 min %2 s ago)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="175"/>
+        <source>OVERWRITE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="175"/>
+        <source>INSERT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="183"/>
+        <source>Conflict</source>
+        <translation>تناقض</translation>
+    </message>
 </context>
 <context>
     <name>QuickBeamerDialog</name>
     <message>
         <location filename="../src/quickbeamerdialog.cpp" line="30"/>
         <source>Quick Beamer Presentation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation>گفت و گو</translation>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="22"/>
+        <source>Theme</source>
+        <translation>تم</translation>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="29"/>
+        <source>Title</source>
+        <translation>عنوان</translation>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="39"/>
+        <source>Encoding</source>
+        <translation>رمزینه</translation>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="46"/>
+        <source>Typeface Size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="59"/>
+        <source>Author</source>
+        <translation>نویسنده</translation>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="69"/>
+        <source>babel Package</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3745,6 +8269,116 @@ Error: </source>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="36"/>
+        <source>&amp;Class Options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="65"/>
+        <source>Title</source>
+        <translation>عنوان</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="75"/>
+        <source>Language</source>
+        <translation>زبان</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="78"/>
+        <source>Adds language support to your document with Babel package</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="94"/>
+        <source>Document Class</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="118"/>
+        <source>Typeface Size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="131"/>
+        <source>Other Options</source>
+        <translation>امکانات دیگر</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="183"/>
+        <source>Paper Size</source>
+        <translation>سایز کاغذ</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="205"/>
+        <source>Author</source>
+        <translation>نویسنده</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="212"/>
+        <source>Font Encoding</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="236"/>
+        <source>&amp;Packages</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="254"/>
+        <source>Package</source>
+        <translation>بسته</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="259"/>
+        <source>Description</source>
+        <translation>توضیحات</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="281"/>
+        <source>&amp;Geometry</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="309"/>
+        <source>Page</source>
+        <translation>صفحه</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="315"/>
+        <source>Width:</source>
+        <translation>پهنا:</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="406"/>
+        <source>Height:</source>
+        <translation>ارتفاع:</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="416"/>
+        <source>Margins</source>
+        <translation>حاشیه‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="422"/>
+        <source>Left:</source>
+        <translation>چپ:</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="474"/>
+        <source>Right:</source>
+        <translation>راست:</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="571"/>
+        <source>Top:</source>
+        <translation>بالا:</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="578"/>
+        <source>Bottom:</source>
+        <translation>پایین:</translation>
+    </message>
 </context>
 <context>
     <name>RandomTextGenerator</name>
@@ -3784,6 +8418,92 @@ Error: </source>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="225"/>
         <source>Finished generation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="14"/>
+        <source>Random Text Generator</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="20"/>
+        <source>Options</source>
+        <translation>امکانات</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="52"/>
+        <source>First Order Characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="59"/>
+        <source>Generate</source>
+        <translation>ایجاد کن</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="66"/>
+        <source>Ignore Case</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="73"/>
+        <location filename="../src/randomtextgenerator.ui" line="100"/>
+        <source>Higher Order:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="93"/>
+        <source>First Order Word</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="107"/>
+        <source>Save to:</source>
+        <translation>ذخیره در:</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="124"/>
+        <source>Third Order Characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="131"/>
+        <source>Second Order Characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="138"/>
+        <source>Punctation</source>
+        <translation>نقطه گذاری</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="145"/>
+        <source>Second Order Words</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="155"/>
+        <source>Close</source>
+        <translation>بستن</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="162"/>
+        <source>Length:</source>
+        <translation>طول:</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="182"/>
+        <source>LaTeX Input</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="192"/>
+        <source>Third Order Words</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="228"/>
+        <source>Lorem Ipsum</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3968,6 +8688,71 @@ Error: </source>
         <comment>Placeholder for new added word in ignore list</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="14"/>
+        <source>Check Spelling</source>
+        <translation>بررسی املا</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="43"/>
+        <source>Unknown Word</source>
+        <translation>واژه‌ی ناشناخته</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="60"/>
+        <source>Replace with</source>
+        <translation>جایگزین کن با</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="67"/>
+        <source>Suggested Words</source>
+        <translation>کلمات پیشنهادی</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="77"/>
+        <source>&amp;Replace</source>
+        <translation>&amp;جایگزین کن</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="87"/>
+        <source>Ignore &amp;Once</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="101"/>
+        <source>User-added Words</source>
+        <translation>واژگان اضافه شده توسط کاربر</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="116"/>
+        <source>Add</source>
+        <translation>اضافه کن</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="127"/>
+        <source>Remove</source>
+        <translation>حذف کن</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="147"/>
+        <source>Close</source>
+        <translation>بستن</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="169"/>
+        <source>Hide Added Words</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="184"/>
+        <source>Ig&amp;nore All</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="191"/>
+        <source>&amp;Add to dictionary</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>SpellerManager</name>
@@ -3994,6 +8779,146 @@ Error: </source>
         <location filename="../src/spellerutility.cpp" line="35"/>
         <source>Dictionary does not exist.</source>
         <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SymbolListModel</name>
+    <message>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="333"/>
+        <source>Command: </source>
+        <translation>دستور:</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="346"/>
+        <source>Package: </source>
+        <translation>بسته:</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="348"/>
+        <source>Packages: </source>
+        <translation>بسته‌ها:</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="359"/>
+        <source>Unicode Character: </source>
+        <translation>کارکتر یونیکد</translation>
+    </message>
+</context>
+<context>
+    <name>SymbolListView</name>
+    <message>
+        <location filename="../src/symbolpanel/symbollistview.cpp" line="40"/>
+        <source>Remove from Favorites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistview.cpp" line="44"/>
+        <source>Add to Favorites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistview.cpp" line="49"/>
+        <source>Insert command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistview.cpp" line="54"/>
+        <source>Insert unicode</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SymbolWidget</name>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="51"/>
+        <source>Operators</source>
+        <comment>Operator category</comment>
+        <translation>عملگرها</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="52"/>
+        <source>Relations</source>
+        <comment>Operator category</comment>
+        <translation>روابط</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="53"/>
+        <source>Arrows</source>
+        <comment>Operator category</comment>
+        <translation>فلش‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="54"/>
+        <source>Delimiters</source>
+        <comment>Operator category</comment>
+        <translation>جداکننده‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="55"/>
+        <source>Greek</source>
+        <comment>Operator category</comment>
+        <translation>یونانی</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="56"/>
+        <source>Cyrillic</source>
+        <comment>Operator category</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="57"/>
+        <source>Misc. Math</source>
+        <comment>Operator category</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="58"/>
+        <source>Misc. Text</source>
+        <comment>Operator category</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="59"/>
+        <source>wasysym</source>
+        <comment>Operator category</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="60"/>
+        <source>fontawesome5</source>
+        <comment>Operator category</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="61"/>
+        <source>Special</source>
+        <comment>Operator category</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="97"/>
+        <source>Favorites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="117"/>
+        <source>Most Used</source>
+        <translation>بیشتر استفاده شده</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="138"/>
+        <source>Search</source>
+        <translation>جست و جو</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="142"/>
+        <source>Category</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="153"/>
+        <source>All</source>
+        <translation>همه</translation>
     </message>
 </context>
 <context>
@@ -4210,6 +9135,86 @@ Error: </source>
         <source>Quick Tabular</source>
         <translation>ساخت جدول سریع</translation>
     </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="37"/>
+        <source>Num of Columns</source>
+        <translation>تعداد ستون‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="78"/>
+        <source>Columns</source>
+        <translation>ستون‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="86"/>
+        <source>Column :</source>
+        <translation>ستون:</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="113"/>
+        <source>Alignment :</source>
+        <translation>چینش:</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="127"/>
+        <source>Left Border :</source>
+        <translation>مرز چپ :</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="167"/>
+        <source>Apply to all columns</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="194"/>
+        <source>Right Border (last column) :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="232"/>
+        <source>Num of Rows</source>
+        <translation>تعداد سطرها</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="263"/>
+        <source>Rows</source>
+        <translation>سطرها</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="271"/>
+        <source>Row :</source>
+        <translation>سطر :</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="296"/>
+        <source>Top Border</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="305"/>
+        <source>Merge columns :</source>
+        <translation>ادغام ستون‌های :</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="321"/>
+        <source>-&gt;</source>
+        <translation>-&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="364"/>
+        <source>Apply to all rows</source>
+        <translation>اعمال به تمام سطرها</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="389"/>
+        <source>Bottom Border (last row)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="396"/>
+        <source>Add vertical margin for each row</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>TabbingDialog</name>
@@ -4217,6 +9222,31 @@ Error: </source>
         <location filename="../src/tabbingdialog.cpp" line="28"/>
         <source>Quick Tabbing</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/tabbingdialog.ui" line="44"/>
+        <source>OK</source>
+        <translation>تأیید</translation>
+    </message>
+    <message>
+        <location filename="../src/tabbingdialog.ui" line="51"/>
+        <source>Cancel</source>
+        <translation>لغو</translation>
+    </message>
+    <message>
+        <location filename="../src/tabbingdialog.ui" line="76"/>
+        <source>Spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/tabbingdialog.ui" line="91"/>
+        <source>Num of Rows</source>
+        <translation>تعداد سطرها</translation>
+    </message>
+    <message>
+        <location filename="../src/tabbingdialog.ui" line="106"/>
+        <source>Num of Columns</source>
+        <translation>تعداد ستون‌ها</translation>
     </message>
 </context>
 <context>
@@ -4425,6 +9455,36 @@ template to edit individual files.</source>
         <source>No Documentation Available</source>
         <translation>هیچ سندی موجود نیست</translation>
     </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="14"/>
+        <source>Packages Help (Texdoc)</source>
+        <translation>راهنمای بسته‌ها (Texdoc)</translation>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="28"/>
+        <source>Packages</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="47"/>
+        <source>Package descriptions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="138"/>
+        <source>open CTAN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="157"/>
+        <source>Enter a term to search for in both columns.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="164"/>
+        <source>all packages</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Texstudio</name>
@@ -4611,8 +9671,8 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="444"/>
-        <location filename="../src/texstudio.cpp" line="9847"/>
-        <location filename="../src/texstudio.cpp" line="9854"/>
+        <location filename="../src/texstudio.cpp" line="9848"/>
+        <location filename="../src/texstudio.cpp" line="9855"/>
         <source>All files</source>
         <translation>همه‌ی فایل‌ها</translation>
     </message>
@@ -4858,7 +9918,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="919"/>
-        <location filename="../src/texstudio.cpp" line="10048"/>
+        <location filename="../src/texstudio.cpp" line="10049"/>
         <source>&amp;Close</source>
         <translation>&amp;خارج شو</translation>
     </message>
@@ -6206,7 +11266,7 @@ template to edit individual files.</source>
         <location filename="../src/texstudio.cpp" line="6698"/>
         <location filename="../src/texstudio.cpp" line="6708"/>
         <location filename="../src/texstudio.cpp" line="6710"/>
-        <location filename="../src/texstudio.cpp" line="10526"/>
+        <location filename="../src/texstudio.cpp" line="10527"/>
         <source>Error</source>
         <translation>خطا</translation>
     </message>
@@ -6257,7 +11317,7 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2822"/>
-        <location filename="../src/texstudio.cpp" line="10356"/>
+        <location filename="../src/texstudio.cpp" line="10357"/>
         <source>Open Files</source>
         <translation>سندهای باز</translation>
     </message>
@@ -6293,7 +11353,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3048"/>
-        <location filename="../src/texstudio.cpp" line="11889"/>
+        <location filename="../src/texstudio.cpp" line="11905"/>
         <source>Copy</source>
         <translation>رونوشت</translation>
     </message>
@@ -6662,122 +11722,122 @@ Do you want to allow and run the new, overriding command?
         <translation>(خط %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9146"/>
+        <location filename="../src/texstudio.cpp" line="9147"/>
         <source>commit comment:</source>
         <translation>اظهار نظر:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9150"/>
+        <location filename="../src/texstudio.cpp" line="9151"/>
         <source>check in whole directory ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9152"/>
+        <location filename="../src/texstudio.cpp" line="9153"/>
         <source>Push to repository ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9509"/>
+        <location filename="../src/texstudio.cpp" line="9510"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9808"/>
+        <location filename="../src/texstudio.cpp" line="9809"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>امکان باز کردن فایل &quot;%1&quot; وجود ندارد</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9810"/>
+        <location filename="../src/texstudio.cpp" line="9811"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9847"/>
+        <location filename="../src/texstudio.cpp" line="9848"/>
         <source>Save Profile</source>
         <translation> نمایه را ذخیره‌ کن</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9847"/>
-        <location filename="../src/texstudio.cpp" line="9854"/>
+        <location filename="../src/texstudio.cpp" line="9848"/>
+        <location filename="../src/texstudio.cpp" line="9855"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9854"/>
+        <location filename="../src/texstudio.cpp" line="9855"/>
         <source>Load Profile</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9907"/>
+        <location filename="../src/texstudio.cpp" line="9908"/>
         <source>Failed to read profile file %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10030"/>
+        <location filename="../src/texstudio.cpp" line="10031"/>
         <source>Problem</source>
         <translation>مشکل</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10030"/>
+        <location filename="../src/texstudio.cpp" line="10031"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10035"/>
+        <location filename="../src/texstudio.cpp" line="10036"/>
         <source>Find Word Repetitions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10044"/>
+        <location filename="../src/texstudio.cpp" line="10045"/>
         <source>&amp;Find Next</source>
         <translation>بعدی را &amp;پیدا کن</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10046"/>
+        <location filename="../src/texstudio.cpp" line="10047"/>
         <source>&amp;Find Previous</source>
         <translation>قبلی را &amp;پیدا کن</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10097"/>
+        <location filename="../src/texstudio.cpp" line="10098"/>
         <source>Reached beginning of text.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10097"/>
+        <location filename="../src/texstudio.cpp" line="10098"/>
         <source>Reached end of text.</source>
         <translation>به انتهای متن رسید.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10356"/>
-        <location filename="../src/texstudio.cpp" line="10566"/>
-        <location filename="../src/texstudio.cpp" line="10569"/>
+        <location filename="../src/texstudio.cpp" line="10357"/>
+        <location filename="../src/texstudio.cpp" line="10567"/>
+        <location filename="../src/texstudio.cpp" line="10570"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10526"/>
+        <location filename="../src/texstudio.cpp" line="10527"/>
         <source>You do not have read permission to this file.</source>
         <translation>شما اجازه خواندن این فایل را ندارید.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10566"/>
+        <location filename="../src/texstudio.cpp" line="10567"/>
         <source>Open Compare File</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10569"/>
+        <location filename="../src/texstudio.cpp" line="10570"/>
         <source>Open Base File</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10650"/>
+        <location filename="../src/texstudio.cpp" line="10651"/>
         <source>SVN Conflict!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10651"/>
+        <location filename="../src/texstudio.cpp" line="10652"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -6785,14 +11845,14 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10748"/>
-        <location filename="../src/texstudio.cpp" line="10839"/>
-        <location filename="../src/texstudio.cpp" line="10845"/>
+        <location filename="../src/texstudio.cpp" line="10749"/>
+        <location filename="../src/texstudio.cpp" line="10840"/>
+        <location filename="../src/texstudio.cpp" line="10846"/>
         <source>TeXstudio Emergency</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10752"/>
+        <location filename="../src/texstudio.cpp" line="10753"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -6801,92 +11861,92 @@ Please provide this file if you send a bug report.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10755"/>
+        <location filename="../src/texstudio.cpp" line="10756"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10756"/>
+        <location filename="../src/texstudio.cpp" line="10757"/>
         <source>Yes, try to recover</source>
         <translation>بله، تلاش کن بازیابی شود</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10757"/>
-        <location filename="../src/texstudio.cpp" line="10762"/>
+        <location filename="../src/texstudio.cpp" line="10758"/>
+        <location filename="../src/texstudio.cpp" line="10763"/>
         <source>No, kill the program</source>
         <translation>نه، برنامه برا بکش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10759"/>
+        <location filename="../src/texstudio.cpp" line="10760"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10760"/>
+        <location filename="../src/texstudio.cpp" line="10761"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>بله، متوقف کن و تلاش کن بازیابی شود</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10761"/>
+        <location filename="../src/texstudio.cpp" line="10762"/>
         <source>Yes, continue the loop</source>
         <translation>بله، حلقه را ادامه بده</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10840"/>
+        <location filename="../src/texstudio.cpp" line="10841"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10845"/>
+        <location filename="../src/texstudio.cpp" line="10846"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>من سعی کردم بمیرم، اما اتفاقی نیفتاد</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10877"/>
+        <location filename="../src/texstudio.cpp" line="10878"/>
         <source>System Report</source>
         <translation>گزارش سیستم</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11015"/>
+        <location filename="../src/texstudio.cpp" line="11016"/>
         <source>LT Report</source>
         <translation>گزارش LT</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11041"/>
+        <location filename="../src/texstudio.cpp" line="11042"/>
         <source>process failed to start
 </source>
         <translation>شروع فرآیند با خطا مواجه شد
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11044"/>
+        <location filename="../src/texstudio.cpp" line="11045"/>
         <source>process crashed
 </source>
         <translation>فرآیند شکست خورد
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11054"/>
+        <location filename="../src/texstudio.cpp" line="11055"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>بررسی همزمان فعال است.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11056"/>
+        <location filename="../src/texstudio.cpp" line="11057"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>بررسی همزمان غیرفعال است!!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11059"/>
+        <location filename="../src/texstudio.cpp" line="11060"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -6895,181 +11955,181 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11061"/>
+        <location filename="../src/texstudio.cpp" line="11062"/>
         <source>Grammar checking is disabled!!!
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11064"/>
+        <location filename="../src/texstudio.cpp" line="11065"/>
         <source>Tries to start automatically.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11066"/>
+        <location filename="../src/texstudio.cpp" line="11067"/>
         <source>Autostart disabled.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11071"/>
+        <location filename="../src/texstudio.cpp" line="11072"/>
         <source>LT current status: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11074"/>
+        <location filename="../src/texstudio.cpp" line="11075"/>
         <source>working</source>
         <translation>در حال کار</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11077"/>
+        <location filename="../src/texstudio.cpp" line="11078"/>
         <source>error</source>
         <translation>خطا</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11081"/>
+        <location filename="../src/texstudio.cpp" line="11082"/>
         <source>unknown</source>
         <translation>ناشناس</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11084"/>
+        <location filename="../src/texstudio.cpp" line="11085"/>
         <source>LT-URL: %1
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11388"/>
+        <location filename="../src/texstudio.cpp" line="11389"/>
         <source>Error when communicating with LT: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11609"/>
-        <location filename="../src/texstudio.cpp" line="12401"/>
+        <location filename="../src/texstudio.cpp" line="11610"/>
+        <location filename="../src/texstudio.cpp" line="12417"/>
         <source>untitled</source>
         <translation>بی نام</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11619"/>
-        <location filename="../src/texstudio.cpp" line="12443"/>
+        <location filename="../src/texstudio.cpp" line="11620"/>
+        <location filename="../src/texstudio.cpp" line="12459"/>
         <source>TODO</source>
         <translation>کارهای در دست اقدام</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11737"/>
-        <location filename="../src/texstudio.cpp" line="11745"/>
-        <location filename="../src/texstudio.cpp" line="11776"/>
+        <location filename="../src/texstudio.cpp" line="11753"/>
+        <location filename="../src/texstudio.cpp" line="11761"/>
+        <location filename="../src/texstudio.cpp" line="11792"/>
         <source>Document: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11829"/>
+        <location filename="../src/texstudio.cpp" line="11845"/>
         <source>Close document</source>
         <translation>بستن سند</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11830"/>
+        <location filename="../src/texstudio.cpp" line="11846"/>
         <source>Set as explicit root document</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11831"/>
+        <location filename="../src/texstudio.cpp" line="11847"/>
         <source>Open all related documents</source>
         <translation>تمام اسناد مرتبط را باز کن</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11832"/>
+        <location filename="../src/texstudio.cpp" line="11848"/>
         <source>Close all related documents</source>
         <translation>بستن تمام اسناد مرتبط</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11834"/>
+        <location filename="../src/texstudio.cpp" line="11850"/>
         <source>Remove explicit root document role</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11836"/>
+        <location filename="../src/texstudio.cpp" line="11852"/>
         <source>Show all open documents in this tree</source>
         <translation>تمام اسناد باز را در این درخت نمایش بده</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11838"/>
+        <location filename="../src/texstudio.cpp" line="11854"/>
         <source>Show only current document in this tree</source>
         <translation>فقط سند فعلی را در این درخت نمایش بده</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11851"/>
+        <location filename="../src/texstudio.cpp" line="11867"/>
         <source>Copy filename</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11852"/>
+        <location filename="../src/texstudio.cpp" line="11868"/>
         <source>Copy file path</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11861"/>
+        <location filename="../src/texstudio.cpp" line="11877"/>
         <source>Insert</source>
         <translation>قرار بده</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11862"/>
-        <location filename="../src/texstudio.cpp" line="11863"/>
+        <location filename="../src/texstudio.cpp" line="11878"/>
+        <location filename="../src/texstudio.cpp" line="11879"/>
         <source>Insert as %1</source>
         <translation>به عنوان %1 قرار بده</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11865"/>
+        <location filename="../src/texstudio.cpp" line="11881"/>
         <source>Find Usages</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11876"/>
+        <location filename="../src/texstudio.cpp" line="11892"/>
         <source>Insert Label</source>
         <translation>برچسب وارد کن</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11880"/>
+        <location filename="../src/texstudio.cpp" line="11896"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11884"/>
+        <location filename="../src/texstudio.cpp" line="11900"/>
         <source>Create Label</source>
         <translation>ساخت برچسب</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11888"/>
+        <location filename="../src/texstudio.cpp" line="11904"/>
         <source>Cut</source>
         <translation>بِبُر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11890"/>
+        <location filename="../src/texstudio.cpp" line="11906"/>
         <source>Paste Before</source>
         <translation>بچسبان قبل از</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11891"/>
+        <location filename="../src/texstudio.cpp" line="11907"/>
         <source>Paste After</source>
         <translation>بچسبان بعد از</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11893"/>
+        <location filename="../src/texstudio.cpp" line="11909"/>
         <source>Indent Section</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11894"/>
+        <location filename="../src/texstudio.cpp" line="11910"/>
         <source>Unindent Section</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11845"/>
-        <location filename="../src/texstudio.cpp" line="11897"/>
+        <location filename="../src/texstudio.cpp" line="11861"/>
+        <location filename="../src/texstudio.cpp" line="11913"/>
         <source>Expand Subitems</source>
         <translation type="unfinished"/>
     </message>
@@ -7079,34 +12139,34 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11846"/>
-        <location filename="../src/texstudio.cpp" line="11898"/>
+        <location filename="../src/texstudio.cpp" line="11862"/>
+        <location filename="../src/texstudio.cpp" line="11914"/>
         <source>Collapse Subitems</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11910"/>
+        <location filename="../src/texstudio.cpp" line="11926"/>
         <source>Open Document</source>
         <translation>سند را باز کن</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11911"/>
-        <location filename="../src/texstudio.cpp" line="11918"/>
+        <location filename="../src/texstudio.cpp" line="11927"/>
+        <location filename="../src/texstudio.cpp" line="11934"/>
         <source>Go to Definition</source>
         <translation>برو به تعریف</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12427"/>
+        <location filename="../src/texstudio.cpp" line="12443"/>
         <source>BIBLIOGRAPHY</source>
         <translation>کتاب‌شناسی</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12435"/>
+        <location filename="../src/texstudio.cpp" line="12451"/>
         <source>MAGIC_COMMENTS</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12451"/>
+        <location filename="../src/texstudio.cpp" line="12467"/>
         <source>LABELS</source>
         <translation>برچسب‌ها</translation>
     </message>
@@ -7145,9 +12205,252 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 <context>
     <name>TextAnalysisDialog</name>
     <message>
+        <location filename="../src/textanalysis.ui" line="14"/>
+        <source>Text Analysis</source>
+        <translation>تحلیل متن</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="20"/>
+        <source>Actions</source>
+        <translation>فعالیت‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="26"/>
+        <source>Count</source>
+        <extracomment>count as verb</extracomment>
+        <translation>شمارش</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="33"/>
+        <source>Search selection in the document</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="40"/>
         <location filename="../src/textanalysis.cpp" line="451"/>
         <source>CSV Export</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="47"/>
+        <source>Close</source>
+        <translation>بستن</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="57"/>
+        <source>Info</source>
+        <translation>اطلاعات</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="63"/>
+        <source>Total lines</source>
+        <translation>تمام خط‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="70"/>
+        <location filename="../src/textanalysis.ui" line="98"/>
+        <location filename="../src/textanalysis.ui" line="105"/>
+        <location filename="../src/textanalysis.ui" line="112"/>
+        <location filename="../src/textanalysis.ui" line="126"/>
+        <location filename="../src/textanalysis.ui" line="140"/>
+        <source>?</source>
+        <translation>؟</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="77"/>
+        <source>Text lines</source>
+        <translation>خطوط متن</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="84"/>
+        <source>Total shown phrases</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="91"/>
+        <source>Comment lines</source>
+        <translation>خطوط توضیحی</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="119"/>
+        <source>Different phrases</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="133"/>
+        <source>Characters in phrases</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="166"/>
+        <source>Options</source>
+        <translation>امکانات</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="172"/>
+        <source>If this is enabled, words/phrases in the normal text (which aren&apos;t in comments) are counted</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="175"/>
+        <source>Analyse normal text</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="185"/>
+        <source>If this is enabled, words/phrases in the comments are counted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="188"/>
+        <source>Analyse comments</source>
+        <translation>توضیحات را تحلیل کن</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="195"/>
+        <source>If this is enabled, \commands are counted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="198"/>
+        <source>Analyse commands</source>
+        <translation>دستورها را تحلیل کن</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="211"/>
+        <source>Possible Options:
+&quot;Show all&quot;: All phrases are shown.
+&quot;Minimum phrase length&quot;: A phrase is only shown, if it has at least this many characters. (e.g. &quot;a test&quot; has 6 characters)
+&quot;Minimum word length (one)&quot;: A phrase is only shown, if it contains a word with at least this many characters. (e.g. &quot;a test&quot; has 4 characters)
+&quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
+&quot;Completely ignore&quot;: Shorter words are completely ignored.
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="224"/>
+        <source>Show all phrases</source>
+        <translation>تمام عبارات را نشان بده</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="229"/>
+        <source>Minimum phrase length:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="234"/>
+        <source>Minimum word length (one):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="239"/>
+        <source>Minimum word length (all):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="244"/>
+        <source>Fully ignore shorter words:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="264"/>
+        <source>If &quot;show all&quot; is selected, all phrases are shown.
+If &quot;minimum phrase length&quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &quot;a test&quot; has 6 characters)
+If &quot;minimum word length (one)&quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &quot;a test&quot; has 4 characters)
+If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &quot;a test&quot; has 1 character)
+If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="279"/>
+        <source>Minimum occurrence count:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="298"/>
+        <source>Only phrase are shown which appears at least so many times in the document.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="317"/>
+        <location filename="../src/textanalysis.ui" line="373"/>
+        <source>The controls in this row determine how many consecuting words are treated as a single phrase.
+If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
+If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="332"/>
+        <source>Source:</source>
+        <translation>منبع:</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="351"/>
+        <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
+If not, end characters are ignored.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="355"/>
+        <source>.;:?!</source>
+        <translation>.؛:؟!</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="362"/>
+        <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
+If not, end characters are ignored.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="366"/>
+        <source>Respect phrase end chars:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="379"/>
+        <source>Maximum words per phrase:</source>
+        <translation>جداکثر کلمه در هر عبارت:</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="384"/>
+        <source>Min&amp;max words per phrase:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="399"/>
+        <source>None (.*)</source>
+        <translation>هیچ کدام(.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="404"/>
+        <source>No Numbers (.*[^0-9].*)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="409"/>
+        <source>No Digits ([^0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="417"/>
+        <source>Filter</source>
+        <translation>فیلتر کن</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="430"/>
+        <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="437"/>
+        <source>Whole document</source>
+        <translation>کل سند</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="442"/>
+        <source>Selection</source>
+        <translation>انتخاب</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.cpp" line="62"/>
@@ -7394,6 +12697,202 @@ included document in %1</source>
         <source> (col. %1)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="19"/>
+        <source>Edit Macros</source>
+        <translation>ماکروهای ویرایشگر</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="60"/>
+        <location filename="../src/usermenudialog.ui" line="263"/>
+        <source>Name</source>
+        <translation>نام</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="65"/>
+        <location filename="../src/usermenudialog.ui" line="516"/>
+        <source>Shortcut</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="70"/>
+        <location filename="../src/usermenudialog.ui" line="292"/>
+        <source>Trigger</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="75"/>
+        <location filename="../src/usermenudialog.ui" line="280"/>
+        <source>Abbreviation</source>
+        <translation>مخفف</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="110"/>
+        <source>Export macro(s) to file(s)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="113"/>
+        <source>Export</source>
+        <translation>صادر کن</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="129"/>
+        <source>Import macro from file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="132"/>
+        <source>Import</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="139"/>
+        <source>Browse offered macros on txs site.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="142"/>
+        <source>Browse</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="159"/>
+        <source>Add</source>
+        <translation>اضافه کن</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="170"/>
+        <source>Folder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="187"/>
+        <source>Remove</source>
+        <translation>حذف کن</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="223"/>
+        <source>Up</source>
+        <translation>بالا</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="246"/>
+        <source>Down</source>
+        <translation>پایین</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="369"/>
+        <source>If this trigger string is written in any tex document, 
+it is replaced by the current tag.
+
+If the trigger starts with (?&lt;=something), this only happens 
+if something is written before the remaining part of the trigger.
+
+Since this trigger is not a plain string, but a regular expression, 
+(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
+and (?&lt;=\s|^) to mark replacements which should only occur before a word.
+
+
+You can use the special value ?txs-start to start the script at txs start.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="402"/>
+        <source>Type</source>
+        <translation>نوع</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="411"/>
+        <source>Normal</source>
+        <translation>معمولی</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="418"/>
+        <source>Environment</source>
+        <translation>محیط‌</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="431"/>
+        <source>Script</source>
+        <translation>مجموعه دستور</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="473"/>
+        <source>Exec Macro</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="493"/>
+        <source>OK</source>
+        <translation>تأیید</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="500"/>
+        <source>Cancel</source>
+        <translation>لغو</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="509"/>
+        <source>Description</source>
+        <translation>توضیحات</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="532"/>
+        <source>Shift+F1</source>
+        <translation>Shift+F1</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="537"/>
+        <source>Shift+F2</source>
+        <translation>Shift+F2</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="542"/>
+        <source>Shift+F4</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="547"/>
+        <location filename="../src/usermenudialog.ui" line="552"/>
+        <source>Shift+F5</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="557"/>
+        <source>Shift+F6</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="562"/>
+        <source>Shift+F7</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="567"/>
+        <source>Shift+F8</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="572"/>
+        <source>Shift+F9</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="577"/>
+        <source>Shift+F10</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="582"/>
+        <source>Shift+F11</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="587"/>
+        <source>Shift+F12</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
@@ -7403,6 +12902,36 @@ included document in %1</source>
         <location filename="../src/userquickdialog.cpp" line="57"/>
         <source>User</source>
         <translation>کاربر</translation>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="14"/>
+        <source>Quick Build Command</source>
+        <translation>دستور ساخت سریع</translation>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="42"/>
+        <source>Add</source>
+        <translation>اضافه کن</translation>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="70"/>
+        <source>Ordered list of commands:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="80"/>
+        <source>Up</source>
+        <translation>بالا</translation>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="91"/>
+        <source>Down</source>
+        <translation>پایین</translation>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="102"/>
+        <source>Delete</source>
+        <translation>حذف کن</translation>
     </message>
 </context>
 <context>
@@ -7416,9 +12945,150 @@ included document in %1</source>
 <context>
     <name>WebPublishDialog</name>
     <message>
+        <location filename="../src/webpublishdialog.ui" line="14"/>
         <location filename="../src/webpublishdialog.cpp" line="25"/>
         <source>Convert to Html</source>
         <translation>به HTML برگردان</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="60"/>
+        <source>LaTeX options</source>
+        <translation>امکانات لتک</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="98"/>
+        <source>Number of LaTeX compilations for the input file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="114"/>
+        <source>Content name :</source>
+        <translation>نام محتویات :</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="121"/>
+        <source>Start Index :</source>
+        <translation>شروع اندیس‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="128"/>
+        <source>Tocdepth :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="135"/>
+        <source>LaTeX code for the title of the table of contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="142"/>
+        <source>The number of the ps page corresponding to the first numberline indexed in the toc file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="158"/>
+        <source>Set the value of the LaTeX tocdepth counter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="174"/>
+        <source>Number of compilations :</source>
+        <translation>تعداد کامپایل‌ها</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="186"/>
+        <source>Html options</source>
+        <translation>امکانات HTML</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="224"/>
+        <source>Title :</source>
+        <translation>عنوان :</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="231"/>
+        <source>Title of the html files</source>
+        <translation>عنوان فایل‌های html </translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="238"/>
+        <source>Navigation :</source>
+        <translation>مسیر یابی</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="245"/>
+        <source>Footnote :</source>
+        <translation>پانویس:</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="252"/>
+        <source>Navigation mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="259"/>
+        <source>Alignment :</source>
+        <translation>چینش:</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="266"/>
+        <source>Create an index page ?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="273"/>
+        <source>Text displayed at the bottom of each html files </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="280"/>
+        <source>Alignment in the html files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="287"/>
+        <source>Create index :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="316"/>
+        <source>Browser command. Let&apos;s empty to not run the browser at the end of the conversion</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="336"/>
+        <source>Launch</source>
+        <translation>اجرا کن</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="350"/>
+        <source>Input File :</source>
+        <translation>فایل ورودی :</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="371"/>
+        <source>Close</source>
+        <translation>بستن</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="378"/>
+        <source>Browser :</source>
+        <translation>مرورگر :</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="390"/>
+        <source>Images options</source>
+        <translation>امکانات تصویر</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="411"/>
+        <source>Images Width :</source>
+        <translation>عرض تصویر</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="418"/>
+        <source>Width of the largest image</source>
+        <translation>عرض بزرگترین شکل</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="30"/>
@@ -7619,6 +13289,34 @@ Do you trust this script?</source>
         <location filename="../src/scriptengine.cpp" line="298"/>
         <source>Script-Error</source>
         <translation>خطای-دستورات</translation>
+    </message>
+</context>
+<context>
+    <name>templateSelectorDialog</name>
+    <message>
+        <location filename="../src/templateselector.ui" line="14"/>
+        <source>Dialog</source>
+        <translation>گفت و گو</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.ui" line="66"/>
+        <source>Author:</source>
+        <translation>نویسنده:</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.ui" line="173"/>
+        <source>Create in Folder:</source>
+        <translation>در پوشه‌ی:</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.ui" line="205"/>
+        <source>Create in Editor</source>
+        <translation>در ویرایشگر بسازید</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.ui" line="238"/>
+        <source>Target folder not empty.</source>
+        <translation>پوشه‌ی مورد نظر خالی نیست</translation>
     </message>
 </context>
 </TS>

@@ -49,6 +49,31 @@
     </message>
 </context>
 <context>
+    <name>AIQueryStorageModel</name>
+    <message>
+        <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
+        <location filename="../src/aiquerystoragemodel.cpp" line="146"/>
+        <location filename="../src/aiquerystoragemodel.cpp" line="148"/>
+        <source>Today</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
+        <source>Last Week</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
+        <source>Last Month</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/aiquerystoragemodel.cpp" line="115"/>
+        <source>Older</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>AboutDialog</name>
     <message>
         <location filename="../src/aboutdialog.cpp" line="59"/>
@@ -140,6 +165,16 @@
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
         <translation>이 프로그램의 사용은 자유 소프트웨어 재단에 의한 GNU General Public License 버전 2에 의해 허가되었습니다.</translation>
     </message>
+    <message>
+        <location filename="../src/aboutdialog.ui" line="14"/>
+        <source>About TeXstudio</source>
+        <translation>TeXstudio에 관하여</translation>
+    </message>
+    <message>
+        <location filename="../src/aboutdialog.ui" line="81"/>
+        <source>OK</source>
+        <translation>확인</translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -147,6 +182,64 @@
         <location filename="../src/arraydialog.cpp" line="108"/>
         <source>Quick Array</source>
         <translation>빠른 배열 입력</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="31"/>
+        <source>Num of Columns</source>
+        <translation>열의 개수</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="48"/>
+        <source>Columns Alignment</source>
+        <translation>정렬</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="62"/>
+        <source>Environment</source>
+        <translation>환경</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="75"/>
+        <source>In case of an array environment sets the alignment for the column of the currently selected cell.
+For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="86"/>
+        <source>Num of Rows</source>
+        <translation>행의 개수</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="96"/>
+        <source>Choose environment to be created (s. window title).
+Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
+Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="128"/>
+        <source>OK</source>
+        <translation>확인</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.ui" line="135"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.h" line="35"/>
+        <source>Center</source>
+        <translation>가운데</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.h" line="35"/>
+        <source>Left</source>
+        <translation>왼쪽</translation>
+    </message>
+    <message>
+        <location filename="../src/arraydialog.h" line="35"/>
+        <source>Right</source>
+        <translation>오른쪽</translation>
     </message>
 </context>
 <context>
@@ -329,6 +422,36 @@
         <location filename="../src/bibtexdialog.cpp" line="371"/>
         <source>New BibTeX Entry</source>
         <translation>새로운 BibTeX 항목</translation>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="20"/>
+        <source>Insert in File:</source>
+        <translation>파일에 삽입:</translation>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="27"/>
+        <source>Entry Type:</source>
+        <translation>항목 종류:</translation>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="50"/>
+        <source>Fields:</source>
+        <translation>항목:</translation>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="67"/>
+        <source>Field</source>
+        <translation>항목</translation>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="72"/>
+        <source>Value</source>
+        <translation>값</translation>
+    </message>
+    <message>
+        <location filename="../src/bibtexdialog.ui" line="80"/>
+        <source>Insert Empty, Optional Fields</source>
+        <translation>빈칸 또는 선택적인 항목 추가</translation>
     </message>
 </context>
 <context>
@@ -669,6 +792,36 @@ Please change your configuration and define command lists only at &apos;Options 
         <source>For your own safety clean will not delete the files with the following extensions:</source>
         <translation>안전을 위해서 정리 옵션은 다음 확장자를 가진 파일을 지우지 않습니다:</translation>
     </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="14"/>
+        <source>Clean</source>
+        <translation>파일 정리</translation>
+    </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="20"/>
+        <source>Scope</source>
+        <translation>범위</translation>
+    </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="30"/>
+        <source>File Extensions</source>
+        <translation>확장자</translation>
+    </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="42"/>
+        <source>Restore default</source>
+        <translation>기본값 복원</translation>
+    </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="58"/>
+        <source>Delete the auxiliary files generated by LaTeX:</source>
+        <translation>LaTeX이 생성한 부수적 파일 삭제:</translation>
+    </message>
+    <message>
+        <location filename="../src/cleandialog.ui" line="88"/>
+        <source>Files to Delete</source>
+        <translation>지울 파일</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet_PlaceHolder</name>
@@ -688,40 +841,2114 @@ Please change your configuration and define command lists only at &apos;Options 
 <context>
     <name>ConfigDialog</name>
     <message>
+        <location filename="../src/configdialog.ui" line="14"/>
+        <source>Configure TeXstudio</source>
+        <translation>TeXstudio 설정</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="166"/>
+        <location filename="../src/configdialog.ui" line="2069"/>
+        <source>Appearance</source>
+        <translation>외관</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="182"/>
+        <location filename="../src/configdialog.ui" line="4877"/>
+        <source>Color Scheme:</source>
+        <translation>색깔 설정:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="215"/>
+        <source>Style:</source>
+        <translation>스타일:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="238"/>
+        <location filename="../src/configdialog.ui" line="3810"/>
+        <source>Language:</source>
+        <translation>언어:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="251"/>
+        <source>Font:</source>
+        <translation>글꼴:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="259"/>
+        <source>Classic</source>
+        <translation>클래식</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="264"/>
+        <source>Modern</source>
+        <translation>세련된</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="269"/>
+        <source>Modern - dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="283"/>
+        <location filename="../src/configdialog.ui" line="1808"/>
+        <location filename="../src/configdialog.ui" line="4905"/>
+        <source>Font Size:</source>
+        <translation>글꼴 크기:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="295"/>
+        <source>Ignore Most System Colors</source>
+        <translation>대부분의 시스템 색상 무시</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="305"/>
+        <source>Use System Theme Icons</source>
+        <translation>시스템 테마 아이콘 사용</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="330"/>
+        <source>Icon Theme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="338"/>
+        <source>Colibre</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="343"/>
+        <source>Oxygen Modern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="348"/>
+        <source>Oxygen Classic</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="359"/>
+        <source>Files</source>
+        <translation>파일들</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="374"/>
+        <source>Max. Recent Root Documents:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="381"/>
+        <source>Remember selected file filter in open/save dialog </source>
+        <translation>파일 선택기에서 사용된 필터 기억 </translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="410"/>
+        <source>Max. Recent Documents:</source>
+        <translation>최대 최근 문서 수:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="430"/>
+        <source>Use system file dialogs</source>
+        <translation>시스템 파일 선택 대화 상자 사용</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="437"/>
+        <source>Always Show Structure of Root Document</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="447"/>
+        <source>MRU Document Chooser</source>
+        <translation>MRU 문서 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="460"/>
+        <source>Session</source>
+        <translation>세션</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="469"/>
+        <source>Restore Previous Session at Startup</source>
+        <translation>시작할 때 이전 세션 복원</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="476"/>
+        <source>Store relative paths</source>
+        <translation>상대 경로 저장</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="489"/>
+        <source>Startup</source>
+        <translation>시작</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="495"/>
+        <source>Check LaTeX Configuration</source>
+        <translation>LaTeX 설정 확인</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="505"/>
+        <source>Update</source>
+        <translation>업데이트</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="517"/>
+        <source>Defines the kinds of update notifications you will receive:
+- Stable Releases: Choose this if stability is most important to you.
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="524"/>
+        <source>Stable Releases</source>
+        <translation>안정 배포판</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="529"/>
+        <source>Release Candidates</source>
+        <translation>릴리즈 후보</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="534"/>
+        <source>Development Versions</source>
+        <translation>개발 버전</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="555"/>
+        <source>Check Now</source>
+        <translation>지금 확인</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="582"/>
+        <source>Last Checked:</source>
+        <translation>마지막으로 확인:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="589"/>
+        <source> days</source>
+        <translation> 일</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="602"/>
+        <source>Automatically check every</source>
+        <translation>매일 자동 확인</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="609"/>
+        <source>Update Level:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="664"/>
+        <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="671"/>
+        <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
+        <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;특수문자&lt;/span&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="678"/>
+        <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="688"/>
+        <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="704"/>
+        <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
+</source>
+        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt;, 그리고 &lt;b&gt;??&lt;/b&gt;는 각각 %, @ ,  ?로 처리됩니다.
+</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="785"/>
+        <source>Meta Commands</source>
+        <translation>메타 명령어</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="798"/>
+        <source>User Commands</source>
+        <translation>사용자 명령어</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="808"/>
+        <source>Build Options</source>
+        <translation>빌드 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="820"/>
+        <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="823"/>
+        <source>Check and update bibliography before compiling</source>
+        <translation>컴파일 하기 전에 문헌 목록을 확인하거나 업데이트 하세요</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="830"/>
+        <source>Show messages when starting compiling</source>
+        <translation>컴파일을 시작할 때 메세지를 보여줍니다</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="855"/>
+        <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
+        <translation>dvi/ps/pdf 파일이 이미 열려 있는 경우 새로운 뷰어를 열지 않음</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="864"/>
+        <source>Show stdout:</source>
+        <translation>표준 출력 표시:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="872"/>
+        <location filename="../src/configdialog.ui" line="2317"/>
+        <location filename="../src/configdialog.ui" line="4086"/>
+        <source>Never</source>
+        <translation>절대 안 함</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="877"/>
+        <source>Only For User Commands</source>
+        <translation>사용자 명령어에 대해서만</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="882"/>
+        <source>Always (If not redirected &gt; /dev/null)</source>
+        <translation>항상 (/dev/null으로 리디렉션되지 않을 경우)</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="890"/>
+        <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
+        <translation>일부 LaTeX 구성 요소는 여러 번의 컴파일을 거쳐야 제대로 표시됩니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="893"/>
+        <source>Maximum Compile Repetitions:</source>
+        <translation>최대 컴파일 반복 횟수:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="949"/>
+        <source>Commands ($PATH)</source>
+        <translation>명령어 ($PATH)</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="956"/>
+        <source>PDF File</source>
+        <translation>PDF 파일</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1000"/>
+        <source>Log File</source>
+        <translation>로그 파일</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1009"/>
+        <source>Additional Search Paths:</source>
+        <translation>추가적 탐색 경로:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1016"/>
+        <source>Replaces environment variables in commands.The behavior is OS-specific.
+
+Windows:
+Variables are written as: %MYVAR%. They are case-insensitive.
+
+Linux, OS X:
+Variables are written as: $MYVAR. They are case-sensitive.
+</source>
+        <translation>명령어의 환경 변수를 대체합니다. 이 명령어는 운영체제에 따라 다르게 작동합니다.
+
+Windows:
+변수는 %MYVAR% 처럼 표현되고 대소문자를 구분하지 않습니다.
+
+Linux, OS X:
+변수는 $MYVAR 처럼 표현되고 대소문자를 구분합니다.
+</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1026"/>
+        <source>Replace Environment Variables</source>
+        <translation>환경 변수 대체</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1033"/>
+        <source>Show log in case of compile error</source>
+        <translation>컴파일 에러 발생 시 로그 표시</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1040"/>
+        <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
+        <translation>이 설정이 켜져 있는 경우 &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt;과 &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;과 같은 주석을 이용하여 컴파일 시 사용되는 명령어를 바꿀 수 있습니다. 자세한 사항은 매뉴얼을 참고하시기 바랍니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1043"/>
+        <source>Interpret command definition in magic comments</source>
+        <translation>Magic comment를 통한 명령어 재정의 허용</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1073"/>
         <location filename="../src/configdialog.cpp" line="534"/>
         <source>Shortcuts</source>
         <translation>단축키</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1080"/>
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+Then you can select a new shortcut by one of the following ways:
+(1) select from the dropdown list
+(2) hit the shortcut combination
+(3) type the string of the shortcut</source>
+        <translation>&apos;현재 단축키&apos; 또는 &apos;추가 단축키&apos;에 있는 키 조합을 더블클릭하여 편집할 수 있습니다.
+다음과 같은 방법으로 새로운 키 조합을 선택할 수 있습니다:
+(1) 드롭다운 목록에서 선택
+(2) 새로운 키 조합을 누르기
+(3) 단축키에 해당하는 문자열 입력</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1097"/>
+        <location filename="../src/configdialog.ui" line="1344"/>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1102"/>
+        <source>2</source>
+        <translation>2</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1107"/>
+        <source>3</source>
+        <translation>3</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1112"/>
+        <source>4</source>
+        <translation>4</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1120"/>
+        <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1123"/>
+        <source>Close Element (Esc)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1129"/>
+        <source>Close Log-View</source>
+        <translation>로그 보기 닫기</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1136"/>
+        <source>Close Embedded Viewer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1143"/>
+        <source>Close Full Screen Mode</source>
+        <translation>전체 화면 모드 종료</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1153"/>
+        <source>Show Shortcuts in Tooltips</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1176"/>
         <location filename="../src/configdialog.cpp" line="535"/>
         <source>Menus</source>
         <translation>메뉴</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1183"/>
+        <source>Here the menu items are listed and can be hidden or edited.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1196"/>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1201"/>
         <location filename="../src/configdialog.cpp" line="523"/>
         <source>Command</source>
         <translation>명령어</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1206"/>
+        <source>Slot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1214"/>
+        <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1217"/>
+        <source>Show All</source>
+        <translation>모두 보기</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1240"/>
+        <source>Toolbar Customization</source>
+        <translation>도구 모음 맞춤화</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1249"/>
+        <source>This shows all actions on the currently edited toolbar.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1274"/>
+        <source>This adds an action to the toolbar.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1288"/>
+        <source>This removes an action from the toolbar.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1317"/>
+        <source>Here you can choose a toolbar to modify.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1324"/>
+        <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1331"/>
+        <source>This shows available actions to map on a toolbar.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1379"/>
+        <source>Note: The change of symbols can be monitored live</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1386"/>
+        <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1417"/>
+        <source>Main Toolbar</source>
+        <translation>주 도구 모음</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1424"/>
+        <location filename="../src/configdialog.ui" line="1431"/>
+        <location filename="../src/configdialog.ui" line="1488"/>
+        <location filename="../src/configdialog.ui" line="1541"/>
+        <source>Reset</source>
+        <translation>초기화</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1438"/>
+        <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1460"/>
+        <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1495"/>
+        <source>Symbol Grid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1502"/>
+        <source>Secondary Toolbars</source>
+        <translation>보조 도구 모음</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1509"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1534"/>
+        <source>Embedded PDF Toolbar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1629"/>
         <location filename="../src/configdialog.cpp" line="538"/>
         <location filename="../src/configmanager.cpp" line="1520"/>
         <source>Editor</source>
         <translation>편집기</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1641"/>
+        <source>Inline Checking:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1651"/>
+        <source>Show Line Numbers:</source>
+        <translation>줄 번호 표시:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1659"/>
+        <source>No Line Numbers</source>
+        <translation>줄 번호 없음</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1664"/>
+        <source>All Line Numbers</source>
+        <translation>모든 줄 번호</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1669"/>
+        <source>Only Important Line Numbers</source>
+        <translation>중요한 줄 번호만</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1677"/>
+        <source>Check non tex files</source>
+        <translation>tex 파일이 아닌 파일 검사</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1687"/>
+        <source>Scan LaTeX distribution for installed packages</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1697"/>
+        <source>Folding</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1704"/>
+        <source>Replace Indentation Tab by Spaces</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1711"/>
+        <location filename="../src/configdialog.ui" line="4891"/>
+        <source>Font Family:</source>
+        <translation>글꼴:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1718"/>
+        <source>Replace Double Quotes:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1731"/>
+        <source>Default Font Encoding:</source>
+        <translation>기본 글꼴 인코딩:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1738"/>
+        <source>Indentation Mode:</source>
+        <translation>들여쓰기 모드:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1745"/>
+        <source>Automatic Encoding Detection:</source>
+        <translation>인코딩 자동 감지:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1755"/>
+        <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
+        <translation>LaTeX 분석 (% !TeX encoding, inputenc, inputenx)</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1762"/>
+        <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
+        <translation>utf16/utf-8과 ISO 8859-1만을 구분할 수 있습니다!</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1765"/>
+        <source>Analyze Characters</source>
+        <translation>문자 분석</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1789"/>
+        <location filename="../src/configdialog.ui" line="4167"/>
+        <location filename="../src/configdialog.ui" line="4264"/>
+        <source>%</source>
+        <translation>%</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1815"/>
+        <source>Line Spacing:</source>
+        <translation>줄 간격:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1826"/>
+        <source>No Replacement</source>
+        <translation>바꾸지 않음</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1831"/>
+        <source>English Quotes:  `` &apos;&apos;</source>
+        <translation>영어 따옴표: `` &apos;&apos;</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1836"/>
+        <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
+        <translation>프랑스어 따옴표: &quot;&lt; &quot;&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1841"/>
+        <source>German Quotes:  &quot;` &quot;&apos;</source>
+        <translation>독일어 따옴표: &quot;` &quot;&apos;</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1846"/>
+        <source>French Quotes (babel): \og{} \fg{}</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1851"/>
+        <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
+        <translation>역방향 프랑스어 따옴표: &quot;&gt; &quot;&lt;</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1856"/>
+        <source>Package csquotes: \enquote{  }</source>
+        <translation>csquotes 패키지: \enquote{  }</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1861"/>
+        <source>English Quotes (unicode): “ ”</source>
+        <translation>영어 따옴표 (유니코드): “ ”</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1866"/>
+        <source>Polish Quotes: ,, &apos;&apos;</source>
+        <translation>폴란드어 따옴표: ,, &apos;&apos;</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1871"/>
+        <source>Polish Quotes (unicode): „ ”</source>
+        <translation>폴란드어 따옴표 (유니코드): „ ”</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1879"/>
+        <source>Show Only Monospaced Fonts</source>
+        <translation>고정폭 글꼴만 표시</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1890"/>
+        <source>Ignore Indentation</source>
+        <translation>들여쓰기 무시</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1895"/>
+        <source>Keep Indentation</source>
+        <translation>들여쓰기 무시</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1900"/>
+        <source>Indent and Unindent Automatically</source>
+        <translation>자동 들여쓰기와 내어쓰기</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1920"/>
+        <source>Spelling</source>
+        <translation>철자</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1927"/>
+        <source>Grammar</source>
+        <translation>문법</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1934"/>
+        <source>Citations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1941"/>
+        <source>References</source>
+        <translation>참고문헌</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1948"/>
+        <source>Syntax</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1955"/>
+        <source>Package</source>
+        <translation>패키지</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1965"/>
+        <source>Replace Tab in Text by Spaces</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1972"/>
+        <source>Hide grammar errors in non-text environments</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1982"/>
+        <source>Hide spelling errors in non-text environments</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1992"/>
+        <source>Remove Trailing Whitespace on Save</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1999"/>
+        <source>Automatically load included files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2009"/>
+        <source>Cache documents for faster reopening</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2092"/>
+        <source>Show State Panel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2104"/>
+        <source>Tab Width:</source>
+        <translation>탭 너비:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2139"/>
+        <source>Show Whitespace</source>
+        <translation>공백 문자 표시</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2152"/>
+        <source>Show Line Change State</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2162"/>
+        <source>Draw cursor as a thick line</source>
+        <translation>커서를 굵은 선으로 그립니다</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2165"/>
+        <source>Bold Cursor</source>
+        <translation>굵은 커서</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2181"/>
+        <source>Search Panel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2187"/>
+        <source>Close search and replace panel together</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2197"/>
+        <source>Use single line selection as Search Word</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2207"/>
+        <source>Restrict search scope to an existing selection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2217"/>
+        <source>Special options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2226"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;이 설정이 선택된 경우 파일 쓰기가 실패했을 때의 자료 손실을 막기 위해 QSaveFile을 사용합니다. 이 방법은 현재 사용자가 파일의 소유자가 되고 확장 파일 정보가 손실된다는 문제점을 가지고 있습니다. dropbox 폴더와 관련된 문제 또한 존재하는 것으로 보입니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2229"/>
+        <source>Safe writing of files</source>
+        <translation>안전한 파일 쓰기 사용</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2236"/>
+        <source>Show preview as tooltip on formulas in editor</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2243"/>
+        <source>Show image tooltip on image files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2250"/>
+        <source>Smooth Scrolling</source>
+        <translation>부드러운 스크롤</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2257"/>
+        <source>Show log markers when clicking log entry</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2264"/>
+        <source>Overwrite Opening Bracket Followed by a Placeholder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2276"/>
+        <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2285"/>
+        <source>Monitor open files for external changes</source>
+        <translation>열린 파일이 외부에서 수정되었는지 감시</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2292"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2295"/>
+        <source>Latex Command for pushed citations:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2303"/>
+        <source>Add Entries Directly To Context  Menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2308"/>
+        <source>Create Dedicated Submenu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2322"/>
+        <source>1 minute</source>
+        <translation>1분</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2327"/>
+        <source>2 minutes</source>
+        <translation>2분</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2332"/>
+        <source>5 minutes</source>
+        <translation>5분</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2337"/>
+        <source>10 minutes</source>
+        <translation>10분</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2342"/>
+        <source>20 minutes</source>
+        <translation>20분</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2347"/>
+        <source>60 minutes</source>
+        <translation>60분</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2355"/>
+        <source>When using unicode characters in the source code, LaTeX still has
+to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2359"/>
+        <source>Insert Symbol as Unicode</source>
+        <translation>유니코드로 기호 삽입</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2366"/>
+        <source>Line Wrapping:</source>
+        <translation>줄 바꿈:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2373"/>
+        <source>Mouse Wheel Zoom</source>
+        <translation>마우스 스크롤로 확대</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2380"/>
+        <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2383"/>
+        <source>Center Document in Editor</source>
+        <translation>편집기 중앙에 문서 두기</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2393"/>
+        <source>Triple-Click Selection:</source>
+        <translation>세 번 클릭 선택:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2403"/>
+        <source>Show help on commands in internal pdf viewer (texdoc)</source>
+        <translation>내장 PDF 뷰어에 명령어 도움말 표시 (texdoc)</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2410"/>
+        <source>Vertical Overscroll (Scroll below end of file)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2418"/>
+        <source>Select Word</source>
+        <translation>단어 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2423"/>
+        <source>Select Word or Command</source>
+        <translation>단어 또는 명령어 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2428"/>
+        <source>Select Parentheses Content</source>
+        <translation>괄호 안 내용 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2433"/>
+        <source>Select Parentheses</source>
+        <translation>괄호 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2438"/>
+        <source>Select Line</source>
+        <translation>줄 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2446"/>
+        <source>Maximal Characters:</source>
+        <translation>최대 문자 수:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2456"/>
+        <source>Overwrite Closing Bracket Following a Placeholder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2463"/>
+        <source>Default Log Encoding</source>
+        <translation>기본 로그 인코딩</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2470"/>
+        <source>Auto Save All Files:</source>
+        <translation>모든 파일을 자동 저장:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2491"/>
+        <source>No Line Wrap</source>
+        <translation>줄바꿈 없음</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2496"/>
+        <source>Soft Line Wrap at Window Edge</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2501"/>
+        <source>Soft Line Wrap after max. Characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2506"/>
+        <source>Hard Line Wrap after max. Characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2514"/>
+        <source>Show help as tooltip on text in editor</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2521"/>
+        <source>Go to error when displaying log</source>
+        <translation>로그를 표시할 때 오류로 이동</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2528"/>
+        <source>Spellchecking via context menu:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2535"/>
+        <source>Auto Complete Parentheses</source>
+        <translation>괄호 자동 완성</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2542"/>
+        <source>Allow Drag and Drop</source>
+        <translation>드래그 앤 드롭 허용</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2549"/>
+        <source>Double-Click Selection: Include Leading Backslash</source>
+        <translation>더블클릭 선택: 맨 앞의 백슬래시 포함</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2559"/>
+        <source>Structure Panel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2565"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2569"/>
+        <source>No Color Background</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2574"/>
+        <source>Green Background</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2579"/>
+        <source>Blue Background</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2587"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2590"/>
+        <source>Mark structure elements beyond \end{document}</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2597"/>
+        <source>Reference commands in context menu:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2610"/>
+        <source>Regular expression for TODO comment: </source>
+        <translation>TODO 주석에 대한 정규 표현식:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2617"/>
+        <source>Keep indentation of includes in structure tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2624"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2627"/>
+        <source>Scroll to current cursor position</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2634"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2637"/>
+        <source>Mark structure elements in appendix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2644"/>
+        <source>Use color in global TOC:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2664"/>
+        <source>Bibliography</source>
+        <translation>참고문헌</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2670"/>
+        <source>bib File Encoding:</source>
+        <translation>bib 파일 인코딩</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2677"/>
+        <source>Parse BibTeX</source>
+        <translation>BibTeX 분석</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2690"/>
+        <source>Table Autoformating</source>
+        <translation>표 형식 자동맞춤</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2696"/>
+        <source>One Line Per Cell</source>
+        <translation>한 셀당 한 줄</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2704"/>
+        <source>Behind Line Break</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2709"/>
+        <source>Separate Line (No Indent)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2714"/>
+        <source>Separate Line (Indented to First Column)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2722"/>
+        <source>Special Commands Position:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2732"/>
+        <source>Special Commands:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2742"/>
+        <source>Additional Search Paths</source>
+        <translation>추가적 탐색 경로</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2751"/>
+        <source>Bib Files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2764"/>
+        <source>Image Files:</source>
+        <translation>이미지 파일:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2802"/>
+        <source>Bi-Di</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2808"/>
+        <source>Automatically insert LRM characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2815"/>
+        <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2822"/>
+        <source>Automatically switch keyboard layout: </source>
+        <translation>자동 키보드 레이아웃 전환: </translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2829"/>
+        <source>depending on character direction</source>
+        <translation>문자 방향에 따라</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2836"/>
+        <source>depending on text/math mode</source>
+        <translation>텍스트/수식 모드에 따라</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2846"/>
+        <source>Hacks/Workarounds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2852"/>
+        <source>Disable work-around on accent typing (Mac OS X only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2859"/>
+        <source>Try to automatically choose best display options</source>
+        <translation>자동적으로 최적의 디스플레이 옵션을 선택하려 시도</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2877"/>
+        <source>Render Mode:</source>
+        <translation>렌더링 모드:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2885"/>
+        <source>QCE (recommended)</source>
+        <translation>QCE (추천)</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2890"/>
+        <source>Qt</source>
+        <translation>Qt</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2895"/>
+        <source>Single Letter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2903"/>
+        <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2906"/>
+        <source>Disable cache of rendered lines</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2913"/>
+        <source>Disable fixed pitch mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2920"/>
+        <source>Disable cache of character width</source>
+        <translation>문자 폭 캐시 사용 안 함</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2927"/>
+        <source>Use QImage as cache type</source>
+        <translation>QImage를 캐시 타입으로 사용</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2990"/>
+        <source>Formats</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3019"/>
         <location filename="../src/configdialog.cpp" line="541"/>
         <source>Completion</source>
         <translation>자동 완성</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="3025"/>
+        <source>Allows in-place substitution of commands. Example:&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
+&lt;li&gt;Start completer by Ctrl+Space&lt;/li&gt;
+&lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
+&lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
+&lt;/ul&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3035"/>
+        <source>Auto Replace Latex-Commands</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3042"/>
+        <source>Insert Arguments</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3052"/>
+        <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3055"/>
+        <source>ToolTip-Preview</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3062"/>
+        <source>Arguments as Placeholders</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3072"/>
+        <source>Shows a tooltip with a description of the selected completer command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3075"/>
+        <source>ToolTip-Help</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3085"/>
+        <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3088"/>
+        <source>Automatically start completer when typing LaTeX-Commands</source>
+        <translation>LaTeX 명령어를 입력할 때 자동 완성기 시작</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3097"/>
+        <source>Size of the tab bar at the bottom or top of the completer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3100"/>
+        <source>Tab Bar Size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3110"/>
+        <source>Size of the command set tabs at the bottom or top of the completer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3144"/>
+        <source>Complete selected text when non-word character is pressed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3154"/>
+        <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3157"/>
+        <source>Auto Complete Common Prefix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3169"/>
+        <source>Preferred Commands Set:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3177"/>
+        <source>Typical</source>
+        <translation>일반적</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3182"/>
+        <source>Most Used</source>
+        <translation>자주 사용되는</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3187"/>
+        <source>Fuzzy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3192"/>
+        <source>All</source>
+        <translation>전체</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3215"/>
+        <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
+        <translation>수식 명령어가 수식 환경 밖에서 사용될 경우 $$를 자동으로 삽입합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3218"/>
+        <source>Auto Insert Math Delimiters where needed</source>
+        <translation>필요한 경우 수식 구분자를 자동적으로 삽입</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3230"/>
+        <location filename="../src/configdialog.ui" line="3268"/>
+        <source>TXS tries to automatically load completion files for packages if a
+\usepackage{} command is found. These automatically included files
+are not shown here. Checking additional packages here is usually not
+necessary. However if automatic detection fails or you want to include
+specfic user completion files, you can enforce their usage by activating
+them here.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3238"/>
+        <source>Permanently active completion files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3248"/>
+        <source>Filter list below</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3359"/>
+        <source>Spell Check</source>
+        <translation>맞춤법 검사</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3365"/>
+        <source>Default Language:</source>
+        <translation>기본 언어:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3392"/>
+        <source>Spelling Dictionary Directories:</source>
+        <translation>철자 사전 디렉토리:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3399"/>
+        <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3409"/>
+        <source>*.dat</source>
+        <translation>*.dat</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3416"/>
+        <source>Thesaurus Database:</source>
+        <translation>유의어 데이터베이스:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3446"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3459"/>
+        <source>Import Dictionary...</source>
+        <translation>사전 가져오기...</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3469"/>
+        <source>Internal Grammar Check</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3475"/>
+        <source>Words repeated within a paragraph will be highlighted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3478"/>
+        <source>Check for Word Repetitions</source>
+        <translation>동어 반복 검사</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3485"/>
+        <source>Words Between Repetitions:</source>
+        <translation>반복된 단어 사이의 다른 단어 수:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3495"/>
+        <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
+        <translation>동일한 단어가 이 값보다 적은 수의 단어를 사이에 두고 반복되면 동어 반복으로 표시됩니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3505"/>
+        <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3515"/>
+        <source>Only words with have this length are checked for long range repetitions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3525"/>
+        <source>Long Range Repetitions:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3535"/>
+        <source>Min Length of Words with Long Repetition:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3545"/>
+        <source>Wordlist Directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3552"/>
+        <source>Certain informal or weak words will be highlighted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3555"/>
+        <source>Check for Bad Words</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3562"/>
+        <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3589"/>
+        <source>Store the conversation with AI provider on disk to allow later retrieval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3592"/>
+        <source>AI chat assistant</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3599"/>
+        <source>open-mistral-7b</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3604"/>
+        <source>open-mixtral-8x7b</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3609"/>
+        <source>mistral-small-latest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3614"/>
+        <source>mistral-medium-latest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3619"/>
+        <source>mistral-large-latest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3628"/>
+        <source>Mistral AI</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3633"/>
+        <source>OpenAI</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3641"/>
+        <source>AI provider:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3648"/>
+        <source>Preferred model:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3658"/>
+        <source>API key:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3665"/>
+        <source>Record Conversation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3675"/>
+        <source>LanguageTool</source>
+        <translation>LanguageTool</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3681"/>
+        <source>Path containing the LanguageTool java archive.</source>
+        <translation>LanguageTool의 jar 파일이 있는 경로를 지정합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3688"/>
+        <source>LT Path:</source>
+        <translation>LanguageTool 경로:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3695"/>
+        <source>Start LanguageTool if not running</source>
+        <translation>LanguageTool을 자동으로 시작</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3702"/>
+        <source>Server URL: </source>
+        <translation>서버 URL:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3709"/>
+        <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3733"/>
+        <source>Ignored Rules:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3740"/>
+        <location filename="../src/configdialog.ui" line="3750"/>
+        <location filename="../src/configdialog.ui" line="3760"/>
+        <location filename="../src/configdialog.ui" line="3790"/>
+        <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3770"/>
+        <source>Special Rules 3:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3780"/>
+        <source>Special Rules 2:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3800"/>
+        <source>Special Rules 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3817"/>
+        <source>Special Rules 4:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3827"/>
+        <source>Will be inferred from the language of the spell checker used in the document.</source>
+        <translation>이 문서의 맞춤법 검사에 사용된 언어를 사용합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3834"/>
+        <source>Java executable, used to start LanguageTool, if it is not running.</source>
+        <translation>LanguageTool을 구동할 때 사용할 Java 실행 파일을 지정합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3841"/>
+        <source>Java:</source>
+        <translation>Java:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3848"/>
+        <location filename="../src/configdialog.ui" line="3896"/>
+        <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3851"/>
+        <source>LT Arguments:</source>
+        <translation>LanguageTool 매개변수:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3875"/>
+        <location filename="../src/configdialog.ui" line="3903"/>
+        <source>Restore Default</source>
+        <translation>기본값 복원</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3889"/>
+        <source>Url to connect to LanguageTool. </source>
+        <translation>LanguageTool에 연결할 때 사용할 URL을 지정합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3986"/>
+        <source>Command:</source>
+        <translation>명령어:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3997"/>
+        <source>Preview with dvipng</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4002"/>
+        <source>Preview with dvipng --follow (parallel)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4007"/>
+        <source>Preview with dvips/ghostscript</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4012"/>
+        <source>Preview with pdflatex</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4017"/>
+        <source>Preview with lualatex</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4025"/>
+        <source>Display Mode:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4035"/>
+        <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4042"/>
+        <source>Show preview as tooltip if panel is hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4047"/>
+        <source>Always show preview in preview panel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4052"/>
+        <source>Always show preview as tool tip</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4057"/>
+        <source>Always show both</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4062"/>
+        <source>Inline</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4067"/>
+        <source>Show in embedded viewer</source>
+        <extracomment>Only available if pdflatex is used for compilation</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4075"/>
+        <source>Update the preview on text change</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4078"/>
+        <source>Auto Update:</source>
+        <translation>자동 업데이트:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4091"/>
+        <source>Previously previewed text</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4099"/>
+        <source>Auto Update Delay:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4109"/>
+        <source> ms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4125"/>
+        <source>Replace beamer class by article</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4138"/>
+        <source>Precompile Preamble</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4154"/>
+        <location filename="../src/configdialog.ui" line="4277"/>
+        <source>Scaling:</source>
+        <translation>크기 조정:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4249"/>
         <location filename="../src/configdialog.cpp" line="544"/>
         <source>Internal PDF Viewer</source>
         <translation>내장 PDF 뷰어</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="4284"/>
+        <source>Load Strategy:</source>
+        <translation>로딩 방법:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4294"/>
+        <source>Auto-recompile document on changes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4301"/>
+        <source>Cache Size:</source>
+        <translation>캐시 크기:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4311"/>
+        <location filename="../src/configdialog.ui" line="4676"/>
+        <source> px</source>
+        <translation> px</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4333"/>
+        <source>Infinite</source>
+        <translation>무한대</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4352"/>
+        <source> dpi</source>
+        <translation> dpi</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4362"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4372"/>
+        <source>Buffered</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4377"/>
+        <source>Direct</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4382"/>
+        <source>Hybrid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4390"/>
+        <source>Highlight Duration</source>
+        <translation>강조 표시 지속 시간</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4400"/>
+        <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
+        <translation>RGBA 값을 16진수 형식으로 지정합니다. 기술적 문제로 인하여 강조 표시가 글자 위에 그려지기 때문에 투명도 값이 필요합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4403"/>
+        <source>\#HHHHHHHH;_</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4417"/>
+        <source>Rectangle</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4422"/>
+        <source>Circle</source>
+        <translation>원형</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4443"/>
+        <source>Highlight Color</source>
+        <translation>강조 표시 색</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4453"/>
+        <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4478"/>
+        <source>Border</source>
+        <translation>테두리</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4485"/>
+        <source>Shadow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4508"/>
+        <source>Original Size</source>
+        <translation>원본 크기</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4513"/>
+        <source>Fit to Window Width</source>
+        <translation>너비 맞춤</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4518"/>
+        <source>Fit to Window Size</source>
+        <translation>창 크기 맞춤</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4523"/>
+        <source>Scaled Size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4528"/>
+        <source>Fit to Text Width</source>
+        <translation>텍스트 너비 맞춤</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4536"/>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4558"/>
+        <source>Synchronized Files Types:</source>
+        <translation>동기화할 파일 형식:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4568"/>
+        <source>Paper Color</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4578"/>
+        <location filename="../src/configdialog.ui" line="4632"/>
+        <source>The Render Backend used by the PDF library poppler.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
+Note: Changing this setting will only affect documents that are opened afterwards.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4584"/>
+        <source>Render Backend:</source>
+        <translation>렌더링 백엔드:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4594"/>
+        <source>Presentation Laser Pointer Size:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4601"/>
+        <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4608"/>
+        <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4618"/>
+        <source>Scale Option:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4625"/>
+        <source>Magnifier Shape:</source>
+        <translation>돋보기 모양:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4655"/>
+        <source>Magnifier Size:</source>
+        <translation>돋보기 크기:</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4662"/>
+        <source>Auto-hide Toolbars in Embedded Mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4669"/>
+        <source>Presentation Laser Pointer Color:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4759"/>
+        <source>Use SVN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4764"/>
+        <source>Use GIT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4772"/>
+        <source>Select how txs checks in saved files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4776"/>
+        <source>No automatic check-in after save</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4781"/>
+        <source>Check-in after File/Save only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4786"/>
+        <source>Check-in after all save operations, i.e. also before compiles.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4794"/>
+        <source>Use SVN/GIT revisions to undo before last saved version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4801"/>
+        <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4804"/>
+        <source>Substitute Keywords with Properties (on svn add)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4813"/>
+        <source>SVN Directory Search Depth: </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4871"/>
         <location filename="../src/configdialog.cpp" line="547"/>
         <source>Internal Terminal</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4922"/>
+        <source>Shell:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4978"/>
+        <source>Show Advanced Options</source>
+        <translation>고급 옵션 표시</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="5004"/>
+        <source>OK</source>
+        <translation>확인</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="5014"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="202"/>
@@ -796,6 +3023,7 @@ to set the key anyway?</source>
         <translation>비교</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="3980"/>
         <location filename="../src/configdialog.cpp" line="501"/>
         <location filename="../src/configdialog.cpp" line="543"/>
         <source>Preview</source>
@@ -862,6 +3090,7 @@ to set the key anyway?</source>
         <translation>도구 모음</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1370"/>
         <location filename="../src/configdialog.cpp" line="537"/>
         <source>GUI Scaling</source>
         <translation>GUI 크기 조정</translation>
@@ -882,6 +3111,7 @@ to set the key anyway?</source>
         <translation>맞춤법 및 문법 검사</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="4752"/>
         <location filename="../src/configdialog.cpp" line="545"/>
         <source>SVN/GIT</source>
         <translation type="unfinished"/>
@@ -2295,6 +4525,94 @@ Do you want to remove them?</source>
     </message>
 </context>
 <context>
+    <name>EditorConfig</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="23"/>
+        <source>Font</source>
+        <translation>글꼴</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="79"/>
+        <source>text which &lt;i&gt;should&lt;/i&gt; be a &lt;b&gt;fair&lt;/b&gt; test of the font</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="114"/>
+        <source>Tabulators &amp;&amp; Whitespaces</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="131"/>
+        <source>Tab width</source>
+        <translation>탭 너비</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="163"/>
+        <source>Show leading whitespaces</source>
+        <translation>줄 시작의 공백 문자 표시</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="173"/>
+        <source>Show tabs which are neither leading nor trailing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="183"/>
+        <source>Show trailing whitespaces</source>
+        <translation>줄 마지막의 공백 문자 표시</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="193"/>
+        <source>Replace tabs by blanks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="203"/>
+        <source>Load &amp;&amp; Save</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="209"/>
+        <source>Default encoding</source>
+        <translation>기본 인코딩</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="219"/>
+        <source>Preserve line endings</source>
+        <translation>줄바꿈 문자 보존</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="233"/>
+        <source>Local</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="238"/>
+        <source>Unix/Linux</source>
+        <translation>유닉스/리눅스</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="243"/>
+        <source>DOS/Windows</source>
+        <translation>도스/윈도</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="248"/>
+        <source>Old Mac</source>
+        <translation>Old Mac</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="256"/>
+        <source>Remove trailing spaces</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="266"/>
+        <source>Preserve trailing indent</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Editors</name>
     <message>
         <location filename="../src/editors.cpp" line="389"/>
@@ -2363,6 +4681,52 @@ These changes will be lost, if you reload it with the new encoding.
 Are you sure you want to undo all changes?</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="14"/>
+        <source>Select File Encoding</source>
+        <translation>파일 인코딩 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="20"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="27"/>
+        <source>View With</source>
+        <translation>다음으로 보기 :</translation>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="34"/>
+        <source>Reload With</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="41"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="48"/>
+        <source>Change To</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="90"/>
+        <source>File Encoding</source>
+        <translation>파일 인코딩</translation>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="95"/>
+        <source>inputenc Parameter</source>
+        <translation>inputenc 매개변수</translation>
+    </message>
+    <message>
+        <location filename="../src/encodingdialog.ui" line="98"/>
+        <source>The codec names as the inputenc package expects them. The names are only given for reference.
+You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileChooser</name>
@@ -2370,6 +4734,70 @@ Are you sure you want to undo all changes?</source>
         <location filename="../src/filechooser.cpp" line="51"/>
         <source>Select a File</source>
         <translation>파일 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/filechooser.ui" line="55"/>
+        <source>File</source>
+        <translation>파일</translation>
+    </message>
+    <message>
+        <location filename="../src/filechooser.ui" line="130"/>
+        <source>OK</source>
+        <translation>확인</translation>
+    </message>
+    <message>
+        <location filename="../src/filechooser.ui" line="137"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
+</context>
+<context>
+    <name>FormatConfig</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/formatconfig.ui" line="20"/>
+        <source>Form</source>
+        <translation>형식</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/formatconfig.ui" line="35"/>
+        <source>Scheme :</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>GotoDialog</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="19"/>
+        <source>Goto line ...</source>
+        <translation>줄로 이동 ...</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="31"/>
+        <source>Select the line you want to go to :</source>
+        <translation>이동하고 싶은 줄 번호를 입력하세요 :</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="57"/>
+        <source>line </source>
+        <translation>줄 </translation>
+    </message>
+</context>
+<context>
+    <name>GotoLine</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="14"/>
+        <source>Form</source>
+        <translation>형식</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="27"/>
+        <source>&amp;Go to line :</source>
+        <translation>줄로 이동 (&amp;G) :</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="53"/>
+        <source>G&amp;o</source>
+        <translation>이동 (&amp;O)</translation>
     </message>
 </context>
 <context>
@@ -2467,6 +4895,157 @@ The wizard does not support command </source>
         <comment>Wizard</comment>
         <translation>파일 선택</translation>
     </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="40"/>
+        <source>File</source>
+        <translation>파일</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="94"/>
+        <location filename="../src/insertgraphics.ui" line="176"/>
+        <source>Defines the options for \includegraphics[options]{file}.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="97"/>
+        <source>Graphics Options</source>
+        <translation>그래픽 옵션</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="103"/>
+        <source>Width/Height</source>
+        <translation>너비/높이</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="113"/>
+        <source>Width</source>
+        <translation>너비</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="146"/>
+        <source>Height</source>
+        <translation>높이</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="183"/>
+        <source>User Defined</source>
+        <translation>사용자 정의</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="195"/>
+        <source>Center Horizontally</source>
+        <translation>가로 가운데 정렬</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="219"/>
+        <source>Place in Figure Environment</source>
+        <translation>Figure 환경 안에 배치</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="228"/>
+        <source>Caption</source>
+        <translation>캡션</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="239"/>
+        <source>Above graphic</source>
+        <translation>그래픽 위</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="244"/>
+        <source>Below graphic</source>
+        <translation>그래픽 아래</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="271"/>
+        <source>Caption for the image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="278"/>
+        <source>Label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="285"/>
+        <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="292"/>
+        <source>Span Two Columns</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="299"/>
+        <source>Position</source>
+        <translation>위치</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="324"/>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="331"/>
+        <source>  Short</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="338"/>
+        <source>  Long</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="369"/>
+        <source>Top</source>
+        <translation>맨 위</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="376"/>
+        <source>Bottom</source>
+        <translation>맨 아래</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="383"/>
+        <source>Page</source>
+        <translation>페이지</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="390"/>
+        <source>Here</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="397"/>
+        <source>Here (H)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="404"/>
+        <source>Override Internal Layout Parameters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="440"/>
+        <source>Save current settings as default.</source>
+        <translation>현재 설정을 기본값으로 저장합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="443"/>
+        <source>as Default</source>
+        <translation>기본값으로 저장</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="467"/>
+        <source>OK</source>
+        <translation>확인</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="477"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
 </context>
 <context>
     <name>LabelSearchQuery</name>
@@ -2479,52 +5058,52 @@ The wizard does not support command </source>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1476"/>
-        <location filename="../src/latexcompleter.cpp" line="1486"/>
+        <location filename="../src/latexcompleter.cpp" line="1478"/>
+        <location filename="../src/latexcompleter.cpp" line="1488"/>
         <source>typical</source>
         <translation>일반적</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1477"/>
-        <location filename="../src/latexcompleter.cpp" line="1487"/>
+        <location filename="../src/latexcompleter.cpp" line="1479"/>
+        <location filename="../src/latexcompleter.cpp" line="1489"/>
         <source>most used</source>
         <translation>자주 사용되는</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1478"/>
-        <location filename="../src/latexcompleter.cpp" line="1488"/>
+        <location filename="../src/latexcompleter.cpp" line="1480"/>
+        <location filename="../src/latexcompleter.cpp" line="1490"/>
         <source>fuzzy</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1479"/>
-        <location filename="../src/latexcompleter.cpp" line="1489"/>
+        <location filename="../src/latexcompleter.cpp" line="1481"/>
+        <location filename="../src/latexcompleter.cpp" line="1491"/>
         <source>all</source>
         <translation>전체</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1480"/>
-        <location filename="../src/latexcompleter.cpp" line="1490"/>
+        <location filename="../src/latexcompleter.cpp" line="1482"/>
+        <location filename="../src/latexcompleter.cpp" line="1492"/>
         <source>press shift+space to change view</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1691"/>
+        <location filename="../src/latexcompleter.cpp" line="1693"/>
         <source> (Usertag)</source>
         <translation> (사용자 태그)</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2053"/>
+        <location filename="../src/latexcompleter.cpp" line="2055"/>
         <source>label missing!</source>
         <translation>라벨 없음!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2055"/>
+        <location filename="../src/latexcompleter.cpp" line="2057"/>
         <source>label defined multiple times!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2065"/>
+        <location filename="../src/latexcompleter.cpp" line="2067"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;파일 이름: %1&lt;/b&gt;
@@ -2943,6 +5522,36 @@ The wizard does not support command </source>
         <source>Quick Letter</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="42"/>
+        <source>Typeface Size</source>
+        <translation>글꼴 크기</translation>
+    </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="57"/>
+        <source>Encoding</source>
+        <translation>인코딩</translation>
+    </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="64"/>
+        <source>AMS Packages</source>
+        <translation>AMS 패키지</translation>
+    </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="85"/>
+        <source>Paper Size</source>
+        <translation>용지 크기</translation>
+    </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="115"/>
+        <source>OK</source>
+        <translation>확인</translation>
+    </message>
+    <message>
+        <location filename="../src/letterdialog.ui" line="122"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
 </context>
 <context>
     <name>MacroBrowserUI</name>
@@ -2980,6 +5589,51 @@ The wizard does not support command </source>
 Do you want to overwrite it?</source>
         <translation>주어진 이름의 템플릿 파일이 이미 존재합니다.
 파일을 덮어쓰시겠습니까?</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="14"/>
+        <source>Make Template</source>
+        <translation>템플릿 생성</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="20"/>
+        <source>Create a template from the current file.</source>
+        <translation>현재 파일로부터 템플릿을 생성합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="27"/>
+        <source>Meta Data</source>
+        <translation>메타데이터</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="33"/>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="43"/>
+        <source>Author</source>
+        <translation>저자</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="53"/>
+        <source>Version</source>
+        <translation>버전</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="63"/>
+        <source>Description</source>
+        <translation>설명</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="77"/>
+        <source>License</source>
+        <translation>라이선스</translation>
+    </message>
+    <message>
+        <location filename="../src/maketemplatedialog.ui" line="126"/>
+        <source>LaTeX Project Public License (LPPL)</source>
+        <translation>레이텍 프로젝트 공중 사용 허가서 (LPPL)</translation>
     </message>
 </context>
 <context>
@@ -3039,6 +5693,754 @@ Do you want to overwrite it?</source>
     </message>
 </context>
 <context>
+    <name>PDFAnnotation</name>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="30"/>
+        <source>Text</source>
+        <translation>텍스트</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="32"/>
+        <source>Line</source>
+        <translation>줄</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="34"/>
+        <source>Geometric</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="36"/>
+        <source>Highlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="38"/>
+        <source>Stamp</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="40"/>
+        <source>Ink</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="42"/>
+        <source>Link</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="44"/>
+        <source>Caret</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="46"/>
+        <source>Attachment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="48"/>
+        <source>Sound</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="50"/>
+        <source>Movie</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>PDFAnnotationDlg</name>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotationdlg.ui" line="14"/>
+        <source>Annotation</source>
+        <translation>주석</translation>
+    </message>
+</context>
+<context>
+    <name>PDFAnnotationModel</name>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="232"/>
+        <source>Author</source>
+        <translation>저자</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="234"/>
+        <source>Text</source>
+        <translation>텍스트</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="236"/>
+        <source>Type</source>
+        <translation>종류</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="238"/>
+        <source>Modified</source>
+        <translation>수정한 날짜</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="240"/>
+        <source>Created</source>
+        <translation>만든 날짜</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/pdfannotation.cpp" line="242"/>
+        <source>Page</source>
+        <translation>페이지</translation>
+    </message>
+</context>
+<context>
+    <name>PDFBaseSearchDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="462"/>
+        <source>Search</source>
+        <translation>검색</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="529"/>
+        <source>Enables case sensitive search.</source>
+        <translation>검색 시 대소문자를 구분합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="540"/>
+        <source>Text or pattern to search for</source>
+        <translation>검색할 텍스트 또는 패턴</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="541"/>
+        <source>Find next occurrence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="542"/>
+        <source>Find previous occurrence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="544"/>
+        <source> Find :</source>
+        <translation> 찾기 :</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="546"/>
+        <source>Case</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>PDFClockDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="952"/>
+        <source>Set Interval...</source>
+        <translation>간격 설정...</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="953"/>
+        <source>Set Page Count...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="954"/>
+        <source>Restart</source>
+        <translation>다시 시작</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="969"/>
+        <source>Clock</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="991"/>
+        <source>Start time</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="992"/>
+        <source>New clock interval (in minutes)</source>
+        <translation>새로운 시간 간격 (분 단위)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1011"/>
+        <source>Page count (negative subtracts)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1042"/>
+        <source>wait</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1044"/>
+        <source>%1 sec</source>
+        <translation>%1초</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1046"/>
+        <source>%1 min</source>
+        <translation>%1분</translation>
+    </message>
+</context>
+<context>
+    <name>PDFDocument</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2924"/>
+        <source>Toolbar</source>
+        <translation>도구 모음</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2978"/>
+        <source>&amp;File</source>
+        <translation>파일 (&amp;F)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2979"/>
+        <source>&amp;Edit</source>
+        <translation>편집 (&amp;E)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2980"/>
+        <source>&amp;View</source>
+        <translation>보기 (&amp;V)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2981"/>
+        <source>Grid</source>
+        <translation>격자</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2982"/>
+        <source>&amp;Window</source>
+        <translation>창 (&amp;W)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2983"/>
+        <source>&amp;Configure</source>
+        <translation>설정 (&amp;C)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2984"/>
+        <source>&amp;Help</source>
+        <translation>도움말 (&amp;H)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2990"/>
+        <source>User &amp;Manual...</source>
+        <translation>사용자 매뉴얼 (&amp;M)...</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2993"/>
+        <source>About</source>
+        <translation>정보</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2994"/>
+        <source>&amp;Open...</source>
+        <translation>열기 (&amp;O)...</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2995"/>
+        <source>Split &amp;&amp; Merge...</source>
+        <translation>나누기 &amp;&amp; 합치기...</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2996"/>
+        <source>&amp;Close</source>
+        <translation>닫기 (&amp;C)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2998"/>
+        <source>&amp;Quit TeXstudio</source>
+        <translation>TeXstudio 종료 (&amp;Q)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2999"/>
+        <source>&amp;Configure TeXstudio</source>
+        <translation>TeXstudio 설정 (&amp;C)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3001"/>
+        <source>Scrolling follows cursor</source>
+        <translation>커서를 따라 스크롤</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3003"/>
+        <source>Cursor follows scrolling</source>
+        <translation>스크롤에 따라 커서 이동</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3005"/>
+        <source>Synchronize multiple views</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3007"/>
+        <source>Ignore for synchronization</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3010"/>
+        <source>Invert Colors</source>
+        <translation>색상 반전</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3012"/>
+        <source>Grayscale</source>
+        <translation>회색조</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3016"/>
+        <source>&amp;Magnify</source>
+        <translation>확대 (&amp;M)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3019"/>
+        <source>&amp;Scroll</source>
+        <translation>스크롤 (&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3024"/>
+        <source>&amp;First Page</source>
+        <translation>첫 페이지 (&amp;F)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3025"/>
+        <source>Back</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3026"/>
+        <source>&amp;Previous Page</source>
+        <translation>이전 페이지 (&amp;P)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3027"/>
+        <source>&amp;Next Page</source>
+        <translation>다음 페이지 (&amp;N)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3028"/>
+        <source>Forward</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3029"/>
+        <source>&amp;Last Page</source>
+        <translation>마지막 페이지 (&amp;L)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3031"/>
+        <source>&amp;Go to Page...</source>
+        <translation>페이지로 이동 (&amp;G)...</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3033"/>
+        <source>Zoom &amp;In</source>
+        <translation>확대 (&amp;I)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3034"/>
+        <source>Zoom &amp;Out</source>
+        <translation>축소 (&amp;O)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3035"/>
+        <source>&amp;Actual Size</source>
+        <translation>실제 크기 (&amp;A)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3036"/>
+        <source>Fit to Wi&amp;dth</source>
+        <translation>너비 맞춤 (&amp;D)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3038"/>
+        <source>Fit to &amp;Text Width</source>
+        <translation>텍스트 너비 맞춤 (&amp;T)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3040"/>
+        <source>Fit to &amp;Window</source>
+        <translation>창에 맞춤 (&amp;W)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3042"/>
+        <source>&amp;Continuous</source>
+        <translation>연속 (&amp;C)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3047"/>
+        <source>Full &amp;Screen</source>
+        <translation>전체 화면 (&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3048"/>
+        <source>Presentation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3049"/>
+        <source>External Viewer</source>
+        <translation>외부 뷰어</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3050"/>
+        <source>Enlarge Viewer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3051"/>
+        <source>Shrink Viewer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3052"/>
+        <source>Windowed/Embedded</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3053"/>
+        <source>Auto-hide Toolbar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3069"/>
+        <source>Custom...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3074"/>
+        <source>Single Page Step</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3077"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3079"/>
+        <source>&amp;Close something</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3082"/>
+        <source>Stac&amp;k</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3083"/>
+        <source>&amp;Tile</source>
+        <translation>타일 (&amp;T)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3084"/>
+        <source>&amp;Side by Side</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3086"/>
+        <source>&amp;Go to Source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3087"/>
+        <source>Focus Editor</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3089"/>
+        <source>New Window</source>
+        <translation>새 창</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3090"/>
+        <source>&amp;Find</source>
+        <translation>찾기 (&amp;F)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3091"/>
+        <source>Find &amp;again</source>
+        <translation>다시 찾기 (&amp;A)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3093"/>
+        <source>Quick Build</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3142"/>
+        <source>Show</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3165"/>
+        <source>Windowed Viewer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3168"/>
+        <source>Embedded Viewer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3231"/>
+        <source>of</source>
+        <comment>separator for page number: 1 of 3</comment>
+        <translation>의</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3254"/>
+        <source>Scale</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3272"/>
+        <source>Zoom Out</source>
+        <translation>축소하기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3282"/>
+        <source>Zoom</source>
+        <translation>줌</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3291"/>
+        <source>Zoom In</source>
+        <translation>확대하기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3319"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3322"/>
+        <source>Annotations</source>
+        <translation>주석</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3462"/>
+        <source>Page Down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3466"/>
+        <source>Page Up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3656"/>
+        <source>Retry</source>
+        <translation>다시 시도</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3659"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4850"/>
+        <source>Close</source>
+        <translation>닫기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3662"/>
+        <source>%1
+does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3676"/>
+        <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3679"/>
+        <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3682"/>
+        <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3685"/>
+        <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3688"/>
+        <source>PDF file &quot;%1&quot; is locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3690"/>
+        <source>PDF password</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3690"/>
+        <source>PDF file &quot;%1&quot; is locked.
+You can now enter the password:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4079"/>
+        <source>Searching for</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4191"/>
+        <source>No SyncTeX data available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4193"/>
+        <source>SyncTeX: &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4284"/>
+        <source>%1[*] - %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4371"/>
+        <source>Page %1 of %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4372"/>
+        <source>Pages %1 to %2 of %3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4397"/>
+        <source>Open PDF</source>
+        <translation>PDF 열기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4672"/>
+        <source>Print</source>
+        <translation>출력하기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4851"/>
+        <source>Close Message</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>PDFFontsDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
+        <source>Type</source>
+        <translation>종류</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
+        <source>Subset</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
+        <source>File</source>
+        <translation>파일</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="427"/>
+        <source>[none]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="432"/>
+        <source>yes</source>
+        <translation>예</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="432"/>
+        <source>no</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="433"/>
+        <source>[embedded]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="205"/>
+        <source>Fonts</source>
+        <translation>글꼴</translation>
+    </message>
+</context>
+<context>
+    <name>PDFInfoDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="147"/>
+        <source>PDF Info</source>
+        <translation>PDF 정보</translation>
+    </message>
+</context>
+<context>
+    <name>PDFMovie</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="617"/>
+        <source>File %1 does not exists</source>
+        <translation>파일 %1이(가) 존재하지 않습니다</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="698"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="704"/>
+        <source>Volume:</source>
+        <translation>음량:</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="714"/>
+        <source>Time:</source>
+        <translation>시간:</translation>
+    </message>
+</context>
+<context>
+    <name>PDFOutlineDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="204"/>
+        <source>No TOC</source>
+        <translation>목차 없음</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="107"/>
+        <source>Contents</source>
+        <translation>목차</translation>
+    </message>
+</context>
+<context>
+    <name>PDFOverviewDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="328"/>
+        <source>Overview</source>
+        <translation>개요</translation>
+    </message>
+</context>
+<context>
+    <name>PDFSearchDock</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="646"/>
+        <source>Words</source>
+        <translation>단어</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="647"/>
+        <source>Only searches for whole words.</source>
+        <translation>전체 단어가 일치하는 경우만 검색합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="654"/>
+        <source>Sync</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="655"/>
+        <source>Synchronize editor when jumping to search results.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PDFSplitMergeTool</name>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="43"/>
@@ -3069,6 +6471,135 @@ Do you want to overwrite it?</source>
         <location filename="../src/pdfsplittool.cpp" line="254"/>
         <source>To:</source>
         <translation>다음에게:</translation>
+    </message>
+</context>
+<context>
+    <name>PDFSplitTool</name>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="14"/>
+        <source>Split &amp; Merge</source>
+        <translation>나누기 &amp; 합치기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="39"/>
+        <source>Split &amp;&amp; Merge</source>
+        <translation>나누기 &amp;&amp; 합치기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="46"/>
+        <source>Backend:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="86"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="95"/>
+        <source>Output file:</source>
+        <translation>출력 파일:</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfsplittool.ui" line="108"/>
+        <source>Add input file</source>
+        <translation>입력파일 추가하기</translation>
+    </message>
+</context>
+<context>
+    <name>PDFVideoWidget</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="594"/>
+        <source>&amp;Play</source>
+        <translation>재생 (&amp;P)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="595"/>
+        <source>P&amp;ause</source>
+        <translation>일시 정지(&amp;A)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="596"/>
+        <source>&amp;Stop</source>
+        <translation>정지 (&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="598"/>
+        <source>S&amp;eek</source>
+        <translation>탐색 (&amp;E)</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="599"/>
+        <source>Set &amp;volume</source>
+        <translation>음량 설정 (&amp;V)</translation>
+    </message>
+</context>
+<context>
+    <name>PDFWidget</name>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="818"/>
+        <source>Zoom In</source>
+        <translation>확대하기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="820"/>
+        <source>Zoom Out</source>
+        <translation>축소하기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="823"/>
+        <source>Actual Size</source>
+        <translation>실제 크기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="826"/>
+        <source>Fit to Width</source>
+        <translation>폭맞춤</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="829"/>
+        <source>Fit to Window</source>
+        <translation>창맞춤</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1434"/>
+        <source>Opening external files is currently only supported for PDFs.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1453"/>
+        <source>Error</source>
+        <translation>오류</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1453"/>
+        <source>Could not open link:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1569"/>
+        <source>Go to Source</source>
+        <translation>코드의 해당 부분으로 가기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2377"/>
+        <source>Go to Page</source>
+        <translation>페이지의 해당 부분으로 가기</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2378"/>
+        <source>Page number:</source>
+        <translation>쪽번호:</translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2767"/>
+        <source>Calculating text width</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2767"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
     </message>
 </context>
 <context>
@@ -3158,6 +6689,677 @@ Do you want to overwrite it?</source>
         <location filename="../src/utilsUI.cpp" line="167"/>
         <source>none</source>
         <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QCodeCompletionEngine</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/qcodecompletionengine.cpp" line="35"/>
+        <location filename="../src/qcodeedit/lib/qcodecompletionengine.cpp" line="63"/>
+        <source>&amp;Trigger completion</source>
+        <translation>자동 완성 실행 (&amp;T)</translation>
+    </message>
+</context>
+<context>
+    <name>QDocumentSearch</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="783"/>
+        <source>Replacement prompt</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="784"/>
+        <source>Shall it be replaced?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="789"/>
+        <source>Replacing Canceled</source>
+        <translation>바꾸기 취소됨</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="789"/>
+        <source>%1 (of %2 found so far) occurrences have been replaced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="828"/>
+        <source>Start of scope reached with no match.
+Restart from the end?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="833"/>
+        <source>End of scope reached with no match.
+Restart from the beginning?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="840"/>
+        <source>Failure</source>
+        <translation>실패</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="860"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="882"/>
+        <source>Replacing Finished</source>
+        <translation>바꾸기 완료</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="861"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="882"/>
+        <source>%1 (of %2) occurrences have been replaced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="862"/>
+        <source>Do you want to continue replacing from the beginning?</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QEditor</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="199"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="701"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1468"/>
+        <source>Default</source>
+        <translation>기본값</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="521"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1441"/>
+        <source>&amp;Undo</source>
+        <translation>실행 취소 (&amp;U)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="532"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1442"/>
+        <source>&amp;Redo</source>
+        <translation>다시 실행 (&amp;R)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="547"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1444"/>
+        <source>Cu&amp;t</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="558"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1445"/>
+        <source>&amp;Copy</source>
+        <translation>복사 (&amp;C)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="569"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1446"/>
+        <source>&amp;Paste</source>
+        <translation>붙여넣기... (&amp;P)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="585"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1448"/>
+        <source>&amp;Indent</source>
+        <translation>들여쓰기 (&amp;I)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="593"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1449"/>
+        <source>&amp;Unindent</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="605"/>
+        <source>Toggle &amp;Comment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="610"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1450"/>
+        <source>Co&amp;mment</source>
+        <translation>주석 처리 (&amp;M)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="618"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1451"/>
+        <source>Unc&amp;omment</source>
+        <translation>주석 해제 (&amp;O)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="630"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1453"/>
+        <source>&amp;Select all</source>
+        <translation>전체 선택 (&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="642"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1455"/>
+        <source>&amp;Find</source>
+        <translation>찾기 (&amp;F)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="650"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1456"/>
+        <source>Fin&amp;d next</source>
+        <translation>다음 찾기 (&amp;D)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="658"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1457"/>
+        <source>&amp;Replace</source>
+        <translation>바꾸기 (&amp;R)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="670"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1459"/>
+        <source>&amp;Goto line...</source>
+        <translation>줄로 이동 (&amp;G)...</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="682"/>
+        <source>Dynamic line wrapping</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="694"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1465"/>
+        <source>Input binding</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="719"/>
+        <source>Line endings</source>
+        <translation>줄바꿈 문자</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="726"/>
+        <source>Conservative</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="727"/>
+        <source>Local</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="728"/>
+        <source>Unix/Linux</source>
+        <translation>유닉스/리눅스</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="729"/>
+        <source>Dos/Windows</source>
+        <translation>도스/윈도</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="730"/>
+        <source>Old Mac</source>
+        <translation>Old Mac</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="920"/>
+        <source>Conflict!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="921"/>
+        <source>%1
+has been modified by another application.
+Press &quot;Save&quot; to overwrite the file on disk
+Press &quot;Reset&quot; to reload the file from disk.
+Press &quot;Diff&quot; to show differences in the editor.
+Press &quot;Ignore&quot; to ignore this warning.
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="933"/>
+        <source>Diff</source>
+        <translation>비교</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1012"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1022"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1051"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1088"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1110"/>
+        <source>Saving failed</source>
+        <translation>저장 실패</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1013"/>
+        <source>%1
+Could not be written. Error (%2): %3.
+If the file already existed on disk, it was not modified by this operation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1022"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1088"/>
+        <source>Could not get write permissions on file
+%1.
+
+Perhaps it is read-only or opened in another program?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1052"/>
+        <source>There seems to be not enough space to save the file at
+%1
+
+File size: %2 kB
+Free space: %3 kB
+
+You should clean up some space and retry. Alternatively you can
+cancel the save operation and save to another location instead.
+When ignoring this warning TeXstudio will try save to the specified
+location. However if there is really not enough space, this will
+result in data loss.
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1077"/>
+        <source>Warning</source>
+        <translation>경고</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1078"/>
+        <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1101"/>
+        <source>Writing the document to file
+%1
+failed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1106"/>
+        <source>The original file on disk was destroyed during the save operation.
+You'll find a copy at
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1233"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1237"/>
+        <source>File deleted</source>
+        <translation>파일 삭제됨</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1233"/>
+        <source>The file %1 has been deleted on disk.
+Should I save the document as it is to restore the file?
+</source>
+        <translation>파일 %1이(가) 디스크에서 삭제되었습니다.
+문서를 현재 상태로 저장하여 파일을 복원할까요?
+</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1237"/>
+        <source>Well, this is strange: The file %1 is not deleted anymore.
+Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
+        <translation>파일 %1이(가) 존재합니다.
+누군가가 파일을 복원한 것 같습니다. 따라서 디스크에 있는 파일을 덮어쓰지 않았습니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1263"/>
+        <source>File changed</source>
+        <translation>파일 수정됨</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1264"/>
+        <source>%1
+was changed outside of TeXstudio. Reload from disk?
+
+Notes:
+- Reloading overwrites the editor content with the file from disk. This cannot be undone.
+- You can permanently enable silent reloading in the options.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1338"/>
+        <source>Print Source Code</source>
+        <translation>소스 코드 출력</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1471"/>
+        <source>&amp;Edit</source>
+        <translation>편집 (&amp;E)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1472"/>
+        <source>&amp;Search</source>
+        <translation>검색 (&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1474"/>
+        <source>Edit</source>
+        <translation>수정하기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1475"/>
+        <source>Search</source>
+        <translation>검색</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1597"/>
+        <source>Windows</source>
+        <translation>윈도</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1599"/>
+        <source>Unix</source>
+        <translation>유닉스</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>
+        <source>None</source>
+        <translation>없음</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4755"/>
+        <source>Invalid</source>
+        <translation>유효하지 않음</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4757"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4774"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4791"/>
+        <source>Internal</source>
+        <translation>내부</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4759"/>
+        <source>Move cursor up</source>
+        <translation>커서를 위로 이동</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4760"/>
+        <source>Move cursor down</source>
+        <translation>커서를 아래로 이동</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4761"/>
+        <source>Move cursor left (1 character)</source>
+        <translation>커서를 왼쪽으로 이동(1글자)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4762"/>
+        <source>Move cursor right (1 character)</source>
+        <translation>커서를 오른쪽으로 이동(1글자)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4763"/>
+        <source>Move cursor left (1 word)</source>
+        <translation>커서를 왼쪽으로 이동(1단어)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4764"/>
+        <source>Move cursor right (1 word)</source>
+        <translation>커서를 오른쪽으로 이동(1단어)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4765"/>
+        <source>Move cursor to line start</source>
+        <translation>커서를 줄의 시작 부분으로 이동</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4766"/>
+        <source>Move cursor to first character in line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4767"/>
+        <source>Move cursor to line end</source>
+        <translation>커서를 줄의 끝부분으로 이동</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4768"/>
+        <source>Move cursor to document start</source>
+        <translation>커서를 문서의 시작부로 이동</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4769"/>
+        <source>Move cursor to document end</source>
+        <translation>커서를 문서의 끝부분으로 이동</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4771"/>
+        <source>Move cursor one page up</source>
+        <translation>커서를 한 페이지 위로 이동</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4772"/>
+        <source>Move cursor one page down</source>
+        <translation>커서를 한 페이지 아래로 이동</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4776"/>
+        <source>Select up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4777"/>
+        <source>Select down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4778"/>
+        <source>Select left (1 character)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
+        <source>Select right (1 character)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
+        <source>Select left (1 word)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4781"/>
+        <source>Select right (1 word)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4782"/>
+        <source>Select to line start</source>
+        <translation>줄의 시작부터 여기까지 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4783"/>
+        <source>Select to first character in line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
+        <source>Select to line end</source>
+        <translation>여기부터 줄의 끝까지 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
+        <source>Select to document start</source>
+        <translation>문서의 시작부터 여기까지 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
+        <source>Select to document end</source>
+        <translation>여기부터 문서의 끝까지 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
+        <source>Select page up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4789"/>
+        <source>Select page down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4793"/>
+        <source>Delete left character</source>
+        <translation>왼쪽의 문자 삭제</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4794"/>
+        <source>Delete right character</source>
+        <translation>오른쪽의 문자 삭제</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4795"/>
+        <source>Delete left word</source>
+        <translation>왼쪽의 단어 삭제</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4796"/>
+        <source>Delete right word</source>
+        <translation>오른쪽의 단어 삭제</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4797"/>
+        <source>New line</source>
+        <translation>줄바꿈</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4799"/>
+        <source>Change overwrite mode</source>
+        <translation>덮어쓰기 모드 바꾸기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
+        <source>Undo</source>
+        <translation>실행 취소</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4801"/>
+        <source>Redo</source>
+        <translation>다시 실행</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4802"/>
+        <source>Copy</source>
+        <translation>복사</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4803"/>
+        <source>Paste</source>
+        <translation>붙여넣기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4804"/>
+        <source>Cut</source>
+        <translation>자르기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4805"/>
+        <source>Print</source>
+        <translation>출력하기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4806"/>
+        <source>Select all</source>
+        <translation>전체 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4807"/>
+        <source>Find</source>
+        <translation>찾기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4808"/>
+        <source>Find next</source>
+        <translation>다음 찾기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4809"/>
+        <source>Find previous</source>
+        <translation>이전 찾기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4810"/>
+        <source>Replace</source>
+        <translation>바꾸기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4812"/>
+        <source>Create cursor mirror up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4813"/>
+        <source>Create cursor mirror down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4814"/>
+        <source>Next placeholder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4815"/>
+        <source>Previous placeholder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4816"/>
+        <source>Next placeholder or one word right</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4817"/>
+        <source>Previous placeholder or one word left</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4818"/>
+        <source>Next placeholder or character</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4819"/>
+        <source>Previous placeholder or character</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4820"/>
+        <source>Tab or Indent selection</source>
+        <translation>선택 영역 들여쓰기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4821"/>
+        <source>Insert tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4822"/>
+        <source>Indent selection</source>
+        <translation>선택 영역 들여쓰기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4823"/>
+        <source>Unindent selection</source>
+        <translation>선택 영역 내어쓰기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4826"/>
+        <source>Unknown</source>
+        <translation>알 수 없음</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="265"/>
+        <source>Panels</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="267"/>
+        <source>&amp;View</source>
+        <translation>보기 (&amp;V)</translation>
     </message>
 </context>
 <context>
@@ -3622,6 +7824,114 @@ Do you want to overwrite it?</source>
         <source>normal</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="59"/>
+        <source>Identifier</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="60"/>
+        <source>Bold</source>
+        <translation>굵게</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="62"/>
+        <source>Italic</source>
+        <translation>기울임꼴</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="64"/>
+        <source>Underline</source>
+        <translation>밑줄</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="66"/>
+        <source>Overline</source>
+        <translation>덧줄</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="68"/>
+        <source>Strikeout</source>
+        <translation>취소선</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="70"/>
+        <source>Wave underline</source>
+        <translation>물결 밑줄</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="72"/>
+        <source>Text color (aka foreground)</source>
+        <translation>텍스트 색 (전경색)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="74"/>
+        <source>Background color</source>
+        <translation>배경색</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="76"/>
+        <source>Lines color (used by all lines formatting : underline, overline, ...)</source>
+        <translation>줄 색 (밑줄, 덧줄 등에 사용)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="78"/>
+        <source>Font Family</source>
+        <translation>글꼴</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="79"/>
+        <source>Size</source>
+        <translation>크기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="80"/>
+        <source>Font size relative to editor font size.
+
+Note: If the size is larger than the line spacing, characters may be clipped.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
+        <source>Prio</source>
+        <translation>우선순위</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="82"/>
+        <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="281"/>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="325"/>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="560"/>
+        <source>&lt;default&gt;</source>
+        <translation>&lt;기본값&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="598"/>
+        <source>Unsaved changes</source>
+        <translation>저장되지 않은 수정 사항</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="599"/>
+        <source>There are unsaved changes in this format scheme.
+Do you want them to be saved?</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QLanguageFactory</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/qlanguagefactory.cpp" line="86"/>
+        <source>%1 files (*.%2)</source>
+        <translation>%1 파일 (*.%2)</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qlanguagefactory.cpp" line="88"/>
+        <source>All files (*)</source>
+        <translation>모든 파일 (*)</translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -3668,6 +7978,200 @@ Do you want to overwrite it?</source>
 Error: </source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/latexrepository.h" line="103"/>
+        <source> (Free)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/latexrepository.h" line="103"/>
+        <source> (Not free)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QSearchReplacePanel</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="163"/>
+        <source>Enables case sensitive search.</source>
+        <translation>검색 시 대소문자를 구분합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="172"/>
+        <source>Only searches for whole words.</source>
+        <translation>전체 단어가 일치하는 경우만 검색합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="182"/>
+        <source>This interprets the search text as a regular expression.
+Some common regexps:
+ r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
+ () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
+You can use \1 to \9 in the replace text to insert a submatch.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="193"/>
+        <source>Highlights search matches and replaced text.</source>
+        <translation>일치하는 패턴을 강조하고 텍스트를 바꿉니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="202"/>
+        <source>Starts the search from the current cursor position.</source>
+        <translation>현재 커서 위치부터 검색합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="212"/>
+        <source>Only searches in the selected text.</source>
+        <translation>선택된 텍스트에서만 검색합니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="221"/>
+        <source>Only searches in selected text type (math, commands, etc.)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="242"/>
+        <source>Extended Search</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
+        <source>Ask before any match is replaced.</source>
+        <translation>바꾸기 전에 확인</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
+        <source>Enables the use of escape characters. These are:
+ \n = new line, \r = carriage return, \t = tab, \\ = \</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="358"/>
+        <source>Close search/replace panel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="359"/>
+        <source>Text or pattern to search for</source>
+        <translation>검색할 텍스트 또는 패턴</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="360"/>
+        <source>Find next</source>
+        <translation>다음 찾기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="361"/>
+        <source>Find previous</source>
+        <translation>이전 찾기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="362"/>
+        <source>Count occurrences</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="363"/>
+        <source>Replacement text</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="364"/>
+        <source>Replace and find next</source>
+        <translation>바꾸고 다음 찾기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="365"/>
+        <source>Replace and find previous</source>
+        <translation>바꾸고 이전 선택</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="366"/>
+        <source>Replace all</source>
+        <translation>모두 바꾸기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="368"/>
+        <source>Find:</source>
+        <translation>찾기:</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="369"/>
+        <source>Replace:</source>
+        <translation>바꿀 텍스트:</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="629"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="634"/>
+        <source>Count result</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="629"/>
+        <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="634"/>
+        <source>The search text occurs %1 times within the search scope.</source>
+        <translation>검색 범위에서 일치하는 텍스트를 %1개 찾았습니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="867"/>
+        <source> (col. %1)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QStatusPanel</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="132"/>
+        <source>Line: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="133"/>
+        <source>Column: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="137"/>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="143"/>
+        <source>Selected: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
+        <source>Lines: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
+        <source>RTL</source>
+        <comment>Abbreviation for Right-To-Left used in status bar.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="159"/>
+        <source>(%1 min %2 s ago)</source>
+        <translation>%1분 %2초 전</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="175"/>
+        <source>OVERWRITE</source>
+        <translation>덮어쓰기</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="175"/>
+        <source>INSERT</source>
+        <translation>삽입</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="183"/>
+        <source>Conflict</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>QuickBeamerDialog</name>
@@ -3675,6 +8179,41 @@ Error: </source>
         <location filename="../src/quickbeamerdialog.cpp" line="30"/>
         <source>Quick Beamer Presentation</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation>대화 상자</translation>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="22"/>
+        <source>Theme</source>
+        <translation>테마</translation>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="29"/>
+        <source>Title</source>
+        <translation>제목</translation>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="39"/>
+        <source>Encoding</source>
+        <translation>인코딩</translation>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="46"/>
+        <source>Typeface Size</source>
+        <translation>글꼴 크기</translation>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="59"/>
+        <source>Author</source>
+        <translation>저자</translation>
+    </message>
+    <message>
+        <location filename="../src/quickbeamerdialog.ui" line="69"/>
+        <source>babel Package</source>
+        <translation>babel 패키지</translation>
     </message>
 </context>
 <context>
@@ -3749,6 +8288,116 @@ Error: </source>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="36"/>
+        <source>&amp;Class Options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="65"/>
+        <source>Title</source>
+        <translation>제목</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="75"/>
+        <source>Language</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="78"/>
+        <source>Adds language support to your document with Babel package</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="94"/>
+        <source>Document Class</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="118"/>
+        <source>Typeface Size</source>
+        <translation>글꼴 크기</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="131"/>
+        <source>Other Options</source>
+        <translation>다른 옵션</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="183"/>
+        <source>Paper Size</source>
+        <translation>용지 크기</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="205"/>
+        <source>Author</source>
+        <translation>저자</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="212"/>
+        <source>Font Encoding</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="236"/>
+        <source>&amp;Packages</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="254"/>
+        <source>Package</source>
+        <translation>패키지</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="259"/>
+        <source>Description</source>
+        <translation>설명</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="281"/>
+        <source>&amp;Geometry</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="309"/>
+        <source>Page</source>
+        <translation>페이지</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="315"/>
+        <source>Width:</source>
+        <translation>너비:</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="406"/>
+        <source>Height:</source>
+        <translation>높이:</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="416"/>
+        <source>Margins</source>
+        <translation>여백</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="422"/>
+        <source>Left:</source>
+        <translation>왼쪽:</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="474"/>
+        <source>Right:</source>
+        <translation>오른쪽:</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="571"/>
+        <source>Top:</source>
+        <translation>위쪽:</translation>
+    </message>
+    <message>
+        <location filename="../src/quickdocumentdialog.ui" line="578"/>
+        <source>Bottom:</source>
+        <translation>아래쪽:</translation>
+    </message>
 </context>
 <context>
     <name>RandomTextGenerator</name>
@@ -3789,6 +8438,92 @@ Error: </source>
         <location filename="../src/randomtextgenerator.cpp" line="225"/>
         <source>Finished generation</source>
         <translation>생성 완료</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="14"/>
+        <source>Random Text Generator</source>
+        <translation>무작위 텍스트 생성기</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="20"/>
+        <source>Options</source>
+        <translation>옵션)</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="52"/>
+        <source>First Order Characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="59"/>
+        <source>Generate</source>
+        <translation>생성</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="66"/>
+        <source>Ignore Case</source>
+        <translation>대소문자 무시</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="73"/>
+        <location filename="../src/randomtextgenerator.ui" line="100"/>
+        <source>Higher Order:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="93"/>
+        <source>First Order Word</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="107"/>
+        <source>Save to:</source>
+        <translation>다음으로 저장:</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="124"/>
+        <source>Third Order Characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="131"/>
+        <source>Second Order Characters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="138"/>
+        <source>Punctation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="145"/>
+        <source>Second Order Words</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="155"/>
+        <source>Close</source>
+        <translation>닫기</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="162"/>
+        <source>Length:</source>
+        <translation>길이:</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="182"/>
+        <source>LaTeX Input</source>
+        <translation>LaTeX 입력</translation>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="192"/>
+        <source>Third Order Words</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/randomtextgenerator.ui" line="228"/>
+        <source>Lorem Ipsum</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3972,6 +8707,71 @@ Error: </source>
         <comment>Placeholder for new added word in ignore list</comment>
         <translation>&lt;추가&gt;</translation>
     </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="14"/>
+        <source>Check Spelling</source>
+        <translation>철자 검사</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="43"/>
+        <source>Unknown Word</source>
+        <translation>알 수 없는 단어</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="60"/>
+        <source>Replace with</source>
+        <translation>다음으로 바꾸기</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="67"/>
+        <source>Suggested Words</source>
+        <translation>추천 단어</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="77"/>
+        <source>&amp;Replace</source>
+        <translation>바꾸기 (&amp;R)</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="87"/>
+        <source>Ignore &amp;Once</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="101"/>
+        <source>User-added Words</source>
+        <translation>사용자 지정 단어</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="116"/>
+        <source>Add</source>
+        <translation>추가</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="127"/>
+        <source>Remove</source>
+        <translation>제거</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="147"/>
+        <source>Close</source>
+        <translation>닫기</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="169"/>
+        <source>Hide Added Words</source>
+        <translation>추가된 단어 숨기기</translation>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="184"/>
+        <source>Ig&amp;nore All</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/spellerdialog.ui" line="191"/>
+        <source>&amp;Add to dictionary</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>SpellerManager</name>
@@ -3999,6 +8799,146 @@ Error: </source>
         <location filename="../src/spellerutility.cpp" line="35"/>
         <source>Dictionary does not exist.</source>
         <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SymbolListModel</name>
+    <message>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="333"/>
+        <source>Command: </source>
+        <translation>명령어: </translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="346"/>
+        <source>Package: </source>
+        <translation>패키지: </translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="348"/>
+        <source>Packages: </source>
+        <translation>패키지: </translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="359"/>
+        <source>Unicode Character: </source>
+        <translation>유니코드 문자: </translation>
+    </message>
+</context>
+<context>
+    <name>SymbolListView</name>
+    <message>
+        <location filename="../src/symbolpanel/symbollistview.cpp" line="40"/>
+        <source>Remove from Favorites</source>
+        <translation>즐겨찾기에서 제거</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistview.cpp" line="44"/>
+        <source>Add to Favorites</source>
+        <translation>즐겨찾기에 추가</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistview.cpp" line="49"/>
+        <source>Insert command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbollistview.cpp" line="54"/>
+        <source>Insert unicode</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SymbolWidget</name>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="51"/>
+        <source>Operators</source>
+        <comment>Operator category</comment>
+        <translation>연산자</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="52"/>
+        <source>Relations</source>
+        <comment>Operator category</comment>
+        <translation>관계 연산자</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="53"/>
+        <source>Arrows</source>
+        <comment>Operator category</comment>
+        <translation>화살표</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="54"/>
+        <source>Delimiters</source>
+        <comment>Operator category</comment>
+        <translation>구분 기호</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="55"/>
+        <source>Greek</source>
+        <comment>Operator category</comment>
+        <translation>그리스 문자</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="56"/>
+        <source>Cyrillic</source>
+        <comment>Operator category</comment>
+        <translation>키릴 문자</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="57"/>
+        <source>Misc. Math</source>
+        <comment>Operator category</comment>
+        <translation>기타 수식</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="58"/>
+        <source>Misc. Text</source>
+        <comment>Operator category</comment>
+        <translation>기타 텍스트</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="59"/>
+        <source>wasysym</source>
+        <comment>Operator category</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="60"/>
+        <source>fontawesome5</source>
+        <comment>Operator category</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="61"/>
+        <source>Special</source>
+        <comment>Operator category</comment>
+        <translation>특수문자</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="97"/>
+        <source>Favorites</source>
+        <translation>즐겨찾기</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="117"/>
+        <source>Most Used</source>
+        <translation>자주 사용되는</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="138"/>
+        <source>Search</source>
+        <translation>검색</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="142"/>
+        <source>Category</source>
+        <translation>분류</translation>
+    </message>
+    <message>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="153"/>
+        <source>All</source>
+        <translation>전체</translation>
     </message>
 </context>
 <context>
@@ -4215,6 +9155,86 @@ Error: </source>
         <source>Quick Tabular</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="37"/>
+        <source>Num of Columns</source>
+        <translation>열의 개수</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="78"/>
+        <source>Columns</source>
+        <translation>열</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="86"/>
+        <source>Column :</source>
+        <translation>열 :</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="113"/>
+        <source>Alignment :</source>
+        <translation>정렬 :</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="127"/>
+        <source>Left Border :</source>
+        <translation>왼쪽 테두리 :</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="167"/>
+        <source>Apply to all columns</source>
+        <translation>모든 열에 적용</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="194"/>
+        <source>Right Border (last column) :</source>
+        <translation>오른쪽 테두리 (마지막 열) :</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="232"/>
+        <source>Num of Rows</source>
+        <translation>행의 개수</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="263"/>
+        <source>Rows</source>
+        <translation>행</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="271"/>
+        <source>Row :</source>
+        <translation>행 :</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="296"/>
+        <source>Top Border</source>
+        <translation>위쪽 테두리</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="305"/>
+        <source>Merge columns :</source>
+        <translation>열 합치기 :</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="321"/>
+        <source>-&gt;</source>
+        <translation>-&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="364"/>
+        <source>Apply to all rows</source>
+        <translation>모든 행에 적용</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="389"/>
+        <source>Bottom Border (last row)</source>
+        <translation>아래쪽 테두리 (마지막 행)</translation>
+    </message>
+    <message>
+        <location filename="../src/tabdialog.ui" line="396"/>
+        <source>Add vertical margin for each row</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>TabbingDialog</name>
@@ -4222,6 +9242,31 @@ Error: </source>
         <location filename="../src/tabbingdialog.cpp" line="28"/>
         <source>Quick Tabbing</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/tabbingdialog.ui" line="44"/>
+        <source>OK</source>
+        <translation>확인</translation>
+    </message>
+    <message>
+        <location filename="../src/tabbingdialog.ui" line="51"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
+    <message>
+        <location filename="../src/tabbingdialog.ui" line="76"/>
+        <source>Spacing</source>
+        <translation>여백</translation>
+    </message>
+    <message>
+        <location filename="../src/tabbingdialog.ui" line="91"/>
+        <source>Num of Rows</source>
+        <translation>행의 개수</translation>
+    </message>
+    <message>
+        <location filename="../src/tabbingdialog.ui" line="106"/>
+        <source>Num of Columns</source>
+        <translation>열의 개수</translation>
     </message>
 </context>
 <context>
@@ -4430,6 +9475,36 @@ template to edit individual files.</source>
         <source>No Documentation Available</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="14"/>
+        <source>Packages Help (Texdoc)</source>
+        <translation>패키지 도움말 (Texdoc)</translation>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="28"/>
+        <source>Packages</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="47"/>
+        <source>Package descriptions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="138"/>
+        <source>open CTAN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="157"/>
+        <source>Enter a term to search for in both columns.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="164"/>
+        <source>all packages</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Texstudio</name>
@@ -4616,8 +9691,8 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="444"/>
-        <location filename="../src/texstudio.cpp" line="9847"/>
-        <location filename="../src/texstudio.cpp" line="9854"/>
+        <location filename="../src/texstudio.cpp" line="9848"/>
+        <location filename="../src/texstudio.cpp" line="9855"/>
         <source>All files</source>
         <translation>모든 파일</translation>
     </message>
@@ -4863,7 +9938,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="919"/>
-        <location filename="../src/texstudio.cpp" line="10048"/>
+        <location filename="../src/texstudio.cpp" line="10049"/>
         <source>&amp;Close</source>
         <translation>닫기 (&amp;C)</translation>
     </message>
@@ -6211,7 +11286,7 @@ template to edit individual files.</source>
         <location filename="../src/texstudio.cpp" line="6698"/>
         <location filename="../src/texstudio.cpp" line="6708"/>
         <location filename="../src/texstudio.cpp" line="6710"/>
-        <location filename="../src/texstudio.cpp" line="10526"/>
+        <location filename="../src/texstudio.cpp" line="10527"/>
         <source>Error</source>
         <translation>오류</translation>
     </message>
@@ -6262,7 +11337,7 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2822"/>
-        <location filename="../src/texstudio.cpp" line="10356"/>
+        <location filename="../src/texstudio.cpp" line="10357"/>
         <source>Open Files</source>
         <translation>파일 열기</translation>
     </message>
@@ -6298,7 +11373,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3048"/>
-        <location filename="../src/texstudio.cpp" line="11889"/>
+        <location filename="../src/texstudio.cpp" line="11905"/>
         <source>Copy</source>
         <translation>복사</translation>
     </message>
@@ -6667,123 +11742,123 @@ Do you want to allow and run the new, overriding command?
         <translation> (줄 %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9146"/>
+        <location filename="../src/texstudio.cpp" line="9147"/>
         <source>commit comment:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9150"/>
+        <location filename="../src/texstudio.cpp" line="9151"/>
         <source>check in whole directory ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9152"/>
+        <location filename="../src/texstudio.cpp" line="9153"/>
         <source>Push to repository ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9509"/>
+        <location filename="../src/texstudio.cpp" line="9510"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9808"/>
+        <location filename="../src/texstudio.cpp" line="9809"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>파일 &quot;%1&quot;을(를) 열 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9810"/>
+        <location filename="../src/texstudio.cpp" line="9811"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>파일 &quot;%1&quot;이(가) 존재하지 않습니다.
 파일을 만드시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9847"/>
+        <location filename="../src/texstudio.cpp" line="9848"/>
         <source>Save Profile</source>
         <translation>프로파일 저장</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9847"/>
-        <location filename="../src/texstudio.cpp" line="9854"/>
+        <location filename="../src/texstudio.cpp" line="9848"/>
+        <location filename="../src/texstudio.cpp" line="9855"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9854"/>
+        <location filename="../src/texstudio.cpp" line="9855"/>
         <source>Load Profile</source>
         <translation>프로파일 불러오기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9907"/>
+        <location filename="../src/texstudio.cpp" line="9908"/>
         <source>Failed to read profile file %1.</source>
         <translation>프로파일 파일 %1을(를) 불러오는 데 실패하였습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10030"/>
+        <location filename="../src/texstudio.cpp" line="10031"/>
         <source>Problem</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10030"/>
+        <location filename="../src/texstudio.cpp" line="10031"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10035"/>
+        <location filename="../src/texstudio.cpp" line="10036"/>
         <source>Find Word Repetitions</source>
         <translation>동어 반복 찾기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10044"/>
+        <location filename="../src/texstudio.cpp" line="10045"/>
         <source>&amp;Find Next</source>
         <translation>다음 찾기 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10046"/>
+        <location filename="../src/texstudio.cpp" line="10047"/>
         <source>&amp;Find Previous</source>
         <translation>이전 찾기 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10097"/>
+        <location filename="../src/texstudio.cpp" line="10098"/>
         <source>Reached beginning of text.</source>
         <translation>텍스트의 시작에 도달했습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10097"/>
+        <location filename="../src/texstudio.cpp" line="10098"/>
         <source>Reached end of text.</source>
         <translation>텍스트의 끝에 도달했습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10356"/>
-        <location filename="../src/texstudio.cpp" line="10566"/>
-        <location filename="../src/texstudio.cpp" line="10569"/>
+        <location filename="../src/texstudio.cpp" line="10357"/>
+        <location filename="../src/texstudio.cpp" line="10567"/>
+        <location filename="../src/texstudio.cpp" line="10570"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeX 파일 (*.tex);;모든 파일 (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10526"/>
+        <location filename="../src/texstudio.cpp" line="10527"/>
         <source>You do not have read permission to this file.</source>
         <translation>이 파일을 읽을 권한이 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10566"/>
+        <location filename="../src/texstudio.cpp" line="10567"/>
         <source>Open Compare File</source>
         <translation>비교할 파일 열기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10569"/>
+        <location filename="../src/texstudio.cpp" line="10570"/>
         <source>Open Base File</source>
         <translation>비교 기준 파일 열기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10650"/>
+        <location filename="../src/texstudio.cpp" line="10651"/>
         <source>SVN Conflict!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10651"/>
+        <location filename="../src/texstudio.cpp" line="10652"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -6791,14 +11866,14 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10748"/>
-        <location filename="../src/texstudio.cpp" line="10839"/>
-        <location filename="../src/texstudio.cpp" line="10845"/>
+        <location filename="../src/texstudio.cpp" line="10749"/>
+        <location filename="../src/texstudio.cpp" line="10840"/>
+        <location filename="../src/texstudio.cpp" line="10846"/>
         <source>TeXstudio Emergency</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10752"/>
+        <location filename="../src/texstudio.cpp" line="10753"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -6807,271 +11882,271 @@ Please provide this file if you send a bug report.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10755"/>
+        <location filename="../src/texstudio.cpp" line="10756"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10756"/>
+        <location filename="../src/texstudio.cpp" line="10757"/>
         <source>Yes, try to recover</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10757"/>
-        <location filename="../src/texstudio.cpp" line="10762"/>
+        <location filename="../src/texstudio.cpp" line="10758"/>
+        <location filename="../src/texstudio.cpp" line="10763"/>
         <source>No, kill the program</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10759"/>
+        <location filename="../src/texstudio.cpp" line="10760"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10760"/>
+        <location filename="../src/texstudio.cpp" line="10761"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10761"/>
+        <location filename="../src/texstudio.cpp" line="10762"/>
         <source>Yes, continue the loop</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10840"/>
+        <location filename="../src/texstudio.cpp" line="10841"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10845"/>
+        <location filename="../src/texstudio.cpp" line="10846"/>
         <source>I tried to die, but nothing happened.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10877"/>
+        <location filename="../src/texstudio.cpp" line="10878"/>
         <source>System Report</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11015"/>
+        <location filename="../src/texstudio.cpp" line="11016"/>
         <source>LT Report</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11041"/>
+        <location filename="../src/texstudio.cpp" line="11042"/>
         <source>process failed to start
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11044"/>
+        <location filename="../src/texstudio.cpp" line="11045"/>
         <source>process crashed
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11054"/>
+        <location filename="../src/texstudio.cpp" line="11055"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>실시간 검사가 활성화되었습니다.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11056"/>
+        <location filename="../src/texstudio.cpp" line="11057"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>실시간 검사가 비활성화되었습니다!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11059"/>
+        <location filename="../src/texstudio.cpp" line="11060"/>
         <source>Grammar checking is enabled.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11061"/>
+        <location filename="../src/texstudio.cpp" line="11062"/>
         <source>Grammar checking is disabled!!!
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11064"/>
+        <location filename="../src/texstudio.cpp" line="11065"/>
         <source>Tries to start automatically.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11066"/>
+        <location filename="../src/texstudio.cpp" line="11067"/>
         <source>Autostart disabled.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11071"/>
+        <location filename="../src/texstudio.cpp" line="11072"/>
         <source>LT current status: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11074"/>
+        <location filename="../src/texstudio.cpp" line="11075"/>
         <source>working</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11077"/>
+        <location filename="../src/texstudio.cpp" line="11078"/>
         <source>error</source>
         <translation>오류</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11081"/>
+        <location filename="../src/texstudio.cpp" line="11082"/>
         <source>unknown</source>
         <translation>알 수 없음</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11084"/>
+        <location filename="../src/texstudio.cpp" line="11085"/>
         <source>LT-URL: %1
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11388"/>
+        <location filename="../src/texstudio.cpp" line="11389"/>
         <source>Error when communicating with LT: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11609"/>
-        <location filename="../src/texstudio.cpp" line="12401"/>
+        <location filename="../src/texstudio.cpp" line="11610"/>
+        <location filename="../src/texstudio.cpp" line="12417"/>
         <source>untitled</source>
         <translation>제목 없음</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11619"/>
-        <location filename="../src/texstudio.cpp" line="12443"/>
+        <location filename="../src/texstudio.cpp" line="11620"/>
+        <location filename="../src/texstudio.cpp" line="12459"/>
         <source>TODO</source>
         <translation>할것</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11737"/>
-        <location filename="../src/texstudio.cpp" line="11745"/>
-        <location filename="../src/texstudio.cpp" line="11776"/>
+        <location filename="../src/texstudio.cpp" line="11753"/>
+        <location filename="../src/texstudio.cpp" line="11761"/>
+        <location filename="../src/texstudio.cpp" line="11792"/>
         <source>Document: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11829"/>
+        <location filename="../src/texstudio.cpp" line="11845"/>
         <source>Close document</source>
         <translation>문서 닫기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11830"/>
+        <location filename="../src/texstudio.cpp" line="11846"/>
         <source>Set as explicit root document</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11831"/>
+        <location filename="../src/texstudio.cpp" line="11847"/>
         <source>Open all related documents</source>
         <translation>연관된 모든 문서 열기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11832"/>
+        <location filename="../src/texstudio.cpp" line="11848"/>
         <source>Close all related documents</source>
         <translation>연관된 모든 문서 닫기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11834"/>
+        <location filename="../src/texstudio.cpp" line="11850"/>
         <source>Remove explicit root document role</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11836"/>
+        <location filename="../src/texstudio.cpp" line="11852"/>
         <source>Show all open documents in this tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11838"/>
+        <location filename="../src/texstudio.cpp" line="11854"/>
         <source>Show only current document in this tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11851"/>
+        <location filename="../src/texstudio.cpp" line="11867"/>
         <source>Copy filename</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11852"/>
+        <location filename="../src/texstudio.cpp" line="11868"/>
         <source>Copy file path</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11861"/>
+        <location filename="../src/texstudio.cpp" line="11877"/>
         <source>Insert</source>
         <translation>삽입</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11862"/>
-        <location filename="../src/texstudio.cpp" line="11863"/>
+        <location filename="../src/texstudio.cpp" line="11878"/>
+        <location filename="../src/texstudio.cpp" line="11879"/>
         <source>Insert as %1</source>
         <translation>%1(으)로 삽입</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11865"/>
+        <location filename="../src/texstudio.cpp" line="11881"/>
         <source>Find Usages</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11876"/>
+        <location filename="../src/texstudio.cpp" line="11892"/>
         <source>Insert Label</source>
         <translation>레이블 삽입</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11880"/>
+        <location filename="../src/texstudio.cpp" line="11896"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11884"/>
+        <location filename="../src/texstudio.cpp" line="11900"/>
         <source>Create Label</source>
         <translation>레이블 만들기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11888"/>
+        <location filename="../src/texstudio.cpp" line="11904"/>
         <source>Cut</source>
         <translation>자르기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11890"/>
+        <location filename="../src/texstudio.cpp" line="11906"/>
         <source>Paste Before</source>
         <translation>앞에 붙여넣기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11891"/>
+        <location filename="../src/texstudio.cpp" line="11907"/>
         <source>Paste After</source>
         <translation>뒤에 붙여넣게</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11893"/>
+        <location filename="../src/texstudio.cpp" line="11909"/>
         <source>Indent Section</source>
         <translation>선택 영역 들여쓰기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11894"/>
+        <location filename="../src/texstudio.cpp" line="11910"/>
         <source>Unindent Section</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11845"/>
-        <location filename="../src/texstudio.cpp" line="11897"/>
+        <location filename="../src/texstudio.cpp" line="11861"/>
+        <location filename="../src/texstudio.cpp" line="11913"/>
         <source>Expand Subitems</source>
         <translation type="unfinished"/>
     </message>
@@ -7081,34 +12156,34 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11846"/>
-        <location filename="../src/texstudio.cpp" line="11898"/>
+        <location filename="../src/texstudio.cpp" line="11862"/>
+        <location filename="../src/texstudio.cpp" line="11914"/>
         <source>Collapse Subitems</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11910"/>
+        <location filename="../src/texstudio.cpp" line="11926"/>
         <source>Open Document</source>
         <translation>열린 문서</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11911"/>
-        <location filename="../src/texstudio.cpp" line="11918"/>
+        <location filename="../src/texstudio.cpp" line="11927"/>
+        <location filename="../src/texstudio.cpp" line="11934"/>
         <source>Go to Definition</source>
         <translation>정의로 이동</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12427"/>
+        <location filename="../src/texstudio.cpp" line="12443"/>
         <source>BIBLIOGRAPHY</source>
         <translation>참고문헌</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12435"/>
+        <location filename="../src/texstudio.cpp" line="12451"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MAGIC_COMMENTS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12451"/>
+        <location filename="../src/texstudio.cpp" line="12467"/>
         <source>LABELS</source>
         <translation>라벨</translation>
     </message>
@@ -7147,9 +12222,252 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 <context>
     <name>TextAnalysisDialog</name>
     <message>
+        <location filename="../src/textanalysis.ui" line="14"/>
+        <source>Text Analysis</source>
+        <translation>텍스트 분석</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="20"/>
+        <source>Actions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="26"/>
+        <source>Count</source>
+        <extracomment>count as verb</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="33"/>
+        <source>Search selection in the document</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="40"/>
         <location filename="../src/textanalysis.cpp" line="451"/>
         <source>CSV Export</source>
         <translation>CSV 내보내기</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="47"/>
+        <source>Close</source>
+        <translation>닫기</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="57"/>
+        <source>Info</source>
+        <translation>정보</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="63"/>
+        <source>Total lines</source>
+        <translation>총 줄 수</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="70"/>
+        <location filename="../src/textanalysis.ui" line="98"/>
+        <location filename="../src/textanalysis.ui" line="105"/>
+        <location filename="../src/textanalysis.ui" line="112"/>
+        <location filename="../src/textanalysis.ui" line="126"/>
+        <location filename="../src/textanalysis.ui" line="140"/>
+        <source>?</source>
+        <translation>?</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="77"/>
+        <source>Text lines</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="84"/>
+        <source>Total shown phrases</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="91"/>
+        <source>Comment lines</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="119"/>
+        <source>Different phrases</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="133"/>
+        <source>Characters in phrases</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="166"/>
+        <source>Options</source>
+        <translation>옵션)</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="172"/>
+        <source>If this is enabled, words/phrases in the normal text (which aren&apos;t in comments) are counted</source>
+        <translation>선택할 경우 일반 텍스트의 단어/문구가 포함됩니다</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="175"/>
+        <source>Analyse normal text</source>
+        <translation>일반 텍스트 포함</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="185"/>
+        <source>If this is enabled, words/phrases in the comments are counted.</source>
+        <translation>선택할 경우 주석의 단어/문구가 포함됩니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="188"/>
+        <source>Analyse comments</source>
+        <translation>주석 포함</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="195"/>
+        <source>If this is enabled, \commands are counted.</source>
+        <translation>선택할 경우 \명령어가 포함됩니다.</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="198"/>
+        <source>Analyse commands</source>
+        <translation>명령어 분석</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="211"/>
+        <source>Possible Options:
+&quot;Show all&quot;: All phrases are shown.
+&quot;Minimum phrase length&quot;: A phrase is only shown, if it has at least this many characters. (e.g. &quot;a test&quot; has 6 characters)
+&quot;Minimum word length (one)&quot;: A phrase is only shown, if it contains a word with at least this many characters. (e.g. &quot;a test&quot; has 4 characters)
+&quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
+&quot;Completely ignore&quot;: Shorter words are completely ignored.
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="224"/>
+        <source>Show all phrases</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="229"/>
+        <source>Minimum phrase length:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="234"/>
+        <source>Minimum word length (one):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="239"/>
+        <source>Minimum word length (all):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="244"/>
+        <source>Fully ignore shorter words:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="264"/>
+        <source>If &quot;show all&quot; is selected, all phrases are shown.
+If &quot;minimum phrase length&quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &quot;a test&quot; has 6 characters)
+If &quot;minimum word length (one)&quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &quot;a test&quot; has 4 characters)
+If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &quot;a test&quot; has 1 character)
+If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="279"/>
+        <source>Minimum occurrence count:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="298"/>
+        <source>Only phrase are shown which appears at least so many times in the document.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="317"/>
+        <location filename="../src/textanalysis.ui" line="373"/>
+        <source>The controls in this row determine how many consecuting words are treated as a single phrase.
+If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
+If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="332"/>
+        <source>Source:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="351"/>
+        <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
+If not, end characters are ignored.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="355"/>
+        <source>.;:?!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="362"/>
+        <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
+If not, end characters are ignored.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="366"/>
+        <source>Respect phrase end chars:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="379"/>
+        <source>Maximum words per phrase:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="384"/>
+        <source>Min&amp;max words per phrase:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="399"/>
+        <source>None (.*)</source>
+        <translation>없음 (.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="404"/>
+        <source>No Numbers (.*[^0-9].*)</source>
+        <translation>숫자 제외(.*[^0-9].*)</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="409"/>
+        <source>No Digits ([^0-9]*)</source>
+        <translation>수 제외</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="417"/>
+        <source>Filter</source>
+        <translation>필터링</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="430"/>
+        <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="437"/>
+        <source>Whole document</source>
+        <translation>문서 전체</translation>
+    </message>
+    <message>
+        <location filename="../src/textanalysis.ui" line="442"/>
+        <source>Selection</source>
+        <translation>선택 영역</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.cpp" line="62"/>
@@ -7397,6 +12715,202 @@ included document in %1</source>
         <source> (col. %1)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="19"/>
+        <source>Edit Macros</source>
+        <translation>매크로 편집</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="60"/>
+        <location filename="../src/usermenudialog.ui" line="263"/>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="65"/>
+        <location filename="../src/usermenudialog.ui" line="516"/>
+        <source>Shortcut</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="70"/>
+        <location filename="../src/usermenudialog.ui" line="292"/>
+        <source>Trigger</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="75"/>
+        <location filename="../src/usermenudialog.ui" line="280"/>
+        <source>Abbreviation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="110"/>
+        <source>Export macro(s) to file(s)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="113"/>
+        <source>Export</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="129"/>
+        <source>Import macro from file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="132"/>
+        <source>Import</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="139"/>
+        <source>Browse offered macros on txs site.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="142"/>
+        <source>Browse</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="159"/>
+        <source>Add</source>
+        <translation>추가</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="170"/>
+        <source>Folder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="187"/>
+        <source>Remove</source>
+        <translation>제거</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="223"/>
+        <source>Up</source>
+        <translation>위로</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="246"/>
+        <source>Down</source>
+        <translation>아래로</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="369"/>
+        <source>If this trigger string is written in any tex document, 
+it is replaced by the current tag.
+
+If the trigger starts with (?&lt;=something), this only happens 
+if something is written before the remaining part of the trigger.
+
+Since this trigger is not a plain string, but a regular expression, 
+(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
+and (?&lt;=\s|^) to mark replacements which should only occur before a word.
+
+
+You can use the special value ?txs-start to start the script at txs start.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="402"/>
+        <source>Type</source>
+        <translation>종류</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="411"/>
+        <source>Normal</source>
+        <translation>일반</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="418"/>
+        <source>Environment</source>
+        <translation>환경</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="431"/>
+        <source>Script</source>
+        <translation>스크립트</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="473"/>
+        <source>Exec Macro</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="493"/>
+        <source>OK</source>
+        <translation>확인</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="500"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="509"/>
+        <source>Description</source>
+        <translation>설명</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="532"/>
+        <source>Shift+F1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="537"/>
+        <source>Shift+F2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="542"/>
+        <source>Shift+F4</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="547"/>
+        <location filename="../src/usermenudialog.ui" line="552"/>
+        <source>Shift+F5</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="557"/>
+        <source>Shift+F6</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="562"/>
+        <source>Shift+F7</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="567"/>
+        <source>Shift+F8</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="572"/>
+        <source>Shift+F9</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="577"/>
+        <source>Shift+F10</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="582"/>
+        <source>Shift+F11</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="587"/>
+        <source>Shift+F12</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
@@ -7406,6 +12920,36 @@ included document in %1</source>
         <location filename="../src/userquickdialog.cpp" line="57"/>
         <source>User</source>
         <translation>사용자</translation>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="14"/>
+        <source>Quick Build Command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="42"/>
+        <source>Add</source>
+        <translation>추가</translation>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="70"/>
+        <source>Ordered list of commands:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="80"/>
+        <source>Up</source>
+        <translation>위로</translation>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="91"/>
+        <source>Down</source>
+        <translation>아래로</translation>
+    </message>
+    <message>
+        <location filename="../src/userquickdialog.ui" line="102"/>
+        <source>Delete</source>
+        <translation>삭제</translation>
     </message>
 </context>
 <context>
@@ -7419,9 +12963,150 @@ included document in %1</source>
 <context>
     <name>WebPublishDialog</name>
     <message>
+        <location filename="../src/webpublishdialog.ui" line="14"/>
         <location filename="../src/webpublishdialog.cpp" line="25"/>
         <source>Convert to Html</source>
         <translation>Html로 변환</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="60"/>
+        <source>LaTeX options</source>
+        <translation>LaTeX 옵션</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="98"/>
+        <source>Number of LaTeX compilations for the input file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="114"/>
+        <source>Content name :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="121"/>
+        <source>Start Index :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="128"/>
+        <source>Tocdepth :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="135"/>
+        <source>LaTeX code for the title of the table of contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="142"/>
+        <source>The number of the ps page corresponding to the first numberline indexed in the toc file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="158"/>
+        <source>Set the value of the LaTeX tocdepth counter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="174"/>
+        <source>Number of compilations :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="186"/>
+        <source>Html options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="224"/>
+        <source>Title :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="231"/>
+        <source>Title of the html files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="238"/>
+        <source>Navigation :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="245"/>
+        <source>Footnote :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="252"/>
+        <source>Navigation mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="259"/>
+        <source>Alignment :</source>
+        <translation>정렬 :</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="266"/>
+        <source>Create an index page ?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="273"/>
+        <source>Text displayed at the bottom of each html files </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="280"/>
+        <source>Alignment in the html files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="287"/>
+        <source>Create index :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="316"/>
+        <source>Browser command. Let&apos;s empty to not run the browser at the end of the conversion</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="336"/>
+        <source>Launch</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="350"/>
+        <source>Input File :</source>
+        <translation>입력 파일 :</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="371"/>
+        <source>Close</source>
+        <translation>닫기</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="378"/>
+        <source>Browser :</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="390"/>
+        <source>Images options</source>
+        <translation>이미지 옵션</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="411"/>
+        <source>Images Width :</source>
+        <translation>이미지 너비 :</translation>
+    </message>
+    <message>
+        <location filename="../src/webpublishdialog.ui" line="418"/>
+        <source>Width of the largest image</source>
+        <translation>가장 큰 이미지의 너비</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="30"/>
@@ -7627,6 +13312,34 @@ Do you trust this script?</source>
         <location filename="../src/scriptengine.cpp" line="298"/>
         <source>Script-Error</source>
         <translation>스크립트 오류</translation>
+    </message>
+</context>
+<context>
+    <name>templateSelectorDialog</name>
+    <message>
+        <location filename="../src/templateselector.ui" line="14"/>
+        <source>Dialog</source>
+        <translation>대화 상자</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.ui" line="66"/>
+        <source>Author:</source>
+        <translation>저자:</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.ui" line="173"/>
+        <source>Create in Folder:</source>
+        <translation>폴더에 만들기:</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.ui" line="205"/>
+        <source>Create in Editor</source>
+        <translation>편집기에서 만들기</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.ui" line="238"/>
+        <source>Target folder not empty.</source>
+        <translation>대상 폴더가 비어 있지 않습니다.</translation>
     </message>
 </context>
 </TS>
