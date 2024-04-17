@@ -64,7 +64,7 @@ notetype=#foot+end,footonly,endonly
 hyperref=#true,false,auto,manual
 backref#true,false
 backrefstyle=#none,three,two,two+,three+,all+
-backrefsetstyle=#=setonly,memonly,setormem,setandmem,memandset,setplusmem
+backrefsetstyle=#setonly,memonly,setormem,setandmem,memandset,setplusmem
 backreffloats#true,false
 indexing=#true,false,cite,bib
 loadfiles#true,false

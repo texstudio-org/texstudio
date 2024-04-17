@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2023/11/10 for v2.00
+# Matthew Bertucci 2024/04/14 for v2.06
 
 #include:xkeyval
 #include:xstring
@@ -228,10 +228,8 @@ TWEB
 \position{position}
 \institution{institution}
 \department{department}
-\streetaddress{address}
 \city{city}
 \state{state}
-\postcode{postcode}
 \country{country}
 \authorsaddresses{contact addresses}
 \titlenote{text}
@@ -452,6 +450,10 @@ nonamebreak=
 \translatedkeywords{language}{keywords%text}#*
 \begin{translatedabstract}{language}#*
 \end{translatedabstract}#*
+
+# deprecated
+\streetaddress{address}#S
+\postcode{postcode}#S
 
 # common language options
 #ifOption:language=english

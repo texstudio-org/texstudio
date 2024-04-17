@@ -1,7 +1,7 @@
 # fancyqr package
-# Matthew Bertucci 2022/08/20 for v1.1
+# Matthew Bertucci 2024/04/13 for v2.0
 
-#include:tikz
+#include:pict2e
 #include:qrcode
 
 \fancyqr{URL}#U
@@ -22,6 +22,9 @@ left color=#%color
 r color=#%color
 right color=#%color
 gradient angle=%<degrees%>
+random color=%<colors%>
+width=##L
+size=##L
 # from qrcode
 height=##L
 level=#L,M,Q,H
@@ -46,12 +49,11 @@ flat
 frame
 blobs
 glitch
-swift
 dots
 default
 #endkeyvals
 
-\FancyLoadDefault
+\FancyQrLoadDefault
 
 # not documented
 \FancyQrColor{arg}#S

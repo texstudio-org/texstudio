@@ -1,5 +1,5 @@
 # pmdraw package
-# Matthew Bertucci 2023/11/14 for v1.1
+# Matthew Bertucci 2024/04/09 for v1.3
 
 #include:keyval
 #include:tikz
@@ -72,5 +72,6 @@ decorate after={%<code%>}
 
 #keyvals:\pmdProduct#c
 diagram sep=%<number%>
+vertex sep=%<number%>
 edges added={%<\draw options%>}
 #endkeyvals

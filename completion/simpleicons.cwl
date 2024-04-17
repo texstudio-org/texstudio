@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/04/06 for v11.11.0
+# Matthew Bertucci 2024/04/12 for v11.12.0
 
 #include:iftex
 
@@ -172,6 +172,7 @@ ansys
 anta
 antdesign
 antena3
+anthropic
 anycubic
 anydesk
 anytype
@@ -318,12 +319,14 @@ barmenia
 basecamp
 basicattentiontoken
 bastyon
+bat
 bata
 battledotnet
 bazel
 beatport
 beats
 beatsbydre
+beatstars
 behance
 beijingsubway
 bem
@@ -605,6 +608,7 @@ convertio
 cookiecutter
 coolermaster
 coop
+copaairlines
 coppel
 cora
 coreldraw
@@ -1298,6 +1302,7 @@ immich
 imou
 improvmx
 indeed
+indiansuperleague
 indiehackers
 indigo
 inertia
@@ -1469,6 +1474,7 @@ kotlin
 koyeb
 krita
 ktm
+ktor
 kuaishou
 kubernetes
 kubuntu
@@ -1601,6 +1607,7 @@ majorleaguehacking
 make
 makerbot
 malt
+malwarebytes
 mambaui
 mamp
 man
@@ -1650,6 +1657,7 @@ meetup
 mega
 meilisearch
 meituan
+meizu
 mendeley
 mentorcruise
 mercadopago
@@ -1975,6 +1983,7 @@ paperspace
 paperswithcode
 paramountplus
 paritysubstrate
+parrotsecurity
 parsedotly
 passport
 pastebin
@@ -2042,6 +2051,7 @@ pix
 pixabay
 pixelfed
 pixiv
+pixlr
 pkgsrc
 planet
 planetscale
@@ -2202,6 +2212,7 @@ quicktype
 quip
 quora
 qwant
+qwik
 qwiklabs
 qzone
 r
@@ -2304,6 +2315,7 @@ robinhood
 roblox
 robloxstudio
 robotframework
+rocket
 rocketdotchat
 rocksdb
 rockstargames
@@ -2586,6 +2598,7 @@ steem
 steemit
 steinberg
 stellar
+stencil
 stencyl
 stimulus
 stitcher
@@ -2739,6 +2752,7 @@ tindie
 tinkercad
 tinyletter
 tistory
+tldraw
 tmobile
 tmux
 todoist

@@ -1,5 +1,5 @@
 # biblatex-chicago package
-# Matthew Bertucci 2022/07/03 for v3.18
+# Matthew Bertucci 2024/04/16 for v3.20
 
 #include:etoolbox
 #include:nameref
@@ -32,6 +32,7 @@ sortupper#true,false
 sortlocale=
 sortcites#true,false
 sortsets#true,false
+pluralothers#true,false
 maxnames=%<integer%>
 minnames=%<integer%>
 maxbibnames=%<integer%>
@@ -138,7 +139,7 @@ uniquetitle#true,false
 uniquebaretitle#true,false
 uniquework#true,false
 uniqueprimaryauthor#true,false
-uniquename=#true,false,init,full,allinit,allfull,mininit,minfull
+uniquename=#true,false,init,full,allinit,allfull,mininit,minfull,minyearinit,minyearfull
 uniquelist=#true,false,minyear
 nohashothers#true,false
 nosortothers#true,false
