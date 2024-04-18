@@ -1056,7 +1056,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             // special treatment for \ExplSyntaxOn, \ExplSyntaxOff
             // \ProvidesExplPackage and \ProvidesExplClass
             // activate latex3 mode which ignores _ in commandnames
-            if(word=="\\ExplSyntaxOn" || word=="\\ProvidesExplPackage" || word=="\\ProvidesExplClass" ){
+            if(word=="\\ExplSyntaxOn" || word=="\\ProvidesExplPackage" || word=="\\ProvidesExplClass"){
                 Environment env;
                 env.name = "expl3";
                 env.id = 1; // to be changed
@@ -1067,7 +1067,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 activeEnv.push(env);
                 continue;
             }
-                        
+
             // special treatment for & in math
             if(word=="&" && containsEnv("math", activeEnv)){
                 Error elem;
