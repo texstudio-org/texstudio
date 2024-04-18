@@ -1,5 +1,5 @@
 # thesis-ekf class
-# Matthew Bertucci 2024/04/13 for v4.3
+# Matthew Bertucci 2024/04/18 for v4.5
 
 #include:kvoptions
 #include:class-report
@@ -9,7 +9,6 @@
 #include:geometry
 #include:lmodern
 #include:fixcmex
-#include:etoolbox
 #include:graphicx
 #include:upquote
 
