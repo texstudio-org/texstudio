@@ -215,6 +215,7 @@ public:
     QString ai_apikey;
     int ai_provider;
     QString ai_preferredModel;
+    QStringList ai_knownModels;
     QString ai_systemPrompt;
     QString ai_temperature;
     bool ai_recordConversation;

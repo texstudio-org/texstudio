@@ -18,8 +18,7 @@
 
 #include "qformat.h"
 #include "buildmanager.h"
-
-
+#include <QNetworkReply>
 
 //TODO: perhaps move each class in its own file?
 class ShortcutComboBox: public QComboBox
@@ -145,6 +144,9 @@ private slots:
 	void revertClicked();
 
     void aiProviderChanged(int provider);
+    void retrieveModels();
+    void modelsRetrieved(QNetworkReply *reply);
+    void aiFillInKnownModels();
 
 	void populateComboBoxFont(bool onlyMonospaced);
 private:

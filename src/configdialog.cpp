@@ -9,6 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "qjsonarray.h"
 #ifdef INTERNAL_TERMINAL
 #include <qtermwidget5/qtermwidget.h>
 #endif
@@ -26,6 +27,8 @@
 #include "qformatconfig.h"
 
 #include "filedialog.h"
+
+#include <QJsonDocument>
 
 const QString ShortcutDelegate::addRowButton = "<internal: add row>";
 const QString ShortcutDelegate::deleteRowButton = "<internal: delete row>";
@@ -603,6 +606,10 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 
     // ai chat
     connect(ui.cbAIProvider, SIGNAL(currentIndexChanged(int)), this, SLOT(aiProviderChanged(int)));
+    connect(ui.pbRetrieveModels, &QPushButton::clicked, this, &ConfigDialog::retrieveModels);
+    // fill in the known models
+    aiFillInKnownModels();
+
 }
 
 
@@ -672,7 +679,7 @@ void ConfigDialog::revertClicked()
         if (bt->objectName() == "tbRevertPDF") {
             ui.horizontalSliderPDF->setValue(16);
         }
-	}
+    }
 }
 /*!
  * \brief adapt model list depending on ai provider
@@ -699,6 +706,72 @@ void ConfigDialog::aiProviderChanged(int provider)
     default:
         ui.cbAIPreferredModel->clear();
         break;
+    }
+}
+/*!
+ * \brief retieve the current list of available model from AI provider
+ * API key is needed
+ */
+void ConfigDialog::retrieveModels()
+{
+    if(!ui.leAIAPIKey->text().isEmpty()){
+        QString provider=ui.cbAIProvider->currentText();
+        QString key=ui.leAIAPIKey->text();
+        QString url;
+        switch(ui.cbAIProvider->currentIndex()){
+        case 0:
+            url="https://api.mistral.ai/v1/models";
+            break;
+        case 1:
+            url="https://api.openai.com/v1/models";
+            break;
+        default:
+            break;
+        }
+        QNetworkRequest request(url);
+        request.setRawHeader("Authorization",QString("Bearer "+key).toUtf8());
+        QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+        connect(manager,&QNetworkAccessManager::finished,this,&ConfigDialog::modelsRetrieved);
+        manager->get(request);
+    }
+}
+
+void ConfigDialog::modelsRetrieved(QNetworkReply *reply)
+{
+    if(reply->error() == QNetworkReply::NoError){
+        QByteArray data = reply->readAll();
+        QJsonDocument doc=QJsonDocument::fromJson(data);
+        QJsonObject obj=doc.object();
+        QStringList models;
+
+        QJsonArray lst=obj["data"].toArray();
+        foreach (const QJsonValue & value, lst) {
+            models.append(value.toObject()["id"].toString());
+        }
+
+        ui.cbAIPreferredModel->clear();
+        ui.cbAIPreferredModel->addItems(models);
+        if(!models.isEmpty()){
+            ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+            if (config){
+                config->ai_knownModels=models;
+            }
+        }
+
+    }
+    reply->deleteLater();
+}
+/*!
+ * \brief fill in known models for AI provider
+ */
+void ConfigDialog::aiFillInKnownModels()
+{
+    ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+    if (!config) return;
+    if(!config->ai_knownModels.isEmpty()){
+        ui.cbAIPreferredModel->clear();
+        ui.cbAIPreferredModel->addItems(config->ai_knownModels);
+        ui.cbAIPreferredModel->setCurrentText(config->ai_preferredModel);
     }
 }
 
@@ -1207,7 +1280,7 @@ void ConfigDialog::importDictionary()
     QString filename = FileDialog::getOpenFileName(this, tr("Import Dictionary"), QString(), tr("OpenOffice Dictionary") + " (*.oxt)", nullptr, QFileDialog::DontResolveSymlinks);
 	if (filename.isNull()) return;
 
-	ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+    ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
 	if (!config) return;
 
 	QString targetDir = config->parseDir("[txs-settings-dir]/dictionaries");

@@ -3335,7 +3335,7 @@ them here.</string>
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-55</y>
+                <y>0</y>
                 <width>1085</width>
                 <height>735</height>
                </rect>
@@ -3591,7 +3591,45 @@ them here.</string>
                  <property name="title">
                   <string>AI chat assistant</string>
                  </property>
-                 <layout class="QGridLayout" name="gl_AIChat" columnstretch="0,0,0,0">
+                 <layout class="QGridLayout" name="gl_AIChat" columnstretch="0,0,0,0,0">
+                  <item row="1" column="0" colspan="2">
+                   <widget class="QLabel" name="label_AIAPI">
+                    <property name="text">
+                     <string>API key:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="3">
+                   <widget class="QLineEdit" name="leAIAPIKey"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_AIProvider">
+                    <property name="text">
+                     <string>AI provider:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="QComboBox" name="cbAIProvider">
+                    <item>
+                     <property name="text">
+                      <string>Mistral AI</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>OpenAI</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QCheckBox" name="cbAIRecordConversation">
+                    <property name="text">
+                     <string>Record Conversation</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="2" column="3">
                    <widget class="QComboBox" name="cbAIPreferredModel">
                     <item>
@@ -3621,27 +3659,6 @@ them here.</string>
                     </item>
                    </widget>
                   </item>
-                  <item row="0" column="3">
-                   <widget class="QComboBox" name="cbAIProvider">
-                    <item>
-                     <property name="text">
-                      <string>Mistral AI</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>OpenAI</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_AIProvider">
-                    <property name="text">
-                     <string>AI provider:</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_AIModel">
                     <property name="text">
@@ -3649,20 +3666,10 @@ them here.</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="3">
-                   <widget class="QLineEdit" name="leAIAPIKey"/>
-                  </item>
-                  <item row="1" column="0" colspan="2">
-                   <widget class="QLabel" name="label_AIAPI">
+                  <item row="2" column="4">
+                   <widget class="QPushButton" name="pbRetrieveModels">
                     <property name="text">
-                     <string>API key:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QCheckBox" name="cbAIRecordConversation">
-                    <property name="text">
-                     <string>Record Conversation</string>
+                     <string>Retrieve list of models</string>
                     </property>
                    </widget>
                   </item>
