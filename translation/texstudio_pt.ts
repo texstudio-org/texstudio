@@ -55,22 +55,22 @@
         <location filename="../src/aiquerystoragemodel.cpp" line="146"/>
         <location filename="../src/aiquerystoragemodel.cpp" line="148"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Hoje</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
         <source>Last Week</source>
-        <translation type="unfinished"/>
+        <translation>Semana passada</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
         <source>Last Month</source>
-        <translation type="unfinished"/>
+        <translation>Mês passado</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="115"/>
         <source>Older</source>
-        <translation type="unfinished"/>
+        <translation>Antigas</translation>
     </message>
 </context>
 <context>
@@ -2424,7 +2424,7 @@ específicos, pode forçar o seu uso activando-os aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3589"/>
         <source>Store the conversation with AI provider on disk to allow later retrieval</source>
-        <translation type="unfinished"/>
+        <translation>Armazenar a conversa com o fornecedor de IA em disco, para utilização futura</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3592"/>
@@ -2434,57 +2434,57 @@ específicos, pode forçar o seu uso activando-os aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3599"/>
         <source>open-mistral-7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mistral-7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3604"/>
         <source>open-mixtral-8x7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mixtral-8x7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3609"/>
         <source>mistral-small-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-small-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3614"/>
         <source>mistral-medium-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-medium-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3619"/>
         <source>mistral-large-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-large-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3628"/>
         <source>Mistral AI</source>
-        <translation type="unfinished"/>
+        <translation>Mistral AI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3633"/>
         <source>OpenAI</source>
-        <translation type="unfinished"/>
+        <translation>OpenAI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3641"/>
         <source>AI provider:</source>
-        <translation type="unfinished"/>
+        <translation>Fornecedor de IA:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3648"/>
         <source>Preferred model:</source>
-        <translation type="unfinished"/>
+        <translation>Modelo preferido</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3658"/>
         <source>API key:</source>
-        <translation type="unfinished"/>
+        <translation>Chave API:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3665"/>
         <source>Record Conversation</source>
-        <translation type="unfinished"/>
+        <translation>Gravar conversa</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3675"/>

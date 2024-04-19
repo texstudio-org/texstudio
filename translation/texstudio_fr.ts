@@ -55,22 +55,22 @@
         <location filename="../src/aiquerystoragemodel.cpp" line="146"/>
         <location filename="../src/aiquerystoragemodel.cpp" line="148"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Aujourd&apos;hui</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
         <source>Last Week</source>
-        <translation type="unfinished"/>
+        <translation>La semaine dernière</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
         <source>Last Month</source>
-        <translation type="unfinished"/>
+        <translation>Le mois dernier</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="115"/>
         <source>Older</source>
-        <translation type="unfinished"/>
+        <translation>Plus ancien</translation>
     </message>
 </context>
 <context>
@@ -943,7 +943,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/configdialog.ui" line="381"/>
         <source>Remember selected file filter in open/save dialog </source>
-        <translation type="unfinished"/>
+        <translation>Mémoriser le filtre de fichier sélectionné dans la boîte de dialogue d&apos;ouverture/enregistrement</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="410"/>
@@ -993,7 +993,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/configdialog.ui" line="505"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Mise à jour</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="517"/>
@@ -1079,7 +1079,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/configdialog.ui" line="785"/>
         <source>Meta Commands</source>
-        <translation type="unfinished"/>
+        <translation>Commandes méta</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="798"/>
@@ -1109,7 +1109,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/configdialog.ui" line="855"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
-        <translation type="unfinished"/>
+        <translation>Ne pas lancer une nouvelle instance du visualiseur si le fichier dvi/ps/pdf est déjà ouvert</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="864"/>
@@ -1173,7 +1173,13 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation>Remplace les variables d&apos;environnement dans les commandes. Le comportement est spécifique au système d&apos;exploitation.
+
+Windows :
+Les variables s&apos;écrivent comme suit : %MYVAR%. Elles ne sont pas sensibles à la casse.
+
+Linux, OS X :
+Les variables s&apos;écrivent comme suit : $MYVAR. Elles sont sensibles à la casse.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1026"/>
@@ -1208,7 +1214,11 @@ Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
 (3) type the string of the shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Pour modifier double-cliquez sur les entrées dans « Raccourci actuel » ou « Raccourci supplémentaire ».
+Vous pouvez ensuite sélectionner un nouveau raccourci de l&apos;une des manières suivantes :
+(1) sélectionner dans la liste déroulante
+(2) appuyez sur la combinaison de raccourcis
+(3) tapez la chaîne du raccourci</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1097"/>
@@ -1270,7 +1280,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1183"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
-        <translation type="unfinished"/>
+        <translation>Les éléments du menu sont listés ici et peuvent être masqués ou modifiés.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1196"/>
@@ -1311,27 +1321,27 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1274"/>
         <source>This adds an action to the toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Cela ajoute une action à la barre d&apos;outils.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1288"/>
         <source>This removes an action from the toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Cela supprime une action de la barre d&apos;outils.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1317"/>
         <source>Here you can choose a toolbar to modify.</source>
-        <translation type="unfinished"/>
+        <translation>Vous pouvez ici choisir une barre d&apos;outils à modifier.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1324"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Vous pouvez ici choisir une liste de commandes qui peuvent être affectées à la barre d&apos;outils.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1331"/>
         <source>This shows available actions to map on a toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Ceci montre les actions disponibles à affecter à une barre d&apos;outils.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1379"/>
@@ -1341,7 +1351,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1386"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Cette option modifie l&apos;échelle de la grille de symboles (pour les écrans à haute résolution).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1417"/>
@@ -1364,7 +1374,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1460"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Cette option modifie l&apos;échelle des barres d&apos;outils horizontales (pour les écrans à haute résolution).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1495"/>
@@ -1374,7 +1384,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1502"/>
         <source>Secondary Toolbars</source>
-        <translation type="unfinished"/>
+        <translation>Barres d&apos;outils secondaires</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1509"/>
@@ -1396,7 +1406,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1641"/>
         <source>Inline Checking:</source>
-        <translation type="unfinished"/>
+        <translation>Vérification en ligne :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1651"/>
@@ -1411,7 +1421,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1664"/>
         <source>All Line Numbers</source>
-        <translation type="unfinished"/>
+        <translation>Tous les numéros de ligne</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1669"/>
@@ -1442,7 +1452,7 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="../src/configdialog.ui" line="1711"/>
         <location filename="../src/configdialog.ui" line="4891"/>
         <source>Font Family:</source>
-        <translation type="unfinished"/>
+        <translation>Famille de police :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1718"/>
@@ -1452,17 +1462,17 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1731"/>
         <source>Default Font Encoding:</source>
-        <translation type="unfinished"/>
+        <translation>Codage de police par défaut :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1738"/>
         <source>Indentation Mode:</source>
-        <translation type="unfinished"/>
+        <translation>Mode d&apos;indentation :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1745"/>
         <source>Automatic Encoding Detection:</source>
-        <translation type="unfinished"/>
+        <translation>Détection automatique du codage :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1755"/>
@@ -1544,7 +1554,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1879"/>
         <source>Show Only Monospaced Fonts</source>
-        <translation type="unfinished"/>
+        <translation>Afficher uniquement les polices monospaces</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1890"/>
@@ -1659,7 +1669,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2187"/>
         <source>Close search and replace panel together</source>
-        <translation type="unfinished"/>
+        <translation>Fermer en même temps les panneaux de recherche et de remplacement</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2197"/>
@@ -1704,7 +1714,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2257"/>
         <source>Show log markers when clicking log entry</source>
-        <translation type="unfinished"/>
+        <translation>Afficher les marqueurs de journal de log lorsque l&apos;on clique sur l&apos;entrée du log</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2264"/>
@@ -1734,7 +1744,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2303"/>
         <source>Add Entries Directly To Context  Menu</source>
-        <translation type="unfinished"/>
+        <translation>Ajouter directement des entrées au menu contextuel</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2308"/>
@@ -1811,7 +1821,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="2403"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
-        <translation type="unfinished"/>
+        <translation>Afficher l&apos;aide sur les commandes dans le visualisateur PDF interne (texdoc)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2410"/>
@@ -2337,7 +2347,7 @@ leur usage en les activant ici.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3416"/>
         <source>Thesaurus Database:</source>
-        <translation type="unfinished"/>
+        <translation>Base de données du thésaurus :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3446"/>
@@ -2417,7 +2427,7 @@ leur usage en les activant ici.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3589"/>
         <source>Store the conversation with AI provider on disk to allow later retrieval</source>
-        <translation type="unfinished"/>
+        <translation>Stocker sur disque la conversation avec le fournisseur d&apos;IA afin de pouvoir la retrouver ultérieurement.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3592"/>
@@ -2427,57 +2437,57 @@ leur usage en les activant ici.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3599"/>
         <source>open-mistral-7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mistral-7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3604"/>
         <source>open-mixtral-8x7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mixtral-8x7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3609"/>
         <source>mistral-small-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-small-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3614"/>
         <source>mistral-medium-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-medium-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3619"/>
         <source>mistral-large-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-large-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3628"/>
         <source>Mistral AI</source>
-        <translation type="unfinished"/>
+        <translation>Mistral IA</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3633"/>
         <source>OpenAI</source>
-        <translation type="unfinished"/>
+        <translation>OpenAI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3641"/>
         <source>AI provider:</source>
-        <translation type="unfinished"/>
+        <translation>Fournisseur d&apos;IA :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3648"/>
         <source>Preferred model:</source>
-        <translation type="unfinished"/>
+        <translation>Modèle privilégié :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3658"/>
         <source>API key:</source>
-        <translation type="unfinished"/>
+        <translation>Clé API :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3665"/>
         <source>Record Conversation</source>
-        <translation type="unfinished"/>
+        <translation>Enregistrer la conversation</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3675"/>

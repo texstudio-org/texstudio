@@ -7,7 +7,7 @@
         <location filename="../src/aichatassistant.cpp" line="264"/>
         <location filename="../src/aichatassistant.cpp" line="300"/>
         <source>Send</source>
-        <translation type="unfinished"/>
+        <translation>Gönder</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="28"/>
@@ -24,17 +24,17 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="52"/>
         <source>AI chat assistant</source>
-        <translation type="unfinished"/>
+        <translation>AI sohbet yardımcısı</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="167"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Durdur</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="242"/>
         <source>Temperature</source>
-        <translation type="unfinished"/>
+        <translation>Sıcaklık</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="247"/>
@@ -45,7 +45,7 @@
         <location filename="../src/aichatassistant.cpp" line="292"/>
         <location filename="../src/aichatassistant.cpp" line="328"/>
         <source>Execute</source>
-        <translation type="unfinished"/>
+        <translation>Yürüt</translation>
     </message>
 </context>
 <context>
@@ -55,22 +55,22 @@
         <location filename="../src/aiquerystoragemodel.cpp" line="146"/>
         <location filename="../src/aiquerystoragemodel.cpp" line="148"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Bugün</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
         <source>Last Week</source>
-        <translation type="unfinished"/>
+        <translation>Önceki hafta</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="96"/>
         <source>Last Month</source>
-        <translation type="unfinished"/>
+        <translation>Önceki ay</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="115"/>
         <source>Older</source>
-        <translation type="unfinished"/>
+        <translation>Daha eski</translation>
     </message>
 </context>
 <context>
@@ -2425,67 +2425,67 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3589"/>
         <source>Store the conversation with AI provider on disk to allow later retrieval</source>
-        <translation type="unfinished"/>
+        <translation>Daha sonra alabilmek için yapay zeka hizmeti sağlayıcısıyla yapılan görüşme diskte saklansın</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3592"/>
         <source>AI chat assistant</source>
-        <translation type="unfinished"/>
+        <translation>YZ yardımcısı</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3599"/>
         <source>open-mistral-7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mistral-7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3604"/>
         <source>open-mixtral-8x7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mixtral-8x7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3609"/>
         <source>mistral-small-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-small-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3614"/>
         <source>mistral-medium-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-medium-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3619"/>
         <source>mistral-large-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-large-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3628"/>
         <source>Mistral AI</source>
-        <translation type="unfinished"/>
+        <translation>Mistral AI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3633"/>
         <source>OpenAI</source>
-        <translation type="unfinished"/>
+        <translation>OpenAI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3641"/>
         <source>AI provider:</source>
-        <translation type="unfinished"/>
+        <translation>YZ hizmeti:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3648"/>
         <source>Preferred model:</source>
-        <translation type="unfinished"/>
+        <translation>Yeğlenen model:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3658"/>
         <source>API key:</source>
-        <translation type="unfinished"/>
+        <translation>API anahtarı:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3665"/>
         <source>Record Conversation</source>
-        <translation type="unfinished"/>
+        <translation>Görüşmeyi kaydet</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3675"/>
@@ -2495,7 +2495,7 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3681"/>
         <source>Path containing the LanguageTool java archive.</source>
-        <translation>LanguageTool java arşiv dosyasının bulunduğu yol.</translation>
+        <translation>LanguageTool Java arşiv dosyasının bulunduğu yol.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3688"/>
@@ -10988,7 +10988,7 @@ ve kalıbı ayıklayın.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1269"/>
         <source>AI &amp;Chat...</source>
-        <translation type="unfinished"/>
+        <translation>YZ &amp;görüşmesi...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1272"/>
@@ -11670,12 +11670,12 @@ Do you want to continue?</source>
     <message>
         <location filename="../src/texstudio.cpp" line="5424"/>
         <source>AI Chat</source>
-        <translation type="unfinished"/>
+        <translation>YZ görüşmesi</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5424"/>
         <source>Please set the API key in the settings.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen ayarlar bölümünden API anahtarını ayarlayın.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5512"/>
