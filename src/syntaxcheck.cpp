@@ -1053,9 +1053,10 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					word = word + line.mid(tkEnvName.start, tkEnvName.length);
 				}
 			}
-            // special treatment for \ExplSyntaxOn and \ExplSyntaxOff
+            // special treatment for \ExplSyntaxOn, \ExplSyntaxOff
+            // \ProvidesExplPackage, \ProvidesExplClass and \ProvidesExplFile
             // activate latex3 mode which ignores _ in commandnames
-            if(word=="\\ExplSyntaxOn"){
+            if(word=="\\ExplSyntaxOn" || word=="\\ProvidesExplPackage" || word=="\\ProvidesExplClass" || word=="\\ProvidesExplFile"){
                 Environment env;
                 env.name = "expl3";
                 env.id = 1; // to be changed
