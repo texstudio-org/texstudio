@@ -11538,6 +11538,10 @@ void Texstudio::toggleDocks(bool visible)
             dw->setVisible(visible);
         }
     }
+    if(visible){
+        // force update of TOC
+        updateTOCs();
+    }
 }
 /*!
  * \brief reset docks to default order (tabified,left hand side)
