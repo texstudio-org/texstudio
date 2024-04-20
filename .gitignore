@@ -21,6 +21,7 @@ build*/
 utilities/manual/build/html/_sources
 utilities/manual/build/html/.buildinfo
 utilities/manual/build/html/objects.inv
+utilities/manual/build/doctrees
 symbols-ng/gesymb-ng
 symbols-ng/gesymb-ng.o
 CMakeLists.txt.user
