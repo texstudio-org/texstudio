@@ -463,6 +463,5 @@ QString AIChatAssistant::getConversationForBrowser()
  *  - add to macros
  *  - modeltree for conversations
  *   + show summary of conversation in titles ?
- *  - search in questions/answers
  *  - overlay buttons insert/etc.
  */

@@ -11,7 +11,7 @@ Using an AI assistant means both questions and selected text is sent to that pro
 ```
 
 Once an account is registered, an "API key" is provided which needs to be entered into TeXstudio configuration.
-There also the AI provider needs to be chosen as well as the desired ai model.
+There also the AI provider needs to be chosen as well as the desired ai model. The button "Retrieve list of models" downloads a current list of available models from the ai provider. An API key needs to be present for this to work.
 
 ![AI configuration](images/conf_ai.png)
 
