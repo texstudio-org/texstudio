@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2024/03/29 for v24.3
+# tbraun 4.11.2008; Matthew Bertucci 2024/04/20 for v24.4
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -161,7 +161,7 @@ Alph=%<counter%>
 onchar=#ids,fonts,letters
 intraspace=%<base shrink stretch%>
 intrapenalty=%<penalty%>
-transforms=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,prehyphen.nobreak,punctuation.space,diaeresis.hyphen,transliteration.omega,sigma.final,transliteration.hk,punctuation.space,digraphs.hyphen,danda.nobreak,letters.noj,letters.uv,transliteration.iast,transliteration.gajica,kashida.plain
+transforms=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,prehyphen.nobreak,diaeresis.hyphen,transliteration.omega,sigma.final,transliteration.hk,punctuation.space,digraphs.hyphen,danda.nobreak,letters.noj,letters.uv,transliteration.iast,transliteration.gajica,kashida.plain
 justification=#kashida,elongated,unhyphenated,padding
 linebreaking=#kashida,elongated,unhyphenated,padding
 mapfont=
@@ -245,7 +245,6 @@ digraphs.ligatures
 hyphen.repeat
 oneletter.nobreak
 prehyphen.nobreak
-punctuation.space
 diaeresis.hyphen
 transliteration.omega
 sigma.final
@@ -372,6 +371,8 @@ select.encoding=#off
 \addto{cmd}{code}#S
 \AfterBabelCommands{code}#S
 \allowhyphens#S
+\BabelCJKGlue#S
+\BabelCJKSpace#S
 \BabelDated{arg}#S
 \BabelDatedd{arg}#S
 \BabelDateDot#S
