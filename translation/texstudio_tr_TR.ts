@@ -232,17 +232,17 @@ Mathtools paketi alignat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatr
     <message>
         <location filename="../src/arraydialog.h" line="35"/>
         <source>Center</source>
-        <translation>Ortala</translation>
+        <translation>Ortada</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.h" line="35"/>
         <source>Left</source>
-        <translation>Sol</translation>
+        <translation>Solda</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.h" line="35"/>
         <source>Right</source>
-        <translation>Sağ</translation>
+        <translation>Sağda</translation>
     </message>
 </context>
 <context>
@@ -359,7 +359,7 @@ Mathtools paketi alignat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatr
     <message>
         <location filename="../src/bibtexdialog.cpp" line="199"/>
         <source>Online Resource</source>
-        <translation>Çevirimiçi kaynak</translation>
+        <translation>Çevrim içi kaynak</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="211"/>
@@ -691,7 +691,7 @@ Mathtools paketi alignat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatr
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
         <translation>%1 komutunun atomik olması bekleniyor. Bununla birlikte, şu anda %2 komutu içeren bir komut zinciri olarak tanımlanmış. Bu durum sınırlamaların dışında ve şaşırtıcı yan etkilere neden olabilir.
 
-Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&gt; TeXstudio Ayarları -&gt; Komutlar&apos; bölümünden değil yalnız &apos;Ayarlar -&gt; TeXstudio Ayarları -&gt; Oluştur&apos; bölümünden tanımlayın .</translation>
+Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&gt; TeXstudio Ayarları -&gt; Komutlar&apos; bölümünden değil yalnızca &apos;Ayarlar -&gt; TeXstudio Ayarları -&gt; Oluştur&apos; bölümünden tanımlayın .</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1089"/>
@@ -848,7 +848,7 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
     <message>
         <location filename="../src/configdialog.ui" line="14"/>
         <source>Configure TeXstudio</source>
-        <translation>TeXstudio ayarları</translation>
+        <translation>TeXstudio yapılandırması</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="166"/>
@@ -923,12 +923,12 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
     <message>
         <location filename="../src/configdialog.ui" line="343"/>
         <source>Oxygen Modern</source>
-        <translation>Oxygen Modern</translation>
+        <translation>Oksijen Çağdaş</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="348"/>
         <source>Oxygen Classic</source>
-        <translation>Oxygen Classic</translation>
+        <translation>Oksijen Klasik</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="359"/>
@@ -978,7 +978,7 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
     <message>
         <location filename="../src/configdialog.ui" line="476"/>
         <source>Store relative paths</source>
-        <translation>Göreli yollar kaydedilsin</translation>
+        <translation>Göreceli yollar kaydedilsin</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="489"/>
@@ -1002,9 +1002,9 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Almak istediğiniz güncelleme bildirimlerini belirleyin:
-- Kararlı Sürümler: Sizin için en önemlisi kararlılık ise bunu seçin.
-- Yayın Adayları: Kararlılık açısından yayınlanacak bir sürüme yakındır. Yayınlanacak sürümlerin ön izlemelerine bakmak ve kararlı sürümün yayınlanmadan önce denenmesinde bize yardımcı olmak için bunu seçin. (Kararlı sürümler de bildirilir)
-- Geliştirime Sürümleri: En son özellikleri içerir, ancak kararsız olabilir. (Kararlı sürümler ve yayın adayı sürümler de bildirilir).</translation>
+- Kararlı sürümler: Sizin için en önemlisi kararlılık ise bunu seçin.
+- Yayın adayları: Kararlılık açısından yayınlanacak bir sürüme yakındır. Yayınlanacak sürümlerin ön izlemelerine bakmak ve kararlı sürümün yayınlanmadan önce denenmesinde bize yardımcı olmak için bunu seçin. (Kararlı sürümler de bildirilir)
+- Geliştirime sürümleri: En son özellikleri içerir, ancak kararsız olabilir. (Kararlı sürümler ve yayın adayı sürümler de bildirilir).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="524"/>
@@ -1111,7 +1111,7 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
     <message>
         <location filename="../src/configdialog.ui" line="864"/>
         <source>Show stdout:</source>
-        <translation>stdout görünümü:</translation>
+        <translation>stdout görüntülensin:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="872"/>
@@ -1123,7 +1123,7 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
     <message>
         <location filename="../src/configdialog.ui" line="877"/>
         <source>Only For User Commands</source>
-        <translation>Yalnız kullanıcı komutları için</translation>
+        <translation>Yalnızca kullanıcı komutları için</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="882"/>
@@ -1242,7 +1242,7 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     <message>
         <location filename="../src/configdialog.ui" line="1120"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation>Bileşeni kapatma sabit bir GUI bileşeni listesine uygulanır (tümü burada görüntülenmez). Görülebilen ilk bileşen kapatılır. Bu ayarı kullanarak bazı bileşenlerin kapatılmasını engelleyebilirsiniz.</translation>
+        <translation>Bileşeni kapatma sabit bir görsel kullanıcı arayüzü bileşeni listesine uygulanır (tümü burada görüntülenmez). Görülebilen ilk bileşen kapatılır. Bu ayarı kullanarak bazı bileşenlerin kapatılmasını engelleyebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1123"/>
@@ -1424,7 +1424,7 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     <message>
         <location filename="../src/configdialog.ui" line="1669"/>
         <source>Only Important Line Numbers</source>
-        <translation>Yalnız önemli satır numaraları</translation>
+        <translation>Yalnızca önemli satır numaraları</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1677"/>
@@ -1480,7 +1480,7 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     <message>
         <location filename="../src/configdialog.ui" line="1762"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
-        <translation>yalnız utf16/utf-8 ile ISO 8859-1 arasında karar verebilir!</translation>
+        <translation>yalnızca utf16/utf-8 ile ISO 8859-1 arasında karar verebilir!</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1765"/>
@@ -1537,7 +1537,7 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     <message>
         <location filename="../src/configdialog.ui" line="1861"/>
         <source>English Quotes (unicode): “ ”</source>
-        <translation>İngiliz türü tırnaklar (unicode): “ ”</translation>
+        <translation>İngiliz türü tırnaklar (unikod): “ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1866"/>
@@ -1547,12 +1547,12 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     <message>
         <location filename="../src/configdialog.ui" line="1871"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation>Polonya türü tırnaklar (unicode): „ ”</translation>
+        <translation>Polonya türü tırnaklar (unikod): „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1879"/>
         <source>Show Only Monospaced Fonts</source>
-        <translation>Yalnız eş aralıklı yazı tipleri görüntülensin</translation>
+        <translation>Yalnızca eş aralıklı yazı tipleri görüntülensin</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1890"/>
@@ -1572,7 +1572,7 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     <message>
         <location filename="../src/configdialog.ui" line="1920"/>
         <source>Spelling</source>
-        <translation>Yazım Denetimi</translation>
+        <translation>Yazım denetimi</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1927"/>
@@ -1687,7 +1687,7 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     <message>
         <location filename="../src/configdialog.ui" line="2226"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu seçenek ile, yazma işlemi tamamlanamaz ise var olan verilerin kaybolmasını engellemek için QSaveFile kullanılır. Bir sakıncası geçerli kullanıcının dosya sahibi olarak atanması ve genişletilmiş dosya özniteliklerinin kaybolmasıdır. Ayrıca, bu yöntemin dropbox klasörleri ile sorunları var gibi görünüyor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu seçenek ile, yazma işlemi tamamlanamaz ise var olan verilerin kaybolmasını engellemek için QSaveFile kullanılır. Bir sakıncası geçerli kullanıcının dosya sahibi olarak atanması ve genişletilmiş dosya özniteliklerinin kaybolmasıdır. Ayrıca, bu yöntemin Dropbox klasörleri ile sorunları var gibi görünüyor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2229"/>
@@ -1783,13 +1783,13 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
         <location filename="../src/configdialog.ui" line="2355"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation>Kaynak kodunda unicode karakterler kullanıldığında, Karakterlerin hala
-LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olarak desteklenmediğinden, unicode karakterler için belgenize ilgili paketleri katmanız gerekir.</translation>
+        <translation>Kaynak kodunda unikod karakterler kullanıldığında, Karakterlerin hala
+LaTeX tarafından oluşturması gerekir. Unikod, LaTeX tarafından doğal olarak desteklenmediğinden, unikod karakterler için belgenize ilgili paketleri katmanız gerekir.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2359"/>
         <source>Insert Symbol as Unicode</source>
-        <translation>Simgeler ünikod olarak eklensin</translation>
+        <translation>Simgeler unikod olarak eklensin</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2366"/>
@@ -1804,7 +1804,7 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="2380"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation>Bu seçenek, yalnız belge genişliği değişken ya da sabit satır kaydırma ile sınırlandırılmış ise bir etki yapar.</translation>
+        <translation>Bu seçenek, yalnızca belge genişliği değişken ya da sabit satır kaydırma ile sınırlandırılmış ise bir etki yapar.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2383"/>
@@ -1819,7 +1819,7 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="2403"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
-        <translation>Komut yardımları iç pdf görüntüleyicide görüntülensin (texdoc)</translation>
+        <translation>Komut yardımları iç PDF görüntüleyicide görüntülensin (texdoc)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2410"/>
@@ -2019,7 +2019,7 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="2696"/>
         <source>One Line Per Cell</source>
-        <translation>Hücre başına bir satır</translation>
+        <translation>Her hücrede bir satır</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2704"/>
@@ -2079,7 +2079,7 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="2822"/>
         <source>Automatically switch keyboard layout: </source>
-        <translation>Tuş takımı görünümü otomatik olarak değiştirilsin:</translation>
+        <translation>Klavye görünümü otomatik olarak değiştirilsin:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2829"/>
@@ -2099,7 +2099,7 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="2852"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
-        <translation>Aksan yazarken çözüm devre dışı bırakılsın (yalnız Mac OS X için)</translation>
+        <translation>Aksan yazarken çözüm devre dışı bırakılsın (yalnızca Mac OS X için)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2859"/>
@@ -2345,12 +2345,12 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3416"/>
         <source>Thesaurus Database:</source>
-        <translation>Eş anlamlılar sözlüğü veritabanı:</translation>
+        <translation>Eş anlamlılar sözlüğü veri tabanı:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3446"/>
         <source>TextLabel</source>
-        <translation>Metin Etiketi</translation>
+        <translation>Metin etiketi</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3459"/>
@@ -2390,7 +2390,7 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3515"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
-        <translation>Yalnız belirtilen karakter uzunluğundaki sözcükler uzun yinelenmeler için denetlenir.</translation>
+        <translation>Yalnızca belirtilen karakter uzunluğundaki sözcükler uzun yinelenmeler için denetlenir.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3525"/>
@@ -2569,7 +2569,7 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
         <location filename="../src/configdialog.ui" line="3848"/>
         <location filename="../src/configdialog.ui" line="3896"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation>LanguageTool başlatılırken aktarılacak bağımsız değişkenler. Bu seçenek yalnız LanguageTool TeXstudio içinden başlatıldığında (yani zaten çalışmakta olan bir sunucuda olmadığında) etkili olur.</translation>
+        <translation>LanguageTool başlatılırken aktarılacak bağımsız değişkenler. Bu seçenek yalnızca LanguageTool TeXstudio içinden başlatıldığında (yani zaten çalışmakta olan bir sunucuda olmadığında) etkili olur.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3851"/>
@@ -2789,7 +2789,7 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4453"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation>Varsayılan arka plan rengi. Onaltılık RGB değeri olarak belirtin. Not: Bu ayar yalnız değiştirilmesinden sonra yüklenen PDF dosyalarını etkiler. Zaten açık olan PDF dosyalarının kağıt rengi değiştirilmez.</translation>
+        <translation>Varsayılan arka plan rengi. Onaltılık RGB değeri olarak belirtin. Not: Bu ayar yalnızca değiştirilmesinden sonra yüklenen PDF dosyalarını etkiler. Zaten açık olan PDF dosyalarının kağıt rengi değiştirilmez.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4478"/>
@@ -2851,7 +2851,7 @@ Note: Changing this setting will only affect documents that are opened afterward
         <translation>PDF kitaplığı oluşturucu arka plan uygulaması olarak poppler kullanıyor.
 Varsayılan değer olan &apos;Splash&apos; çoğu durum için uygundur.
 Oluşturma sorunları çıkıyorsa alternatif &apos;Arthur&apos; arka plan uygulamasını deneyebilirsiniz.
-Not: Bu ayar, yalnız değiştirildikten sonra açılan belgeleri etkiler.</translation>
+Not: Bu ayar, yalnızca değiştirildikten sonra açılan belgeleri etkiler.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4584"/>
@@ -2921,7 +2921,7 @@ Not: Bu ayar, yalnız değiştirildikten sonra açılan belgeleri etkiler.</tran
     <message>
         <location filename="../src/configdialog.ui" line="4781"/>
         <source>Check-in after File/Save only</source>
-        <translation>Yalnız dosya/kaydet işleminden sonra çıkış yapılsın</translation>
+        <translation>Yalnızca dosya/kaydet işleminden sonra çıkış yapılsın</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4786"/>
@@ -3150,7 +3150,7 @@ ayarlamak istiyor musunuz?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="758"/>
         <source>Select thesaurus database</source>
-        <translation>Eş anlamlılar sözlüğü veritabanını seçin</translation>
+        <translation>Eş anlamlılar sözlüğü veri tabanını seçin</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="763"/>
@@ -4758,7 +4758,7 @@ Tüm değişiklikleri geri almak istediğinize emin misiniz?</translation>
         <location filename="../src/encodingdialog.ui" line="98"/>
         <source>The codec names as the inputenc package expects them. The names are only given for reference.
 You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
-        <translation>inputenc paketi tarafından beklenen kodlayıcı/çözücü adları. Adlar yalnız başvuru için verilmiştir.
+        <translation>inputenc paketi tarafından beklenen kodlayıcı/çözücü adları. Adlar yalnızca başvuru için verilmiştir.
 Dosya kodlaması ile inputenc paketine gönderilen değerin aynı olduğundan emin olmalısınız.</translation>
     </message>
 </context>
@@ -4891,11 +4891,11 @@ Note: The first 4 placement preferences are just suggestions. If the resulting p
 [t] Üst: sayfanın üstünde
 [b] Alt: sayfanın altında
 [p] Sayfa: Şekillere ayrılmış bir sayfada
-[h] Burada: Metinin bu konumunda
-[H] Burada: Metinin kesinlikle bu konumunda (yüzer paket gereklidir)
+[h] Burada: Metnin bu konumunda
+[H] Burada: Metnin kesinlikle bu konumunda (yüzer paket gereklidir)
 [!]: LaTeX tarafından `iyi&apos; yüzen konumların belirlenmesi için kullanılan iç parametreler değiştirilir.
 
-Not: İlk 4 konum ayarı yalnız öneridir. Sonuçtaki sayfa kötü görünecek ise LaTeX bunu yok sayabilir.</translation>
+Not: İlk 4 konum ayarı yalnızca öneridir. Sonuçtaki sayfa kötü görünecek ise LaTeX bunu yok sayabilir.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="262"/>
@@ -6482,7 +6482,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="647"/>
         <source>Only searches for whole words.</source>
-        <translation>Yalnız tam sözcükleri arar.</translation>
+        <translation>Yalnızca tam sözcükleri arar.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="654"/>
@@ -6619,7 +6619,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1434"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation>Şu anda dış dosya olarak yalnız PDF belgeleri destekleniyor.</translation>
+        <translation>Şu anda dış dosya olarak yalnızca PDF belgeleri destekleniyor.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1453"/>
@@ -8090,7 +8090,7 @@ Hata:</translation>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="172"/>
         <source>Only searches for whole words.</source>
-        <translation>Yalnız tam sözcükleri arar.</translation>
+        <translation>Yalnızca tam sözcükleri arar.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="182"/>
@@ -8118,12 +8118,12 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="212"/>
         <source>Only searches in the selected text.</source>
-        <translation>Yalnız seçilmiş metin içinde aranır.</translation>
+        <translation>Yalnızca seçilmiş metin içinde aranır.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="221"/>
         <source>Only searches in selected text type (math, commands, etc.)</source>
-        <translation>Yalnız seçilmiş metin türünde arar (formül, komutlar gibi)</translation>
+        <translation>Yalnızca seçilmiş metin türünde arar (formül, komutlar gibi)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="242"/>
@@ -8753,7 +8753,7 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
     <message>
         <location filename="../src/configdialog.cpp" line="187"/>
         <source>Only single characters are allowed as key</source>
-        <translation>Tuş olarak yalnız tek bir karakter kullanılabilir</translation>
+        <translation>Tuş olarak yalnızca tek bir karakter kullanılabilir</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="197"/>
@@ -9465,7 +9465,7 @@ dosyası silinemedi.</translation>
     <message>
         <location filename="../src/templateselector.cpp" line="136"/>
         <source>Online Repository</source>
-        <translation>Çevrimiçi depo</translation>
+        <translation>Çevrim içi depo</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="140"/>
@@ -11641,7 +11641,7 @@ dosyayı kaydetmeniz ya da kapatmanız gerekiyor.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="4192"/>
         <source>Can&apos;t load Thesaurus Database</source>
-        <translation>Eş anlamlılar veritabanı yüklenemedi</translation>
+        <translation>Eş anlamlılar veri tabanı yüklenemedi</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4599"/>
@@ -11764,8 +11764,8 @@ Do you want to allow and run the new, overriding command?
 
 Yeni, değiştirilecek komutun kullanılmasına izin veriyor musunuz?
 
-(a) Evet, yeni komut yalnız bu belgede kullanılabilsin (yalnız bu belgeye güveniyorsanız)
-(b) Evet, yeni komut tüm belgelerde kullanılabilsin (yalnız yeni komutun belgeleri isteğe göre işlemesine güveniyorsanız)
+(a) Evet, yeni komut yalnızca bu belgede kullanılabilsin (yalnızca bu belgeye güveniyorsanız)
+(b) Evet, yeni komut tüm belgelerde kullanılabilsin (yalnızca yeni komutun belgeleri isteğe göre işlemesine güveniyorsanız)
 (c) Hayır, &quot;%3&quot; komutu kullanılmasın ve varsayılan &quot;%2&quot; komutu kullanılmaya devam edilsin</translation>
     </message>
     <message>
@@ -11931,7 +11931,7 @@ Oluşturulmasını ister misiniz?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="10031"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
-        <translation>Sözcük yinelenmeleri yalnız çevrimiçi yazım denetimi etkinleştirilmiş ise çalışır!</translation>
+        <translation>Sözcük yinelenmeleri yalnızca çevrim içi yazım denetimi etkinleştirilmiş ise çalışır!</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10036"/>
@@ -12215,7 +12215,7 @@ TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden 
     <message>
         <location filename="../src/texstudio.cpp" line="11854"/>
         <source>Show only current document in this tree</source>
-        <translation>Bu ağaçta yalnız geçerli belgeyi görüntüle</translation>
+        <translation>Bu ağaçta yalnızca geçerli belge görüntülensin</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11867"/>
@@ -12548,7 +12548,7 @@ If minimum and maximum are selected, exactly so many words are taken. (e.g. with
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
         <translation>Bu satırdaki denetimler arka arkaya gelen kaç sözcüğün tek bir ifade olarak değerlendirileceğini belirler.
 En kısa ve en uzun olarak seçilirse tam olarak belirtilen sözcük sayısı alınır (Örnek: 2 ise yukarıdaki cümlede &quot;bu satırdaki&quot;, &quot;satırdaki denetimler&quot;, ...).
-Yalnız en uzun seçilirse, başlangıçtaki sözcükler de alınır (Örnek: &quot;bu&quot;, &quot;bu satırdaki&quot;, &quot;satırdaki denetimler&quot;,...).</translation>
+Yalnızca en uzun seçilirse, başlangıçtaki sözcükler de alınır (Örnek: &quot;bu&quot;, &quot;bu satırdaki&quot;, &quot;satırdaki denetimler&quot;,...).</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="332"/>
@@ -12612,7 +12612,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="430"/>
         <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation>Tüm belgenin, yalnız seçimin ya da yalnız belirli bir bölümün incelenmesini sağlar.</translation>
+        <translation>Tüm belgenin, yalnızca seçimin ya da yalnızca belirli bir bölümün incelenmesini sağlar.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="437"/>
@@ -12638,7 +12638,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/textanalysis.cpp" line="64"/>
         <source>Count relative</source>
-        <translation>Göreli say</translation>
+        <translation>Göreceli say</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.cpp" line="451"/>
@@ -12788,7 +12788,7 @@ included document in %1</source>
         <location filename="../src/updatechecker.cpp" line="190"/>
         <location filename="../src/updatechecker.cpp" line="207"/>
         <source>You can download it from the %1 TeXstudio website</source>
-        <translation>%1 sürümünü TeXstudio web sitesinden indirebilirsiniz</translation>
+        <translation>%1 sürümünü TeXstudio sitesinden indirebilirsiniz</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="201"/>
@@ -12971,12 +12971,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <translation>Herhangi bir tex belgesi içine bu tetikleyici dizgesi yazılmış ise, 
 Geçerli kod imi ile değiştirilir.
 
-Tetikleyici (?&lt;=birşey) ile başlıyorsa, işlem yalnız tetikleyicinin 
+Tetikleyici (?&lt;=birşey) ile başlıyorsa, işlem yalnızca tetikleyicinin 
 kalan bölümünden önce birşey yazılmış ise yapılır.
 
 Bu tetikleyici düz bir dizge yerine bir kurallı ifade olduğundan, 
-Yalnız bir sözcükten sonra olması gereken değişiklikleri işaretlemek için (?&lt;=\S), 
-yalnız bir sözcükten önce olması gereken değişiklikleri işaretlemek için (?&lt;=\s|^) kullanılabilir.
+yalnızca bir sözcükten sonra olması gereken değişiklikleri işaretlemek için (?&lt;=\S), 
+yalnızca bir sözcükten önce olması gereken değişiklikleri işaretlemek için (?&lt;=\s|^) kullanılabilir.
 
 
 Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.</translation>
