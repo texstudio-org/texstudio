@@ -20,9 +20,14 @@ public:
     void setStoragePath(const QString &path);
     QString getFileName(const QModelIndex &index) const;
     void addFileName(const QString &name);
+    void setFilter(const QString &filter);
 private:
     QDir m_storageDirectory;
     QStringList m_files;
+    QStringList m_filteredFiles;
+    QStringList m_shownFiles;
+    bool m_filterActive=false;
+
 
     struct TimeFrame
     {
@@ -31,7 +36,8 @@ private:
     };
     QList<TimeFrame>m_segments;
 
-
+    void generateSegments();
+    bool fileContains(const QString &filename, const QString &filter) const;
     // QAbstractItemModel interface
 };
 

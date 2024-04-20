@@ -10,6 +10,18 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
 {
     config=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
 
+    m_btSearch=new QToolButton();
+    m_actSearch=new QAction();
+    m_actSearch->setIcon(getRealIcon("edit-find"));
+    m_actSearch->setToolTip(tr("Search in previous conversations"));
+    connect(m_actSearch,&QAction::triggered,this,&AIChatAssistant::slotSearch);
+    m_btSearch->setDefaultAction(m_actSearch);
+    m_leSearch=new QLineEdit();
+    m_leSearch->setPlaceholderText(tr("Search in conversations"));
+    auto *hlayoutSearch=new QHBoxLayout();
+    hlayoutSearch->addWidget(m_leSearch);
+    hlayoutSearch->addWidget(m_btSearch);
+
     AIQueryStorageModel *model=new AIQueryStorageModel(this);
     QString path=config->configBaseDir+QString("/ai_conversation");
     model->setStoragePath(path);
@@ -17,12 +29,19 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     treeView->setModel(model);
     connect(treeView, &QTreeView::clicked, this, &AIChatAssistant::onTreeViewClicked);
 
+    auto *vtreeLayout=new QVBoxLayout();
+    vtreeLayout->addLayout(hlayoutSearch);
+    vtreeLayout->addWidget(treeView);
+    QWidget *wdgtTree=new QWidget();
+    wdgtTree->setLayout(vtreeLayout);
+
     textBrowser=new QTextBrowser();
     auto *hlBrowser=new QSplitter();
-    hlBrowser->addWidget(treeView);
+    hlBrowser->addWidget(wdgtTree);
     hlBrowser->addWidget(textBrowser);
 
     leEntry=new QTextEdit();
+    leEntry->setPlaceholderText(tr("Enter your query here"));
     m_actSend=new QAction();
     m_actSend->setIcon(getRealIcon("document-send"));
     m_actSend->setToolTip(tr("Send Query to AI provider"));
@@ -42,6 +61,9 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     connect(m_actOptions,&QAction::triggered,this,&AIChatAssistant::slotOptions);
     m_btOptions=new QToolButton();
     m_btOptions->setDefaultAction(m_actOptions);
+
+
+
     auto *hlayout=new QHBoxLayout();
     hlayout->addWidget(leEntry);
     auto *vl=new QVBoxLayout();
@@ -270,6 +292,15 @@ void AIChatAssistant::slotOptions()
     dlg.exec();
 }
 /*!
+ * \brief filter old conversations
+ */
+void AIChatAssistant::slotSearch()
+{
+    QString text=m_leSearch->text();
+    AIQueryStorageModel *model=dynamic_cast<AIQueryStorageModel *>(treeView->model());
+    model->setFilter(text);
+}
+/*!
  * \brief handle communication error with ai provider
  */
 void AIChatAssistant::onRequestError(QNetworkReply::NetworkError code)
@@ -433,4 +464,5 @@ QString AIChatAssistant::getConversationForBrowser()
  *  - modeltree for conversations
  *   + show summary of conversation in titles ?
  *  - search in questions/answers
+ *  - overlay buttons insert/etc.
  */

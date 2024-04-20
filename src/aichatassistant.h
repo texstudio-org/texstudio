@@ -25,6 +25,7 @@ private slots:
     void slotSend();
     void slotInsert();
     void slotOptions();
+    void slotSearch();
     void onRequestError(QNetworkReply::NetworkError code);
     void onRequestCompleted(QNetworkReply *nreply);
     void onTreeViewClicked(const QModelIndex &index);
@@ -39,6 +40,9 @@ protected:
     QToolButton *m_btOptions;
     QAction *m_actOptions;
     QTextEdit *leEntry;
+    QLineEdit *m_leSearch;
+    QToolButton *m_btSearch;
+    QAction *m_actSearch;
 
     QString m_response;
     QString m_selectedText;
