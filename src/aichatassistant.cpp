@@ -163,6 +163,7 @@ void AIChatAssistant::slotSend()
 
     QJsonObject dd;
     dd["model"]=config->ai_preferredModel;
+    dd["temperature"]=config->ai_temperature;
     //dd["stream"] = "True";
     if(!config->ai_systemPrompt.isEmpty()){
         // add system prompt to query
@@ -272,6 +273,9 @@ void AIChatAssistant::slotOptions()
     auto *ly=new QVBoxLayout();
     auto *leSystemPrompt=new QTextEdit();
     leSystemPrompt->setText(config->ai_systemPrompt);
+    if(config->ai_systemPrompt.isEmpty()){
+        leSystemPrompt->setPlaceholderText(tr("System prompt"));
+    }
     ly->addWidget(leSystemPrompt);
     auto *leTemp=new QLineEdit();
     leTemp->setText(config->ai_temperature);
