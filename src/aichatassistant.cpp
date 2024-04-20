@@ -23,20 +23,33 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     hlBrowser->addWidget(textBrowser);
 
     leEntry=new QTextEdit();
-    btSend=new QPushButton(tr("Send"));
-    connect(btSend,&QPushButton::clicked,this,&AIChatAssistant::slotSend);
-    btInsert=new QPushButton(tr("Insert"));
-    connect(btInsert,&QPushButton::clicked,this,&AIChatAssistant::slotInsert);
-    btOptions=new QPushButton(tr("Options"));
-    connect(btOptions,&QPushButton::clicked,this,&AIChatAssistant::slotOptions);
+    m_actSend=new QAction();
+    m_actSend->setIcon(getRealIcon("document-send"));
+    m_actSend->setToolTip(tr("Send Query to AI provider"));
+    connect(m_actSend,&QAction::triggered,this,&AIChatAssistant::slotSend);
+    m_btSend=new QToolButton();
+    m_btSend->setDefaultAction(m_actSend);
+
+    m_actInsert=new QAction();
+    m_actInsert->setIcon(getRealIcon("download"));
+    m_actInsert->setToolTip(tr("Insert response"));
+    connect(m_actInsert,&QAction::triggered,this,&AIChatAssistant::slotInsert);
+    m_btInsert=new QToolButton();
+    m_btInsert->setDefaultAction(m_actInsert);
+    m_actOptions=new QAction();
+    m_actOptions->setIcon(getRealIcon("configure"));
+    m_actOptions->setToolTip(tr("Options"));
+    connect(m_actOptions,&QAction::triggered,this,&AIChatAssistant::slotOptions);
+    m_btOptions=new QToolButton();
+    m_btOptions->setDefaultAction(m_actOptions);
     auto *hlayout=new QHBoxLayout();
     hlayout->addWidget(leEntry);
     auto *vl=new QVBoxLayout();
-    vl->addWidget(btSend,0,Qt::AlignTop);
-    vl->addWidget(btInsert,0,Qt::AlignTop);
+    vl->addWidget(m_btSend,0,Qt::AlignTop);
+    vl->addWidget(m_btInsert,0,Qt::AlignTop);
     auto *vspacer=new QSpacerItem(20,40,QSizePolicy::Minimum,QSizePolicy::Expanding);
     vl->addSpacerItem(vspacer);
-    vl->addWidget(btOptions,0,Qt::AlignBottom);
+    vl->addWidget(m_btOptions,0,Qt::AlignBottom);
     hlayout->addLayout(vl);
     auto *wdgt=new QWidget();
     wdgt->setLayout(hlayout);
@@ -96,7 +109,8 @@ void AIChatAssistant::slotSend()
         m_reply->abort();
         m_reply->deleteLater();
         m_reply=nullptr;
-        btSend->setText(tr("Send"));
+        m_actSend->setToolTip(tr("Send Query to AI provider"));
+        m_actSend->setIcon(getRealIcon("document-send"));
         // remove last message from conversation
         ja_messages.removeLast();
         return;
@@ -164,7 +178,8 @@ void AIChatAssistant::slotSend()
     connect(m_reply, &QNetworkReply::errorOccurred, this, &AIChatAssistant::onRequestError);
 #endif
     // use btSend as stop button
-    btSend->setText(tr("Stop"));
+    m_actSend->setToolTip(tr("Stop current query !"));
+    m_actSend->setIcon(getRealIcon("stop"));
 }
 /*!
  * \brief insert response
@@ -261,7 +276,8 @@ void AIChatAssistant::onRequestError(QNetworkReply::NetworkError code)
 {
     qDebug()<<"Error:"<<code;
     qDebug()<<m_reply->errorString();
-    btSend->setText(tr("Send"));
+    m_actSend->setToolTip(tr("Send Query to AI provider"));
+    m_actSend->setIcon(getRealIcon("document-send"));
     m_reply->deleteLater();
     m_reply=nullptr;
 }
@@ -289,15 +305,16 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
             textBrowser->setHtml(responseText);
             // check if macro, then execute instead of insert
             if(m_response.contains("```javascript")||m_response.contains("```bash")){ // mistral ai sometimes declares txs macros as bash
-                btInsert->setText(tr("Execute"));
+                m_actInsert->setToolTip(tr("Execute as macro"));
             }else{
-                btInsert->setText(tr("Insert"));
+                m_actInsert->setToolTip(tr("Insert into text"));
             }
         }
     }
     nreply->deleteLater();
     m_reply=nullptr;
-    btSend->setText(tr("Send"));
+    m_actSend->setToolTip(tr("Send Query to AI provider"));
+    m_actSend->setIcon(getRealIcon("document-send"));
     // update record of conversation
     if(config->ai_recordConversation){
         QString conv=makeJsonDoc();
@@ -325,9 +342,9 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
         m_response=ja_message["content"].toString();
         // check if macro, then execute instead of insert
         if(m_response.contains("```javascript")||m_response.contains("```bash")){ // mistral ai sometimes declares txs macros as bash
-            btInsert->setText(tr("Execute"));
+            m_actInsert->setToolTip(tr("Execute as macro"));
         }else{
-            btInsert->setText(tr("Insert"));
+            m_actInsert->setToolTip(tr("Insert into text"));
         }
     }else{
         // no query sent yet
@@ -414,8 +431,6 @@ QString AIChatAssistant::getConversationForBrowser()
  *  - detect new document/insert all
  *  - add to macros
  *  - modeltree for conversations
- *   + split conversations over time (yesterday,last week, last month, etc.)
  *   + show summary of conversation in titles ?
  *  - search in questions/answers
- *  - icons/QToolbuttons for actions
  */

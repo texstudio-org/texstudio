@@ -32,9 +32,12 @@ private slots:
 protected:
     QTreeView *treeView;
     QTextBrowser *textBrowser;
-    QPushButton *btSend;
-    QPushButton *btInsert;
-    QPushButton *btOptions;
+    QToolButton *m_btSend;
+    QAction *m_actSend;
+    QToolButton *m_btInsert;
+    QAction *m_actInsert;
+    QToolButton *m_btOptions;
+    QAction *m_actOptions;
     QTextEdit *leEntry;
 
     QString m_response;

@@ -73,6 +73,10 @@
 <file>images-ng/document-new.svgz</file>
 <file>images-ng/document-open.svgz</file>
 <file>images-ng/document-save.svgz</file>
+<file>images-ng/document-send_dm.svg</file>
+<file>images-ng/document-send.svg</file>
+<file>images-ng/download_dm.svg</file>
+<file>images-ng/download.svg</file>
 <file>images-ng/down.svgz</file>
 <file>images-ng/edit-copy.svgz</file>
 <file>images-ng/edit-cut.svgz</file>
