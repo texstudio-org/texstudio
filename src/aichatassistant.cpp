@@ -312,14 +312,19 @@ void AIChatAssistant::slotOptions()
     hl2->addWidget(cbStream);
     ly->addLayout(hl2);
 
-    auto *btOk=new QPushButton(tr("OK"));
-    connect(btOk,&QPushButton::clicked,[&](){
+    auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+                                     | QDialogButtonBox::Cancel);
+
+    connect(buttonBox, &QDialogButtonBox::accepted,[&](){
         config->ai_systemPrompt=leSystemPrompt->toPlainText();
         config->ai_temperature=leTemp->text();
         config->ai_streamResults=cbStream->isChecked();
         dlg.close();
     });
-    ly->addWidget(btOk);
+    connect(buttonBox, &QDialogButtonBox::rejected, [&](){
+        dlg.close();
+    });
+    ly->addWidget(buttonBox);
     dlg.setLayout(ly);
     dlg.exec();
 }
