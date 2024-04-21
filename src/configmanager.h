@@ -219,6 +219,7 @@ public:
     QString ai_systemPrompt;
     QString ai_temperature;
     bool ai_recordConversation;
+    bool ai_streamResults;
 
 	//debug
 #ifndef QT_NO_DEBUG

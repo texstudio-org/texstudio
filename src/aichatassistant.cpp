@@ -165,7 +165,12 @@ void AIChatAssistant::slotSend()
     QJsonObject dd;
     dd["model"]=config->ai_preferredModel;
     dd["temperature"]=config->ai_temperature;
-    //dd["stream"] = "True";
+    if(config->ai_streamResults){
+        dd["stream"] = "True";
+        m_timer=new QTimer();
+        m_timer->setInterval(500);
+        connect(m_timer,&QTimer::timeout,this,&AIChatAssistant::slotUpdateResults);
+    }
     if(!config->ai_systemPrompt.isEmpty()){
         // add system prompt to query
         QJsonObject ja_message;
@@ -204,6 +209,9 @@ void AIChatAssistant::slotSend()
     // use btSend as stop button
     m_actSend->setToolTip(tr("Stop current query !"));
     m_actSend->setIcon(getRealIcon("stop"));
+    if(m_timer){
+        m_timer->start();
+    }
 }
 /*!
  * \brief insert response
@@ -296,10 +304,19 @@ void AIChatAssistant::slotOptions()
     hl->addWidget(lblTemp);
     hl->addWidget(leTemp);
     ly->addLayout(hl);
+    auto *lblStream=new QLabel(tr("Stream results"));
+    auto *cbStream=new QCheckBox();
+    cbStream->setChecked(config->ai_streamResults);
+    auto *hl2=new QHBoxLayout();
+    hl2->addWidget(lblStream);
+    hl2->addWidget(cbStream);
+    ly->addLayout(hl2);
+
     auto *btOk=new QPushButton(tr("OK"));
     connect(btOk,&QPushButton::clicked,[&](){
         config->ai_systemPrompt=leSystemPrompt->toPlainText();
         config->ai_temperature=leTemp->text();
+        config->ai_streamResults=cbStream->isChecked();
         dlg.close();
     });
     ly->addWidget(btOk);
@@ -316,6 +333,18 @@ void AIChatAssistant::slotSearch()
     model->setFilter(text);
 }
 /*!
+ * \brief read stream results from ai provider
+ */
+ void AIChatAssistant::slotUpdateResults()
+{
+     if (!m_reply || m_reply->error() != QNetworkReply::NoError) return;
+     QByteArray data=m_reply->readAll();
+     QString allData(data);
+     if(allData.startsWith("data: ")){
+         updateStreamedConversation(allData);
+     }
+}
+/*!
  * \brief handle communication error with ai provider
  */
 void AIChatAssistant::onRequestError(QNetworkReply::NetworkError code)
@@ -329,18 +358,27 @@ void AIChatAssistant::onRequestError(QNetworkReply::NetworkError code)
     m_actSend->setIcon(getRealIcon("document-send"));
     m_reply->deleteLater();
     m_reply=nullptr;
+    if(m_timer){
+        m_timer->stop();
+        delete m_timer;
+        m_timer=nullptr;
+    }
 }
 /*!
  * \brief handle received data from AI provider
  */
 void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
 {
+    if(m_timer){
+        m_timer->stop();
+        delete m_timer;
+        m_timer=nullptr;
+    }
     if (!nreply || nreply->error() != QNetworkReply::NoError) return;
     QByteArray data=nreply->readAll();
     QString allData(data);
     if(allData.startsWith("data: ")){
-        QStringList msgs=allData.split("data: ");
-        qDebug()<<msgs;
+        updateStreamedConversation(allData);
     }else{
         QJsonDocument doc=QJsonDocument::fromJson(data);
         QJsonObject obj=doc.object();
@@ -473,6 +511,38 @@ QString AIChatAssistant::getConversationForBrowser()
         }
     }
     return result;
+}
+/*!
+ * \brief read streamed conversation and update textBrowser
+ * \param allData
+ */
+void AIChatAssistant::updateStreamedConversation(const QString &allData)
+{
+    QStringList msgs=allData.split("data: ");
+    for(const QString &elem:msgs){
+        QJsonDocument doc=QJsonDocument::fromJson(elem.toUtf8());
+        QJsonObject obj=doc.object();
+        QJsonArray arr=obj["choices"].toArray();
+        if(arr.size()>0){
+            QJsonObject ja_choice=arr[0].toObject();
+            QJsonObject jo_delta=ja_choice["delta"].toObject();
+            QString delta_text=jo_delta["content"].toString();
+            m_response+=delta_text;
+        }
+    }
+    // check if last message is a question
+    // add a new message to conversation
+    QJsonObject ja_message=ja_messages.last().toObject();
+    if(ja_message["role"]=="user"){
+        ja_message=QJsonObject();
+    }else{
+        ja_messages.removeLast();
+    }
+    ja_message["role"]="assistant";
+    ja_message["content"]=m_response;
+    ja_messages.append(ja_message);
+    QString responseText=getConversationForBrowser();
+    textBrowser->setHtml(responseText);
 }
 
 /*! TODO

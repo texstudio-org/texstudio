@@ -701,6 +701,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("AIchat/SystemPrompt_test",&ai_systemPrompt,"");
     registerOption("AIchat/Temperature",&ai_temperature,"0.7");
     registerOption("AIchat/RecordConversation",&ai_recordConversation,true,&pseudoDialog->cbAIRecordConversation);
+    registerOption("AIchat/StreamResults",&ai_streamResults,false);
 
 	//interfaces
     int defaultStyle=0;

@@ -26,6 +26,7 @@ private slots:
     void slotInsert();
     void slotOptions();
     void slotSearch();
+    void slotUpdateResults();
     void onRequestError(QNetworkReply::NetworkError code);
     void onRequestCompleted(QNetworkReply *nreply);
     void onTreeViewClicked(const QModelIndex &index);
@@ -50,6 +51,8 @@ protected:
 
     QJsonArray ja_messages;
 
+    QTimer *m_timer = nullptr;
+
     ConfigManager *config;
 
     QNetworkAccessManager *networkManager;
@@ -57,6 +60,7 @@ protected:
     void writeToFile(QString filename, QString content);
     QString makeJsonDoc() const;
     QString getConversationForBrowser();
+    void updateStreamedConversation(const QString &allData);
 };
 
 #endif // AICHATASSISTANT_H
