@@ -4,30 +4,30 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="16"/>
         <source>Search in previous conversations</source>
-        <translation type="unfinished"/>
+        <translation>Keresés a korábbi beszélgetésekben</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="20"/>
         <source>Search in conversations</source>
-        <translation type="unfinished"/>
+        <translation>Keresés a beszélgetésekben</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="44"/>
         <source>Enter your query here</source>
-        <translation type="unfinished"/>
+        <translation>Írja be ide a kérdését</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="47"/>
-        <location filename="../src/aichatassistant.cpp" line="134"/>
-        <location filename="../src/aichatassistant.cpp" line="310"/>
-        <location filename="../src/aichatassistant.cpp" line="347"/>
+        <location filename="../src/aichatassistant.cpp" line="135"/>
+        <location filename="../src/aichatassistant.cpp" line="328"/>
+        <location filename="../src/aichatassistant.cpp" line="365"/>
         <source>Send Query to AI provider</source>
-        <translation type="unfinished"/>
+        <translation>Kérdés küldése az AI szolgáltatónak</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="54"/>
         <source>Insert response</source>
-        <translation type="unfinished"/>
+        <translation>Válasz beszúrása</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="60"/>
@@ -40,29 +40,39 @@
         <translation>AI chat asszisztens</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="203"/>
+        <location filename="../src/aichatassistant.cpp" line="205"/>
         <source>Stop current query !</source>
+        <translation>Az aktuális lekérdezés leállítása!</translation>
+    </message>
+    <message>
+        <location filename="../src/aichatassistant.cpp" line="278"/>
+        <source>System prompt</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="339"/>
-        <location filename="../src/aichatassistant.cpp" line="376"/>
+        <location filename="../src/aichatassistant.cpp" line="292"/>
+        <source>Values between 0 and %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/aichatassistant.cpp" line="357"/>
+        <location filename="../src/aichatassistant.cpp" line="394"/>
         <source>Execute as macro</source>
-        <translation type="unfinished"/>
+        <translation>Végrehajtás makróként</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="341"/>
-        <location filename="../src/aichatassistant.cpp" line="378"/>
+        <location filename="../src/aichatassistant.cpp" line="359"/>
+        <location filename="../src/aichatassistant.cpp" line="396"/>
         <source>Insert into text</source>
-        <translation type="unfinished"/>
+        <translation>Beszúrás a szövegbe</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="279"/>
+        <location filename="../src/aichatassistant.cpp" line="294"/>
         <source>Temperature</source>
         <translation>Hőfok</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="284"/>
+        <location filename="../src/aichatassistant.cpp" line="299"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -2504,7 +2514,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="../src/configdialog.ui" line="3672"/>
         <source>Retrieve list of models</source>
-        <translation type="unfinished"/>
+        <translation>A modellek listájának lekérése</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3682"/>

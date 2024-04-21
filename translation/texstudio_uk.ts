@@ -4,30 +4,30 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="16"/>
         <source>Search in previous conversations</source>
-        <translation type="unfinished"/>
+        <translation>Пошук у попередніх розмовах</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="20"/>
         <source>Search in conversations</source>
-        <translation type="unfinished"/>
+        <translation>Пошук у розмовах</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="44"/>
         <source>Enter your query here</source>
-        <translation type="unfinished"/>
+        <translation>Введіть свій запит тут</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="47"/>
-        <location filename="../src/aichatassistant.cpp" line="134"/>
-        <location filename="../src/aichatassistant.cpp" line="310"/>
-        <location filename="../src/aichatassistant.cpp" line="347"/>
+        <location filename="../src/aichatassistant.cpp" line="135"/>
+        <location filename="../src/aichatassistant.cpp" line="328"/>
+        <location filename="../src/aichatassistant.cpp" line="365"/>
         <source>Send Query to AI provider</source>
-        <translation type="unfinished"/>
+        <translation>Надіслати запит до постачальника ШІ</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="54"/>
         <source>Insert response</source>
-        <translation type="unfinished"/>
+        <translation>Вставити відповідь</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="60"/>
@@ -40,29 +40,39 @@
         <translation>Помічник чату зі ШІ</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="203"/>
+        <location filename="../src/aichatassistant.cpp" line="205"/>
         <source>Stop current query !</source>
+        <translation>Зупинити поточний запит!</translation>
+    </message>
+    <message>
+        <location filename="../src/aichatassistant.cpp" line="278"/>
+        <source>System prompt</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="339"/>
-        <location filename="../src/aichatassistant.cpp" line="376"/>
+        <location filename="../src/aichatassistant.cpp" line="292"/>
+        <source>Values between 0 and %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/aichatassistant.cpp" line="357"/>
+        <location filename="../src/aichatassistant.cpp" line="394"/>
         <source>Execute as macro</source>
-        <translation type="unfinished"/>
+        <translation>Виконати як макрос</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="341"/>
-        <location filename="../src/aichatassistant.cpp" line="378"/>
+        <location filename="../src/aichatassistant.cpp" line="359"/>
+        <location filename="../src/aichatassistant.cpp" line="396"/>
         <source>Insert into text</source>
-        <translation type="unfinished"/>
+        <translation>Вставити у текст</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="279"/>
+        <location filename="../src/aichatassistant.cpp" line="294"/>
         <source>Temperature</source>
         <translation>Температура</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="284"/>
+        <location filename="../src/aichatassistant.cpp" line="299"/>
         <source>OK</source>
         <translation>Гаразд</translation>
     </message>
@@ -2509,7 +2519,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3672"/>
         <source>Retrieve list of models</source>
-        <translation type="unfinished"/>
+        <translation>Отримати список моделей</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3682"/>

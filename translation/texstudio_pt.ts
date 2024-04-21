@@ -4,30 +4,30 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="16"/>
         <source>Search in previous conversations</source>
-        <translation type="unfinished"/>
+        <translation>Procurar em conversas anteriores</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="20"/>
         <source>Search in conversations</source>
-        <translation type="unfinished"/>
+        <translation>Procurar em conversas</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="44"/>
         <source>Enter your query here</source>
-        <translation type="unfinished"/>
+        <translation>Faça a sua pergunta aqui</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="47"/>
-        <location filename="../src/aichatassistant.cpp" line="134"/>
-        <location filename="../src/aichatassistant.cpp" line="310"/>
-        <location filename="../src/aichatassistant.cpp" line="347"/>
+        <location filename="../src/aichatassistant.cpp" line="135"/>
+        <location filename="../src/aichatassistant.cpp" line="328"/>
+        <location filename="../src/aichatassistant.cpp" line="365"/>
         <source>Send Query to AI provider</source>
-        <translation type="unfinished"/>
+        <translation>Enviar pergunta ao fornecedor de IA</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="54"/>
         <source>Insert response</source>
-        <translation type="unfinished"/>
+        <translation>Inserir resposta</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="60"/>
@@ -40,29 +40,39 @@
         <translation>Assistente IA</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="203"/>
+        <location filename="../src/aichatassistant.cpp" line="205"/>
         <source>Stop current query !</source>
+        <translation>Parar pesquisa actual!</translation>
+    </message>
+    <message>
+        <location filename="../src/aichatassistant.cpp" line="278"/>
+        <source>System prompt</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="339"/>
-        <location filename="../src/aichatassistant.cpp" line="376"/>
+        <location filename="../src/aichatassistant.cpp" line="292"/>
+        <source>Values between 0 and %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/aichatassistant.cpp" line="357"/>
+        <location filename="../src/aichatassistant.cpp" line="394"/>
         <source>Execute as macro</source>
-        <translation type="unfinished"/>
+        <translation>Executar como macro</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="341"/>
-        <location filename="../src/aichatassistant.cpp" line="378"/>
+        <location filename="../src/aichatassistant.cpp" line="359"/>
+        <location filename="../src/aichatassistant.cpp" line="396"/>
         <source>Insert into text</source>
-        <translation type="unfinished"/>
+        <translation>Inserir no texto</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="279"/>
+        <location filename="../src/aichatassistant.cpp" line="294"/>
         <source>Temperature</source>
         <translation>Temperatura</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="284"/>
+        <location filename="../src/aichatassistant.cpp" line="299"/>
         <source>OK</source>
         <translation>Aceitar</translation>
     </message>
@@ -2508,7 +2518,7 @@ específicos, pode forçar o seu uso activando-os aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3672"/>
         <source>Retrieve list of models</source>
-        <translation type="unfinished"/>
+        <translation>Obter lista de modelos</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3682"/>
