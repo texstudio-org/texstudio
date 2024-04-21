@@ -322,6 +322,9 @@ void AIChatAssistant::onRequestError(QNetworkReply::NetworkError code)
 {
     qDebug()<<"Error:"<<code;
     qDebug()<<m_reply->errorString();
+    // present error in textBrowser
+    textBrowser->setHtml("<p style=\"background-color: red\">Error: "+m_reply->errorString()+"</p>");
+
     m_actSend->setToolTip(tr("Send Query to AI provider"));
     m_actSend->setIcon(getRealIcon("document-send"));
     m_reply->deleteLater();
