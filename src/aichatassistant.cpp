@@ -299,9 +299,7 @@ void AIChatAssistant::slotOptions()
     auto *btOk=new QPushButton(tr("OK"));
     connect(btOk,&QPushButton::clicked,[&](){
         config->ai_systemPrompt=leSystemPrompt->toPlainText();
-        QString temp=leTemp->text();
-        validator->fixup(temp);
-        config->ai_temperature=temp;
+        config->ai_temperature=leTemp->text();
         dlg.close();
     });
     ly->addWidget(btOk);
