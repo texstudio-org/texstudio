@@ -85,6 +85,7 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     ly->addWidget(splt);
     setLayout(ly);
     setWindowTitle(tr("AI chat assistant"));
+    leEntry->setFocus();
 
     networkManager = new QNetworkAccessManager();
 }
@@ -279,6 +280,16 @@ void AIChatAssistant::slotOptions()
     ly->addWidget(leSystemPrompt);
     auto *leTemp=new QLineEdit();
     leTemp->setText(config->ai_temperature);
+    // use validator which allow 0.0 to 1.0/2.0
+    float maxTemp=1.0;
+    QRegularExpression rx("0\\.[0-9]*|1");
+    if(config->ai_provider==1){
+        maxTemp=2.0;
+        rx.setPattern("[01]\\.[0-9]*|2");
+    }
+    auto *validator=new QRegularExpressionValidator(rx);
+    leTemp->setValidator(validator);
+    leTemp->setToolTip(tr("Values between 0 and %1").arg(maxTemp));
     // add label in front of slider
     auto *lblTemp=new QLabel(tr("Temperature"));
     auto *hl=new QHBoxLayout();
@@ -288,7 +299,9 @@ void AIChatAssistant::slotOptions()
     auto *btOk=new QPushButton(tr("OK"));
     connect(btOk,&QPushButton::clicked,[&](){
         config->ai_systemPrompt=leSystemPrompt->toPlainText();
-        config->ai_temperature=leTemp->text();
+        QString temp=leTemp->text();
+        validator->fixup(temp);
+        config->ai_temperature=temp;
         dlg.close();
     });
     ly->addWidget(btOk);
