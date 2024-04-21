@@ -304,13 +304,9 @@ void AIChatAssistant::slotOptions()
     hl->addWidget(lblTemp);
     hl->addWidget(leTemp);
     ly->addLayout(hl);
-    auto *lblStream=new QLabel(tr("Stream results"));
-    auto *cbStream=new QCheckBox();
+    auto *cbStream=new QCheckBox(tr("Stream results"));
     cbStream->setChecked(config->ai_streamResults);
-    auto *hl2=new QHBoxLayout();
-    hl2->addWidget(lblStream);
-    hl2->addWidget(cbStream);
-    ly->addLayout(hl2);
+    ly->addWidget(cbStream);
 
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
                                      | QDialogButtonBox::Cancel);
