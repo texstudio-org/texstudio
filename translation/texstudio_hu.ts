@@ -47,12 +47,12 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="278"/>
         <source>System prompt</source>
-        <translation type="unfinished"/>
+        <translation>Rendszer prompt</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="292"/>
         <source>Values between 0 and %1</source>
-        <translation type="unfinished"/>
+        <translation>0 és %1 közötti értékek</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="357"/>

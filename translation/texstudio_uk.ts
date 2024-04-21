@@ -47,12 +47,12 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="278"/>
         <source>System prompt</source>
-        <translation type="unfinished"/>
+        <translation>Системний запит</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="292"/>
         <source>Values between 0 and %1</source>
-        <translation type="unfinished"/>
+        <translation>Значення між 0 та %1</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="357"/>
