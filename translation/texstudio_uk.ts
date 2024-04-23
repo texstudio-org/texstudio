@@ -57,7 +57,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="307"/>
         <source>Stream results</source>
-        <translation type="unfinished"/>
+        <translation>Результати потоку</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="396"/>

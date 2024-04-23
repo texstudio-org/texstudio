@@ -4,17 +4,17 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="16"/>
         <source>Search in previous conversations</source>
-        <translation type="unfinished"/>
+        <translation>Recherche dans les conversations précédentes</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="20"/>
         <source>Search in conversations</source>
-        <translation type="unfinished"/>
+        <translation>Recherche dans les conversations</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="44"/>
         <source>Enter your query here</source>
-        <translation type="unfinished"/>
+        <translation>Saisissez votre requête ici</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="47"/>
@@ -22,12 +22,12 @@
         <location filename="../src/aichatassistant.cpp" line="358"/>
         <location filename="../src/aichatassistant.cpp" line="404"/>
         <source>Send Query to AI provider</source>
-        <translation type="unfinished"/>
+        <translation>Envoyer une requête au fournisseur d&apos;IA</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="54"/>
         <source>Insert response</source>
-        <translation type="unfinished"/>
+        <translation>Insérer une réponse</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="60"/>
@@ -42,34 +42,34 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="210"/>
         <source>Stop current query !</source>
-        <translation type="unfinished"/>
+        <translation>Arrêter la requête en cours !</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="286"/>
         <source>System prompt</source>
-        <translation type="unfinished"/>
+        <translation>Invite système</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="300"/>
         <source>Values between 0 and %1</source>
-        <translation type="unfinished"/>
+        <translation>Valeurs comprises entre 0 et %1</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="307"/>
         <source>Stream results</source>
-        <translation type="unfinished"/>
+        <translation>Résultats du flux</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="396"/>
         <location filename="../src/aichatassistant.cpp" line="433"/>
         <source>Execute as macro</source>
-        <translation type="unfinished"/>
+        <translation>Exécuter en tant que macro</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="398"/>
         <location filename="../src/aichatassistant.cpp" line="435"/>
         <source>Insert into text</source>
-        <translation type="unfinished"/>
+        <translation>Insérer dans le texte</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="302"/>
@@ -2521,7 +2521,7 @@ leur usage en les activant ici.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3672"/>
         <source>Retrieve list of models</source>
-        <translation type="unfinished"/>
+        <translation>Récupérer la liste des modèles</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3682"/>
