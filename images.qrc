@@ -240,8 +240,8 @@
 <file>images-ng/classic/hide-toolbars_dm.svg</file>
 <file>images-ng/classic/hide-toolbars.svg</file>
 <file>images-ng/classic/languagetool.svg</file>
-<file>images-ng/classic/magnifier-button_dm.svgz</file>
-<file>images-ng/classic/magnifier-button.svgz</file>
+<file>images-ng/classic/magnifier-button_dm.svg</file>
+<file>images-ng/classic/magnifier-button.svg</file>
 <file>images-ng/classic/mathmode.svg</file>
 <file>images-ng/classic/newline_dm.svg</file>
 <file>images-ng/classic/newline.svg</file>
@@ -270,7 +270,7 @@
 <file>images-ng/modern/hide-toolbars.svg</file>
 <file>images-ng/modern/languagetool.svg</file>
 <file>images-ng/modern/magnifier-button.svg</file>
-<file>images-ng/modern/magnifier.svgz</file>
+<file>images-ng/modern/magnifier.svg</file>
 <file>images-ng/modern/mathmode.svg</file>
 <file>images-ng/modern/newline.svg</file>
 <file>images-ng/modern/shrink-viewer.svg</file>
