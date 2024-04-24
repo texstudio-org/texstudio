@@ -1,9 +1,8 @@
 # jsonparse package
-# Matthew Bertucci 2024/04/22 for v0.7.1
+# Matthew Bertucci 2024/04/24 for v0.8.0
 
 #keyvals:\usepackage/jsonparse#c
 debug
-escape=#false,basic,full
 replacement/backspace=%<string%>
 replacement/formfeed=%<string%>
 replacement/linefeed=%<string%>
@@ -25,6 +24,9 @@ replacement/horizontal tab=%<string%>
 \JSONParseArrayValuesMap{token variable}{key%plain}[subkey]{command name}
 \JSONParseArrayValuesMap*{token variable}{key%plain}{command name}
 \JSONParseArrayValuesMap*{token variable}{key%plain}[subkey]{command name}
+\JSONParseArrayIndex
+\JSONParseArrayKey
+\JSONParseArrayValue
 \JSONParseArrayCount{token variable}{key%plain}
 
 \JSONParseSet{keyvals}
