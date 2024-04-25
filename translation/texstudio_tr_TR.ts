@@ -4,17 +4,17 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="16"/>
         <source>Search in previous conversations</source>
-        <translation type="unfinished"/>
+        <translation>Önceki görüşmelerde ara</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="20"/>
         <source>Search in conversations</source>
-        <translation type="unfinished"/>
+        <translation>Görüşmelerde ara</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="44"/>
         <source>Enter your query here</source>
-        <translation type="unfinished"/>
+        <translation>Sorgunuzu buraya yazın</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="47"/>
@@ -22,12 +22,12 @@
         <location filename="../src/aichatassistant.cpp" line="358"/>
         <location filename="../src/aichatassistant.cpp" line="404"/>
         <source>Send Query to AI provider</source>
-        <translation type="unfinished"/>
+        <translation>Sorguyu YZ hizmeti sağlayıcısına gönder</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="54"/>
         <source>Insert response</source>
-        <translation type="unfinished"/>
+        <translation>Yanıt ekle</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="60"/>
@@ -42,34 +42,34 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="210"/>
         <source>Stop current query !</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli sorguyu durdur!</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="286"/>
         <source>System prompt</source>
-        <translation type="unfinished"/>
+        <translation>Sistem istemi</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="300"/>
         <source>Values between 0 and %1</source>
-        <translation type="unfinished"/>
+        <translation>0 ile %1 arasındaki değerler</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="307"/>
         <source>Stream results</source>
-        <translation type="unfinished"/>
+        <translation>Akış sonuçları</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="396"/>
         <location filename="../src/aichatassistant.cpp" line="433"/>
         <source>Execute as macro</source>
-        <translation type="unfinished"/>
+        <translation>Makro olarak yürüt</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="398"/>
         <location filename="../src/aichatassistant.cpp" line="435"/>
         <source>Insert into text</source>
-        <translation type="unfinished"/>
+        <translation>Metne ekle</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="302"/>
@@ -2519,7 +2519,7 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3672"/>
         <source>Retrieve list of models</source>
-        <translation type="unfinished"/>
+        <translation>Model listesini al</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3682"/>
@@ -2960,7 +2960,7 @@ Not: Bu ayar, yalnızca değiştirildikten sonra açılan belgeleri etkiler.</tr
     <message>
         <location filename="../src/configdialog.ui" line="4793"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
-        <translation>Tüm kaydetme işlemlerinden sonra,yani derlemeden önce çıkış yapılsın.</translation>
+        <translation>Tüm kaydetme işlemlerinden sonra, yani derlemeden önce çıkış yapılsın.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4801"/>
@@ -4756,7 +4756,7 @@ Tüm değişiklikleri geri almak istediğinize emin misiniz?</translation>
     <message>
         <location filename="../src/encodingdialog.ui" line="20"/>
         <source>TextLabel</source>
-        <translation>Metin etiketi</translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="../src/encodingdialog.ui" line="27"/>
@@ -6189,7 +6189,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3053"/>
         <source>Auto-hide Toolbar</source>
-        <translation>Araç Çubuğu otomatik gizlensin</translation>
+        <translation>Araç çubuğu otomatik gizlensin</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3069"/>
@@ -6577,7 +6577,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfsplittool.ui" line="46"/>
         <source>Backend:</source>
-        <translation>Art alan:</translation>
+        <translation>Arka uç:</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="86"/>
@@ -8343,7 +8343,7 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="69"/>
         <source>babel Package</source>
-        <translation>babel paketi</translation>
+        <translation>Babel paketi</translation>
     </message>
 </context>
 <context>
@@ -8599,7 +8599,7 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
         <location filename="../src/randomtextgenerator.ui" line="73"/>
         <location filename="../src/randomtextgenerator.ui" line="100"/>
         <source>Higher Order:</source>
-        <translation>Saha yüksek öncelik:</translation>
+        <translation>Daha yüksek öncelik:</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="93"/>
@@ -8952,7 +8952,7 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
     <message>
         <location filename="../src/symbolpanel/symbollistmodel.cpp" line="359"/>
         <source>Unicode Character: </source>
-        <translation>Ünikod karakteri:</translation>
+        <translation>Unikod karakteri:</translation>
     </message>
 </context>
 <context>
@@ -9002,7 +9002,7 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="54"/>
         <source>Delimiters</source>
         <comment>Operator category</comment>
-        <translation>Ayıraçlar</translation>
+        <translation>Ayraçlar</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="55"/>
@@ -12558,8 +12558,8 @@ If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if 
 If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</source>
         <translation>&quot;Tümü görüntülensin&quot; olarak seçildiğinde, tüm ifadeler görüntülenir.
-&quot;En kısa ifade uzunluğu&quot; seçildiğinde, en az bu uzunluktaki ifadeler görüntülenir. (Örnek: &quot;o bir&quot; ifadesi için 4 karakter)
-&quot;En kısa sözcük uzunluğu (bir)&quot; seçildiğinde, bir sözcüğü en az bu uzunlukta olan ifadeler görüntülenir. (Örnek: &quot;o bir&quot; ifadesi için 3 karakter)
+&quot;En kısa ifade uzunluğu&quot; seçildiğinde, en az bu uzunluktaki ifadeler görüntülenir. (Örnek: &quot;o bir&quot; ifadesi için 6 karakter)
+&quot;En kısa sözcük uzunluğu (bir)&quot; seçildiğinde, bir sözcüğü en az bu uzunlukta olan ifadeler görüntülenir. (Örnek: &quot;o bir&quot; ifadesi için 4 karakter)
 &quot;En kısa sözcük uzunluğu (tümü)&quot; seçildiğinde, tüm sözcükleri en az bu uzunlukta olan ifadeler görüntülenir. (Örnek &quot;o bir&quot; ifadesi için 1 karakter)
 &quot;Tümüyle yok sayılsın&quot; seçildiğinde, daha kısa sözcükler tümüyle yok sayılır.
 (Örnek: 3 karakter için, &quot;o bir deneme ise&quot; cümlesi &quot;bir deneme ise&quot; ifadesine eşit olur. Diğer seçenekler bu ifadelerin hiç biri görüntülenmese de &quot;o bir&quot;, &quot;bir deneme&quot;, &quot;deneme ise&quot; şeklinde olur.)</translation>

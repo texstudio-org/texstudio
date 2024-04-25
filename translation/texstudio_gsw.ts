@@ -47,17 +47,17 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="286"/>
         <source>System prompt</source>
-        <translation type="unfinished"/>
+        <translation>Systemygab</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="300"/>
         <source>Values between 0 and %1</source>
-        <translation type="unfinished"/>
+        <translation>Wärt zwüsche 0 u %1</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="307"/>
         <source>Stream results</source>
-        <translation type="unfinished"/>
+        <translation>Ergäbnis streame</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="396"/>

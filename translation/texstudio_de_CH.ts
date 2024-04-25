@@ -47,7 +47,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="286"/>
         <source>System prompt</source>
-        <translation>System Eingabe</translation>
+        <translation>Systemeingabe</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="300"/>
@@ -2373,7 +2373,7 @@ hier erzwungen werden.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3416"/>
         <source>Thesaurus Database:</source>
-        <translation>Thesaurus Datenbank:</translation>
+        <translation>Thesaurusdatenbank:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3446"/>
