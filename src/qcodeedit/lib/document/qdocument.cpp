@@ -5297,7 +5297,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
                     candidates.push(p);
                 }
                 if(p.role&QParenthesis::Close){
-                    if(candidates.top().id == p.id && candidates.top().role&QParenthesis::Open){
+                    if(!candidates.isEmpty() && candidates.top().id == p.id && candidates.top().role&QParenthesis::Open){
                         candidates.pop();
                     }else{
                         candidates.push(p);
