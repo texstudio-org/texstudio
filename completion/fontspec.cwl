@@ -1,7 +1,7 @@
 # fontspec package
 # nja/17 July 2007 for fontspec v1.14
 # muzimuzhi/30 Aug 2019 for fontspec v2.7c
-# Matthew Bertucci 13 Feb 2024 for v2.9a
+# Matthew Bertucci 27 Apr 2024 for v2.9b
 # url: http://www.ctan.org/tex-archive/help/Catalogue/entries/fontspec.html
 
 #keyvals:\usepackage/fontspec#c
@@ -169,7 +169,7 @@ Kerning=#On,Off,Reset,Uppercase,ResetAll
 KpseOnly
 Language=%<language%>
 LetterSpace=%<number%>
-Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll
+Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,Uppercase,Lowercase,ResetAll
 Ligatures=#Required,Common,Contextual,Rare,Discretionary,Historic,TeX
 LocalForms=#On,Off,Reset
 NFSSFamily=%<font family%>
