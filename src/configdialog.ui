@@ -4024,6 +4024,11 @@ them here.</string>
                       <string>Preview with lualatex</string>
                      </property>
                     </item>
+                    <item>
+                     <property name="text">
+                      <string>Preview with xelatex</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                   <item row="1" column="0">
