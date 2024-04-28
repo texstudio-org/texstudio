@@ -4,17 +4,17 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="16"/>
         <source>Search in previous conversations</source>
-        <translation type="unfinished"/>
+        <translation>Εύρεση στις προηγούμενες συνομιλίες</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="20"/>
         <source>Search in conversations</source>
-        <translation type="unfinished"/>
+        <translation>Εύρεση στις συνομιλίες</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="44"/>
         <source>Enter your query here</source>
-        <translation type="unfinished"/>
+        <translation>Εισάγετε την ερώτησή σας εδώ</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="47"/>
@@ -22,12 +22,12 @@
         <location filename="../src/aichatassistant.cpp" line="358"/>
         <location filename="../src/aichatassistant.cpp" line="404"/>
         <source>Send Query to AI provider</source>
-        <translation type="unfinished"/>
+        <translation>Αποστολή ερώτησης στον πάροχο AI</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="54"/>
         <source>Insert response</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή απόκρισης</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="60"/>
@@ -37,44 +37,44 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="87"/>
         <source>AI chat assistant</source>
-        <translation type="unfinished"/>
+        <translation>Βοηθός AI</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="210"/>
         <source>Stop current query !</source>
-        <translation type="unfinished"/>
+        <translation>Διακοπή</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="286"/>
         <source>System prompt</source>
-        <translation type="unfinished"/>
+        <translation>System prompt</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="300"/>
         <source>Values between 0 and %1</source>
-        <translation type="unfinished"/>
+        <translation>Τιμές από 0 μέχρι %1</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="307"/>
         <source>Stream results</source>
-        <translation type="unfinished"/>
+        <translation>Μετάδοση αποτελεσμάτων</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="396"/>
         <location filename="../src/aichatassistant.cpp" line="433"/>
         <source>Execute as macro</source>
-        <translation type="unfinished"/>
+        <translation>Εκτέλεση ως μακροεντολή</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="398"/>
         <location filename="../src/aichatassistant.cpp" line="435"/>
         <source>Insert into text</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή ως κείμενο</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="302"/>
         <source>Temperature</source>
-        <translation type="unfinished"/>
+        <translation>Θερμοκρασία</translation>
     </message>
 </context>
 <context>
@@ -84,22 +84,22 @@
         <location filename="../src/aiquerystoragemodel.cpp" line="142"/>
         <location filename="../src/aiquerystoragemodel.cpp" line="182"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Σήμερα</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="182"/>
         <source>Last Week</source>
-        <translation type="unfinished"/>
+        <translation>Προηγούμενη εβδομάδα</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="182"/>
         <source>Last Month</source>
-        <translation type="unfinished"/>
+        <translation>Προηγούμενος μήνας</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="201"/>
         <source>Older</source>
-        <translation type="unfinished"/>
+        <translation>Παλαιότερα</translation>
     </message>
 </context>
 <context>
@@ -2454,72 +2454,72 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3589"/>
         <source>Store the conversation with AI provider on disk to allow later retrieval</source>
-        <translation type="unfinished"/>
+        <translation>Αποθήκευση της συνομιλίας του AI στον δίσκο ώστε να είναι δυνατή η ανάκτησή της αργότερα.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3592"/>
         <source>AI chat assistant</source>
-        <translation type="unfinished"/>
+        <translation>Βοηθός AI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3637"/>
         <source>open-mistral-7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mistral-7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3642"/>
         <source>open-mixtral-8x7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mixtral-8x7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3647"/>
         <source>mistral-small-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-small-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3652"/>
         <source>mistral-medium-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-medium-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3657"/>
         <source>mistral-large-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-large-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3616"/>
         <source>Mistral AI</source>
-        <translation type="unfinished"/>
+        <translation>Mistral AI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3621"/>
         <source>OpenAI</source>
-        <translation type="unfinished"/>
+        <translation>OpenAI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3608"/>
         <source>AI provider:</source>
-        <translation type="unfinished"/>
+        <translation>Πάροχος AI:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3665"/>
         <source>Preferred model:</source>
-        <translation type="unfinished"/>
+        <translation>Προτιμώμενο μοντέλο:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3598"/>
         <source>API key:</source>
-        <translation type="unfinished"/>
+        <translation>API key:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3629"/>
         <source>Record Conversation</source>
-        <translation type="unfinished"/>
+        <translation>Καταγραφή συνομιλίας</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3672"/>
         <source>Retrieve list of models</source>
-        <translation type="unfinished"/>
+        <translation>Λήψη λίστας μοντέλων</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3682"/>
@@ -11023,7 +11023,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1269"/>
         <source>AI &amp;Chat...</source>
-        <translation type="unfinished"/>
+        <translation>AI &amp;Chat...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1272"/>
@@ -11703,12 +11703,12 @@ Do you want to continue?</source>
     <message>
         <location filename="../src/texstudio.cpp" line="5424"/>
         <source>AI Chat</source>
-        <translation type="unfinished"/>
+        <translation>AI Chat</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5424"/>
         <source>Please set the API key in the settings.</source>
-        <translation type="unfinished"/>
+        <translation>Για να συνεχίσετε, πρέπει να ορίσετε το API key στις ρυθμίσεις.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5512"/>
