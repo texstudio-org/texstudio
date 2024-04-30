@@ -1,8 +1,9 @@
 # jsonparse package
-# Matthew Bertucci 2024/04/24 for v0.8.0
+# Matthew Bertucci 2024/04/30 for v0.8.3
 
 #keyvals:\usepackage/jsonparse#c
 debug
+escape={%<list%>}
 replacement/backspace=%<string%>
 replacement/formfeed=%<string%>
 replacement/linefeed=%<string%>
@@ -11,8 +12,10 @@ replacement/horizontal tab=%<string%>
 #endkeyvals
 
 \JSONParse{token variable%cmd}{JSON string}#d
+\JSONParse[file]{token variable%cmd}{JSON string}#d
 \JSONParseFromFile{token variable%cmd}{JSON file}#d
-\JSONParseKeys{token variabel}{token variable%cmd}#d
+\JSONParseFromFile[file]{token variable%cmd}{JSON file}#d
+\JSONParseKeys{token variable}{token variable%cmd}#d
 \JSONParseValue{token variable}{key%plain}
 \JSONParseValue*{token variable}{key%plain}
 \JSONParseExpandableValue{token variable}{key%plain}
