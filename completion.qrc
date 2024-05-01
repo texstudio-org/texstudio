@@ -2303,6 +2303,7 @@
 <file>completion/mathenv.cwl</file>
 <file>completion/mathfixs.cwl</file>
 <file>completion/mathfont.cwl</file>
+<file>completion/mathgreeks.cwl</file>
 <file>completion/mathpartir.cwl</file>
 <file>completion/mathpazo.cwl</file>
 <file>completion/mathpi.cwl</file>
@@ -3160,6 +3161,7 @@
 <file>completion/RoueQuestions.cwl</file>
 <file>completion/roundbox.cwl</file>
 <file>completion/Royal.cwl</file>
+<file>completion/rpgicons.cwl</file>
 <file>completion/rsfso.cwl</file>
 <file>completion/rsphrase.cwl</file>
 <file>completion/rterface.cwl</file>
@@ -3701,6 +3703,7 @@
 <file>completion/tikzlibrarykarnaugh.cwl</file>
 <file>completion/tikzlibraryknots.cwl</file>
 <file>completion/tikzlibrarylindenmayersystems.cwl</file>
+<file>completion/tikzlibrarymarmots.cwl</file>
 <file>completion/tikzlibrarymath.cwl</file>
 <file>completion/tikzlibrarymatrix.cwl</file>
 <file>completion/tikzlibrarymatrix.skeleton.cwl</file>
@@ -3779,6 +3782,7 @@
 <file>completion/tikzlings-snowmen.cwl</file>
 <file>completion/tikzlings-squirrels.cwl</file>
 <file>completion/tikzlings-wolves.cwl</file>
+<file>completion/tikzmarmots.cwl</file>
 <file>completion/tikz-mirror-lens.cwl</file>
 <file>completion/tikz-network.cwl</file>
 <file>completion/tikz-opm.cwl</file>
