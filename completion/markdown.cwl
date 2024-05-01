@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2024/02/19 for v3.4.1-0-g457226ae
+# Matthew Bertucci 2024/05/01 for v3.5.0-0-gfd01a252
 
 #include:paralist
 #include:amsmath
@@ -24,6 +24,9 @@
 \begin{markdown}[options%keyvals]
 \end{markdown}
 
+\markinline{markdown text}
+\markinline[options%keyvals]{markdown text}
+
 \markdownInput{file}#i
 \markdownInput[options%keyvals]{file}#i
 
@@ -31,7 +34,7 @@
 \markdownSetupSnippet{name%specialDef}{options%keyvals}#s#%markdownsnippet
 \markdownIfSnippetExists{name}{true}{false}#*
 
-#keyvals:\usepackage/markdown#c,\begin{markdown}#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c
+#keyvals:\usepackage/markdown#c,\begin{markdown}#c,\markinline#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c
 plain#true,false
 import=#witiko/dot,witiko/graphicx/http,witiko/tilde,witiko/markdown/techdoc
 snippet=#%markdownsnippet
@@ -98,7 +101,7 @@ frozenCache#true,false
 frozenCacheFileName=%<file name%>
 #endkeyvals
 
-#keyvals:\begin{markdown}#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c
+#keyvals:\begin{markdown}#c,\markinline#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c
 renderers={%<renderer options%>}
 rendererPrototypes={%<renderer prototype options%>}
 code={%<code%>}
@@ -112,10 +115,6 @@ jekyllDataRenderers={%<keyvals%>}
 #ifOption:theme=witiko/graphicx/http
 #include:catchfile
 #include:grffile
-#endif
-
-#ifOption:theme=witiko/markdown/techdoc
-#include:varioref
 #endif
 
 #ifOption:lineBlocks
@@ -447,3 +446,4 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererUntickedBox#*
 \markdownRendererUntickedBoxPrototype#*
 \markdownVersion#S
+\markinlinePlainTeX{markdown text}#*
