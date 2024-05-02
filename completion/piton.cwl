@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/04/14 for v2.8
+# Matthew Bertucci 2024/04/29 for v3.0
 
 #include:l3keys2e
 #include:luatexbase
@@ -86,7 +86,7 @@ line-numbers/start
 
 # keys for both \PitonOptions and \begin{Piton}
 #keyvals:\PitonOptions,\begin{Piton}
-language=#Python,OCaml,C,SQL,minimal
+language=#Python,OCaml,C,SQL,minimal,%newpitonlang
 gobble=%<integer%>
 auto-gobble
 tabs-auto-gobble
@@ -151,10 +151,10 @@ Name.Module=%<formatting%>
 TypeParameter=%<formatting%>
 Preproc=%<formatting%>
 Name.Table=%<formatting%>
+Directive=%<formatting%>
 # not documented
 FormattingType=%<formatting%>
 Comment.Math=%<formatting%>
-directive=%<formatting%>
 Discard=%<formatting%>
 Identifier=%<formatting%>
 Keyword2=%<formatting%>
@@ -201,10 +201,20 @@ Name.Module
 TypeParameter
 Preproc
 Name.Table
+Directive
 # not documented
 FormattingType
 Comment.Math
+Discard
 Identifier
+Keyword2
+Keyword3
+Keyword4
+Keyword5
+Keyword6
+Keyword7
+Keyword8
+Keyword9
 ParseAgain.noCR
 ParseAgain
 Prompt
@@ -215,9 +225,31 @@ Prompt
 
 \NewPitonEnvironment{envname}{xargs}{begdef}{enddef}#N
 
+\NewPitonLanguage{language}{keyvals}#s#%newpitonlang
+
+#keyvals:\NewPitonLanguage
+morekeywords={%<list of keywords%>}
+morekeywords=[%<number%>]{%<list of keywords%>}
+otherkeywords={%<keywords%>}
+sensitive#true,false
+keywordsprefix=%<prefix%>
+moretexcs={%<list of csnames%>}
+moretexcs=[%<class number%>]{%<list of csnames%>}
+morestring=%<delimiter%>
+morestring=[%<b|d|m|s%>]%<delimiter%>
+morecomment=%<delimiter(s)%>
+morecomment=[%<i|l|s|n%>]%<delimiter(s)%>
+moredelim=[%<type%>][%<style%>]%<delimiters%>
+moredelim=*[%<type%>][%<style%>]%<delimiters%>
+moredelim=**[%<type%>][%<style%>]%<delimiters%>
+moredirectives={%<list of compiler directives%>}
+tag=%<<char1><char2>%>
+alsodigit={%<character sequence%>}
+alsoletter={%<character sequence%>}
+#endkeyvals
+
 \SetPitonIdentifier{id1,id2,...}{code}
 \SetPitonIdentifier[language]{id1,id2,...}{code}
 
-\NewPitonLanguage{arg1}{arg2}#S
 \PitonFileVersion#S
 \PitonFileDate#S

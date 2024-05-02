@@ -1,5 +1,5 @@
 # atkinson package
-# Matthew Bertucci 1/11/2022
+# Matthew Bertucci 2024/04/20
 
 #include:ifxetex
 #include:ifluatex
@@ -22,9 +22,6 @@ p
 \atkinson#*
 \atkinsonlf#*
 \atkinsontlf#*
-
-\atkinsonLF{text}
-\atkinsonTLF{text}
 
 # from T1 option of fontenc
 \DH#n
