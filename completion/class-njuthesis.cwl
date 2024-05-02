@@ -1,5 +1,5 @@
 # njuthesis class
-# Matthew Bertucci 2024/03/19 for v1.4.0
+# Matthew Bertucci 2024/04/22 for v1.4.1
 
 #include:xtemplate
 #include:class-ctexbook
@@ -33,7 +33,8 @@ decl-page#true,false
 oneside
 twoside
 draft
-anonymous#true,false
+anonymous
+anonymous-mode/no-nju#true,false
 biblatex#true,false
 cleveref#true,false
 ntheorem#true,false

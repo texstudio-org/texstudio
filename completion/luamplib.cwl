@@ -1,5 +1,5 @@
 # luamplib package
-# Matthew Bertucci 3/28/2022 for v2.23.0
+# Matthew Bertucci 2024/05/01 for v2.29.0
 
 #include:luatex
 
@@ -11,6 +11,10 @@
 \endmplibcode#S
 \mplibforcehmode
 \mplibnoforcehmode
+\mpfig
+\mpfig*
+\endmpfig
+\mpfiginstancename#*
 \mpliblegacybehavior{choice%keyvals}
 \MPwidth
 \MPheight
@@ -53,20 +57,25 @@ metafun
 #endkeyvals
 
 # not documented
-\domplibcolor{color}{arg}#*
-\ltxdomplibcode{arg}#*
-\ltxdomplibcodeindeed{arg}#*
-\mplibdocancelnocache{arg}#*
-\mplibdocode{arg}#*
-\mplibdoeveryendmplib[instance name]{MetaPost code}#*
-\mplibdoeveryendmplib{MetaPost code}#*
-\mplibdoeverymplib{MetaPost code}#*
-\mplibdomakenocache{arg}#*
-\mplibputtextbox{arg}#*
-\mplibscratchbox#*
-\mplibsetupcatcodes#*
-\mplibstarttoPDF{llx}{lly}{urx}{ury}#*
-\mplibstoptoPDF#*
-\mplibtextext{font}{size}{text}{hskip}{raise}#*
-\mplibtmptoks{arg}#*
-\mplibtoPDF{pdfliteral}#*
+\domplibcolor{color}{arg}#S
+\ltxdomplibcode{arg}#S
+\ltxdomplibcodeindeed{arg}#S
+\mplibdocancelnocache{arg}#S
+\mplibdocode{arg}#S
+\mplibdoeveryendmplib[instance name]{MetaPost code}#S
+\mplibdoeveryendmplib{MetaPost code}#S
+\mplibdoeverymplib{MetaPost code}#S
+\mplibdomainmpfig#S
+\mplibdomakenocache{arg}#S
+\mplibdoprempfig#S
+\mplibmainmpfig#S
+\mplibmpfigbranch#S
+\mplibprempfig{arg}#S
+\mplibputtextbox{arg}#S
+\mplibscratchbox#S
+\mplibsetupcatcodes#S
+\mplibstarttoPDF{llx}{lly}{urx}{ury}#S
+\mplibstoptoPDF#S
+\mplibtextext{font}{size}{text}{hskip}{raise}#S
+\mplibtmptoks{arg}#S
+\mplibtoPDF{pdfliteral}#S

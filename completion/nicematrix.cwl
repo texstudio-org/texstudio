@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2024/02/15 for v6.27
+# Matthew Bertucci 2024/04/23 for v6.27b
 
 #include:amsmath
 #include:array
@@ -198,6 +198,7 @@ rounded-corners=##L
 borders={%<borders options%>}
 hvlines
 v-center
+m
 t
 b
 T

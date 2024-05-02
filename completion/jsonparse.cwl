@@ -1,27 +1,45 @@
 # jsonparse package
-# Matthew Bertucci 2024/04/11 for v0.5.6
+# Matthew Bertucci 2024/04/30 for v0.8.3
 
 #keyvals:\usepackage/jsonparse#c
 debug
+escape={%<list%>}
+replacement/backspace=%<string%>
+replacement/formfeed=%<string%>
+replacement/linefeed=%<string%>
+replacement/carriage return=%<string%>
+replacement/horizontal tab=%<string%>
 #endkeyvals
 
 \JSONParse{token variable%cmd}{JSON string}#d
+\JSONParse[file]{token variable%cmd}{JSON string}#d
 \JSONParseFromFile{token variable%cmd}{JSON file}#d
-\JSONParseGetValue{token variable}{key%plain}
-\JSONParseGetValue*{token variable}{key%plain}
-\JSONParseGetArrayValues{token variable}{key%plain}{string}
-\JSONParseGetArrayValues{token variable}{key%plain}[subkey]{string}
-\JSONParseGetArrayValues*{token variable}{key%plain}{string}
-\JSONParseGetArrayValues*{token variable}{key%plain}[subkey]{string}
-\JSONParseUseArrayValues{token variable}{key%plain}{command name}
-\JSONParseUseArrayValues{token variable}{key%plain}[subkey]{command name}
-\JSONParseUseArrayValues*{token variable}{key%plain}{command name}
-\JSONParseUseArrayValues*{token variable}{key%plain}[subkey]{command name}
-\JSONParseGetArrayCount{token variable}{key%plain}
-\JSONParseSetChildSeparator{string}
-\JSONParseSetArraySeparator{string}{string}
-\JSONParseSetTrueString{string}
-\JSONParseSetFalseString{string}
-\JSONParseSetNullString{string}
-\JSONParseSetArrayIndexZeroBased
-\JSONParseSetArrayIndexOneBased
+\JSONParseFromFile[file]{token variable%cmd}{JSON file}#d
+\JSONParseKeys{token variable}{token variable%cmd}#d
+\JSONParseValue{token variable}{key%plain}
+\JSONParseValue*{token variable}{key%plain}
+\JSONParseExpandableValue{token variable}{key%plain}
+\JSONParseArrayValues{token variable}{key%plain}{string}
+\JSONParseArrayValues{token variable}{key%plain}[subkey]{string}
+\JSONParseArrayValues*{token variable}{key%plain}{string}
+\JSONParseArrayValues*{token variable}{key%plain}[subkey]{string}
+\JSONParseArrayValuesMap{token variable}{key%plain}{command name}
+\JSONParseArrayValuesMap{token variable}{key%plain}[subkey]{command name}
+\JSONParseArrayValuesMap*{token variable}{key%plain}{command name}
+\JSONParseArrayValuesMap*{token variable}{key%plain}[subkey]{command name}
+\JSONParseArrayIndex
+\JSONParseArrayKey
+\JSONParseArrayValue
+\JSONParseArrayCount{token variable}{key%plain}
+
+\JSONParseSet{keyvals}
+
+#keyvals:\JSONParseSet
+separator/child=%<string%>
+separator/array left=%<string%>
+separator/array right=%<string%>
+replacement/true=%<string%>
+replacement/false=%<string%>
+replacement/null=%<string%>
+array index zero-based#true,false
+#endkeyvals

@@ -1,5 +1,5 @@
 # tikzducks package
-# Matthew Bertucci 8/12/2021
+# Matthew Bertucci 2024/04/19 for v1.7
 
 #include:tikz
 #include:tikzlibrarypatterns
@@ -217,6 +217,12 @@ overleaf
 name=%<name%>
 stripes
 stripes={%<code%>}
+banana
+banana=#%color
+stick
+stick=#%color
+leaf
+leaf=#%color
 #endkeyvals
 
 ## generic tikz options

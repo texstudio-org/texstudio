@@ -1,5 +1,5 @@
 # osda package
-# Matthew Bertucci 2023/04/05 for v1.2.0
+# Matthew Bertucci 2024/05/01 for v1.4.0
 
 #include:footmisc
 #include:flushend
@@ -17,7 +17,7 @@
 \osdanotice[options%keyvals]
 \osdaset{options%keyvals}
 
-#keyvals:\usepackage/osda#c,\osdafootnote,\osdanotice,\osdaset
+#keyvals:\usepackage/osda#c,\osdafootnote#c,\osdanotice#c,\osdaset#c
 auto#true,false
 %<year%>
 cc-by
@@ -51,6 +51,6 @@ hostconference/acronym=%<acronym%>
 #endkeyvals
 
 # not documented
-\WrapLR{left-image}{right-image}{text}#*
-\blfootnote{text}#*
-\osdalogo{width}#*
+\WrapLR{left-image}{right-image}{text}#S
+\blfootnote{text}#S
+\osdalogo{width}#S
