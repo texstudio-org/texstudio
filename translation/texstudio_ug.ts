@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="87"/>
         <source>AI chat assistant</source>
-        <translation type="unfinished"/>
+        <translation>AI ياردەمچى</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="210"/>
@@ -74,7 +74,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="302"/>
         <source>Temperature</source>
-        <translation type="unfinished"/>
+        <translation>تېمپېراتۇرا</translation>
     </message>
 </context>
 <context>
@@ -84,22 +84,22 @@
         <location filename="../src/aiquerystoragemodel.cpp" line="142"/>
         <location filename="../src/aiquerystoragemodel.cpp" line="182"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>بۈگۈن</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="182"/>
         <source>Last Week</source>
-        <translation type="unfinished"/>
+        <translation>ئاخېرقى ھەپتە</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="182"/>
         <source>Last Month</source>
-        <translation type="unfinished"/>
+        <translation>ئاخېرقى ئاي</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="201"/>
         <source>Older</source>
-        <translation type="unfinished"/>
+        <translation>كونا</translation>
     </message>
 </context>
 <context>
@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="61"/>
         <source>Latest stable version: %1</source>
-        <translation type="unfinished"/>
+        <translation>ئەڭ يېڭى مۇقىم نەشىرى: %1</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="62"/>
@@ -435,7 +435,7 @@ Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
     <message>
         <location filename="../src/bibtexdialog.cpp" line="330"/>
         <source>Software</source>
-        <translation type="unfinished"/>
+        <translation>يۇمشاق دېتال</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="345"/>
@@ -511,7 +511,7 @@ Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
     <message>
         <location filename="../src/buildmanager.cpp" line="122"/>
         <location filename="../src/buildmanager.cpp" line="144"/>
-        <location filename="../src/buildmanager.cpp" line="1979"/>
+        <location filename="../src/buildmanager.cpp" line="1990"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;نامەلۇم&gt;</translation>
     </message>
@@ -786,12 +786,12 @@ Please change your configuration and define command lists only at &apos;Options 
         <translation>ئاتوم بۇيرۇق</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1945"/>
+        <location filename="../src/buildmanager.cpp" line="1956"/>
         <source>Internal Pdf Viewer</source>
         <translation>ئىچكى PDF كۆرگۈچ</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2228"/>
+        <location filename="../src/buildmanager.cpp" line="2253"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation>ۋاقتى ئۆتكەن ئىككى خىل بەلگە بىلەن dde: // بۇيرۇقىنى ئىشلەتتىڭىز. ئۇنى باشقا بىر قىستۇرما قوشۇش ئارقىلىق dde: /// دىن ئۈچنى كېسىش بۇيرۇقىغا ئۆزگەرتىڭ.</translation>
     </message>
@@ -884,7 +884,7 @@ Please change your configuration and define command lists only at &apos;Options 
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="182"/>
-        <location filename="../src/configdialog.ui" line="4884"/>
+        <location filename="../src/configdialog.ui" line="4889"/>
         <source>Color Scheme:</source>
         <translation>رەڭ لايىھىسى:</translation>
     </message>
@@ -922,7 +922,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="283"/>
         <location filename="../src/configdialog.ui" line="1808"/>
-        <location filename="../src/configdialog.ui" line="4912"/>
+        <location filename="../src/configdialog.ui" line="4917"/>
         <source>Font Size:</source>
         <translation>فونىت چوڭلۇقى:</translation>
     </message>
@@ -939,12 +939,12 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="330"/>
         <source>Icon Theme:</source>
-        <translation type="unfinished"/>
+        <translation>تەگلىك:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="338"/>
         <source>Colibre</source>
-        <translation type="unfinished"/>
+        <translation>Colibre</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="343"/>
@@ -1142,7 +1142,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="872"/>
         <location filename="../src/configdialog.ui" line="2317"/>
-        <location filename="../src/configdialog.ui" line="4093"/>
+        <location filename="../src/configdialog.ui" line="4098"/>
         <source>Never</source>
         <translation>ھەرگىز</translation>
     </message>
@@ -1474,7 +1474,7 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1711"/>
-        <location filename="../src/configdialog.ui" line="4898"/>
+        <location filename="../src/configdialog.ui" line="4903"/>
         <source>Font Family:</source>
         <translation>فونىت ئائىلىسى:</translation>
     </message>
@@ -1515,8 +1515,8 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1789"/>
-        <location filename="../src/configdialog.ui" line="4174"/>
-        <location filename="../src/configdialog.ui" line="4271"/>
+        <location filename="../src/configdialog.ui" line="4179"/>
+        <location filename="../src/configdialog.ui" line="4276"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -2454,7 +2454,7 @@ TXS تاماملاش ھۆججىتىنى ئاپتوماتىك قاچىلاشقا 
     <message>
         <location filename="../src/configdialog.ui" line="3592"/>
         <source>AI chat assistant</source>
-        <translation type="unfinished"/>
+        <translation>AI ياردەمچى</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3637"/>
@@ -2484,27 +2484,27 @@ TXS تاماملاش ھۆججىتىنى ئاپتوماتىك قاچىلاشقا 
     <message>
         <location filename="../src/configdialog.ui" line="3616"/>
         <source>Mistral AI</source>
-        <translation type="unfinished"/>
+        <translation>Mistral AI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3621"/>
         <source>OpenAI</source>
-        <translation type="unfinished"/>
+        <translation>OpenAI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3608"/>
         <source>AI provider:</source>
-        <translation type="unfinished"/>
+        <translation>AI تەمىنلىگۈچى</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3665"/>
         <source>Preferred model:</source>
-        <translation type="unfinished"/>
+        <translation>ياقتۇرغان مودېل:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3598"/>
         <source>API key:</source>
-        <translation type="unfinished"/>
+        <translation>API ئاچقۇ:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3629"/>
@@ -2647,232 +2647,237 @@ TXS تاماملاش ھۆججىتىنى ئاپتوماتىك قاچىلاشقا 
         <translation>lualatex دا كۆرۈش</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4032"/>
+        <location filename="../src/configdialog.ui" line="4029"/>
+        <source>Preview with xelatex</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4037"/>
         <source>Display Mode:</source>
         <translation>كۆرسىتىش ھالىتى:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4042"/>
+        <location filename="../src/configdialog.ui" line="4047"/>
         <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4049"/>
+        <location filename="../src/configdialog.ui" line="4054"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>ئەگەر گۇرۇپپا يوشۇرۇن بولسا ئالدىن كۆرۈشنى قورال كۆرسەتكۈچى قىلىپ كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4054"/>
+        <location filename="../src/configdialog.ui" line="4059"/>
         <source>Always show preview in preview panel</source>
         <translation>ئالدىن كۆرۈش تاختىسىدا ھەمىشە ئالدىن كۆرۈشنى كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4059"/>
+        <location filename="../src/configdialog.ui" line="4064"/>
         <source>Always show preview as tool tip</source>
         <translation>ئالدىن كۆرۈشنى قورال ئۇچى سۈپىتىدە كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4064"/>
+        <location filename="../src/configdialog.ui" line="4069"/>
         <source>Always show both</source>
         <translation>ھەمىشە ھەر ئىككىسىنى كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4069"/>
+        <location filename="../src/configdialog.ui" line="4074"/>
         <source>Inline</source>
         <translation>قۇرئىچى</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4074"/>
+        <location filename="../src/configdialog.ui" line="4079"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>قىستۇرما كۆرگۈچتە كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4082"/>
+        <location filename="../src/configdialog.ui" line="4087"/>
         <source>Update the preview on text change</source>
         <translation>تېكىست ئۆزگەرتىشتىكى ئالدىن كۆرۈشنى يېڭىلاڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4085"/>
+        <location filename="../src/configdialog.ui" line="4090"/>
         <source>Auto Update:</source>
         <translation>ئاپتوماتىك يېڭىلاش:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4098"/>
+        <location filename="../src/configdialog.ui" line="4103"/>
         <source>Previously previewed text</source>
         <translation>ئىلگىرى ئالدىن يېزىلغان تېكىست</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4106"/>
+        <location filename="../src/configdialog.ui" line="4111"/>
         <source>Auto Update Delay:</source>
         <translation>ئاپتوماتىك يېڭىلاش ئارلىقى:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4116"/>
+        <location filename="../src/configdialog.ui" line="4121"/>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4132"/>
+        <location filename="../src/configdialog.ui" line="4137"/>
         <source>Replace beamer class by article</source>
         <translation>يورۇتۇش سىنىپىنى ماقالە بويىچە ئالماشتۇرۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4145"/>
+        <location filename="../src/configdialog.ui" line="4150"/>
         <source>Precompile Preamble</source>
         <translation>Precompile Preamble</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4161"/>
-        <location filename="../src/configdialog.ui" line="4284"/>
+        <location filename="../src/configdialog.ui" line="4166"/>
+        <location filename="../src/configdialog.ui" line="4289"/>
         <source>Scaling:</source>
         <translation>گىرۋەك:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4256"/>
+        <location filename="../src/configdialog.ui" line="4261"/>
         <location filename="../src/configdialog.cpp" line="547"/>
         <source>Internal PDF Viewer</source>
         <translation>ئىچكى PDF كۆرگۈچ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4291"/>
+        <location filename="../src/configdialog.ui" line="4296"/>
         <source>Load Strategy:</source>
         <translation>يۈكلەش ئىستراتېگىيىسى:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4301"/>
+        <location filename="../src/configdialog.ui" line="4306"/>
         <source>Auto-recompile document on changes</source>
         <translation>ئۆزگەرتىشكە مۇناسىۋەتلىك ھۆججەتلەرنى ئاپتوماتىك تولۇقلاش</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4308"/>
+        <location filename="../src/configdialog.ui" line="4313"/>
         <source>Cache Size:</source>
         <translation>تۇتقۇ چوڭلۇقى:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4318"/>
-        <location filename="../src/configdialog.ui" line="4683"/>
+        <location filename="../src/configdialog.ui" line="4323"/>
+        <location filename="../src/configdialog.ui" line="4688"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4340"/>
+        <location filename="../src/configdialog.ui" line="4345"/>
         <source>Infinite</source>
         <translation>چەكسىز</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4359"/>
+        <location filename="../src/configdialog.ui" line="4364"/>
         <source> dpi</source>
         <translation> dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4369"/>
+        <location filename="../src/configdialog.ui" line="4374"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PDF نىڭ قانداق يۈكلىنىدىغانلىقىنى بەلگىلەيدۇ:&lt;/p&gt;&lt;p&gt;&lt;b&gt;غەملەك:&lt;/b&gt;ھۆججەتنى بۇففېرغا يۈكلەپ ، مۇكەممەللىكىنى تەكشۈرۈڭ. ئاندىن سانلىق مەلۇماتنى poppler غا يوللاڭ. بۇ ئاساسلىقى تېما بىخەتەر بولمىغان كونا پوپايكىلارنىڭ (&amp; lt; 0.24) تېزلىكى سۈپىتىدە ئوتتۇرىغا قويۇلغان. ئىگىلىنىشچە ، چوڭ بۇففېرنى قاچىلىغاندا پوپايكا سوقۇلۇپ كېتىشى مۇمكىن. شۇڭلاشقا بۇ تاللاشنىڭ ۋاقتى ئۆتكەن.&lt;/p&gt;&lt;p&gt;&lt;b&gt;بىراقلا:&lt;/b&gt;يەرلىك poppler ھۆججىتىنى يۈكلەڭ. بۇ ئەڭ تېز ، ئەمما تولۇق بولمىغان ھۆججەتلەرنى تەكشۈرۈشكە يول قويمايدۇ.&lt;/p&gt;&lt;p&gt;&lt;b&gt; ئارلاشقان(تەۋسىيە):&lt;/b&gt;ئالدى بىلەن ھۆججەتنى بۇففېرغا يۈكلەڭ ۋە مۇكەممەللىكىنى تەكشۈرۈڭ. بۇ ھۆججەتنى كىچىك ھۆججەتلەرگە ئىشلىتىڭ (&amp; lt; 50MB). چوڭ ھۆججەتلەر يەرلىك poppler ھۆججىتىنى قاچىلاش ئارقىلىق يۈكلىنىدۇ. بۇ ھۆججەت تەكشۈرۈشنى بىرلەشتۈرۈپ ، چوڭ PDF ھۆججەتلىرىدىكى مەسىلىلەرنىڭ ئالدىنى ئالىدۇ.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4379"/>
+        <location filename="../src/configdialog.ui" line="4384"/>
         <source>Buffered</source>
         <translation>غەملەك</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4384"/>
+        <location filename="../src/configdialog.ui" line="4389"/>
         <source>Direct</source>
         <translation>تۈزلا</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4389"/>
+        <location filename="../src/configdialog.ui" line="4394"/>
         <source>Hybrid</source>
         <translation>ئارىلاش</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4397"/>
+        <location filename="../src/configdialog.ui" line="4402"/>
         <source>Highlight Duration</source>
         <translation>چاقناش مەزگىلى</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4407"/>
+        <location filename="../src/configdialog.ui" line="4412"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>ئالتە تەرەپلىك RGBA قىممىتى قىلىپ بەلگىلەڭ. ئەسكەرتىش: سۈزۈكلۈك تەلەپ قىلىنىدۇ ، چۈنكى تېخنىكىلىق چەكلىمىلەر سەۋەبىدىن يورۇتۇش تېكىستنىڭ ئۈستىگە سىزىلغان.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4410"/>
+        <location filename="../src/configdialog.ui" line="4415"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4424"/>
+        <location filename="../src/configdialog.ui" line="4429"/>
         <source>Rectangle</source>
-        <translation type="unfinished"/>
+        <translation>تىكتۆتبۇلۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4429"/>
+        <location filename="../src/configdialog.ui" line="4434"/>
         <source>Circle</source>
         <translation>چەمبەر</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4450"/>
+        <location filename="../src/configdialog.ui" line="4455"/>
         <source>Highlight Color</source>
         <translation>رەڭنى گەۋدىلەندۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4460"/>
+        <location filename="../src/configdialog.ui" line="4465"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation>سۈكۈتتىكى تەگلىك رەڭگى. ئالتە تەرەپلىك RGB قىممىتى قىلىپ بەلگىلەڭ. ئەسكەرتىش: بۇ پەقەت تاللاش ئۆزگەرتىلگەندىن كېيىن يۈكلەنگەن PDF لارغا تەسىر كۆرسىتىدۇ. ئاللىبۇرۇن ئېچىلغان PDF نىڭ قەغەز رەڭگى ئۆزگەرتىلمىگەن.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4485"/>
+        <location filename="../src/configdialog.ui" line="4490"/>
         <source>Border</source>
         <translation>گىرۋەك</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4492"/>
+        <location filename="../src/configdialog.ui" line="4497"/>
         <source>Shadow</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4515"/>
+        <location filename="../src/configdialog.ui" line="4520"/>
         <source>Original Size</source>
         <translation>ئەسلى چوڭلۇقى</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4520"/>
+        <location filename="../src/configdialog.ui" line="4525"/>
         <source>Fit to Window Width</source>
         <translation>كۆزنەك كەڭلىكىگە ماس كېلىدۇ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4525"/>
+        <location filename="../src/configdialog.ui" line="4530"/>
         <source>Fit to Window Size</source>
         <translation>كۆزنەك چوڭلۇقىغا ماس كېلىدۇ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4530"/>
+        <location filename="../src/configdialog.ui" line="4535"/>
         <source>Scaled Size</source>
         <translation>كىچىكلىتىلگەن چوڭلۇقى</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4535"/>
+        <location filename="../src/configdialog.ui" line="4540"/>
         <source>Fit to Text Width</source>
         <translation>تېكىست كەڭلىكىگە ماس كېلىدۇ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4543"/>
+        <location filename="../src/configdialog.ui" line="4548"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4565"/>
+        <location filename="../src/configdialog.ui" line="4570"/>
         <source>Synchronized Files Types:</source>
         <translation>ماس قەدەملىك ھۆججەتلەرنىڭ تۈرلىرى:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4575"/>
+        <location filename="../src/configdialog.ui" line="4580"/>
         <source>Paper Color</source>
         <translation>قەغەز رەڭگى</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4585"/>
-        <location filename="../src/configdialog.ui" line="4639"/>
+        <location filename="../src/configdialog.ui" line="4590"/>
+        <location filename="../src/configdialog.ui" line="4644"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2883,123 +2888,123 @@ Note: Changing this setting will only affect documents that are opened afterward
 ئەسكەرتىش: بۇ تەڭشەكنى ئۆزگەرتىش پەقەت كېيىن ئېچىلغان ھۆججەتلەرگە تەسىر كۆرسىتىدۇ.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4591"/>
+        <location filename="../src/configdialog.ui" line="4596"/>
         <source>Render Backend:</source>
         <translation>ئارقا كۆرۈنۈش:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4601"/>
+        <location filename="../src/configdialog.ui" line="4606"/>
         <source>Presentation Laser Pointer Size:</source>
         <translation>تونۇشتۇرۇش لازېر كۆرسەتكۈچ چوڭلۇقى:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4608"/>
+        <location filename="../src/configdialog.ui" line="4613"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>ئەسكەرتىش: كۆزنەك / قىستۇرما ھالەت Build -&gt; PDF Viewer دا تەڭشەلدى</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4615"/>
+        <location filename="../src/configdialog.ui" line="4620"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>«تېكىست كەڭلىكىگە ماس كېلىدىغان» توغرىسىغا توغرىلاشنى چەكلەڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4625"/>
+        <location filename="../src/configdialog.ui" line="4630"/>
         <source>Scale Option:</source>
         <translation>گىرۋەك تاللانمىللرى:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4632"/>
+        <location filename="../src/configdialog.ui" line="4637"/>
         <source>Magnifier Shape:</source>
         <translation>لوپائەينەك شەكلى:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4662"/>
+        <location filename="../src/configdialog.ui" line="4667"/>
         <source>Magnifier Size:</source>
         <translation>چوڭايتىش ئۆلچىمى:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4669"/>
+        <location filename="../src/configdialog.ui" line="4674"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>قىستۇرما ھالەتتە قورال بالداقنى ئاپتوماتىك يوشۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4676"/>
+        <location filename="../src/configdialog.ui" line="4681"/>
         <source>Presentation Laser Pointer Color:</source>
         <translation>تونۇشتۇرۇش لازېر كۆرسەتكۈچ رەڭگى:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4766"/>
+        <location filename="../src/configdialog.ui" line="4771"/>
         <source>Use SVN</source>
         <translation>Use SVN</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4771"/>
+        <location filename="../src/configdialog.ui" line="4776"/>
         <source>Use GIT</source>
         <translation>Use GIT</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4779"/>
+        <location filename="../src/configdialog.ui" line="4784"/>
         <source>Select how txs checks in saved files</source>
         <translation>ساقلانغان ھۆججەتلەردە txs نىڭ قانداق تەكشۈرۈلىدىغانلىقىنى تاللاڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4783"/>
+        <location filename="../src/configdialog.ui" line="4788"/>
         <source>No automatic check-in after save</source>
         <translation>ساقلىغاندىن كېيىن ئاپتوماتىك تەكشۈرتۈشكە بولمايدۇ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4788"/>
+        <location filename="../src/configdialog.ui" line="4793"/>
         <source>Check-in after File/Save only</source>
         <translation>ھۆججەتتىن كېيىن ئاندىن تىزىملىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4793"/>
+        <location filename="../src/configdialog.ui" line="4798"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>بارلىق ساقلاش مەشغۇلاتىدىن كېيىن ، يەنى تۈزۈشتىن بۇرۇنمۇ تىزىملىتىڭ.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4801"/>
+        <location filename="../src/configdialog.ui" line="4806"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation>ئاخىرقى ساقلانغان نەشرىدىن بۇرۇن SVN / GIT تۈزىتىلگەن نەشرىنى ئىشلىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4808"/>
+        <location filename="../src/configdialog.ui" line="4813"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>svn دا svn propset svn نى ئىجرا قىلىدۇ: ئاچقۇچلۇق سۆزلەر &quot;چېسلا ئاپتور تۈزىتىش HeadURL&quot;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4811"/>
+        <location filename="../src/configdialog.ui" line="4816"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>ئاچقۇچلۇق سۆزلەرنى خاسلىق بىلەن ئالماشتۇرۇش (svn قوشۇش)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4820"/>
+        <location filename="../src/configdialog.ui" line="4825"/>
         <source>SVN Directory Search Depth: </source>
         <translation>SVN مۇندەرىجىسى ئىزدەش چوڭقۇرلۇقى: </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4878"/>
+        <location filename="../src/configdialog.ui" line="4883"/>
         <location filename="../src/configdialog.cpp" line="550"/>
         <source>Internal Terminal</source>
         <translation>ئىچكى تېرمىنال</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4929"/>
+        <location filename="../src/configdialog.ui" line="4934"/>
         <source>Shell:</source>
         <translation>Shell:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4985"/>
+        <location filename="../src/configdialog.ui" line="4990"/>
         <source>Show Advanced Options</source>
         <translation>ئىلغار تاللاشلارنى كۆرسەت</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5011"/>
+        <location filename="../src/configdialog.ui" line="5016"/>
         <source>OK</source>
         <translation>تامام</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5021"/>
+        <location filename="../src/configdialog.ui" line="5026"/>
         <source>Cancel</source>
         <translation>بىكارلا</translation>
     </message>
@@ -3166,7 +3171,7 @@ to set the key anyway?</source>
         <translation>تىل تەكشۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4759"/>
+        <location filename="../src/configdialog.ui" line="4764"/>
         <location filename="../src/configdialog.cpp" line="548"/>
         <source>SVN/GIT</source>
         <translation>SVN/GIT</translation>
@@ -3615,7 +3620,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="75"/>
         <source>\item[label] Hello</source>
-        <translation type="unfinished"/>
+        <translation>\item[label] Hello</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="76"/>
@@ -3961,7 +3966,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="171"/>
         <source>\begin{array}...\end{array}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{array}...\end{array}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="172"/>
@@ -4136,27 +4141,27 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\alert{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\alert{text} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{text}{comment} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\comment{text}{comment} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>\add{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\add{text} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>\remove{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\remove{text} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replace{text}{replacement} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\replace{text}{replacement} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
@@ -4171,7 +4176,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>\label{key}</source>
-        <translation type="unfinished"/>
+        <translation>\label{key}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
@@ -5135,52 +5140,52 @@ The wizard does not support command </source>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1478"/>
-        <location filename="../src/latexcompleter.cpp" line="1488"/>
+        <location filename="../src/latexcompleter.cpp" line="1482"/>
+        <location filename="../src/latexcompleter.cpp" line="1492"/>
         <source>typical</source>
         <translation>تىپىك</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1479"/>
-        <location filename="../src/latexcompleter.cpp" line="1489"/>
+        <location filename="../src/latexcompleter.cpp" line="1483"/>
+        <location filename="../src/latexcompleter.cpp" line="1493"/>
         <source>most used</source>
         <translation>كۆپ ئىشلىتىلگىنى</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1480"/>
-        <location filename="../src/latexcompleter.cpp" line="1490"/>
+        <location filename="../src/latexcompleter.cpp" line="1484"/>
+        <location filename="../src/latexcompleter.cpp" line="1494"/>
         <source>fuzzy</source>
         <translation>تۇتۇق</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1481"/>
-        <location filename="../src/latexcompleter.cpp" line="1491"/>
+        <location filename="../src/latexcompleter.cpp" line="1485"/>
+        <location filename="../src/latexcompleter.cpp" line="1495"/>
         <source>all</source>
         <translation>ھەممە</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1482"/>
-        <location filename="../src/latexcompleter.cpp" line="1492"/>
+        <location filename="../src/latexcompleter.cpp" line="1486"/>
+        <location filename="../src/latexcompleter.cpp" line="1496"/>
         <source>press shift+space to change view</source>
         <translation>كۆرۈنۈشنى ئۆزگەرتىش ئۈچۈن shift + بوشلۇقنى بېسىڭ</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1693"/>
+        <location filename="../src/latexcompleter.cpp" line="1697"/>
         <source> (Usertag)</source>
         <translation> (ئىشلەتكۈچى تەگلىكى)</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2055"/>
+        <location filename="../src/latexcompleter.cpp" line="2059"/>
         <source>label missing!</source>
         <translation>بەلگخسى يوقالغان!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2057"/>
+        <location filename="../src/latexcompleter.cpp" line="2061"/>
         <source>label defined multiple times!</source>
         <translation>بەلگە كۆپ قېتىم ئېنىقلانغان!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2067"/>
+        <location filename="../src/latexcompleter.cpp" line="2071"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;ھۆججەت نامى: %1&lt;/b&gt;
@@ -6712,42 +6717,42 @@ You can now enter the password:</source>
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2326"/>
+        <location filename="../src/buildmanager.cpp" line="2351"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation>كۆرسىتىلگەن stdout قايتا نىشانلاشنى قوللىمايدۇ: &quot;%1&quot;. تەپسىلاتىنى قوللانمىنى كۆرۈڭ.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2335"/>
+        <location filename="../src/buildmanager.cpp" line="2360"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation>كۆرسىتىلگەن stderr قايتا نىشانلاشنى قوللىمايدۇ: &quot;%1&quot;. تەپسىلاتىنى قوللانمىنى كۆرۈڭ.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2532"/>
+        <location filename="../src/buildmanager.cpp" line="2557"/>
         <source>Process started: %1</source>
         <translation>جەريان باشلاندى: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2538"/>
+        <location filename="../src/buildmanager.cpp" line="2563"/>
         <source>Error: Could not start the command: %1</source>
         <translation>خاتالىق: بۇيرۇقنى قوزغىتالمىدى: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2541"/>
+        <location filename="../src/buildmanager.cpp" line="2566"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;(La) TeX تارقىتىشنى ئورناتقانلىقىڭىزنى جەزملەشتۈرۈڭ&lt;/b&gt;مەسىلەن MiKTeX ياكى TeX Live ، ھەمدە بۇيرۇق سەپلەش بېتىدە بۇ تارقىتىشنىڭ توغرا يولىنى بەلگىلىدىمۇ&lt;br&gt;TeXstudio غا ئوخشاش A (La) TeX تەھرىرى بۇنداق تەقسىمات تەمىنلىگەن (La) TeX بۇيرۇقلىرى بولمىسا ئىشلىمەيدۇ.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2545"/>
+        <location filename="../src/buildmanager.cpp" line="2570"/>
         <source>Error: Command crashed: %1</source>
         <translation>خاتالىق: بۇيرۇق ۋەيران بولدى: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2552"/>
+        <location filename="../src/buildmanager.cpp" line="2577"/>
         <source>Process exited with error(s)</source>
         <translation>خاتالىق (لار) بىلەن چىققان جەريان</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2555"/>
+        <location filename="../src/buildmanager.cpp" line="2580"/>
         <source>Process exited normally</source>
         <translation>جەريان نورمال تامام</translation>
     </message>
@@ -8095,12 +8100,12 @@ Error: </source>
     <message>
         <location filename="../src/latexrepository.h" line="103"/>
         <source> (Free)</source>
-        <translation type="unfinished"/>
+        <translation>(ھەقسىز)</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.h" line="103"/>
         <source> (Not free)</source>
-        <translation type="unfinished"/>
+        <translation>(ھەقلىق)</translation>
     </message>
 </context>
 <context>
@@ -8460,7 +8465,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="236"/>
         <source>&amp;Packages</source>
-        <translation type="unfinished"/>
+        <translation>&amp;بولاقلار</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="254"/>
@@ -9515,12 +9520,12 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="507"/>
         <source>&lt;No Description&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;No Description&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="508"/>
         <source>&lt;Unknown Author&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Unknown Author&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="509"/>
@@ -9613,7 +9618,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texdocdialog.ui" line="28"/>
         <source>Packages</source>
-        <translation type="unfinished"/>
+        <translation>بولاقلار</translation>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="47"/>
@@ -11010,7 +11015,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1269"/>
         <source>AI &amp;Chat...</source>
-        <translation type="unfinished"/>
+        <translation>AI &amp;Chat...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1272"/>
@@ -11690,7 +11695,7 @@ Do you want to continue?</source>
     <message>
         <location filename="../src/texstudio.cpp" line="5424"/>
         <source>AI Chat</source>
-        <translation type="unfinished"/>
+        <translation>AI Chat</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5424"/>
