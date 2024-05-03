@@ -3598,8 +3598,8 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
                     col = 0;
                 }
             }
-            edView->editor->setCursorPosition(line, col);
-            edView->editor->scrollToFirstLine(f.firstLine);
+            edView->editor->setCursorPosition(line, col, false);
+            edView->editor->scrollToFirstLine(f.firstLine+1);
             edView->document->foldLines(f.foldedLines);
             editors->moveToTabGroup(edView, f.editorGroup, -1);
         } else {

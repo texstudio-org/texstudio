@@ -5815,15 +5815,7 @@ void QEditor::scrollToFirstLine(int l){
 
     const qreal ls = document()->getLineSpacing();
     const qreal ypos = m_doc->y(l-1);
-    const qreal yval = verticalOffset();
-    const int ylen = viewport()->height();
-    const qreal yend = ypos + ylen;
-
-	if ( ypos < yval )
-        verticalScrollBar()->setValue(qFloor(ypos / ls));
-	else if ( yend > (yval + ylen) )
-        verticalScrollBar()->setValue(qFloor(1. + (yend - ylen) / ls));
-
+    verticalScrollBar()->setValue(qRound(ypos / ls));
 }
 
 void QEditor::setCursorSurroundingLines(int s){
