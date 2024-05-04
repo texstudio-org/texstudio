@@ -3599,8 +3599,8 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
                 }
             }
             edView->editor->setCursorPosition(line, col, false);
-            edView->editor->scrollToFirstLine(f.firstLine+1);
             edView->document->foldLines(f.foldedLines);
+            edView->editor->scrollToFirstLine(f.firstLine+1);
             editors->moveToTabGroup(edView, f.editorGroup, -1);
         } else {
             missingFiles.append(f.fileName);
