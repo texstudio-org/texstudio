@@ -1,5 +1,5 @@
 # mismath package
-# Matthew Bertucci 2024/02/27 for v2.11
+# Matthew Bertucci 2024/05/05 for v3.0
 
 #include:amsmath
 #include:mathtools
@@ -13,6 +13,15 @@
 #keyvals:\usepackage/mismath#c
 ibrackets
 decimalcomma
+nofunction
+otherReIm
+classicReIm
+# options passed to mathtools
+fixamsmath
+donotfixamsmathbugs
+allowspaces
+disallowspaces
+legacycolonsymbols
 # options passed to amsmath
 intlimits
 nointlimits
@@ -56,7 +65,9 @@ alignedleftspaceyesifneg
 \boldvect
 \boldvectcommand#*
 \C#m
+\cmmathcal{letter}#*m
 \codim#m
+\coker#m
 \Conv#m
 \Cov#m
 \cov#m
@@ -111,6 +122,7 @@ alignedleftspaceyesifneg
 \onlymathC#*
 \P#m
 \Par
+\pifonts{options%keyvals}#*
 \pinormal#*m
 \pinumber#m
 \pinumber[option%keyvals]#m
@@ -120,6 +132,7 @@ alignedleftspaceyesifneg
 \R#m
 \rank#m
 \Re#m
+\Res#m
 \rot#m
 \sech#m
 \sgn#m
@@ -147,8 +160,9 @@ alignedleftspaceyesifneg
 \changecol#/mathcols
 \bslash#*
 
-#keyvals:\pinumber
+#keyvals:\pifonts,\pinumber
 lgrmath=%<font name%>
+fontspec=%<font name%>
 upgreek=#Euler,Symbol
 mathdesign
 fourier
