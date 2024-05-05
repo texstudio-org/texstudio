@@ -8,7 +8,7 @@
 		<stop exclusive="false">\n</stop>
 	</context>
 	
-	<context id="comment/single" format="qtscript:comment" >
+	<context id="comment/multiline" format="qtscript:comment" >
 		<start parenthesis="jscomment:open" indent="1" fold="1">/\*</start>
 		<stop parenthesis="jscomment:close" indent="1" fold="1">\*/</stop>
 	</context>
