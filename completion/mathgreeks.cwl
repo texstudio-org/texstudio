@@ -1,5 +1,5 @@
 # mathgreeks package
-# Matthew Bertucci 2024/05/01 for v1.0
+# Matthew Bertucci 2024/05/05 for v1.1
 
 #include:kvoptions
 #include:etoolbox
@@ -26,6 +26,7 @@ concrete#true,false
 cmbright#true,false
 savegreeks#true,false
 otherfonts#true,false
+libsans#true,false
 lowercase#true,false
 uppercase#true,false
 #endkeyvals
