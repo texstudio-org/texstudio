@@ -1210,11 +1210,8 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
             reCheckSyntax();
         }
     }while(loopAgain);
-    if(updateCompleter){
-        emit updateCompleterCommands();
-    }
-    // user commands changed
-    // update completer & syntax check
+
+
 
     // bib files changed
     // update bibitem checking and completer
@@ -1228,6 +1225,12 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
             if (elem->edView)
                 elem->edView->updateCitationFormats();
         }
+        updateCompleter=true;
+    }
+    // user commands or bibitems changed
+    // update completer & syntax check
+    if(updateCompleter){
+        emit updateCompleterCommands();
     }
 }
 /*!
