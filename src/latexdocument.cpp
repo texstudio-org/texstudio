@@ -943,6 +943,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp->structureDepth() - 1;
             fn = removeQuote(fn);
             newInclude->title = fn;
+            newInclude->tooltip = getAbsoluteFilePath(fn,".tex", QStringList(), true);
             QString name=fn;
             name.replace("\\string~",QDir::homePath());
             QString fname = findFileName(name);
@@ -2263,10 +2264,10 @@ QString LatexDocuments::getLogFileName() const
 	}
 }
 
-QString LatexDocuments::getAbsoluteFilePath(const QString &relName, const QString &extension, const QStringList &additionalSearchPaths) const
+QString LatexDocuments::getAbsoluteFilePath(const QString &relName, const QString &extension, const QStringList &additionalSearchPaths, bool ignore_root) const
 {
 	if (!currentDocument) return relName;
-	return currentDocument->getAbsoluteFilePath(relName, extension, additionalSearchPaths);
+	return currentDocument->getAbsoluteFilePath(relName, extension, additionalSearchPaths, ignore_root);
 }
 
 LatexDocument *LatexDocuments::findDocumentFromName(const QString &fileName) const
@@ -3154,10 +3155,10 @@ LatexDocument *LatexDocuments::getRootDocumentForDoc(LatexDocument *doc,bool bre
     return const_cast<LatexDocument *>(current->getRootDocument(nullptr,breakAtSubfileRoot));
 }
 
-QString LatexDocument::getAbsoluteFilePath(const QString &relName, const QString &extension, const QStringList &additionalSearchPaths) const
+QString LatexDocument::getAbsoluteFilePath(const QString &relName, const QString &extension, const QStringList &additionalSearchPaths, bool ignore_root) const
 {
 	QStringList searchPaths;
-    const LatexDocument *rootDoc = getRootDocument(nullptr,true);
+    const LatexDocument *rootDoc = ignore_root ? this : getRootDocument(nullptr,true);
 	QString compileFileName = rootDoc->getFileName();
 	if (compileFileName.isEmpty()) compileFileName = rootDoc->getTemporaryFileName();
 	QString fallbackPath;

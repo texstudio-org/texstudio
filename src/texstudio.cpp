@@ -7808,7 +7808,7 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
                 }
                 if (entry->type == StructureEntry::SE_INCLUDE) {
 
-                    QString htmlTitle = entry->title.toHtmlEscaped();
+                    QString htmlTitle = entry->tooltip.toHtmlEscaped();
 
                     htmlTitle.replace(' ', "&nbsp;").replace('-', "&#8209;");  // repleacement: prevent line break
                     QString tooltip("<html><b>" + htmlTitle + "</b>");
@@ -7820,7 +7820,7 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
                         // show preview if file is loaded
                         if(LatexDocument *doc=entry->document){
                             QString fileName=entry->title;
-                            fileName=doc->getAbsoluteFilePath(fileName,".tex");
+                            fileName=doc->getAbsoluteFilePath(fileName,".tex", QStringList(), true);
                             LatexDocument *incDoc = documents.findDocument(fileName);
                             if(incDoc){
                                 tooltip += incDoc->exportAsHtml(incDoc->cursor(0, 0,qMin(5,incDoc->lines()-1)), true, true, 60);
@@ -9798,27 +9798,21 @@ LatexEditorView* Texstudio::openExternalFile(QString name, const QString &defaul
         curPaths<< ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
     }
     LatexEditorView * loaded = nullptr;
-    loaded = load(doc->getAbsoluteFilePath(name, defaultExt,curPaths));
+    loaded = load(doc->getAbsoluteFilePath(name, defaultExt,curPaths, true));
     if(loaded == nullptr){
-        loaded = load(doc->getAbsoluteFilePath(name, "",curPaths));
+        loaded = load(doc->getAbsoluteFilePath(name, "",curPaths, true));
     }
 
     if (loaded == nullptr) {
-        QFileInfo fi(documents.getAbsoluteFilePath(name, defaultExt,curPaths));
+        QFileInfo fi(doc->getAbsoluteFilePath(name, defaultExt,curPaths, true));
 		if (fi.exists()) {
-			UtilsUi::txsCritical(tr("Unable to open file \"%1\".").arg(fi.fileName()));
+			UtilsUi::txsCritical(tr("Unable to open file \"%1\".").arg(fi.absoluteFilePath()));
 		} else {
-			if (UtilsUi::txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(fi.fileName()))) {
-				int lineNr = -1;
-				if (currentEditor()) {
-					lineNr = currentEditor()->cursor().lineNumber();
-				}
+			if (UtilsUi::txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(fi.absoluteFilePath()))) {
 				if (!fi.absoluteDir().exists())
 					fi.absoluteDir().mkpath(".");
 				fileNew(fi.absoluteFilePath());
-                QDocumentLineHandle *dlh=doc->line(lineNr).handle();
-                dlh->setFlag(QDocumentLine::argumentsParsed,false); // force reinterpretation of line
-				doc->patchStructure(lineNr, 1);
+				updateStructureLocally();
 			}
 		}
     }
