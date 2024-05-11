@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.8.1
+
+- 
+
 ## TeXstudio 4.8.0
 
 - AI chat assistant added
