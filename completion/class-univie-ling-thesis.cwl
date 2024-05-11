@@ -1,7 +1,6 @@
 # univie-ling-thesis class
-# Matthew Bertucci 2022/10/03 for v2.0
+# Matthew Bertucci 2024/05/11 for v2.5
 
-#include:xkeyval
 #include:class-scrreprt
 #include:array
 #include:translator
