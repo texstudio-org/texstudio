@@ -1,5 +1,5 @@
 # univie-ling-poster class
-# Matthew Bertucci 2023/01/27 for v.2.3
+# Matthew Bertucci 2024/05/11 for v.2.5
 
 #include:class-beamer
 #include:etoolbox
@@ -21,6 +21,8 @@
 #include:csquotes
 #include:covington
 #include:prettyref
+#include:tikzpagenodes
+#include:tikzlibrarycalc
 
 #keyvals:\documentclass/univie-ling-poster#c
 fonts=#ps,otf,none
@@ -301,6 +303,9 @@ apamaxprtauth=%<number%>
 \Meaning{text}
 
 \Bibheading{title%text}
+
+\restspace
+\restspace[label]
 
 # not documented
 \headeroffset#*
