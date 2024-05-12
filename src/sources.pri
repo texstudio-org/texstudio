@@ -3,6 +3,8 @@ DEPENDPATH += $$PWD
 
 HEADERS += \
     $$PWD/aboutdialog.h \
+    $$PWD/aichatassistant.h \
+    $$PWD/aiquerystoragemodel.h \
     $$PWD/arraydialog.h \
     $$PWD/bibtexdialog.h \
     $$PWD/bibtexparser.h \
@@ -111,6 +113,8 @@ HEADERS += \
 SOURCES += \
     $$PWD/aboutdialog.cpp \
     $$PWD/additionaltranslations.cpp \
+    $$PWD/aichatassistant.cpp \
+    $$PWD/aiquerystoragemodel.cpp \
     $$PWD/arraydialog.cpp \
     $$PWD/bibtexdialog.cpp \
     $$PWD/bibtexparser.cpp \
