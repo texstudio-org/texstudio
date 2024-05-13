@@ -1,8 +1,7 @@
 # fadingimage package
-# Matthew Bertucci 2024/03/17 for v0.1d
+# Matthew Bertucci 2024/05/13 for v0.3a
 
 #include:tikz
-#include:xcolor
 #include:tikzlibraryfadings
 
 \UPFadingImage{imagefile}#g
@@ -13,16 +12,16 @@
 \LOWFadingImage[options%keyvals]{imagefile}#g
 \LOWFadingImage*{imagefile}#g
 \LOWFadingImage*[options%keyvals]{imagefile}#g
-\UPLOWFadingImage{imagefile}{imagefile}#g
-\UPLOWFadingImage[options%keyvals]{imagefile}{imagefile}#*g
-\UPLOWFadingImage{imagefile}[options]{imagefile}#*g
-\UPLOWFadingImage[options%keyvals]{imagefile}[options]{imagefile}#g
-\UPLOWFadingImage*{imagefile}{imagefile}#g
-\UPLOWFadingImage*[options%keyvals]{imagefile}{imagefile}#*g
-\UPLOWFadingImage*{imagefile}[options]{imagefile}#*g
-\UPLOWFadingImage*[options%keyvals]{imagefile}[options]{imagefile}#g
+\LTFadingImage{imagefile}#g
+\LTFadingImage[options%keyvals]{imagefile}#g
+\LTFadingImage*{imagefile}#g
+\LTFadingImage*[options%keyvals]{imagefile}#g
+\RITFadingImage{imagefile}#g
+\RITFadingImage[options%keyvals]{imagefile}#g
+\RITFadingImage*{imagefile}#g
+\RITFadingImage*[options%keyvals]{imagefile}#g
 
-#keyvals:\UPFadingImage,\UPFadingImage*,\LOWFadingImage,\LOWFadingImage*,\UPLOWFadingImage,\UPLOWFadingImage*
+#keyvals:\UPFadingImage,\UPFadingImage*,\LOWFadingImage,\LOWFadingImage*,\LTFadingImage,\LTFadingImage*,\RITFadingImage,\RITFadingImage*
 alt={%<alt text%>}
 bb=%<llx lly urx ury%>
 bbllx=
