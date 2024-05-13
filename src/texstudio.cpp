@@ -11885,7 +11885,7 @@ void Texstudio::syncCollapsed(QTreeWidgetItem *item){
  * \param pos mouse position when clicked
  */
 void Texstudio::customMenuStructure(const QPoint &pos){
-    QTreeWidget* w = structureTreeWidget->isVisible() ? structureTreeWidget : topTOCTreeWidget ;
+    QTreeWidget* w = qobject_cast<QTreeWidget*>(sender());
     QTreeWidgetItem *item = w->itemAt(pos);
     if(!item) return;
     StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
@@ -11952,17 +11952,25 @@ void Texstudio::customMenuStructure(const QPoint &pos){
             menu.addSeparator();
         }
 
-        menu.addAction(tr("Cut"), this, SLOT(editSectionCut()));
-        menu.addAction(tr("Copy"), this, SLOT(editSectionCopy()));
-        menu.addAction(tr("Paste Before"), this, SLOT(editSectionPasteBefore()));
-        menu.addAction(tr("Paste After"), this, SLOT(editSectionPasteAfter()));
+        QAction *act=menu.addAction(tr("Cut"), this, SLOT(editSectionCut()));
+        act->setData(QVariant::fromValue(contextEntry));
+        act=menu.addAction(tr("Copy"), this, SLOT(editSectionCopy()));
+        act->setData(QVariant::fromValue(contextEntry));
+        act=menu.addAction(tr("Paste Before"), this, SLOT(editSectionPasteBefore()));
+        act->setData(QVariant::fromValue(contextEntry));
+        act=menu.addAction(tr("Paste After"), this, SLOT(editSectionPasteAfter()));
+        act->setData(QVariant::fromValue(contextEntry));
         menu.addSeparator();
-        menu.addAction(tr("Indent Section"), this, SLOT(editIndentSection()));
-        menu.addAction(tr("Unindent Section"), this, SLOT(editUnIndentSection()));
+        act=menu.addAction(tr("Indent Section"), this, SLOT(editIndentSection()));
+        act->setData(QVariant::fromValue(contextEntry));
+        act=menu.addAction(tr("Unindent Section"), this, SLOT(editUnIndentSection()));
+        act->setData(QVariant::fromValue(contextEntry));
         if (item->childCount()>0) {
             menu.addSeparator();
-            menu.addAction(tr("Expand Subitems"), this, SLOT(expandSubitems()));
-            menu.addAction(tr("Collapse Subitems"), this, SLOT(collapseSubitems()));
+            act=menu.addAction(tr("Expand Subitems"), this, SLOT(expandSubitems()));
+            act->setData(QVariant::fromValue(contextEntry));
+            act=menu.addAction(tr("Collapse Subitems"), this, SLOT(collapseSubitems()));
+            act->setData(QVariant::fromValue(contextEntry));
         }
 
         menu.exec(w->mapToGlobal(pos));
@@ -12213,15 +12221,11 @@ void Texstudio::editSectionPasteAfter()
  */
 void Texstudio::editIndentSection()
 {
-    QTreeWidgetItem *item = nullptr;
-    if(topTOCTreeWidget->isVisible()){
-        item = topTOCTreeWidget->currentItem();
-    }else{
-        item = structureTreeWidget->currentItem();
-    }
-    if(!item) return;
-    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-    if (!entry) return;
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    StructureEntry *entry = qvariant_cast<StructureEntry *>(action->data());
+    if (!entry || !entry->document) return;
+
     LatexEditorView *edView = entry->document->getEditorView();
     if(entry->document->isIncompleteInMemory()){
         edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
@@ -12261,15 +12265,11 @@ void Texstudio::editIndentSection()
  */
 void Texstudio::editUnIndentSection()
 {
-    QTreeWidgetItem *item = nullptr;
-    if(topTOCTreeWidget->isVisible()){
-        item = topTOCTreeWidget->currentItem();
-    }else{
-        item = structureTreeWidget->currentItem();
-    }
-    if(!item) return;
-    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-    if (!entry) return;
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    StructureEntry *entry = qvariant_cast<StructureEntry *>(action->data());
+    if (!entry || !entry->document) return;
+
     LatexEditorView *edView = entry->document->getEditorView();
     if(entry->document->isIncompleteInMemory()){
         edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
