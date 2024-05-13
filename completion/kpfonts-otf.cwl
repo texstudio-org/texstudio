@@ -1,5 +1,5 @@
 # kpfonts-otf package
-# Matthew Bertucci 2023/07/09 for v0.55
+# Matthew Bertucci 2024/05/02 for v0.63
 
 #include:iftex
 #include:unicode-math
@@ -17,6 +17,7 @@ fulloldstylenums
 fulloldstyle
 lighttext
 sftext
+fakedscripts
 oldstylenums
 oldstyle
 veryoldstyle

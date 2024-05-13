@@ -1,5 +1,5 @@
 # univie-ling-paper class
-# Matthew Bertucci 2022/10/03 for v.2.0
+# Matthew Bertucci 2024/05/11 for v.2.5
 
 #include:class-scrartcl
 #include:translator
@@ -35,6 +35,7 @@ microtype#true,false
 polyglossia#true,false
 fonts=#ps,otf,none
 fontenc={%<enc1,enc2,...%>}
+short#true,false
 #endkeyvals
 
 #ifOption:apa

@@ -1,5 +1,5 @@
 # univie-ling-wlg class
-# Matthew Bertucci 2023/01/27 for v.2.2
+# Matthew Bertucci 2024/05/11 for v.2.5
 
 #include:class-scrartcl
 #include:cochineal
@@ -99,6 +99,8 @@ issueeditor#true,false
 \issueeditors{names}
 \issuesubtitle{text}
 \issuetitle{text}
+\jedboard{name}
+\jeditors{name}
 \keywords{word1,word2,...%text}
 \lastpageref#*
 \ljobname#*

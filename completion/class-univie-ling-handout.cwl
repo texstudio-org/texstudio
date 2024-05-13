@@ -1,5 +1,5 @@
 # univie-ling-handout class
-# Matthew Bertucci 2022/10/03 for v1.2.0
+# Matthew Bertucci 2024/05/11 for v.2.5
 
 #include:class-scrartcl
 #include:geometry
@@ -324,12 +324,15 @@ apamaxprtauth=%<number%>
 \hoEventLoc[header%text]{location%text}
 \hoEventDate{date}
 \hoEventDate[header%text]{date}
+\hoDate{date}
+\hoDate[header%text]{date}
 \Bibheading{text}
 \Expression{text}
 \Meaning{text}
 \Concept{text}
 
 \aftertitle#*
+\beforedate#*
 \beforeevent#*
 \beforesubtitle#*
 \beforetitle#*

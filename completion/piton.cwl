@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/04/29 for v3.0
+# Matthew Bertucci 2024/05/12 for v3.0a
 
 #include:l3keys2e
 #include:luatexbase
@@ -168,6 +168,7 @@ Keyword9=%<formatting%>
 ParseAgain.noCR=%<formatting%>
 ParseAgain=%<formatting%>
 Prompt=%<formatting%>
+Tag=%<formatting%>
 #endkeyvals
 
 \PitonStyle{style%keyvals}{text%plain}
@@ -218,6 +219,7 @@ Keyword9
 ParseAgain.noCR
 ParseAgain
 Prompt
+Tag
 #endkeyvals
 
 \PitonClearUserFunctions

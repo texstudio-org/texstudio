@@ -1000,6 +1000,8 @@
 <file>completion/class-xduugtp.cwl</file>
 <file>completion/class-xebaposter.cwl</file>
 <file>completion/class-xepersian-magazine.cwl</file>
+<file>completion/class-ximera.cwl</file>
+<file>completion/class-xourse.cwl</file>
 <file>completion/class-yaletter.cwl</file>
 <file>completion/class-ycbook.cwl</file>
 <file>completion/class-ydoc.cwl</file>
@@ -2553,6 +2555,7 @@
 <file>completion/njuvisual.cwl</file>
 <file>completion/nlctuserguide.cwl</file>
 <file>completion/nl-interval.cwl</file>
+<file>completion/nm.cwl</file>
 <file>completion/nmbib.cwl</file>
 <file>completion/nndraw.cwl</file>
 <file>completion/nnext.cwl</file>
@@ -3446,6 +3449,7 @@
 <file>completion/sympytex.cwl</file>
 <file>completion/synproof.cwl</file>
 <file>completion/syntaxdi.cwl</file>
+<file>completion/synthslant.cwl</file>
 <file>completion/syntonly.cwl</file>
 <file>completion/systeme.cwl</file>
 <file>completion/t1enc.cwl</file>
@@ -3910,6 +3914,7 @@
 <file>completion/typicons.cwl</file>
 <file>completion/typoaid.cwl</file>
 <file>completion/Typocaps.cwl</file>
+<file>completion/typog.cwl</file>
 <file>completion/typogrid.cwl</file>
 <file>completion/uarial.cwl</file>
 <file>completion/uassign.cwl</file>

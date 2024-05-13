@@ -1582,3 +1582,15 @@ homework:
 class-homework
 latex-document
 tex
+randexam:
+class-randexam
+latex-document
+tex
+ximera:
+class-ximera
+latex-document
+tex
+xourse:
+class-xourse
+latex-document
+tex
