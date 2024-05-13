@@ -12083,16 +12083,11 @@ void Texstudio::toggleMasterDocument()
  */
 void Texstudio::editSectionCopy()
 {
-    // called by action
-    QTreeWidgetItem *item = nullptr;
-    if(topTOCTreeWidget->isVisible()){
-        item = topTOCTreeWidget->currentItem();
-    }else{
-        item = structureTreeWidget->currentItem();
-    }
-    if(!item) return;
-    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-    if(!entry) return;
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    StructureEntry *entry = qvariant_cast<StructureEntry *>(action->data());
+    if (!entry || !entry->document) return;
+
     LatexEditorView *edView = entry->document->getEditorView();
     if(entry->document->isIncompleteInMemory()){
         edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
@@ -12117,16 +12112,11 @@ void Texstudio::editSectionCopy()
  */
 void Texstudio::editSectionCut()
 {
-    // called by action
-    QTreeWidgetItem *item = nullptr;
-    if(topTOCTreeWidget->isVisible()){
-        item = topTOCTreeWidget->currentItem();
-    }else{
-        item = structureTreeWidget->currentItem();
-    }
-    if(!item) return;
-    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-    if (!entry) return;
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    StructureEntry *entry = qvariant_cast<StructureEntry *>(action->data());
+    if (!entry || !entry->document) return;
+
     LatexEditorView *edView = entry->document->getEditorView();
     if(entry->document->isIncompleteInMemory()){
         edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
@@ -12151,15 +12141,11 @@ void Texstudio::editSectionCut()
  */
 void Texstudio::editSectionPasteBefore()
 {
-    QTreeWidgetItem *item = nullptr;
-    if(topTOCTreeWidget->isVisible()){
-        item = topTOCTreeWidget->currentItem();
-    }else{
-        item = structureTreeWidget->currentItem();
-    }
-    if(!item) return;
-    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-    if (!entry) return;
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    StructureEntry *entry = qvariant_cast<StructureEntry *>(action->data());
+    if (!entry || !entry->document) return;
+
     LatexEditorView *edView = entry->document->getEditorView();
     if(entry->document->isIncompleteInMemory()){
         edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
@@ -12180,15 +12166,11 @@ void Texstudio::editSectionPasteBefore()
  */
 void Texstudio::editSectionPasteAfter()
 {
-    QTreeWidgetItem *item = nullptr;
-    if(topTOCTreeWidget->isVisible()){
-        item = topTOCTreeWidget->currentItem();
-    }else{
-        item = structureTreeWidget->currentItem();
-    }
-    if(!item) return;
-    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-    if (!entry) return;
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    StructureEntry *entry = qvariant_cast<StructureEntry *>(action->data());
+    if (!entry || !entry->document) return;
+
     LatexEditorView *edView = entry->document->getEditorView();
     if(entry->document->isIncompleteInMemory()){
         edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
