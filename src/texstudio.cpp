@@ -1348,6 +1348,23 @@ void Texstudio::setupMenus()
 	act->setCheckable(true);
 	act->setChecked(configManager.getOption("View/ShowStatusbar").toBool());
     newManagedAction(submenu, "resetdocks", tr("Reset Sidepanel/docks"), SLOT(resetDocks()));
+    submenu->addSeparator();
+    // toggle visibiliyt of all docks
+    QList<QDockWidget*> dockWidgets = findChildren<QDockWidget*>(); // get all dock widgets
+    QStringList hiddenDocks=hiddenLeftPanelWidgets.split("|");
+    int i=0;
+    foreach (QDockWidget* dockWidget, dockWidgets) {
+        if (dockWidget->toggleViewAction()) {
+            auto *act=newManagedAction(submenu, QString("dockview_%1").arg(i),dockWidget->objectName(),SLOT(toggleDockVisibility()));
+            act->setData(dockWidget->objectName());
+            QLabel *lbl=qobject_cast<QLabel*>(dockWidget->titleBarWidget());
+            act->setText(lbl->text());
+            act->setCheckable(true);
+            bool hide=hiddenDocks.contains(dockWidget->objectName());
+            act->setChecked(!hide);
+            ++i;
+        }
+    }
 
 	newManagedAction(menu, "enlargePDF", tr("Show embedded PDF large"), SLOT(enlargeEmbeddedPDFViewer()));
 	newManagedAction(menu, "shrinkPDF", tr("Show embedded PDF small"), SLOT(shrinkEmbeddedPDFViewer()));
@@ -4458,7 +4475,12 @@ void Texstudio::readSettings(bool reread)
     symbolListModel = new SymbolListModel(config->value("Symbols/UsageCount").toMap(),
                                           config->value("Symbols/FavoriteIDs").toStringList());
     symbolListModel->setDarkmode(darkMode);
-    hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();  // TODO: still needed?
+#ifdef Q_OS_MAC
+    // hide some docks by default as OSX dockwidget handle larger number badly
+    hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "brackets|pstricks|metapost|tikz|asymptote|beamer|xymatrix").toString();
+#else
+    hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();
+#endif
 
     configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys
     configManager.editorAvailableOperations = QEditor::getAvailableOperations();
@@ -11553,6 +11575,31 @@ void Texstudio::resetDocks()
         tabifyDockWidget(m_firstDockWidget,dw);
     }
     m_firstDockWidget->raise();
+}
+/*!
+ * \brief toggle visibility of dock
+ * search for dock with name and toggle visibility
+ */
+void Texstudio::toggleDockVisibility()
+{
+    QAction *act = qobject_cast<QAction *>(sender());
+    bool visible=act->isChecked();
+    QString name=act->data().toString();
+    QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(QString(),Qt::FindDirectChildrenOnly);
+    QStringList hiddenDocks=hiddenLeftPanelWidgets.split("|");
+    foreach(QDockWidget* dw,lst){
+        if(name != dw->objectName()) continue;
+        dw->setVisible(visible);
+        // update hiddenDocks
+        if(visible){
+            hiddenDocks.removeAll(name);
+        }else{
+            hiddenDocks.append(name);
+        }
+        hiddenLeftPanelWidgets=hiddenDocks.join("|");
+        break;
+    }
+
 }
 /*!
     \brief call updateTOC & updateStructureLocally as only one call works with a signal
