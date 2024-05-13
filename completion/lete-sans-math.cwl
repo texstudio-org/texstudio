@@ -1,10 +1,10 @@
-# lato-math package
-# Matthew Bertucci 2024/03/15 for v0.36
+# lete-sans-math package
+# Matthew Bertucci 2024/05/13 for v0.40
 
 #include:iftex
 #include:unicode-math
 
-#keyvals:\usepackage/lato-math#c
+#keyvals:\usepackage/lete-sans-math#c
 tight
 loose
 fulloldstyle
@@ -18,7 +18,7 @@ Style=%<style%>
 Scale=%<factor%>
 #endkeyvals
 
-# extra symbols defined in lato-math.sty
+# extra symbols defined in lete-sans-math.sty
 \BbbDelta#m
 \BbbLambda#m
 \BbbOmega#m
@@ -838,4 +838,4 @@ Scale=%<factor%>
 \zproject#m
 
 # not documented
-\LatoMtoks#S
+\LeteMtoks#S
