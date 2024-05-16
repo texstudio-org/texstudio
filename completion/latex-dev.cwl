@@ -218,6 +218,8 @@
 \NextLinkTarget{target name}#*
 \OmitIndent#*
 \OptionNotUsed#*
+\obeyedline#*
+\obeyedspace#*
 \PackageError{package name}{error text%text}{help text%text}#*
 \PackageInfo{package name}{info text%text}#*
 \PackageNote{package name}{note text%text}#*
