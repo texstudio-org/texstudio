@@ -6990,14 +6990,20 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
 QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includeHeader, bool simplifyCSS, int maxLineWidth, int maxWrap) const{
 	QString result;
 	if (includeHeader) {
-		result += "<html><head>";
-		if ( m_formatScheme ) {
-			result += "<style type=\"text/css\">";
-			result += QString("pre { margin: %1px }\n").arg(simplifyCSS?0:1);
-			result += m_formatScheme->exportAsCSS(simplifyCSS);
-			result += "</style>";
-		}
-		result += "</head><body>";
+        // check tooltip background color
+        const QColor clr=QPalette().toolTipBase().color();
+        const bool tooltipWithDarkBackground=qGray(clr.rgb())<128;
+        if(darkMode==tooltipWithDarkBackground){
+            // set CSS scheme
+            result += "<html><head>";
+            if ( m_formatScheme ) {
+                result += "<style type=\"text/css\">";
+                result += QString("pre { margin: %1px }\n").arg(simplifyCSS?0:1);
+                result += m_formatScheme->exportAsCSS(simplifyCSS);
+                result += "</style>";
+            }
+            result += "</head><body>";
+        }
 	}
 	QDocumentSelection sel = range.selection();
 	REQUIRE_RET(sel.startLine >= 0 && sel.startLine < m_lines.size(),"");
