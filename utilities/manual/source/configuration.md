@@ -30,6 +30,10 @@ The sidepanel itself consists of different docks which can be reordered, split a
 
 The side-panel set-up can be reset to default by using View/Show/"Reset Sidepanel/Docks".
 
+The menu \"View/Show\" also offers to show/hide docks.
+
+![Viewer Menu for docks](images/view_docks.png)
+
 ### Toolbars
 
 The toolbars can be hidden by a right click anywhere on the toolbar area.
