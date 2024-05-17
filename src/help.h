@@ -30,6 +30,7 @@ private:
     QString runTexdoc(QString args);
     bool runTexdocAsync(QString args,const char * finishedCMD);
     int texDocSystem;
+    bool mShowAllPackages=false;
 };
 
 

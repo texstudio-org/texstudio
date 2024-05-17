@@ -214,6 +214,22 @@ void TexdocDialog::setPreferredPackage(const QString &package)
 		itemPkgName->setSelected(true);
 	}
 }
+/*!
+ * \brief setShowAllPackages
+ * \param showAll
+ */
+void TexdocDialog::setShowAllPackages(bool showAll)
+{
+    ui->cbShowAllPackages->setChecked(showAll);
+}
+/*!
+ * \brief return the state of the checkbox showallpackages
+ * \return
+ */
+bool TexdocDialog::showAllPackages() const
+{
+    return ui->cbShowAllPackages->isChecked();
+}
 
 QString TexdocDialog::selectedPackage() const
 {

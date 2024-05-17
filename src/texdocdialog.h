@@ -19,6 +19,9 @@ public:
 	void setPackageNames(const QStringList &packages);
 	void setPreferredPackage(const QString &package);
 
+    void setShowAllPackages(bool showAll);
+    bool showAllPackages() const;
+
 	QString selectedPackage() const;
 
 	~TexdocDialog();

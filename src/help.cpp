@@ -22,10 +22,13 @@ void Help::execTexdocDialog(const QStringList &packages, const QString &defaultP
 	dialog.setPackageNames(packages);
 	if (!defaultPackage.isEmpty()) {
 		dialog.setPreferredPackage(defaultPackage);
-	}
+    }else{
+        dialog.setShowAllPackages(mShowAllPackages);
+    }
 	if (dialog.exec()) {
 		viewTexdoc(dialog.selectedPackage());
 	}
+    mShowAllPackages=dialog.showAllPackages();
 }
 /*!
  * \brief run texdoc --view package
