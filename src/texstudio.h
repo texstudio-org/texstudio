@@ -747,6 +747,7 @@ public slots:
     void toggleDocks(bool visible);
     void resetDocks();
     void toggleDockVisibility();
+    void updateDockVisibility(bool visible);
 
 signals:
 	void infoNewFile(); ///< signal that a new file has been generated. Used for scritps as trigger.

@@ -11532,6 +11532,7 @@ void Texstudio::addDock(const QString &name,const QString &iconName,const QStrin
     dock->setFeatures(QDockWidget::DockWidgetMovable);
     dock->setWidget(wgt);
     dock->setObjectName(name);
+    connect(dock,&QDockWidget::visibilityChanged,this,&Texstudio::updateDockVisibility);
     QLabel *lbl=new QLabel(title);
     dock->setTitleBarWidget(lbl);
     m_dockIcons.insert(name,iconName);
@@ -11553,12 +11554,22 @@ void Texstudio::toggleDocks(bool visible)
 {
     QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(QString(),Qt::FindDirectChildrenOnly);
     const QStringList hiddenDocks=hiddenLeftPanelWidgets.split("|");
+    QList<QDockWidget*>tobeRaised;
     foreach(QDockWidget* dw,lst){
         if(hiddenDocks.contains(dw->objectName())){
             dw->setVisible(false);
         }else{
+            if(!visible){
+                dw->setProperty("toBeRaised",dw->property("isVisible").toBool());
+            }
             dw->setVisible(visible);
+            if(visible && dw->property("toBeRaised").toBool()){
+                tobeRaised<<dw;
+            }
         }
+    }
+    foreach(QDockWidget* dw,tobeRaised){
+        dw->raise();
     }
     if(visible){
         // force update of TOC
@@ -11600,6 +11611,14 @@ void Texstudio::toggleDockVisibility()
         break;
     }
 
+}
+
+void Texstudio::updateDockVisibility(bool visible)
+{
+    QDockWidget *dock = qobject_cast<QDockWidget *>(sender());
+    if (dock) {
+        dock->setProperty("isVisible",visible);
+    }
 }
 /*!
     \brief call updateTOC & updateStructureLocally as only one call works with a signal
