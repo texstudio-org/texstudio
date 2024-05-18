@@ -743,6 +743,15 @@ void Texstudio::setupDockWidgets()
     addTagList("beamer", getRealIconFile("beamer_R90"), tr("Beamer Commands"), "beamer_tags.xml");
     addTagList("xymatrix", getRealIconFile("xy_R90"), tr("XY Commands"), "xymatrix_tags.xml");
     addMacrosAsTagList();
+    // in case of hidden sidepanel, mark docks which are to be raised
+    QStringList toRaise=docksToBeRaised.split("|");
+    QList<QDockWidget *> docks=findChildren<QDockWidget *>();
+    foreach(QDockWidget *dw,docks){
+        if(toRaise.contains(dw->objectName())){
+            dw->setProperty("toBeRaised",true);
+        }
+    }
+
 
     // OUTPUT WIDGETS
     if (!outputView) {
@@ -4481,6 +4490,7 @@ void Texstudio::readSettings(bool reread)
 #else
     hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();
 #endif
+    docksToBeRaised = config->value("Symbols/docksToBeRaised", "").toString();
 
     configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys
     configManager.editorAvailableOperations = QEditor::getAvailableOperations();
@@ -4633,6 +4643,7 @@ void Texstudio::saveSettings(const QString &configName)
 	// TODO: parse old "Symbols/Favorite IDs"
 
     config->setValue("Symbols/hiddenlists", hiddenLeftPanelWidgets);
+    config->setValue("Symbols/docksToBeRaised", docksToBeRaised);
 
 	QHash<QString, int> keys = QEditor::getEditOperations(true);
 	config->remove("Editor/Use Tab for Move to Placeholder");
@@ -11555,12 +11566,16 @@ void Texstudio::toggleDocks(bool visible)
     QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(QString(),Qt::FindDirectChildrenOnly);
     const QStringList hiddenDocks=hiddenLeftPanelWidgets.split("|");
     QList<QDockWidget*>tobeRaised;
+    QStringList collectDocksToBeRaised;
     foreach(QDockWidget* dw,lst){
         if(hiddenDocks.contains(dw->objectName())){
             dw->setVisible(false);
         }else{
             if(!visible){
                 dw->setProperty("toBeRaised",dw->property("isVisible").toBool());
+                if(dw->property("isVisible").toBool()){
+                    collectDocksToBeRaised<<dw->objectName();
+                }
             }
             dw->setVisible(visible);
             if(visible && dw->property("toBeRaised").toBool()){
@@ -11574,6 +11589,10 @@ void Texstudio::toggleDocks(bool visible)
     if(visible){
         // force update of TOC
         updateTOCs();
+    }else{
+        // store docks to be raised in config
+        // to handle restart correctly
+        docksToBeRaised=collectDocksToBeRaised.join("|");
     }
 }
 /*!

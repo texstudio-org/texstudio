@@ -168,6 +168,7 @@ private:
     QTreeView *fileView; ///< file explorer in docks
     QFileSystemModel *fileExplorerModel = nullptr;
 	QString hiddenLeftPanelWidgets;
+    QString docksToBeRaised; ///< when restoring docks from hidden sidepanel, these docks should be raised. Dock names are separated by "|"
     QMap<QString, QString> m_dockIcons;
     QList<QDockWidget*> m_docksOrder;
 
