@@ -1,7 +1,11 @@
 # CHANGELOG
 ## TeXstudio 4.8.1
 
-- 
+- allow hiding of sidepanel docks via view/show
+- reduce number on visible dock on OSX due to qt osx style weakness
+- fix raised dock after hiding/showing sidepanel [#3653](https://github.com/texstudio-org/texstudio/issues/3653)
+- fallback to simple syntax highligting when tooltip background differs from general background [#3644](https://github.com/texstudio-org/texstudio/issues/3644)
+- fix structure view context on sections [#3642](https://github.com/texstudio-org/texstudio/issues/3642)
 
 ## TeXstudio 4.8.0
 
