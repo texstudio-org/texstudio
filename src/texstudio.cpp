@@ -1364,9 +1364,13 @@ void Texstudio::setupMenus()
     int i=0;
     foreach (QDockWidget* dockWidget, dockWidgets) {
         if (dockWidget->toggleViewAction()) {
+            QLabel *lbl=qobject_cast<QLabel*>(dockWidget->titleBarWidget());
+            if(lbl == nullptr){
+                // dockwidget is not from sidepanel but pdf viewer
+                continue;
+            }
             auto *act=newManagedAction(submenu, QString("dockview_%1").arg(i),dockWidget->objectName(),SLOT(toggleDockVisibility()));
             act->setData(dockWidget->objectName());
-            QLabel *lbl=qobject_cast<QLabel*>(dockWidget->titleBarWidget());
             act->setText(lbl->text());
             act->setCheckable(true);
             bool hide=hiddenDocks.contains(dockWidget->objectName());
