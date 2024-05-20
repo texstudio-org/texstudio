@@ -1,5 +1,5 @@
 # - Try to find QTermWidget5
-# cmake varaint fails on ubuntu for missing libutf8proc.so
+# cmake variant fails on ubuntu for missing libutf8proc.so
 # Once done this will define
 #
 #  QTERMWIDGET_FOUND - system has QTermWidget5

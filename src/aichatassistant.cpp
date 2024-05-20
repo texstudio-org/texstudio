@@ -425,7 +425,7 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
         ja_messages=obj["messages"].toArray();
         QString responseText=getConversationForBrowser();
         textBrowser->setHtml(responseText);
-        // prepare last repsonse
+        // prepare last response
         QJsonObject ja_message=ja_messages.last().toObject();
         m_response=ja_message["content"].toString();
         // check if macro, then execute instead of insert

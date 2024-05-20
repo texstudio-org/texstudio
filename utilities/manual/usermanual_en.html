@@ -163,7 +163,7 @@ This needs to be refined
 </figure>
 <p>The main window is divided into three parts (blue): On the left we have a "side panel" (currently showing an empty Structure) that provides many different functions. On the lower right you see a <em>messages panel</em>. You can switch to the <a href="#the-log-files">log panel</a>, the <em>preview panel</em>, or the <em>search results panel</em> there. The third area is left to the editor. You can have multiple editors open, which you select using tabs. You may increase the area for editors by turning off the side panel or the messages panel. This can be done easily via the two icons in the lower left corner (marked orange). They are in the status bar, which can be hidden (s. menu View/Show).</p>
 <h2 id="create-a-first-document"><span class="header-section-number">1.3</span> Create a first document</h2>
-<p>LaTeX needs some configuartion code in the document. The <a href="#setting-the-preamble-of-a-tex-document">Quick Start Wizard</a> offers an easy way to set up an typical document.</p>
+<p>LaTeX needs some configuration code in the document. The <a href="#setting-the-preamble-of-a-tex-document">Quick Start Wizard</a> offers an easy way to set up an typical document.</p>
 <figure>
 <img src="txs_wizard.png" alt="Quick start wizard" style="width:100.0%" /><figcaption>Quick start wizard</figcaption>
 </figure>
@@ -284,7 +284,7 @@ This option is available for all the environments indicated by "[selection]" in 
 <li>To Titlecase (strict)</li>
 <li>To Titlecase (smart)</li>
 </ul>
-<p>Both variants of "To Titlecase" leave small words like a, the, of etc. in lowercase. Additionally, "To Titlecase (smart)" does not convert any words containing capital letters, assuming they are acronymes which require a fixed capitalization (e.g. "TeXstudio").</p>
+<p>Both variants of "To Titlecase" leave small words like a, the, of etc. in lowercase. Additionally, "To Titlecase (smart)" does not convert any words containing capital letters, assuming they are acronyms which require a fixed capitalization (e.g. "TeXstudio").</p>
 <h3 id="escaping-reserved-characters"><span class="header-section-number">2.4.2</span> Escaping reserved characters</h3>
 <p>If you have text containing reserved TeX characters and want the text to appear literally in your document, you have to escape the reserved characters to prevent LaTeX from interpreting them. The following functions take care of that (Menu: Idefix)</p>
 <ul>
@@ -385,7 +385,7 @@ The completer has several operation modes which are shown in the tabs below the 
 <figure>
 <img src="thesaurus.png" alt="Thesaurus" /><figcaption>Thesaurus</figcaption>
 </figure>
-<p>The first line to the left contains the word, for which a synonym is searched for. The list below gives a list of word classes. The can be chosen to reduce the number of suggestions. The column to the right contains the list of suggested synonyms. A selected word from this list apears in the first line to the right as proposition for replacement of the text. This word can be changed manually. It is also used to do further investigations for words and their synonyms which "start with" or "contain" that word. With "lookup" it can be directly used to look for a synonym for that word.</p>
+<p>The first line to the left contains the word, for which a synonym is searched for. The list below gives a list of word classes. The can be chosen to reduce the number of suggestions. The column to the right contains the list of suggested synonyms. A selected word from this list appears in the first line to the right as proposition for replacement of the text. This word can be changed manually. It is also used to do further investigations for words and their synonyms which "start with" or "contain" that word. With "lookup" it can be directly used to look for a synonym for that word.</p>
 <h2 id="special-commands"><span class="header-section-number">2.14</span> Special Commands</h2>
 <h3 id="delete-wordcommandenvironment"><span class="header-section-number">2.14.1</span> Delete word/command/environment</h3>
 <p>With the shortcut Alt+Del, the word under the cursor is deleted. If it is a command, the command is deleted including opening and closing braces. E.g. "\textbf{text}" leave "text". If it is an environment, the enclosing begin/end are removed.</p>
@@ -403,21 +403,21 @@ Note : the "Clean" command in the "Tools menu" allows you to erase the files (dv
 </figure>
 <p><strong>Warning:</strong> all your files must have an extension.</p>
 <h2 id="the-log-files"><span class="header-section-number">3.2</span> The log files</h2>
-<p>The log panel gives you insight to all the informations output to the log file by the command processing your LaTeX file. This panel can show the log file in two ways: First the log file, highlighted at important messages, and second as a table, that extracts the error and warning messages aswell as messages for bad boxes from the log file for easier overview. The buttons <em>Log File</em> and <em>Issues</em> let you show or hide the two representations (but you can't hide both at the same time). If you choose to show both of them then the log panel will be split vertically into two parts.</p>
+<p>The log panel gives you insight to all the information output to the log file by the command processing your LaTeX file. This panel can show the log file in two ways: First the log file, highlighted at important messages, and second as a table, that extracts the error and warning messages as well as messages for bad boxes from the log file for easier overview. The buttons <em>Log File</em> and <em>Issues</em> let you show or hide the two representations (but you can't hide both at the same time). If you choose to show both of them then the log panel will be split vertically into two parts.</p>
 <figure>
 <img src="errorlog.png" alt="Display of Error Log" /><figcaption>Display of Error Log</figcaption>
 </figure>
 <p>Use the buttons <em>Show Error</em>, <em>Show Warning</em>, <em>Show BadBox</em> (see tooltips) to choose whether error messages (red), warning messages (yellow) or messages for bad boxes (blue) will be shown or hidden. Use the button <em>Show Log Markers</em> to display or hide log marker icons left to the lines in the editor. The tooltips for the log markers show message details.</p>
 <p>In case that the log file contains error messages the log panel is opened automatically (check option <em>Show log in case of compile error</em>, s. Build settings) and log markers are activated. The editor's cursor will be placed in the first line which has an error marker (check option <em>Go to error when displaying log</em>, s. Adv. Editor settings).</p>
 <p>You may use the buttons <em>Previous Error</em> and <em>Next Error</em> to jump back or forth to the previous or next error. The shortcuts for this are Ctrl+Shift+Up/Down, accordingly Ctrl+Alt+Up/Down (these you have to set up on your own, s. Shortcut options for actions in menu Idefix/Go to) and Alt+Shift+Up/Down are used for warnings and bad boxes respectively. You can jump between markers of any type with Ctrl+Up/Down.</p>
-<p>When you select an entry in the table then the editor (and the log file) scrolls to the corresponding location. The log markers will be activated (check option <em>Show log markers when clicking log entry</em>, s. Adv. Editor settings). The log file informations can be shown or hidden by clicking on the Log File button. The Issues button offers a similar function for the table with the messages.</p>
+<p>When you select an entry in the table then the editor (and the log file) scrolls to the corresponding location. The log markers will be activated (check option <em>Show log markers when clicking log entry</em>, s. Adv. Editor settings). The log file information can be shown or hidden by clicking on the Log File button. The Issues button offers a similar function for the table with the messages.</p>
 <h1 id="viewing-a-document-pdf"><span class="header-section-number">4</span> Viewing a document (pdf)</h1>
 <!--
 **TODO** internal/external 
 -->
 <h2 id="internal-pdf-viewer"><span class="header-section-number">4.1</span> Internal pdf viewer</h2>
 <p>TeXstudio has an internal (built-in) pdf viewer that lets you view your pdf documents. The viewer can be embedded or window-based (in a separate window). The former uses an area to the right of the editor, the latter uses its own window and gives the user more options. The viewer can be opened by clicking the View button or by pressing the F7 key.</p>
-<p>You may want to change otions in the config dialog (s. Internal PDF Viewer). For forward and inverse searching, scrolling follows cursor, and cursor follows scrolling see <a href="#forward-and-inverse-searching">Forward and Inverse searching</a>.</p>
+<p>You may want to change options in the config dialog (s. Internal PDF Viewer). For forward and inverse searching, scrolling follows cursor, and cursor follows scrolling see <a href="#forward-and-inverse-searching">Forward and Inverse searching</a>.</p>
 <h3 id="modes-and-mouse-actions"><span class="header-section-number">4.1.1</span> Modes and mouse actions</h3>
 <p>You can choose main mode <em>Magnify</em> or <em>Scroll</em> from the toolbar. The mouse cursor used is a magnifier glass, or an open hand. These offer following actions:</p>
 <p>Magnify mode only</p>
@@ -496,7 +496,7 @@ Now you can select a template which defines the formatting of the table. A numbe
 <li>plain_tabularx</li>
 <li>rowcolors_tabular</li>
 </ul>
-<p>By selecting the first entry, the table is reformated to:</p>
+<p>By selecting the first entry, the table is reformatted to:</p>
 <pre><code>\begin{tabular}{|l|l|}
 \hline
 \textbf{a}&amp;\textbf{b}\\ \hline
@@ -1737,7 +1737,7 @@ Concerning auto completion, TeXstudio allows one to adapt the behaviour to your 
 <p>As a last resort, you may set an <em>explicit root document</em> via <code>Options -&gt; Root Document -&gt; Set Current Document As Explicit Root</code>. This setting takes absolute precedence. All the commands of the "Tools" menu will be called on this document (to be more precise, the build system will expand the placeholder <code>%</code> to the root document), no matter which document is active in the editor. Additionally, labels and usercommands which are defined in any open document, can be used for completion in any open document.</p>
 <p>In earlier versions, the <em>explicit root document</em> was somewhat misleadingly called <em>master document</em>.</p>
 <h3 id="loaded-documents"><span class="header-section-number">7.1.2</span> Loaded Documents</h3>
-<p>Obviously, TeXstudio can only use information (defined commands, labels, document hirachy, etc.) that it is aware of. We use the information in all opened files, but if a label in a multi-file document is defined in a not-loaded files, TeXstudio does not know about it and will mark it as missing in references. To remedy this, you can just open the corresponding file as well.</p>
+<p>Obviously, TeXstudio can only use information (defined commands, labels, document hierarchy, etc.) that it is aware of. We use the information in all opened files, but if a label in a multi-file document is defined in a not-loaded files, TeXstudio does not know about it and will mark it as missing in references. To remedy this, you can just open the corresponding file as well.</p>
 <p>More recent versions of TeXstudio have an advanced option <code>Editor -&gt; Automatically load included files</code>. It's disabled by default for performance reasons with older systems. When you enable this option, TeXstudio will automatically load and parse all files of multi-file-documents as soon as one of the files is opened. You may have to set the magic comment <code>% !TeX root = root-filename</code> if you do not have the root document open. With this option enabled TeXstudio will always know about your complete document and act accordingly when performing highlighting or completion.</p>
 <h2 id="overview-of-texstudio-command-line-options"><span class="header-section-number">7.2</span> Overview of TeXstudio command-line options</h2>
 <p><code>texstudio file [--config DIR] [--root] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy] [--no-session]</code></p>
@@ -1853,7 +1853,7 @@ If ##l is added to a key, the argument is defining a label. (see listings.cwl)<b
 </ul>
 <p>cwl files should be encoded as UTF-8.</p>
 <h3 id="command-format"><span class="header-section-number">7.3.2</span> Command format</h3>
-<p>In its simplest form the command is just a valid LaTeX expression as you find it in the documentation, e.g. <code>\section{title}</code>. By default, every option is treated as a placeholder. Alteratively, you may either just define a stop position for the cursor by <code>%|</code> (Example: <code>\left(%|\right)</code>) or use <code>%&lt; %&gt;</code> to mark only part of an option as placeholder (Example: <code>\includegraphics[scale=%&lt;1%&gt;]{file}</code>). New lines can be included in a command by <code>%\</code>.</p>
+<p>In its simplest form the command is just a valid LaTeX expression as you find it in the documentation, e.g. <code>\section{title}</code>. By default, every option is treated as a placeholder. Alternatively, you may either just define a stop position for the cursor by <code>%|</code> (Example: <code>\left(%|\right)</code>) or use <code>%&lt; %&gt;</code> to mark only part of an option as placeholder (Example: <code>\includegraphics[scale=%&lt;1%&gt;]{file}</code>). New lines can be included in a command by <code>%\</code>.</p>
 <h4 id="argument-names"><span class="header-section-number">7.3.2.1</span> Argument Names</h4>
 <p>The argument names are visible in the completer window and after completion as placeholders in the editor. In general, you are free to name the arguments as you like. We encurage to provide meaningful names e.g. <code>\parbox[position]{width}{text}</code> instead of <code>\parbox[arg1]{arg2}{arg3}</code>.</p>
 <p>There are a few argument names that have special meaning:</p>

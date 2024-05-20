@@ -141,10 +141,10 @@ Special commands
 :   Are special commands which do not add cell content and need to handled specially, e.g. `\hline` at the end of a row.
 
 Special commands position
-:   where to place them when reformating a table.
+:   where to place them when reformatting a table.
 
 One line per cell
-:   when reformating a table, just put each cell in an individual line
+:   when reformatting a table, just put each cell in an individual line
 
 ![Configure Editor advanced: table autoformatting](images/conf_tableautoformating.png)
 
