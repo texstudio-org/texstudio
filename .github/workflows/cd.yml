@@ -152,7 +152,7 @@ jobs:
   macosx:
     name: Mac OS X
     if: true
-    runs-on: macos-11
+    runs-on: macos-12
 
     steps:
     - name: Checkout
