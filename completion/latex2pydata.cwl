@@ -1,5 +1,5 @@
 # latex2pydata package
-# Matthew Bertucci 2023/11/21 for v0.1
+# Matthew Bertucci 2024/05/20 for v0.2.0
 
 #include:etoolbox
 #include:fvextra
@@ -20,6 +20,7 @@
 \pydatawritelistclose#*
 \pydatawritekey{key%plain}#*
 \pydatawritevalue{value}#*
+\pydatawritekeyedefvalue{key%plain}{value}#*
 \pydatawritekeyvalue{key%plain}{value}#*
 \begin{pydatawritemlvalue}#*
 \end{pydatawritemlvalue}#*
@@ -29,6 +30,7 @@
 \pydatawritebuffer#*
 \pydatabufferkey{key%plain}#*
 \pydatabuffervalue{value}#*
+\pydatabufferkeyedefvalue{key%plain}{value}#*
 \pydatabufferkeyvalue{key%plain}{value}#*
 \begin{pydatabuffermlvalue}#*
 \end{pydatabuffermlvalue}#*
