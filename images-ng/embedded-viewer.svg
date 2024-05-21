@@ -16,7 +16,6 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    enable-background="new"
-   inkscape:export-filename="C:\Users\Tim\Documents\texstudio\svn6\images\section.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
    sodipodi:docname="embedded-viewer.svg">
@@ -46,15 +45,6 @@
        x2="3.1985149"
        y2="2.7103961"
        gradientUnits="userSpaceOnUse" />
-    <filter
-       inkscape:collect="always"
-       id="filter3863">
-      <feBlend
-         inkscape:collect="always"
-         mode="multiply"
-         in2="BackgroundImage"
-         id="feBlend3865" />
-    </filter>
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient3853"
@@ -160,7 +150,7 @@
      id="layer1"
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     style="filter:url(#filter3863)">
+     >
     <rect
        y="2.5"
        x="1.5"
@@ -175,7 +165,7 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#202020;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter3863)"
+       style="fill:none;fill-rule:evenodd;stroke:#202020;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m -32.545308,5.9029126 13,0"
        id="path4148-6"
        inkscape:connector-curvature="0"
