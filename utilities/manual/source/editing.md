@@ -290,7 +290,7 @@ A number of templates are predefined by txs:
 -   plain\_tabularx
 -   rowcolors\_tabular
 
-By selecting the first entry, the table is reformated to:
+By selecting the first entry, the table is reformatted to:
 
 ```latex
 \begin{tabular}{|l|l|}

@@ -99,7 +99,7 @@
 - when the mouse cursor hovers over a spin/combo box, the wheel scrolls through the configuration page instead of changing values ([#2977](https://github.com/texstudio-org/texstudio/issues/2977))
 - copy some details (icons, separators) to menu item list in combo box ([#3025](https://github.com/texstudio-org/texstudio/issues/3025))
 - support toggling comment on folded lines ([#2912](https://github.com/texstudio-org/texstudio/issues/2912))
-- don't show pointing hand cursor over hyperlinks when magnifier is activ ([#2982](https://github.com/texstudio-org/texstudio/pull/2982))
+- don't show pointing hand cursor over hyperlinks when magnifier is active ([#2982](https://github.com/texstudio-org/texstudio/pull/2982))
 - improve usage of tab key and enter key in QuickStart Wizard ([#3014](https://github.com/texstudio-org/texstudio/pull/3014))
 - add \maketitle to the document created by QuickStart Wizard if appropriate ([#3015](https://github.com/texstudio-org/texstudio/pull/3015))
 - pos1 (home) key now sets cursor to start or to first non-blank character of editor lines ([#3012](https://github.com/texstudio-org/texstudio/issues/3012))
@@ -178,7 +178,7 @@
 - fix stuck to save unsaved document (only in explicit root mode and with a new unsaved document,[#2153](https://github.com/texstudio-org/texstudio/issues/2153)) 
 - xindex engine added
 - fix math highlighting in keyvals ([#2138](https://github.com/texstudio-org/texstudio/issues/2138))
-- add context menu in embbeded pdf viewer to invert pdf colors
+- add context menu in embedded pdf viewer to invert pdf colors
 - remember window state (maximized/normal) of config dialog
 - fix (and speed-up) miktex package detection
 - fix handling apostrophed words better in spellchecker ([#2179](https://github.com/texstudio-org/texstudio/issues/2179))
@@ -258,7 +258,7 @@
 - fix pdfviewer page display
 - build OSX with QT6.2, fix special characters entry (alt+n + n , etc.) ([#1770](https://github.com/texstudio-org/texstudio/issues/1770))
 - activate crash handler on win again
-- fix strcuture detection for included files
+- fix structure detection for included files
  
 
 ## TeXstudio 4.0.0
@@ -269,7 +269,7 @@
 - more and updated completion word lists thanks to mbertucci47
 - handle text (e.g. \text{text}) in mathenv as text with spell checking
 - performance improvement for large files with large number of labels and/or large number of includes
-- fix that search options are persistant
+- fix that search options are persistent
 - automatic structure scrolling can be turned off ([#1742](https://github.com/texstudio-org/texstudio/issues/1742))
 - some bug fixes
 
@@ -363,7 +363,7 @@
 ## TeXstudio 2.12.16
 
 - bug fixes
-- somes fixes for tool-tip preview by MeanSquaredError
+- some fixes for tool-tip preview by MeanSquaredError
 
 ## TeXstudio 2.12.14
 
@@ -421,7 +421,7 @@
 - tags for beamer
 - change preview default to embedded pdf
 - handle preview failures more gracefully, i.e. no warning pop-ups
-- repect preview settings (panel,etc) also for hover preview
+- respect preview settings (panel,etc) also for hover preview
 - show hover preview as tooltip in case of inline-mode
 - warn if compiler commands are actually a command list
 - several improvements to the latex parser
@@ -476,7 +476,7 @@
 - fix highlighting of current section in structure (bug 2103)
 - fix delays when typing _abc
 - fix bug in log parser: wrong filename if empty brackets () occur in text
-- fix word repetition erro on non-breaking space (~)
+- fix word repetition error on non-breaking space (~)
 - fix file detection in latex/include file
 - fix width of side panel not saved (bug 2083)
 - fix ampersand in in recent session names
@@ -629,7 +629,7 @@ before changing to windowed mode (Bug #1876)
 - do not parse for structure in non-LaTeX-like languages
 - make preview work with \input in preamble (files get rewritten to absolute paths for the temporary compilation)
 - use QSaveFile for file saving instead of our custom file saving strategy if available (Qt5 only)
-- eneable left/right shortcuts for embedded viewer
+- enable left/right shortcuts for embedded viewer
 - remove multiple default values for latexmk (fixes bug 1694)
 - support environment variables in additional search paths
 - support [txs-app-dir] and [txs-settings-dir] in additional search paths for log and pdf
@@ -639,7 +639,7 @@ before changing to windowed mode (Bug #1876)
 - make pasting into cursor mirrors a single undo block
 - do not remove cursor mirrors on undo
 - select text of current item in Packages Help to allow easier overwriting (feature request 1063)
-- select search/replace texts when switchting there using Tab / Backtab (feature request 1064)
+- select search/replace texts when switching there using Tab / Backtab (feature request 1064)
 - added optional workingDirectory argument to script function system()
 - added editor->insertSnippet() to scripting environment
 - added option to choose log encoding
@@ -673,7 +673,7 @@ before changing to windowed mode (Bug #1876)
 - fix line breaks for cursor mirrors
 - fix auto paren completion for cursor mirrors
 - fix line operations to work with cursor mirrors
-- fix sychronize text of placeholder mirror when inserting an environment on a selection (Ctrl+E)
+- fix synchronize text of placeholder mirror when inserting an environment on a selection (Ctrl+E)
 - fix font in pdf viewer status bar did not scale
 - fix loading of badword lists
 - fix LanguageTool startup
@@ -727,7 +727,7 @@ before changing to windowed mode (Bug #1876)
 - fix: context help for \documentclass
 - fix: treat minted as verboten environment
 - fix: correctly handle files with uppercase extension .TEX as tex files
-- fix: workaround for pasting from LibreOffice (priorize text over image)
+- fix: workaround for pasting from LibreOffice (prioritize text over image)
 - updates to translations
 - updates to the manual
 - updates to cwl files
@@ -806,7 +806,7 @@ before changing to windowed mode (Bug #1876)
 - user-visible list of hidden documents
 - added --foreground and --no-foreground options to pdf viewer
 - make format for magicComment editable in Options -> Highlighting
-- added line operation "Delete from start of line", more constent naming of line operations, adaption for OSX default shortcuts
+- added line operation "Delete from start of line", more consistent naming of line operations, adaption for OSX default shortcuts
 - improved support for output redirection of commands
 - support shell-style literal quotes (\") in commands
 - new selection actions "Expand Selection to Word", "Expand Selection to Line"
@@ -1067,7 +1067,7 @@ before changing to windowed mode (Bug #1876)
 
 ## TeXstudio 2.6.4
 
-- package scanner: queries the tex istallation for installed packages and highlights missing packages
+- package scanner: queries the tex installation for installed packages and highlights missing packages
 - package completion
 - basic annotation support in internal pdf viewer
 - improved render speed, especially on mac

@@ -150,7 +150,7 @@ cwl files should be encoded as UTF-8.
 
 In its simplest form the command is just a valid LaTeX expression as you
 find it in the documentation, e.g. `\section{title}`. By default, every
-option is treated as a placeholder. Alteratively, you may either just
+option is treated as a placeholder. Alternatively, you may either just
 define a stop position for the cursor by `%|` (Example:
 `\left(%|\right)`) or use `%< %>` to mark only part of an option as
 placeholder (Example: `\includegraphics[scale=%<1%>]{file}`). New lines

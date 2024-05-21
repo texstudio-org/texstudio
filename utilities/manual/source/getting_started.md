@@ -18,7 +18,7 @@ On the lower right you see the *messages panel* which can be switched to the [*l
 The central toolbar offers access to some common latex commands as we will see.
 
 ## Create a first document
-LaTeX needs some configuartion code in the document. The [Quick Start Wizard](editing.md#setting-the-preamble-of-a-tex-document) offers an easy way to set up a typical document.
+LaTeX needs some configuration code in the document. The [Quick Start Wizard](editing.md#setting-the-preamble-of-a-tex-document) offers an easy way to set up a typical document.
 
 ![Quick start wizard](images/txs_wizard.png)
 
