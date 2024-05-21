@@ -798,7 +798,7 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 			break;
 		}
 		// no break,
-        [[gnu::fallthrough]];
+        [[fallthrough]];
 	case Latex3Warning:
 		if (!strLine.startsWith('*') || strLine.startsWith("****************************************")) {
 			found = false;
@@ -961,7 +961,7 @@ short LatexOutputFilter::parseLine(const QString &strLine, short dwCookie)
 		} else {
 			dwCookie = Start; // reset and treat currently independently
 		}
-		[[gnu::fallthrough]];
+        [[fallthrough]];
 	case Start :
 		if (detectBadBox(strLine, dwCookie))
 			break;

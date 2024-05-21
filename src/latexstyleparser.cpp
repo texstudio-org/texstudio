@@ -115,9 +115,9 @@ void LatexStyleParser::run()
 							QChar c = result.at(td.length());
 							switch (c.toLatin1()) {
 							case '#':
-								[[clang::fallthrough]];
+                                [[fallthrough]];
 							case '{':
-								[[clang::fallthrough]];
+                                [[fallthrough]];
 							case '[':
 								addCommand = false;
 								break;

@@ -149,7 +149,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline, boo
                             sortWord.append('$');
                             break;
                         }
-                        [[gnu::fallthrough]];
+                        [[fallthrough]];
 					default:
 						sortWord.append(currentChar);
 					}
@@ -182,7 +182,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline, boo
 				curLine += "%";
 				word += "%";
 			// no break
-                [[clang::fallthrough]];
+                [[fallthrough]];
 			case '\\':
 				if (currentChar.toLatin1() == '\n' || replacePercentNewline) {
 					lines.append(curLine);
@@ -192,7 +192,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline, boo
 					//curLine+="\n";
 					break;
 				}
-                [[clang::fallthrough]];
+                [[fallthrough]];
 			default: // escape was not an escape character ...
 				curLine += '%';
 				curLine += currentChar;
