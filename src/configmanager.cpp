@@ -17,6 +17,7 @@
 #include "updatechecker.h"
 #include "utilsVersion.h"
 #include "utilsUI.h"
+#include <QSysInfo>
 
 #include <QDomElement>
 
@@ -1618,15 +1619,26 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 
 	//appearance
-	QString displayedInterfaceStyle = interfaceStyle == "" ? tr("default") : interfaceStyle;
 	confDlg->ui.comboBoxInterfaceStyle->clear();
-    QStringList availableStyles=QStyleFactory::keys();
+	QStringList availableStyles=QStyleFactory::keys();
 #ifdef ADWAITA
-    availableStyles << "Adwaita (txs)" << "Adwaita Dark (txs)";
+	availableStyles << "Adwaita (txs)" << "Adwaita Dark (txs)";
 #endif
-    availableStyles << "Orion Dark" << tr("default");
-    confDlg->ui.comboBoxInterfaceStyle->addItems(availableStyles);
-	confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(confDlg->ui.comboBoxInterfaceStyle->findText(displayedInterfaceStyle));
+	availableStyles << "Orion Dark" << tr("default");
+	int i = availableStyles.indexOf("windows11");
+	if (i>-1) {
+		bool ok;
+		QString productType = QSysInfo::productType();
+		float version = QSysInfo::productVersion().toFloat(&ok);
+		if (productType!="windows" || !ok || version < 11.0) {
+			availableStyles.removeAt(i);
+		}
+	}
+	confDlg->ui.comboBoxInterfaceStyle->addItems(availableStyles);
+	int cb_i = confDlg->ui.comboBoxInterfaceStyle->findText(interfaceStyle);
+	if (cb_i==-1) cb_i = availableStyles.count() - 1;  // use default
+	confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(cb_i);
+	QString displayedInterfaceStyle = availableStyles.at(cb_i);
 	confDlg->ui.comboBoxInterfaceStyle->setEditText(displayedInterfaceStyle);
 
 	confDlg->fmConfig->setBasePointSize( editorConfig->fontSize );
