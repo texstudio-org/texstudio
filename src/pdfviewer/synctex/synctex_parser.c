@@ -900,6 +900,7 @@ SYNCTEX_INLINE static void _synctex_will_free(synctex_node_p node) {
  *  It is not owned by its parent, unless it is its first child.
  *  This destructor is for all nodes with children.
  */
+/*
 static void _synctex_free_node(synctex_node_p node) {
     if (node) {
         SYNCTEX_SCANNER_REMOVE_HANDLE_TO(node);
@@ -910,10 +911,49 @@ static void _synctex_free_node(synctex_node_p node) {
             nextNode=__synctex_tree_sibling(n);
             synctex_node_free(_synctex_tree_child(n));
             _synctex_free(n);
+            ++i;
         } while(n=nextNode);
     }
     return;
+}*/
+
+static void _synctex_free_node(synctex_node_p node) {
+    if (node) {
+        SYNCTEX_SCANNER_REMOVE_HANDLE_TO(node);
+        SYNCTEX_WILL_FREE(node);
+
+        do {
+            synctex_node_p nextSibling=__synctex_tree_sibling(node);
+            synctex_node_p n=node;
+            synctex_node_p nextNode=NULL;
+            do {
+                while((nextNode=_synctex_tree_child(n))) {
+                    __synctex_tree_set_child(n, NULL);
+                    n=nextNode;
+                }
+                if(n){
+                    nextNode=__synctex_tree_sibling(n);
+                    if(!nextNode) {
+                        if(n==node){
+                            _synctex_free(n);
+                            break;
+                        }
+                        nextNode=__synctex_tree_parent(n);
+                    }
+                    _synctex_free(n);
+                    n=nextNode;
+                }
+                if(n==node){
+                    _synctex_free(n);
+                    break;
+                }
+            } while(n);
+            node=nextSibling;
+        }while(node);
+    }
+    return;
 }
+
 /**
  *  Free the given handle.
  *  - parameter node: of type synctex_node_p
@@ -6072,6 +6112,7 @@ synctex_scanner_p synctex_scanner_new_with_output_file(const char * output, cons
 
 /*  The scanner destructor
  */
+
 int synctex_scanner_free(synctex_scanner_p scanner) {
     int node_count = 0;
     if (scanner) {
