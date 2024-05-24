@@ -2930,7 +2930,7 @@ void PDFDocument::setupToolBar(){
     connect(toolBarTimer, SIGNAL(timeout()), this, SLOT(showToolbars()));
 
     toolBar->addAction(actionTypeset);
-    toolBar->addSeparator();
+    separatorAfterTypeset = toolBar->addSeparator();
     toolBar->addAction(actionExternalViewer);
     toolBar->addSeparator();
     toolBar->addAction(actionMagnify);
@@ -3171,6 +3171,7 @@ void PDFDocument::init(bool embedded)
 	actionExternalViewer->setIcon(getRealIcon("acroread"));
 	if (embedded) {
 		actionTypeset->setVisible(false);
+		separatorAfterTypeset->setVisible(false);
 		actionShrinkViewer->setVisible(false);
 	} else {
 		actionClose->setVisible(false);
