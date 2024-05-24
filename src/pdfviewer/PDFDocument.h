@@ -616,6 +616,7 @@ private:
     QAction *actionPaste;
     QAction *actionClear;
     QAction *actionTypeset;
+    QAction *separatorAfterTypeset;
     QAction *actionExternalViewer;
     QAction *actionPreferences;
     QAction *actionStack;
