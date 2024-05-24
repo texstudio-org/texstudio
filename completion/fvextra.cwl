@@ -1,12 +1,12 @@
 # fvextra package
-# Matthew Bertucci 2023/11/19 for v1.6
+# Matthew Bertucci 2024/05/16 for v1.7.0
 
 #include:etoolbox
 #include:fancyvrb
 #include:upquote
 #include:lineno
 
-#keyvals:\Verb,\Verb*,\DefineShortVerb,\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\SaveVerb,\SaveVerb*,\UseVerb,\UseVerb*,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\fvinlineset,\EscVerb,\EscVerb*,\begin{VerbEnv},\VerbatimInsertBuffer,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
+#keyvals:\Verb,\Verb*,\DefineShortVerb,\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\SaveVerb,\SaveVerb*,\UseVerb,\UseVerb*,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\fvinlineset,\EscVerb,\EscVerb*,\begin{VerbEnv},\VerbatimInsertBuffer,\VerbatimClearBuffer,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
 beameroverlays#true,false
 curlyquotes#true,false
 extra#true,false
@@ -64,7 +64,7 @@ breakbytokenanywhere#true,false
 \fvinlineset{options%keyvals}
 
 # keys from fancyvrb for fvextra commands
-#keyvals:\fvinlineset,\EscVerb,\EscVerb*,\begin{VerbEnv},\VerbatimInsertBuffer,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
+#keyvals:\fvinlineset,\EscVerb,\EscVerb*,\begin{VerbEnv},\VerbatimInsertBuffer,\VerbatimClearBuffer,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
 commentchar=%<single char%>
 gobble=%<integer%>
 formatcom=%<commands%>
@@ -146,8 +146,10 @@ writer=%<macro%>
 
 \VerbatimInsertBuffer
 \VerbatimInsertBuffer[options%keyvals]
+\VerbatimClearBuffer
+\VerbatimClearBuffer[options%keyvals]
 
-#keyvals:\begin{VerbatimBuffer},\VerbatimInsertBuffer
+#keyvals:\begin{VerbatimBuffer},\VerbatimInsertBuffer,\VerbatimClearBuffer
 afterbuffer=%<macro%>
 bufferer=%<macro%>
 bufferlengthname=%<string%>

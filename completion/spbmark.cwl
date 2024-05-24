@@ -1,11 +1,12 @@
 # spbmark package
-# Matthew Bertucci 3/7/2022 for v1.4
+# Matthew Bertucci 2024/05/20 for v1.46j
 
 #include:l3keys2e
 
 #keyvals:\usepackage/spbmark#c
 text#true,false
 math#true,false
+math*#true,false
 foot#true,false
 both
 all

@@ -525,6 +525,7 @@
 <file>completion/catchfilebetweentags.cwl</file>
 <file>completion/catchfile.cwl</file>
 <file>completion/catechis.cwl</file>
+<file>completion/catppuccinpalette.cwl</file>
 <file>completion/causets.cwl</file>
 <file>completion/ccaption.cwl</file>
 <file>completion/ccfonts.cwl</file>
@@ -1058,6 +1059,7 @@
 <file>completion/colonequals.cwl</file>
 <file>completion/colophon.cwl</file>
 <file>completion/color.cwl</file>
+<file>completion/colorblind.cwl</file>
 <file>completion/colordoc.cwl</file>
 <file>completion/colordvi.cwl</file>
 <file>completion/color-edits.cwl</file>
@@ -3140,6 +3142,7 @@
 <file>completion/rgltxdoc.cwl</file>
 <file>completion/ribbonproofs.cwl</file>
 <file>completion/richtext.cwl</file>
+<file>completion/rigidnotation.cwl</file>
 <file>completion/rit-fonts.cwl</file>
 <file>completion/rjlpshap.cwl</file>
 <file>completion/rmannot.cwl</file>
@@ -3256,6 +3259,7 @@
 <file>completion/semantic.cwl</file>
 <file>completion/semantic-markup.cwl</file>
 <file>completion/semesterplanner.cwl</file>
+<file>completion/semesterplannerlua.cwl</file>
 <file>completion/semioneside.cwl</file>
 <file>completion/semtex.cwl</file>
 <file>completion/semtrans.cwl</file>
@@ -3317,6 +3321,7 @@
 <file>completion/sizeredc.cwl</file>
 <file>completion/skak.cwl</file>
 <file>completion/skeldoc.cwl</file>
+<file>completion/skillicons.cwl</file>
 <file>completion/skills.cwl</file>
 <file>completion/skmath.cwl</file>
 <file>completion/skt.cwl</file>
