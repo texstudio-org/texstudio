@@ -725,6 +725,9 @@ void ConfigDialog::retrieveModels()
         case 1:
             url="https://api.openai.com/v1/models";
             break;
+        case 2:
+            url="http://localhost:8080/v1/models";
+            break;
         default:
             break;
         }

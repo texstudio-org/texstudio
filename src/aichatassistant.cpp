@@ -155,16 +155,21 @@ void AIChatAssistant::slotSend()
     QString url;
     switch(config->ai_provider){
         case 0: url="https://api.mistral.ai/v1/chat/completions";
-        break;
+            break;
         case 1: url="https://api.openai.com/v1/chat/completions";
-        break;
+            break;
+        case 2: url="http://localhost:8080/v1/chat/completions";
+            break;
         default:
             url="https://api.mistral.ai/v1/chat/completions";
     }
 
     QJsonObject dd;
     dd["model"]=config->ai_preferredModel;
-    dd["temperature"]=config->ai_temperature;
+    if(config->ai_provider!=2){
+        // work-around for llamafile for now
+        dd["temperature"]=config->ai_temperature;
+    }
     if(config->ai_streamResults){
         dd["stream"] = "True";
         m_timer=new QTimer();
