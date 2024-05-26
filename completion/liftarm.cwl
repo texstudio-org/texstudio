@@ -1,7 +1,6 @@
 # liftarm package
-# Matthew Bertucci 4/16/2022 for v2.0
+# Matthew Bertucci 2024/05/20 for v3.0
 
-#include:etoolbox
 #include:xcolor
 # loads dvipsnames option of xcolor
 #include:tikz
@@ -10,53 +9,45 @@
 \liftarm{point}{length%plain}{angle}
 \liftarm[options%keyvals]{point}{length%plain}{angle}
 
-\liftarmconnect{point1}{length1}{point2}{length2}
-\liftarmconnect[options%keyvals]{point1}{length1}{point2}{length2}
+\begin{liftarmconnect}
+\begin{liftarmconnect}[options%keyvals]
+\end{liftarmconnect}
 
-#keyvals:\liftarm#c,\liftarmconnect#c
+#keyvals:\liftarm#c,\begin{liftarmconnect}#c
 axle holes={%<values%>}
 brick#true,false
-color=#%color
-%<color%>
-color 0=#%color
-color 1=#%color
-color 2=#%color
-color 3=#%color
-color 4=#%color
-color 5=#%color
-color 6=#%color
-color 7=#%color
-color modulo=%<integer%>
+color={%<number%>}{%<color%>}
+color modulo=%<number%>
 contour#true,false
+contour style={%<options%>}
 coordinate={%<num1/name1,num2/name2/...%>}
 hole radius=%<number%>
+liftarm style={%<options%>}
 liftarm thickness=%<number%>
-mark color=#%color
 mark holes={%<values%>}
+mark radius=%<factor%>
+mark style={%<options%>}
 origin=%<number%>
 scalefactor=%<factor%>
-screw color=#%color
+screw angle=%<degrees%>
 screw holes={%<values%>}
-screw holes angle=%<degrees%>
+screw radius=%<factor%>
+screw style={%<options%>}
+trace={%<num1/numframes1/code1,...%>}
+type=#liftarm,line segment
 #endkeyvals
 
-#keyvals:\liftarmconnect#c
-connect coordinate=%<name%>
-connect reverse#true,false
-liftarm 1={%<options%>}
-liftarm 2={%<options%>}
+#keyvals:\begin{liftarmconnect}#c
+connect stop=#1-norm,2-norm,iterations
 #endkeyvals
 
-\begin{liftarmconstruction}
-\begin{liftarmconstruction}[TikZ options]
-\end{liftarmconstruction}
-
-\liftarmconstruct{text}{commands}
-\liftarmconstruct[TikZ options]{text}{commands}
+\liftarmconstruct{commands}
+\liftarmconstructclear
 
 \liftarmanimate{frame rate}{list}{commands}
 \liftarmanimate[options%keyvals]{frame rate}{list}{commands}
 
+# options passed to animateinline
 #keyvals:\liftarmanimate#c
 label=%<label%>
 type=%<file ext%>
