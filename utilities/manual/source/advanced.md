@@ -4,7 +4,7 @@
 
 ### set-up
 
-TeXstudio offers an interface for AI chat assistant. It supports [Mistral AI](https://mistral.ai) or [ChatGPT](https://openai.com/chatgpt) as AI provider. The communication to those servers is done using the official API which incur costs. The user must set up an account and enter payment information. The cost is based on the number of words (tokens) in the question and answer, please refer the ai provider for details.
+TeXstudio offers an interface for AI chat assistant. It supports [Mistral AI](https://mistral.ai), [ChatGPT](https://openai.com/chatgpt) or local language models as AI provider. The communication to those servers is done using the official API which incur costs (except for local models). The user must set up an account and enter payment information. The cost is based on the number of words (tokens) in the question and answer, please refer the ai provider for details.
 
 ```{warning}
 Using an AI assistant means both questions and selected text is sent to that provider !
@@ -16,6 +16,9 @@ There also the AI provider needs to be chosen as well as the desired ai model. T
 ![AI configuration](images/conf_ai.png)
 
 The conversation is stored on disk, so that results can be reused later on. This can be disabled.
+
+Local models can easily be set up via [llamafile](https://github.com/Mozilla-Ocho/llamafile). Please refer their help for details. TeXstudio expects the OpenAI API interface on 127.0.0.1:8080 to work which is the default for llamafile, hence the llamafile needs to be started manually next to TeXstudio.
+Local models do not leak information to providers. A powerful GPU is recommended to get reasonable response times.
 
 ### Usage
 

@@ -7,8 +7,8 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="advanced.html" />
 <meta property="og:site_name" content="TeXstudio" />
-<meta property="og:description" content="AI chat assistant: set-up: TeXstudio offers an interface for AI chat assistant. It supports Mistral AI or ChatGPT as AI provider. The communication to those servers is done using the official API w..." />
-<meta name="description" content="AI chat assistant: set-up: TeXstudio offers an interface for AI chat assistant. It supports Mistral AI or ChatGPT as AI provider. The communication to those servers is done using the official API w..." />
+<meta property="og:description" content="AI chat assistant: set-up: TeXstudio offers an interface for AI chat assistant. It supports Mistral AI, ChatGPT or local language models as AI provider. The communication to those servers is done u..." />
+<meta name="description" content="AI chat assistant: set-up: TeXstudio offers an interface for AI chat assistant. It supports Mistral AI, ChatGPT or local language models as AI provider. The communication to those servers is done u..." />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Configuring TeXstudio" href="configuration.html" /><link rel="prev" title="Viewing a document (pdf)" href="viewing.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
@@ -215,7 +215,7 @@
 <h2>AI chat assistant<a class="headerlink" href="#ai-chat-assistant" title="Permalink to this heading">#</a></h2>
 <section id="set-up">
 <h3>set-up<a class="headerlink" href="#set-up" title="Permalink to this heading">#</a></h3>
-<p>TeXstudio offers an interface for AI chat assistant. It supports <a class="reference external" href="https://mistral.ai">Mistral AI</a> or <a class="reference external" href="https://openai.com/chatgpt">ChatGPT</a> as AI provider. The communication to those servers is done using the official API which incur costs. The user must set up an account and enter payment information. The cost is based on the number of words (tokens) in the question and answer, please refer the ai provider for details.</p>
+<p>TeXstudio offers an interface for AI chat assistant. It supports <a class="reference external" href="https://mistral.ai">Mistral AI</a>, <a class="reference external" href="https://openai.com/chatgpt">ChatGPT</a> or local language models as AI provider. The communication to those servers is done using the official API which incur costs (except for local models). The user must set up an account and enter payment information. The cost is based on the number of words (tokens) in the question and answer, please refer the ai provider for details.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Using an AI assistant means both questions and selected text is sent to that provider !</p>
@@ -224,6 +224,8 @@
 There also the AI provider needs to be chosen as well as the desired ai model. The button “Retrieve list of models” downloads a current list of available models from the ai provider. An API key needs to be present for this to work.</p>
 <p><img alt="AI configuration" src="_images/conf_ai.png" /></p>
 <p>The conversation is stored on disk, so that results can be reused later on. This can be disabled.</p>
+<p>Local models can easily be set up via <a class="reference external" href="https://github.com/Mozilla-Ocho/llamafile">llamafile</a>. Please refer their help for details. TeXstudio expects the OpenAI API interface on 127.0.0.1:8080 to work which is the default for llamafile, hence the llamafile needs to be started manually next to TeXstudio.
+Local models do not leak information to providers. A powerful GPU is recommended to get reasonable response times.</p>
 </section>
 <section id="usage">
 <h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h3>
