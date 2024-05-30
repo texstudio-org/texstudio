@@ -2464,7 +2464,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3626"/>
         <source>Local Model</source>
-        <translation type="unfinished"/>
+        <translation>Τοπικό μοντέλο</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3642"/>

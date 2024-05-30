@@ -6765,12 +6765,12 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/buildmanager.cpp" line="2577"/>
         <source>Process exited with error(s)</source>
-        <translation>Процесс закончился с ошибками</translation>
+        <translation>Процесс завершился с ошибками</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="2580"/>
         <source>Process exited normally</source>
-        <translation>Процесс закончился нормально</translation>
+        <translation>Процесс завершился нормально</translation>
     </message>
 </context>
 <context>
@@ -12092,7 +12092,7 @@ Please provide this file if you send a bug report.
     <message>
         <location filename="../src/texstudio.cpp" line="10798"/>
         <source>Yes, stop the loop and try to recover</source>
-        <translation>Да, закончить цикл и попытаться восстановить работу</translation>
+        <translation>Да, прервать цикл и попытаться восстановить работу</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10799"/>
