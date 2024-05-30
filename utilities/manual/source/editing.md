@@ -643,7 +643,7 @@ The extended search allows searching on all files of a document.
 The search word is updated when pressing "+" again on the search panel. "Update search" search with the given search word again through all specified files.
 The drop down menu allows to search within a "Project",i.e. all files containing to one document, "All doc", i.e. all open documents in TeXstudio or a single "Current Document".
 
-The option "Files on disk" searches on all the text in tex-files in the same folder then current document. The folder and the file filter can be changed.
+The option "Files on disk" searches on all the text in tex-files in the same folder like the current document. The folder and the file filter can be changed.
 
 In the list of search results, a double-click on a match jumps to the location in the file. The matches can be selected/deselected to limit the results which are replaced by the replacement text by pressing "Replace all".
 
