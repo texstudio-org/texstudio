@@ -6,6 +6,7 @@
 - fix raised dock after hiding/showing sidepanel [#3653](https://github.com/texstudio-org/texstudio/issues/3653)
 - fallback to simple syntax highligting when tooltip background differs from general background [#3644](https://github.com/texstudio-org/texstudio/issues/3644)
 - fix structure view context on sections [#3642](https://github.com/texstudio-org/texstudio/issues/3642)
+- fix black background on comboxes with windows11 style (qt6.7.1)
 
 ## TeXstudio 4.8.0
 
