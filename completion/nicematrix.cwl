@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2024/04/23 for v6.27b
+# Matthew Bertucci 2024/06/02 for v6.28
 
 #include:amsmath
 #include:array
@@ -144,6 +144,7 @@ color-inside
 rounded-corners
 rounded-corners=##L
 no-cell-nodes
+ampersand-in-blocks
 #endkeyvals
 
 #keyvals:\NiceMatrixOptions,\begin{NiceTabular}
@@ -198,6 +199,8 @@ rounded-corners=##L
 borders={%<borders options%>}
 hvlines
 v-center
+p
+j
 m
 t
 b
