@@ -1,8 +1,6 @@
 # xr-hyper package
-# Matthew Bertucci 10/17/2021 for v7.00l
-\externaldocument{file}
-\externaldocument[prefix]{file}
-\externaldocument[%<prefix%>][nocite]{%<file%>}
-\externaldocument{file}[URL]#*
-\externalcitedocument{file}#*
-\externalcitedocument[prefix]{file}#*
+# Matthew Bertucci 2024/06/02 for v7.01i
+
+# as of LaTeX release 2024/06/01, xr-hyper has been merged with xr
+
+#include:xr

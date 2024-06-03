@@ -1,5 +1,5 @@
 # hvqrurl package
-# Matthew Bertucci 2024/02/04 for v0.06
+# Matthew Bertucci 2024/05/26 for v0.09
 
 #include:qrcode
 #include:xcolor
@@ -8,6 +8,7 @@
 
 #keyvals:\usepackage/hvqrurl#c
 nohyperref
+forget
 #endkeyvals
 
 \hvqrset{options%keyvals}

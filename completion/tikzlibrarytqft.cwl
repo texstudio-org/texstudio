@@ -1,5 +1,5 @@
 # tqft tikzlibrary
-# 2022/12/09 for v2.1
+# 2024/06/02 for v2.3
 
 #include:tikzlibraryshapes.geometric
 
@@ -38,6 +38,7 @@ tqft/outgoing boundary components=%<integer%>
 tqft/skip outgoing boundary components=%<integer%>
 tqft/offset=%<number%>
 tqft/genus=%<integer%>
+tqft/twisted#true,false
 tqft/incoming boundary component %<<n>%>/.style={%<TikZ keys%>}
 tqft/outgoing boundary component %<<n>%>/.style={%<TikZ keys%>}
 tqft/incoming lower boundary component %<<n>%>/.style={%<TikZ keys%>}

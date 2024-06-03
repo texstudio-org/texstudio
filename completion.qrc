@@ -2042,6 +2042,7 @@
 <file>completion/kvoptions.cwl</file>
 <file>completion/kvsetkeys.cwl</file>
 <file>completion/l3keys2e.cwl</file>
+<file>completion/l3sys-query.cwl</file>
 <file>completion/labels4easylist.cwl</file>
 <file>completion/labels.cwl</file>
 <file>completion/labyrinth.cwl</file>
@@ -3884,6 +3885,7 @@
 <file>completion/translator.cwl</file>
 <file>completion/transparent.cwl</file>
 <file>completion/tree-dvips.cwl</file>
+<file>completion/trees.cwl</file>
 <file>completion/trfsigns.cwl</file>
 <file>completion/trig.cwl</file>
 <file>completion/trimclip.cwl</file>

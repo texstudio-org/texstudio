@@ -1,7 +1,7 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
-# Matthew Bertucci 2023/11/01 release
+# Matthew Bertucci 2024/06/01 release
 
 # commands with big Letters and others
 \ActivateGenericHook{hook}#*
@@ -15,6 +15,7 @@
 \AfterEndEnvironment[label]{environment}{code}#*
 \AfterEndEnvironment{environment}{code}#*
 \AssignSocketPlug{socket}{socket plug}#*
+\AssignTemplateKeys#*
 \AtBeginDocument[label]{code}#*
 \AtBeginDocument{code}#*
 \AtBeginDvi{code}#*
@@ -61,6 +62,8 @@
 \DebugShipoutsOn#*
 \DebugSocketsOff#*
 \DebugSocketsOn#*
+\DebugTablesOff#*
+\DebugTablesOn#*
 \DeclareCaseChangeEquivalent{cmd}{replacement text}#*d
 \DeclareCommandCopy{cmd}{copied cmd%definition}#d
 \DeclareCurrentRelease{name}{date}#*
@@ -84,6 +87,8 @@
 \DeclareFontShapeChangeRule{shape1}{shape2}{result1}{result2}#*
 \DeclareFontSubstitution{encoding}{family}{series}{shape}#*
 \DeclareHookRule{hook}{label1}{relation}{label2}#*
+\DeclareInstance{type}{instance}{template}{parameters}#*
+\DeclareInstanceCopy{type}{instance2}{instance1}#*
 \DeclareKeys[family]{declarations}#*
 \DeclareKeys{declarations}#*
 \DeclareLowercaseMapping[locale]{codepoint}{output}#*
@@ -110,6 +115,9 @@
 \DeclareSizeFunction{name}{code}#*
 \DeclareSymbolFont{sym-font}{encoding}{family}{series}{shape}#*
 \DeclareSymbolFontAlphabet{math-alph%cmd}{sym-font}#*d
+\DeclareTemplateCode{type}{template}{no. of args}{key bindings}{code}#*
+\DeclareTemplateCopy{type}{template2}{template1}#*
+\DeclareTemplateInterface{type}{template}{no. of args}{key list}#*
 \DeclareTextAccent{cmd}{encoding}{slot}#*d
 \DeclareTextAccentDefault{cmd}{encoding}#*
 \DeclareTextCommand{cmd}{encoding}[args][default]{definition}#*d
@@ -131,6 +139,8 @@
 \DisableGenericHook{hook}#*
 \DisableHook{hook}#*
 \DiscardShipoutBox#*
+\EditInstance{type}{instance}{new values}#*
+\EditTemplateDefaults{type}{template}{new defaults}#*
 \EndIncludeInRelease#*
 \EndModuleRelease#*
 \ExecuteOptions{optionlist}#*
@@ -148,26 +158,52 @@
 \IfBooleanF{arg}{false code}
 \IfBooleanT{arg}{true code}
 \IfBooleanTF{arg}{true code}{false code}
+\IfClassAtLeastF{class}{date}{false code}#*
+\IfClassAtLeastT{class}{date}{true code}#*
 \IfClassAtLeastTF{class}{date}{true code}{false code}#*
+\IfClassLoadedF{class}{false code}#*
+\IfClassLoadedT{class}{true code}#*
 \IfClassLoadedTF{class}{true code}{false code}#*
+\IfClassLoadedWithOptionsF{class}{options}{false code}#*
+\IfClassLoadedWithOptionsT{class}{options}{true code}#*
 \IfClassLoadedWithOptionsTF{class}{options}{true code}{false code}#*
 \IfExplAtLeastTF{date}{true code}{false code}#*
+\IfFileAtLeastF{file}{date}{false code}#*
+\IfFileAtLeastT{file}{date}{true code}#*
 \IfFileAtLeastTF{file}{date}{true code}{false code}#*
 \IfFileExists{file}{true code}{false code}#*
+\IfFileLoadedF{file}{false code}#*
+\IfFileLoadedT{file}{true code}#*
+\IfFileLoadedTF{file}{true code}{false code}#*
 \IfFontSeriesContextTF{face}{true code}{false code}#*
+\IfFormatAtLeastF{date}{false code}#*
+\IfFormatAtLeastT{date}{true code}#*
 \IfFormatAtLeastTF{date}{true code}{false code}#*
 \IfHookEmptyTF{hook}{true code}{false code}#*
-\IfLabelExistTF{label}{true code}{false code}#*
+\IfInstanceExistsF{type}{instance}{true}{false}#*
+\IfInstanceExistsT{type}{instance}{true}{false}#*
+\IfInstanceExistsTF{type}{instance}{true}{false}#*
+\IfLabelExistsF{label}{false code}#*
+\IfLabelExistsT{label}{true code}#*
+\IfLabelExistsTF{label}{true code}{false code}#*
 \IfMarksEqualTF[region]{class%plain}{pos1}{pos2}{true code}{false code}#*
 \IfMarksEqualTF{class%plain}{pos1}{pos2}{true code}{false code}#*
 \IfNoValueF{arg}{ValueCode}
 \IfNoValueT{arg}{-NoValue-Code}
 \IfNoValueTF{arg}{-NoValue-Code}{ValueCode}
+\IfPackageAtLeastF{package}{date}{false code}#*
+\IfPackageAtLeastT{package}{date}{true code}#*
 \IfPackageAtLeastTF{package}{date}{true code}{false code}#*
+\IfPackageLoadedF{package}{false code}#*
+\IfPackageLoadedT{package}{true code}#*
 \IfPackageLoadedTF{package}{true code}{false code}#*
+\IfPackageLoadedWithOptionsF{package}{options}{false code}#*
+\IfPackageLoadedWithOptionsT{package}{options}{true code}#*
 \IfPackageLoadedWithOptionsTF{package}{options}{true code}{false code}#*
 \IfPDFManagementActiveTF{true code}{false code}#*
-\IfPropertyExistTF{property}{true code}{false code}#*
+\IfPropertyExistsF{property}{false code}#*
+\IfPropertyExistsT{property}{true code}#*
+\IfPropertyExistsTF{property}{true code}{false code}#*
 \IfPropertyRecordedTF{label}{property}{true code}{false code}#*
 \IfTargetDateBefore{date}{before code}{after code}#*
 \IfValueF{arg}{-NoValue-Code}#*
@@ -177,6 +213,7 @@
 \IndentBox#*
 \InputIfFileExists{file}{true code}{false code}#*i
 \InsertMark{class%plain}{text}#*
+\KeyValue{key name}#*
 \LastDeclaredEncoding#*
 \LastMark[region]{class%plain}#*
 \LastMark{class%plain}#*
@@ -215,11 +252,10 @@
 \NewReversedHookWithArguments{hook}{number}#*
 \NewSocket{socket}{number of inputs}#*
 \NewSocketPlug{socket}{socket plug}{code}#*
+\NewTemplateType{template type}{no. of args}#*
 \NextLinkTarget{target name}#*
 \OmitIndent#*
 \OptionNotUsed#*
-\obeyedline#*
-\obeyedspace#*
 \PackageError{package name}{error text%text}{help text%text}#*
 \PackageInfo{package name}{info text%text}#*
 \PackageNote{package name}{note text%text}#*
@@ -275,6 +311,7 @@
 \RequirePackage{package}[release]#*u
 \RequirePackageWithOptions{package}#*u
 \RequirePackageWithOptions{package}[release]#*u
+\ResumeTagging{string}#*
 \ReverseBoolean#*
 \SetDefaultHookLabel{default label}#*
 \SetKeys[family]{keyvals}#*
@@ -282,6 +319,7 @@
 \SetMathAlphabet{math-alph%cmd}{version}{encoding}{family}{series}{shape}#*d
 \SetProperty{property}{setpoint}{default}{code}#*
 \SetSymbolFont{sym-font}{version}{encoding}{family}{series}{shape}#*
+\SetTemplateKeys{type}{template}{keyvals}#*
 \ShipoutBox#*
 \ShipoutBoxDepth#*
 \ShipoutBoxHeight#*
@@ -290,9 +328,16 @@
 \ShowEnvironment{envname}#*
 \ShowFloat{identifier}#*
 \ShowHook{hook}#*
+\ShowInstanceValues{type}{instance}#*
+\ShowMarksAt{text}#*
 \ShowSocket{socket}#*
+\ShowTemplateCode{type}{template}#*
+\ShowTemplateDefaults{type}{template}#*
+\ShowTemplateInterface{type}{template}#*
+\ShowTemplateVariables{type}{template}#*
 \SplitArgument{number}{tokens}#*
 \SplitList{tokens}#*
+\SuspendTagging{string}#*
 \TextSymbolUnavailable{arg}#*
 \TopMark[region]{class%plain}#*
 \TopMark{class%plain}#*
@@ -300,12 +345,15 @@
 \UndeclareTextCommand{cmd}{encoding}#*
 \UseHook{hook}#*
 \UseHookWithArguments{%<hook%>}{%<number%>}{%<arg1%>}%<{arg2}...%>#*
+\UseInstance{type}{instance}#*
 \UseLegacyTextSymbols#*
 \UseName{csname}#*
 \UseOneTimeHook{hook}#*
 \UseOneTimeHookWithArguments{%<hook%>}{%<number%>}{%<arg1%>}%<{arg2}...%>#*
 \UseRawInputEncoding#*
-\UseSocket{socket}#*
+\UseSocket{socket name}#*
+\UseTaggingSocket{socket}#*
+\UseTemplate{type}{template}{settings}#*
 \UseTextAccent{encoding}{cmd}{text}#*
 \UseTextSymbol{encoding}{cmd}#*
 
@@ -656,26 +704,6 @@ debug={%<options%>}
 \kill#*
 \loggingall#*
 \loggingoutput#*
-\ltcmddate#S
-\ltcmdhooksdate#S
-\ltcmdhooksversion#S
-\ltcmdversion#S
-\ltfilehookdate#S
-\ltfilehookversion#S
-\lthooksdate#S
-\lthooksversion#S
-\ltmarksdate#S
-\ltmarksversion#S
-\ltmetadate#S
-\ltmetaversion#S
-\ltparadate#S
-\ltparaversion#S
-\ltpropertiesdate#S
-\ltpropertiesversion#S
-\ltshipoutdate#S
-\ltshipoutversion#S
-\ltsocketsdate#S
-\ltsocketsversion#S
 \mathalpha#*
 \mathgroup#*
 \mathhexbox#*
@@ -684,6 +712,8 @@ debug={%<options%>}
 \nobreakspace#*
 \normalsfcodes#*
 \numberline{number}#*
+\obeyedline#*
+\obeyedspace#*
 \poptabs#*
 \pushtabs#*
 \requestedLaTeXdate#*

@@ -3,7 +3,7 @@
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
 #modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
-#modified Matthew Bertucci 21 Jan 2024 for v7.01h
+#modified Matthew Bertucci 24 May 2024 for v7.01i
 
 #include:iftex
 #include:keyval
@@ -11,7 +11,6 @@
 #include:kvdefinekeys
 #include:pdfescape
 #include:hycolor
-#include:auxhook
 #include:kvoptions
 #include:intcalc
 #include:url
@@ -22,6 +21,7 @@
 #include:rerunfilecheck
 #include:nameref
 #include:etoolbox
+#include:stringenc
 
 #ifOption:backref
 #include:backref
