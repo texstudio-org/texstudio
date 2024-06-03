@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2024/03/26 for v0.99a
+# Matthew Bertucci 2024/06/02 for v0.99b
 
 #include:pdfmanagement-testphase
 
@@ -112,4 +112,3 @@ debug/structures
 
 # not documented
 \tagpdfsuppressmarks{arg}#*
-\UseTaggingSocket{socket name}#*
