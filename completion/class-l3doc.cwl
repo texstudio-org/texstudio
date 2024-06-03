@@ -1,5 +1,5 @@
 # l3doc class
-# Matthew Bertucci 2022/12/18 for v2022/12/17
+# Matthew Bertucci 2024/06/02 for v2024-05-08
 
 #include:calc
 #include:doc
@@ -26,18 +26,15 @@
 #keyvals:\documentclass/l3doc#c
 full
 onlydoc
-check
-nocheck
-checktest
-nochecktest
-kernel
-stdmodule
-cm-default
-lm-default
-cs-break-off
+check#true,false
+checktest#true,false
+kernel#true,false
+stdmodule#true,false
+lm-default#true,false
+cs-break#true,false
 cs-break-nohyphen
-show-notes
-hide-notes
+show-notes#true,false
+hide-notes#true,false
 # options passed to article class
 a4paper
 b5paper
@@ -111,15 +108,6 @@ replace#true,false
 \begin{function}{function%cmd}
 \begin{function}[type%keyvals]{function%cmd}
 \end{function}
-
-#keyvals:\begin{function}#c
-EXP
-rEXP
-TF
-pTF
-noTF
-#endkeyvals
-
 \begin{variable}{variable%cmd}
 \begin{variable}[options%keyvals]{variable%cmd}
 \end{variable}
@@ -127,12 +115,23 @@ noTF
 \begin{macro}[options%keyvals]{macro1,macro2,...%cmd}
 \end{macro}
 
-#keyvals:\begin{variable}#c,\begin{macro}#c
-int
+#keyvals:\begin{function}#c,\begin{variable}#c,\begin{macro}#c
+EXP
+rEXP
 TF
 pTF
 noTF
+added=%<date%>
+updated=%<date%>
+deprecated
+no-user-doc
+label=
 verb
+module=
+#endkeyvals
+
+#keyvals:\begin{variable}#c,\begin{macro}#c
+int
 #endkeyvals
 
 \begin{syntax}
