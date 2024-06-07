@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.8.2
+
+- 
+
 ## TeXstudio 4.8.1
 
 - allow hiding of sidepanel docks via view/show
