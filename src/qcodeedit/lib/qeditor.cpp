@@ -4678,6 +4678,11 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(CursorPageDown, Qt::NoModifier, Qt::Key_PageDown);
 		addEditOperation(SelectPageDown, Qt::ShiftModifier, Qt::Key_PageDown);
 
+        registerEditOperation(CursorNextBlock);
+        registerEditOperation(SelectCursorNextBlock);
+        registerEditOperation(CursorPrevBlock);
+        registerEditOperation(SelectCursorPrevBlock);
+
 		addEditOperation(DeleteLeft, Qt::NoModifier, Qt::Key_Backspace);
         addEditOperation(DeleteRight, QKeySequence::Delete);
     #ifdef Q_OS_MAC
@@ -4771,6 +4776,9 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 	case CursorPageUp: return tr("Move cursor one page up");
 	case CursorPageDown: return tr("Move cursor one page down");
 
+    case CursorNextBlock: return tr("Move cursor to next block");
+    case CursorPrevBlock: return tr("Move cursor to previous block");
+
 	case EnumForSelectionStart: return tr("Internal");
 
 	case SelectCursorUp: return tr("Select up");
@@ -4787,6 +4795,9 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 
 	case SelectPageUp: return tr("Select page up");
 	case SelectPageDown: return tr("Select page down");
+
+    case SelectCursorNextBlock: return tr("Select to next block");
+    case SelectCursorPrevBlock: return tr("Select to previous block");
 
 	case EnumForCursorEnd: return tr("Internal");
 
@@ -4909,6 +4920,15 @@ void QEditor::cursorMoveOperation(QDocumentCursor &cursor, EditOperation eop){
 		cutBuffer.clear();
 		pageDown(mode);
 		return;
+
+    case CursorNextBlock: case SelectCursorNextBlock:
+        op = QDocumentCursor::NextBlock;
+        cutBuffer.clear();
+        break;
+    case CursorPrevBlock: case SelectCursorPrevBlock:
+        op = QDocumentCursor::PreviousBlock;
+        cutBuffer.clear();
+        break;
 	default:
 		return;
 	}

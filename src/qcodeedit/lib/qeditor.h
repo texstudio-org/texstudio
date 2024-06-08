@@ -138,6 +138,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			CursorPageUp,
 			CursorPageDown,
 
+            CursorNextBlock,
+            CursorPrevBlock,
+
 			EnumForSelectionStart = 0x2000,
 
 			SelectCursorUp,
@@ -154,6 +157,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 			SelectPageUp,
 			SelectPageDown,
+
+            SelectCursorNextBlock,
+            SelectCursorPrevBlock,
 
 			EnumForCursorEnd = 0x3000,
 
