@@ -796,7 +796,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 #endif
 
     // runaway limit for lexing
-    registerOption("Editor/RUNAWAYLIMIT", &RUNAWAYLIMIT , 30);
+    registerOption("Editor/RUNAWAYLIMIT", &RUNAWAYLIMIT , 50);
 }
 
 ConfigManager::~ConfigManager()
