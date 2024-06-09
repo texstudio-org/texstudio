@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/06/02 for v12.0.0
+# Matthew Bertucci 2024/06/09 for v12.1.0
 
 #include:iftex
 
@@ -191,6 +191,7 @@ apachefreemarker
 apachegroovy
 apacheguacamole
 apachehadoop
+apachehbase
 apachehive
 apachejmeter
 apachekafka
@@ -204,6 +205,7 @@ apacherocketmq
 apachesolr
 apachespark
 apachestorm
+apachesuperset
 apachetomcat
 aparat
 apifox
@@ -303,6 +305,7 @@ azurefunctions
 azurepipelines
 babel
 babelio
+babylondotjs
 backblaze
 backbonedotjs
 backendless
@@ -571,6 +574,7 @@ codemirror
 codenewbie
 codepen
 codeproject
+coder
 codersrank
 coderwall
 codesandbox
@@ -650,6 +654,7 @@ cryptpad
 crystal
 csharp
 css3
+cssdesignawards
 cssmodules
 csswizardry
 cts
@@ -733,6 +738,7 @@ dhl
 diagramsdotnet
 dialogflow
 diaspora
+dictionarydotcom
 digg
 digikeyelectronics
 digitalocean
@@ -766,6 +772,7 @@ dotnet
 douban
 doubanread
 dovecot
+dovetail
 doxygen
 dpd
 dragonframe
@@ -1472,6 +1479,7 @@ klook
 knative
 knexdotjs
 knime
+knip
 knowledgebase
 known
 koa
@@ -1513,6 +1521,7 @@ lastpass
 latex
 launchpad
 lazarus
+lazyvim
 lbry
 leaderprice
 leaflet
@@ -1747,6 +1756,7 @@ mobx
 mobxstatetree
 mocha
 mockserviceworker
+modal
 modin
 modrinth
 modx
@@ -1890,6 +1900,7 @@ nushell
 nutanix
 nuxtdotjs
 nvidia
+nvm
 nx
 nxp
 nzxt
@@ -2264,6 +2275,7 @@ raycast
 raylib
 razer
 razorpay
+rclone
 react
 reactbootstrap
 reacthookform
@@ -2694,6 +2706,7 @@ taichilang
 tails
 tailscale
 tailwindcss
+taipy
 taketwointeractivesoftware
 talend
 talenthouse
@@ -3032,6 +3045,7 @@ westerndigital
 westernunion
 wetransfer
 wezterm
+wgpu
 whatsapp
 wheniwork
 wii
