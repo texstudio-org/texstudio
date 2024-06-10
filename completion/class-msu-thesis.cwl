@@ -1,5 +1,5 @@
 # msu-thesis class
-# Matthew Bertucci 2023/05/19 for v4.1
+# Matthew Bertucci 2024/06/09 for v4.3
 
 #include:class-memoir
 #include:etoolbox
@@ -126,6 +126,7 @@ twoside
 \msuabbrevdelim
 \msuabbrevfont
 \msuabbrevwidth{width}
+\msuappendixdelim#*
 \msuappendixnumformat#*
 \msucaptiondelim
 \msutocdelim#*
