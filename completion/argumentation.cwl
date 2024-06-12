@@ -1,28 +1,33 @@
 # argumentation package
-# Matthew Bertucci 2023/12/03 for v1.1
+# Matthew Bertucci 2024/06/11 for v1.2
 
+#include:amsbsy
+#include:amsmath
 #include:pgfopts
 #include:tikz
 #include:tikzlibrarypositioning
 #include:tikzlibrarydecorations.markings
 
 #keyvals:\usepackage/argumentation#c
-namestyle=#normal,italics,bold,bolditalics,monospace
-argumentstyle=#standard
-attackstyle=#standard,large
+namestyle=#none,math,italics,bold,monospace
+argumentstyle=#standard,large,thick
+attackstyle=#standard,large,modern
 supportstyle=#standard,dashed,double
 #endkeyvals
 
 \setargumentstyle{style}
 \setattackstyle{style}
 \setsupportstyle{style}
+\setannotationstyle{style}
 
 \begin{af}#\pictureHightlight
 \begin{af}[options]#\pictureHightlight
 \end{af}
 
-\argument{id}{name}
-\argument[options]{id}{name}
+\argument{name}
+\argument(id){name}
+\argument[options](id){name}
+\argument[options]{name}
 \attack{id1}{id2}
 \attack[options]{id1}{id2}
 \dualattack{id1}{id2}
@@ -33,10 +38,14 @@ supportstyle=#standard,dashed,double
 \support[options]{id1}{id2}
 \annotatedattack{id1}{id2}{value}
 \annotatedattack[options]{id1}{id2}{value}
-\afname{id}{name}
-\afname[options]{id}{name}
+\afname{name}
+\afname(id){name}
+\afname[options](id){name}
+\afname[options]{name}
 \annotation{id}{text}
 \annotation[options]{id}{text}
 
 # not documented
 \argstyle{text}#S
+\theaf#S
+\theargument#S
