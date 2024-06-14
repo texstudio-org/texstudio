@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/06/09 for v12.1.0
+# Matthew Bertucci 2024/06/14 for v12.2.0
 
 #include:iftex
 
@@ -8,7 +8,9 @@
 #keyvals:\simpleicon
 42
 1001tracklists
+1panel
 1password
+2fas
 2k
 365datascience
 3m
@@ -59,6 +61,7 @@ adp
 adroll
 adventofcode
 adyen
+aegisauthenticator
 aerlingus
 aeroflot
 aeromexico
@@ -256,7 +259,9 @@ asda
 aseprite
 askfm
 assemblyscript
+asterisk
 astonmartin
+astral
 astro
 asus
 atandt
@@ -314,6 +319,7 @@ badoo
 baidu
 bakalari
 bamboo
+bambulab
 bandcamp
 bandlab
 bandrautomation
@@ -861,6 +867,7 @@ epel
 epicgames
 epson
 equinixmetal
+eraser
 ericsson
 erlang
 erpnext
@@ -981,6 +988,7 @@ foobar2000
 foodpanda
 ford
 forgejo
+formik
 formspree
 formstack
 fortinet
@@ -1043,6 +1051,7 @@ generalmotors
 genius
 gentoo
 geocaching
+geode
 geopandas
 gerrit
 getx
@@ -1511,6 +1520,7 @@ labview
 lada
 lamborghini
 landrover
+langchain
 lapce
 laragon
 laravel
@@ -1859,6 +1869,7 @@ nginxproxymanager
 ngrok
 ngrx
 nhl
+nicehash
 niconico
 nike
 nikon
@@ -1889,6 +1900,7 @@ now
 npm
 nrwl
 nsis
+ntfy
 nubank
 nucleo
 nuget
@@ -2312,6 +2324,7 @@ relianceindustrieslimited
 remark
 remedyentertainment
 remix
+removedotbg
 renault
 render
 renovatebot
@@ -2535,6 +2548,7 @@ smugmug
 snapchat
 snapcraft
 sncf
+snort
 snowflake
 snowpack
 snyk
@@ -2935,6 +2949,7 @@ vectary
 vectorlogozone
 vectorworks
 veeam
+veed
 veepee
 vega
 vegas
@@ -2966,6 +2981,7 @@ visualbasic
 visualstudio
 visualstudioappcenter
 visualstudiocode
+visx
 vite
 vitepress
 vitess
