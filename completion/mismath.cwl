@@ -1,9 +1,10 @@
 # mismath package
-# Matthew Bertucci 2024/05/05 for v3.0
+# Matthew Bertucci 2024/06/17 for v3.1
 
 #include:amsmath
 #include:mathtools
 #include:esvect
+#include:mleftright
 #include:ifthen
 #include:xspace
 #include:iftex
@@ -159,6 +160,9 @@ alignedleftspaceyesifneg
 \end{mathcols}#m
 \changecol#/mathcols
 \bslash#*
+\upDelta#*m
+\opDelta#m
+\opdelta#m
 
 #keyvals:\pifonts,\pinumber
 lgrmath=%<font name%>
