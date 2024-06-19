@@ -507,11 +507,19 @@ QString AIChatAssistant::getConversationForBrowser()
         const QString cnt=obj["content"].toString();
 #endif
         if(role=="user"){
-            result.append("<p style=\"background-color: bisque\">\n");
+            if(darkMode){
+                result.append("<p style=\"background-color: darkorange\">\n");
+            }else{
+                result.append("<p style=\"background-color: bisque\">\n");
+            }
             result.append(cnt);
             result.append("\n</p>\n");
         }else if(role=="assistant"){
-            result.append("<p style=\"background-color: aliceblue;margin-left: 20px\">\n");
+            if(darkMode){
+                result.append("<p style=\"background-color: cornflowerblue;margin-left: 20px\">\n");
+            }else{
+                result.append("<p style=\"background-color: aliceblue;margin-left: 20px\">\n");
+            }
             result.append(cnt);
             result.append("\n</p>\n");
         }
