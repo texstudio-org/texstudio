@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/06/14 for v12.2.0
+# Matthew Bertucci 2024/06/21 for v12.3.0
 
 #include:iftex
 
@@ -169,6 +169,7 @@ angular
 anilist
 animalplanet
 ankermake
+anki
 ansible
 answer
 ansys
@@ -261,6 +262,7 @@ askfm
 assemblyscript
 asterisk
 astonmartin
+astra
 astral
 astro
 asus
@@ -421,6 +423,7 @@ brex
 bricks
 britishairways
 broadcom
+bruno
 bsd
 bspwm
 bt
@@ -598,6 +601,7 @@ coil
 coinbase
 coinmarketcap
 comicfury
+comma
 commerzbank
 commitlint
 commodore
@@ -699,6 +703,7 @@ dataiku
 datastax
 dataverse
 datefns
+datev
 datocms
 datto
 davinciresolve
@@ -766,6 +771,7 @@ dm
 docker
 docsdotrs
 docsify
+doctrine
 docusaurus
 docusign
 dogecoin
@@ -800,6 +806,7 @@ dungeonsanddragons
 dunked
 dunzo
 duolingo
+duplicati
 dvc
 dwavesystems
 dwm
@@ -2078,6 +2085,7 @@ picardsurgeles
 picartodottv
 picnic
 picpay
+picrew
 picxy
 pihole
 pimcore
@@ -2085,6 +2093,7 @@ pinboard
 pinescript
 pinetwork
 pingdom
+pino
 pinterest
 pioneerdj
 piped
@@ -2353,6 +2362,7 @@ rhinoceros
 rich
 rider
 rimacautomobili
+rime
 ring
 riotgames
 ripple
@@ -2828,6 +2838,7 @@ torproject
 toshiba
 totvs
 tourbox
+tower
 toyota
 tplink
 tqdm
@@ -2883,6 +2894,7 @@ twinkly
 twinmotion
 twitch
 typeform
+typeorm
 typer
 typescript
 typo3
@@ -3013,6 +3025,7 @@ vultr
 vyond
 w3schools
 wacom
+wagmi
 wagtail
 wails
 wakatime
@@ -3125,6 +3138,7 @@ xo
 xrp
 xsplit
 xstate
+yabai
 yale
 yamahacorporation
 yamahamotorcorporation
@@ -3145,6 +3159,7 @@ youtubestudio
 youtubetv
 yr
 yubico
+yunohost
 zabka
 zaim
 zalando
