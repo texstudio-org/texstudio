@@ -1,5 +1,5 @@
 # luamplib package
-# Matthew Bertucci 2024/05/01 for v2.29.0
+# Matthew Bertucci 2024/06/11 for v2.32.0
 
 #include:luatex
 
@@ -38,6 +38,12 @@
 \mplibglobaltextext{choice%keyvals}
 \mplibverbatim{choice%keyvals}
 \mplibshowlog{choice%keyvals}
+\begin{mppattern}{name}
+\begin{mppattern}{name}[options%keyvals]
+\end{mppattern}
+\mppattern{name}#S
+\mppattern{name}[options]#S
+\endmppattern#S
 \mplibsetformat{format name%keyvals}
 
 #keyvals:\mpliblegacybehavior#c,\mplibtextextlabel#c,\mplibcodeinherit#c,\mplibglobaltextext#c,\mplibverbatim#c,\mplibshowlog#c
@@ -49,6 +55,17 @@ disable
 scaled
 double
 decimal
+#endkeyvals
+
+#keyvals:\begin{mppattern}
+xstep=%<number%>
+ystep=%<number%>
+xshift=%<number%>
+yshift=%<number%>
+bbox="%<llx lly urx ury%>"
+matrix="%<xx xy yx yy%>"
+resources=%<PDF resources%>
+colored#true,false
 #endkeyvals
 
 #keyvals:\mplibsetformat#c
@@ -70,6 +87,12 @@ metafun
 \mplibdoprempfig#S
 \mplibmainmpfig#S
 \mplibmpfigbranch#S
+\mplibpatternbranch#S
+\mplibpatterngetnexttok#S
+\mplibpatternmain#S
+\mplibpatternname#S
+\mplibpatternopts#S
+\mplibpatternskipspace#S
 \mplibprempfig{arg}#S
 \mplibputtextbox{arg}#S
 \mplibscratchbox#S

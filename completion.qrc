@@ -2120,6 +2120,7 @@
 <file>completion/lilyglyphs.cwl</file>
 <file>completion/limap.cwl</file>
 <file>completion/linearb.cwl</file>
+<file>completion/linearregression.cwl</file>
 <file>completion/linebreaker.cwl</file>
 <file>completion/linegoal.cwl</file>
 <file>completion/linenoamsmath.cwl</file>
@@ -3364,6 +3365,7 @@
 <file>completion/spdef.cwl</file>
 <file>completion/spectral.cwl</file>
 <file>completion/spectralsequences.cwl</file>
+<file>completion/spelatex.cwl</file>
 <file>completion/spelling.cwl</file>
 <file>completion/splitidx.cwl</file>
 <file>completion/spotcolor.cwl</file>
@@ -3381,6 +3383,7 @@
 <file>completion/stacklet.cwl</file>
 <file>completion/stackrel.cwl</file>
 <file>completion/standalone.cwl</file>
+<file>completion/standardsectioning.cwl</file>
 <file>completion/stanli.cwl</file>
 <file>completion/Starburst.cwl</file>
 <file>completion/starfont.cwl</file>
