@@ -735,12 +735,12 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 	bool found = false, flush = false;
 	QString warning;
 
-	static QRegExp reLaTeXWarning("^(((! )?(La|pdf|Lua)TeX)|Package|Class|Module) .*Warning.*:(.*)", Qt::CaseInsensitive);
+    static QRegExp reLaTeXWarning("^(((! )?(La|pdf|Lua)TeX[3]?)|Package|Class|Module) .*Warning.*:(.*)", Qt::CaseInsensitive);
 	static QRegExp reLatex3Warning("^\\*\\s+(\\S.*)");
 	static QRegExp reLatex3WarningHeader("^\\*\\s*(.*warning:\\s*.*)", Qt::CaseInsensitive);
 	static QRegExp reNoFile("^No file (.*)");
 	static QRegExp reNoAsyFile("File .* does not exist."); // FIXME can be removed when http://sourceforge.net/tracker/index.php?func=detail&aid=1772022&group_id=120000&atid=685683 has promoted to the users
-    static const QRegularExpression rePackageWarningConinued("^\\(.*\\)[ ]{15}");
+    static const QRegularExpression rePackageWarningConinued("^\\(.*\\)[ ]{15}|^\\(LaTeX3\\)[ ]{7}");
 
 	switch (dwCookie) {
 	//detect the beginning of a warning
