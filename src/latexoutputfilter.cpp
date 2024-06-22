@@ -740,7 +740,7 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 	static QRegExp reLatex3WarningHeader("^\\*\\s*(.*warning:\\s*.*)", Qt::CaseInsensitive);
 	static QRegExp reNoFile("^No file (.*)");
 	static QRegExp reNoAsyFile("File .* does not exist."); // FIXME can be removed when http://sourceforge.net/tracker/index.php?func=detail&aid=1772022&group_id=120000&atid=685683 has promoted to the users
-    static const QRegularExpression rePackageWarningConinued("^\\(.*\\)[ ]{16}");
+    static const QRegularExpression rePackageWarningConinued("^\\(.*\\)[ ]{15}");
 
 	switch (dwCookie) {
 	//detect the beginning of a warning
