@@ -1,5 +1,5 @@
 # pmhanguljamo-frkim package
-# Matthew Bertucci 2023/03/05 for v1.1
+# Matthew Bertucci 2024/06/11 for v1.1
 
 #include:l3keys2e
 
@@ -32,6 +32,8 @@ frcccmds
 \setpmhangulfont[font features]{font name}#S
 \AddRule{cho|jung|jong}{keyvals}
 \jamoul{ulem csname}{jamo text}
+\RenewVowels{vowels}
+\RenewLeadingZero{arg}
 
 #ifOption:frcccmds
 \frccg

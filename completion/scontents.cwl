@@ -1,7 +1,5 @@
 # scontents package
-# Matthew Bertucci 4/5/2022 for v2.0
-
-#include:l3keys2e
+# Matthew Bertucci 2024/06/15 for v2.1
 
 \setupsc{options%keyvals}
 
@@ -84,6 +82,18 @@ wrapper={%<code%>}
 
 #keyvals:\typestored#c,\meaningsc#c
 width-tab=%<integer%>
+%<index%>
+#endkeyvals
+
+\mergesc[%<options%>]{%<{seqA}[index],{seqB}[start-stop],{seqC}[1-end]%>}
+
+#keyvals:\mergesc
+typestored
+meaningsc
+print-cmd#true,false
+write-out=%<file.ext%>
+width-tab=%<integer%>
+overwrite#true,false
 #endkeyvals
 
 \begin{verbatimsc}#V

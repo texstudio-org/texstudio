@@ -1,5 +1,5 @@
 # Arguelles beamertheme
-# Matthew Bertucci 2024/02/27 for v2.4.0
+# Matthew Bertucci 2024/06/11 for v2.4.2
 
 #include:inputenc
 #include:fontenc
@@ -17,6 +17,7 @@
 #include:tikz
 #include:tcolorbox
 #include:tcolorboxlibraryskins
+#include:tikzlibrarycalc
 
 #keyvals:\usetheme/Arguelles#c
 sans

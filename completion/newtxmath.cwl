@@ -1,5 +1,5 @@
 # newtxmath package
-# Matthew Bertucci 2024/03/08 for v1.742
+# Matthew Bertucci 2024/06/20 for v1.75
 
 #include:amsmath
 #include:ifthen
@@ -29,6 +29,7 @@ baskervaldx
 utopia
 heuristica
 erewhon
+gelasio
 xcharter
 cmintegrals
 cmbraces

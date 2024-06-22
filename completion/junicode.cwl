@@ -1,12 +1,11 @@
 # junicode package
-# Matthew Bertucci 2024/01/04 for v2.205
+# Matthew Bertucci 2024/06/03 for v2.208
 
 #include:iftex
 #include:xkeyval
 #include:fontspec
 
 #keyvals:\usepackage/junicode#c
-fonttype=#otf,ttf
 light
 medium
 semibold

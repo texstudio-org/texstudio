@@ -1,5 +1,5 @@
 # pmhanguljamo package
-# Matthew Bertucci 2023/02/25 for v1.0.1
+# Matthew Bertucci 2024/06/11 for v1.1
 
 #include:l3keys2e
 
@@ -47,6 +47,8 @@ frcccmds
 \frkhangulfontfeature#*
 \activatefrcccmds
 \AddRule{cho|jung|jong}{keyvals}
+\RenewVowels{vowels}
+\RenewLeadingZero{arg}
 # for when \activatefrcccmds called without frcccmds option given
 \frccg#S
 \frccG#S
@@ -109,6 +111,9 @@ frcccmds
 \frkhangulfont#*
 \frkhangulfontfeature#*
 \activatefrcccmds
+\AddRule{cho|jung|jong}{keyvals}
+\RenewVowels{vowels}
+\RenewLeadingZero{arg}
 # for when \activatefrcccmds called without frcccmds option given
 \frccg#S
 \frccG#S

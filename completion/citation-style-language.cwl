@@ -1,5 +1,5 @@
 # citation-style-language package
-# Matthew Bertucci 2024/04/22 for v0.4.9
+# Matthew Bertucci 2024/06/11 for v0.5.0
 
 #include:filehook
 #include:url
@@ -40,12 +40,14 @@ suffix-separator=%<separator%>
 \cites{%<key1%>}{%<key2%>}%<...{keyN}%>
 \cites[%<options%>]{%<key1%>}[%<options%>]{%<key2%>}%<...[options]{keyN}%>
 \citeauthor{keylist}
-\citeyearpar{keylist}#*
-\citeyearpar[options%keyvals]{keylist}#*
+\citeyearpar{keylist}
+\citeyearpar[options%keyvals]{keylist}
 \citeyearpar*{keylist}#*
 \citeyearpar*[options%keyvals]{keylist}#*
+\fullcite{keylist}
+\fullcite[options%keyvals]{keylist}
 
-#keyvals:\cite,\cite*,\parencite,\parencite*,\citep,\textcite,\citet,\cites,\citeyearpar,\citeyearpar*
+#keyvals:\cite,\cite*,\parencite,\parencite*,\citep,\textcite,\citet,\cites,\citeyearpar,\citeyearpar*,\fullcite
 prefix=%<text%>
 suffix=%<text%>
 act=%<number%>

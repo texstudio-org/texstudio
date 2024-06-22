@@ -1,10 +1,11 @@
 # aomart class
-# Matthew Bertucci 2022/05/31 for v1.27
+# Matthew Bertucci 2024/06/11 for v1.28
 
 #include:class-amsart
 #include:fancyhdr
 #include:lastpage
 #include:ifpdf
+#include:graphicx
 #include:environ
 #include:yhmath
 #include:cmtiup

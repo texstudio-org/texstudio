@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/06/02 for v12.0.0
+# Matthew Bertucci 2024/06/21 for v12.3.0
 
 #include:iftex
 
@@ -8,7 +8,9 @@
 #keyvals:\simpleicon
 42
 1001tracklists
+1panel
 1password
+2fas
 2k
 365datascience
 3m
@@ -59,6 +61,7 @@ adp
 adroll
 adventofcode
 adyen
+aegisauthenticator
 aerlingus
 aeroflot
 aeromexico
@@ -166,6 +169,7 @@ angular
 anilist
 animalplanet
 ankermake
+anki
 ansible
 answer
 ansys
@@ -191,6 +195,7 @@ apachefreemarker
 apachegroovy
 apacheguacamole
 apachehadoop
+apachehbase
 apachehive
 apachejmeter
 apachekafka
@@ -204,6 +209,7 @@ apacherocketmq
 apachesolr
 apachespark
 apachestorm
+apachesuperset
 apachetomcat
 aparat
 apifox
@@ -254,7 +260,10 @@ asda
 aseprite
 askfm
 assemblyscript
+asterisk
 astonmartin
+astra
+astral
 astro
 asus
 atandt
@@ -303,6 +312,7 @@ azurefunctions
 azurepipelines
 babel
 babelio
+babylondotjs
 backblaze
 backbonedotjs
 backendless
@@ -311,6 +321,7 @@ badoo
 baidu
 bakalari
 bamboo
+bambulab
 bandcamp
 bandlab
 bandrautomation
@@ -412,6 +423,7 @@ brex
 bricks
 britishairways
 broadcom
+bruno
 bsd
 bspwm
 bt
@@ -571,6 +583,7 @@ codemirror
 codenewbie
 codepen
 codeproject
+coder
 codersrank
 coderwall
 codesandbox
@@ -588,6 +601,7 @@ coil
 coinbase
 coinmarketcap
 comicfury
+comma
 commerzbank
 commitlint
 commodore
@@ -650,6 +664,7 @@ cryptpad
 crystal
 csharp
 css3
+cssdesignawards
 cssmodules
 csswizardry
 cts
@@ -688,6 +703,7 @@ dataiku
 datastax
 dataverse
 datefns
+datev
 datocms
 datto
 davinciresolve
@@ -733,6 +749,7 @@ dhl
 diagramsdotnet
 dialogflow
 diaspora
+dictionarydotcom
 digg
 digikeyelectronics
 digitalocean
@@ -754,6 +771,7 @@ dm
 docker
 docsdotrs
 docsify
+doctrine
 docusaurus
 docusign
 dogecoin
@@ -766,6 +784,7 @@ dotnet
 douban
 doubanread
 dovecot
+dovetail
 doxygen
 dpd
 dragonframe
@@ -787,6 +806,7 @@ dungeonsanddragons
 dunked
 dunzo
 duolingo
+duplicati
 dvc
 dwavesystems
 dwm
@@ -854,6 +874,7 @@ epel
 epicgames
 epson
 equinixmetal
+eraser
 ericsson
 erlang
 erpnext
@@ -974,6 +995,7 @@ foobar2000
 foodpanda
 ford
 forgejo
+formik
 formspree
 formstack
 fortinet
@@ -1036,6 +1058,7 @@ generalmotors
 genius
 gentoo
 geocaching
+geode
 geopandas
 gerrit
 getx
@@ -1472,6 +1495,7 @@ klook
 knative
 knexdotjs
 knime
+knip
 knowledgebase
 known
 koa
@@ -1503,6 +1527,7 @@ labview
 lada
 lamborghini
 landrover
+langchain
 lapce
 laragon
 laravel
@@ -1513,6 +1538,7 @@ lastpass
 latex
 launchpad
 lazarus
+lazyvim
 lbry
 leaderprice
 leaflet
@@ -1747,6 +1773,7 @@ mobx
 mobxstatetree
 mocha
 mockserviceworker
+modal
 modin
 modrinth
 modx
@@ -1849,6 +1876,7 @@ nginxproxymanager
 ngrok
 ngrx
 nhl
+nicehash
 niconico
 nike
 nikon
@@ -1879,6 +1907,7 @@ now
 npm
 nrwl
 nsis
+ntfy
 nubank
 nucleo
 nuget
@@ -1890,6 +1919,7 @@ nushell
 nutanix
 nuxtdotjs
 nvidia
+nvm
 nx
 nxp
 nzxt
@@ -2055,6 +2085,7 @@ picardsurgeles
 picartodottv
 picnic
 picpay
+picrew
 picxy
 pihole
 pimcore
@@ -2062,6 +2093,7 @@ pinboard
 pinescript
 pinetwork
 pingdom
+pino
 pinterest
 pioneerdj
 piped
@@ -2264,6 +2296,7 @@ raycast
 raylib
 razer
 razorpay
+rclone
 react
 reactbootstrap
 reacthookform
@@ -2300,6 +2333,7 @@ relianceindustrieslimited
 remark
 remedyentertainment
 remix
+removedotbg
 renault
 render
 renovatebot
@@ -2328,6 +2362,7 @@ rhinoceros
 rich
 rider
 rimacautomobili
+rime
 ring
 riotgames
 ripple
@@ -2523,6 +2558,7 @@ smugmug
 snapchat
 snapcraft
 sncf
+snort
 snowflake
 snowpack
 snyk
@@ -2694,6 +2730,7 @@ taichilang
 tails
 tailscale
 tailwindcss
+taipy
 taketwointeractivesoftware
 talend
 talenthouse
@@ -2801,6 +2838,7 @@ torproject
 toshiba
 totvs
 tourbox
+tower
 toyota
 tplink
 tqdm
@@ -2856,6 +2894,7 @@ twinkly
 twinmotion
 twitch
 typeform
+typeorm
 typer
 typescript
 typo3
@@ -2922,6 +2961,7 @@ vectary
 vectorlogozone
 vectorworks
 veeam
+veed
 veepee
 vega
 vegas
@@ -2953,6 +2993,7 @@ visualbasic
 visualstudio
 visualstudioappcenter
 visualstudiocode
+visx
 vite
 vitepress
 vitess
@@ -2984,6 +3025,7 @@ vultr
 vyond
 w3schools
 wacom
+wagmi
 wagtail
 wails
 wakatime
@@ -3032,6 +3074,7 @@ westerndigital
 westernunion
 wetransfer
 wezterm
+wgpu
 whatsapp
 wheniwork
 wii
@@ -3095,6 +3138,7 @@ xo
 xrp
 xsplit
 xstate
+yabai
 yale
 yamahacorporation
 yamahamotorcorporation
@@ -3115,6 +3159,7 @@ youtubestudio
 youtubetv
 yr
 yubico
+yunohost
 zabka
 zaim
 zalando
