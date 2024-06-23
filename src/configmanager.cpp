@@ -500,7 +500,11 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Insert Unicode From SymbolGrid", &insertSymbolsAsUnicode, false, &pseudoDialog->checkBoxInsertSymbolAsUCS);
     registerOption("Tools/SymbolGrid Splitter", &stateSymbolsWidget, QByteArray());
 
-	registerOption("Spell/DictionaryDir", &spellDictDir, "", &pseudoDialog->leDictDir); //don't translate it
+#ifdef Q_OS_OSX
+    registerOption("Spell/DictionaryDir", &spellDictDir, "[txs-app-dir]/../Resources", &pseudoDialog->leDictDir);
+#else
+    registerOption("Spell/DictionaryDir", &spellDictDir, "", &pseudoDialog->leDictDir);
+#endif
 	registerOption("Spell/Language", &spellLanguage, "<none>", &pseudoDialog->comboBoxSpellcheckLang);
     registerOption("Spell/Dic", &spell_dic, "<dic not found>", nullptr);
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
