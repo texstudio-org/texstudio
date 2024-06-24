@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2024/06/02 for v6.28
+# Matthew Bertucci 2024/06/24 for v6.28a
 
 #include:amsmath
 #include:array
@@ -145,6 +145,7 @@ rounded-corners
 rounded-corners=##L
 no-cell-nodes
 ampersand-in-blocks
+&-in-blocks
 #endkeyvals
 
 #keyvals:\NiceMatrixOptions,\begin{NiceTabular}
