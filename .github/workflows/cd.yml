@@ -51,7 +51,7 @@ jobs:
       - name: Build
         run: |
           cd build
-          cmake --build . -- -j 2
+          cmake --build . -- -j 4
       - name: Package
         id: package
         run: |
@@ -139,7 +139,7 @@ jobs:
     - name: Build
       run: |
         cd build
-        cmake --build . --target install -- -j 2
+        cmake --build . --target install -- -j 4
       
     - name: Package
       id: package
