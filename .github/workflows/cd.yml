@@ -61,6 +61,7 @@ jobs:
           echo "VERSION_NAME=${VERSION_NAME}">> $GITHUB_OUTPUT
           echo "TXS_VERSION=${TXS_VERSION}">> $GITHUB_OUTPUT
           echo "GIT_VERSION=${GIT_VERSION}">> $GITHUB_OUTPUT
+          mkdir signed-artifacts
 
       - name: Upload zip to GitHub Artifacts
         if: github.event_name == 'push'
@@ -70,11 +71,34 @@ jobs:
           path: ./build/package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
           
       - name: Upload to GitHub Artifacts
+        id: upload-artifact
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
           name: texstudio-win-qt6-exe
           path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
+
+      - name: Codesign
+        id: sign
+        if: true
+        uses: signpath/github-action-submit-signing-request@v0.4
+        with:
+          api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+          organization-id: '9e74d567-be9b-4bd4-929d-9978860f6cbc'
+          project-slug: 'texstudio'
+          signing-policy-slug: 'test-signing'
+          github-artifact-id: '${{steps.upload-artifact.outputs.artifact-id}}'
+          wait-for-completion: true
+          output-artifact-directory: './signed-artifacts'
+          parameters: |
+            Version: ${{ toJSON(vars.version) }}
+            Release_Tag: "v1.0"
+
+      - name: Print the signing request id
+        if: true
+        run:  echo "Output [${{steps.sign.outputs.signing-request-id }}]"
+      
+      
 
       - name: Upload release file(s)
         uses: actions/upload-artifact@v4
