@@ -91,8 +91,8 @@ jobs:
           wait-for-completion: true
           output-artifact-directory: './signed-artifacts'
           parameters: |
-            Version: ${{ toJSON(vars.version) }}
-            Release_Tag: "v1.0"
+            Version: ${{ toJSON(steps.package.outputs.VERSION_NAME) }}
+            Release_Tag: "${{ steps.package.outputs.GIT_VERSION }}"
 
       - name: Print the signing request id
         if: true
