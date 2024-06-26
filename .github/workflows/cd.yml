@@ -48,20 +48,49 @@ jobs:
           cmake .. -Wno-dev
           # work-around strange git behaviour on msys2
           . ../git_revision.sh
+          mkdir signed-artifacts
+
       - name: Build
         run: |
           cd build
           cmake --build . -- -j 4
+
+      - name: upload binary
+        id: upload-binary
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: texstudio-exe
+          path: build/texstudio.exe
+      
+      - name: Codesign binary
+        id: sign_binary
+        if: true
+        uses: signpath/github-action-submit-signing-request@v0.4
+        with:
+          api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+          organization-id: '9e74d567-be9b-4bd4-929d-9978860f6cbc'
+          project-slug: 'texstudio'
+          signing-policy-slug: 'test-signing'
+          github-artifact-id: '${{steps.upload-binary.outputs.artifact-id}}'
+          artifact-configuration-slug: 'zipped_exe'
+          wait-for-completion: true
+          output-artifact-directory: './signed-artifacts'
+          parameters: |
+            Version: ${{ toJSON(steps.package.outputs.VERSION_NAME) }}
+            Release_Tag: "${{ steps.package.outputs.GIT_VERSION }}"
+
       - name: Package
         id: package
         run: |
+          mv signed-artifacts/texstudio.exe build/
           cd build
           . ../.github/scripts/get-version.sh
           . ../.github/scripts/package_msys.sh
           echo "VERSION_NAME=${VERSION_NAME}">> $GITHUB_OUTPUT
           echo "TXS_VERSION=${TXS_VERSION}">> $GITHUB_OUTPUT
           echo "GIT_VERSION=${GIT_VERSION}">> $GITHUB_OUTPUT
-          mkdir signed-artifacts
+          
 
       - name: Upload zip to GitHub Artifacts
         if: github.event_name == 'push'
@@ -95,9 +124,13 @@ jobs:
             Version: ${{ toJSON(steps.package.outputs.VERSION_NAME) }}
             Release_Tag: "${{ steps.package.outputs.GIT_VERSION }}"
 
-      - name: Print the signing request id
-        if: true
-        run:  echo "Output [${{steps.sign.outputs.signing-request-id }}]"
+      - name: Upload signed installer to GitHub Artifacts
+        id: upload-artifact-signed
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: texstudio-win-qt6-signed-exe
+          path: signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
       
       
 
