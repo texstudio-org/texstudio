@@ -92,9 +92,7 @@ jobs:
       - name: Package
         id: package
         run: |
-          ls -l signed-artifacts
-          unzip signed-artifacts/texstudio-exe.zip
-          mv texstudio.exe build/
+          mv signed-artifacts/texstudio.exe build/
           cd build
           . ../.github/scripts/get-version.sh
           . ../.github/scripts/package_msys.sh
