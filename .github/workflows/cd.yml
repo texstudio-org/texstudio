@@ -88,6 +88,7 @@ jobs:
           project-slug: 'texstudio'
           signing-policy-slug: 'test-signing'
           github-artifact-id: '${{steps.upload-artifact.outputs.artifact-id}}'
+          artifact-configuration-slug: 'zipped_exe'
           wait-for-completion: true
           output-artifact-directory: './signed-artifacts'
           parameters: |
