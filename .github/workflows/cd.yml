@@ -92,6 +92,7 @@ jobs:
       - name: Package
         id: package
         run: |
+          ls -l signed-artifacts
           unzip signed-artifacts/texstudio-exe.zip
           mv texstudio.exe build/
           cd build
