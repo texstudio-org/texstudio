@@ -83,7 +83,8 @@ jobs:
       - name: Package
         id: package
         run: |
-          mv signed-artifacts/texstudio.exe build/
+          unzip signed-artifacts/texstudio-exe.zip
+          mv texstudio.exe build/
           cd build
           . ../.github/scripts/get-version.sh
           . ../.github/scripts/package_msys.sh
@@ -132,8 +133,6 @@ jobs:
           name: texstudio-win-qt6-signed-exe
           path: signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
       
-      
-
       - name: Upload release file(s)
         uses: actions/upload-artifact@v4
         if: startsWith(github.ref, 'refs/tags/')
