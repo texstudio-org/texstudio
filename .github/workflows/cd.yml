@@ -62,6 +62,15 @@ jobs:
         with:
           name: texstudio-exe
           path: build/texstudio.exe
+
+      - name: get version
+        id: version
+        run: |
+          cd build
+          . ../.github/scripts/get-version.sh
+          echo "VERSION_NAME=${VERSION_NAME}">> $GITHUB_OUTPUT
+          echo "TXS_VERSION=${TXS_VERSION}">> $GITHUB_OUTPUT
+          echo "GIT_VERSION=${GIT_VERSION}">> $GITHUB_OUTPUT
       
       - name: Codesign binary
         id: sign_binary
@@ -77,8 +86,8 @@ jobs:
           wait-for-completion: true
           output-artifact-directory: './signed-artifacts'
           parameters: |
-            Version: ${{ toJSON(steps.package.outputs.VERSION_NAME) }}
-            Release_Tag: "${{ steps.package.outputs.GIT_VERSION }}"
+            Version: ${{ toJSON(steps.version.outputs.VERSION_NAME) }}
+            Release_Tag: "${{ steps.version.outputs.GIT_VERSION }}"
 
       - name: Package
         id: package
