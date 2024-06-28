@@ -1,5 +1,5 @@
 # univie-ling-wlg class
-# Matthew Bertucci 2024/05/11 for v.2.5
+# Matthew Bertucci 2024/06/28 for v.2.6
 
 #include:class-scrartcl
 #include:cochineal
@@ -28,6 +28,7 @@
 #include:multirow
 #include:varioref
 #include:prettyref
+#include:isodate
 
 #keyvals:\documentclass/univie-ling-wlg#c
 biblatex#true,false
@@ -119,6 +120,10 @@ issueeditor#true,false
 \urlprefix#*
 \versal{text}
 \wlgurl#*
+\weblink{URL}#U
+\weblink{URL}[date]#U
+\SetURLDate{date}
+\urldate{date}
 
 #keyvals:\includefinalpaper
 author=%<name%>
