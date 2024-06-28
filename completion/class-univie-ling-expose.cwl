@@ -1,5 +1,5 @@
 # univie-ling-expose class
-# Matthew Bertucci 2022/10/03 for v1.2.0
+# Matthew Bertucci 2024/06/28 for v.2.6
 
 #include:class-scrartcl
 #include:array
@@ -24,6 +24,7 @@
 # loads style=univie-ling option of biblatex
 #include:varioref
 #include:prettyref
+#include:isodate
 
 #keyvals:\documentclass/univie-ling-expose#c
 all#true,false
@@ -281,6 +282,10 @@ apamaxprtauth=%<number%>
 \Expression{text}
 \Meaning{text}
 \Concept{text}
+\weblink{URL}#U
+\weblink{URL}[date]#U
+\SetURLDate{date}
+\urldate{date}
 
 \footnumwidth#*
 \lecsemshort#S
