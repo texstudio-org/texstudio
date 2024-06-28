@@ -1,5 +1,5 @@
 # orcidlink package
-# Matthew Bertucci 12/14/2021 for v1.0.4
+# Matthew Bertucci 2024/06/26 for v1.1.0
 
 #include:hyperref
 #include:tikz
@@ -7,4 +7,9 @@
 
 orcidlogocol#B
 
-\orcidlink{orcid%URL}#U
+\orcidlink{orcid%URL}
+\orcidlogo#*
+\orcidlinkf{orcid%URL}
+\orcidlinkc{orcid%URL}
+\orcidlinki{name}{orcid%URL}
+\orcidlinkX{before}{orcid%URL}{after}#*
