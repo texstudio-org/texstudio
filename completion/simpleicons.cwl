@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/06/21 for v12.3.0
+# Matthew Bertucci 2024/06/29 for v12.4.0
 
 #include:iftex
 
@@ -8,6 +8,7 @@
 #keyvals:\simpleicon
 42
 1001tracklists
+1dot1dot1dot1
 1panel
 1password
 2fas
@@ -283,6 +284,7 @@ authelia
 authentik
 authy
 autocad
+autocannon
 autodesk
 autodeskmaya
 autodeskrevit
@@ -341,6 +343,7 @@ beatport
 beats
 beatsbydre
 beatstars
+beekeeperstudio
 behance
 beijingsubway
 bem
@@ -1073,6 +1076,7 @@ gitconnected
 gitea
 gitee
 gitextensions
+gitforwindows
 github
 githubactions
 githubcopilot
@@ -1204,6 +1208,7 @@ gumroad
 gumtree
 gunicorn
 gurobi
+gusto
 gutenberg
 h3
 habr
@@ -1298,6 +1303,7 @@ husqvarna
 hyper
 hyperskill
 hypothesis
+hyprland
 hyundai
 i18next
 i3
@@ -1572,6 +1578,7 @@ libreofficedraw
 libreofficeimpress
 libreofficemath
 libreofficewriter
+librewolf
 libuv
 lichess
 lidl
@@ -1759,6 +1766,7 @@ minecraft
 minetest
 mini
 minio
+mintlify
 minutemailer
 miraheze
 miro
@@ -2127,6 +2135,7 @@ pleroma
 plesk
 plex
 plotly
+plume
 pluralsight
 plurk
 pluscodes
@@ -2182,6 +2191,8 @@ pretzel
 prevention
 prezi
 prime
+primeng
+primereact
 primevideo
 printables
 prisma
@@ -2692,6 +2703,7 @@ subtitleedit
 subversion
 suckless
 sumologic
+suno
 sunrise
 supabase
 supercrease
@@ -2866,6 +2878,7 @@ trillertv
 trino
 tripadvisor
 tripdotcom
+trivago
 trivy
 trove
 trpc
@@ -3118,6 +3131,7 @@ wprocket
 writedotas
 wwe
 wwise
+wykop
 wyze
 x
 xamarin
