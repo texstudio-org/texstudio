@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/06/29 for v12.4.0
+# Matthew Bertucci 2024/07/05 for v13.0.0
 
 #include:iftex
 
@@ -307,11 +307,6 @@ awsorganizations
 awssecretsmanager
 awwwards
 axios
-azureartifacts
-azuredataexplorer
-azuredevops
-azurefunctions
-azurepipelines
 babel
 babelio
 babylondotjs
@@ -517,6 +512,7 @@ chinasouthernairlines
 chocolatey
 chromatic
 chromecast
+chromewebstore
 chrysler
 chupachups
 cilium
@@ -665,7 +661,6 @@ crunchyroll
 cryengine
 cryptpad
 crystal
-csharp
 css3
 cssdesignawards
 cssmodules
@@ -686,7 +681,6 @@ dacia
 daf
 dailydotdev
 dailymotion
-daimler
 daisyui
 dapr
 darkreader
@@ -704,7 +698,6 @@ datadotai
 datagrip
 dataiku
 datastax
-dataverse
 datefns
 datev
 datocms
@@ -738,7 +731,6 @@ dependabot
 dependencycheck
 depositphotos
 derspiegel
-designernews
 deutschebahn
 deutschebank
 deutschepost
@@ -776,7 +768,6 @@ docsdotrs
 docsify
 doctrine
 docusaurus
-docusign
 dogecoin
 doi
 dolby
@@ -813,7 +804,6 @@ duplicati
 dvc
 dwavesystems
 dwm
-dynamics365
 dynatrace
 e
 e3
@@ -1141,7 +1131,6 @@ googledataproc
 googledatastudio
 googledisplayandvideo360
 googledocs
-googledomains
 googledrive
 googleearth
 googleearthengine
@@ -1149,7 +1138,6 @@ googlefit
 googlefonts
 googleforms
 googlegemini
-googlehangouts
 googlehome
 googlekeep
 googlelens
@@ -1157,14 +1145,11 @@ googlemaps
 googlemarketingplatform
 googlemeet
 googlemessages
-googlemybusiness
 googlenearby
 googlenews
-googleoptimize
 googlepay
 googlephotos
 googleplay
-googlepodcasts
 googlepubsub
 googlescholar
 googlesearchconsole
@@ -1310,9 +1295,6 @@ i3
 iata
 ibeacon
 iberia
-ibm
-ibmcloud
-ibmwatson
 iced
 iceland
 icicibank
@@ -1377,7 +1359,6 @@ intercom
 intermarche
 internetarchive
 internetcomputer
-internetexplorer
 intigriti
 intuit
 invision
@@ -1508,6 +1489,7 @@ koa
 koc
 kodak
 kodi
+koenigsegg
 kofax
 kofi
 komoot
@@ -1735,25 +1717,6 @@ microdotblog
 microeditor
 microgenetics
 micropython
-microsoft
-microsoftacademic
-microsoftaccess
-microsoftazure
-microsoftbing
-microsoftedge
-microsoftexcel
-microsoftexchange
-microsoftonedrive
-microsoftonenote
-microsoftoutlook
-microsoftpowerpoint
-microsoftsharepoint
-microsoftsqlserver
-microsoftstore
-microsoftteams
-microsofttranslator
-microsoftvisio
-microsoftword
 microstation
 microstrategy
 midi
@@ -1762,7 +1725,6 @@ mikrotik
 milanote
 milvus
 minds
-minecraft
 minetest
 mini
 minio
@@ -1785,7 +1747,6 @@ modal
 modin
 modrinth
 modx
-mojangstudios
 moleculer
 momenteo
 monero
@@ -1803,6 +1764,7 @@ monzo
 moo
 moodle
 moonrepo
+moq
 moqups
 morrisons
 moscowmetro
@@ -2004,6 +1966,7 @@ orange
 orcid
 oreilly
 org
+organicmaps
 origin
 osano
 osf
@@ -2130,7 +2093,6 @@ playstation3
 playstation4
 playstation5
 playstationvita
-playwright
 pleroma
 plesk
 plex
@@ -2170,14 +2132,7 @@ postgresql
 posthog
 postman
 postmates
-powerapps
-powerautomate
-powerbi
-powerfx
-powerpages
 powers
-powershell
-powervirtualagents
 prdotco
 preact
 precommit
@@ -2334,6 +2289,7 @@ redhatopenshift
 redis
 redmine
 redox
+redsys
 redux
 reduxsaga
 redwoodjs
@@ -2347,7 +2303,7 @@ remix
 removedotbg
 renault
 render
-renovatebot
+renovate
 renpy
 renren
 replit
@@ -2550,8 +2506,6 @@ skillshare
 skoda
 sky
 skypack
-skype
-skypeforbusiness
 skyrock
 slack
 slackware
@@ -2762,6 +2716,7 @@ teal
 teamcity
 teamspeak
 teamviewer
+techcrunch
 ted
 teepublic
 teespring
@@ -3002,10 +2957,6 @@ virginmedia
 virtualbox
 virustotal
 visa
-visualbasic
-visualstudio
-visualstudioappcenter
-visualstudiocode
 visx
 vite
 vitepress
@@ -3101,11 +3052,6 @@ wikipedia
 wikiquote
 wikivoyage
 winamp
-windows
-windows10
-windows95
-windowsterminal
-windowsxp
 wipro
 wire
 wireguard
@@ -3134,10 +3080,7 @@ wwise
 wykop
 wyze
 x
-xamarin
-xaml
 xampp
-xbox
 xcode
 xdadevelopers
 xdotorg
@@ -3157,7 +3100,6 @@ yale
 yamahacorporation
 yamahamotorcorporation
 yaml
-yammer
 yandexcloud
 yarn
 ycombinator
