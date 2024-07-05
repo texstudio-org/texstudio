@@ -8,7 +8,7 @@ permissions:
 
 env:
   OSX_QT_VERSION: 6.7.2
-  OSX_POPPLER_VERSION: 24.06.1
+  OSX_POPPLER_VERSION: 24.07.0
   OSX_QUAZIP_VERSION: 1.4
 
 jobs:
@@ -89,10 +89,14 @@ jobs:
             Version: ${{ toJSON(steps.version.outputs.VERSION_NAME) }}
             Release_Tag: "${{ steps.version.outputs.GIT_VERSION }}"
 
+      - name: use signed binary
+        id: use_signed_binary
+        run: |
+          mv signed-artifacts/texstudio.exe build/texstudio.exe
+
       - name: Package
         id: package
         run: |
-          mv signed-artifacts/texstudio.exe build/
           cd build
           . ../.github/scripts/get-version.sh
           . ../.github/scripts/package_msys.sh
@@ -147,7 +151,7 @@ jobs:
         with:
           name: release-win
           path: |
-            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6.exe
+            signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
 
 ###################################
