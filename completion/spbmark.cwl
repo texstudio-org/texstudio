@@ -1,7 +1,5 @@
 # spbmark package
-# Matthew Bertucci 2024/06/24 for v1.46k
-
-#include:l3keys2e
+# Matthew Bertucci 2024/07/05 for v1.46l
 
 #keyvals:\usepackage/spbmark#c
 text#true,false
