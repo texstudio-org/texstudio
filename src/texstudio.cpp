@@ -355,6 +355,17 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     if(Version::compareStringVersion(txsVersionConfigWritten,"4.8.0")==Version::Lower){
         resetDocks();
     }
+    // check if dock widgets are all spread and force a reset
+    if(checkDockSpread()){
+#ifdef Q_OS_MAC
+        // on OSX only, force style to FUSION if style is MACOS (https://github.com/texstudio-org/texstudio/issues/3637)
+        if(configManager.interfaceStyle == "macOS"){
+            configManager.interfaceStyle = "Fusion";
+            configManager.setInterfaceStyle();
+        }
+#endif
+        resetDocks();
+    }
 
 	createStatusBar();
 	completer = nullptr;
@@ -11642,6 +11653,20 @@ void Texstudio::updateDockVisibility(bool visible)
     if (dock) {
         dock->setProperty("isVisible",visible);
     }
+}
+/*!
+ * \brief at start with old window set-up, all dock may be involuntarily be spread out (not tabified)
+ * This is checked here.
+ * \return true if no dock is tabified
+ */
+bool Texstudio::checkDockSpread()
+{
+    QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(QString(),Qt::FindDirectChildrenOnly);
+    QList<QDockWidget*>tabifiedWidgets;
+    foreach(QDockWidget* dw,lst){
+        tabifiedWidgets.append(tabifiedDockWidgets(dw));
+    }
+    return tabifiedWidgets.isEmpty();
 }
 /*!
     \brief call updateTOC & updateStructureLocally as only one call works with a signal
