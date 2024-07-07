@@ -1,11 +1,12 @@
 # sepfootnotes package
-# Matthew Bertucci 4/25/2022 for v0.3c
+# Matthew Bertucci 2024/07/07 for v0.3d
 
 #keyvals:\usepackage/sepfootnotes#c
 quiet
 warn
 error
 global
+after
 #endkeyvals
 
 \sepfootnotecontent{key%specialDef}{content%text}#s#%sepfootnotekey
