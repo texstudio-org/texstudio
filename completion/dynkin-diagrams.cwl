@@ -1,5 +1,5 @@
 # dynkin-diagrams package
-# Matthew Bertucci 2023/05/18 for 3.14159265358979323
+# Matthew Bertucci 2023/07/07 for 3.14159265358979323846
 
 #include:tikz
 #include:xstring
@@ -45,6 +45,7 @@ bird arrow
 Bourbaki arrow
 ceref
 Coxeter
+Coxeter above#true,false
 double edges
 double fold
 double fold left
