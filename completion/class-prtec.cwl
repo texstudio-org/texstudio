@@ -1,9 +1,7 @@
 # prtec class
-# Matthew Bertucci 4/19/2022 for v1.06
+# Matthew Bertucci 2024/07/08 for v1.07
 
 #include:ifthen
-#include:kvoptions
-#include:kvsetkeys
 #include:geometry
 #include:parskip
 #include:natbib
@@ -14,7 +12,6 @@
 #include:array
 #include:dcolumn
 #include:mathtools
-#include:inputenc
 #include:newtxtext
 #include:newtxmath
 #include:bm
@@ -22,20 +19,16 @@
 #include:fnpos
 #include:caption
 #include:subcaption
-#include:textcase
 #include:titlesec
-#include:hyperxmp
 #include:hyperref
 #include:doi
 #include:etoolbox
-#include:xpatch
 #include:multicol
 #include:xcoffins
 #include:metalogo
 #include:hologo
 
 #keyvals:\documentclass/prtec#c
-nodefaultsups#true,false
 nofoot
 upint
 smallerops
@@ -45,6 +38,7 @@ slantedGreek
 frenchmath
 varbb
 cmbraces
+subscriptcorrection
 largesc
 #endkeyvals
 
@@ -69,32 +63,29 @@ largesc
 \entry{text}
 \entry{symbol}{text}
 \section*[short title]{title}#L2
-\svsection{title}#*L2
-\svsection[short title]{title}#*L2
-\svsection*{title}#*L2
-\ifCD#*
-\CDtrue#*
-\CDfalse#*
+\ifCD#S
+\CDtrue#S
+\CDfalse#S
 \HeaderConfName#*
 \PaperNo#*
 \PaperTitle#*
-\theauthorno#*
+\theauthorno#S
 \AffiliationBlock#*
 \AuthorBlock#*
 \AffiliationsBlock#*
-\ifCA#*
-\CAtrue#*
-\CAfalse#*
+\ifCA#S
+\CAtrue#S
+\CAfalse#S
 \CAemail{email%URL}#*U
-\ifJA#*
-\JAtrue#*
-\JAfalse#*
+\ifJA#S
+\JAtrue#S
+\JAfalse#S
 \oldaffil{arg}#S
 \isOthernote#S
 \nextToken#S
 \oldCorrespondingAuthor{arg}#S
 \oldJointFirstAuthor#S
-\savethefootnote#*
+\savethefootnote#S
 
 # from dvipsnames option of xcolor
 Apricot#B
