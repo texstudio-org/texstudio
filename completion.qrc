@@ -1669,6 +1669,7 @@
 <file>completion/gchords.cwl</file>
 <file>completion/gckanbun.cwl</file>
 <file>completion/gelasio.cwl</file>
+<file>completion/gelasiomath.cwl</file>
 <file>completion/genealogy-profiles.cwl</file>
 <file>completion/genealogytree.cwl</file>
 <file>completion/gensymb.cwl</file>
@@ -2071,6 +2072,7 @@
 <file>completion/latex-dev.cwl</file>
 <file>completion/latex-document.cwl</file>
 <file>completion/latex-l2tabu.cwl</file>
+<file>completion/latexscreenshooter.cwl</file>
 <file>completion/latexsym.cwl</file>
 <file>completion/lato.cwl</file>
 <file>completion/layaureo.cwl</file>
