@@ -1,6 +1,6 @@
 # mode: pstricks.sty
 # dani/2006-02-22
-# Matthew Bertucci/2023-10-31 for v3.19a
+# Matthew Bertucci/2024-07-09 for v3.20
 
 #include:iftex
 #include:xcolor
@@ -94,8 +94,6 @@ hideerrors
 \blue
 \Cartesian#S
 \Cartesian(x,y)#S
-\clipbox[dim%l]{stuff}
-\clipbox{stuff}
 \closedshadow
 \closedshadow[keyvals]
 \closepath
@@ -256,6 +254,8 @@ hideerrors
 \pscircleOA(xO,yO)(xA,yA)
 \pscircleOA[keyvals](xO,yO)(xA,yA)
 \psclip{graphics}#*
+\psclipbox[dim%l]{stuff}
+\psclipbox{stuff}
 \pscoor#*
 \pscspline(%<x0,y0%>)(%<x1,y1%>)%<...(xN,yN)%>
 \pscspline[%<options%>](%<x0,y0%>)(%<x1,y1%>)%<...(xN,yN)%>
