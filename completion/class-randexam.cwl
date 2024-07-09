@@ -1,5 +1,5 @@
 # randexam class
-# Matthew Bertucci 2024/02/19 for v2024E
+# Matthew Bertucci 2024/07/09 for v2024F
 
 #include:functional
 #include:etoolbox
@@ -120,6 +120,9 @@ language=%<language%>
 \downwhitearrow#m
 \e
 \R
+\jacobi{arg1}{arg2}#m
+\ii#m
+\Zi#m
 \arccot#m
 \Corr#m
 \Cov#m
