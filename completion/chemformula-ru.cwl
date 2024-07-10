@@ -1,5 +1,7 @@
 # chemformula-ru package
-# Matthew Bertucci 2024/03/08 for v2024-03-01
+# Matthew Bertucci 2024/07/10 for v2024-07-10
+
+#include:chemformula
 
 #keyvals:\usepackage/chemformula-ru#c
 cosh2ch
