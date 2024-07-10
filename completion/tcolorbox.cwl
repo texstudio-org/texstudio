@@ -2,11 +2,11 @@
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
 # muzimuzhi/30 Aug 2019 for tcolorbox v4.20
 #     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
-# Matthew Bertucci updated 2024/01/10 for v6.2.0
+# Matthew Bertucci updated 2024/07/10 for v6.3.0
 
 #include:environ
 #include:etoolbox
-#include:pgf
+#include:tikz
 #include:verbatim
 
 # << Package options (load libraries) >>
@@ -593,7 +593,6 @@ skin=%<name%>
 skin first=%<name%>
 skin middle=%<name%>
 skin last=%<name%>
-graphical environment=%<envname%>
 frame engine=#standard,path,pathjigsaw,pathfirst,pathfirstjigsaw,pathmiddle,pathmiddlejigsaw,pathlast,pathlastjigsaw,freelance,spartan,empty
 interior titled engine=#standard,path,pathfirst,pathmiddle,pathlast,freelance,spartan,empty
 interior engine=#standard,path,pathfirst,pathmiddle,pathlast,freelance,spartan,empty
