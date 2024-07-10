@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/06/21 for v12.3.0
+# Matthew Bertucci 2024/07/05 for v13.0.0
 
 #include:iftex
 
@@ -8,6 +8,7 @@
 #keyvals:\simpleicon
 42
 1001tracklists
+1dot1dot1dot1
 1panel
 1password
 2fas
@@ -283,6 +284,7 @@ authelia
 authentik
 authy
 autocad
+autocannon
 autodesk
 autodeskmaya
 autodeskrevit
@@ -305,11 +307,6 @@ awsorganizations
 awssecretsmanager
 awwwards
 axios
-azureartifacts
-azuredataexplorer
-azuredevops
-azurefunctions
-azurepipelines
 babel
 babelio
 babylondotjs
@@ -341,6 +338,7 @@ beatport
 beats
 beatsbydre
 beatstars
+beekeeperstudio
 behance
 beijingsubway
 bem
@@ -514,6 +512,7 @@ chinasouthernairlines
 chocolatey
 chromatic
 chromecast
+chromewebstore
 chrysler
 chupachups
 cilium
@@ -662,7 +661,6 @@ crunchyroll
 cryengine
 cryptpad
 crystal
-csharp
 css3
 cssdesignawards
 cssmodules
@@ -683,7 +681,6 @@ dacia
 daf
 dailydotdev
 dailymotion
-daimler
 daisyui
 dapr
 darkreader
@@ -701,7 +698,6 @@ datadotai
 datagrip
 dataiku
 datastax
-dataverse
 datefns
 datev
 datocms
@@ -735,7 +731,6 @@ dependabot
 dependencycheck
 depositphotos
 derspiegel
-designernews
 deutschebahn
 deutschebank
 deutschepost
@@ -773,7 +768,6 @@ docsdotrs
 docsify
 doctrine
 docusaurus
-docusign
 dogecoin
 doi
 dolby
@@ -810,7 +804,6 @@ duplicati
 dvc
 dwavesystems
 dwm
-dynamics365
 dynatrace
 e
 e3
@@ -1073,6 +1066,7 @@ gitconnected
 gitea
 gitee
 gitextensions
+gitforwindows
 github
 githubactions
 githubcopilot
@@ -1137,7 +1131,6 @@ googledataproc
 googledatastudio
 googledisplayandvideo360
 googledocs
-googledomains
 googledrive
 googleearth
 googleearthengine
@@ -1145,7 +1138,6 @@ googlefit
 googlefonts
 googleforms
 googlegemini
-googlehangouts
 googlehome
 googlekeep
 googlelens
@@ -1153,14 +1145,11 @@ googlemaps
 googlemarketingplatform
 googlemeet
 googlemessages
-googlemybusiness
 googlenearby
 googlenews
-googleoptimize
 googlepay
 googlephotos
 googleplay
-googlepodcasts
 googlepubsub
 googlescholar
 googlesearchconsole
@@ -1204,6 +1193,7 @@ gumroad
 gumtree
 gunicorn
 gurobi
+gusto
 gutenberg
 h3
 habr
@@ -1298,15 +1288,13 @@ husqvarna
 hyper
 hyperskill
 hypothesis
+hyprland
 hyundai
 i18next
 i3
 iata
 ibeacon
 iberia
-ibm
-ibmcloud
-ibmwatson
 iced
 iceland
 icicibank
@@ -1371,7 +1359,6 @@ intercom
 intermarche
 internetarchive
 internetcomputer
-internetexplorer
 intigriti
 intuit
 invision
@@ -1502,6 +1489,7 @@ koa
 koc
 kodak
 kodi
+koenigsegg
 kofax
 kofi
 komoot
@@ -1572,6 +1560,7 @@ libreofficedraw
 libreofficeimpress
 libreofficemath
 libreofficewriter
+librewolf
 libuv
 lichess
 lidl
@@ -1728,25 +1717,6 @@ microdotblog
 microeditor
 microgenetics
 micropython
-microsoft
-microsoftacademic
-microsoftaccess
-microsoftazure
-microsoftbing
-microsoftedge
-microsoftexcel
-microsoftexchange
-microsoftonedrive
-microsoftonenote
-microsoftoutlook
-microsoftpowerpoint
-microsoftsharepoint
-microsoftsqlserver
-microsoftstore
-microsoftteams
-microsofttranslator
-microsoftvisio
-microsoftword
 microstation
 microstrategy
 midi
@@ -1755,10 +1725,10 @@ mikrotik
 milanote
 milvus
 minds
-minecraft
 minetest
 mini
 minio
+mintlify
 minutemailer
 miraheze
 miro
@@ -1777,7 +1747,6 @@ modal
 modin
 modrinth
 modx
-mojangstudios
 moleculer
 momenteo
 monero
@@ -1795,6 +1764,7 @@ monzo
 moo
 moodle
 moonrepo
+moq
 moqups
 morrisons
 moscowmetro
@@ -1996,6 +1966,7 @@ orange
 orcid
 oreilly
 org
+organicmaps
 origin
 osano
 osf
@@ -2122,11 +2093,11 @@ playstation3
 playstation4
 playstation5
 playstationvita
-playwright
 pleroma
 plesk
 plex
 plotly
+plume
 pluralsight
 plurk
 pluscodes
@@ -2161,14 +2132,7 @@ postgresql
 posthog
 postman
 postmates
-powerapps
-powerautomate
-powerbi
-powerfx
-powerpages
 powers
-powershell
-powervirtualagents
 prdotco
 preact
 precommit
@@ -2182,6 +2146,8 @@ pretzel
 prevention
 prezi
 prime
+primeng
+primereact
 primevideo
 printables
 prisma
@@ -2323,6 +2289,7 @@ redhatopenshift
 redis
 redmine
 redox
+redsys
 redux
 reduxsaga
 redwoodjs
@@ -2336,7 +2303,7 @@ remix
 removedotbg
 renault
 render
-renovatebot
+renovate
 renpy
 renren
 replit
@@ -2539,8 +2506,6 @@ skillshare
 skoda
 sky
 skypack
-skype
-skypeforbusiness
 skyrock
 slack
 slackware
@@ -2692,6 +2657,7 @@ subtitleedit
 subversion
 suckless
 sumologic
+suno
 sunrise
 supabase
 supercrease
@@ -2750,6 +2716,7 @@ teal
 teamcity
 teamspeak
 teamviewer
+techcrunch
 ted
 teepublic
 teespring
@@ -2866,6 +2833,7 @@ trillertv
 trino
 tripadvisor
 tripdotcom
+trivago
 trivy
 trove
 trpc
@@ -2989,10 +2957,6 @@ virginmedia
 virtualbox
 virustotal
 visa
-visualbasic
-visualstudio
-visualstudioappcenter
-visualstudiocode
 visx
 vite
 vitepress
@@ -3088,11 +3052,6 @@ wikipedia
 wikiquote
 wikivoyage
 winamp
-windows
-windows10
-windows95
-windowsterminal
-windowsxp
 wipro
 wire
 wireguard
@@ -3118,12 +3077,10 @@ wprocket
 writedotas
 wwe
 wwise
+wykop
 wyze
 x
-xamarin
-xaml
 xampp
-xbox
 xcode
 xdadevelopers
 xdotorg
@@ -3143,7 +3100,6 @@ yale
 yamahacorporation
 yamahamotorcorporation
 yaml
-yammer
 yandexcloud
 yarn
 ycombinator

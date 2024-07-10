@@ -1,5 +1,5 @@
 # ulthese class
-# Matthew Bertucci 4/21/2022 for v5.3a
+# Matthew Bertucci 2024/07/03 for v6.0
 
 #include:class-memoir
 #include:ifxetex
@@ -8,15 +8,13 @@
 #include:natbib
 #include:babel
 #include:numprint
-#include:etoolbox
 #include:hyperref
 #include:graphicx
 #include:xcolor
+#include:microtype
 
 #keyvals:\documentclass/ulthese#c
 nonatbib
-bibchapitre
-bibsection
 nobabel
 nohyperref
 10pt
@@ -33,10 +31,10 @@ MA
 LLM
 MErg
 MMus
-MPht
 MSc
 MScGeogr
 MServSoc
+MTravSoc
 MPsEd
 multifacultaire
 cotutelle
@@ -51,13 +49,6 @@ stage
 english
 french
 #endkeyvals
-
-#ifOption:bibchapitre
-#include:chapterbib
-#endif
-#ifOption:bibsection
-#include:chapterbib
-#endif
 
 #ifOption:english
 \captionsenglish#*

@@ -1,6 +1,7 @@
 # synthslant package
-# Matthew Bertucci 2024/05/11 for v0.1
+# Matthew Bertucci 2024/07/09 for v0.1a
 
+#include:etoolbox
 #include:iftex
 #include:xkeyval
 

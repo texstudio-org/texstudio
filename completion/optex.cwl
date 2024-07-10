@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2024/02/15 for v1.14
+# Matthew Bertucci 2024/06/29 for v1.15
 
 #include:plaintex
 #include:luatex
@@ -698,9 +698,16 @@
 \toleft#*m
 \subeqmark %<suffix%>#*m
 \scriptspaces{s-rel}{s-bin}{ss-rel}{ss-bin}#*
+\interval#*
+\rmsbsp#*
 \bfserif#*
+\flexipa#*
+\partialsymbolvars#*
+\mrmpartial#*
 \rmchars{list}#*
 \vargreek{list}#*
+\enablefic#*
+\finalitalcorr#*
 \textvariables#*
 \textdigits#*
 \textmoremath#*
@@ -711,13 +718,17 @@
 \mathset{options%keyvals}#*
 #keyvals:\mathset
 dots
+interval
 vert
+rmsbsp
 bfserif
-rmchar={%<list%>}
+flexipa
+rmchars={%<list%>}
 vargreek={%<list%>}
 text={%<list%>}
 mstyle=%<style%>
 bstyle=%<style%>
+enablefic
 #endkeyvals
 
 # loaded by \load[mte]

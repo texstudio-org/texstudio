@@ -1,5 +1,5 @@
 # univie-ling-poster class
-# Matthew Bertucci 2024/05/11 for v.2.5
+# Matthew Bertucci 2024/06/28 for v.2.6
 
 #include:class-beamer
 #include:etoolbox
@@ -23,6 +23,7 @@
 #include:prettyref
 #include:tikzpagenodes
 #include:tikzlibrarycalc
+#include:isodate
 
 #keyvals:\documentclass/univie-ling-poster#c
 fonts=#ps,otf,none
@@ -31,6 +32,7 @@ fontenc={%<enc1,enc2,...%>}
 cd=#german,english
 pagesize=#a0,a1,a2,a3,a4
 portrait#true,false
+smallmargins#true,false
 scale=%<factor%>
 polyglossia#true,false
 all#true,false
@@ -307,6 +309,11 @@ apamaxprtauth=%<number%>
 \restspace
 \restspace[label]
 
+\weblink{URL}#U
+\weblink{URL}[date]#U
+\SetURLDate{date}
+\urldate{date}
+
 # not documented
 \headeroffset#*
 \titleoffset#*
@@ -317,10 +324,12 @@ apamaxprtauth=%<number%>
 \aftertitle#*
 \umbruch#*
 \umbruch[length]#*
+\lmoffset#*
 \lsoffset#*
 \titleindent#*
 \restwidth#*
 \leadingzero{arg}#S
+\unitindent#*
 \urlprefix#S
 
 # from T1 option of fontenc

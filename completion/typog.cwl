@@ -1,5 +1,5 @@
 # typog package
-# Matthew Bertucci 2024/05/11 for v0.3
+# Matthew Bertucci 2024/07/09 for v0.4
 
 #include:etoolbox
 #include:everyhook
@@ -13,6 +13,7 @@ breakpenalty=%<penalty%>
 debug
 nodebug
 ligaturekern=##L
+lowercaselabelitemadjustments={%<dim1,dim2,dim3,dim4%>}
 mathitalicscorrection=##L
 raise*=##L
 raisecapitaldash=##L
@@ -26,6 +27,7 @@ stretchlimits={%<lim1,lim2,lim3%>}
 slashkern=##L
 textitalicscorrection=##L
 trackingttspacing=%<outer-spacing%>
+uppercaselabelitemadjustments={%<dim1,dim2,dim3,dim4%>}
 #endkeyvals
 
 \typogget{key%keyvals}
@@ -46,6 +48,16 @@ stretchlimits
 slashkern
 textitalicscorrection
 trackingttspacing
+#endkeyvals
+
+\typoggetnth{csname}{key%keyvals}{index}
+
+#keyvals:\typoggetnth
+lowercaselabelitemadjustments
+shrinklimits
+stretchlimits
+trackingttspacing
+uppercaselabelitemadjustments
 #endkeyvals
 
 \fontsizeinfo{csname}
@@ -110,6 +122,17 @@ tracingboxes=%<size%>
 \Singleguillemetright
 \Doubleguillemetleft
 \Doubleguillemetright
+
+\uppercaseadjustlabelitems{levels-to-adjust}
+\lowercaseadjustlabelitems{levels-to-adjust}
+\noadjustlabelitems{levels-to-adjust}
+
+\typogadjuststairs{step-size}{number-of-steps}{sample}
+\typogadjuststairs[scale]{step-size}{number-of-steps}{sample}
+\typoguppercaseadjustcheck{sample}
+\typoguppercaseadjustcheck[scale]{sample}
+\typoglowercaseadjustcheck{sample}
+\typoglowercaseadjustcheck[scale]{sample}
 
 \begin{lastlineraggedleftpar}
 \end{lastlineraggedleftpar}
@@ -223,4 +246,5 @@ linewidth=##L
 \smoothraggedrightragwidth#L
 
 # not documented
+\typogadjuststairsfor{scale-factor}{step-size}{number-of-steps}{sample}{N}#*
 \typoglogo#S

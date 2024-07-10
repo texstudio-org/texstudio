@@ -1,5 +1,5 @@
 # thuthesis class
-# Matthew Bertucci 2024/03/30 for v7.5.0
+# Matthew Bertucci 2024/07/01 for v7.5.2
 
 #include:iftex
 #include:kvdefinekeys
@@ -132,6 +132,7 @@ partial=#upright,italic
 math-ellipsis=#centered,lower,AMS
 real-part=#roman,fraktur
 math-font=#auto,stix,xits,libertinus,newcm,lm,newtx,none
+eqn-paren-style=#full,half
 cite-style=#super,inline,author-year
 toc-depth=%<integer%>
 spine-font={%<font commands%>}
