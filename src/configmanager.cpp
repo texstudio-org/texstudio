@@ -702,6 +702,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("AIchat/Provider",&ai_provider,0,&pseudoDialog->cbAIProvider);
     registerOption("AIchat/APIKEY",&ai_apikey,"",&pseudoDialog->leAIAPIKey);
     registerOption("AIchat/PreferredModel",&ai_preferredModel,"open-mistral-7b",&pseudoDialog->cbAIPreferredModel);
+    registerOption("AIchat/CustomURL",&ai_apiurl,"http://localhost:8080/v1/chat/completions",&pseudoDialog->leAIAPIURL);
     registerOption("AIchat/KnownModels",&ai_knownModels,QStringList(),nullptr);
     registerOption("AIchat/SystemPrompt_test",&ai_systemPrompt,"");
     registerOption("AIchat/Temperature",&ai_temperature,"0.7");

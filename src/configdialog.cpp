@@ -607,6 +607,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
     // ai chat
     connect(ui.cbAIProvider, SIGNAL(currentIndexChanged(int)), this, SLOT(aiProviderChanged(int)));
     connect(ui.pbRetrieveModels, &QPushButton::clicked, this, &ConfigDialog::retrieveModels);
+    connect(ui.pbResetAIURL, &QPushButton::clicked, this, &ConfigDialog::resetAIURL);
     // fill in the known models
     aiFillInKnownModels();
 
@@ -688,6 +689,7 @@ void ConfigDialog::revertClicked()
  */
 void ConfigDialog::aiProviderChanged(int provider)
 {
+    bool activateCustomURL=false;
     switch(provider){
     case 0:
         ui.cbAIPreferredModel->clear();
@@ -705,8 +707,11 @@ void ConfigDialog::aiProviderChanged(int provider)
         break;
     default:
         ui.cbAIPreferredModel->clear();
+        activateCustomURL=true;
         break;
     }
+    ui.leAIAPIURL->setEnabled(activateCustomURL);
+    ui.pbResetAIURL->setEnabled(activateCustomURL);
 }
 /*!
  * \brief retieve the current list of available model from AI provider
@@ -737,6 +742,13 @@ void ConfigDialog::retrieveModels()
         connect(manager,&QNetworkAccessManager::finished,this,&ConfigDialog::modelsRetrieved);
         manager->get(request);
     }
+}
+/*!
+ * \brief reset custom ai api url to default
+ */
+void ConfigDialog::resetAIURL()
+{
+    ui.leAIAPIURL->setText("http://localhost:8080/v1/chat/completions");
 }
 
 void ConfigDialog::modelsRetrieved(QNetworkReply *reply)

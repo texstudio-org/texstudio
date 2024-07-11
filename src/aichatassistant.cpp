@@ -158,7 +158,7 @@ void AIChatAssistant::slotSend()
             break;
         case 1: url="https://api.openai.com/v1/chat/completions";
             break;
-        case 2: url="http://localhost:8080/v1/chat/completions";
+        case 2: url=config->ai_apiurl;
             break;
         default:
             url="https://api.mistral.ai/v1/chat/completions";

@@ -145,6 +145,7 @@ private slots:
 
     void aiProviderChanged(int provider);
     void retrieveModels();
+    void resetAIURL();
     void modelsRetrieved(QNetworkReply *reply);
     void aiFillInKnownModels();
 

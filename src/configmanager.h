@@ -213,6 +213,7 @@ public:
 
     // ai chat assistant
     QString ai_apikey;
+    QString ai_apiurl; /// url of the ai service
     int ai_provider;
     QString ai_preferredModel;
     QStringList ai_knownModels;
