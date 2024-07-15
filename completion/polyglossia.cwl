@@ -1,8 +1,7 @@
 # polyglossia package
-# Matthew Bertucci 2024/02/19 for v2.0
+# Matthew Bertucci 2024/07/15 for v2.2
 
 #include:etoolbox
-#include:xkeyval
 #include:fontspec
 #include:iftex
 #include:bidi
@@ -1056,6 +1055,26 @@ lang=#local,main,%<language%>
 \ifxpginauxfile#S
 \xpginauxfilefalse#S
 \xpginauxfiletrue#S
+\XPGNoPatternsFallback{arg}#S
+\XPGNoPatternsFallback[opt]{arg}#S
+\PolyglossiaSetup{arg1}{arg2}#S
+\CheckHyphenationPatterns{arg}#S
+\SetupPolyglossiaLangPatterns{arg}#S
+\SetupLatinPolyglossiaFont{arg}#S
+\SetupNonLatinPolyglossiaFont{arg}#S
+\InheritGlossFile{arg}#S
+\SetGlossOptions{arg1}{arg2}#S
+\InitializeGlossOptions{arg1}{arg2}#S
+\SetLanguageAliasValues{arg1}{arg2}{arg3}#S
+\IfMainLanguageTF{arg}{true}{false}#S
+\IfMainLanguageT{arg}{true}#S
+\IfMainLanguageF{arg}{false}#S
+\IfLanguageDefinedTF{arg}{true}{false}#S
+\IfLanguageDefinedT{arg}{true}#S
+\IfLanguageDefinedF{arg}{false}#S
+\TryPatternWithFallback{arg1}{arg2}#S
+\setlocalhyphenmins{arg1}{arg2}{arg3}#S
+\InitializeBabelShorthands#S
 
 ## undocumented commands from gloss-*.ldf files
 # shared commands
