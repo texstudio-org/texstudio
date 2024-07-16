@@ -72,7 +72,7 @@ if(APPLE)
     )
     set(manual ${manual} utilities/manual/build/html/searchindex.js)
     file(GLOB images
-        utilities/manual/build/html/_images/*.png
+        utilities/manual/build/html/_images/*.webp
     )
     file(GLOB static
         utilities/manual/build/html/_static/*
@@ -481,7 +481,7 @@ if(UNIX)
 	install(DIRECTORY utilities/manual/build/html/_images
 		DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio
 		FILES_MATCHING
-		PATTERN *.png
+		PATTERN *.webp
 	)
 	install(DIRECTORY utilities/manual/build/html/_sphinx_design_static
 		DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio

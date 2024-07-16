@@ -8,7 +8,7 @@ This runs the latex compiler and, if necessary, bibtex, sometimes several times 
 "Build&View" directly calls the "View" command after building.
 
 
-![compile\_toolbar](images/compile_toolbar.png)
+![compile\_toolbar](images/compile_toolbar.webp)
 
 ```{warning}
 All your files must have an extension.
@@ -33,7 +33,7 @@ two representations (but you can\'t hide both at the same time). If you
 choose to show both of them then the log panel will be split vertically
 into two parts.
 
-![Display of Error Log](images/errorlog.png)
+![Display of Error Log](images/errorlog.webp)
 
 Use the buttons *Show Error*, *Show Warning*, *Show BadBox* (see
 tooltips) to choose whether error messages (red), warning messages

@@ -12,7 +12,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Configuring TeXstudio" href="configuration.html" /><link rel="prev" title="Viewing a document (pdf)" href="viewing.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
-        <title>Advanced features - TeXstudio 4.8.1 documentation</title>
+        <title>Advanced features - TeXstudio 4.8.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
@@ -131,7 +131,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">TeXstudio 4.8.1 documentation</div></a>
+      <a href="index.html"><div class="brand">TeXstudio 4.8.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -151,13 +151,10 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
-  <div class="sidebar-logo-container">
-    <img class="sidebar-logo" src="_static/texstudio128x128.png" alt="Logo"/>
-  </div>
   
-  <span class="sidebar-brand-text">TeXstudio 4.8.1 documentation</span>
+  <span class="sidebar-brand-text">TeXstudio 4.8.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -222,7 +219,7 @@
 </div>
 <p>Once an account is registered, an “API key” is provided which needs to be entered into TeXstudio configuration.
 There also the AI provider needs to be chosen as well as the desired ai model. The button “Retrieve list of models” downloads a current list of available models from the ai provider. An API key needs to be present for this to work.</p>
-<p><img alt="AI configuration" src="_images/conf_ai.png" /></p>
+<p><img alt="AI configuration" src="_images/conf_ai.webp" /></p>
 <p>The conversation is stored on disk, so that results can be reused later on. This can be disabled.</p>
 <p>Local models can easily be set up via <a class="reference external" href="https://github.com/Mozilla-Ocho/llamafile">llamafile</a>. Please refer their help for details. TeXstudio expects the OpenAI API interface on 127.0.0.1:8080 to work which is the default for llamafile, hence the llamafile needs to be started manually next to TeXstudio.
 Local models do not leak information to providers. A powerful GPU is recommended to get reasonable response times.</p>
@@ -230,7 +227,7 @@ Local models do not leak information to providers. A powerful GPU is recommended
 <section id="usage">
 <h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h3>
 <p>The ai chat assistant is called via the menu “Wizards/AI chat…”.</p>
-<p><img alt="AI assistant" src="_images/ai_wizard.png" /></p>
+<p><img alt="AI assistant" src="_images/ai_wizard.webp" /></p>
 <p>The wizard is split in three parts.
 The lower half allows entering queries which will be sent to the ai provider by pressing “send”.
 The responses are shown in the upper right widget which presents the whole conversation which may consist of more than one question/answer.
@@ -312,12 +309,12 @@ The assumption is that this may get better (or better queries are needed).</p>
 <p>TeXstudio uses “Sessions” to store and restore the set-up of open documents.
 Session are stored as <em>.txss2</em> files.
 By default, the session is stored when exiting from TeXstudio and restored at start-up.</p>
-<p><img alt="Session menu" src="_images/menu_session.png" /></p>
+<p><img alt="Session menu" src="_images/menu_session.webp" /></p>
 </section>
 <section id="user-fold-marker">
 <h2>User Fold Marker<a class="headerlink" href="#user-fold-marker" title="Permalink to this heading">#</a></h2>
 <p>Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting special comments <code class="docutils literal notranslate"><span class="pre">%BEGIN_FOLD</span></code> and <code class="docutils literal notranslate"><span class="pre">%END_FOLD</span></code>.</p>
-<p><img alt="Example for user fold marker" src="_images/userfoldmarker.png" /></p>
+<p><img alt="Example for user fold marker" src="_images/userfoldmarker.webp" /></p>
 </section>
 <section id="bibliography">
 <h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this heading">#</a></h2>
@@ -329,7 +326,7 @@ document.</p>
 <p>The optional fields can be automatically deleted with the
 “Clean” command of the “Bibliography” menu.</p>
 </div>
-<p><img alt="Bibliography Menu" src="_images/doc16.png" /></p>
+<p><img alt="Bibliography Menu" src="_images/doc16.webp" /></p>
 <p>Specialized bibliography programs like <a class="reference external" href="https://github.com/JabRef/jabref">JabRef</a> allow a more comfortable management of bibliography references. It can also be set up to insert <em>bibIDs</em> directly into TeXstudio.</p>
 </section>
 <section id="git-svn-support">
@@ -344,7 +341,7 @@ This is only the case with explicit saves via “File/Save” (or the shortcut <
 normal tools for this. Once you have a working copy, TeXstudio can operate
 on it.</p>
 </div>
-<p><img alt="Menu SVN/GIT" src="_images/menu_svn.png" /></p>
+<p><img alt="Menu SVN/GIT" src="_images/menu_svn.webp" /></p>
 <dl class="simple myst">
 <dt>“File/Checkin”</dt><dd><p>Performs an explicit save and check in, with an input
 dialog which asks for a checkin in message which is stored in the SVN/GIT
@@ -453,7 +450,7 @@ in the macro-menu. It is rearranged with the
 Folders can be added to sort a larger number of macros sensibly. To move
 macros into/from folders, only drag and drop works.
 The “Exec Macro” button executes the macro immediately.</p>
-<p><img alt="doc17" src="_images/doc17.png" /></p>
+<p><img alt="doc17" src="_images/doc17.webp" /></p>
 <section id="text-macros">
 <h3>Text macros<a class="headerlink" href="#text-macros" title="Permalink to this heading">#</a></h3>
 <p>Apart from normal text, some special codes are recognized and replaced
@@ -495,7 +492,7 @@ cut buffer, e.g. generate env (ctrl+e).</p></li>
 </li>
 <li><p>The option %(<em>filefilter</em>%) will be replaced by a filename which is
 asked for in a file dialog. The file filter is the standard
-Qt-Filefilterformat. For example “Images (*.png *.xpm
+Qt-Filefilterformat. For example “Images (*.webp *.xpm
 *.jpg);;Text files (*.txt);;XML files (*.xml)”, see also
 <a class="reference external" href="https://doc.qt.io/qt-6/qfiledialog.html">Qt-Doc</a></p></li>
 </ul>
@@ -1146,8 +1143,8 @@ includes a link to the corresponding html page.</p>
 some others packages). This command can only be used with the “Convert
 to html” tool.</p>
 </div>
-<p><img alt="doc18" src="_images/doc18.png" /></p>
-<p><img alt="doc19" src="_images/doc19.png" /></p>
+<p><img alt="doc18" src="_images/doc18.webp" /></p>
+<p><img alt="doc19" src="_images/doc19.webp" /></p>
 </section>
 </section>
 

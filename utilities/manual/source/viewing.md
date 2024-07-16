@@ -11,7 +11,7 @@ window). The former uses an area to the right of the editor, the latter
 uses its own window and gives the user more options. The viewer can be
 opened by clicking the View button or by pressing the `F7` key.
 
-![View button](images/viewbutton.png)
+![View button](images/viewbutton.webp)
 
 ### Forward and Inverse searching
 
@@ -49,7 +49,7 @@ position.
 You can choose main mode *Magnify* or *Scroll* from the toolbar. The
 mouse cursor used is a magnifier glass, or an open hand. 
 
-![Mouse mode](images/tb_pdf_magnifyPan.png)
+![Mouse mode](images/tb_pdf_magnifyPan.webp)
 
 These offer following actions:
 
@@ -93,7 +93,7 @@ columns and rows (s. menu View/Grid) in which the pages are placed. The
 first page may be placed on the left in the first row (i.e. a grid page
 offset of 0) and the following pages fill the row and so on:
 
-![grid 4x2 (4 columns, 2 rows), first page in first column of first row](images/grid4x2_book_col1.png)
+![grid 4x2 (4 columns, 2 rows), first page in first column of first row](images/grid4x2_book_col1.webp)
 
 A grid page offset of 0 may not be suitable in all cases. For example,
 if you are working on a book, since books have odd pages on the right.
@@ -102,7 +102,7 @@ positioned in the second or forth column (i.e. a grid page offset of 1
 or 3). Thus each grid row starts with an even (left) page and ends with
 an odd (right) page (if appropriate):
 
-![grid 4x2, first page in second column, the space on the left side remains empty](images/grid4x2_book_col2.png)
+![grid 4x2, first page in second column, the space on the left side remains empty](images/grid4x2_book_col2.webp)
 
 To meet this requirement, you can manually change the offset for the
 first page in any grid. To do this, use Shift + left mouse button click
@@ -144,15 +144,15 @@ The selection is done in the [configuration](configuration.md#configuring-previe
 The inline preview is started with selecting the interesting text and then pressing `Alt+p` or using the context menu on the selection. An inline preview can be closed with context menu (right-click) on the preview.
 
 ```{tab} Preview context menu
-![Preview context menu](images/preview_context.png)
+![Preview context menu](images/preview_context.webp)
 ```
 
 ```{tab} Resulting inline preview
-![Inline preview](images/preview_inline.png)
+![Inline preview](images/preview_inline.webp)
 ```
 
 ```{tab} Context menu on inline preview
-![Context on Inline preview](images/preview_inline_context.png)
+![Context on Inline preview](images/preview_inline_context.webp)
 ```
 
 ### Tooltip preview
@@ -162,13 +162,13 @@ It takes a moment until the preview can be presented as it is compiled when the 
 The preview is also available for colors and images.
 
 ```{tab} preview math
-![preview math](images/preview_tooltip.png)
+![preview math](images/preview_tooltip.webp)
 ```
 
 ```{tab} preview color
-![preview color](images/preview_color.png)
+![preview color](images/preview_color.webp)
 ```
 
 ```{tab} preview image
-![preview image](images/preview_image.png)
+![preview image](images/preview_image.webp)
 ```

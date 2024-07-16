@@ -374,7 +374,7 @@ data:
 
 FilesToOpen only has an effect for multi-file documents. You may add a
 preview image next to the template file. Again, it must have the same
-name, but extension \".png\".
+name, but extension \".webp\".
 
 ## Creating table templates
 
@@ -566,7 +566,7 @@ python.qxf
 
 The results is the following highlighting:
 
-![](images/format_example.png)
+![](images/format_example.webp)
 
 ## Building TeXstudio
 TeXstudio uses `cmake` as a building system.

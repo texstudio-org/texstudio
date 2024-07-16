@@ -10,7 +10,7 @@ in the following subsections:
 To define the preamble of your document, you can use the \"Quick start\"
 wizard (\"Wizard\" menu).
 
-![Quick Start](images/quickstartwizard.png)
+![Quick Start](images/quickstartwizard.webp)
 
 This dialog allows you to set the main features of your document (class,
 paper size, encoding\...).
@@ -26,7 +26,7 @@ document.
 For new documents, templates can be used by using the command \"File/New
 from template\". A dialogue gives a selection of templates.
 
-![Templates](images/template.png)
+![Templates](images/template.webp)
 
 You can either create a new editor document from the template or create
 it as file(s) on disk and open these in the editor. The former option is
@@ -52,7 +52,7 @@ To define a new part in your document (part, section, subsection, \...)
 with TeXstudio, just use this combo box button in the format toolbar of
 the main toolbar:
 
-![Sectioning](images/doc3.png)
+![Sectioning](images/doc3.webp)
 
 
 ## Browsing your document
@@ -70,7 +70,7 @@ A light-blue background shows the present cursor position in the text in the
 structure view as well. A greenish background denotes sections which are
 in the appendix.
 
-![Structure View](images/structureview.png)
+![Structure View](images/structureview.webp)
 
 The \"Structure View\" is automatically updated as you type. You can
 also use the \"Refresh Structure\" (menu \"Idefix\") command at any
@@ -99,7 +99,7 @@ The side panel on the left offers a TOC view. The TOC shows the structure of you
 whole document by means of section commands (part, section, subsection,
 ...). A mouse over shows you, in which file the section actually is.
 
-![TOC View](images/TOC_standard.png)
+![TOC View](images/TOC_standard.webp)
 
 The image shows this: A root file named document.tex that includes the
 file named file1.tex. The root file contains the section „Main text",
@@ -113,7 +113,7 @@ shades of color that indicate the sections are in different files. It
 can happen, that an included file doesn't contain any sections. Then the
 file name itself appears in the TOC (without file extension):
 
-![TOC View with file](images/TOC_file.png)
+![TOC View with file](images/TOC_file.webp)
 
 The mouse over now would show the name of the file that includes
 file1.tex (namely document.tex). The indentation shows that the text of
@@ -135,7 +135,7 @@ entry in the menu. A faster way setting bookmarks is clicking with the
 left mouse button in the bookmark column and TeXstudio will choose a
 bookmark or remove an existing one.
 
-![Bookmarks in TeXstudio](images/bookmark1.png)
+![Bookmarks in TeXstudio](images/bookmark1.webp)
 
 You may choose the Bookmarks view of the left side panel, which shows
 the text for each line with a bookmark of all editors. With the ease of
@@ -145,7 +145,7 @@ lines are ordered in the order you created the bookmarks. A context menu
 allows you to change the order of lines or remove bookmarks (s. right
 image below).
 
-![Tooltip in view Bookmarks](images/bookmark2.png)  ![Context menu in view Bookmarks](images/bookmark3.png)
+![Tooltip in view Bookmarks](images/bookmark2.webp)  ![Context menu in view Bookmarks](images/bookmark3.webp)
 
 You probably noticed the three buttons (placed in the status line) on
 the lower right side of the TeXstudio window, which look like bookmarks
@@ -164,7 +164,7 @@ actions from the menu Edit/Toggle Bookmark, which can be seen in the
 following image on the right.
 
 
-![Edit/Go to](images/bookmark4.png) ![Edit/Goto Bookmark](images/bookmark5.png) ![Edit/Toggle Bookmark](images/bookmark6.png)
+![Edit/Go to](images/bookmark4.webp) ![Edit/Goto Bookmark](images/bookmark5.webp) ![Edit/Toggle Bookmark](images/bookmark6.webp)
 
 
 ## Formatting your text
@@ -172,7 +172,7 @@ following image on the right.
 You can quickly set the format of a part of your text with the format part of the central toolbar.
 More options are available in the "LaTeX" menu. Commonly used formatting commands like `\textbf` are also available as shortcuts, here `CTRL+B`.
 
-![Format Toolbar](images/tb_central_format.png)
+![Format Toolbar](images/tb_central_format.webp)
 
 ```{note}
 A selected text can be directly framed by certain
@@ -229,7 +229,7 @@ The cells can be filled manually. Copy and paste from a spreadsheet program work
 The wizard allows some tabular manipulation for border, cell merge and column alignment.
 Once the code is generated, it can not be changed again with the wizard.
 
-![Tabular Wizard](images/wizard_tabular.png)
+![Tabular Wizard](images/wizard_tabular.webp)
 
 ### Manipulating tables
 
@@ -262,7 +262,7 @@ normal cursors. You can copy and paste text as usual. Also you can type
 in new text, which will be added in every row.
 Pressing `esc` or clicking somewhere into the text leaves this mode.
 
-![Block Selection](images/block_selection.png)
+![Block Selection](images/block_selection.webp)
 
 ### Using table templates
 
@@ -311,7 +311,7 @@ The definition of new templates is described [here](background.md#creating-table
 To help you to insert a "tabbing" code, you can use the "Tabbing"
 wizard (\"Wizard\" menu) :
 
-![Tabbing Wizard](images/wizard_tabbing.png)
+![Tabbing Wizard](images/wizard_tabbing.webp)
 
 ## Inserting a picture
 TeXstudio offers various ways to insert picture into the LaTeX code.
@@ -322,7 +322,7 @@ To insert a picture in your document, just use the
 command in the "LaTeX/include/\\includegraphics{file}" menu. Then, click on the \"browser\" button in
 the dialog to select the graphic file.
 
-![Figure Environment](images/insertImage_menu.png)
+![Figure Environment](images/insertImage_menu.webp)
 
 ```{note}
 You can insert a \"figure\" LaTeX environment (\"LaTeX -
@@ -349,24 +349,24 @@ very fast. Furthermore, if you start the wizard while the cursor is on
 picture code, the wizard is used to manipulate the existing picture
 settings.
 
-![Figure Wizard](images/wizard_figure.png)
+![Figure Wizard](images/wizard_figure.webp)
 
 ## Cross References and notes
 
 This toolbox in the toolbar allows you to insert quickly the label,
 cite, ref, footnote\... code.
 
-![Structure View Labels](images/tb_reference.png)
+![Structure View Labels](images/tb_reference.webp)
 
 Selecting "reference" open a dialog which let's you select a reference and inserts the complete code.
 All other commands will be inserted with empty arguments.
 
-![Inserting reference](images/insert_ref.png)
+![Inserting reference](images/insert_ref.webp)
 
 The labels used in your documents are displayed in the "Structure View".
 A right click on a label there allows you to insert it as reference or with a reference command at the current cursor position.
 
-![Inserting reference from structure view](images/insert_ref_fromStructure.png)
+![Inserting reference from structure view](images/insert_ref_fromStructure.webp)
 
 Another option is to use the [auto completer](#referencebibid-completion).
 
@@ -375,7 +375,7 @@ The context menu on labels in the structure view (see above) offers to "find usa
 This searches in all source files of the document (see [root file](background.md#about-documents-separated-in-several-files)) and finds the occurrence of that particular reference.
 Here all the references may be changed by changing "Replace by" and clicking "Replace All".
 
-![Find reference usage](images/findUsage.png)
+![Find reference usage](images/findUsage.webp)
 
 ```{note}
 If references in hidden documents are changed, they will be saved automatically when a compilation run is started. Otherwise you will be asked if you want to save when closing TeXstudio or closing all files which belong to that document.
@@ -391,7 +391,7 @@ The shortcut for the \"display math\" environment is `Alt+Shift+M`.
 The math part of the \"Central\" toolbar allows you to insert the most current mathematical
 forms (frac, sqrt\...) , the "Math" toolbar allows entering delimiter tags like \\left and \\right.
 
-![Math part of Central Toolbar](images/tb_central_math.png)  ![Math DElimiter Toolbar](images/tb_math.png)
+![Math part of Central Toolbar](images/tb_central_math.webp)  ![Math DElimiter Toolbar](images/tb_math.webp)
 
 The \"symbols panel\" in the side panel offers the insertion of hundreds of mathematical symbols and special characters.
 The list can be sorted by categories like "all","greek","operators", etc.
@@ -399,7 +399,7 @@ You can also directly search for parts of the command.
 A right click on the symbol allows to declare it as favorite, insert the command or if available, insert the unicode character into the text.
 TeXstudio keeps track which symbols have been used here, so the most used will be listed as well.
 
-![Symbol Panel](images/symbol_panel.png)
+![Symbol Panel](images/symbol_panel.webp)
 
 You can also define the format of your mathematical text via the
 \"Math\" menu.
@@ -410,7 +410,7 @@ the environment : array, matrix, pmatrix\....
 
 The cells can be edited directly.
 
-![Array Wizard](images/wizard_array.png)
+![Array Wizard](images/wizard_array.webp)
 
 ## Auto Completion
 
@@ -426,7 +426,7 @@ selects this one to do the completion, like `Enter`. This behavior is
 similar to tab completion in bash shells. You can also press `Ctrl+Space`
 to open this completer whenever you want.
 
-![open completer](images/completer.png)
+![open completer](images/completer.webp)
 
 If a tag has different options, a short descriptive text is inserted
 into your text, telling you the meaning of each option. You can press
@@ -454,7 +454,7 @@ Furthermore normal text can be completed by starting to type a word and
 pressing `Ctrl+Space`. All appropriate words in the current document are
 used as possible suggestions.
 
-![text completion](images/completer_text.png)
+![text completion](images/completer_text.webp)
 
 ### Environment completion
 If an environment is to be inserted, typing in the beginning of the
@@ -463,11 +463,11 @@ adequate environments which are inserted completely with
 `\\begin{env}..\\end{env}`.
 
 ```{tab} Entering env-name
-![env completing before](images/completer_env_before.png)
+![env completing before](images/completer_env_before.webp)
 ```
 
 ```{tab} Completing env-name
-![env completing after pressing keys](images/completer_env.png)
+![env completing after pressing keys](images/completer_env.webp)
 ```
 ### Reference/BibID completion
 When entering reference commands, the completer offers those commands prefilled with potential references.
@@ -477,11 +477,11 @@ If a reference is changed or the command offers to enter several references, the
 It works the same for *bibIDs*
 
 ```{tab} Reference command completion
-![completing reference command](images/completer_ref.png)
+![completing reference command](images/completer_ref.webp)
 ```
 
 ```{tab} Reference completion
-![completing references](images/completer_reference.png)
+![completing references](images/completer_reference.webp)
 ```
 
 
@@ -492,11 +492,11 @@ The completer opens automatically when entering keys or pressing `,` to start th
 It also treats length specifically to offer only these when appropriate.
 
 ```{tab} Complete key
-![KeyVal completion](images/completer_keys.png)
+![KeyVal completion](images/completer_keys.webp)
 ```
 
 ```{tab} Complete length value
-![KeyVal completion](images/completer_length.png)
+![KeyVal completion](images/completer_length.webp)
 ```
 
 ### Filename completion
@@ -505,11 +505,11 @@ TeXstudio can also complete filenames, mainly for `\include`- and `\includegraph
 If the completer selection is on an image file, that image is previewed as a tooltip.
 
 ```{tab} File name completion
-![completing filename](images/completer_filename.png)
+![completing filename](images/completer_filename.webp)
 ```
 
 ```{tab} File name completion with preview
-![completing filename preview](images/completer_filename_preview.png)
+![completing filename preview](images/completer_filename_preview.webp)
 ```
 
 
@@ -522,11 +522,11 @@ They can be defined in the [personal macros](advanced.md#personal-macros).
 The abbreviation may start with a backslash (`\`) allowing autostart of the completer.
 
 ```{tab} Abbreviation
-![completing user tag](images/completer_usertag_text.png)
+![completing user tag](images/completer_usertag_text.webp)
 ```
 
 ```{tab} Abbreviation starting with backslash
-![completing user tag with backslash](images/completer_usertag.png)
+![completing user tag with backslash](images/completer_usertag.webp)
 ```
 
 
@@ -536,7 +536,7 @@ Right-click on the word to
 open a menu with a list of possible corrections. In this context menu
 you can also add the word to the ignore list.
 
-![Spelling error](images/spelling_error.png)
+![Spelling error](images/spelling_error.webp)
 ```{note}
 If your dictionary is very
 large (\> 5MB), opening the context menu and showing possible
@@ -546,7 +546,7 @@ you can press shift while right clicking and don\'t have to wait.
 The active language is shown at the bottom of the main window.
 You can directly select a different language by clicking on the language code, see [also](configuration.md#configuring-the-spell-checker).
 
-![active language](images/active_language.png)
+![active language](images/active_language.webp)
 ```{note}
 More languages may be available in the configuration dialog, as txs filters the available language here to a predefined set plus all previously used languages.
 ```
@@ -556,12 +556,12 @@ allows searching for these underlined spelling mistakes starting from the curren
 Scrolls and selects the next misspelled word and offers suggestions to correct it. You may choose one of the suggestions, type something on your own in the `replace with field` or choose to ignore it.
 `Adding` means to permanently add the found word as correct in the spell checker. The `Show User Words` button allows to check that list and also to remove mistakenly added words.
 
-![Spell checking dialog](images/speller_dialog.png)
+![Spell checking dialog](images/speller_dialog.webp)
 ## Syntax check
 TeXstudio tries to determine if a command is correct by an internal list of valid commands.
 It also tries to understand command context to some degree, so to see that math commands outside a math environment are not correct.
 
-![Syntax error](images/syntax_error.png)
+![Syntax error](images/syntax_error.webp)
 
 A tool tip on the error marking states the reason, why txs thinks that there is an error.
 
@@ -573,7 +573,7 @@ The supported error types are:
 -   Unrecognized key/value in some key/value options, e.g. `\includegraphics[*keyval option*]...`
 -   Mismatch in defined/realized column number in tabular-like environments
 
-![Syntax error with tool tip](images/syntax_error_tooltip.png)
+![Syntax error with tool tip](images/syntax_error_tooltip.webp)
 
 ```{caution}
 LaTeX commands and especially LaTeX syntax are too complex to successfully check them completely.
@@ -589,7 +589,7 @@ for this word. Please be patient if you start the thesaurus at first
 time since loading the database just occurs then and can take a few
 moments.
 
-![Thesaurus](images/thesaurus.png)
+![Thesaurus](images/thesaurus.webp)
 
 The first line to the left contains the word, for which a synonym is
 searched for. The list below gives a list of word classes. The can be
@@ -636,7 +636,7 @@ The search-panel extends to offer a replacement when pressing `Ctrl+R` or edit/S
 | ![](../../../images-ng/colibre/prompt.svg) | ask every time before replacing |
 | ![](../../../images-ng/colibre/escape.svg)   | use escaped number to insert found groups, see perl regex above |
 
-![search panel](images/searchpanel.png)
+![search panel](images/searchpanel.webp)
 
 ### Extended search
 The extended search feature allows you to search within all files associated with a document.
@@ -647,7 +647,7 @@ The option "Files on disk" searches all the text in tex-files in the same folder
 
 In the list of search results, a double-click on a match jumps to the location in the file. The matches can be selected/deselected to limit the results which are replaced by the replacement text by pressing "Replace all".
 
-![extended search pane](images/extendedSearch.png)
+![extended search pane](images/extendedSearch.webp)
 
 ## Handling large projects
 This section describes what support txs provides for larger projects.
@@ -693,8 +693,8 @@ Alternatively pressing `Ctrl+alt+Up/down` also add block cursors.
 The cursors can jointly move, add and remove text and select characters.
 Pressing `esc` or clicking into the text ends the block cursor mode.
 
-![block cursor](images/blockCursor.png)
+![block cursor](images/blockCursor.webp)
 
 By clicking `Ctrl+Shift`+left click a block from the current cursor to the mouse position is selected.
 
-![block cursor with selection](images/blockCursor_selection.png)
+![block cursor with selection](images/blockCursor_selection.webp)

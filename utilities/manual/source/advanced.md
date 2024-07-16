@@ -13,7 +13,7 @@ Using an AI assistant means both questions and selected text is sent to that pro
 Once an account is registered, an "API key" is provided which needs to be entered into TeXstudio configuration.
 There also the AI provider needs to be chosen as well as the desired ai model. The button "Retrieve list of models" downloads a current list of available models from the ai provider. An API key needs to be present for this to work.
 
-![AI configuration](images/conf_ai.png)
+![AI configuration](images/conf_ai.webp)
 
 The conversation is stored on disk, so that results can be reused later on. This can be disabled.
 
@@ -24,7 +24,7 @@ Local models do not leak information to providers. A powerful GPU is recommended
 
 The ai chat assistant is called via the menu "Wizards/AI chat...".
 
-![AI assistant](images/ai_wizard.png)
+![AI assistant](images/ai_wizard.webp)
 
 The wizard is split in three parts.
 The lower half allows entering queries which will be sent to the ai provider by pressing "send".
@@ -123,13 +123,13 @@ TeXstudio uses "Sessions" to store and restore the set-up of open documents.
 Session are stored as *.txss2* files.
 By default, the session is stored when exiting from TeXstudio and restored at start-up.
 
-![Session menu](images/menu_session.png)
+![Session menu](images/menu_session.webp)
 
 ## User Fold Marker
 
 Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting special comments `%BEGIN_FOLD` and `%END_FOLD`. 
 
-![Example for user fold marker](images/userfoldmarker.png)
+![Example for user fold marker](images/userfoldmarker.webp)
 
 ## Bibliography
 
@@ -142,7 +142,7 @@ The optional fields can be automatically deleted with the
 \"Clean\" command of the \"Bibliography\" menu.
 ```
 
-![Bibliography Menu](images/doc16.png)
+![Bibliography Menu](images/doc16.webp)
 
 Specialized bibliography programs like [JabRef](https://github.com/JabRef/jabref) allow a more comfortable management of bibliography references. It can also be set up to insert *bibIDs* directly into TeXstudio.
 
@@ -161,7 +161,7 @@ normal tools for this. Once you have a working copy, TeXstudio can operate
 on it.
 ```
 
-![Menu SVN/GIT](images/menu_svn.png)
+![Menu SVN/GIT](images/menu_svn.webp)
 
 \"File/Checkin\" 
 
@@ -286,7 +286,7 @@ Folders can be added to sort a larger number of macros sensibly. To move
 macros into/from folders, only drag and drop works.
 The \"Exec Macro\" button executes the macro immediately.
 
-![doc17](images/doc17.png)
+![doc17](images/doc17.webp)
 
 ### Text macros
 
@@ -326,7 +326,7 @@ on insertion.
         cut buffer, e.g. generate env (ctrl+e).
 -   The option %(*filefilter*%) will be replaced by a filename which is
     asked for in a file dialog. The file filter is the standard
-    Qt-Filefilterformat. For example \"Images (\*.png \*.xpm
+    Qt-Filefilterformat. For example \"Images (\*.webp \*.xpm
     \*.jpg);;Text files (\*.txt);;XML files (\*.xml)\", see also
     [Qt-Doc](https://doc.qt.io/qt-6/qfiledialog.html)
 
@@ -676,7 +676,7 @@ some others packages). This command can only be used with the \"Convert
 to html\" tool.
 ```
 
-![doc18](images/doc18.png)
+![doc18](images/doc18.webp)
 
-![doc19](images/doc19.png)
+![doc19](images/doc19.webp)
 

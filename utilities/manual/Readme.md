@@ -19,3 +19,9 @@ pip3 install sphinx-inline-tabs
 pip3 install furo
 ```
 
+# webp image conversion
+
+`mogrify -format webp *.png`
+
+see [#3721](https://github.com/texstudio-org/texstudio/issues/3721)
+

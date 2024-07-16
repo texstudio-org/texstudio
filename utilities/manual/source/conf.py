@@ -77,6 +77,6 @@ html_theme_options = {
 #
 # html_sidebars = {}
 
-html_logo = '../../texstudio128x128.png'
+html_logo = '../../texstudio128x128.webp'
 html_favicon = '../../../texstudio.ico'
 

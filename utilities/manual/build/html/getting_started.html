@@ -12,7 +12,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Editing a TeX document" href="editing.html" /><link rel="prev" title="Welcome to TeXstudio Manual’s documentation!" href="index.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
-        <title>Getting started - TeXstudio 4.8.1 documentation</title>
+        <title>Getting started - TeXstudio 4.8.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
@@ -131,7 +131,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">TeXstudio 4.8.1 documentation</div></a>
+      <a href="index.html"><div class="brand">TeXstudio 4.8.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -151,13 +151,10 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
-  <div class="sidebar-logo-container">
-    <img class="sidebar-logo" src="_static/texstudio128x128.png" alt="Logo"/>
-  </div>
   
-  <span class="sidebar-brand-text">TeXstudio 4.8.1 documentation</span>
+  <span class="sidebar-brand-text">TeXstudio 4.8.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -222,7 +219,7 @@
 <!--
 This needs to be refined
 -->
-<p><img alt="TeXstudio Application Window" src="_images/txs_overview.png" /></p>
+<p><img alt="TeXstudio Application Window" src="_images/txs_overview.webp" /></p>
 <p>On the left we have the <em>side panel</em> which is currently showing an empty structure view.
 On the lower right you see the <em>messages panel</em> which can be switched to the <a class="reference internal" href="compiling.html#the-log-files"><span class="std std-doc"><em>log panel</em></span></a>, the <em>preview panel</em>, or the <em>search results panel</em>. The toolbar allows easy access to some often needed functions, three of them are marked as we will use them soon.
 The central toolbar offers access to some common latex commands as we will see.</p>
@@ -230,7 +227,7 @@ The central toolbar offers access to some common latex commands as we will see.<
 <section id="create-a-first-document">
 <h2>Create a first document<a class="headerlink" href="#create-a-first-document" title="Permalink to this heading">#</a></h2>
 <p>LaTeX needs some configuration code in the document. The <a class="reference internal" href="editing.html#setting-the-preamble-of-a-tex-document"><span class="std std-doc">Quick Start Wizard</span></a> offers an easy way to set up a typical document.</p>
-<p><img alt="Quick start wizard" src="_images/txs_wizard.png" /></p>
+<p><img alt="Quick start wizard" src="_images/txs_wizard.webp" /></p>
 <p>Select <code class="docutils literal notranslate"><span class="pre">Wizards/Quick</span> <span class="pre">Start...</span></code> and confirm the dialog with <code class="docutils literal notranslate"><span class="pre">OK</span></code>.
 This will lead to this basic document:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>    <span class="k">\documentclass</span><span class="na">[10pt,a4paper]</span><span class="nb">{</span>article<span class="nb">}</span>
@@ -253,31 +250,31 @@ So next we click the save button (or use <code class="docutils literal notransla
 <section id="insert-a-section">
 <h3>Insert a section<a class="headerlink" href="#insert-a-section" title="Permalink to this heading">#</a></h3>
 <p>We can select <code class="docutils literal notranslate"><span class="pre">\section</span></code> from the section button in order to insert the section command and add a title text.</p>
-<p><img alt="section button" src="_images/txs_section.png" /></p>
+<p><img alt="section button" src="_images/txs_section.webp" /></p>
 </section>
 <section id="insert-an-equation-environment">
 <h3>Insert an equation environment<a class="headerlink" href="#insert-an-equation-environment" title="Permalink to this heading">#</a></h3>
 <p>We can insert an equation environment via the menu <code class="docutils literal notranslate"><span class="pre">Math/Math</span> <span class="pre">equations/env</span> <span class="pre">equation</span></code> or by pressing <code class="docutils literal notranslate"><span class="pre">CTRL+SHIFT+N</span></code></p>
-<p><img alt="Insert equation" src="_images/txs_equation.png" /></p>
+<p><img alt="Insert equation" src="_images/txs_equation.webp" /></p>
 </section>
 <section id="insert-symbols">
 <h3>Insert symbols<a class="headerlink" href="#insert-symbols" title="Permalink to this heading">#</a></h3>
 <p>LaTeX offers a huge number of mathematical and other symbols. A convenient way of selecting the right one is using the symbol pane on the left side. Symbols can be declared as favorites and the most used symbols are collected as well to allow faster navigation.</p>
-<p><img alt="symbol pane" src="_images/txs_symbol.png" /></p>
+<p><img alt="symbol pane" src="_images/txs_symbol.webp" /></p>
 </section>
 </section>
 <section id="compile">
 <h2>Compile<a class="headerlink" href="#compile" title="Permalink to this heading">#</a></h2>
 <p>Compiling a document means translating it from the LaTeX source code into a pdf file.
 This can be performed by clicking on the compile button or using the key <code class="docutils literal notranslate"><span class="pre">F6</span></code>.</p>
-<p><img alt="compile a document" src="_images/txs_compile.png" /></p>
+<p><img alt="compile a document" src="_images/txs_compile.webp" /></p>
 <p>This calls the actual LaTeX-system (pdflatex by default) to compile the document on the disk.
 The <code class="docutils literal notranslate"><span class="pre">Message</span> <span class="pre">Pane</span></code> shows results from that run and will jump to the <a class="reference internal" href="compiling.html#the-log-files"><span class="std std-doc">log-view</span></a> in case of errors.</p>
 </section>
 <section id="view-your-pdf-document">
 <h2>View your pdf document<a class="headerlink" href="#view-your-pdf-document" title="Permalink to this heading">#</a></h2>
 <p>Now we like to see the results. For this, click the view button or press <code class="docutils literal notranslate"><span class="pre">F7</span></code>.</p>
-<p><img alt="View a pdf of a document" src="_images/txs_view.png" /></p>
+<p><img alt="View a pdf of a document" src="_images/txs_view.webp" /></p>
 <p>The pdf document is presented right of the text within TeXstudio.
 You can scroll and zoom to examine the result.
 <code class="docutils literal notranslate"><span class="pre">CTRL+left</span> <span class="pre">click</span></code> on text or images within the pdf will jump to the corresponding source code.</p>

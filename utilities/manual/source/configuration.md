@@ -11,38 +11,38 @@ corner.
 ### Side-panel (Docks)
 The side-panel and the log panel may be hidden with a control on the lower-left edge of the main window.
 
-![Hide panes](images/hide_panes.png)
+![Hide panes](images/hide_panes.webp)
 
 The sidepanel itself consists of different docks which can be reordered, split and even moved to the right hand side of the window.
 
 
 ```{tab} Side-panel with all docks
-![side-panel with all docks](images/dock_start.png)
+![side-panel with all docks](images/dock_start.webp)
 ```
 
 ```{tab} Dragging dock to new place
-![Dragging dock to new place](images/dock_move.png)
+![Dragging dock to new place](images/dock_move.webp)
 ```
 
 ```{tab} Split off dock
-![Split off dock](images/dock_split.png)
+![Split off dock](images/dock_split.webp)
 ```
 
 The side-panel set-up can be reset to default by using View/Show/"Reset Sidepanel/Docks".
 
 The menu \"View/Show\" also offers to show/hide docks.
 
-![Viewer Menu for docks](images/view_docks.png)
+![Viewer Menu for docks](images/view_docks.webp)
 
 ### Toolbars
 
 The toolbars can be hidden by a right click anywhere on the toolbar area.
 
-![Toolbar Visibility Menu](images/Tool_Bar_Menu.png)
+![Toolbar Visibility Menu](images/Tool_Bar_Menu.webp)
 
 They can be moved by dragging the handler on the left-hand side.
 
-![Moving Toolbars](images/Tool_Bar_Move.png)
+![Moving Toolbars](images/Tool_Bar_Move.webp)
 
 ## Configuring some general aspects
 
@@ -53,7 +53,7 @@ This panel allows the setting of some general aspects.
     modern variant is closer to texmaker, "Orion Dark" and "Adwaita Dark" provide a dark mode.
 -   The language of the menus can be changed directly to ignore system settings.
 
-![Configure General](images/configure_general.png)
+![Configure General](images/configure_general.webp)
 
 The advanced options allow:
 
@@ -63,7 +63,7 @@ The advanced options allow:
 -   automatically restore the previous session
 -   and to store session paths relatively which allows easier moving of files/projects
 
-![Configure General Advanced](images/configure_general_adv.png)
+![Configure General Advanced](images/configure_general_adv.webp)
 
 ## Configuring the editor
 
@@ -88,7 +88,7 @@ to disable the auto detection)
 -   The editor can show line numbers left of the text if desired.
 -   The shown inline checking results can be selected with some granularity.
 
-![Configure Editor](images/configure_editor.png)
+![Configure Editor](images/configure_editor.webp)
 
 The advanced options allow among others:
 
@@ -99,7 +99,7 @@ Scan LaTeX distribution for installed packages
 :   This scan allows txs to determine if the given packages are valid and also to provide proposal for package name completion
 
 
-![Configure Editor advanced](images/configure_editor_adv.png)
+![Configure Editor advanced](images/configure_editor_adv.webp)
 
 ## Configuring the advanced editor settings (Advanced option)
 The advanced editor option allow fine control over many different aspects.
@@ -119,7 +119,7 @@ Line Wrapping
 Auto save all files
 :   txs allows to automatically save all files every few minutes
 
-![Configure Editor advanced](images/configure_advancedEditor.png)
+![Configure Editor advanced](images/configure_advancedEditor.webp)
 
 The section for the structure panel offers:
 
@@ -133,7 +133,7 @@ Use color in global TOC
 :   The global TOC can use colored background to distinguish between different included files. Different color schemes and no color are possible.
 
 
-![Configure Editor advanced: structure panel](images/conf_structurepanel.png)
+![Configure Editor advanced: structure panel](images/conf_structurepanel.webp)
 
 The table autoformatting affects the [manipulate table tools](editing.md#manipulating-tables).
 
@@ -146,7 +146,7 @@ Special commands position
 One line per cell
 :   when reformatting a table, just put each cell in an individual line
 
-![Configure Editor advanced: table autoformatting](images/conf_tableautoformating.png)
+![Configure Editor advanced: table autoformatting](images/conf_tableautoformating.webp)
 
 ## Configuring the latex related commands
 
@@ -176,7 +176,7 @@ runtime:
 You can always restore the original settings using the revert button to
 the right.
 
-![Configure Commands](images/configure_commands.png)
+![Configure Commands](images/configure_commands.webp)
 
 ### Command syntax in detail
 
@@ -410,7 +410,7 @@ with biblatex and index very well.
 The advanced options allows finer customization which is in general not
 necessary.
 
-![Configure Build System](images/configure_build.png)
+![Configure Build System](images/configure_build.webp)
 
 User commands can be defined here by \"adding\" them. Each user command
 has a name with a pattern `<command id>:<display name>`, e.g.
@@ -427,7 +427,7 @@ clicking the spanner-symbol.
 Alternatively a command can be directly selected through the file
 system.
 
-![Configure user commands from known commands](images/doc21.png)
+![Configure user commands from known commands](images/doc21.webp)
 
 ### Advanced configuration of the build system
 
@@ -599,7 +599,7 @@ and do the actual work inside the wrapper script:
 TeXstudio supports language checking for spell-checking and grammar checking.
 Further more a thesaurus is offered for selected languages.
 
-![Configure Language](images/configure_language.png)
+![Configure Language](images/configure_language.webp)
 
 ### Configuring the spell checker
 
@@ -635,7 +635,7 @@ particularly useful if you use a portable version on a USB stick in
 which the actual location of the program may depend on the computer you
 are using.
 
-![Spellcheck Options](images/spellcheck_options.png)
+![Spellcheck Options](images/spellcheck_options.webp)
 
 To make life easy TeXstudio lets you choose a preferred language for the
 spell checker. However, if you frequently work with files in different
@@ -647,7 +647,7 @@ TeXstudio supports a special \"magic comment\"
 `% !TeX spellcheck = de_DE`. If this comment is present in a file, its
 language is automatically set when the file is loaded.
 
-![Spellcheck Menu](images/spellcheck_menu.png)
+![Spellcheck Menu](images/spellcheck_menu.webp)
 
 Since the internal structure of the dictionaries is complex (e.g.
 contains rules on how to generate a word with different inflections), it
@@ -668,7 +668,7 @@ Users can download others databases here :
 
 The active thesaurus needs to be directly selected here. It does not synchronize with the selected spelling language.
 
-![Thesaurus selection](images/conf_thesaurus.png)
+![Thesaurus selection](images/conf_thesaurus.webp)
 
 ### Configuring the grammar checker
 
@@ -689,7 +689,7 @@ the path to LT jar in the grammar page of the config dialog. If the java
 executable is not in the default PATH, you also need to set the path to
 it there.
 
-![LT settings](images/conf_LT.png)
+![LT settings](images/conf_LT.webp)
 
 In the advanced config mode, you can also mark certain LT rules as
 \"special\" whose matches will then be highlighted in a
@@ -697,7 +697,7 @@ different/customizable way. This can be useful to do a stylistic
 analysis, e.g. by creating an own rule in LT highlighting all verbs or
 all adverbs.
 
-![advanced LT rules](images/conf_LT_adv.png)
+![advanced LT rules](images/conf_LT_adv.webp)
 
 Independent from LanguageTool, TeXstudio also checks for repeated and
 bad (imprecise/slang) words. For this it needs a list of those words which need to be provided in the "Wordlist Directory" with the name "*language_code*.badWords"
@@ -705,7 +705,7 @@ bad (imprecise/slang) words. For this it needs a list of those words which need 
 The repetition check looks several words behind and marks repetition of short words in the immediate vicinity and repetition of long words up to 10 words before. These distances and
 lengths can be changed in the advanced grammar config page.
 
-![Internal grammar check](images/conf_grammar_internal.png)
+![Internal grammar check](images/conf_grammar_internal.webp)
 
 ## Configuring the autocompletion
 
@@ -735,7 +735,7 @@ Windows. Basically the file contains a list of valid commands. A
 description of the exact format and an example are given in the
 [appendix](background.md#description-of-the-cwl-format).
 
-![Configure Completion](images/configure_completion.png)
+![Configure Completion](images/configure_completion.webp)
 
 The advanced mode offers some additional options:
 
@@ -759,7 +759,7 @@ The list latex.cwl contains the standard latex commands. Classes are provided as
 
 As the number of provided files has become quite large, a filter box has been added to filter available files for easier selection.
 
-![Configure Completion advanced](images/configure_completion_adv.png)
+![Configure Completion advanced](images/configure_completion_adv.webp)
 
 ## Configuring Preview
 
@@ -768,7 +768,7 @@ By default `pdflatex` is used and the result is shown `inline`.
 If an inline preview is performed, the preview is automatically updated if the original text is changed.
 Tooltips on formulas/math also show a preview of said formula.
 
-![Preview](images/configure_preview.png)
+![Preview](images/configure_preview.webp)
 
 ## Configuring Highlight Colors
 TeXstudio allows the adaptation of editor syntax highlight colors for personal taste.
@@ -780,12 +780,12 @@ A higher number means higher priority.
 ```{caution}
 Changing font family or size may lead to distorted text output in the editor and is discouraged.
 ```
-![Highlight Colors](images/configure_syntaxhighlighting.png)
+![Highlight Colors](images/configure_syntaxhighlighting.webp)
 
 ## Configuring GUI scaling
 When using TeXstudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TeXstudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel independently. The change is performed immediately so that the result can be observed directly.
 
-![GUI scaling](images/configure_guiscaling.png)
+![GUI scaling](images/configure_guiscaling.webp)
 
 ## Configuring shortcuts
 
@@ -804,7 +804,7 @@ Additional some function of the `ESC` key can be set. It can close the log-view,
 Show Shortcuts in Tooltips
 :  Show shortcuts in tooltips on toolbar actions or not.
 
-![Configure Shortcuts](images/configure_shortcuts.png)
+![Configure Shortcuts](images/configure_shortcuts.webp)
 
 ```{note}
 Editor/Basic Key Mapping allows only changing of the "current shortcut". "Additional shortcut" is not supported in this context.
@@ -815,7 +815,7 @@ Editor/Basic Key Mapping allows only changing of the "current shortcut". "Additi
 The Tools/Math/Latex-Menu can be adapted to user likings by default. For this menu items
 can be renamed and a new Latex-Code, or in case of the tools menu, new tool commands can be placed. The appropriate item can be directly edited by double-clicking on them.
 
-![Customize Menu](images/configure_customizeMenu.png)
+![Customize Menu](images/configure_customizeMenu.webp)
 
 The "show all" check box allows to see the complete menu structure of the main window of TeXstudio.
 ```{warning}
@@ -839,7 +839,7 @@ Since many of those item don\'t have icons, user icons can be loaded as well. Th
 applying \"load other icon\" from the context menu on an item in the
 custom toolbar list in the configure dialog.
 
-![Customize Toolbars](images/configure_customToolbar.png)
+![Customize Toolbars](images/configure_customToolbar.webp)
 
 ## Configuring SVN/GIT support
 
@@ -868,4 +868,4 @@ to older revisions, whereas a redo goes forward to more recent versions.
 This is a more interactive approach than choosing SVN revisions directly
 via a menu command, see [here](advanced.md#gitsvn-support).
 
-![Configure SVN](images/configure_svn.png)
+![Configure SVN](images/configure_svn.webp)
