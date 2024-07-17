@@ -2531,7 +2531,7 @@ leur usage en les activant ici.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3687"/>
         <source>API URL:</source>
-        <translation type="unfinished"/>
+        <translation>URL de l&apos;API :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3694"/>
@@ -7276,12 +7276,12 @@ Remarques :
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
         <source>Move cursor to next block</source>
-        <translation type="unfinished"/>
+        <translation>Déplacer le curseur vers le bloc suivant</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
         <source>Move cursor to previous block</source>
-        <translation type="unfinished"/>
+        <translation>Déplacer le curseur vers le bloc précédent</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
@@ -7351,12 +7351,12 @@ Remarques :
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4799"/>
         <source>Select to next block</source>
-        <translation type="unfinished"/>
+        <translation>Sélectionner le bloc suivant</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
         <source>Select to previous block</source>
-        <translation type="unfinished"/>
+        <translation>Sélectionner le bloc précédent</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4804"/>

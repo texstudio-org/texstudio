@@ -4,17 +4,17 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="16"/>
         <source>Search in previous conversations</source>
-        <translation type="unfinished"/>
+        <translation>Kërko te biseda të mëparshme</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="20"/>
         <source>Search in conversations</source>
-        <translation type="unfinished"/>
+        <translation>Kërko te biseda</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="44"/>
         <source>Enter your query here</source>
-        <translation type="unfinished"/>
+        <translation>Jepni këtu termat e kërkimit tuaj</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="47"/>
@@ -22,12 +22,12 @@
         <location filename="../src/aichatassistant.cpp" line="371"/>
         <location filename="../src/aichatassistant.cpp" line="417"/>
         <source>Send Query to AI provider</source>
-        <translation type="unfinished"/>
+        <translation>Dërgoje Kërkesën te shërbim IA</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="54"/>
         <source>Insert response</source>
-        <translation type="unfinished"/>
+        <translation>Futni përgjigje</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="60"/>
@@ -37,12 +37,12 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="87"/>
         <source>AI chat assistant</source>
-        <translation type="unfinished"/>
+        <translation>Asistent fjalosjeje IA</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="223"/>
         <source>Stop current query !</source>
-        <translation type="unfinished"/>
+        <translation>Ndale kërkimin e tanishëm!</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="299"/>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="313"/>
         <source>Values between 0 and %1</source>
-        <translation type="unfinished"/>
+        <translation>Vlera mes 0 dhe %1</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="320"/>
@@ -63,18 +63,18 @@
         <location filename="../src/aichatassistant.cpp" line="409"/>
         <location filename="../src/aichatassistant.cpp" line="446"/>
         <source>Execute as macro</source>
-        <translation type="unfinished"/>
+        <translation>Ekzekutoje si makro</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="411"/>
         <location filename="../src/aichatassistant.cpp" line="448"/>
         <source>Insert into text</source>
-        <translation type="unfinished"/>
+        <translation>Fute në tekst</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="315"/>
         <source>Temperature</source>
-        <translation type="unfinished"/>
+        <translation>Temperaturë</translation>
     </message>
 </context>
 <context>
@@ -84,22 +84,22 @@
         <location filename="../src/aiquerystoragemodel.cpp" line="142"/>
         <location filename="../src/aiquerystoragemodel.cpp" line="182"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Sot</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="182"/>
         <source>Last Week</source>
-        <translation type="unfinished"/>
+        <translation>Javën e Shkuar</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="182"/>
         <source>Last Month</source>
-        <translation type="unfinished"/>
+        <translation>Muajin e Shkuar</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="201"/>
         <source>Older</source>
-        <translation type="unfinished"/>
+        <translation>Më të vjetër</translation>
     </message>
 </context>
 <context>
@@ -285,7 +285,7 @@ Paketa mathtools mbulon alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatri
         <location filename="../src/bibtexdialog.cpp" line="23"/>
         <location filename="../src/bibtexdialog.cpp" line="270"/>
         <source>Article in Conference &amp;Proceedings</source>
-        <translation type="unfinished"/>
+        <translation>Artikull në &amp;Punime Konference</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="26"/>
@@ -302,7 +302,7 @@ Paketa mathtools mbulon alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatri
         <location filename="../src/bibtexdialog.cpp" line="32"/>
         <location filename="../src/bibtexdialog.cpp" line="252"/>
         <source>Conference Pr&amp;oceedings</source>
-        <translation type="unfinished"/>
+        <translation>P&amp;unime Konference</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="37"/>
@@ -357,12 +357,12 @@ Paketa mathtools mbulon alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatri
     <message>
         <location filename="../src/bibtexdialog.cpp" line="108"/>
         <source>Part of a Book With Its Own Title</source>
-        <translation type="unfinished"/>
+        <translation>Pjesë e një Libri, Me Titull të Vetin</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="116"/>
         <source>Book in Book</source>
-        <translation type="unfinished"/>
+        <translation>Libër brenda Libri</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="124"/>
@@ -2436,7 +2436,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3592"/>
         <source>AI chat assistant</source>
-        <translation type="unfinished"/>
+        <translation>Asistent fjalosjeje IA</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3659"/>
@@ -5496,7 +5496,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="145"/>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
-        <translation type="unfinished"/>
+        <translation>Kartela regjistër është shumë e madhe (%1 MB), jeni i sigurt se doni të ngarkohet?</translation>
     </message>
 </context>
 <context>
@@ -5690,7 +5690,7 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="126"/>
         <source>LaTeX Project Public License (LPPL)</source>
-        <translation type="unfinished"/>
+        <translation>LaTeX Project Public License (LPPL)</translation>
     </message>
 </context>
 <context>
@@ -5835,7 +5835,7 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="238"/>
         <source>Modified</source>
-        <translation type="unfinished"/>
+        <translation>Ndryshuar më</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="240"/>
@@ -5896,7 +5896,7 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="953"/>
         <source>Set Page Count...</source>
-        <translation type="unfinished"/>
+        <translation>Caktoni Numër Faqesh…</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="954"/>
@@ -5916,7 +5916,7 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="992"/>
         <source>New clock interval (in minutes)</source>
-        <translation type="unfinished"/>
+        <translation>Interval i ri sahati (në minuta)</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1011"/>
@@ -6034,7 +6034,7 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3007"/>
         <source>Ignore for synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Pa TOC</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3010"/>
@@ -6089,7 +6089,7 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3031"/>
         <source>&amp;Go to Page...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Shko te Faqja…</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3033"/>
@@ -6241,7 +6241,7 @@ Doni të mbishkruhet?</translation>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3232"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
-        <translation type="unfinished"/>
+        <translation>nga</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3255"/>
@@ -6251,7 +6251,7 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3273"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"/>
+        <translation>Zvogëloje</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3283"/>
@@ -6261,7 +6261,7 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3292"/>
         <source>Zoom In</source>
-        <translation type="unfinished"/>
+        <translation>Zmadhoje</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3320"/>
@@ -6489,12 +6489,12 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="654"/>
         <source>Sync</source>
-        <translation type="unfinished"/>
+        <translation>Njëkohësoje</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="655"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation type="unfinished"/>
+        <translation>Njëkohësoje përpunuesin, kur kalohet te përfundime kërkimi.</translation>
     </message>
 </context>
 <context>
@@ -6527,7 +6527,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="254"/>
         <source>To:</source>
-        <translation type="unfinished"/>
+        <translation>Në:</translation>
     </message>
 </context>
 <context>
@@ -6568,17 +6568,17 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="594"/>
         <source>&amp;Play</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Luaje</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="595"/>
         <source>P&amp;ause</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pushim</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="596"/>
         <source>&amp;Stop</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ndale</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="598"/>
@@ -6588,7 +6588,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="599"/>
         <source>Set &amp;volume</source>
-        <translation type="unfinished"/>
+        <translation>Caktoni &amp;volumin</translation>
     </message>
 </context>
 <context>
@@ -6596,12 +6596,12 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="818"/>
         <source>Zoom In</source>
-        <translation type="unfinished"/>
+        <translation>Zmadhoje</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="820"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"/>
+        <translation>Zvogëloje</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="823"/>
@@ -6621,7 +6621,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1434"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"/>
+        <translation>Hapja e kartelave të jashtme aktualisht mbulohet vetëm për PDF-ra.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1453"/>
@@ -6664,12 +6664,12 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/toolwidgets.cpp" line="165"/>
         <source>Zoom In</source>
-        <translation type="unfinished"/>
+        <translation>Zmadhoje</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="166"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"/>
+        <translation>Zvogëloje</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="167"/>
@@ -6679,7 +6679,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/toolwidgets.cpp" line="168"/>
         <source>Fit</source>
-        <translation type="unfinished"/>
+        <translation>Sa Ta Nxërë</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="172"/>
@@ -6811,7 +6811,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="862"/>
         <source>Do you want to continue replacing from the beginning?</source>
-        <translation type="unfinished"/>
+        <translation>Doni të vazhdohen zëvendësimet që nga fillimi?</translation>
     </message>
 </context>
 <context>
@@ -8062,7 +8062,7 @@ Error: </source>
     <message>
         <location filename="../src/latexrepository.h" line="103"/>
         <source> (Not free)</source>
-        <translation type="unfinished"/>
+        <translation>(Jo falas)</translation>
     </message>
 </context>
 <context>
@@ -8854,12 +8854,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/spellerutility.cpp" line="255"/>
         <source>The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?</source>
-        <translation type="unfinished"/>
+        <translation>Kartela e përzgjedhur s’duket se përmban fjalor Hunspell. Doni të importohet, sido qoftë?</translation>
     </message>
     <message>
         <location filename="../src/spellerutility.cpp" line="263"/>
         <source>Dictionary import failed: No files could be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>Dështoi importim fjalori: S’u përftuan dot kartela.</translation>
     </message>
 </context>
 <context>
@@ -8915,7 +8915,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="49"/>
         <source>Insert command</source>
-        <translation type="unfinished"/>
+        <translation>Futni urdhër</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="54"/>
@@ -8929,49 +8929,49 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="51"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Operatorë</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="52"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Marrëdhënie</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="53"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Shigjeta</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="54"/>
         <source>Delimiters</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Kufizues</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="55"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Greqishte</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="56"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Cirilike</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="57"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Matematikore të Ndryshme</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="58"/>
         <source>Misc. Text</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Teksti të Ndryshme</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="59"/>
@@ -8989,7 +8989,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="61"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Speciale</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="97"/>
@@ -9695,13 +9695,13 @@ template to edit individual files.</source>
         <location filename="../src/additionaltranslations.cpp" line="357"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>(La)TeX</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="358"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>Makro (La)TeX</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="359"/>
@@ -9713,13 +9713,13 @@ template to edit individual files.</source>
         <location filename="../src/additionaltranslations.cpp" line="360"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>Tekst i thjeshtë</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="361"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>XML</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="2172"/>
@@ -9937,7 +9937,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="919"/>
         <source>Copy filename to &amp;clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Kopjoje emrin e kartelës në të &amp;papastër</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="922"/>
@@ -10520,7 +10520,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1150"/>
         <source>Parenthesis</source>
-        <translation type="unfinished"/>
+        <translation>Parantezë</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1152"/>
@@ -10762,7 +10762,7 @@ template to edit individual files.</source>
         <location filename="../src/texstudio.cpp" line="1232"/>
         <source>&amp;User</source>
         <comment>menu</comment>
-        <translation type="unfinished"/>
+        <translation>&amp;Përdorues</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1235"/>
@@ -11148,12 +11148,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1428"/>
         <source>Zoom In</source>
-        <translation type="unfinished"/>
+        <translation>Zmadhoje</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1429"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"/>
+        <translation>Zvogëloje</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1430"/>
@@ -11696,7 +11696,7 @@ You have to save a document before you can compile it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="5991"/>
         <source>  Running this command: </source>
-        <translation type="unfinished"/>
+        <translation>  Duke xhiruar këtë urdhër: </translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5997"/>
@@ -12392,7 +12392,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="172"/>
         <source>If this is enabled, words/phrases in the normal text (which aren&apos;t in comments) are counted</source>
-        <translation type="unfinished"/>
+        <translation>Nëse aktivizohet kjo, fjalët/togfjalëshat te teksti normal (që s’gjenden te komentet) numërohen</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="175"/>
@@ -12402,7 +12402,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="185"/>
         <source>If this is enabled, words/phrases in the comments are counted.</source>
-        <translation type="unfinished"/>
+        <translation>Nëse aktivizohet kjo, fjalët/togfjalëshat te komentet numërohen.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="188"/>
@@ -12644,7 +12644,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="387"/>
         <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Doni të shtohet “%1” si sinonim për “%2”, apo për “%3”?</translation>
     </message>
 </context>
 <context>
@@ -12683,12 +12683,12 @@ përfshirë në dokument te %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="159"/>
         <source>Update check failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Kontrolli për përditësim dështoi (format i pavlefshëm kartele përditësimi).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="165"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Kontrolli për përditësim për kandidat hedhjeje në qarkullim dështoi (format i pavlefshëm kartele përditësimi).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="168"/>
@@ -12719,12 +12719,12 @@ përfshirë në dokument te %1</translation>
         <location filename="../src/updatechecker.cpp" line="190"/>
         <location filename="../src/updatechecker.cpp" line="207"/>
         <source>You can download it from the %1 TeXstudio website</source>
-        <translation type="unfinished"/>
+        <translation>Mund ta shkarkoni nga sajti %1 TeXstudio</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="201"/>
         <source>Update check for stable version failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Kontrolli për përditësim për version të qëndrueshëm dështoi (format i pavlefshëm kartele përditësimi).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="214"/>
@@ -12734,7 +12734,7 @@ përfshirë në dokument te %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="183"/>
         <source>Update check for development version failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Kontrolli për përditësim për version zhvillim dështoi (format i pavlefshëm kartele përditësimi).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="186"/>
@@ -12754,7 +12754,7 @@ përfshirë në dokument te %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="219"/>
         <source>Failure to find current TeXstudio versions.</source>
-        <translation type="unfinished"/>
+        <translation>Dështim në gjetje versionesh të tanishëm TeXstudio-je.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="231"/>
@@ -13092,7 +13092,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="158"/>
         <source>Set the value of the LaTeX tocdepth counter</source>
-        <translation type="unfinished"/>
+        <translation>Caktoni vlerën e numëratorit LaTeX tocdepth</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="174"/>
@@ -13142,7 +13142,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="273"/>
         <source>Text displayed at the bottom of each html files </source>
-        <translation type="unfinished"/>
+        <translation>Tekst i shfaqur në fund të çdo kartele html </translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="280"/>
@@ -13157,7 +13157,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="316"/>
         <source>Browser command. Let&apos;s empty to not run the browser at the end of the conversion</source>
-        <translation type="unfinished"/>
+        <translation>Urdhër shfletuesi. Lëreni të zbrazët, për të mos xhiruar shfletuesin në fund të shndërrimit</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="336"/>
@@ -13233,7 +13233,8 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <location filename="../src/webpublishdialog.cpp" line="129"/>
         <source>Conversion done.
 The html files are located in the %1 directory.</source>
-        <translation type="unfinished"/>
+        <translation>Shndërrimi u bë.
+Kartelat html gjenden te drejtoria %1.</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="134"/>
@@ -13261,7 +13262,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="165"/>
         <source>  Running this command: </source>
-        <translation type="unfinished"/>
+        <translation>  Duke xhiruar këtë urdhër: </translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="187"/>
@@ -13306,7 +13307,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="681"/>
         <source>of</source>
-        <translation type="unfinished"/>
+        <translation>nga</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="754"/>
@@ -13354,23 +13355,26 @@ The html files are located in the %1 directory.</source>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"/>
+        <translation>Programthi i tanishëm ka kërkuar të kalojë nën mënyrën e privilegjuar për shkrim dhe të aktivizojë funksionin vijues:
+%1
+
+A i besoni këtij programthi?</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="716"/>
         <source>Yes, allow this call</source>
-        <translation>Po, lejoje këtë thirrje</translation>
+        <translation>Po, lejoje këtë aktivizim</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="717"/>
         <source>Yes, allow all calls it will ever make</source>
-        <translation type="unfinished"/>
+        <translation>Po, lejo krejt aktivizimet që do të bëjë</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="718"/>
         <location filename="../src/scriptengine.cpp" line="740"/>
         <source>No, abort the call</source>
-        <translation>Jo, ndërprite thirrjen</translation>
+        <translation>Jo, ndërprite aktivizimin</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="737"/>
@@ -13378,7 +13382,10 @@ Do you trust this script?</source>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"/>
+        <translation>Programthi i tanishëm ka kërkuar të kalojë nën mënyrën i privilegjuar dhe të lexojë vlerën vijuese:
+%1
+
+A i besoni këtij programthi?</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="738"/>
