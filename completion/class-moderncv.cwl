@@ -1,5 +1,5 @@
 # denisbitouze, 02.03.2013
-# Matthew Bertucci updated 2/23/2022 for v2.3.1
+# Matthew Bertucci updated 2024/07/10 for v2.4.0
 
 #include:etoolbox
 #include:ifthen
@@ -45,6 +45,7 @@ final
 \born{date}
 \email{address%URL}#U
 \homepage{URL}#U
+\homepage[protocol]{URL}#U
 \phone{number}
 \phone[type%keyvals]{number}
 #keyvals:\phone
@@ -76,6 +77,17 @@ matrix
 googlescholar
 codeberg
 discord
+twitch
+youtube
+tiktok
+instagram
+soundcloud
+steam
+xbox
+playstation
+battlenet
+arxiv
+inspire
 #endkeyvals
 \extrainfo{extra info%text}
 \listitemsymbol#*
@@ -105,6 +117,18 @@ discord
 \signalsocialsymbol#*
 \codebergsocialsymbol#*
 \discordsocialsymbol#*
+\twitchsocialsymbol#*
+\youtubesocialsymbol#*
+\tiktoksocialsymbol#*
+\instagramsocialsymbol#*
+\soundcloudsocialsymbol#*
+\steamsocialsymbol#*
+\xboxsocialsymbol#*
+\playstationsocialsymbol#*
+\battlenetsocialsymbol#*
+\arxivsocialsymbol#*
+\inspiresocialsymbol#*
+
 \enclname#*
 \makefooter
 \moderncvstyle{style%keyvals}#n
@@ -160,6 +184,8 @@ tikz
 \hintfont#*
 \pagenumberfont#*
 \namestyle{text}#*
+\firstnamestyle{text}#*
+\lastnamestyle{text}#*
 \titlestyle{text}#*
 \addressstyle{text}#*
 \quotestyle{text}#*
@@ -179,6 +205,8 @@ tikz
 \cvitem[spacing%l]{heading%text}{text}
 \cvdoubleitem{heading1%text}{text1%text}{heading2%text}{text2%text}#n
 \cvdoubleitem[spacing%l]{heading1%text}{text1%text}{heading2%text}{text2%text}#n
+\cvtripleitem{heading1%text}{text1%text}{heading2%text}{text2%text}{heading3%text}{text3%text}#n
+\cvtripleitem[spacing%l]{heading1%text}{text1%text}{heading2%text}{text2%text}{heading3%text}{text3%text}#n
 \cvlistitem{item%text}#n
 \cvlistitem[spacing%l]{item%text}#n
 \cvlistdoubleitem{item1%text}{item2%text}#n
@@ -212,8 +240,10 @@ tikz
 \bibindent#*
 \bibliographyhead{title}#L2
 \recipient{recipient}{recipient address}#n
+\subject{subject%text}#n
 \opening{opening%text}#n
 \closing{closing%text}#n
+\signature{scale}{imagefile}#g
 \enclosure{enclosure%text}#n
 \enclosure[alternative name%text]{enclosure%text}#n
 \recomputeletterheadlengths#*
@@ -224,13 +254,16 @@ tikz
 \makeletterhead#*
 \makeletterfoot#*
 \makeletterclosing#n
+\hintscolumnwidth#*
 \separatorcolumnwidth#*
 \maincolumnwidth#*
 \doubleitemcolumnwidth#*
+\tripleitemcolumnwidth#*
 \separatorrulewidth#*
 \listitemsymbolwidth#*
 \listitemcolumnwidth#*
 \listdoubleitemcolumnwidth#*
+\listitemsymbolspace#*
 \cventryyearbox#*
 \cventrytitleboxwidth#*
 

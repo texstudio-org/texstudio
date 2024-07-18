@@ -8106,7 +8106,7 @@ biblabel=#superscript,brackets
 \mkibid{arg}#*
 #endif
 
-### biblatex-publist v2.11 ###
+### biblatex-publist v2.12 ###
 #ifOption:style=publist
 # from publist.bbx
 \ExecutePublistOptions{options%keyvals}
@@ -8177,6 +8177,10 @@ plnumbering=#global,local,global-descending,local-descending,none
 \citesecitem[postnote]{bibid}#*C
 \citesecitem{bibid}#C
 \citesecitem*{bibid}#C
+\citeitemrange{bibid}{bibid}#C
+\citesecitemrange{bibid}{bibid}#C
+\citesecitemrange*{bibid}{bibid}#C
+\itemrangesep#*
 \shiftciteitem{integer}
 \mkrefdesc{number}#*
 \secitemsecref#*

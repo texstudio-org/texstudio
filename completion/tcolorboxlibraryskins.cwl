@@ -1,7 +1,6 @@
 # skins tcolorboxlibrary
-# 2023/02/10 for v6.0.0
+# 2024/07/10 for v6.3.0
 
-#include:tikz
 #include:tikzfill.image
 
 #keyvals:\path#c,\draw#c
