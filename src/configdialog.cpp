@@ -701,9 +701,10 @@ void ConfigDialog::aiProviderChanged(int provider)
         break;
     case 1:
         ui.cbAIPreferredModel->clear();
+        ui.cbAIPreferredModel->addItem("gpt-4o-mini");
         ui.cbAIPreferredModel->addItem("gpt-3.5-turbo");
         ui.cbAIPreferredModel->addItem("gpt-4");
-        ui.cbAIPreferredModel->addItem("gpt-4-turbo-preview");
+        ui.cbAIPreferredModel->addItem("gpt-4o");
         break;
     default:
         ui.cbAIPreferredModel->clear();
