@@ -2529,7 +2529,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3687"/>
         <source>API URL:</source>
-        <translation type="unfinished"/>
+        <translation>Διεύθυνση URL API:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3694"/>
@@ -7284,12 +7284,12 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
         <source>Move cursor to next block</source>
-        <translation type="unfinished"/>
+        <translation>Μετακίνηση κέρσορα στο επόμενο μπλοκ</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
         <source>Move cursor to previous block</source>
-        <translation type="unfinished"/>
+        <translation>Μετακίνηση κέρσορα στο προηγούμενο μπλοκ</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
@@ -7359,12 +7359,12 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4799"/>
         <source>Select to next block</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή μέχρι το επόμενο μπλοκ</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
         <source>Select to previous block</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή μέχρι το προηγούμενο μπλοκ</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4804"/>

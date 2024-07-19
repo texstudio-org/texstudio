@@ -2524,7 +2524,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="../src/configdialog.ui" line="3687"/>
         <source>API URL:</source>
-        <translation type="unfinished"/>
+        <translation>API URL:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3694"/>
@@ -7263,12 +7263,12 @@ Megjegyzések:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
         <source>Move cursor to next block</source>
-        <translation type="unfinished"/>
+        <translation>Mozgassa a kurzort a következő blokkra</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
         <source>Move cursor to previous block</source>
-        <translation type="unfinished"/>
+        <translation>Mozgassa a kurzort az előző blokkra</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
@@ -7338,12 +7338,12 @@ Megjegyzések:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4799"/>
         <source>Select to next block</source>
-        <translation type="unfinished"/>
+        <translation>Válassza ki a következő blokkhoz</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
         <source>Select to previous block</source>
-        <translation type="unfinished"/>
+        <translation>Válassza ki az előző blokkhoz</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4804"/>
