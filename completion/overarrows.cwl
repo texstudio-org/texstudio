@@ -1,5 +1,5 @@
 # overarrows package
-# Matthew Bertucci 2023/02/16 for v1.1
+# Matthew Bertucci 2024/07/11 for v1.2
 
 #include:amsmath
 #include:etoolbox
@@ -19,6 +19,7 @@ esvectg
 esvecth
 old-arrows
 tikz
+pstricks
 pstarrows
 subscripts
 subother
@@ -93,6 +94,10 @@ allcommands
 
 #ifOption:tikz
 #include:tikz
+#endif
+
+#ifOption:pstricks
+#include:pstricks-add
 #endif
 
 #ifOption:pstarrows
@@ -234,14 +239,14 @@ allcommands
 \underbar*{arg}_{sub}#m
 #endif
 
-\NewOverArrowCommand{name}{keyvals}
-\NewOverArrowCommand[method]{name}{keyvals}
-\RenewOverArrowCommand{name}{keyvals}
-\RenewOverArrowCommand[method]{name}{keyvals}
-\ProvideOverArrowCommand{name}{keyvals}
-\ProvideOverArrowCommand[method]{name}{keyvals}
-\DeclareOverArrowCommand{name}{keyvals}
-\DeclareOverArrowCommand[method]{name}{keyvals}
+\NewOverArrowCommand{command}{keyvals}#d
+\NewOverArrowCommand[method]{command}{keyvals}#d
+\RenewOverArrowCommand{command}{keyvals}
+\RenewOverArrowCommand[method]{command}{keyvals}
+\ProvideOverArrowCommand{command}{keyvals}#d
+\ProvideOverArrowCommand[method]{command}{keyvals}#d
+\DeclareOverArrowCommand{command}{keyvals}#d
+\DeclareOverArrowCommand[method]{command}{keyvals}#d
 
 #keyvals:\NewOverArrowCommand,\RenewOverArrowCommand,\ProvideOverArrowCommand,\DeclareOverArrowCommand
 min length=%<number%>
@@ -266,7 +271,7 @@ trim middle=%<number%>
 trim end=%<number%>
 trim=%<number%>
 no trimming
-middle config=#auto,relbar,relbareda
+middle config=#auto,relbar,relbareda,harrowextender
 amsmath
 amsmath=#mimic,strict
 esvect
@@ -280,6 +285,9 @@ arrows={%<arrow spec%>}
 line thickness=##L
 thinner
 tikz command={%<TikZ command%>}
+pstricks command={%<pstricks command%>}
+arrow={%<arrow%>}
+psset={%<pstricks options%>}
 picture command={%<picture command%>}
 geometry={%<picture geometry spec%>}
 stack macro={%<stack definition%>}
@@ -289,10 +297,10 @@ no arrow macro hook={%<code%>}
 fill macro={%<definition%>}
 #endkeyvals
 
-\TestOverArrow{name}
-\TestOverArrow[pattern]{name}
-\TestOverArrow*{name}
-\TestOverArrow*[pattern]{name}
+\TestOverArrow{arrow command%cmd}
+\TestOverArrow[pattern]{arrow command%cmd}
+\TestOverArrow*{arrow command%cmd}
+\TestOverArrow*[pattern]{arrow command%cmd}
 \xjoinrel
 \xjoinrel[number]
 \smallermathstyle

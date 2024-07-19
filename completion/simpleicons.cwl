@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/07/05 for v13.0.0
+# Matthew Bertucci 2024/07/12 for v13.1.0
 
 #include:iftex
 
@@ -2092,6 +2092,7 @@ playstation2
 playstation3
 playstation4
 playstation5
+playstationportable
 playstationvita
 pleroma
 plesk
@@ -2894,6 +2895,7 @@ uniqloja
 unitedairlines
 unitednations
 unity
+unjs
 unlicense
 unocss
 unpkg
@@ -3019,6 +3021,7 @@ webdriverio
 webex
 webflow
 webgl
+webgpu
 weblate
 webmin
 webmoney

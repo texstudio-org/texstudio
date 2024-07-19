@@ -2259,6 +2259,7 @@
 <file>completion/lucmtime.cwl</file>
 <file>completion/luctime.cwl</file>
 <file>completion/lutabulartools.cwl</file>
+<file>completion/luwiantype.cwl</file>
 <file>completion/luximono.cwl</file>
 <file>completion/lwarp.cwl</file>
 <file>completion/lyluatex.cwl</file>
@@ -2686,6 +2687,7 @@
 <file>completion/parselines.cwl</file>
 <file>completion/parskip.cwl</file>
 <file>completion/pascaltriangle.cwl</file>
+<file>completion/passopt.cwl</file>
 <file>completion/pas-cours.cwl</file>
 <file>completion/pas-crosswords.cwl</file>
 <file>completion/pas-cv.cwl</file>
@@ -3095,6 +3097,7 @@
 <file>completion/quran-ur.cwl</file>
 <file>completion/ragged2e.cwl</file>
 <file>completion/raleway.cwl</file>
+<file>completion/randbild.cwl</file>
 <file>completion/randomlist.cwl</file>
 <file>completion/randomwalk.cwl</file>
 <file>completion/randtext.cwl</file>
