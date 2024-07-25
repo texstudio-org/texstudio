@@ -1,5 +1,5 @@
 # luamplib package
-# Matthew Bertucci 2024/06/11 for v2.32.0
+# Matthew Bertucci 2024/07/25 for v2.34.2
 
 #include:luatex
 
@@ -45,6 +45,13 @@
 \mppattern{name}[options]#S
 \endmppattern#S
 \mplibsetformat{format name%keyvals}
+\usemplibgroup{name}
+\begin{mplibgroup}{name}
+\begin{mplibgroup}{name}[options%keyvals]
+\end{mplibgroup}
+\mplibgroup{name}#S
+\mplibgroup{name}[options]#S
+\endmplibgroup#S
 
 #keyvals:\mpliblegacybehavior#c,\mplibtextextlabel#c,\mplibcodeinherit#c,\mplibglobaltextext#c,\mplibverbatim#c,\mplibshowlog#c
 enable
@@ -73,6 +80,13 @@ plain
 metafun
 #endkeyvals
 
+#keyvals:\begin{mplibgroup}
+asgroup=%<string%>
+bbox="%<llx lly urx ury%>"
+matrix="%<xx xy yx yy%>"
+resources=%<PDF resources%>
+#endkeyvals
+
 # not documented
 \domplibcolor{color}{arg}#S
 \ltxdomplibcode{arg}#S
@@ -85,6 +99,11 @@ metafun
 \mplibdomainmpfig#S
 \mplibdomakenocache{arg}#S
 \mplibdoprempfig#S
+\mplibgroupbranch#S
+\mplibgroupgetnexttok#S
+\mplibgroupmain#S
+\mplibgroupopts#S
+\mplibgroupskipspace#S
 \mplibmainmpfig#S
 \mplibmpfigbranch#S
 \mplibpatternbranch#S
