@@ -1933,6 +1933,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		guiSecondaryToolbarIconSize = confDlg->ui.horizontalSliderCentraIcon->value();
 		guiSymbolGridIconSize = confDlg->ui.horizontalSliderSymbol->value();
         guiPDFToolbarIconSize = confDlg->ui.horizontalSliderPDF->value();
+
+        // save new settings directly to disk as users tend to close txs rarely (#3740)
+        saveSettings();
 	} else {
 		// GUI scaling
 		confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
