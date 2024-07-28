@@ -140,7 +140,7 @@ jobs:
       - name: copy signed installer
         id: copy_signed_binary
         run: |
-          cp signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe texstudio-win-qt6-signed-${{ steps.package.outputs.VERSION_NAME }}.exe
+          cp signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6-signed.exe
     
 
       - name: Upload signed installer to GitHub Artifacts
@@ -157,7 +157,7 @@ jobs:
         with:
           name: release-win
           path: |
-            texstudio-win-qt6-signed-${{ steps.package.outputs.VERSION_NAME }}.exe
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6-signed.exe
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
 
 ###################################
