@@ -1,5 +1,5 @@
 # asmejour class
-# Matthew Bertucci 2024/02/06 for v1.22
+# Matthew Bertucci 2024/07/29 for v1.23
 
 #include:class-extarticle
 #include:etoolbox
@@ -30,6 +30,7 @@
 #include:hologo
 #include:fancyhdr
 #include:fnpos
+#include:footmisc
 #include:titlesec
 #include:enumitem
 #include:hyperxmp
@@ -48,6 +49,7 @@ govtsome
 hyphenate
 largesc
 lineno
+main=%<language%>
 mono
 nocopyright
 nofoot
@@ -55,6 +57,7 @@ nolists
 pdf-a
 pdfaconformance=#b,u
 pdfapart=#1,2,3
+singlecolumn
 var0
 # options passed to babel (a few language options explicitly listed)
 activeacute
