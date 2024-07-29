@@ -1,5 +1,5 @@
 # wheelchart package
-# Matthew Bertucci 2024/03/09 for v3.0
+# Matthew Bertucci 2024/07/29 for v4.0
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -21,6 +21,8 @@ arc data angle shift=%<degrees%>
 arc data dir=%<value%>
 arc data expand=%<type%>
 arc data line sep factor=%<factor%>
+arc data lines pos=%<factor%>
+arc data lines shift=%<value%>
 arc data pos=%<value%>
 arc data sep=%<value%>
 arc data style={%<TikZ keys%>}
