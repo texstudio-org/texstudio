@@ -731,7 +731,7 @@ void Texstudio::setupDockWidgets()
     if(!dock){
         fileView=new QTreeView();
         fileExplorerModel = new QFileSystemModel(this);
-        fileExplorerModel->setRootPath(QDir::currentPath());
+        //fileExplorerModel->setRootPath(QDir::currentPath());
         fileView->setModel(fileExplorerModel);
         fileView->setColumnHidden(1,true);
         fileView->setColumnHidden(2,true);
@@ -1911,7 +1911,7 @@ void Texstudio::currentEditorChanged()
     LatexDocument *doc=edView->getDocument();
     QFileInfo fi=doc->getFileInfo();
     const QString rootDir=fi.absoluteDir().path();
-    fileExplorerModel->setRootPath(rootDir);
+    //fileExplorerModel->setRootPath(rootDir);
     fileView->setRootIndex(fileExplorerModel->index(rootDir));
 }
 
