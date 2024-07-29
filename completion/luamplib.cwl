@@ -1,5 +1,5 @@
 # luamplib package
-# Matthew Bertucci 2024/07/25 for v2.34.2
+# Matthew Bertucci 2024/07/29 for v2.34.3
 
 #include:luatex
 
@@ -91,6 +91,9 @@ resources=%<PDF resources%>
 \domplibcolor{color}{arg}#S
 \ltxdomplibcode{arg}#S
 \ltxdomplibcodeindeed{arg}#S
+\luamplibateveryshipout{arg}#S
+\luamplibatfirstshipout{arg}#S
+\luamplibatnextshipout{arg}#S
 \mplibdocancelnocache{arg}#S
 \mplibdocode{arg}#S
 \mplibdoeveryendmplib[instance name]{MetaPost code}#S
