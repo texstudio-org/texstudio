@@ -24,7 +24,7 @@ nocfg
 \end{enumerate}
 \begin{asparaenum}
 \begin{asparaenum}[label]
-\end{asparenum}
+\end{asparaenum}
 \begin{inparaenum}
 \begin{inparaenum}[label]
 \end{inparaenum}
@@ -33,7 +33,7 @@ nocfg
 \end{compactenum}
 \begin{asparaitem}
 \begin{asparaitem}[label]
-\end{asparitem}
+\end{asparaitem}
 \begin{inparaitem}
 \begin{inparaitem}[label]
 \end{inparaitem}
@@ -41,7 +41,7 @@ nocfg
 \begin{compactitem}[label]
 \end{compactitem}
 \begin{asparadesc}
-\end{aspardesc}
+\end{asparadesc}
 \begin{inparadesc}
 \end{inparadesc}
 \begin{compactdesc}
