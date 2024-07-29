@@ -731,12 +731,15 @@ void Texstudio::setupDockWidgets()
     if(!dock){
         fileView=new QTreeView();
         fileExplorerModel = new QFileSystemModel(this);
-        //fileExplorerModel->setRootPath(QDir::currentPath());
+		QString rootDir = QDir::currentPath();
+		if (rootDir == "/tmp")
+			rootDir = "/";
+        fileExplorerModel->setRootPath(rootDir);
         fileView->setModel(fileExplorerModel);
         fileView->setColumnHidden(1,true);
         fileView->setColumnHidden(2,true);
         fileView->setColumnHidden(3,true);
-        fileView->setRootIndex(fileExplorerModel->index(QDir::currentPath()));
+        fileView->setRootIndex(fileExplorerModel->index(rootDir));
         QAction *act=new QAction();
         act->setText(tr("Insert filename"));
         connect(act,&QAction::triggered,this,&Texstudio::insertFromExplorer);
@@ -1910,8 +1913,10 @@ void Texstudio::currentEditorChanged()
     // set dock file explorer to current file, root to root document folder
     LatexDocument *doc=edView->getDocument();
     QFileInfo fi=doc->getFileInfo();
-    const QString rootDir=fi.absoluteDir().path();
-    //fileExplorerModel->setRootPath(rootDir);
+    QString rootDir=fi.absoluteDir().path();
+	if (rootDir == "/tmp")
+		rootDir = "/";
+    fileExplorerModel->setRootPath(rootDir);
     fileView->setRootIndex(fileExplorerModel->index(rootDir));
 }
 
