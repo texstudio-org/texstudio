@@ -1,8 +1,7 @@
 # mercatormap package
-# Matthew Bertucci 2/2/2022 for v1.02
+# Matthew Bertucci 2024/08/01 for v1.1.0
 
 #include:graphicx
-#include:pdftexcmds
 #include:siunitx
 #include:tikz
 #include:tikzlibraryshadings
@@ -121,7 +120,7 @@ flex area fit
 flex area fit=##L
 pixel=%<pixel size%>
 dpi=%<dpi value%>
-source=#dummy,opentopomap,stamen terrain,stamen terrain-background,stamen terrain-labels,stamen terrain-lines,stamen toner,stamen toner-lite,stamen toner-hybrid,stamen toner-background,stamen toner-labels,stamen toner-lines,stamen watercolor,thunderforest opencyclemap,thunderforest transport,thunderforest landscape,thunderforest outdoors,thunderforest transport-dark,thunderforest spinal-map,thunderforest pioneer,thunderforest mobile-atlas,thunderforest neighbourhood,topplusopen web,topplusopen web grau,topplusopen p5,topplusopen p5 grau,topplusopen p10,topplusopen p10 grau,topplusopen p17.5,topplusopen p17.5 grau,topplusopen p25,topplusopen p25 grau,topplusopen p50,topplusopen p50 grau,topplusopen p100,topplusopen p100 grau,topplusopen p250,topplusopen p250 grau
+source=#dummy,opentopomap,thunderforest opencyclemap,thunderforest transport,thunderforest landscape,thunderforest outdoors,thunderforest atlas,thunderforest transport-dark,thunderforest spinal-map,thunderforest pioneer,thunderforest mobile-atlas,thunderforest neighbourhood,topplusopen web,topplusopen web grau,topplusopen web light,topplusopen web light grau,topplusopen p5,topplusopen p5 grau,topplusopen p10,topplusopen p10 grau,topplusopen p17.5,topplusopen p17.5 grau,topplusopen p25,topplusopen p25 grau,topplusopen p50,topplusopen p50 grau,topplusopen p100,topplusopen p100 grau,topplusopen p250,topplusopen p250 grau
 #endkeyvals
 
 \mrcsetapikey{name}{value}
@@ -304,12 +303,55 @@ node style={%<TikZ options%>}
 \mrcNPdraworthodrome{name1}{name2}
 \mrcNPdraworthodrome[TikZ options]{name1}{name2}
 
+\mrcNPfromOrthoFraction{name}{lat1}{lon1}{lat2}{lon2}{fraction}
+\mrcNPfromOrthoFractionNamed{name}{name1}{name2}{fraction}
+\mrcNPfromOrthoDistance{name}{lat1}{lon1}{lat2}{lon2}{distance}
+\mrcNPfromOrthoDistanceNamed{name}{name1}{name2}{distance}
+
 \mrcprettyorthodistance{lat1}{lon1}{lat2}{lon2}
 \mrcNPprettyorthodistance{name1}{name2}
 \mrcstoreorthodistance{macro%cmd}{lat1}{lon1}{lat2}{lon2}#d
 \mrcprettyloxodistance{lat1}{lon1}{lat2}{lon2}
 \mrcNPprettyloxodistance{name1}{name2}
 \mrcstoreloxodistance{macro%cmd}{lat1}{lon1}{lat2}{lon2}#d
+
+### 10 Animations ###
+\begin{mrcAnimation}{options%keyvals}
+\end{mrcAnimation}
+
+#keyvals:\begin{mrcAnimation}#c
+start-position=%<latitude%>/%<longitude%>
+named-start-position=%<name%>
+final-position=%<latitude%>/%<longitude%>
+named-final-position=%<name%>
+position=%<latitude%>/%<longitude%>
+named-position=%<name%>
+frames=%<integer%>
+drop-first-frame#true,false
+drop-last-frame#true,false
+drop-no-frame
+scale-denominators=%<time and scale sequence%>
+common-scale-denominator=%<scale denominator%>
+timewarp=%<macro%>
+timewarp-identity
+timewarp-slow-start
+timewarp-slow-start=%<exponent%>
+timewarp-slow-final
+timewarp-slow-final=%<exponent%>
+timewarp-slow-start-final
+timewarp-slow-start-final=%<exponent%>
+#endkeyvals
+
+\mrcTimewarpIdentity#*
+\mrcTimewarpSlowStart#*
+\mrcTimewarpSlowFinal#*
+\mrcTimewarpSlowStartFinal#*
+
+\mrcAnimFrame
+\mrcAnimTime
+\mrcAnimScaleDenom
+\mrcAnimLatitude
+\mrcAnimLongitude
 
 # not documented
 \mermaplastfivesum{arg}#*
