@@ -430,6 +430,7 @@
 <file>completion/bondcolor.cwl</file>
 <file>completion/bondgraph.cwl</file>
 <file>completion/bondgraphs.cwl</file>
+<file>completion/bonum-otf.cwl</file>
 <file>completion/booklet.cwl</file>
 <file>completion/bookmark.cwl</file>
 <file>completion/book-of-common-prayer.cwl</file>
@@ -1267,6 +1268,7 @@
 <file>completion/doctools.cwl</file>
 <file>completion/dogma.cwl</file>
 <file>completion/doi.cwl</file>
+<file>completion/doibanner.cwl</file>
 <file>completion/doipubmed.cwl</file>
 <file>completion/domitian.cwl</file>
 <file>completion/domore.cwl</file>
@@ -2185,6 +2187,7 @@
 <file>completion/lstlinebgrd.cwl</file>
 <file>completion/lt3luabridge.cwl</file>
 <file>completion/ltablex.cwl</file>
+<file>completion/ltcaption.cwl</file>
 <file>completion/ltj-base.cwl</file>
 <file>completion/ltj-latex.cwl</file>
 <file>completion/ltugcomn.cwl</file>
@@ -2773,6 +2776,7 @@
 <file>completion/pgfplotslibraryternary.cwl</file>
 <file>completion/pgfplotslibraryunits.cwl</file>
 <file>completion/pgfplotstable.cwl</file>
+<file>completion/pgfplotsthemebeamer.cwl</file>
 <file>completion/pgfrcs.cwl</file>
 <file>completion/pgf-soroban.cwl</file>
 <file>completion/pgf-spectra.cwl</file>
@@ -3463,6 +3467,7 @@
 <file>completion/SympyCalc.cwl</file>
 <file>completion/sympytex.cwl</file>
 <file>completion/synproof.cwl</file>
+<file>completion/syntax.cwl</file>
 <file>completion/syntaxdi.cwl</file>
 <file>completion/synthslant.cwl</file>
 <file>completion/syntonly.cwl</file>

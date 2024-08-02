@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/07/12 for v13.1.0
+# Matthew Bertucci 2024/07/26 for v13.2.0
 
 #include:iftex
 
@@ -1083,6 +1083,7 @@ glide
 glitch
 globus
 glovo
+gltf
 gmail
 gnome
 gnometerminal
@@ -1590,12 +1591,14 @@ liquibase
 listmonk
 lit
 litecoin
+literal
 litiengine
 livechat
 livejournal
 livewire
 llvm
 lmms
+lobsters
 local
 lodash
 logitech
@@ -1975,6 +1978,7 @@ oshkosh
 osmc
 osu
 otto
+outline
 overcast
 overleaf
 ovh

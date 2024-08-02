@@ -151,10 +151,6 @@ config=%<file name%>
 \subcaptionsetup*[float type]{options%keyvals}#*
 \subcaptionsetup*{options%keyvals}#*
 
-# only available if longtable package loaded
-\begin{longtable*}#S
-\end{longtable*}#S
-
 # deprecated
 \continuedfloat#S
 \thecontinuedfloat#S
