@@ -1,5 +1,5 @@
 # doc package
-# Matthew Bertucci 2022/05/18 for v3.0h
+# Matthew Bertucci 2024/06/02 for v3.0p
 
 #include:l3keys2e
 #include:multicol
@@ -59,8 +59,10 @@ noprint
 \NewDocElement[options%keyvals]{element}{envname}#N
 \RenewDocElement{element}{envname}
 \RenewDocElement[options%keyvals]{element}{envname}
+\ProvideDocElement{element}{envname}
+\ProvideDocElement[options%keyvals]{element}{envname}
 
-#keyvals:\NewDocElement#c,\RenewDocElement#c
+#keyvals:\NewDocElement#c,\RenewDocElement#c,\ProvideDocElement#c
 macrolike#true,false
 envlike#true,false
 toplevel#true,false
@@ -156,7 +158,7 @@ noprint#true,false
 \fileinfo#*
 \filename#*
 \fileversion#*
-\GetFileInfo{file}
+\GetFileInfo{file}#*
 \LeftBraceIndex#*
 \MakePercentComment#*
 \MakePercentIgnore#*

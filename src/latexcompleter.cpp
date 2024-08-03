@@ -451,7 +451,7 @@ public:
 				} else if (getCurWord() == "") {
 					maxWritten = curStart + 1;
 				} else {
-					if (LatexCompleter::config && LatexCompleter::config->eowCompletes) {
+                    if (LatexCompleter::config && LatexCompleter::config->eowCompletes && !completer->isCurrentWordUserConstruct()) {
 						insertCompletedWord();
 					}
 					QDocumentCursor edc = editor->cursor();
@@ -1968,6 +1968,17 @@ void LatexCompleter::setTab(int index)
 		tbBelow->setCurrentIndex(index);
 	if (tbAbove->isVisible())
 		tbAbove->setCurrentIndex(index);
+}
+
+bool LatexCompleter::isCurrentWordUserConstruct()
+{
+    if (list->isVisible() && list->currentIndex().isValid()){
+        QVariant v = list->model()->data(list->currentIndex(), Qt::DisplayRole);
+        if (!v.isValid() || !v.canConvert<CompletionWord>()) return false;
+        CompletionWord cw = v.value<CompletionWord>();
+        return cw.type == CompletionWord::userConstruct;
+    }
+    return false;
 }
 
 void LatexCompleter::filterList(QString word, int showMostUsed)

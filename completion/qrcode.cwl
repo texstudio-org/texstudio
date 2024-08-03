@@ -1,7 +1,14 @@
 # qrcode package
-# Matthew Bertucci 9/27/2021 for v1.51
+# Matthew Bertucci 2024/05/26 for v1.51
 
 #include:xcolor
+
+#keyvals:\usepackage/qrcode#c
+nolinks
+draft
+final
+forget
+#endkeyvals
 
 \qrcode{URL}#U
 \qrcode[options%keyvals]{URL}#U

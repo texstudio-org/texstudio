@@ -355,6 +355,17 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     if(Version::compareStringVersion(txsVersionConfigWritten,"4.8.0")==Version::Lower){
         resetDocks();
     }
+    // check if dock widgets are all spread and force a reset
+    if(checkDockSpread()){
+#ifdef Q_OS_MAC
+        // on OSX only, force style to FUSION if style is MACOS (https://github.com/texstudio-org/texstudio/issues/3637)
+        if(configManager.interfaceStyle == "macOS"){
+            configManager.interfaceStyle = "Fusion";
+            configManager.setInterfaceStyle();
+        }
+#endif
+        resetDocks();
+    }
 
 	createStatusBar();
 	completer = nullptr;
@@ -929,7 +940,7 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "closeall", tr("Clos&e All"), SLOT(fileCloseAll()));
 
 	menu->addSeparator();
-    newManagedEditorAction(menu, "print", tr("Print Source Code..."), "print", Qt::CTRL | Qt::Key_P);
+    newManagedEditorAction(menu, "print", tr("Print Source Code..."), "print");
 
 	menu->addSeparator();
     newManagedAction(menu, "exit", tr("Exit"), SLOT(fileExit()), Qt::CTRL | Qt::Key_Q)->setMenuRole(QAction::QuitRole);
@@ -5456,8 +5467,8 @@ void Texstudio::quickMath()
 
 void Texstudio::aiChat()
 {
-    if(configManager.ai_apikey.isEmpty()){
-        // message box for now
+    if(configManager.ai_apikey.isEmpty() && configManager.ai_provider<2){
+        // message box for now, only for external ai provider
         QMessageBox::warning(this, tr("AI Chat"), tr("Please set the API key in the settings."));
         return;
     }
@@ -11642,6 +11653,20 @@ void Texstudio::updateDockVisibility(bool visible)
     if (dock) {
         dock->setProperty("isVisible",visible);
     }
+}
+/*!
+ * \brief at start with old window set-up, all dock may be involuntarily be spread out (not tabified)
+ * This is checked here.
+ * \return true if no dock is tabified
+ */
+bool Texstudio::checkDockSpread()
+{
+    QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(QString(),Qt::FindDirectChildrenOnly);
+    QList<QDockWidget*>tabifiedWidgets;
+    foreach(QDockWidget* dw,lst){
+        tabifiedWidgets.append(tabifiedDockWidgets(dw));
+    }
+    return tabifiedWidgets.isEmpty();
 }
 /*!
     \brief call updateTOC & updateStructureLocally as only one call works with a signal

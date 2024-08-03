@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2024/05/05 for v3.7.7
+# Matthew Bertucci 2024/06/02 for v3.7.8
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -127,6 +127,7 @@ misc/tabularFontSize=%<其他字号%>
 misc/autoref={%<键值列表%>}
 misc/hideLinks#true,false
 misc/floatSeparation=%<实数%>
+misc/algorithmSeparation=%<实数%>
 misc/tabularRowSeparation=%<实数%>
 const={%<键值列表%>}
 const/autoref={%<键值列表%>}

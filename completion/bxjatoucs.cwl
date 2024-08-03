@@ -1,5 +1,5 @@
 # bxjatoucs package
-# Matthew Bertucci 2022/05/31 for v0.2
+# Matthew Bertucci 2024/07/22 for v0.3a
 
 #include:ltxcmds
 #include:infwarerr
@@ -19,3 +19,8 @@
 
 \bxjaFastCidToUcsHex{cid}
 \bxjaFastJscToUcsHex{jsc}
+
+\bxjaUcsToJis{ucs}
+\bxjaUcsToEuc{ucs}
+\bxjaUcsToSjis{ucs}
+\bxjaFastUcsToJsc{ucs}

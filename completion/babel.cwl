@@ -1249,7 +1249,7 @@ select.encoding=#off
 #repl:"> »
 #endif
 
-### frenchb.ldf v3.5m (and associated acadian.ldf) ###
+### french.ldf v3.6a (and associated acadian.ldf) ###
 #ifOption:french
 \frenchsetup{options%keyvals}
 \frenchbsetup{options%keyvals}#S
@@ -1329,6 +1329,7 @@ SuppressWarning#true,false
 \FBeverylineguill#*
 \FBfigtabshape#*
 \FBfnindent#*
+\FBfnmarkspace#*
 \FBFrenchFootnotesfalse#*
 \FBFrenchFootnotestrue#*
 \FBFrenchSuperscriptstrue#*
@@ -1405,7 +1406,6 @@ SuppressWarning#true,false
 \ifFBOldFigTabCaptions#*
 \ifFBOriginalTypewriter#*
 \ifFBPartNameFull#*
-\ifFBReduceListSpacing#*
 \ifFBShowOptions#*
 \ifFBSmallCapsFigTabCaptions#*
 \ifFBStandardEnumerateEnv#*
@@ -1545,6 +1545,7 @@ SuppressWarning#true,false
 \FBeverylineguill#*
 \FBfigtabshape#*
 \FBfnindent#*
+\FBfnmarkspace#*
 \FBFrenchFootnotesfalse#*
 \FBFrenchFootnotestrue#*
 \FBFrenchSuperscriptstrue#*
@@ -1621,7 +1622,6 @@ SuppressWarning#true,false
 \ifFBOldFigTabCaptions#*
 \ifFBOriginalTypewriter#*
 \ifFBPartNameFull#*
-\ifFBReduceListSpacing#*
 \ifFBShowOptions#*
 \ifFBSmallCapsFigTabCaptions#*
 \ifFBStandardEnumerateEnv#*

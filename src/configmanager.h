@@ -213,6 +213,7 @@ public:
 
     // ai chat assistant
     QString ai_apikey;
+    QString ai_apiurl; /// url of the ai service
     int ai_provider;
     QString ai_preferredModel;
     QStringList ai_knownModels;
@@ -336,9 +337,9 @@ public:
 	QStringList parseDirList(const QString &s) const;
 	QString reverseParseDir(QString s) const;
 	QString reverseParseDir(const QStringList &s) const;
-private:
-	void setInterfaceStyle();
 
+    void setInterfaceStyle();
+private:
 	QSettings *persistentConfig;
 
 	QList<QTreeWidgetItem *> changedItemsList, superAdvancedItems;

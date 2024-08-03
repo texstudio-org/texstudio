@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1.0)
 
-project(TeXstudio VERSION 4.8.1 LANGUAGES C CXX)
+project(TeXstudio VERSION 4.8.2 LANGUAGES C CXX)
 SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 set(CMAKE_DEBUG_POSTFIX "d")
 set(CMAKE_AUTOMOC ON)
@@ -72,7 +72,7 @@ if(APPLE)
     )
     set(manual ${manual} utilities/manual/build/html/searchindex.js)
     file(GLOB images
-        utilities/manual/build/html/_images/*.png
+        utilities/manual/build/html/_images/*.webp
     )
     file(GLOB static
         utilities/manual/build/html/_static/*
@@ -489,7 +489,7 @@ if(UNIX)
 	install(DIRECTORY utilities/manual/build/html/_images
 		DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio
 		FILES_MATCHING
-		PATTERN *.png
+		PATTERN *.webp
 	)
 	install(DIRECTORY utilities/manual/build/html/_sphinx_design_static
 		DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio

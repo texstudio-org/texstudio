@@ -7,8 +7,8 @@ permissions:
   contents: read
 
 env:
-  OSX_QT_VERSION: 6.7.1
-  OSX_POPPLER_VERSION: 24.05.0
+  OSX_QT_VERSION: 6.7.2
+  OSX_POPPLER_VERSION: 24.08.0
   OSX_QUAZIP_VERSION: 1.4
 
 jobs:
@@ -48,10 +48,52 @@ jobs:
           cmake .. -Wno-dev
           # work-around strange git behaviour on msys2
           . ../git_revision.sh
+          mkdir signed-artifacts
+
       - name: Build
         run: |
           cd build
-          cmake --build . -- -j 2
+          cmake --build . -- -j 4
+
+      - name: upload binary
+        id: upload-binary
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: texstudio-exe
+          path: build/texstudio.exe
+
+      - name: get version
+        id: version
+        run: |
+          cd build
+          . ../.github/scripts/get-version.sh
+          echo "VERSION_NAME=${VERSION_NAME}">> $GITHUB_OUTPUT
+          echo "TXS_VERSION=${TXS_VERSION}">> $GITHUB_OUTPUT
+          echo "GIT_VERSION=${GIT_VERSION}">> $GITHUB_OUTPUT
+      
+      - name: Codesign binary
+        id: sign_binary
+        if: true
+        uses: signpath/github-action-submit-signing-request@v0.4
+        with:
+          api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+          organization-id: '9e74d567-be9b-4bd4-929d-9978860f6cbc'
+          project-slug: 'texstudio'
+          signing-policy-slug: 'test-signing'
+          github-artifact-id: '${{steps.upload-binary.outputs.artifact-id}}'
+          artifact-configuration-slug: 'zipped_exe'
+          wait-for-completion: true
+          output-artifact-directory: './signed-artifacts'
+          parameters: |
+            Version: ${{ toJSON(steps.version.outputs.VERSION_NAME) }}
+            Release_Tag: "${{ steps.version.outputs.GIT_VERSION }}"
+
+      - name: use signed binary
+        id: use_signed_binary
+        run: |
+          mv signed-artifacts/texstudio.exe build/texstudio.exe
+
       - name: Package
         id: package
         run: |
@@ -61,6 +103,7 @@ jobs:
           echo "VERSION_NAME=${VERSION_NAME}">> $GITHUB_OUTPUT
           echo "TXS_VERSION=${TXS_VERSION}">> $GITHUB_OUTPUT
           echo "GIT_VERSION=${GIT_VERSION}">> $GITHUB_OUTPUT
+          
 
       - name: Upload zip to GitHub Artifacts
         if: github.event_name == 'push'
@@ -70,19 +113,51 @@ jobs:
           path: ./build/package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
           
       - name: Upload to GitHub Artifacts
+        id: upload-artifact
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
           name: texstudio-win-qt6-exe
           path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
 
+      - name: Codesign
+        id: sign
+        if: true
+        uses: signpath/github-action-submit-signing-request@v0.4
+        with:
+          api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+          organization-id: '9e74d567-be9b-4bd4-929d-9978860f6cbc'
+          project-slug: 'texstudio'
+          signing-policy-slug: 'test-signing'
+          github-artifact-id: '${{steps.upload-artifact.outputs.artifact-id}}'
+          artifact-configuration-slug: 'zipped_exe'
+          wait-for-completion: true
+          output-artifact-directory: './signed-artifacts'
+          parameters: |
+            Version: ${{ toJSON(steps.package.outputs.VERSION_NAME) }}
+            Release_Tag: "${{ steps.package.outputs.GIT_VERSION }}"
+
+      - name: copy signed installer
+        id: copy_signed_binary
+        run: |
+          cp signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6-signed.exe
+    
+
+      - name: Upload signed installer to GitHub Artifacts
+        id: upload-artifact-signed
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: texstudio-win-qt6-signed-exe
+          path: signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
+      
       - name: Upload release file(s)
         uses: actions/upload-artifact@v4
         if: startsWith(github.ref, 'refs/tags/')
         with:
           name: release-win
           path: |
-            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6.exe
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6-signed.exe
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
 
 ###################################
@@ -115,7 +190,7 @@ jobs:
     - name: Build
       run: |
         cd build
-        cmake --build . --target install -- -j 2
+        cmake --build . --target install -- -j 4
       
     - name: Package
       id: package

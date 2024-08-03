@@ -1,5 +1,5 @@
 # luatexja-fontspec package
-# Matthew Bertucci 4/9/2022
+# Matthew Bertucci 2024/07/15
 
 #include:l3keys2e
 #include:luatexja
@@ -35,8 +35,16 @@ silent
 \renewjfontfamily{cmd}[font features%keyvals]{font}
 \setjfontfamily{cmd}{font}#d
 \setjfontfamily{cmd}[font features%keyvals]{font}#d
+\providejfontfamily{cmd}{font}#d
+\providejfontfamily{cmd}[font features%keyvals]{font}#d
 \newjfontface{cmd}{font}#d
 \newjfontface{cmd}[font features%keyvals]{font}#d
+\renewjfontface{cmd}{font}
+\renewjfontface{cmd}[font features%keyvals]{font}
+\setjfontface{cmd}{font}#d
+\setjfontface{cmd}[font features%keyvals]{font}#d
+\providejfontface{cmd}{font}#d
+\providejfontface{cmd}[font features%keyvals]{font}#d
 \defaultjfontfeatures{font features%keyvals}
 \defaultjfontfeatures[font name list]{font features%keyvals}
 \addjfontfeatures{font features%keyvals}

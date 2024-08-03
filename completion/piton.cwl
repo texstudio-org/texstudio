@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/05/12 for v3.0a
+# Matthew Bertucci 2024/05/24 for v3.0b
 
 #include:l3keys2e
 #include:luatexbase
@@ -248,6 +248,7 @@ moredirectives={%<list of compiler directives%>}
 tag=%<<char1><char2>%>
 alsodigit={%<character sequence%>}
 alsoletter={%<character sequence%>}
+alsoother={%<character sequence%>}
 #endkeyvals
 
 \SetPitonIdentifier{id1,id2,...}{code}

@@ -3,7 +3,7 @@
 # tbraun/2006-08-03 removed dup inserted by me ...
 # tbraun/2007-02-24 added left/right variants
 # dbitouze/2015-02-21 obsolete font style commands made unusual
-# Matthew Bertucci 2023/06/08 for 2023/06/01 release
+# Matthew Bertucci 2024/06/01 release
 
 #include:latex-dev
 #include:textcomp
@@ -260,6 +260,7 @@
 \linewidth#L
 \listfigurename
 \listfiles
+\listfiles[options%keyvals]
 \listoffigures
 \listoftables
 \listparindent#*
@@ -632,6 +633,11 @@ ieeetr
 plain
 siam
 unsrt
+#endkeyvals
+
+#keyvals:\listfiles
+hashes
+sizes
 #endkeyvals
 
 #keyvals:\MakeLowercase#c,\MakeTitlecase#c,\MakeUppercase#c

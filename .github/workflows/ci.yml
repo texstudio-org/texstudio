@@ -24,7 +24,7 @@ jobs:
       run: cmake -DTEXSTUDIO_ENABLE_TESTS=ON -DTEXSTUDIO_BUILD_ADWAITA=OFF -DCMAKE_BUILD_TYPE=Debug .
 
     - name: Build
-      run: make -j 2
+      run: make -j 4
 
     - name: Test
       run: QT_QPA_PLATFORM=offscreen ./texstudio --auto-tests

@@ -9,7 +9,7 @@
 project = 'TeXstudio'
 copyright = '2022, TeXstudio Team'
 author = 'TeXstudio Team'
-release = '4.8.1'
+release = '4.8.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -77,6 +77,6 @@ html_theme_options = {
 #
 # html_sidebars = {}
 
-html_logo = '../../texstudio128x128.png'
+html_logo = '../../texstudio128x128.webp'
 html_favicon = '../../../texstudio.ico'
 

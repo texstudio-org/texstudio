@@ -1,5 +1,5 @@
 # lni class
-# Matthew Bertucci 2023/11/27 for v1.8
+# Matthew Bertucci 2024/07/03 for v1.9
 
 #include:iftex
 #include:cmap
@@ -185,6 +185,7 @@ openbib
 \lnienglishfalse#S
 \lnienglishtrue#S
 \lniinitialism{cmd}{text%plain}#d
+\multiaffil{arg1}{arg2}{arg3}#S
 \nofontsfalse#S
 \nofontstrue#S
 \norunningheadsfalse#S

@@ -1,5 +1,5 @@
 # documentation tcolorboxlibrary
-# 2024/01/10 for v6.2.0
+# 2024/07/10 for v6.3.0
 
 #include:tcolorboxlibrarylistings
 #include:tcolorboxlibraryskins
@@ -191,12 +191,11 @@ documentation listing style=%<listings style%>
 documentation minted options={%<minted keys%>}
 documentation minted style=%<minted style%>
 documentation minted language=%<language%>
-before example={%<code%>}
-after example={%<code%>}
 #endkeyvals
 
 #keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\tcbmakedocSubKey,\tcbmakedocSubKeys,\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*,\begin{dispExample*},\begin{dispListing*}
 keywords bold#true,false
+page ref formatter=%<macro%>
 index command=%<macro%>
 index command name=%<name%>
 index format=#pgfsection,pgfchapter,pgf,doc,off

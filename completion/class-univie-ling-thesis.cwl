@@ -1,5 +1,5 @@
 # univie-ling-thesis class
-# Matthew Bertucci 2024/05/11 for v2.5
+# Matthew Bertucci 2024/06/28 for v.2.6
 
 #include:class-scrreprt
 #include:array
@@ -23,6 +23,7 @@
 # loads style=univie-ling option of biblatex
 #include:varioref
 #include:prettyref
+#include:isodate
 
 #keyvals:\documentclass/univie-ling-thesis#c
 all#true,false
@@ -292,6 +293,10 @@ apamaxprtauth=%<number%>
 \Expression{text}
 \Meaning{text}
 \Concept{text}
+\weblink{URL}#U
+\weblink{URL}[date]#U
+\SetURLDate{date}
+\urldate{date}
 
 #keyvals:\thesistype
 magister

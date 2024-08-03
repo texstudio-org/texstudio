@@ -1,15 +1,15 @@
 # spbmark package
-# Matthew Bertucci 2024/05/20 for v1.46j
-
-#include:l3keys2e
+# Matthew Bertucci 2024/07/05 for v1.46l
 
 #keyvals:\usepackage/spbmark#c
 text#true,false
 math#true,false
 math*#true,false
 foot#true,false
-both
-all
+both#true,false
+all#true,false
+spcore=#trad,none
+sbcore=#trad,none
 #endkeyvals
 
 \super{content}

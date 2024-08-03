@@ -1,5 +1,5 @@
 # pgf-PeriodicTable package
-# Matthew Bertucci 2024/02/17 for v2.1.0
+# Matthew Bertucci 2024/07/18 for v2.1.1
 
 #include:tikz
 #include:tikzlibraryfadings
@@ -105,8 +105,10 @@ extra legend={%<TikZ keys%>}
 legend={%<keyvals%>}
 show period numbers#true,false
 show group numbers#true,false
+group numbers=#arabic,CAS,IUPAC,CAS*,IUPAC*
 period label color=#%color
 group label color=#%color
+Roman label color=#%color
 label font=%<font commands%>
 per={%<keyvals%>}
 gr={%<keyvals%>}
@@ -203,6 +205,7 @@ Ar font=%<font commands%>
 Ar label=#m,w
 Ar precision=%<integer%>
 Ar={%<keyvals%>}
+O Roman#true,false
 d color=#%color
 d font=%<font commands%>
 d unit=#g/dm3,g/cm3,both
@@ -462,6 +465,7 @@ group blending={%<keyvals%>}
 \pgfPTglobalfont#S
 \pgfPTgrlabelsfalse#S
 \pgfPTgrlabelstrue#S
+\pgfPTgrnum#S
 \pgfPTiblockcolor#S
 \pgfPTiblockfontcolor#S
 \pgfPTiblocklinewidth#S
@@ -586,3 +590,6 @@ group blending={%<keyvals%>}
 \pgfZuseboxwidthfalse#S
 \pgfZuseboxwidthtrue#S
 \thetinysize#S
+\ifpgfPTORoman#S
+\pgfPTORomantrue#S
+\pgfPTORomanfalse#S

@@ -155,16 +155,29 @@ void AIChatAssistant::slotSend()
     QString url;
     switch(config->ai_provider){
         case 0: url="https://api.mistral.ai/v1/chat/completions";
-        break;
+            break;
         case 1: url="https://api.openai.com/v1/chat/completions";
-        break;
+            break;
+        case 2: url=config->ai_apiurl;
+            break;
         default:
             url="https://api.mistral.ai/v1/chat/completions";
     }
 
     QJsonObject dd;
     dd["model"]=config->ai_preferredModel;
-    dd["temperature"]=config->ai_temperature;
+    if(config->ai_provider==0){
+        // work-around for llamafile for now
+        dd["temperature"]=config->ai_temperature;
+    }
+    if(config->ai_provider==1){
+        // work-around for openai
+        bool ok;
+        float val=config->ai_temperature.toFloat(&ok);
+        if(ok){
+            dd["temperature"]=val;
+        }
+    }
     if(config->ai_streamResults){
         dd["stream"] = "True";
         m_timer=new QTimer();
@@ -502,11 +515,19 @@ QString AIChatAssistant::getConversationForBrowser()
         const QString cnt=obj["content"].toString();
 #endif
         if(role=="user"){
-            result.append("<p style=\"background-color: bisque\">\n");
+            if(darkMode){
+                result.append("<p style=\"background-color: darkorange\">\n");
+            }else{
+                result.append("<p style=\"background-color: bisque\">\n");
+            }
             result.append(cnt);
             result.append("\n</p>\n");
         }else if(role=="assistant"){
-            result.append("<p style=\"background-color: aliceblue;margin-left: 20px\">\n");
+            if(darkMode){
+                result.append("<p style=\"background-color: cornflowerblue;margin-left: 20px\">\n");
+            }else{
+                result.append("<p style=\"background-color: aliceblue;margin-left: 20px\">\n");
+            }
             result.append(cnt);
             result.append("\n</p>\n");
         }

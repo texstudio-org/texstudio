@@ -84,6 +84,8 @@ public:
 	int countWords();
 	void setTab(int index); ///< bring given 'tab' to front
 
+    bool isCurrentWordUserConstruct(); ///< check if current word is a user construct
+
 	void insertText(QString txt); ///< insert 'txt'
 
 	void showTooltip(QString text); ///< show tooltip

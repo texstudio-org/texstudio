@@ -335,7 +335,7 @@ unix {
         utilities/manual/build/html/*.html
         utilities/manual/build/html/searchindex.js
    manualImages.files = \
-        utilities/manual/build/html/_images/*.png
+        utilities/manual/build/html/_images/*.webp
    manualSphinx.files = \
         utilities/manual/build/html/_sphinx_design_static/*
    manualStatic.files = \

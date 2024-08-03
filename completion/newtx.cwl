@@ -1,5 +1,5 @@
 # newtx package
-# Matthew Bertucci 2024/02/26 for v1.739
+# Matthew Bertucci 2024/06/20 for v1.75
 
 #include:newtxtext
 #include:newtxmath
@@ -28,6 +28,7 @@ baskerville#true,false
 baskervaldx#true,false
 heuristica#true,false
 erewhon#true,false
+gelasio#true,false
 xcharter#true,false
 stix2#true,false
 nc#true,false

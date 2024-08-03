@@ -1,5 +1,5 @@
 # mitthesis class
-# Matthew Bertucci 2023/11/03 for v1.11
+# Matthew Bertucci 2024/07/03 for v1.13
 
 #include:class-report
 #include:etoolbox
@@ -35,6 +35,8 @@ twoside
 \AuthorNameSize{fontsize cmd}
 \Squash
 \CClicense{license type}{URL}#U
+\Institution{institution}
+\SupervisorDesignation{title%text}
 \PDFRightsText#*
 \SuppressMonthError#*
 \SuppressAcceptorError#*

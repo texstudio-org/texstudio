@@ -500,7 +500,11 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Insert Unicode From SymbolGrid", &insertSymbolsAsUnicode, false, &pseudoDialog->checkBoxInsertSymbolAsUCS);
     registerOption("Tools/SymbolGrid Splitter", &stateSymbolsWidget, QByteArray());
 
-	registerOption("Spell/DictionaryDir", &spellDictDir, "", &pseudoDialog->leDictDir); //don't translate it
+#ifdef Q_OS_OSX
+    registerOption("Spell/DictionaryDir", &spellDictDir, "[txs-app-dir]/../Resources", &pseudoDialog->leDictDir);
+#else
+    registerOption("Spell/DictionaryDir", &spellDictDir, "", &pseudoDialog->leDictDir);
+#endif
 	registerOption("Spell/Language", &spellLanguage, "<none>", &pseudoDialog->comboBoxSpellcheckLang);
     registerOption("Spell/Dic", &spell_dic, "<dic not found>", nullptr);
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
@@ -698,6 +702,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("AIchat/Provider",&ai_provider,0,&pseudoDialog->cbAIProvider);
     registerOption("AIchat/APIKEY",&ai_apikey,"",&pseudoDialog->leAIAPIKey);
     registerOption("AIchat/PreferredModel",&ai_preferredModel,"open-mistral-7b",&pseudoDialog->cbAIPreferredModel);
+    registerOption("AIchat/CustomURL",&ai_apiurl,"http://localhost:8080/v1/chat/completions",&pseudoDialog->leAIAPIURL);
     registerOption("AIchat/KnownModels",&ai_knownModels,QStringList(),nullptr);
     registerOption("AIchat/SystemPrompt_test",&ai_systemPrompt,"");
     registerOption("AIchat/Temperature",&ai_temperature,"0.7");
@@ -796,7 +801,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 #endif
 
     // runaway limit for lexing
-    registerOption("Editor/RUNAWAYLIMIT", &RUNAWAYLIMIT , 30);
+    registerOption("Editor/RUNAWAYLIMIT", &RUNAWAYLIMIT , 50);
 }
 
 ConfigManager::~ConfigManager()
@@ -1928,6 +1933,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		guiSecondaryToolbarIconSize = confDlg->ui.horizontalSliderCentraIcon->value();
 		guiSymbolGridIconSize = confDlg->ui.horizontalSliderSymbol->value();
         guiPDFToolbarIconSize = confDlg->ui.horizontalSliderPDF->value();
+
+        // save new settings directly to disk as users tend to close txs rarely (#3740)
+        saveSettings();
 	} else {
 		// GUI scaling
 		confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);

@@ -1,5 +1,5 @@
 # se2thesis class
-# Matthew Bertucci 2024/04/20 for v3.4.0
+# Matthew Bertucci 2024/06/09 for v4.1.0
 
 #include:graphicx
 #include:translations
@@ -54,4 +54,5 @@ colormode=#cmyk,rgb,bw
 \end{hyp}
 \begin{summary}{label text%text}
 \end{summary}
+\summarybox{label text%text}{text}#*
 \headingdot#*

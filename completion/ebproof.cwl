@@ -8,13 +8,13 @@
 \begin{prooftree*}[options%keyvals]#\math
 \end{prooftree*}
 
-\hypo{text}#/prooftree,prooftree*
-\hypo[options%keyvals]{text}#/prooftree,prooftree*
+\hypo{text%plain}#/prooftree,prooftree*
+\hypo[options%keyvals]{text%plain}#/prooftree,prooftree*
 \infer%<arity%>{%<text%>}#/prooftree,prooftree*
 \infer%<arity%>[%<label%>]{%<text%>}#/prooftree,prooftree*
 \infer[%<options%>]%<arity%>{%<text%>}#/prooftree,prooftree*
 \infer[%<options%>]%<arity%>[%<label%>]{%<text%>}#/prooftree,prooftree*
-\ellipsis{label}{text}#/prooftree,prooftree*
+\ellipsis{label}{text%plain}#/prooftree,prooftree*
 \rewrite{code}#/prooftree,prooftree*
 \treebox#/prooftree,prooftree*
 \treemark{name}#/prooftree,prooftree*

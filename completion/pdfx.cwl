@@ -1,5 +1,5 @@
 # pdfx package
-# Matthew Bertucci 11/30/2021 for v1.6.3
+# Matthew Bertucci 2024/07/01 for v1.6.5f
 
 #include:iftex
 #include:ifpdf
@@ -49,6 +49,7 @@ pdf14
 pdf15
 pdf16
 pdf17
+pdf20
 nocharset
 usecharset
 latxmp

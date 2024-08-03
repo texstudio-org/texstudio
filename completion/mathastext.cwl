@@ -1,5 +1,5 @@
 # mathastext package
-# Matthew Bertucci 2024/01/01 for v1.3zb
+# Matthew Bertucci 2024/07/29 for v1.4b
 
 #keyvals:\usepackage/mathastext#c
 italic
@@ -26,8 +26,10 @@ asterisk
 nospecials
 basic
 nohbar
+activedigits
 nodigits
 defaultimath
+noletters
 mathaccents
 unimathaccents
 symboldelimiters
@@ -60,6 +62,7 @@ defaultmathsizes
 12pt
 fouriervec
 subdued
+everymath
 #endkeyvals
 
 #ifOption:ncccomma
@@ -150,6 +153,8 @@ subdued
 \MTrecordstandardgreek#*
 \MTresetnewmcodes#*
 \MTcustomizenewmcodes#*
+\MTmathactivedigits#*
+\MTmathstandarddigits#*
 
 \pmvec{arg}#m
 \Mathnormal{arg}#*m
