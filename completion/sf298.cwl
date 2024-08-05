@@ -5,7 +5,7 @@
 #include:multicol
 #include:fancyhdr
 
-#keyvals:\usepackage/captcont#c
+#keyvals:\usepackage/sf298#c
 config
 noconfig
 floatlongboxes

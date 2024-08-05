@@ -1,5 +1,5 @@
 # citation-style-language package
-# Matthew Bertucci 2024/06/11 for v0.5.0
+# Matthew Bertucci 2024/08/02 for v0.6.0
 
 #include:filehook
 #include:url
@@ -9,7 +9,9 @@
 #keyvals:\cslsetup,\usepackage/citation-style-language#c
 regression-test#true,false
 style=#american-chemical-society,american-medical-association,american-political-science-association,american-sociological-association,apa,chicago-author-date,chicago-fullnote-bibliography,chicago-note-bibliography,elsevier-harvard,harvard-cite-them-right,ieee,modern-humanities-research-association,modern-language-association,nature,vancouver
+bib-resource=%<resource%>
 locale=%<language code%>
+ref-section=#none,part,chapter,chapter+,section,section+,subsection,subsection+
 backref=#true,page,section,false
 bib-font=%<font commands%>
 bib-entry-page-break#true,false
@@ -90,29 +92,43 @@ heading=%<text%>
 title=%<text%>
 prenote=%<text%>
 postnote=%<text%>
-type=
-nottype=
-keyword=
-notkeyword=
-category=
-notcategory=
+type=%<entry type%>
+nottype=%<entry type%>
+keyword=%<keyword%>
+notkeyword=%<keyword%>
+category=%<category%>
+notcategory=%<category%>
 #endkeyvals
 
-\printbibheading
-\printbibheading[options%keyvals]
+\begin{refsection}
+\begin{refsection}[options%keyvals]
+\end{refsection}
+\newrefsection
+\newrefsection[options%keyvals]
+\endrefsection
 
+#keyvals:\begin{refsection},\newrefsection
+style=%<style id%>
+bib-resource=%<resource%>
+locale=%<language code%>
+#endkeyvals
+
+\defbibheading{name}{code}#*
+\defbibheading{name}[title%text]{code}#*
+
+# not documented
+\addtocategory{category}{keys%plain}#S
+\backref{arg}#S
+\cslcitation{arg1}{arg2}#S
+\cslcite{arg1}{arg2}#S
+\csloptions{arg1}{arg2}#S
+\cslundefinedcite{arg}#S
+\DeclareBibliographyCategory{category}#S
+\defbibenvironment{name}{begdef}{enddef}{item code}#S
+\defbibnote{name}{text}#S
+\printbibheading#S
+\printbibheading[options%keyvals]#S
 #keyvals:\printbibheading
 heading=%<text%>
 title=%<text%>
 #endkeyvals
-
-# not documented
-\addtocategory{category}{keys%plain}#*
-\backref{arg}#S
-\cslcitation{arg1}{arg2}#S
-\cslcite{arg1}{arg2}#S
-\DeclareBibliographyCategory{category}#*
-\defbibenvironment{name}{begdef}{enddef}{item code}#*
-\defbibheading{name}[title%text]{code}#*
-\defbibheading{name}{code}#*
-\defbibnote{name}{text}#*

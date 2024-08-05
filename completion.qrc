@@ -338,6 +338,7 @@
 <file>completion/bfhletter.cwl</file>
 <file>completion/bfhmodule.cwl</file>
 <file>completion/bguq.cwl</file>
+<file>completion/bib2qr.cwl</file>
 <file>completion/bibcop.cwl</file>
 <file>completion/bibentry.cwl</file>
 <file>completion/biblatex2bibitem.cwl</file>
@@ -2860,6 +2861,7 @@
 <file>completion/polymers.cwl</file>
 <file>completion/polynom.cwl</file>
 <file>completion/polynomial.cwl</file>
+<file>completion/polyomino.cwl</file>
 <file>completion/polytable.cwl</file>
 <file>completion/poormanlog.cwl</file>
 <file>completion/popupmenu.cwl</file>
@@ -3287,6 +3289,7 @@
 <file>completion/setspaceenhanced.cwl</file>
 <file>completion/settobox.cwl</file>
 <file>completion/sf298.cwl</file>
+<file>completion/sfmath.cwl</file>
 <file>completion/sgame.cwl</file>
 <file>completion/sgamevar.cwl</file>
 <file>completion/shadethm.cwl</file>

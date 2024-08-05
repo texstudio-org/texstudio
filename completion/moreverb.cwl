@@ -12,8 +12,13 @@
 \begin{listing}{start line}#V
 \begin{listing}[interval]{start line}#V
 \end{listing}
+\begin{listing*}{start line}#V
+\begin{listing*}[interval]{start line}#V
+\end{listing*}
 \begin{listingcont}#V
 \end{listingcont}
+\begin{listingcont*}#V
+\end{listingcont*}
 \listinglabel#*
 \listinginput{start line}{file}
 \listinginput[interval]{start line}{file}
