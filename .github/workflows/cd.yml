@@ -276,8 +276,8 @@ jobs:
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin.tar.xz
         sudo tar xvf ./QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin.tar.xz -C /usr/local --strip-components=1
         rm QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin.tar.xz
-        brew install cairo fontconfig freetype gettext jpeg libpng libtiff little-cms2 openjpeg
-        brew install ninja pkg-config
+        brew install --quiet cairo fontconfig freetype gettext jpeg libpng libtiff little-cms2 openjpeg
+        brew install --quiet ninja pkg-config
 
     - name: Configure
       run: |
@@ -371,8 +371,8 @@ jobs:
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin-M1.tar.xz
         sudo tar xvf ./QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin-M1.tar.xz -C /usr/local --strip-components=1
         rm QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin-M1.tar.xz
-        brew install cairo fontconfig freetype gettext jpeg libpng libtiff little-cms2 openjpeg
-        brew install ninja pkg-config
+        brew install --quiet cairo fontconfig freetype gettext jpeg libpng libtiff little-cms2 openjpeg
+        brew install --quiet ninja pkg-config
 
     - name: Configure
       run: |
