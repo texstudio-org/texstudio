@@ -1,5 +1,5 @@
 # mercatormap package
-# Matthew Bertucci 2024/08/01 for v1.1.0
+# Matthew Bertucci 2024/08/05 for v1.2.0
 
 #include:graphicx
 #include:siunitx
@@ -58,6 +58,7 @@ tile size=##L
 \mrcNPcs{name}
 \mrcNPlat{name}
 \mrcNPlon{name}
+\ifmrcNPexists{name}{true}{false}
 
 \ifmrcinmap{latitude}{longitude}{true}{false}
 \ifmrcNPinmap{name}{true}{false}
@@ -304,9 +305,13 @@ node style={%<TikZ options%>}
 \mrcNPdraworthodrome[TikZ options]{name1}{name2}
 
 \mrcNPfromOrthoFraction{name}{lat1}{lon1}{lat2}{lon2}{fraction}
+\mrcNPfromOrthoFraction{name}[\angle]{lat1}{lon1}{lat2}{lon2}{fraction}
 \mrcNPfromOrthoFractionNamed{name}{name1}{name2}{fraction}
+\mrcNPfromOrthoFractionNamed{name}[\angle]{name1}{name2}{fraction}
 \mrcNPfromOrthoDistance{name}{lat1}{lon1}{lat2}{lon2}{distance}
+\mrcNPfromOrthoDistance{name}[\angle]{lat1}{lon1}{lat2}{lon2}{distance}
 \mrcNPfromOrthoDistanceNamed{name}{name1}{name2}{distance}
+\mrcNPfromOrthoDistanceNamed{name}[\angle]{name1}{name2}{distance}
 
 \mrcprettyorthodistance{lat1}{lon1}{lat2}{lon2}
 \mrcNPprettyorthodistance{name1}{name2}
@@ -352,6 +357,7 @@ timewarp-slow-start-final=%<exponent%>
 \mrcAnimScaleDenom
 \mrcAnimLatitude
 \mrcAnimLongitude
+\mrcAnimAngle
 
 # not documented
 \mermaplastfivesum{arg}#*
