@@ -74,7 +74,7 @@ jobs:
       
       - name: Codesign binary
         id: sign_binary
-        if: true
+        if: github.repository_owner == 'texstudio-org'
         uses: signpath/github-action-submit-signing-request@v0.4
         with:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
@@ -91,6 +91,7 @@ jobs:
 
       - name: use signed binary
         id: use_signed_binary
+        if: github.repository_owner == 'texstudio-org'
         run: |
           mv signed-artifacts/texstudio.exe build/texstudio.exe
 
@@ -122,7 +123,7 @@ jobs:
 
       - name: Codesign
         id: sign
-        if: true
+        if: github.repository_owner == 'texstudio-org'
         uses: signpath/github-action-submit-signing-request@v0.4
         with:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
@@ -139,13 +140,14 @@ jobs:
 
       - name: copy signed installer
         id: copy_signed_binary
+        if: github.repository_owner == 'texstudio-org'
         run: |
           cp signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6-signed.exe
     
 
       - name: Upload signed installer to GitHub Artifacts
         id: upload-artifact-signed
-        if: github.event_name == 'push'
+        if: github.repository_owner == 'texstudio-org' && github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
           name: texstudio-win-qt6-signed-exe
@@ -157,7 +159,9 @@ jobs:
         with:
           name: release-win
           path: |
-            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6-signed.exe
+            ${{ github.repository_owner == 'texstudio-org'
+                && format('texstudio-{0}-win-qt6-signed.exe', steps.package.outputs.GIT_VERSION)
+                || '' }}
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
 
 ###################################
