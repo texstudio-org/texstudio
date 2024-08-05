@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/07/26 for v13.2.0
+# Matthew Bertucci 2024/08/02 for v13.3.0
 
 #include:iftex
 
@@ -3144,6 +3144,7 @@ zenn
 zenodo
 zensar
 zerodha
+zerotier
 zerply
 zettlr
 zhihu

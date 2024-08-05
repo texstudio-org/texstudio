@@ -13,8 +13,8 @@
 \textsmaller[number]{text}
 \textscale{scale factor}{text}
 
-\mathsmaller#m
-\mathlarger#m
+\mathsmaller{arg}#m
+\mathlarger{arg}#m
 
 \RSsmallest#*
 \RSlargest#*
