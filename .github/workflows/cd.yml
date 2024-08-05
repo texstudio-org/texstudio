@@ -72,9 +72,20 @@ jobs:
           echo "TXS_VERSION=${TXS_VERSION}">> $GITHUB_OUTPUT
           echo "GIT_VERSION=${GIT_VERSION}">> $GITHUB_OUTPUT
       
+      - name: Detect if codesign
+        run: |
+          # Nonexistent context property evaluates to an empty string.
+          # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/contexts#about-contexts
+          if [ -z "${{ secrets.SIGNPATH_API_TOKEN }}" ]; then
+            echo "IF_CODESIGN=false" >> "$GITHUB_ENV"
+            echo "::notice file=.github/workflows/cd.yml,title=Codesign skipped::Secret "SIGNPATH_API_TOKEN" not set."
+          else
+            echo "IF_CODESIGN=true" >> "$GITHUB_ENV"
+          fi
+
       - name: Codesign binary
         id: sign_binary
-        if: github.repository_owner == 'texstudio-org'
+        if: env.IF_CODESIGN == 'true'
         uses: signpath/github-action-submit-signing-request@v0.4
         with:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
@@ -91,7 +102,7 @@ jobs:
 
       - name: use signed binary
         id: use_signed_binary
-        if: github.repository_owner == 'texstudio-org'
+        if: env.IF_CODESIGN == 'true'
         run: |
           mv signed-artifacts/texstudio.exe build/texstudio.exe
 
@@ -123,7 +134,7 @@ jobs:
 
       - name: Codesign
         id: sign
-        if: github.repository_owner == 'texstudio-org'
+        if: env.IF_CODESIGN == 'true'
         uses: signpath/github-action-submit-signing-request@v0.4
         with:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
@@ -140,14 +151,14 @@ jobs:
 
       - name: copy signed installer
         id: copy_signed_binary
-        if: github.repository_owner == 'texstudio-org'
+        if: env.IF_CODESIGN == 'true'
         run: |
           cp signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6-signed.exe
     
 
       - name: Upload signed installer to GitHub Artifacts
         id: upload-artifact-signed
-        if: github.repository_owner == 'texstudio-org' && github.event_name == 'push'
+        if: env.IF_CODESIGN == 'true' && github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
           name: texstudio-win-qt6-signed-exe
@@ -159,7 +170,7 @@ jobs:
         with:
           name: release-win
           path: |
-            ${{ github.repository_owner == 'texstudio-org'
+            ${{ env.IF_CODESIGN == 'true'
                 && format('texstudio-{0}-win-qt6-signed.exe', steps.package.outputs.GIT_VERSION)
                 || '' }}
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
