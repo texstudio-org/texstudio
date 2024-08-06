@@ -74,6 +74,8 @@ b
 \end{LandScape}#*
 \begin{Landscape}{paperwidth%l}{paperheight%l}{cmd}#*
 \end{Landscape}#*
+\begin{Landscape*}{paperwidth%l}{paperheight%l}{cmd}#*
+\end{Landscape*}#*
 \LandScape{cmd}#*
 \Landscape{paperwidth%l}{paperheight%l}{cmd}#*
 \Landscape*{paperwidth%l}{paperheight%l}{cmd}#*
