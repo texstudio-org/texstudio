@@ -1,5 +1,5 @@
 # fontscale package
-# Matthew Bertucci 2024/08/05 for v2.0.0
+# Matthew Bertucci 2024/08/13 for v2.1.0
 
 \fontscalesetup{keyvals}
 \fontscalesetup*{keyvals}
@@ -70,6 +70,7 @@ Huge=%<size%>/%<baselineskip%>
 \CurrentFontScale
 \CurrentFontSize
 \CurrentFontBaselineskip
+\CurrentFontSizeCommand
 \SetFontStep{number}
 \SetFontStep*{number}
 \SetFontScale{number}
