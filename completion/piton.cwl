@@ -1,10 +1,11 @@
 # piton package
-# Matthew Bertucci 2024/07/30 for v3.1
+# Matthew Bertucci 2024/07/30 for v3.1a
 
 #include:l3keys2e
 #include:luatexbase
 #include:luacode
 #include:xcolor
+#include:amstext
 
 #keyvals:\usepackage/piton#c
 footnote
@@ -169,7 +170,6 @@ Keyword7=%<formatting%>
 Keyword8=%<formatting%>
 Keyword9=%<formatting%>
 ParseAgain.noCR=%<formatting%>
-ParseAgain=%<formatting%>
 Prompt=%<formatting%>
 Tag=%<formatting%>
 #endkeyvals
@@ -220,7 +220,6 @@ Keyword7
 Keyword8
 Keyword9
 ParseAgain.noCR
-ParseAgain
 Prompt
 Tag
 #endkeyvals
