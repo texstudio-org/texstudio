@@ -1,8 +1,8 @@
 # tablvar package
-# Matthew Bertucci 2023/12/26 for v2.0
+# Matthew Bertucci 2024/08/13 for v2.1
 
 #include:array
-#include:ifpdf
+#include:iftex
 #include:ifthen
 #include:multido
 #include:pst-node
@@ -31,13 +31,16 @@ tikz
 \bas{label}#t
 \bb#t
 \bblim{ligne1}{label1}{ligne2}{label2}#t
+\bblim*{label1}{label2}#t
 \discont#t
 \hachure{llx,lly}{urx,ury}
 \haut{label}#t
 \limd[pos%keyvals]{ligne}{valeur}
 \limd{ligne}{valeur}
+\limd*{valeur}
 \limg[pos%keyvals]{ligne}{valeur}
 \limg{ligne}{valeur}
+\limg*{valeur}
 \mil{label}#t
 \pos*{ligne}{valeur}#t
 \pos[align%keyvals]{ligne}{valeur}#t
@@ -86,6 +89,8 @@ r
 \intervalwidth#*
 \limsep#*
 \noeud{name}{label}#*
+\rowbottomsep#*
+\rowtopsep#*
 \tablvarinit{number}#*
 \tablvarstretch#*
 \themaxdiscont#*
