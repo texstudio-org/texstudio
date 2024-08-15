@@ -1,5 +1,5 @@
 # pxjahyper package
-# Matthew Bertucci 2022/07/22 for v1.2
+# Matthew Bertucci 2024/08/15 for v1.4
 
 #include:platex
 #include:keyval
@@ -13,7 +13,6 @@ dvipdfm
 dvips
 nodvidriver
 resetdvidriver
-autodvidriver
 tounicode
 notounicode
 out2uni
@@ -36,7 +35,6 @@ otfcid
 nootfcid
 otfmacros
 nootfmacros
-force-unicode
 #endkeyvals
 
 #ifOption:tounicode
@@ -51,6 +49,8 @@ force-unicode
 
 #keyvals:\pxjahypersetup#c,\usepackage/pxjahyper#c
 fallback=#geta,delete
+fallback-warn#true,false
+fallback-cidm#true,false
 extjis#true,false
 ajhankaku-chars#true,false
 #endkeyvals
@@ -58,4 +58,5 @@ ajhankaku-chars#true,false
 \Ux{Unicode 符号値 16 進}
 \pxDeclarePdfTextCommand{cmd}{jis}{ucs}#d
 \pxDeclarePdfTextComposite{cmd}{arg}{jis}{ucs}#d
+\pxjahyperBadCharacter{label}#*
 \pxHyperrefUnicodePatched#S
