@@ -3,6 +3,9 @@
 
 - fix background colors for AI chat interface in dark mode
 - on osx, new default spell dictionary changed to [txs-app-dir]/../Resources which is independent on actual txs app name.
+- automatically apply work-around on OSX if docks are spread-out in OSX style
+- configuration is directly saved after accepting changes
+- allow custom url for chatgpt server
 
 ## TeXstudio 4.8.1
 
