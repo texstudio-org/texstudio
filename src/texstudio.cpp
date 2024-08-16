@@ -355,11 +355,20 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     if(Version::compareStringVersion(txsVersionConfigWritten,"4.8.0")==Version::Lower){
         resetDocks();
     }
+#ifdef Q_OS_MAC
+    if(qApp->primaryScreen()->size().height()<=900){
+        // on OSX only, force style to FUSION if style is MACOS (https://github.com/texstudio-org/texstudio/issues/3637)
+        if(configManager.interfaceStyle.isEmpty() || configManager.interfaceStyle == "macOS"){
+            configManager.interfaceStyle = "Fusion";
+            configManager.setInterfaceStyle();
+        }
+    }
+#endif
     // check if dock widgets are all spread and force a reset
     if(checkDockSpread()){
 #ifdef Q_OS_MAC
         // on OSX only, force style to FUSION if style is MACOS (https://github.com/texstudio-org/texstudio/issues/3637)
-        if(configManager.interfaceStyle == "macOS"){
+        if(configManager.interfaceStyle.isEmpty() || configManager.interfaceStyle == "macOS"){
             configManager.interfaceStyle = "Fusion";
             configManager.setInterfaceStyle();
         }
