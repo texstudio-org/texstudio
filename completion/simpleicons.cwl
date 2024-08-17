@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/08/09 for v13.4.0
+# Matthew Bertucci 2024/08/17 for v13.5.0
 
 #include:iftex
 
@@ -1517,6 +1517,7 @@ lada
 lamborghini
 landrover
 langchain
+languagetool
 lapce
 laragon
 laravel
@@ -1914,6 +1915,7 @@ odysee
 ohdear
 okcupid
 okta
+ollama
 oneplus
 onlyfans
 onlyoffice
