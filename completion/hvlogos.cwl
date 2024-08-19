@@ -83,6 +83,7 @@
 \WikipediA#n
 \XeLaTeX#n
 \XeTeX#n
+\xypic#n
 
 \AMS#*n
 \biblatex#*n
@@ -108,6 +109,7 @@
 \tikzlogo#*n
 \Wikipedia#*n
 \wikipedia#*n
+\XYpic#*n
 
 \hvLaTeX[L-a kern]#*
 \hvLaTeX[L-a kern][La-TeX kern]#*

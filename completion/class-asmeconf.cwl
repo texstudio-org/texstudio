@@ -1,5 +1,5 @@
 # asmeconf class
-# Matthew Bertucci 2024/02/07 for v1.37
+# Matthew Bertucci 2024/08/02 for v1.38
 
 #include:etoolbox
 #include:ifthen
@@ -2026,7 +2026,6 @@ SuppressWarning#true,false
 \JointFirstAuthor
 \keywordname#*
 \keywords{keywords}
-\LogNote{message%text}#*
 \MakeTitlePage#*
 \MyColorOption#*
 \nomenwidth#*

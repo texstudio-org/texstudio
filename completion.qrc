@@ -338,6 +338,7 @@
 <file>completion/bfhletter.cwl</file>
 <file>completion/bfhmodule.cwl</file>
 <file>completion/bguq.cwl</file>
+<file>completion/bib2qr.cwl</file>
 <file>completion/bibcop.cwl</file>
 <file>completion/bibentry.cwl</file>
 <file>completion/biblatex2bibitem.cwl</file>
@@ -1411,6 +1412,7 @@
 <file>completion/eqexpl.cwl</file>
 <file>completion/eq-fetchbbl.cwl</file>
 <file>completion/eqlist.cwl</file>
+<file>completion/eqnalign.cwl</file>
 <file>completion/eqname.cwl</file>
 <file>completion/eqnarray.cwl</file>
 <file>completion/eqnnumwarn.cwl</file>
@@ -1548,6 +1550,7 @@
 <file>completion/filemod.cwl</file>
 <file>completion/filemod-expmin.cwl</file>
 <file>completion/filesdo.cwl</file>
+<file>completion/fillwith.cwl</file>
 <file>completion/finstrut.cwl</file>
 <file>completion/firamath-otf.cwl</file>
 <file>completion/FiraMono.cwl</file>
@@ -1791,6 +1794,7 @@
 <file>completion/hangulfontset.cwl</file>
 <file>completion/hanjacnt.cwl</file>
 <file>completion/hanzibox.cwl</file>
+<file>completion/har2nat.cwl</file>
 <file>completion/hardwrap.cwl</file>
 <file>completion/harmony.cwl</file>
 <file>completion/harpoon.cwl</file>
@@ -1875,6 +1879,7 @@
 <file>completion/hyperbar.cwl</file>
 <file>completion/hyperref.cwl</file>
 <file>completion/hyperxmp.cwl</file>
+<file>completion/hypgotoe.cwl</file>
 <file>completion/hyphenat.cwl</file>
 <file>completion/hyphsubst.cwl</file>
 <file>completion/ibarra.cwl</file>
@@ -2385,6 +2390,7 @@
 <file>completion/metre.cwl</file>
 <file>completion/metrix.cwl</file>
 <file>completion/metsymb.cwl</file>
+<file>completion/mfb-oldstyle.cwl</file>
 <file>completion/mfirstuc.cwl</file>
 <file>completion/mflogo.cwl</file>
 <file>completion/mfpic4ode.cwl</file>
@@ -2860,6 +2866,7 @@
 <file>completion/polymers.cwl</file>
 <file>completion/polynom.cwl</file>
 <file>completion/polynomial.cwl</file>
+<file>completion/polyomino.cwl</file>
 <file>completion/polytable.cwl</file>
 <file>completion/poormanlog.cwl</file>
 <file>completion/popupmenu.cwl</file>
@@ -3287,6 +3294,7 @@
 <file>completion/setspaceenhanced.cwl</file>
 <file>completion/settobox.cwl</file>
 <file>completion/sf298.cwl</file>
+<file>completion/sfmath.cwl</file>
 <file>completion/sgame.cwl</file>
 <file>completion/sgamevar.cwl</file>
 <file>completion/shadethm.cwl</file>
@@ -3434,6 +3442,7 @@
 <file>completion/subdepth.cwl</file>
 <file>completion/subdocs.cwl</file>
 <file>completion/subeqn.cwl</file>
+<file>completion/subeqnarray.cwl</file>
 <file>completion/subfig.cwl</file>
 <file>completion/subfigmat.cwl</file>
 <file>completion/subfigure.cwl</file>

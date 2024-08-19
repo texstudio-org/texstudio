@@ -1,7 +1,6 @@
 # pgfplotsthemebeamer package
-# Matthew Bertucci 2024/07/29 for v0.1
+# Matthew Bertucci 2024/08/02 for v0.2
 
-#include:pgfopts
 #include:pgfplots
 
 #keyvals:\usepackage/pgfplotsthemebeamer#c

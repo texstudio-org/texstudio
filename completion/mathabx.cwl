@@ -444,7 +444,7 @@ mathx
 \wideddddot{arg}#m
 \varnot#m
 
-\mayadelimiters
+\mayadelimiters(%<delim1%>,%<delim2%>)
 \maya{number}
 \mayadigit{digit}
 \changenotsign#*

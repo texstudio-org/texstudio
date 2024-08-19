@@ -1,20 +1,17 @@
 # fontscale package
-# Matthew Bertucci 2024/03/08 for v1.0.0
+# Matthew Bertucci 2024/08/13 for v2.1.0
 
 \fontscalesetup{keyvals}
+\fontscalesetup*{keyvals}
 
-#keyvals:\fontscalesetup
-reset
-reset=#initial,preamble
-ignore-order#true,false
+#keyvals:\fontscalesetup,\fontscalesetup*
 baselineskip-size-ratio=%<number%>
-typographic-scale=#classic-10pt,classic-11pt,classic-12pt,modular,musical
+typographic-scale=#classic-10pt,classic-11pt,classic-12pt,musical
 classic-10pt
 classic-11pt
 classic-12pt
-modular
 musical
-modular/ratio=%<number%>
+musical/base=##L
 musical/ratio=%<number%>
 musical/notes=%<integer%>
 tiny/scale=%<number%>
@@ -73,6 +70,7 @@ Huge=%<size%>/%<baselineskip%>
 \CurrentFontScale
 \CurrentFontSize
 \CurrentFontBaselineskip
+\CurrentFontSizeCommand
 \SetFontStep{number}
 \SetFontStep*{number}
 \SetFontScale{number}
@@ -81,10 +79,8 @@ Huge=%<size%>/%<baselineskip%>
 \SetFontSize*{size}
 \ScaleFont{number}
 \SetFontSizeBaselineskip{size}{skip%l}
-\PrintFontParameters
-\PrintAllFontParameters
-\PrintSampleText
-\PrintSampleText[text]
-\PrintSampleText*
-\PrintSampleText*[text]
+\PrintFontSizeParameters
+\PrintAllFontSizeParameters
+\PrintSampleText{text}
+\PrintSampleText*{text}
 \PrintFontSizeCommand

@@ -355,11 +355,20 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     if(Version::compareStringVersion(txsVersionConfigWritten,"4.8.0")==Version::Lower){
         resetDocks();
     }
+#ifdef Q_OS_MAC
+    if(qApp->primaryScreen()->size().height()<=900){
+        // on OSX only, force style to FUSION if style is MACOS (https://github.com/texstudio-org/texstudio/issues/3637)
+        if(configManager.interfaceStyle.isEmpty() || configManager.interfaceStyle == "macOS"){
+            configManager.interfaceStyle = "Fusion";
+            configManager.setInterfaceStyle();
+        }
+    }
+#endif
     // check if dock widgets are all spread and force a reset
     if(checkDockSpread()){
 #ifdef Q_OS_MAC
         // on OSX only, force style to FUSION if style is MACOS (https://github.com/texstudio-org/texstudio/issues/3637)
-        if(configManager.interfaceStyle == "macOS"){
+        if(configManager.interfaceStyle.isEmpty() || configManager.interfaceStyle == "macOS"){
             configManager.interfaceStyle = "Fusion";
             configManager.setInterfaceStyle();
         }
@@ -731,12 +740,15 @@ void Texstudio::setupDockWidgets()
     if(!dock){
         fileView=new QTreeView();
         fileExplorerModel = new QFileSystemModel(this);
-        fileExplorerModel->setRootPath(QDir::currentPath());
+		QString rootDir = QDir::currentPath();
+		if (rootDir == "/tmp")
+			rootDir = "/";
+        fileExplorerModel->setRootPath(rootDir);
         fileView->setModel(fileExplorerModel);
         fileView->setColumnHidden(1,true);
         fileView->setColumnHidden(2,true);
         fileView->setColumnHidden(3,true);
-        fileView->setRootIndex(fileExplorerModel->index(QDir::currentPath()));
+        fileView->setRootIndex(fileExplorerModel->index(rootDir));
         QAction *act=new QAction();
         act->setText(tr("Insert filename"));
         connect(act,&QAction::triggered,this,&Texstudio::insertFromExplorer);
@@ -1910,7 +1922,9 @@ void Texstudio::currentEditorChanged()
     // set dock file explorer to current file, root to root document folder
     LatexDocument *doc=edView->getDocument();
     QFileInfo fi=doc->getFileInfo();
-    const QString rootDir=fi.absoluteDir().path();
+    QString rootDir=fi.absoluteDir().path();
+	if (rootDir == "/tmp")
+		rootDir = "/";
     fileExplorerModel->setRootPath(rootDir);
     fileView->setRootIndex(fileExplorerModel->index(rootDir));
 }

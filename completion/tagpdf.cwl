@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2024/06/02 for v0.99b
+# Matthew Bertucci 2024/08/02 for v0.99d
 
 #include:pdfmanagement-testphase
 
@@ -15,6 +15,7 @@ disabledelayedshipout
 activate=%<tag%>
 activate/all#true,false
 activate/mc#true,false
+activate/softhyphen#true,false
 activate/spaces#true,false
 activate/struct#true,false
 activate/struct-dest#true,false

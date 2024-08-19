@@ -41,11 +41,11 @@
      transform="matrix(0,1,-1,0,24,0)"
      id="layer1">
     <path
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.46499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:0;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#606060;stroke:#ffffff;stroke-width:0.46499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        d="m 3.0820659,21.093682 0.00292,-17.0489551 9.6676811,-0.063557 -0.04099,2.5079283 5.014673,-0.063565 -0.06749,1.8418635"
        id="path923" />
     <rect
-       style="fill:#ffffff;fill-opacity:0;stroke:#000000;stroke-width:0.46062;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
+       style="fill:#606060;fill-opacity:1;stroke:#ffffff;stroke-width:0.46062;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
        id="rect947"
        width="17.039011"
        height="13.048736"

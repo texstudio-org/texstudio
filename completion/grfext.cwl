@@ -10,3 +10,12 @@
 \PrependGraphicsExtensions*{ext list}
 \RemoveGraphicsExtensions{ext list}
 \PrintGraphicsExtensions
+
+#keyvals:\includegraphics
+AppendGraphicsExtensions={%<ext-list%>}
+AppendGraphicsExtensions*={%<ext-list%>}
+PrependGraphicsExtensions={%<ext-list%>}
+PrependGraphicsExtensions*={%<ext-list%>}
+RemoveGraphicsExtensions={%<ext-list%>}
+PrintGraphicsExtensions
+#endkeyvals

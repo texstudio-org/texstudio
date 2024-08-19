@@ -1,10 +1,11 @@
 # piton package
-# Matthew Bertucci 2024/05/24 for v3.0b
+# Matthew Bertucci 2024/07/30 for v3.1a
 
 #include:l3keys2e
 #include:luatexbase
 #include:luacode
 #include:xcolor
+#include:amstext
 
 #keyvals:\usepackage/piton#c
 footnote
@@ -68,6 +69,8 @@ marker/include-lines
 comment-latex=%<string%>
 math-comments#true,false
 detected-commands={%<csname1,csname2,...%>}
+detected-beamer-commands={%<csname1,csname2,...%>}
+detected-beamer-environments={%<envname1,envname2,...%>}
 line-numbers/absolute
 marker={%<options%>}
 marker/beginning=%<spec%>
@@ -97,6 +100,7 @@ line-numbers/skip-empty-lines#true,false
 line-numbers/label-empty-lines#true,false
 line-numbers/resume
 line-numbers/sep=##L
+line-numbers/format=%<font commands%>
 splittable
 splittable=%<integer%>
 background-color=#%color
@@ -166,7 +170,6 @@ Keyword7=%<formatting%>
 Keyword8=%<formatting%>
 Keyword9=%<formatting%>
 ParseAgain.noCR=%<formatting%>
-ParseAgain=%<formatting%>
 Prompt=%<formatting%>
 Tag=%<formatting%>
 #endkeyvals
@@ -217,7 +220,6 @@ Keyword7
 Keyword8
 Keyword9
 ParseAgain.noCR
-ParseAgain
 Prompt
 Tag
 #endkeyvals

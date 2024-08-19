@@ -44,7 +44,7 @@ opstyle=#serif,sans
 \arceq#m
 \Assert#*m
 \assert#m
-\awint,#m
+\awint#m
 \backcong#m
 \backneg#m
 \backprime#m
@@ -74,7 +74,7 @@ opstyle=#serif,sans
 \bigcurlyvee#m
 \bigcurlywedge#m
 \bigdoublevee#m
-\bigdoublewedge,#m
+\bigdoublewedge#m
 \bigoast#m
 \bigplus#m
 \bigsqcap#m

@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/07/26 for v13.2.0
+# Matthew Bertucci 2024/08/09 for v13.4.0
 
 #include:iftex
 
@@ -1729,6 +1729,7 @@ milanote
 milvus
 minds
 minetest
+mingww64
 mini
 minio
 mintlify
@@ -3144,6 +3145,7 @@ zenn
 zenodo
 zensar
 zerodha
+zerotier
 zerply
 zettlr
 zhihu
