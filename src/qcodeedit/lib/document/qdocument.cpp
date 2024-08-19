@@ -985,7 +985,7 @@ QString QDocument::lineEndingString() const{
 	\brief Set the line ending policy of the document
 */
 void QDocument::setLineEnding(LineEnding le){
-	if (!m_impl) return;
+    if (!m_impl || lineEnding()==le) return;
 	execute(new QDocumentChangeMetaDataCommand(this, le));
 }
 
