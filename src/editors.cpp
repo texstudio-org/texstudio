@@ -404,8 +404,16 @@ void Editors::tabBarContextMenu(const QPoint &point)
 
 	act = menu.addAction((splitter->orientation() == Qt::Horizontal) ? tr("Split Vertically") : tr("Split Horizontally"));
 	connect(act, SIGNAL(triggered()), SLOT(changeSplitOrientation()));
+    menu.addSeparator();
 
 	if (editorUnderCursor) {
+        act = menu.addAction(tr("Copy file path"));
+        act->setData(QVariant::fromValue<LatexDocument *>(editorUnderCursor->getDocument()));
+        connect(act, SIGNAL(triggered()), SLOT(copyFilePath()));
+        // Open the containing folder of the currently opened document.
+        act = menu.addAction(msgGraphicalShellAction());
+        act->setData(QVariant::fromValue<LatexDocument *>(editorUnderCursor->getDocument()));
+        connect(act, SIGNAL(triggered()), SLOT(showInGraphicalShell_()));
 		menu.addSeparator();
 		QString text = tr("Set Read-Only");
 		if (editorUnderCursor->editor->isReadOnly())
@@ -430,6 +438,37 @@ void Editors::onEditorChangeByTabClick(LatexEditorView *from, LatexEditorView *t
 	// the original event comes from a tab widget. from is the previously selected tab in that widget
 	// which has not been the current one one if the tab widget has not been the current
 	emit editorAboutToChangeByTabClick(currentEditor(), to);
+}
+
+
+/*!
+ * \brief copy file path of document to clipboard
+ *
+ * Called from the tab's context menu of the currently opened document
+ */
+void Editors::copyFilePath()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
+    if (!document) return;
+    QClipboard* clipboard = QGuiApplication::clipboard();
+    if (!clipboard) return;
+    clipboard->setText(document->getFileInfo().absoluteFilePath());
+}
+/*!
+ * \brief open directory in external explorer
+ *
+ * Called from the tab's context menu of the currently opened document
+ */
+
+void Editors::showInGraphicalShell_()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
+    if (!document) return;
+    showInGraphicalShell(this, document->getFileName());
 }
 
 /*!

@@ -63,6 +63,8 @@ protected slots:
 	void moveAllToOtherTabGroup();
 	void moveAllOthersToOtherTabGroup();
 	void moveToTabGroup(LatexEditorView *edView, TxsTabWidget *target, int targetIndex);
+    void showInGraphicalShell_();
+    void copyFilePath();
 
 protected:
 	TxsTabWidget *tabWidgetFromEditor(LatexEditorView *edView) const;
