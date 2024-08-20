@@ -236,8 +236,11 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
                 QTreeWidgetItem *item=li.at(k);
                 QString id = item->data(0, Qt::UserRole).toString();
                 QStringList ids=id.split("/");
-                if(ids.value(0,"")!=progType)
-                    li.removeAll(item);
+                if(ids.value(0,"")!=progType){
+                    if(progType=="pdf" || ids.value(0,"")=="pdf"){
+                        li.removeAll(item);
+                    }
+                }
             }
 			REQUIRE(treeWidget->topLevelItem(1));
 			REQUIRE(treeWidget->topLevelItem(1)->childCount() >= 1);
