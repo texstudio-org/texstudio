@@ -656,6 +656,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     // handle keyval values with normal commandStack mechanism (mandatory argument only!!)
                     // allows argument classification
                     CommandDescription cd = lp->commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
+                    if(cd.argTypes[0]==Token::width){
+                        // special treatemnt for length for now
+                        continue;
+                    }
                     cd.level=level;
                     commandStack.push(cd);
                 }
@@ -711,6 +715,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             }
                         }
                     }
+                    //TODO: probably obsolete !!!
                     if (!commandStack.isEmpty() && lp->commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)) {
                         CommandDescription cd = lp->commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
                         tk.type = cd.argTypes.value(0, Token::keyVal_val); // only types can be set in key_val as they need to be recognized later
