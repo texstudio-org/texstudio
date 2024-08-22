@@ -652,13 +652,20 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 //lastComma = -1;
                 lastEqual = level;
                 level++;
+                if(lp->commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)){
+                    // handle keyval values with normal commandStack mechanism (mandatory argument only!!)
+                    // allows argument classification
+                    CommandDescription cd = lp->commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
+                    cd.level=level;
+                    commandStack.push(cd);
+                }
                 continue;
             }
             if (lastComma < 0 ) {
                 tk.level = level;
                 tk.type = Token::keyVal_key;
                 if(!commandStack.isEmpty()){
-                    CommandDescription &cd = commandStack.top();
+                    const CommandDescription &cd = commandStack.top();
                     tk.optionalCommandName=cd.optionalCommandName;
                 }
                 keyName = line.mid(tk.start, tk.length);
