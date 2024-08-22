@@ -131,7 +131,7 @@ void LatexParsingTest::test_latexLexing_data() {
     QTest::addColumn<Length>("lengths");
     QTest::addColumn<Levels>("levels");
 
-    /*QTest::newRow("simple") << "bummerang"
+    QTest::newRow("simple") << "bummerang"
                             << (TTypes() << T::word)
                             << (STypes() << T::none)
                             << (Starts() << 0)
@@ -220,7 +220,7 @@ void LatexParsingTest::test_latexLexing_data() {
                                          << (STypes() << T::none << T::def << T::none << T::definition )
                                          << (Starts() << 0 << 11 << 12 << 23 )
                                          << (Length() << 11 << 12 << 10 << 6 )
-                                         << (Levels() << 0 << 1 << 1 << 1 );*/
+                                         << (Levels() << 0 << 1 << 1 << 1 );
     QTest::newRow("newcommand multiline definition")
         << "\\newcommand{\\paragraph}{test\nasdasd\nasd}"
         << (TTypes() << T::command << T::braces << T::def << T::openBrace << T::closeBrace )
@@ -921,7 +921,7 @@ void LatexParsingTest::test_getContext_data() {
     QTest::addColumn<TTypes>("desiredResults");
     QTest::addColumn<STypes>("types");
 
-    /*QTest::newRow("simple") << "bummerang"
+    QTest::newRow("simple") << "bummerang"
                             << 2
                             << (TTypes() << T::word)
                             << (STypes() << T::none);
@@ -940,7 +940,7 @@ void LatexParsingTest::test_getContext_data() {
     QTest::newRow("command with keyval") << "\\includegraphics[width=4cm]{abc}"
                             << 18
                             << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
-                            << (STypes() << T::none << T::keyValArg<<T::none);*/
+                            << (STypes() << T::none << T::keyValArg<<T::none);
     QTest::newRow("command with keyval2") << "\\includegraphics[width=4cm]{abc}"
                             << 23
                             << (TTypes() << T::command << T::squareBracket<<T::keyVal_key<<T::width)
@@ -955,8 +955,8 @@ void LatexParsingTest::test_getContext_data() {
                             << (STypes() << T::none << T::keyValArg<<T::none);
     QTest::newRow("command with keyval as defined argument") << "\\lstdefinelanguage{Excel}{morekeywords={ab$c}}"
                                           << 41
-                                          << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
-                                          << (STypes() << T::none << T::keyValArg<<T::none);
+                                                             << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::braces)
+                                                             << (STypes() << T::none << T::keyValArg<<T::none<<T::definition);
 
 
 
