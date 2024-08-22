@@ -957,6 +957,10 @@ void LatexParsingTest::test_getContext_data() {
                                           << 41
                                                              << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::braces)
                                                              << (STypes() << T::none << T::keyValArg<<T::none<<T::definition);
+    QTest::newRow("command with keyval as label") << "\\lstdefinelanguage{Excel}{label=test}"
+                                                             << 35
+                                                             << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::label)
+                                                             << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val);
 
 
 
