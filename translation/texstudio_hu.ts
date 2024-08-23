@@ -12395,7 +12395,7 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="12587"/>
         <source>BLOCK</source>
-        <translation type="unfinished"/>
+        <translation>TÖMB</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12595"/>
@@ -12593,7 +12593,7 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignore.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equally to &amp;quot;this test&amp;quot;, while the other options would separate it in &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of this phrases would be shown)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ha az &amp;quot;összes megjelenítése&amp;quot; van kiválasztva, minden mondat látszik.&lt;/p&gt;&lt;p&gt;Ha a &amp;quot;minimális mondathossz&amp;quot; van kiválasztva, csak azon mondatok látszanak, melyek legalább annyi karaktert tartalmaznak. (Pl. az &amp;quot;a test&amp;quot; mondat 6 karakteres)&lt;/p&gt;&lt;p&gt;Ha a &amp;quot;minimális szóhossz (egy)&amp;quot; van kiválasztva, csak azon mondatok látszanak, melyeknek egy szava legalább ilyen hosszú. (Pl. &amp;quot;a test&amp;quot; 4 karakteres)&lt;/p&gt;&lt;p&gt;Ha a &amp;quot;minimális szóhossz (mind)&amp;quot; van kiválasztva, csak azon mondatok látszanak, melyeknek minden szava legalább ilyen hosszú. (Pl. &amp;quot;a test&amp;quot; 1 karakteres)&lt;/p&gt;&lt;p&gt;Ha a &amp;quot;teljes mellőzés&amp;quot; van kiválasztva, minden rövidebb szó mellőzve lesz.&lt;/p&gt;&lt;p&gt;(Pl. 3 hosszúsággal a &amp;quot;this is a test&amp;quot; egyenlő a &amp;quot;this test&amp;quot;-tel, mivel a többi opciók szétválasztják &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;-re, akkor is, ha egyik mondat sem látszana)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="274"/>
