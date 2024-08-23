@@ -16,7 +16,6 @@ norobustcr
 #endif
 
 \collectcell
-\collectcell{cmd}#Sd
 \endcollectcell
 \ccunskip#*
 \cci#*
