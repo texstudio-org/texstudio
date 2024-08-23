@@ -12415,7 +12415,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="12587"/>
         <source>BLOCK</source>
-        <translation type="unfinished"/>
+        <translation>БЛОК</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12595"/>
@@ -12613,7 +12613,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignore.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equally to &amp;quot;this test&amp;quot;, while the other options would separate it in &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of this phrases would be shown)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Якщо вибрано &quot;Показувати усі фрази&quot; -- будуть показані вс фрази. &lt;/p&gt;&lt;p&gt;Якщо вибрано &quot;Мінімальна довжина фрази&quot; -- будуть показані фрази, які мають принаймі таку кількість символів (напр.: &quot;Темна ніч&quot; має 9 символів)&lt;/p&gt;&lt;p&gt;Якщо вибрано &quot;Мінімальна довжина слова (одного)&quot; -- будуть показані фрази, у яких є слово, що має принаймі стільки символів (&quot;Темна ніч&quot; має 5 символи)&lt;/p&gt;&lt;p&gt;Якщо вибрано &quot;Мінімальна довжина слова (всіх)&quot; -- будуть показані фрази, у яких всі слова мають принаймі стільки символів (&quot;Темна ніч&quot; має 3 символи)&lt;/p&gt;&lt;p&gt;Якщо вибрано &quot;Ігнорувати коротші слова&quot; -- будуть повністю ігноруватись слова, коротші за вказану кількість символів.&lt;/p&gt;&lt;p&gt;(напр. при довжині 4 фраза &quot;Темна ніч вже наступає&quot; еквівалентна фразі &quot;Темна наступає&quot;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="274"/>
@@ -13320,7 +13320,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="319"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Browser command. Leave empty to not run the browser at the end of the conversion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Команда переглядача. Залишіть порожнім, якщо ви не хочете запускати браузер після перетворення&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="339"/>

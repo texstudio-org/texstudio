@@ -13296,7 +13296,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <location filename="../src/webpublishdialog.ui" line="319"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Browser command. Leave empty to not run the browser at the end of the conversion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Böngésző parancs. Hagyja üresen, hogy ne futtassa a böngészőt az átalakítás végén&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="339"/>
