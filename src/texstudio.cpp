@@ -766,6 +766,7 @@ void Texstudio::setupDockWidgets()
     addTagList("beamer", getRealIconFile("beamer_R90"), tr("Beamer Commands"), "beamer_tags.xml");
     addTagList("xymatrix", getRealIconFile("xy_R90"), tr("XY Commands"), "xymatrix_tags.xml");
     addMacrosAsTagList();
+    m_firstDockWidget->raise(); // make sure on first run structure view is topmost
     // in case of hidden sidepanel, mark docks which are to be raised
     QStringList toRaise=docksToBeRaised.split("|");
     QList<QDockWidget *> docks=findChildren<QDockWidget *>();
