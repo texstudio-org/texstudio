@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/08/17 for v13.5.0
+# Matthew Bertucci 2024/08/23 for v13.6.0
 
 #include:iftex
 
@@ -3115,6 +3115,7 @@ yarn
 ycombinator
 yelp
 yeti
+yii
 yoast
 youtube
 youtubegaming
