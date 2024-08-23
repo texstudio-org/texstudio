@@ -12491,6 +12491,7 @@ void Texstudio::updateStructureLocally(bool updateAll){
         bool itemExpandedTODO=false;
         bool itemExpandedMAGIC=false;
         bool itemExpandedBIBLIO=false;
+        bool itemExpandedBLOCK=false;
         bool addToTopLevel=false;
         if(!root){
             root=new QTreeWidgetItem();
@@ -12512,6 +12513,9 @@ void Texstudio::updateStructureLocally(bool updateAll){
                 }
                 if(item->data(0,Qt::UserRole+1).toString()=="LABEL"){
                     itemExpandedLABEL=item->isExpanded();
+                }
+                if(item->data(0,Qt::UserRole+1).toString()=="BLOCK"){
+                    itemExpandedBLOCK=item->isExpanded();
                 }
                 if(item->data(0,Qt::UserRole+1).toString()=="MAGIC"){
                     itemExpandedMAGIC=item->isExpanded();
@@ -12549,7 +12553,8 @@ void Texstudio::updateStructureLocally(bool updateAll){
         QList<QTreeWidgetItem*> labelList;
         QList<QTreeWidgetItem*> magicList;
         QList<QTreeWidgetItem*> biblioList;
-        parseStructLocally(doc,rootVector,&todoList,&labelList,&magicList,&biblioList);
+        QList<QTreeWidgetItem*> blockList;
+        parseStructLocally(doc,rootVector,&todoList,&labelList,&magicList,&biblioList,&blockList);
         if(addToTopLevel)
             structureTreeWidget->addTopLevelItem(root);
 
@@ -12577,6 +12582,14 @@ void Texstudio::updateStructureLocally(bool updateAll){
             root->insertChild(0,itemTODO);
             itemTODO->setExpanded(itemExpandedTODO);
         }
+        if(!blockList.isEmpty()){
+            QTreeWidgetItem *itemBLOCK=new QTreeWidgetItem();
+            itemBLOCK->setText(0,tr("BLOCK"));
+            itemBLOCK->setData(0,Qt::UserRole+1,"BLOCK");
+            itemBLOCK->insertChildren(0,blockList);
+            root->insertChild(0,itemBLOCK);
+            itemBLOCK->setExpanded(itemExpandedBLOCK);
+        }
         if(!labelList.isEmpty()){
             QTreeWidgetItem *itemLABEL=new QTreeWidgetItem();
             itemLABEL->setText(0,tr("LABELS"));
@@ -12599,7 +12612,7 @@ void Texstudio::updateStructureLocally(bool updateAll){
  * \param se root structureentry
  * \param rootVector
  */
-void Texstudio::parseStructLocally(LatexDocument *doc, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList, QList<QTreeWidgetItem *> *biblioList) {
+void Texstudio::parseStructLocally(LatexDocument *doc, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList, QList<QTreeWidgetItem *> *biblioList, QList<QTreeWidgetItem *> *blockList) {
     const QColor beyondEndColor = darkMode ? QColor(255, 170, 0)  : QColor(255, 170, 0);
     const QColor inAppendixColor= darkMode ? QColor(0, 102,   0): QColor(200, 230, 200);
 
@@ -12627,6 +12640,12 @@ void Texstudio::parseStructLocally(LatexDocument *doc, QVector<QTreeWidgetItem *
             item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
             item->setText(0,elem->title);
             biblioList->append(item);
+        }
+        if(blockList && (elem->type == StructureEntry::SE_BLOCK)){
+            QTreeWidgetItem * item=new QTreeWidgetItem();
+            item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
+            item->setText(0,elem->title);
+            blockList->append(item);
         }
         if(elem->type == StructureEntry::SE_SECTION){
             QTreeWidgetItem * item=new QTreeWidgetItem();

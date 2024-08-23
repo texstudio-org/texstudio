@@ -14,7 +14,7 @@ class LatexDocuments;
  * Section are organized hierarchical depending on the section level, MAGIC comments, label are below a root-marker below root
  */
 struct StructureEntry {
-	enum Type {SE_DOCUMENT_ROOT, SE_OVERVIEW, SE_SECTION, SE_BIBTEX, SE_TODO, SE_MAGICCOMMENT, SE_INCLUDE, SE_LABEL, SE_BLOCK = SE_LABEL};
+    enum Type {SE_DOCUMENT_ROOT, SE_OVERVIEW, SE_SECTION, SE_BIBTEX, SE_TODO, SE_MAGICCOMMENT, SE_INCLUDE, SE_LABEL, SE_BLOCK};
 	enum Context { ///< mark if entry is located beyond appendix/end document commands
         Unknown = 0x0000,
 		InAppendix = 0x0001,
