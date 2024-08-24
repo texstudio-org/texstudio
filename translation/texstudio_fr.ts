@@ -12407,7 +12407,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     <message>
         <location filename="../src/texstudio.cpp" line="12587"/>
         <source>BLOCK</source>
-        <translation type="unfinished"/>
+        <translation>BLOC</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12595"/>
@@ -12609,7 +12609,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignore.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equally to &amp;quot;this test&amp;quot;, while the other options would separate it in &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of this phrases would be shown)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si « Afficher toutes les phrases » est sélectionné, toutes les phrases sont affichées.&lt;/p&gt;&lt;p&gt;Si « Longueur minimale des phrases » est sélectionné, les phrases sont affichées si elles contiennent un minimum de caractères. (par ex. « un test » compte 7 caractères).&lt;/p&gt;&lt;p&gt;Si « Longueur minimale des mots (un) » est sélectionné, les phrases sont affichées si un mot contient un minimum de caractères. (par ex. « un test » compte 4 caractères).&lt;/p&gt;&lt;p&gt;Si « Longueur minimale des mots (tous) » est sélectionné, les phrases sont affichées si tous leurs mots contiennent un minimum de caractères. (par ex. « un test » compte 1 caractère).&lt;/p&gt;&lt;p&gt;Si « Ignorer complètement les mots plus courts » est sélectionné, les mots plus courts sont ignorés.&lt;/p&gt;&lt;p&gt;(par ex. avec une longueur 3, la phrase « juste un test » rendra « juste test », tandis que d&apos;autres options sépareraient en « juste un », « un test », même si aucune de ces phrases n&apos;est affichée).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="274"/>
@@ -13315,7 +13315,7 @@ Il est possible d&apos;utiliser la valeur spéciale ?txs-start pour démarrer ce
     <message>
         <location filename="../src/webpublishdialog.ui" line="319"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Browser command. Leave empty to not run the browser at the end of the conversion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Commande de lancement du navigateur (laisser vide pour ne pas le lancer à la fin de la conversion).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="339"/>
