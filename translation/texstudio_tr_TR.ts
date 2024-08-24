@@ -12403,7 +12403,7 @@ TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden 
     <message>
         <location filename="../src/texstudio.cpp" line="12587"/>
         <source>BLOCK</source>
-        <translation type="unfinished"/>
+        <translation>BLOK</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12595"/>
@@ -12601,7 +12601,7 @@ TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden 
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignore.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equally to &amp;quot;this test&amp;quot;, while the other options would separate it in &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of this phrases would be shown)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;quot;Tümünü görüntüle&amp;quot; olarak seçildiğinde, tüm ifadeler görüntülenir.&lt;/p&gt;&lt;p&gt;&amp;quot;En kısa ifade uzunluğu&amp;quot; olarak seçildiğinde, yalnızca en az belirtilen sayıda karaktere sahip olan ifadeler görüntülenir. (&amp;quot;bir deneme&amp;quot;  10 karakter uzunluğundadır)&lt;/p&gt;&lt;p&gt;&amp;quot;En az sözcük uzunluğu (bir)&amp;quot; olarak seçildiğinde, içindeki bir sözcüğün uzunluğu yalnızca en az belirtilen sayıda karaktere sahip olan ifadeler görüntülenir. (&amp;quot;bir deneme&amp;quot; için 6 karakter olabilir)&lt;/p&gt;&lt;p&gt;&amp;quot;En az sözcük uzunluğu (tümü)&amp;quot; olarak seçildiğinde, yalnızca içindeki tüm sözcükler en az belirtilen sayıda karaktere sahip olan ifadeler görüntülenir. (&amp;quot;bir deneme&amp;quot; için 3 karakter olabilir)&lt;/p&gt;&lt;p&gt;&amp;quot;Tümüyle yok sayılsın&amp;quot; olarak seçildiğinde, daha kısa sözcükler tümüyle yok sayılır.&lt;/p&gt;&lt;p&gt; (uzunluk 3 olduğunda, &quot;bu bir denemedir&quot; cümlesi &quot;bu deneme&quot; ile aynı derecededir. Diğer seçenekler onu bu ifadelerden hiçbiri görüntülenmese bile &quot;bu&quot;, &quot;bir&quot;, &quot;denemedir&quot; şeklinde ayırırdı, )&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="274"/>
@@ -13310,7 +13310,7 @@ Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.
     <message>
         <location filename="../src/webpublishdialog.ui" line="319"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Browser command. Leave empty to not run the browser at the end of the conversion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tarayıcı komutu. Dönüştürme sonunda tarayıcının çalıştırılmaması için boş bırakın&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="339"/>

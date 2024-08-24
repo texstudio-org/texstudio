@@ -12412,7 +12412,7 @@ Deseja manter o TeXstudio em execução? Pode levar à corrupção de dados.</tr
     <message>
         <location filename="../src/texstudio.cpp" line="12587"/>
         <source>BLOCK</source>
-        <translation type="unfinished"/>
+        <translation>BLOCO</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12595"/>
@@ -12610,7 +12610,7 @@ Deseja manter o TeXstudio em execução? Pode levar à corrupção de dados.</tr
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignore.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equally to &amp;quot;this test&amp;quot;, while the other options would separate it in &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of this phrases would be shown)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Se &amp;quot;mostrar tudo&amp;quot; estiver seleccionado, verá todas as frases.&lt;/p&gt;&lt;p&gt;Se &amp;quot;comprimento mínimo&amp;quot; estiver seleccionado, só verá frases com o mínimo de caracteres especificado (e.g. &amp;quot;um teste&amp;quot; tem 8 caracteres)&lt;/p&gt;&lt;p&gt;Se &amp;quot;comprimento mínimo de palavra (uma)&amp;quot; estiver seleccionado, só verá frases em que uma das palavras tenha no mínimo os caracteres especificados (e.g. &amp;quot;um teste&amp;quot; tem 5 caracteres)&lt;/p&gt;&lt;p&gt;Se &amp;quot;comprimento mínimo de palavra (todas)&amp;quot; estiver seleccionado, só verá frases se todas as palavras tiverem o no mínimo o número de caracteres especificado (e.g. &amp;quot;um teste&amp;quot; tem 1 carácter)&lt;/p&gt;&lt;p&gt;Se &amp;quot;ignorar completamente&amp;quot; estiver seleccionado, as palavras mais curtas serão ignoradas&lt;/p&gt;&lt;p&gt;(e.g. com tamanho 3, a frase &amp;quot;isto é um teste&amp;quot; fica &amp;quot;isto teste&amp;quot;, enquanto as outras opções dividi-la-iam em &amp;quot;isto é&amp;quot;, &amp;quot;é um&amp;quot;, &amp;quot;um teste&amp;quot;, mesmo se nenhuma destas frases fosse mostrada)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="274"/>
@@ -13318,7 +13318,7 @@ Pode utilizar o valor especial ?txs-start para iniciar o script no arranque do t
     <message>
         <location filename="../src/webpublishdialog.ui" line="319"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Browser command. Leave empty to not run the browser at the end of the conversion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Comando do navegador. Deixe em branco para não iniciar o navegador no final da conversão&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="339"/>
