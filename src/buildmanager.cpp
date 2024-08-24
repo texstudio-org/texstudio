@@ -106,7 +106,7 @@ QString CommandInfo::guessCommandLine(const QString texpath) const
 
 	if (!baseName.isEmpty()) {
 		//search it
-        QString bestCommand = searchBaseCommand(baseName, defaultArgs,texpath);
+		QString bestCommand = searchBaseCommand(baseName, defaultArgs,texpath);
 		if (!bestCommand.isEmpty()) return bestCommand;
 	}
 
@@ -896,6 +896,18 @@ QString searchBaseCommand(const QString &cmd, QString options, QString texPath)
         }
 
         //platform dependent mess
+#ifdef Q_OS_LINUX
+	// If we're in a Flatpak environment and TeX Live is installed on the host, we can't easily search the commands
+	// So, just assume they're present, even if org.freedesktop.Sdk.Extension.texlive is installed
+
+	// Retrieve the environment variables
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+
+	// Check if FLATPAK_SANDBOX_DIR is set
+	if (env.contains("FLATPAK_SANDBOX_DIR")) {
+		return fileName + options;
+	}
+#endif
 #ifdef Q_OS_WIN32
         //Windows MikTex
         QString mikPath = getMiKTeXBinPath();
