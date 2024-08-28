@@ -83,6 +83,12 @@ jobs:
             echo "IF_CODESIGN=true" >> "$GITHUB_ENV"
           fi
 
+      - name: disable codesign for normal pushs
+        if: !startsWith(github.ref, 'refs/tags/')
+        run: |
+          echo "IF_CODESIGN=false" >> "$GITHUB_ENV"
+          echo "::notice file=.github/workflows/cd.yml,title=Codesign disabled::Normal push detected."
+
       - name: Codesign binary
         id: sign_binary
         if: env.IF_CODESIGN == 'true'
