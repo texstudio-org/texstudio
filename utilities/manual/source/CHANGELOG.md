@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.8.3
+
+- 
+
 ## TeXstudio 4.8.2
 
 - fix background colors for AI chat interface in dark mode
