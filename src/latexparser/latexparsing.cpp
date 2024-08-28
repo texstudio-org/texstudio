@@ -652,13 +652,24 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 //lastComma = -1;
                 lastEqual = level;
                 level++;
+                if(lp->commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)){
+                    // handle keyval values with normal commandStack mechanism (mandatory argument only!!)
+                    // allows argument classification
+                    CommandDescription cd = lp->commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
+                    if(cd.argTypes[0]!=Token::definition){
+                        // special treatment for length for now
+                        continue;
+                    }
+                    cd.level=level;
+                    commandStack.push(cd);
+                }
                 continue;
             }
             if (lastComma < 0 ) {
                 tk.level = level;
                 tk.type = Token::keyVal_key;
                 if(!commandStack.isEmpty()){
-                    CommandDescription &cd = commandStack.top();
+                    const CommandDescription &cd = commandStack.top();
                     tk.optionalCommandName=cd.optionalCommandName;
                 }
                 keyName = line.mid(tk.start, tk.length);
@@ -690,18 +701,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             }
                         }
                     }
-                    // special treatment for $ as mathstart
-                    if (line.mid(tk.start, 1) == "$") {
-                        tk.type = Token::command;
-                        if(i+1<tl.length()){
-                            if(line.mid(tk.start,2)=="$$"){
-                                i=i+1;
-                                tk.length=2;
-                            }
-                        }
-                        lexed << tk;
-                        continue;
-                    }
                     // add cmd/key as optionalCommandName
                     QString cmd=lexed[lastComma].optionalCommandName;
                     QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
@@ -716,6 +715,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             }
                         }
                     }
+                    //basically used for length values
                     if (!commandStack.isEmpty() && lp->commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)) {
                         CommandDescription cd = lp->commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
                         tk.type = cd.argTypes.value(0, Token::keyVal_val); // only types can be set in key_val as they need to be recognized later
@@ -723,6 +723,18 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             lexed.last().length=tk.start+tk.length-lexed.last().start;
                             continue;
                         }
+                    }
+                    // special treatment for $ as mathstart
+                    if (line.mid(tk.start, 1) == "$") {
+                        tk.type = Token::command;
+                        if(i+1<tl.length()){
+                            if(line.mid(tk.start,2)=="$$"){
+                                i=i+1;
+                                tk.length=2;
+                            }
+                        }
+                        lexed << tk;
+                        continue;
                     }
                     lexed << tk;
                 }

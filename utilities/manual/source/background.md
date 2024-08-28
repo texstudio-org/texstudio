@@ -131,6 +131,8 @@ position in a LaTeX document. The char `#` cannot be used inside a
     syntax checking\
     If \#\#L is added to a key, a length is expected as argument.\
     If \#\#l is added to a key, the argument is defining a label. (see
+    listings.cwl)\
+    If \#\#d is added to a key, the argument is treated same like command definition,i.e. no syntax check. (see
     listings.cwl)
 -   `#endkeyvals` (at start of line): end definition of keyvals, see
     graphicx.cwl in source code

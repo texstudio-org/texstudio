@@ -221,6 +221,13 @@ void LatexParsingTest::test_latexLexing_data() {
                                          << (Starts() << 0 << 11 << 12 << 23 )
                                          << (Length() << 11 << 12 << 10 << 6 )
                                          << (Levels() << 0 << 1 << 1 << 1 );
+    QTest::newRow("newcommand multiline definition")
+        << "\\newcommand{\\paragraph}{test\nasdasd\nasd}"
+        << (TTypes() << T::command << T::braces << T::def << T::openBrace << T::closeBrace )
+        << (STypes() << T::none << T::def << T::none << T::definition << T::definition)
+        << (Starts() << 0 << 11 << 12 << 23 <<3)
+        << (Length() << 11 << 12 << 10 << 5 <<1)
+        << (Levels() << 0 << 1 << 1 << 1 <<1);
     /*
     QTest::newRow("newcommand nobrace") << "\\newcommand\\foo{test}"
                                         << (TTypes() << T::command << T::def << T::braces << T::word)
@@ -283,6 +290,25 @@ void LatexParsingTest::test_latexLexing_data() {
                                                   << (Starts() << 0  << 16 << 17 << 21 << 0 << 0 << 1 << 2 << 3 )
                                                   << (Length() << 16 << 6  << 3  <<  1 << 4 << 1 << 1 << 6 << 4 )
                                                   << (Levels() << 0  << 1  << 1  << 2  << 3 << 3 << 2 << 1 << 1 );
+    QTest::newRow("listings command with defined keyval argument") << "\\lstdefinelanguage{Excel}{morekeywords={ab$c}}"
+                                                                   << (TTypes() << T::command << T::braces     << T::word       << T::braces    << T::keyVal_key << T::braces )
+                                                                   << (STypes() << T::none    << T::generalArg << T::generalArg << T::keyValArg << T::none       << T::definition)
+                                                                   << (Starts() << 0  << 18 << 19 << 25 << 26 << 39)
+                                                                   << (Length() << 18 <<  7 <<  5 << 21 << 12 <<  6)
+                                                                   << (Levels() << 0  <<  1 <<  1 <<  1 <<  1 <<  3);
+    QTest::newRow("listings command with defined keyval argument2") << "\\lstdefinelanguage{Excel}{morekeywords={ab$c,sd&f}}"
+                                                                   << (TTypes() << T::command << T::braces     << T::word       << T::braces    << T::keyVal_key << T::braces )
+                                                                   << (STypes() << T::none    << T::generalArg << T::generalArg << T::keyValArg << T::none       << T::definition)
+                                                                   << (Starts() << 0  << 18 << 19 << 25 << 26 << 39)
+                                                                   << (Length() << 18 <<  7 <<  5 << 26 << 12 << 11)
+                                                                   << (Levels() << 0  <<  1 <<  1 <<  1 <<  1 <<  3);
+    QTest::newRow("listings command with defined keyval argument multi line")
+        << "\\lstdefinelanguage{Excel}{morekeywords={ab$c,\nsd&f\n}} test"
+        << (TTypes() << T::command << T::braces     << T::word       << T::openBrace << T::keyVal_key << T::openBrace << T::closeBrace << T::closeBrace << T::word)
+        << (STypes() << T::none    << T::generalArg << T::generalArg << T::keyValArg << T::none       << T::definition<< T::definition << T::keyValArg  << T::none)
+        << (Starts() << 0  << 18 << 19 << 25 << 26 << 39 << 0 << 1 << 3)
+        << (Length() << 18 <<  7 <<  5 << 20 << 12 <<  6 << 1 << 1 << 4)
+        << (Levels() << 0  <<  1 <<  1 <<  1 <<  1 <<  3 << 3 << 2 << 0);
     QTest::newRow("include command") << "\\include{text dsf}"
                                      << (TTypes() << T::command << T::braces << T::file)
                                      << (STypes() << T::none << T::file << T::none)
@@ -328,6 +354,8 @@ void LatexParsingTest::test_latexLexing() {
     lp->commandDefs.unite(pkg_graphics.commandDescriptions);
     LatexPackage pkg_tex = loadCwlFile("tex.cwl");
     lp->commandDefs.unite(pkg_tex.commandDescriptions);
+    LatexPackage pkg_listings = loadCwlFile("listings.cwl");
+    lp->commandDefs.unite(pkg_listings.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(TTypes, types);
     QFETCH(STypes, subtypes);
@@ -925,6 +953,15 @@ void LatexParsingTest::test_getContext_data() {
                             << 28
                             << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
                             << (STypes() << T::none << T::keyValArg<<T::none);
+    QTest::newRow("command with keyval as defined argument") << "\\lstdefinelanguage{Excel}{morekeywords={ab$c}}"
+                                          << 41
+                                                             << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::braces)
+                                                             << (STypes() << T::none << T::keyValArg<<T::none<<T::definition);
+    QTest::newRow("command with keyval as label") << "\\lstdefinelanguage{Excel}{label=test}"
+                                                             << 35
+                                                             << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::label)
+                                                             << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val);
+
 
 
 }
@@ -934,6 +971,8 @@ void LatexParsingTest::test_getContext() {
     *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
     lp->commandDefs.unite(pkg_graphics.commandDescriptions);
+    LatexPackage pkg_listings = loadCwlFile("listings.cwl");
+    lp->commandDefs.unite(pkg_listings.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(int, nr);
     QFETCH(TTypes, desiredResults);

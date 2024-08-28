@@ -806,6 +806,11 @@ CommandDescription extractCommandDefKeyVal(QString line, QString &key)
 	if (i < 0)
 		return cd;
 	key = line.left(i);
+    int j= key.indexOf("=");
+    if(i>=0){
+        // also cut possible "=" and subsequent values
+        key = key.left(j);
+    }
 	QString vals = line.mid(i + 1);
 	if (vals == "#L") {
 		cd.args = 1;
@@ -815,5 +820,9 @@ CommandDescription extractCommandDefKeyVal(QString line, QString &key)
 		cd.args = 1;
 		cd.argTypes << Token::label;
 	}
+    if (vals == "#d") {
+        cd.args = 1;
+        cd.argTypes << Token::definition;
+    }
 	return cd;
 }
