@@ -1050,7 +1050,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
         if(j+2<tl.length() && !firstArg.isEmpty() && lp->possibleCommands["math"].contains(cmd) ){
             if (lp->commandDefs.contains(cmd)) {
                 CommandDescription cd = lp->commandDefs.value(cmd);
-                if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
+                if(cd.arguments.size()==1 && cd.args()==1){
                     QString txt=cmd+"{"+firstArg+"}";
                     CodeSnippet cs(txt,true,true);
                     cs.type=CodeSnippet::userConstruct;

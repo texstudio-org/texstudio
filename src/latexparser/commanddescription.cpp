@@ -1,25 +1,38 @@
 #include "commanddescription.h"
 
-CommandDescription::CommandDescription(): optionalArgs(0), bracketArgs(0), overlayArgs(0), args(0), level(0),bracketCommand(false),verbatimAfterOptionalArg(false)
+CommandDescription::CommandDescription(): level(0),bracketCommand(false),verbatimAfterOptionalArg(false),arguments()
 {
 
-}
-
-QString tokenTypesToString(const QList<Token::TokenType>& types)
-{
-	QStringList res;
-    foreach (const Token::TokenType &type,types) res << QString("%1").arg(type);
-	return res.join(" ");
 }
 
 QString CommandDescription::toDebugString() const
 {
-    return QString("%1:%2:%3").arg(tokenTypesToString(optTypes),tokenTypesToString(argTypes),tokenTypesToString(bracketTypes));
+    QString result;
+    for(const ArgumentDescription& arg: arguments){
+        result += QString("type: %1, tokenType: %2\n").arg(arg.type).arg(arg.tokenType);
+    }
+    return result;
+}
+
+int CommandDescription::args(ArgumentDescription::ArgType argType) const
+{
+    int result = 0;
+    for(const ArgumentDescription& arg: arguments){
+        if(arg.type == argType){
+            ++result;
+        }
+    }
+    return result;
+}
+
+bool ArgumentDescription::operator==(const ArgumentDescription &v) const
+{
+    return this->tokenType==v.tokenType && this->type==v.type;
 }
 
 bool CommandDescription::operator==(const CommandDescription &v) const
 {
-    return (this->optionalCommandName==v.optionalCommandName && this->args==v.args && this->argTypes==v.argTypes && this->level==v.level && this->optionalArgs==v.optionalArgs && this->optTypes==v.optTypes && this->bracketArgs==v.bracketArgs && this->bracketTypes==v.bracketTypes);
+    return (this->optionalCommandName==v.optionalCommandName && this->arguments == v.arguments );
 }
 
 void CommandDescriptionHash::unite(const CommandDescriptionHash &other){
@@ -30,37 +43,54 @@ void CommandDescriptionHash::unite(const CommandDescriptionHash &other){
     foreach (const QString &elem, other.keys()) {
         if (this->contains(elem)) {
             CommandDescription cd = this->value(elem);
-            CommandDescription cd_neu = other.value(elem);
-            if (cd_neu.args > cd.args) {
+            CommandDescription cd_new = other.value(elem);
+            if (cd_new.arguments.size() > cd.arguments.size()) {
                 //simple selection criteria
                 this->insert(elem, other.value(elem));
             } else {
-                // when same number of args (>0), general arg is considered inferior
-                if ( cd_neu.args == cd.args )  {
-                    if (cd_neu.optionalArgs > cd.optionalArgs) {
+                if (cd_new.arguments.size() == cd.arguments.size()) {
+                    // when same number of args (>0), general arg is considered inferior
+                    int overlayArgs = 0;
+                    int optionalArgs = 0;
+                    for (const ArgumentDescription &ad : cd.arguments) {
+                        if (ad.type == ArgumentDescription::OPTIONAL){
+                            ++optionalArgs;
+                        }
+                        if (ad.type == ArgumentDescription::OVERLAY){
+                            ++overlayArgs;
+                        }
+                    }
+                    int new_overlayArgs = 0;
+                    int new_optionalArgs = 0;
+                    int new_generalArgs=0;
+                    for (const ArgumentDescription &ad : cd_new.arguments) {
+                        if (ad.tokenType == Token::generalArg){
+                            ++new_generalArgs;
+                        }
+                        if (ad.type == ArgumentDescription::OPTIONAL){
+                            ++optionalArgs;
+                        }
+                        if (ad.type == ArgumentDescription::OVERLAY){
+                            ++overlayArgs;
+                        }
+                    }
+                    if (new_optionalArgs > optionalArgs) {
                         // same number of arguments but more optional arguments
                         this->insert(elem, other.value(elem));
                     } else {
-                        if (cd_neu.optionalArgs == cd.optionalArgs && cd.args>0) {
-                            if(cd_neu.overlayArgs>cd.overlayArgs){
+                        if (new_optionalArgs == optionalArgs && cd.arguments.size()>0) {
+                            if(new_overlayArgs> overlayArgs){
                                 // same number of arguments but more overlay arguments
                                 this->insert(elem, other.value(elem));
                             }else{
                                 bool override = true;
 
-                                if(cd_neu.overlayArgs<cd.overlayArgs){
+                                if(new_overlayArgs < overlayArgs){
                                     override=false; // don't overwrite if overlayArgs less
                                 }
-
-                                for (int i = 0; i < cd.args; i++) {
-                                    if (cd_neu.argTypes.at(i) == Token::generalArg)
-                                        override = false;
+                                if(new_generalArgs>0){
+                                    override=false; // don't overwrite if generalArgs
                                 }
-                                for (int i = 0; i < cd.optionalArgs; i++) {
-                                    if (cd_neu.optTypes.at(i) == Token::generalArg)
-                                        override = false;
-                                }
-
                                 if (override)
                                     this->insert(elem, other.value(elem));
                             }
@@ -73,4 +103,6 @@ void CommandDescriptionHash::unite(const CommandDescriptionHash &other){
         }
     }
 }
+
+
 
