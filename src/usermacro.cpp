@@ -116,10 +116,6 @@ void Macro::init(const QString &nname, Macro::Type ntype, const QString &ntag, c
 
 	} while (lastLen != realtrigger.length());
 
-    /*if (realtrigger.startsWith("(?<=")) {
-		triggerLookBehind = true;
-		realtrigger.remove(1, 3); //qregexp doesn't support look behind, but we can emulate it by removing the first capture
-    }*/
     triggerRegex = QRegularExpression("(?:" + realtrigger + ")$"); // (?: non capturing)
 }
 
