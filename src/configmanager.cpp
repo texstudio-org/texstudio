@@ -2476,12 +2476,14 @@ QList<QVariant> parseCommandArguments (const QString &str)
 	if (str == "()") return result;
 	s.remove(0, 1);
 	//                            1/-----2---\  /----3----\  /4-/5/6---------6\5\4--4\ 0
-	static const QRegExp args("^ *((-? *[0-9]+)|(true|false)|(\"(([^\"]*|\\\\\")*)\")) *,?");
-	while (args.indexIn(s) != -1) {
-		if (!args.cap(2).isEmpty()) result << args.cap(2).toInt();
-		else if (!args.cap(3).isEmpty()) result << (args.cap(3) == "true");
-		else if (!args.cap(5).isEmpty()) result << (args.cap(5).replace("\\\"", "\"").replace("\\n", "\n").replace("\\t", "\t").replace("\\\\", "\\"));
-		s.remove(0, args.matchedLength());
+    static const QRegularExpression rxArgs("^ *((-? *[0-9]+)|(true|false)|(\"(([^\"]*|\\\\\")*)\")) *,?");
+    QRegularExpressionMatch args=rxArgs.match(s);
+    while (args.hasMatch()) {
+        if (!args.captured(2).isEmpty()) result << args.captured(2).toInt();
+        else if (!args.captured(3).isEmpty()) result << (args.captured(3) == "true");
+        else if (!args.captured(5).isEmpty()) result << (args.captured(5).replace("\\\"", "\"").replace("\\n", "\n").replace("\\t", "\t").replace("\\\\", "\\"));
+        s.remove(0, args.capturedLength());
+        args=rxArgs.match(s);
 	}
 	return result;
 }
