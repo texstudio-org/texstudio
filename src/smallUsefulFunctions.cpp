@@ -588,7 +588,7 @@ QList<int> indicesOf(const QString &line, const QString &word, Qt::CaseSensitivi
 }
 
 /*!
- * a multi-match equivalent of QString::indexOf(QRegExp)
+ * a multi-match equivalent of QString::indexOf(QRegularExpression)
  */
 QList<int> indicesOf(const QString &line, const QRegularExpression &rx)
 {
