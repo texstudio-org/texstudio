@@ -332,14 +332,15 @@ QString SymbolListModel::getTooltip(const SymbolItem &item) const
 	QString label = item.command.toHtmlEscaped();
 	label = tr("Command: ") + "<b>" + label + "</b>";
 
-	QRegExp rePkgs("(?:\\[(.*)\\])?\\{(.*)\\}");
+    QRegularExpression rePkgs("(?:\\[(.*)\\])?\\{(.*)\\}");
 
 	args.clear();
 	pkgs.clear();
 
-	if ( rePkgs.indexIn(item.packages) != -1 ) {
-		args = rePkgs.cap(1).split(",");
-		pkgs = rePkgs.cap(2).split(",");
+    QRegularExpressionMatch rePkgsMatch = rePkgs.match(item.packages);
+    if ( rePkgsMatch.hasMatch() ) {
+        args = rePkgsMatch.captured(1).split(",");
+        pkgs = rePkgsMatch.captured(2).split(",");
 	}
 	if ( pkgs.count() > 0 ) {
 		if (pkgs.count() == 1)
