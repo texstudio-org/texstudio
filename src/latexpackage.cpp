@@ -149,7 +149,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				CommandDescription cd = extractCommandDefKeyVal(line, key);
                 for(QString elem:l_cmds){
 					package.possibleCommands["key%" + elem] << line;
-					if (cd.args > 0) {
+                    if (cd.arguments.size() > 0) {
 						if (key.endsWith("="))
 							key.chop(1);
                         if(elem.endsWith("#c")){
@@ -226,21 +226,17 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					if (!package.commandDescriptions.contains(cmd)) {
 						// one insertion of a general \begin-command
 						CommandDescription cd;
-						cd.args = 1;
-						cd.argTypes << Token::beginEnv;
+                        cd.arguments << ArgumentDescription{ArgumentDescription::MANDATORY, Token::beginEnv};
 						package.commandDescriptions.insert(cmd, cd);
 					}
 					cmd = rxCom.cap();
 				}
 				if (package.commandDescriptions.contains(cmd)) {
 					CommandDescription cd_old = package.commandDescriptions.value(cmd);
-					if (cd_old.args == cd.args && cd_old.optionalArgs > cd.optionalArgs ) {
+                    if (cd_old.arguments.size()  > cd.arguments.size() ) {
 						cd = cd_old;
 					}
-					if (cd_old.args == cd.args && cd_old.optionalArgs == cd.optionalArgs && cd_old.overlayArgs > cd.overlayArgs ) {
-						cd = cd_old;
-					}
-					if (cd_old.args < cd.args && cd_old.args > 0) {
+                    if (cd_old.args() < cd.args() && cd_old.args() > 0) {
 						cd = cd_old;
 #ifndef QT_NO_DEBUG
 						qDebug() << "inconsistent command arguments:" << cmd << fileName;
@@ -250,9 +246,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 #endif
 					}
 
-					if (cd_old.args > cd.args) {
+                    if (cd_old.args() > cd.args()) {
 #ifndef QT_NO_DEBUG
-						if (cd.args > 0) {
+                        if (cd.args() > 0) {
 							qDebug() << "inconsistent command arguments:" << cmd << fileName;
 							// commands with different numbers of mandatory arguments are not distinguished by the parser and lead to unreliable results.
 							// the lower numer of mandatory arguments is handled only (however not an command with zero arguments)
@@ -308,9 +304,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
                         QRegularExpression re{"{.*?}"};
                         QRegularExpressionMatchIterator it = re.globalMatch(line);
                         QRegularExpressionMatch match;
-                        for(int i=0;i<cd.argTypes.size();++i){
+                        for(int i=0;i<cd.arguments.size();++i){
                             match = it.next();
-                            if(cd.argTypes[i]==Token::labelRef)
+                            if(cd.arguments[i].tokenType==Token::labelRef)
                                 break;
                         }
                         if(match.hasMatch()){
@@ -410,9 +406,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
                         QRegularExpression re{"{.*?}"};
                         QRegularExpressionMatchIterator it = re.globalMatch(line);
                         QRegularExpressionMatch match;
-                        for(int i=0;i<cd.argTypes.size();++i){
+                        for(int i=0;i<cd.arguments.size();++i){
                             match = it.next();
-                            if(cd.argTypes[i]==Token::bibItem)
+                            if(cd.arguments[i].tokenType==Token::bibItem)
                                 break;
                         }
                         package.possibleCommands["%cite"] << rxCom.cap(1);
@@ -769,21 +765,17 @@ CommandDescription extractCommandDef(QString line, QString definition)
 		if (!arg.isEmpty()) { //ignore empty arguments
 			switch (j) {
 			case 0:
-				cd.args = cd.args + 1;
-				cd.argTypes.append(type);
+                cd.arguments<<ArgumentDescription{ArgumentDescription::MANDATORY, type};
 				break;
 			case 1:
-				cd.optionalArgs = cd.optionalArgs + 1;
-				cd.optTypes.append(type);
+                cd.arguments<<ArgumentDescription{ArgumentDescription::OPTIONAL, type};
 				break;
 			case 2:
-				cd.bracketArgs = cd.bracketArgs + 1;
-				cd.bracketTypes.append(type);
-				break;
+                cd.arguments<<ArgumentDescription{ArgumentDescription::BRACKET, type};
+                break;
 			case 3:
-				cd.overlayArgs = cd.overlayArgs + 1;
-				cd.overlayTypes.append(type);
-				break;
+                cd.arguments<<ArgumentDescription{ArgumentDescription::OVERLAY, type};
+                break;
 			default:
 				break;
 			}
@@ -813,16 +805,13 @@ CommandDescription extractCommandDefKeyVal(QString line, QString &key)
     }
 	QString vals = line.mid(i + 1);
 	if (vals == "#L") {
-		cd.args = 1;
-		cd.argTypes << Token::width;
+        cd.arguments={ArgumentDescription{ArgumentDescription::MANDATORY, Token::width}};
 	}
 	if (vals == "#l") {
-		cd.args = 1;
-		cd.argTypes << Token::label;
+        cd.arguments={ArgumentDescription{ArgumentDescription::MANDATORY, Token::label}};
 	}
     if (vals == "#d") {
-        cd.args = 1;
-        cd.argTypes << Token::definition;
+        cd.arguments={ArgumentDescription{ArgumentDescription::MANDATORY, Token::definition}};
     }
 	return cd;
 }

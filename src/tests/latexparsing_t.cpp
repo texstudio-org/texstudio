@@ -228,14 +228,12 @@ void LatexParsingTest::test_latexLexing_data() {
         << (Starts() << 0 << 11 << 12 << 23 <<3)
         << (Length() << 11 << 12 << 10 << 5 <<1)
         << (Levels() << 0 << 1 << 1 << 1 <<1);
-    /*
     QTest::newRow("newcommand nobrace") << "\\newcommand\\foo{test}"
-                                        << (TTypes() << T::command << T::def << T::braces << T::word)
-                                        << (STypes() << T::none << T::none << T::definition << T::definition)
-                                        << (Starts() << 0 << 11 << 15 << 16)
-                                        << (Length() << 11 << 4 << 6 << 4)
-                                        << (Levels() << 0 << 0 << 1 << 1);
-    */
+                                        << (TTypes() << T::command << T::command << T::braces)
+                                        << (STypes() << T::none << T::def << T::definition)
+                                        << (Starts() << 0 << 11 << 15)
+                                        << (Length() << 11 << 4 << 6)
+                                        << (Levels() << 0 << 1 << 1);
     QTest::newRow("documentclass command") << "\\documentclass{text}"
                                            << (TTypes() << T::command << T::braces << T::documentclass)
                                            << (STypes() << T::none << T::documentclass << T::none)
@@ -345,6 +343,25 @@ void LatexParsingTest::test_latexLexing_data() {
                                      << (Starts() << 0 << 7 << 8 <<17)
                                      << (Length() << 7 << 9 << 7 << 4)
                                      << (Levels() << 0 << 1 << 1 << 0);
+    QTest::newRow("positional optional arguments") << "\\yagding{char}[color]"
+                                                  << (TTypes() << T::command << T::braces << T::word << T::squareBracket << T::word)
+                                                  << (STypes() << T::none << T::generalArg << T::generalArg << T::color << T::color)
+                                                  << (Starts() << 0 << 8 << 9 << 14 << 15)
+                                                  << (Length() << 8 << 6 << 4 << 7 << 5)
+                                                  << (Levels() << 0 << 1 << 1 << 1 << 1);
+    QTest::newRow("positional optional arguments2") << "\\yagding[test]{char}[color]"
+                                                   << (TTypes() << T::command << T::squareBracket << T::keyVal_key << T::braces << T::word << T::squareBracket << T::word)
+                                                    << (STypes() << T::none << T::keyValArg << T::none << T::generalArg << T::generalArg << T::color << T::color)
+                                                    << (Starts() << 0 << 8 << 9 << 14 << 15 << 20 << 21)
+                                                    << (Length() << 8 << 6 << 4 << 6 << 4 << 7 << 5)
+                                                    << (Levels() << 0 << 1 << 1 << 1 << 1 << 1 << 1);
+    QTest::newRow("positional optional arguments3") << "\\yagding[test]{char} color"
+                                                    << (TTypes() << T::command << T::squareBracket << T::keyVal_key << T::braces << T::word << T::word)
+                                                    << (STypes() << T::none << T::keyValArg << T::none << T::generalArg << T::generalArg << T::none)
+                                                    << (Starts() << 0 << 8 << 9 << 14 << 15 <<  21)
+                                                    << (Length() << 8 << 6 << 4 << 6 << 4 << 5)
+                                                    << (Levels() << 0 << 1 << 1 << 1 << 1 << 0);
+
 }
 
 void LatexParsingTest::test_latexLexing() {
@@ -356,6 +373,8 @@ void LatexParsingTest::test_latexLexing() {
     lp->commandDefs.unite(pkg_tex.commandDescriptions);
     LatexPackage pkg_listings = loadCwlFile("listings.cwl");
     lp->commandDefs.unite(pkg_listings.commandDescriptions);
+    LatexPackage pkg_yagu = loadCwlFile("yagusylo.cwl");
+    lp->commandDefs.unite(pkg_yagu.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(TTypes, types);
     QFETCH(STypes, subtypes);

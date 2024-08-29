@@ -5,25 +5,38 @@
 #include "latextokens.h"
 
 /*!
+ * \brief define arguments
+ * Specify the type of the argument and the token type
+ */
+class ArgumentDescription {
+public:
+    enum ArgType {
+        MANDATORY,
+        OPTIONAL,
+        BRACKET,
+        OVERLAY
+    };
+    ArgType type;
+    Token::TokenType tokenType;
+    bool operator==(const ArgumentDescription &v) const;
+};
+
+/*!
  * \brief define available arguments for a command
+ * Arguments are stored as a list of argument descriptions
+ * The argument position is encoded into the list position
  */
 class CommandDescription
 {
 public:
 	CommandDescription();
-	int optionalArgs; ///< number of optional arguments
-	int bracketArgs; ///< number of () arguments
-    int overlayArgs; ///< number of <> arguments (beamer overlay, usually 0 or 1)
-	int args; ///< number of mandatory arguments (in braces)
 	int level;
     bool bracketCommand;
     bool verbatimAfterOptionalArg;
-	QList<Token::TokenType> argTypes; ///< define argument type as token
-	QList<Token::TokenType> optTypes; ///< define argument type as token
-	QList<Token::TokenType> bracketTypes; ///< define argument type as token
-    QList<Token::TokenType> overlayTypes; ///< define argument type as token
+    QList<ArgumentDescription> arguments; ///< define arguments as argument description
     QString optionalCommandName; ///< stores optionally command name. It is used for processing command description during lexing
 	QString toDebugString() const; ///< debug function to get easier information on command description
+    int args(ArgumentDescription::ArgType argType=ArgumentDescription::MANDATORY) const; ///< return number of arguments
     bool operator==(const CommandDescription &v) const; ///< compare two command descriptions
 };
 

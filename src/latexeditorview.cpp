@@ -2646,7 +2646,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			handled = true;
 			command = line.mid(tk.start, tk.length);
 			CommandDescription cd = lp.commandDefs.value(command);
-			if (cd.args > 0)
+            if (cd.args() > 0)
 				value = Parsing::getArg(tl.mid(tkPos + 1), dlh, 0, ArgumentList::Mandatory);
 			if (config->toolTipPreview && showMathEnvPreview(cursor, command, value, pos)) {
                 // action is already performed as a side effect
