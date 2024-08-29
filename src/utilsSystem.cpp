@@ -572,14 +572,15 @@ QString getNonextistentFilename(const QString &guess, const QString &fallback)
 {
 	QFileInfo fi(guess);
 	if (!fi.exists()) return guess;
-	QRegExp reNumberedFilename("(.*[^\\d])(\\d*)\\.(\\w+)");
-	if (!reNumberedFilename.exactMatch(guess)) {
+    QRegularExpression reNumberedFilename("^(.*[^\\d])(\\d*)\\.(\\w+)$");
+    QRegularExpressionMatch reNumberedFilenameMatch = reNumberedFilename.match(guess);
+    if (!reNumberedFilenameMatch.hasMatch()) {
 		return fallback;
 	}
-	QString base = reNumberedFilename.cap(1);
-	QString ext = reNumberedFilename.cap(3);
-	int num = reNumberedFilename.cap(2).toInt();
-	int numLen = reNumberedFilename.cap(2).length();
+    QString base = reNumberedFilenameMatch.captured(1);
+    QString ext = reNumberedFilenameMatch.captured(3);
+    int num = reNumberedFilenameMatch.captured(2).toInt();
+    int numLen = reNumberedFilenameMatch.captured(2).length();
 
 	for (int i = num + 1; i <= 1000000; i++) {
 		QString filename = QString("%1%2.%3").arg(base).arg(i, numLen, 10, QLatin1Char('0')).arg(ext);
@@ -740,9 +741,9 @@ bool isRetinaMac()
 		process.start("sysctl", QStringList() << "-n" << "hw.model");
 		process.waitForFinished(1000);
 		QString model(process.readAllStandardOutput()); // is something like "MacBookPro10,1"
-		QRegExp rx("MacBookPro([0-9]*)");
-		rx.indexIn(model);
-		int num = rx.cap(1).toInt();
+        QRegularExpression rx("MacBookPro([0-9]*)");
+        QRegularExpressionMatch rxMatch = rx.match(model);
+        int num = rxMatch.captured(1).toInt();
 		if (num >= 10) // compatibility with future MacBookPros. Assume they are also retina.
 			isRetina = true;
 	}
