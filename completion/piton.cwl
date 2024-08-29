@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/07/30 for v3.1a
+# Matthew Bertucci 2024/08/29 for v3.1c
 
 #include:l3keys2e
 #include:luatexbase
@@ -148,6 +148,7 @@ Comment=%<formatting%>
 Comment.LaTeX=%<formatting%>
 Keyword.Constant=%<formatting%>
 Keyword=%<formatting%>
+Keyword.Governing=%<formatting%>
 Name.Type=%<formatting%>
 Name.Field=%<formatting%>
 Name.Constructor=%<formatting%>
@@ -158,6 +159,7 @@ Name.Table=%<formatting%>
 Directive=%<formatting%>
 # not documented
 FormattingType=%<formatting%>
+Identifier.Internal=%<formatting%>
 Comment.Math=%<formatting%>
 Discard=%<formatting%>
 Identifier=%<formatting%>
@@ -169,9 +171,10 @@ Keyword6=%<formatting%>
 Keyword7=%<formatting%>
 Keyword8=%<formatting%>
 Keyword9=%<formatting%>
-ParseAgain.noCR=%<formatting%>
+ParseAgain=%<formatting%>
 Prompt=%<formatting%>
 Tag=%<formatting%>
+TypeExpression=%<formatting%>
 #endkeyvals
 
 \PitonStyle{style%keyvals}{text%plain}
@@ -198,6 +201,7 @@ Comment
 Comment.LaTeX
 Keyword.Constant
 Keyword
+Keyword.Governing
 Name.Type
 Name.Field
 Name.Constructor
@@ -208,6 +212,7 @@ Name.Table
 Directive
 # not documented
 FormattingType
+Identifier.Internal
 Comment.Math
 Discard
 Identifier
@@ -219,9 +224,10 @@ Keyword6
 Keyword7
 Keyword8
 Keyword9
-ParseAgain.noCR
+ParseAgain
 Prompt
 Tag
+TypeExpression
 #endkeyvals
 
 \PitonClearUserFunctions
