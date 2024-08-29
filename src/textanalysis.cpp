@@ -323,12 +323,12 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString, int> &map)
 	int minLen = 0;
 	int minCount = ui.minimumCountSpin->value();
 	int phraseLength = ui.sentenceLengthSpin->value();
-	QRegExp wordFilter;
+    QRegularExpression wordFilter;
 	bool filtered = ui.filter->currentIndex() != 0;
 	QString curFilter = ui.filter->currentText();
 	if (ui.filter->currentIndex() == -1 ||
-	        curFilter != ui.filter->itemText(ui.filter->currentIndex())) wordFilter = QRegExp(curFilter);
-	else wordFilter = QRegExp(curFilter.mid(curFilter.indexOf("(")));
+            curFilter != ui.filter->itemText(ui.filter->currentIndex())) wordFilter = QRegularExpression("^"+curFilter+"$");
+    else wordFilter = QRegularExpression("^"+curFilter.mid(curFilter.indexOf("("))+"$");
 
 	switch (ui.minimumLengthMeaning->currentIndex()) {
 	case 2: //at least one word must have min length, all shorter with space: (min-1 +1)*phraseLength-1
@@ -336,10 +336,10 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString, int> &map)
 		for (QMap<QString, int>::const_iterator it = map.constBegin(); it != map.constEnd(); ++it)
 			if (it.value() >= minCount) {
 				if (it.key().size() >= minLen * phraseLength) {
-					if (filtered || wordFilter.exactMatch(it.key()))
+                    if (filtered || it.key().indexOf(wordFilter)==0)
 						displayed.words.append(ClsWord(it.key(), it.value()));
 				} else {
-					if (filtered && !wordFilter.exactMatch(it.key())) continue;
+                    if (filtered && it.key().indexOf(wordFilter)!=0) continue;
 					QString t = it.key();
 					int last = 0;
 					int i = 0;
@@ -358,7 +358,7 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString, int> &map)
 		minLen = ui.minimumLengthSpin->value();
 		for (QMap<QString, int>::const_iterator it = map.constBegin(); it != map.constEnd(); ++it)
 			if (it.value() >= minCount && it.key().size() >= minLen) { //not minLen*phraseCount because there can be less words in a phrase
-				if (filtered && !wordFilter.exactMatch(it.key())) continue;
+                if (filtered && it.key().indexOf(wordFilter)!=0) continue;
 				QString t = it.key();
 				int last = 0;
 				bool ok = true;
@@ -379,7 +379,7 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString, int> &map)
 	default:
 		if (filtered) {
 			for (QMap<QString, int>::const_iterator it = map.constBegin(); it != map.constEnd(); ++it)
-				if (it.value() >= minCount && it.key().size() >= minLen && wordFilter.exactMatch(it.key()))
+                if (it.value() >= minCount && it.key().size() >= minLen && it.key().indexOf(wordFilter)==0)
 					displayed.words.append(ClsWord(it.key(), it.value()));
 		} else {
 			for (QMap<QString, int>::const_iterator it = map.constBegin(); it != map.constEnd(); ++it)
