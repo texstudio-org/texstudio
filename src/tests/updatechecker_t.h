@@ -26,10 +26,10 @@ private slots:
 			QTest::qWait(100);
 		}
 		if (spy.count() > 0) {
-			QRegExp rxVersion("(\\d+)(?:\\.(\\d+))+");
-			QVERIFY( rxVersion.exactMatch(UpdateChecker::instance()->latestVersion()) );
+            QRegularExpression rxVersion("^(\\d+)(?:\\.(\\d+))+$");
+            QVERIFY( UpdateChecker::instance()->latestVersion().indexOf(rxVersion) == 0 );
 		} else {
-			QWARN("Timeout while trying to retrieve latest version from server.");
+            qWarning("Timeout while trying to retrieve latest version from server.");
 		}
 	}
 private:
