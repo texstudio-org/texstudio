@@ -150,11 +150,12 @@ bool LatexLogModel::existsReRunWarning() const
 QStringList LatexLogModel::getMissingCitations() const
 {
 	QStringList sl;
-	static QRegExp rCitation ("Citation +[`'\"]([^`'\"]+)[`'\"] +.*undefined");
+    static QRegularExpression rCitation ("Citation +[`'\"]([^`'\"]+)[`'\"] +.*undefined");
 	foreach (const LatexLogEntry &l, log) {
 		if (l.type != LT_WARNING) continue;
-		if (rCitation.indexIn(l.message) >= 0)
-			sl.append(rCitation.cap(1));
+        QRegularExpressionMatch rxm=rCitation.match(l.message);
+        if (rxm.hasMatch())
+            sl.append(rxm.captured(1));
 	}
 	return sl;
 }
