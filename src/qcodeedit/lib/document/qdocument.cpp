@@ -4653,8 +4653,8 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 	int &line = m_begLine;
 	int &offset = m_begOffset;
 
-	static QRegExp wordStart("\\b\\w+$"), wordEnd("^\\w+\\b");
-	static QRegExp wordOrCommandStart("\\\\?\\b\\w+$"), wordOrCommandEnd("^\\\\?\\w+\\b");
+    static QRegularExpression rxWordStart("\\b\\w+$"), rxWordEnd("\\w+\\b");
+    static QRegularExpression rxWordOrCommandStart("\\\\?\\b\\w+$"), rxWordOrCommandEnd("\\\\?\\w+\\b");
 
 	if ( !(m & QDocumentCursor::KeepAnchor) )
 	{
@@ -5217,7 +5217,8 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 		case QDocumentCursor::StartOfWord :
 		{
-			int x = wordStart.indexIn(m_doc->line(line).text().left(offset));
+            QRegularExpressionMatch wordStart=rxWordStart.match(m_doc->line(line).text().left(offset));
+            int x = wordStart.capturedStart();
 
 			if ( x != -1 )
 			{
@@ -5234,11 +5235,12 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 		case QDocumentCursor::EndOfWord :
 		{
-			int x = wordEnd.indexIn(m_doc->line(line).text(), offset, QRegExp::CaretAtOffset);
+            QRegularExpressionMatch wordEnd=rxWordEnd.match(m_doc->line(line).text(), offset);
+            int x = wordEnd.capturedStart();
 
 			if ( x == offset )
 			{
-				offset += wordEnd.matchedLength();
+                offset += wordEnd.capturedLength();
 			} else {
 				//qDebug("failed to find EOW");
 				return false;
@@ -5251,7 +5253,8 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 		case QDocumentCursor::StartOfWordOrCommand :
 		{
-			int x = wordOrCommandStart.indexIn(m_doc->line(line).text().left(offset+1));  // offset+1 because we would not match if we would cut-off at the cursor if it is directly behind a slash like this: \|command
+            QRegularExpressionMatch wordOrCommandStart=rxWordOrCommandStart.match(m_doc->line(line).text().left(offset+1));
+            int x = wordOrCommandStart.capturedStart();  // offset+1 because we would not match if we would cut-off at the cursor if it is directly behind a slash like this: \|command
 
 			if ( x != -1 )
 			{
@@ -5268,12 +5271,12 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 		case QDocumentCursor::EndOfWordOrCommand :
 		{
-
-			int x = wordOrCommandEnd.indexIn(m_doc->line(line).text(), offset, QRegExp::CaretAtOffset);
+            QRegularExpressionMatch wordOrCommandEnd=rxWordOrCommandEnd.match(m_doc->line(line).text(), offset);
+            int x = wordOrCommandEnd.capturedStart();
 
 			if ( x == offset )
 			{
-				offset += wordOrCommandEnd.matchedLength();
+                offset += wordOrCommandEnd.capturedLength();
 			} else {
 				//qDebug("failed to find EOWC");
 				return false;
