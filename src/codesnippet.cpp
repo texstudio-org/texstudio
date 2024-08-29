@@ -384,10 +384,9 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 					oldEnv = curLine.mid(cursor->columnNumber(), closeCurl - cursor->columnNumber());
 				else
 					oldEnv = curLine.mid(openCurl + 1, closeCurl - openCurl - 1);
-				QRegExp rx("\\\\begin\\{(.+)\\}");
-				rx.setMinimal(true);
-				rx.indexIn(line);
-				QString newEnv = rx.cap(1);
+                QRegularExpression rx("\\\\begin\\{(.+?)\\}");
+                QRegularExpressionMatch rxm=rx.match(line);
+                QString newEnv = rxm.captured(1);
 				// remove curly brakets as well
 				QDocument *doc = cursor->document();
 				QString searchWord = "\\end{" + oldEnv + "}";
