@@ -599,7 +599,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 }
                 if (!commandStack.isEmpty() && commandStack.top().level == level) {
                     CommandDescription cd = commandStack.top();
-                    if (cd.args() <= 0 && cd.args(ArgumentDescription::BRACKET) <= 0) {
+                    if (cd.arguments.isEmpty()) {
                         // all args handled, stop handling this command
                         commandStack.pop();
                         if(cd.verbatimAfterOptionalArg){ // delayed verbatim start to handle optional argument
@@ -808,6 +808,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 if (cd.arguments.size() && cd.arguments.first().type==ArgumentDescription::MANDATORY) {
                     auto ad=cd.arguments.takeFirst();
                     tk.subtype = ad.tokenType;
+                    tk.level++; // needs tk level be increased
                 }else{
                     cd.arguments.clear(); // unknown arg, stop handling this command
                 }
@@ -815,7 +816,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     // command has been handled completely
                     commandStack.pop();
                 }
-                tk.level++; // needs tk level be increased
             }
 
             if(tk.subtype==Token::keyVal_val && tk.type==Token::punctuation && line.mid(tk.start, tk.length)==",") continue; // exception for comma in keyVal braces
