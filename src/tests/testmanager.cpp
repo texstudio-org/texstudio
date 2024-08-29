@@ -32,11 +32,11 @@
 #include "texstudio_t.h"
 #include <QtTest/QtTest>
 
-const QRegExp TestToken::simpleTextRegExp ("[A-Z'a-z0-9]+.?");
-const QRegExp TestToken::commandRegExp ("\\\\([A-Za-z]+|.)");
-const QRegExp TestToken::ignoredTextRegExp ("[$\t *!{}.\\][]+");
-const QRegExp TestToken::specialCharTextRegExp ("[A-Z'\"\\\\\\{\\}a-z0-9ö]+");
-const QRegExp TestToken::punctationRegExp("[!():\"?,.;-]");
+const QRegularExpression TestToken::simpleTextRegExp ("^[A-Z'a-z0-9]+.?$");
+const QRegularExpression TestToken::commandRegExp ("^\\\\([A-Za-z]+|.)$");
+const QRegularExpression TestToken::ignoredTextRegExp ("^[$\t *!{}.\\][]+$");
+const QRegularExpression TestToken::specialCharTextRegExp ("^[A-Z'\"\\\\\\{\\}a-z0-9ö]+$");
+const QRegularExpression TestToken::punctationRegExp("^[!():\"?,.;-]$");
 
 long long totalTestTime;
 char* tempResult;

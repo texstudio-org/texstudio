@@ -15,19 +15,19 @@ const int NW_OPTION_PUNCTATION = -4; //option punctation like in \include
 
 class TestToken: public QString
 {
-	static const QRegExp simpleTextRegExp; //defined in testmanager.cpp
-	static const QRegExp commandRegExp;
-	static const QRegExp ignoredTextRegExp;
-	static const QRegExp specialCharTextRegExp;
-	static const QRegExp punctationRegExp;
+    static const QRegularExpression simpleTextRegExp; //defined in testmanager.cpp
+    static const QRegularExpression commandRegExp;
+    static const QRegularExpression ignoredTextRegExp;
+    static const QRegularExpression specialCharTextRegExp;
+    static const QRegularExpression punctationRegExp;
 	void guessType()
 	{
-		if (simpleTextRegExp.exactMatch(*this)) type = LatexReader::NW_TEXT;
-		else if (commandRegExp.exactMatch(*this)) type = LatexReader::NW_COMMAND;
-		else if (punctationRegExp.exactMatch(*this)) type = LatexReader::NW_PUNCTATION;
-		else if (ignoredTextRegExp.exactMatch(*this)) type = NW_IGNORED_TOKEN;
+        if (simpleTextRegExp.match(*this).hasMatch()) type = LatexReader::NW_TEXT;
+        else if (commandRegExp.match(*this).hasMatch()) type = LatexReader::NW_COMMAND;
+        else if (punctationRegExp.match(*this).hasMatch()) type = LatexReader::NW_PUNCTATION;
+        else if (ignoredTextRegExp.match(*this).hasMatch()) type = NW_IGNORED_TOKEN;
 		else if (*this == "%") type = LatexReader::NW_COMMENT;
-		else if (specialCharTextRegExp.exactMatch(*this)) type = LatexReader::NW_TEXT;
+        else if (specialCharTextRegExp.match(*this).hasMatch()) type = LatexReader::NW_TEXT;
 		else QVERIFY2(false, QString("invalid test data: \"%1\"").arg(*this).toLatin1().constData());
 	}
 public:
