@@ -429,6 +429,11 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     }
                 }
                 if (tk.type == Token::openBracket) {
+                    // skip over optional arguments
+                    while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY)) {
+                        cd.arguments.takeFirst();
+                    }
+                    // check for mandatory argument
                     if (!cd.arguments.isEmpty() && cd.arguments.first().type == ArgumentDescription::BRACKET) {
                         ArgumentDescription ad= cd.arguments.takeFirst();
                         tk.subtype = ad.tokenType;
