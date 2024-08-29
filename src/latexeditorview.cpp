@@ -117,7 +117,7 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 		if (!m.isActiveForTrigger(Macro::ST_REGEX)) continue;
 		if (!m.isActiveForLanguage(language)) continue;
 		if (!(m.isActiveForFormat(line.getFormatAt(column)) || (column > 0 && m.isActiveForFormat(line.getFormatAt(column - 1))))) continue; //two checks, so it works at beginning and end of an environment
-        const QRegularExpression &r = m.triggerRegex; //a const qregexp doesn't exist
+        const QRegularExpression &r = m.triggerRegex;
         QRegularExpressionMatch match=r.match(prev);
         if (match.hasMatch()) {
             // force last match which basically is right-most match, see #2448
@@ -2166,8 +2166,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
             QString curLine=line.text();
             QString text = curLine.mid(col);
             QString regularExpression=ConfigManagerInterface::getInstance()->getOption("Editor/todo comment regExp").toString();
-            QRegExp rx(regularExpression);
-            if (rx.indexIn(text)==0) {
+            QRegularExpression rx(regularExpression);
+            if (text.indexOf(rx) == 0) {
                 line.addOverlay(QFormatRange(col, text.length(), todoFormat));
                 addedOverlayTodo = true;
             }
