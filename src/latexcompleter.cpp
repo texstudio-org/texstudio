@@ -153,10 +153,10 @@ public:
             // check whether cursor is inside math in case of automatic delimter insertion
             // this is done here as the charcter format is used for detection and here we are sure that at least 1 character was used.
             QString cwCmd=cw.word;
-            QRegExp rx("\\\\[a-zA-Z]+");
-            int pos=rx.indexIn(cwCmd);
-            if(pos>-1){
-                cwCmd=rx.cap(0);
+            QRegularExpression rx("\\\\[a-zA-Z]+");
+            QRegularExpressionMatch rxm=rx.match(cwCmd);
+            if(rxm.hasMatch()){
+                cwCmd=rxm.captured(0);
             }
             bool inMath=false;
             if(cw.lines.size()==1 && completer->latexParser.possibleCommands["math"].contains(cwCmd)){
@@ -2050,12 +2050,13 @@ void LatexCompleter::selectionChanged(const QModelIndex &index)
 		emit showPreview(text);
 		return;
 	}
-	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
-	if (!forcedCite && wordrx.indexIn(listModel->words[index.row()].word) == -1) {
+    QRegularExpression wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
+    QRegularExpressionMatch wordrxMatch = wordrx.match(listModel->words[index.row()].word);
+    if (!forcedCite && !wordrxMatch.hasMatch()) {
 		QToolTip::hideText();
 		return;
 	}
-	QString cmd = wordrx.cap(0);
+    QString cmd = wordrxMatch.captured(0);
 	QString topic;
 	if (config->tooltipPreview && latexParser.possibleCommands["%ref"].contains(cmd)) {
 		QString value = listModel->words[index.row()].word;
