@@ -736,9 +736,9 @@ argument name | description
  */
 CommandDescription extractCommandDef(QString line, QString definition)
 {
-	QRegExp rxCom("^(\\\\\\w+\\*?)");
-	int i = rxCom.indexIn(line);
-	QString command = rxCom.cap();
+    QRegularExpression rxCom("^(\\\\\\w+\\*?)");
+    QRegularExpressionMatch rxComMatch = rxCom.match(line);
+    QString command = rxComMatch.captured();
 	line = line.mid(command.length());
 	const QString specialChars = "{[(<";
 	const QString specialChars2 = "}])>";
@@ -750,7 +750,7 @@ CommandDescription extractCommandDef(QString line, QString definition)
 	while (specialChars.contains(c)) {
 		int j = specialChars.indexOf(c);
 		QChar closingChar = specialChars2.at(j);
-		i = line.indexOf(closingChar);
+        int i = line.indexOf(closingChar);
 		QString arg = line.mid(1, i - 1);
 		Token::TokenType type = Token::generalArg; // assume that unknown argument is not a text
 		if (loop == 1 && command == "\\begin") {
