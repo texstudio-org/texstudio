@@ -33,13 +33,14 @@ QStringList Version::parseGitData(const QString &data) {
 }
 
 QStringList Version::stringVersion2Parts(const QString &str) {
-	QRegExp rx("^((\\d+)(\\.\\d+)*)([a-zA-Z]+)?(\\d*)?(-(\\d+)-)?($|[^.])");	// version tag, ex: 4.3.0beta1, git revison, ex: 4.3.0beta1-24-g5c925a387
+    QRegularExpression rx("^((\\d+)(\\.\\d+)*)([a-zA-Z]+)?(\\d*)?(-(\\d+)-)?($|[^.])");	// version tag, ex: 4.3.0beta1, git revison, ex: 4.3.0beta1-24-g5c925a387
 
-	if (rx.indexIn(str) == 0) {
-		QString ver = rx.cap(1);
-		QString type = rx.cap(4);
-		QString revision = rx.cap(5);
-		QString commitAfter = rx.cap(7);
+    QRegularExpressionMatch rxMatch = rx.match(str);
+    if (rxMatch.hasMatch()) {
+        QString ver = rxMatch.captured(1);
+        QString type = rxMatch.captured(4);
+        QString revision = rxMatch.captured(5);
+        QString commitAfter = rxMatch.captured(7);
 		return QStringList({ver, type, revision, commitAfter});
 	}
 	return QStringList({});
