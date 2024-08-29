@@ -98,10 +98,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
         stream.setCodec("UTF-8");
 #endif
-		QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.*)\\}");  // expression for \cmd[opt]{arg} (cmd may be starred, [opt] can appear arbitrary often)
-		QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");            // expression for \cmd[opt]      (cmd may be starred)
-		QRegExp rxCom3("^(\\\\\\w+\\*?)");                      // expression for \cmd           (cmd may be starred)
-		rxCom.setMinimal(true);
+        static const QRegularExpression rxCom("^(\\\\\\w+\\*?)(\\[.+?\\])*?\\{(.*?)\\}");  // expression for \cmd[opt]{arg} (cmd may be starred, [opt] can appear arbitrary often)
+        static const QRegularExpression rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");            // expression for \cmd[opt]      (cmd may be starred)
+        static const QRegularExpression rxCom3("^(\\\\\\w+\\*?)");                      // expression for \cmd           (cmd may be starred)
 		QStringList keywords;
 		keywords << "text" << "title" << "%<text%>" << "%<title%>";
 
@@ -206,13 +205,14 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				}
 
 				// parse for spell checkable commands
-				int res = rxCom.indexIn(line);
-				if (keywords.contains(rxCom.cap(3))) {
-					package.optionCommands << rxCom.cap(1);
+                QRegularExpressionMatch rxComMatch = rxCom.match(line);
+                int res = rxComMatch.capturedStart();
+                if (keywords.contains(rxComMatch.captured(3))) {
+                    package.optionCommands << rxComMatch.captured(1);
 				}
-
-				rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
-				int res3 = rxCom3.indexIn(line); // for commands which don't have a options either e.g. \node (asas)
+                QRegularExpressionMatch rxComMatch2 = rxCom2.match(line); // for commands which don't have a braces part e.g. \item[text]
+                QRegularExpressionMatch rxComMatch3 = rxCom3.match(line); // for commands which don't have a options either e.g. \node (asas)
+                int res3 = rxComMatch3.capturedStart();
 
 				// get commandDefinition
 				CommandDescription cd = extractCommandDef(line, valid);
@@ -221,7 +221,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					cd.bracketCommand=true;
 					valid.remove("K");
 				}
-				QString cmd = rxCom3.cap(1);
+                QString cmd = rxComMatch3.captured(1);
 				if (cmd == "\\begin") {
 					if (!package.commandDescriptions.contains(cmd)) {
 						// one insertion of a general \begin-command
@@ -229,7 +229,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
                         cd.arguments << ArgumentDescription{ArgumentDescription::MANDATORY, Token::beginEnv};
 						package.commandDescriptions.insert(cmd, cd);
 					}
-					cmd = rxCom.cap();
+                    cmd = rxComMatch.captured();
 				}
 				if (package.commandDescriptions.contains(cmd)) {
 					CommandDescription cd_old = package.commandDescriptions.value(cmd);
@@ -257,8 +257,8 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 #endif
 						cd = cd_old;
 					}
-
 				}
+
 				if(!valid.contains('M')){
 					package.commandDescriptions.insert(cmd, cd);
 				}else{
@@ -266,40 +266,38 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					valid.remove('M');
 				}
 
-
 				valid.remove('N'); // remove newtheorem declaration
 
-
-				if (keywords.contains(rxCom2.cap(2))) {
-					package.optionCommands << rxCom2.cap(1);
+                if (keywords.contains(rxComMatch2.captured(2))) {
+                    package.optionCommands << rxComMatch2.captured(1);
 				}
 				if (valid.contains('d')) { // definition command
 					if (res > -1) {
-						package.possibleCommands["%definition"] << rxCom.cap(1);
+                        package.possibleCommands["%definition"] << rxComMatch.captured(1);
 					}
 					valid.remove('d');
 				}
 				if (valid.contains('i')) { // include like command
 					if (res > -1) {
-						package.possibleCommands["%include"] << rxCom.cap(1);
+                        package.possibleCommands["%include"] << rxComMatch.captured(1);
 					}
 					valid.remove('i');
 				}
                 if (valid.contains('I')) { // include like command
                     if (res > -1) {
-                        package.possibleCommands["%import"] << rxCom.cap(1);
+                        package.possibleCommands["%import"] << rxComMatch.captured(1);
                     }
                     valid.remove('I');
                 }
 				if (valid.contains('l')) { // label command
 					if (res > -1) {
-						package.possibleCommands["%label"] << rxCom.cap(1);
+                        package.possibleCommands["%label"] << rxComMatch.captured(1);
 					}
 					valid.remove('l');
 				}
 				if (valid.contains('r')) { // ref command
 					if (res > -1) {
-						package.possibleCommands["%ref"] << rxCom.cap(1);
+                        package.possibleCommands["%ref"] << rxComMatch.captured(1);
 
                         QRegularExpression re{"{.*?}"};
                         QRegularExpressionMatchIterator it = re.globalMatch(line);
@@ -370,17 +368,17 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				}
 				if (valid.contains('V')) { // verbatim command
 					if (res > -1) {
-						package.possibleCommands["%verbatimEnv"] << rxCom.cap(3);
+                        package.possibleCommands["%verbatimEnv"] << rxComMatch.captured(3);
 						env << "verbatim";
 					}
 					valid.remove('V');
 				}
 				if (valid.contains('s')) { // special def
 					if (res > -1) {
-						package.specialDefCommands.insert(rxCom.cap(1), definition);
+                        package.specialDefCommands.insert(rxComMatch.captured(1), definition);
 					} else {
 						if (res3 > -1)
-							package.specialDefCommands.insert(rxCom3.cap(1), definition);
+                            package.specialDefCommands.insert(rxComMatch3.captured(1), definition);
 					}
 					if (definition.startsWith('%')) {
 						if (config)
@@ -411,41 +409,41 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
                             if(cd.arguments[i].tokenType==Token::bibItem)
                                 break;
                         }
-                        package.possibleCommands["%cite"] << rxCom.cap(1);
+                        package.possibleCommands["%cite"] << rxComMatch.captured(1);
                         if (!line.startsWith("\\begin")) // HANDLE begin extra
-                            package.possibleCommands["%citeExtendedCommand"] << rxCom.cap(1);
+                            package.possibleCommands["%citeExtendedCommand"] << rxComMatch.captured(1);
                         line.replace(match.capturedStart(),match.capturedLength(),"{@}");
 					}
 					valid.remove('C');
 				}
 				if (valid.contains('g')) { // definition command
 					if (res > -1) {
-						package.possibleCommands["%graphics"] << rxCom.cap(1);
+                        package.possibleCommands["%graphics"] << rxComMatch.captured(1);
 					}
 					valid.remove('g');
 				}
 				if (valid.contains('u')) { // usepackage command
 					if (res > -1) {
-						package.possibleCommands["%usepackage"] << rxCom.cap(1);
+                        package.possibleCommands["%usepackage"] << rxComMatch.captured(1);
 					}
 					valid.remove('u');
 				}
 				if (valid.contains('b')) { // usepackage command
 					if (res > -1) {
-						package.possibleCommands["%bibliography"] << rxCom.cap(1);
-						package.possibleCommands["%file"] << rxCom.cap(1);
+                        package.possibleCommands["%bibliography"] << rxComMatch.captured(1);
+                        package.possibleCommands["%file"] << rxComMatch.captured(1);
 					}
 					valid.remove('b');
 				}
 				if (valid.contains('U')) { // url command
 					if (res > -1) {
-						package.possibleCommands["%url"] << rxCom.cap(1);
+                        package.possibleCommands["%url"] << rxComMatch.captured(1);
 					}
 					valid.remove('U');
 				}
 				if (valid.contains('D')) { // todo command
 					if (res > -1) {
-						package.possibleCommands["%todo"] << rxCom.cap(1);
+                        package.possibleCommands["%todo"] << rxComMatch.captured(1);
 					}
 					valid.remove('D');
 				}
@@ -461,10 +459,10 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				// will be extended to distinguish between normal and math commands
 				if (valid.isEmpty() || valid.contains('n')) {
 					if (res > -1) {
-						if (rxCom.cap(1) == "\\begin" || rxCom.cap(1) == "\\end") {
-							package.possibleCommands["normal"] << rxCom.cap(1) + "{" + rxCom.cap(3) + "}";
+                        if (rxComMatch.captured(1) == "\\begin" || rxComMatch.captured(1) == "\\end") {
+                            package.possibleCommands["normal"] << rxComMatch.captured(1) + "{" + rxComMatch.captured(3) + "}";
 						} else {
-							package.possibleCommands["normal"] << rxCom.cap(1);
+                            package.possibleCommands["normal"] << rxComMatch.captured(1);
 						}
 					} else {
 						if (!cmd.isEmpty())
@@ -475,10 +473,10 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				}
 				if (valid.contains('m')) { // math commands
 					if (res > -1) {
-						if (rxCom.cap(1) == "\\begin" || rxCom.cap(1) == "\\end") {
-							package.possibleCommands["math"] << rxCom.cap(1) + "{" + rxCom.cap(3) + "}";
+                        if (rxComMatch.captured(1) == "\\begin" || rxComMatch.captured(1) == "\\end") {
+                            package.possibleCommands["math"] << rxComMatch.captured(1) + "{" + rxComMatch.captured(3) + "}";
 						} else {
-							package.possibleCommands["math"] << rxCom.cap(1);
+                            package.possibleCommands["math"] << rxComMatch.captured(1);
 						}
 					} else {
 						if (!cmd.isEmpty())
@@ -489,12 +487,12 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				}
 				if (valid.contains('t')) { // tabular commands
 					if (res > -1) {
-						if (rxCom.cap(1) == "\\begin" || rxCom.cap(1) == "\\end") {
-							package.possibleCommands["tabular"] << rxCom.cap(1) + "{" + rxCom.cap(3) + "}";
-							package.possibleCommands["array"] << rxCom.cap(1) + "{" + rxCom.cap(3) + "}";
+                        if (rxComMatch.captured(1) == "\\begin" || rxComMatch.captured(1) == "\\end") {
+                            package.possibleCommands["tabular"] << rxComMatch.captured(1) + "{" + rxComMatch.captured(3) + "}";
+                            package.possibleCommands["array"] << rxComMatch.captured(1) + "{" + rxComMatch.captured(3) + "}";
 						} else {
-							package.possibleCommands["tabular"] << rxCom.cap(1);
-							package.possibleCommands["array"] << rxCom.cap(1);
+                            package.possibleCommands["tabular"] << rxComMatch.captured(1);
+                            package.possibleCommands["array"] << rxComMatch.captured(1);
 						}
 					} else {
 						if (cmd.isEmpty())
@@ -513,8 +511,8 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 						foreach (const QString &elem, env)
 							package.possibleCommands[elem] << cmd;
 					} else {
-						QString cmd = rxCom.cap(1);
-						QString envName = rxCom.cap(3);
+                        QString cmd = rxComMatch.captured(1);
+                        QString envName = rxComMatch.captured(3);
 						if (cmd == "\\begin" || cmd == "\\end") {
 							cmd += "{" + envName + "}";
 						}
@@ -524,11 +522,11 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				}
 				if (!valid.contains('e') && !env.isEmpty()) { // set env alias
 					if (res > -1) {
-						if (rxCom.cap(1) == "\\begin") {
-							QString envName = rxCom.cap(3);
+                        if (rxComMatch.captured(1) == "\\begin") {
+                            QString envName = rxComMatch.captured(3);
 							if (!envName.isEmpty()) {
                                 foreach (const QString &elem, env){
-									package.environmentAliases.insert(rxCom.cap(3), elem);
+                                    package.environmentAliases.insert(rxComMatch.captured(3), elem);
                                     if(elem=="tabular"){
                                         LatexTables::tabularNames.insert(envName);
                                     }
