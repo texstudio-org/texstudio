@@ -70,7 +70,7 @@ void FileSelector::setCentered()
 void FileSelector::filterChanged(const QString &newFilter)
 {
 	QString nf = newFilter;
-	if (newFilter.contains(':') && QRegExp(".*:[0-9; ]*").exactMatch(newFilter))
+    if (newFilter.contains(':') && newFilter.indexOf(QRegularExpression("^.*:[0-9; ]*$"))==0)
 		nf = newFilter.left(newFilter.lastIndexOf(':'));
 
 	QStringList filterList = nf.split(" ");

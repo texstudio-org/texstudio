@@ -1160,13 +1160,12 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					continue;
 				}
 				if (word == "\\multicolumn") {
-					QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
-					rxMultiColumn.setMinimal(true);
-					int res = rxMultiColumn.indexIn(line, tk.start);
-					if (res > -1) {
+                    static QRegularExpression rxMultiColumn("\\\\multicolumn\\{(\\d+?)\\}\\{.+?\\}\\{.+?\\}");
+                    QRegularExpressionMatch rxMultiColumnMatch = rxMultiColumn.match(line, tk.start);
+                    if (rxMultiColumnMatch.hasMatch()) {
 						// multicoulmn before &
 						bool ok;
-						int c = rxMultiColumn.cap(1).toInt(&ok);
+                        int c = rxMultiColumnMatch.captured(1).toInt(&ok);
 						if (ok) {
 							activeEnv.top().excessCol += c - 1;
 						}
