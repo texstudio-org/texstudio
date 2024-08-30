@@ -1100,13 +1100,13 @@ QSettings *ConfigManager::readSettings(bool reread)
                                                            tr("Key replacement: %1 %2").arg(keyReplace[i],tr("before word")),
                                                            keyReplaceBeforeWord[i].replace("%", "%%"),
                                                            "",
-                                                           "(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i])
+                                                           "(?language:latex)(?<=\\s|^)" + QRegularExpression::escape(keyReplace[i])
                                                            ));
                     completerConfig->userMacros.append(Macro(
                                                            tr("Key replacement: %1 %2").arg(keyReplace[i],tr("after word")),
                                                            keyReplaceAfterWord[i].replace("%", "%%"),
                                                            "",
-                                                           "(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i])
+                                                           "(?language:latex)(?<=\\S)" + QRegularExpression::escape(keyReplace[i])
                                                            ));
                 }
             } else {
@@ -1122,12 +1122,12 @@ QSettings *ConfigManager::readSettings(bool reread)
                     userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i],tr("before word")));
                     userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
                     userAbbrevs.append("");
-                    userTriggers.append("(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i]));
+                    userTriggers.append("(?language:latex)(?<=\\s|^)" + QRegularExpression::escape(keyReplace[i]));
 
                     userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i],tr("after word")));
                     userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
                     userAbbrevs.append("");
-                    userTriggers.append("(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i]));
+                    userTriggers.append("(?language:latex)(?<=\\S)" + QRegularExpression::escape(keyReplace[i]));
                 }
 
                 for (int i = 0; i < userTags.size(); i++)
