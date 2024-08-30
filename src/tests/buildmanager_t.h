@@ -111,7 +111,7 @@ private slots:
 		QTest::newRow("cmd remove insert abcmaus") << "txs:///mockb/{-abc}{-maus}[-triple]" << "" << "foobar -triple -test -xyz     end";
 		QTest::newRow("realworld pdf1") << "txs:///mock-pdflatex/[-synctex=0]{-shell-escape}" << "" << "pdflatex -interaction=nonstopmode -src -synctex=0  --src-specials   \"\".tex";
 		QTest::newRow("realworld pdf2") << "txs:///mock-pdflatex/{-synctex}" << "" << "pdflatex -interaction=nonstopmode -src   --src-specials -shell-escape  \"\".tex";
-		QTest::newRow("cmd remove all") << "txs:///mockabc/{}" << "" << "coffee|foobar|test";
+        QTest::newRow("cmd remove all 1") << "txs:///mockabc/{}" << "" << "coffee|foobar|test";
 		QTest::newRow("cmd remove all 2") << "txs:///mockab-c/{}" << "" << "coffee|foobar|test";
 		QTest::newRow("cmd remove most") << "txs:///mockab-c/{-xyz}{-maus}" << "" << "coffee|foobar -test    -abc  end|test  -quadrat .abc";
 		QTest::newRow("cmd remove insert most") << "txs:///mockab-c/{-xyz}[-maus=SUAM]{-abc}" << "" << "coffee -maus=SUAM|foobar -test  -maus=SUAM    end|test -maus=SUAM  -quadrat .abc";
