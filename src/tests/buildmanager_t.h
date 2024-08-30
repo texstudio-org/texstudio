@@ -94,9 +94,9 @@ private slots:
 		QTest::addColumn<QString >("expected");
 
 		QTest::newRow("simple") << "txs:///mocka" << "" << "coffee";
-		QTest::newRow("append options 1") << "txs:///mocka -abc" << "" << "coffee  -abc";
-		QTest::newRow("append options 2") << "txs:///mocka   -abc" << "" << "coffee    -abc";
-		QTest::newRow("append options 3") << "txs:///mocka   -abc  -def" << "" << "coffee    -abc  -def";
+        QTest::newRow("append options 1") << "txs:///mocka -abc" << "" << "coffee -abc";
+        QTest::newRow("append options 2") << "txs:///mocka   -abc" << "" << "coffee   -abc";
+        QTest::newRow("append options 3") << "txs:///mocka   -abc  -def" << "" << "coffee   -abc  -def";
 		QTest::newRow("expand 1") << "txs:///mockab" << "" << "coffee|foobar -test -xyz -maus=haus --maus=laus -abc -maus=\"test test test\" end";
 		QTest::newRow("expand 2") << "txs:///mockac" << "" << "coffee|test -xyz -quadrat .abc";
 		QTest::newRow("expand 3") << "txs:///mockac" << "/tmp/testfile.tex" << "coffee|test -xyz -quadrat testfile.abc";

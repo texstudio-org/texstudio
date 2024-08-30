@@ -618,19 +618,22 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 QFileInfo BuildManager::parseExtendedSelectFile(QString &command, const QFileInfo &mainFile, const QFileInfo &currentFile)
 {
 	QFileInfo selectedFile;
-	QRegExp rxPdf("^p\\{([^{}]+)\\}:");
+    QRegularExpression rxPdf("^p\\{([^{}]+)\\}:");
 
 	if (command.startsWith("c:")) {
 		selectedFile = currentFile.fileName().isEmpty() ? mainFile : currentFile;
 		command = command.mid(2);
-	} else if (rxPdf.indexIn(command) != -1) {
-		QString compiledFilename = mainFile.completeBaseName() + '.' + rxPdf.cap(1);
-		QString compiledFound = findCompiledFile(compiledFilename, mainFile);
-		selectedFile = QFileInfo(compiledFound);
-		command = command.mid(rxPdf.matchedLength());
-	} else {
-		selectedFile = mainFile;
-	}
+    } else {
+        QRegularExpressionMatch rxm=rxPdf.match(command);
+        if (rxm.hasMatch()) {
+            QString compiledFilename = mainFile.completeBaseName() + '.' + rxm.captured(1);
+            QString compiledFound = findCompiledFile(compiledFilename, mainFile);
+            selectedFile = QFileInfo(compiledFound);
+            command = command.mid(rxm.capturedLength());
+        } else {
+            selectedFile = mainFile;
+        }
+    }
 	return selectedFile;
 }
 
@@ -946,7 +949,7 @@ QString searchBaseCommand(const QString &cmd, QString options, QString texPath)
 
 ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOptions &options)
 {
-	QRegExp re(QRegExp::escape(TXS_CMD_PREFIX) + "([^/ [{]+)(/?)((\\[[^\\]*]+\\]|\\{[^}]*\\})*) ?(.*)");
+    static QRegularExpression re("^"+QRegularExpression::escape(TXS_CMD_PREFIX) + "([^/ [{]+)(/?)((\\[[^\\]*]+\\]|\\{[^}]*\\})*) ?(.*)$");
 
 	options.nestingDeep++;
 	if (options.canceled) return ExpandedCommands();
@@ -980,16 +983,21 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 			}
 			for (int i = 0; i < options.override.replace.size(); i++) {
 				const QString &rem = options.override.replace[i].first;
-				QRegExp replaceRegex(" (-?" + QRegExp::escape(rem) + parameterMatching + ")");
-				int pos = replaceRegex.indexIn(subcmd);
+                QRegularExpression replaceRegex(" (-?" + QRegularExpression::escape(rem) + parameterMatching + ")");
+                QRegularExpressionMatch replaceMatch = replaceRegex.match(subcmd);
+                int pos = replaceMatch.capturedStart();
 				QString rep = " " + rem + options.override.replace[i].second;
 				if (pos < 0) subcmd.insert(CommandInfo::getProgramName(subcmd).length(), rep);
 				else {
-					subcmd.replace(pos, replaceRegex.matchedLength(), rep);
+                    subcmd.replace(pos, replaceMatch.capturedLength(), rep);
 					pos += rep.length();
 					int newpos;
-					while ( (newpos = replaceRegex.indexIn(subcmd, pos)) >= 0)
-						subcmd.replace(newpos, replaceRegex.matchedLength(), " ");
+                    replaceMatch=replaceRegex.match(subcmd, pos);
+                    while ( replaceMatch.hasMatch()){
+                        newpos=replaceMatch.capturedStart();
+                        subcmd.replace(newpos, replaceMatch.capturedLength(), " ");
+                        replaceMatch=replaceRegex.match(subcmd, pos);
+                    }
 				}
 			}
 
@@ -998,107 +1006,112 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 				temp.flags = flags;
 				res.commands << temp;
 			}
-		} else if (re.exactMatch(subcmd)) {
-			const QString &cmdName = re.cap(1);
-			const QString &slash = re.cap(2);
-			QString modifiers = re.cap(3);
-			QString parameters = re.cap(5);
-			if (slash != "/" && !modifiers.isEmpty()) {
-				UtilsUi::txsInformation(tr("You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer."));
-				modifiers.clear();
-			}
-			if (options.override.removeAll) {
-				parameters.clear();
-				modifiers.clear();
-			}
+        } else {
+            QRegularExpressionMatch match = re.match(subcmd);
+            if (match.hasMatch()) {
+                const QString &cmdName = match.captured(1);
+                const QString &slash = match.captured(2);
+                QString modifiers = match.captured(3);
+                QString parameters = match.captured(5);
+                if (slash != "/" && !modifiers.isEmpty()) {
+                    UtilsUi::txsInformation(tr("You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer."));
+                    modifiers.clear();
+                }
+                if (options.override.removeAll) {
+                    parameters.clear();
+                    modifiers.clear();
+                }
 
-			bool user;
-			QString cmd = getCommandLine(cmdName, &user);
-			if (cmd.isEmpty()) {
-				if (options.nestingDeep == 1) UtilsUi::txsWarning(tr("Command %1 not defined").arg(subcmd));
-				else if (cmdName != "pre-compile") qDebug() << tr("Command %1 not defined").arg(subcmd); //pre-compile is expecte
-				if (cmdName != "pre-compile") {
-					res.commands << CommandToRun(""); // add empty command to provoke an error on higher level. Otherwise the missing of the command is simply ignoed e.g. txs:/quick without empty pdflatex
-					res.primaryCommand = "";
-				}
-				continue;
-			}
+                bool user;
+                QString cmd = getCommandLine(cmdName, &user);
+                if (cmd.isEmpty()) {
+                    if (options.nestingDeep == 1) UtilsUi::txsWarning(tr("Command %1 not defined").arg(subcmd));
+                    else if (cmdName != "pre-compile") qDebug() << tr("Command %1 not defined").arg(subcmd); //pre-compile is expecte
+                    if (cmdName != "pre-compile") {
+                        res.commands << CommandToRun(""); // add empty command to provoke an error on higher level. Otherwise the missing of the command is simply ignoed e.g. txs:/quick without empty pdflatex
+                        res.primaryCommand = "";
+                    }
+                    continue;
+                }
 
-			int space = cmd.indexOf(' ');
-			if (space == -1) space = cmd.size();
-			if (cmd.startsWith(TXS_CMD_PREFIX) && internalCommands.contains(cmd.left(space))) {
-                QStringList exp=parseExtendedCommandLine(cmd+" "+parameters, options.mainFile, options.currentFile, options.currentLine);
-                res.commands << CommandToRun(exp.first());
-				res.commands.last().parentCommand = res.commands.last().command;
-				if (user) res.commands.last().flags |= RCF_CHANGE_PDF;
-				continue;
-			}
+                int space = cmd.indexOf(' ');
+                if (space == -1) space = cmd.size();
+                if (cmd.startsWith(TXS_CMD_PREFIX) && internalCommands.contains(cmd.left(space))) {
+                    QStringList exp=parseExtendedCommandLine(cmd+" "+parameters, options.mainFile, options.currentFile, options.currentLine);
+                    res.commands << CommandToRun(exp.first());
+                    res.commands.last().parentCommand = res.commands.last().command;
+                    if (user) res.commands.last().flags |= RCF_CHANGE_PDF;
+                    continue;
+                }
 
-			//parse command modifiers
-			bool removeAllActivated = false;
-			int replacePrepended = 0, removePrepended = 0;
-			if (!modifiers.isEmpty()) {
-				//matching combinations like [-abc][-foo=bar]{-xasa...}
-				QRegExp modifierRegexp("^((\\[([^=\\]]+)(=[^\\]]+)?\\])|(\\{([^}]*)\\}))");
-				while (modifierRegexp.indexIn(modifiers) >= 0) {
-					if (!modifierRegexp.cap(3).isEmpty()) {
-						replacePrepended++;
-						options.override.replace.prepend(QPair<QString, QString>(modifierRegexp.cap(3), modifierRegexp.cap(4)));
-						//qDebug() << "replace >" << options.override.replace.first().first << "< with >"<<options.override.replace.first().second<<"<";
-					} else if (!modifierRegexp.cap(5).isEmpty()) {
-						if (modifierRegexp.cap(6).isEmpty()) {
-							removeAllActivated = true; // qDebug() << "remove all";
-						} else {
-							removePrepended++;
-							options.override.remove.prepend(modifierRegexp.cap(6));
-							//qDebug() << "remove >" << options.override.remove.first() << "<";
-						}
-					}
-					modifiers.remove(0, modifierRegexp.matchedLength());
-				}
-			}
-			if (removeAllActivated) options.override.removeAll = true;
-			if (!parameters.isEmpty()) options.override.append.prepend(parameters);
-			//todo /(masterfile,currentfile) modifier ?
+                //parse command modifiers
+                bool removeAllActivated = false;
+                int replacePrepended = 0, removePrepended = 0;
+                if (!modifiers.isEmpty()) {
+                    //matching combinations like [-abc][-foo=bar]{-xasa...}
+                    static const QRegularExpression modifierRegexp("^((\\[([^=\\]]+)(=[^\\]]+)?\\])|(\\{([^}]*)\\}))");
+                    QRegularExpressionMatch modifierMatch = modifierRegexp.match(modifiers);
+                    while (modifierMatch.hasMatch()) {
+                        if (!modifierMatch.captured(3).isEmpty()) {
+                            replacePrepended++;
+                            options.override.replace.prepend(QPair<QString, QString>(modifierMatch.captured(3), modifierMatch.captured(4)));
+                            //qDebug() << "replace >" << options.override.replace.first().first << "< with >"<<options.override.replace.first().second<<"<";
+                        } else if (!modifierMatch.captured(5).isEmpty()) {
+                            if (modifierMatch.captured(6).isEmpty()) {
+                                removeAllActivated = true; // qDebug() << "remove all";
+                            } else {
+                                removePrepended++;
+                                options.override.remove.prepend(modifierMatch.captured(6));
+                                //qDebug() << "remove >" << options.override.remove.first() << "<";
+                            }
+                        }
+                        modifiers.remove(0, modifierMatch.capturedLength());
+                        modifierMatch = modifierRegexp.match(modifiers);
+                    }
+                }
+                if (removeAllActivated) options.override.removeAll = true;
+                if (!parameters.isEmpty()) options.override.append.prepend(parameters);
+                //todo /(masterfile,currentfile) modifier ?
 
-			//recurse
-			ExpandedCommands ecNew = expandCommandLine(cmd, options);
-			if (ecNew.commands.length() > 1 && atomicCommands.contains(cmd)) {
-				UtilsUi::txsWarning(QString(tr("The command %1 is expected to be atomic. However, it is currently "
-				                      "defined as a command-chain containing %2 commands. This is beyond "
-				                      "the specification and may lead to surprising side-effects.\n\n"
-				                      "Please change your configuration and define command lists only at "
-				                      "'Options -> Configure TeXstudio -> Build' not at "
-				                      "'Options -> Configure TeXstudio -> Commands'.")).arg(cmd).arg(ecNew.commands.length()));
-			}
-			QList<CommandToRun> &newPart = ecNew.commands;
+                //recurse
+                ExpandedCommands ecNew = expandCommandLine(cmd, options);
+                if (ecNew.commands.length() > 1 && atomicCommands.contains(cmd)) {
+                    UtilsUi::txsWarning(QString(tr("The command %1 is expected to be atomic. However, it is currently "
+                                                   "defined as a command-chain containing %2 commands. This is beyond "
+                                                   "the specification and may lead to surprising side-effects.\n\n"
+                                                   "Please change your configuration and define command lists only at "
+                                                   "'Options -> Configure TeXstudio -> Build' not at "
+                                                   "'Options -> Configure TeXstudio -> Commands'.")).arg(cmd).arg(ecNew.commands.length()));
+                }
+                QList<CommandToRun> &newPart = ecNew.commands;
 
-			//clean up modifiers
-			if (removeAllActivated) options.override.removeAll = false;
-			if (!parameters.isEmpty()) options.override.append.removeFirst();
-			for (; replacePrepended > 0; replacePrepended--) options.override.replace.removeFirst();
-			for (; removePrepended > 0; removePrepended--) options.override.remove.removeFirst();
+                //clean up modifiers
+                if (removeAllActivated) options.override.removeAll = false;
+                if (!parameters.isEmpty()) options.override.append.removeFirst();
+                for (; replacePrepended > 0; replacePrepended--) options.override.replace.removeFirst();
+                for (; removePrepended > 0; removePrepended--) options.override.remove.removeFirst();
 
-			if (newPart.isEmpty()) continue;
+                if (newPart.isEmpty()) continue;
 
-			if (commands.value(cmdName).rerunCompiler)
-				for (int i = 0; i < newPart.size(); i++)
-					newPart[i].flags |= RCF_RERUN;
+                if (commands.value(cmdName).rerunCompiler)
+                    for (int i = 0; i < newPart.size(); i++)
+                        newPart[i].flags |= RCF_RERUN;
 
-			for (int i = 0; i < newPart.size(); i++)
-				if (newPart[i].parentCommand.isEmpty()) {
-					newPart[i].parentCommand = cmdName;
-					if (user) {
-						newPart[i].flags |= RCF_SHOW_STDOUT;
-						newPart[i].flags |= RCF_CHANGE_PDF;
-					}
-				}
+                for (int i = 0; i < newPart.size(); i++)
+                    if (newPart[i].parentCommand.isEmpty()) {
+                        newPart[i].parentCommand = cmdName;
+                        if (user) {
+                            newPart[i].flags |= RCF_SHOW_STDOUT;
+                            newPart[i].flags |= RCF_CHANGE_PDF;
+                        }
+                    }
 
-			if (splitted.size() == 1)
-				res.primaryCommand = cmdName;
+                if (splitted.size() == 1)
+                    res.primaryCommand = cmdName;
 
-			res.commands << newPart;
-		} else UtilsUi::txsWarning(tr("Failed to understand command %1").arg(subcmd));
+                res.commands << newPart;
+            } else UtilsUi::txsWarning(tr("Failed to understand command %1").arg(subcmd));
+        }
 	}
 	options.nestingDeep--;
 	return res;
