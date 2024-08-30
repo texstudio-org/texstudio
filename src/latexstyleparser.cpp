@@ -285,18 +285,19 @@ bool LatexStyleParser::parseLineRequirePackage(QStringList &results, const QStri
 
 bool LatexStyleParser::parseLineDef(QStringList &results, const QString &line)
 {
-	static const QRegExp rxDef("\\\\[egx]?def\\s*(\\\\[\\w@]+)(\\s*#1)?(\\s*#2)?(\\s*#3)?(\\s*#4)?(\\s*#5)?");
+    static const QRegularExpression rxDef("\\\\[egx]?def\\s*(\\\\[\\w@]+)(\\s*#1)?(\\s*#2)?(\\s*#3)?(\\s*#4)?(\\s*#5)?");
 
-	if (rxDef.indexIn(line) == -1) {
+    QRegularExpressionMatch rxDefm=rxDef.match(line);
+    if (!rxDefm.hasMatch()) {
 		return false;
 	}
-	QString name = rxDef.cap(1);
+    QString name = rxDefm.captured(1);
 	if (name.contains("@")) {
 		return true;
 	}
 	int optionCount = 0;
-	for (int c = 2; c <= rxDef.captureCount(); c++) {
-		if (rxDef.cap(c).isEmpty()) {
+    for (int c = 2; c <= rxDef.captureCount(); c++) {
+        if (rxDefm.captured(c).isEmpty()) {
 			break;
 		}
 		optionCount++;
@@ -311,12 +312,13 @@ bool LatexStyleParser::parseLineDef(QStringList &results, const QString &line)
 
 bool LatexStyleParser::parseLineLet(QStringList &results, const QString &line)
 {
-	static const QRegExp rxLet("\\\\let\\s*(\\\\[\\w@]+)");
+    static const QRegularExpression rxLet("\\\\let\\s*(\\\\[\\w@]+)");
 
-	if (rxLet.indexIn(line) == -1) {
+    QRegularExpressionMatch rxmLet=rxLet.match(line);
+    if (!rxmLet.hasMatch()) {
 		return false;
 	}
-	QString name = rxLet.cap(1);
+    QString name = rxmLet.captured(1);
 	if (name.contains("@")) {
 		return true;
 	}
@@ -329,23 +331,22 @@ bool LatexStyleParser::parseLineLet(QStringList &results, const QString &line)
 
 bool LatexStyleParser::parseLineCommand(QStringList &results, const QString &line)
 {
-    static const QRegExp rxComBrace("\\\\(newcommand|providecommand|DeclareRobustCommand|algnewcommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]*)\\])?");
-    static const QRegExp rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand|algnewcommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]*)\\])?");
-	const QRegExp *pRx;
+    static const QRegularExpression rxComBrace("\\\\(newcommand|providecommand|DeclareRobustCommand|algnewcommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]*)\\])?");
+    static const QRegularExpression rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand|algnewcommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]*)\\])?");
 
-	if (rxComBrace.indexIn(line) != -1) {
-		pRx = &rxComBrace;
-	} else if (rxComNoBrace.indexIn(line) != -1) {
-		pRx = &rxComNoBrace;
-	} else {
+    QRegularExpressionMatch rxm=rxComBrace.match(line);
+    if (!rxm.hasMatch()) {
+        rxm=rxComNoBrace.match(line);
+    }
+    if (!rxm.hasMatch()){
 		return false;
 	}
-	QString name = pRx->cap(2);
+    QString name = rxm.captured(2);
 	if (name.contains("@")) {
 		return true;
 	}
-	int optionCount = pRx->cap(3).toInt(); //returns 0 if conversion fails
-	QString optionalArg = pRx->cap(4);
+    int optionCount = rxm.captured(3).toInt(); //returns 0 if conversion fails
+    QString optionalArg = rxm.captured(4);
 	if (!optionalArg.isEmpty()) {
 		optionCount--;
 		QString nameWithOpt = name + makeArgString(optionCount, true) + "#S";
@@ -362,12 +363,13 @@ bool LatexStyleParser::parseLineCommand(QStringList &results, const QString &lin
 
 bool LatexStyleParser::parseLineEnv(QStringList &results, const QString &line)
 {
-	static const QRegExp rxEnv("\\\\newenvironment\\*?\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
+    static const QRegularExpression rxEnv("\\\\newenvironment\\*?\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
 
-	if (rxEnv.indexIn(line) == -1) {
+    QRegularExpressionMatch rxmEnv=rxEnv.match(line);
+    if (!rxmEnv.hasMatch()) {
 		return false;
 	}
-	QString name = rxEnv.cap(1);
+    QString name = rxmEnv.captured(1);
 	if (name.contains("@")) {
 		return true;
 	}
@@ -385,12 +387,14 @@ bool LatexStyleParser::parseLineEnv(QStringList &results, const QString &line)
 
 bool LatexStyleParser::parseLineInput(QStringList &results, const QString &line, QStringList &parsedPackages, const QString &fileName) const
 {
-    static const QRegExp rxInput("\\\\input\\s*\\{?([\\w._-]+)");
+    static const QRegularExpression rxInput("\\\\input\\s*\\{?([\\w._-]+)");
 
-	if (rxInput.indexIn(line) == -1) {
+    QRegularExpressionMatch rxmInput=rxInput.match(line);
+
+    if (!rxmInput.hasMatch()) {
 		return false;
 	}
-	QString name = rxInput.cap(1);
+    QString name = rxmInput.captured(1);
     // check if included is already known as cwl
     QFileInfo fi(name);
     QString baseName=fi.baseName();
@@ -409,12 +413,14 @@ bool LatexStyleParser::parseLineInput(QStringList &results, const QString &line,
 
 bool LatexStyleParser::parseLineNewLength(QStringList &results, const QString &line)
 {
-	static const QRegExp rxNewLength("\\\\newlength\\s*\\{\\\\(\\w+)\\}");
+    static const QRegularExpression rxNewLength("\\\\newlength\\s*\\{\\\\(\\w+)\\}");
 
-	if (rxNewLength.indexIn(line) == -1) {
+    QRegularExpressionMatch rxmNewLength=rxNewLength.match(line);
+
+    if (!rxmNewLength.hasMatch()) {
 		return false;
 	}
-	QString name = "\\" + rxNewLength.cap(1);
+    QString name = "\\" + rxmNewLength.captured(1);
 	if (name.contains("@")) {
 		return true;
 	}
@@ -426,12 +432,13 @@ bool LatexStyleParser::parseLineNewLength(QStringList &results, const QString &l
 
 bool LatexStyleParser::parseLineNewCounter(QStringList &results, const QString &line)
 {
-	static const QRegExp rxNewCounter("\\\\newcounter\\s*\\{(\\w+)\\}");
+    static const QRegularExpression rxNewCounter("\\\\newcounter\\s*\\{(\\w+)\\}");
 
-	if (rxNewCounter.indexIn(line) == -1) {
+    QRegularExpressionMatch rxmNewCounter=rxNewCounter.match(line);
+    if (!rxmNewCounter.hasMatch()) {
 		return false;
 	}
-	QString name = "\\the" + rxNewCounter.cap(1);
+    QString name = "\\the" + rxmNewCounter.captured(1);
 	if (name.contains("@")) {
 		return true;
 	}
@@ -443,12 +450,13 @@ bool LatexStyleParser::parseLineNewCounter(QStringList &results, const QString &
 
 bool LatexStyleParser::parseLineDecMathSym(QStringList &results, const QString &line)
 {
-	static const QRegExp rxDecMathSym("\\\\DeclareMathSymbol\\s*\\{\\\\(\\w+)\\}");
+    static const QRegularExpression rxDecMathSym("\\\\DeclareMathSymbol\\s*\\{\\\\(\\w+)\\}");
 
-	if (rxDecMathSym.indexIn(line) == -1) {
-		return (false);
+    QRegularExpressionMatch rxmDecMathSym=rxDecMathSym.match(line);
+    if (!rxmDecMathSym.hasMatch()) {
+        return false;
 	}
-	QString name = "\\" + rxDecMathSym.cap(1);
+    QString name = "\\" + rxmDecMathSym.captured(1);
 	if (name.contains("@")) {
 		return true;
 	}
@@ -461,13 +469,13 @@ bool LatexStyleParser::parseLineDecMathSym(QStringList &results, const QString &
 
 bool LatexStyleParser::parseLineRequire(QStringList &results, const QString &line)
 {
-    static QRegExp rxRequire("\\\\(RequirePackage|RequirePackageWithOptions)\\s*(\\[\\S*\\])?\\s*\\{(\\S+)\\}");
-	rxRequire.setMinimal(true);
+    static QRegularExpression rxRequire("\\\\(RequirePackage|RequirePackageWithOptions)\\s*?(\\[\\S*?\\])?\\s*?\\{(\\S+?)\\}");
 
-	if (rxRequire.indexIn(line) == -1) {
+    QRegularExpressionMatch rxmRequire=rxRequire.match(line);
+    if (!rxmRequire.hasMatch()) {
 		return false;
 	}
-    QString arg = rxRequire.cap(3);
+    QString arg = rxmRequire.captured(3);
 	foreach (QString elem, arg.split(',')) {
 		QString package = elem.remove(' ');
 		if (!package.isEmpty())
@@ -478,12 +486,14 @@ bool LatexStyleParser::parseLineRequire(QStringList &results, const QString &lin
 
 bool LatexStyleParser::parseLineRequireStart(QStringList &results, const QString &line, bool &inRequirePackage)
 {
-    static const QRegExp rxRequireStart("\\\\(RequirePackage|RequirePackageWithOptions)\\s*(\\[\\S*\\])?\\s*\\{(.+)");
+    static const QRegularExpression rxRequireStart("\\\\(RequirePackage|RequirePackageWithOptions)\\s*(\\[\\S*\\])?\\s*\\{(.+)");
 
-	if (rxRequireStart.indexIn(line) == -1) {
-		return (false);
+    QRegularExpressionMatch rxmRequireStart=rxRequireStart.match(line);
+
+    if (!rxmRequireStart.hasMatch()) {
+        return false;
 	}
-    QString arg = rxRequireStart.cap(3);
+    QString arg = rxmRequireStart.captured(3);
 	int requireEnd = arg.indexOf('}');
 	if (requireEnd >= 0) {
 		arg = arg.left(requireEnd);
@@ -501,12 +511,14 @@ bool LatexStyleParser::parseLineRequireStart(QStringList &results, const QString
 
 bool LatexStyleParser::parseLineLoadClass(QStringList &results, const QString &line) const
 {
-    static const QRegExp rxLoadClass("\\\\(LoadClass|LoadClassWithOptions)\\s*(\\[\\S*\\])?\\s*\\{(\\w+)\\}");
+    static const QRegularExpression rxLoadClass("\\\\(LoadClass|LoadClassWithOptions)\\s*(\\[\\S*\\])?\\s*\\{(\\w+)\\}");
 
-	if (rxLoadClass.indexIn(line) == -1) {
+    QRegularExpressionMatch rxmLoadClass=rxLoadClass.match(line);
+
+    if (!rxmLoadClass.hasMatch()) {
 		return false;
 	}
-    QString arg = rxLoadClass.cap(3);
+    QString arg = rxmLoadClass.captured(3);
 	if (!arg.isEmpty()) {
 		if (mPackageAliases.contains(arg))
 			foreach (QString elem, mPackageAliases.values(arg)) {
@@ -521,24 +533,23 @@ bool LatexStyleParser::parseLineLoadClass(QStringList &results, const QString &l
 
 bool LatexStyleParser::parseLineXparseCommand(QStringList &results, const QString &line)
 {
-	static const QRegExp rxComBrace("\\\\(?:New|Provide|Declare)(?:Expandable)?DocumentCommand\\s*\\{(\\\\\\w+)\\}\\s*");
-	static const QRegExp rxComNoBrace("\\\\(?:New|Provide|Declare)(?:Expandable)?DocumentCommand\\s*(\\\\\\w+)\\s*");
-	const QRegExp *pRx;
-	int pos;
+    static const QRegularExpression rxComBrace("\\\\(?:New|Provide|Declare)(?:Expandable)?DocumentCommand\\s*\\{(\\\\\\w+)\\}\\s*");
+    static const QRegularExpression rxComNoBrace("\\\\(?:New|Provide|Declare)(?:Expandable)?DocumentCommand\\s*(\\\\\\w+)\\s*");
 
-	if ((pos = rxComBrace.indexIn(line)) != -1) {
-		pRx = &rxComBrace;
-	} else if ((pos = rxComNoBrace.indexIn(line)) != -1) {
-		pRx = &rxComNoBrace;
-	} else {
+    QRegularExpressionMatch rxm=rxComBrace.match(line);
+    if (!rxm.hasMatch()) {
+        rxm=rxComNoBrace.match(line);
+    }
+    if (!rxm.hasMatch()) {
 		return false;
 	}
-	QString name = pRx->cap(1);
+    QString name = rxm.captured(1);
 	if (name.contains("@")) {
 		return true;
 	}
 	XpArgList xpArgs;
-	if (parseLineXparseArgs(xpArgs, line, pos + pRx->matchedLength()) == false) {
+    int pos=rxm.capturedStart();
+    if (parseLineXparseArgs(xpArgs, line, pos + rxm.capturedLength()) == false) {
 		return false;
 	}
     parseLineXparseOutputCwl(results, name, xpArgs.constBegin(), xpArgs.constEnd(), 1);
@@ -547,18 +558,19 @@ bool LatexStyleParser::parseLineXparseCommand(QStringList &results, const QStrin
 
 bool LatexStyleParser::parseLineXparseEnv(QStringList &results, const QString &line)
 {
-	static const QRegExp rxComEnv("\\\\(?:New|Provide|Declare)DocumentEnvironment\\s*\\{\\s*(\\w+)\\s*\\}\\s*");
-	int pos;
+    static const QRegularExpression rxComEnv("\\\\(?:New|Provide|Declare)DocumentEnvironment\\s*\\{\\s*(\\w+)\\s*\\}\\s*");
 
-	if ((pos = rxComEnv.indexIn(line)) == -1) {
+    QRegularExpressionMatch rxmComEnv=rxComEnv.match(line);
+    if (!rxmComEnv.hasMatch()) {
 		return false;
 	}
-	QString name = rxComEnv.cap(1);
+    QString name = rxmComEnv.captured(1);
 	if (name.contains("@")) {
 		return true;
 	}
 	XpArgList xpArgs;
-	if (parseLineXparseArgs(xpArgs, line, pos + rxComEnv.matchedLength()) == false) {
+    int pos = rxmComEnv.capturedStart();
+    if (parseLineXparseArgs(xpArgs, line, pos + rxmComEnv.capturedLength()) == false) {
 		return false;
 	}
     parseLineXparseOutputCwl(results, "\\begin{" + name + "}", xpArgs.constBegin(), xpArgs.constEnd(), 1);
@@ -579,22 +591,26 @@ bool LatexStyleParser::parseLineXparseArgs(XpArgList &xpArgs, const QString &lin
 	xpArgs.clear();
 	int groupOffset = 0;
 	for (;;) {
-		static const QRegExp rxProc("^\\s*>\\s*\\{[^}]*\\}\\s*");
-		static const QRegExp rxArgDef("^\\s*([!+]*\\w+(?:\\{[^}]*\\})*)\\s*");
+        static const QRegularExpression rxProc("^\\s*>\\s*\\{[^}]*\\}\\s*");
+        static const QRegularExpression rxArgDef("^\\s*([!+]*\\w+(?:\\{[^}]*\\})*)\\s*");
 
-		if (rxProc.indexIn(group, groupOffset, QRegExp::CaretAtOffset) != -1) {
-			groupOffset += rxProc.matchedLength();
-		} else if (rxArgDef.indexIn(group, groupOffset, QRegExp::CaretAtOffset) != -1) {
-			XpArg oneXpArg;
+        QRegularExpressionMatch rxmProc=rxProc.match(group, groupOffset);
+        if (rxmProc.hasMatch()) {
+            groupOffset += rxmProc.capturedLength();
+        } else {
+            QRegularExpressionMatch rxmArgDef=rxArgDef.match(group, groupOffset);
+            if (rxmArgDef.hasMatch()) {
+                XpArg oneXpArg;
 
-			if (parseLineXparseOneArg(oneXpArg, rxArgDef.cap(1))) {
-				xpArgs.push_back(oneXpArg);
-			}
-			groupOffset += rxArgDef.matchedLength();
-		} else {
-			// Reached end of group or trailing whitespace
-			break;
-		}
+                if (parseLineXparseOneArg(oneXpArg, rxmArgDef.captured(1))) {
+                    xpArgs.push_back(oneXpArg);
+                }
+                groupOffset += rxmArgDef.capturedLength();
+            } else {
+                // Reached end of group or trailing whitespace
+                break;
+            }
+        }
 	}
 	return true;
 }
@@ -628,7 +644,7 @@ bool LatexStyleParser::parseLineGetGroup(QString &group, const QString &line, in
 
 bool LatexStyleParser::parseLineXparseOneArg(XpArg &xpArg, const QString &argDef)
 {
-	static const QRegExp rxArg(
+    static const QRegularExpression rxArg(
 		"^"
 		"(?:!|\\+)*"
 		"("
@@ -638,10 +654,11 @@ bool LatexStyleParser::parseLineXparseOneArg(XpArg &xpArg, const QString &argDef
 		")"
 	);
 
-	if (rxArg.indexIn(argDef) == -1) {
+    QRegularExpressionMatch rxmArg=rxArg.match(argDef);
+    if (!rxmArg.hasMatch()) {
 		return false;
 	}
-	QString match = rxArg.cap(1);
+    QString match = rxmArg.captured(1);
 	QChar type = match.at (0);
 	if (type == 'm') {
 		xpArg.optional = false;
