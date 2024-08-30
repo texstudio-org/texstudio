@@ -303,6 +303,10 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
                         QRegularExpressionMatchIterator it = re.globalMatch(line);
                         QRegularExpressionMatch match;
                         for(int i=0;i<cd.arguments.size();++i){
+                            if(!it.hasNext()) {
+                                match=QRegularExpressionMatch();
+                                break;
+                            }
                             match = it.next();
                             if(cd.arguments[i].tokenType==Token::labelRef)
                                 break;
@@ -405,6 +409,10 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
                         QRegularExpressionMatchIterator it = re.globalMatch(line);
                         QRegularExpressionMatch match;
                         for(int i=0;i<cd.arguments.size();++i){
+                            if(!it.hasNext()) {
+                                match=QRegularExpressionMatch();
+                                break;
+                            }
                             match = it.next();
                             if(cd.arguments[i].tokenType==Token::bibItem)
                                 break;
@@ -412,7 +420,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
                         package.possibleCommands["%cite"] << rxComMatch.captured(1);
                         if (!line.startsWith("\\begin")) // HANDLE begin extra
                             package.possibleCommands["%citeExtendedCommand"] << rxComMatch.captured(1);
-                        line.replace(match.capturedStart(),match.capturedLength(),"{@}");
+                        if(match.hasMatch()){
+                            line.replace(match.capturedStart(),match.capturedLength(),"{@}");
+                        }
 					}
 					valid.remove('C');
 				}
