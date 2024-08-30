@@ -72,7 +72,7 @@ void QDocumentLineTest::updateWrap_data(){
 	QTest::newRow("word break - 2 spaces") << "ab  |cde" << 20;//??
 	QTest::newRow("word break - 3 spaces nowhere to go") << "ab  | cde" << 20;
 	QTest::newRow("word break - 4 spaces nowhere to go") << "ab  |  cd" << 20;
-	QTest::newRow("word break - 4 spaces nowhere to go") << "ab  |  |cde" << 20;
+    QTest::newRow("word break - 4 spaces nowhere to go2") << "ab  |  |cde" << 20;
 	QTest::newRow("word break - space bug") << "a |a  x" << 20;
 	QTest::newRow("space break") << "x   |    |    |   " << 20;
 	QTest::newRow("space break - 1px off") << "x  |   |   |   " << 19;
