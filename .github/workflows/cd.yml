@@ -29,6 +29,7 @@ jobs:
             git make mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-ninja
             mingw-w64-ucrt-x86_64-qt6-base mingw-w64-ucrt-x86_64-qt6-declarative 
             mingw-w64-ucrt-x86_64-qt6-tools mingw-w64-ucrt-x86_64-poppler-qt6 
+            mingw-w64-ucrt-x86_64-qt6-svg
             mingw-w64-ucrt-x86_64-nsis mingw-w64-ucrt-x86_64-quazip-qt6 
             mingw-w64-ucrt-x86_64-hunspell mingw-w64-ucrt-x86_64-qt6-translations 
             mingw-w64-ucrt-x86_64-python-mingw-ldd zip unzip

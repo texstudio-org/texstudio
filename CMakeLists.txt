@@ -47,7 +47,6 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network Xml Concurrent Widgets UiTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS PrintSupport Svg Qml REQUIRED)
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    #find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core5Compat REQUIRED)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS LinguistTools QUIET)
 endif()
 
@@ -363,9 +362,7 @@ target_link_libraries(texstudio PRIVATE
 if(NOT MSVC AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.16.0")
     target_precompile_headers(texstudio PUBLIC src/mostQtHeaders.h)
 endif()
-#if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-#    target_link_libraries(texstudio PRIVATE Qt${QT_VERSION_MAJOR}::Core5Compat)
-#endif()
+
 if(TEXSTUDIO_BUILD_ADWAITA)
     target_link_libraries(texstudio PRIVATE Qt${QT_VERSION_MAJOR}::DBus)
 endif()
