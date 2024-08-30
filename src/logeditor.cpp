@@ -67,56 +67,6 @@ void LogEditor::setCursorPosition(int para, int index)
 void LogEditor::mouseDoubleClickEvent(QMouseEvent */*e*/)
 {
 	emit clickOnLogLine(textCursor().blockNumber());
-	/*QTextEdit::mousePressEvent(e);
-	QString content=textCursor().block().text();
-	int Start, End;
-	bool ok;
-	QString s;
-	QString line="";
-	//// l. ///
-	s = content;
-	Start=End=0;
-	Start=s.indexOf(QRegExp("l.[0-9]"), End);
-	if (Start!=-1) {
-		Start=Start+2;
-		s=s.mid(Start,s.length());
-		End=s.indexOf(QRegExp("[ a-zA-Z.\\-]"),0);
-		if (End!=-1)
-			line=s.mid(0,End);
-		else
-			line=s.mid(0,s.length());
-	};
-	//// line ///
-	s = content;
-	Start=End=0;
-	Start=s.indexOf(QRegExp("line [0-9]"), End);
-	if (Start!=-1) {
-		Start=Start+5;
-		s=s.mid(Start,s.length());
-		End=s.indexOf(QRegExp("[ a-zA-Z.\\-]"),0);
-		if (End!=-1)
-			line=s.mid(0,End);
-		else
-			line=s.mid(0,s.length());
-	};
-	//// lines ///
-	s = content;
-	Start=End=0;
-	Start=s.indexOf(QRegExp("lines [0-9]"), End);
-	if (Start!=-1) {
-		Start=Start+6;
-		s=s.mid(Start,s.length());
-		End=s.indexOf(QRegExp("[ a-zA-Z.\\-]"),0);
-		if (End!=-1)
-			line=s.mid(0,End);
-		else
-			line=s.mid(0,s.length());
-	};
-	int l=line.toInt(&ok,10)-1;
-	if (ok) {
-		emit clickonline(l);
-	}
-	*/
 }
 
 void LogEditor::paintEvent(QPaintEvent *event)
