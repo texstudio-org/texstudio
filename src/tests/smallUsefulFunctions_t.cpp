@@ -302,8 +302,8 @@ void SmallUsefulFunctionsTest::test_getParamItem_data()
 	QTest::newRow("singleSpaceStop2") << "\\section{With Space}" << 16 << true << "Space";
 
 	QTest::newRow("optArg") << "\\caption[short]{long}" << 9 << false << "short";
-	QTest::newRow("optArg") << "\\caption[short]{long}" << 11 << false << "short";
-	QTest::newRow("optArg") << "\\caption[short]{long}" << 14 << false << "short";
+    QTest::newRow("optArg1") << "\\caption[short]{long}" << 11 << false << "short";
+    QTest::newRow("optArg2") << "\\caption[short]{long}" << 14 << false << "short";
 
 	QTest::newRow("firstListParam") << "\\cmd{one, two, three}" << 5 << false << "one";
 	QTest::newRow("secondListParam") << "\\cmd{one, two, three}" << 10 << false << " two";
@@ -320,7 +320,7 @@ void SmallUsefulFunctionsTest::test_getParamItem_data()
 	QTest::newRow("outsideEnd") << "\\section{Single}" << 16 << false << "\\section{Single}";
 	QTest::newRow("betweenArg") << "\\caption[short]{long}" << 15 << false << "\\caption[short]{long}";
 	QTest::newRow("betweenColonAndSpaceArg") << "\\cmd{one, two}" << 9 << false << " two";
-	QTest::newRow("betweenColonAndSpaceArg") << "\\cmd{one, two}" << 9 << true << "";
+    QTest::newRow("betweenColonAndSpaceArg2") << "\\cmd{one, two}" << 9 << true << "";
 }
 
 void SmallUsefulFunctionsTest::test_getParamItem()
