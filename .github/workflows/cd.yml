@@ -78,7 +78,7 @@ jobs:
           # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/contexts#about-contexts
           if [ -z "${{ secrets.SIGNPATH_API_TOKEN }}" ]; then
             echo "IF_CODESIGN=false" >> "$GITHUB_ENV"
-            echo "::notice file=.github/workflows/cd.yml,title=Codesign skipped::Secret "SIGNPATH_API_TOKEN" not set."
+            echo "::notice file=.github/workflows/cd.yml,title=Codesign skipped::Secret \"SIGNPATH_API_TOKEN\" not set."
           else
             echo "IF_CODESIGN=true" >> "$GITHUB_ENV"
           fi
