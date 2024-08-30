@@ -267,6 +267,9 @@ jobs:
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtSvg-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
         sudo tar xvf ./QtSvg-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
         rm QtSvg-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        sudo tar xvf ./Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
+        rm Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtTools-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
         sudo tar xvf ./QtTools-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
         rm QtTools-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
@@ -359,6 +362,9 @@ jobs:
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtSvg-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
         sudo tar xvf ./QtSvg-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
         rm QtSvg-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
+        sudo tar xvf ./Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
+        rm Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtTools-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
         sudo tar xvf ./QtTools-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
         rm QtTools-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
