@@ -357,7 +357,7 @@ void LatexParserTest::test_findClosingBracket_data()
 	QTest::newRow("nested bracket") << "{a {nested} simple} text" << 0 << QChar('{') << QChar('}') << 18;
 	QTest::newRow("nested bracket2") << "{a {nested} simple} text" << 3 << QChar('{') << QChar('}') << 10;
 	QTest::newRow("nested bracket3") << "{a {nested} simple} text" << 16 << QChar('{') << QChar('}') << 18;
-	QTest::newRow("nested bracket3") << "{a {nested} simple} text" << 19 << QChar('{') << QChar('}') << -1;
+    QTest::newRow("nested bracket4") << "{a {nested} simple} text" << 19 << QChar('{') << QChar('}') << -1;
 	QTest::newRow("no bracket") << "No bracket in here" << 0 << QChar('{') << QChar('}') << -1;
 	QTest::newRow("no bracket2") << "No {proper} bracket in here" << 0 << QChar('{') << QChar('}') << -1;
 }
