@@ -2195,8 +2195,9 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
 {
     QString f_real = f;
 #ifdef Q_OS_WIN32
-    QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
-    if (regcheck.exactMatch(f)) f_real = regcheck.cap(1);
+    QRegularExpression regcheck("^/([a-zA-Z]:[/\\\\].*)$");
+    QRegularExpressionMatch rxmcheck = regcheck.match(f);
+    if (rxmcheck.hasMatch()) f_real = rxmcheck.captured(1);
 #endif
 
 #ifndef NO_POPPLER_PREVIEW
@@ -2968,13 +2969,14 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 	if (!saveSilently || fn.isEmpty()) {
 		fn = FileDialog::getSaveFileName(this, tr("Save As"), currentDir, fileFilters, &selectedFileFilter);
 		if (!fn.isEmpty()) {
-			static QRegExp fileExt("\\*(\\.[^ )]+)");
-			if (fileExt.indexIn(selectedFileFilter) > -1) {
+            static QRegularExpression fileExt("\\*(\\.[^ )]+)");
+            QRegularExpressionMatch rxmFileExt = fileExt.match(selectedFileFilter);
+            if (rxmFileExt.hasMatch()) {
 				//add
 				int lastsep = qMax(fn.lastIndexOf("/"), fn.lastIndexOf("\\"));
 				int lastpoint = fn.lastIndexOf(".");
 				if (lastpoint <= lastsep) //if both aren't found or point is in directory name
-					fn.append(fileExt.cap(1));
+                    fn.append(rxmFileExt.captured(1));
 			}
 		}
 	}
@@ -3983,8 +3985,9 @@ void Texstudio::editEraseWordCmdEnv()
 	// Prelimiary solution part I:
 	// Predictable behaviour on selections: do nothing except in easy cases
 	if (cursor.hasSelection()) {
-		QRegExp partOfWordOrCmd("\\\\?\\w*");
-		if (!partOfWordOrCmd.exactMatch(cursor.selectedText()))
+        QRegularExpression partOfWordOrCmd("^\\\\?\\w*$");
+        QRegularExpressionMatch rxm=partOfWordOrCmd.match(cursor.selectedText());
+        if (!rxm.hasMatch())
 			return;
 	}
 	// Prelimiary solution part II:
@@ -5026,7 +5029,7 @@ void Texstudio::insertTextCompletion()
     QStringList chars=word.split("",QString::SkipEmptyParts);
 #endif
     QString regExpression=chars.join(".*");
-    QRegExp rx("^"+regExpression);
+    QRegularExpression rx("^"+regExpression);
 
     for(int i=0;i<doc->lineCount();i++){
         QDocumentLineHandle *dlh=doc->line(i).handle();
@@ -5082,7 +5085,7 @@ void Texstudio::insertTextCompletion()
                         }
                     }
                 }else{
-                    if(rx.indexIn(txt)!=-1){
+                    if(rx.match(txt).hasMatch()){
                         words<<txt;
                     }
                 }
@@ -6139,8 +6142,8 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 
 bool Texstudio::checkProgramPermission(const QString &program, const QString &cmdId, LatexDocument *master)
 {
-	static const QRegExp txsCmd(QRegExp::escape(BuildManager::TXS_CMD_PREFIX) + "([^/ [{]+))");
-	if (txsCmd.exactMatch(program)) return true;
+    static const QRegularExpression txsCmd("^"+QRegularExpression::escape(BuildManager::TXS_CMD_PREFIX) + "([^/ [{]+))$");
+    if (txsCmd.match(program).hasMatch()) return true;
 	static QStringList programWhiteList;
 	configManager.registerOption("Tools/Program Whitelist", &programWhiteList, QStringList() << "latex" << "pdflatex");
 	if (programWhiteList.contains(program)) return true;
@@ -7262,7 +7265,7 @@ void Texstudio::generateAddtionalTranslations()
 	translations << "#ifdef UNDEFINED";
 	translations << "static const char* translations[] = {";
 
-	QRegExp commandOnly("\\\\['`^\"~=.^]?[a-zA-Z]*(\\{\\})* *"); //latex command
+    QRegularExpression rxCommandOnly("^\\\\['`^\"~=.^]?[a-zA-Z]*(\\{\\})* *$"); //latex command
 	//copy menu item text
 	QFile xmlFile(":/uiconfig.xml");
 	xmlFile.open(QIODevice::ReadOnly);
@@ -7278,10 +7281,10 @@ void Texstudio::generateAddtionalTranslations()
 			QDomNode current = nodes.at(i);
 			QDomNamedNodeMap attribs = current.attributes();
 			QString text = attribs.namedItem("text").nodeValue();
-			if (!text.isEmpty() && !commandOnly.exactMatch(text))
+            if (!text.isEmpty() && !rxCommandOnly.match(text).hasMatch())
 				translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \"" + text.replace("\\", "\\\\").replace("\"", "\\\"") + "\"), ";
             QString info = attribs.namedItem("info").nodeValue();
-            if (!info.isEmpty() && !commandOnly.exactMatch(info))
+            if (!info.isEmpty() && !rxCommandOnly.match(info).hasMatch())
                 translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \"" + info.replace("\\", "\\\\").replace("\"", "\\\"") + "\"), ";
 			QString insert = attribs.namedItem("insert").nodeValue();
 			if (!insert.isEmpty()) {
@@ -7320,7 +7323,7 @@ void Texstudio::generateAddtionalTranslations()
                             QDomNode current = nodes.at(i);
                             QDomNamedNodeMap attribs = current.attributes();
                             QString text = attribs.namedItem("txt").nodeValue();
-                            if (!text.isEmpty() && !commandOnly.exactMatch(text)){
+                            if (!text.isEmpty() && !rxCommandOnly.match(text).hasMatch()){
                                     translations << "QT_TRANSLATE_NOOP(\"XmlTagsListWidget\", \"" + text.replace("\\", "\\\\").replace("\"", "\\\"") + "\"), ";
                             }else{
                                 text = attribs.namedItem("title").nodeValue();
@@ -8365,8 +8368,8 @@ QList<int> Texstudio::findOccurencesApproximate(QString line, const QString &gue
 		QString regex;
 #if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
         foreach (const QString &x , changedWord.split(" ", Qt::SkipEmptyParts))
-            if (regex.isEmpty()) regex = QRegExp::escape(x);
-            else regex += "\\s+" + QRegExp::escape(x);
+            if (regex.isEmpty()) regex = QRegularExpression::escape(x);
+            else regex += "\\s+" + QRegularExpression::escape(x);
 #else
 		foreach (const QString &x , changedWord.split(" ", QString::SkipEmptyParts))
 			if (regex.isEmpty()) regex = QRegExp::escape(x);
@@ -9458,7 +9461,7 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 		lines.removeFirst();
 	}
 
-    QRegExp rx("@@ -(\\d+),?(\\d*)\\s*\\+(\\d+),(\\d+)");
+    static const QRegularExpression rx("@@ -(\\d+),?(\\d*)\\s*\\+(\\d+),(\\d+)");
 	int cur_line;
 	bool atDocEnd = false;
     int realTextLines=ed->document()->lines();
@@ -9469,8 +9472,9 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 			ch = elem.at(0);
 		}
 		if (ch == '@') {
-			if (rx.indexIn(elem) > -1) {
-				cur_line = rx.cap(3).toInt();
+            QRegularExpressionMatch rxm = rx.match(elem);
+            if (rxm.hasMatch()) {
+                cur_line = rxm.captured(3).toInt();
 				c.moveTo(cur_line - 1, 0);
 			} else {
 				qDebug() << "Bug";
@@ -9603,7 +9607,7 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
 {
 	QString filename = currentEditor()->fileName();
 	// get diff
-	QRegExp rx("^[r](\\d+) \\|");
+    QRegularExpression rx("^[r](\\d+) \\|");
     if(configManager.useVCS==1){
         //GIT
         rx.setPattern("^([a-f0-9]+) ");
@@ -9616,12 +9620,14 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
 	} else {
 		old_revision = old_rev;
 	}
-	if (rx.indexIn(old_revision) > -1) {
-		old_revision = rx.cap(1);
+    QRegularExpressionMatch rxm=rx.match(old_revision);
+    if (rxm.hasMatch()) {
+        old_revision = rxm.captured(1);
 	} else return;
 	QString new_revision = rev;
-	if (rx.indexIn(new_revision) > -1) {
-		new_revision = rx.cap(1);
+    rxm=rx.match(new_revision);
+    if (rxm.hasMatch()) {
+        new_revision = rxm.captured(1);
 	} else return;
     QString cmd;
     if(configManager.useVCS==0){
@@ -10573,8 +10579,9 @@ LatexDocument *Texstudio::diffLoadDocHidden(QString f)
 {
 	QString f_real = f;
 #ifdef Q_OS_WIN32
-	QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
-	if (regcheck.exactMatch(f)) f_real = regcheck.cap(1);
+    QRegularExpression regcheck("^/([a-zA-Z]:[/\\\\].*)$");
+    QRegularExpressionMatch rxm = regcheck.match(f);
+    if (rxm.hasMatch()) f_real = rxm.captured(1);
 #endif
 
 	if (!QFile::exists(f_real)) return nullptr;

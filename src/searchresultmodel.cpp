@@ -335,7 +335,8 @@ QString SearchResultModel::prepareReplacedText(const QDocumentLine &docline) con
 	int offset = 0;
 	foreach (SearchMatch match, placements) {
 		if (mIsRegExp) {
-			QRegExp rx(mExpression, mIsCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
+            qDebug()<<"unused code";
+            //QRegExp rx(mExpression, mIsCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
 			//QString newText=text.replace(rx,mReplacementText);
 			/*int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
 			cur->select(lineNr,elem.first,lineNr,elem.second);

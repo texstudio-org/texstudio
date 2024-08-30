@@ -942,10 +942,12 @@ int diff_match_patch::diff_cleanupSemanticScore(const QString &one,
           || two[0].category() == QChar::Other_Control) {
         score++;
         // Four points for blank lines.
-        QRegExp blankLineEnd("\\n\\r?\\n$");
-        QRegExp blankLineStart("^\\r?\\n\\r?\\n");
-        if (blankLineEnd.indexIn(one) != -1
-            || blankLineStart.indexIn(two) != -1) {
+        QRegularExpression blankLineEnd("\\n\\r?\\n$");
+        QRegularExpression blankLineStart("^\\r?\\n\\r?\\n");
+        QRegularExpressionMatch rxmblankLineEnd = blankLineEnd.match(one);
+        QRegularExpressionMatch rxmblankLineStart = blankLineStart.match(two);
+        if (rxmblankLineEnd.hasMatch()
+            || rxmblankLineStart.hasMatch()) {
           score++;
         }
       }
@@ -2018,35 +2020,36 @@ QList<Patch> diff_match_patch::patch_fromText(const QString &textline) {
   QStringList text = textline.split("\n", QString::SkipEmptyParts);
 #endif
   Patch patch;
-  QRegExp patchHeader("^@@ -(\\d+),?(\\d*) \\+(\\d+),?(\\d*) @@$");
+  QRegularExpression patchHeader("^@@ -(\\d+),?(\\d*) \\+(\\d+),?(\\d*) @@$");
   char sign;
   QString line;
   while (!text.isEmpty()) {
-    if (!patchHeader.exactMatch(text.front())) {
+    QRegularExpressionMatch rxmPatchHeader = patchHeader.match(text.front());
+    if (!rxmPatchHeader.hasMatch()) {
       throw QString("Invalid patch string: %1").arg(text.front());
     }
 
     patch = Patch();
-    patch.start1 = patchHeader.cap(1).toInt();
-    if (patchHeader.cap(2).isEmpty()) {
+    patch.start1 = rxmPatchHeader.captured(1).toInt();
+    if (rxmPatchHeader.captured(2).isEmpty()) {
       patch.start1--;
       patch.length1 = 1;
-    } else if (patchHeader.cap(2) == "0") {
+    } else if (rxmPatchHeader.captured(2) == "0") {
       patch.length1 = 0;
     } else {
       patch.start1--;
-      patch.length1 = patchHeader.cap(2).toInt();
+      patch.length1 = rxmPatchHeader.captured(2).toInt();
     }
 
-    patch.start2 = patchHeader.cap(3).toInt();
-    if (patchHeader.cap(4).isEmpty()) {
+    patch.start2 = rxmPatchHeader.captured(3).toInt();
+    if (rxmPatchHeader.captured(4).isEmpty()) {
       patch.start2--;
       patch.length2 = 1;
-    } else if (patchHeader.cap(4) == "0") {
+    } else if (rxmPatchHeader.captured(4) == "0") {
       patch.length2 = 0;
     } else {
       patch.start2--;
-      patch.length2 = patchHeader.cap(4).toInt();
+      patch.length2 = rxmPatchHeader.captured(4).toInt();
     }
     text.removeFirst();
 

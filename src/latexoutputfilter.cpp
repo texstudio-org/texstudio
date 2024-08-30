@@ -337,8 +337,8 @@ bool LatexOutputFilter::likelyNoFileStart(const QString &s, const QChar &nextCha
 // returns true if the given string exists as a file or ends with an extension of 1-4 characters, e.g. ".tex" or ".jpeg"
 bool LatexOutputFilter::fileNameLikelyComplete(const QString &partialFileName)
 {
-	static QRegExp extensionRx(".*\\.\\w{1,4}$");
-	return QFileInfo(partialFileName).exists() || extensionRx.exactMatch(partialFileName);
+    static QRegularExpression extensionRx("^.*\\.\\w{1,4}$");
+    return QFileInfo(partialFileName).exists() || extensionRx.match(partialFileName).hasMatch();
 }
 
 void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short &dwCookie)
@@ -629,13 +629,13 @@ bool LatexOutputFilter::detectError(const QString &strLine, short &dwCookie)
 {
 	bool found = false, flush = false;
 
-	static QRegExp reLaTeXError("^! (?:Lua|La)TeX Error(?: \\<\\\\directlua \\>:(?:[0-9]*))?: (.*)$", Qt::CaseInsensitive);
-	static QRegExp rePDFLaTeXError("^Error: (?:lua|pdf)latex (.*)$", Qt::CaseInsensitive);
-	static QRegExp reTeXError("^! (.*)$");
-	static QRegExp rePackageError("^! Package (.*) Error:(.*)$", Qt::CaseInsensitive);
-	static QRegExp reLatex3Error("^!\\s+(\\S.*)");
-	static QRegExp reLatex3ErrorHeader("^1\\s*(.*error:\\s*.*)", Qt::CaseInsensitive);
-	static QRegExp reLineNumber("^(\\.{3} )?l\\.([0-9]+)(.*)");
+    static QRegularExpression reLaTeXError("^! (?:Lua|La)TeX Error(?: \\<\\\\directlua \\>:(?:[0-9]*))?: (.*)$", QRegularExpression::CaseInsensitiveOption);
+    static QRegularExpression rePDFLaTeXError("^Error: (?:lua|pdf)latex (.*)$", QRegularExpression::CaseInsensitiveOption);
+    static QRegularExpression reTeXError("^! (.*)$");
+    static QRegularExpression rePackageError("^! Package (.*) Error:(.*)$", QRegularExpression::CaseInsensitiveOption);
+    static QRegularExpression reLatex3Error("^!\\s+(\\S.*)");
+    static QRegularExpression reLatex3ErrorHeader("^1\\s*(.*error:\\s*.*)", QRegularExpression::CaseInsensitiveOption);
+    static QRegularExpression reLineNumber("^(\\.{3} )?l\\.([0-9]+)(.*)");
 
 	switch (dwCookie) {
 	case Start :
@@ -643,20 +643,32 @@ bool LatexOutputFilter::detectError(const QString &strLine, short &dwCookie)
 			found = true;
 			dwCookie = Latex3Error;
 			m_currentItem.message = QString();
-			m_currentItem.logline = GetCurrentOutputLine();
-		} else if (reLaTeXError.indexIn(strLine) != -1) {
-			m_currentItem.message = reLaTeXError.cap(1);
-			found = true;
-		} else if (rePDFLaTeXError.indexIn(strLine) != -1) {
-			m_currentItem.message = rePDFLaTeXError.cap(1);
-			found = true;
-		} else if (reTeXError.indexIn(strLine) != -1) {
-			m_currentItem.message = reTeXError.cap(1);
-			found = true;
-		} else if (rePackageError.indexIn(strLine) != -1) {
-			m_currentItem.message = rePackageError.cap(1) + ":" + rePackageError.cap(2);
-			found = true;
-		}
+            m_currentItem.logline = GetCurrentOutputLine();
+        } else {
+            QRegularExpressionMatch rmLaTeXError = reLaTeXError.match(strLine);
+            if (rmLaTeXError.hasMatch()) {
+                m_currentItem.message = rmLaTeXError.captured(1);
+                found = true;
+            } else {
+                QRegularExpressionMatch rmPDFLaTeXError = rePDFLaTeXError.match(strLine);
+                if (rmPDFLaTeXError.hasMatch()) {
+                    m_currentItem.message = rmPDFLaTeXError.captured(1);
+                    found = true;
+                } else {
+                    QRegularExpressionMatch rmTeXError = reTeXError.match(strLine);
+                    if (rmTeXError.hasMatch()) {
+                        m_currentItem.message = rmTeXError.captured(1);
+                        found = true;
+                    } else {
+                        QRegularExpressionMatch rmPackageError=rePackageError.match(strLine);
+                        if (rmPackageError.hasMatch()) {
+                            m_currentItem.message = rmPackageError.captured(1) + ":" + rmPackageError.captured(2);
+                            found = true;
+                        }
+                    }
+                }
+            }
+        }
 		if (found && dwCookie != Latex3Error) { // already handled for Latex3Error above
 			dwCookie = strLine.endsWith('.') ? LineNumber : Error;
 			m_currentItem.logline = GetCurrentOutputLine();
@@ -683,15 +695,21 @@ bool LatexOutputFilter::detectError(const QString &strLine, short &dwCookie)
 				//  ! See the mymodule documentation for further information.
 				// 	! Type <return> to continue.
 				found = true;
-			} else if (reLatex3ErrorHeader.indexIn(strLine) != -1) {
-				if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
-				m_currentItem.message += reLatex3ErrorHeader.cap(1);
-				found = true;
-			} else if (reLatex3Error.indexIn(strLine) != -1) {
-				if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
-				m_currentItem.message += reLatex3Error.cap(1);
-				found = true;
-			}
+            } else {
+                QRegularExpressionMatch rmLatex3ErrorHeader = reLatex3ErrorHeader.match(strLine);
+                if (rmLatex3ErrorHeader.hasMatch()) {
+                    if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
+                    m_currentItem.message += rmLatex3ErrorHeader.captured(1);
+                    found = true;
+                } else {
+                    QRegularExpressionMatch rmLatex3Error = reLatex3Error.match(strLine);
+                    if (rmLatex3Error.hasMatch()) {
+                        if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
+                        m_currentItem.message += rmLatex3Error.captured(1);
+                        found = true;
+                    }
+                }
+            }
 		}
 		break;
 	case Latex3ErrorEnd:
@@ -702,16 +720,19 @@ bool LatexOutputFilter::detectError(const QString &strLine, short &dwCookie)
 		}
         break; // was probably forgotten
 	case LineNumber :
-		if (reLineNumber.indexIn(strLine) != -1) {
+    {
+        QRegularExpressionMatch rmLineNumber = reLineNumber.match(strLine);
+        if (rmLineNumber.hasMatch()) {
 			dwCookie = Start;
 			flush = true;
-			m_currentItem.oldline = reLineNumber.cap(2).toInt();
-			m_currentItem.message = m_currentItem.message + reLineNumber.cap(3);
+            m_currentItem.oldline = rmLineNumber.captured(2).toInt();
+            m_currentItem.message = m_currentItem.message + rmLineNumber.captured(3);
 		} else if (GetCurrentOutputLine() - m_currentItem.logline > 10) {
 			dwCookie = Start;
 			flush = true;
 			m_currentItem.oldline = 0;
-		}
+        }
+    }
 		break;
 
 	default :
@@ -735,11 +756,11 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 	bool found = false, flush = false;
 	QString warning;
 
-    static QRegExp reLaTeXWarning("^(((! )?(La|pdf|Lua)TeX[3]?)|Package|Class|Module) .*Warning.*:(.*)", Qt::CaseInsensitive);
-	static QRegExp reLatex3Warning("^\\*\\s+(\\S.*)");
-	static QRegExp reLatex3WarningHeader("^\\*\\s*(.*warning:\\s*.*)", Qt::CaseInsensitive);
-	static QRegExp reNoFile("^No file (.*)");
-	static QRegExp reNoAsyFile("File .* does not exist."); // FIXME can be removed when http://sourceforge.net/tracker/index.php?func=detail&aid=1772022&group_id=120000&atid=685683 has promoted to the users
+    static const QRegularExpression reLaTeXWarning("^(((! )?(La|pdf|Lua)TeX[3]?)|Package|Class|Module) .*Warning.*:(.*)", QRegularExpression::CaseInsensitiveOption);
+    static const QRegularExpression reLatex3Warning("^\\*\\s+(\\S.*)");
+    static const QRegularExpression reLatex3WarningHeader("^\\*\\s*(.*warning:\\s*.*)", QRegularExpression::CaseInsensitiveOption);
+    static const QRegularExpression reNoFile("^No file (.*)");
+    static const QRegularExpression reNoAsyFile("File .* does not exist."); // FIXME can be removed when http://sourceforge.net/tracker/index.php?func=detail&aid=1772022&group_id=120000&atid=685683 has promoted to the users
     static const QRegularExpression rePackageWarningConinued("^\\(.*\\)[ ]{15}|^\\(LaTeX3\\)[ ]{7}");
 
 	switch (dwCookie) {
@@ -750,28 +771,37 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 			dwCookie = MaybeLatex3Warning; // cannot decide yet, some packages just insert a starred line as separator. A Latex3Warning will start the next line with a star (will be checked later on).
 			m_currentItem.message = QString();
 			m_currentItem.logline = GetCurrentOutputLine();
-		} else if (reLaTeXWarning.indexIn(strLine) != -1) {
-			warning = reLaTeXWarning.cap(5);
-			//KILE_DEBUG() << "\tWarning found: " << warning << endl;
-			found = true;
-			dwCookie = Start;
-			m_currentItem.logline = GetCurrentOutputLine();
-			//do we expect a line number?
-			flush = detectLaTeXLineNumber(warning, dwCookie, strLine.length());
-			m_currentItem.message = warning;
-		} else if (reNoFile.indexIn(strLine) != -1) {
-			found = true;
-			flush = true;
-			m_currentItem.oldline = (0);
-			m_currentItem.message = (reNoFile.cap(0));
-			m_currentItem.logline = GetCurrentOutputLine();
-		} else if (reNoAsyFile.indexIn(strLine) != -1) {
-			found = true;
-			flush = true;
-			m_currentItem.oldline = (0);
-			m_currentItem.message = (reNoAsyFile.cap(0));
-			m_currentItem.logline = GetCurrentOutputLine();
-		}
+        } else {
+            QRegularExpressionMatch rmLaTeXWarning = reLaTeXWarning.match(strLine);
+            if (rmLaTeXWarning.hasMatch()) {
+                warning = rmLaTeXWarning.captured(5);
+                //KILE_DEBUG() << "\tWarning found: " << warning << endl;
+                found = true;
+                dwCookie = Start;
+                m_currentItem.logline = GetCurrentOutputLine();
+                //do we expect a line number?
+                flush = detectLaTeXLineNumber(warning, dwCookie, strLine.length());
+                m_currentItem.message = warning;
+            } else {
+                QRegularExpressionMatch rmNoFile = reNoFile.match(strLine);
+                if (rmNoFile.hasMatch()) {
+                    found = true;
+                    flush = true;
+                    m_currentItem.oldline = (0);
+                    m_currentItem.message = (rmNoFile.captured(0));
+                    m_currentItem.logline = GetCurrentOutputLine();
+                } else {
+                    QRegularExpressionMatch rmNoAsyFile = reNoAsyFile.match(strLine);
+                    if (rmNoAsyFile.hasMatch()) {
+                        found = true;
+                        flush = true;
+                        m_currentItem.oldline = (0);
+                        m_currentItem.message = (rmNoAsyFile.captured(0));
+                        m_currentItem.logline = GetCurrentOutputLine();
+                    }
+                }
+            }
+        }
 
 		break;
 
@@ -805,15 +835,19 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 			flush = true;
 			dwCookie = Start;
 		} else {
-			if (reLatex3WarningHeader.indexIn(strLine) != -1) {
-				if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
-				m_currentItem.message += reLatex3WarningHeader.cap(1);
-				found = true;
-			} else if (reLatex3Warning.indexIn(strLine) != -1) {
-				if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
-				m_currentItem.message += reLatex3Warning.cap(1);
-				found = true;
-			}
+            QRegularExpressionMatch rmLatex3WarningHeader = reLatex3WarningHeader.match(strLine);
+            if (rmLatex3WarningHeader.hasMatch()) {
+                if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
+                m_currentItem.message += rmLatex3WarningHeader.captured(1);
+                found = true;
+            } else {
+                QRegularExpressionMatch rmLatex3Warning = reLatex3Warning.match(strLine);
+                if (rmLatex3Warning.hasMatch()) {
+                    if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
+                    m_currentItem.message += rmLatex3Warning.captured(1);
+                    found = true;
+                }
+            }
 		}
 		break;
 	default:
@@ -834,11 +868,13 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 
 bool LatexOutputFilter::detectLaTeXLineNumber(QString &warning, short &dwCookie, int len)
 {
-	static QRegExp reLaTeXLineNumber("(.*) on(?: input)? line ([0-9]+)\\.?$", Qt::CaseInsensitive);
-	static QRegExp reInternationalLaTeXLineNumber("(.*)([0-9]+)\\.$", Qt::CaseInsensitive);
-	if ((reLaTeXLineNumber.indexIn(warning) != -1) || (reInternationalLaTeXLineNumber.indexIn(warning) != -1)) {
-		m_currentItem.oldline = (reLaTeXLineNumber.cap(2).toInt());
-		warning = reLaTeXLineNumber.cap(1);
+    static QRegularExpression reLaTeXLineNumber("(.*) on(?: input)? line ([0-9]+)\\.?$", QRegularExpression::CaseInsensitiveOption);
+    static QRegularExpression reInternationalLaTeXLineNumber("(.*)([0-9]+)\\.$", QRegularExpression::CaseInsensitiveOption);
+    QRegularExpressionMatch rmLaTeXLineNumber=reLaTeXLineNumber.match(warning);
+    QRegularExpressionMatch rmInternationalLaTeXLineNumber=reInternationalLaTeXLineNumber.match(warning);
+    if ((rmLaTeXLineNumber.hasMatch()) || (rmInternationalLaTeXLineNumber.hasMatch())) {
+        m_currentItem.oldline = (rmLaTeXLineNumber.captured(2).toInt());
+        warning = rmLaTeXLineNumber.captured(1);
 		dwCookie = Start;
 		return true;
 	} else if (warning.endsWith('.')) {
@@ -866,11 +902,11 @@ bool LatexOutputFilter::detectBadBox(const QString &strLine, short &dwCookie)
 	bool found = false, flush = false;
 	QString badbox;
 
-	static QRegExp reBadBox("^(Over|Under)(full \\\\[hv]box .*)", Qt::CaseInsensitive);
+    static QRegularExpression reBadBox("^(Over|Under)(full \\\\[hv]box .*)", QRegularExpression::CaseInsensitiveOption);
 
 	switch (dwCookie) {
 	case Start :
-		if (reBadBox.indexIn(strLine) != -1) {
+        if (reBadBox.match(strLine).hasMatch()) {
 			found = true;
 			dwCookie = ExpectingBadBoxTextQoute;
 			badbox = strLine;
@@ -908,44 +944,53 @@ bool LatexOutputFilter::detectBadBox(const QString &strLine, short &dwCookie)
 //
 bool LatexOutputFilter::isBadBoxTextQuote(const QString &strLine)
 {
-	static QRegExp reBadBoxTextQoute("\\\\\\S+/\\S+/\\S+/\\S+/");
-	return (reBadBoxTextQoute.indexIn(strLine) >= 0);
+    static QRegularExpression reBadBoxTextQoute("\\\\\\S+/\\S+/\\S+/\\S+/");
+    return (reBadBoxTextQoute.match(strLine).hasMatch());
 }
 
 bool LatexOutputFilter::detectBadBoxLineNumber(QString &strLine, short &dwCookie, int len)
 {
-	static QRegExp reBadBoxLines("(.*) at lines ([0-9]+)--([0-9]+)", Qt::CaseInsensitive);
-	static QRegExp reBadBoxLine("(.*) at line ([0-9]+)", Qt::CaseInsensitive);
+    static QRegularExpression reBadBoxLines("(.*) at lines ([0-9]+)--([0-9]+)", QRegularExpression::CaseInsensitiveOption);
+    static QRegularExpression reBadBoxLine("(.*) at line ([0-9]+)", QRegularExpression::CaseInsensitiveOption);
 	//Use the following only, if you know how to get the source line for it.
 	// This is not simple, as TeX is not reporting it.
-	static QRegExp reBadBoxOutput("(.*)has occurred while \\\\output is active^", Qt::CaseInsensitive);
+    static QRegularExpression reBadBoxOutput("(.*)has occurred while \\\\output is active^", QRegularExpression::CaseInsensitiveOption);
 
-	if (reBadBoxLines.indexIn(strLine) != -1) {
+    QRegularExpressionMatch rmBadBoxLines=reBadBoxLines.match(strLine);
+    if (rmBadBoxLines.hasMatch()) {
 		dwCookie = ExpectingBadBoxTextQoute;
-		strLine = reBadBoxLines.cap(1);
-		int n1 = reBadBoxLines.cap(2).toInt();
-		int n2 = reBadBoxLines.cap(3).toInt();
+        strLine = rmBadBoxLines.captured(1);
+        int n1 = rmBadBoxLines.captured(2).toInt();
+        int n2 = rmBadBoxLines.captured(3).toInt();
 		m_currentItem.oldline = (n1 < n2 ? n1 : n2);
 		return true;
-	} else if (reBadBoxLine.indexIn(strLine) != -1) {
-		dwCookie = ExpectingBadBoxTextQoute;
-		strLine = reBadBoxLine.cap(1);
-		m_currentItem.oldline = (reBadBoxLine.cap(2).toInt());
-		return true;
-	} else if (reBadBoxOutput.indexIn(strLine) != -1) {
-		dwCookie = ExpectingBadBoxTextQoute;
-		strLine = reBadBoxLines.cap(1);
-		m_currentItem.oldline = (0);
-		return true;
-	}
-	//bailing out, did not find a line number
-	else if ((GetCurrentOutputLine() - m_currentItem.logline > 3) || (len == 0)) {
-		dwCookie = Start;
-		m_currentItem.oldline = (0);
-		return true;
-	} else {
-		dwCookie = BadBox;
-	}
+    } else {
+        QRegularExpressionMatch rmBadBoxLine=reBadBoxLine.match(strLine);
+        if (rmBadBoxLine.hasMatch()) {
+            dwCookie = ExpectingBadBoxTextQoute;
+            strLine = rmBadBoxLine.captured(1);
+            m_currentItem.oldline = (rmBadBoxLine.captured(2).toInt());
+            return true;
+        } else {
+            QRegularExpressionMatch rmBadBoxOutput=reBadBoxOutput.match(strLine);
+            if (rmBadBoxOutput.hasMatch()) {
+                dwCookie = ExpectingBadBoxTextQoute;
+                strLine = rmBadBoxLines.captured(1);
+                m_currentItem.oldline = (0);
+                return true;
+            }
+            //bailing out, did not find a line number
+            else {
+                if ((GetCurrentOutputLine() - m_currentItem.logline > 3) || (len == 0)) {
+                    dwCookie = Start;
+                    m_currentItem.oldline = (0);
+                    return true;
+                } else {
+                    dwCookie = BadBox;
+                }
+            }
+        }
+    }
 
 	return false;
 }

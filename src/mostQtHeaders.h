@@ -88,7 +88,9 @@
 #include <QPrinter>
 #include <QProcess>
 #include <QPushButton>
+#if (QT_VERSION<QT_VERSION_CHECK(5,14,0))
 #include <QRegExp>
+#endif
 #include <QRegularExpression>
 #include <QResizeEvent>
 #include <QScreen>

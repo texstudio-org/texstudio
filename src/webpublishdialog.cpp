@@ -198,13 +198,14 @@ void WebPublishDialog::bboxProcess()
 
 void WebPublishDialog::readBboxOutput()
 {
-	QRegExp rxbbox("%%BoundingBox:\\s*([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)");
+    QRegularExpression rxbbox("%%BoundingBox:\\s*([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)");
 	QString line;
 	QByteArray result = proc->readAllStandardError();
 	QTextStream bbox(&result);
 	while (!bbox.atEnd()) {
 		line = bbox.readLine();
-		if (rxbbox.indexIn(line) > -1) {
+        QRegularExpressionMatch rxmbbox = rxbbox.match(line);
+        if (rxmbbox.hasMatch()) {
 			QFile bboxf(workdir + "/bbox.txt");
 			if (!bboxf.open(QIODevice::WriteOnly)) {
 				fatalerror(workdir + "/bbox.txt" + " not found.");
@@ -350,7 +351,7 @@ int WebPublishDialog:: nbpagesps(QString psfile)
 	QString captured = "0";
 	bool ok;
 	QFile f(psfile);
-	QRegExp rx("^%%Pages:\\s+(-?\\d+)");
+    QRegularExpression rx("^%%Pages:\\s+(-?\\d+)");
 	if (!f.open(QIODevice::ReadOnly)) {
 		fatalerror(psfile + " not found.");
 		return 0;
@@ -358,8 +359,9 @@ int WebPublishDialog:: nbpagesps(QString psfile)
 		QTextStream psts(&f);
 		while (!psts.atEnd()) {
 			line = psts.readLine();
-			if (rx.indexIn(line) > -1) {
-				captured = rx.cap(1);
+            QRegularExpressionMatch rxm=rx.match(line);
+            if (rxm.hasMatch()) {
+                captured = rxm.captured(1);
 				break;
 			}
 		}
@@ -378,9 +380,9 @@ void WebPublishDialog::extractpage(QString psfile, int page)
 	QString line;
 
 	QFile f(workdir + "/" + psfile);
-	QRegExp rxpage("^%%Page:\\s+(-?\\d+)");
-	QRegExp rxtrailer("^%%Trailer");
-	QRegExp rx("^%%Pages:\\s+(-?\\d+)");
+    QRegularExpression rxpage("^%%Page:\\s+(-?\\d+)");
+    QRegularExpression rxtrailer("^%%Trailer");
+    QRegularExpression rx("^%%Pages:\\s+(-?\\d+)");
 	if (!f.open(QIODevice::ReadOnly)) {
 		fatalerror(psfile + " not found.");
 		return;
@@ -395,15 +397,18 @@ void WebPublishDialog::extractpage(QString psfile, int page)
 			bool go = true;
 			while (!psts.atEnd()) {
 				line = psts.readLine();
-				if (rxpage.indexIn(line) > -1) {
-					int numpage = rxpage.cap(1).toInt();
+                QRegularExpressionMatch rxmpage = rxpage.match(line);
+                if (rxmpage.hasMatch()) {
+                    int numpage = rxmpage.captured(1).toInt();
 					if (numpage == page) {
 						line = "%%Page: 1 1";
 						go = true;
 					} else go = false;
 				}
-				if (rxtrailer.indexIn(line) > -1) go = true;
-				if (rx.indexIn(line) > -1) line = "%%Pages: 1 0";
+                QRegularExpressionMatch rxmtrailer = rxtrailer.match(line);
+                if (rxmtrailer.hasMatch()) go = true;
+                QRegularExpressionMatch rxm = rx.match(line);
+                if (rxm.hasMatch()) line = "%%Pages: 1 0";
 				if (go) outts << line + "\n";
 			}
 			outf.close();
@@ -536,12 +541,13 @@ void WebPublishDialog::writepages(QString mode)
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
                     auxts.setCodec(codec);
 #endif
-					QRegExp rx("\\\\newlabel\\{(.*)\\}\\{\\{.*\\}\\{(\\d+)\\}\\}");
+                    QRegularExpression rx("\\\\newlabel\\{(.*)\\}\\{\\{.*\\}\\{(\\d+)\\}\\}");
 					while (!auxts.atEnd()) {
 						QString line = auxts.readLine();
-						if (rx.indexIn(line) != -1) {
-							QString captured1 = rx.cap(1);
-							QString captured2 = rx.cap(2);
+                        QRegularExpressionMatch rxm=rx.match(line);
+                        if (rxm.hasMatch()) {
+                            QString captured1 = rxm.captured(1);
+                            QString captured2 = rxm.captured(2);
 							loc[captured1] = "page" + captured2 + ".html";
 						}
 					}
@@ -596,11 +602,12 @@ void WebPublishDialog::writepages(QString mode)
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
                     auxts.setCodec(codec);
 #endif
-					QRegExp rx("\\\\@writefile\\{toc\\}.*(" + depth + ").*\\{(\\d+)\\}\\}");
+                    QRegularExpression rx("\\\\@writefile\\{toc\\}.*(" + depth + ").*\\{(\\d+)\\}\\}");
 					while (!auxts.atEnd()) {
 						line = auxts.readLine();
-						if (rx.indexIn(line) > -1) {
-							captured2 = rx.cap(2);
+                        QRegularExpressionMatch rxm=rx.match(line);
+                        if (rxm.hasMatch()) {
+                            captured2 = rxm.captured(2);
 							id_page = captured2.toInt(&ok);
                             line.remove(QRegularExpression("\\\\@writefile\\{toc\\}"));
                             if (line.indexOf(QRegularExpression("\\\\numberline"), 0) > -1) {
@@ -646,17 +653,18 @@ void WebPublishDialog::writepages(QString mode)
 			return;
 		} else {
 			QTextStream bboxts(&bboxf);
-			QRegExp rx("%%BoundingBox:\\s*([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)");
+            QRegularExpression rx("%%BoundingBox:\\s*([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)\\s+([0-9eE\\.\\-]+)");
 			while (!bboxts.atEnd()) {
 				QString line = bboxts.readLine();
-				if (rx.indexIn(line) != -1) {
-					captured1 = rx.cap(1);
+                QRegularExpressionMatch rxm=rx.match(line);
+                if (rxm.hasMatch()) {
+                    captured1 = rxm.captured(1);
 					x1 = captured1.toInt(&ok);
-					captured2 = rx.cap(2);
+                    captured2 = rxm.captured(2);
 					y1 = captured2.toInt(&ok);
-					captured3 = rx.cap(3);
+                    captured3 = rxm.captured(3);
 					x2 = captured3.toInt(&ok);
-					captured4 = rx.cap(4);
+                    captured4 = rxm.captured(4);
 					y2 = captured4.toInt(&ok);
 				}
 			}
@@ -705,21 +713,22 @@ void WebPublishDialog::writepages(QString mode)
 					return;
 				} else {
 					QTextStream LINK(&linkf);
-					QRegExp rx("x1=([0-9eE\\.\\-]+)\\s+y1=([0-9eE\\.\\-]+)\\s+x2=([0-9eE\\.\\-]+)\\s+y2=([0-9eE\\.\\-]+)\\s+linkto\\s+(.*)$");
+                    QRegularExpression rx("x1=([0-9eE\\.\\-]+)\\s+y1=([0-9eE\\.\\-]+)\\s+x2=([0-9eE\\.\\-]+)\\s+y2=([0-9eE\\.\\-]+)\\s+linkto\\s+(.*)$");
 					nb_link = 0 ;
 					htmts << "<map name='carte" + QString::number(id_page) + "'>\n" ;
 					while (!LINK.atEnd()) {
 						line = LINK.readLine();
-						if (rx.indexIn(line) > -1) {
-							captured1 = rx.cap(1);
+                        QRegularExpressionMatch rxm=rx.match(line);
+                        if (rxm.hasMatch()) {
+                            captured1 = rxm.captured(1);
 							x1 = int(captured1.toFloat(&ok) + 0.5);
-							captured2 = rx.cap(2);
+                            captured2 = rxm.captured(2);
 							y1 = int(captured2.toFloat(&ok) + 0.5);
-							captured3 = rx.cap(3);
+                            captured3 = rxm.captured(3);
 							x2 = int(captured3.toFloat(&ok) + 0.5);
-							captured4 = rx.cap(4);
+                            captured4 = rxm.captured(4);
 							y2 = int(captured4.toFloat(&ok) + 0.5);
-							link = rx.cap(5);
+                            link = rxm.captured(5);
 							if (link != "none") {
 								LinkMap::Iterator it = loc.find(link);
 								if (it != loc.end()) {
@@ -776,21 +785,22 @@ void WebPublishDialog::writepages(QString mode)
 					return;
 				} else {
 					QTextStream LINK(&linkf);
-					QRegExp rx("x1=([0-9eE\\.\\-]+)\\s+y1=([0-9eE\\.\\-]+)\\s+x2=([0-9eE\\.\\-]+)\\s+y2=([0-9eE\\.\\-]+)\\s+linkto\\s+(.*)$");
+                    QRegularExpression rx("x1=([0-9eE\\.\\-]+)\\s+y1=([0-9eE\\.\\-]+)\\s+x2=([0-9eE\\.\\-]+)\\s+y2=([0-9eE\\.\\-]+)\\s+linkto\\s+(.*)$");
 					nb_link = 0 ;
 					htmts << "<map name='carte" + QString::number(id_page) + "'>\n" ;
 					while (!LINK.atEnd()) {
 						line = LINK.readLine();
-						if (rx.indexIn(line) > -1) {
-							captured1 = rx.cap(1);
+                        QRegularExpressionMatch rxm=rx.match(line);
+                        if (rxm.hasMatch()) {
+                            captured1 = rxm.captured(1);
 							x1 = int(captured1.toFloat(&ok) + 0.5);
-							captured2 = rx.cap(2);
+                            captured2 = rxm.captured(2);
 							y1 = int(captured2.toFloat(&ok) + 0.5);
-							captured3 = rx.cap(3);
+                            captured3 = rxm.captured(3);
 							x2 = int(captured3.toFloat(&ok) + 0.5);
-							captured4 = rx.cap(4);
+                            captured4 = rxm.captured(4);
 							y2 = int(captured4.toFloat(&ok) + 0.5);
-							link = rx.cap(5);
+                            link = rxm.captured(5);
 							if (link != "none") {
 								htmts << "<area shape='rect' coords='" + QString::number(x1) + "," + QString::number(y1) + "," + QString::number(x2) + "," + QString::number(y2) + "' href='" + link + "' >\n"  ;
 							}
@@ -834,7 +844,7 @@ void WebPublishDialog::clean()
 
 void WebPublishDialog::latexerror(QString logfile)
 {
-	QRegExp rx("^!");
+    QRegularExpression rx("^!");
 	QString line;
 	QFile logf(logfile);
 	if (!logf.open(QIODevice::ReadOnly)) {
@@ -844,7 +854,8 @@ void WebPublishDialog::latexerror(QString logfile)
 		bool ok = true;
 		while (!LOG.atEnd()) {
 			line = LOG.readLine();
-			if (rx.indexIn(line) > -1) {
+            QRegularExpressionMatch rxm=rx.match(line);
+            if (rxm.hasMatch()) {
 				ok = false;
 			}
 		}
