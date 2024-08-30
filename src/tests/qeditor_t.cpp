@@ -63,7 +63,7 @@ void QEditorTest::loadSave_data(){
 					<< codings[i]
 					<< endings[j]
 					<< true;
-			QTest::newRow(qPrintable(QString("load with encoding %1 endings %2").arg(codings[i]).arg(j)))
+            QTest::newRow(qPrintable(QString("load with encoding %1 endings %2 (2)").arg(codings[i]).arg(j)))
 				<< codings[i]
 				<< endings[j]
 				<< false;
@@ -611,7 +611,7 @@ void QEditorTest::indentation_data(){
 		<< "{\na\n}"
 		<< "   hello{\n   a\n   }\nworld\n";
 
-	QTest::newRow("trivial + \\t indentation")
+    QTest::newRow("trivial + \\t indentation 2")
 		<< "\thello\nworld\n"
 		<< false << 0 << 6 << -1 << -1
 		<< "{\na\n}"
@@ -635,7 +635,7 @@ void QEditorTest::indentation_data(){
 		<< "  x\n y\n  z"
 		<< "   hel  x\n    y\n     zlo\nworld\n";
 
-	QTest::newRow("block indentation")
+    QTest::newRow("block indentation 2")
 		<< "   hello\nworld\n"
 		<< true << 0 << 6 << -1 << -1
 		<< "  \\begin{abc}\n    abcdef\n  \\end{abc}"

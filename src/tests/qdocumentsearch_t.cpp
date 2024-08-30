@@ -316,7 +316,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 5 << 0
 		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nabc"
 		<< 8;
-	QTest::newRow("whole words backward")
+    QTest::newRow("whole words backward 2")
 		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
 		<< "abc"
 		<< "uvxyz"
@@ -326,7 +326,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 5 << 0
 		<< "abc abc \nuvxyz uvxyz uvxyz \nuvxyz abcabcabcabc \nuvxyz\nuvxyz uvxyz uvxyz\nuvxyz"
 		<< 9;
-	QTest::newRow("whole words backward")
+    QTest::newRow("whole words backward 3")
 		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
 		<< "abc"
 		<< "uvxyz"

@@ -74,7 +74,7 @@ void LatexOutputFilterTest::run_data() {
 			<< (QStringList() << "(./chapter1.tex(")
 			<< short(LatexOutputFilter::ExpectingFileName)
 			<< QString("./chapter1.tex");
-	QTest::newRow("open")
+    QTest::newRow("open 2")
 			<< (QStringList() << "(D:\\bugreport\\bug.aux"
 				)
 			<< short(LatexOutputFilter::Start)
@@ -354,7 +354,7 @@ void LatexOutputFilterTest::run_data() {
 				)
 			<< short(LatexOutputFilter::Start)
 			<< "d:/main.tex";
-	QTest::newRow("TeX open close2")
+    QTest::newRow("TeX open close3")
 			<< (QStringList()
 				<< ":<+ Zusammenfassung.tex"
 				<< ":<-"
@@ -540,7 +540,7 @@ void LatexOutputFilterTest::fileNameLikelyComplete_data() {
 	QTest::newRow("file") << "foo.tex" << true;
 	QTest::newRow("file2") << "foo.bar" << true;
 	QTest::newRow("file3") << "foo bar.tex" << true;
-	QTest::newRow("file3") << "foo.jpeg" << true;
+    QTest::newRow("file4") << "foo.jpeg" << true;
 	QTest::newRow("expr") << "filter.parseLine" << false;
 }
 
@@ -690,7 +690,7 @@ void LatexOutputFilterTest::detectError_data()
                 )
             << short(LatexOutputFilter::Start)
             << "";
-    QTest::newRow("Undefinded control sequence V")
+    QTest::newRow("Undefinded control sequence VI")
             << (QStringList()
                 <<"! Undefined control sequence."
                 <<"\\variable ->\\3"

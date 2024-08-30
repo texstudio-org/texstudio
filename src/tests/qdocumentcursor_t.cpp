@@ -530,18 +530,18 @@ void QDocumentCursorTest::subtractBoundaries_data(){
 /*aaaaXXXXXX
 ZZZZZZZZZZbbbbbbbbbbbb*/
 
-	QTest::newRow("cutting left, one char") << "0|4|1|10" << "0|4|0|5" << "0|4|1|10";
-	QTest::newRow("cutting left, multiple char") << "0|4|1|10" << "0|4|0|10" << "0|4|1|10";
-	QTest::newRow("cutting left, whole line") << "0|4|1|10" << "0|4|1|0" << "0|4|0|14";
+    QTest::newRow("cutting left, one char 2") << "0|4|1|10" << "0|4|0|5" << "0|4|1|10";
+    QTest::newRow("cutting left, multiple char 2") << "0|4|1|10" << "0|4|0|10" << "0|4|1|10";
+    QTest::newRow("cutting left, whole line 2") << "0|4|1|10" << "0|4|1|0" << "0|4|0|14";
 	QTest::newRow("cutting left, whole line + chars on last line") << "0|4|1|10" << "0|4|1|3" << "0|4|0|11";
-	QTest::newRow("cutting left, whole selection") << "0|4|1|10" << "0|4|1|10" << "0|4|0|4";
-	QTest::newRow("cutting left, more than selection") << "0|4|1|10" << "0|4|1|20" << "0|4|0|4";
+    QTest::newRow("cutting left, whole selection 2") << "0|4|1|10" << "0|4|1|10" << "0|4|0|4";
+    QTest::newRow("cutting left, more than selection 2") << "0|4|1|10" << "0|4|1|20" << "0|4|0|4";
 
 	QTest::newRow("cutting mid, in first line") << "0|4|1|10" << "0|6|0|10" << "0|4|1|10";
 	QTest::newRow("cutting mid, first line") << "0|4|1|10" << "0|6|1|0" << "0|4|0|16";
 	QTest::newRow("cutting mid, first line + part of second") << "0|4|1|10" << "0|6|1|4" << "0|4|0|12";
-	QTest::newRow("cutting mid, remaining") << "0|4|1|10" << "0|6|1|10" << "0|4|0|6";
-	QTest::newRow("cutting mid, more than selection") << "0|4|1|10" << "0|6|1|12" << "0|4|0|6";
+    QTest::newRow("cutting mid, remaining 2") << "0|4|1|10" << "0|6|1|10" << "0|4|0|6";
+    QTest::newRow("cutting mid, more than selection 2") << "0|4|1|10" << "0|6|1|12" << "0|4|0|6";
 	QTest::newRow("cutting mid, in second line") << "0|4|1|10" << "1|3|1|5" << "0|4|1|8";
 
 /*aaaaXXXXXX
@@ -549,7 +549,7 @@ YYYYYYYYYY
 ZZZZZZZZbbbbbbbbbbbb*/
 
 	QTest::newRow("cutting left, single char") << "0|4|2|10" << "0|4|0|5" << "0|4|2|10"; //(no change, only line length in the selection differs)
-	QTest::newRow("cutting left, multiple chars") << "0|4|2|10" << "0|4|0|10" << "0|4|2|10"; // "
+    QTest::newRow("cutting left, multiple chars 2") << "0|4|2|10" << "0|4|0|10" << "0|4|2|10"; // "
 	QTest::newRow("cutting left, whole line of selection") << "0|4|2|10" << "0|4|1|0" << "0|4|1|10"; //(removing first line of selection, everything moves one line up)
 	QTest::newRow("cutting left, whole line + chars on next line") << "0|4|2|10" << "0|4|1|5" << "0|4|1|10";//"
 	QTest::newRow("cutting left, two whole lines") << "0|4|2|10" << "0|4|2|0" << "0|4|0|14";
@@ -565,8 +565,8 @@ ZZZZZZZZbbbbbbbbbbbb*/
 	QTest::newRow("cutting mid, chars in third line") << "0|4|2|10" << "2|4|2|6" << "0|4|2|8";
 	QTest::newRow("cutting mid, whole second line") << "0|4|2|10" << "1|0|2|0" << "0|4|1|10";
 	QTest::newRow("cutting mid, second line + chars in third") << "0|4|2|10" << "1|0|2|4" << "0|4|1|6";
-	QTest::newRow("cutting mid, remaining") << "0|4|2|10" << "1|0|2|10" << "0|4|1|0";
-	QTest::newRow("cutting mid, more than selection") << "0|4|2|10" << "1|0|2|15" << "0|4|1|0";
+    QTest::newRow("cutting mid, remaining 3") << "0|4|2|10" << "1|0|2|10" << "0|4|1|0";
+    QTest::newRow("cutting mid, more than selection 3") << "0|4|2|10" << "1|0|2|15" << "0|4|1|0";
 
 }
 void QDocumentCursorTest::subtractBoundaries(){
@@ -686,7 +686,7 @@ void QDocumentCursorTest::bidiMoving_data(){
 	QTest::newRow("with some markers 5r") << withSomeMarkers << 1<<7  << 1 << R << 1<<1;
 	QTest::newRow("with some markers 6")  << withSomeMarkers << 1<<8  << 1 << L << 1<<9;
 	QTest::newRow("with some markers 6r") << withSomeMarkers << 1<<8  << 1 << R << 1<<7;
-	QTest::newRow("with some markers 6")  << withSomeMarkers << 1<<9  << 1 << L << 0<<0;
+    QTest::newRow("with some markers 6l")  << withSomeMarkers << 1<<9  << 1 << L << 0<<0;
 
 	QString withOtherMarkers = QString::fromUtf8("\n" "ه\\glqq{}‎" "\n"); //rendered as glqq{}\o
     if (globalExecuteAllTests) {
@@ -704,7 +704,7 @@ void QDocumentCursorTest::bidiMoving_data(){
 	QTest::newRow("end of line")    << full << 1<<4  << 1 << (int)QDocumentCursor::EndOfLine   << 1<<8;
 
 	QString combined = QString::fromUtf8("\n" "دددددtest" "\n");
-	QTest::newRow("start of line")  << combined << 1<<4  << 1 << (int)QDocumentCursor::StartOfLine << 1<<0;
+    QTest::newRow("start of line 2")  << combined << 1<<4  << 1 << (int)QDocumentCursor::StartOfLine << 1<<0;
     if (globalExecuteAllTests) {
         QTest::newRow("end of line 2")    << combined << 1<<4  << 1 << (int)QDocumentCursor::EndOfLine   << 1<<5; //appended ltr text does not count , failing test on ubuntu
     }

@@ -90,7 +90,7 @@ void CodeSnippetTest::insert_data(){
 		<< "tri%|via%|l" 
 		<< "abtrivialcd\nefgh"
 		<< CP(0,5,8);
-	QTest::newRow("multirow") 
+    QTest::newRow("multirow 2")
 		<< "abcd\nefgh"
 		<< 0 << 0 << 0 << 2
         << "1%\\2%\\3"

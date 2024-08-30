@@ -129,12 +129,12 @@ void TableManipulationTest::addRow_data(){
 		<< 1 << 5
 		<< "\\begin{tabular}{ll}\na&b\\\\\n & \\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
 
-	QTest::newRow("add row")
+    QTest::newRow("add row 2")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
 		<< "\\begin{tabular}{ll}\na&b\\\\\n & \\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
 
-	QTest::newRow("add row")
+    QTest::newRow("add row 3")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 6
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\n & \\\\\ne&f\\\\\n\\end{tabular}\n";
@@ -213,17 +213,17 @@ void TableManipulationTest::remCol_data(){
 		<< 1 << 1
 		<< "\\begin{tabular}{l}\na\\\\\nc\n\\\\\ne\\\\\n\\end{tabular}\n";
 
-        QTest::newRow("rem col 0 containing \\hline")
-                        << "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-                        << 1 << 0
-			<< "\\begin{tabular}{l}\nb\\\\ \\hline\nd\\\\\nf\\\\\n\\end{tabular}\n";
+    QTest::newRow("rem col 0 containing \\hline")
+            << "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+            << 1 << 0
+            << "\\begin{tabular}{l}\nb\\\\ \\hline\nd\\\\\nf\\\\\n\\end{tabular}\n";
 
-	QTest::newRow("rem col 0 containing \\hline")
+    QTest::newRow("rem col 0 containing \\hline 2")
 			<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\ \\hline\n\\end{tabular}\n"
 			<< 1 << 0
 			<< "\\begin{tabular}{l}\nb\\\\ \\hline\nd\\\\\nf\\\\ \\hline\n\\end{tabular}\n";
 
-	QTest::newRow("rem col 0 containing \\hline")
+    QTest::newRow("rem col 0 containing \\hline 3")
 			<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\\\hline\n\\end{tabular}\n"
 			<< 1 << 0
 			<< "\\begin{tabular}{l}\nb\\\\ \\hline\nd\\\\\nf\\\\ \\hline\n\\end{tabular}\n";
@@ -300,12 +300,12 @@ void TableManipulationTest::remRow_data(){
 		<< 2 << 4
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\n\\end{tabular}\n";
 
-	QTest::newRow("rem row, multi rows in one line 3")
+    QTest::newRow("rem row, multi rows in one line 3 b")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 2 << 5
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n";
 
-	QTest::newRow("rem row, multi rows in one line 4")
+    QTest::newRow("rem row, multi rows in one line 4 b")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 3 << 6
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n";
@@ -339,7 +339,7 @@ void TableManipulationTest::getCol_data(){
 		<< 1 << 0
 		<< 0;
 
-	QTest::newRow("col 0")
+    QTest::newRow("col 0a")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 1
 		<< 0;
@@ -349,12 +349,12 @@ void TableManipulationTest::getCol_data(){
 		<< 1 << 2
 		<< 1;
 
-	QTest::newRow("col 1")
+    QTest::newRow("col 1a")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 3
 		<< 1;
 
-	QTest::newRow("col 1")
+    QTest::newRow("col 1b")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 4
 		<< 1;
@@ -389,7 +389,7 @@ void TableManipulationTest::getCol_data(){
 		<< 1 << 0
 		<< 0;
 
-	QTest::newRow("row 1,col 1,multi row per line")
+    QTest::newRow("row 1,col 1,multi row per line b")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 5
 		<< 0;
@@ -409,7 +409,7 @@ void TableManipulationTest::getCol_data(){
 		<< 1 << 2
 		<< 1;
 
-	QTest::newRow("no row, col 1")
+    QTest::newRow("no row, col 1 b")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\n\\end{tabular}\n"
 		<< 2 << 2
 		<< 1;
@@ -718,7 +718,7 @@ void TableManipulationTest::splitCol_data(){
 		<< "llp{3cm}"
 		<< 3;
 
-	QTest::newRow("p")
+    QTest::newRow("p 2")
 		<< "llm{3cm}"
 		<< 3;
 

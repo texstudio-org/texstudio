@@ -233,7 +233,7 @@ void LatexCompleterTest::simple_data(){
 				<< "l:>>\\onl<<"
 				<< "<:>>\\only<<<"
 				);
-	QTest::newRow("nearest eow +ec") << ">><<" << true << false << 0 << 2
+    QTest::newRow("nearest eow +ec 2") << ">><<" << true << false << 0 << 2
 			<< "" << ""
 				<< (QStringList()
 				<< "\\:>>\\<<"
@@ -243,7 +243,7 @@ void LatexCompleterTest::simple_data(){
 				<< "{:>>\\only{<<"
 				);
 
-	QTest::newRow("nearest eow +ec") << ">><<" << true << false << 0 << 2
+    QTest::newRow("nearest eow +ec 3") << ">><<" << true << false << 0 << 2
 			<< "" << ""
 				<< (QStringList()
 				<< "\\:>>\\<<"
@@ -428,7 +428,7 @@ void LatexCompleterTest::keyval_data(){
                             << (QStringList()
                                 << "#:>>{a}<<"
                                 );
-    QTest::newRow("cite2") << ">>{ag,}<<" << "" <<  0 << 6 << 32
+    QTest::newRow("cite3") << ">>{ag,}<<" << "" <<  0 << 6 << 32
                             << "" << ""
                             << (QStringList()
                                 << "a:>>{ag,a}<<"

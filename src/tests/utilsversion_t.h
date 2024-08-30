@@ -166,7 +166,7 @@ private slots:
 		QTest::newRow("major2") << "3.0" << "2.4" << (int) Version::Higher;
 		QTest::newRow("major3") << "3.1" << "2.4" << (int) Version::Higher;
 		QTest::newRow("major4") << "3.2" << "2.4" << (int) Version::Higher;
-		QTest::newRow("major4") << "3.0" << "2.4.2" << (int) Version::Higher;
+        QTest::newRow("major5") << "3.0" << "2.4.2" << (int) Version::Higher;
 		QTest::newRow("revision1") << "2.4.1" << "2.4" << (int) Version::Higher;
 		QTest::newRow("revision2") << "2.4.2" << "2.4.1" << (int) Version::Higher;
 		QTest::newRow("revision3") << "2.4" << "2.4.1" << (int) Version::Lower;
