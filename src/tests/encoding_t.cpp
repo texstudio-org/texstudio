@@ -38,7 +38,7 @@ void EncodingTest::test_lineEnd_data()
 	QTest::newRow("cr") << "foo\rbar" << 1 << 3;
 	QTest::newRow("cr_newline") << "foo\r\nbar" << 1 << 3;
 	QTest::newRow("end_newline") << "foo\nbar" << 3 << 3;
-	QTest::newRow("end_newline") << "foo\r\nbar\x20\x29more" << 2 << 3;
+    QTest::newRow("end_newline2") << "foo\r\nbar\x20\x29more" << 2 << 3;
 }
 
 void EncodingTest::test_lineEnd()
