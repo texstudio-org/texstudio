@@ -28,7 +28,6 @@ jobs:
           install: | 
             git make mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-ninja
             mingw-w64-ucrt-x86_64-qt6-base mingw-w64-ucrt-x86_64-qt6-declarative 
-            mingw-w64-ucrt-x86_64-qt6-svg mingw-w64-ucrt-x86_64-qt6-5compat  
             mingw-w64-ucrt-x86_64-qt6-tools mingw-w64-ucrt-x86_64-poppler-qt6 
             mingw-w64-ucrt-x86_64-nsis mingw-w64-ucrt-x86_64-quazip-qt6 
             mingw-w64-ucrt-x86_64-hunspell mingw-w64-ucrt-x86_64-qt6-translations 
@@ -267,9 +266,6 @@ jobs:
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtSvg-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
         sudo tar xvf ./QtSvg-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
         rm QtSvg-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
-        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
-        sudo tar xvf ./Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
-        rm Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtTools-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
         sudo tar xvf ./QtTools-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
         rm QtTools-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
@@ -362,9 +358,6 @@ jobs:
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtSvg-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
         sudo tar xvf ./QtSvg-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
         rm QtSvg-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
-        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
-        sudo tar xvf ./Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
-        rm Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtTools-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
         sudo tar xvf ./QtTools-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
         rm QtTools-${{ env.OSX_QT_VERSION }}-Darwin-M1.tar.xz
