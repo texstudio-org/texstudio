@@ -653,11 +653,12 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
         if (cmd == "\\def" || cmd == "\\gdef" || cmd == "\\edef" || cmd == "\\xdef") {
             QString remainder = curLine.mid(cmdStart + cmd.length());
             data.completerNeedsUpdate = true;
-            QRegExp rx("(\\\\\\w+)\\s*([^{%]*)");
-            if (rx.indexIn(remainder) > -1) {
-                QString name = rx.cap(1);
+            static const QRegularExpression rx("(\\\\\\w+)\\s*([^{%]*)");
+            QRegularExpressionMatch rxMatch = rx.match(remainder);
+            if (rxMatch.hasMatch()) {
+                QString name = rxMatch.captured(1);
                 QString nameWithoutArgs = name;
-                QString optionStr = rx.cap(2);
+                QString optionStr = rxMatch.captured(2);
                 //qDebug()<< name << ":"<< optionStr;
                 ltxCommands.possibleCommands["user"].insert(name);
                 if (!data.removedUserCommands.removeAll(name)) data.addedUserCommands << name;
@@ -3074,7 +3075,7 @@ void LatexDocument::updateMagicCommentScripts()
 {
 	localMacros.clear();
 
-	QRegExp rxTrigger(" *// *(Trigger) *[:=](.*)");
+    QRegularExpression rxTrigger("^ *// *(Trigger) *[:=](.*)$");
 
     for (auto iter=docStructure.cbegin();iter!=docStructure.cend();++iter) {
         StructureEntry *se = *iter;
@@ -3092,8 +3093,9 @@ void LatexDocument::updateMagicCommentScripts()
 				if (lt.endsWith("TXS-SCRIPT-END") || !(lt.isEmpty() || lt.startsWith("%"))  ) break;
 				lt.remove(0, 1);
 				tag += lt + "\n";
-				if (rxTrigger.exactMatch(lt))
-					trigger = rxTrigger.cap(2).trimmed();
+                QRegularExpressionMatch rxTriggerMatch = rxTrigger.match(lt);
+                if (rxTriggerMatch.hasMatch())
+                    trigger = rxTriggerMatch.captured(2).trimmed();
 			}
 
 			Macro newMacro(name, Macro::Script, tag, "", trigger);
