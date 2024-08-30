@@ -249,7 +249,7 @@ void LatexParserTest::nextWord_simple_data()
 	//QTest::newRow("sepchar8")  << "?oz\"yxdi?" << 1 << false << false << (int)LatexReader::NW_TEXT << 8 << "ozyxdi" << 1;  //invalid combinations in german.sty
 	//QTest::newRow("sepchar8")  << "?oz\"y?" << 1 << false << false << (int)LatexReader::NW_TEXT << 5 << "ozy" << 1; //invalid combinations in german.sty
 	QTest::newRow("word end")  << "?no\"<di?" << 1 << false << false << (int)LatexReader::NW_TEXT << 3 << "no" << 1;
-	QTest::newRow("word end")  << "?yi''di?" << 1 << false << false << (int)LatexReader::NW_TEXT << 3 << "yi" << 1;
+    QTest::newRow("word end2")  << "?yi''di?" << 1 << false << false << (int)LatexReader::NW_TEXT << 3 << "yi" << 1;
 	QTest::newRow("umlauts")  << "\"a\"o\"u\"A\"O\"U\\\"{a}\\\"{o}\\\"{u}\\\"{A}\\\"{O}\\\"{U}" << 0 << false << false << (int)LatexReader::NW_TEXT << 42 << (QString(QChar(0xE4)) + QString(QChar(0xF6)) + QString(QChar(0xFC)) + QString(QChar(0xC4)) + QString(QChar(0xD6)) + QString(QChar(0xDC)) + QString(QChar(0xE4)) + QString(QChar(0xF6)) + QString(QChar(0xFC)) + QString(QChar(0xC4)) + QString(QChar(0xD6)) + QString(QChar(0xDC))) << 0; //unicode to be independent from c++ character encoding
 }
 
