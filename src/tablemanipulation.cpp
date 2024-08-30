@@ -198,10 +198,10 @@ void LatexTables::addColumn(QDocument *doc, const int lineNumber, const int afte
 		QString text = cur.line().text();
 		int col = cur.columnNumber();
 		text = text.mid(col);
-		QRegExp rxHL("^(\\s*\\\\hline\\s*)");
-		int pos_hline = rxHL.indexIn(text);
-		if (pos_hline > -1) {
-			int l = rxHL.cap().length();
+        QRegularExpression rxHL("^(\\s*\\\\hline\\s*)");
+        QRegularExpressionMatch rxHLm=rxHL.match(text);
+        if (rxHLm.hasMatch()) {
+            int l = rxHLm.capturedLength();
 			cur.movePosition(l, QDocumentCursor::NextCharacter);
 		}
 		if (cur.atLineEnd()) cur.movePosition(1, QDocumentCursor::NextCharacter);
@@ -314,9 +314,9 @@ void LatexTables::removeColumn(QDocument *doc, const int lineNumber, const int c
 						}
 						//commands
 						if (zw.at(i) == '\\') {
-							QRegExp rx("\\w+");
-							rx.indexIn(zw, i + 1);
-							QString cmd = "\\" + rx.cap();
+                            QRegularExpression rx("\\w+");
+                            QRegularExpressionMatch rxm=rx.match(zw,i+1);
+                            QString cmd = "\\" + rxm.captured();
 							if (elementsToKeep.contains(cmd)) {
 								keep += " " + cmd;
 							}
@@ -866,10 +866,11 @@ QString LatexTables::getTableText(QDocumentCursor &cur)
 	result = findNextToken(cur, QStringList(), true, false);
 	if (result != -2) return QString();
 	line = cur.line().text();
-	QRegExp rx("\\\\end\\{.*\\}");
-	i = rx.indexIn(line);
+    QRegularExpression rx("\\\\end\\{.*\\}");
+    QRegularExpressionMatch rxm=rx.match(line);
+    i = rxm.capturedStart();
 	if (i >= 0)
-		cur.setColumnNumber(i + rx.cap(0).length(), QDocumentCursor::KeepAnchor);
+        cur.setColumnNumber(i + rxm.capturedLength(0), QDocumentCursor::KeepAnchor);
 	QString res = cur.selectedText();
 	return res;
 }
