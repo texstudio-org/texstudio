@@ -1,5 +1,5 @@
 # fontscale package
-# Matthew Bertucci 2024/08/13 for v2.1.0
+# Matthew Bertucci 2024/08/31 for v2.2.0
 
 \fontscalesetup{keyvals}
 \fontscalesetup*{keyvals}
@@ -75,10 +75,12 @@ Huge=%<size%>/%<baselineskip%>
 \SetFontStep*{number}
 \SetFontScale{number}
 \SetFontScale*{number}
-\SetFontSize{size}
-\SetFontSize*{size}
+\SetFontSize{dimen}
+\SetFontSize*{dimen}
 \ScaleFont{number}
-\SetFontSizeBaselineskip{size}{skip%l}
+\SetFontSizeBaselineskip{dimen}{skip%l}
+\SetFontBaselineskip{skip%l}
+\SetFontBaselineskip*{skip%l}
 \PrintFontSizeParameters
 \PrintAllFontSizeParameters
 \PrintSampleText{text}
