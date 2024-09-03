@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/08/09 for v13.4.0
+# Matthew Bertucci 2024/08/31 for v13.7.0
 
 #include:iftex
 
@@ -328,6 +328,7 @@ barclays
 baremetrics
 barmenia
 basecamp
+baserow
 basicattentiontoken
 bastyon
 bat
@@ -1284,6 +1285,7 @@ hubspot
 huggingface
 hugo
 humblebundle
+humhub
 hungryjacks
 husqvarna
 hyper
@@ -1517,6 +1519,7 @@ lada
 lamborghini
 landrover
 langchain
+languagetool
 lapce
 laragon
 laravel
@@ -1914,6 +1917,7 @@ odysee
 ohdear
 okcupid
 okta
+ollama
 oneplus
 onlyfans
 onlyoffice
@@ -2748,6 +2752,7 @@ tether
 textpattern
 tga
 thangs
+thanos
 thealgorithms
 theboringcompany
 theconversation
@@ -3113,6 +3118,7 @@ yarn
 ycombinator
 yelp
 yeti
+yii
 yoast
 youtube
 youtubegaming

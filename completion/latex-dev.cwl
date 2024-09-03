@@ -395,7 +395,6 @@ debug={%<options%>}
 
 # counter, lengths and dimens
 \setcounter{counter}{value}#*
-\setlanguage{language}#*
 \setlength{\gnat}{length}#*
 \setpapersize{layout}#*
 \settodepth{\gnat}{text}#*

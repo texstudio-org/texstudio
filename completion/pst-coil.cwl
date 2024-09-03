@@ -1,6 +1,6 @@
 # mode: pst-coil.sty
 # dani/2006-02-22
-# Matthew Bertucci 2022-02-20
+# Matthew Bertucci 2024/08/15 for v1.08
 
 #include:pstricks
 #include:pst-node
@@ -91,5 +91,10 @@
 \pcsin*{arrows}{nodeA}{nodeB}
 \pcsin*[options%keyvals]{nodeA}{nodeB}
 \pcsin*[options%keyvals]{arrows}{nodeA}{nodeB}
+
+\psAltCoil(x0,y0)(x1,y1)
+\psAltCoil{arrows}(x0,y0)(x1,y1)
+\psAltCoil[options%keyvals](x0,y0)(x1,y1)
+\psAltCoil[options%keyvals]{arrows}(x0,y0)(x1,y1)
 
 \PSTcoilsLoaded#S

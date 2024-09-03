@@ -8106,7 +8106,7 @@ biblabel=#superscript,brackets
 \mkibid{arg}#*
 #endif
 
-### biblatex-publist v2.12 ###
+### biblatex-publist v2.13 ###
 #ifOption:style=publist
 # from publist.bbx
 \ExecutePublistOptions{options%keyvals}
@@ -8115,12 +8115,14 @@ plauthorname=%<surname%>
 plauthorfirstname=%<first name%>
 plauthornameprefix=%<von-part%>
 plauthorhandling=#omit,highlight
+annotations=%<comma list%>
 nameorder=#family-given,given-family
 fixyear#true,false
 hlyear#true,false
 marginyear#true,false
 plsorting=%<sorting scheme%>
 plauthorfirstinit#true,false
+citinfo#true,false
 jifinfo#true,false
 oainfo=#simple,verbose,none
 prinfo#true,false
@@ -8169,6 +8171,11 @@ plnumbering=#global,local,global-descending,local-descending,none
 \GetTotalCount
 \GetSectionCount
 \GetSectionCount[section number]
+\mkbplannot#*
+\bplannot#*
+\theannotsymb#S
+\GetAnnotSymbol{category}
+\SetAnnotSymbols{comma list}
 # from publist.cbx
 \citeitem[prenote][postnote]{bibid}#*C
 \citeitem[postnote]{bibid}#*C
@@ -8194,6 +8201,7 @@ plauthorname=%<surname%>
 plauthorfirstname=%<first name%>
 plauthornameprefix=%<von part%>
 plauthorhandling=#omit,highlight
+annotations=%<comma list%>
 nameorder=#family-given,given-family
 boldyear#true,false
 pubstateextra#true,false
@@ -8201,6 +8209,7 @@ marginyear#true,false
 plnumbered=#true,false,reset
 reversenumbering#true,false
 plauthorfirstinit#true,false
+citinfo#true,false
 prinfo#true,false
 linktitleall#true,false
 linktitledoi#true,false
@@ -8240,6 +8249,11 @@ linktitleissn#true,false
 \GetTotalCount
 \GetSectionCount
 \GetSectionCount[section number]
+\mkbplannot#*
+\bplannot#*
+\theannotsymb#S
+\GetAnnotSymbol{category}
+\SetAnnotSymbols{comma list}
 #endif
 
 ### biblatex-realauthor v2.7.1a ###
