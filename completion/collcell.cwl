@@ -15,7 +15,7 @@ norobustcr
 #include:tabularx
 #endif
 
-\collectcell
+\collectcell{cmd}
 \endcollectcell
 \ccunskip#*
 \cci#*
