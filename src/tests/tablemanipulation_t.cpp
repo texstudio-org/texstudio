@@ -740,6 +740,9 @@ void TableManipulationTest::splitCol_data(){
     QTest::newRow("colspec")
         << "|X[2,l]|X[3,l]|"
         << 2;
+    QTest::newRow("colspec2")
+        << "|Q[2,l]|Q[3,l]|"
+        << 2;
 
 
 }
