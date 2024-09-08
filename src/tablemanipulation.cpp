@@ -47,7 +47,8 @@ void LatexTables::addRow(QDocumentCursor &c, const int numberOfColumns )
 				cur.insertText("\\\\\n");
 			} else {
 				ch.movePosition(2, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-                if (ch.selectedText().contains(QRegularExpression("^\\S+$"))) {
+                const QString txt=ch.selectedText();
+                if (!txt.contains("\\\\") && !txt.contains("\\tabularnewline")) {
 					cur.movePosition(1, QDocumentCursor::PreviousCharacter);
 					cur.insertText("\\\\\n");
 				}

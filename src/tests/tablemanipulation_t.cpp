@@ -139,6 +139,11 @@ void TableManipulationTest::addRow_data(){
 		<< 1 << 6
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\n & \\\\\ne&f\\\\\n\\end{tabular}\n";
 
+    QTest::newRow("add row, no final \\\\")
+        << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tabular}\n"
+        << 3 << 0
+        << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n & \\\\\n\\end{tabular}\n";
+
 }
 void TableManipulationTest::addRow(){
 	QFETCH(QString, text);
