@@ -440,7 +440,7 @@ QString LatexTables::getDef(QDocumentCursor &cur)
 	QDocumentCursor c(cur);
 	int result = findNextToken(c, QStringList(), false, true);
 	if (result != -2) return QString();
-	QString line = c.line().text();
+    QString line = getTableText(cur);
 	QString opt;
 	int pos = line.indexOf("\\begin");
 	if (pos > -1) {
@@ -488,13 +488,24 @@ QString LatexTables::getDef(QDocumentCursor &cur)
 	}
     // in case of colspec, refine further
     if(opt.contains("colspec")){
-        QRegularExpression re{"^(.*colspec\\s*[=]\\s*\\{)(.*)\\}"};
+        QRegularExpression re{"(colspec\\s*[=]\\s*\\{)(.*)\\}"};
         QRegularExpressionMatch match = re.match(opt);
         if (match.hasMatch()) {
-            int offset=match.capturedLength(1);
+            int offset=match.capturedStart(2);
             QString matched = match.captured(2);
+            QString prefix=opt.left(offset);
             opt=matched;
-            cur.moveTo(c.lineNumber(), pos+1+offset);
+            // handle cursor selection more precisely in case of multiline arguments
+            const int posColspec=line.indexOf("colspec");
+            QString pre=line.left(posColspec);
+            int ln=c.lineNumber();
+            if(pre.contains("\n")){
+                //adapt ln and offset for multiline argument
+                ln+=pre.count("\n");
+                int lastNewline=prefix.lastIndexOf("\n");
+                offset=offset-pos-lastNewline-2;
+            }
+            cur.moveTo(ln, pos+1+offset);
             cur.movePosition(opt.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
         }
     }
@@ -507,11 +518,12 @@ int LatexTables::getNumberOfColumns(QDocumentCursor &cur)
 	QDocumentCursor c(cur);
 	int result = findNextToken(c, QStringList(), false, true);
 	if (result != -2) return -1;
-	QString line = c.line().text();
-	int pos = line.indexOf("\\begin");
+    QDocumentCursor tmpCur(cur);
+    QString tableText = getTableText(tmpCur);
+    int pos = tableText.indexOf("\\begin");
 	if (pos > -1) {
 		QStringList values;
-        resolveCommandOptions(line, pos, values);
+        resolveCommandOptions(tableText, pos, values);
 		return getNumberOfColumns(values);
 	}
 	return -1;
@@ -949,7 +961,7 @@ QString LatexTables::handleColSpec(QString opt)
 {
     // in case of colspec, refine further
     if(opt.contains("colspec")){
-        QRegularExpression re{"^(.*colspec\\s*[=]\\s*\\{)(.*)\\}"};
+        QRegularExpression re{"(colspec\\s*[=]\\s*\\{)(.*)\\}"};
         QRegularExpressionMatch match = re.match(opt);
         if (match.hasMatch()) {
             opt = match.captured(2);

@@ -500,6 +500,10 @@ void TableManipulationTest::getNumberOfCol_data(){
         << "\\begin{tblr}{colspec={|l|l|@{ll}c*{2}{*{2}{l}}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
         << 2 << 0
         << 7;
+    QTest::newRow("colspec2")
+        << "\\begin{tblr}{\n\tcolspec={|l|l|@{ll}c*{2}{*{2}{l}}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 3 << 0
+        << 7;
 
 }
 void TableManipulationTest::getNumberOfCol(){
@@ -827,6 +831,14 @@ void TableManipulationTest::getDef_data(){
         << "\\begin{tblr}{width=0.8\\linewidth,colspec={|X[2,l]|X[3,l]|}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
         << 2 << 0
         << "|X[2,l]|X[3,l]|";
+    QTest::newRow("colspec in multiline")
+        << "\\begin{tblr}{\n\tcolspec={ll}\n}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 2 << 0
+        << "ll";
+    QTest::newRow("colspec in multiline2")
+        << "\\begin{tblr}{\nabc,\n\tcolspec={ll}\n}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 2 << 0
+        << "ll";
 }
 void TableManipulationTest::getDef(){
 	QFETCH(QString, text);
