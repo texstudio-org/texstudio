@@ -920,7 +920,9 @@ void LatexTables::alignTableCols(QDocumentCursor &cur)
         if (args.count() < 3) alignment = ""; // incomplete definition -> fall back to defaults
         else alignment = args.at(2).value;
     } else if (args.count() > 1 && tabularNames.contains(tableType)) {
-        alignment = args.at(1).value;
+        int p=1;
+        while(args.at(p).isOptional && args.count()>(p+1)) ++p; // skip optional arguments
+        alignment = args.at(p).value;
     } else return; // not a registered table environment
     alignment=handleColSpec(alignment);
 	int cellsEnd = text.indexOf("\\end{" + tableType);
