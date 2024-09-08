@@ -1271,6 +1271,7 @@
 <file>completion/doi.cwl</file>
 <file>completion/doibanner.cwl</file>
 <file>completion/doipubmed.cwl</file>
+<file>completion/domaincoloring.cwl</file>
 <file>completion/domitian.cwl</file>
 <file>completion/domore.cwl</file>
 <file>completion/dot2texi.cwl</file>
@@ -1391,6 +1392,7 @@
 <file>completion/enparen.cwl</file>
 <file>completion/enumerate.cwl</file>
 <file>completion/enumitem.cwl</file>
+<file>completion/enverb.cwl</file>
 <file>completion/environ.cwl</file>
 <file>completion/envlab.cwl</file>
 <file>completion/envmath.cwl</file>
@@ -1943,6 +1945,7 @@
 <file>completion/interactiveanimation.cwl</file>
 <file>completion/interactiveplot.cwl</file>
 <file>completion/inter.cwl</file>
+<file>completion/interlinear.cwl</file>
 <file>completion/interpreter.cwl</file>
 <file>completion/interval.cwl</file>
 <file>completion/intopdf.cwl</file>
@@ -2226,6 +2229,7 @@
 <file>completion/luamathalign.cwl</file>
 <file>completion/luamaths.cwl</file>
 <file>completion/luamesh.cwl</file>
+<file>completion/luamml-demo.cwl</file>
 <file>completion/luamodulartables.cwl</file>
 <file>completion/luamplib.cwl</file>
 <file>completion/luanumint.cwl</file>
@@ -3438,6 +3442,7 @@
 <file>completion/stubs.cwl</file>
 <file>completion/studenthandouts.cwl</file>
 <file>completion/styledcmd.cwl</file>
+<file>completion/suanpan-l3.cwl</file>
 <file>completion/subcaption.cwl</file>
 <file>completion/subdepth.cwl</file>
 <file>completion/subdocs.cwl</file>

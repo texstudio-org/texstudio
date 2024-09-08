@@ -1,5 +1,5 @@
 # idcc class
-# Matthew Bertucci 2023/08/11 for v2.4
+# Matthew Bertucci 2024/08/23 for v2.5
 
 #include:dccpaper-base
 
@@ -13,6 +13,7 @@
 21
 22
 24
+25
 abstract
 lightning
 poster

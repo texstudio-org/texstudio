@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2024/05/01 for v3.5.0-0-gfd01a252
+# Matthew Bertucci 2024/09/02 for v3.7.0-0-g98dece19
 
 #include:paralist
 #include:amsmath
@@ -59,8 +59,9 @@ debugExtensions#true,false
 codeSpans#true,false
 definitionLists#true,false
 eagerCache#true,false
-extensions=%<file names%>
+ensureJekyllData#true,false
 expectJekyllData#true,false
+extensions=%<file names%>
 fancyLists#true,false
 fencedCode#true,false
 fencedCodeAttributes#true,false
@@ -283,6 +284,8 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererEllipsisPrototype#*
 \markdownRendererEmphasis#*
 \markdownRendererEmphasisPrototype{arg1}#*
+\markdownRendererError#*
+\markdownRendererErrorPrototype#*
 \markdownRendererFancyOlBegin#*
 \markdownRendererFancyOlBeginPrototype#*
 \markdownRendererFancyOlBeginTight#*
@@ -361,12 +364,14 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererJekyllDataMappingEndPrototype#*
 \markdownRendererJekyllDataNumber#*
 \markdownRendererJekyllDataNumberPrototype{arg1}{arg2}#*
+\markdownRendererJekyllDataProgrammaticString{arg1}{arg2}#*
+\markdownRendererJekyllDataProgrammaticStringPrototype{arg1}{arg2}#*
 \markdownRendererJekyllDataSequenceBegin#*
 \markdownRendererJekyllDataSequenceBeginPrototype{arg1}{arg2}#*
 \markdownRendererJekyllDataSequenceEnd#*
 \markdownRendererJekyllDataSequenceEndPrototype#*
-\markdownRendererJekyllDataString#*
-\markdownRendererJekyllDataStringPrototype{arg1}{arg2}#*
+\markdownRendererJekyllDataTypographicString{arg1}{arg2}#*
+\markdownRendererJekyllDataTypographicStringPrototype{arg1}{arg2}#*
 \markdownRendererLeftBrace#*
 \markdownRendererLeftBracePrototype#*
 \markdownRendererLineBlockBegin#*
@@ -445,5 +450,7 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererUnderscorePrototype#*
 \markdownRendererUntickedBox#*
 \markdownRendererUntickedBoxPrototype#*
+\markdownRendererWarning#*
+\markdownRendererWarningPrototype#*
 \markdownVersion#S
 \markinlinePlainTeX{markdown text}#*

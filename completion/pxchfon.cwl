@@ -1,11 +1,14 @@
 # pxchfon package
-# Matthew Bertucci 2023/08/27 for v2.0
+# Matthew Bertucci 2024/08/26 for v2.2
 
 #include:platex
 #include:keyval
 
-#keyvals:\usepackage/pxchfon#c
+\pxchfonsetup{options%keyvals}
+
+#keyvals:\usepackage/pxchfon#c,\pxchfonsetup#c
 nodvidriver
+resetdvidriver
 dvips
 dviout
 xdvi
@@ -45,6 +48,7 @@ noexpert
 glyphid
 noglyphid
 maybe-multiweight
+nocheck-expert
 autojfmsync
 noautojfmsync
 noembed
@@ -190,6 +194,8 @@ noto-otf!
 
 \usefontmapline{マップ行}
 \usefontmapfile{マップファイル名}
+\begin{usefontmaplines}
+\end{usefontmaplines}
 \setnewglyphcmapprefix{文字列}
 
 \Entry{sym}{tfm}{cmap}{modify,...}#*
@@ -197,10 +203,9 @@ noto-otf!
 \diruni
 \textdiruni{テキスト}
 
+\pxchfonNoCheckMultiweight#*
+\pxchfonNoCheckExpert#*
+
 # experimental
 \jfmsync#*
 \jfmsyncbox{width}{text}#*
-
-# not documented
-\maybemultiweight#S
-\pxchfonMaybeMultiweight#S

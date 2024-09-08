@@ -1,5 +1,5 @@
 # penlightplus package
-# Matthew Bertucci 2024/03/16
+# Matthew Bertucci 2024/08/19
 
 #include:luacode
 #include:luakeys
@@ -52,6 +52,8 @@ pl
 \tbladd{index}{value}
 \tbladdN{index}{value}
 \tblprt{name}
+\caseswitch{case}{key-val choices}
+\caseswitch*{case}{key-val choices}
 
 # not documented
 \writePDFmetadata#S

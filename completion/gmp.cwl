@@ -33,7 +33,7 @@ postrmcommand=%<cmd%>
 \resetmpxcommands
 \mpdim{dimen param}
 \usempost{string}
-\usempost[options]{string}
+\usempost[options%keyvals]{string}
 #keyvals:\usempost
 alt={%<alt text%>}
 bb=%<llx lly urx ury%>

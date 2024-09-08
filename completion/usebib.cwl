@@ -5,14 +5,15 @@
 #include:keyval
 
 \bibinput{bib file}
-\newbibfield{field}
+\newbibfield{field}#s#%usebibfield
 \newbibignore{type}
-\usebibentry{citekey}{field%keyvals}
+\usebibentry{citekey}{field%keyvals}#c
 #keyvals:\usebibentry#c
 title
 year
 note
 isbn
+%usebibfield
 #endkeyvals
-\usebibentryurl{citekey}
-\usebibentryurl[delim]{citekey}#*
+\usebibentryurl{citekey}#c
+\usebibentryurl[delim]{citekey}#*c

@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2024/04/20 for v24.4
+# tbraun 4.11.2008; Matthew Bertucci 2024/08/19 for v24.8
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -393,6 +393,7 @@ select.encoding=#off
 \BabelString#S
 \BabelStringsDefault#S
 \BabelText{arg}#S
+\BabelWrapText{arg}#S
 \EndBabelCommands#S
 \IfBabelLayout{layout}{true}{false}#S
 \IfBabelSelectorTF{selectors}{true}{false}#S
