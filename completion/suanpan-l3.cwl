@@ -1,5 +1,5 @@
 # suanpan-l3 package
-# Matthew Bertucci 2024/09/05 for v1.2.0
+# Matthew Bertucci 2024/09/10 for v1.2.2
 
 #include:tikz
 
@@ -24,6 +24,10 @@
 draft
 empty#true,false
 linewd=##L
+bidh=##L
+bidd=##L
+rodd=##L
+framew=##L
 rodsep=##L
 bidsep=##L
 scale=%<factor%>
@@ -34,4 +38,5 @@ outerdraw=#%color
 outerfill=#%color
 innerdraw=#%color
 innerfill=#%color
+font=%<font commands%>
 #endkeyvals
