@@ -1,5 +1,5 @@
 # fourier-orns package
-# Matthew Bertucci 2/8/2022 for v2.3
+# Matthew Bertucci 2024/09/10 for v2.4
 
 #include:iftex
 
@@ -39,11 +39,19 @@ noOTF
 \leafleft
 \leafright
 \aldinesmall
+\aldinesmallup
+\aldinesmallrevert
 \aldineleft
 \aldineright
 \aldine
 \lefthand
 \righthand
+\leftblackhand
+\rightblackhand
+
+# unicode only
+\grappe
+\leftgrappe
+\rightgrappe
 
 \FourierOrns#*
-\texorpdfstring{TeX string}{PDF string}#*
