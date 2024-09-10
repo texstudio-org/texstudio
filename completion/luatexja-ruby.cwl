@@ -1,5 +1,5 @@
 # luatexja-ruby package
-# Matthew Bertucci 2022/07/04 for v0.53
+# Matthew Bertucci 2024/09/10 for v0.7
 
 #include:luatexja
 
@@ -38,6 +38,7 @@ trubydepth=%<real%>
 rubydepth=%<real%>
 kenten=%<command%>
 fontcmd=%<command%>
+always_highlight_protrusion#true,false
 naka
 kata
 #endkeyvals
