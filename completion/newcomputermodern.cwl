@@ -1,5 +1,5 @@
 # newcomputermodern package
-# Matthew Bertucci 2024/01/12 for v5.1
+# Matthew Bertucci 2024/09/10 for v6.0.0
 
 #include:fontspec
 #include:unicode-math
@@ -331,6 +331,7 @@
 \congdot#m
 \conictaper#m
 \conjquant#m
+\convolution#m
 \csub#m
 \csube#m
 \csup#m
@@ -1040,6 +1041,8 @@
 \turnediota#m
 \twocaps#m
 \twocups#m
+\twoheadhookleftarrow#m
+\twoheadhookrightarrow#m
 \twoheadleftarrowtail#m
 \twoheadleftdbkarrow#m
 \twoheadmapsfrom#m
