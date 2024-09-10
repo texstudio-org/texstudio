@@ -1,5 +1,5 @@
 # circledtext package
-# Matthew Bertucci 4/27/2022 for v1.0.0
+# Matthew Bertucci 2024/09/09 for v1.1.1
 
 #include:xtemplate
 #include:l3keys2e
@@ -27,6 +27,9 @@ charcolor=#%color
 boxfill=#%color
 charstroke=#none,solid,dashed,invisible
 dashpattern={%<len1,len2,...%>}
+lowerbgcolor=#%color
+upperbgcolor=#%color
+shadowcolor=#%color
 #endkeyvals
 
 \charboxwd#*
