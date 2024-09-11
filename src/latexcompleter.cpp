@@ -864,7 +864,7 @@ CompletionWord CompletionListModel::getLastWord()
 
 void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString> &newwords)
 {
-    if(keyValLists.contains(name)){
+    if(keyValLists.contains(name) && keyValLists[name].count()==newwords.count()){
         // don't recreate existing keyval list
         return;
     }
