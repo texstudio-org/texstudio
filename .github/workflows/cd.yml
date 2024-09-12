@@ -97,7 +97,7 @@ jobs:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
           organization-id: '9e74d567-be9b-4bd4-929d-9978860f6cbc'
           project-slug: 'texstudio'
-          signing-policy-slug: 'test-signing'
+          signing-policy-slug: 'release-signing'
           github-artifact-id: '${{steps.upload-binary.outputs.artifact-id}}'
           artifact-configuration-slug: 'zipped_exe'
           wait-for-completion: true
@@ -146,7 +146,7 @@ jobs:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
           organization-id: '9e74d567-be9b-4bd4-929d-9978860f6cbc'
           project-slug: 'texstudio'
-          signing-policy-slug: 'test-signing'
+          signing-policy-slug: 'release-signing'
           github-artifact-id: '${{steps.upload-artifact.outputs.artifact-id}}'
           artifact-configuration-slug: 'zipped_exe'
           wait-for-completion: true
