@@ -1,5 +1,5 @@
 # mla class
-# Matthew Bertucci 2/3/2022 for v1.0
+# Matthew Bertucci 2024/09/13 for v1.1
 
 #include:enumitem
 #include:fancyhdr
@@ -32,6 +32,7 @@ nopageheader
 noheaders
 plainheadings
 fullpage
+notimes
 #endkeyvals
 
 #ifOption:microtype
