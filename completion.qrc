@@ -2015,6 +2015,7 @@
 <file>completion/keyparse.cwl</file>
 <file>completion/keyreader.cwl</file>
 <file>completion/keystroke.cwl</file>
+<file>completion/keytheorems.cwl</file>
 <file>completion/keyval.cwl</file>
 <file>completion/keyvaltable.cwl</file>
 <file>completion/Kinigcap.cwl</file>
@@ -4236,6 +4237,7 @@
 <file>completion/zref-user.cwl</file>
 <file>completion/zref-vario.cwl</file>
 <file>completion/zref-xr.cwl</file>
+<file>completion/zugferd.cwl</file>
 <file>completion/zwgetfdate.cwl</file>
 <file>completion/zwpagelayout.cwl</file>
 <file>completion/zxbase.cwl</file>
