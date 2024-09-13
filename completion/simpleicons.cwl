@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/08/31 for v13.7.0
+# Matthew Bertucci 2024/09/13 for v13.9.0
 
 #include:iftex
 
@@ -435,6 +435,7 @@ bugcrowd
 bugsnag
 buhl
 buildkite
+builtbybit
 bukalapak
 bulma
 bun
@@ -977,6 +978,7 @@ fluke
 flutter
 flux
 fluxus
+flydotio
 flyway
 fmod
 fnac
@@ -1332,6 +1334,7 @@ indeed
 indiansuperleague
 indiehackers
 indigo
+inductiveautomation
 inertia
 infiniti
 influxdb
@@ -1537,6 +1540,7 @@ leaflet
 leagueoflegends
 leanpub
 leetcode
+lefthook
 legacygames
 leica
 lemmy
@@ -1637,6 +1641,7 @@ magento
 magic
 magisk
 mahindra
+mailboxdotorg
 mailchimp
 maildotcom
 maildotru
@@ -2299,6 +2304,7 @@ redhatopenshift
 redis
 redmine
 redox
+redragon
 redsys
 redux
 reduxsaga
