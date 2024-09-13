@@ -1,7 +1,10 @@
 # CHANGELOG
 ## TeXstudio 4.8.3
 
-- 
+- use argument position to assign argument type (fixes some issues concerning keyval arguments)
+- windows binaries are code signed for easier installation
+- fix activation of keyvals for completion when new packages are used [#3791](https://github.com/texstudio-org/texstudio/issues/3791)
+- improved table manipulation when multiline arguments are used [#3789](https://github.com/texstudio-org/texstudio/issues/3789)
 
 ## TeXstudio 4.8.2
 
