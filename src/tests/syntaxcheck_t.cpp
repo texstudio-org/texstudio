@@ -213,6 +213,8 @@ void SyntaxCheckTest::checkkeyval_data(){
              <<"\\SI[mode=texta]{test}"<<true;
      QTest::newRow("key/value, with -, error val")
              <<"\\si[per-mode=reciprocal-positive-firstd]{dfg}"<<true;
+     QTest::newRow("key/math env as value") // issue #2138
+             <<"\\SI[mode=$\\sigma$]"<<false;
      QTest::newRow("2 key/value")
              <<"\\SI[color=red,mode=text]{test}"<<false;
      QTest::newRow("2 key/value,error key")
@@ -396,6 +398,8 @@ void SyntaxCheckTest::checkAllowedMath_data(){
              <<"$\\alpha$"<<false;
      QTest::newRow("simple2")
              <<"\\alpha"<<true;
+     QTest::newRow("simple3") // issue #192
+             <<"$y \\big($"<<false;
      QTest::newRow("nested text in math")
              <<"$\\textit{\\alpha}$"<<true;
      QTest::newRow("nested text in math with linebreak")

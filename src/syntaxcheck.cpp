@@ -1041,9 +1041,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             if (word.contains('@')) {
                 continue; //ignore commands containg @
             }
-			if(!tk.optionalCommandName.isEmpty()){
+            if(!tk.optionalCommandName.isEmpty() && !tk.optionalCommandName.contains("/")){
 				word=tk.optionalCommandName;
-			}
+            }
 			Token tkEnvName;
 
 			if (word == "\\begin" || word == "\\end") {
