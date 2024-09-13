@@ -713,6 +713,18 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             }
                         }
                     }
+                    // special treatment for $ as mathstart
+                    if (line.mid(tk.start, 1) == "$") {
+                        tk.type = Token::command;
+                        if(i+1<tl.length()){
+                            if(line.mid(tk.start,2)=="$$"){
+                                i=i+1;
+                                tk.length=2;
+                            }
+                        }
+                        lexed << tk;
+                        continue;
+                    }
                     // add cmd/key as optionalCommandName
                     QString cmd=lexed[lastComma].optionalCommandName;
                     QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
@@ -736,18 +748,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             lexed.last().length=tk.start+tk.length-lexed.last().start;
                             continue;
                         }
-                    }
-                    // special treatment for $ as mathstart
-                    if (line.mid(tk.start, 1) == "$") {
-                        tk.type = Token::command;
-                        if(i+1<tl.length()){
-                            if(line.mid(tk.start,2)=="$$"){
-                                i=i+1;
-                                tk.length=2;
-                            }
-                        }
-                        lexed << tk;
-                        continue;
                     }
                     lexed << tk;
                 }
