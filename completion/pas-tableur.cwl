@@ -1,5 +1,5 @@
 # pas-tableur package
-# Matthew Bertucci 2023/04/16 for v2.05
+# Matthew Bertucci 2024/09/14 for v2.06
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -42,6 +42,7 @@ font=%<font commands%>
 
 \selecCell{colonne}{ligne}
 \multiSelec{colonnes}{lignes}
+\multimultiSelec{ligne1}{ligne2}{ligne3}
 
 \fileversion#S
 \filedate#S
