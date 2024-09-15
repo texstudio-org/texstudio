@@ -1,5 +1,5 @@
 # pgf-PeriodicTable package
-# Matthew Bertucci 2024/07/18 for v2.1.1
+# Matthew Bertucci 2024/09/10 for v2.1.4
 
 #include:tikz
 #include:tikzlibraryfadings
@@ -61,7 +61,7 @@ cell line color=#%color
 cell style=#pgfPT2lang,pgfPT3lang,pgfPTR,pgfPTEi,pgfPTeaff,pgfPTREi,pgfPTdisc,%pgfPTcellstyle
 cell={%<keyvals%>}
 font=%<font family%>
-back color scheme=#Soft,Jmol,CPK,Rasmol,RasmolNew,Wikipedia,MNM,PS,Radio,Blocks,solid,%pgfPTcolorscheme
+back color scheme=#pgfPTSoft,pgfPTJmol,pgfPTCPK,pgfPTRasmol,pgfPTRasmolNew,pgfPTWikipedia,pgfPTMNM,pgfPTPS,pgfPTRadio,pgfPTBlocks,solid,%pgfPTcolorscheme
 back color=#%color
 csSolid
 csSolid=#%color

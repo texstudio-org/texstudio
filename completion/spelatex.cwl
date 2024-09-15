@@ -1,19 +1,21 @@
 # spelatex package
-# Matthew Bertucci 2024/06/21 for v0.91
+# Matthew Bertucci 2024/09/10 for v0.92
 
 #include:hyperref
 #include:xcolor
 #include:ifthen
+#include:verbatim
 #include:fancyvrb
 #include:newfile
 #include:rotating
 #include:babel
 #include:kvoptions
 #include:xkeyval
-#include:marginnote
 
 #keyvals:\usepackage/spelatex#c
 format=%<type%>
+server=%URL%>
+markervisibility=#none,onlygroups
 disabled#true,false
 extramath#true,false
 #endkeyvals
@@ -52,7 +54,11 @@ arealink
 #endkeyvals
 
 \spelatex#*
-\spelbox#*
 \spelpl#*
-\audiodir#*
-\chunkdir#*
+\audiodir#S
+\chunkdir#S
+\linksdir#S
+\spelchunkatom{arg}#S
+\spelchunkatom[opt]{arg}#S
+\begin{spelverbatimwrite}{arg}#S
+\end{spelverbatimwrite}#S

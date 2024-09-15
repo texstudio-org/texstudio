@@ -1,17 +1,47 @@
 # scrhack package
-# Matthew Bertucci 2022/05/18 for v3.36
+# Matthew Bertucci 2024/09/05 for v3.42
 
-#include:scrkbase
-#include:xpatch
 #include:scrlogo
 
-#keyvals:\KOMAoptions#c,\usepackage/scrhack#c
-hyperref#true,false
-floatrow#true,false
+#keyvals:\usepackage/scrhack#c
 float#true,false
-listings#true,false
-nomencl#true,false
-setspace#true,false
+floatrow#true,false
 lscape#true,false
+setspace#true,false
 standardsections#true,false
 #endkeyvals
+
+#ifOption:float
+#include:floatbytocbasic
+#endif
+#ifOption:float=true
+#include:floatbytocbasic
+#endif
+
+#ifOption:floatrow
+#include:floatrowbytocbasic
+#endif
+#ifOption:floatrow=true
+#include:floatrowbytocbasic
+#endif
+
+#ifOption:lscape
+#include:lscapeenhanced
+#endif
+#ifOption:lscape=true
+#include:lscapeenhanced
+#endif
+
+#ifOption:setspace
+#include:setspaceenhanced
+#endif
+#ifOption:setspace=true
+#include:setspaceenhanced
+#endif
+
+#ifOption:standardsections
+#include:standardsectioning
+#endif
+#ifOption:standardsections=true
+#include:standardsectioning
+#endif

@@ -1,5 +1,5 @@
 # gitinfo-lua package
-# Matthew Bertucci 2024/04/12 for v1.1.0
+# Matthew Bertucci 2024/09/14 for v1.2.0
 
 #include:luacode
 #include:pgfopts
@@ -15,6 +15,7 @@ rootdir
 \gitdirectory{path%definition}
 \gitunsetdirectory
 \gitversion
+\ifgitdirty{true code}{false code}
 \gitdate
 \gitauthor
 \gitemail
