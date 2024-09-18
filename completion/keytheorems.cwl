@@ -1,10 +1,11 @@
 # keytheorems package
-# Matthew Bertucci 2024/09/12 for v0.1.1
+# Matthew Bertucci 2024/09/18 for v0.1.2
 
 #include:aliascnt
 #include:amsthm
 #include:refcount
 #include:translations
+#include:unique
 
 #keyvals:\usepackage/key-theorems#c
 overload
@@ -30,6 +31,12 @@ store-all
 \addtotheoremprefoothook[envname]{code}#*
 \addtotheorempostfoothook{code}#*
 \addtotheorempostfoothook[envname]{code}#*
+#keyvals:\newkeytheorem#c,\declaretheorem#c
+thmbox
+thmbox=#L,M,S
+shaded
+shaded={%<shade options%>}
+#endkeyvals
 #endif
 
 \keytheoremset{options%keyvals}
@@ -108,6 +115,7 @@ body
 
 #keyvals:\listofkeytheorems#c,\keytheoremlistset#c,\listoftheorems#c
 numwidth=##L
+indent=##L
 ignore={%<env1,env2,...%>}
 show={%<env1,env2,...%>}
 onlynamed
@@ -126,6 +134,7 @@ print-body
 no-continues#true,false
 no-chapter-skip#true,false
 chapter-skip-length=##L
+no-toc#true,false
 #endkeyvals
 
 \addtheoremcontentsline{level}{text}#*
