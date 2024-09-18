@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2024/08/19 for v24.8
+# tbraun 4.11.2008; Matthew Bertucci 2024/09/18 for v24.10
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -187,7 +187,9 @@ convert
 \babelcalendar{calendar}{year-macro%cmd}{month-macro%cmd}{day-macro%cmd}#d
 \babelcalendar[YYYY-MM-DD]{calendar}{year-macro%cmd}{month-macro%cmd}{day-macro%cmd}#d
 
-\languagename
+\localename
+\mainlocalename
+\languagename#*
 \iflanguage{language}{true}{false}
 \localeinfo{field%keyvals}
 \localeinfo*{field%keyvals}
@@ -220,11 +222,18 @@ extension.u.tag.bcp47
 \babelnullhyphen#*
 \babelhyphenation{exceptions}#*
 \babelhyphenation[lang1,lang2,...]{exceptions}#*
-\begin{hyphenrules}{language}
-\end{hyphenrules}
 \babelpatterns{patterns}#*
 \babelpatterns[lang1,lang2,...]{patterns}#*
-
+\babelhyphenmins{left}{right}#*
+\babelhyphenmins{left}{right}[hyphenationmin]#*
+\babelhyphenmins[lang1,lang2,...]{left}{right}#*
+\babelhyphenmins[lang1,lang2,...]{left}{right}[hyphenationmin]#*
+\babelhyphenmins*{left}{right}#*
+\babelhyphenmins*{left}{right}[hyphenationmin]#*
+\babelhyphenmins*[lang1,lang2,...]{left}{right}#*
+\babelhyphenmins*[lang1,lang2,...]{left}{right}[hyphenationmin]#*
+\begin{hyphenrules}{language}
+\end{hyphenrules}
 \babelposthyphenation{hypenrules-name}{lua-pattern}{replacement}#*
 \babelposthyphenation[options%keyvals]{hypenrules-name}{lua-pattern}{replacement}#*
 \babelprehyphenation{locale-name}{lua-pattern}{replacement}#*
