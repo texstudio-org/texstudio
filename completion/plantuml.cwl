@@ -1,5 +1,5 @@
 # plantuml package
-# Matthew Bertucci 1/18/2022 for v0.3.1
+# Matthew Bertucci 2024/09/18 for v0.4.0
 
 #include:adjustbox
 #include:fancyvrb
@@ -12,7 +12,9 @@
 \begin{plantuml}
 \end{plantuml}
 
-\PlantUMLJobname#*
-\PlantUmlMode#*
-\maxwidth{width}#*
-\thePlantUmlFigureNumber#*
+\PlantUMLJobname#S
+\PlantUmlMode#S
+\maxwidth{width}#S
+\thePlantUmlFigureNumber#S
+\thePlantUmlFigureNumberSVG#S
+\UMLcountUp#S
