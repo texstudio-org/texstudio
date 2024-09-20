@@ -1,8 +1,8 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" data-content_root="./">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Compiling a document" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="compiling.html" />
@@ -11,13 +11,13 @@
 <meta name="description" content="Compiling: The easiest way to compile a document is to use the “Compile” command ( F6) or the “Build&View” command ( F5). This runs the latex compiler and, if necessary, bibtex, sometimes several t..." />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Viewing a document (pdf)" href="viewing.html" /><link rel="prev" title="Editing a TeX document" href="editing.html" />
 
-    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
-        <title>Compiling a document - TeXstudio 4.8.3 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
-    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+        <title>Compiling a document - TeXstudio 4.8.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=9701f087" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=e61b947c" />
     
     
 
@@ -131,7 +131,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">TeXstudio 4.8.3 documentation</div></a>
+      <a href="index.html"><div class="brand">TeXstudio 4.8.4 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -154,7 +154,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">TeXstudio 4.8.3 documentation</span>
+  <span class="sidebar-brand-text">TeXstudio 4.8.4 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -207,25 +207,25 @@
         </div>
         <article role="main">
           <section id="compiling-a-document">
-<h1>Compiling a document<a class="headerlink" href="#compiling-a-document" title="Permalink to this heading">#</a></h1>
+<h1>Compiling a document<a class="headerlink" href="#compiling-a-document" title="Link to this heading">#</a></h1>
 <section id="compiling">
-<h2>Compiling<a class="headerlink" href="#compiling" title="Permalink to this heading">#</a></h2>
+<h2>Compiling<a class="headerlink" href="#compiling" title="Link to this heading">#</a></h2>
 <p>The easiest way to compile a document is to use the “Compile” command (<code class="docutils literal notranslate"><span class="pre">F6</span></code>)
 or the “Build&amp;View” command (<code class="docutils literal notranslate"><span class="pre">F5</span></code>).
 This runs the latex compiler and, if necessary, bibtex, sometimes several times until a final pdf is produced.
 “Build&amp;View” directly calls the “View” command after building.</p>
-<p><img alt="compile_toolbar" src="_images/compile_toolbar.webp" /></p>
+<p><img alt="compiletoolbar" src="_images/compile_toolbar.webp" /></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>All your files must have an extension.</p>
 </div>
-<p>You can select the default command via the <a class="reference internal" href="configuration.html#configuring-the-build-system"><span class="std std-doc">“Configure TeXstudio”</span></a> dialog.</p>
+<p>You can select the default command via the <a class="reference internal" href="configuration.html#configuring-the-build-system"><span class="std std-ref">“Configure TeXstudio”</span></a> dialog.</p>
 <p>You can also launch single commands directly in the “Tools” menu.</p>
 <p>The “Clean” command in the “Tools menu” allows you to erase
 the files (dvi, toc, aux…) generated by a LaTeX compilation. Finally documents, i.e. pdf files, are not removed.</p>
 </section>
 <section id="the-log-files">
-<h2>The log files<a class="headerlink" href="#the-log-files" title="Permalink to this heading">#</a></h2>
+<h2>The log files<a class="headerlink" href="#the-log-files" title="Link to this heading">#</a></h2>
 <p>The log panel gives you insight to all the information output to the
 log file by the command processing your LaTeX file. This panel can show
 the log file in two ways: First the log file, highlighted at important
@@ -331,14 +331,11 @@ the table with the messages.</p>
       
     </aside>
   </div>
-</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/scripts/furo.js"></script>
-    <script src="_static/tabs.js"></script>
-    <script src="_static/design-tabs.js"></script>
+</div><script src="_static/documentation_options.js?v=4f6f18ad"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script type="module" src="_static/scripts/furo.js?v=3e7832f7"></script>
+    <script src="_static/tabs.js?v=3ee01567"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     </body>
 </html>

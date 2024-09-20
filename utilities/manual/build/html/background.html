@@ -1,8 +1,8 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" data-content_root="./">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Background information" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="background.html" />
@@ -11,13 +11,13 @@
 <meta name="description" content="About documents separated in several files: LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the dete..." />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="CHANGELOG" href="CHANGELOG.html" /><link rel="prev" title="Configuring TeXstudio" href="configuration.html" />
 
-    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
-        <title>Background information - TeXstudio 4.8.2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
-    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+        <title>Background information - TeXstudio 4.8.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=9701f087" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=e61b947c" />
     
     
 
@@ -131,7 +131,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">TeXstudio 4.8.2 documentation</div></a>
+      <a href="index.html"><div class="brand">TeXstudio 4.8.4 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -154,7 +154,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">TeXstudio 4.8.2 documentation</span>
+  <span class="sidebar-brand-text">TeXstudio 4.8.4 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -207,19 +207,19 @@
         </div>
         <article role="main">
           <section id="background-information">
-<h1>Background information<a class="headerlink" href="#background-information" title="Permalink to this heading">#</a></h1>
+<h1>Background information<a class="headerlink" href="#background-information" title="Link to this heading">#</a></h1>
 <!--
 ini file / reset to default
 profile 
 -->
 <section id="about-documents-separated-in-several-files">
-<h2>About documents separated in several files<a class="headerlink" href="#about-documents-separated-in-several-files" title="Permalink to this heading">#</a></h2>
+<h2>About documents separated in several files<a class="headerlink" href="#about-documents-separated-in-several-files" title="Link to this heading">#</a></h2>
 <p>LaTeX documents may be spread over multiple files. TeXstudio
 automatically understands parent/child relations of loaded documents.
 This includes the detection of the root document and knowledge on
 defined labels and commands.</p>
 <section id="root-document">
-<h3>Root Document<a class="headerlink" href="#root-document" title="Permalink to this heading">#</a></h3>
+<h3>Root Document<a class="headerlink" href="#root-document" title="Link to this heading">#</a></h3>
 <p>The root document is the top-most file in a multi-file document. For a
 single-file document this is the file itself. By default, all calls to
 LaTeX will be performed on the root document except if a class <code class="docutils literal notranslate"><span class="pre">subfiles</span></code> is used. Then the next higher file with that document-class is compiled.</p>
@@ -238,7 +238,7 @@ completion in any open document.</p>
 misleadingly called <em>master document</em>.</p>
 </section>
 <section id="loaded-documents">
-<h3>Loaded Documents<a class="headerlink" href="#loaded-documents" title="Permalink to this heading">#</a></h3>
+<h3>Loaded Documents<a class="headerlink" href="#loaded-documents" title="Link to this heading">#</a></h3>
 <p>Obviously, TeXstudio can only use information (defined commands, labels,
 document hierarchy, etc.) that it is aware of. We use the information in
 all opened files, but if a label in a multi-file document is defined in
@@ -259,7 +259,7 @@ In cached files, txs does not search, e.g. with find usages or find in project. 
 </section>
 </section>
 <section id="overview-of-texstudio-command-line-options">
-<h2>Overview of TeXstudio command-line options<a class="headerlink" href="#overview-of-texstudio-command-line-options" title="Permalink to this heading">#</a></h2>
+<h2>Overview of TeXstudio command-line options<a class="headerlink" href="#overview-of-texstudio-command-line-options" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">texstudio</span> <span class="pre">file</span> <span class="pre">[--config</span> <span class="pre">DIR]</span> <span class="pre">[--root]</span> <span class="pre">[--line</span> <span class="pre">xx[:cc]]</span> <span class="pre">[--insert-cite</span> <span class="pre">citation]</span> <span class="pre">[--start-always]</span> <span class="pre">[--pdf-viewer-only]</span> <span class="pre">[--page</span> <span class="pre">yy]</span> <span class="pre">[--no-session]</span></code></p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
@@ -334,7 +334,7 @@ to the executable (i.e. TXS has been compiled since the last run).
 Furthermore all tests are run once a week.</p>
 </section>
 <section id="description-of-the-cwl-format">
-<h2>Description of the cwl format<a class="headerlink" href="#description-of-the-cwl-format" title="Permalink to this heading">#</a></h2>
+<h2>Description of the cwl format<a class="headerlink" href="#description-of-the-cwl-format" title="Link to this heading">#</a></h2>
 <p>cwl stands for completion word list and is a file format originally used
 in Kile to define the commands listed in the completer. TeXstudio uses
 an extended format of cwls to include additional semantic information
@@ -349,7 +349,7 @@ e.g. a \ref-like command will check for the existence of the
 referenced label</p></li>
 </ul>
 <section id="cwl-file-format">
-<h3>cwl file format<a class="headerlink" href="#cwl-file-format" title="Permalink to this heading">#</a></h3>
+<h3>cwl file format<a class="headerlink" href="#cwl-file-format" title="Link to this heading">#</a></h3>
 <p>Each line of a cwl file defines a command. Comment lines are possible
 and start with <code class="docutils literal notranslate"><span class="pre">#</span></code>. The command syntax is</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;command&gt;[#classification]</span></code></p>
@@ -394,7 +394,7 @@ classification</p></li>
 <p>cwl files should be encoded as UTF-8.</p>
 </section>
 <section id="command-format">
-<h3>Command format<a class="headerlink" href="#command-format" title="Permalink to this heading">#</a></h3>
+<h3>Command format<a class="headerlink" href="#command-format" title="Link to this heading">#</a></h3>
 <p>In its simplest form the command is just a valid LaTeX expression as you
 find it in the documentation, e.g. <code class="docutils literal notranslate"><span class="pre">\section{title}</span></code>. By default, every
 option is treated as a placeholder. Alternatively, you may either just
@@ -403,7 +403,7 @@ define a stop position for the cursor by <code class="docutils literal notransla
 placeholder (Example: <code class="docutils literal notranslate"><span class="pre">\includegraphics[scale=%&lt;1%&gt;]{file}</span></code>). New lines
 can be included in a command by <code class="docutils literal notranslate"><span class="pre">%\</span></code>.</p>
 <section id="argument-names">
-<h4>Argument Names<a class="headerlink" href="#argument-names" title="Permalink to this heading">#</a></h4>
+<h4>Argument Names<a class="headerlink" href="#argument-names" title="Link to this heading">#</a></h4>
 <p>The argument names are visible in the completer window and after
 completion as placeholders in the editor. In general, you are free to
 name the arguments as you like. We encourage to provide meaningful names
@@ -475,7 +475,7 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 </section>
 </section>
 <section id="classification-format">
-<h3>Classification format<a class="headerlink" href="#classification-format" title="Permalink to this heading">#</a></h3>
+<h3>Classification format<a class="headerlink" href="#classification-format" title="Link to this heading">#</a></h3>
 <p>The following classifications are known to TXS:</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
@@ -616,7 +616,7 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 </div>
 </section>
 <section id="cwl-guidelines">
-<h3>cwl guidelines<a class="headerlink" href="#cwl-guidelines" title="Permalink to this heading">#</a></h3>
+<h3>cwl guidelines<a class="headerlink" href="#cwl-guidelines" title="Link to this heading">#</a></h3>
 <p>Though TeXstudio can automatically create cwls from packages, these
 autogenerated cwls do not contain meaningful argument names and no
 classification of commands. Therefore we ship hand-tuned cwls for many
@@ -642,7 +642,7 @@ overcrowding with rarely used commands.</p></li>
 </ul>
 </section>
 <section id="cwl-file-placement">
-<h3>cwl file placement<a class="headerlink" href="#cwl-file-placement" title="Permalink to this heading">#</a></h3>
+<h3>cwl file placement<a class="headerlink" href="#cwl-file-placement" title="Link to this heading">#</a></h3>
 <p>cwl files can be provided from three locations. If present, the user
 provided cwl is taken, if not built-in versions are taken. As a last
 resort, txs automatically generates cwls from latex styles, though these
@@ -658,8 +658,8 @@ arguments are not available and no completion hints are given.</p>
 </section>
 </section>
 <section id="menu-definitions">
-<h2>Menu Definitions<a class="headerlink" href="#menu-definitions" title="Permalink to this heading">#</a></h2>
-<p>TeXstudio allows the user to adapt the menu, see <a class="reference internal" href="configuration.html#configuring-the-menu-advanced-option"><span class="std std-doc">how to configure the Menu</span></a>.</p>
+<h2>Menu Definitions<a class="headerlink" href="#menu-definitions" title="Link to this heading">#</a></h2>
+<p>TeXstudio allows the user to adapt the menu, see <a class="reference internal" href="configuration.html#configuring-the-menu-advanced-option"><span class="std std-ref">how to configure the Menu</span></a>.</p>
 <p>One way of doing this is by loading a definition file via the script command <code class="docutils literal notranslate"><span class="pre">loadManagedMenu</span></code>. Its format is described here.</p>
 <p>The definition file is an xml file, general description of xml can be found on the internet.</p>
 <p>The following shows an example which redefines the “\documentclass” entry in the latex menu and the “part” entry in the submenu “Sectioning”.</p>
@@ -695,7 +695,7 @@ arguments are not available and no completion hints are given.</p>
 <p>The “LaTeX” and “Math” menu are mainly defined by using this method. The source can be found <a class="reference external" href="https://github.com/texstudio-org/texstudio/blob/master/uiconfig.xml">here</a>.</p>
 </section>
 <section id="the-document-template-format">
-<h2>The Document Template Format<a class="headerlink" href="#the-document-template-format" title="Permalink to this heading">#</a></h2>
+<h2>The Document Template Format<a class="headerlink" href="#the-document-template-format" title="Link to this heading">#</a></h2>
 <p>In its simplest form, a template is only a .tex file. Multi-file
 templates can be created by packaging all .tex files in a zip archive.
 Optionally, meta data can be stored in JSON format in a separate file
@@ -718,7 +718,7 @@ preview image next to the template file. Again, it must have the same
 name, but extension “.webp”.</p>
 </section>
 <section id="creating-table-templates">
-<h2>Creating table templates<a class="headerlink" href="#creating-table-templates" title="Permalink to this heading">#</a></h2>
+<h2>Creating table templates<a class="headerlink" href="#creating-table-templates" title="Link to this heading">#</a></h2>
 <p>The templates can be defined by the user as well. They have to be place
 in the config directory (Linux: ~/.config/texstudio) and need to named
 after the scheme tabletemplate_<em>name</em>.js.</p>
@@ -806,7 +806,7 @@ elaborate table (fullyframed_firstBold):</p>
 </div>
 </section>
 <section id="style-sheets">
-<h2>Style Sheets<a class="headerlink" href="#style-sheets" title="Permalink to this heading">#</a></h2>
+<h2>Style Sheets<a class="headerlink" href="#style-sheets" title="Link to this heading">#</a></h2>
 <p>Qt supports modifying the appearance of an application using <a class="reference external" href="http://doc.qt.io/qt-5/stylesheet-syntax.html">style sheets</a>. You may use this
 to adapt the GUI of the main window by placing a file <code class="docutils literal notranslate"><span class="pre">stylesheet.qss</span></code>
 into the settings directory. The file is read at program startup.</p>
@@ -816,7 +816,7 @@ options. Therefore we do not guarantee a consistent behavior when using
 style sheets</p>
 </section>
 <section id="writing-your-own-language-definitions">
-<h2>Writing your own language definitions<a class="headerlink" href="#writing-your-own-language-definitions" title="Permalink to this heading">#</a></h2>
+<h2>Writing your own language definitions<a class="headerlink" href="#writing-your-own-language-definitions" title="Link to this heading">#</a></h2>
 <p>TeXstudio uses QCodeEdit as editor component. It specifies languages in
 a special xml format named QNFA. This includes highlighting, parentheses
 (for matching) and code folding. In a normal TeXstudio installation you
@@ -845,7 +845,7 @@ the “(La)TeX” language, e.g. the highlighting inside the parentheses
 of <code class="docutils literal notranslate"><span class="pre">\begin</span></code> and <code class="docutils literal notranslate"><span class="pre">\end</span></code>. You won’t be able to modify this or add it to
 other languages.</p>
 <section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
 <p>The following is a small example which specifies some highlighting of
 python code:</p>
 <p>python.qnfa</p>
@@ -898,7 +898,7 @@ python code:</p>
 </section>
 </section>
 <section id="building-texstudio">
-<h2>Building TeXstudio<a class="headerlink" href="#building-texstudio" title="Permalink to this heading">#</a></h2>
+<h2>Building TeXstudio<a class="headerlink" href="#building-texstudio" title="Link to this heading">#</a></h2>
 <p>TeXstudio uses <code class="docutils literal notranslate"><span class="pre">cmake</span></code> as a building system.</p>
 <p>To compile and install TeXstudio, write in a terminal:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>mkdir build
@@ -987,7 +987,7 @@ The change is done via cmake options, e.g. <code class="docutils literal notrans
 </table>
 </div>
 <section id="updating-translations">
-<h3>Updating translations<a class="headerlink" href="#updating-translations" title="Permalink to this heading">#</a></h3>
+<h3>Updating translations<a class="headerlink" href="#updating-translations" title="Link to this heading">#</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">cmake</span></code> the command <code class="docutils literal notranslate"><span class="pre">lupdate</span></code> does not work directly.
 Instead when building for qt6 a debug build (<code class="docutils literal notranslate"><span class="pre">DCMAKE_BUILD_TYPE=Debug</span></code>), a target <code class="docutils literal notranslate"><span class="pre">texstudio_lupdate</span></code> is defined which needs to be called.</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>build&gt;qt-cmake .. -DCMAKE<span class="nb">_</span>BUILD<span class="nb">_</span>TYPE=Debug
@@ -1094,14 +1094,11 @@ build&gt;cmake --build . -t texstudio<span class="nb">_</span>lupdate
       
     </aside>
   </div>
-</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/scripts/furo.js"></script>
-    <script src="_static/tabs.js"></script>
-    <script src="_static/design-tabs.js"></script>
+</div><script src="_static/documentation_options.js?v=4f6f18ad"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script type="module" src="_static/scripts/furo.js?v=3e7832f7"></script>
+    <script src="_static/tabs.js?v=3ee01567"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     </body>
 </html>
