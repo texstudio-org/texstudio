@@ -1,5 +1,5 @@
 # keytheorems package
-# Matthew Bertucci 2024/09/18 for v0.1.2
+# Matthew Bertucci 2024/09/20 for v0.1.3
 
 #include:aliascnt
 #include:amsthm
@@ -31,7 +31,7 @@ store-all
 \addtotheoremprefoothook[envname]{code}#*
 \addtotheorempostfoothook{code}#*
 \addtotheorempostfoothook[envname]{code}#*
-#keyvals:\newkeytheorem#c,\declaretheorem#c
+#keyvals:\newkeytheorem#c,\declaretheorem#c,\newkeytheoremstyle#c,\renewkeytheoremstyle#c,\providekeytheoremstyle#c,\declarekeytheoremstyle#c,\declaretheoremstyle#c
 thmbox
 thmbox=#L,M,S
 shaded
@@ -57,17 +57,22 @@ continues-code=%<code%>
 \newkeytheorem{envname}#N
 \newkeytheorem{envname}[options%keyvals]#N
 
+# keys that can't be used in styles
 #keyvals:\newkeytheorem#c,\declaretheorem#c
 name=%<display name%>
 numbered=#true,false,unless-unique
 parent=%<counter%>
 sibling=%<counter%>
+refname=%<ref name%>
+Refname=%<ref name%>
+#endkeyvals
+
+# keys that can be used in styles
+#keyvals:\newkeytheorem#c,\declaretheorem#c,\newkeytheoremstyle#c,\renewkeytheoremstyle#c,\providekeytheoremstyle#c,\declarekeytheoremstyle#c,\declaretheoremstyle#c
 preheadhook=%<code%>
 postheadhook=%<code%>
 prefoothook=%<code%>
 postfoothook=%<code%>
-refname=%<ref name%>
-Refname=%<ref name%>
 qed
 qed=%<symbol%>
 tcolorbox
@@ -94,6 +99,7 @@ notefont=%<font commands%>
 notebraces={%<left brace%>}{%<right brace%>}
 headstyle=#margin,swapnumber,%<code%>
 inherit-style=%<style name%>
+noteseparator=%<separator%>
 #endkeyvals
 
 \NAME#*
@@ -107,7 +113,9 @@ inherit-style=%<style name%>
 body
 #endkeyvals
 
-\IfRestatingTF{true}{false}#*
+\IfRestatingTF{true code}{false code}#*
+\IfRestatingT{true code}#*
+\IfRestatingF{false code}#*
 
 \listofkeytheorems
 \listofkeytheorems[options%keyvals]
