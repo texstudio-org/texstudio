@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.8.4
+
+- 
+
 ## TeXstudio 4.8.3
 
 - use argument position to assign argument type (fixes some issues concerning keyval arguments)
