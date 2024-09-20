@@ -623,3 +623,18 @@ Instead when building for qt6 a debug build (`DCMAKE_BUILD_TYPE=Debug`), a targe
 build>qt-cmake .. -DCMAKE_BUILD_TYPE=Debug
 build>cmake --build . -t texstudio_lupdate
 ```
+
+### Translating manual
+The manual is writen as markdown in `utilities/manual/source`.
+The webpage [https://texstudio-org.github.io](https://texstudio-org.github.io) needs html to show the pages.
+Txs uses sphinx to translate markdown to html.
+A call of `make html` in the folder `utilities/manual` calls the translator.
+The following packages are needed on ubuntu to perform the task:
+``` 
+sphinx
+furo
+python3-myst-parser
+python3-sphinx-inline-tabs
+python3-sphinx-designer
+python3-sphinxex-opengraph
+``` 

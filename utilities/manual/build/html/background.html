@@ -995,6 +995,22 @@ build&gt;cmake --build . -t texstudio<span class="nb">_</span>lupdate
 </pre></div>
 </div>
 </section>
+<section id="translating-manual">
+<h3>Translating manual<a class="headerlink" href="#translating-manual" title="Link to this heading">#</a></h3>
+<p>The manual is writen as markdown in <code class="docutils literal notranslate"><span class="pre">utilities/manual/source</span></code>.
+The webpage <a class="reference external" href="https://texstudio-org.github.io">https://texstudio-org.github.io</a> needs html to show the pages.
+Txs uses sphinx to translate markdown to html.
+A call of <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> in the folder <code class="docutils literal notranslate"><span class="pre">utilities/manual</span></code> calls the translator.
+The following packages are needed on ubuntu to perform the task:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>sphinx
+furo
+python3-myst-parser
+python3-sphinx-inline-tabs
+python3-sphinx-designer
+python3-sphinxex-opengraph
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -1081,6 +1097,7 @@ build&gt;cmake --build . -t texstudio<span class="nb">_</span>lupdate
 </li>
 <li><a class="reference internal" href="#building-texstudio">Building TeXstudio</a><ul>
 <li><a class="reference internal" href="#updating-translations">Updating translations</a></li>
+<li><a class="reference internal" href="#translating-manual">Translating manual</a></li>
 </ul>
 </li>
 </ul>
