@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/09/13 for v13.9.0
+# Matthew Bertucci 2024/09/20 for v13.10.0
 
 #include:iftex
 
@@ -13,6 +13,7 @@
 1password
 2fas
 2k
+30secondsofcode
 365datascience
 3m
 4chan
@@ -189,6 +190,7 @@ apachecassandra
 apachecloudstack
 apachecordova
 apachecouchdb
+apachedolphinscheduler
 apachedruid
 apacheecharts
 apacheflink
@@ -203,6 +205,7 @@ apachekafka
 apachekylin
 apachemaven
 apachenetbeanside
+apachenifi
 apacheopenoffice
 apacheparquet
 apachepulsar
@@ -468,6 +471,7 @@ canonical
 canva
 canvas
 capacitor
+caprover
 cardano
 carlsberggroup
 carrd
@@ -618,6 +622,7 @@ conekta
 confluence
 construct3
 consul
+contabo
 contactlesspayment
 containerd
 contao
@@ -641,6 +646,7 @@ counterstrike
 countingworkspro
 coursera
 coveralls
+coze
 cpanel
 cplusplus
 cplusplusbuilder
@@ -663,6 +669,7 @@ crunchyroll
 cryengine
 cryptpad
 crystal
+csdn
 css3
 cssdesignawards
 cssmodules
@@ -781,6 +788,7 @@ douban
 doubanread
 dovecot
 dovetail
+downdetector
 doxygen
 dpd
 dragonframe
@@ -1192,6 +1200,7 @@ gstreamer
 gtk
 guangzhoumetro
 guilded
+guitarpro
 gulp
 gumroad
 gumtree
@@ -1461,6 +1470,7 @@ kedro
 keenetic
 keepachangelog
 keepassxc
+keeweb
 kentico
 keras
 keybase
@@ -1568,6 +1578,8 @@ libreofficedraw
 libreofficeimpress
 libreofficemath
 libreofficewriter
+libretranslate
+libretube
 librewolf
 libuv
 lichess
@@ -1625,6 +1637,7 @@ lua
 lubuntu
 lucia
 lucid
+lucide
 ludwig
 lufthansa
 lumen
@@ -1694,6 +1707,7 @@ mdnwebdocs
 mdx
 mediafire
 mediamarkt
+mediapipe
 mediatek
 medibangpaint
 medium
@@ -1732,6 +1746,7 @@ microstation
 microstrategy
 midi
 migadu
+mihoyo
 mikrotik
 milanote
 milvus
@@ -1812,6 +1827,7 @@ namemc
 namesilo
 namuwiki
 nano
+nanostores
 nasa
 nationalgrid
 nationalrail
@@ -2161,9 +2177,11 @@ pretzel
 prevention
 prezi
 prime
+primefaces
 primeng
 primereact
 primevideo
+primevue
 printables
 prisma
 prismic
@@ -2298,6 +2316,7 @@ red
 redash
 redbubble
 redbull
+redcandlegames
 reddit
 redhat
 redhatopenshift
@@ -2358,6 +2377,7 @@ roamresearch
 robinhood
 roblox
 robloxstudio
+roboflow
 robotframework
 rocket
 rocketdotchat
@@ -2687,8 +2707,10 @@ svelte
 svg
 svgdotjs
 svgo
+svgtrace
 swagger
 swarm
+sway
 swc
 swift
 swiggy
@@ -2722,6 +2744,7 @@ tampermonkey
 taobao
 tapas
 target
+tarom
 task
 tasmota
 tata
@@ -2763,6 +2786,7 @@ thealgorithms
 theboringcompany
 theconversation
 thefinals
+theguardian
 theirishtimes
 themighty
 themodelsresource
@@ -2773,6 +2797,7 @@ theregister
 thesoundsresource
 thespritersresource
 thewashingtonpost
+theweatherchannel
 thingiverse
 thinkpad
 thirdweb
@@ -2997,6 +3022,7 @@ vonage
 vorondesign
 vowpalwabbit
 vox
+vrchat
 vsco
 vscodium
 vtex
@@ -3114,6 +3140,7 @@ xo
 xrp
 xsplit
 xstate
+xubuntu
 yabai
 yale
 yamahacorporation
