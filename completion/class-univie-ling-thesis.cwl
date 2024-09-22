@@ -1,5 +1,5 @@
 # univie-ling-thesis class
-# Matthew Bertucci 2024/06/28 for v.2.6
+# Matthew Bertucci 2024/09/22 for v.2.8
 
 #include:class-scrreprt
 #include:array
@@ -7,7 +7,7 @@
 #include:fontenc
 # loads T1 option of fontenc
 #include:mathpazo
-#include:uarial
+#include:sourcesanspro
 #include:sourcecodepro
 #include:url
 #include:geometry
@@ -39,6 +39,7 @@ polyglossia#true,false
 pdfa#true,false
 fonts=#ps,otf,none
 fontenc={%<enc1,enc2,...%>}
+titlepage#true,false
 #endkeyvals
 
 #ifOption:apa
