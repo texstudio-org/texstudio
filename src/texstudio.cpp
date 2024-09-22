@@ -7723,7 +7723,7 @@ void Texstudio::masterDocumentChanged(LatexDocument *doc)
 	}
 
 	updateMasterDocumentCaption();
-    updateStructureLocally();
+    updateTOCs();
 	completerNeedsUpdate();
 }
 
