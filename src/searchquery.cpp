@@ -315,5 +315,8 @@ void LabelSearchQuery::replaceAll()
 			doc->replaceLabelsAndRefs(oldLabel, newLabel);
 		}
 	}
+    // as label is renamed, update the search expression to renamed label
+    // see also #3805
+    setExpression(mModel->replacementText());
 }
 
