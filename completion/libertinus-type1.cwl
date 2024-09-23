@@ -1,5 +1,5 @@
 # libertinus-type1 package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 2024/09/23
 
 #include:ifxetex
 #include:ifluatex
@@ -43,10 +43,7 @@ ScaleTT=%<factor%>
 \LibertinusSansTLF
 \LibertinusSansLF
 \LibertinusMono
-\LibertinusDisplay
-\LibertinusInitials
 \LibertinusKeyboard
-\Libertinusinitials#*
 \libertinusseriflgr#*
 \libertinussanslgr#*
 \sufigures
