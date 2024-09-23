@@ -1,5 +1,5 @@
 # lstdoc package
-# Matthew Bertucci 2023/02/27 for v1.9
+# Matthew Bertucci 2024/09/23 for v1.10c
 
 #include:listings
 #include:fancyvrb
@@ -8,7 +8,7 @@
 #include:algorithmic
 #include:lgrind
 #include:nameref
-#include:url
+#include:xurl
 
 \filedate#S
 \fileversion#S
