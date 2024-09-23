@@ -95,71 +95,81 @@ void SyntaxCheckTest::checktabular_data(){
             << "\\usepackage{tabu}\\begin{tabu}{lll}\n\\multicolumn{2}{c}{Hallo}\\\\c&d&e&f\\\\\n\\end{tabu}\n"
             << 1 << 26
             << "cols in tabular missing";
+
     QTest::newRow("tabu2")
             << "\\usepackage{tabu}\\begin{tabu}to \\linewidth {lll}\n\\multicolumn{2}{c}{Hallo}\\\\c&d&e&f\\\\\n\\end{tabu}\n"
             << 1 << 26
             << "cols in tabular missing";
+
     QTest::newRow("tabu3")
             << "\\usepackage{tabu}\\begin{tabu}to \\linewidth {|*{3}{l|}}\n\\multicolumn{2}{c}{Hallo}\\\\c&d&e&f\\\\\n\\end{tabu}\n"
             << 1 << 26
             << "cols in tabular missing";
 
-    if (globalExecuteAllTests) {
-         QTest::newRow("no error 3 cols")
-                   << "\\begin{tabular}{lll}\n&&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
-                   << 1 << 3
-                   << "no error";
+    QTest::newRow("multiline preamble")
+        << "\\begin{tabular}{\nll\n}\na&b&b2\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 3 << 11
+        << "no error";
 
-         QTest::newRow("no error 3 cols")
-                   << "\\begin{tabular}{lll}\n&&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
-                   << 1 << 2
-                   << "no error";
+    QTest::newRow("multiline preamble, error")
+        << "\\begin{tabular}{\nl\n}\na&b&b2\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 3 << 1
+        << "more cols in tabular than specified";
 
-         QTest::newRow("no error 3 cols,multiple lines")
-                   << "\\begin{tabular}{lll}\na&\n&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
-                   << 2 << 1
-                   << "no error";
+    QTest::newRow("no error 3 cols")
+           << "\\begin{tabular}{lll}\n&&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
+           << 1 << 3
+           << "no error";
 
-         QTest::newRow("no error 3 cols,multiple lines 1/1")
-                   << "\\begin{tabular}{lll}\na&\n&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
-                   << 2 << 1
-                   << "no error";
+    QTest::newRow("no error 3 cols")
+           << "\\begin{tabular}{lll}\n&&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
+           << 1 << 2
+           << "no error";
 
-         QTest::newRow("no error 3 cols,multiple lines")
-                   << "\\begin{tabular}{lll}\na&\n&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
-                   << 2 << 2
-                   << "no error";
+    QTest::newRow("no error 3 cols,multiple lines")
+           << "\\begin{tabular}{lll}\na&\n&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
+           << 2 << 1
+           << "no error";
 
-         QTest::newRow("too little cols, 3 cols,multiple lines 1")
-                   << "\\begin{tabular}{lll}\na&\n\\\\c&d&e&f\\\\\n\\end{tabular}\n"
-                   << 2 << 1
-                   << "cols in tabular missing";
+    QTest::newRow("no error 3 cols,multiple lines 1/1")
+           << "\\begin{tabular}{lll}\na&\n&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
+           << 2 << 1
+           << "no error";
 
-         QTest::newRow("too many cols, 3 cols,multiple lines 2")
-                   << "\\begin{tabular}{lll}\na&\n&&a\\\\c&d&e&f\\\\\n\\end{tabular}\n"
-                   << 2 << 3
-                   << "more cols in tabular than specified";
+    QTest::newRow("no error 3 cols,multiple lines")
+           << "\\begin{tabular}{lll}\na&\n&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
+           << 2 << 2
+           << "no error";
 
-         QTest::newRow("too many cols, 3 cols,multiple lines 3")
-                   << "\\begin{tabular}{lll}\na&\n&&\na\\\\c&d&e&f\\\\\n\\end{tabular}\n"
-                   << 2 << 2
-                   << "more cols in tabular than specified";
+    QTest::newRow("too little cols, 3 cols,multiple lines 1")
+           << "\\begin{tabular}{lll}\na&\n\\\\c&d&e&f\\\\\n\\end{tabular}\n"
+           << 2 << 1
+           << "cols in tabular missing";
 
-         QTest::newRow("too many cols, 3 cols,multiple lines 4")
-                   << "\\begin{tabular}{lll}\na&&\\multicolumn{2}{c}{test}\na\\\\c&d&e&f\\\\\n\\end{tabular}\n"
-                   << 1 << 4
-                   << "more cols in tabular than specified";
+    QTest::newRow("too many cols, 3 cols,multiple lines 2")
+           << "\\begin{tabular}{lll}\na&\n&&a\\\\c&d&e&f\\\\\n\\end{tabular}\n"
+           << 2 << 3
+           << "more cols in tabular than specified";
 
-         QTest::newRow("too many cols, 3 cols,multiple lines 5")
-                   << "\\begin{tabular}{lll}\na\\multicolumn{4}{c}{test}\na\\\\c&d&e&f\\\\\n\\end{tabular}\n"
-                   << 1 << 4
-                   << "more cols in tabular than specified";
+    QTest::newRow("too many cols, 3 cols,multiple lines 3")
+           << "\\begin{tabular}{lll}\na&\n&&\na\\\\c&d&e&f\\\\\n\\end{tabular}\n"
+           << 2 << 2
+           << "more cols in tabular than specified";
 
-         QTest::newRow("hline")
-                   << "\\begin{tabular}{ll}\na&b\\\\\\hline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-                   << 1 << 4
-                   << "no error";
-    } else qDebug("skipped some tests");
+    QTest::newRow("too many cols, 3 cols,multiple lines 4")
+           << "\\begin{tabular}{lll}\na&&\\multicolumn{2}{c}{test}\na\\\\c&d&e&f\\\\\n\\end{tabular}\n"
+           << 1 << 4
+           << "more cols in tabular than specified";
+
+    QTest::newRow("too many cols, 3 cols,multiple lines 5")
+           << "\\begin{tabular}{lll}\na\\multicolumn{4}{c}{test}\na\\\\c&d&e&f\\\\\n\\end{tabular}\n"
+           << 1 << 4
+           << "more cols in tabular than specified";
+
+    QTest::newRow("hline")
+           << "\\begin{tabular}{ll}\na&b\\\\\\hline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+           << 1 << 4
+           << "no error";
 
 }
 void SyntaxCheckTest::checktabular(){

@@ -994,17 +994,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					if(env=="tikztimingtable"){
 						option="ll"; // is always 2 columns
 					}else{
-						for (int k = i + 1; k < tl.length(); k++) {
-							Token elem = tl.at(k);
-							if (elem.level < tk.level)
-								break;
-							if (elem.level > tk.level)
-								continue;
-							if (elem.subtype == Token::colDef) {
-								option = line.mid(elem.start + 1, elem.length - 2); // strip {}
-								break;
-							}
-						}
+                        option = Parsing::getArg(tl.mid(i+1),Token::colDef);
 					}
 				}
                 if(option.contains("colspec")){
