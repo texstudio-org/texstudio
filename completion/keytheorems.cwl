@@ -1,5 +1,5 @@
 # keytheorems package
-# Matthew Bertucci 2024/09/20 for v0.1.3
+# Matthew Bertucci 2024/09/23 for v0.1.4
 
 #include:aliascnt
 #include:amsthm
@@ -21,6 +21,9 @@ store-all
 \begin{restatable}{envname}{tag}
 \begin{restatable}[options%keyvals]{envname}{tag}
 \end{restatable}
+\begin{restatable*}{envname}{tag}
+\begin{restatable*}[options%keyvals]{envname}{tag}
+\end{restatable*}
 \listoftheorems
 \listoftheorems[options%keyvals]
 \addtotheorempreheadhook{code}#*
@@ -48,6 +51,7 @@ store-all
 restate-counter
 qed-symbol=%<symbol%>
 auto-translate#true,false
+store-sets-label
 #endkeyvals
 
 #keyvals:\keytheoremset#c
@@ -97,9 +101,10 @@ postheadspace=##L
 break
 notefont=%<font commands%>
 notebraces={%<left brace%>}{%<right brace%>}
-headstyle=#margin,swapnumber,%<code%>
+headformat=#margin,swapnumber,%<code%>
 inherit-style=%<style name%>
 noteseparator=%<separator%>
+numberfont=%<font commands%>
 #endkeyvals
 
 \NAME#*
