@@ -735,7 +735,8 @@ void ConfigDialog::retrieveModels()
             url="https://api.openai.com/v1/models";
             break;
         case 2:
-            url="http://localhost:8080/v1/models";
+            url=ui.leAIAPIURL->text();
+            url=url.replace("chat/completions","models");
             break;
         default:
             break;
