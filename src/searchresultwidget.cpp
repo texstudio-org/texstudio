@@ -34,6 +34,10 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 	replaceButton = new QPushButton(tr("Replace all"));
     m_replaceByLabel=new QLabel(tr("Replace by:"));
 
+    connect(replaceTextEdit, &QLineEdit::textChanged, this, &SearchResultWidget::replaceTextEditChanged);
+    connect(replaceTextEdit, SIGNAL(returnPressed()), query, SLOT(replaceAll()));
+    connect(replaceButton, &QPushButton::clicked, this, &SearchResultWidget::replaceButtonClicked);
+
     // special widgets for search in files
     m_fileFilterBox = new QComboBox;
     m_fileFilterBox->addItem(tr("TeX files")+" (*.tex)");
@@ -102,9 +106,6 @@ void SearchResultWidget::setQuery(SearchQuery *sq)
 	replaceTextEdit->setEnabled(replaceAllowed);
 	replaceTextEdit->setText(query->replacementText());
 	replaceButton->setEnabled(replaceAllowed);
-    connect(replaceTextEdit, &QLineEdit::textChanged, this, &SearchResultWidget::replaceTextEditChanged);
-	connect(replaceTextEdit, SIGNAL(returnPressed()), query, SLOT(replaceAll()));
-    connect(replaceButton, &QPushButton::clicked, this, &SearchResultWidget::replaceButtonClicked);
 
 	searchTree->setModel(query->model());
     connect(query, &SearchQuery::runCompleted, this, &SearchResultWidget::searchCompleted);
