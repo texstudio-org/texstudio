@@ -5350,7 +5350,8 @@ void Texstudio::insertFromExplorer(bool )
     auto index=fileView->currentIndex();
     QFileInfo fi = fileExplorerModel->fileInfo(index);
     const QString rootDir=fileExplorerModel->rootPath();
-    const QString fn=getRelativeFileName(fi.absolutePath(),rootDir);
+    const QString full_fn=fi.canonicalFilePath();
+    const QString fn=getRelativeBaseNameToPath(full_fn,rootDir,false,true);
     insertText(fn);
 }
 
