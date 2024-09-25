@@ -5349,9 +5349,15 @@ void Texstudio::insertFromExplorer(bool )
 {
     auto index=fileView->currentIndex();
     QFileInfo fi = fileExplorerModel->fileInfo(index);
-    const QString rootDir=fileExplorerModel->rootPath();
-    const QString fn=getRelativeFileName(fi.absolutePath(),rootDir);
-    insertText(fn);
+    QString rootDir=QDir::fromNativeSeparators(fileExplorerModel->rootPath());
+    if (!rootDir.endsWith(QDir::separator())) rootDir = rootDir + "/";
+    QString fn = QDir::fromNativeSeparators(fi.absolutePath());
+    if (! fn.isEmpty() & !fn.endsWith(QDir::separator())) fn = fn + "/";
+    fn = fn.right(fn.length()-rootDir.length());
+    if (fi.isDir())
+        insertText(fn+fi.baseName()+"/");
+    else
+        insertText(fn+fi.completeBaseName());
 }
 
 void Texstudio::quickTabular(const QMimeData *d)
