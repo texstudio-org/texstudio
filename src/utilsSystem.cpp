@@ -506,8 +506,6 @@ QString getRelativeBaseNameToPath(const QString &file, QString basepath, bool ba
 	QStringList basedirs = basepath.split("/");
 	if (baseFile && !basedirs.isEmpty()) basedirs.removeLast();
 	QStringList dirs = path.split("/");
-	//QStringList basedirs = QStringList::split("/", basepath, false);
-	//QStringList dirs = QStringList::split("/", path, false);
 
 	int nDirs = dirs.count();
 
