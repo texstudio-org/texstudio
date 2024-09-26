@@ -4653,8 +4653,8 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 	int &line = m_begLine;
 	int &offset = m_begOffset;
 
-    static QRegularExpression rxWordStart("\\b\\w+$"), rxWordEnd("\\w+\\b");
-    static QRegularExpression rxWordOrCommandStart("\\\\?\\b\\w+$"), rxWordOrCommandEnd("\\\\?\\w+\\b");
+    static QRegularExpression rxWordStart("\\b\\w+$",QRegularExpression::UseUnicodePropertiesOption), rxWordEnd("\\w+\\b",QRegularExpression::UseUnicodePropertiesOption);
+    static QRegularExpression rxWordOrCommandStart("\\\\?\\b\\w+$",QRegularExpression::UseUnicodePropertiesOption), rxWordOrCommandEnd("\\\\?\\w+\\b",QRegularExpression::UseUnicodePropertiesOption);
 
 	if ( !(m & QDocumentCursor::KeepAnchor) )
 	{
