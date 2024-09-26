@@ -5347,6 +5347,7 @@ void Texstudio::openFromExplorer(const QModelIndex &index)
  */
 void Texstudio::insertFromExplorer(bool )
 {
+    if ( !currentEditorView() )	return;
     auto index=fileView->currentIndex();
     QFileInfo fi = fileExplorerModel->fileInfo(index);
     const QString rootDir=fileExplorerModel->rootPath();
