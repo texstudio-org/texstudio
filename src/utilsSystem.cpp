@@ -570,7 +570,7 @@ QString getNonextistentFilename(const QString &guess, const QString &fallback)
 {
 	QFileInfo fi(guess);
 	if (!fi.exists()) return guess;
-    QRegularExpression reNumberedFilename("^(.*[^\\d])(\\d*)\\.(\\w+)$");
+    QRegularExpression reNumberedFilename("^(.*[^\\d])(\\d*)\\.(\\w+)$",QRegularExpression::UseUnicodePropertiesOption);
     QRegularExpressionMatch reNumberedFilenameMatch = reNumberedFilename.match(guess);
     if (!reNumberedFilenameMatch.hasMatch()) {
 		return fallback;

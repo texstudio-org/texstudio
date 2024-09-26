@@ -1582,7 +1582,7 @@ void QEditor::load(const QString& file, QTextCodec* codec)
 	if ( m_lineEndingsActions )
 	{
 		// TODO : update Conservative to report original line endings
-        const QRegularExpression rx(" \\[\\w+\\]");
+        const QRegularExpression rx(" \\[\\w+\\]",QRegularExpression::UseUnicodePropertiesOption);
 		QAction *a = m_lineEndingsActions->actions().at(0);
 
 		if ( a )

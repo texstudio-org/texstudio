@@ -3985,7 +3985,7 @@ void Texstudio::editEraseWordCmdEnv()
 	// Prelimiary solution part I:
 	// Predictable behaviour on selections: do nothing except in easy cases
 	if (cursor.hasSelection()) {
-        QRegularExpression partOfWordOrCmd("^\\\\?\\w*$");
+        QRegularExpression partOfWordOrCmd("^\\\\?\\w*$",QRegularExpression::UseUnicodePropertiesOption);
         QRegularExpressionMatch rxm=partOfWordOrCmd.match(cursor.selectedText());
         if (!rxm.hasMatch())
 			return;
