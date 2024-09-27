@@ -1,7 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.8.4
 
-- 
+- fix word selection [#3812](https://github.com/texstudio-org/texstudio/issues/3812)
 
 ## TeXstudio 4.8.3
 
