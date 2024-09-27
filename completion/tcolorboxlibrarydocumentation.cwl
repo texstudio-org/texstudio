@@ -1,5 +1,5 @@
 # documentation tcolorboxlibrary
-# 2024/07/10 for v6.3.0
+# 2024/09/27 for v6.4.0
 
 #include:tcolorboxlibrarylistings
 #include:tcolorboxlibraryskins
@@ -104,6 +104,8 @@
 \refPathOperation*{name}
 \refAux{name}
 \refAuxcs{name}
+\refPkg{package}
+\refPkg[CTAN name]{package}
 \colDef{text%plain}
 \colOpt{text%plain}
 \colFade{text%plain}
