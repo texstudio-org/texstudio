@@ -2424,6 +2424,7 @@
 <file>completion/MinionPro.cwl</file>
 <file>completion/minipage-marginpar.cwl</file>
 <file>completion/minted.cwl</file>
+<file>completion/minted2.cwl</file>
 <file>completion/mintspirit2.cwl</file>
 <file>completion/mintspirit.cwl</file>
 <file>completion/minutes.cwl</file>
