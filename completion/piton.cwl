@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/08/29 for v3.1c
+# Matthew Bertucci 2024/09/22 for v4.0
 
 #include:l3keys2e
 #include:luatexbase
@@ -11,6 +11,7 @@
 footnote
 footnotehyper
 beamer#true,false
+old-PitonInputFile#true,false
 #endkeyvals
 
 #ifOption:footnote
@@ -90,6 +91,7 @@ line-numbers/start
 # keys for both \PitonOptions and \begin{Piton}
 #keyvals:\PitonOptions,\begin{Piton}
 language=#Python,OCaml,C,SQL,minimal,%newpitonlang
+font-command=%<font commands%>
 gobble=%<integer%>
 auto-gobble
 tabs-auto-gobble
@@ -103,6 +105,8 @@ line-numbers/sep=##L
 line-numbers/format=%<font commands%>
 splittable
 splittable=%<integer%>
+splittable-on-empty-lines#true,false
+env-used-by-split=%<envname%>
 background-color=#%color
 prompt-background-color=#%color
 width=##L

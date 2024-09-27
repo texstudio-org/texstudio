@@ -1,10 +1,11 @@
 # keytheorems package
-# Matthew Bertucci 2024/09/12 for v0.1.1
+# Matthew Bertucci 2024/09/23 for v0.1.4
 
 #include:aliascnt
 #include:amsthm
 #include:refcount
 #include:translations
+#include:unique
 
 #keyvals:\usepackage/key-theorems#c
 overload
@@ -20,6 +21,9 @@ store-all
 \begin{restatable}{envname}{tag}
 \begin{restatable}[options%keyvals]{envname}{tag}
 \end{restatable}
+\begin{restatable*}{envname}{tag}
+\begin{restatable*}[options%keyvals]{envname}{tag}
+\end{restatable*}
 \listoftheorems
 \listoftheorems[options%keyvals]
 \addtotheorempreheadhook{code}#*
@@ -30,6 +34,12 @@ store-all
 \addtotheoremprefoothook[envname]{code}#*
 \addtotheorempostfoothook{code}#*
 \addtotheorempostfoothook[envname]{code}#*
+#keyvals:\newkeytheorem#c,\declaretheorem#c,\newkeytheoremstyle#c,\renewkeytheoremstyle#c,\providekeytheoremstyle#c,\declarekeytheoremstyle#c,\declaretheoremstyle#c
+thmbox
+thmbox=#L,M,S
+shaded
+shaded={%<shade options%>}
+#endkeyvals
 #endif
 
 \keytheoremset{options%keyvals}
@@ -41,6 +51,7 @@ store-all
 restate-counter
 qed-symbol=%<symbol%>
 auto-translate#true,false
+store-sets-label
 #endkeyvals
 
 #keyvals:\keytheoremset#c
@@ -50,17 +61,22 @@ continues-code=%<code%>
 \newkeytheorem{envname}#N
 \newkeytheorem{envname}[options%keyvals]#N
 
+# keys that can't be used in styles
 #keyvals:\newkeytheorem#c,\declaretheorem#c
 name=%<display name%>
 numbered=#true,false,unless-unique
 parent=%<counter%>
 sibling=%<counter%>
+refname=%<ref name%>
+Refname=%<ref name%>
+#endkeyvals
+
+# keys that can be used in styles
+#keyvals:\newkeytheorem#c,\declaretheorem#c,\newkeytheoremstyle#c,\renewkeytheoremstyle#c,\providekeytheoremstyle#c,\declarekeytheoremstyle#c,\declaretheoremstyle#c
 preheadhook=%<code%>
 postheadhook=%<code%>
 prefoothook=%<code%>
 postfoothook=%<code%>
-refname=%<ref name%>
-Refname=%<ref name%>
 qed
 qed=%<symbol%>
 tcolorbox
@@ -85,8 +101,10 @@ postheadspace=##L
 break
 notefont=%<font commands%>
 notebraces={%<left brace%>}{%<right brace%>}
-headstyle=#margin,swapnumber,%<code%>
+headformat=#margin,swapnumber,%<code%>
 inherit-style=%<style name%>
+noteseparator=%<separator%>
+numberfont=%<font commands%>
 #endkeyvals
 
 \NAME#*
@@ -100,7 +118,9 @@ inherit-style=%<style name%>
 body
 #endkeyvals
 
-\IfRestatingTF{true}{false}#*
+\IfRestatingTF{true code}{false code}#*
+\IfRestatingT{true code}#*
+\IfRestatingF{false code}#*
 
 \listofkeytheorems
 \listofkeytheorems[options%keyvals]
@@ -108,6 +128,7 @@ body
 
 #keyvals:\listofkeytheorems#c,\keytheoremlistset#c,\listoftheorems#c
 numwidth=##L
+indent=##L
 ignore={%<env1,env2,...%>}
 show={%<env1,env2,...%>}
 onlynamed
@@ -126,6 +147,7 @@ print-body
 no-continues#true,false
 no-chapter-skip#true,false
 chapter-skip-length=##L
+no-toc#true,false
 #endkeyvals
 
 \addtheoremcontentsline{level}{text}#*

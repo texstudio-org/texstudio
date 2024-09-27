@@ -1,5 +1,5 @@
 # TianQing beamertheme
-# Matthew Bertucci 2023/04/24 for v1.0
+# Matthew Bertucci 2024/09/23 for v1.02
 
 #include:cncolours
 #include:pgfornament-han
@@ -10,6 +10,11 @@
 #include:tcolorbox
 #include:tcolorboxlibraryskins
 #include:textpos
+
+\TQTopDecoWidth#*
+\TQBottomDecoWidth#*
+\TQTopDecoOpacity#*
+\TQBottomDecoOpacity#*
 
 \romankai#S
 \bulletboxone#S

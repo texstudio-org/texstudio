@@ -2,22 +2,19 @@
 # modified by Tim Hoffmann 2014-03-24
 # modified by Elias Kirchgässner 2016-07-27
 # modified by muzimuzhi 2020 Feb 15, minted v2.5
-# modified by Matthew Bertucci 2023 Dec 18, minted v2.9
+# modified by Matthew Bertucci 2024 Sep 23, v3.0.0
 
-#include:keyval
-#include:kvoptions
-#include:fvextra
-#include:ifthen
-#include:shellesc
-#include:ifplatform
-#include:pdftexcmds
-#include:etoolbox
-#include:xstring
-#include:lineno
-#include:framed
 #include:catchfile
+#include:etoolbox
+#include:fvextra
+#include:latex2pydata
+#include:pdftexcmds
+#include:pgfkeys
+#include:pgfopts
+#include:shellesc
 #include:xcolor
 #include:float
+
 #ifOption:newfloat
 #include:newfloat
 #endif
@@ -30,16 +27,14 @@ chapter
 section
 cache#true,false
 cachedir=%<directory%>
-finalizecache#true,false
-fontencoding=%<encoding%>
+debug#true,false
 frozencache#true,false
-draft#true,false
-final#true,false
-inputlanglinenos#true,false
-kpsewhich#true,false
-langlinenos#true,false
+highlightmode=#fastfirst,fast,immediate
+inputlexerlinenos#true,false
+lexerlinenos#true,false
 newfloat#true,false
-outputdir=%<directory%>
+placeholder#true,false
+verbatim#true,false
 #endkeyvals
 
 \begin{minted}[options%keyvals]#S
@@ -73,7 +68,7 @@ outputdir=%<directory%>
 \listoflistingscaption#*
 
 \newminted{language}{options%keyvals}
-\newminted[envname]{language}{options%keyvals}
+\newminted[envname]{language}{options%keyvals}#N
 \newmint{language}{options%keyvals}
 \newmint[macro name]{language}{options%keyvals}
 \newmintinline{language}{options%keyvals}
@@ -81,107 +76,124 @@ outputdir=%<directory%>
 \newmintedfile{language}{options%keyvals}
 \newmintedfile[macro name]{language}{options%keyvals}
 
-# Keys that include \mintinline
 #keyvals:\begin{minted},\mint,\mintinline,\inputminted,\setminted,\setmintedinline,\newminted,\newmint,\newmintinline,\newmintedfile
 autogobble#true,false
 baselinestretch=##L
 beameroverlays#true,false
-breakbytoken#true,false
-breakbytokenanywhere#true,false
-breaklines#true,false
 bgcolor=#%color
-codetagify=%<string list%>
-curlyquotes#true,false
-encoding=%<encoding%>
-escapeinside=%<two chars%>
-firstline=%<int%>
-firstnumber=#auto,last,%<integer%>
-fontfamily=%<family name%>
-fontseries=%<series name%>
-fontsize=%<size command%>
-fontshape=%<shape name%>
-formatcom=%<command%>
-frame=#none,leftline,topline,bottomline,lines,single
-framerule=##L
-framesep=##L
-funcnamehighlighting#true,false
-gobble=%<int%>
-highlightcolor=#%color
-highlightlines=%<list of lineno ranges%>
-ignorelexererrors#true,false
-keywordcase=#lower,upper,capitalize
-label=%<string%>
-labelposition=#none,topline,bottomline,all
-lastline=%<int%>
-linenos#true,false
-numberfirstline#true,false
-numbers=#left,right,both,none
-mathescape#true,false
-numberblanklines#true,false
-numbersep=##L
-obeytabs#true,false
-outencoding=%<encoding%>
-python3#true,false
-resetmargins#true,false
-rulecolor=#%color
-samepage#true,false
-showspaces#true,false
-showtabs#true,false
-space=%<command%>
-spacecolor=#%color
-startinline#true,false
-style=%<pytments style%>
-stepnumber=%<int%>
-stepnumberfromfirst#true,false
-stepnumberoffsetvalues#true,false
-stripall#true,false
-stripnl#true,false
-tab=%<commnd%>
-tabcolor=#%color
-tabsize=%<int%>
-texcl#true,false
-texcomments#true,false
-xleftmargin=##L
-xrightmargin=##L
+bgcolorpadding=##L
+bgcolorvphantom=%<macro%>
 breakafter=%<string%>
 breakafterinrun#true,false
-breakaftersymbolpre=%<string%>
 breakaftersymbolpost=%<string%>
+breakaftersymbolpre=%<string%>
 breakanywhere#true,false
-breakanywheresymbolpre=%<string%>
+breakanywhereinlinestretch=##L
 breakanywheresymbolpost=%<string%>
+breakanywheresymbolpre=%<string%>
 breakautoindent#true,false
 breakbefore=%<string%>
 breakbeforeinrun#true,false
-breakbeforesymbolpre=%<string%>
 breakbeforesymbolpost=%<string%>
+breakbeforesymbolpre=%<string%>
+breakbytoken#true,false
+breakbytokenanywhere#true,false
 breakindent=##L
-breakindentnchars=%<int%>
+breakindentnchars=%<integer%>
+breaklines#true,false
 breaksymbol=%<string%>
-breaksymbolleft=%<string%>
-breaksymbolright=%<string%>
 breaksymbolindent=##L
-breaksymbolindentnchars=%<int%>
+breaksymbolindentnchars=%<integer%>
 breaksymbolindentleft=##L
 breaksymbolindentleftnchars=%<int%>
 breaksymbolindentritht=##L
 breaksymbolindentrightnchars=%<int%>
+breaksymbolleft=%<string%>
+breaksymbolright=%<string%>
 breaksymbolsep=##L
 breaksymbolsepnchars=%<int%>
 breaksymbolsepleft=##L
 breaksymbolsepleftnchars=%<int%>
 breaksymbolsepright=##L
 breaksymbolseprightnchars=%<int%>
+codetagify=%<string list%>
+curlyquotes#true,false
+encoding=%<encoding%>
+envname=%<string%>
+escapeinside=%<two chars%>
+firstline=%<integer%>
+firstnumber=#auto,last,%<integer%>
+fontencoding=%<font encoding%>
+fontfamily=%<family name%>
+fontseries=%<series name%>
+fontshape=%<shape name%>
+fontsize=%<size command%>
+formatcom=%<command%>
+frame=#none,leftline,topline,bottomline,lines,single
+framerule=##L
+framesep=##L
+funcnamehighlighting#true,false
+gobble=%<integer%>
+gobblefilter=%<integer%>
+highlightcolor=#%color
+highlightlines=%<list of lineno ranges%>
+ignorelexererrors#true,false
+keywordcase=#lower,upper,capitalize,none
+label=%<string%>
+labelposition=#none,topline,bottomline,all
+lastline=%<integer%>
+linenos#true,false
+listparameters=%<macro%>
+literalenvname=%<string%>
+literatecomment=%<macro%>
+mathescape#true,false
+numberblanklines#true,false
+numberfirstline#true,false
+numbers=#left,right,both,none
+numbersep=##L
+obeytabs#true,false
+python3#true,false
+rangeregex=%<macro%>
+rangeregexmatchnumber=%<integer%>
+rangeregexdotall#true,false
+rangeregexmultiline#true,false
+rangestartafterstring=%<macro%>
+rangestartstring=%<macro%>
+rangestopbeforestring=%<macro%>
+rangestopstring=%<macro%>
+resetmargins#true,false
+rulecolor=#%color
+samepage#true,false
+showspaces#true,false
+showtabs#true,false
+space=%<macro%>
+spacecolor=#%color
+startinline#true,false
+stepnumber=%<integer%>
+stepnumberfromfirst#true,false
+stepnumberoffsetvalues#true,false
+stripall#true,false
+stripnl#true,false
+style=%<pygments style%>
+tab=%<macro%>
+tabcolor=#%color
+tabsize=%<integer%>
+texcl#true,false
+texcomments#true,false
+xleftmargin=##L
+xrightmargin=##L
 #endkeyvals
 
-\DeleteFile{file}#*
-\DeleteFile[directory]{file}#*
-\ProvideDirectory{directory}#*
-\ifAppExists#*
-\TestAppExists{application}#*
-\MintedPygmentize#*
-\MintedPython#*
-\PYG#S
+\MintedJobnameMdfive#S
+\MintedCacheIndexFilename#S
+\MintedConfigFilename#S
+\MintedDataFilename#S
+\MintedErrlogFilename#S
+\MintedMessageFilename#S
+\mintedpgfkeyscreate{option category}{keyvals}#S
+\mintedpgfkeyscreate[processor]{option category}{keyvals}#S
+\mintedpyoptvalueof{arg}#S
+\mintedtexoptvalueof{arg}#S
 \PYGZsq#S
 \PYGZhy#S
 \RobustMintInline{arg}#S

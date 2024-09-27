@@ -1,19 +1,31 @@
 # argumentation package
-# Matthew Bertucci 2024/06/11 for v1.2
+# Matthew Bertucci 2024/09/26 for v1.3
 
 #include:amsbsy
 #include:amsmath
 #include:pgfopts
+#include:xspace
+#include:xcolor
 #include:tikz
 #include:tikzlibrarypositioning
 #include:tikzlibrarydecorations.markings
 
 #keyvals:\usepackage/argumentation#c
-namestyle=#none,math,italics,bold,monospace
-argumentstyle=#standard,large,thick
+namestyle=#none,math,bold,monospace,monoemph
+argumentstyle=#standard,large,thick,gray,colored
 attackstyle=#standard,large,modern
 supportstyle=#standard,dashed,double
+macros=true
 #endkeyvals
+
+#ifOption:macros=true
+\AF
+\arguments
+\attacks
+\AFcomplete
+\afref{label}#r
+\fullafref{label}#r
+#endif
 
 \setargumentstyle{style}
 \setattackstyle{style}
@@ -45,7 +57,11 @@ supportstyle=#standard,dashed,double
 \annotation{id}{text}
 \annotation[options]{id}{text}
 
+aigyellow#B
+aigblue#B
+
 # not documented
 \argstyle{text}#S
 \theaf#S
 \theargument#S
+\ifmacros#S

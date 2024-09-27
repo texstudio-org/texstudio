@@ -2,7 +2,7 @@
 # ygrange 04/16/2007, Moritz Struebe 21/03/2013, GenosseFlosse 26/03/2021
 # URL: http://www.ctan.org/tex-archive/help/Catalogue/entries/acronym.html
 # URL: https://www.ctan.org/pkg/acronym
-# updated 3/18/2022 for v1.47
+# updated 2024/09/19 for v1.49
 
 #include:suffix
 #include:xstring
@@ -10,6 +10,7 @@
 #keyvals:\usepackage/acronym#c
 footnote
 nohyperlinks
+noforwardlinks
 noacroprefix
 printonlyused
 printonlyreused
@@ -53,6 +54,14 @@ nolinebreak
 \Acfi[linebreak penalty]{acronym}
 \acfi{acronym}
 \Acfi{acronym}
+\acfip[linebreak penalty]{acronym}
+\acfip{acronym}
+\Acfip[linebreak penalty]{acronym}
+\Acfip{acronym}
+\acfip*[linebreak penalty]{acronym}
+\acfip*{acronym}
+\Acfip*[linebreak penalty]{acronym}
+\Acfip*{acronym}
 \acfia[linebreak penalty]{acronym}#*
 \Acfia[linebreak penalty]{acronym}#*
 \acfia{acronym}#*

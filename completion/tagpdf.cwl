@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2024/08/02 for v0.99d
+# Matthew Bertucci 2024/09/18 for v0.99f
 
 #include:pdfmanagement-testphase
 
@@ -80,6 +80,7 @@ tag=%<tag%>
 stash#true,false
 label=%<name%>
 parent=%<structure number%>
+firstkid
 alt=%<text%>
 actualtext=%<text%>
 attribute={%<attr1,attr2,...%>}
