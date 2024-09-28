@@ -79,7 +79,7 @@ tight
 \iftabletopcap#*
 \tabletopcaptrue#*
 \tabletopcapfalse#*
-\label(bookmark){key%labeldef}#l
+\label(bookmark){key%labeldef}#M
 \subcapfont#*
 \subcaplabelfont#*
 \subcapsize#*
