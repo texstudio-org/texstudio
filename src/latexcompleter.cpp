@@ -168,11 +168,13 @@ public:
             //for (int i = maxWritten - cursor.columnNumber(); i > 0; i--) cursor.deleteChar();
             if(maxWritten>cursor.columnNumber()){
                 cursor.movePosition(maxWritten-cursor.columnNumber(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
+                editor->document()->clearLanguageMatches(); // fix #489 (delimiter mismatch marker is not cleared)
                 cursor.removeSelectedText();
             }
             //for (int i = cursor.columnNumber() - curStart; i > 0; i--) cursor.deletePreviousChar();
             if(curStart<cursor.columnNumber()){
                 cursor.movePosition(cursor.columnNumber()-curStart,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
+                editor->document()->clearLanguageMatches(); // fix #489 (delimiter mismatch marker is not cleared)
                 cursor.removeSelectedText();
             }
 			if (!autoOverridenText.isEmpty()) {

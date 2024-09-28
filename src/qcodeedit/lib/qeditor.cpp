@@ -5969,7 +5969,7 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 {
 	if ( d && m_cursor.isValid() && !isReadOnly() )
 	{
-
+        m_doc->clearLanguageMatches();
 		if ( d->hasFormat("text/column-selection") )
 		{
 			QStringList columns = QString::fromLocal8Bit(
