@@ -1,7 +1,9 @@
 # CHANGELOG
 ## TeXstudio 4.8.5
 
-- 
+- fix false delimiter mismatch marker which gets stuck under certain circumstances [#489](https://github.com/texstudio-org/texstudio/issues/489)
+- fix label stop working when using subfigure package [#3816](https://github.com/texstudio-org/texstudio/issues/3816)
+- fix ai wizard conversation history [#3820](https://github.com/texstudio-org/texstudio/issues/3820)
 
 ## TeXstudio 4.8.4
 
