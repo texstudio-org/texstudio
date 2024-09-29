@@ -23,7 +23,9 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     hlayoutSearch->addWidget(m_btSearch);
 
     AIQueryStorageModel *model=new AIQueryStorageModel(this);
-    QString path=config->configBaseDir+QString("/ai_conversation");
+    QString path=config->configBaseDir;
+    if(!path.endsWith(QDir::separator())) path+=QDir::separator();
+    path+=QString("ai_conversation");
     model->setStoragePath(path);
     treeView=new QTreeView();
     treeView->setModel(model);
