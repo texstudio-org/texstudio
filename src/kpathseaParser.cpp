@@ -179,7 +179,7 @@ QHash<QString, QStringList> MiktexPackageScanner::loadMiktexPackageMap()
                         int i=fn.lastIndexOf('/');
                         fn=fn.mid(i+1);
                     }
-                    if (fn.endsWith(".sty") || fn.endsWith(".cls")) {
+                    if (fn.endsWith(".sty")) {
                         fn.chop(4);
                         lst<<fn;
                     }
@@ -210,7 +210,7 @@ QStringList MiktexPackageScanner::stysForPackage(const QString &pck)
                         int i=fn.lastIndexOf('/');
                         fn=fn.mid(i+1);
                     }
-                    if (fn.endsWith(".sty") || fn.endsWith(".cls")) {
+                    if (fn.endsWith(".sty")) {
                         fn.chop(4);
                         result.append(fn);
                     }
@@ -225,7 +225,7 @@ QStringList MiktexPackageScanner::stysForPackage(const QString &pck)
                 int i=fn.lastIndexOf('/');
                 fn=fn.mid(i+1);
             }
-			if (fn.endsWith(".sty") || fn.endsWith(".cls")) {
+            if (fn.endsWith(".sty")) {
 				fn.chop(4);
 				result.append(fn);
 			}
