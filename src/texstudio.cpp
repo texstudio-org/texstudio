@@ -4967,9 +4967,50 @@ void Texstudio::normalCompletion()
 	currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
 	break;
 	case Token::package:
-		completer->setPackageList(&latexPackageList);
+        currentPackageList.clear();
+        {
+            bool noSuffix=true;
+            for(const QString &elem: latexPackageList) {
+                if(noSuffix && elem.right(4)!=".sty" && elem.right(4)!=".cls"){
+                    break;
+                }
+                noSuffix=false;
+                if (elem.endsWith(".sty")){
+                    currentPackageList.insert(elem.left(elem.length() - 4));
+                }
+            }
+            if(noSuffix){
+                completer->setPackageList(&latexPackageList);
+            }else{
+                completer->setPackageList(&currentPackageList);
+            }
+
+        }
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
 		break;
+
+    case Token::documentclass:
+        currentPackageList.clear();
+        {
+            bool noSuffix=true;
+            for(const QString &elem: latexPackageList) {
+                if(noSuffix && elem.right(4)!=".sty" && elem.right(4)!=".cls"){
+                    break;
+                }
+                noSuffix=false;
+                if (elem.endsWith(".cls")){
+                    currentPackageList.insert(elem.left(elem.length() - 4));
+                }
+            }
+            if(noSuffix){
+                completer->setPackageList(&latexPackageList);
+            }else{
+                completer->setPackageList(&currentPackageList);
+            }
+
+        }
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
+        break;
 
 	default:
 		insertTextCompletion();
