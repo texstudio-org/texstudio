@@ -1,10 +1,11 @@
 # penlightplus package
-# Matthew Bertucci 2024/08/19
+# Matthew Bertucci 2024/09/30
 
 #include:luacode
 #include:luakeys
 #include:penlight
 #include:etoolbox
+#include:tokcycle
 
 #keyvals:\usepackage/penlightplus#c
 globals
@@ -36,6 +37,7 @@ pl
 \tblfrcsv{name}{key-val string}
 \tblfrcsv{name}{key-val string}[luakeys opts]
 \tblset{index}{value}
+\tblsetN{index}{value}
 \tblget{index}
 \tbldef{index}{csname}
 \tbldefall{table}{csname}
@@ -48,16 +50,20 @@ pl
 \tblkvundefcheck
 \tblfrcsvN{name}{csv}
 \tblapp{name}{value}
+\tblappN{name}{value}
 \tblcon{name}{csv}
+\tblconN{name}{csv}
 \tbladd{index}{value}
 \tbladdN{index}{value}
 \tblprt{name}
 \caseswitch{case}{key-val choices}
 \caseswitch*{case}{key-val choices}
+\writePDFmetadatakv{keyvals}
+\writePDFmetadatakv[expansion type]{keyvals}
+\writePDFmetadatakv*{keyvals}
+\writePDFmetadatakv*[expansion type]{keyvals}
+\writePDFmetadata
 
 # not documented
-\writePDFmetadata#S
-\writePDFmetadatakv{arg}#S
-\writePDFmetadatakv*{arg}#S
 \tbladdo{arg1}{arg2}{arg3}#S
 \tbladdNo{arg1}{arg2}{arg3}#S
