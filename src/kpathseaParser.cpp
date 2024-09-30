@@ -69,7 +69,7 @@ void KpathSeaParser::run()
                     skipDocs=line.contains("/doc/");
                 }
                 if(skipDocs) continue;
-                if (line.endsWith(".sty") || line.endsWith(".cls")) {
+                if (line.endsWith(".sty")) {
 					line.chop(4);
 					results.insert(line);
 				}
