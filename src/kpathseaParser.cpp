@@ -69,8 +69,7 @@ void KpathSeaParser::run()
                     skipDocs=line.contains("/doc/");
                 }
                 if(skipDocs) continue;
-                if (line.endsWith(".sty")) {
-					line.chop(4);
+                if (line.endsWith(".sty") || line.endsWith(".cls")) {
 					results.insert(line);
 				}
 			}
@@ -179,8 +178,7 @@ QHash<QString, QStringList> MiktexPackageScanner::loadMiktexPackageMap()
                         int i=fn.lastIndexOf('/');
                         fn=fn.mid(i+1);
                     }
-                    if (fn.endsWith(".sty")) {
-                        fn.chop(4);
+                    if (fn.endsWith(".sty") || fn.endsWith(".cls")) {
                         lst<<fn;
                     }
                 }
@@ -210,8 +208,7 @@ QStringList MiktexPackageScanner::stysForPackage(const QString &pck)
                         int i=fn.lastIndexOf('/');
                         fn=fn.mid(i+1);
                     }
-                    if (fn.endsWith(".sty")) {
-                        fn.chop(4);
+                    if (fn.endsWith(".sty") || fn.endsWith(".cls")) {
                         result.append(fn);
                     }
                 }
@@ -225,8 +222,7 @@ QStringList MiktexPackageScanner::stysForPackage(const QString &pck)
                 int i=fn.lastIndexOf('/');
                 fn=fn.mid(i+1);
             }
-            if (fn.endsWith(".sty")) {
-				fn.chop(4);
+			if (fn.endsWith(".sty") || fn.endsWith(".cls")) {
 				result.append(fn);
 			}
 		}
