@@ -1,5 +1,5 @@
 # keytheorems package
-# Matthew Bertucci 2024/09/23 for v0.1.4
+# Matthew Bertucci 2024/10/01 for v0.1.5
 
 #include:aliascnt
 #include:amsthm
@@ -148,6 +148,7 @@ no-continues#true,false
 no-chapter-skip#true,false
 chapter-skip-length=##L
 no-toc#true,false
+format-code=%<code%>
 #endkeyvals
 
 \addtheoremcontentsline{level}{text}#*
