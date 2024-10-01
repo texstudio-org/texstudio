@@ -26,6 +26,7 @@ store-all
 \end{restatable*}
 \listoftheorems
 \listoftheorems[options%keyvals]
+\listtheoremname#*
 \addtotheorempreheadhook{code}#*
 \addtotheorempreheadhook[envname]{code}#*
 \addtotheorempostheadhook{code}#*
