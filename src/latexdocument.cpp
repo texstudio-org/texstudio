@@ -2468,6 +2468,7 @@ std::pair<bool,bool> LatexDocuments::addDocsToLoad(QStringList filenames, LatexD
     if(conf->autoLoadChildren){
         LatexDocument *docForUpdate=nullptr;
         for(const QString &fn:filenames){
+            if(fn.isEmpty()) continue; // avoid potential crash
             LatexDocument *doc = findDocumentFromName(fn);
             if(doc==nullptr){
                 doc=new LatexDocument();
