@@ -2617,14 +2617,18 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		se->valid = true;
 	} else if ((lowerName == "texroot") || (lowerName == "root")) {
 		QString fname = findFileName(val);
-		LatexDocument *dc = parent->findDocumentFromName(fname);
-		if (dc) {
-			dc->childDocs.insert(this);
-			setMasterDocument(dc);
+        if(!fname.isEmpty()){
+            LatexDocument *dc = parent->findDocumentFromName(fname);
+            if (dc) {
+                dc->childDocs.insert(this);
+                setMasterDocument(dc);
+            } else {
+                parent->addDocsToLoad(QStringList(fname),this,true);
+            }
+            se->valid = true;
         } else {
-            parent->addDocsToLoad(QStringList(fname),this,true);
-		}
-		se->valid = true;
+            se->tooltip = tr("Root file not found");
+        }
 	} else if (lowerName == "encoding") {
 		QTextCodec *codec = QTextCodec::codecForName(val.toLatin1());
 		if (!codec) {
