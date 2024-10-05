@@ -1,5 +1,5 @@
 # hvfloat package
-# Matthew Bertucci 2023/10/17 for v2.48
+# Matthew Bertucci 2024/10/05 for v2.51
 
 #include:caption
 #include:varwidth
@@ -62,7 +62,9 @@ objectAngle=%<integer%>
 floatCapSep=##L
 useOBox#true,false
 onlyText#true,false
+onlyTextInTOC#true,false
 nonFloat#true,false
+nonFloatTopSkip=##L
 wide#true,false
 inMargin#true,false
 objectFrame#true,false
@@ -159,6 +161,7 @@ decodearray={%<color array%>}
 \hvCapWidth#*
 \hvWideWidth#*
 \hvMultiFloatSkip#*
+\hvNonFloatTopSkip#*
 \hvMaxCapWidth#*
 \hvAboveCaptionSkip#*
 \hvBelowCaptionSkip#*
