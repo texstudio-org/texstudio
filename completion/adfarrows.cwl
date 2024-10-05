@@ -1,8 +1,11 @@
 # adfarrows package
-# Matthew Bertucci 8/23/2021 for v1.2b
+# Matthew Bertucci 2024/10/05 for v1.3
 
-#include:pifont
-#include:fp
+#include:svn-prov
+
+#keyvals:\usepackage/adfarrows#c
+scale=%<factor%>
+#endkeyvals
 
 \adfarrow{number}#n
 \adfarrow[family]{direction}#*n
