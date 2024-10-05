@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/09/30 for v13.11.0
+# Matthew Bertucci 2024/10/05 for v13.12.0
 
 #include:iftex
 
@@ -37,6 +37,7 @@ actigraph
 activision
 activitypub
 actix
+actualbudget
 acura
 adafruit
 adblock
@@ -1844,6 +1845,7 @@ nbb
 nbc
 ndr
 near
+nebula
 nec
 neo4j
 neovim
@@ -1927,6 +1929,7 @@ nvm
 nx
 nxp
 nzxt
+o2
 observable
 obsidian
 obsstudio
@@ -3142,6 +3145,7 @@ xfce
 xiaohongshu
 xiaomi
 xing
+xml
 xmpp
 xo
 xrp
