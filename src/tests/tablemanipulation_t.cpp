@@ -502,13 +502,21 @@ void TableManipulationTest::getNumberOfCol_data(){
 		<< 2 << 0
         << 7;
     QTest::newRow("colspec")
-        << "\\begin{tblr}{colspec={|l|l|@{ll}c*{2}{*{2}{l}}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << "\\begin{tblr}{colspec={|l|l|@{ll}c*{2}{*{2}{l}}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
         << 2 << 0
         << 7;
     QTest::newRow("colspec2")
-        << "\\begin{tblr}{\n\tcolspec={|l|l|@{ll}c*{2}{*{2}{l}}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << "\\begin{tblr}{\n\tcolspec={|l|l|@{ll}c*{2}{*{2}{l}}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
         << 3 << 0
         << 7;
+    QTest::newRow("colspec3")
+        << "\\begin{tblr}{\n\tcolspec={|l|l|@{ll}c*{2}{*{2}{l}}},width={3cm}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 3 << 0
+        << 7;
+    QTest::newRow("colspec4")
+        << "\\begin{tblr}{\n\tcolspec= {Q[1,r,m]Q[1,l,m]},width = 0.4\\linewidth,column{1} = {font=\bfseries}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 3 << 0
+        << 2;
 
 }
 void TableManipulationTest::getNumberOfCol(){

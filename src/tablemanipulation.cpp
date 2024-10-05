@@ -964,10 +964,24 @@ QString LatexTables::handleColSpec(QString opt)
 {
     // in case of colspec, refine further
     if(opt.contains("colspec")){
-        QRegularExpression re{"(colspec\\s*[=]\\s*\\{)(.*?)\\}"};
+        QRegularExpression re{"(colspec\\s*[=]\\s*)(\\{.*\\})"};
         QRegularExpressionMatch match = re.match(opt);
         if (match.hasMatch()) {
             opt = match.captured(2);
+            // braces are allowed in colspec
+            // go through opening/closing braces and find potential comma, that splits colDef
+            // see #3831
+            int brace=0;
+            int squareBracket=0;
+            int i=0;
+            for(;i<opt.length();++i){
+                if(opt.at(i)=='}') --brace;
+                if(opt.at(i)=='{') ++brace;
+                if(opt.at(i)=='[') ++squareBracket;
+                if(opt.at(i)==']') --squareBracket;
+                if(opt.at(i)==',' && brace==0 && squareBracket==0) break;
+            }
+            opt=opt.mid(1,i-2); // remove rest of coldesfinition,cut surrounding braces
         }
     }
     return opt;
