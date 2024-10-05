@@ -855,6 +855,10 @@ void TableManipulationTest::getDef_data(){
         << "\\begin{tblr}{\nabc,\n\tcolspec={ll}\n}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
         << 2 << 0
         << "ll";
+    QTest::newRow("colspec in multiline3")
+        << "\\begin{tblr}{\nabc,\n\tcolspec={ll},width={2cm}\n}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 2 << 0
+        << "ll";
 }
 void TableManipulationTest::getDef(){
 	QFETCH(QString, text);

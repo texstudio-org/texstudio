@@ -495,7 +495,7 @@ QString LatexTables::getDef(QDocumentCursor &cur)
             int offset=match.capturedStart(2);
             QString matched = match.captured(2);
             QString prefix=opt.left(offset);
-            opt=matched;
+            opt=handleColSpec(opt);
             // handle cursor selection more precisely in case of multiline arguments
             const int posColspec=line.indexOf("colspec");
             QString pre=line.left(posColspec);
