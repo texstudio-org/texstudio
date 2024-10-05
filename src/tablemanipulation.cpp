@@ -964,7 +964,7 @@ QString LatexTables::handleColSpec(QString opt)
 {
     // in case of colspec, refine further
     if(opt.contains("colspec")){
-        QRegularExpression re{"(colspec\\s*[=]\\s*\\{)(.*)\\}"};
+        QRegularExpression re{"(colspec\\s*[=]\\s*\\{)(.*?)\\}"};
         QRegularExpressionMatch match = re.match(opt);
         if (match.hasMatch()) {
             opt = match.captured(2);
