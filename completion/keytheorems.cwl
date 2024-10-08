@@ -1,5 +1,5 @@
 # keytheorems package
-# Matthew Bertucci 2024/10/01 for v0.1.5
+# Matthew Bertucci 2024/10/08 for v0.1.6
 
 #include:aliascnt
 #include:amsthm
@@ -61,9 +61,15 @@ continues-code=%<code%>
 
 \newkeytheorem{envname}#N
 \newkeytheorem{envname}[options%keyvals]#N
+\renewkeytheorem{envname}
+\renewkeytheorem{envname}[options%keyvals]
+\providekeytheorem{envname}#N
+\providekeytheorem{envname}[options%keyvals]#N
+\declarekeytheorem{envname}#N
+\declarekeytheorem{envname}[options%keyvals]#N
 
 # keys that can't be used in styles
-#keyvals:\newkeytheorem#c,\declaretheorem#c
+#keyvals:\newkeytheorem#c,\renewkeytheorem#c,\providekeytheorem#c,\declarekeytheorem#c,\declaretheorem#c
 name=%<display name%>
 numbered=#true,false,unless-unique
 parent=%<counter%>
@@ -73,7 +79,7 @@ Refname=%<ref name%>
 #endkeyvals
 
 # keys that can be used in styles
-#keyvals:\newkeytheorem#c,\declaretheorem#c,\newkeytheoremstyle#c,\renewkeytheoremstyle#c,\providekeytheoremstyle#c,\declarekeytheoremstyle#c,\declaretheoremstyle#c
+#keyvals:\newkeytheorem#c,\renewkeytheorem#c,\providekeytheorem#c,\declarekeytheorem#c,\declaretheorem#c,\newkeytheoremstyle#c,\renewkeytheoremstyle#c,\providekeytheoremstyle#c,\declarekeytheoremstyle#c,\declaretheoremstyle#c
 preheadhook=%<code%>
 postheadhook=%<code%>
 prefoothook=%<code%>
