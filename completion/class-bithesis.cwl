@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2024/06/02 for v3.7.8
+# Matthew Bertucci 2024/10/08 for v3.8.0
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -51,7 +51,7 @@ cover={%<键值列表%>}
 cover/date=%<任意字符串%>
 cover/headerImage=%<图片路径%>
 cover/xiheiFont=%<字体路径%>
-cover/dilimiter=%<任意字符串%>
+cover/delimiter=%<任意字符串%>
 cover/autoWidth#true,false
 cover/autoWidthPadding=##L
 cover/labelMaxWidth=##L
