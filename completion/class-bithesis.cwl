@@ -8,6 +8,7 @@
 # loads table option of xcolor
 #include:colortbl
 #include:xeCJK
+#include:zhlineskip
 #include:titletoc
 #include:setspace
 #include:graphicx
@@ -62,6 +63,9 @@ cover/underlineThickness=##L
 cover/underlineOffset=##L
 cover/hideCoverInPeerReview#true,false
 cover/showSpecialTypeBox#true,false
+cover/prefer-zh#true,false
+cover/reverse-titles#true,false
+cover/addTitleZh#true,false
 info={%<键值列表%>}
 info/title=%<字符串%>
 info/titleEn=%<字符串%>
@@ -101,6 +105,7 @@ style/head=%<字符串%>
 style/headline=%<字符串%>
 style/bibliographyIndent#true,false
 style/pageVerticalAlign=#top,scattered
+style/non-CJK-font-in-headings=#serif,sans
 style/mathFont=#asana,bonum,cm,concrete,dejavu,erewhon,euler,fira,garamond,gfsneohellenic,kp,libertinus,lm,newcm,pagella,schola,stix,stix2,termes,xcharter,xits,none
 style/windowsSimSunFakeBold#true,false
 style/unicodeMathOptions=%<任意选项%>
@@ -109,8 +114,10 @@ style/mathAboveDisplaySkip=##L
 style/mathBelowDisplaySkip=##L
 style/betterTimesNewRoman#true,false
 TOC={%<键值列表%>}
+TOC/title=%<字符串%>
 TOC/abstract#true,false
 TOC/abstractEn#true,false
+TOC/TOC#true,false
 TOC/symbols#true,false
 appendices={%<键值列表%>}
 appendices/chapterLeveltrue,false
@@ -133,6 +140,7 @@ const={%<键值列表%>}
 const/autoref={%<键值列表%>}
 const/style/substituteSymbol=%<字符串%>
 const/info={%<键值列表%>}
+const/heading={%<键值列表%>}
 #endkeyvals
 
 \begin{abstractEn}
