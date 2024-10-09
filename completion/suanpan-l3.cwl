@@ -1,7 +1,8 @@
 # suanpan-l3 package
-# Matthew Bertucci 2024/09/10 for v1.2.2
+# Matthew Bertucci 2024/10/09 for v1.2.3
 
 #include:tikz
+#include:tikzlibraryshadings
 
 \begin{suanpan}
 \begin{suanpan}[options%keyvals]
@@ -39,4 +40,5 @@ outerfill=#%color
 innerdraw=#%color
 innerfill=#%color
 font=%<font commands%>
+bidspot=%<number%>
 #endkeyvals
