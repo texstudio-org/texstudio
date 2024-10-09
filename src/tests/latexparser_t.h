@@ -26,7 +26,7 @@ class TestToken: public QString
         else if (commandRegExp.match(*this).hasMatch()) type = LatexReader::NW_COMMAND;
         else if (punctationRegExp.match(*this).hasMatch()) type = LatexReader::NW_PUNCTATION;
         else if (ignoredTextRegExp.match(*this).hasMatch()) type = NW_IGNORED_TOKEN;
-		else if (*this == "%") type = LatexReader::NW_COMMENT;
+        else if (this->compare("%") == 0 ) type = LatexReader::NW_COMMENT;
         else if (specialCharTextRegExp.match(*this).hasMatch()) type = LatexReader::NW_TEXT;
 		else QVERIFY2(false, QString("invalid test data: \"%1\"").arg(*this).toLatin1().constData());
 	}
