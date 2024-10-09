@@ -972,6 +972,7 @@
 <file>completion/class-ucbthesis.cwl</file>
 <file>completion/class-ucdavisthesis.cwl</file>
 <file>completion/class-udes-genie-these.cwl</file>
+<file>completion/class-udiss.cwl</file>
 <file>completion/class-ujarticle.cwl</file>
 <file>completion/class-ujbook.cwl</file>
 <file>completion/class-ujreport.cwl</file>
