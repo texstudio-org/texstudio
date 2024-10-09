@@ -1,5 +1,5 @@
 # fancyqr package
-# Matthew Bertucci 2024/04/13 for v2.0
+# Matthew Bertucci 2024/10/08 for v2.1
 
 #include:pict2e
 #include:qrcode
@@ -11,20 +11,21 @@
 \fancyqrset{options%keyvals}
 
 #keyvals:\fancyqr,\fancyqrset,\fancyqr*
+classic#true,false
+color=#%color
+gradient#true,false
+gradient angle=%<degrees%>
 image=%<graphics code%>
 image padding=%<number%>
 image x padding=%<number%>
 image y padding=%<number%>
-gradient#true,false
-color=#%color
 l color=#%color
 left color=#%color
 r color=#%color
-right color=#%color
-gradient angle=%<degrees%>
 random color=%<colors%>
-width=##L
+right color=#%color
 size=##L
+width=##L
 # from qrcode
 height=##L
 level=#L,M,Q,H
