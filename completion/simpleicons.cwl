@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/09/20 for v13.10.0
+# Matthew Bertucci 2024/10/05 for v13.12.0
 
 #include:iftex
 
@@ -37,6 +37,7 @@ actigraph
 activision
 activitypub
 actix
+actualbudget
 acura
 adafruit
 adblock
@@ -577,6 +578,7 @@ codeceptjs
 codechef
 codeclimate
 codecov
+codecrafters
 codefactor
 codeforces
 codefresh
@@ -743,6 +745,7 @@ derspiegel
 deutschebahn
 deutschebank
 deutschepost
+deutschewelle
 devdotto
 devexpress
 deviantart
@@ -1026,6 +1029,7 @@ freelancer
 freelancermap
 freenas
 freepik
+fresh
 frontendmentor
 frontify
 fsecure
@@ -1243,6 +1247,7 @@ hearth
 hearthisdotat
 hedera
 helium
+helix
 hellofresh
 hellyhansen
 helm
@@ -1466,6 +1471,7 @@ katana
 kaufland
 kde
 kdenlive
+kdeplasma
 kedro
 keenetic
 keepachangelog
@@ -1839,6 +1845,7 @@ nbb
 nbc
 ndr
 near
+nebula
 nec
 neo4j
 neovim
@@ -1860,6 +1867,7 @@ newegg
 newjapanprowrestling
 newrelic
 newyorktimes
+nexon
 nextbilliondotai
 nextcloud
 nextdns
@@ -1921,6 +1929,7 @@ nvm
 nx
 nxp
 nzxt
+o2
 observable
 obsidian
 obsstudio
@@ -2983,6 +2992,7 @@ verdaccio
 veritas
 verizon
 vespa
+vestel
 vexxhost
 vfairs
 viadeo
@@ -3135,6 +3145,7 @@ xfce
 xiaohongshu
 xiaomi
 xing
+xml
 xmpp
 xo
 xrp

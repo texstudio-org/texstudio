@@ -1594,3 +1594,7 @@ xourse:
 class-xourse
 latex-document
 tex
+udiss:
+class-udiss
+latex-document
+tex

@@ -1,7 +1,7 @@
 # berenis package
-# Matthew Bertucci 8/10/2021 for v2.0
+# Matthew Bertucci 2024/09/30 for v2.1
 
-#include:xkeyval
+#include:svn-prov
 #include:fontenc
 #include:nfssext-cfr
 
@@ -13,6 +13,7 @@ prop
 tab
 lm
 enc=#t1,ly1
+scale=%<factor%>
 #endkeyvals
 
 \sishape
@@ -36,10 +37,14 @@ enc=#t1,ly1
 \textpl{text}
 \postyle
 \textpo{text}
-\instyle
-\textin{text}
+\infstyle
+\textinf{text}
 \sustyle
 \textsu{text}
+
+# deprecated
+\instyle#S
+\textin{text}#S
 
 # from T1 option of fontenc
 \DH#n

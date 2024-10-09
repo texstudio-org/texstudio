@@ -8944,12 +8944,15 @@ alllinks#true,false
 \possciteauthor[prenote][postnote]{bibid}#SC
 #endif
 
-### univie-ling v1.17 ###
+### univie-ling v2.9 ###
 #ifOption:style=univie-ling
 # from univie-ling.bbx
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 issueeditor#true,false
+annotations#true,false
 #endkeyvals
+\annotsep#*
+\annotationdelim#*
 \mkbibdateunified{arg1}{arg2}{arg3}#*
 #endif
 

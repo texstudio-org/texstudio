@@ -1,13 +1,14 @@
 # venturis package
-# Matthew Bertucci 8/10/2021
+# Matthew Bertucci 2024/09/30 for v2.0
 
-#include:xkeyval
+#include:svn-prov
 #include:fontenc
 #include:nfssext-cfr
 
 #keyvals:\usepackage/venturis#c
 osf#true,false
 lf#true,false
+scale=%<factor%>
 #endkeyvals
 
 \sishape

@@ -1,7 +1,12 @@
 # adforn package
-# Matthew Bertucci 8/23/2021 for v1.1b
+# Matthew Bertucci 2024/09/30 for v1.2
 
+#include:svn-prov
 #include:pifont
+
+#keyvals:\usepackage/adforn#c
+scale=%<factor%>
+#endkeyvals
 
 \adforn{number}#n
 \adfast{number}#n

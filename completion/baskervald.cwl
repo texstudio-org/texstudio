@@ -1,12 +1,13 @@
 # baskervald package
-# Matthew Bertucci 8/22/2021 for v1.016
+# Matthew Bertucci 2024/09/30 for v1.1
 
-#include:xkeyval
+#include:svn-prov
 #include:fontenc
 #include:nfssext-cfr
 
 #keyvals:\usepackage/baskervald#c
 lig#true,false
+scale=%<factor%>
 #endkeyvals
 
 \ebweight

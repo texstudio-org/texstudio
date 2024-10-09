@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2024/09/02 for v3.7.0-0-g98dece19
+# Matthew Bertucci 2024/09/30 for v3.7.1
 
 #include:paralist
 #include:amsmath
@@ -69,7 +69,6 @@ fencedDivs#true,false
 hashEnumerators#true,false
 headerAttributes#true,false
 html#true,false
-hybrid#true,false
 inlineCodeAttributes#true,false
 inlineNotes#true,false
 jekyllData#true,false
@@ -167,12 +166,14 @@ jekyllDataRenderers={%<keyvals%>}
 \markdown#S
 \endmarkdown#S
 \markdownBegin#*
+\markdownConvert#*
 \markdownEnd#*
 \markdownEscape{file}#*
 \markdownExecute{code}#*
 \markdownExecuteDirect{code}#*
 \markdownExecuteShellEscape#*
 \markdownIfOption{option}{true}{false}#*
+\markdownInputFilename#*
 \markdownInputFileStream#S
 \markdownLastModified#S
 \markdownLuaExecute{code}#*
@@ -217,6 +218,7 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownOptionUnderscores#*
 \markdownOutputFileStream#S
 \markdownPrepare#*
+\markdownPrepareInputFilename{arg}#*
 \markdownPrepareLuaOptions#*
 \markdownReadAndConvert#*
 \markdownReadAndConvertProcessLine{arg1}{arg2}{arg3}#*

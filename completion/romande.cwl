@@ -1,12 +1,13 @@
 # romande package
-# Matthew Bertucci 8/27/2021 for v1.008
+# Matthew Bertucci 2024/09/30 for v2.1
 
-#include:xkeyval
+#include:svn-prov
 #include:fontenc
 #include:nfssext-cfr
 
 #keyvals:\usepackage/romande#c
 alt#true,false
+scale=%<factor%>
 #endkeyvals
 
 \altstyle#n

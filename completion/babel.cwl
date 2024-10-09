@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2024/09/18 for v24.10
+# tbraun 4.11.2008; Matthew Bertucci 2024/10/08 for v24.11
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -414,6 +414,7 @@ select.encoding=#off
 \SetHyphenMap{to-lower-macros}#S
 \SetString{macro-name}{string}#S
 \SetStringLoop{macro-name}{string-list}#S
+\SetTransformValue{locale}{variable}{value}#S
 \StartBabelCommands*{language-list}{category}#S
 \StartBabelCommands*{language-list}{category}[selector]#S
 \StartBabelCommands{language-list}{category}#S

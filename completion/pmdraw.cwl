@@ -1,5 +1,5 @@
 # pmdraw package
-# Matthew Bertucci 2024/06/02 for v1.4
+# Matthew Bertucci 2024/10/08 for v1.5
 
 #include:keyval
 #include:tikz
@@ -102,8 +102,10 @@ decorate after={%<code%>}
 \pmdDiagram[options%keyvals]{bricks}
 \pmdProduct{A-edges}{T-bricks}{B-bricks}
 \pmdProduct[options%keyvals]{A-edges}{T-bricks}{B-bricks}
+\pmdProductTriple{ATedges}{ABedges}{Tbricks}}{Mbricks}{Bbricks}
+\pmdProductTriple[options%keyvals]{ATedges}{ABedges}{Tbricks}}{Mbricks}{Bbricks}
 
-#keyvals:\pmdDiagram#c,\pmdProduct#c
+#keyvals:\pmdDiagram#c,\pmdProduct#c,\pmdProductTriple#c
 row sep=%<integer%>
 tikz={%<TikZ options%>}
 dots options={%<code%>}
@@ -112,7 +114,7 @@ decorate before={%<code%>}
 decorate after={%<code%>}
 #endkeyvals
 
-#keyvals:\pmdProduct#c
+#keyvals:\pmdProduct#c,\pmdProductTriple#c
 diagram sep=%<number%>
 vertex sep=%<number%>
 edges added={%<\draw options%>}

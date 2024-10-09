@@ -1,5 +1,5 @@
 # witharrows package
-# Matthew Bertucci 2023/01/01 for v2.8
+# Matthew Bertucci 2024/10/08 for v2.9
 
 #include:l3keys2e
 #include:varwidth
@@ -9,6 +9,7 @@
 #keyvals:\usepackage/witharrows#c
 footnote
 footnotehyper
+beamer
 #endkeyvals
 
 \begin{WithArrows}#m\array

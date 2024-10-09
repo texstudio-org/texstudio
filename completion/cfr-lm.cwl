@@ -1,7 +1,7 @@
 # cfr-lm package
-# Matthew Bertucci 8/25/2021 for v1.5
+# Matthew Bertucci 2024/09/30 for v1.7
 
-#include:xkeyval
+#include:svn-prov
 #include:fontenc
 #include:nfssext-cfr
 
@@ -49,8 +49,8 @@ qt#true,false
 \tistyle#n
 \textti{text}#n
 \zeroslash
-\dotdigitenc
-\textdde{text%plain}
+\dotdigitenc#*
+\textdde{text%plain}#*
 
 # from T1 option of fontenc
 \DH#n

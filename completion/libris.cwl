@@ -1,8 +1,13 @@
 # libris package
-# Matthew Bertucci 8/27/2021 for v1.007
+# Matthew Bertucci 2024/09/30 for v1.1
 
+#include:svn-prov
 #include:nfssext-cfr
 #include:fontenc
+
+#keyvals:\usepackage/libris#c
+scale=%<factor%>
+#endkeyvals
 
 \swashstyle#n
 \textswash{text}#n

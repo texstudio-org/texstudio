@@ -1,5 +1,5 @@
 # bitreport class
-# Matthew Bertucci 2022/12/04 for v3.2.0
+# Matthew Bertucci 2024/10/08 for v3.8.0
 
 #include:l3keys2e
 #include:class-ctexart
@@ -20,7 +20,7 @@ type=undergraduate_proposal
 #keyvals:\BITSetup#c
 cover={%<键值列表%>}
 cover/date=%<任意字符串%>
-cover/dilimiter=%<任意字符串%>
+cover/delimiter=%<任意字符串%>
 cover/autoWidth#true,false
 cover/autoWidthPadding=##L
 cover/labelMaxWidth=##L

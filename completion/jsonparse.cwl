@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2024/05/13 for v0.8.6
+# Matthew Bertucci 2024/05/13 for v0.9.1
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -49,6 +49,7 @@ replace/formfeed=%<string%>
 replace/linefeed=%<string%>
 replace/carriage return=%<string%>
 replace/horizontal tab=%<string%>
+check num#true,false
 escape={%<list%>}
 rescan#true,false
 #endkeyvals
