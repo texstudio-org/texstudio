@@ -356,20 +356,23 @@ void UserMenuDialog::slotRemove()
     }
     if(item->type()==0){
         // only confirm for macros, not for folders
-        if (!UtilsUi::txsConfirm(tr("Do you really want to delete the current macro?")))
+        if (!UtilsUi::txsConfirm(tr("Do you really want to delete the current macro(s)?")))
             return;
     }
 
-    QTreeWidgetItem *parent=item->parent();
-    if(parent){
-        int index = parent->indexOfChild(item);
-        QTreeWidgetItem* child = parent->takeChild(index);
-        delete child;
-    }else{
-        int index = ui.treeWidget->indexOfTopLevelItem(item);
-        QTreeWidgetItem* child = ui.treeWidget->takeTopLevelItem(index);
-        delete child;
+    for (QTreeWidgetItem *item : ui.treeWidget->selectedItems()) {
+        QTreeWidgetItem *parent=item->parent();
+        if(parent){
+            int index = parent->indexOfChild(item);
+            QTreeWidgetItem* child = parent->takeChild(index);
+            delete child;
+        }else{
+            int index = ui.treeWidget->indexOfTopLevelItem(item);
+            QTreeWidgetItem* child = ui.treeWidget->takeTopLevelItem(index);
+            delete child;
+        }
     }
+
     if(ui.treeWidget->topLevelItemCount()==0){
         // add empty macro
         slotAdd();

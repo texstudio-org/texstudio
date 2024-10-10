@@ -22,7 +22,7 @@
    <item>
     <widget class="QSplitter" name="splitter">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <widget class="QWidget" name="verticalLayoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -35,16 +35,16 @@
           </sizepolicy>
          </property>
          <property name="selectionMode">
-          <enum>QAbstractItemView::SingleSelection</enum>
+          <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
          </property>
          <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectRows</enum>
+          <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
          </property>
          <property name="verticalScrollMode">
-          <enum>QAbstractItemView::ScrollPerItem</enum>
+          <enum>QAbstractItemView::ScrollMode::ScrollPerItem</enum>
          </property>
          <property name="horizontalScrollMode">
-          <enum>QAbstractItemView::ScrollPerPixel</enum>
+          <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
          </property>
          <property name="headerHidden">
           <bool>false</bool>
@@ -82,7 +82,7 @@
          <item>
           <spacer name="horizontalSpacer_3">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -113,13 +113,13 @@
             <string>Export</string>
            </property>
            <property name="popupMode">
-            <enum>QToolButton::MenuButtonPopup</enum>
+            <enum>QToolButton::ToolButtonPopupMode::MenuButtonPopup</enum>
            </property>
            <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextOnly</enum>
+            <enum>Qt::ToolButtonStyle::ToolButtonTextOnly</enum>
            </property>
            <property name="arrowType">
-            <enum>Qt::DownArrow</enum>
+            <enum>Qt::ArrowType::DownArrow</enum>
            </property>
           </widget>
          </item>
@@ -195,7 +195,7 @@
          <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -380,7 +380,7 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.
 You can use the special value ?txs-start to start the script at txs start.</string>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Box</enum>
+            <enum>QFrame::Shape::Box</enum>
            </property>
            <property name="text">
             <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -477,7 +477,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <spacer name="horizontalSpacer_2">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -605,6 +605,28 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>treeWidget</tabstop>
+  <tabstop>itemEdit</tabstop>
+  <tabstop>teDescription</tabstop>
+  <tabstop>abbrevEdit</tabstop>
+  <tabstop>triggerEdit</tabstop>
+  <tabstop>cbShortcut</tabstop>
+  <tabstop>radioButtonNormal</tabstop>
+  <tabstop>radioButtonEnvironment</tabstop>
+  <tabstop>radioButtonScript</tabstop>
+  <tabstop>pushButtonAdd</tabstop>
+  <tabstop>pushButtonAddFolder</tabstop>
+  <tabstop>pushButtonRemove</tabstop>
+  <tabstop>tbExport</tabstop>
+  <tabstop>pbImport</tabstop>
+  <tabstop>pbBrowse</tabstop>
+  <tabstop>pushButtonUp</tabstop>
+  <tabstop>pushButtonDown</tabstop>
+  <tabstop>runScriptButton</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
  <resources>
   <include location="../images.qrc"/>
  </resources>
