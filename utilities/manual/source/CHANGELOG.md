@@ -4,6 +4,12 @@
 - fix false delimiter mismatch marker which gets stuck under certain circumstances [#489](https://github.com/texstudio-org/texstudio/issues/489)
 - fix label stop working when using subfigure package [#3816](https://github.com/texstudio-org/texstudio/issues/3816)
 - fix ai wizard conversation history [#3820](https://github.com/texstudio-org/texstudio/issues/3820)
+- fix colspec parsing [#3831](https://github.com/texstudio-org/texstudio/issues/3831)
+- fix user command handling in cached files [#3828](https://github.com/texstudio-org/texstudio/issues/3828)
+- fix label detection on memoir class [#3829](https://github.com/texstudio-org/texstudio/issues/3829)
+- fix crash when %Tex root document was not found
+- class are used for completion in documentclass
+- class names are not used anymore for package name completion
 
 ## TeXstudio 4.8.4
 
