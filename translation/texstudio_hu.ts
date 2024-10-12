@@ -5216,7 +5216,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexdocument.cpp" line="2631"/>
         <source>Root file not found</source>
-        <translation type="unfinished"/>
+        <translation>A gyökérfájl nem található</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="2636"/>
@@ -12915,7 +12915,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.cpp" line="359"/>
         <source>Do you really want to delete the current macro(s)?</source>
-        <translation type="unfinished"/>
+        <translation>Biztosan törölni szeretné az aktuális makró(ka)t? </translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="441"/>

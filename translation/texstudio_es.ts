@@ -5226,7 +5226,7 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="../src/latexdocument.cpp" line="2631"/>
         <source>Root file not found</source>
-        <translation type="unfinished"/>
+        <translation>Archivo raíz no encontrado</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="2636"/>
@@ -12937,7 +12937,7 @@ documento incluido en %1</translation>
     <message>
         <location filename="../src/usermenudialog.cpp" line="359"/>
         <source>Do you really want to delete the current macro(s)?</source>
-        <translation type="unfinished"/>
+        <translation>¿Realmente desea eliminar los macros seleccionados?</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="441"/>
