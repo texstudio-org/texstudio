@@ -350,7 +350,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 //possible command argument without brackets
                 CommandDescription &cd = commandStack.top();
                 // skip over optional arguments
-                while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY)) {
+                while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY || cd.arguments.first().type == ArgumentDescription::BRACKET)) {
                     cd.arguments.takeFirst();
                 }
                 // check for mandatory argument
@@ -404,8 +404,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             if (!commandStack.isEmpty() && commandStack.top().level == level) {
                 CommandDescription &cd = commandStack.top();
                 if (tk.type == Token::openBrace) {
-                    // skip over optional arguments
-                    while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY)) {
+                    // skip over optional arguments, here assume optional arguments as [],<> and ()
+                    while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY || cd.arguments.first().type == ArgumentDescription::BRACKET) ) {
                         cd.arguments.takeFirst();
                     }
                     // check for mandatory argument
@@ -806,8 +806,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             if (!commandStack.isEmpty() && commandStack.top().level == level) {
                 //possible command argument without brackets
                 CommandDescription &cd = commandStack.top();
-                // skip over optional arguments
-                while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY) ) {
+                // skip over optional arguments, here assume optional arguments as [],<> and ()
+                while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY || cd.arguments.first().type == ArgumentDescription::BRACKET) ) {
                     cd.arguments.takeFirst();
                 }
                 if (cd.arguments.size() && cd.arguments.first().type==ArgumentDescription::MANDATORY) {

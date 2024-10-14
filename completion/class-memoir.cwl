@@ -914,7 +914,7 @@ right
 \justlastraggedleft#*
 \keepthetitle#*
 \killtitle#*
-\label(bookmark){label%labeldef}#M
+\label(bookmark){label%labeldef}#*
 \LastFrameCommand#*
 \lastlineparrule#*
 \lastlinerulefill#*
