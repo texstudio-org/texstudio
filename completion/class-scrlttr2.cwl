@@ -1,6 +1,6 @@
 # mode: koma letter class (scrlttr2)
 # dani/2006-02-21
-# Matthew Bertucci updated 2023/04/17 for v3.39
+# Matthew Bertucci updated 2024/10/15 for v3.42
 
 #include:scrkbase
 #include:typearea
@@ -98,6 +98,8 @@ footnotes=#multiple,nomultiple
 \Ifkomavar{name}{then code}{else code}#*
 \Ifkomavarempty*{name}{true}{false}#*
 \Ifkomavarempty{name}{true}{false}#*
+\Ifkomavarxempty*{name}{true}{false}#*
+\Ifkomavarxempty{name}{true}{false}#*
 \Ifplength{pseudo-length}{then code}{else code}#*
 \Ifthispageodd{true code}{false code}#*
 \ifthispagewasodd#*
