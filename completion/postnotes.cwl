@@ -1,5 +1,5 @@
 # postnotes package
-# Matthew Bertucci 2023/11/15 for v0.2.7
+# Matthew Bertucci 2024/10/15 for v0.3.0
 
 \postnote{text}
 \postnote[options%keyvals]{text}
@@ -34,6 +34,8 @@ format={%<font commands%>}
 listenv=%<envname%>
 makemark={%<code%>}
 maketextmark={%<code%>}
+multiple#true,false
+multisep=%<separator%>
 pretextmark={%<code%>}
 posttextmark={%<code%>}
 postprintnote={%<code%>}
