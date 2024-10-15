@@ -1,5 +1,5 @@
 # scrletter package
-# Matthew Bertucci 2022/05/18 for v3.36
+# Matthew Bertucci 2024/10/15 for v3.42
 
 #include:scrkbase
 #include:scrextend
@@ -62,6 +62,8 @@ pagenumber=#bot,foot,botcenter,botcentered,botmittle,footcenter,footcentered,foo
 \Ifkomavar{name}{then code}{else code}#*
 \Ifkomavarempty*{name}{true}{false}#*
 \Ifkomavarempty{name}{true}{false}#*
+\Ifkomavarxempty*{name}{true}{false}#*
+\Ifkomavarxempty{name}{true}{false}#*
 \Ifplength{pseudo-length}{then code}{else code}#*
 \invoicename#*
 \letterlastpage#*
