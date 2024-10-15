@@ -1843,6 +1843,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 			eow.remove(".");
 			eow.remove(":");
 			eow.remove("_");
+            eow.remove("-");
 		}
 		if (flags & CF_FORCE_PACKAGE) {
 			eow.remove("_");
