@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/10/13 for v13.13.0
+# Matthew Bertucci 2024/10/18 for v13.14.0
 
 #include:iftex
 
@@ -124,6 +124,7 @@ alltrails
 almalinux
 alpinedotjs
 alpinelinux
+alternativeto
 alteryx
 altiumdesigner
 alwaysdata
@@ -273,6 +274,7 @@ astro
 asus
 atandt
 atari
+atlasos
 atlassian
 auchan
 audacity
@@ -524,6 +526,7 @@ chrysler
 chupachups
 cilium
 cinema4d
+cinnamon
 circle
 circleci
 circuitverse
@@ -1407,6 +1410,7 @@ jaguar
 jamboard
 jameson
 jamstack
+japanairlines
 jasmine
 java
 javascript
@@ -2498,6 +2502,7 @@ semaphoreci
 semrush
 semver
 sencha
+sendgrid
 sennheiser
 sensu
 sentry
