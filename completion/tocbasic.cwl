@@ -1,8 +1,13 @@
 # tocbasic package
-# Matthew Bertucci 2023/07/08 for v3.41
+# Matthew Bertucci 2024/10/15 for v3.42
 
 #include:scrbase
 #include:scrlogo
+
+#keyvals:\usepackage/tocbasic#c
+enablepatch=%<list of patches%>
+disablepatch=%<list of patches%>
+#endkeyvals
 
 \Ifattoclist{extension}{then code}{else code}#*
 \addtotoclist{extension}

@@ -1,5 +1,5 @@
 # odsfile package
-# Matthew Bertucci 2023/09/07 for v0.8
+# Matthew Bertucci 2024/10/10 for v0.9
 
 #include:luacode
 #include:xkeyval
@@ -16,12 +16,16 @@ range=%<cell1:cell2%>
 columns=#head,top,{%<list of headings%>}
 columnbreak=%<command%>
 rowseparator=#tableline,hline,newline,%<command%>
+newline=%<code%>
+lastnewline=%<code%>
 template=#%<template name%>,{%<code%>}
 coltypes=%<coltypes%>
 rowtemplate=#%<template name%>,{%<code%>}
 celltemplate=#%<template name%>,{%<code%>}
 multicoltemplate=#%<template name%>,{%<code%>}
 escape#true,false
+save=%<file%>
+debug=#true,false
 #endkeyvals
 
 \tabletemplate{name}{code}

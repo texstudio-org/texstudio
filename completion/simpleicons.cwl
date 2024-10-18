@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/10/05 for v13.12.0
+# Matthew Bertucci 2024/10/13 for v13.13.0
 
 #include:iftex
 
@@ -832,6 +832,7 @@ eclipseide
 eclipsejetty
 eclipsemosquitto
 eclipsevertdotx
+ecosia
 ecovacs
 edeka
 edgeimpulse
@@ -1255,6 +1256,7 @@ helpdesk
 helpscout
 hepsiemlak
 here
+hermes
 heroku
 hetzner
 hevy

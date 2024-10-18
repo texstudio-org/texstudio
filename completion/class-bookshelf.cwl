@@ -1,5 +1,5 @@
 # bookshelf class
-# Matthew Bertucci 2/8/2022 for v0.5
+# Matthew Bertucci 2024/10/09 for v1.1
 
 #include:fix-cm
 #include:class-report
@@ -30,16 +30,11 @@ landscape
 portrait
 #endkeyvals
 
-\makebook{entry}
-
-\citeA[prenote][postnote]{bibid}#*C
-\citeA[postnote]{bibid}#*C
-\citeA{bibid}#*C
-\titleref{text}#*
-\emdash#*
-\heightval#*
-\titleval#*
-\citefullauthor{bibid}#*C
+# not documented
+\makebook{author}{title%text}#S
+\CanTypesetTF{arg1}{arg2}{arg3}#S
+\AddFontToStack{arg}#S
+\ReuseFont#S
 
 # from random.tex
 \randomi#*

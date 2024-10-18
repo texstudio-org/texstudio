@@ -1,5 +1,5 @@
 # diagram package
-# Matthew Bertucci 4/8/2022 for v1.15
+# Matthew Bertucci 2024/10/15 for v1.22
 
 #include:ifthen
 #include:calc
@@ -137,6 +137,8 @@ horizontal
 \OOO
 \x
 \any
+\begin{arrowskip}{prefix}{suffix}
+\end{arrowskip}
 \DefinePieces{color letters}{piece letters}{rotation letters}
 \develop
 \makeaindex
@@ -146,6 +148,7 @@ horizontal
 \maketindex
 \themeindex
 \solpar
+\insidediagram{code}
 
 # not in main documentation
 \after{arg}#*

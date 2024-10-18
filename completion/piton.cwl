@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/09/22 for v4.0
+# Matthew Bertucci 2024/10/18 for v4.1
 
 #include:l3keys2e
 #include:luatexbase
@@ -90,7 +90,7 @@ line-numbers/start
 
 # keys for both \PitonOptions and \begin{Piton}
 #keyvals:\PitonOptions,\begin{Piton}
-language=#Python,OCaml,C,SQL,minimal,%newpitonlang
+language=#Python,OCaml,C,SQL,minimal,verbatim,%newpitonlang
 font-command=%<font commands%>
 gobble=%<integer%>
 auto-gobble
@@ -125,6 +125,7 @@ write=%<file%>
 path-write=%<path%>
 split-on-empty-lines#true,false
 split-separation=%<code%>
+break-strings-anywhere
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}
@@ -175,7 +176,6 @@ Keyword6=%<formatting%>
 Keyword7=%<formatting%>
 Keyword8=%<formatting%>
 Keyword9=%<formatting%>
-ParseAgain=%<formatting%>
 Prompt=%<formatting%>
 Tag=%<formatting%>
 TypeExpression=%<formatting%>
@@ -228,7 +228,6 @@ Keyword6
 Keyword7
 Keyword8
 Keyword9
-ParseAgain
 Prompt
 Tag
 TypeExpression
