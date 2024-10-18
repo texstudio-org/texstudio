@@ -2266,6 +2266,7 @@
 <file>completion/lua-visual-debug.cwl</file>
 <file>completion/luavlna.cwl</file>
 <file>completion/lua-widow-control.cwl</file>
+<file>completion/luaxml.cwl</file>
 <file>completion/lucbmath.cwl</file>
 <file>completion/lucidabr.cwl</file>
 <file>completion/lucida-otf.cwl</file>
@@ -2612,6 +2613,7 @@
 <file>completion/nucleardata.cwl</file>
 <file>completion/numberedblock.cwl</file>
 <file>completion/numberpt.cwl</file>
+<file>completion/numbersets.cwl</file>
 <file>completion/numerica.cwl</file>
 <file>completion/numerica-plus.cwl</file>
 <file>completion/numerica-tables.cwl</file>
@@ -3464,6 +3466,7 @@
 <file>completion/sudoku.cwl</file>
 <file>completion/suetterl.cwl</file>
 <file>completion/suffix.cwl</file>
+<file>completion/sunpath.cwl</file>
 <file>completion/superiors.cwl</file>
 <file>completion/supertabular.cwl</file>
 <file>completion/suppose.cwl</file>
@@ -3554,6 +3557,7 @@
 <file>completion/telprint.cwl</file>
 <file>completion/templatetools.cwl</file>
 <file>completion/tempora.cwl</file>
+<file>completion/temporal-logic.cwl</file>
 <file>completion/tengwarscript.cwl</file>
 <file>completion/tensind.cwl</file>
 <file>completion/tensor.cwl</file>
