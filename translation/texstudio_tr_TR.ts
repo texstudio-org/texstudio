@@ -5226,7 +5226,7 @@ Yardımcı komutu desteklemiyor</translation>
     <message>
         <location filename="../src/latexdocument.cpp" line="2631"/>
         <source>Root file not found</source>
-        <translation type="unfinished"/>
+        <translation>Kök dosya bulunamadı</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="2636"/>
@@ -12925,7 +12925,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.cpp" line="359"/>
         <source>Do you really want to delete the current macro(s)?</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli makroları silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="441"/>
