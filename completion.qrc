@@ -1061,8 +1061,8 @@
 <file>completion/collref.cwl</file>
 <file>completion/colonequals.cwl</file>
 <file>completion/colophon.cwl</file>
-<file>completion/color.cwl</file>
 <file>completion/colorblind.cwl</file>
+<file>completion/color.cwl</file>
 <file>completion/colordoc.cwl</file>
 <file>completion/colordvi.cwl</file>
 <file>completion/color-edits.cwl</file>
@@ -1269,8 +1269,8 @@
 <file>completion/docshots.cwl</file>
 <file>completion/doctools.cwl</file>
 <file>completion/dogma.cwl</file>
-<file>completion/doi.cwl</file>
 <file>completion/doibanner.cwl</file>
+<file>completion/doi.cwl</file>
 <file>completion/doipubmed.cwl</file>
 <file>completion/domaincoloring.cwl</file>
 <file>completion/domitian.cwl</file>
@@ -2425,8 +2425,8 @@
 <file>completion/minim-mp.cwl</file>
 <file>completion/MinionPro.cwl</file>
 <file>completion/minipage-marginpar.cwl</file>
-<file>completion/minted.cwl</file>
 <file>completion/minted2.cwl</file>
+<file>completion/minted.cwl</file>
 <file>completion/mintspirit2.cwl</file>
 <file>completion/mintspirit.cwl</file>
 <file>completion/minutes.cwl</file>
@@ -2705,10 +2705,10 @@
 <file>completion/parselines.cwl</file>
 <file>completion/parskip.cwl</file>
 <file>completion/pascaltriangle.cwl</file>
-<file>completion/passopt.cwl</file>
 <file>completion/pas-cours.cwl</file>
 <file>completion/pas-crosswords.cwl</file>
 <file>completion/pas-cv.cwl</file>
+<file>completion/passopt.cwl</file>
 <file>completion/pas-tableur.cwl</file>
 <file>completion/patchcmd.cwl</file>
 <file>completion/patch-common.cwl</file>
@@ -3451,8 +3451,8 @@
 <file>completion/subcaption.cwl</file>
 <file>completion/subdepth.cwl</file>
 <file>completion/subdocs.cwl</file>
-<file>completion/subeqn.cwl</file>
 <file>completion/subeqnarray.cwl</file>
+<file>completion/subeqn.cwl</file>
 <file>completion/subfig.cwl</file>
 <file>completion/subfigmat.cwl</file>
 <file>completion/subfigure.cwl</file>
@@ -3948,6 +3948,7 @@
 <file>completion/txfonts.cwl</file>
 <file>completion/txgreeks.cwl</file>
 <file>completion/tx-of.cwl</file>
+<file>completion/txs-test.cwl</file>
 <file>completion/txuprcal.cwl</file>
 <file>completion/typearea.cwl</file>
 <file>completion/typed-checklist.cwl</file>

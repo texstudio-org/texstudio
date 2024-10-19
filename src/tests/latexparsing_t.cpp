@@ -367,7 +367,7 @@ void LatexParsingTest::test_latexLexing_data() {
                                                    << (Starts() << 0 << 11 << 12)
                                                    << (Length() << 11 << 8 << 6)
                                                    << (Levels() << 0 << 1 << 1 );
-    QTest::newRow("default overlay") << "\\againframe[test]"
+    QTest::newRow("option") << "\\againframe[test]"
                                      << (TTypes() << T::command << T::squareBracket << T::keyVal_key)
                                      << (STypes() << T::none << T::keyValArg << T::none)
                                      << (Starts() << 0 << 11 << 12)
@@ -383,12 +383,10 @@ void LatexParsingTest::test_latexLexing() {
     lp->commandDefs.unite(pkg_graphics.commandDescriptions);
     LatexPackage pkg_tex = loadCwlFile("tex.cwl");
     lp->commandDefs.unite(pkg_tex.commandDescriptions);
-    LatexPackage pkg_listings = loadCwlFile("listings.cwl");
+    LatexPackage pkg_listings = loadCwlFile("txs-test.cwl");
     lp->commandDefs.unite(pkg_listings.commandDescriptions);
     LatexPackage pkg_yagu = loadCwlFile("yagusylo.cwl");
     lp->commandDefs.unite(pkg_yagu.commandDescriptions);
-    LatexPackage pkg_frame = loadCwlFile("beamerbaseframe.cwl");
-    lp->commandDefs.unite(pkg_frame.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(TTypes, types);
     QFETCH(STypes, subtypes);
@@ -1004,7 +1002,7 @@ void LatexParsingTest::test_getContext() {
     *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
     lp->commandDefs.unite(pkg_graphics.commandDescriptions);
-    LatexPackage pkg_listings = loadCwlFile("listings.cwl");
+    LatexPackage pkg_listings = loadCwlFile("txs-test.cwl");
     lp->commandDefs.unite(pkg_listings.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(int, nr);
