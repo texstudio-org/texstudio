@@ -5227,7 +5227,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexdocument.cpp" line="2631"/>
         <source>Root file not found</source>
-        <translation type="unfinished"/>
+        <translation>Кореневий файл не знайдено</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="2636"/>
@@ -12936,7 +12936,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.cpp" line="359"/>
         <source>Do you really want to delete the current macro(s)?</source>
-        <translation type="unfinished"/>
+        <translation>Ви справді хочете вилучити поточний макрос?</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="441"/>

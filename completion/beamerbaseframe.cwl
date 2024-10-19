@@ -13,16 +13,16 @@
 \begin{frame}
 \begin{frame}<overlay specification>
 \begin{frame}<overlay specification>[<default overlay specification>]
-\begin{frame}<overlay specification>[<default overlay specification>][options]
-\begin{frame}<overlay specification>[<default overlay specification>][options]{title}
-\begin{frame}<overlay specification>[<default overlay specification>][options]{title}{subtitle}
+\begin{frame}<overlay specification>[<default overlay specification>][options%keyvals]
+\begin{frame}<overlay specification>[<default overlay specification>][options%keyvals]{title}
+\begin{frame}<overlay specification>[<default overlay specification>][options%keyvals]{title}{subtitle}
 \begin{frame}[<default overlay specification>]
-\begin{frame}[<default overlay specification>][options]
-\begin{frame}[<default overlay specification>][options]{title}
-\begin{frame}[<default overlay specification>][options]{title}{subtitle}
-\begin{frame}[options]
-\begin{frame}[options]{title}
-\begin{frame}[options]{title}{subtitle}
+\begin{frame}[<default overlay specification>][options%keyvals]
+\begin{frame}[<default overlay specification>][options%keyvals]{title}
+\begin{frame}[<default overlay specification>][options%keyvals]{title}{subtitle}
+\begin{frame}[options%keyvals]
+\begin{frame}[options%keyvals]{title}
+\begin{frame}[options%keyvals]{title}{subtitle}
 \begin{frame}{title}
 \end{frame}
 
@@ -44,7 +44,24 @@
 
 \againframe{name}
 \againframe<overlay specification>{name}
-\againframe<overlay specification>[options]{name}
-\againframe[options]{name}
-\againframe[<default overlay specification>][options]{name}
-\againframe<overlay specification>[<default overlay specification>][options]{name}
+\againframe<overlay specification>[options%keyvals]{name}
+\againframe[options%keyvals]{name}
+\againframe[<default overlay specification>][options%keyvals]{name}
+\againframe<overlay specification>[<default overlay specification>][options%keyvals]{name}
+
+#keyvals:\begin{frame},\againframe
+allowframebreaks
+allowframebreaks=%<fraction%>
+b
+c
+t
+s
+noframenumbering
+fragile
+fragile=singleslide
+label=##l
+plain
+shrink
+shrink=%<min shk %%%>
+squeeze
+#endkeyvals

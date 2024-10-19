@@ -761,7 +761,15 @@ CommandDescription extractCommandDef(QString line, QString definition)
 		int j = specialChars.indexOf(c);
 		QChar closingChar = specialChars2.at(j);
         int i = line.indexOf(closingChar);
-		QString arg = line.mid(1, i - 1);
+        QString arg = line.mid(1, i - 1);
+        // special case [< .. >] for default overlay specification
+        if(j==1 && i>3){
+            if(line.at(1)=='<' && line.at(i-1)=='>'){
+                j=4;
+                arg = line.mid(2, i - 2);
+            }
+        }
+
 		Token::TokenType type = Token::generalArg; // assume that unknown argument is not a text
 		if (loop == 1 && command == "\\begin") {
 			type = Token::beginEnv;
@@ -783,6 +791,9 @@ CommandDescription extractCommandDef(QString line, QString definition)
                 break;
 			case 3:
                 cd.arguments<<ArgumentDescription{ArgumentDescription::OVERLAY, type};
+                break;
+            case 4:
+                cd.arguments<<ArgumentDescription{ArgumentDescription::DEFAULT_OVERLAY, type};
                 break;
 			default:
 				break;

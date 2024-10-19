@@ -14,7 +14,8 @@ public:
         MANDATORY, // i.e brace {}
         OPTIONAL,  // i.e square brackets []
         BRACKET,   // i.e round brackets ()
-        OVERLAY    // i.e beamer overalay argument <>
+        OVERLAY,    // i.e beamer overalay argument <>
+        DEFAULT_OVERLAY, // i.e beamer default overlay argument [< >]
     };
     ArgType type;
     Token::TokenType tokenType;

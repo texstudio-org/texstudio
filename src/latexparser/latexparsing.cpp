@@ -350,7 +350,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 //possible command argument without brackets
                 CommandDescription &cd = commandStack.top();
                 // skip over optional arguments
-                while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY || cd.arguments.first().type == ArgumentDescription::BRACKET)) {
+                while(!cd.arguments.isEmpty() && (cd.arguments.first().type >= ArgumentDescription::OPTIONAL)) {
                     cd.arguments.takeFirst();
                 }
                 // check for mandatory argument
@@ -405,7 +405,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 CommandDescription &cd = commandStack.top();
                 if (tk.type == Token::openBrace) {
                     // skip over optional arguments, here assume optional arguments as [],<> and ()
-                    while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY || cd.arguments.first().type == ArgumentDescription::BRACKET) ) {
+                    while(!cd.arguments.isEmpty() && (cd.arguments.first().type >= ArgumentDescription::OPTIONAL) ) {
                         cd.arguments.takeFirst();
                     }
                     // check for mandatory argument
@@ -418,10 +418,27 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     }
                 }
                 if (tk.type == Token::openSquare) {
-                    if (!cd.arguments.isEmpty() && cd.arguments.first().type == ArgumentDescription::OPTIONAL) {
+                    bool handled=false;
+                    while(!handled && !cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OVERLAY || cd.arguments.first().type == ArgumentDescription::BRACKET)) {
+                        cd.arguments.takeFirst();
+                    }
+                    if (!cd.arguments.isEmpty() && cd.arguments.first().type == ArgumentDescription::DEFAULT_OVERLAY) {
+                        // check next token to be less
+                        if (i + 1 < tl.length() && tl[i + 1].type == Token::less) {
+                            ArgumentDescription ad= cd.arguments.takeFirst();
+                            tk.subtype = ad.tokenType;
+                            ++i;
+                            handled=true;
+                        } else {
+                            cd.arguments.takeFirst();
+                        }
+                    }
+                    if (!handled && !cd.arguments.isEmpty() && cd.arguments.first().type == ArgumentDescription::OPTIONAL) {
                         ArgumentDescription ad= cd.arguments.takeFirst();
                         tk.subtype = ad.tokenType;
-                    } else {
+                        handled=true;
+                    }
+                    if(!handled){
                         // unexpected optional argument
                         // ignore
                         lexed << tk;
@@ -430,7 +447,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 }
                 if (tk.type == Token::openBracket) {
                     // skip over optional arguments
-                    while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY)) {
+                    while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY || cd.arguments.first().type == ArgumentDescription::DEFAULT_OVERLAY)) {
                         cd.arguments.takeFirst();
                     }
                     // check for mandatory argument
@@ -498,6 +515,20 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     continue;
                 if (stack.top().type != Token::opposite(tk.type))
                     continue; //closing bracket/> is ignored if no correct open is present
+            }
+            // special treatment for beamer default overlay [< >]
+            if(tk.type==Token::greater && stack.top().type == Token::openSquare){
+                if(!commandStack.isEmpty() && commandStack.top().arguments.size()>0 && commandStack.top().arguments.first().type==ArgumentDescription::DEFAULT_OVERLAY){
+                    // check if closing bracket is expected
+                    if(i+1<tl.length() && tl[i+1].type==Token::closeSquareBracket){
+                        // closing bracket found
+                        ++i;
+                        tk=tl[i]; // use outer closing square bracket
+                    }else{
+                        // closing bracket not found, ignore token
+                        continue;
+                    }
+                }
             }
             if (!stack.isEmpty() && stack.top().type == Token::opposite(tk.type)) {
                 Token tk1 = stack.pop();
@@ -807,7 +838,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 //possible command argument without brackets
                 CommandDescription &cd = commandStack.top();
                 // skip over optional arguments, here assume optional arguments as [],<> and ()
-                while(!cd.arguments.isEmpty() && (cd.arguments.first().type == ArgumentDescription::OPTIONAL || cd.arguments.first().type == ArgumentDescription::OVERLAY || cd.arguments.first().type == ArgumentDescription::BRACKET) ) {
+                while(!cd.arguments.isEmpty() && (cd.arguments.first().type >= ArgumentDescription::OPTIONAL) ) {
                     cd.arguments.takeFirst();
                 }
                 if (cd.arguments.size() && cd.arguments.first().type==ArgumentDescription::MANDATORY) {
