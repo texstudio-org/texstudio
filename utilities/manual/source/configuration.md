@@ -611,19 +611,26 @@ thus should be spell checked by looking up its definition in the
 completion word lists. For more information on completion word lists see
 the section on [completion](#configuring-the-autocompletion) and the [description of the cwl format](background.md#description-of-the-cwl-format).
 
+TeXstudio comes with a large selection of dictionaries on Windows and MacOS.
+On Linux the system offers Hunspell dictionaries and the corresponding languages should be installed from there.
+
 The spell checker uses the Hunspell dictionary format, which is widely
 used, e.g. in OpenOffice, LibreOffice and Firefox. Each dictionary
 consists of two files (`.dic` and `.aff`). French, British and German
-dictionaries are distributed with TeXstudio, on windows a large number of languages is provided. You can add additional dictionaries yourself by placing them in the dictionary path. A
+dictionaries are distributed with TeXstudio, on windows and osx a large number of languages is provided. You can add additional dictionaries yourself by placing them in the dictionary path. A
 particularly convenient way to get additional dictionaries is
 downloading a dictionary extension of
 [OpenOffice](https://extensions.openoffice.org/de/search?f%5B0%5D=field_project_tags%3A157)
 or
 [LibreOffice](https://extensions.libreoffice.org/?Tag%5B0%5D=50&q=&Tags%5B%5D=50)
-and importing them using the button *Import Dictionary* in the options.
+and importing them using the button *Import Dictionary* in the options. 
+The imported files are extracted into `[txs-settings-dir]/dictionaries`. If the imported file uses subfolders, you need to find the corresponding folder and put it into "Spelling Dictionaries Directories" field.
 ```{note}
 Linux distributions usually offer a wide range of hunspell dictionaries which can be used.
 The actual dictionaries are usually stored under `/usr/share/hunspell`
+
+On OSX, by default the dictionary path should be `[txs-app-dir]/../Resources`.
+On Windows, by default the dictionary path should be `[txs-app-dir]/dictionaries"`.
 ```
 
 You can specify one or more search paths for the dictionaries in the
