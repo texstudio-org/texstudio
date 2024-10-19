@@ -361,6 +361,18 @@ void LatexParsingTest::test_latexLexing_data() {
                                                     << (Starts() << 0 << 8 << 9 << 14 << 15 <<  21)
                                                     << (Length() << 8 << 6 << 4 << 6 << 4 << 5)
                                                     << (Levels() << 0 << 1 << 1 << 1 << 1 << 0);
+    QTest::newRow("default overlay") << "\\againframe[<test>]"
+                                                   << (TTypes() << T::command << T::squareBracket << T::overlay)
+                                                   << (STypes() << T::none << T::overlay << T::none)
+                                                   << (Starts() << 0 << 11 << 12)
+                                                   << (Length() << 11 << 8 << 6)
+                                                   << (Levels() << 0 << 1 << 1 );
+    QTest::newRow("default overlay") << "\\againframe[test]"
+                                     << (TTypes() << T::command << T::squareBracket << T::keyVal_key)
+                                     << (STypes() << T::none << T::keyValArg << T::none)
+                                     << (Starts() << 0 << 11 << 12)
+                                     << (Length() << 11 << 6 << 4)
+                                     << (Levels() << 0 << 1 << 1 );
 
 }
 
@@ -375,6 +387,8 @@ void LatexParsingTest::test_latexLexing() {
     lp->commandDefs.unite(pkg_listings.commandDescriptions);
     LatexPackage pkg_yagu = loadCwlFile("yagusylo.cwl");
     lp->commandDefs.unite(pkg_yagu.commandDescriptions);
+    LatexPackage pkg_frame = loadCwlFile("beamerbaseframe.cwl");
+    lp->commandDefs.unite(pkg_frame.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(TTypes, types);
     QFETCH(STypes, subtypes);
