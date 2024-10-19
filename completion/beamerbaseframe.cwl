@@ -50,6 +50,8 @@
 \againframe<overlay specification>[<default overlay specification>][options%keyvals]{name}
 
 #keyvals:\begin{frame},\againframe
+allowdisplaybreaks
+allowdisplaybreaks=#0,1,2,3,4
 allowframebreaks
 allowframebreaks=%<fraction%>
 b
@@ -59,9 +61,10 @@ s
 noframenumbering
 fragile
 fragile=singleslide
+environment=%<envname%>
 label=##l
 plain
 shrink
-shrink=%<min shk %%%>
+shrink=%<min shrink percent%>
 squeeze
 #endkeyvals
