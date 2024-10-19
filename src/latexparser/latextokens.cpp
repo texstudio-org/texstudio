@@ -192,6 +192,7 @@ QSet<Token::TokenType> Token::tkOpen()
 	result.insert(openBracket);
 	result.insert(openSquare);
 	result.insert(less);
+    result.insert(openSquare);
 	return result;
 }
 
@@ -206,6 +207,7 @@ QSet<Token::TokenType> Token::tkClose()
 	result.insert(closeBracket);
 	result.insert(closeSquareBracket);
 	result.insert(greater);
+    result.insert(greater);
 	return result;
 }
 
