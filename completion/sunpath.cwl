@@ -1,16 +1,25 @@
 # sunpath package
-# Matthew Bertucci 2024/10/15 for v0.1-Alpha
+# Matthew Bertucci 2024/10/20 for v0.5
 
 #include:tikz
 #include:tikzlibrarycalc
 #include:tikzlibrarymath
 #include:tikzlibrarythrough
 
-\drawcrosshair
-\drawgeodirection
-\drawaltitudecircle{arg}
-\drawaltitudelabel{arg}
-\drawaltitudelabel[opt]{arg}
-\drawazimuthlabel{arg}
-\drawazimuthline{arg1}{arg2}{arg3}
-\drawazimuthtick
+\spcrosshair
+\spcrosshair[style]
+\spgeodirection
+\spgeodirection[offset]
+\spgeodirection[offset][style]
+\spaltitudecircle{range}
+\spaltitudecircle{range}[style]
+\spaltitudelabel{range}
+\spaltitudelabel{range}[azimuth]
+\spaltitudelabel{range}[azimuth][style]
+\spazimuthlabel{range}
+\spazimuthlabel{range}[style]
+\spazimuthline{range}{start alt}{end alt}
+\spazimuthtick
+\spazimuthtick[major]
+\spazimuthtick[major][minor]
+\spazimuthtick[major][minor][mid]
