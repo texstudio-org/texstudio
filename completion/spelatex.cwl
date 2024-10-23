@@ -1,5 +1,5 @@
 # spelatex package
-# Matthew Bertucci 2024/09/10 for v0.92
+# Matthew Bertucci 2024/10/23 for v0.93
 
 #include:hyperref
 #include:xcolor
@@ -27,6 +27,7 @@ extramath#true,false
 #ifOption:extramath=true
 \setenum{arg}#m
 \setdesc{arg}#m
+\unitof{arg}#m
 #endif
 
 \spelitem{text}
@@ -48,6 +49,9 @@ extramath#true,false
 \spelenvad{envname}{begin text%text}{end text%text}
 \spelenvad{envname}[args]{begin text%text}{end text%text}
 \spelenvad{envname}[args][default]{begin text%text}{end text%text}
+\spelcaption{text}
+\spelcaption[short text%text]{text}
+\spelinlad{content%text}{description%text}
 
 #keyvals:\begin{spelchunk}
 arealink
