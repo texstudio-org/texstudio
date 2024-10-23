@@ -7,7 +7,7 @@
 #include:translations
 #include:unique
 
-#keyvals:\usepackage/key-theorems#c
+#keyvals:\usepackage/keytheorems#c
 overload
 thmtools-compat
 store-all
