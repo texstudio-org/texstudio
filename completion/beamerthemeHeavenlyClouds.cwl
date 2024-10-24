@@ -1,5 +1,5 @@
 # HeavenlyClouds beamertheme
-# Matthew Bertucci 2/12/2022 for v1.1
+# Matthew Bertucci 2024/10/24 for v1.2
 
 #include:cncolours
 #include:pgfornament-han
@@ -19,3 +19,6 @@
 \myflip#S
 \myx#S
 \myy#S
+\addheight#S
+\ShenmaMarkerWidth#*
+\BackgroundOrns#*
