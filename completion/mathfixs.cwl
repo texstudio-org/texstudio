@@ -1,5 +1,5 @@
 # mathfixs package
-# Matthew Bertucci 2024/10/23 for v1.1
+# Matthew Bertucci 2024/10/25 for v1.11
 
 #include:keyval
 
@@ -186,7 +186,7 @@ numsets
 
 #ifOption:mapclass
 \Hom#m
-\Eng#m
+\End#m
 \Isom#m
 \Aut#m
 #endif
@@ -306,7 +306,7 @@ numsets
 \rank#*m
 \coker#*m
 \Hom#*m
-\Eng#*m
+\End#*m
 \Isom#*m
 \Aut#*m
 \grad#*m
