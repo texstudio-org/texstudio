@@ -318,10 +318,15 @@ jobs:
       id: package
       run: |
         cd build
-        /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin/bin/macdeployqt texstudio.app -dmg
+        /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin/bin/macdeployqt texstudio.app
+        codesign --force --deep --sign - texstudio.app
         . ../.github/scripts/get-version.sh
-        cp texstudio.dmg ../texstudio-${GIT_VERSION}-osx.dmg
-        mv texstudio.dmg ../texstudio-osx-${VERSION_NAME}.dmg
+        cp -r texstudio.app ../texstudio-${GIT_VERSION}-osx.app
+        mkdir ../app
+        mv texstudio.app ../app/texstudio-osx-${VERSION_NAME}.app
+        cd ..
+        # zip -r texstudio-osx-m1-${VERSION_NAME}.zip texstudio-osx-${VERSION_NAME}.app
+        zip -r texstudio-${GIT_VERSION}-osx.zip texstudio-${GIT_VERSION}-osx.app
         echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_OUTPUT
         echo "TXS_VERSION=${TXS_VERSION}" >> $GITHUB_OUTPUT
         echo "GIT_VERSION=${GIT_VERSION}" >> $GITHUB_OUTPUT
@@ -331,14 +336,15 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: texstudio-osx
-        path: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
-
+        path: app
+        # path: texstudio-osx-m1-${{ steps.package.outputs.VERSION_NAME }}.zip
+    
     - name: Upload release file(s)
       uses: actions/upload-artifact@v4
       if: startsWith(github.ref, 'refs/tags/')
       with:
         name: release-osx
-        path: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx.dmg
+        path: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx.zip
 
   macosxM1:
     name: Mac OS X (M1)
