@@ -177,10 +177,14 @@ SetOutPath $INSTDIR\tls
 File .\tls\qcertonlybackend.dll.
 File .\tls\qschannelbackend.dll.
 
-#SetOutPath $INSTDIR\networkinformation
+SetOutPath $INSTDIR\networkinformation
 
-#File  .\networkinformation\qglib.dll
-#File  .\networkinformation\qnetworklistmanager.dll
+File package-zip\networkinformation\*
+
+SetOutPath $INSTDIR\generic
+
+File package-zip\generic\*
+
 
 SetOutPath $INSTDIR\help
 
