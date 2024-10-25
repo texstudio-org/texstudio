@@ -1,6 +1,6 @@
 # mode: paracol.sty
 # denisbitouze, 27.10.2012
-# Matthew Bertucci updated 11.02.2022 for v1.35
+# Matthew Bertucci updated 2024/10/25 for v1.36
 
 \switchcolumn#/paracol
 \switchcolumn[column]#/paracol
@@ -48,7 +48,8 @@
 \definethecounter{counter}{column}{definition}#n
 \synccounter{counter}#n
 \syncallcounters#n
-\footnotelayout{layout}#n
+\footnoteplacement{{layout}#n
+\footnotelayout{layout}#*n
 \footnote*{text}#n
 \footnote*[number]{text}#n
 \footnotemark*#*n
