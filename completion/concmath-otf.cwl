@@ -1,5 +1,5 @@
 # concmath-otf package
-# Matthew Bertucci 2023/07/21 for v0.50
+# Matthew Bertucci 2024/10/28 for v0.64
 
 #include:iftex
 #include:unicode-math
@@ -61,6 +61,7 @@ Style=#leqslant,smaller,subsetneq,upint
 \lgwhtsquare#m
 \lhd#m
 \llless#m
+\lmoustache#m
 \lvertneqq#m
 \mbfdotlessi#*m
 \mbfdotlessj#*m
@@ -107,6 +108,7 @@ Style=#leqslant,smaller,subsetneq,upint
 \restriction#m
 \rhd#m
 \rightdasharrow#m
+\rmoustache#m
 \shortmid#m
 \shortparallel#m
 \smallblacktriangleleft#m
