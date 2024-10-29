@@ -1,5 +1,5 @@
 # easyfloats package
-# Matthew Bertucci 2022/05/02 for v1.0.0
+# Matthew Bertucci 2024/10/29 for v1.1.0
 
 #include:etoolbox
 #include:pgfkeys
@@ -129,7 +129,7 @@ warn other env#true,false
 subcaptionbox
 subcaptionbox inner pos=#c,l,r,s
 subpage
-subpage outer pos=#c,t,b,T,B,auto,Auto
+subpage outer pos=#c,t,b,T,B,auto,Auto,auto-inverted,Auto-inverted
 subpage height=##L
 subpage inner pos=#c,t,b,s
 subpage align=%<code%>
@@ -185,8 +185,11 @@ auto caption#true,false
 auto caption strip path#true,false
 auto label#true,false
 auto label strip path#true,false
+auto label prefix=%<prefix%>
 warn env#true,false
 no env#true,false
+before graphic=%<code%>
+after graphic=%<code%>
 # \includegraphics options
 alt={%<alt text%>}
 bb=%<llx lly urx ury%>
@@ -226,10 +229,12 @@ decodearray={%<color array%>}
 \NewObjectStyleGroup{group}{style names}
 \AddObjectStyleToGroup{group}{style name}
 \AtBeginObject{code}
+\AtEndObject{code}
 \AtBeginSubobject{code}
 \AtBeginGraphicObject{code}
 \ShowObjectStylesInGroup{group}
 \ShowObjectStyleOptions{style name}
+\splitobject
 
 # not documented
 \AppendGraphicobjectOption{option}{value}#*
