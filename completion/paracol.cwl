@@ -48,7 +48,7 @@
 \definethecounter{counter}{column}{definition}#n
 \synccounter{counter}#n
 \syncallcounters#n
-\footnoteplacement{{layout}#n
+\footnoteplacement{layout}#n
 \footnotelayout{layout}#*n
 \footnote*{text}#n
 \footnote*[number]{text}#n
