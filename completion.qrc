@@ -297,6 +297,7 @@
 <file>completion/beamerthemeMadrid.cwl</file>
 <file>completion/beamerthemeMarburg.cwl</file>
 <file>completion/beamerthememetropolis.cwl</file>
+<file>completion/beamerthemeMirage.cwl</file>
 <file>completion/beamerthememoloch.cwl</file>
 <file>completion/beamerthemeNord.cwl</file>
 <file>completion/beamerthemePaloAlto.cwl</file>
@@ -1672,6 +1673,7 @@
 <file>completion/gastex.cwl</file>
 <file>completion/gates.cwl</file>
 <file>completion/gatherenum.cwl</file>
+<file>completion/gb4e-next.cwl</file>
 <file>completion/gb4e.cwl</file>
 <file>completion/gbt7714.cwl</file>
 <file>completion/gchords.cwl</file>
