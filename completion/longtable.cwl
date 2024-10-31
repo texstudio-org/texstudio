@@ -1,5 +1,6 @@
 # mode: longtable.sty
 # dani/2006-02-18
+# updated 2024/10/31 for v4.22
 
 #keyvals:\usepackage/longtable#c
 errorshow
@@ -19,6 +20,7 @@ final
 \end{longtable}
 \LTchunksize
 \LTcapwidth
+\LTcaptype
 \LTleft
 \LTpost
 \LTpre

@@ -1,7 +1,7 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
-# Matthew Bertucci 2024/06/01 release
+# Matthew Bertucci 2024/11/01 release
 
 # commands with big Letters and others
 \ActivateGenericHook{hook}#*
@@ -179,6 +179,8 @@
 \IfFormatAtLeastF{date}{false code}#*
 \IfFormatAtLeastT{date}{true code}#*
 \IfFormatAtLeastTF{date}{true code}{false code}#*
+\IfHookEmptyF{hook}{false code}#*
+\IfHookEmptyT{hook}{true code}#*
 \IfHookEmptyTF{hook}{true code}{false code}#*
 \IfInstanceExistsF{type}{instance}{true}{false}#*
 \IfInstanceExistsT{type}{instance}{true}{false}#*
@@ -186,6 +188,10 @@
 \IfLabelExistsF{label}{false code}#*
 \IfLabelExistsT{label}{true code}#*
 \IfLabelExistsTF{label}{true code}{false code}#*
+\IfMarksEqualF[region]{class%plain}{pos1}{pos2}{false code}#*
+\IfMarksEqualF{class%plain}{pos1}{pos2}{false code}#*
+\IfMarksEqualT[region]{class%plain}{pos1}{pos2}{true code}#*
+\IfMarksEqualT{class%plain}{pos1}{pos2}{true code}#*
 \IfMarksEqualTF[region]{class%plain}{pos1}{pos2}{true code}{false code}#*
 \IfMarksEqualTF{class%plain}{pos1}{pos2}{true code}{false code}#*
 \IfNoValueF{arg}{ValueCode}
@@ -204,6 +210,8 @@
 \IfPropertyExistsF{property}{false code}#*
 \IfPropertyExistsT{property}{true code}#*
 \IfPropertyExistsTF{property}{true code}{false code}#*
+\IfPropertyRecordedF{label}{property}{false code}#*
+\IfPropertyRecordedT{label}{property}{true code}#*
 \IfPropertyRecordedTF{label}{property}{true code}{false code}#*
 \IfTargetDateBefore{date}{before code}{after code}#*
 \IfValueF{arg}{-NoValue-Code}#*
@@ -343,6 +351,7 @@
 \TopMark{class%plain}#*
 \TrimSpaces#*
 \UndeclareTextCommand{cmd}{encoding}#*
+\UseExpandableTaggingSocket{socket}#*
 \UseHook{hook}#*
 \UseHookWithArguments{%<hook%>}{%<number%>}{%<arg1%>}%<{arg2}...%>#*
 \UseInstance{type}{instance}#*
