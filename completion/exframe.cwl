@@ -1,5 +1,5 @@
 # exframe package
-# Matthew Bertucci 1/12/2021 for v3.4
+# Matthew Bertucci 2024/10/20 for v3.5
 
 #include:color
 #include:verbatim
@@ -39,6 +39,7 @@ autolabelsheet#true,false
 autolabelproblem#true,false
 solutionbuf#true,false
 problembuf#true,false
+subproblembuf#true,false
 emptytestchar=%<char%>
 #endkeyvals
 
@@ -74,6 +75,8 @@ difficulty={%<text%>}
 keyword={%<text%>}
 comment={%<text%>}
 optional={%<text%>}
+forproblem
+disable
 %userprobleminfokey
 #endkeyvals
 
@@ -318,6 +321,7 @@ insertsubproblembefore
 insertsubproblemafter
 insertsubprobleminfo
 insertsubproblemsolution
+insertsubproblemselect
 insertsolutionbefore
 insertsolutionafter
 insertsolutioninfo
@@ -327,14 +331,27 @@ composemetasheet
 composetocsheet
 composeitemproblem
 composeitemproblemsep
+composeitemproblemdelim
+composebareproblemsep
+composebareproblemdelim
+composebareproblem
+composenamedproblemsep
+composenamedproblem
+composenamedproblemdelim
 composetitleproblem
 composetocproblem
 composeitemsubproblem
 composeitemsubproblemsep
+composeitemsubproblemdelim
 composetitlesubproblem
 composeitemsolution
 composeitemsolutionsub
+composeitemsolutionfirst
+composeitemsolutionfirstsub
+composetitlesolutionproblem
+composetitlesolutionsubproblem
 composeitemsolutionsep
+composeitemsolutiondelim
 composetitlesolutionsingle
 composetitlesolutionmulti
 composetocsolution
@@ -412,6 +429,7 @@ problemequation#true,false
 solutionequation#true,false
 fracpoints#true,false
 twoside#true,false
+subproblemdelimitem
 %userexercisestyle
 #endkeyvals
 
@@ -447,5 +465,6 @@ solutionsep
 \exercisecleardoublepage#*
 \showfracpoints{arg}#*
 \solutionssection{arg}#*
-\theHequation#S
-\theHpage#S
+\setsubproblemdata{data}#*
+\begin{printsubproblem}{arg}#*
+\end{printsubproblem}#*

@@ -2,7 +2,7 @@
 # modified by Tim Hoffmann 2014-03-24
 # modified by Elias Kirchgässner 2016-07-27
 # modified by muzimuzhi 2020 Feb 15, minted v2.5
-# modified by Matthew Bertucci 2024 Sep 23, v3.0.0
+# modified by Matthew Bertucci 2024 Oct 30, v3.2.0
 
 #include:catchfile
 #include:etoolbox
@@ -121,6 +121,13 @@ curlyquotes#true,false
 encoding=%<encoding%>
 envname=%<string%>
 escapeinside=%<two chars%>
+extrakeywords={%<word1,word2,...%>}
+extrakeywordsconstant={%<word1,word2,...%>}
+extrakeywordsdeclaration={%<word1,word2,...%>}
+extrakeywordsnamespace={%<word1,word2,...%>}
+extrakeywordspseudo={%<word1,word2,...%>}
+extrakeywordsreserved={%<word1,word2,...%>}
+extrakeywordstype={%<word1,word2,...%>}
 firstline=%<integer%>
 firstnumber=#auto,last,%<integer%>
 fontencoding=%<font encoding%>
@@ -190,6 +197,7 @@ xrightmargin=##L
 \MintedDataFilename#S
 \MintedErrlogFilename#S
 \MintedMessageFilename#S
+\mintedoldcachechecksum#S
 \mintedpgfkeyscreate{option category}{keyvals}#S
 \mintedpgfkeyscreate[processor]{option category}{keyvals}#S
 \mintedpyoptvalueof{arg}#S

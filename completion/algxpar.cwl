@@ -1,5 +1,5 @@
 # algxpar package
-# Matthew Bertucci 2023/06/27 for v0.99
+# Matthew Bertucci 2024/10/25 for v0.99.2
 
 #include:algorithmicx
 #include:algpseudocode
@@ -10,7 +10,9 @@
 #include:amssymb
 #include:pgfmath
 #include:varwidth
-#include:ifthen
+#include:tikz
+#include:tikzlibrarycalc
+#include:etoolbox
 
 #keyvals:\usepackage/algxpar#c
 brazilian
@@ -103,6 +105,8 @@ noend
 \Id{identifier}
 \Read
 \Write
+\ByRef
+\ByValue
 \Procedure{name}{params}[comment%text]#/algorithmic
 \Procedure{name}{params}<options%keyvals>#/algorithmic
 \Procedure{name}{params}[comment%text]<options%keyvals>#/algorithmic
@@ -149,6 +153,8 @@ statement indent=##L
 parameter indent=##L
 comment width=%<auto|nice|⟨width⟩%>
 show boxes
+indent lines#true,false
+line style={%<TikZ keys%>}
 #endkeyvals
 
 \CommentSymbol#*
@@ -169,4 +175,3 @@ show boxes
 \AlgDate#S
 \AlgVersion#S
 \NewLine#S
-\RenewFullyExpandedDocumentCommand{cmd}{def}#S

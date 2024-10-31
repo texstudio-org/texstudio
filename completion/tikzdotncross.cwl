@@ -1,7 +1,17 @@
 # tikzdotncross package
-# Matthew Bertucci 2023/01/08 for v1.0
+# Matthew Bertucci 2023/10/23 for v1.2
 
 #include:tikzlibraryintersections
+
+\setpindefaults{options%keyvals}
+
+#keyvals:\usepackage/tikzdotncross#c,\setpindefaults
+pinsize=%<number%>
+pinang=%<degrees%>
+pincolor=#%color
+pinlength=%<number%>
+coordcolor=#%color
+#endkeyvals
 
 \showcoordstrue
 \showcoordsfalse

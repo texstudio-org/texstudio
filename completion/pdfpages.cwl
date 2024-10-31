@@ -1,7 +1,7 @@
 # pdfpages package
 # mario 09/06/2007, Tim Hoffmann 25/02/2017
 # muzimuzhi 29 Apr 2020, pdfpages v0.5q
-# Matthew Bertucci 11 Oct 2022 for v0.5w
+# Matthew Bertucci 28 Oct 2024 for v0.6c
 # URL: http://tug.ctan.org/tex-archive/macros/latex/contrib/pdfpages/
 
 #include:eso-pic
@@ -42,6 +42,7 @@ columnstrict#true,false
 openright#true,false
 openrighteach#true,false
 pagecommand=%<code%>
+pagecommand*=%<code%>
 turn#true,false
 noautoscale#true,false
 fitpaper#true,false

@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2024/10/08 for v24.11
+# tbraun 4.11.2008; Matthew Bertucci 2024/10/20 for v24.12
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -321,6 +321,8 @@ label=%<label%>
 \EnableBabelHook{name}#*
 \DisableBabelHook{name}#*
 \BabelContentsFiles#*
+\IfBabelSelectorTF{selectors}{true}{false}#*
+\PassOptionsToLocale{options}{locale}#*
 
 \babelcharproperty{char-code}{property}{value}#*
 \babelcharproperty{char-code}[to-char-code]{property}{value}#*
@@ -405,7 +407,6 @@ select.encoding=#off
 \BabelWrapText{arg}#S
 \EndBabelCommands#S
 \IfBabelLayout{layout}{true}{false}#S
-\IfBabelSelectorTF{selectors}{true}{false}#S
 \LdfInit{language}{captionslanguage}#S
 \loadlocalcfg{file}#Si
 \localename#S

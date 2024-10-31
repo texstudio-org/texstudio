@@ -1,5 +1,5 @@
 # xcharter-otf package
-# Matthew Bertucci 2023/11/28 for v0.60
+# Matthew Bertucci 2024/10/28 for v0.64
 
 #include:iftex
 #include:unicode-math
@@ -64,6 +64,7 @@ Scale=%<factor%>
 \intextender#*m
 \Join#m
 \leadsto#m
+\leftcurvedarrow#m
 \leftdasharrow#m
 \leqqslant#m
 \lesseqqslantgtr#m
@@ -132,6 +133,7 @@ Scale=%<factor%>
 \rhd#m
 \rightcurvedarrow#m
 \rightdasharrow#m
+\rightdowncurvedarrow#m
 \shortmid#m
 \shortparallel#m
 \shortparallelslant#m

@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2024/06/24 for v6.28a
+# Matthew Bertucci 2024/10/24 for v6.29
 
 #include:amsmath
 #include:array
@@ -207,9 +207,6 @@ t
 b
 T
 B
-L
-R
-C
 tikz={%<TikZ options%>}
 name=%<name%>
 respect-arraystretch

@@ -1,5 +1,5 @@
 # ltugboat class
-# Matthew Bertucci 2024/04/16 for v2.32
+# Matthew Bertucci 2024/10/28 for v2.33
 
 #include:mflogo
 #include:gettitlestring
@@ -141,6 +141,7 @@ runningoff
 \hours#*
 \HTML
 \HTTP
+\HTTPS
 \hyph
 \IDE
 \IEEE
@@ -401,6 +402,7 @@ runningoff
 \tubbraced{text%plain}
 \tubcaptionfonts#*
 \tubcaptionleftglue#*
+\tubcentsold#S
 \TUBdefaulteTeX#*
 \tubdoiprefix#*
 \tubdots
