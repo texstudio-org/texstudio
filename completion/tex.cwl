@@ -539,7 +539,7 @@
 \hom#m
 \hookleftarrow#m
 \hookrightarrow#m
-\hphantom{text}
+\hphantom{text%plain}
 \hrulefill#*
 \i#n
 \ialign{%<⟨preamble⟩%> \cr %<⟨row⟩ \cr ... ⟨row⟩%> \cr}#*
@@ -694,7 +694,7 @@
 \parallel#m
 \partial#m
 \perp#m
-\phantom{text}
+\phantom{text%plain}
 \phi#m
 \Phi#m
 \pi#m
@@ -820,7 +820,7 @@
 \vert#m
 \Vert#m
 \vglue#*
-\vphantom{text}
+\vphantom{text%plain}
 \wedge#m
 \widehat{a}#m
 \widetilde{a}#m
