@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/10/18 for v13.14.0
+# Matthew Bertucci 2024/11/01 for v13.15.0
 
 #include:iftex
 
@@ -2708,6 +2708,7 @@ substack
 subtitleedit
 subversion
 suckless
+sui
 sumologic
 suno
 sunrise
