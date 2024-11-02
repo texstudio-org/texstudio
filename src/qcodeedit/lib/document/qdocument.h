@@ -189,6 +189,17 @@ class QCE_EXPORT QDocument : public QObject
 
 		void load(const QString& file, QTextCodec* codec);
 
+        enum SaveErrorCode
+        {
+            success,
+            fileNotWritable,
+            noBackupFilenameAvailable,
+            backupFileNotRestored,
+            writingFailed,
+        };
+
+        SaveErrorCode save(const QString& filename);
+
 		QString getFileName() const;
 		QFileInfo getFileInfo() const;
 		QString getName() const;

@@ -798,6 +798,58 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 	setCodecDirect(codec);
 	setLastModified(QFileInfo(file).lastModified());
 }
+/*!
+ * \brief save document to file directly
+ * Use codec which was used on loading
+ * Mainly itended for hidden documents which are not shown in editor
+ * \param file
+ */
+QDocument::SaveErrorCode QDocument::save(const QString &filename){
+    QString txt = text();
+    QByteArray data =  codec() ? codec()->fromUnicode(txt) : txt.toLocal8Bit();
+
+    // 1. Prepare
+    QString backupFilename;
+    if (QFileInfo::exists(filename)) {
+        const int MAX_TRIES = 100;
+        for (int i=0; i<MAX_TRIES; i++) {
+            QString fn = filename + QString("~txs%1").arg(i);
+            if (QFile::copy(filename, fn)) {
+                backupFilename = fn;
+                break;
+            }
+        }
+        if (backupFilename.isNull()) {
+            return noBackupFilenameAvailable;
+        }
+    }
+    SaveErrorCode errorCode=success;
+    // 2. Save
+    QFile f(filename);
+    if ( !f.open(QFile::WriteOnly) ) {
+        QFile::remove(backupFilename);  // original was not modified
+        return fileNotWritable;
+    } else {
+        int bytesWritten = f.write(data);
+        bool sucessfullySaved = (bytesWritten == data.size());
+
+        // 3. Cleanup
+        if (sucessfullySaved) {
+            QFile::remove(backupFilename);
+        } else {
+            QString message = tr("Writing the document to file\n%1\nfailed.").arg(filename);
+            QFile::remove(filename);
+            bool ok = QFile::rename(backupFilename, filename);  // revert
+            if (!ok) {
+                errorCode=backupFileNotRestored;
+            }else{
+                errorCode=writingFailed;
+            }
+        }
+        f.close(); //explicite close for watcher (??? is this necessary anymore?)
+    }
+    return errorCode;
+}
 
 /*!
 	\return The format scheme used by the document

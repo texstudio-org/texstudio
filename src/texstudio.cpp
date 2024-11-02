@@ -3087,8 +3087,15 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 	}
     // save hidden files (in case that they are changed via replace in all docs
     foreach (LatexDocument *d, documents.hiddenDocuments){
-        if(d->getEditorView() && d->getEditorView()->editor->isContentModified())
-            d->getEditorView()->editor->save();
+        if(!d->isClean()){
+            if(d->getEditorView()){
+                d->getEditorView()->editor->save();
+            }else{
+                // hidden document without editorView
+                d->save(d->getFileName());
+                d->setClean();
+            }
+        }
     }
 
 
@@ -3283,21 +3290,27 @@ bool Texstudio::saveFilesForClosing(QList<LatexDocument *> &documentList)
     foreach (LatexDocument *doc, inputDocs) {
 repeatAfterFileSavingFailed:
         LatexEditorView *edView=doc->getEditorView();
-        if(!edView) continue;
-		if (edView->editor->isContentModified()) {
+        if (!doc->isClean()) {
             if(!doc->isHidden())
                 editors->setCurrentEditor(edView);
+            QString displayName= edView ? edView->displayName() : doc->getFileName();
             int ret=QMessageBox::warning(this, TEXSTUDIO,
                                            tr("The document \"%1\" contains unsaved work. "
-                                              "Do you want to save it before closing?").arg(edView->displayName()),
+                                              "Do you want to save it before closing?").arg(displayName),
                                            QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,
                                            QMessageBox::Save);
             switch (ret) {
             case QMessageBox::Save:
-                fileSave(false,edView->editor);
-                if (currentEditorView() && currentEditorView()->editor->isContentModified())
-					goto repeatAfterFileSavingFailed;
-				break;
+                if(!edView){
+                    // hidden document without editorView
+                    doc->save(doc->getFileName());
+                    doc->setClean();
+                }else{
+                    fileSave(false,edView->editor);
+                    if (currentEditorView() && currentEditorView()->editor->isContentModified())
+                        goto repeatAfterFileSavingFailed;
+                    break;
+                }
             case QMessageBox::Discard:
                 documentList<<doc;
 				break;
