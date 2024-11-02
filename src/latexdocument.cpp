@@ -1712,6 +1712,7 @@ void LatexDocument::replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair
 	QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
 	int oldLineNr=-1;
 	int offset=0;
+    QList<int> lineNumbers;
 	for (it = items.constBegin(); it != items.constEnd(); ++it) {
 		QDocumentLineHandle *dlh = it.key();
 		ReferencePair rp = it.value();
@@ -1726,12 +1727,21 @@ void LatexDocument::replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair
 			cur->replaceSelectedText(newName);
 			offset+=newName.length()-rp.name.length();
 			oldLineNr=lineNo;
+            if(lineNumbers.isEmpty() || lineNumbers.last()!=lineNo){
+                lineNumbers << lineNo;
+            }
 		}
 	}
 	if (!cursor) {
 		cur->endEditBlock();
 		delete cur;
 	}
+    if(!edView){
+        // explicitely call patchStructure on hidden documents with no edView
+        foreach (int i, lineNumbers) {
+            patchStructure(i, 1);
+        }
+    }
 }
 
 /*!

@@ -313,7 +313,7 @@ void LabelSearchQuery::replaceAll()
 		LatexDocument *doc = qobject_cast<LatexDocument *>(search.doc.data());
 		if (doc) {
 			doc->replaceLabelsAndRefs(oldLabel, newLabel);
-		}
+        }
 	}
     // as label is renamed, update the search expression to renamed label
     // see also #3805
