@@ -5,7 +5,7 @@
 #include:keyval
 
 \bibinput{bib file}
-\newbibfield{field}#s#%usebibfield
+\newbibfield{field%specialDef}#s#%usebibfield
 \newbibignore{type}
 \usebibentry{citekey}{field%keyvals}#c
 #keyvals:\usebibentry#c
