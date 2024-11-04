@@ -1,8 +1,13 @@
 # newcomputermodern package
-# Matthew Bertucci 2024/09/10 for v6.0.0
+# Matthew Bertucci 2024/11/04 for v7.0.0
 
 #include:fontspec
 #include:unicode-math
+
+#keyvals:\usepackage/newcomputermodern#c
+regular
+sansdefault
+#endkeyvals
 
 \textprosgegrammeni{text%plain}
 \prosgegrammeni
