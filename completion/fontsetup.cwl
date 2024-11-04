@@ -1,5 +1,5 @@
 # fontsetup package
-# Matthew Bertucci 2024/01/06 for v2.02
+# Matthew Bertucci 2024/11/04 for v2.3.0
 
 #include:iflang
 #include:iftex
@@ -9,6 +9,7 @@
 
 #keyvals:\usepackage/fontsetup#c
 default
+sansdefault
 upint
 varnothing
 newcmbb
@@ -76,3 +77,4 @@ xcharter
 \greeksetup#S
 \cvfoursetup#S
 \ncmsetup#S
+\ncmsanssetup#S
