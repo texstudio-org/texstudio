@@ -1,9 +1,11 @@
 # argumentation package
-# Matthew Bertucci 2024/09/26 for v1.3
+# Matthew Bertucci 2024/11/04 for v1.4
 
 #include:amsbsy
 #include:amsmath
 #include:pgfopts
+#include:etoolbox
+#include:refcount
 #include:xspace
 #include:xcolor
 #include:tikz
@@ -15,9 +17,19 @@ namestyle=#none,math,bold,monospace,monoemph
 argumentstyle=#standard,large,thick,gray,colored
 attackstyle=#standard,large,modern
 supportstyle=#standard,dashed,double
-macros=true
+indexing=#none,numeric,alphabetic
+macros#true,false
+beamer#true,false
 #endkeyvals
 
+#ifOption:macros
+\AF
+\arguments
+\attacks
+\AFcomplete
+\afref{label}#r
+\fullafref{label}#r
+#endif
 #ifOption:macros=true
 \AF
 \arguments
@@ -27,14 +39,32 @@ macros=true
 \fullafref{label}#r
 #endif
 
+#ifOption:beamer
+\aflabeling{af-label}{argument list}
+\afextension{af-label}{argument list}
+\afreduct{af-label}{argument list}
+\afrestriction{af-label}{argument list}
+#endif
+#ifOption:beamer=true
+\aflabeling{af-label}{argument list}
+\afextension{af-label}{argument list}
+\afreduct{af-label}{argument list}
+\afrestriction{af-label}{argument list}
+#endif
+
 \setargumentstyle{style}
 \setattackstyle{style}
 \setsupportstyle{style}
 \setannotationstyle{style}
+\setafstyle{style}
+\setargumentcolorscheme{outer color}{inner color}
 
 \begin{af}#\pictureHightlight
 \begin{af}[options]#\pictureHightlight
 \end{af}
+\begin{af*}#\pictureHightlight
+\begin{af*}[options]#\pictureHightlight
+\end{af*}
 
 \argument{name}
 \argument(id){name}
@@ -61,7 +91,6 @@ aigyellow#B
 aigblue#B
 
 # not documented
-\argstyle{text}#S
 \theaf#S
-\theargument#S
 \ifmacros#S
+\ifbeamer#S
