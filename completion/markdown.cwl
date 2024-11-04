@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2024/09/30 for v3.7.1
+# Matthew Bertucci 2024/11/04 for v3.8.0
 
 #include:paralist
 #include:amsmath
@@ -23,18 +23,24 @@
 \begin{markdown}
 \begin{markdown}[options%keyvals]
 \end{markdown}
+\begin{yaml}
+\begin{yaml}[options%keyvals]
+\end{yaml}
 
 \markinline{markdown text}
 \markinline[options%keyvals]{markdown text}
 
 \markdownInput{file}#i
 \markdownInput[options%keyvals]{file}#i
+\yamlInput{file}#i
+\yamlInput[options%keyvals]{file}#i
 
 \markdownSetup{options%keyvals}
 \markdownSetupSnippet{name%specialDef}{options%keyvals}#s#%markdownsnippet
 \markdownIfSnippetExists{name}{true}{false}#*
+\yamlSetup{options%keyvals}
 
-#keyvals:\usepackage/markdown#c,\begin{markdown}#c,\markinline#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c
+#keyvals:\usepackage/markdown#c,\begin{markdown}#c,\begin{yaml}#c,\markinline#c,\markdownInput#c,\yamlInput#c,\markdownSetup#c,\markdownSetupSnippet#c,\yamlSetup#c
 plain#true,false
 import=#witiko/dot,witiko/graphicx/http,witiko/tilde,witiko/markdown/techdoc
 snippet=#%markdownsnippet
@@ -59,6 +65,7 @@ debugExtensions#true,false
 codeSpans#true,false
 definitionLists#true,false
 eagerCache#true,false
+experimental#true,false
 ensureJekyllData#true,false
 expectJekyllData#true,false
 extensions=%<file names%>
@@ -456,3 +463,6 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererWarningPrototype#*
 \markdownVersion#S
 \markinlinePlainTeX{markdown text}#*
+\yamlBegin#*
+\yamlEnd#*
+\markdownThemeVersion#S
