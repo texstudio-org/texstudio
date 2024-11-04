@@ -16,8 +16,8 @@ store-all
 #ifOption:thmtools-compat
 \declaretheorem{envname}#N
 \declaretheorem[options%keyvals]{envname}#N
-\declaretheoremstyle{style}
-\declaretheoremstyle[options%keyvals]{style}
+\declaretheoremstyle{style%specialDef}#s#%keytheoremstyle
+\declaretheoremstyle[options%keyvals]{style%specialDef}#s#%keytheoremstyle
 \begin{restatable}{envname}{tag}
 \begin{restatable}[options%keyvals]{envname}{tag}
 \end{restatable}
@@ -92,10 +92,10 @@ tcolorbox-no-titlebar
 tcolorbox-no-titlebar={%<tcolorbox options%>}
 #endkeyvals
 
-\newkeytheoremstyle{style}{options%keyvals}#s#%keytheoremstyle
+\newkeytheoremstyle{style%specialDef}{options%keyvals}#s#%keytheoremstyle
 \renewkeytheoremstyle{style}{options%keyvals}
-\providekeytheoremstyle{style}{options%keyvals}#s#%keytheoremstyle
-\declarekeytheoremstyle{style}{options%keyvals}#s#%keytheoremstyle
+\providekeytheoremstyle{style%specialDef}{options%keyvals}#s#%keytheoremstyle
+\declarekeytheoremstyle{style%specialDef}{options%keyvals}#s#%keytheoremstyle
 
 #keyvals:\newkeytheoremstyle#c,\renewkeytheoremstyle#c,\providekeytheoremstyle#c,\declarekeytheoremstyle#c,\declaretheoremstyle#c
 spaceabove=##L
