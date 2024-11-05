@@ -1,5 +1,5 @@
 # ysabeau package
-# Matthew Bertucci 2024/02/01 for v1.1
+# Matthew Bertucci 2024/11/05 for v1.4
 
 #include:fontenc
 # loads T1 option of fontenc
@@ -52,6 +52,7 @@ aftsolidus=
 \lfstyle
 \light{text}
 \lightfont
+\liningnums#*
 \mediumfont
 \nufigures#*
 \numfigures
@@ -62,9 +63,13 @@ aftsolidus=
 \regularfont
 \semibold{text}
 \semiboldfont
+\subscript#*
 \sufigures#*
 \supfigures
+\supscript#*
 \supstyle#*
+\tabularliningnums#*
+\tabularoldstylenums#*
 \textde{text}#*
 \textden{text}
 \textdenominators{text}#*
