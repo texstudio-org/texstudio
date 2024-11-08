@@ -17,7 +17,7 @@
 \begin{docCommand*}[options%keyvals]{name}{parameters}
 \end{docCommand*}
 \begin{docCommands}{%<{variant1},{variant2},...%>}
-\begin{docCommands}[options%keyvals]{%<{variant1},{variant2},...%>}
+\begin{docCommands}[%<options%>]{%<{variant1},{variant2},...%>}
 \end{docCommands}
 \begin{docEnvironment}{name}{parameters}
 \begin{docEnvironment}[options%keyvals]{name}{parameters}
@@ -26,7 +26,7 @@
 \begin{docEnvironment*}[options%keyvals]{name}{parameters}
 \end{docEnvironment*}
 \begin{docEnvironments}{%<{variant1},{variant2},...%>}
-\begin{docEnvironments}[options%keyvals]{%<{variant1},{variant2},...%>}
+\begin{docEnvironments}[%<options%>]{%<{variant1},{variant2},...%>}
 \end{docEnvironments}
 \begin{docKey}{name}{parameters}{description}
 \begin{docKey}[key path][options%keyvals]{name}{parameters}{description%text}
@@ -35,7 +35,7 @@
 \begin{docKey*}[key path][options%keyvals]{name}{parameters}{description%text}
 \end{docKey*}
 \begin{docKeys}{%<{variant1},{variant2},...%>}
-\begin{docKeys}[options%keyvals]{%<{variant1},{variant2},...%>}
+\begin{docKeys}[%<options%>]{%<{variant1},{variant2},...%>}
 \end{docKeys}
 \begin{docPathOperation}{name}{parameters}
 \begin{docPathOperation}[options%keyvals]{name}{parameters}
@@ -44,7 +44,7 @@
 \begin{docPathOperation*}[options%keyvals]{name}{parameters}
 \end{docPathOperation*}
 \begin{docPathOperations}{%<{variant1},{variant2},...%>}
-\begin{docPathOperations}[options%keyvals]{%<{variant1},{variant2},...%>}
+\begin{docPathOperations}[%<options%>]{%<{variant1},{variant2},...%>}
 \end{docPathOperations}
 \docValue{name}
 \docValue[options%keyvals]{name}

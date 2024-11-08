@@ -14,7 +14,7 @@
 \redletteroff
 \scripturecurrentchapter
 \scripturecurrentverse
-\scripturestyle{name}{options%keyvals}#s#%scripturestyle
+\scripturestyle{name%specialDef}{options%keyvals}#s#%scripturestyle
 \scripturestyle*{name}{options%keyvals}
 \selah
 \scripturesetup{options%keyvals}

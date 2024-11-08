@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2024/05/13 for v0.9.1
+# Matthew Bertucci 2024/11/04 for v0.9.6
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -14,9 +14,18 @@
 \JSONParseArrayValues[options%keyvals]{token variable}{key%plain}{string}
 \JSONParseArrayValues[options%keyvals]{token variable}{key%plain}[subkey]{string}
 \JSONParseArrayValuesMap{token variable}{key%plain}{command name}
+\JSONParseArrayValuesMap{token variable}{key%plain}{command name}[before code]
+\JSONParseArrayValuesMap{token variable}{key%plain}{command name}[before code][after code]
 \JSONParseArrayValuesMap{token variable}{key%plain}[subkey]{command name}
+\JSONParseArrayValuesMap{token variable}{key%plain}[subkey]{command name}[before code]
+\JSONParseArrayValuesMap{token variable}{key%plain}[subkey]{command name}[before code][after code]
 \JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}{command name}
+\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}{command name}[before code]
+\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}{command name}[before code][after code]
 \JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}[subkey]{command name}
+\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}[subkey]{command name}[before code]
+\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}[subkey]{command name}[before code][after code]
+\JSONParseArrayNewline
 \JSONParseArrayIndex
 \JSONParseArrayKey
 \JSONParseArrayValue

@@ -1,5 +1,5 @@
 # keytheorems package
-# Matthew Bertucci 2024/10/08 for v0.1.6
+# Matthew Bertucci 2024/11/06 for v0.2.1
 
 #include:aliascnt
 #include:amsthm
@@ -16,8 +16,8 @@ store-all
 #ifOption:thmtools-compat
 \declaretheorem{envname}#N
 \declaretheorem[options%keyvals]{envname}#N
-\declaretheoremstyle{style}
-\declaretheoremstyle[options%keyvals]{style}
+\declaretheoremstyle{style%specialDef}#s#%keytheoremstyle
+\declaretheoremstyle[options%keyvals]{style%specialDef}#s#%keytheoremstyle
 \begin{restatable}{envname}{tag}
 \begin{restatable}[options%keyvals]{envname}{tag}
 \end{restatable}
@@ -71,15 +71,15 @@ continues-code=%<code%>
 # keys that can't be used in styles
 #keyvals:\newkeytheorem#c,\renewkeytheorem#c,\providekeytheorem#c,\declarekeytheorem#c,\declaretheorem#c
 name=%<display name%>
-numbered=#true,false,unless-unique
-parent=%<counter%>
-sibling=%<counter%>
 refname=%<ref name%>
 Refname=%<ref name%>
 #endkeyvals
 
 # keys that can be used in styles
 #keyvals:\newkeytheorem#c,\renewkeytheorem#c,\providekeytheorem#c,\declarekeytheorem#c,\declaretheorem#c,\newkeytheoremstyle#c,\renewkeytheoremstyle#c,\providekeytheoremstyle#c,\declarekeytheoremstyle#c,\declaretheoremstyle#c
+numbered=#true,false,unless-unique
+parent=%<counter%>
+sibling=%<counter%>
 preheadhook=%<code%>
 postheadhook=%<code%>
 prefoothook=%<code%>
@@ -90,12 +90,14 @@ tcolorbox
 tcolorbox={%<tcolorbox options%>}
 tcolorbox-no-titlebar
 tcolorbox-no-titlebar={%<tcolorbox options%>}
+leftmargin=##L
+rightmargin=##L
 #endkeyvals
 
-\newkeytheoremstyle{style}{options%keyvals}#s#%keytheoremstyle
+\newkeytheoremstyle{style%specialDef}{options%keyvals}#s#%keytheoremstyle
 \renewkeytheoremstyle{style}{options%keyvals}
-\providekeytheoremstyle{style}{options%keyvals}#s#%keytheoremstyle
-\declarekeytheoremstyle{style}{options%keyvals}#s#%keytheoremstyle
+\providekeytheoremstyle{style%specialDef}{options%keyvals}#s#%keytheoremstyle
+\declarekeytheoremstyle{style%specialDef}{options%keyvals}#s#%keytheoremstyle
 
 #keyvals:\newkeytheoremstyle#c,\renewkeytheoremstyle#c,\providekeytheoremstyle#c,\declarekeytheoremstyle#c,\declaretheoremstyle#c
 spaceabove=##L

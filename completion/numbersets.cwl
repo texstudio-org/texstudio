@@ -10,7 +10,7 @@ style=#bb,bfup,bfit,%numbersetsstyle
 #endkeyvals
 
 \DeclareNumberSetCommand{command}{symbol}#d
-\DeclareNumberSetStyle{style}{command}#s#%numbersetsstyle
+\DeclareNumberSetStyle{style%specialDef}{command}#s#%numbersetsstyle
 \NaturalNumbers
 \Integers
 \RationalNumbers

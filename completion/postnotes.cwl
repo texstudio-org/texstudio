@@ -1,5 +1,5 @@
 # postnotes package
-# Matthew Bertucci 2024/10/15 for v0.3.0
+# Matthew Bertucci 2024/11/05 for v0.4.0
 
 \postnote{text}
 \postnote[options%keyvals]{text}
@@ -11,6 +11,7 @@ sortnum=%<number%>
 nomark
 label=##l
 zlabel=##l
+maybemulti
 #endkeyvals
 
 \postnotesection{text}
@@ -43,6 +44,10 @@ style=#endnotes,pagenote
 hyperref=#auto,true,false
 backlink#true,false
 sort#true,false
+checkduplicates#true,false
+checkfloats#true,false
+maybemulti#true,false
+counteraux#true,false
 #endkeyvals
 
 \pnhdchapfirst#*
@@ -70,7 +75,5 @@ sort#true,false
 \thepostnote#*
 \thepostnotesection#*
 \thepostnotetext#*
-
-# deprecated
-\postnotesectionx{text}#S
-\postnotesectionx[options]{text}#S
+\pnsetcounteraux{integer}#*
+\pnaddtocounteraux{integer}#*
