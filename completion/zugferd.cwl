@@ -1,10 +1,10 @@
 # zugferd package
-# Matthew Bertucci 2024/09/13 for v0.8
+# Matthew Bertucci 2024/11/08 for v0.9a
 
 #include:siunitx
 
 #keyvals:\usepackage/zugferd#c
-format=#xrechnung,xrechnung3.0,xrechnung2.3,basic
+format=#xrechnung,xrechnung3.0,xrechnung2.3,basic,minimum
 zugferd#true,false
 write-xml#true,false
 xml-file=%<filename%>
