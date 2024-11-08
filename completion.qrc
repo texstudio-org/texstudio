@@ -1393,6 +1393,7 @@
 <file>completion/enotez.cwl</file>
 <file>completion/enparen.cwl</file>
 <file>completion/enumerate.cwl</file>
+<file>completion/enumext.cwl</file>
 <file>completion/enumitem.cwl</file>
 <file>completion/enverb.cwl</file>
 <file>completion/environ.cwl</file>
