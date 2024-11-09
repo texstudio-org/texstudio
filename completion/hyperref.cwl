@@ -393,26 +393,13 @@ width=##L
 \subsectionautorefname#*
 \subsubsectionautorefname#*
 \tableautorefname#*
+# most \theH<counter> are now in the format
 \theHchapter#*
-\theHenumi#*
-\theHenumii#*
-\theHenumiii#*
-\theHenumiv#*
-\theHequation#*
-\theHfigure#*
 \theHHfootnote#*
 \theHHmpfootnote#*
 \theHItem#*
-\theHmpfootnote#*
-\theHparagraph#*
-\theHpart#*
-\theHsection#*
-\theHsubparagraph#*
-\theHsubsection#*
-\theHsubsubsection#*
-\theHtable#*
 \theHtheorem#*
-\theHthm#* 
+\theHthm#*
 \theoremautorefname#*
 \unichar{char num}#*
 \XeTeXLinkBox{contents}#*

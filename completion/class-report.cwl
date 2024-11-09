@@ -27,6 +27,7 @@ fleqn
 openbib
 #endkeyvals
 
+\theHchapter#*
 \thechapter#*
 \chaptername#n
 \bibname#n
