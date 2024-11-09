@@ -31,6 +31,7 @@ openbib
 \frontmatter#n
 \mainmatter#n
 \backmatter#n
+\theHchapter#*
 \thechapter#*
 \chaptername#n
 \bibname#n
