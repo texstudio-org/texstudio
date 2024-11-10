@@ -386,6 +386,7 @@ line-minimum-length=##L
 \ExerciseTableCode
 \numberofcolumns
 \theexercise
+\theHexercise#*
 \ParameterValue
 \PropertyValue
 

@@ -60,3 +60,4 @@ split-title={%<token list%>}
 \enotezsplitlistheading#*
 \enotezdisable#*
 \theendnote#*
+\theHendnote#*

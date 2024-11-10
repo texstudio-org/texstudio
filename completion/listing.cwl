@@ -11,6 +11,7 @@ bigcaptions
 \listingname#*
 \listlistingname#*
 \thelisting#*
+\theHlisting#*
 
 \filename#S
 \fileversion#S

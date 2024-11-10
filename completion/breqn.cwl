@@ -72,7 +72,6 @@ cols={%<col specs%>}
 \condition[punctuation mark]{text}
 \condition*{formula}
 \hiderel{rel symbol}#m
-\intertext{text}
 
 \breqnpopcats#*
 \conditionpunct#*
@@ -120,4 +119,3 @@ cols={%<col specs%>}
 \premath#*
 \prerelpenalty#*
 \replicate{token list}#*
-\theparentequation#*

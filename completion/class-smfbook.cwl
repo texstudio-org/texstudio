@@ -149,6 +149,7 @@ smfalpha
 \subsectionname#*
 \subsubsectionname#*
 \thechapter#*
+\theHchapter#*
 \theoname#*
 \thmnewline#*
 \tocappendix{arg1}{arg2}{arg3}#*

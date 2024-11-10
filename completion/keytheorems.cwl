@@ -116,6 +116,10 @@ noteseparator=%<separator%>
 numberfont=%<font commands%>
 #endkeyvals
 
+#keyvals:\theoremstyle#c
+%keytheoremstyle
+#endkeyvals
+
 \NAME#*
 \NUMBER#*
 \NOTE#*

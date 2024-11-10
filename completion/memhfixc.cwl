@@ -12,6 +12,6 @@
 \printpageinnotes#S
 \theHchapter#S
 \theHmemhycontfloat#S
-\theHpagenote
+\theHpagenote#S
 \theHsection#S
-\thememhycontfloat
+\thememhycontfloat#S

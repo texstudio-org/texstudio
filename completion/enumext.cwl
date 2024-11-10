@@ -64,6 +64,10 @@
 \theenumXii#*
 \theenumXiii#*
 \theenumXiv#*
+\theHenumXi#*
+\theHenumXii#*
+\theHenumXiii#*
+\theHenumXiv#*
 
 \itemwidth#L
 
