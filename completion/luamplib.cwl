@@ -1,10 +1,10 @@
 # luamplib package
-# Matthew Bertucci 2024/07/29 for v2.34.3
+# Matthew Bertucci 2024/11/12 for v2.35
 
 #include:luatex
 
 \begin{mplibcode}
-\begin{mplibcode}[instance name]
+\begin{mplibcode}[instance name,options%keyvals]
 \end{mplibcode}
 \mplibcode#S
 \mplibcode[instance name]#S
@@ -12,7 +12,9 @@
 \mplibforcehmode
 \mplibnoforcehmode
 \mpfig
+\mpfig[options%keyvals]
 \mpfig*
+\mpfig*[options%keyvals]
 \endmpfig
 \mpfiginstancename#*
 \mpliblegacybehavior{choice%keyvals}
@@ -46,12 +48,24 @@
 \endmppattern#S
 \mplibsetformat{format name%keyvals}
 \usemplibgroup{name}
+\usemplibgroup[options%keyvals]{name}
 \begin{mplibgroup}{name}
 \begin{mplibgroup}{name}[options%keyvals]
 \end{mplibgroup}
 \mplibgroup{name}#S
 \mplibgroup{name}[options]#S
 \endmplibgroup#S
+
+#keyvals:\begin{mplibcode}#c,\mpfig#c,\mpfig*#c,\usemplibgroup#c
+tag=%<tag name%>
+debug
+correct-BBox=%<llx lly urx ury%>
+alt=%<alt text%>
+artifact
+actualtext=%<text%>
+text
+instance=%<instance name%>
+#endkeyvals
 
 #keyvals:\mpliblegacybehavior#c,\mplibtextextlabel#c,\mplibcodeinherit#c,\mplibglobaltextext#c,\mplibverbatim#c,\mplibshowlog#c
 enable
@@ -124,3 +138,15 @@ resources=%<PDF resources%>
 \mplibtextext{font}{size}{text}{hskip}{raise}#S
 \mplibtmptoks{arg}#S
 \mplibtoPDF{pdfliteral}#S
+\usemplibgroupmain{arg}#S
+\mplibgobbleoptsmpfig[arg]#S
+\luamplibtagtextbegin{arg}#S
+\luamplibtagtextend#S
+\mplibalttext{arg}#S
+\mplibactualtext{arg}#S
+\mplibstarttoPDForiginal#S
+\mplibstoptoPDForiginal#S
+\mplibputtextboxoriginal#S
+\luamplibtaggingbegin#S
+\luamplibtaggingend#S
+\luamplibtaggingBBox#S
