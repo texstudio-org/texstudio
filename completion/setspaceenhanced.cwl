@@ -1,5 +1,5 @@
 # setspaceenhanced package
-# Matthew Bertucci 2023/09/20 for v1.01
+# Matthew Bertucci 2024/11/14 for v1.04
 
 #include:setspace
 
@@ -11,4 +11,5 @@ doublespacing
 keepfontsize#true,false
 onehalfspacing
 singlespacing
+nodisplayskipstretch
 #endkeyvals
