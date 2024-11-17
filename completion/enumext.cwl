@@ -1,5 +1,5 @@
 # enumext package
-# Matthew Bertucci 2024/11/04 for v1.0
+# Matthew Bertucci 2024/11/17 for v1.1
 
 #include:multicol
 #include:scontents
@@ -130,6 +130,10 @@ save-sep={%<text symbol%>}
 save-ref#true,false
 mark-ref=%<symbol%>
 wrap-ans={%<code%>}
+mark-ans*=%<symbol%>
+mark-pos*=#left,right,center
+mark-sep*=##L
+wrap-ans*={%<code%>}
 wrap-opt={%<code%>}
 show-ans#true,false
 mark-ans=%<symbol%>
@@ -164,6 +168,14 @@ label-sep=##L
 layout-sty={%<num upper,num lower%>}
 layout-sep=##L
 layout-top=##L
+save-sep={%<text symbol%>}
+mark-ans*=%<symbol%>
+mark-pos*=#left,right,center
+mark-sep*=##L
+wrap-ans*={%<code%>}
+wrap-opt={%<code%>}
+show-ans#true,false
+show-pos#true,false
 #endkeyvals
 
 #keyvals:\foreachkeyans
