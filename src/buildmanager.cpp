@@ -1025,7 +1025,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
                 bool user;
                 QString cmd = getCommandLine(cmdName, &user);
                 if (cmd.isEmpty()) {
-                    if (options.nestingDeep == 1) UtilsUi::txsWarning(tr("Command %1 not defined").arg(subcmd));
+                    if (options.nestingDeep == 1) qDebug()<<tr("Command %1 not defined").arg(subcmd);
                     else if (cmdName != "pre-compile") qDebug() << tr("Command %1 not defined").arg(subcmd); //pre-compile is expecte
                     if (cmdName != "pre-compile") {
                         res.commands << CommandToRun(""); // add empty command to provoke an error on higher level. Otherwise the missing of the command is simply ignoed e.g. txs:/quick without empty pdflatex
