@@ -35,7 +35,7 @@ void LogHighlighter::highlightBlock(const QString &text)
 		setFormat(0, text.length(), LatexLogEntry::textColor(LT_WARNING));
     } else if (text.startsWith(". ") || text.indexOf(rxOnlyDots)==0) {
 		setFormat(0, text.length(), LatexLogEntry::textColor(LT_INFO));
-	} else if (text.indexOf(".tex", 0) != -1 && !text.startsWith("Error:")) {
+	} else if ( ( text.indexOf(".tex", 0) != -1 || text.indexOf(tr("Process started:"), 0) != -1 ) && !text.startsWith("Error:")) {
 		setFormat(0, text.length(), ColorFile);
 	}
 }

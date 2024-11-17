@@ -445,6 +445,25 @@ debug={%<options%>}
 \thetable#*
 \thetotalpages#*
 
+\theHenumi#*
+\theHenumii#*
+\theHenumiii#*
+\theHenumiv#*
+\theHequation#*
+\theHfigure#*
+\theHfootnote#*
+# \theHmpfn#*
+\theHmpfootnote#*
+# \theHpage#*
+\theHparagraph#*
+\theHpart#*
+\theHsection#*
+\theHsubparagraph#*
+\theHsubsection#*
+\theHsubsubsection#*
+\theHtable#*
+# \theHtotalpages#*
+
 # boxes
 \savebox{box}[width][position]{text}#*
 \savebox{box}[width]{text}#*
