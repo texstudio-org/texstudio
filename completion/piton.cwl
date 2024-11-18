@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/10/18 for v4.1
+# Matthew Bertucci 2024/11/18 for v4.2
 
 #include:l3keys2e
 #include:luatexbase
@@ -126,6 +126,7 @@ path-write=%<path%>
 split-on-empty-lines#true,false
 split-separation=%<code%>
 break-strings-anywhere
+break-numbers-anywhere
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}
@@ -179,6 +180,9 @@ Keyword9=%<formatting%>
 Prompt=%<formatting%>
 Tag=%<formatting%>
 TypeExpression=%<formatting%>
+Number.Internal=%<formatting%>
+String.Long.Internal=%<formatting%>
+String.Short.Internal=%<formatting%>
 #endkeyvals
 
 \PitonStyle{style%keyvals}{text%plain}
@@ -231,6 +235,9 @@ Keyword9
 Prompt
 Tag
 TypeExpression
+Number.Internal
+String.Long.Internal
+String.Short.Internal
 #endkeyvals
 
 \PitonClearUserFunctions
