@@ -1,5 +1,5 @@
 # fvextra package
-# Matthew Bertucci 2024/09/14 for v1.8.0
+# Matthew Bertucci 2024/11/18 for v1.10.0
 
 #include:etoolbox
 #include:fancyvrb
@@ -249,3 +249,4 @@ FancyVerbHighlightColor#B
 \FancyVerbBackgroundColor#*
 \FancyVerbBackgroundColorVPhantom#*
 \FancyVerbBackgroundColorPadding#*
+\FancyVerbBufferIndex#*
