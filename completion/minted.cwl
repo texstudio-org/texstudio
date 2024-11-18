@@ -2,7 +2,7 @@
 # modified by Tim Hoffmann 2014-03-24
 # modified by Elias Kirchgässner 2016-07-27
 # modified by muzimuzhi 2020 Feb 15, minted v2.5
-# modified by Matthew Bertucci 2024 Oct 30, v3.2.0
+# modified by Matthew Bertucci 2024 Nov 11, v3.3.0
 
 #include:catchfile
 #include:etoolbox
@@ -168,6 +168,7 @@ rangestartafterstring=%<macro%>
 rangestartstring=%<macro%>
 rangestopbeforestring=%<macro%>
 rangestopstring=%<macro%>
+reflabel=##l
 resetmargins#true,false
 rulecolor=#%color
 samepage#true,false
@@ -186,6 +187,7 @@ tab=%<macro%>
 tabcolor=#%color
 tabsize=%<integer%>
 texcl#true,false
+vspace=##L
 texcomments#true,false
 xleftmargin=##L
 xrightmargin=##L

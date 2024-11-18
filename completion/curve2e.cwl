@@ -1,5 +1,5 @@
 # curve2e package
-# Matthew Bertucci 2023/01/05 for v2.2.22
+# Matthew Bertucci 2024/11/13 for v2.6.0
 
 #include:graphicx
 #include:color
@@ -63,7 +63,12 @@ hide
 \fillstroke#*/picture
 \fpdowhile{test}{code}
 \fptest{test}{true}{false}
+\fptestT{test}{true}
+\fptestF{test}{false}
 \fpwhiledo{test}{code}
+\Modulo{int1}{int2}
+\Ifodd{int}{true}{false}
+\Ifequal{string1}{string2}{true}{false}
 \GetCoord(cmd){x}{y}#d
 \GraphGrid(coordinates)#/picture
 \Integer{number}#*
@@ -130,6 +135,12 @@ hide
 \Zbox(coordinates)[position]{formula}[dot diameter]#/picture
 \Zbox(coordinates){formula}#/picture
 \Zbox(coordinates){formula}[dot diameter]#/picture
+\noinnerlines
+
+\ifinnerlines#S
+\innerlinestrue#S
+\innerlinesfalse#S
+\griglia{arg1}{arg2}#S
 
 # deprecated
 \DivideFN#S

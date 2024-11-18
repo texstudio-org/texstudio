@@ -1,7 +1,11 @@
 # luaxml package
-# Matthew Bertucci 2024/10/18 for v0.2a
+# Matthew Bertucci 2024/11/17 for v0.2b
 
 #include:luacode
+
+#keyvals:\usepackage/luaxml#c
+default
+#endkeyvals
 
 \LXMLRule{%<CSS selector%>}|%<transformation rule%>|
 \LXMLRule[%<options%>]{%<CSS selector%>}|%<transformation rule%>|
@@ -26,5 +30,6 @@ transformer=%<transformer%>
 \end{LXMLCode*}
 
 # not documented
-\LXMLUseTransformer{arg}#*
-\LXMLDeclareTransformer{arg}#*
+\LXMLUseTransformer{arg}#S
+\LXMLDeclareTransformer{arg}#S
+\LXMLLoadDefaults#S

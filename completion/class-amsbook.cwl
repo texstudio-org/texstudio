@@ -148,6 +148,7 @@ twoside
 \textsquare
 \thankses#*
 \thechapter#*
+\theHchapter#*
 \theoremstyle{style}
 \thmhead{arg1}{arg2}{arg3}#*
 \thmheadnl#*

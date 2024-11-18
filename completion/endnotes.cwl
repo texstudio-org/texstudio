@@ -11,6 +11,7 @@
 \enotesize
 \theendnotes
 \theendnote#*
+\theHendnote#*
 \theenmark#*
 \makeenmark#*
 \enoteformat#*

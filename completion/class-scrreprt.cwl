@@ -322,6 +322,7 @@ titlehead
 \tableformat#*
 \textmaybesf{text}
 \thechapter#*
+\theHchapter#*
 \thefootnotemark#*
 \thispagewasoddfalse#*
 \thispagewasoddtrue#*

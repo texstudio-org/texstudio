@@ -62,6 +62,7 @@ hyphenatetitles
 \ssubsecfontsize{size cmd}
 \subsecfontsize{size cmd}
 \thechapter#*
+\theHchapter#*
 \thesis#*
 \theUMIpagetemp#S
 \TitleHyphenation#*

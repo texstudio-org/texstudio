@@ -321,6 +321,7 @@ titlehead
 \tableformat#*
 \textmaybesf{text}
 \thechapter#*
+\theHchapter#*
 \thefootnotemark#*
 \thispagestyle{page style%keyvals}
 \thispagewasoddfalse#*

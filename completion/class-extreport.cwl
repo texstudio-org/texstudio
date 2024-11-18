@@ -35,6 +35,7 @@ openbib
 #endkeyvals
 
 \thechapter#*
+\theHchapter#*
 \chaptername#n
 \bibname#n
 \chapter{title}#L1

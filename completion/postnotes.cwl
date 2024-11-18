@@ -73,7 +73,10 @@ counteraux#true,false
 \pnthesectionnextnote#*
 \pntitle#*
 \thepostnote#*
+\theHpostnote#*
 \thepostnotesection#*
+\theHpostnotesection#*
 \thepostnotetext#*
+\theHpostnotetext#*
 \pnsetcounteraux{integer}#*
 \pnaddtocounteraux{integer}#*
