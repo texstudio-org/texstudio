@@ -1,10 +1,7 @@
 # turnthepage package
-# Matthew Bertucci 1/8/2021 for v1.3a
+# Matthew Bertucci 2024/11/19 for v2.0a
 
-#include:atbegshi
 #include:picture
-#include:zref-abspage
-#include:zref-lastpage
 
 #keyvals:\usepackage/turnthepage#c
 short
