@@ -287,6 +287,7 @@
 <file>completion/beamerthemeFhG.cwl</file>
 <file>completion/beamerthemefocus.cwl</file>
 <file>completion/beamerthemeGoettingen.cwl</file>
+<file>completion/beamerthemegotham.cwl</file>
 <file>completion/beamerthemeHannover.cwl</file>
 <file>completion/beamerthemeHeavenlyClouds.cwl</file>
 <file>completion/beamerthemehitszbeamer.cwl</file>
@@ -468,6 +469,7 @@
 <file>completion/bxcalcux.cwl</file>
 <file>completion/bxcjkjatype.cwl</file>
 <file>completion/bxcjkvert.cwl</file>
+<file>completion/bxcoloremoji.cwl</file>
 <file>completion/bxdvidriver.cwl</file>
 <file>completion/bxeepic.cwl</file>
 <file>completion/bxenclose.cwl</file>
@@ -1497,6 +1499,7 @@
 <file>completion/extraipa.cwl</file>
 <file>completion/extramarks.cwl</file>
 <file>completion/extsizes.cwl</file>
+<file>completion/ezedits.cwl</file>
 <file>completion/fadingimage.cwl</file>
 <file>completion/faktor.cwl</file>
 <file>completion/familytree.cwl</file>
@@ -3230,6 +3233,7 @@
 <file>completion/scalebar.cwl</file>
 <file>completion/scalefnt.cwl</file>
 <file>completion/scalerel.cwl</file>
+<file>completion/scaletextbullet.cwl</file>
 <file>completion/scanpages.cwl</file>
 <file>completion/schedule.cwl</file>
 <file>completion/schemabloc.cwl</file>
@@ -3435,6 +3439,7 @@
 <file>completion/stickstootext.cwl</file>
 <file>completion/stix2.cwl</file>
 <file>completion/stmaryrd.cwl</file>
+<file>completion/stocksize.cwl</file>
 <file>completion/stoneipa.cwl</file>
 <file>completion/storebox.cwl</file>
 <file>completion/strands.cwl</file>
@@ -3939,6 +3944,7 @@
 <file>completion/tudscrcolor.cwl</file>
 <file>completion/tudscrfonts.cwl</file>
 <file>completion/tudscrsupervisor.cwl</file>
+<file>completion/tuple.cwl</file>
 <file>completion/turabian-formatting.cwl</file>
 <file>completion/turnstile.cwl</file>
 <file>completion/turnthepage.cwl</file>

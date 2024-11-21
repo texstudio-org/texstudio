@@ -29,3 +29,4 @@ oneside
 \begin{margintable}[offset%l]
 \end{margintable}
 \thesidenote
+\theHsidenote#*

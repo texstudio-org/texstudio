@@ -76,7 +76,9 @@ nearskip=##L
 \subref*{label}#r
 \listsubcaptions
 \thesubfigure#*
+\theHsubfigure#*
 \thesubtable#*
+\theHsubtable#*
 \subfigurename#*
 \subtablename#*
 \theKVtest#S

@@ -36,6 +36,7 @@ openbib
 \mainmatter#n
 \backmatter#n
 \thechapter#*
+\theHchapter#*
 \chaptername#n
 \bibname#n
 \chapter{title}#L1

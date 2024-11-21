@@ -77,6 +77,7 @@ disablejfam
 \ptexminfalse#*
 \ptexmintrue#*
 \thechapter#*
+\theHchapter#*
 \和暦
 \西暦
 \西暦false#*

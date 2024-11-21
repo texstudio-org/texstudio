@@ -60,6 +60,7 @@ openbib
 \SSectFont#*
 \SSSectFont#*
 \thechapter#*
+\theHchapter#*
 \Thispagestyle{style}#S
 \TitleFont#*
 \unitindent#*

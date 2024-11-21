@@ -190,7 +190,9 @@ subrefformat=#original,empty,simple,brace,parens,autodot,unnumbered,subsimple,su
 \subref{key}#r
 \subref*{key}#r
 \thesubfigure
+\theHsubfigure#*
 \thesubtable
+\theHsubtable#*
 
 \phantomsubcaption
 

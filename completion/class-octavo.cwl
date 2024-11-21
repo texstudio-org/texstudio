@@ -32,6 +32,7 @@ openbib
 \mainmatter
 \backmatter
 \thechapter#*
+\theHchapter#*
 \chaptername#*
 \bibname#*
 \chapter{title}#L1

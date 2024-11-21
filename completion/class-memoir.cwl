@@ -1715,8 +1715,10 @@ none
 \thechrsinstr#S
 \thedate#*
 \theHbook#*
+\theHchapter#*
 \theHpoem#*
 \theHpoemline#*
+\theHverse#*
 \thelastpage#*
 \thelastsheet#*
 \themaxsecnumdepth#*

@@ -81,4 +81,5 @@ wholewidth
 \SetTOCIndents{{%<code1%>}{%<code2%>}%<...%>}
 \tablesettings#*
 \thechapter#*
+\theHchapter#*
 \titlesettings#*

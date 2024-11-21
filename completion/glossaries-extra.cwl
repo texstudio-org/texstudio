@@ -11,7 +11,8 @@ nolangwarn
 noredefwarn
 translate=#true,false,babel
 notranslate
-languages=%<language%>
+languages=%<language(s)%>
+locales=%<language(s)%>
 nolong
 nosuper
 nolist

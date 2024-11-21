@@ -1,5 +1,5 @@
 # nlctuserguide package
-# Matthew Bertucci 2023/10/03 for v1.10
+# Matthew Bertucci 2024/11/09 for v1.11
 
 #include:iftex
 #include:etoolbox
@@ -30,6 +30,10 @@ novref
 atsymgroup
 noatsymgroup
 deephierarchy
+fontsymbols
+tikzsymbols
+noindexmarks
+indexmarks
 # options passed to glossaries-extra (those already passed not listed)
 debug=#false,true,showtargets,showaccsupp,showwrgloss,all
 savewrites#true,false
@@ -105,6 +109,10 @@ languages=%<language%>
 
 #ifOption:xr
 #include:xr-hyper
+#endif
+
+#ifOption:indexmarks
+#include:scrlayer-scrpage
 #endif
 
 #ifOption:accsupp
@@ -271,6 +279,8 @@ longpluralaccess=%<text%>
 \codebackslash
 \codepar
 \comment{text}
+\commentdbsp{text}
+\commentnl{text}
 \common
 \conditionsyntax
 \conno
@@ -279,6 +289,7 @@ longpluralaccess=%<text%>
 \csmetafmt{cmd-prefix}{meta-text}{cmd-suffix}
 \csmetametafmt{cmd-prefix}{meta-text1}{separator}{meta-text2}{cmd-suffix}
 \csoptfmt{cmd-option}
+\cspuncfmt{csname}
 \ctanmirror{URL-path%URL}{link text%text}
 \ctanmirrordocnofn{URL-path%URL}{link text%text}
 \ctanmirrornofn{URL-path%URL}{link text%text}
@@ -299,6 +310,7 @@ longpluralaccess=%<text%>
 \defsemanticcmd[color]{cmd}{font-cmd}{prefix}#d
 \defsemanticcmd{cmd}{font-cmd}{prefix}#d
 \defval{value}
+\defvalempty
 \deprecated
 \dequals
 \desc{description%text}
@@ -318,6 +330,8 @@ longpluralaccess=%<text%>
 \envfmt{envname}
 \envtext{envname}
 \eTeX
+\examplemarginref{label}#r
+\examplenameref{label}#r
 \exampleref*{label}#r
 \Exampleref*{label}#r
 \exampleref{label}#r
@@ -326,6 +340,9 @@ longpluralaccess=%<text%>
 \Examplesref*{labellist}#r
 \examplesref{labellist}#r
 \Examplesref{labellist}#r
+\examplesnameref*{labellist}#r
+\examplesnameref{labellist}#r
+\exampletagref{tag}{trailing punct}
 \ext{extension}
 \ext{extension}[suffix]#*
 \exttext{extension}
@@ -361,6 +378,7 @@ longpluralaccess=%<text%>
 \gcmd{cmd-name}{desc-cmds}
 \gcmdmeta{cmd-prefix}{meta-text}{cmd-suffix}{desc-cmds}
 \gcmdmetameta{cmd-prefix}{meta-text1}{separator}{meta-text2}{cmd-suffix}{desc-cmds}
+\gcmdpunc{cmd-name}{punc}{desc-cmds}
 \gcmds{cmd-name}{desc-cmds}
 \gcmdsp{cmd-name}{desc-cmds}
 \gcond{cmd-name}{desc-cmds}
@@ -368,10 +386,13 @@ longpluralaccess=%<text%>
 \gcsopt{cmd-option-name}{desc-cmds}
 \gctr{counter-name}{desc-cmds}
 \genv{env-name}{desc-cmds}
+\gexplcond{arg1}{arg2}{arg3}
+\gexplpred{arg1}{arg2}{arg3}
 \gext{extension-name}{desc-cmds}
 \gfile{file-name}{desc-cmds}
 \gfilemeta{file-prefix}{meta-text}{file-suffix}{desc-cmds}
 \gfilemetameta{file-prefix}{meta-text1}{separator}{meta-text2}{file-suffix}{desc-cmds}
+\gfn{arg1}{arg2}{arg3}{arg4}
 \gidx{name}{desc-cmds}
 \gidxpl{name}{desc-cmds}
 \glongswitch{switch-name}{desc-cmds}
@@ -393,6 +414,8 @@ longpluralaccess=%<text%>
 \gterm{term-name}{desc-cmds}
 \gtermabbr{term-name}{short}{long}{desc-cmds}
 \gtermacr{acronym}{short}{long}{desc-cmds}
+\homedir
+\homefilefmt{file}
 \htmlavailable
 \icon{name}
 \icontext{name}
@@ -429,6 +452,10 @@ longpluralaccess=%<text%>
 \initvalopt{option-name}{text%plain}
 \initvalref{label}#r
 \initvalvaries
+\inlineappdef{entry}
+\inlineappdef[type]{entry}
+\inlinefiledef{entry}
+\inlinefiledef[type]{entry}
 \inlineglsdef[type]{label}#r
 \inlineglsdef{label}#r
 \inlineidxdef{entry}
@@ -454,6 +481,8 @@ longpluralaccess=%<text%>
 \menu{item1,item2,...%text}
 \meta{arg}
 \metafilefmt{file-prefix}{meta-text}{file-suffix}
+\mExampleref{label}#r
+\mexampleref{label}#r
 \MikTeX
 \mirrorsamplefile{file}
 \name{name}
@@ -494,6 +523,8 @@ longpluralaccess=%<text%>
 \pkgdef{package}
 \plabel[text]{label}#l
 \plabel{label}#l
+\predcs{label}#r
+\predcs[options%keyvals]{label}#r
 \pref{label}#r
 \printicons
 \printsummary
@@ -513,7 +544,9 @@ longpluralaccess=%<text%>
 \Sectionsref{label}#r
 \settabcolsep{length}
 \shortargfmt{arg}
+\Slash
 \starredcs{csname}
+\starredenv{envname}
 \sty{package}
 \sty{package}[suffix]#*
 \styfmt{package%plain}
@@ -540,12 +573,23 @@ longpluralaccess=%<text%>
 \texfaq{URL-path%URL}{link text%text}
 \TeXLive
 \texseref{URL-path%URL}{link text%text}
+\thectr{counter}
+\theHctr{counter}
 \tugboat{title%text}{year}{volume}{number}{pdf}
 \unlimited
 \urlfootref{URL}{link text%text}#U
+\versiondate{version}{date}
 \XeLaTeX
 \XeTeX
 \yes
+\condcsT{label}#r
+\condcsT[options%keyvals]{label}#r
+\condcsF{label}#r
+\condcsF[options%keyvals]{label}#r
+\expfunc{arg1}{arg2}
+\expfunc[options%keyvals]{arg1}{arg2}
+\gathervariants{arg}
+\cmddefvarianthandler{arg}
 
 \createexample{preamble code%text}{document code%text}
 \createexample[options%keyvals]{preamble code%text}{document code%text}
@@ -559,11 +603,15 @@ pagestyle=%<pagestyle%>
 graphicsopts={%<graphics options%>}
 pages=%<pages%>
 pagesep=##L
+pagesperrow=
 tex={%<tex cmds%>}
 arara={%<arara cmds%>}
 description={%<text%>}
 title={%<text%>}
+titleskip=#none,thin,small,medium
 label=##l
+tag=%<tag%>
+link=%<link%>
 #endkeyvals
 
 \nlctuserguidegls{commands}
@@ -1632,6 +1680,9 @@ style6#B
 \examplesdir#*
 \Examplesrefprefix#*
 \examplesrefprefix#*
+\exampletagreflistsep#*
+\exampletagreflistpretitle#*
+\exampletagrefprelist#*
 \extfmt#*
 \Figurerefprefix#*
 \figurerefprefix#*
@@ -1678,6 +1729,7 @@ style6#B
 \keyeqvalue{arg1}{arg2}#*
 \keyeqvaluem{arg1}{arg2}#*
 \linkedentryname{arg1}#*
+\listofexamplesheader#*
 \listofexampleslabel#*
 \listofexamplesname#*
 \locationgroupencapchapter{arg1}#*
@@ -1711,7 +1763,10 @@ style6#B
 \metametafilefmt{arg1}{arg2}{arg3}{arg4}{arg5}#*
 \nlctattachpdffalse#*
 \nlctattachpdftrue#*
+\nlctbacklink{arg}#*
 \nlctdefaultafter#*
+\nlctdefnafter#*
+\nlctdefnbefore#*
 \nlctdocatnum{arg1}#*
 \nlctdocsymbolgrouplabel{arg1}{arg2}{arg3}#*
 \nlctdocsymbolgrouptitle{arg1}{arg2}{arg3}#*
@@ -1727,11 +1782,18 @@ style6#B
 \nlctexampletitlebox{arg1}#*
 \nlctexampletitlefmt{arg1}#*
 \nlctexampletitlefont#*
+\nlctextag{arg}#*
 \nlctguideindexinitpostnamehooks#*
+\nlctliteraltabchar#*
 \nlctmodifierglslist#*
 \nlctmodifierlist#*
 \nlctmodifiertag#*
 \nlctnovref#*
+\nlctpinnedafter#*
+\nlctpinnedbefore#*
+\nlctpostexampletitle#*
+\nlctsettingsafter#*
+\nlctsettingsbefore#*
 \nlctuserguidebib#S
 \nlctuserguidebibextrapreamble#*
 \nlctuserguidecustomentryaliases#*
@@ -1746,6 +1808,7 @@ style6#B
 \novaluesettingsym#*
 \novaluesettingtext#*
 \optdefbookmarklevel#*
+\optiondefhook#*
 \optionlistitemformat{arg1}#*
 \optionlistprefix#*
 \optionlisttag#*
@@ -1825,7 +1888,9 @@ style6#B
 \summaryloc{arg1}#*
 \summarylocfmt{arg1}#*
 \summarylocfont#*
+\summarylocinnersep#*
 \summarylocwidth#*
+\summarymarginpar{text}#*
 \summarynotefmt{arg1}#*
 \summarypar#*
 \summarypredesc#*
@@ -1843,6 +1908,7 @@ style6#B
 \Tablesrefprefix#*
 \tablesrefprefix#*
 \tagsep#*
+\tabsym#*
 \targetorhyperlink{arg1}{arg2}#*
 \terminaldesc#*
 \terminalsym#*
@@ -1872,14 +1938,32 @@ style6#B
 \unicodedesc#*
 \unicodesym#*
 \unicodetext#*
+\upsym#*
 \valuesettingdesc#*
 \valuesettingsym#*
 \valuesettingtext#*
 \vdoubleasteriskmarker#*
+\visiblespace#*
 \warningdesc#*
 \warningsym#*
 \warningtext#*
 \xrsectionref{arg1}{arg2}{arg3}#*
+\nl#*
+\nlsp#*
+\dbspace#*
+\dbdbspace#*
+\dbdbdbspace#*
+\nldbsp#*
+\nldbdbsp#*
+\nldbdbdbsp#*
+\faded{text}#*
+\explsuffix#*
+\explTFsuffix#*
+\TFsyntax#*
+\nlctindexfirstmark#*
+\nlctindexlastmark#*
+\nlctprebookindex#*
+\nlctindexmarkfmt{arg}#*
 
 # from record=nameref option of glossaries-extra
 #include:glossaries-extra-bib2gls

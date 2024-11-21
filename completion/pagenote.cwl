@@ -40,6 +40,7 @@ continuous
 \pncontoptfalse#*
 \pncontopttrue#*
 \thepagenote#*
+\theHpagenote#*
 \ifmakingpagenotes#*
 \makingpagenotesfalse#*
 \makingpagenotestrue#*

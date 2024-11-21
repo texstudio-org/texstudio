@@ -135,6 +135,7 @@ nojslogo
 \presectionname#*
 \seename#*
 \thechapter#*
+\theHchapter#*
 \widebaselines
 \上小{text}
 \和暦

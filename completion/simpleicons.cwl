@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/11/01 for v13.15.0
+# Matthew Bertucci 2024/11/09 for v13.16.0
 
 #include:iftex
 
@@ -724,6 +724,7 @@ dblp
 dbt
 dcentertainment
 debian
+debridlink
 decapcms
 decentraland
 dedge
@@ -1311,6 +1312,7 @@ hungryjacks
 husqvarna
 hyper
 hyperskill
+hyperx
 hypothesis
 hyprland
 hyundai
@@ -1953,6 +1955,7 @@ odysee
 ohdear
 okcupid
 okta
+okx
 ollama
 oneplus
 onlyfans
@@ -2972,6 +2975,7 @@ uptobox
 upwork
 usps
 utorrent
+uv
 v
 v2ex
 v8

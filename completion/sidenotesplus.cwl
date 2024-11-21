@@ -125,7 +125,9 @@ alerton
 \snptest#*
 \IfNoValueOrEmptyTF{arg}{-NoValue-Code}{ValueCode}
 \thesidenote#*
+\theHsidenote#*
 \thesidealert#*
+\theHsidealert#*
 \oldmarginpar#S
 \IfsTF{arg}{-NoValue-Code}{ValueCode}
 \istwosided{true code}{false code}

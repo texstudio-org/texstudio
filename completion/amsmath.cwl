@@ -155,6 +155,7 @@ alignedleftspaceyesifneg
 \tbinom{above}{below}#m
 \tfrac{%<num%:translatable%>}{%<den%:translatable%>}#m
 \theparentequation#*
+\theHparentequation#*
 \thetag#*
 \underleftarrow{argument}#m
 \underleftrightarrow{argument}#m
