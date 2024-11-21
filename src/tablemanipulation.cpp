@@ -745,9 +745,9 @@ QStringList LatexTables::splitColDef(QString def)
 		if (ch == ']')
 			sqrBracket--;
 		if ((ch.isLetter() || ch == ']') && !inAt && !inDef && curl == 0 && sqrBracket == 0) {
-            if ((ch == 's' || ch == 'S' || ch == 'X' || ch == 'Q') && i + 1 < def.length() && def.at(i + 1) == '[')
+            if ((ch == 's' || ch == 'p' || ch == 'b' || ch == 'm' || ch == 'V' || ch == 'S' || ch == 'X' || ch == 'Q') && i + 1 < def.length() && def.at(i + 1) == '[')
 				continue;
-			if ((i + 1 < def.length()) && def.at(i + 1) == '{') {
+            if ((i + 1 < def.length()) && def.at(i + 1) == '{' )  {
 				appendDef = true;
 			} else {
 				result << col;
