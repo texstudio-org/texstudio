@@ -1071,7 +1071,6 @@ YellowOrange#B
 \mathscr{text%plain}#m
 
 # from cal=boondoxo options of mathalfa
-\mathcal{text%plain}#m
 \mathbfcal{text%plain}#m
 
 # from inline option of enumitem

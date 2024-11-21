@@ -14,5 +14,4 @@ sb
 \mathbscr{text%plain}#m
 #endif
 
-\mathcal{text%plain}#m
 \mathbcal{text%plain}#m

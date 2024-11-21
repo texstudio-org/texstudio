@@ -7,5 +7,4 @@
 scaled=%<factor%>
 #endkeyvals
 
-\mathcal{text%plain}#m
 \mathbcal{text%plain}#m
