@@ -384,6 +384,7 @@ jobs:
         sudo tar xvf ./QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin-M1.tar.xz -C /usr/local --strip-components=1
         rm QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin-M1.tar.xz
         brew install --quiet cairo fontconfig freetype gettext jpeg libpng libtiff little-cms2 openjpeg
+        brew unlink pkg-config@0.29.2
         brew install --quiet ninja pkg-config
 
     - name: Configure
