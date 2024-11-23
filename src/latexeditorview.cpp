@@ -1646,9 +1646,19 @@ void LatexEditorView::updatePackageFormats()
             const QString rpck =  trimLeft(curLineText.mid(tk.start, tk.length)); // left spaces are ignored by \cite, right space not
             const QString suffix = tk.type == Token::documentclass ? ".cls" : ".sty";
             //check and highlight
+            bool localPackage = false;
+            if(rpck.startsWith(".")){
+                // check if file exists
+                LatexDocument *root=document->getRootDocument();
+                QFileInfo fi=root->getFileInfo();
+                QFileInfo fi_cwl=QFileInfo(fi.absolutePath(),rpck+suffix);
+                localPackage=fi_cwl.exists();
+            }
             if (latexPackageList->empty())
                 dlh->addOverlay(QFormatRange(tk.start, tk.length, packageUndefinedFormat));
-            else if ( (latexPackageList->find(preambel + rpck + suffix) != latexPackageList->end()) || (latexPackageList->find(preambel + rpck) != latexPackageList->end())) {
+            else if ( (latexPackageList->find(preambel + rpck + suffix) != latexPackageList->end())
+                      || (latexPackageList->find(preambel + rpck) != latexPackageList->end())
+                     || localPackage) {
                 dlh->addOverlay(QFormatRange(tk.start, tk.length, packagePresentFormat));
             } else {
                 dlh->addOverlay(QFormatRange(tk.start, tk.length, packageMissingFormat));
@@ -2211,9 +2221,19 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
                     const QString rpck =  trimLeft(text.mid(tk.start, tk.length)); // left spaces are ignored by \cite, right space not
                     const QString suffix = tk.type == Token::documentclass ? ".cls" : ".sty";
 					//check and highlight
+                    bool localPackage = false;
+                    if(rpck.startsWith(".")){
+                        // check if file exists
+                        LatexDocument *root=document->getRootDocument();
+                        QFileInfo fi=root->getFileInfo();
+                        QFileInfo fi_cwl=QFileInfo(fi.absolutePath(),rpck+suffix);
+                        localPackage=fi_cwl.exists();
+                    }
                     if (latexPackageList->empty())
 						dlh->addOverlay(QFormatRange(tk.start, tk.length, packageUndefinedFormat));
-                    else if ( (latexPackageList->find(preambel + rpck + suffix) != latexPackageList->end()) || (latexPackageList->find(preambel + rpck) != latexPackageList->end())) {
+                    else if ( (latexPackageList->find(preambel + rpck + suffix) != latexPackageList->end())
+                              || (latexPackageList->find(preambel + rpck) != latexPackageList->end())
+                              || localPackage) {
 						dlh->addOverlay(QFormatRange(tk.start, tk.length, packagePresentFormat));
                     } else {
                         dlh->addOverlay(QFormatRange(tk.start, tk.length, packageMissingFormat));
@@ -2718,7 +2738,9 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			}
             QString text = QString("%1:&nbsp;<b>%2</b>").arg(type,value);
             const QString suffix = tk.type == Token::documentclass ? ".cls" : ".sty";
-            if (latexPackageList->find(preambel + value + suffix) != latexPackageList->end() || latexPackageList->find(preambel + value) != latexPackageList->end()) {
+            if (latexPackageList->find(preambel + value + suffix) != latexPackageList->end()
+                || latexPackageList->find(preambel + value) != latexPackageList->end()
+                || value.startsWith(".")) { // don't check relative paths,i.e. local packages
 				QString description = LatexRepository::instance()->shortDescription(value);
 				if (!description.isEmpty()) text += "<br>" + description;
 				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);

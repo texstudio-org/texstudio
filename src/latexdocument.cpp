@@ -3001,6 +3001,12 @@ void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loade
                 found=!zw.containsOptionalSections;
             }
             if(!found){
+                if(fileName.startsWith(".")){
+                    // replace relative path with absolute with repsit to root document
+                    QFileInfo fi=getRootDocument()->getFileInfo();
+                    QFileInfo fi_cwl=QFileInfo(fi.absolutePath(),fileName);
+                    fileName=fi_cwl.absoluteFilePath();
+                }
                 zw = loadCwlFile(fileName, completerConfig, options);
                 if (!zw.notFound) {
                     fileName= zw.containsOptionalSections ? elem : fileName;

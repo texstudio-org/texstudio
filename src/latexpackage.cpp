@@ -91,6 +91,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 	LatexPackage package;
 
 	QFile tagsfile("cwl:" + fileName);
+    if(QFileInfo(fileName).isAbsolute() && !tagsfile.exists()){
+        tagsfile.setFileName(fileName);
+    }
 	bool skipSection = false;
 	if (tagsfile.exists() && tagsfile.open(QFile::ReadOnly)) {
 		QString line;
