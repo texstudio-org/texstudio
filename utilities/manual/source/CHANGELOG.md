@@ -10,6 +10,7 @@
 - fix crash when %Tex root document was not found
 - class are used for completion in documentclass
 - class names are not used anymore for package name completion
+- local packages can provide local cwl files ,[see manual](https://texstudio-org.github.io/advanced.html#local-packages)
 
 ## TeXstudio 4.8.4
 

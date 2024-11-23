@@ -424,6 +424,20 @@ This is equivalent to
 </dd>
 </dl>
 </section>
+<section id="local-packages">
+<h2>Local packages<a class="headerlink" href="#local-packages" title="Link to this heading">#</a></h2>
+<p>Many users define personal commands, settings, colors, etc in a personal file which is included into the latex document via <code class="docutils literal notranslate"><span class="pre">\include</span></code> or <code class="docutils literal notranslate"><span class="pre">\input</span></code>.
+TeXstudio can read the files and take up the defined commands for completion but is does not have any understanding of the arguments like if they are labels, texts or math elements.
+The syntactital definition is given to TeXstudio via <a class="reference internal" href="background.html#description-of-the-cwl-format"><span class="std std-ref">cwl files</span></a>.
+TeXstudio searches for local cwl files for local packages. To notify TeXstudio that a package is local, the package name has to be given as a relative path, e.g. <code class="docutils literal notranslate"><span class="pre">\usepackage{./myPackage}</span></code>.
+TeXstudio looks for <code class="docutils literal notranslate"><span class="pre">./myPackage.cwl</span></code> and loads it if present.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The local package filename needs to be <code class="docutils literal notranslate"><span class="pre">myPackage.sty</span></code>.
+Otherwise all normal commands are valid.</p>
+<p>If a cwl file is changed, the updated version is only loaded into TeXstudio after a restart of TeXstudio.</p>
+</div>
+</section>
 <section id="personal-macros">
 <h2>Personal macros<a class="headerlink" href="#personal-macros" title="Link to this heading">#</a></h2>
 <p>TeXstudio allows you to insert your own macros. These macros are defined
@@ -1220,6 +1234,7 @@ to html” tool.</p>
 <li><a class="reference internal" href="#bibliography">Bibliography</a></li>
 <li><a class="reference internal" href="#git-svn-support">GIT/SVN Support</a></li>
 <li><a class="reference internal" href="#advanced-header-usage">Advanced header usage</a></li>
+<li><a class="reference internal" href="#local-packages">Local packages</a></li>
 <li><a class="reference internal" href="#personal-macros">Personal macros</a><ul>
 <li><a class="reference internal" href="#text-macros">Text macros</a></li>
 <li><a class="reference internal" href="#environment-macros">Environment macros</a></li>

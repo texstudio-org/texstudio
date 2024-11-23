@@ -256,6 +256,22 @@ the following magic comments:
     This is equivalent to
     `% !TeX TXS-program:bibliography = txs:///biber`
 
+## Local packages
+
+Many users define personal commands, settings, colors, etc in a personal file which is included into the latex document via `\include` or `\input`.
+TeXstudio can read the files and take up the defined commands for completion but is does not have any understanding of the arguments like if they are labels, texts or math elements.
+The syntactital definition is given to TeXstudio via [cwl files](background.md#description-of-the-cwl-format). 
+TeXstudio searches for local cwl files for local packages. To notify TeXstudio that a package is local, the package name has to be given as a relative path, e.g. `\usepackage{./myPackage}`.
+TeXstudio looks for `./myPackage.cwl` and loads it if present.
+
+```{note}
+The local package filename needs to be `myPackage.sty`.
+Otherwise all normal commands are valid.
+
+If a cwl file is changed, the updated version is only loaded into TeXstudio after a restart of TeXstudio.
+```
+
+
 ## Personal macros
 
 TeXstudio allows you to insert your own macros. These macros are defined
