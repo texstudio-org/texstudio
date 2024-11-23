@@ -1172,6 +1172,7 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
             const bool updatePackages=!changedCommands.addedUsepackages.isEmpty()||!changedCommands.removedUsepackages.isEmpty();
             const bool updateUserCommands=!changedCommands.addedUserCommands.isEmpty()||!changedCommands.removedUserCommands.isEmpty();
             updateCompletionFiles(updatePackages,updateUserCommands);
+            const int cntAddedUserCommands=changedCommands.addedUserCommands.size(); // keep track if reinterpretCommandArguments comes up with new user commands
             if(!changedCommands.addedUsepackages.isEmpty()){
                 changedCommands.addedUsepackages.clear();
                 int start=0;
@@ -1191,19 +1192,23 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
                 // handle specialDef commands
                 for(const QString &key: changedCommands.addedUserCommands){
                     if(key.startsWith("%")){
-                        int i = key.indexOf('%', 1);
+                        const int i = key.indexOf('%', 1);
                         QString category = key.left(i);
                         QString elem = key.mid(i + 1);
                         lp->possibleCommands[category].insert(elem);
                         ltxCommands.possibleCommands[category].insert(elem);
                     }
                 }
+                if(cntAddedUserCommands<changedCommands.addedUserCommands.size()){
+                    // new usercommands were generated when reinterpretCommandArguments was called, fix #3885
+                    updateCompletionFiles(false,true);
+                }
                 changedCommands.addedUserCommands.clear();
             }
             if(!changedCommands.removedUserCommands.isEmpty()){
                 for(const QString &key: changedCommands.removedUserCommands){
                     if(key.startsWith("%")){
-                        int i = key.indexOf('%', 1);
+                        const int i = key.indexOf('%', 1);
                         QString category = key.left(i);
                         QString elem = key.mid(i + 1);
                         lp->possibleCommands[category].remove(elem);
