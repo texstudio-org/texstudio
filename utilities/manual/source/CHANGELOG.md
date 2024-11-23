@@ -11,6 +11,10 @@
 - class are used for completion in documentclass
 - class names are not used anymore for package name completion
 - local packages can provide local cwl files ,[see manual](https://texstudio-org.github.io/advanced.html#local-packages)
+- fix handling of user definition commands in subfiles [#3885](https://github.com/texstudio-org/texstudio/issues/3885)
+- fix crash in preview tooltip if no pdflatex is defined [#3875](https://github.com/texstudio-org/texstudio/issues/3875)
+- handle special columntypes (m[l],NiceMatrix) better [#3881](https://github.com/texstudio-org/texstudio/issues/3881)
+- handle key/val completion in frame environment better [#3846](https://github.com/texstudio-org/texstudio/issues/3846)
 
 ## TeXstudio 4.8.4
 
