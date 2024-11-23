@@ -663,6 +663,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig
 
 	codeeditor = new QCodeEdit(false, this, doc);
 	editor = codeeditor->editor();
+    document = doc;
 
 	editor->setProperty("latexEditor", QVariant::fromValue<LatexEditorView *>(this));
 
