@@ -3673,7 +3673,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         const auto cmd=ja[i].toArray();
         UserCommandPair up(cmd[0].toString(),cmd[1].toString());
         mUserCommandList.insert(nullptr,up);
-        ltxCommands.possibleCommands["user"].insert(cmd[0].toString());
+        ltxCommands.possibleCommands["user"].insert(cmd[1].toString());
     }
     ja=dd.value("packages").toArray();
     const bool addedPackages=ja.size()>0;
