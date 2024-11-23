@@ -622,7 +622,13 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
         if(tk.type == Token::defSpecialArg){
             QString cmd=Parsing::getCommandFromToken(tk);
             data.completerNeedsUpdate = true;
-            QString definition = ltxCommands.specialDefCommands.value(cmd);
+            QString definition = lp->specialDefCommands.value(cmd);
+            if(definition.isEmpty()){
+                definition = ltxCommands.specialDefCommands.value(cmd);
+            }
+            if(definition.isEmpty()){
+                continue; // special def w/o category is not useful and actually an error
+            }
             QString elem = tk.getText();
             QString completeDefinition=definition + "%" + elem;
             mUserCommandList.insert(dlh, UserCommandPair(QString(), completeDefinition));
