@@ -15,6 +15,7 @@
 - fix crash in preview tooltip if no pdflatex is defined [#3875](https://github.com/texstudio-org/texstudio/issues/3875)
 - handle special columntypes (m[l],NiceMatrix) better [#3881](https://github.com/texstudio-org/texstudio/issues/3881)
 - handle key/val completion in frame environment better [#3846](https://github.com/texstudio-org/texstudio/issues/3846)
+- fix caching of newly defined colornames
 
 ## TeXstudio 4.8.4
 
