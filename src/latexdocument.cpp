@@ -3533,7 +3533,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
 
     QJsonArray ja_userCommands;
     for(const auto &elem:mUserCommandList.values()){
-        if(elem.name.isEmpty()) continue; // skip empty values
+        if(elem.name.isEmpty() && elem.snippet.word.isEmpty()) continue; // skip empty values
         QJsonArray ja_CommandPair;
         ja_CommandPair.append(elem.name);
         QString word=elem.snippet.word;
@@ -3673,7 +3673,10 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         const auto cmd=ja[i].toArray();
         UserCommandPair up(cmd[0].toString(),cmd[1].toString());
         mUserCommandList.insert(nullptr,up);
-        ltxCommands.possibleCommands["user"].insert(cmd[1].toString());
+        if(!cmd[0].toString().isEmpty()){
+            // only named commands are added for syntax checking
+            ltxCommands.possibleCommands["user"].insert(cmd[1].toString());
+        }
     }
     ja=dd.value("packages").toArray();
     const bool addedPackages=ja.size()>0;
