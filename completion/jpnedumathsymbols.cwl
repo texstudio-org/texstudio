@@ -1,5 +1,5 @@
 # jpnedumathsymbols package
-# Matthew Bertucci 2022/07/17 for v1.1
+# Matthew Bertucci 2024/11/25 for v1.2
 
 #include:amsmath
 #include:amssymb
@@ -17,6 +17,7 @@ mathbb
 setcolon
 rvecbracket
 cvecbracket
+vvecbracket
 innerproductbracket
 lua
 #endkeyvals
@@ -172,7 +173,9 @@ lua
 \tand
 \tor
 \eand
+\eand*
 \eor
+\eor*
 \originaliff#Sm
 \lto
 \lfrom
@@ -200,6 +203,9 @@ lua
 \begin{simul}#\math
 \begin{simul}[envname]#\math
 \end{simul}
+\begin{simul*}#\math
+\begin{simul*}[envname]#\math
+\end{simul*}
 \begin{signchart}{num of columns}#\array,math
 \end{signchart}
 
@@ -227,16 +233,21 @@ lua
 \rvec*{arg1}{arg2}{arg3}#m
 \cvec{arg1}{arg2}#m
 \cvec*{arg1}{arg2}{arg3}#m
+\vvec{arg1}{arg2}#m
+\vvec*{arg1}{arg2}{arg3}#m
 \originalinp{arg1}{arg2}#Sm
 \innerproduct{arg1}{arg2}#m
 \innerproduct*{arg1}{arg2}#m
-\inp{arg1}{arg2}#*m
-\inp*{arg1}{arg2}#*m
+\inp{arg1}{arg2}#m
+\inp*{arg1}{arg2}#m
+\vinp{arg1}{arg2}#m
+\vinp*{arg1}{arg2}#m
 \originalseq{arg}#Sm
 \sequence{arg}#m
 \seq{arg}#*m
 \originalsum#Sm
 \sum*#m
+\tsum#m
 \GCD#m
 \LCM#m
 \originaldegree#Sm
@@ -254,6 +265,13 @@ lua
 \homogeneous{arg1%formula}{arg2%formula}
 \repeatedcombination{arg1%formula}{arg2%formula}
 \expectedvalue{arg}#m
+\expectedvalue*{arg}#m
+\expectation{arg}#m
+\expectation*{arg}#m
+\variance{arg}#m
+\variance*{arg}#m
+\deviation{arg}#m
+\deviation*{arg}#m
 \originalRe#Sm
 \originalIm#Sm
 \originalconjugate{arg}#Sm
@@ -270,6 +288,7 @@ lua
 \ltextend
 \lltextend
 \nomination{text%plain}
+\nomination*{text%plain}
 \condition{text%plain}
 \condition*{text%plain}
 \explanation{text%plain}
@@ -279,3 +298,10 @@ lua
 \texttherefore
 \textbecause
 \QED
+\qedsym#S
+\begin{equation**}{label%label}#\math
+\end{equation**}
+\begin{align**}{label%label}#\math
+\end{align**}
+\begin{gather**}{label%label}#\math
+\end{gather**}
