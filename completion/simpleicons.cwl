@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/11/09 for v13.16.0
+# Matthew Bertucci 2024/11/25 for v13.17.0
 
 #include:iftex
 
@@ -490,6 +490,7 @@ cbc
 cbs
 ccleaner
 cdprojekt
+ce
 celery
 celestron
 centos
@@ -861,6 +862,7 @@ elegoo
 element
 elementary
 elementor
+elevenlabs
 eleventy
 elgato
 elixir
@@ -942,6 +944,7 @@ fastly
 fathom
 fauna
 favro
+fcc
 fdroid
 feathub
 fedex
@@ -2577,6 +2580,7 @@ smrt
 smugmug
 snapchat
 snapcraft
+snapdragon
 sncf
 snort
 snowflake
