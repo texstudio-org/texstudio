@@ -2414,6 +2414,33 @@ comp#true,false
 \mkdaterangeyearmonth#S
 #endif
 
+### biblatex-accursius v1.0 ###
+#ifOption:style=accursius
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+itapunctuation#true,false
+nourlinrunning#true,false
+authoryearstyle#true,false
+scauthor#true,false
+revname#true,false
+authortypeparens#true,false
+editionroman#true,false
+shortjournal#true,false
+publocformat=#publocyear,locpubyear,loccolonpub
+jourvolnumdate=#allcommas,numslashdate,biblatex
+iusminimal#true,false
+iusshorthand#true,false
+noportal#true,false
+noportalurlinrunning#true,false
+absolutelynoportalurl#true,false
+#endkeyvals
+# from accursius.bbx
+\mkbibsc{arg}#S
+\mkidem{arg}#S
+# from accursius.cbx
+\ifcitesingletitle#S
+\citedhref{arg}#S
+#endif
+
 ### biblatex-acmart v0.1 ###
 #ifOption:style=acmauthoryear
 # from acmauthoryear.bbx
