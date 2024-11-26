@@ -3675,7 +3675,11 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         mUserCommandList.insert(nullptr,up);
         if(!cmd[0].toString().isEmpty()){
             // only named commands are added for syntax checking
-            ltxCommands.possibleCommands["user"].insert(cmd[1].toString());
+            if(cmd[0].toString().startsWith("\\")){
+                ltxCommands.possibleCommands["user"].insert(cmd[0].toString());
+            }else{
+                ltxCommands.possibleCommands["user"].insert(cmd[1].toString());
+            }
         }
     }
     ja=dd.value("packages").toArray();
