@@ -1,5 +1,5 @@
 # memoize package
-# Matthew Bertucci 2024/03/18 for v1.2.0
+# Matthew Bertucci 2024/11/25 for v1.4.0
 
 #include:etoolbox
 #include:pdftexcmds
@@ -28,6 +28,7 @@
 # Basic configuration
 \mmzContext#*
 \mmzContextExtra#*
+\mmzSalt#*
 \mmzNoRef{label}#*
 \mmzForceNoRef{label}#*
 
@@ -113,6 +114,7 @@
 # PGF
 \mmzPgfAtBeginMemoization#*
 \mmzPgfAtEndMemoization#*
+\mmzStepPgfPictureId#*
 
 ## < Keyvals > ##
 #keyvals:\usepackage/memoize#c
@@ -143,7 +145,12 @@ csname meaning to context=%<csname%>
 key meaning to context=%<key path%>
 key value to context=%<key path%>
 padding to context
-per overlay
+salt=%<tokens%>
+clear salt
+meaning to salt={%<command/env list%>}
+csname meaning to salt=%<csname%>
+key meaning to salt=%<key path%>
+key value to salt=%<key path%>
 capture=#hbox,vbox
 driver=%<code%>
 at begin memoization=%<code%>
@@ -191,6 +198,8 @@ auto csname'={%<csname%>}{%<keylist%>}
 auto key'={%<key%>}{%<keylist%>}
 manual#true,false
 ignore spaces#true,false
+per overlay
+beamer mode to prefix
 biblatex={%<additional configuration%>}
 biblatex ccmemo cite=#nocite,replicate
 #endkeyvals

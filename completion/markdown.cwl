@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2024/11/04 for v3.8.0
+# Matthew Bertucci 2024/11/25 for v3.9.0
 
 #include:paralist
 #include:amsmath
@@ -8,16 +8,16 @@
 #include:fancyvrb
 #include:graphicx
 #include:ltxcmds
-#include:gobble
 #include:url
 #include:etoolbox
 #include:lt3luabridge
+#include:luaxml
 
 #ifOption:strikeThrough
-#include:soulutf8
+#include:soul
 #endif
 #ifOption:strikeThrough=true
-#include:soulutf8
+#include:soul
 #endif
 
 \begin{markdown}
@@ -42,7 +42,7 @@
 
 #keyvals:\usepackage/markdown#c,\begin{markdown}#c,\begin{yaml}#c,\markinline#c,\markdownInput#c,\yamlInput#c,\markdownSetup#c,\markdownSetupSnippet#c,\yamlSetup#c
 plain#true,false
-import=#witiko/dot,witiko/graphicx/http,witiko/tilde,witiko/markdown/techdoc
+import=#witiko/dot,witiko/graphicx/http,witiko/tilde,witiko/markdown/defaults
 snippet=#%markdownsnippet
 helperScriptFileName=%<file name%>
 inputTempFileName=%<file name%>
@@ -110,19 +110,12 @@ frozenCacheFileName=%<file name%>
 
 #keyvals:\begin{markdown}#c,\markinline#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c
 renderers={%<renderer options%>}
+unprotectedRenderers={%<renderer options%>}
 rendererPrototypes={%<renderer prototype options%>}
+unprotectedRendererPrototypes={%<renderer prototype options%>}
 code={%<code%>}
 jekyllDataRenderers={%<keyvals%>}
 #endkeyvals
-
-#ifOption:theme=witiko/dot
-#include:grffile
-#endif
-
-#ifOption:theme=witiko/graphicx/http
-#include:catchfile
-#include:grffile
-#endif
 
 #ifOption:lineBlocks
 #include:verse

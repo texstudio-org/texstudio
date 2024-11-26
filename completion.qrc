@@ -626,6 +626,7 @@
 <file>completion/class-amsldoc.cwl</file>
 <file>completion/class-amsproc.cwl</file>
 <file>completion/class-amstext-l.cwl</file>
+<file>completion/class-anima.cwl</file>
 <file>completion/class-aomart.cwl</file>
 <file>completion/class-apa6.cwl</file>
 <file>completion/class-apa7.cwl</file>

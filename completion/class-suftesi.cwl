@@ -62,7 +62,6 @@
 #include:amsthm
 #include:mathalpha
 # from cal=boondoxo option of mathalpha
-\mathcal{text%plain}#m
 \mathbfcal{text%plain}#m
 #endif
 

@@ -1,5 +1,5 @@
 # zref-clever package
-# Matthew Bertucci 2023/06/14 for v0.4.0
+# Matthew Bertucci 2024/11/25 for v0.5.0
 
 #include:zref-base
 #include:zref-user
@@ -45,7 +45,7 @@ S
 hyperref=#auto,true,false
 nameinlink=#true,false,single,tsingle
 lang=%<language%>
-d=%<declension case%>
+v=%<variant%>
 nudge=#true,false,ifdraft,iffinal
 nudgeif=#multitype,comptosing,gender,all
 nonudge
@@ -110,7 +110,7 @@ rangetopair#true,false
 \zcDeclareLanguage[options%keyvals]{language}
 
 #keyvals:\zcDeclareLanguage
-declension={%<cases list%>}
+variants={%<variant list%>}
 gender={%<gender list%>}
 allcaps
 #endkeyvals
@@ -146,6 +146,6 @@ endrange=#ref,stripprefix,pagecomp,pagecomp2
 rangetopair#true,false
 # language-specific keys
 type=%<type%>
-case=#N,A,D,G
+variant=#N,A,D,G
 gender={%<gender list%>}
 #endkeyvals
