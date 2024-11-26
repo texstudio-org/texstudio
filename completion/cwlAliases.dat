@@ -1598,3 +1598,7 @@ udiss:
 class-udiss
 latex-document
 tex
+anima:
+class-anima
+latex-document
+tex
