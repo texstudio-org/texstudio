@@ -1,10 +1,10 @@
 # hep-text package
-# Matthew Bertucci 2022/11/03 for v1.1
+# Matthew Bertucci 2024/11/29 for v1.3
 
 #include:kvoptions
 #include:babel
 #include:csquotes
-#include:soulutf8
+#include:soul
 #include:pdftexcmds
 #include:foreign
 # foreign loaded with all option
