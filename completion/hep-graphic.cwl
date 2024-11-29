@@ -1,14 +1,15 @@
 # hep-graphic package
-# Matthew Bertucci 2023/07/16 for v1.0
+# Matthew Bertucci 2024/11/29 for v1.3
 
 #include:kvoptions
 #include:tikz
 #include:tikzlibraryexternal
-#include:standalone
+#include:tikzscale
 
 #keyvals:\usepackage/hep-graphic#c
 plot#true,false
 feynman#true,false
+extern=
 #endkeyvals
 
 #ifOption:plot
@@ -26,8 +27,8 @@ feynman#true,false
 #endif
 
 \graphicpath{path%definition}
-\includetikz{file}
-\includetikz[width%plain]{file}
-\includetikz*{file}
-\includetikz*[width%plain]{file}
+\includepgf{file}
+\includepgf[width%plain]{file}
+\includepgf*{file}
+\includepgf*[width%plain]{file}
 \includefeynman{file}
