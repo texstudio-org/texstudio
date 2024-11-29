@@ -1,5 +1,5 @@
 # hep-float package
-# Matthew Bertucci 2023/07/14 for v1.2
+# Matthew Bertucci 2024/11/29 for v1.3
 
 #include:kvoptions
 #include:subcaption
@@ -34,3 +34,4 @@ manualplacement#true,false
 \tablehspace#*
 \tablevspace#*
 \tikzsetnextfilename{imagefile}#*g
+\header{text}#*
