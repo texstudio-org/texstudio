@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/11/25 for v13.17.0
+# Matthew Bertucci 2024/11/29 for v13.18.0
 
 #include:iftex
 
@@ -205,6 +205,7 @@ apachehive
 apachejmeter
 apachekafka
 apachekylin
+apachelucene
 apachemaven
 apachenetbeanside
 apachenifi
@@ -1952,6 +1953,7 @@ octobercms
 octoprint
 octopusdeploy
 oculus
+odin
 odnoklassniki
 odoo
 odysee
