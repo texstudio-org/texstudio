@@ -3055,7 +3055,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="315"/>
         <source>Do you really want to delete this row?</source>
-        <translation>Θέλετε όντως να διαγράψετε αυτή τη σειρά;</translation>
+        <translation>Θέλετε να διαγράψετε αυτή τη σειρά;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="409"/>
@@ -3070,7 +3070,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="500"/>
         <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
-        <translation>Εδώ η επισήμανση σύνταξης (syntax highlighting) για διάφορες εντολές, περιβάλλοντα και επιλογές μπορεί να αλλάξει.</translation>
+        <translation>Εδώ η επισήμανση του κώδικα (syntax highlighting) για διάφορες εντολές, περιβάλλοντα και επιλογές μπορεί να αλλάξει.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="501"/>
@@ -3183,7 +3183,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="546"/>
         <source>Syntax Highlighting</source>
-        <translation>Επισήμανση σύνταξης</translation>
+        <translation>Επισήμανση κώδικα</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="548"/>
@@ -5235,7 +5235,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexdocument.cpp" line="2631"/>
         <source>Root file not found</source>
-        <translation type="unfinished"/>
+        <translation>Δεν ήταν δυνατή η εύρεση του κύριου αρχείου</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="2636"/>
@@ -6182,7 +6182,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3038"/>
         <source>Fit to &amp;Text Width</source>
-        <translation>Προσαρμογή στο &amp;Πλάτος Κειμένου</translation>
+        <translation>Προσαρμογή στο &amp;πλάτος του κειμένου</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3040"/>
@@ -11167,7 +11167,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1374"/>
         <source>Focus Viewer</source>
-        <translation>Εστίαση στον προβολέα PDF</translation>
+        <translation>Εστίαση στο πρόγραμμα προβολής PDF</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1377"/>
@@ -11285,7 +11285,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1452"/>
         <source>Highlighting</source>
-        <translation>Επισήμανση</translation>
+        <translation>Επισήμανση κώδικα</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1476"/>
@@ -11581,12 +11581,12 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3121"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
-        <translation>Θέλετε σίγουρα να διαγράψετε το αρχείο &quot;%1&quot;;</translation>
+        <translation>Θέλετε να διαγράψετε το αρχείο &quot;%1&quot;;</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3130"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
-        <translation>Θέλετε πραγματικά να γίνει επαναφορά του αρχείου «%1» στην τελευταία αποθηκευμένη έκδοσή του;</translation>
+        <translation>Θέλετε να γίνει επαναφορά του αρχείου «%1» στην τελευταία αποθηκευμένη έκδοσή του;</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3157"/>
@@ -12417,7 +12417,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="12637"/>
         <source>BLOCK</source>
-        <translation type="unfinished"/>
+        <translation>BLOCK</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12645"/>
@@ -12472,7 +12472,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="../src/textanalysis.ui" line="26"/>
         <source>Count</source>
         <extracomment>count as verb</extracomment>
-        <translation>Πλήθος αποτελεσμάτων</translation>
+        <translation>Έναρξη καταμέτρησης</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="33"/>
@@ -12582,10 +12582,10 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Πιθανές επιλογές:
 «Εμφάνιση όλων των φράσεων»: όλες οι φράσεις αναλύονται και εμφανίζονται
 «Ελάχιστο πλήθος χαρακτήρων φράσης»: μια φράση αναλύεται μόνο αν το πλήθος χαρακτήρων της δεν ξεπερνάει το δοθέν όριο. (π.χ. η φράση «a test» έχει 6 χαρακτήρες)
-«Ελάχιστο πλήθος γραμμάτων λέξης (ένα)»: μια φράση εμφανίζεται μόνο αν το πλήθος γραμμάτων κάποιας λέξης που περιέχεται σε αυτήν δεν ξεπερνάει το δοθέν όριο. (π.χ. στη φράση «a test» η μεγαλύτερη λέξη «test» έχει 4 γράμματα)
-«Ελάχιστο πλήθος γραμμάτων λέξης (όλα)»: μια φράση εμφανίζεται μόνο αν το πλήθος γραμμάτων κάθε λέξης που περιέχεται σε αυτήν δεν ξεπερνάει το δοθέν όριο. (π.χ. στη φράση «a test» η μικρότερη λέξη «a» έχει 1 γράμμα)
+«Ελάχιστο πλήθος γραμμάτων λέξης (ένα)»: μια φράση εμφανίζεται μόνο αν το πλήθος γραμμάτων κάποιας λέξης της δεν ξεπερνάει το δοθέν όριο. (π.χ. στη φράση «a test» η μεγαλύτερη λέξη «test» έχει 4 γράμματα)
+«Ελάχιστο πλήθος γραμμάτων λέξης (όλα)»: μια φράση εμφανίζεται μόνο αν το πλήθος γραμμάτων κάθε λέξης της δεν ξεπερνάει το δοθέν όριο. (π.χ. στη φράση «a test» η μικρότερη λέξη «a» έχει 1 γράμμα)
 «Αγνόηση μικρότερων λέξεων»: οι μικρότερες λέξεις δεν αναλύονται καθόλου.
-(π.χ. Αν το όρισμα της τελευταίας επιλογής είναι 3, η πρόταση «this is a test» ισοδυναμεί με την «this test», η οποία και αναλύεται αντί της αρχικής. Εφαρμογή διαφορετικών επιλογών θα είχε ως αποτέλεσμα η πρόταση αυτή να χωριστεί στις φράσεις «this is», «is a», «a test», ακόμα και αν καμία από αυτές δε θα εμφανίζονταν/αναλύονταν)</translation>
+(π.χ. Αν το όρισμα της τελευταίας επιλογής είναι 3, η πρόταση «this is a test» ισοδυναμεί με την «this test», η οποία και αναλύεται αντί της αρχικής. Η εφαρμογή διαφορετικής επιλογής θα είχε ως αποτέλεσμα η πρόταση αυτή να χωριστεί στις φράσεις «this is», «is a», «a test», ακόμα και αν καμία από αυτές δε θα εμφανίζονταν/αναλύονταν τελικά)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
@@ -12615,7 +12615,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignore.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equally to &amp;quot;this test&amp;quot;, while the other options would separate it in &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of this phrases would be shown)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;«Εμφάνιση όλων των φράσεων»: όλες οι φράσεις αναλύονται και εμφανίζονται&lt;/p&gt;&lt;p&gt;«Ελάχιστο πλήθος χαρακτήρων φράσης»: μια φράση αναλύεται μόνο αν το πλήθος χαρακτήρων της δεν ξεπερνάει το δοθέν όριο. (π.χ. η φράση «a test» έχει 6 χαρακτήρες)&lt;/p&gt;&lt;p&gt;«Ελάχιστο πλήθος γραμμάτων λέξης (ένα)»: μια φράση εμφανίζεται μόνο αν το πλήθος γραμμάτων κάποιας λέξης της δεν ξεπερνάει το δοθέν όριο. (π.χ. στη φράση «a test» η μεγαλύτερη λέξη «test» έχει 4 γράμματα)&lt;/p&gt;&lt;p&gt;«Ελάχιστο πλήθος γραμμάτων λέξης (όλα)»: μια φράση εμφανίζεται μόνο αν το πλήθος γραμμάτων κάθε λέξης της δεν ξεπερνάει το δοθέν όριο. (π.χ. στη φράση «a test» η μικρότερη λέξη «a» έχει 1 γράμμα)&lt;/p&gt;&lt;p&gt;«Αγνόηση μικρότερων λέξεων»: οι μικρότερες λέξεις δεν αναλύονται καθόλου.&lt;/p&gt;&lt;p&gt;(π.χ. Αν το όρισμα της τελευταίας επιλογής είναι 3, η πρόταση «this is a test» ισοδυναμεί με την «this test», η οποία και αναλύεται αντί της αρχικής. Η εφαρμογή διαφορετικής επιλογής θα είχε ως αποτέλεσμα η πρόταση αυτή να χωριστεί στις φράσεις «this is», «is a», «a test», ακόμα και αν καμία από αυτές δε θα εμφανίζονταν/αναλύονταν τελικά)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="274"/>
@@ -12633,8 +12633,9 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <source>The controls in this row determine how many consecuting words are treated as a single phrase.
 If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation>Η επιλογή αυτή καθορίζει το πλήθος των λέξεων ανά φράση.
-«Ελάχιστο &amp; μέγιστο πλήθος λέξεων σε κάθε φράση»: μία φράση αποτελείται από το δοθέν ακριβώς πλήθος λέξεων (π.χ. για 2 λέξεις στην αρχική πρόταση: «Η επιλογή», «επιλογή αυτή», κλπ.)
+        <translation>Η επιλογή αυτή καθορίζει το πλήθος των λέξεων που θεωρούνται ως μία φράση.
+«Ελάχιστο &amp; μέγιστο πλήθος λέξεων σε κάθε φράση»: το ακριβές πλήθος λέξεων κάθε φράσης θα είναι το όρισμα αυτής της επιλογής
+(π.χ. αν το όρισμα αυτής της επιλογής είναι 2, στην πρώτη πρόταση οι φράσεις είναι οι εξής: «Η επιλογή», «επιλογή αυτή», κλπ.)
 «Μέγιστο πλήθος λέξεων σε κάθε φράση»: αναλύονται και οι λέξεις στην αρχή κάθε πρότασης (π.χ. «Η», «η επιλογή», «επιλογή αυτή», κλπ.)</translation>
     </message>
     <message>
@@ -12720,7 +12721,7 @@ If not, end characters are ignored.</source>
         <location filename="../src/textanalysis.cpp" line="63"/>
         <source>Count</source>
         <comment>count as noun</comment>
-        <translation>Έναρξη μέτρησης</translation>
+        <translation>Πλήθος</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.cpp" line="64"/>
@@ -12934,7 +12935,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.cpp" line="359"/>
         <source>Do you really want to delete the current macro(s)?</source>
-        <translation type="unfinished"/>
+        <translation>Θέλετε να διαγράψετε αυτή/ές την/τις μακροεντολή/ές;</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="441"/>
@@ -13318,12 +13319,13 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="290"/>
         <source>Create index :</source>
-        <translation>Δημιουργία ευρετηρίου:</translation>
+        <translation>Ευρετήριο:</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="319"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Browser command. Leave empty to not run the browser at the end of the conversion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Εντολή για το άνοιγμα του προγράμματος περιήγησης μετά τη μετατροπή του αρχείου.
+Σε περίπτωση που το πεδίο μείνει κενό, το πρόγραμμα περιήγησης δεν εκτελείται.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="339"/>
@@ -13333,7 +13335,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="353"/>
         <source>Input File :</source>
-        <translation>Αρχείο Εισόδου:</translation>
+        <translation>Αρχείο εισόδου:</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="374"/>
@@ -13423,7 +13425,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="146"/>
         <source>Input file not found.</source>
-        <translation>Το αρχείο εισόδου δε βρέθηκε.</translation>
+        <translation>Δεν ήταν δυνατή η εύρεση του αρχείου εισόδου.</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="165"/>
@@ -13433,7 +13435,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="187"/>
         <source>a process has failed</source>
-        <translation>μια διαδικασία απέτυχε</translation>
+        <translation>μία διαδικασία απέτυχε</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="494"/>
@@ -13488,7 +13490,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="863"/>
         <source>LaTeX errors detected.</source>
-        <translation>Εντοπίστηκαν σφάλματα στον κώδικα LaTeX.</translation>
+        <translation>εντοπίστηκαν σφάλματα στον κώδικα LaTeX.</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="878"/>

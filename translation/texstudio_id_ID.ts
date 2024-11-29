@@ -1644,7 +1644,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2009"/>
         <source>Cache documents for faster reopening</source>
-        <translation type="unfinished"/>
+        <translation>Cache dokumen untuk membuka lebih cepat.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2092"/>
@@ -1694,7 +1694,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2207"/>
         <source>Restrict search scope to an existing selection</source>
-        <translation type="unfinished"/>
+        <translation>Batasi lingkup pencarian pada pilihan kini</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2217"/>
@@ -1709,7 +1709,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2229"/>
         <source>Safe writing of files</source>
-        <translation type="unfinished"/>
+        <translation>Aman untuk menulis file</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2236"/>
@@ -2208,12 +2208,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3055"/>
         <source>ToolTip-Preview</source>
-        <translation type="unfinished"/>
+        <translation>ToolTip-Pratinjau</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3062"/>
         <source>Arguments as Placeholders</source>
-        <translation type="unfinished"/>
+        <translation>Argumen sebagai Placeholders</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3072"/>
@@ -2223,7 +2223,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3075"/>
         <source>ToolTip-Help</source>
-        <translation type="unfinished"/>
+        <translation>ToolTip-Bantuan</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3085"/>
@@ -2233,7 +2233,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3088"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation type="unfinished"/>
+        <translation>Secara otomatis mulai completer ketika mengetik perintah LaTeX </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3097"/>
@@ -2444,12 +2444,12 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3599"/>
         <source>open-mistral-7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mistral-7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3604"/>
         <source>open-mixtral-8x7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mixtral-8x7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3609"/>
@@ -2459,12 +2459,12 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3614"/>
         <source>mistral-medium-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-medium-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3619"/>
         <source>mistral-large-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-large-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3649"/>
@@ -2484,7 +2484,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3674"/>
         <source>Preferred model:</source>
-        <translation type="unfinished"/>
+        <translation>Model yang lebih disukai:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3641"/>
@@ -2609,7 +2609,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3918"/>
         <source>Url to connect to LanguageTool. </source>
-        <translation type="unfinished"/>
+        <translation>Url untuk terhubung ke LanguageTool. </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4015"/>
@@ -2629,7 +2629,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4036"/>
         <source>Preview with dvips/ghostscript</source>
-        <translation type="unfinished"/>
+        <translation>Pratinjau dengan dvips/ghostscript</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4041"/>
@@ -3030,7 +3030,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="409"/>
         <source>Screen Resolution (System: %1 dpi):</source>
-        <translation type="unfinished"/>
+        <translation>Resolusi Layar (System: %1 dpi):</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="488"/>
@@ -3680,7 +3680,7 @@ kembali untuk hanya menampilkan pengaturan umum.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="89"/>
         <source>Italics - \textit</source>
-        <translation type="unfinished"/>
+        <translation>Huruf Miring - \textit</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="90"/>
@@ -3956,7 +3956,7 @@ kembali untuk hanya menampilkan pengaturan umum.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="171"/>
         <source>\begin{array}...\end{array}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{array}...\end{array}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="172"/>
@@ -3966,12 +3966,12 @@ kembali untuk hanya menampilkan pengaturan umum.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>Single equation centered in a row</source>
-        <translation type="unfinished"/>
+        <translation>Satu persamaan diketengahkan dalam satu baris.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>Multiple equations aligned within columns</source>
-        <translation type="unfinished"/>
+        <translation>Beberapa persamaan disejajarkan dengan kolom.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="178"/>
@@ -3986,7 +3986,7 @@ kembali untuk hanya menampilkan pengaturan umum.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>Multiple equations centered in rows</source>
-        <translation type="unfinished"/>
+        <translation>Beberapa persamaan diketengahkan di setiap baris.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="184"/>
@@ -4151,7 +4151,7 @@ kembali untuk hanya menampilkan pengaturan umum.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replace{text}{replacement} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\replace{text}{replacement} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
@@ -4166,7 +4166,7 @@ kembali untuk hanya menampilkan pengaturan umum.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>\label{key}</source>
-        <translation type="unfinished"/>
+        <translation>\label{key}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
@@ -4283,12 +4283,12 @@ kembali untuk hanya menampilkan pengaturan umum.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="218"/>
         <source>Italic - \mathit{}</source>
-        <translation type="unfinished"/>
+        <translation>Huruf Miring - \mathit{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="219"/>
         <source>Bold - \mathbf{}</source>
-        <translation type="unfinished"/>
+        <translation>Huruf Tebal - \mathbf{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="220"/>
@@ -4388,12 +4388,12 @@ kembali untuk hanya menampilkan pengaturan umum.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="239"/>
         <source>One quad - \quad</source>
-        <translation type="unfinished"/>
+        <translation>Satu quad - \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="241"/>
         <source>Two quads - \qquad</source>
-        <translation type="unfinished"/>
+        <translation>Dua quads - \qquad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="242"/>
@@ -4723,7 +4723,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/encodingdialog.cpp" line="35"/>
         <source>Select Encoding for</source>
-        <translation type="unfinished"/>
+        <translation>Pilih encoding untuk</translation>
     </message>
     <message>
         <location filename="../src/encodingdialog.cpp" line="52"/>
@@ -4741,7 +4741,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/encodingdialog.ui" line="14"/>
         <source>Select File Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Pilih file encoding</translation>
     </message>
     <message>
         <location filename="../src/encodingdialog.ui" line="20"/>
@@ -4831,7 +4831,7 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="31"/>
         <source>Select the line you want to go to :</source>
-        <translation type="unfinished"/>
+        <translation>Pilih line yang ingin anda tuju:</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="57"/>
@@ -4849,7 +4849,7 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="27"/>
         <source>&amp;Go to line :</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pergi ke line :</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="53"/>
@@ -4895,7 +4895,7 @@ You have to make sure yourself that the file encoding and the value passed to th
         <location filename="../src/insertgraphics.cpp" line="50"/>
         <source>Insert Graphics</source>
         <comment>Wizard</comment>
-        <translation type="unfinished"/>
+        <translation>Tambahkan grafik</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="81"/>
@@ -5046,12 +5046,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/insertgraphics.ui" line="331"/>
         <source>  Short</source>
-        <translation type="unfinished"/>
+        <translation>Pendek</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="338"/>
         <source>  Long</source>
-        <translation type="unfinished"/>
+        <translation>Panjang</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="369"/>
@@ -5076,7 +5076,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation type="unfinished"/>
+        <translation>Di sini (H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -5091,7 +5091,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/insertgraphics.ui" line="443"/>
         <source>as Default</source>
-        <translation type="unfinished"/>
+        <translation>sebagai Default</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="467"/>
@@ -5130,7 +5130,7 @@ The wizard does not support command </source>
         <location filename="../src/latexcompleter.cpp" line="1486"/>
         <location filename="../src/latexcompleter.cpp" line="1496"/>
         <source>fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>acak</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1487"/>
@@ -5182,7 +5182,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexdocument.cpp" line="2636"/>
         <source>Invalid codec</source>
-        <translation type="unfinished"/>
+        <translation>Codec tak valid</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="2650"/>
@@ -5257,12 +5257,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="589"/>
         <source>use yours</source>
-        <translation type="unfinished"/>
+        <translation>gunakan milik anda</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="593"/>
         <source>use other&apos;s</source>
-        <translation type="unfinished"/>
+        <translation>gunakan milik orang lain</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="613"/>
@@ -5316,7 +5316,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2712"/>
         <source>Class</source>
-        <translation type="unfinished"/>
+        <translation>Kelas</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2712"/>
@@ -5519,62 +5519,67 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexrepository.cpp" line="157"/>
         <source>- Name : </source>
-        <translation type="unfinished"/>
+        <translation>- Nama : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="158"/>
         <source>- Caption : </source>
-        <translation type="unfinished"/>
+        <translation>- Caption : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="159"/>
         <source>- Authors : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Penulis : 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="161"/>
         <source>- Version : </source>
-        <translation type="unfinished"/>
+        <translation>- Versi : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="162"/>
         <source>- Documentation : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Dokumentasi : 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="163"/>
         <source>- Copyright : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Hak Cipta : 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="164"/>
         <source>- License : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Lisensi : 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="165"/>
         <source>- MikTex : </source>
-        <translation type="unfinished"/>
+        <translation>- MikTex : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="166"/>
         <source>- TexLive : </source>
-        <translation type="unfinished"/>
+        <translation>- TexLive : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="167"/>
         <source>- Topics : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Topik : 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="168"/>
         <source>- Link : </source>
-        <translation type="unfinished"/>
+        <translation>- Tautan : </translation>
     </message>
 </context>
 <context>
@@ -5916,7 +5921,7 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="991"/>
         <source>Start time</source>
-        <translation type="unfinished"/>
+        <translation>Mulai waktu</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="992"/>
@@ -5931,7 +5936,7 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1042"/>
         <source>wait</source>
-        <translation type="unfinished"/>
+        <translation>tunggu</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1044"/>
@@ -6039,7 +6044,7 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3007"/>
         <source>Ignore for synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Abaikan untuk sinkronisasi</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3010"/>
@@ -6054,17 +6059,17 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3016"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Perbesar</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3019"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Gulirkan</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3024"/>
         <source>&amp;First Page</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Halaman Pertama</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3025"/>
@@ -6074,27 +6079,27 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3026"/>
         <source>&amp;Previous Page</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Halaman Selanjutan</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3027"/>
         <source>&amp;Next Page</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Halaman Selanjutnya</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3028"/>
         <source>Forward</source>
-        <translation type="unfinished"/>
+        <translation>Maju</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3029"/>
         <source>&amp;Last Page</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Halaman Terakhir</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3031"/>
         <source>&amp;Go to Page...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pergi ke halaman...</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3033"/>
@@ -6134,7 +6139,7 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3047"/>
         <source>Full &amp;Screen</source>
-        <translation type="unfinished"/>
+        <translation>Layar &amp;penuh</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3048"/>
@@ -6149,12 +6154,12 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3050"/>
         <source>Enlarge Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Perbesar penampil</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3051"/>
         <source>Shrink Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Ciutkan penampil</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3052"/>
@@ -6205,7 +6210,7 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3087"/>
         <source>Focus Editor</source>
-        <translation type="unfinished"/>
+        <translation>Fokus editor</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3089"/>
@@ -6225,7 +6230,7 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3093"/>
         <source>Quick Build</source>
-        <translation type="unfinished"/>
+        <translation>Bangun Patas</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3142"/>
@@ -6329,7 +6334,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3691"/>
         <source>PDF password</source>
-        <translation type="unfinished"/>
+        <translation>Password PDF</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3691"/>
@@ -6408,7 +6413,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="427"/>
         <source>[none]</source>
-        <translation type="unfinished"/>
+        <translation>[kosong]</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="432"/>
@@ -6450,12 +6455,12 @@ You can now enter the password:</source>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="698"/>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="704"/>
         <source>Volume:</source>
-        <translation type="unfinished"/>
+        <translation>Volume:</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="714"/>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>Waktu:</translation>
     </message>
 </context>
 <context>
@@ -6583,7 +6588,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="596"/>
         <source>&amp;Stop</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Berhenti</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="598"/>
@@ -6611,12 +6616,12 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="823"/>
         <source>Actual Size</source>
-        <translation type="unfinished"/>
+        <translation>Ukuran aktual</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="826"/>
         <source>Fit to Width</source>
-        <translation type="unfinished"/>
+        <translation>Pepetkan ke lebar halaman</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="829"/>
@@ -6767,17 +6772,17 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="783"/>
         <source>Replacement prompt</source>
-        <translation type="unfinished"/>
+        <translation>Prom pengganti</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="784"/>
         <source>Shall it be replaced?</source>
-        <translation type="unfinished"/>
+        <translation>Perlu untuk diganti?</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="789"/>
         <source>Replacing Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Pengantian Dibatalkan</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="789"/>
@@ -6832,13 +6837,13 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="521"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1441"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Batalkan</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="532"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1442"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Batalkan Pembatalan</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="547"/>
@@ -6891,7 +6896,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="630"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1453"/>
         <source>&amp;Select all</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pilih Semua</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="642"/>
@@ -7217,12 +7222,12 @@ Catatan:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
         <source>Select up</source>
-        <translation type="unfinished"/>
+        <translation>Pilih ke atas</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
         <source>Select down</source>
-        <translation type="unfinished"/>
+        <translation>Pilih ke bawah</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
@@ -7247,7 +7252,7 @@ Catatan:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4790"/>
         <source>Select to line start</source>
-        <translation type="unfinished"/>
+        <translation>Pilih line untuk memulai</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4791"/>
@@ -7257,7 +7262,7 @@ Catatan:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4792"/>
         <source>Select to line end</source>
-        <translation type="unfinished"/>
+        <translation>Pilih untuk mengakhiri line</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4793"/>
@@ -7272,32 +7277,32 @@ Catatan:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4796"/>
         <source>Select page up</source>
-        <translation type="unfinished"/>
+        <translation>Pilih naik ke halaman atas</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4797"/>
         <source>Select page down</source>
-        <translation type="unfinished"/>
+        <translation>Pilih turun ke halaman bawah</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4799"/>
         <source>Select to next block</source>
-        <translation type="unfinished"/>
+        <translation>Pilih blok selanjutnya</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
         <source>Select to previous block</source>
-        <translation type="unfinished"/>
+        <translation>Pilih blok sebelumnya</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4804"/>
         <source>Delete left character</source>
-        <translation type="unfinished"/>
+        <translation>Hapus karakter sebelah kiri</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4805"/>
         <source>Delete right character</source>
-        <translation type="unfinished"/>
+        <translation>Hapus karakter sebelah kanan</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4806"/>
@@ -7327,7 +7332,7 @@ Catatan:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4812"/>
         <source>Redo</source>
-        <translation type="unfinished"/>
+        <translation>Batalkan pembatalan</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4813"/>
@@ -7775,7 +7780,7 @@ Catatan:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="310"/>
         <source>previewSelection</source>
-        <translation type="unfinished"/>
+        <translation>pratinjau Pilihan</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="311"/>
@@ -7885,12 +7890,12 @@ Catatan:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="332"/>
         <source>qtscript:number</source>
-        <translation type="unfinished"/>
+        <translation>qtscript:angka</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="333"/>
         <source>qtscript:keyword</source>
-        <translation type="unfinished"/>
+        <translation>qtscript:kata kunci</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="334"/>
@@ -8227,7 +8232,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="137"/>
         <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="143"/>
         <source>Selected: %1</source>
-        <translation type="unfinished"/>
+        <translation>Dipilih: %1</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
@@ -8550,7 +8555,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="66"/>
         <source>Ignore Case</source>
-        <translation type="unfinished"/>
+        <translation>Abaikan kapital / non kapital</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="73"/>
@@ -8798,22 +8803,22 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/spellerdialog.ui" line="14"/>
         <source>Check Spelling</source>
-        <translation type="unfinished"/>
+        <translation>Cek ejaan</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="43"/>
         <source>Unknown Word</source>
-        <translation type="unfinished"/>
+        <translation>Kata tidak diketahui</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="60"/>
         <source>Replace with</source>
-        <translation type="unfinished"/>
+        <translation>Ganti dengan</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="67"/>
         <source>Suggested Words</source>
-        <translation type="unfinished"/>
+        <translation>Kata-kata yang disarankan</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="77"/>
@@ -8848,17 +8853,17 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/spellerdialog.ui" line="169"/>
         <source>Hide Added Words</source>
-        <translation type="unfinished"/>
+        <translation>Sembunyikan kata yang ditambahkan</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="184"/>
         <source>Ig&amp;nore All</source>
-        <translation type="unfinished"/>
+        <translation>Ab&amp;aikan Semua</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="191"/>
         <source>&amp;Add to dictionary</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tambahkan ke kamus</translation>
     </message>
 </context>
 <context>
@@ -8940,13 +8945,13 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="51"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Operator</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="52"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Relasi</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="53"/>
@@ -9000,12 +9005,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="61"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Spesial</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="97"/>
         <source>Favorites</source>
-        <translation type="unfinished"/>
+        <translation>Favorit</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="117"/>
@@ -9020,7 +9025,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="142"/>
         <source>Category</source>
-        <translation type="unfinished"/>
+        <translation>Kategori</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="153"/>
@@ -9033,12 +9038,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="237"/>
         <source>no error</source>
-        <translation type="unfinished"/>
+        <translation>tidak ada kesalahan</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="238"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"/>
+        <translation>Lingkungan tidak dikenali</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="239"/>
@@ -9255,7 +9260,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/tabdialog.ui" line="86"/>
         <source>Column :</source>
-        <translation type="unfinished"/>
+        <translation>Kolom :</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="113"/>
@@ -9265,17 +9270,17 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/tabdialog.ui" line="127"/>
         <source>Left Border :</source>
-        <translation type="unfinished"/>
+        <translation>Bingkai kiri :</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="167"/>
         <source>Apply to all columns</source>
-        <translation type="unfinished"/>
+        <translation>Terapkan ke seluruh kolom</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="194"/>
         <source>Right Border (last column) :</source>
-        <translation type="unfinished"/>
+        <translation>Bingkai kanan (akhir kolom) :</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="232"/>
@@ -9295,7 +9300,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/tabdialog.ui" line="296"/>
         <source>Top Border</source>
-        <translation type="unfinished"/>
+        <translation>Bingkai atas</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="305"/>
@@ -9497,12 +9502,12 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="566"/>
         <source>Edit Template</source>
-        <translation type="unfinished"/>
+        <translation>Edit Template</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="567"/>
         <source>Edit Template Info</source>
-        <translation type="unfinished"/>
+        <translation>Edit Info Template</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="568"/>
@@ -9728,7 +9733,7 @@ template to edit individual files.</source>
         <location filename="../src/additionaltranslations.cpp" line="361"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>XML</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="2175"/>
@@ -9796,7 +9801,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="704"/>
         <source>Structure</source>
-        <translation type="unfinished"/>
+        <translation>Struktur</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="723"/>
@@ -9906,7 +9911,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="920"/>
         <source>Save A&amp;ll</source>
-        <translation type="unfinished"/>
+        <translation>Simpan S&amp;eluruhnya</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="921"/>
@@ -10052,12 +10057,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="963"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Batalkan</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="964"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Batalkan Pembatalan</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="966"/>
@@ -10102,12 +10107,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="974"/>
         <source>Select &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>Pilih &amp;Semua</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="975"/>
         <source>Select All &amp;Occurrences</source>
-        <translation type="unfinished"/>
+        <translation>Pilih Semua &amp;Keterjadian</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="976"/>
@@ -10541,13 +10546,13 @@ template to edit individual files.</source>
         <location filename="../src/texstudio.cpp" line="1166"/>
         <location filename="../src/texstudio.cpp" line="1176"/>
         <source>Select Inner</source>
-        <translation type="unfinished"/>
+        <translation>Pilih Inner</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1167"/>
         <location filename="../src/texstudio.cpp" line="1177"/>
         <source>Select Outer</source>
-        <translation type="unfinished"/>
+        <translation>Pilih Outer</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1168"/>
@@ -10636,7 +10641,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1205"/>
         <source>&amp;Build &amp;&amp; View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bangunan &amp;&amp; Tampilkan</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1206"/>
@@ -11054,12 +11059,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1373"/>
         <source>Focus Editor</source>
-        <translation type="unfinished"/>
+        <translation>Fokus editor</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1374"/>
         <source>Focus Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Fokus penampil</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1377"/>
@@ -11172,7 +11177,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1445"/>
         <source>Full &amp;Screen</source>
-        <translation type="unfinished"/>
+        <translation>Layar &amp;penuh</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1452"/>
