@@ -1,5 +1,5 @@
 # verifiche package
-# Matthew Bertucci 2023/08/22 for v7.0
+# Matthew Bertucci 2024/11/29 for v8.0
 
 #include:xkeyval
 #include:pgffor
@@ -8,6 +8,8 @@
 # loads shortlabels and inline options of enumitem
 #include:tikz
 #include:ulem
+#include:fp
+#include:randomlist
 
 #keyvals:\usepackage/verifiche#c
 solutions
@@ -62,6 +64,7 @@ verifiche
 label=%<text%>
 diff=%<number%>
 pt=%<number%>
+sumpoints
 partialpt
 #endkeyvals
 
@@ -195,6 +198,17 @@ linecolor=#%color
 \end{multitest}
 \themultitestcounter#*
 
+\begin{shuffledenumerate}
+\begin{shuffledenumerate}[enumitem options]
+\end{shuffledenumerate}
+\sitem{text}
+\begin{shuffleditemize}
+\begin{shuffleditemize}[enumitem options]
+\end{shuffleditemize}
+\begin{shuffledclosed}
+\begin{shuffledclosed}[closedquestion options]
+\end{shuffledclosed}
+
 # from shortlabels option of enumitem
 #keyvals:\begin{enumerate}#c,\begin{itemize}#c,\begin{description}#c,\begin{enumerate*}#c,\begin{itemize*}#c,\begin{description*}#c,\begin{closedquestion},\begin{closedquestion*},\begin{crocette},\begin{crocette*}
 A
@@ -234,6 +248,7 @@ i
 \tempeserciziolabel#S
 \theexercisenumber#*
 \thepartialpoints#*
+\theshuffleitemscount#*
 \ifsol#S
 \soltrue#S
 \solfalse#S
@@ -282,3 +297,4 @@ i
 \ifopenquestionsquared#S
 \openquestionsquaredtrue#S
 \openquestionsquaredfalse#S
+\shuffleseed{arg}#S
