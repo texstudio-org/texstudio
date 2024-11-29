@@ -1,5 +1,5 @@
 # luamplib package
-# Matthew Bertucci 2024/11/12 for v2.35
+# Matthew Bertucci 2024/11/29 for v2.35.2
 
 #include:luatex
 
@@ -150,3 +150,9 @@ resources=%<PDF resources%>
 \luamplibtaggingbegin#S
 \luamplibtaggingend#S
 \luamplibtaggingBBox#S
+\mplibstarttousemplibgroup#S
+\mplibstoptousemplibgroup#S
+\luamplibtagasgroupbegin#S
+\luamplibtagasgroupend#S
+\mplibstarttousemplibgrouporiginal#S
+\mplibstoptousemplibgrouporiginal#S
