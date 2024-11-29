@@ -29,6 +29,7 @@
   <launchable type="desktop-id">texstudio.desktop</launchable>
   <screenshots>
     <screenshot type="default">
+      <caption>The TexStudio main window showing a TeX document and the rendered file</caption>
       <image>https://raw.githubusercontent.com/texstudio-org/texstudio/master/utilities/screenshot1.png</image>
     </screenshot>
   </screenshots>
