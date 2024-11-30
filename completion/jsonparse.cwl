@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2024/11/04 for v0.9.6
+# Matthew Bertucci 2024/11/29 for v0.9.8
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -9,6 +9,8 @@
 \JSONParseValue{token variable}{key%plain}
 \JSONParseValue[options%keyvals]{token variable}{key%plain}
 \JSONParseExpandableValue{token variable}{key%plain}
+\JSONParseSetValue{token variable%cmd}{token variable}{key%plain}#d
+\JSONParseSetRescanValue{token variable%cmd}{token variable}{key%plain}#d
 \JSONParseArrayValues{token variable}{key%plain}{string}
 \JSONParseArrayValues{token variable}{key%plain}[subkey]{string}
 \JSONParseArrayValues[options%keyvals]{token variable}{key%plain}{string}
