@@ -1,5 +1,5 @@
 # postnotes package
-# Matthew Bertucci 2024/11/05 for v0.4.0
+# Matthew Bertucci 2024/12/04 for v0.5.0
 
 \postnote{text}
 \postnote[options%keyvals]{text}
@@ -50,17 +50,7 @@ maybemulti#true,false
 counteraux#true,false
 #endkeyvals
 
-\pnhdchapfirst#*
-\pnhdchaplast#*
-\pnhdnamefirst#*
-\pnhdnamefirst#*
-\pnhdnamelast#*
-\pnhdnamelast#*
 \pnhdnotes#*
-\pnhdpagefirst#*
-\pnhdpagelast#*
-\pnhdsectfirst#*
-\pnhdsectlast#*
 \pnhdtopage#*
 \pnhdtopages#*
 \pnheaderdefault#*
@@ -80,3 +70,13 @@ counteraux#true,false
 \theHpostnotetext#*
 \pnsetcounteraux{integer}#*
 \pnaddtocounteraux{integer}#*
+
+# deprecated
+\pnhdchapfirst#S
+\pnhdchaplast#S
+\pnhdnamefirst#S
+\pnhdnamelast#S
+\pnhdpagefirst#S
+\pnhdpagelast#S
+\pnhdsectfirst#S
+\pnhdsectlast#S
