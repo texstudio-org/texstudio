@@ -1,5 +1,5 @@
 # suftesi class
-# Matthew Bertucci 2023/09/07 for v3.2.1
+# Matthew Bertucci 2024/12/04 for v3.2.5
 
 #include:xkeyval
 #include:class-book
@@ -33,10 +33,10 @@
 
 ## Class options ##
 #ifOption:fewfootnotes=true
-#include:zref-perpage
+#include:footnpag
 #endif
 #ifOption:fewfootnotes
-#include:zref-perpage
+#include:footnpag
 #endif
 
 #ifOption:defaultfont=standard
