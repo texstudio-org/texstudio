@@ -1,5 +1,30 @@
 # postnotes package
-# Matthew Bertucci 2024/12/04 for v0.5.0
+# Matthew Bertucci 2024/12/05 for v0.5.1
+
+#keyvals:\usepackage/postnotes#c
+deprecatedheadervars#true,false
+#endkeyvals
+
+#ifOption:deprecatedheadervars
+\pnhdchapfirst#*
+\pnhdchaplast#*
+\pnhdnamefirst#*
+\pnhdnamelast#*
+\pnhdpagefirst#*
+\pnhdpagelast#*
+\pnhdsectfirst#*
+\pnhdsectlast#*
+#endif
+#ifOption:deprecatedheadervars=true
+\pnhdchapfirst#*
+\pnhdchaplast#*
+\pnhdnamefirst#*
+\pnhdnamelast#*
+\pnhdpagefirst#*
+\pnhdpagelast#*
+\pnhdsectfirst#*
+\pnhdsectlast#*
+#endif
 
 \postnote{text}
 \postnote[options%keyvals]{text}
@@ -70,13 +95,3 @@ counteraux#true,false
 \theHpostnotetext#*
 \pnsetcounteraux{integer}#*
 \pnaddtocounteraux{integer}#*
-
-# deprecated
-\pnhdchapfirst#S
-\pnhdchaplast#S
-\pnhdnamefirst#S
-\pnhdnamelast#S
-\pnhdpagefirst#S
-\pnhdpagelast#S
-\pnhdsectfirst#S
-\pnhdsectlast#S
