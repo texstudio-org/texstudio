@@ -7,8 +7,8 @@ permissions:
   contents: read
 
 env:
-  OSX_QT_VERSION: 6.8.0
-  OSX_POPPLER_VERSION: 24.11.0
+  OSX_QT_VERSION: 6.8.1
+  OSX_POPPLER_VERSION: 24.12.0
   OSX_QUAZIP_VERSION: 1.4
 
 jobs:
