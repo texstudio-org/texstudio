@@ -1,5 +1,5 @@
 # spbmark package
-# Matthew Bertucci 2024/07/05 for v1.46l
+# Matthew Bertucci 2024/07/05 for v1.46u
 
 #keyvals:\usepackage/spbmark#c
 text#true,false
@@ -135,6 +135,9 @@ height=##L
 depth=##L
 style=%<style name%>
 mode=#text,math,match
+thiswd=#auto,keep
+regex=%<regular expression%>
+nobox#true,false
 vsep={%<super move,sub move%>}
 halign=#l,c,r
 #endkeyvals
@@ -158,11 +161,17 @@ spheight=##L
 spdepth=##L
 sbheight=##L
 sbdepth=##L
+spthiswd=#auto,keep
+sbthiswd=#auto,keep
+spregex=%<regular expression%>
+sbregex=%<regular expression%>
 spbhmove=##L
 spbcmd={%<super cmds,sub cmds%>}
 spbcmd+={%<super cmds,sub cmds%>}
 spbheight=##L
 spbdepth=##L
+vsep={%<super move,sub move%>}
+halign=#l,c,r
 #endkeyvals
 
 \fnmarkfont#*
