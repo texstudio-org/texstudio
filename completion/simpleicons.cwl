@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/11/29 for v13.18.0
+# Matthew Bertucci 2024/12/06 for v13.19.0
 
 #include:iftex
 
@@ -8,6 +8,7 @@
 #keyvals:\simpleicon
 42
 1001tracklists
+1and1
 1dot1dot1dot1
 1panel
 1password
@@ -31,6 +32,7 @@ abusedotch
 academia
 accenture
 accusoft
+accuweather
 acer
 acm
 actigraph
@@ -77,6 +79,7 @@ affinityphoto
 affinitypublisher
 aframe
 afterpay
+aftership
 agora
 aib
 aidungeon
@@ -99,6 +102,7 @@ airtel
 airtransat
 ajv
 akamai
+akasaair
 akaunting
 akiflow
 alacritty
@@ -318,6 +322,7 @@ babel
 babelio
 babylondotjs
 backblaze
+backbone
 backbonedotjs
 backendless
 backstage
@@ -489,6 +494,7 @@ castro
 caterpillar
 cbc
 cbs
+ccc
 ccleaner
 cdprojekt
 ce
@@ -542,6 +548,7 @@ ckeditor4
 clarifai
 claris
 clarivate
+claude
 clerk
 clevercloud
 clickhouse
@@ -609,6 +616,7 @@ codio
 coffeescript
 coggle
 cognizant
+cohost
 coil
 coinbase
 coinmarketcap
@@ -635,6 +643,7 @@ containerd
 contao
 contentful
 contentstack
+continente
 contributorcovenant
 conventionalcommits
 convertio
@@ -827,6 +836,7 @@ dynatrace
 e
 e3
 ea
+eac
 eagle
 easyeda
 easyjet
@@ -963,6 +973,7 @@ fig
 figma
 figshare
 fila
+filament
 filedotio
 files
 filezilla
@@ -1063,6 +1074,7 @@ gamedeveloper
 gamejolt
 gameloft
 gamemaker
+gamescience
 garmin
 gatling
 gatsby
@@ -1289,6 +1301,8 @@ homepage
 homify
 honda
 honey
+honeybadger
+honeygain
 hono
 honor
 hootsuite
@@ -1301,6 +1315,8 @@ houdini
 houzz
 hp
 hsbc
+htc
+htcvive
 html5
 htmlacademy
 htmx
@@ -1691,7 +1707,9 @@ manageiq
 manjaro
 mantine
 mapbox
+mapillary
 maplibre
+maptiler
 mariadb
 mariadbfoundation
 markdown
@@ -1717,6 +1735,7 @@ max
 maxplanckgesellschaft
 maytag
 mazda
+maze
 mcafee
 mcdonalds
 mclaren
@@ -2110,6 +2129,7 @@ picartodottv
 picnic
 picpay
 picrew
+picsart
 picxy
 pihole
 pimcore
@@ -2353,6 +2373,7 @@ reduxsaga
 redwoodjs
 reebok
 refine
+refinedgithub
 relay
 relianceindustrieslimited
 remark
@@ -2546,12 +2567,14 @@ sidequest
 siemens
 sifive
 signal
+silverairways
 similarweb
 simkl
 simpleanalytics
 simpleicons
 simplelogin
 simplenote
+simplex
 sinaweibo
 singaporeairlines
 singlestore
@@ -2672,6 +2695,7 @@ starbucks
 stardock
 starlingbank
 starship
+startpage
 startrek
 starz
 statamic
@@ -2898,6 +2922,7 @@ tricentis
 trilium
 triller
 trillertv
+trimble
 trino
 tripadvisor
 tripdotcom
@@ -2944,9 +2969,11 @@ ubuntu
 ubuntumate
 udacity
 udemy
+udotsdotnews
 ufc
 uikit
 uipath
+ukca
 ulule
 umami
 umbraco
@@ -3004,6 +3031,7 @@ veepee
 vega
 vegas
 velog
+vencord
 venmo
 vercel
 verdaccio
@@ -3125,6 +3153,7 @@ wikipedia
 wikiquote
 wikivoyage
 winamp
+wine
 wipro
 wire
 wireguard
