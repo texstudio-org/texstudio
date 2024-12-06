@@ -1,5 +1,5 @@
 # genealogy-profiles package
-# Matthew Bertucci 2024/01/25 for v2024/01/24
+# Matthew Bertucci 2024/12/05 for v2024/12/05
 
 #include:genealogytree
 #include:hyperref
@@ -17,17 +17,16 @@ begin header=%<code%>
 end header=%<code%>
 begin life events=%<code%>
 end life events=%<code%>
+begin content=%<code%>
+end content=%<code%>
+layout preset=#clear,tcolorbox
 reference style=
 unknown reference style=
 page number style=
-givenname style=%<style%>
-patronymic style=%<style%>
-surname style=%<style%>
-byname style=%<style%>
 header format=%<code%>
 auto header#true,false
 id index=
-fullname index=
+full name index=
 patronymic index=
 surname index=
 byname index=
@@ -49,8 +48,8 @@ include ambiguous in index#true,false
 
 #keyvals:\begin{gprProfile},\begin{gprProfile*}
 id=
-fullname=
-givenname=
+full name=
+given name=
 patronymic=
 surname=
 byname=
@@ -69,12 +68,17 @@ no index#true,false
 \gprYears{year range}
 \gprYears*{year range}
 
+\gprCreateNamePart{name part}
+\gprCreateNamePart{name part}[macro name]
+
 \gprHeader
 \gprID
-\gprStyledName
 \gprFullName
 \gprGivenName
 \gprPatronymic
 \gprSurname
 \gprByname
 \gprSpouse
+
+# deprecated
+\gprStyledName#S
