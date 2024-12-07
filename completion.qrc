@@ -1445,6 +1445,7 @@
 <file>completion/etoolbox.cwl</file>
 <file>completion/etruscan.cwl</file>
 <file>completion/eucal.cwl</file>
+<file>completion/euclidean-lattice.cwl</file>
 <file>completion/euclideangeometry.cwl</file>
 <file>completion/euflag.cwl</file>
 <file>completion/eufrak.cwl</file>

@@ -1,5 +1,5 @@
 # fancyqr package
-# Matthew Bertucci 2024/10/08 for v2.1
+# Matthew Bertucci 2024/11/29 for v2.2
 
 #include:pict2e
 #include:qrcode
@@ -13,6 +13,7 @@
 #keyvals:\fancyqr,\fancyqrset,\fancyqr*
 classic#true,false
 color=#%color
+compensate=##L
 gradient#true,false
 gradient angle=%<degrees%>
 image=%<graphics code%>
@@ -40,6 +41,7 @@ nolink
 #endkeyvals
 
 \FancyQrDoNotPrintSquare{x}{y}
+\FancyQrDoNotPrintRadius{factor}
 \FancyQrRoundCut
 \FancyQrHardCut
 

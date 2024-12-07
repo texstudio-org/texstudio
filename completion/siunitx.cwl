@@ -1,7 +1,7 @@
 # dbitouze/2015-03-20 for siunitx v2.6e
 # thatlittleboy/2018-06-18
 # r0the/2021-10-07 for siunitx v3
-# Matthew Bertucci 2023-07-31 for v3.3.0
+# Matthew Bertucci 2024-12-06 for v3.4.0
 
 #include:translations
 #include:amstext
@@ -348,6 +348,7 @@ uncertainty-round-direction=#nearest,up,down
 
 ## 4.5 Printing numbers
 #keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\SI,\si,\SIlist,\SIrange
+allow-uncertainty-breaks#true,false
 bracket-ambiguous-numbers#true,false
 bracket-negative-numbers#true,false
 digit-group-size=%<integer%>
@@ -370,6 +371,7 @@ print-unity-mantissa#true,false
 print-zero-exponent#true,false
 print-zero-integer#true,false
 separate-uncertainty#true,false
+simplify-uncertainty#true,false
 tight-spacing#true,false
 uncertainty-descriptor-mode=#bracket,bracket-separator,separator,subscript
 uncertainty-descriptor-separator=%<separator%>
@@ -417,8 +419,8 @@ range-units=#bracket,repeat,single
 #keyvals:\sisetup,\complexnum,\complexqty
 complex-angle-unit=#degrees,radians
 complex-mode=#cartesian,polar,input
+complex-phase-command=%<command%>
 complex-root-position=#after-number,before-number
-complex-symbol-angle=%<symbol%>
 complex-symbol-degree=%<symbol%>
 input-complex-root=%<tokens%>
 output-complex-root=%<symbol%>
@@ -436,7 +438,6 @@ angle-separator=%<separator%>
 fill-angle-degrees#true,false
 fill-angle-minutes#true,false
 fill-angle-seconds#true,false
-number-angle-product=%<separator%>
 #endkeyvals
 
 ## 4.9 Creating units

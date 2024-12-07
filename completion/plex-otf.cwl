@@ -1,16 +1,15 @@
 # plex-otf package
-# Matthew Bertucci 2023/09/09 for v0.08
+# Matthew Bertucci 2024/12/05 for v0.09
 
-#include:ifxetex
-#include:ifluatex
+#include:iftex
 #include:xkeyval
-#include:fontspec
+#include:unicode-math
 
 #keyvals:\usepackage/plex-otf#c
-usefilenames#true,false
 mono#true,false
 sans#true,false
 serif#true,false
+math#true,false
 RMstyle={%<style list%>}
 SSstyle={%<style list%>}
 SSconstyle={%<style list%>}
@@ -22,6 +21,8 @@ RM={%<fontspec options%>}
 SS={%<fontspec options%>}
 SScon={%<fontspec options%>}
 TT={%<fontspec options%>}
+MM={%<fontspec options%>}
+MMbold={%<fontspec options%>}
 DefaultFeatures={%<fontspec options%>}
 #endkeyvals
 

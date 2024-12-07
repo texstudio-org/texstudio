@@ -1,5 +1,5 @@
 # fontsize package
-# Matthew Bertucci 12/13/2021 for v0.8.5
+# Matthew Bertucci 2024/12/04 for v0.9
 
 #include:xkeyval
 
@@ -7,6 +7,7 @@
 fontsize=##L
 parindent=##L
 cloname=%<name%>
+fsround=%<integer%>
 #endkeyvals
 
 \changefontsize{fontsize}
@@ -53,3 +54,6 @@ cloname=%<name%>
 \HUGEr
 \HUGErr
 \HUGErrr
+
+# not documented
+\fscalc{arg}#S

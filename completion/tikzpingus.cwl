@@ -1,5 +1,5 @@
 # tikzpingus package
-# Matthew Bertucci 2023/09/21 for v1.1
+# Matthew Bertucci 2024/11/29 for v1.2
 
 #include:etoolbox
 #include:tikz
@@ -13,7 +13,6 @@
 #keyvals:\usepackage/tikzpingus#c
 glows
 manual-layers
-bare
 #endkeyvals
 
 #ifOption:glows
@@ -293,6 +292,22 @@ hat ribbon=#%color
 hat base=#%color
 hat coronal=#%color
 hat position={%<angle%>:(%<x,y%>){%<scale%>}}
+graduate
+graduate=#%color
+graduate top=#%color
+graduate tilt=##L
+graduate tassel=#%color
+graduate tassel drop=#%color
+graduate tassel start={(%<x,y%>)}
+graduate tassel width=##L
+graduate tassel length=##L
+graduate tassel drop size=##L
+graduate position={%<angle%>:(%<x,y%>){%<scale%>}}
+space helmet
+space helmet=#%color
+space helmet glass=#%color
+space helmet glass opacity=%<factor%>
+space helmet position={%<angle%>:(%<x,y%>){%<scale%>}}
 mitra
 mitra=#%color
 mitra height
@@ -514,6 +529,32 @@ lollipop right
 lollipop right=#%color
 lollipop right handle=#%color
 lollipop right second=#%color
+flower left
+flower left=#%color
+flower left size=##L
+flower left center=#%color
+flower left center size=##L
+flower left stem=#%color
+flower left stem length=##L
+flower left stem width=##L
+flower left stem tilt=##L
+flower left petal count=%<integer%>
+flower left petal width=##L
+flower left petal start angle=%<degrees%>
+flower left petal peak=%<factor%>
+flower right
+flower right=#%color
+flower right size=##L
+flower right center=#%color
+flower right center size=##L
+flower right stem=#%color
+flower right stem length=##L
+flower right stem width=##L
+flower right stem tilt=##L
+flower right petal count=%<integer%>
+flower right petal width=##L
+flower right petal start angle=%<degrees%>
+flower right petal peak=%<factor%>
 cane left
 cane left=#%color
 cane left raise=##L
@@ -842,31 +883,6 @@ yshift=##L
 #endkeyvals
 
 !hide#B
-
-\pinguloadlibrary{library1,library2,...%keyvals}
-\pinguloadlibraries{library1,library2,...%keyvals}#*
-
-#keyvals:\pinguloadlibrary#c,\pinguloadlibraries#c
-shirts
-glasses
-medieval
-cloak
-christmas
-science-fiction
-fun
-technology
-flags
-hats
-sport
-formal
-signs
-devil
-safe
-magic
-movement
-emotions
-horse
-#endkeyvals
 
 # not documented
 \basew#S

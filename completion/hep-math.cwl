@@ -1,8 +1,8 @@
 # hep-math package
-# Matthew Bertucci 2022/11/03 for v1.1
+# Matthew Bertucci 2024/11/29 for v1.3
 
 #include:mathtools
-#include:soulutf8
+#include:soul
 #include:amssymb
 #include:units
 #include:cancel
@@ -141,3 +141,6 @@
 \imaginaryunit#*
 \ceil{arg}#m
 \floor{arg}#m
+
+\slashedpartialdifferential#*m
+\spd#*m

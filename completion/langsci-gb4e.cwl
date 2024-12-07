@@ -1,11 +1,12 @@
 # langsci-gb4e package
-# Matthew Bertucci 2023/02/12 for v2022-10-21
+# Matthew Bertucci 2024/12/04 for v2024/12/03
 
 #include:etoolbox
 
 #keyvals:\usepackage/langsci-gb4e#c
 nocgloss
 nojambox
+manualexewidth
 lowerpenalty
 #endkeyvals
 

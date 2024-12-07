@@ -1,8 +1,7 @@
 # dejavu-otf package
-# Matthew Bertucci 4/17/2021 for v0.04
+# Matthew Bertucci 2024/11/30 for v0.06
 
-#include:ifxetex
-#include:ifluatex
+#include:iftex
 #include:xkeyval
 #include:unicode-math
 
