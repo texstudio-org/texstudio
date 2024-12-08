@@ -1,7 +1,6 @@
 # pageslts package
-# Matthew Bertucci 2024/11/20 for v2.0a
+# Matthew Bertucci 2024/12/07 for v2.0b
 
-#include:kvoptions
 #include:undolabl
 
 #keyvals:\usepackage/pageslts#c
