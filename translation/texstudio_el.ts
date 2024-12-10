@@ -152,7 +152,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="73"/>
         <source>TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</source>
-        <translation>Το TeXstudio χρησιμοποιεί το To Title Case (Άδεια MIT, Copyright (c) 2008-2013 David Gouch).</translation>
+        <translation>Το TeXstudio χρησιμοποιεί το To Title Case (Άδεια χρήσης MIT, Copyright (c) 2008-2013 David Gouch).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="74"/>
@@ -735,7 +735,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1513"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation>Δημοφιλείς διανομές LaTeX για Windows είναι  %1 και %2.</translation>
+        <translation>Δύο δημοφιλείς διανομές LaTeX για Windows είναι οι %1 και %2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1515"/>
@@ -1088,12 +1088,12 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="678"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation>&lt;b&gt;%&lt;/b&gt;: όνομα αρχείου χωρίς επέκταση· &lt;b&gt;@&lt;/b&gt;: αριθμός γραμμής &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: μορφοποιημένο όνομα αρχείου</translation>
+        <translation>&lt;b&gt;%&lt;/b&gt;: όνομα αρχείου χωρίς επέκταση· &lt;b&gt;@&lt;/b&gt;: αριθμός γραμμής &lt;b&gt;?[επιλογέας αρχείου][μέρη ονόματος διαδρομής][τελικοί χαρακτήρες]&lt;/b&gt;: μορφοποιημένο όνομα αρχείου</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="688"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation>&lt;i&gt;Επιλογέας αρχείου (Προαιρετικό. Εάν οριστεί, πρέπει να περιλαμβάνει την άνω και κάτω τελεία στο τέλος):&lt;/i&gt; Αν δεν οριστεί, επιλέγεται το κύριο αρχείο. &lt;b&gt;c:&lt;/b&gt; επιλογή τρέχοντος αρχείου, &lt;b&gt;p{ext}&lt;/b&gt; Εύρεση αρχείου που έχει επέκταση &lt;b&gt;ext&lt;/b&gt; και το ίδιο όνομα με το κύριο αρχείο. Η αναζήτηση γίνεται στον φάκελο του κύριου αρχείου και σε τυχόν φακέλους σχετικών εγγράφων PDF εγγράφων.&lt;br /&gt;&lt;i&gt;Μέρη ονόματος διαδρομής:&lt;/i&gt; ένας συνδυασμός των &lt;b&gt;a&lt;/b&gt;: απόλυτη διαδρομή, &lt;b&gt;m&lt;/b&gt;: όνομα αρχείου χωρίς την επέκταση, &lt;b&gt;e&lt;/b&gt;: επέκταση, &lt;b&gt;r&lt;/b&gt;: διαδρομή ως προς τη διαδρομή του κύριου αρχείου, &lt;b&gt;*&lt;/b&gt;: όλα τα αρχεία που αντιστοιχούν στο μοτίβο που ακολουθεί&lt;br/&gt;&lt;i&gt;Τελικοί χαρακτήρες:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: σηματοδοτεί το τέλος του επιλογέα. Το ίδιο συμβαίνει και με τους ακόλουθους χαρακτήρες, οι οποίοι όμως έχουν και επιπλέον σημασία&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: εσωκλείουν τον επιλογέα σε διπλά εισαγωγικά, &lt;b&gt;.&lt;/b&gt; (τελεία) προσθέτει μια τελεία στο τέλος, (κενό): προσθέτει ένα κενό στο τέλος&lt;br/&gt;&lt;i&gt;Παραδείγματα:&lt;/i&gt; &lt;b&gt;?ame&amp;quot&lt;/b&gt;: η διαδρομή και το όνομα με την επέκταση του αρχείου σε εισαγωγικά, &lt;b&gt;?e)&lt;/b&gt; η επέκταση του αρχείου χωρίς τελεία στην αρχή (π.χ. tex),&lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; το όνομα του αρχείου σε διπλά εισαγωγικά χωρίς την επέκταση (το ίδιο με το &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; το όνομα του αρχείου με την επέκταση (π.χ. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: όλα τα αρχεία με επέκταση .aux στον τρέχοντα φάκελο</translation>
+        <translation>&lt;i&gt;Επιλογέας αρχείου (Προαιρετικό. Εάν οριστεί, πρέπει να περιλαμβάνει την άνω και κάτω τελεία στο τέλος):&lt;/i&gt; Αν δεν οριστεί, επιλέγεται το κύριο αρχείο. &lt;b&gt;c:&lt;/b&gt; επιλογή τρέχοντος αρχείου, &lt;b&gt;p{ext}&lt;/b&gt; Εύρεση αρχείου που έχει επέκταση &lt;b&gt;ext&lt;/b&gt; και όνομα ίδιο με το κύριο αρχείο. Η αναζήτηση γίνεται στον φάκελο του κύριου αρχείου και σε τυχόν φακέλους σχετικών εγγράφων PDF.&lt;br /&gt;&lt;i&gt;Μέρη ονόματος διαδρομής:&lt;/i&gt; ένας συνδυασμός των &lt;b&gt;a&lt;/b&gt;: απόλυτη διαδρομή, &lt;b&gt;m&lt;/b&gt;: όνομα αρχείου χωρίς την επέκταση, &lt;b&gt;e&lt;/b&gt;: επέκταση, &lt;b&gt;r&lt;/b&gt;: διαδρομή ως προς τη διαδρομή του κύριου αρχείου, &lt;b&gt;*&lt;/b&gt;: όλα τα αρχεία που αντιστοιχούν στο μοτίβο που ακολουθεί&lt;br/&gt;&lt;i&gt;Τελικοί χαρακτήρες:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: σηματοδοτεί το τέλος του επιλογέα. Το ίδιο συμβαίνει και με τους ακόλουθους χαρακτήρες, οι οποίοι όμως έχουν και επιπλέον σημασία&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: εσωκλείει το όνομα του αρχείου σε διπλά εισαγωγικά, &lt;b&gt;.&lt;/b&gt; (τελεία) προσθέτει μια τελεία στο τέλος, (κενό): προσθέτει ένα κενό στο τέλος&lt;br/&gt;&lt;i&gt;Παραδείγματα:&lt;/i&gt; &lt;b&gt;?ame&amp;quot&lt;/b&gt;: η διαδρομή και το όνομα του αρχείου (με την επέκταση) σε εισαγωγικά, &lt;b&gt;?e)&lt;/b&gt; η επέκταση του αρχείου χωρίς τελεία στην αρχή (π.χ. tex),&lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; το όνομα του αρχείου σε διπλά εισαγωγικά χωρίς την επέκταση (το ίδιο με το &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; το όνομα του αρχείου με την επέκταση (π.χ. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: όλα τα αρχεία με επέκταση .aux στον τρέχοντα φάκελο</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="704"/>
@@ -1120,7 +1120,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="820"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
-        <translation>Εκτέλεση txs:///recompile-bibliography, αν τα αρχεία bib έχουν υποστεί επεξεργασία.</translation>
+        <translation>Εκτέλεση της εντολής txs:///recompile-bibliography, αν τα αρχεία bib έχουν υποστεί επεξεργασία.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="823"/>
@@ -1157,7 +1157,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="882"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
-        <translation>πάντα (αν δεν ανακατευθυνθούν &gt; /dev/null)</translation>
+        <translation>πάντα (εφόσον δε γίνει ανακατεύθυνση στο &gt; /dev/null)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="890"/>
@@ -1378,7 +1378,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1386"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
-        <translation>Με αυτήν τη ρύθμιση, μπορείτε να μεγεθύνετε ή να σμικρύνετε τα αντικείμενα της πλέγματος συμβόλων (συστήνεται για οθόνες υψηλής ανάλυσης).</translation>
+        <translation>Με αυτήν τη ρύθμιση, μπορείτε να μεγεθύνετε ή να σμικρύνετε τα αντικείμενα του πλέγματος συμβόλων (για οθόνες υψηλής ανάλυσης).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1417"/>
@@ -1396,12 +1396,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1438"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation>Με αυτήν τη ρύθμιση, μπορείτε να μεγεθύνετε ή να σμικρύνετε τα αντικείμενα των δευτερευουσών, κατακόρυφων γραμμών εργαλείων (συστήνεται για οθόνες υψηλής ανάλυσης).</translation>
+        <translation>Με αυτήν τη ρύθμιση, μπορείτε να μεγεθύνετε ή να σμικρύνετε τα αντικείμενα των δευτερευουσών, κατακόρυφων γραμμών εργαλείων (για οθόνες υψηλής ανάλυσης).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1460"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation>Με αυτήν τη ρύθμιση, μπορείτε να μεγεθύνετε ή να σμικρύνετε τα αντικείμενα της κύριας γραμμής εργαλείων (συστήνεται για οθόνες υψηλής ανάλυσης).</translation>
+        <translation>Με αυτήν τη ρύθμιση, μπορείτε να μεγεθύνετε ή να σμικρύνετε τα αντικείμενα της κύριας γραμμής εργαλείων (για οθόνες υψηλής ανάλυσης).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1495"/>
@@ -1416,12 +1416,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1509"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Με αυτήν τη ρύθμιση, μπορείτε να μεγεθύνετε ή να σμικρύνετε τα αντικείμενα της γραμμής εργαλείων η οποία βρίσκεται ενσωματωμένη στο πρόγραμμα προβολής αρχείων PDF (συστήνεται για οθόνες υψηλής ανάλυσης).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Με αυτήν τη ρύθμιση, μπορείτε να μεγεθύνετε ή να σμικρύνετε τα αντικείμενα της γραμμής εργαλείων η οποία βρίσκεται ενσωματωμένη στο πρόγραμμα προβολής αρχείων PDF (για οθόνες υψηλής ανάλυσης).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1534"/>
         <source>Embedded PDF Toolbar</source>
-        <translation>Γραμμή εργαλείων του προβολέα PDF</translation>
+        <translation>Γραμμή εργαλείων προγράμματος προβολής PDF</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1629"/>
@@ -1681,7 +1681,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2162"/>
         <source>Draw cursor as a thick line</source>
-        <translation>Σχεδιασμός κέρσορα ως μια έντονη γραμμή</translation>
+        <translation>Προβολή κέρσορα ως μια έντονη γραμμή</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2165"/>
@@ -1829,7 +1829,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2373"/>
         <source>Mouse Wheel Zoom</source>
-        <translation>Ζουμ με τη ροδέλα του ποντικιού</translation>
+        <translation>Να επιτρέπεται το ζουμ με τη ροδέλα του ποντικιού</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2380"/>
@@ -1849,7 +1849,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2403"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
-        <translation>Άνοιγμα εγχειριδίου χρήσης πακέτου στον προβολέα PDF (texdoc)</translation>
+        <translation>Άνοιγμα τεκμηρίωσης πακέτου στο πρόγραμμα προβολής αρχείων PDF (texdoc)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2410"/>
@@ -1924,7 +1924,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2514"/>
         <source>Show help as tooltip on text in editor</source>
-        <translation>Εμφάνιση βοήθειας εντολών σε tooltip εντός του επεξεργαστή κειμένου</translation>
+        <translation>Εμφάνιση βοήθειας εντολών σε tooltip στον επεξεργαστή κειμένου</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2521"/>
@@ -1999,7 +1999,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2617"/>
         <source>Keep indentation of includes in structure tree</source>
-        <translation>Διατήρηση εσοχής των συμπεριλαμβανομένων αρχείων</translation>
+        <translation>Διατήρηση της εσοχής των συμπεριλαμβανομένων αρχείων</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2624"/>
@@ -2244,12 +2244,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3075"/>
         <source>ToolTip-Help</source>
-        <translation>Εμφάνιση βοήθειας εντολών μέσω tooltip</translation>
+        <translation>Εμφάνιση βοήθειας εντολών σε tooltip</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3085"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
-        <translation>Το εργαλείο αυτόματης συμπλήρωσης ξεκινά να εμφανίζει προτάσεις (αυτόματη) με την πληκτρολόγηση του χαρακτήρα &apos;\&apos; ή (χειροκίνητα) με τη χρήση του συνδυασμού πλήκτρων Ctrl+Space.</translation>
+        <translation>Το εργαλείο αυτόματης συμπλήρωσης εμφανίζει προτάσεις με την πληκτρολόγηση του χαρακτήρα &apos;\&apos; (αυτόματα) ή με τη χρήση του συνδυασμού πλήκτρων Ctrl+Space (χειροκίνητα).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3088"/>
@@ -2364,7 +2364,8 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3399"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation>Φάκελοι που περιέχουν λεξικά Hunspell διαχωρισμένοι με ερωτηματικό (;). Οι ειδικές λέξεις [txs-settings-dir] και [txs-app-dir]  θα αντικαθίστανται με τα αντίστοιχα ονόματα φακέλων.</translation>
+        <translation>Φάκελοι που περιέχουν λεξικά Hunspell διαχωρισμένοι με ερωτηματικό (;).
+Οι ειδικές λέξεις [txs-settings-dir] και [txs-app-dir] αντικαθίστανται με τα αντίστοιχα ονόματα φακέλων.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3409"/>
@@ -2409,12 +2410,12 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3495"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
-        <translation>Ίδιες λέξεις - μεταξύ των οποίων δε βρίσκεται μεγαλύτερος αριθμός λέξεων από αυτόν - θεωρείται πως επαναλαμβάνονται και γι&apos; αυτό θα επισημαίνονται.</translation>
+        <translation>Ίδιες λέξεις - μεταξύ των οποίων δε βρίσκεται μεγαλύτερος αριθμός λέξεων από αυτόν - θεωρείται πως επαναλαμβάνονται και θα επισημαίνονται.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3505"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
-        <translation>Ίδιες λέξεις με σχετικά μεγάλο πλήθος γραμμάτων - μεταξύ των οποίων δε βρίσκεται μεγαλύτερος αριθμός λέξεων από αυτόν - θεωρείται πως επαναλαμβάνονται και γι&apos; αυτό θα επισημαίνονται.</translation>
+        <translation>Ίδιες λέξεις με σχετικά μεγάλο πλήθος γραμμάτων - μεταξύ των οποίων δε βρίσκεται μεγαλύτερος αριθμός λέξεων από αυτόν - θεωρείται πως επαναλαμβάνονται και θα επισημαίνονται.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3515"/>
@@ -2534,7 +2535,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3694"/>
         <source>Default</source>
-        <translation>Προκαθορισμένο</translation>
+        <translation>Προεπιλογή</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3704"/>
@@ -2564,7 +2565,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3738"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
-        <translation>Λίστα διαχωρισμένων με κόμμα κανόνων του LanguageTool που δεν πρέπει να ληφθούν υπόψη κατά τον γλωσσικό έλεγχο.</translation>
+        <translation>Λίστα διαχωρισμένων με κόμμα κανόνων του LanguageTool που θα αγνοηθούν κατά τον γλωσσικό έλεγχο.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3762"/>
@@ -2679,7 +2680,8 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4069"/>
         <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
-        <translation>Με την αλλαγή της τιμής της ρύθμισης αυτής, η ενημερώνεται αυτόματα και η εμφάνιση προεπισκόπησης - παραμένει ωστόσο σε tooltip για την επιλογή «στην ίδια γραμμή».</translation>
+        <translation>Με την τροποποίηση της ρύθμισης αυτής ενημερώνεται αυτόματα και η εμφάνιση προεπισκόπησης,
+η οποία ωστόσο παραμένει σε tooltip για την επιλογή «στην ίδια γραμμή».</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4076"/>
@@ -2818,7 +2820,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4434"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
-        <translation>Δεκαεξαδική τιμή RGBA. Σημείωση: επειδή το χρώμα επισήμανσης τοποθετείται πάνω από το κείμενο, είναι απαραίτητος ο καθορισμός της διαφάνειας.</translation>
+        <translation>Δεκαεξαδική τιμή RGBA. Επειδή το χρώμα της επισήμανσης τοποθετείται πάνω από το κείμενο, είναι απαραίτητος ο καθορισμός της διαφάνειας.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4437"/>
@@ -2903,8 +2905,8 @@ them here.</source>
 If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Το σύστημα υποστήριξης απόδοσης (render backend) που χρησιμοποιείται από τη βιβλιοθήκη poppler.
-Η επιλογή &apos;Splash&apos; είναι η προεπιλεγμένη και πλέον κατάλληλη για τις περισσότερες περιπτώσεις.
-Αν ωστόσο αυτή παρουσιάσει πρόβλημα, μπορείτε να δοκιμάσετε το εναλλακτικό σύστημα υποστήριξης &apos;Arthur&apos;.
+Η επιλογή &apos;Splash&apos; είναι η προεπιλεγμένη και η πιο κατάλληλη για τις περισσότερες περιπτώσεις.
+Αν ωστόσο παρουσιάσει πρόβλημα, μπορείτε να δοκιμάσετε το εναλλακτικό σύστημα υποστήριξης &apos;Arthur&apos;.
 Σημείωση: Η εφαρμογή αυτής της επιλογής ξεκινά με το άνοιγμα του επόμενου αρχείου PDF.</translation>
     </message>
     <message>
@@ -3305,9 +3307,9 @@ However this path is not contained in the dictionary path list. Do you want to a
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation>Οι ρυθμίσεις για προχωρημένους είναι ενεργοποιημένες. Αυτό σας επιτρέπει
-να ρυθμίσετε το TXS με μεγάλη λεπτομέρεια. Απενεργοποιήστε την
-αντίστοιχη ρύθμιση αν θέλετε να δείτε τις πιο συνηθισμένες ρυθμίσεις.</translation>
+        <translation>Οι ρυθμίσεις για προχωρημένους είναι ενεργοποιημένες. Πλέον μπορείτε να ρυθμίσετε
+το TXS με μεγάλη λεπτομέρεια. Απενεργοποιήστε την
+επιλογή αυτή αν θέλετε να δείτε τις πιο συνηθισμένες ρυθμίσεις.</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1529"/>
@@ -4494,7 +4496,7 @@ text: το κείμενο του αντικειμένου</translation>
         <location filename="../src/configmanager.cpp" line="1550"/>
         <location filename="../src/configmanager.cpp" line="2801"/>
         <source>&lt;none&gt;</source>
-        <translation>&lt;κανένα&gt;</translation>
+        <translation>&lt;καμία&gt;</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1596"/>
@@ -4514,7 +4516,7 @@ text: το κείμενο του αντικειμένου</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1620"/>
         <source>Latex/Math menus</source>
-        <translation>Μενού μαθηματικώ/LaTeX</translation>
+        <translation>Μενού μαθηματικών/LaTeX</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1621"/>
@@ -5099,7 +5101,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/insertgraphics.ui" line="324"/>
         <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
-        <translation>Λεζάντα που θα εμφανίζεται στη λίστα των σχημάτων (όχι  κατ&apos; ανάγκη ίδια με την εκτενή λεζάντα)</translation>
+        <translation>Λεζάντα που θα εμφανίζεται στη λίστα των σχημάτων (όχι απαραίτητα ίδια με την εκτενή λεζάντα)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="331"/>
@@ -8299,7 +8301,7 @@ r*: εύρεση χαρακτήρων r (ανεξαρτήτως του πλήθ�
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="634"/>
         <source>The search text occurs %1 times within the search scope.</source>
-        <translation>Το κείμενο που αναζητήσατε εμφανίζεται %1 φορές εντός του προς εύρεση κειμένου.</translation>
+        <translation>Το κείμενο που αναζητήσατε εμφανίζεται %1 φορές μέσα στο προς εύρεση κείμενο.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="867"/>
@@ -10479,7 +10481,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1096"/>
         <source>Erase &amp;Word/Cmd/Env</source>
-        <translation>Διαγραφή &amp;λέξης/εντολής/περιβ.</translation>
+        <translation>Διαγραφή &amp;λέξης/εντολής/περιβάλλοντος</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1099"/>
@@ -11260,7 +11262,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1440"/>
         <source>Editor Zoom</source>
-        <translation>Μεγέθυνση επεξεργαστή κειμένου</translation>
+        <translation>Μεγέθυνση/σμίκρυνση επεξεργαστή κειμένου</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1441"/>
@@ -12447,7 +12449,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/utilsSystem.cpp" line="709"/>
         <source>Show Containing Folder</source>
-        <translation>Εμφάνιση φακέλου περιεχομένου</translation>
+        <translation>Εμφάνιση του περιεχόμενου φακέλου</translation>
     </message>
     <message>
         <location filename="../src/utilsUI.cpp" line="104"/>
@@ -12647,7 +12649,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <location filename="../src/textanalysis.ui" line="346"/>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
 If not, end characters are ignored.</source>
-        <translation>Εάν η επιλογή «Έλεγχος για σημεία στίξης» είναι ενεργοποιημένη, οι λέξεις πριν και μετά του δοθέντες χαρακτήρες θεωρούνται πάντοτε ως λέξεις διαφορετικών φράσεων.
+        <translation>Εάν η επιλογή «Έλεγχος για σημεία στίξης» είναι ενεργοποιημένη, οι λέξεις πριν και μετά του δοθέντος χαρακτήρα θεωρούνται πάντοτε ως λέξεις διαφορετικών φράσεων.
 Σε διαφορετική περίπτωση, τα σημεία στίξης δε λαμβάνονται υπόψη κατά τη διάρκεια της ανάλυσης.</translation>
     </message>
     <message>
@@ -12659,7 +12661,7 @@ If not, end characters are ignored.</source>
         <location filename="../src/textanalysis.ui" line="357"/>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
 If not, end characters are ignored.</source>
-        <translation>Εάν η επιλογή «Έλεγχος για σημεία στίξης» είναι ενεργοποιημένη, οι λέξεις πριν και μετά του δοθέντες χαρακτήρες θεωρούνται πάντοτε ως λέξεις διαφορετικών φράσεων.
+        <translation>Εάν η επιλογή «Έλεγχος για σημεία στίξης» είναι ενεργοποιημένη, οι λέξεις πριν και μετά του δοθέντος χαρακτήρα θεωρούνται πάντοτε ως λέξεις διαφορετικών φράσεων.
 Σε διαφορετική περίπτωση, τα σημεία στίξης δε λαμβάνονται υπόψη κατά τη διάρκεια της ανάλυσης.</translation>
     </message>
     <message>
@@ -13177,7 +13179,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/userquickdialog.ui" line="14"/>
         <source>Quick Build Command</source>
-        <translation>Εντολή γρήγορης δημιουργίας</translation>
+        <translation>Γρήγορη δημιουργία εντολής</translation>
     </message>
     <message>
         <location filename="../src/userquickdialog.ui" line="42"/>
@@ -13460,7 +13462,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="523"/>
         <source>Compiling input file. Please wait...</source>
-        <translation>Γίνεται μεταγλώττιση του αρχείου. Παρακαλώ περιμένετε...</translation>
+        <translation>Η μεταγλώττιση του αρχείου είναι σε εξέλιξη. Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="644"/>
