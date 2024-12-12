@@ -1,5 +1,5 @@
 # tikzlings-anteaters package
-# Matthew Bertucci 4/23/2022 for v0.9
+# Matthew Bertucci 2024/12/12 for v2.1
 
 #include:tikz
 #include:tikzlings-addons
