@@ -16,6 +16,8 @@ mouth=#%color
 arms=#%color
 wings=#%color
 feet=#%color
+leftstep
+rightstep
 back
 3D
 contour
