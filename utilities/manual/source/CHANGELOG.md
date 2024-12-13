@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.8.6
+
+- 
+
 ## TeXstudio 4.8.5
 
 - fix false delimiter mismatch marker which gets stuck under certain circumstances [#489](https://github.com/texstudio-org/texstudio/issues/489)
