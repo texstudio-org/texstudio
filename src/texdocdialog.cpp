@@ -3,7 +3,7 @@
 #include "utilsUI.h"
 
 TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
-	QDialog(parent),
+	QDialog(parent,Qt::Dialog|Qt::WindowMaximizeButtonHint|Qt::WindowCloseButtonHint),
 	ui(new Ui::TexdocDialog),
     openButton(nullptr),
     help(obj)
