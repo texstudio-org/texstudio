@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/12/06 for v13.19.0
+# Matthew Bertucci 2024/12/14 for v13.20.0
 
 #include:iftex
 
@@ -44,6 +44,7 @@ acura
 adafruit
 adblock
 adblockplus
+addydotio
 adguard
 adidas
 adminer
@@ -97,6 +98,7 @@ airfrance
 airindia
 airplayaudio
 airplayvideo
+airserbia
 airtable
 airtel
 airtransat
@@ -185,6 +187,7 @@ anta
 antdesign
 antena3
 anthropic
+antv
 anycubic
 anydesk
 anytype
@@ -227,6 +230,7 @@ apifox
 apmterminals
 apollographql
 apostrophe
+appgallery
 appian
 appium
 apple
@@ -1048,6 +1052,7 @@ freedesktopdotorg
 freelancer
 freelancermap
 freenas
+freenet
 freepik
 fresh
 frontendmentor
@@ -1121,6 +1126,7 @@ globus
 glovo
 gltf
 gmail
+gmx
 gnome
 gnometerminal
 gnu
@@ -1215,6 +1221,7 @@ greenhouse
 greensock
 griddotai
 gridsome
+grocy
 groupme
 groupon
 grubhub
@@ -1504,6 +1511,7 @@ kedro
 keenetic
 keepachangelog
 keepassxc
+keeper
 keeweb
 kentico
 keras
@@ -1527,6 +1535,7 @@ kirby
 kit
 kitsu
 klarna
+kleinanzeigen
 klm
 klook
 knative
@@ -1556,6 +1565,7 @@ kuaishou
 kubernetes
 kubuntu
 kucoin
+kueski
 kuma
 kununu
 kuula
@@ -1632,6 +1642,7 @@ linkerd
 linkfire
 linksys
 linktree
+linphone
 lintcode
 linux
 linuxcontainers
@@ -1677,6 +1688,7 @@ lufthansa
 lumen
 lunacy
 lutris
+lvgl
 lydia
 lyft
 maas
@@ -1811,6 +1823,7 @@ modal
 modin
 modrinth
 modx
+mojeek
 moleculer
 momenteo
 monero
@@ -1833,6 +1846,7 @@ moqups
 morrisons
 moscowmetro
 motorola
+movistar
 mozilla
 mpv
 mqtt
@@ -1844,6 +1858,7 @@ mubi
 mui
 mulesoft
 muller
+mullvad
 multisim
 mumble
 muo
@@ -1865,6 +1880,7 @@ namesilo
 namuwiki
 nano
 nanostores
+napster
 nasa
 nationalgrid
 nationalrail
@@ -1961,6 +1977,7 @@ nx
 nxp
 nzxt
 o2
+obb
 observable
 obsidian
 obsstudio
@@ -2613,6 +2630,7 @@ snowpack
 snyk
 socialblade
 society6
+socket
 socketdotio
 softpedia
 sogou
@@ -2725,6 +2743,7 @@ strava
 streamlabs
 streamlit
 streamrunners
+stremio
 stripe
 strongswan
 stryker
@@ -3115,6 +3134,7 @@ web3dotjs
 webassembly
 webauthn
 webcomponentsdotorg
+webdotde
 webdriverio
 webex
 webflow
@@ -3144,6 +3164,7 @@ whatsapp
 wheniwork
 wii
 wiiu
+wikibooks
 wikidata
 wikidotgg
 wikidotjs
@@ -3151,6 +3172,7 @@ wikimediacommons
 wikimediafoundation
 wikipedia
 wikiquote
+wikiversity
 wikivoyage
 winamp
 wine
