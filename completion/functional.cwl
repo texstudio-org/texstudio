@@ -1,5 +1,5 @@
 # functional package
-# Matthew Bertucci 2023/01/07 for v2023A
+# Matthew Bertucci 2024/12/14 for v2024B
 
 # Note on cwl: the package author Jianrui Lyu encourages use of spaces between
 # args which along with the need to have proper "\newcommand" completion
@@ -1132,6 +1132,7 @@ tracing#true,false
 \clistMapBreak#*
 \clistVarSort{arg1}{arg2}#*
 \cNoValueTl#*
+\colorFromSpec{arg1}{arg2}#*
 \expOnce{arg}#*
 \expPartial{arg}#*
 \fileInputStop#*
