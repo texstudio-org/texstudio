@@ -1,5 +1,6 @@
 # doncherry/2013-05-11 for iftex v0.2
-# Matthew Bertucci 2022-02-06 for v1.0f
+# Matthew Bertucci 2024-12-14 for v1.0g
+
 \ifpdftex#*
 \ifPDFTeX
 \ifxetex#*
@@ -10,6 +11,8 @@
 \ifeTeX
 \ifluahbtex#*
 \ifLuaHBTeX
+\ifluametatex#*
+\ifLuaMetaTeX
 \ifptex#*
 \ifpTeX
 \ifuptex#*
@@ -26,13 +29,15 @@
 \ifTexpadTeX
 \ifhint#*
 \ifHINT
-\else
-\fi
+\ifprote#*
+\ifProte
+
 \RequireeTeX
 \RequirePDFTeX
 \RequireXeTeX
 \RequireLuaTeX
 \RequireLuaHBTeX
+\RequireLuaMetaTeX
 \RequirepTeX
 \RequireupTeX
 \RequirepTeXng
@@ -41,6 +46,8 @@
 \RequireTUTeX
 \RequireTexpadTeX
 \RequireHINT
+\RequireProte
+
 \ifpdf
 \pdftrue
 \pdffalse

@@ -1,5 +1,5 @@
 # linearregression package
-# Matthew Bertucci 2024/06/12
+# Matthew Bertucci 2024/12/14
 
 #include:pict2e
 
@@ -7,4 +7,6 @@
 \lraskfilename
 \lrcomputation
 \lrprint
+\lrnumdigit{number}
 \lrplot{width}{key1}{key2}{key3}{key4}
+\lrplotparameters{diameter}{height}

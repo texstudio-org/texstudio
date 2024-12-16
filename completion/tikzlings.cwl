@@ -1,8 +1,9 @@
 # tikzlings package
-# Matthew Bertucci 4/23/2022 for v0.9
+# Matthew Bertucci 2024/12/12 for v2.1
 
 #include:tikz
 #include:tikzlings-anteaters
+#include:tikzlings-apes
 #include:tikzlings-bats
 #include:tikzlings-bears
 #include:tikzlings-bees
@@ -14,6 +15,7 @@
 #include:tikzlings-hippos	
 #include:tikzlings-koalas
 #include:tikzlings-marmots
+#include:tikzlings-meerkats
 #include:tikzlings-mice
 #include:tikzlings-moles
 #include:tikzlings-owls

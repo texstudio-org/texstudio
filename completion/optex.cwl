@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2024/06/29 for v1.15
+# Matthew Bertucci 2024/12/13 for v1.16
 
 #include:plaintex
 #include:luatex
@@ -388,6 +388,8 @@
 \addto%<\macro%>{%<text%>}
 \adef%<⟨char⟩%>{%<body%>}
 \afterfi{text}
+\afterxfi{text}
+\xfipoint
 \aheadto%<\macro%>{%<text%>}
 \basefilename %<⟨filename⟩%>
 \bp{dimen expression}
@@ -458,6 +460,7 @@
 \wterm{text}
 \xargs %<⟨what⟩ ⟨token1⟩ ⟨token2⟩ ...%>
 \xcasesof %<⟨list of pairs⟩%>
+\xloop
 
 ## Compatibility with Plain TEX ##
 \oldaccents#*
@@ -715,8 +718,8 @@
 \mathclap{formula}#*
 \mathrlap{formula}#*
 \mathllap{formula}#*
-\mathset{options%keyvals}#*
-#keyvals:\mathset
+\mathsetup{options%keyvals}#*
+#keyvals:\mathsetup
 dots
 interval
 vert
@@ -793,6 +796,7 @@ enablefic
 \Merriweather#S
 \mono#S
 \Montserrat#S
+\Neohellenic#S
 \NewCM#S
 \nocaps#S
 \nocond#S
@@ -804,7 +808,9 @@ enablefic
 \osize#S
 \Overlock#S
 \Pagella#S
+\Plex#S
 \Poltawski#S
+\Raleway#S
 \Roboto#S
 \sanssemi#S
 \Schola#S

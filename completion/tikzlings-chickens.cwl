@@ -1,5 +1,5 @@
 # tikzlings-chickens package
-# Matthew Bertucci 4/23/2022 for v0.9
+# Matthew Bertucci 2024/12/12 for v2.1
 
 #include:tikz
 #include:tikzlings-addons
@@ -58,6 +58,11 @@ tassel
 tassel=#%color
 alien
 alien=#%color
+sombrero
+sombrero=#%color
+sombreroa=#%color
+sombrerob=#%color
+sombreroc=#%color
 book
 book={%<text%>}
 bookcolour=#%color
@@ -86,6 +91,9 @@ milkshake
 milkshake=#%color
 wine
 wine=#%color
+cocktail
+banana
+banana=#%color
 cricket
 cricket=#%color
 hockey
@@ -130,7 +138,10 @@ umbrellaclosed
 umbrellaclosed=#%color
 handbag
 handbag=#%color
-cocktail
+stick
+stick=#%color
+leaf
+leaf=#%color
 ## << common tikz options >> ##
 rotate=%<degrees%>
 scale=%<factor%>

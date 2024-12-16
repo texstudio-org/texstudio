@@ -1,18 +1,26 @@
-# tikzlings-sloths package
+# tikzlings-meerkat package
 # Matthew Bertucci 2024/12/12 for v2.1
 
 #include:tikz
 #include:tikzlings-addons
 
-\sloth
-\sloth[options%keyvals]
+\meerkat
+\meerkat[options%keyvals]
 
-#keyvals:\sloth#c
+#keyvals:\meerkat#c
 body=#%color
 eye=#%color
+eyecircles=#%color
+ears=#%color
+muzzle=#%color
+nose=#%color
 mouth=#%color
-sleeping
-eyelid=#%color
+upperbody=#%color
+chest=#%color
+legs=#%color
+tail=#%color
+tip=#%color
+standing
 back
 3D
 contour
@@ -145,10 +153,10 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\slothhookbackground#*
-\slothhookbelly#*
-\slothhookbody#*
-\slothhookforeground#*
+\meerkathookbackground#*
+\meerkathookbelly#*
+\meerkathookbody#*
+\meerkathookforeground#*
 \tikzlinghookbackground#*
 \tikzlinghookbelly#*
 \tikzlinghookbody#*

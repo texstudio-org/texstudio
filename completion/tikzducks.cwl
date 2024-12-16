@@ -1,9 +1,11 @@
 # tikzducks package
-# Matthew Bertucci 2024/04/19 for v1.7
+# Matthew Bertucci 2024/12/10 for v1.9
 
 #include:tikz
-#include:tikzlibrarypatterns
+#include:tikzlibrarypatterns.meta
 #include:tikzlibrarycalc
+#include:tikzlibrarydecorations.shapes
+#include:tikzlibrarydecorations.pathmorphing
 
 \duck
 \duck[options%keyvals]
@@ -110,6 +112,11 @@ magichat=#%color
 magicstars
 magicstars=#%color
 magicwand
+sombrero
+sombrero=#%color
+sombreroa=#%color
+sombrerob=#%color
+sombreroc=#%color
 glasses
 glasses=#%color
 squareglasses
@@ -214,6 +221,8 @@ umbrellaclosed=#%color
 handbag
 handbag=#%color
 overleaf
+megaphone
+megaphone=#%color
 name=%<name%>
 stripes
 stripes={%<code%>}

@@ -1,5 +1,5 @@
 # crimson package
-# Matthew Bertucci 9/1/2021
+# Matthew Bertucci 2024/12/08
 
 #include:ifxetex
 #include:ifluatex
@@ -9,13 +9,15 @@
 #include:mweights
 
 #keyvals:\usepackage/crimson#c
-scale=%<factor%>
 scaled=%<factor%>
 type1
 semibold
-sb
 bold
+lining
+oldstyle
 #endkeyvals
 
 \crimson
 \crimsonsemibold
+\crimsonoldstyle
+\crimsonlining

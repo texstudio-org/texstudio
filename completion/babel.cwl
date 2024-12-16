@@ -1780,7 +1780,7 @@ SuppressWarning#true,false
 #repl:"! ¡
 #endif
 
-### germanb.ldf v2.14 (and associated austrian.ldf and swissgerman.ldf) ###
+### germanb.ldf v2.15 (and associated austrian.ldf and swissgerman.ldf) ###
 #ifOption:german
 \captionsgerman#*
 \dategerman#*
@@ -1806,6 +1806,9 @@ SuppressWarning#true,false
 \ifcapsz#*
 \capsztrue#S
 \capszfalse#S
+\ifnocapsz#*
+\nocapsztrue#S
+\nocapszfalse#S
 \mkngender#*
 #repl:"a ä
 #repl:"e ë
@@ -1872,6 +1875,9 @@ SuppressWarning#true,false
 \ifcapsz#*
 \capsztrue#S
 \capszfalse#S
+\ifnocapsz#*
+\nocapsztrue#S
+\nocapszfalse#S
 \mkngender#*
 #repl:"a ä
 #repl:"e ë
@@ -1938,6 +1944,9 @@ SuppressWarning#true,false
 \ifcapsz#*
 \capsztrue#S
 \capszfalse#S
+\ifnocapsz#*
+\nocapsztrue#S
+\nocapszfalse#S
 \mkngender#*
 #repl:"a ä
 #repl:"e ë
@@ -1979,7 +1988,7 @@ SuppressWarning#true,false
 #repl:"> »
 #endif
 
-### ngermanb.ldf v2.13 (and associated naustrian.ldf and nswissgerman.ldf) ###
+### ngermanb.ldf v2.15 (and associated naustrian.ldf and nswissgerman.ldf) ###
 #ifOption:ngerman
 \captionsngerman#*
 \datengerman#*
@@ -2001,6 +2010,12 @@ SuppressWarning#true,false
 \glossaryname#*
 \mdqon#*
 \mdqoff#*
+\ifcapsz#*
+\capsztrue#S
+\capszfalse#S
+\ifnocapsz#*
+\nocapsztrue#S
+\nocapszfalse#S
 #repl:"a ä
 #repl:"e ë
 #repl:"i ï
@@ -2047,6 +2062,12 @@ SuppressWarning#true,false
 \glossaryname#*
 \mdqon#*
 \mdqoff#*
+\ifcapsz#*
+\capsztrue#S
+\capszfalse#S
+\ifnocapsz#*
+\nocapsztrue#S
+\nocapszfalse#S
 #repl:"a ä
 #repl:"e ë
 #repl:"i ï
@@ -2093,6 +2114,12 @@ SuppressWarning#true,false
 \glossaryname#*
 \mdqon#*
 \mdqoff#*
+\ifcapsz#*
+\capsztrue#S
+\capszfalse#S
+\ifnocapsz#*
+\nocapsztrue#S
+\nocapszfalse#S
 #repl:"a ä
 #repl:"e ë
 #repl:"i ï

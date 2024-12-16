@@ -1,7 +1,7 @@
 # microtype.cwl
 # Edson 27-12-2010
 # doncherry/2014-10-03 for microtype v. 2.5a
-# Matthew Bertucci 2023/03/07 for microtype v3.1
+# Matthew Bertucci 2024/12/14 for microtype v3.2
 
 #include:keyval
 #include:etoolbox
@@ -86,6 +86,7 @@ spacing=
 outer spacing=
 outer kerning=
 no ligatures=
+features=%<fontspec ligature option%>
 #endkeyvals
 
 \SetExtraKerning{fonts}{settings}

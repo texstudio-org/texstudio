@@ -1,5 +1,5 @@
 # tikzlings-bugs package
-# Matthew Bertucci 4/23/2022 for v0.9
+# Matthew Bertucci 2024/12/12 for v2.1
 
 #include:tikz
 #include:tikzlings-addons
@@ -16,10 +16,13 @@ mouth=#%color
 arms=#%color
 wings=#%color
 feet=#%color
+leftstep
+rightstep
 back
 3D
 contour
 contour=#%color
+## << accessories >> ##
 hat
 hat=#%color
 tophat
@@ -56,18 +59,23 @@ tassel
 tassel=#%color
 alien
 alien=#%color
+sombrero
+sombrero=#%color
+sombreroa=#%color
+sombrerob=#%color
+sombreroc=#%color
 book
-book=
+book={%<text%>}
 bookcolour=#%color
 signpost
-signpost=
+signpost={%<text%>}
 signcolour=#%color
 signback=#%color
 speech
-speech=
+speech={%<text%>}
 bubblecolour=#%color
 think
-think=
+think={%<text%>}
 pizza
 cheese
 cheese=#%color
@@ -84,6 +92,9 @@ milkshake
 milkshake=#%color
 wine
 wine=#%color
+cocktail
+banana
+banana=#%color
 cricket
 cricket=#%color
 hockey
@@ -128,7 +139,15 @@ umbrellaclosed
 umbrellaclosed=#%color
 handbag
 handbag=#%color
-cocktail
+stick
+stick=#%color
+leaf
+leaf=#%color
+## << common tikz options >> ##
+rotate=%<degrees%>
+scale=%<factor%>
+xshift=##L
+yshift=##L
 #endkeyvals
 
 \bughookbackground#*

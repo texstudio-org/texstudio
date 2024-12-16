@@ -1,18 +1,28 @@
-# tikzlings-sloths package
+# tikzlings-apes package
 # Matthew Bertucci 2024/12/12 for v2.1
 
 #include:tikz
 #include:tikzlings-addons
 
-\sloth
-\sloth[options%keyvals]
+\ape
+\ape[options%keyvals]
 
-#keyvals:\sloth#c
+#keyvals:\ape#c
 body=#%color
 eye=#%color
+nose=#%color
 mouth=#%color
-sleeping
-eyelid=#%color
+muzzle=#%color
+arms=#%color
+legs=#%color
+handposition=#clap,waving,seenoevil,hearnoevil,speaknoevil
+seenoevil
+hearnoevil
+speaknoevil
+mizaru
+kikazaru
+iwazaru
+openmouth
 back
 3D
 contour
@@ -145,10 +155,10 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\slothhookbackground#*
-\slothhookbelly#*
-\slothhookbody#*
-\slothhookforeground#*
+\apehookbackground#*
+\apehookbelly#*
+\apehookbody#*
+\apehookforeground#*
 \tikzlinghookbackground#*
 \tikzlinghookbelly#*
 \tikzlinghookbody#*

@@ -1,5 +1,5 @@
 # lucida-otf package
-# Matthew Bertucci 2023/01/06 for v0.09
+# Matthew Bertucci 2024/12/15 for v0.10
 
 #include:ifxetex
 #include:ifluatex
@@ -8,7 +8,6 @@
 #include:luacode
 
 #keyvals:\usepackage/lucida-otf#c
-usefilenames#true,false
 RM={%<fontspec options%>}
 SS={%<fontspec options%>}
 TT={%<fontspec options%>}

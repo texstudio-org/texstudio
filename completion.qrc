@@ -2267,6 +2267,7 @@
 <file>completion/luatexja-zhfonts.cwl</file>
 <file>completion/luatexko.cwl</file>
 <file>completion/luatextra.cwl</file>
+<file>completion/luatikz.cwl</file>
 <file>completion/luatodonotes.cwl</file>
 <file>completion/luatruthtable.cwl</file>
 <file>completion/lua-typo.cwl</file>
@@ -3813,6 +3814,7 @@
 <file>completion/tikzlibraryzx-calculus.cwl</file>
 <file>completion/tikzlings-addons.cwl</file>
 <file>completion/tikzlings-anteaters.cwl</file>
+<file>completion/tikzlings-apes.cwl</file>
 <file>completion/tikzlings-bats.cwl</file>
 <file>completion/tikzlings-bears.cwl</file>
 <file>completion/tikzlings-bees.cwl</file>
@@ -3825,6 +3827,7 @@
 <file>completion/tikzlings-hippos.cwl</file>
 <file>completion/tikzlings-koalas.cwl</file>
 <file>completion/tikzlings-marmots.cwl</file>
+<file>completion/tikzlings-meerkats.cwl</file>
 <file>completion/tikzlings-mice.cwl</file>
 <file>completion/tikzlings-moles.cwl</file>
 <file>completion/tikzlings-owls.cwl</file>
