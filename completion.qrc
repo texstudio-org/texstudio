@@ -1491,6 +1491,7 @@
 <file>completion/expkv-opt.cwl</file>
 <file>completion/expkv-pop.cwl</file>
 <file>completion/expl3.cwl</file>
+<file>completion/expl3-commands.cwl</file>
 <file>completion/export.cwl</file>
 <file>completion/exp-testopt.cwl</file>
 <file>completion/exsol.cwl</file>
