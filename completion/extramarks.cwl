@@ -1,11 +1,13 @@
 # extramarks package
-# Matthew Bertucci 2022-02-10 for v4.0.1
+# Matthew Bertucci 2024/12/15 for v4.5
 
 \firstleftmark
 \lastrightmark
 \firstrightmark
 \lastleftmark
 \extramarks{left-mark%text}{right-mark%text}
+\extramarksleft{left-mark%text}
+\extramarksright{right-mark%text}
 \firstleftxmark
 \firstrightxmark
 \topleftxmark
