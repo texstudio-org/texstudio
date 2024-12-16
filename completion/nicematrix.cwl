@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2024/10/24 for v6.29
+# Matthew Bertucci 2024/12/16 for v7.0a
 
 #include:amsmath
 #include:array
@@ -139,8 +139,6 @@ extra-margin=##L
 parallelize-diags#true,false
 delimiters/max-width
 vlines-in-sub-matrix=%<letter%>
-colortbl-like
-color-inside
 rounded-corners
 rounded-corners=##L
 no-cell-nodes
@@ -277,6 +275,10 @@ cell-space-limits=##L
 rowcolor=#%color
 color=#%color
 bold
+fill=#%color
+opacity=%<factor%>
+rounded-corners
+rounded-corners=##L
 #endkeyvals
 
 \begin{NiceMatrixBlock}
