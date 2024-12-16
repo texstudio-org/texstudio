@@ -1,5 +1,5 @@
 # anima class
-# Matthew Bertucci 2024/11/21 for v1.0
+# Matthew Bertucci 2024/12/15 for v1.1
 
 #include:class-standalone
 #include:tikz
@@ -12,6 +12,11 @@
 \zero
 \um
 \uns{a}{b}{c}
+\uns[r]{a}{b}{c}
+\uns[r][s]{a}{b}{c}
+\uns*{a}{b}{c}
+\uns*[r]{a}{b}{c}
+\uns*[r][s]{a}{b}{c}
 \zeros{a}{b}{c}
 
 \begin{block}{title%text}
@@ -56,12 +61,15 @@
 \animaFrameTitle{t}{n}{c}{y}
 \animaBoardDimension{width}{height}
 \nFrame
+\animaStyle{style}
+\animaColor{palette}
+\animaTheme{theme}
 
 # not documented
+\animaBackgroud#S
 \animaColorThemeI#S
 \animaColorThemeII#S
 \animaExemplo#S
 \begin{anima}#S
 \begin{anima}[n]#S
 \end{anima}#S
-\grade#S
