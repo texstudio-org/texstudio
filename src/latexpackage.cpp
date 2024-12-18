@@ -219,6 +219,16 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 
 				// get commandDefinition
 				CommandDescription cd = extractCommandDef(line, valid);
+                if(valid.startsWith("beginEnv")){
+                    package.possibleCommands["%beginEnv"]<<line;
+                    package.environmentAliases.insert(line, definition);
+                    valid=valid.mid(8); // maintain additional classifiers
+                }
+                if(valid.startsWith("endEnv")){
+                    package.possibleCommands["%endEnv"]<<line;
+                    package.environmentAliases.insert(line, definition);
+                    valid=valid.mid(6); // maintain additional classifiers
+                }
 				if(valid.contains('K')){
 					// bracket command like \left etc
 					cd.bracketCommand=true;
