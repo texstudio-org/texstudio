@@ -590,9 +590,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             }
         }
 
-        // special treatment for ExplSyntaxOff
-        // it is used to toggle expl3 mode off
-        if(!activeEnv.isEmpty() && activeEnv.top().name == "expl3"){
+        if(!activeEnv.isEmpty() && activeEnv.top().name == "%expl3"){
+            // special treatment for expl3 commands in expl3 env
             if(tk.type==Token::commandUnknown || tk.type==Token::command){
                 // collect next parts
                 // e.g. \cs_new:Npn is split into \cs _ new : Npn

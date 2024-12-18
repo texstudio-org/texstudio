@@ -145,8 +145,8 @@
 \EndModuleRelease#*
 \ExecuteOptions{optionlist}#*
 \ExpandArgs{spec}#*
-\ExplSyntaxOff#endEnv*#expl3
-\ExplSyntaxOn#beginEnv*#expl3
+\ExplSyntaxOff#endEnv*#%expl3
+\ExplSyntaxOn#beginEnv*#%expl3
 \FirstMark[region]{class%plain}#*
 \FirstMark{class%plain}#*
 \GenericError{continuation}{message%text}{help location%text}{help info%text}#*
@@ -383,9 +383,9 @@ ypos
 # expl3 commands
 \ExplFileDate#S
 \ExplLoaderFileDate#*
-\ProvidesExplFile{name}{date}{version}{description}#beginEnv*#expl3
-\ProvidesExplClass{name}{date}{version}{description}#beginEnv*#expl3
-\ProvidesExplPackage{name}{date}{version}{description}#beginEnv*#expl3
+\ProvidesExplFile{name}{date}{version}{description}#beginEnv*#%expl3
+\ProvidesExplClass{name}{date}{version}{description}#beginEnv*#%expl3
+\ProvidesExplPackage{name}{date}{version}{description}#beginEnv*#%expl3
 \GetIdInfo $Id: %<SVN info field%> $ {%<description%>}#*
 
 # document metadata

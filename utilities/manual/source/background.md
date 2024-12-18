@@ -263,6 +263,8 @@ The following classifications are known to TXS:
 |  L0 to L5        | this command declares a structure command. The level is between L0 (`\part`-like) down to L5 (`\subparagraph`-like). Structure commands are highlighted in the code, can be folded and appear in the structure outline. |
 |  /env1,env2,\... | valid only in environment env1 or env2 etc. |
 |  \\env           | environment alias, means that the environment is handled like the \"env\" environment. This is useful for env=math or tabular. |
+|  beginEnv               | this command declares environment start command, the environment name is given after a \"\#\"|
+|  endEnv               | this command declares environment stop command, the environment name is given after a \"\#\"|
 
 Examples:
 
@@ -279,6 +281,7 @@ Examples:
 |  `\myplot{file}{label}{params}#l`                  | defines the second argument as label. Note: the argument has to be named `label` for this to work. |
 |  `\myplot{file}{customname%labeldef}`              | defines the second argument as label, but you are free to choose the name `customname` which will be used as a placeholder in the completer. |
 |  `\myplot{file}{label1%labeldef}{label2%labeldef}` | defines the second and third arguments as labels. |
+|  `\ExplSyntaxOn#beginEnv#expl3` | define environment start, here `%expl3` which is an internal env used to check whetehr expl3 commands are valid |
 
 ### cwl guidelines
 
