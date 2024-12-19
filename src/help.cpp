@@ -18,13 +18,15 @@ Help::Help(QObject *parent): QObject(parent),texDocSystem(0)
  */
 void Help::execTexdocDialog(const QStringList &packages, const QString &defaultPackage)
 {
-    TexdocDialog dialog(nullptr,this);
+	TexdocDialog dialog(nullptr,this);
 	dialog.setPackageNames(packages);
+	if (packages.count()==0) {
+		mShowAllPackages = true;
+	}
+	dialog.setShowAllPackages(mShowAllPackages);
 	if (!defaultPackage.isEmpty()) {
 		dialog.setPreferredPackage(defaultPackage);
-    }else{
-        dialog.setShowAllPackages(mShowAllPackages);
-    }
+	}
 	if (dialog.exec()) {
 		viewTexdoc(dialog.selectedPackage());
 	}
