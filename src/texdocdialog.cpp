@@ -182,9 +182,7 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
 void TexdocDialog::setPackageNames(const QStringList &packages)
 {
     m_packages=packages;
-    if (m_packages.count()==0){
-        ui->cbShowAllPackages->setChecked(true); // regenerateTable will be called by the stateChanged signal
-    }else{
+    if (m_packages.count()>0){
         regenerateTable();
     }
 }
