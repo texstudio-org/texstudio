@@ -1,7 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.8.6
 
-- 
+- provide command completion for expl3 commands
 
 ## TeXstudio 4.8.5
 
