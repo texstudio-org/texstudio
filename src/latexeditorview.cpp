@@ -212,6 +212,14 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
         else {
             EnumsTokenType::TokenType ctx = Parsing::getCompleterContext(editor->cursor().line().handle(), editor->cursor().columnNumber());
             if(ctx==EnumsTokenType::def) return true;
+            // check for environment
+            const LatexDocument *doc = qobject_cast<LatexDocument *>(editor->document());
+            StackEnvironment env;
+            doc->getEnv(editor->cursor().lineNumber(),env);
+            if(!env.isEmpty() && env.top().name=="%expl3"){
+                LatexEditorView::completer->setFilter("%expl3");
+            }
+
             LatexCompleter::CompletionFlags flags= ctx==EnumsTokenType::width ? LatexCompleter::CF_FORCE_LENGTH : LatexCompleter::CompletionFlag(0) ;
             LatexEditorView::completer->complete(editor, flags);
 		}
