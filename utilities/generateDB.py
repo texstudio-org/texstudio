@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+# based on https://github.com/CSMathematics/CTAN-Packages-DataBase
+# ported to python for easier maintenance
+
+
 import requests
 import json
 

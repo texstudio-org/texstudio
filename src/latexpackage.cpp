@@ -529,7 +529,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 						package.possibleCommands["tabbing"] << cmd;
 					}
 				}
-				if (valid.contains('e') && !env.isEmpty()) { // tabbing support
+                if (valid.contains('e') && !env.isEmpty()) { // restrict to environments
 					if (res == -1) {
 						foreach (const QString &elem, env)
 							package.possibleCommands[elem] << cmd;
@@ -617,6 +617,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					it->snippetLength = len;
 					it->usageCount = uncommon ? -1 : 0;
 					it->type = type;
+                    if(valid.contains('e') && !env.isEmpty()){
+                        it->environmentRestriction = env.first(); // only use first env for now
+                    }
 					if (config) {
 						QList<QPair<int, int> >res = config->usage.values(hash);
 						foreach (const PairIntInt &elem, res) {

@@ -3453,7 +3453,7 @@ QString LatexDocument::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnviro
 
 int LatexDocument::syntaxErrorFormat;
 
-void LatexDocument::getEnv(int lineNumber, StackEnvironment &env)
+void LatexDocument::getEnv(int lineNumber, StackEnvironment &env) const
 {
 	Environment newEnv;
 	newEnv.name = "normal";
