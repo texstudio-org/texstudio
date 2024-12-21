@@ -189,28 +189,7 @@ void TexdocDialog::setPackageNames(const QStringList &packages)
 
 void TexdocDialog::setPreferredPackage(const QString &package)
 {
-	int i = 0;
-	int rows = ui->tbPackages->rowCount();
-	LatexRepository *repo = LatexRepository::instance();
-	if (repo->LatexRepository::packageExists(package)) {
-		for (;i<rows;i++) {
-			if (ui->tbPackages->item(i,0)->text() == package) break;
-		}
-		if (i>=rows) {
-			QString desc = repo->LatexRepository::shortDescription(package);
-			QTableWidgetItem *itemPkgName = new QTableWidgetItem(package);
-			QTableWidgetItem *itemPkgDesc = new QTableWidgetItem(desc);
-			rows++;
-			ui->tbPackages->setRowCount(rows);
-			ui->tbPackages->setItem(i,0,itemPkgName);
-			ui->tbPackages->setItem(i,1,itemPkgDesc);
-		}
-	}
-	if (rows>0) {
-		QTableWidgetItem *itemPkgName = ui->tbPackages->item(i,0);
-		ui->tbPackages->setCurrentItem(itemPkgName);
-		itemPkgName->setSelected(true);
-	}
+	ui->lineEditSearch->setText(package);
 }
 /*!
  * \brief setShowAllPackages
