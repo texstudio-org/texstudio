@@ -2163,6 +2163,7 @@ void LatexCompleter::showTooltip(QString text)
 void LatexCompleter::setFilter(QString filter)
 {
     listModel->setEnvironmentFilter(filter);
+    listModel->curWord = ""; // force filter update
 }
 
 void LatexCompleter::editorDestroyed()
