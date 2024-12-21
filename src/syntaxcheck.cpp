@@ -592,7 +592,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 
         if(!activeEnv.isEmpty() && activeEnv.top().name == "%expl3"){
             // special treatment for expl3 commands in expl3 env
-            if(tk.type==Token::commandUnknown || tk.type==Token::command){
+            if((tk.type==Token::commandUnknown || tk.type==Token::command)&&tk.getText()!="\\\\"){ // special treatment for \\ , see #3877
                 // collect next parts
                 // e.g. \cs_new:Npn is split into \cs _ new : Npn
                 const int start = tk.start;
