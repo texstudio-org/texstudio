@@ -78,10 +78,10 @@ vlined
 #endkeyvals
 
 #ifOption:algo2e
-\begin{algorithm2e}
+\begin{algorithm2e}#\algorithm
 \begin{algorithm2e}[placement]
 \end{algorithm2e}
-\begin{algorithm2e*}#*
+\begin{algorithm2e*}#*\algorithm
 \begin{algorithm2e*}[placement]#*
 \end{algorithm2e*}#*
 \listofalgorithmes
@@ -150,19 +150,19 @@ vlined
 \begin{algorithm}
 \begin{algorithm}[placement]
 \end{algorithm}
-\begin{algorithm*}#*
+\begin{algorithm*}#*\algorithm
 \begin{algorithm*}[placement]#*
 \end{algorithm*}#*
-\begin{function}
+\begin{function}#\algorithm
 \begin{function}[placement]
 \end{function}
-\begin{function*}#*
+\begin{function*}#*\algorithm
 \begin{function*}[placement]#*
 \end{function*}#*
-\begin{procedure}
+\begin{procedure}#\algorithm
 \begin{procedure}[placement]
 \end{procedure}
-\begin{procedure*}#*
+\begin{procedure*}#*\algorithm
 \begin{procedure*}[placement]#*
 \end{procedure*}#*
 
@@ -205,7 +205,7 @@ vlined
 \LinesNumberedHidden
 \LinesNotNumbered
 \nllabel{label}#l
-\nl#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\nl#/algorithm
 \lnl{label}#*l
 \nlset{text%plain}
 \lnlset{text%plain}{label}#*l
@@ -301,26 +301,26 @@ tworuled
 \SetNoFillComment
 
 # Input, output macros
-\KwIn{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwOut{output}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwData{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwHData{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwResult{output}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\KwIn{input}#/algorithm
+\KwOut{output}#/algorithm
+\KwData{input}#/algorithm
+\KwHData{input}#/algorithm
+\KwResult{output}#/algorithm
 
 # Basic keywords and blocks
-\KwTo#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwRet{value}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Return{value}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Begin{block inside}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Begin(begin comment){block inside}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\KwTo#/algorithm
+\KwRet{value}#/algorithm
+\Return{value}#/algorithm
+\Begin{block inside}#/algorithm
+\Begin(begin comment){block inside}#/algorithm
 
 # comments
-\tcc{comments%text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\tcc*{comments%text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\tcc*[alignment]{comments%text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\tcp{comments%text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\tcp*{comments%text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\tcp*[alignment]{comments%text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\tcc{comments%text}#/algorithm
+\tcc*{comments%text}#/algorithm
+\tcc*[alignment]{comments%text}#/algorithm
+\tcp{comments%text}#/algorithm
+\tcp*{comments%text}#/algorithm
+\tcp*[alignment]{comments%text}#/algorithm
 
 #keyvals:\tcc*,\tcp*
 r
@@ -330,74 +330,74 @@ f
 #endkeyvals
 
 # if then else macros
-\If{condition}{then block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\If(then comment){condition}{then block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uIf{condition}{then block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uIf(then comment){condition}{then block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lIf{condition}{then line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lIf(if comment){condition}{then line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ElseIf{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ElseIf(elseif comment){elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uElseIf{elseif block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uElseIf(elseif comment){elseif block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lElseIf{elseif line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lElseif(elseif line){elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Else{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Else(else comment){else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uElse{else block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uElse(else block comment){else block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lElse{else line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lElse(else comment){else line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eIf{condition}{then block}{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eIf(then comment){condition}{then block}(else comment){else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eIf(then comment){condition}{then block}{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eIf{condition}{then block}(else comment){else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\leIf{condition}{then line}{else line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\leIf(comment){condition}{then line}{else line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\If{condition}{then block}#/algorithm
+\If(then comment){condition}{then block}#/algorithm
+\uIf{condition}{then block without end}#/algorithm
+\uIf(then comment){condition}{then block without end}#/algorithm
+\lIf{condition}{then line}#/algorithm
+\lIf(if comment){condition}{then line}#/algorithm
+\ElseIf{elseif block}#/algorithm
+\ElseIf(elseif comment){elseif block}#/algorithm
+\uElseIf{elseif block without end}#/algorithm
+\uElseIf(elseif comment){elseif block without end}#/algorithm
+\lElseIf{elseif line}#/algorithm
+\lElseif(elseif line){elseif block}#/algorithm
+\Else{else block}#/algorithm
+\Else(else comment){else block}#/algorithm
+\uElse{else block without end}#/algorithm
+\uElse(else block comment){else block without end}#/algorithm
+\lElse{else line}#/algorithm
+\lElse(else comment){else line}#/algorithm
+\eIf{condition}{then block}{else block}#/algorithm
+\eIf(then comment){condition}{then block}(else comment){else block}#/algorithm
+\eIf(then comment){condition}{then block}{else block}#/algorithm
+\eIf{condition}{then block}(else comment){else block}#/algorithm
+\leIf{condition}{then line}{else line}#/algorithm
+\leIf(comment){condition}{then line}{else line}#/algorithm
 
 # multiple condition selection
-\Switch(switch comment){condition}{switch block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Switch{condition}{switch block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Case{case}{case block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Case(case comment){case}{case block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uCase{case}{case block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uCase(case comment){case}{case block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lCase{case}{case line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lCase(case comment){case}{case line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Other{otherwise block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Other(other comment){otherwise block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uOther{otherwise text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uOther(other comment){otherwise text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lOther{otherwise line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lOther(other comment){otherwise line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\Switch(switch comment){condition}{switch block}#/algorithm
+\Switch{condition}{switch block}#/algorithm
+\Case{case}{case block}#/algorithm
+\Case(case comment){case}{case block}#/algorithm
+\uCase{case}{case block without end}#/algorithm
+\uCase(case comment){case}{case block without end}#/algorithm
+\lCase{case}{case line}#/algorithm
+\lCase(case comment){case}{case line}#/algorithm
+\Other{otherwise block}#/algorithm
+\Other(other comment){otherwise block}#/algorithm
+\uOther{otherwise text}#/algorithm
+\uOther(other comment){otherwise text}#/algorithm
+\lOther{otherwise line}#/algorithm
+\lOther(other comment){otherwise line}#/algorithm
 
 # loops with test at beginning
-\For{condition}{for block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\For(for comment){condition}{for block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFor{condition}{for line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFor(for comment){condition}{for line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\While{condition}{while block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\While(while comment){condition}{while block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lWhile{condition}{while line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lWhile(while comment){condition}{while line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ForPar{condition}{foreach block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ForPar(foreach comment){condition}{foreach block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ForEach{condition}{foreach block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ForEach(foreach comment){condition}{foreach block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lForEach{condition}{foreach line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lForEach(foreach comment){condition}{foreach line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ForAll{condition}{forall block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ForAll(forall comment){condition}{forall block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lForAll{condition}{forall line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lForAll(forall comment){condition}{forall line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\For{condition}{for block}#/algorithm
+\For(for comment){condition}{for block}#/algorithm
+\lFor{condition}{for line}#/algorithm
+\lFor(for comment){condition}{for line}#/algorithm
+\While{condition}{while block}#/algorithm
+\While(while comment){condition}{while block}#/algorithm
+\lWhile{condition}{while line}#/algorithm
+\lWhile(while comment){condition}{while line}#/algorithm
+\ForPar{condition}{foreach block}#/algorithm
+\ForPar(foreach comment){condition}{foreach block}#/algorithm
+\ForEach{condition}{foreach block}#/algorithm
+\ForEach(foreach comment){condition}{foreach block}#/algorithm
+\lForEach{condition}{foreach line}#/algorithm
+\lForEach(foreach comment){condition}{foreach line}#/algorithm
+\ForAll{condition}{forall block}#/algorithm
+\ForAll(forall comment){condition}{forall block}#/algorithm
+\lForAll{condition}{forall line}#/algorithm
+\lForAll(forall comment){condition}{forall line}#/algorithm
 
 # loops with test at end
-\Repeat{end condition}{repeat block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Repeat(repeat comment){end condition}{repeat block}(until comment)#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Repeat(repeat comment){end condition}{repeat block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Repeat{end condition}{repeat block}(until comment)#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lRepeat{end condition}{repeat line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lRepeat(repeat comment){end condition}{repeat line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\Repeat{end condition}{repeat block}#/algorithm
+\Repeat(repeat comment){end condition}{repeat block}(until comment)#/algorithm
+\Repeat(repeat comment){end condition}{repeat block}#/algorithm
+\Repeat{end condition}{repeat block}(until comment)#/algorithm
+\lRepeat{end condition}{repeat line}#/algorithm
+\lRepeat(repeat comment){end condition}{repeat line}#/algorithm
 
 # To define your own language keywords
 \SetKwInput{csname}{name}
@@ -418,478 +418,478 @@ f
 
 # Other language predefined keywords
 #ifOption:french
-\HDonnees{données}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Donnees{données}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Res{résultats}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Entree{entrées}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Sortie{sorties}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwA#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Retour{valeur}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Deb{intérieur du bloc}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Repeter{condition d’arrêt}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Si{condition}{bloc du alors}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eSi{condition}{bloc du alors}{bloc du sinon}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSi{condition}{bloc du alors sans fin}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSi{condition}{ligne du alors}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\SinonSi{condition}{bloc du sinonsi}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSinonSi{condition}{bloc du sinonsi sans fin}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSinonSi{condition}{bloc du sinonsi sans fin}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Sinon{bloc du sinon}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSinon{bloc du sinon sans fin}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSinon{ligne du sinon}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Suivant{condition}{bloc du suivant-cas-alors}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Cas{cas où}{bloc de ce cas}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uCas{cas où}{bloc de ce cas sans fin}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lCas{cas où}{ligne de ce cas}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Autre{bloc de l’alternative}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lAutre{bloc de l’alternative}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Pour{condition}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPour{condition}{ligne de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PourPar{condition}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPourPar{condition}{ligne de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PourCh{condition}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPourCh{condition}{ligne de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PourTous{condition}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPourTous{condition}{ligne de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Tq{condition}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lTq{condition}{ligne de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\HDonnees{données}#/algorithm
+\Donnees{données}#/algorithm
+\Res{résultats}#/algorithm
+\Entree{entrées}#/algorithm
+\Sortie{sorties}#/algorithm
+\KwA#/algorithm
+\Retour{valeur}#/algorithm
+\Deb{intérieur du bloc}#/algorithm
+\Repeter{condition d’arrêt}{bloc de la boucle}#/algorithm
+\Si{condition}{bloc du alors}#/algorithm
+\eSi{condition}{bloc du alors}{bloc du sinon}#/algorithm
+\uSi{condition}{bloc du alors sans fin}#/algorithm
+\lSi{condition}{ligne du alors}#/algorithm
+\SinonSi{condition}{bloc du sinonsi}#/algorithm
+\uSinonSi{condition}{bloc du sinonsi sans fin}#/algorithm
+\lSinonSi{condition}{bloc du sinonsi sans fin}#/algorithm
+\Sinon{bloc du sinon}#/algorithm
+\uSinon{bloc du sinon sans fin}#/algorithm
+\lSinon{ligne du sinon}#/algorithm
+\Suivant{condition}{bloc du suivant-cas-alors}#/algorithm
+\Cas{cas où}{bloc de ce cas}#/algorithm
+\uCas{cas où}{bloc de ce cas sans fin}#/algorithm
+\lCas{cas où}{ligne de ce cas}#/algorithm
+\Autre{bloc de l’alternative}#/algorithm
+\lAutre{bloc de l’alternative}#/algorithm
+\Pour{condition}{bloc de la boucle}#/algorithm
+\lPour{condition}{ligne de la boucle}#/algorithm
+\PourPar{condition}{bloc de la boucle}#/algorithm
+\lPourPar{condition}{ligne de la boucle}#/algorithm
+\PourCh{condition}{bloc de la boucle}#/algorithm
+\lPourCh{condition}{ligne de la boucle}#/algorithm
+\PourTous{condition}{bloc de la boucle}#/algorithm
+\lPourTous{condition}{ligne de la boucle}#/algorithm
+\Tq{condition}{bloc de la boucle}#/algorithm
+\lTq{condition}{ligne de la boucle}#/algorithm
 #endif
 #ifOption:frenchkw
-\HDonnees{données}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Donnees{données}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Res{résultats}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Entree{entrées}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Sortie{sorties}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwA#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Retour{valeur}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Deb{intérieur du bloc}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Repeter{condition d’arrêt}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Si{condition}{bloc du alors}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eSi{condition}{bloc du alors}{bloc du sinon}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSi{condition}{bloc du alors sans fin}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSi{condition}{ligne du alors}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\SinonSi{condition}{bloc du sinonsi}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSinonSi{condition}{bloc du sinonsi sans fin}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSinonSi{condition}{bloc du sinonsi sans fin}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Sinon{bloc du sinon}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSinon{bloc du sinon sans fin}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSinon{ligne du sinon}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Suivant{condition}{bloc du suivant-cas-alors}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Cas{cas où}{bloc de ce cas}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uCas{cas où}{bloc de ce cas sans fin}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lCas{cas où}{ligne de ce cas}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Autre{bloc de l’alternative}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lAutre{bloc de l’alternative}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Pour{condition}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPour{condition}{ligne de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PourPar{condition}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPourPar{condition}{ligne de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PourCh{condition}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPourCh{condition}{ligne de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PourTous{condition}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPourTous{condition}{ligne de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Tq{condition}{bloc de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lTq{condition}{ligne de la boucle}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\HDonnees{données}#/algorithm
+\Donnees{données}#/algorithm
+\Res{résultats}#/algorithm
+\Entree{entrées}#/algorithm
+\Sortie{sorties}#/algorithm
+\KwA#/algorithm
+\Retour{valeur}#/algorithm
+\Deb{intérieur du bloc}#/algorithm
+\Repeter{condition d’arrêt}{bloc de la boucle}#/algorithm
+\Si{condition}{bloc du alors}#/algorithm
+\eSi{condition}{bloc du alors}{bloc du sinon}#/algorithm
+\uSi{condition}{bloc du alors sans fin}#/algorithm
+\lSi{condition}{ligne du alors}#/algorithm
+\SinonSi{condition}{bloc du sinonsi}#/algorithm
+\uSinonSi{condition}{bloc du sinonsi sans fin}#/algorithm
+\lSinonSi{condition}{bloc du sinonsi sans fin}#/algorithm
+\Sinon{bloc du sinon}#/algorithm
+\uSinon{bloc du sinon sans fin}#/algorithm
+\lSinon{ligne du sinon}#/algorithm
+\Suivant{condition}{bloc du suivant-cas-alors}#/algorithm
+\Cas{cas où}{bloc de ce cas}#/algorithm
+\uCas{cas où}{bloc de ce cas sans fin}#/algorithm
+\lCas{cas où}{ligne de ce cas}#/algorithm
+\Autre{bloc de l’alternative}#/algorithm
+\lAutre{bloc de l’alternative}#/algorithm
+\Pour{condition}{bloc de la boucle}#/algorithm
+\lPour{condition}{ligne de la boucle}#/algorithm
+\PourPar{condition}{bloc de la boucle}#/algorithm
+\lPourPar{condition}{ligne de la boucle}#/algorithm
+\PourCh{condition}{bloc de la boucle}#/algorithm
+\lPourCh{condition}{ligne de la boucle}#/algorithm
+\PourTous{condition}{bloc de la boucle}#/algorithm
+\lPourTous{condition}{ligne de la boucle}#/algorithm
+\Tq{condition}{bloc de la boucle}#/algorithm
+\lTq{condition}{ligne de la boucle}#/algorithm
 #endif
 
 #ifOption:german
-\Ein{Eingabe}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Aus{Ausgabe}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Daten{Daten}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ergebnis{Ergebnis}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Bis{bis}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwZurueck{zurück}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Zurueck{zurück}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Beginn{Beginn}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Wiederh{stop condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lWiederh{stop condition}{line loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eWenn{condition}{then text}{else text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Wenn{condition}{then text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uWenn{condition}{then text without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lWenn{condition}{then line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\SonstWenn{condition}{elseif text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSonstWenn{condition}{elseif text without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSonstWenn{condition}{elseif line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Sonst{else text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSonst{else text without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSonst{else line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Unterscheide{condition}{switch block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Fall{case of}{text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uFall{case of}{text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFall{case of}{line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Anderes{default text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lAnderes{default line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Fuer{condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFuer{condition}{line loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\FuerPar{condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFuerPar{condition}{line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\FuerJedes{condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFuerJedes{condition}{line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\FuerAlle{condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFuerAlle{condition}{line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Solange{condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSolange{condition}{line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\Ein{Eingabe}#/algorithm
+\Aus{Ausgabe}#/algorithm
+\Daten{Daten}#/algorithm
+\Ergebnis{Ergebnis}#/algorithm
+\Bis{bis}#/algorithm
+\KwZurueck{zurück}#/algorithm
+\Zurueck{zurück}#/algorithm
+\Beginn{Beginn}#/algorithm
+\Wiederh{stop condition}{loop}#/algorithm
+\lWiederh{stop condition}{line loop}#/algorithm
+\eWenn{condition}{then text}{else text}#/algorithm
+\Wenn{condition}{then text}#/algorithm
+\uWenn{condition}{then text without end}#/algorithm
+\lWenn{condition}{then line}#/algorithm
+\SonstWenn{condition}{elseif text}#/algorithm
+\uSonstWenn{condition}{elseif text without end}#/algorithm
+\lSonstWenn{condition}{elseif line}#/algorithm
+\Sonst{else text}#/algorithm
+\uSonst{else text without end}#/algorithm
+\lSonst{else line}#/algorithm
+\Unterscheide{condition}{switch block}#/algorithm
+\Fall{case of}{text}#/algorithm
+\uFall{case of}{text}#/algorithm
+\lFall{case of}{line text}#/algorithm
+\Anderes{default text}#/algorithm
+\lAnderes{default line}#/algorithm
+\Fuer{condition}{loop}#/algorithm
+\lFuer{condition}{line loop}#/algorithm
+\FuerPar{condition}{loop}#/algorithm
+\lFuerPar{condition}{line}#/algorithm
+\FuerJedes{condition}{loop}#/algorithm
+\lFuerJedes{condition}{line}#/algorithm
+\FuerAlle{condition}{loop}#/algorithm
+\lFuerAlle{condition}{line}#/algorithm
+\Solange{condition}{loop}#/algorithm
+\lSolange{condition}{line}#/algorithm
 #endif
 #ifOption:germankw
-\Ein{Eingabe}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Aus{Ausgabe}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Daten{Daten}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ergebnis{Ergebnis}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Bis{bis}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwZurueck{zurück}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Zurueck{zurück}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Beginn{Beginn}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Wiederh{stop condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lWiederh{stop condition}{line loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eWenn{condition}{then text}{else text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Wenn{condition}{then text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uWenn{condition}{then text without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lWenn{condition}{then line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\SonstWenn{condition}{elseif text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSonstWenn{condition}{elseif text without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSonstWenn{condition}{elseif line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Sonst{else text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSonst{else text without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSonst{else line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Unterscheide{condition}{switch block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Fall{case of}{text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uFall{case of}{text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFall{case of}{line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Anderes{default text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lAnderes{default line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Fuer{condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFuer{condition}{line loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\FuerPar{condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFuerPar{condition}{line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\FuerJedes{condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFuerJedes{condition}{line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\FuerAlle{condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFuerAlle{condition}{line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Solange{condition}{loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSolange{condition}{line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\Ein{Eingabe}#/algorithm
+\Aus{Ausgabe}#/algorithm
+\Daten{Daten}#/algorithm
+\Ergebnis{Ergebnis}#/algorithm
+\Bis{bis}#/algorithm
+\KwZurueck{zurück}#/algorithm
+\Zurueck{zurück}#/algorithm
+\Beginn{Beginn}#/algorithm
+\Wiederh{stop condition}{loop}#/algorithm
+\lWiederh{stop condition}{line loop}#/algorithm
+\eWenn{condition}{then text}{else text}#/algorithm
+\Wenn{condition}{then text}#/algorithm
+\uWenn{condition}{then text without end}#/algorithm
+\lWenn{condition}{then line}#/algorithm
+\SonstWenn{condition}{elseif text}#/algorithm
+\uSonstWenn{condition}{elseif text without end}#/algorithm
+\lSonstWenn{condition}{elseif line}#/algorithm
+\Sonst{else text}#/algorithm
+\uSonst{else text without end}#/algorithm
+\lSonst{else line}#/algorithm
+\Unterscheide{condition}{switch block}#/algorithm
+\Fall{case of}{text}#/algorithm
+\uFall{case of}{text}#/algorithm
+\lFall{case of}{line text}#/algorithm
+\Anderes{default text}#/algorithm
+\lAnderes{default line}#/algorithm
+\Fuer{condition}{loop}#/algorithm
+\lFuer{condition}{line loop}#/algorithm
+\FuerPar{condition}{loop}#/algorithm
+\lFuerPar{condition}{line}#/algorithm
+\FuerJedes{condition}{loop}#/algorithm
+\lFuerJedes{condition}{line}#/algorithm
+\FuerAlle{condition}{loop}#/algorithm
+\lFuerAlle{condition}{line}#/algorithm
+\Solange{condition}{loop}#/algorithm
+\lSolange{condition}{line}#/algorithm
 #endif
 
 #ifOption:czech
-\Vst{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Vyst{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Vysl{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\Vst{input}#/algorithm
+\Vyst{input}#/algorithm
+\Vysl{input}#/algorithm
 #endif
 #ifOption:czechkw
-\Vst{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Vyst{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Vysl{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\Vst{input}#/algorithm
+\Vyst{input}#/algorithm
+\Vysl{input}#/algorithm
 #endif
 
 #ifOption:portuguese
-\Entrada{Entrada}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Saida{Saída}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Dados{Dados}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Resultado{Resultado}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ate#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwRetorna{val}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Retorna{val}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Inicio{inside block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Repita{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lRepita{stop condition}{line of the loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eSe{condition}{then block}{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Se{condition}{then block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSe{condition}{then block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSe{condition}{then’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Senao{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSenao{else block without else}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSenao{else’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\SenaoSe{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSenaoSe{condition}{elseif block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSenaoSe{condition}{elseif’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Selec{condition}{switch block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Caso{a case}{case block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uCaso{a case}{case block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lCaso{a case}{case’s line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Outro{otherwise block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lOutro{otherwise’s line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Para{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPara{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaPar{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaPar{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaCada{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaCada{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaTodo{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaTodo{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Enqto{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lEnqto{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\Entrada{Entrada}#/algorithm
+\Saida{Saída}#/algorithm
+\Dados{Dados}#/algorithm
+\Resultado{Resultado}#/algorithm
+\Ate#/algorithm
+\KwRetorna{val}#/algorithm
+\Retorna{val}#/algorithm
+\Inicio{inside block}#/algorithm
+\Repita{stop condition}{text loop}#/algorithm
+\lRepita{stop condition}{line of the loop}#/algorithm
+\eSe{condition}{then block}{else block}#/algorithm
+\Se{condition}{then block}#/algorithm
+\uSe{condition}{then block without end}#/algorithm
+\lSe{condition}{then’s line text}#/algorithm
+\Senao{else block}#/algorithm
+\uSenao{else block without else}#/algorithm
+\lSenao{else’s line text}#/algorithm
+\SenaoSe{condition}{elseif block}#/algorithm
+\uSenaoSe{condition}{elseif block without end}#/algorithm
+\lSenaoSe{condition}{elseif’s line text}#/algorithm
+\Selec{condition}{switch block}#/algorithm
+\Caso{a case}{case block}#/algorithm
+\uCaso{a case}{case block without end}#/algorithm
+\lCaso{a case}{case’s line}#/algorithm
+\Outro{otherwise block}#/algorithm
+\lOutro{otherwise’s line}#/algorithm
+\Para{condition}{text loop}#/algorithm
+\lPara{condition}{line text loop}#/algorithm
+\ParaPar{condition}{text loop}#/algorithm
+\lParaPar{condition}{line text loop}#/algorithm
+\ParaCada{condition}{text loop}#/algorithm
+\lParaCada{condition}{line text loop}#/algorithm
+\ParaTodo{condition}{text loop}#/algorithm
+\lParaTodo{condition}{line text loop}#/algorithm
+\Enqto{stop condition}{text loop}#/algorithm
+\lEnqto{stop condition}{text loop}#/algorithm
 #endif
 #ifOption:portuguesekw
-\Entrada{Entrada}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Saida{Saída}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Dados{Dados}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Resultado{Resultado}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ate#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwRetorna{val}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Retorna{val}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Inicio{inside block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Repita{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lRepita{stop condition}{line of the loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eSe{condition}{then block}{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Se{condition}{then block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSe{condition}{then block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSe{condition}{then’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Senao{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSenao{else block without else}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSenao{else’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\SenaoSe{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSenaoSe{condition}{elseif block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSenaoSe{condition}{elseif’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Selec{condition}{switch block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Caso{a case}{case block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uCaso{a case}{case block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lCaso{a case}{case’s line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Outro{otherwise block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lOutro{otherwise’s line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Para{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPara{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaPar{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaPar{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaCada{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaCada{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaTodo{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaTodo{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Enqto{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lEnqto{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\Entrada{Entrada}#/algorithm
+\Saida{Saída}#/algorithm
+\Dados{Dados}#/algorithm
+\Resultado{Resultado}#/algorithm
+\Ate#/algorithm
+\KwRetorna{val}#/algorithm
+\Retorna{val}#/algorithm
+\Inicio{inside block}#/algorithm
+\Repita{stop condition}{text loop}#/algorithm
+\lRepita{stop condition}{line of the loop}#/algorithm
+\eSe{condition}{then block}{else block}#/algorithm
+\Se{condition}{then block}#/algorithm
+\uSe{condition}{then block without end}#/algorithm
+\lSe{condition}{then’s line text}#/algorithm
+\Senao{else block}#/algorithm
+\uSenao{else block without else}#/algorithm
+\lSenao{else’s line text}#/algorithm
+\SenaoSe{condition}{elseif block}#/algorithm
+\uSenaoSe{condition}{elseif block without end}#/algorithm
+\lSenaoSe{condition}{elseif’s line text}#/algorithm
+\Selec{condition}{switch block}#/algorithm
+\Caso{a case}{case block}#/algorithm
+\uCaso{a case}{case block without end}#/algorithm
+\lCaso{a case}{case’s line}#/algorithm
+\Outro{otherwise block}#/algorithm
+\lOutro{otherwise’s line}#/algorithm
+\Para{condition}{text loop}#/algorithm
+\lPara{condition}{line text loop}#/algorithm
+\ParaPar{condition}{text loop}#/algorithm
+\lParaPar{condition}{line text loop}#/algorithm
+\ParaCada{condition}{text loop}#/algorithm
+\lParaCada{condition}{line text loop}#/algorithm
+\ParaTodo{condition}{text loop}#/algorithm
+\lParaTodo{condition}{line text loop}#/algorithm
+\Enqto{stop condition}{text loop}#/algorithm
+\lEnqto{stop condition}{text loop}#/algorithm
 #endif
 
 #ifOption:italiano
-\KwIng{Ingresso}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwUsc{Uscita}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwDati{Dati}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwRisult{Risultato}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwA#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwRitorna{ritorna}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ritorna{ritorna}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Inizio{inside block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ripeti{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lRipeti{stop condition}{line of the loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eSea{condition}{then block}{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Sea{condition}{then block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSea{condition}{then block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSea{condition}{then’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\AltSe{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uAltSe{else block without else}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lAltSe{else’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Altrimenti{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uAltrimenti{condition}{elseif block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lAltrimenti{condition}{elseif’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Per{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPer{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PerPar{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPerPar{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PerCiascun{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPerCiascun{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PerTutti{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPerTutti{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Finche{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFinche{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\KwIng{Ingresso}#/algorithm
+\KwUsc{Uscita}#/algorithm
+\KwDati{Dati}#/algorithm
+\KwRisult{Risultato}#/algorithm
+\KwA#/algorithm
+\KwRitorna{ritorna}#/algorithm
+\Ritorna{ritorna}#/algorithm
+\Inizio{inside block}#/algorithm
+\Ripeti{stop condition}{text loop}#/algorithm
+\lRipeti{stop condition}{line of the loop}#/algorithm
+\eSea{condition}{then block}{else block}#/algorithm
+\Sea{condition}{then block}#/algorithm
+\uSea{condition}{then block without end}#/algorithm
+\lSea{condition}{then’s line text}#/algorithm
+\AltSe{else block}#/algorithm
+\uAltSe{else block without else}#/algorithm
+\lAltSe{else’s line text}#/algorithm
+\Altrimenti{condition}{elseif block}#/algorithm
+\uAltrimenti{condition}{elseif block without end}#/algorithm
+\lAltrimenti{condition}{elseif’s line text}#/algorithm
+\Per{condition}{text loop}#/algorithm
+\lPer{condition}{line text loop}#/algorithm
+\PerPar{condition}{text loop}#/algorithm
+\lPerPar{condition}{line text loop}#/algorithm
+\PerCiascun{condition}{text loop}#/algorithm
+\lPerCiascun{condition}{line text loop}#/algorithm
+\PerTutti{condition}{text loop}#/algorithm
+\lPerTutti{condition}{line text loop}#/algorithm
+\Finche{stop condition}{text loop}#/algorithm
+\lFinche{stop condition}{text loop}#/algorithm
 #endif
 #ifOption:italianokw
-\KwIng{Ingresso}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwUsc{Uscita}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwDati{Dati}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwRisult{Risultato}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwA#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwRitorna{ritorna}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ritorna{ritorna}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Inizio{inside block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ripeti{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lRipeti{stop condition}{line of the loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eSea{condition}{then block}{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Sea{condition}{then block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSea{condition}{then block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSea{condition}{then’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\AltSe{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uAltSe{else block without else}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lAltSe{else’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Altrimenti{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uAltrimenti{condition}{elseif block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lAltrimenti{condition}{elseif’s line text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Per{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPer{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PerPar{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPerPar{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PerCiascun{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPerCiascun{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\PerTutti{condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPerTutti{condition}{line text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Finche{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lFinche{stop condition}{text loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\KwIng{Ingresso}#/algorithm
+\KwUsc{Uscita}#/algorithm
+\KwDati{Dati}#/algorithm
+\KwRisult{Risultato}#/algorithm
+\KwA#/algorithm
+\KwRitorna{ritorna}#/algorithm
+\Ritorna{ritorna}#/algorithm
+\Inizio{inside block}#/algorithm
+\Ripeti{stop condition}{text loop}#/algorithm
+\lRipeti{stop condition}{line of the loop}#/algorithm
+\eSea{condition}{then block}{else block}#/algorithm
+\Sea{condition}{then block}#/algorithm
+\uSea{condition}{then block without end}#/algorithm
+\lSea{condition}{then’s line text}#/algorithm
+\AltSe{else block}#/algorithm
+\uAltSe{else block without else}#/algorithm
+\lAltSe{else’s line text}#/algorithm
+\Altrimenti{condition}{elseif block}#/algorithm
+\uAltrimenti{condition}{elseif block without end}#/algorithm
+\lAltrimenti{condition}{elseif’s line text}#/algorithm
+\Per{condition}{text loop}#/algorithm
+\lPer{condition}{line text loop}#/algorithm
+\PerPar{condition}{text loop}#/algorithm
+\lPerPar{condition}{line text loop}#/algorithm
+\PerCiascun{condition}{text loop}#/algorithm
+\lPerCiascun{condition}{line text loop}#/algorithm
+\PerTutti{condition}{text loop}#/algorithm
+\lPerTutti{condition}{line text loop}#/algorithm
+\Finche{stop condition}{text loop}#/algorithm
+\lFinche{stop condition}{text loop}#/algorithm
 #endif
 
 #ifOption:spanish
-\Datos{Datos}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Resultado{Resultado}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Entrada{Entrada}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Salida{Salida}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwA#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwDevolver{value}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Devolver{value}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Inicio{inside block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eSSi{condition}{then block}{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\SSi{condition}{then block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSSi{condition}{then block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSSi{condition}{then line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\EnOtroCasoSi{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uEnOtroCasoSi{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lEnOtroCasoSi{condition}{elseif line without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\EnOtroCaso{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uEnOtroCaso{else block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lEnOtroCaso{else line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Seleccionar{seleccionar}{caso block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSeleccionar{seleccionar}{caso block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Caso{seleccionar}{caso block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lCaso{seleccionar}{caso line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Otro{sinó block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lOtro{sinó line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Para{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPara{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaPara{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaPara{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\EnParalelo{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lEnParalelo{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Mientras{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lMientras{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaCada{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaCada{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaTodo{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaTodo{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Repetir{stop condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lRepetir{stop condition}{line loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\Datos{Datos}#/algorithm
+\Resultado{Resultado}#/algorithm
+\Entrada{Entrada}#/algorithm
+\Salida{Salida}#/algorithm
+\KwA#/algorithm
+\KwDevolver{value}#/algorithm
+\Devolver{value}#/algorithm
+\Inicio{inside block}#/algorithm
+\eSSi{condition}{then block}{else block}#/algorithm
+\SSi{condition}{then block}#/algorithm
+\uSSi{condition}{then block without end}#/algorithm
+\lSSi{condition}{then line}#/algorithm
+\EnOtroCasoSi{condition}{elseif block}#/algorithm
+\uEnOtroCasoSi{condition}{elseif block}#/algorithm
+\lEnOtroCasoSi{condition}{elseif line without end}#/algorithm
+\EnOtroCaso{else block}#/algorithm
+\uEnOtroCaso{else block without end}#/algorithm
+\lEnOtroCaso{else line}#/algorithm
+\Seleccionar{seleccionar}{caso block}#/algorithm
+\uSeleccionar{seleccionar}{caso block without end}#/algorithm
+\Caso{seleccionar}{caso block}#/algorithm
+\lCaso{seleccionar}{caso line}#/algorithm
+\Otro{sinó block}#/algorithm
+\lOtro{sinó line}#/algorithm
+\Para{condition}{loop block}#/algorithm
+\lPara{condition}{loop line}#/algorithm
+\ParaPara{condition}{loop block}#/algorithm
+\lParaPara{condition}{loop line}#/algorithm
+\EnParalelo{condition}{loop block}#/algorithm
+\lEnParalelo{condition}{loop line}#/algorithm
+\Mientras{condition}{loop block}#/algorithm
+\lMientras{condition}{loop line}#/algorithm
+\ParaCada{condition}{loop block}#/algorithm
+\lParaCada{condition}{loop line}#/algorithm
+\ParaTodo{condition}{loop block}#/algorithm
+\lParaTodo{condition}{loop line}#/algorithm
+\Repetir{stop condition}{loop block}#/algorithm
+\lRepetir{stop condition}{line loop}#/algorithm
 #endif
 #ifOption:spanishkw
-\Datos{Datos}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Resultado{Resultado}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Entrada{Entrada}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Salida{Salida}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwA#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwDevolver{value}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Devolver{value}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Inicio{inside block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eSSi{condition}{then block}{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\SSi{condition}{then block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSSi{condition}{then block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSSi{condition}{then line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\EnOtroCasoSi{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uEnOtroCasoSi{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lEnOtroCasoSi{condition}{elseif line without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\EnOtroCaso{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uEnOtroCaso{else block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lEnOtroCaso{else line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Seleccionar{seleccionar}{caso block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSeleccionar{seleccionar}{caso block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Caso{seleccionar}{caso block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lCaso{seleccionar}{caso line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Otro{sinó block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lOtro{sinó line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Para{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPara{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaPara{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaPara{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\EnParalelo{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lEnParalelo{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Mientras{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lMientras{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaCada{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaCada{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ParaTodo{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lParaTodo{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Repetir{stop condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lRepetir{stop condition}{line loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\Datos{Datos}#/algorithm
+\Resultado{Resultado}#/algorithm
+\Entrada{Entrada}#/algorithm
+\Salida{Salida}#/algorithm
+\KwA#/algorithm
+\KwDevolver{value}#/algorithm
+\Devolver{value}#/algorithm
+\Inicio{inside block}#/algorithm
+\eSSi{condition}{then block}{else block}#/algorithm
+\SSi{condition}{then block}#/algorithm
+\uSSi{condition}{then block without end}#/algorithm
+\lSSi{condition}{then line}#/algorithm
+\EnOtroCasoSi{condition}{elseif block}#/algorithm
+\uEnOtroCasoSi{condition}{elseif block}#/algorithm
+\lEnOtroCasoSi{condition}{elseif line without end}#/algorithm
+\EnOtroCaso{else block}#/algorithm
+\uEnOtroCaso{else block without end}#/algorithm
+\lEnOtroCaso{else line}#/algorithm
+\Seleccionar{seleccionar}{caso block}#/algorithm
+\uSeleccionar{seleccionar}{caso block without end}#/algorithm
+\Caso{seleccionar}{caso block}#/algorithm
+\lCaso{seleccionar}{caso line}#/algorithm
+\Otro{sinó block}#/algorithm
+\lOtro{sinó line}#/algorithm
+\Para{condition}{loop block}#/algorithm
+\lPara{condition}{loop line}#/algorithm
+\ParaPara{condition}{loop block}#/algorithm
+\lParaPara{condition}{loop line}#/algorithm
+\EnParalelo{condition}{loop block}#/algorithm
+\lEnParalelo{condition}{loop line}#/algorithm
+\Mientras{condition}{loop block}#/algorithm
+\lMientras{condition}{loop line}#/algorithm
+\ParaCada{condition}{loop block}#/algorithm
+\lParaCada{condition}{loop line}#/algorithm
+\ParaTodo{condition}{loop block}#/algorithm
+\lParaTodo{condition}{loop line}#/algorithm
+\Repetir{stop condition}{loop block}#/algorithm
+\lRepetir{stop condition}{line loop}#/algorithm
 #endif
 
 #ifOption:croatian
-\KwUlaz{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwIzlaz{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwPodatci{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwRezultat{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwDo#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwVrati#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Vrati#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Pocetak{inside block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ponavljaj{stop condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPonavljaj{stop condition}{line loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eAko{condition}{then block}{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ako{condition}{then block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uAko{condition}{then block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lAko{condition}{then line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\InaceAko{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uInaceAko{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lInaceAko{condition}{elseif line without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Inace{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uInace{else block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lInace{else line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Granaj{condition}{Seleccionar caso block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uGranaj{seleccionar}{caso block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Slucaj{case}{case block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSlucaj{case}{case block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSlucaj{case}{case line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\OstaliSlucajevi{otherwise block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lOstaliSlucajevi{otherwise line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uOstaliSlucajevi{otherwise text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Za{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZa{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ZaPar{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZaPar{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ZaSvaki{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZaSvaki{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ZaSvaku{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZaSvaku{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ZaSvako{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZaSvako{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ZaSve{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZaSve{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Dok{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lDok{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\KwUlaz{input}#/algorithm
+\KwIzlaz{input}#/algorithm
+\KwPodatci{input}#/algorithm
+\KwRezultat{input}#/algorithm
+\KwDo#/algorithm
+\KwVrati#/algorithm
+\Vrati#/algorithm
+\Pocetak{inside block}#/algorithm
+\Ponavljaj{stop condition}{loop block}#/algorithm
+\lPonavljaj{stop condition}{line loop}#/algorithm
+\eAko{condition}{then block}{else block}#/algorithm
+\Ako{condition}{then block}#/algorithm
+\uAko{condition}{then block without end}#/algorithm
+\lAko{condition}{then line}#/algorithm
+\InaceAko{condition}{elseif block}#/algorithm
+\uInaceAko{condition}{elseif block}#/algorithm
+\lInaceAko{condition}{elseif line without end}#/algorithm
+\Inace{else block}#/algorithm
+\uInace{else block without end}#/algorithm
+\lInace{else line}#/algorithm
+\Granaj{condition}{Seleccionar caso block}#/algorithm
+\uGranaj{seleccionar}{caso block without end}#/algorithm
+\Slucaj{case}{case block}#/algorithm
+\uSlucaj{case}{case block without end}#/algorithm
+\lSlucaj{case}{case line}#/algorithm
+\OstaliSlucajevi{otherwise block}#/algorithm
+\lOstaliSlucajevi{otherwise line}#/algorithm
+\uOstaliSlucajevi{otherwise text}#/algorithm
+\Za{condition}{loop block}#/algorithm
+\lZa{condition}{loop line}#/algorithm
+\ZaPar{condition}{loop block}#/algorithm
+\lZaPar{condition}{loop line}#/algorithm
+\ZaSvaki{condition}{loop block}#/algorithm
+\lZaSvaki{condition}{loop line}#/algorithm
+\ZaSvaku{condition}{loop block}#/algorithm
+\lZaSvaku{condition}{loop line}#/algorithm
+\ZaSvako{condition}{loop block}#/algorithm
+\lZaSvako{condition}{loop line}#/algorithm
+\ZaSve{condition}{loop block}#/algorithm
+\lZaSve{condition}{loop line}#/algorithm
+\Dok{condition}{loop block}#/algorithm
+\lDok{condition}{loop line}#/algorithm
 #endif
 #ifOption:croatiankw
-\KwUlaz{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwIzlaz{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwPodatci{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwRezultat{input}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwDo#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\KwVrati#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Vrati#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Pocetak{inside block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ponavljaj{stop condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lPonavljaj{stop condition}{line loop}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\eAko{condition}{then block}{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Ako{condition}{then block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uAko{condition}{then block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lAko{condition}{then line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\InaceAko{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uInaceAko{condition}{elseif block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lInaceAko{condition}{elseif line without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Inace{else block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uInace{else block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lInace{else line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Granaj{condition}{Seleccionar caso block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uGranaj{seleccionar}{caso block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Slucaj{case}{case block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uSlucaj{case}{case block without end}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lSlucaj{case}{case line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\OstaliSlucajevi{otherwise block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lOstaliSlucajevi{otherwise line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\uOstaliSlucajevi{otherwise text}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Za{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZa{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ZaPar{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZaPar{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ZaSvaki{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZaSvaki{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ZaSvaku{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZaSvaku{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ZaSvako{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZaSvako{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\ZaSve{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lZaSve{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\Dok{condition}{loop block}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
-\lDok{condition}{loop line}#/algocf,algocf*,algorithm,algorithm*,function,function*,procedure,procedure*,algorithm2e,algorithm2e*
+\KwUlaz{input}#/algorithm
+\KwIzlaz{input}#/algorithm
+\KwPodatci{input}#/algorithm
+\KwRezultat{input}#/algorithm
+\KwDo#/algorithm
+\KwVrati#/algorithm
+\Vrati#/algorithm
+\Pocetak{inside block}#/algorithm
+\Ponavljaj{stop condition}{loop block}#/algorithm
+\lPonavljaj{stop condition}{line loop}#/algorithm
+\eAko{condition}{then block}{else block}#/algorithm
+\Ako{condition}{then block}#/algorithm
+\uAko{condition}{then block without end}#/algorithm
+\lAko{condition}{then line}#/algorithm
+\InaceAko{condition}{elseif block}#/algorithm
+\uInaceAko{condition}{elseif block}#/algorithm
+\lInaceAko{condition}{elseif line without end}#/algorithm
+\Inace{else block}#/algorithm
+\uInace{else block without end}#/algorithm
+\lInace{else line}#/algorithm
+\Granaj{condition}{Seleccionar caso block}#/algorithm
+\uGranaj{seleccionar}{caso block without end}#/algorithm
+\Slucaj{case}{case block}#/algorithm
+\uSlucaj{case}{case block without end}#/algorithm
+\lSlucaj{case}{case line}#/algorithm
+\OstaliSlucajevi{otherwise block}#/algorithm
+\lOstaliSlucajevi{otherwise line}#/algorithm
+\uOstaliSlucajevi{otherwise text}#/algorithm
+\Za{condition}{loop block}#/algorithm
+\lZa{condition}{loop line}#/algorithm
+\ZaPar{condition}{loop block}#/algorithm
+\lZaPar{condition}{loop line}#/algorithm
+\ZaSvaki{condition}{loop block}#/algorithm
+\lZaSvaki{condition}{loop line}#/algorithm
+\ZaSvaku{condition}{loop block}#/algorithm
+\lZaSvaku{condition}{loop line}#/algorithm
+\ZaSvako{condition}{loop block}#/algorithm
+\lZaSvako{condition}{loop line}#/algorithm
+\ZaSve{condition}{loop block}#/algorithm
+\lZaSve{condition}{loop line}#/algorithm
+\Dok{condition}{loop block}#/algorithm
+\lDok{condition}{loop line}#/algorithm
 #endif
 
 # not documented
@@ -907,9 +907,9 @@ f
 \algotitleheightrule#*
 \algotitleheightruledefault#*
 \algowidth#*
-\begin{algocf*}#*
+\begin{algocf*}#*\algorithm
 \begin{algocf*}[placement]#*
-\begin{algocf}#*
+\begin{algocf}#*\algorithm
 \begin{algocf}[placement]#*
 \end{algocf*}#*
 \end{algocf}#*

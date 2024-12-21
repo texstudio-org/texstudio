@@ -219,7 +219,12 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
             // use topEnv as completion filter for commands
             const QStringList ignoreEnv = {"document","normal"};
             if(!env.isEmpty() && !ignoreEnv.contains(env.top().name)){
-                LatexEditorView::completer->setFilter(env.top().name);
+                QString envName=env.top().name;
+                QStringList envAliases = doc->lp->environmentAliases.values(envName);
+                if(!envAliases.isEmpty()){
+                    envName=envAliases.first();
+                }
+                LatexEditorView::completer->setFilter(envName);
             }
 
             LatexCompleter::CompletionFlags flags= ctx==EnumsTokenType::width ? LatexCompleter::CF_FORCE_LENGTH : LatexCompleter::CompletionFlag(0) ;

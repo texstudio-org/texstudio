@@ -4875,11 +4875,16 @@ void Texstudio::normalCompletion()
             }
         } else {
             // use topEnv as completion filter for commands
-            if( type == Token::command && !env.isEmpty()){
+            if( (type == Token::command || type == Token::commandUnknown) && !env.isEmpty()){
                 // skip filter for normal or document
+                QString envName=env.top().name;
                 const QStringList ignoreEnv = {"document","normal"};
-                if(!ignoreEnv.contains(env.top().name)){
-                    completer->setFilter(env.top().name);
+                if(!ignoreEnv.contains(envName)){
+                    QStringList envAliases = doc->lp->environmentAliases.values(envName);
+                    if(!envAliases.isEmpty()){
+                        envName=envAliases.first();
+                    }
+                    completer->setFilter(envName);
                 }
             }
         }
