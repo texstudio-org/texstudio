@@ -1,11 +1,17 @@
 # tuple package
-# Matthew Bertucci 2024/11/18 for v0.1
+# Matthew Bertucci 2024/12/22 for v0.2
 
 \newtuple{name}{list of numbers}
-\tplexe{%<<tuple name>.<method1>.<method2>...%>}
+\tplsetmode{mode%keyvals}
+#keyvals:\tplsetmode
+int
+dec short
+dec long
+#endkeyvals
+\tplexe{%<⟨tuple name⟩.⟨method1⟩.⟨method2⟩...%>}
 \tplformat{index}{element}#*
 \tplsep#*
-\gentuple{%<<init vals>,\genrule <rule>;<condition>%>}
+\gentuple{%<⟨init vals⟩,\genrule ⟨rule⟩;⟨condition⟩%>}
 \genrule#*
 \while#*
 \until#*
