@@ -4,7 +4,7 @@
 
 ### expl3 generic commands ###
 \bitset_addto_named_index:Nn %<⟨bitset var⟩%> {%<⟨name1=index1,name2=index2,...⟩%>}#/%expl3
-\bitset_clear:N %<⟨bitset var⟩%>#/%expl3#/%expl3
+\bitset_clear:N %<⟨bitset var⟩%>#/%expl3
 \bitset_clear:c {%<⟨bitset var name⟩%>}#/%expl3
 \bitset_gclear:N %<⟨bitset var⟩%>#/%expl3
 \bitset_gclear:c {%<⟨bitset var name⟩%>}#/%expl3

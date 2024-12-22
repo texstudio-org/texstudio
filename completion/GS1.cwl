@@ -1,5 +1,5 @@
 # GS1 package
-# Matthew Bertucci 11/18/2021 for v23
+# Matthew Bertucci 2024/12/21 for v23
 
 #include:rule-D
 
@@ -19,3 +19,10 @@ scale=%<factor%>
 scale_to_font#true,false
 add_control#true,false
 #endkeyvals
+
+# expl3 interface
+\GS_cut_EAN_control_digit:N %<⟨seq var⟩%>#/%expl3
+\GS_set_code_digit_seq:Nn %<⟨seq var⟩%> {%<⟨tokens⟩%>}#/%expl3
+\GS_set_EAN_control_digit:N %<⟨seq var⟩%>#/%expl3
+\GS_use_as_EAN_barcode:N %<⟨seq var⟩%>#/%expl3
+\int_set_to_EAN_control_digit:NN %<⟨integer⟩ ⟨seq var⟩%>#/%expl3

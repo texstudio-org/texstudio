@@ -1441,6 +1441,7 @@
 <file>completion/etaremune.cwl</file>
 <file>completion/ETbb.cwl</file>
 <file>completion/etextools.cwl</file>
+<file>completion/etl.cwl</file>
 <file>completion/etoc.cwl</file>
 <file>completion/etoolbox.cwl</file>
 <file>completion/etruscan.cwl</file>
@@ -1790,6 +1791,7 @@
 <file>completion/grundgesetze.cwl</file>
 <file>completion/grverb.cwl</file>
 <file>completion/GS1.cwl</file>
+<file>completion/gtl.cwl</file>
 <file>completion/gtrcrd.cwl</file>
 <file>completion/gtrlib.largetrees.cwl</file>
 <file>completion/Gudea.cwl</file>
@@ -2063,7 +2065,11 @@
 <file>completion/kvmap.cwl</file>
 <file>completion/kvoptions.cwl</file>
 <file>completion/kvsetkeys.cwl</file>
+<file>completion/l3benchmark.cwl</file>
+<file>completion/l3draw.cwl</file>
+<file>completion/l3graphics.cwl</file>
 <file>completion/l3keys2e.cwl</file>
+<file>completion/l3opacity.cwl</file>
 <file>completion/l3sys-query.cwl</file>
 <file>completion/labels4easylist.cwl</file>
 <file>completion/labels.cwl</file>
@@ -3214,6 +3220,7 @@
 <file>completion/rubikrotation.cwl</file>
 <file>completion/rubiktwocube.cwl</file>
 <file>completion/ruby.cwl</file>
+<file>completion/rule-D.cwl</file>
 <file>completion/rulerbox.cwl</file>
 <file>completion/runcode.cwl</file>
 <file>completion/runic.cwl</file>

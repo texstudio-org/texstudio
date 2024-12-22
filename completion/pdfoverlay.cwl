@@ -1,5 +1,5 @@
 # pdfoverlay package
-# Matthew Bertucci 11/3/2021 for v1.2b
+# Matthew Bertucci 2024/12/21 for v1.3
 
 #include:graphicx
 
@@ -44,3 +44,12 @@ decodearray={%<color array%>}
 \pdfoverlaySkipToPage{page number}
 \pdfoverlayPauseOutput
 \pdfoverlayResumeOutput
+
+# expl3 interface
+\pdfoverlay_include_to_last_page:#/%expl3
+\pdfoverlay_include_to_page:n {%<⟨page number⟩%>}#/%expl3
+\pdfoverlay_pause_output:#/%expl3
+\pdfoverlay_resume_output:#/%expl3
+\pdfoverlay_set_graphics_options:n {%<⟨options⟩%>}#/%expl3
+\pdfoverlay_set_pdf:n {%<⟨pdf file⟩%>}#/%expl3
+\pdfoverlay_skip_to_page:n {%<⟨page number⟩%>}#/%expl3

@@ -1,5 +1,5 @@
 # pgfmath-xfp package
-# Matthew Bertucci 11/2/2021 for v1.0
+# Matthew Bertucci 2024/12/21 for v1.0
 
 #include:pgfmath
 
@@ -8,3 +8,7 @@
 
 \pgfmxfpDate#S
 \pgfmxfpVersion#S
+
+# expl3 interface
+\pgfmxfp_declare:nnn {%<⟨name⟩%>} {%<⟨arg count⟩%>} {%<⟨fp expr⟩%>}#/%expl3
+\pgfmxfp_declare_processed_args:nnnn {%<⟨name⟩%>} {%<⟨arg count⟩%>} {%<⟨processed args⟩%>} {%<⟨fp expr⟩%>}#/%expl3
