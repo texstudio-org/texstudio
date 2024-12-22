@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/12/14 for v13.20.0
+# Matthew Bertucci 2024/12/22 for v13.21.0
 
 #include:iftex
 
@@ -474,6 +474,7 @@ cafepress
 caffeine
 cairographics
 cairometro
+caixabank
 cakephp
 caldotcom
 calendly
@@ -624,6 +625,7 @@ cohost
 coil
 coinbase
 coinmarketcap
+collaboraonline
 comicfury
 comma
 commerzbank
@@ -687,6 +689,7 @@ crowdsource
 crunchbase
 crunchyroll
 cryengine
+cryptomator
 cryptpad
 crystal
 csdn
@@ -920,6 +923,7 @@ ethers
 ethiopianairlines
 etihadairways
 etsy
+europeanunion
 eventbrite
 eventstore
 evernote
@@ -932,6 +936,7 @@ expensify
 expertsexchange
 expo
 express
+expressdotcom
 expressvpn
 eyeem
 f1
@@ -1458,6 +1463,7 @@ jfrog
 jfrogpipelines
 jhipster
 jinja
+jio
 jira
 jirasoftware
 jitpack
@@ -1920,6 +1926,7 @@ nextcloud
 nextdns
 nextdoor
 nextdotjs
+nextflow
 nextra
 nextui
 nexusmods
@@ -1936,6 +1943,7 @@ nikon
 nim
 nintendo
 nintendo3ds
+nintendods
 nintendogamecube
 nintendoswitch
 nissan
@@ -1982,6 +1990,7 @@ observable
 obsidian
 obsstudio
 ocaml
+oclc
 oclif
 octanerender
 octave
@@ -1998,6 +2007,7 @@ okcupid
 okta
 okx
 ollama
+omadacloud
 oneplus
 onlyfans
 onlyoffice
@@ -2092,6 +2102,7 @@ pantheon
 paperlessngx
 paperspace
 paperswithcode
+paradoxinteractive
 paramountplus
 paritysubstrate
 parrotsecurity
@@ -2137,6 +2148,7 @@ photocrowd
 photon
 photopea
 php
+phpbb
 phpmyadmin
 phpstorm
 piaggiogroup
@@ -2402,6 +2414,7 @@ render
 renovate
 renpy
 renren
+replicate
 replit
 republicofgamers
 rescript
@@ -2512,6 +2525,7 @@ saturn
 saucelabs
 saudia
 scala
+scalar
 scaleway
 scania
 schneiderelectric
@@ -2632,6 +2646,7 @@ socialblade
 society6
 socket
 socketdotio
+softcatala
 softpedia
 sogou
 solana
@@ -2768,6 +2783,7 @@ supabase
 supercrease
 supermicro
 superuser
+surfshark
 surrealdb
 surveymonkey
 suse
@@ -2830,6 +2846,7 @@ teepublic
 teespring
 tekton
 tele5
+telefonica
 telegram
 telegraph
 telequebec
@@ -2907,6 +2924,7 @@ tokyometro
 toll
 toml
 tomorrowland
+tomtom
 ton
 topcoder
 topdotgg
