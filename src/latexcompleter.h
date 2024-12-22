@@ -49,7 +49,8 @@ public:
 						 CF_FORCE_SPECIALOPTION = 256,
                          CF_FORCE_LENGTH = 512, ///< complete a a length
                          CF_FORCE_REFLIST = 1024, ///< complete a reference list (more than one reference,separated by comma)
-                         CF_DISABLE_MU_SORTING = 2048};  ///< special mode to avoid most-used first sorting for easier testing
+                         CF_DISABLE_MU_SORTING = 2048,  ///< special mode to avoid most-used first sorting for easier testing
+                         CF_FORCE_EXPL3 = 4096}; ///< allow _: in command name
 	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag)
 
     LatexCompleter(const LatexParser &latexParser, QObject *p = nullptr); ///< constructor
@@ -63,8 +64,8 @@ public:
 	void setContextWords(const QSet<QString> &newwords, const QString &context);
 	void updateAbbreviations();
 
-	static void setLatexReference(LatexReference *ref) { latexReference = ref; } ///< set latexreference which is used for showing help per tooltip on selecetd completion commands
-	static LatexReference *getLatexReference() { return latexReference; } ///< get used latexreference
+    static void setLatexReference(LatexReference *ref); ///< set latexreference which is used for showing help per tooltip on selecetd completion commands
+    static LatexReference *getLatexReference(); ///< get used latexreference
 
 	bool acceptTriggerString(const QString &trigger);
 
@@ -74,12 +75,12 @@ public:
     void setPackageList(std::set<QString> *lst); ///< set a list with available latex package names
 
 	bool close(); ///< close completer (without insertion)
-	bool isVisible() { return list->isVisible(); }
+    bool isVisible();
 	bool existValues(); ///< are still completion ssuggestions available
 
-	void setWorkPath(const QString cwd) { workingDir = cwd; }
-	bool completingGraphic() { return forcedGraphic; }
-	bool completingKey() { return forcedKeyval; }
+    void setWorkPath(const QString cwd);
+    bool completingGraphic();
+    bool completingKey();
 
 	int countWords();
 	void setTab(int index); ///< bring given 'tab' to front
@@ -89,6 +90,8 @@ public:
 	void insertText(QString txt); ///< insert 'txt'
 
 	void showTooltip(QString text); ///< show tooltip
+
+    void setFilter(QString filter); ///< set a filter for the completion list
 
 signals:
 	void setDirectoryForCompletion(QString fn); ///< set the used directory for filename completion

@@ -182,37 +182,14 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
 void TexdocDialog::setPackageNames(const QStringList &packages)
 {
     m_packages=packages;
-    if (m_packages.count()==0){
-        ui->cbShowAllPackages->setChecked(true); // regenerateTable will be called by the stateChanged signal
-    }else{
+    if (m_packages.count()>0){
         regenerateTable();
     }
 }
 
 void TexdocDialog::setPreferredPackage(const QString &package)
 {
-	int i = 0;
-	int rows = ui->tbPackages->rowCount();
-	LatexRepository *repo = LatexRepository::instance();
-	if (repo->LatexRepository::packageExists(package)) {
-		for (;i<rows;i++) {
-			if (ui->tbPackages->item(i,0)->text() == package) break;
-		}
-		if (i>=rows) {
-			QString desc = repo->LatexRepository::shortDescription(package);
-			QTableWidgetItem *itemPkgName = new QTableWidgetItem(package);
-			QTableWidgetItem *itemPkgDesc = new QTableWidgetItem(desc);
-			rows++;
-			ui->tbPackages->setRowCount(rows);
-			ui->tbPackages->setItem(i,0,itemPkgName);
-			ui->tbPackages->setItem(i,1,itemPkgDesc);
-		}
-	}
-	if (rows>0) {
-		QTableWidgetItem *itemPkgName = ui->tbPackages->item(i,0);
-		ui->tbPackages->setCurrentItem(itemPkgName);
-		itemPkgName->setSelected(true);
-	}
+	ui->lineEditSearch->setText(package);
 }
 /*!
  * \brief setShowAllPackages

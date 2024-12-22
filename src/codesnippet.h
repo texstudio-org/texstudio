@@ -30,7 +30,9 @@ class CodeSnippet
 {
 public:
 	CodeSnippet(): cursorLine(-1), cursorOffset(-1), anchorOffset(-1), usageCount(0), index(0), snippetLength(0), score(0), type(none) {} ///< generate empty codesnippet
-	CodeSnippet(const CodeSnippet &cw): word(cw.word), sortWord(cw.sortWord), lines(cw.lines), cursorLine(cw.cursorLine), cursorOffset(cw.cursorOffset), anchorOffset(cw.anchorOffset), placeHolders(cw.placeHolders), usageCount(cw.usageCount), index(cw.index), snippetLength(cw.snippetLength), score(cw.score), type(cw.type), name(cw.name) {} ///< copy constructor
+    CodeSnippet(const CodeSnippet &cw): word(cw.word), sortWord(cw.sortWord), lines(cw.lines), cursorLine(cw.cursorLine),
+        cursorOffset(cw.cursorOffset), anchorOffset(cw.anchorOffset), placeHolders(cw.placeHolders), usageCount(cw.usageCount),
+        index(cw.index), snippetLength(cw.snippetLength), score(cw.score), type(cw.type), environmentRestriction(cw.environmentRestriction), name(cw.name) {} ///< copy constructor
     CodeSnippet(const QString &newWord, bool replacePercentNewline = true, bool substituteSpace=false); ///< generate codesnippet from text string
 	CodeSnippet & operator= (const CodeSnippet&) = default;	// Avoid GCC9 -Wdeprecated-copy warning
 	bool operator< (const CodeSnippet &cw) const; ///< define sorting operator
@@ -52,6 +54,7 @@ public:
 	int score;
     enum Type {none, length,userConstruct,userCommand};
 	Type type;
+    QString environmentRestriction; ///< only to be shown in given environment, if empty, everywhere
 
 	QString expandCode(const QString &code);
 	QString environmentContent(const QString &envName);

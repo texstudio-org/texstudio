@@ -64,3 +64,13 @@ check num#true,false
 escape={%<list%>}
 rescan#true,false
 #endkeyvals
+
+# expl3 interface
+\jsonparse_array_count:NN %<⟨tl var⟩ ⟨integer⟩%>#/%expl3
+\jsonparse_filter:Nn %<⟨tl var⟩%> {%<⟨key⟩%>}#/%expl3
+\jsonparse_if_num:nF {%<⟨false code⟩%>} {%<⟨string⟩%>}#/%expl3
+\jsonparse_if_num:nT {%<⟨true code⟩%>} {%<⟨string⟩%>}#/%expl3
+\jsonparse_if_num:nTF {%<⟨true code⟩%>} {%<⟨false code⟩%>} {%<⟨string⟩%>}#/%expl3
+\jsonparse_if_num_p:n {%<⟨string⟩%>}#/%expl3
+\jsonparse_parse:n {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_parse_to_prop:Nn %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3

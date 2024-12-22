@@ -662,8 +662,10 @@ public:
 
 	void resetBinding()
 	{
-		if (completer)
+        if (completer){
 			completer->listModel->setEnvironMode(false);
+            completer->setFilter(QString());
+        }
 		showMostUsed = false;
 		QString curWord = getCurWord();
 		if (!active) return;
@@ -895,6 +897,15 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
 
     keyValLists.insert(name, newWordList);
 }
+/*!
+ * \brief set environment filer
+ * Only completion words are shown which contain the filter string in environmentRestriction property or which have no restriction (empty string in that property)
+ * \param filter
+ */
+void CompletionListModel::setEnvironmentFilter(const QString &filter)
+{
+    m_filter=filter;
+}
 
 void CompletionListModel::setDisableMostUsedSorting(bool set)
 {
@@ -1031,8 +1042,8 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
 
         QRegularExpression rx(regExpression);
 
-        words=QtConcurrent::blockingFiltered(baselist,[rx](const CompletionWord &item){
-            return item.sortWord.contains(rx);
+        words=QtConcurrent::blockingFiltered(baselist,[rx,this](const CompletionWord &item){
+            return item.sortWord.contains(rx) && (item.environmentRestriction.isEmpty() || item.environmentRestriction==m_filter);
         });
 
         QtConcurrent::blockingMap(words,[word](CompletionWord &item){
@@ -1143,6 +1154,11 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
             if (it->word.startsWith(word, cs) &&
                     (!checkFirstChar || it->word[1] == word[1]) ) {
 
+                // leave out words which are restricted to a certain environment (except for all-mode)
+                if (mostUsed < 2 && !it->environmentRestriction.isEmpty() && it->environmentRestriction != m_filter) {
+                    ++it;
+                    continue;
+                }
                 if (mostUsed == 3 || it->usageCount >= mostUsed || it->usageCount == -2) {
                     if (mostUsed < 2 && type != CodeSnippet::none && it->type != type) {
                         ++it;
@@ -1704,6 +1720,10 @@ void LatexCompleter::updateAbbreviations()
 	listModel->setAbbrevWords(wordsAbbrev);
 }
 
+void LatexCompleter::setLatexReference(LatexReference *ref) { latexReference = ref; }
+
+LatexReference *LatexCompleter::getLatexReference() { return latexReference; }
+
 void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 {
 	Q_ASSERT(list);
@@ -1849,6 +1869,10 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 			eow.remove("_");
             eow.remove("-");
 		}
+        if (flags & CF_FORCE_EXPL3) {
+            eow.remove("_");
+            eow.remove(":");
+        }
         if (flags & CF_FORCE_KEYVAL) {
             eow.remove(" ");
         }
@@ -2136,6 +2160,12 @@ void LatexCompleter::showTooltip(QString text)
 	showTooltipLimited(pos, text, list->width());
 }
 
+void LatexCompleter::setFilter(QString filter)
+{
+    listModel->setEnvironmentFilter(filter);
+    listModel->curWord = ""; // force filter update
+}
+
 void LatexCompleter::editorDestroyed()
 {
     editor = nullptr;
@@ -2158,6 +2188,8 @@ bool LatexCompleter::close()
 	} else return false;
 }
 
+bool LatexCompleter::isVisible() { return list->isVisible(); }
+
 void LatexCompleterConfig::setFiles(const QStringList &newFiles)
 {
 	files = newFiles;
@@ -2172,3 +2204,9 @@ bool LatexCompleter::existValues()
 {
 	return listModel->keyValLists.value(workingDir).size() > 0;
 }
+
+void LatexCompleter::setWorkPath(const QString cwd) { workingDir = cwd; }
+
+bool LatexCompleter::completingGraphic() { return forcedGraphic; }
+
+bool LatexCompleter::completingKey() { return forcedKeyval; }

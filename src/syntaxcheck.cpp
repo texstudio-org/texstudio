@@ -578,15 +578,21 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
         if(!activeEnv.isEmpty() && activeEnv.top().endingColumn>=0 && tk.start>activeEnv.top().endingColumn){
             Environment env=activeEnv.pop();
         }
-        // special treatment for ExplSyntaxOff
-        // it is used to toggle expl3 mode off
-        if(!activeEnv.isEmpty() && activeEnv.top().name == "expl3"){
+        // handle single command env stop e.g. \ExplSyntaxOff
+        if(tk.type==Token::command){
             const QString word=tk.getText();
-            if( word == "\\ExplSyntaxOff"){
-                activeEnv.pop();
-                continue;
+            if(ltxCommands->possibleCommands["%endEnv"].contains(word)){
+                const QString envName=ltxCommands->environmentAliases.value(word);
+                if(activeEnv.top().name == envName){
+                    activeEnv.pop();
+                    continue;
+                }
             }
-            if(tk.type==Token::commandUnknown || tk.type==Token::command){
+        }
+
+        if(!activeEnv.isEmpty() && activeEnv.top().name == "%expl3"){
+            // special treatment for expl3 commands in expl3 env
+            if((tk.type==Token::commandUnknown || tk.type==Token::command)&&tk.getText()!="\\\\"){ // special treatment for \\ , see #3877
                 // collect next parts
                 // e.g. \cs_new:Npn is split into \cs _ new : Npn
                 const int start = tk.start;
@@ -1042,9 +1048,10 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             // special treatment for \ExplSyntaxOn, \ExplSyntaxOff
             // \ProvidesExplPackage, \ProvidesExplClass and \ProvidesExplFile
             // activate latex3 mode which ignores _ in commandnames
-            if(word=="\\ExplSyntaxOn" || word=="\\ProvidesExplPackage" || word=="\\ProvidesExplClass" || word=="\\ProvidesExplFile"){
+            if(ltxCommands->possibleCommands["%beginEnv"].contains(word)){
+                const QString envName=ltxCommands->environmentAliases.value(word);
                 Environment env;
-                env.name = "expl3";
+                env.name = envName;
                 env.id = 1; // to be changed
                 env.dlh = dlh;
                 env.ticket = ticket;

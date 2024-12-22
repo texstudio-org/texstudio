@@ -38,6 +38,8 @@ public:
 	void setContextWords(const QSet<QString> &newwords, const QString &context);
 	void setKeyValWords(const QString &name, const QSet<QString> &newwords);
 
+    void setEnvironmentFilter(const QString &filter);
+
     void setDisableMostUsedSorting(bool set);
 
 private:
@@ -63,6 +65,8 @@ private:
     bool m_disable_mostUsed_sorting;
 
 	int mWordCount, mCitCount;
+
+    QString m_filter; // for showing also cwls which contain the filter string (by default hidden)
 
 	QList<CompletionWord>::iterator it;
 

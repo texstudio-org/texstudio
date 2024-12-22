@@ -219,6 +219,16 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 
 				// get commandDefinition
 				CommandDescription cd = extractCommandDef(line, valid);
+                if(valid.startsWith("beginEnv")){
+                    package.possibleCommands["%beginEnv"]<<line;
+                    package.environmentAliases.insert(line, definition);
+                    valid=valid.mid(8); // maintain additional classifiers
+                }
+                if(valid.startsWith("endEnv")){
+                    package.possibleCommands["%endEnv"]<<line;
+                    package.environmentAliases.insert(line, definition);
+                    valid=valid.mid(6); // maintain additional classifiers
+                }
 				if(valid.contains('K')){
 					// bracket command like \left etc
 					cd.bracketCommand=true;
@@ -519,7 +529,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 						package.possibleCommands["tabbing"] << cmd;
 					}
 				}
-				if (valid.contains('e') && !env.isEmpty()) { // tabbing support
+                if (valid.contains('e') && !env.isEmpty()) { // restrict to environments
 					if (res == -1) {
 						foreach (const QString &elem, env)
 							package.possibleCommands[elem] << cmd;
@@ -607,6 +617,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					it->snippetLength = len;
 					it->usageCount = uncommon ? -1 : 0;
 					it->type = type;
+                    if(valid.contains('e') && !env.isEmpty()){
+                        it->environmentRestriction = env.first(); // only use first env for now
+                    }
 					if (config) {
 						QList<QPair<int, int> >res = config->usage.values(hash);
 						foreach (const PairIntInt &elem, res) {

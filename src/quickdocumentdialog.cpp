@@ -20,12 +20,47 @@ qreal unit2Metre(const qreal &length, const QString &unit, const bool &inverse =
 	static const qreal pointInMetre = inchInMetre / 72.27;
 	static const qreal bigPointInMetre = inchInMetre / 72;
 	QString lunit = unit.toLower();
-	if (lunit == "pt")    if (!inverse) return length * pointInMetre;      else  return length / pointInMetre;   
-	if (lunit == "bp")    if (!inverse) return length * bigPointInMetre;   else  return length / bigPointInMetre;
-	if (lunit == "cm")    if (!inverse) return length * 0.01;              else  return length * 100.;           
-	if (lunit == "dm")    if (!inverse) return length * 0.1;               else  return length * 10.;            
-	if (lunit == "in")    if (!inverse) return length * inchInMetre;       else  return length / inchInMetre;    
-	/*if (unit == "mm")*/ if (!inverse) return length * 0.001;             else  return length * 1000.;          
+    if (lunit == "pt"){
+        if (!inverse){
+            return length * pointInMetre;
+        } else {
+            return length / pointInMetre;
+        }
+    }
+    if (lunit == "bp"){
+        if (!inverse){
+            return length * bigPointInMetre;
+        } else {
+            return length / bigPointInMetre;
+        }
+    }
+    if (lunit == "cm"){
+        if (!inverse){
+            return length * 0.01;
+        } else {
+            return length * 100.;
+        }
+    }
+    if (lunit == "dm"){
+        if (!inverse){
+            return length * 0.1;
+        } else {
+            return length * 10.;
+        }
+    }
+    if (lunit == "in"){
+        if (!inverse) {
+            return length * inchInMetre;
+        } else {
+            return length / inchInMetre;
+        }
+    }
+    /*if (unit == "mm")*/
+    if (!inverse){
+        return length * 0.001;
+    } else {
+        return length * 1000.;
+    }
 }
 
 //options for the configmanager

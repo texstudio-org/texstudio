@@ -4830,8 +4830,9 @@ void Texstudio::normalCompletion()
 	if (!currentEditorView())	return;
 
 	QString command;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	QDocumentLineHandle *dlh = c.line().handle();
+    const QDocumentCursor c = currentEditorView()->editor->cursor();
+    QDocumentLineHandle *dlh = c.line().handle();
+    const LatexDocument *doc = qobject_cast<LatexDocument *>(dlh->document());
 	TokenStack ts = Parsing::getContext(dlh, c.columnNumber());
 	Token tk;
 	if (!ts.isEmpty()) {
@@ -4854,6 +4855,40 @@ void Texstudio::normalCompletion()
 		completer->setWorkPath(cmd);
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION);
 	}
+    if( type == Token::commandUnknown || type == Token::command || type== Token::word){
+        // check if topEncv is %expl3 and actiavte expl3 completer
+        StackEnvironment env;
+        doc->getEnv(c.lineNumber(),env);
+        if(!env.isEmpty() && env.top().name=="%expl3"){
+            completer->setFilter("%expl3");
+            if(type==Token::word){
+                // check if word contains to an expl3 cmd
+                int col = tk.start;
+                const QString line = c.line().text();
+                while(col>0 && (line.at(col).isLetter()||line.at(col)=='_'||line.at(col)==':')) col--;
+                if(line.at(col)=="\\"){
+                    // open completer with expl3 command
+                    if (mCompleterNeedsUpdate) updateCompleter();
+                    currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_EXPL3);
+                    return;
+                }
+            }
+        } else {
+            // use topEnv as completion filter for commands
+            if( (type == Token::command || type == Token::commandUnknown) && !env.isEmpty()){
+                // skip filter for normal or document
+                QString envName=env.top().name;
+                const QStringList ignoreEnv = {"document","normal"};
+                if(!ignoreEnv.contains(envName)){
+                    QStringList envAliases = doc->lp->environmentAliases.values(envName);
+                    if(!envAliases.isEmpty()){
+                        envName=envAliases.first();
+                    }
+                    completer->setFilter(envName);
+                }
+            }
+        }
+    }
 	switch (type) {
 	case Token::command:
 	case Token::commandUnknown:
