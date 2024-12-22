@@ -172,3 +172,6 @@ format-code=%<code%>
 
 \Autoref{label}#r
 \Autoref*{label}#r
+
+# expl3 interface
+\l_keythms_thmuse_envname_tl#/%expl3

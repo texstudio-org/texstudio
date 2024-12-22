@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2024/09/18 for v0.99f
+# Matthew Bertucci 2024/12/21 for v0.99k
 
 #include:pdfmanagement-testphase
 
@@ -100,9 +100,6 @@ E=%<text%>
 \tagstructend
 \tagstructuse{label}
 
-\tagstop
-\tagstart
-
 \ShowTagging{keyvals}
 
 #keyvals:\ShowTagging
@@ -114,3 +111,46 @@ debug/structures
 
 # not documented
 \tagpdfsuppressmarks{arg}#*
+
+# expl3 interface
+\tag_check_child:nnF {%<⟨tag⟩%>} {%<⟨namespace⟩%>} {%<⟨false code⟩%>}#/%expl3
+\tag_check_child:nnT {%<⟨tag⟩%>} {%<⟨namespace⟩%>} {%<⟨true code⟩%>}#/%expl3
+\tag_check_child:nnTF {%<⟨tag⟩%>} {%<⟨namespace⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\tag_get:n {%<⟨keyword⟩%>}#/%expl3
+\tag_if_active:F {%<⟨false code⟩%>}#/%expl3
+\tag_if_active:T {%<⟨true code⟩%>}#/%expl3
+\tag_if_active:TF {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\tag_if_active_p:#/%expl3
+\tag_if_box_tagged:N %<⟨box⟩%>#/%expl3
+\tag_if_box_tagged:NF %<⟨box⟩%> {%<⟨false code⟩%>}#/%expl3
+\tag_if_box_tagged:NT %<⟨box⟩%> {%<⟨true code⟩%>}#/%expl3
+\tag_if_box_tagged:NTF %<⟨box⟩%> {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\tag_if_box_tagged_p:N %<⟨box⟩%>#/%expl3
+\tag_mc_add_missing_to_stream:Nn %<⟨box⟩%> {%<⟨stream name⟩%>}#/%expl3
+\tag_mc_artifact_group_begin:n {%<⟨name⟩%>}#/%expl3
+\tag_mc_artifact_group_end:#/%expl3
+\tag_mc_begin:n {%<⟨keyvals⟩%>}#/%expl3
+\tag_mc_begin_pop:n {%<⟨keyvals⟩%>}#/%expl3
+\tag_mc_end:#/%expl3
+\tag_mc_end_push:#/%expl3
+\tag_mc_if_in:F {%<⟨false code⟩%>}#/%expl3
+\tag_mc_if_in:T {%<⟨true code⟩%>}#/%expl3
+\tag_mc_if_in:TF {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\tag_mc_if_in_p:#/%expl3
+\tag_mc_new_stream:n {%<⟨stream name⟩%>}#/%expl3
+\tag_mc_reset_box:N %<⟨box⟩%>#/%expl3
+\tag_mc_use:n {%<⟨label⟩%>}#/%expl3
+\tag_spacechar_off:#/%expl3
+\tag_spacechar_on:#/%expl3
+\tag_struct_begin:n {%<⟨keyvals⟩%>}#/%expl3
+\tag_struct_end:#/%expl3
+\tag_struct_end:n {%<⟨tag⟩%>}#/%expl3
+\tag_struct_gput:nnn {%<⟨struct number⟩%>} {%<⟨keyword⟩%>} {%<⟨value⟩%>}#/%expl3
+\tag_struct_gput_ref:nnn {%<⟨struct number⟩%>} {%<⟨keyword⟩%>} {%<⟨value⟩%>}#/%expl3
+\tag_struct_insert_annot:nn {%<⟨object ref⟩%>}{%<⟨struct parent number⟩%>}#/%expl3
+\tag_struct_object_ref:e {%<⟨struct number⟩%>}#/%expl3
+\tag_struct_object_ref:n {%<⟨struct number⟩%>}#/%expl3
+\tag_struct_parent_int:#/%expl3
+\tag_struct_use:n {%<⟨label⟩%>}#/%expl3
+\tag_struct_use_num:n {%<⟨struct number⟩%>}#/%expl3
+\tag_tool:n {%<⟨keyval⟩%>}#/%expl3
