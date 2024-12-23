@@ -2170,6 +2170,7 @@
 <file>completion/listofanswers.cwl</file>
 <file>completion/listofitems.cwl</file>
 <file>completion/listofsymbols.cwl</file>
+<file>completion/listparskip.cwl</file>
 <file>completion/listpen.cwl</file>
 <file>completion/llncsconf.cwl</file>
 <file>completion/lltjcore.cwl</file>
