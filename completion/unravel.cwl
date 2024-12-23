@@ -3,8 +3,8 @@
 
 #include:gtl
 
-\unravel{content}
-\unravel[keyvals]{content}
+\unravel{code}
+\unravel[keyvals]{code}
 \unravelsetup{keyvals}
 
 #keyvals:\unravel,\unravelsetup
@@ -23,3 +23,8 @@ trace-expansion#true,false
 trace-other#true,false
 welcome-message#true,false
 #endkeyvals
+
+# expl3 interface
+\unravel:nn {%<⟨keyvals⟩%>} {%<⟨code⟩%>}#/%expl3
+\unravel_get:nnN {%<⟨keyvals⟩%>} {%<⟨code⟩%>} %<⟨tl var⟩%>#/%expl3
+\unravel_setup:n {%<⟨keyvals⟩%>}#/%expl3

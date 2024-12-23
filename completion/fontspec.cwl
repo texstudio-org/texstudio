@@ -1,7 +1,7 @@
 # fontspec package
 # nja/17 July 2007 for fontspec v1.14
 # muzimuzhi/30 Aug 2019 for fontspec v2.7c
-# Matthew Bertucci 27 Apr 2024 for v2.9b
+# Matthew Bertucci 21 Dec 2024 for v2.9e
 # url: http://www.ctan.org/tex-archive/help/Catalogue/entries/fontspec.html
 
 #keyvals:\usepackage/fontspec#c
@@ -248,3 +248,51 @@ Renderer=%<renderer%>
 \Hwithstroke#*n
 \hwithstroke#*n
 \k{arg}#n
+
+# expl3 interface
+\fontspec_font_if_exist:nF {%<⟨font name⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_font_if_exist:nT {%<⟨font name⟩%>} {%<⟨true code⟩%>}#/%expl3
+\fontspec_font_if_exist:nTF {%<⟨font name⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_gset_family:Nnn %<⟨family⟩%> {%<⟨features⟩%>} {%<⟨font name⟩%>}#/%expl3
+\fontspec_gset_fontface:NNnn %<⟨face⟩%> %<⟨family⟩%> {%<⟨features⟩%>} {%<⟨font name⟩%>}#/%expl3
+\fontspec_if_aat_feature:nnF {%<⟨feature⟩%>} {%<⟨option⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_aat_feature:nnT {%<⟨feature⟩%>} {%<⟨option⟩%>} {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_aat_feature:nnTF {%<⟨feature⟩%>} {%<⟨option⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_current_feature:nF {%<⟨feature tag⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_current_feature:nT {%<⟨feature tag⟩%>} {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_current_feature:nTF {%<⟨feature tag⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_current_language:nF {%<⟨lang tag⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_current_language:nT {%<⟨lang tag⟩%>} {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_current_language:nTF {%<⟨lang tag⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_current_script:nF {%<⟨script tag⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_current_script:nT {%<⟨script tag⟩%>} {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_current_script:nTF {%<⟨script tag⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_feature:nF {%<⟨feature tag⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_feature:nnnF {%<⟨script tag⟩%>} {%<⟨lang tag⟩%>} {%<⟨feature tag⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_feature:nnnT {%<⟨script tag⟩%>} {%<⟨lang tag⟩%>} {%<⟨feature tag⟩%>} {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_feature:nnnTF {%<⟨script tag⟩%>} {%<⟨lang tag⟩%>} {%<⟨feature tag⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_feature:nT {%<⟨feature tag⟩%>} {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_feature:nTF {%<⟨feature tag⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_fontspec_font:F {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_fontspec_font:T {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_fontspec_font:TF {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_language:nF {%<⟨lang tag⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_language:nnF {%<⟨script tag⟩%>} {%<⟨lang tag⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_language:nnT {%<⟨script tag⟩%>} {%<⟨lang tag⟩%>} {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_language:nnTF {%<⟨script tag⟩%>} {%<⟨lang tag⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_language:nT {%<⟨lang tag⟩%>} {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_language:nTF {%<⟨lang tag⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_opentype:F {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_opentype:T {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_opentype:TF {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_script:nF {%<⟨script tag⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_script:nT {%<⟨script tag⟩%>} {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_script:nTF {%<⟨script tag⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_small_caps:F {%<⟨false code⟩%>}#/%expl3
+\fontspec_if_small_caps:T {%<⟨true code⟩%>}#/%expl3
+\fontspec_if_small_caps:TF {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\fontspec_set_family:Nnn %<⟨family⟩%> {%<⟨features⟩%>} {%<⟨font name⟩%>}#/%expl3
+\fontspec_set_fontface:NNnn %<⟨face⟩%> %<⟨family⟩%> {%<⟨features⟩%>} {%<⟨font name⟩%>}#/%expl3
+\g_fontspec_encoding_tl#/%expl3
+\l_fontspec_family_tl#/%expl3
+\l_fontspec_font#/%expl3
