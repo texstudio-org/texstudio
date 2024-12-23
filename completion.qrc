@@ -294,7 +294,7 @@
 <file>completion/beamerthemehohenheim.cwl</file>
 <file>completion/beamerthemeIlmenau.cwl</file>
 <file>completion/beamerthemelalic.cwl</file>
-<file>completion/beamertheme-light.cwl</file>
+<file>completion/beamerthemelight.cwl</file>
 <file>completion/beamerthemeMadrid.cwl</file>
 <file>completion/beamerthemeMarburg.cwl</file>
 <file>completion/beamerthememetropolis.cwl</file>
@@ -2170,6 +2170,7 @@
 <file>completion/listofanswers.cwl</file>
 <file>completion/listofitems.cwl</file>
 <file>completion/listofsymbols.cwl</file>
+<file>completion/listparskip.cwl</file>
 <file>completion/listpen.cwl</file>
 <file>completion/llncsconf.cwl</file>
 <file>completion/lltjcore.cwl</file>

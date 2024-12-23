@@ -1,5 +1,5 @@
 # principia package
-# Matthew Bertucci 2023/03/15 for v2.0
+# Matthew Bertucci 2024/12/19 for v3.0
 
 #include:amssymb
 #include:amsmath
@@ -580,3 +580,27 @@
 \pmtheb{arg1}{arg2}#*m
 \pmTranc{arg1}{arg2}#*m
 \pmVfm#*m
+\pmd#*
+\pmdd#*m
+\pmclsb{arg1}{arg2}#*
+\pmrelb{arg1}{arg2}{arg3}#*
+\pmrstm{arg1}{arg2}#*
+\pmrtsm{arg1}{arg2}#*
+\pmpotidm{arg1}{arg2}#*
+\pmancm{arg1}{arg2}#*
+\pmrrfanc{arg1}{arg2}#*
+\pmrrfancm{arg1}{arg2}{arg3}#*
+\pmrrlanc{arg1}{arg2}#*
+\pmrrlancm{arg1}{arg2}{arg3}#*
+\pmclso{arg1}{arg2}{arg3}#*
+\pmclsbo{arg1}{arg2}{arg3}#*
+\pmrorderzero{arg}#*
+\pmrorderm{arg1}{arg2}#*
+\pmcorderzero{arg}#*
+\pmcorderm{arg1}{arg2}#*
+\pmporderzero{arg}#*
+\pmporderm{arg1}{arg2}#*
+\pmIntoo{arg1}{arg2}#*
+\pmIntoc{arg1}{arg2}#*
+\pmIntco{arg1}{arg2}#*
+\pmIntcc{arg1}{arg2}#*

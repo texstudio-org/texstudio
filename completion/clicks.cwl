@@ -1,7 +1,7 @@
 # clicks package
-# Matthew Bertucci 1/21/2022 for v0.2.0
+# Matthew Bertucci 2024/12/22 for v0.4.2
 
-#include:xkeyval
+#include:pgfopts
 #include:etoolbox
 
 #keyvals:\usepackage/clicks#c

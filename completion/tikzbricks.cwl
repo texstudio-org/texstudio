@@ -1,5 +1,5 @@
 # tikzbricks package
-# Matthew Bertucci 2022/07/22 for v0.4
+# Matthew Bertucci 2024/12/16 for v0.6
 
 #include:tikz
 #include:tikz-3dplot
@@ -20,6 +20,7 @@ brickwidth=%<number%>
 studradius=%<number%>
 studheight=%<number%>
 studtext={%<text%>}
+bricktext={%<text%>}
 #endkeyvals
 
 \begin{wall}
