@@ -3134,6 +3134,7 @@ void QEditor::paintEvent(QPaintEvent */*e*/)
 		return;
 
 	QPainter p(viewport());
+    p.setRenderHint(QPainter::Antialiasing, true);
     const qreal yOffset = verticalOffset();
     const qreal xOffset = horizontalOffset();
 
