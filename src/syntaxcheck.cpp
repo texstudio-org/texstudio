@@ -811,7 +811,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }
             }
             word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
-            if (speller->hideNonTextSpellingErrors && (checkMathEnvActive(activeEnv)||containsEnv("picture", activeEnv)) ){
+            if (speller->hideNonTextSpellingErrors && (checkMathEnvActive(activeEnv)||containsEnv("picture", activeEnv)||containsEnv("pictureHighlight", activeEnv)) ){
                 word.clear();
                 tk.ignoreSpelling=true;
             }else{
