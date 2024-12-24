@@ -4866,7 +4866,7 @@ void Texstudio::normalCompletion()
                 int col = tk.start;
                 const QString line = c.line().text();
                 while(col>0 && (line.at(col).isLetter()||line.at(col)=='_'||line.at(col)==':')) col--;
-                if(line.at(col)=="\\"){
+                if(line.at(col)==QChar('\\')){
                     // open completer with expl3 command
                     if (mCompleterNeedsUpdate) updateCompleter();
                     currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_EXPL3);
