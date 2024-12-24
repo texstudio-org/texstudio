@@ -2,6 +2,8 @@
 ## TeXstudio 4.8.6
 
 - provide command completion for expl3 commands
+- hide grammar errors in math/non-text environments (word repetition and language tool)
+- hide spelling errors in picture envs like tikzpicture
 
 ## TeXstudio 4.8.5
 
