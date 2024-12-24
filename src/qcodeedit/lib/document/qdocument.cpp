@@ -2961,10 +2961,19 @@ void QDocumentLineHandle::addOverlayNoLock(const QFormatRange& over)
 void QDocumentLineHandle::removeOverlay(const QFormatRange& over)
 {
 	QWriteLocker locker(&mLock);
-	int i = m_overlays.removeAll(over);
+    removeOverlayNoLock(over);
+}
+/*!
+ * \brief remove overlay with extra write locking
+ * Lock needs to be held by calling function
+ * \param over
+ */
+void QDocumentLineHandle::removeOverlayNoLock(const QFormatRange &over)
+{
+    int i = m_overlays.removeAll(over);
 
-	if ( i )
-		setFlag(QDocumentLine::FormatsApplied, false);
+    if ( i )
+        setFlag(QDocumentLine::FormatsApplied, false);
 }
 
 bool QDocumentLineHandle::hasOverlay(int id){
@@ -2979,15 +2988,37 @@ bool QDocumentLineHandle::hasOverlay(int id){
 
 QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat) const {
 	QReadLocker locker(&mLock);
-	QList<QFormatRange> result;
-	if (preferredFormat==-1) {
-		return m_overlays;
-	}
+    return getOverlaysNoLock(preferredFormat);
+}
 
-	for (int i=0;i<m_overlays.size();i++)
-		if (m_overlays[i].format==preferredFormat) result.append(m_overlays[i]);
+QList<QFormatRange> QDocumentLineHandle::getOverlaysNoLock(int preferredFormat) const
+{
+    QList<QFormatRange> result;
+    if (preferredFormat==-1) {
+        return m_overlays;
+    }
 
-	return result;
+    for (int i=0;i<m_overlays.size();i++)
+        if (m_overlays[i].format==preferredFormat) result.append(m_overlays[i]);
+
+    return result;
+}
+/*!
+ * \brief return all overlays of which its format are in the list of preferredFormats
+ * \param preferredFormats
+ * \return
+ */
+QList<QFormatRange> QDocumentLineHandle::getOverlaysNoLock(QList<int> preferredFormats) const
+{
+    QList<QFormatRange> result;
+    if (preferredFormats.isEmpty()) {
+        return m_overlays;
+    }
+
+    for (int i=0;i<m_overlays.size();i++)
+        if (preferredFormats.contains(m_overlays[i].format)) result.append(m_overlays[i]);
+
+    return result;
 }
 
 QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat) const {
@@ -2999,6 +3030,18 @@ QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat) c
 			if (best.length<fr.length) best=fr;
 
 	return best;
+}
+
+QFormatRange QDocumentLineHandle::getOverlayAt(int index, QList<int> preferredFormats) const
+{
+    QReadLocker locker(&mLock);
+
+    QFormatRange best;
+    foreach (QFormatRange fr, m_overlays)
+        if (fr.offset<=index && fr.offset+fr.length>=index && (preferredFormats.contains(fr.format) || preferredFormats.isEmpty()))
+            if (best.length<fr.length) best=fr;
+
+    return best;
 }
 
 QFormatRange QDocumentLineHandle::getFirstOverlay(int start, int end, int preferredFormat) const {

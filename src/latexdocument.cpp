@@ -3046,6 +3046,16 @@ void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loade
     }
 }
 
+void LatexDocument::setHideNonTextGrammarErrors(bool hide)
+{
+    m_hideNonTextGrammarErrors=hide;
+}
+
+void LatexDocument::setGrammarFormats(const QList<int> &formats)
+{
+    m_grammarFormats = formats;
+}
+
 QString LatexDocument::getMagicComment(const QString &name) const
 {
 	QString seName;
@@ -3335,6 +3345,8 @@ void LatexDocument::updateSettings()
         fmtList.insert(elem.first,getFormatId(elem.second));
     }
     synChecker.setFormats(fmtList);
+    synChecker.setHideNonTextGrammarErrors(m_hideNonTextGrammarErrors);
+    synChecker.setNonTextGrammarFormats(m_grammarFormats);
 }
 
 void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket, int hint)

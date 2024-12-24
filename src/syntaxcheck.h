@@ -117,6 +117,8 @@ public:
     void setReplacementList(QMap<QString, QString> replacementList);
     void setFormats(QMap<QString, int> formatList);
     void enableSyntaxCheck(const bool enable);
+    void setHideNonTextGrammarErrors(const bool hide);
+    void setNonTextGrammarFormats(const QList<int> formats);
 
 	void markUnclosedEnv(Environment env);
 
@@ -135,6 +137,8 @@ private:
 	bool stopped;
     bool mSyntaxChecking; //! show/hide syntax errors
     int syntaxErrorFormat;
+    bool m_hideNonTextGrammarErrors=true;
+    QList<int> m_nonTextGrammarFormats,m_newNonTextGrammarFormats;
     QSharedPointer<LatexParser> ltxCommands;
 
     QSharedPointer<LatexParser> newLtxCommands;

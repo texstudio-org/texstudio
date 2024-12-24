@@ -1173,6 +1173,8 @@ void LatexEditorView::removeTemporaryHighlight()
 
 void LatexEditorView::displayLineGrammarErrorsInternal(int lineNr, const QList<GrammarError> &errors)
 {
+    const QList<int> nonTextFormats = {numbersFormat, verbatimFormat, pictureFormat, pweaveDelimiterFormat, pweaveBlockFormat,
+                                       sweaveDelimiterFormat, sweaveBlockFormat, math_DelimiterFormat, asymptoteBlockFormat};
 	QDocumentLine line = document->line(lineNr);
 	foreach (const int f, grammarFormats)
 		line.clearOverlays(f);
@@ -1185,8 +1187,11 @@ void LatexEditorView::displayLineGrammarErrorsInternal(int lineNr, const QList<G
 			if (grammarFormatsDisabled[index]) continue;
 			f = grammarFormats[index];
 		}
-		if (config->hideNonTextGrammarErrors && (isNonTextFormat(line.getFormatAt(error.offset)) || isNonTextFormat(line.getFormatAt(error.offset + error.length - 1))))
-			continue;
+        if (config->hideNonTextGrammarErrors){
+            QFormatRange overlays=line.getOverlayAt(error.offset,nonTextFormats);
+            if(overlays.length>0)
+                continue;
+        }
 		line.addOverlay(QFormatRange(error.offset, error.length, f));
 	}
 	//todo: check for width changing like if (changed && ff->format(wordRepetitionFormat).widthChanging()) line.handle()->updateWrapAndNotifyDocument(i);
@@ -1827,6 +1832,8 @@ void LatexEditorView::updateSettings()
 	QDocument::setWorkAround(QDocument::ForceSingleCharacterDrawing, config->hackRenderingMode == 2);
 	LatexDocument::syntaxErrorFormat = syntaxErrorFormat;
     if (document){
+        document->setHideNonTextGrammarErrors(config->hideNonTextGrammarErrors);
+        document->setGrammarFormats(grammarFormats);
 		document->updateSettings();
         document->setCenterDocumentInEditor(config->centerDocumentInEditor);
     }

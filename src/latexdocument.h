@@ -233,6 +233,9 @@ public:
 
     std::list<StructureEntry *> docStructure;
 
+    void setHideNonTextGrammarErrors(bool hide);
+    void setGrammarFormats(const QList<int> &formats);
+
 private:
 	QString fileName; //absolute
 	QString temporaryFileName; //absolute, temporary
@@ -282,6 +285,9 @@ private:
     bool m_isSubfileRoot=false;
 
     bool m_cachedDataOnly=false;
+
+    bool m_hideNonTextGrammarErrors=true;
+    QList<int> m_grammarFormats;
 
 #ifndef QT_NO_DEBUG
 public:
