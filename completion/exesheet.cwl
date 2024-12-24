@@ -1,5 +1,5 @@
 # exesheet package
-# Matthew Bertucci 2024/02/15 for v2.7
+# Matthew Bertucci 2024/12/24 for v2.8
 
 #include:kvoptions
 #include:ifthen
@@ -130,14 +130,10 @@ mode=#unboxed,boxed
 \begin{tablenuma}(cols)
 \begin{tablenuma}[options%keyvals](cols)
 \end{tablenuma}
-\begin{tablenuma*}
-\end{tablenuma*}
 \begin{tablitem}
 \begin{tablitem}(cols)
 \begin{tablitem}[options%keyvals](cols)
 \end{tablitem}
-\begin{tablitem*}
-\end{tablitem*}
 
 #keyvals:\begin{tablenum1},\begin{tablenuma},\begin{tablitem}
 style=#itemize,enumerate
