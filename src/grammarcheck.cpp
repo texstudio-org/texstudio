@@ -310,6 +310,9 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 		for (int w = 0 ; w < words.size(); w++) {
 			totalWords++;
 			if (words[w].length() == 1  && getCommonEOW().contains(words[w][0])) continue; //punctation
+            // ignore word which contain digits
+            if (words[w].contains(QRegularExpression("\\d"))) continue;
+
 
 			//check words
 			int truncatedChars = 0;
