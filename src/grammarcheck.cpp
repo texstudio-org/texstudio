@@ -154,6 +154,11 @@ void GrammarCheck::check(const QString &language, LatexDocument *doc, const QLis
 {
 	if (shuttingDown || inlines.isEmpty()) return;
 
+    // ignore requests which do not contain any text
+    if(std::all_of(inlines.begin(), inlines.end(), [](const LineInfo &li){return li.text.isEmpty();})){
+        return;
+    }
+
 	ticket++;
 	for (int i = 0; i < inlines.size(); i++) {
 		TicketHash::iterator it = tickets.find(inlines[i].line);
