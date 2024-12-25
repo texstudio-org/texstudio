@@ -585,6 +585,14 @@ QFormatRange QDocumentLine::getOverlayAt(int index, int preferredFormat) const {
 	return m_handle->getOverlayAt(index,preferredFormat);
 }
 
+QFormatRange QDocumentLine::getOverlayAt(int index, QList<int> preferredFormats) const
+{
+    if ( !m_handle )
+        return QFormatRange();
+
+    return m_handle->getOverlayAt(index,preferredFormats);
+}
+
 /*!
  * \brief Returns the first QFormatRange between columns \a start and \a end for the given \a preferredFormat.
  * Any format will match for \a preferredFormat == -1.

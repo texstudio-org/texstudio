@@ -103,9 +103,13 @@ public:
 		void addOverlay(const QFormatRange& over);
 		void addOverlayNoLock(const QFormatRange& over);
 		void removeOverlay(const QFormatRange& over);
+        void removeOverlayNoLock(const QFormatRange& over);
 		bool hasOverlay(int id);
 		QList<QFormatRange> getOverlays(int preferredFormat) const;
+        QList<QFormatRange> getOverlaysNoLock(int preferredFormat) const;
+        QList<QFormatRange> getOverlaysNoLock(QList<int> preferredFormats) const;
 		QFormatRange getOverlayAt(int index, int preferredFormat) const;
+        QFormatRange getOverlayAt(int index, QList<int> preferredFormats) const;
 		QFormatRange getFirstOverlay(int start = 0, int end = -1, int preferredFormat = -1) const;
 		QFormatRange getLastOverlay(int start = 0, int end = -1, int preferredFormat = -1) const;
 

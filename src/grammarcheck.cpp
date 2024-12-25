@@ -154,6 +154,11 @@ void GrammarCheck::check(const QString &language, LatexDocument *doc, const QLis
 {
 	if (shuttingDown || inlines.isEmpty()) return;
 
+    // ignore requests which do not contain any text
+    if(std::all_of(inlines.begin(), inlines.end(), [](const LineInfo &li){return li.text.trimmed().isEmpty();})){
+        return;
+    }
+
 	ticket++;
 	for (int i = 0; i < inlines.size(); i++) {
 		TicketHash::iterator it = tickets.find(inlines[i].line);
@@ -310,6 +315,9 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 		for (int w = 0 ; w < words.size(); w++) {
 			totalWords++;
 			if (words[w].length() == 1  && getCommonEOW().contains(words[w][0])) continue; //punctation
+            // ignore word which contain digits
+            if (words[w].contains(QRegularExpression("\\d"))) continue;
+
 
 			//check words
 			int truncatedChars = 0;

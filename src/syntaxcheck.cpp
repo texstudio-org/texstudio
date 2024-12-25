@@ -113,6 +113,7 @@ void SyntaxCheck::run()
                 speller=newSpeller;
                 mReplacementList=newReplacementList;
                 mFormatList=newFormatList;
+                m_nonTextGrammarFormats=m_newNonTextGrammarFormats;
 			}
 			mLtxCommandLock.unlock();
 		}
@@ -151,14 +152,26 @@ void SyntaxCheck::run()
 		newLine.dlh->lockForWrite();
 		if (newLine.ticket == newLine.dlh->getCurrentTicket()) { // discard results if text has been changed meanwhile
             newLine.dlh->setCookie(QDocumentLine::LEXER_COOKIE,QVariant::fromValue<TokenList>(tl));
+            QList<QFormatRange>grammarOverlays=newLine.dlh->getOverlaysNoLock(m_nonTextGrammarFormats);
             foreach (const Error &elem, newRanges){
                 if(!mSyntaxChecking && (elem.type!=ERR_spelling) && (elem.type!=ERR_highlight) ){
                     // skip all syntax errors
                     continue;
                 }
-                int fmt= elem.type == ERR_spelling ? SpellerUtility::spellcheckErrorFormat : syntaxErrorFormat;
-                fmt= elem.type == ERR_highlight ? elem.format : fmt;
+                int fmt= (elem.type == ERR_spelling) ? SpellerUtility::spellcheckErrorFormat : syntaxErrorFormat;
+                fmt= (elem.type == ERR_highlight) ? elem.format : fmt;
                 newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, fmt));
+                // for ERR_highlight, remove grammarErrors
+                if(m_hideNonTextGrammarErrors && elem.type==ERR_highlight){
+                    for(int i = 0; i<grammarOverlays.size();++i){
+                        const QFormatRange &range=grammarOverlays.at(i);
+                        if(range.offset>=elem.range.first && range.offset<=elem.range.second){
+                            newLine.dlh->removeOverlayNoLock(range);
+                            grammarOverlays.removeAt(i);
+                            --i;
+                        }
+                    }
+                }
             }
             // add comment hightlight if present
             if(commentStart.first>=0){
@@ -290,6 +303,25 @@ void SyntaxCheck::setSpeller(SpellerUtility *su)
 void SyntaxCheck::enableSyntaxCheck(const bool enable){
     if (stopped) return;
     mSyntaxChecking=enable;
+}
+/*! \brief hide non text spelling errors
+ * \param hide
+ */
+void SyntaxCheck::setHideNonTextGrammarErrors(const bool hide)
+{
+    m_hideNonTextGrammarErrors=hide;
+}
+/*!
+ * \brief SyntaxCheck::setNonTextGrammarFormats
+ * \param formats
+ */
+void SyntaxCheck::setNonTextGrammarFormats(const QList<int> formats)
+{
+    if (stopped) return;
+    mLtxCommandLock.lock();
+    newLtxCommandsAvailable = true;
+    m_newNonTextGrammarFormats=formats;
+    mLtxCommandLock.unlock();
 }
 /*!
  * \brief set character/text replacementList for spell checking
@@ -779,7 +811,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }
             }
             word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
-            if (speller->hideNonTextSpellingErrors && (checkMathEnvActive(activeEnv)||containsEnv("picture", activeEnv)) ){
+            if (speller->hideNonTextSpellingErrors && (checkMathEnvActive(activeEnv)||containsEnv("picture", activeEnv)||containsEnv("pictureHighlight", activeEnv)) ){
                 word.clear();
                 tk.ignoreSpelling=true;
             }else{

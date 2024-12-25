@@ -159,22 +159,22 @@ library/all
 \RenewTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}
 \ProvideTotalTColorBox{cmd}{xargs}{options%keyvals}{content}#d
 \ProvideTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#d
-\newtcbox{cmd}{options%keyvals}#d
-\newtcbox{cmd}[args]{options%keyvals}#d
-\newtcbox{cmd}[args][default]{options%keyvals}#d
-\newtcbox[init options]{cmd}{options%keyvals}#d
-\newtcbox[init options]{cmd}[args]{options%keyvals}#*d
-\newtcbox[init options]{cmd}[args][default]{options%keyvals}#*d
+\newtcbox{cmd}{options%keyvals}#d1
+\newtcbox{cmd}[args]{options%keyvals}#d1
+\newtcbox{cmd}[args][default]{options%keyvals}#d1
+\newtcbox[init options]{cmd}{options%keyvals}#d1
+\newtcbox[init options]{cmd}[args]{options%keyvals}#*d1
+\newtcbox[init options]{cmd}[args][default]{options%keyvals}#*d1
 \renewtcbox{cmd}{options%keyvals}
 \renewtcbox{cmd}[args]{options%keyvals}
 \renewtcbox{cmd}[args][default]{options%keyvals}
 \renewtcbox[init options]{cmd}{options%keyvals}
 \renewtcbox[init options]{cmd}[args]{options%keyvals}#*
 \renewtcbox[init options]{cmd}[args][default]{options%keyvals}#*
-\DeclareTCBox{cmd}{xargs}{options%keyvals}#d
-\DeclareTCBox[init options]{cmd}{xargs}{options%keyvals}#d
-\NewTCBox{cmd}{xargs}{options%keyvals}#d
-\NewTCBox[init options]{cmd}{xargs}{options%keyvals}#d
+\DeclareTCBox{cmd}{xargs}{options%keyvals}#d1
+\DeclareTCBox[init options]{cmd}{xargs}{options%keyvals}#d1
+\NewTCBox{cmd}{xargs}{options%keyvals}#d1
+\NewTCBox[init options]{cmd}{xargs}{options%keyvals}#d1
 \RenewTCBox{cmd}{xargs}{options%keyvals}
 \RenewTCBox[init options]{cmd}{xargs}{options%keyvals}
 \ProvideTCBox{cmd}{xargs}{options%keyvals}#d
