@@ -284,6 +284,13 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
                 if (keywords.contains(rxComMatch2.captured(2))) {
                     package.optionCommands << rxComMatch2.captured(1);
 				}
+                if (valid.contains("d1")) { // definition command for newtcbox and similar. It automatically will add an extra mandatory argument for the completer
+                    if (res > -1) {
+                        package.possibleCommands["%definition"] << rxComMatch.captured(1);
+                        package.possibleCommands["%definition1"] << rxComMatch.captured(1);
+                    }
+                    valid.remove("d1");
+                }
 				if (valid.contains('d')) { // definition command
 					if (res > -1) {
                         package.possibleCommands["%definition"] << rxComMatch.captured(1);

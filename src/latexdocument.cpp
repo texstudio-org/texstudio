@@ -793,12 +793,18 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             QString xarg=Parsing::getArg(args, Token::defXparseArg);
             if(!xarg.isEmpty()){
                 // xparse style defintion
+                if(lp->possibleCommands["%definition1"].contains(cmd)||ltxCommands.possibleCommands["%definition1"].contains(cmd)){
+                    xarg+="m"; // special treatment for newtcbox and similar. Automatically add one mandatory argument
+                }
                 QString arguments=interpretXArgs(xarg);
                 cmdName=cmdName+arguments;
             }else{
                 int optionCount = Parsing::getArg(args, Token::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
                 if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
                 def = !Parsing::getArg(args, Token::optionalArgDefinition).isEmpty();
+                if(lp->possibleCommands["%definition1"].contains(cmd)||ltxCommands.possibleCommands["%definition1"].contains(cmd)){
+                    ++optionCount; // special treatment for newtcbox and similar. Automatically add one mandatory argument
+                }
 
 
                 for (int j = 0; j < optionCount; j++) {
