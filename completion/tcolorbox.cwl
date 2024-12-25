@@ -177,8 +177,8 @@ library/all
 \NewTCBox[init options]{cmd}{xargs}{options%keyvals}#d1
 \RenewTCBox{cmd}{xargs}{options%keyvals}
 \RenewTCBox[init options]{cmd}{xargs}{options%keyvals}
-\ProvideTCBox{cmd}{xargs}{options%keyvals}#d
-\ProvideTCBox[init options]{cmd}{xargs}{options%keyvals}#d
+\ProvideTCBox{cmd}{xargs}{options%keyvals}#d1
+\ProvideTCBox[init options]{cmd}{xargs}{options%keyvals}#d1
 \DeclareTotalTCBox{cmd}{xargs}{options%keyvals}{content}#d
 \DeclareTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content}#d
 \NewTotalTCBox{cmd}{xargs}{options%keyvals}{content%text}#d
