@@ -521,55 +521,58 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 <tr class="row-odd"><td><p>d</p></td>
 <td><p>this command declares a definition command like “\newcommand{cmd}{def}”</p></td>
 </tr>
-<tr class="row-even"><td><p>g</p></td>
+<tr class="row-even"><td><p>d1</p></td>
+<td><p>this command declares a definition command like “\tcolorbox{cmd}{def}”. This commands define a new command with an automatic extra mandatory argument</p></td>
+</tr>
+<tr class="row-odd"><td><p>g</p></td>
 <td><p>this command declares an include graphics command like “\includegraphics{file}”</p></td>
 </tr>
-<tr class="row-odd"><td><p>i</p></td>
+<tr class="row-even"><td><p>i</p></td>
 <td><p>this command declares an include file command like “\include{file}”</p></td>
 </tr>
-<tr class="row-even"><td><p>I</p></td>
+<tr class="row-odd"><td><p>I</p></td>
 <td><p>this command declares an import file command like “\import{path}{file}”</p></td>
 </tr>
-<tr class="row-odd"><td><p>u</p></td>
+<tr class="row-even"><td><p>u</p></td>
 <td><p>this command declares an used package like “\usepackage{package}”</p></td>
 </tr>
-<tr class="row-even"><td><p>b</p></td>
+<tr class="row-odd"><td><p>b</p></td>
 <td><p>this command declares a bibliography like “\bibliography{bib}”</p></td>
 </tr>
-<tr class="row-odd"><td><p>U</p></td>
+<tr class="row-even"><td><p>U</p></td>
 <td><p>this command declares a url command like “\url{URL}, where URL is not checked”</p></td>
 </tr>
-<tr class="row-even"><td><p>K</p></td>
+<tr class="row-odd"><td><p>K</p></td>
 <td><p>this command declares a bracket-like command like “\big{”</p></td>
 </tr>
-<tr class="row-odd"><td><p>D</p></td>
+<tr class="row-even"><td><p>D</p></td>
 <td><p>this command declares a todo item (will be added to the todo list in the side panel). Note: To highlight the item in the editor, you have to additionally add the suffix <code class="docutils literal notranslate"><span class="pre">%todo</span></code>. See todonotes.cwl for an example.</p></td>
 </tr>
-<tr class="row-even"><td><p>B</p></td>
+<tr class="row-odd"><td><p>B</p></td>
 <td><p>this command declares a color (will be used for color completion only, no syntax checking)</p></td>
 </tr>
-<tr class="row-odd"><td><p>s</p></td>
+<tr class="row-even"><td><p>s</p></td>
 <td><p>this command declares a special definition, the definition class is given after a “#”. The class name needs a preceding %. (e.g. %color), also see the examples below. Data is inserted again in <code class="docutils literal notranslate"><span class="pre">%special</span></code> argument or via keyvals.</p></td>
 </tr>
-<tr class="row-even"><td><p>V</p></td>
+<tr class="row-odd"><td><p>V</p></td>
 <td><p>this command declares a verbatim-like environment “\begin{Verbatim}”</p></td>
 </tr>
-<tr class="row-odd"><td><p>N</p></td>
+<tr class="row-even"><td><p>N</p></td>
 <td><p>this command declares a newtheorem-like command like “\newtheorem{envname}”</p></td>
 </tr>
-<tr class="row-even"><td><p>L0 to L5</p></td>
+<tr class="row-odd"><td><p>L0 to L5</p></td>
 <td><p>this command declares a structure command. The level is between L0 (<code class="docutils literal notranslate"><span class="pre">\part</span></code>-like) down to L5 (<code class="docutils literal notranslate"><span class="pre">\subparagraph</span></code>-like). Structure commands are highlighted in the code, can be folded and appear in the structure outline.</p></td>
 </tr>
-<tr class="row-odd"><td><p>/env1,env2,…</p></td>
+<tr class="row-even"><td><p>/env1,env2,…</p></td>
 <td><p>valid only in environment env1 or env2 etc.</p></td>
 </tr>
-<tr class="row-even"><td><p>\env</p></td>
+<tr class="row-odd"><td><p>\env</p></td>
 <td><p>environment alias, means that the environment is handled like the “env” environment. This is useful for env=math or tabular.</p></td>
 </tr>
-<tr class="row-odd"><td><p>beginEnv</p></td>
+<tr class="row-even"><td><p>beginEnv</p></td>
 <td><p>this command declares environment start command, the environment name is given after a “#”</p></td>
 </tr>
-<tr class="row-even"><td><p>endEnv</p></td>
+<tr class="row-odd"><td><p>endEnv</p></td>
 <td><p>this command declares environment stop command, the environment name is given after a “#”</p></td>
 </tr>
 </tbody>

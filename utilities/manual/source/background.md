@@ -248,6 +248,7 @@ The following classifications are known to TXS:
 |  C               | this command declares a complex citation like \"\\textcquote{bibid}{text}\". The key needs to be given as `bibid` |
 |  l               | this command declares a label like \"\\label{key}\" |
 |  d               | this command declares a definition command like \"\\newcommand{cmd}{def}\" |
+|  d1              | this command declares a definition command like \"\\tcolorbox{cmd}{def}\". This commands define a new command with an automatic extra mandatory argument |
 |  g               | this command declares an include graphics command like \"\\includegraphics{file}\" |
 |  i               | this command declares an include file command like \"\\include{file}\" |
 |  I               | this command declares an import file command like \"\\import{path}{file}\" |
