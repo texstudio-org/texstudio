@@ -3039,9 +3039,6 @@ void PDFDocument::setupMenus(bool embedded)
     actionFit_to_Text_Width->setCheckable(true);
     actionFit_to_Window=configManager->newManagedAction(menuroot,menuView, "fitToWindow", tr("Fit to &Window"), this, "", QList<QKeySequence>()<< QKeySequence(Qt::ControlModifier | Qt::Key_3),"zoom-fit-best");
     actionFit_to_Window->setCheckable(true);
-    actionContinuous=configManager->newManagedAction(menuroot,menuView, "continuous", tr("&Continuous"), this, "", QList<QKeySequence>());
-    actionContinuous->setCheckable(true);
-    actionContinuous->setChecked(true);
 	menuView->addAction(menuGrid->menuAction());
 	menuView->addSeparator();
     actionFull_Screen=configManager->newManagedAction(menuroot,menuView, "fullscreen", tr("Full &Screen"), this, SLOT(toggleFullScreen(bool)), QList<QKeySequence>()<<QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_F));
@@ -3072,6 +3069,9 @@ void PDFDocument::setupMenus(bool embedded)
     actionGroupGrid->addAction(actionCustom);
 	menuGrid->addSeparator();
     actionSinglePageStep=configManager->newManagedAction(menuroot,menuGrid, "singlePageStep", tr("Single Page Step"), pdfWidget, SLOT(setSinglePageStep(bool)), QList<QKeySequence>());
+    actionContinuous=configManager->newManagedAction(menuroot,menuGrid, "continuous", tr("&Continuous"), this, "", QList<QKeySequence>());
+    actionContinuous->setCheckable(true);
+    actionContinuous->setChecked(true);
 	menuWindow->addAction(menuShow->menuAction());
 #if (QT_VERSION > 0x050a00) && (defined(Q_OS_MAC))
     actionCloseElement=configManager->newManagedAction(menuroot,menuWindow, "closeElement", tr("&Close something"), this, SLOT(closeElement()), QList<QKeySequence>()); // osx work around
