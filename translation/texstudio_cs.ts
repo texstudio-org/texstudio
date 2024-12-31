@@ -3895,17 +3895,17 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>The \bigskip command adds a &apos;big&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Příkaz \bigskip přidá &quot;velkou&quot; svislou mezeru.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>The \medskip command adds a &apos;medium&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Příkaz \medskip přidá &quot;střední&quot; svislou mezeru.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>The \smallskip command adds a &apos;small&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Příkaz \smallskip přidá &quot;malou&quot; svislou mezeru.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
