@@ -182,7 +182,7 @@ public:
 	explicit PDFWidget(bool embedded = false);
 	virtual ~PDFWidget();
 
-	void setDocument(const QSharedPointer<Poppler::Document> &doc);
+	void setDocument(const QSharedPointer<Poppler::Document> &doc, bool embedded);
 	void setPDFDocument(PDFDocument *docu);
 
 	void saveState(); // used when toggling full screen mode
@@ -232,6 +232,14 @@ public:
 	Q_INVOKABLE void zoom(qreal scale);
 
 	virtual void wheelEvent(QWheelEvent *event);
+	int getGridxEmbedded() {return gridxEmbedded;};
+	int getGridyEmbedded() {return gridyEmbedded;};
+	int getPageOffsetEmbedded() {return pageOffsetEmbedded;};
+	bool getSinglePageStepEmbedded() {return singlePageStepEmbedded;};
+	void setGridxEmbedded(int x) {gridxEmbedded=x;};
+	void setGridyEmbedded(int y) {gridyEmbedded=y;};
+	void setPageOffsetEmbedded(int o) {pageOffsetEmbedded=o;};
+	void setSinglePageStepEmbedded(bool s) {singlePageStepEmbedded=s;};
 
 protected slots: //not private, so scripts have access
 	void goFirst();
@@ -324,7 +332,6 @@ private:
 	QSharedPointer<Poppler::Document> document;
 	QMutex textwidthCalculationMutex;
 
-	//QList<int> pages;
 	QSharedPointer<Poppler::Link> clickedLink;
 	QSharedPointer<Poppler::Annotation> clickedAnnotation;
 
@@ -363,9 +370,10 @@ private:
 #endif
 	int		currentTool;	// the current tool selected in the toolbar
 	int		usingTool;	// the tool actually being used in an ongoing mouse drag
-	bool		singlePageStep;
+	bool	singlePageStep, singlePageStepEmbedded;
 
 	int gridx, gridy, pageOffset;
+	int gridxEmbedded, gridyEmbedded, pageOffsetEmbedded;
 
 	bool forceUpdate;
 
@@ -561,8 +569,8 @@ signals:
 
 private:
 	void init(bool embedded = false);
-    void setupMenus(bool embedded);
-    void setupToolBar();
+	void setupMenus(bool embedded);
+	void setupToolBar(bool embedded);
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
 
@@ -675,6 +683,7 @@ private:
 
     QStatusBar *statusbar;
     QToolBar *toolBar;
+    QToolBar *tbPdfView;
     QTimer *toolBarTimer;
 public:
 	QMenu *menuShow;
