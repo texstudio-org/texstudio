@@ -2149,6 +2149,7 @@ void PDFWidget::setGridSize(int gx, int gy, bool setAsDefault)
 	getScrollArea()->goToPage(realPageIndex);
 	if (pi == realPageIndex)
 		reloadPage();
+	emit changedScaleOption(scaleOption);
 	//update();
 }
 
@@ -4465,8 +4466,14 @@ void PDFDocument::adjustScaleActions(autoScaleOption scaleOption)
 	} else if (scaleOption == kFitWindow) {
 		if (scrollArea->horizontalScrollBarPolicy() != Qt::ScrollBarAlwaysOff)
 			scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-		if (scrollArea->verticalScrollBarPolicy() != Qt::ScrollBarAlwaysOff)
-			scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		if (scrollArea->getContinuous()) {
+			if (scrollArea->verticalScrollBarPolicy() != Qt::ScrollBarAlwaysOn)
+				scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+		}
+		else {
+			if (scrollArea->verticalScrollBarPolicy() != Qt::ScrollBarAlwaysOff)
+				scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		}
 	} else {
 		if (scrollArea->horizontalScrollBarPolicy() != Qt::ScrollBarAsNeeded)
 			scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
