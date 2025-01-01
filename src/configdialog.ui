@@ -35,7 +35,7 @@
    <item row="0" column="0">
     <widget class="QSplitter" name="mainSplitter">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="handleWidth">
       <number>9</number>
@@ -66,7 +66,7 @@
           </size>
          </property>
          <property name="horizontalScrollBarPolicy">
-          <enum>Qt::ScrollBarAlwaysOff</enum>
+          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
          </property>
          <property name="currentRow">
           <number>-1</number>
@@ -111,7 +111,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>11</number>
+          <number>8</number>
          </property>
          <widget class="QWidget" name="pageGeneral">
           <layout class="QVBoxLayout">
@@ -133,7 +133,7 @@
            <item>
             <widget class="QScrollArea" name="scrollAreaGeneral">
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
              <property name="widgetResizable">
               <bool>true</bool>
@@ -143,8 +143,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>552</width>
-                <height>526</height>
+                <width>1132</width>
+                <height>731</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout">
@@ -312,7 +312,7 @@
                     <item>
                      <spacer>
                       <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
+                       <enum>Qt::Orientation::Horizontal</enum>
                       </property>
                       <property name="sizeHint" stdset="0">
                        <size>
@@ -539,7 +539,7 @@
                   <item row="1" column="4">
                    <spacer name="horizontalSpacer_7">
                     <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
+                     <enum>Qt::Orientation::Horizontal</enum>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
@@ -559,7 +559,7 @@
                   <item row="0" column="3" colspan="2">
                    <spacer name="horizontalSpacer_4">
                     <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
+                     <enum>Qt::Orientation::Horizontal</enum>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
@@ -616,10 +616,10 @@
                <item>
                 <spacer>
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeType">
-                  <enum>QSizePolicy::MinimumExpanding</enum>
+                  <enum>QSizePolicy::Policy::MinimumExpanding</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -734,7 +734,7 @@
            <item>
             <widget class="QScrollArea" name="scrollAreaBuild">
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
              <property name="widgetResizable">
               <bool>true</bool>
@@ -744,8 +744,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>570</width>
-                <height>545</height>
+                <width>1132</width>
+                <height>629</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -798,7 +798,7 @@
                   <string>User Commands</string>
                  </property>
                  <property name="alignment">
-                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                  <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
                  </property>
                 </widget>
                </item>
@@ -812,7 +812,7 @@
                  </property>
                  <layout class="QFormLayout" name="formLayout">
                   <property name="fieldGrowthPolicy">
-                   <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+                   <enum>QFormLayout::FieldGrowthPolicy::AllNonFixedFieldsGrow</enum>
                   </property>
                   <item row="0" column="0">
                    <widget class="QCheckBox" name="checkBoxRunAfterBibTeXChange">
@@ -1249,7 +1249,7 @@ Then you can select a new shortcut by one of the following ways:
                 <string>This shows all actions on the currently edited toolbar.</string>
                </property>
                <property name="movement">
-                <enum>QListView::Free</enum>
+                <enum>QListView::Movement::Free</enum>
                </property>
               </widget>
              </item>
@@ -1258,7 +1258,7 @@ Then you can select a new shortcut by one of the following ways:
                <item>
                 <spacer name="verticalSpacer_3">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -1299,7 +1299,7 @@ Then you can select a new shortcut by one of the following ways:
                <item>
                 <spacer name="spacer">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -1395,7 +1395,7 @@ Then you can select a new shortcut by one of the following ways:
                  <bool>true</bool>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>false</bool>
@@ -1404,7 +1404,7 @@ Then you can select a new shortcut by one of the following ways:
                  <bool>false</bool>
                 </property>
                 <property name="tickPosition">
-                 <enum>QSlider::TicksBelow</enum>
+                 <enum>QSlider::TickPosition::TicksBelow</enum>
                 </property>
                 <property name="tickInterval">
                  <number>8</number>
@@ -1444,10 +1444,10 @@ Then you can select a new shortcut by one of the following ways:
                  <number>64</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="tickPosition">
-                 <enum>QSlider::TicksBelow</enum>
+                 <enum>QSlider::TickPosition::TicksBelow</enum>
                 </property>
                 <property name="tickInterval">
                  <number>8</number>
@@ -1472,10 +1472,10 @@ Then you can select a new shortcut by one of the following ways:
                  <number>24</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="tickPosition">
-                 <enum>QSlider::TicksBelow</enum>
+                 <enum>QSlider::TickPosition::TicksBelow</enum>
                 </property>
                 <property name="tickInterval">
                  <number>8</number>
@@ -1518,10 +1518,10 @@ Then you can select a new shortcut by one of the following ways:
                  <bool>true</bool>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="tickPosition">
-                 <enum>QSlider::TicksBelow</enum>
+                 <enum>QSlider::TickPosition::TicksBelow</enum>
                 </property>
                 <property name="tickInterval">
                  <number>8</number>
@@ -1548,10 +1548,10 @@ Then you can select a new shortcut by one of the following ways:
            <item>
             <spacer name="verticalSpacer_6">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeType">
-              <enum>QSizePolicy::Expanding</enum>
+              <enum>QSizePolicy::Policy::Expanding</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1580,7 +1580,7 @@ Then you can select a new shortcut by one of the following ways:
            <item>
             <widget class="QScrollArea" name="scrollAreaEditor">
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
              <property name="widgetResizable">
               <bool>true</bool>
@@ -1590,8 +1590,8 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>639</width>
-                <height>423</height>
+                <width>1132</width>
+                <height>568</height>
                </rect>
               </property>
               <layout class="QGridLayout">
@@ -1613,7 +1613,7 @@ Then you can select a new shortcut by one of the following ways:
                <item row="3" column="0">
                 <spacer name="verticalSpacer_5">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -2039,7 +2039,7 @@ Then you can select a new shortcut by one of the following ways:
            <item>
             <widget class="QScrollArea" name="scrollAreaAdvancedEditor">
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
              <property name="widgetResizable">
               <bool>true</bool>
@@ -2048,9 +2048,9 @@ Then you can select a new shortcut by one of the following ways:
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>579</width>
-                <height>1379</height>
+                <y>-1395</y>
+                <width>1132</width>
+                <height>1853</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2074,7 +2074,7 @@ Then you can select a new shortcut by one of the following ways:
                     <item>
                      <spacer name="horizontalSpacer_6">
                       <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
+                       <enum>Qt::Orientation::Horizontal</enum>
                       </property>
                       <property name="sizeHint" stdset="0">
                        <size>
@@ -2121,7 +2121,7 @@ Then you can select a new shortcut by one of the following ways:
                     <item>
                      <spacer name="horizontalSpacer_5">
                       <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
+                       <enum>Qt::Orientation::Horizontal</enum>
                       </property>
                       <property name="sizeHint" stdset="0">
                        <size>
@@ -2446,7 +2446,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                      <string>Maximal Characters:</string>
                     </property>
                     <property name="alignment">
-                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -2470,7 +2470,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                      <string>Auto Save All Files:</string>
                     </property>
                     <property name="alignment">
-                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -2865,20 +2865,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                     <property name="leftMargin">
                      <number>16</number>
                     </property>
-                    <item row="4" column="0">
-                     <widget class="QLabel" name="labelRenderMode">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="text">
-                       <string>Render Mode:</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
+                    <item row="3" column="1">
                      <widget class="QComboBox" name="comboBoxHackRenderMode">
                       <item>
                        <property name="text">
@@ -2897,13 +2884,16 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                       </item>
                      </widget>
                     </item>
-                    <item row="2" column="0" colspan="2">
-                     <widget class="QCheckBox" name="checkBoxHackDisableLineCache">
-                      <property name="toolTip">
-                       <string>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</string>
+                    <item row="3" column="0">
+                     <widget class="QLabel" name="labelRenderMode">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
                       </property>
                       <property name="text">
-                       <string>Disable cache of rendered lines</string>
+                       <string>Render Mode:</string>
                       </property>
                      </widget>
                     </item>
@@ -2921,10 +2911,13 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                       </property>
                      </widget>
                     </item>
-                    <item row="3" column="0">
-                     <widget class="QCheckBox" name="checkBoxHackQImageCache">
+                    <item row="2" column="0" colspan="2">
+                     <widget class="QCheckBox" name="checkBoxHackDisableLineCache">
+                      <property name="toolTip">
+                       <string>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</string>
+                      </property>
                       <property name="text">
-                       <string>Use QImage as cache type</string>
+                       <string>Disable cache of rendered lines</string>
                       </property>
                      </widget>
                     </item>
@@ -2936,7 +2929,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                <item>
                 <spacer name="verticalSpacer">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -3126,7 +3119,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 <item>
                  <spacer name="horizontalSpacer_2">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -3197,7 +3190,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 <item>
                  <spacer name="horizontalSpacer_3">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -3273,13 +3266,13 @@ specfic user completion files, you can enforce their usage by activating
 them here.</string>
                </property>
                <property name="flow">
-                <enum>QListView::TopToBottom</enum>
+                <enum>QListView::Flow::TopToBottom</enum>
                </property>
                <property name="isWrapping" stdset="0">
                 <bool>true</bool>
                </property>
                <property name="resizeMode">
-                <enum>QListView::Adjust</enum>
+                <enum>QListView::ResizeMode::Adjust</enum>
                </property>
                <property name="uniformItemSizes">
                 <bool>false</bool>
@@ -3295,7 +3288,7 @@ them here.</string>
              <item>
               <spacer name="verticalSpacer_9">
                <property name="orientation">
-                <enum>Qt::Vertical</enum>
+                <enum>Qt::Orientation::Vertical</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -3326,7 +3319,7 @@ them here.</string>
            <item>
             <widget class="QScrollArea" name="scrollAreaGrammar">
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
              <property name="widgetResizable">
               <bool>true</bool>
@@ -3336,8 +3329,8 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1085</width>
-                <height>761</height>
+                <width>1132</width>
+                <height>999</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3946,7 +3939,7 @@ them here.</string>
                <item>
                 <spacer name="verticalSpacer_4">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -3979,7 +3972,7 @@ them here.</string>
            <item>
             <widget class="QScrollArea" name="scrollAreaPreview">
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
              <property name="widgetResizable">
               <bool>true</bool>
@@ -3989,8 +3982,8 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>292</width>
-                <height>207</height>
+                <width>1146</width>
+                <height>458</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4217,7 +4210,7 @@ them here.</string>
                <item>
                 <spacer name="verticalSpacer_2">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -4250,7 +4243,7 @@ them here.</string>
            <item>
             <widget class="QScrollArea" name="scrollAreaPDFviewer">
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
              <property name="widgetResizable">
               <bool>true</bool>
@@ -4260,8 +4253,8 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>367</width>
-                <height>490</height>
+                <width>1132</width>
+                <height>645</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4523,7 +4516,7 @@ them here.</string>
                     <item>
                      <spacer>
                       <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
+                       <enum>Qt::Orientation::Horizontal</enum>
                       </property>
                       <property name="sizeHint" stdset="0">
                        <size>
@@ -4720,7 +4713,7 @@ Note: Changing this setting will only affect documents that are opened afterward
                <item>
                 <spacer name="verticalSpacer_7">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -4753,7 +4746,7 @@ Note: Changing this setting will only affect documents that are opened afterward
            <item>
             <widget class="QScrollArea" name="scrollAreaSVN">
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
              <property name="widgetResizable">
               <bool>true</bool>
@@ -4763,8 +4756,8 @@ Note: Changing this setting will only affect documents that are opened afterward
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>283</width>
-                <height>152</height>
+                <width>1146</width>
+                <height>458</height>
                </rect>
               </property>
               <layout class="QGridLayout">
@@ -4866,7 +4859,7 @@ Note: Changing this setting will only affect documents that are opened afterward
                <item row="1" column="0">
                 <spacer>
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -4966,7 +4959,7 @@ Note: Changing this setting will only affect documents that are opened afterward
            <item row="1" column="0">
             <spacer name="verticalSpacer_8">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -4992,7 +4985,7 @@ Note: Changing this setting will only affect documents that are opened afterward
         <number>6</number>
        </property>
        <property name="sizeConstraint">
-        <enum>QLayout::SetMinimumSize</enum>
+        <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -5019,10 +5012,10 @@ Note: Changing this setting will only affect documents that are opened afterward
        <item>
         <spacer>
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeType">
-          <enum>QSizePolicy::Expanding</enum>
+          <enum>QSizePolicy::Policy::Expanding</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -5339,22 +5332,6 @@ Note: Changing this setting will only affect documents that are opened afterward
     <hint type="destinationlabel">
      <x>320</x>
      <y>1429</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxHackAutoRendering</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>checkBoxHackQImageCache</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>872</x>
-     <y>1310</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>404</x>
-     <y>1403</y>
     </hint>
    </hints>
   </connection>

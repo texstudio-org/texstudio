@@ -227,7 +227,6 @@ inline static void setPainterLineWidth(QPainter *p, int width) {
  *	DisableLineCache            = 0x04,
  *	ForceQTextLayout            = 0x08,
  *  ForceSingleCharacterDrawing = 0x10,
- *  QImageCache = 0x20
  */
 void QDocument::setWorkAround(QDocument::WorkAroundFlag workAround, bool newValue){
 	QDocumentPrivate::setWorkAround(workAround, newValue);
@@ -6884,8 +6883,6 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 
 	bool useLineCache = !currentLine && !(m_workArounds & QDocument::DisableLineCache);
 
-	bool imageCache = (m_workArounds & QDocument::QImageCache);
-
 	if(
 		useLineCache
 		&& !dlh->hasFlag(QDocumentLine::LayoutDirty)
@@ -6893,44 +6890,25 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		&&  (m_LineCache.contains(dlh) || m_LineCacheAlternative.contains(dlh))
 	) {
 		// cache is activated, available, and up-to-date: simply draw the cached object
-		if (imageCache) {
-            p->drawImage(QPointF(m_lineCacheXOffset, 0), *m_LineCacheAlternative.object(dlh));
-		} else {
-            p->drawPixmap(QPointF(m_lineCacheXOffset, 0), *m_LineCache.object(dlh));
-		}
+        p->drawPixmap(QPointF(m_lineCacheXOffset, 0), *m_LineCache.object(dlh));
 	} else {
         qreal ht = m_lineSpacing*(wrap+1 - pseudoWrap);
 		QImage *image = nullptr;
 		QPixmap *pixmap = nullptr;
 		QPainter *pr = nullptr;
 		if (useLineCache) {
-			if (imageCache) {
+            qreal pixelRatio = p->device()->devicePixelRatio();
+            pixmap = new QPixmap(qCeil(pixelRatio * m_lineCacheWidth), qCeil(pixelRatio * ht));
+            pixmap->setDevicePixelRatio(pixelRatio);
+            // TODO: The pixmap always has a logicalDpi of the primary screen. This needs to be fixed for
+            // correct drawing on secondary screens with different scaling factors.
 
-                qreal pixelRatio = p->device()->devicePixelRatio();
-                image = new QImage(qCeil(pixelRatio * m_lineCacheWidth), qCeil(pixelRatio * ht), QImage::Format_RGB888);
-                image->setDevicePixelRatio(pixelRatio);
-
-				if (fullSelection) {
-					image->fill(selectionBackground.color().rgb());
-				}else{
-					image->fill(background.color().rgb());
-				}
-				pr = new QPainter(image);
-			} else {
-
-                qreal pixelRatio = p->device()->devicePixelRatio();
-                pixmap = new QPixmap(qCeil(pixelRatio * m_lineCacheWidth), qCeil(pixelRatio * ht));
-				pixmap->setDevicePixelRatio(pixelRatio);
-				// TODO: The pixmap always has a logicalDpi of the primary screen. This needs to be fixed for
-				// correct drawing on secondary screens with different scaling factors.
-
-				if (fullSelection) {
-					pixmap->fill(selectionBackground.color());
-				} else {
-					pixmap->fill(background.color());
-				}
-				pr = new QPainter(pixmap);
-			}
+            if (fullSelection) {
+                pixmap->fill(selectionBackground.color());
+            } else {
+                pixmap->fill(background.color());
+            }
+            pr = new QPainter(pixmap);
 			pr->setRenderHints(p->renderHints());
 			pr->setFont(p->font());
 		} else {
@@ -6959,15 +6937,9 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
         dlh->draw(lcxt.docLineNr, pr, cxt.xoffset, m_lineCacheWidth, selectionBoundaries, cxt.palette, fullSelection,y,ht);
 
 		if (useLineCache) {
-			if(imageCache) {
-                p->drawImage(QPointF(cxt.xoffset, 0.), *image);
-				delete pr;
-				m_LineCacheAlternative.insert(dlh, image);
-			}else{
-                p->drawPixmap(QPointF(cxt.xoffset, 0), *pixmap);
-				delete pr;
-				m_LineCache.insert(dlh, pixmap);
-			}
+            p->drawPixmap(QPointF(cxt.xoffset, 0), *pixmap);
+            delete pr;
+            m_LineCache.insert(dlh, pixmap);
 		} else {
 			m_LineCache.remove(dlh);
 			m_LineCacheAlternative.remove(dlh);
