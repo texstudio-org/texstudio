@@ -2880,7 +2880,10 @@ PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
     if (embeddedMode && globalConfig->autoHideToolbars) {
         setAutoHideToolbars(true);
     }
-
+    ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
+    if(!configManager) return;
+    bool enlarged=configManager->viewerEnlarged;
+    setVisibleMenuEntriesEnlargeShrink(embeddedMode && !enlarged, embeddedMode && enlarged);
 }
 
 PDFDocument::~PDFDocument()
@@ -2890,6 +2893,10 @@ PDFDocument::~PDFDocument()
     ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
 
     if(configManager){
+        if (embeddedMode) {
+            QAction *act=configManager->getManagedAction("main/view/enlargePDF");
+            setVisibleMenuEntriesEnlargeShrink(false, false);
+        }
 #if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
         QList<QKeySequence> keys=configManager->specialShortcuts.keys();
         foreach(QKeySequence key,keys){
@@ -3774,6 +3781,10 @@ void PDFDocument::runInternalViewer()
 
 void PDFDocument::toggleEmbedded()
 {
+	ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
+	if(!configManager) return;
+	bool enlarged=configManager->viewerEnlarged;
+	setVisibleMenuEntriesEnlargeShrink(!embeddedMode && !enlarged, !embeddedMode && enlarged);
 	if (embeddedMode)
 		emit runCommand("txs:///view-pdf-internal --windowed --close-embedded", masterFile, QFileInfo(lastSyncPoint.filename), lastSyncPoint.line);
 	else
@@ -3855,6 +3866,7 @@ void PDFDocument::setStateEnlarged(bool state)
 {
     actionEnlargeViewer->setVisible(!state);
     actionShrinkViewer->setVisible(state);
+    setVisibleMenuEntriesEnlargeShrink(!state, state);
 }
 
 /*!
@@ -4876,6 +4888,16 @@ void PDFDocument::splitMergeTool()
     PDFSplitMergeTool *psmt = new PDFSplitMergeTool(nullptr, fileName());
     connect(psmt, SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)), SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)));
 	psmt->show();
+}
+
+void PDFDocument::setVisibleMenuEntriesEnlargeShrink(bool visibleEnlarge, bool visibleShrink)
+{
+    ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
+    if(!configManager) return;
+    QAction *act=configManager->getManagedAction("main/view/enlargePDF");
+    act->setVisible(visibleEnlarge);
+    act=configManager->getManagedAction("main/view/shrinkPDF");
+    act->setVisible(visibleShrink);
 }
 
 #endif  // ndef NO_POPPLER_PREVIEW
