@@ -6916,6 +6916,8 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		}
 
 		// draw the background
+        pr->save();
+        pr->setRenderHint(QPainter::Antialiasing, false);
 		if (useLineCache) {
 			pr->translate(-cxt.xoffset,0);
             pr->fillRect(QRectF(0, 0, m_leftPadding, ht), background);
@@ -6924,6 +6926,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
             pr->fillRect(QRectF(m_leftPadding, 0, m_width - m_leftPadding, ht), selectionBackground);
 		} else
             pr->fillRect(QRectF(0, 0, m_width, ht), background);
+        pr->restore();
 
         qreal y = 0;
 		if (!useLineCache && lcxt.visiblePos > lcxt.pos)
