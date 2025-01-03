@@ -3671,8 +3671,10 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
                     const qreal endX = QDocumentPrivate::m_leftPadding + lineWidth - xOffset;
 
                     QRectF area(endX, lineSpacing * i, vWidth - endX, lineSpacing);
-
+                    p->save();
+                    p->setRenderHint(QPainter::Antialiasing,false);
 					p->fillRect(area, fmt.background());
+                    p->restore();
 				}
 
 				selections << range;
@@ -3687,16 +3689,22 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 	} else if ( m_text.isEmpty() ) {
 		// enforce selection drawing on empty lines
 		if ( selectionBoundaries.count() == 1 ){
+            p->save();
+            p->setRenderHint(QPainter::Antialiasing,false);
             p->fillRect(QRectF(qMax(xOffset, QDocumentPrivate::m_leftPadding),0,vWidth,QDocumentPrivate::m_lineSpacing),
 						pal.highlight()
 						);
+            p->restore();
 		}else{
 			if(!fullSel){
 				//QDocumentPrivate *d = m_doc->impl();
 				foreach(QFormatRange overlay,m_overlays){
 					QFormat format=QDocumentPrivate::m_formatScheme->format(overlay.format);
 					if(format.wrapAround){
+                        p->save();
+                        p->setRenderHint(QPainter::Antialiasing,false);
                         p->fillRect(QRectF(qMax(xOffset, QDocumentPrivate::m_leftPadding),0,vWidth,QDocumentPrivate::m_lineSpacing),format.background);
+                        p->restore();
 					}
 				}
 			}
@@ -3792,11 +3800,13 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				if ( fmt & FORMAT_SELECTION )
 				{
 					// finish selection
+                    p->save();
+                    p->setRenderHint(QPainter::Antialiasing,false);
 					p->fillRect(
                         QRectF(xpos, ypos,maxDocWidth - xpos, QDocumentPrivate::m_lineSpacing),
 						pal.highlight()
 					);
-
+                    p->restore();
 				}
 
 				++wrap;
@@ -3810,11 +3820,13 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				if ( r.format & FORMAT_SELECTION )
 				{
 					// finish selection
+                    p->save();
+                    p->setRenderHint(QPainter::Antialiasing,false);
 					p->fillRect(
                         QRectF(QDocumentPrivate::m_leftPadding, ypos, xpos, QDocumentPrivate::m_lineSpacing),
 						pal.highlight()
 					);
-
+                    p->restore();
 				}
 			}
 			if ( ypos < yStart ) continue;
@@ -3899,9 +3911,12 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			if ( currentSelected )
 			{
 				p->setPen(highlightedTextColor);
+                p->save();
+                p->setRenderHint(QPainter::Antialiasing,false);
                 p->fillRect(QRectF(xpos, ypos,rwidth, QDocumentPrivate::m_lineSpacing),
 					pal.highlight()
 				);
+                p->restore();
 			} else {
                 QColor fg(pal.text().color());
                 int priority=-100;
@@ -3923,9 +3938,12 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
                 }
                 }
                 if(priority>-100){
+                    p->save();
+                    p->setRenderHint(QPainter::Antialiasing,false);
                     p->fillRect(QRectF(xpos, ypos,rwidth,QDocumentPrivate::m_lineSpacing),
                         bg
                     );
+                    p->restore();
                 }
 
 			}
@@ -4199,7 +4217,10 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				QFormat format = m_doc->impl()->m_formatScheme->format(wrapAroundHighlight);
 				brush = QBrush(format.background);
 			}
+            p->save();
+            p->setRenderHint(QPainter::Antialiasing,false);
             p->fillRect(QRectF(xpos, ypos, maxDocWidth - xpos, QDocumentPrivate::m_lineSpacing), brush);
+            p->restore();
 		}
 	}
 	drawBorders(p, yStart, yEnd);
@@ -6871,7 +6892,10 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
         }
 
         qreal y = m_lineSpacing*(wrap+1-pseudoWrap) + (reservedHeight - pm.height()) / 2.;
+        p->save();
+        p->setRenderHint(QPainter::Antialiasing,false);
         p->fillRect(QRectF(x - PICTURE_BORDER, y - PICTURE_BORDER, pm.width() + 2*PICTURE_BORDER, pm.height() + 2* PICTURE_BORDER), Qt::white);
+        p->restore();
         p->drawPixmap(QPointF(x, y), pm);
 
 		dlh->lockForWrite();
