@@ -565,6 +565,7 @@ private:
     void setupToolBar();
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
+	void setVisibleMenuEntriesEnlargeShrink(bool visibleEnlarge, bool visibleShrink);
 
 	qreal zoomSliderPosToScale(int pos);
 	int scaleToZoomSliderPos(qreal scale);

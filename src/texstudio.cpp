@@ -1403,9 +1403,10 @@ void Texstudio::setupMenus()
         }
     }
 
-	newManagedAction(menu, "enlargePDF", tr("Show embedded PDF large"), SLOT(enlargeEmbeddedPDFViewer()));
-	newManagedAction(menu, "shrinkPDF", tr("Show embedded PDF small"), SLOT(shrinkEmbeddedPDFViewer()));
-
+	act=newManagedAction(menu, "enlargePDF", tr("Show embedded PDF large"), SLOT(enlargeEmbeddedPDFViewer()));
+	act->setVisible(false);
+	act=newManagedAction(menu, "shrinkPDF", tr("Show embedded PDF small"), SLOT(shrinkEmbeddedPDFViewer()));
+	act->setVisible(false);
 	newManagedAction(menu, "closeelement", tr("Close Element"), SLOT(viewCloseElement()), Qt::Key_Escape);
 
 	menu->addSeparator();
