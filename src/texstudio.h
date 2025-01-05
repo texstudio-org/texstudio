@@ -560,6 +560,7 @@ protected slots:
 	void focusViewer();
 	void enlargeEmbeddedPDFViewer();
 	void shrinkEmbeddedPDFViewer(bool preserveConfig = false);
+	void setEnabledMenusEnlargeShrink(bool enabledEnlarge, bool enabledShrink);
 
 	void showStatusbar();
 	void viewCloseElement();
