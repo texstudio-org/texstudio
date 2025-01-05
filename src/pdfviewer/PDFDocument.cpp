@@ -2880,7 +2880,6 @@ PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
     if (embeddedMode && globalConfig->autoHideToolbars) {
         setAutoHideToolbars(true);
     }
-
 }
 
 PDFDocument::~PDFDocument()
