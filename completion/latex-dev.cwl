@@ -3,6 +3,8 @@
 # muzimuzhi/8 Jul 2019
 # Matthew Bertucci 2024/11/01 release
 
+#include:expl3-commands
+
 # commands with big Letters and others
 \ActivateGenericHook{hook}#*
 \AddToHook{hook}[label]{code}#*
