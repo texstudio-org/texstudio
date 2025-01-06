@@ -1,5 +1,5 @@
 # tikzlings-meerkat package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/01/06 for v2.2
 
 #include:tikz
 #include:tikzlings-addons
@@ -20,6 +20,7 @@ chest=#%color
 legs=#%color
 tail=#%color
 tip=#%color
+openmouth
 standing
 back
 3D
