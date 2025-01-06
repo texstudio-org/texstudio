@@ -1,5 +1,5 @@
 # tikzlings-cats package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/01/06 for v2.2
 
 #include:tikz
 #include:tikzlings-addons
@@ -14,6 +14,7 @@ pupil=#%color
 nose=#%color
 whiskers=#%color
 paws=#%color
+openmouth
 pupilwidth=%<number%>
 narrow pupils
 medium pupils
