@@ -3636,8 +3636,10 @@
 \tl_concat:ccc {%<⟨tl var1 name⟩%>} {%<⟨tl var2 name⟩%>} {%<⟨tl var3 name⟩%>}#/%expl3
 \tl_const:Ne %<⟨tl var⟩%> {%<⟨tokens⟩%>}#/%expl3
 \tl_const:Nn %<⟨tl var⟩%> {%<⟨tokens⟩%>}#/%expl3
+\tl_const:NV %<⟨tl var1⟩ ⟨tl var2⟩%>#/%expl3
 \tl_const:ce {%<⟨tl var name⟩%>} {%<⟨tokens⟩%>}#/%expl3
 \tl_const:cn {%<⟨tl var name⟩%>} {%<⟨tokens⟩%>}#/%expl3
+\tl_const:cV {%<⟨tl var name⟩%>} %<⟨tl var⟩%>#/%expl3
 \tl_count:N %<⟨tl var⟩%>#/%expl3
 \tl_count:V %<⟨tl var⟩%>#/%expl3
 \tl_count:c {%<⟨tl var name⟩%>}#/%expl3
