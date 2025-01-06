@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/12/22 for v13.21.0
+# Matthew Bertucci 2024/12/28 for v14.0.0
 
 #include:iftex
 
@@ -48,20 +48,6 @@ addydotio
 adguard
 adidas
 adminer
-adobe
-adobeacrobatreader
-adobeaftereffects
-adobeaudition
-adobecreativecloud
-adobedreamweaver
-adobefonts
-adobeillustrator
-adobeindesign
-adobelightroom
-adobelightroomclassic
-adobephotoshop
-adobepremierepro
-adobexd
 adonisjs
 adp
 adroll
@@ -73,6 +59,7 @@ aeroflot
 aeromexico
 aerospike
 aew
+afdian
 affine
 affinity
 affinitydesigner
@@ -273,7 +260,6 @@ asciidoctor
 asciinema
 asda
 aseprite
-askfm
 assemblyscript
 asterisk
 astonmartin
@@ -471,7 +457,6 @@ cachet
 caddy
 cadillac
 cafepress
-caffeine
 cairographics
 cairometro
 caixabank
@@ -549,7 +534,6 @@ citrix
 citroen
 civicrm
 civo
-ckeditor4
 clarifai
 claris
 clarivate
@@ -559,7 +543,6 @@ clevercloud
 clickhouse
 clickup
 clion
-cliqz
 clockify
 clojure
 cloud66
@@ -622,7 +605,6 @@ coffeescript
 coggle
 cognizant
 cohost
-coil
 coinbase
 coinmarketcap
 collaboraonline
@@ -693,6 +675,7 @@ cryptomator
 cryptpad
 crystal
 csdn
+css
 css3
 cssdesignawards
 cssmodules
@@ -708,7 +691,7 @@ cycling74
 cypress
 cytoscapedotjs
 d
-d3dotjs
+d3
 dacia
 daf
 dailydotdev
@@ -751,7 +734,6 @@ deepgram
 deepin
 deepl
 deepnote
-delicious
 deliveroo
 dell
 delonghi
@@ -767,6 +749,7 @@ derspiegel
 deutschebahn
 deutschebank
 deutschepost
+deutschetelekom
 deutschewelle
 devdotto
 devexpress
@@ -884,8 +867,6 @@ elevenlabs
 eleventy
 elgato
 elixir
-eljueves
-ello
 elm
 elsevier
 embarcadero
@@ -966,7 +947,6 @@ fauna
 favro
 fcc
 fdroid
-feathub
 fedex
 fedora
 feedly
@@ -1017,7 +997,6 @@ fluentd
 fluke
 flutter
 flux
-fluxus
 flydotio
 flyway
 fmod
@@ -1040,7 +1019,6 @@ fossa
 fossilscm
 foundryvirtualtabletop
 foursquare
-foursquarecityguide
 fox
 foxtel
 fozzy
@@ -1069,7 +1047,6 @@ fueler
 fugacloud
 fujifilm
 fujitsu
-funimation
 furaffinity
 furrynetwork
 fusionauth
@@ -1078,7 +1055,6 @@ g2
 g2a
 g2g
 galaxus
-gameandwatch
 gamebanana
 gamedeveloper
 gamejolt
@@ -1090,7 +1066,6 @@ gatling
 gatsby
 gcore
 gdal
-geant
 geeksforgeeks
 generalelectric
 generalmotors
@@ -1507,7 +1482,6 @@ karlsruherverkehrsverbund
 kasasmart
 kashflow
 kaspersky
-katacoda
 katana
 kaufland
 kde
@@ -1643,7 +1617,6 @@ line
 lineageos
 linear
 lining
-linkedin
 linkerd
 linkfire
 linksys
@@ -1702,7 +1675,6 @@ macos
 macpaw
 macys
 magasinsu
-magento
 magic
 magisk
 mahindra
@@ -1731,7 +1703,6 @@ maptiler
 mariadb
 mariadbfoundation
 markdown
-marketo
 marko
 marriott
 marvelapp
@@ -1795,7 +1766,6 @@ mg
 microbit
 microdotblog
 microeditor
-microgenetics
 micropython
 microstation
 microstrategy
@@ -1941,11 +1911,6 @@ niconico
 nike
 nikon
 nim
-nintendo
-nintendo3ds
-nintendods
-nintendogamecube
-nintendoswitch
 nissan
 nixos
 nodedotjs
@@ -1978,7 +1943,7 @@ numpy
 nunjucks
 nushell
 nutanix
-nuxtdotjs
+nuxt
 nvidia
 nvm
 nx
@@ -1989,6 +1954,7 @@ obb
 observable
 obsidian
 obsstudio
+obtainium
 ocaml
 oclc
 oclif
@@ -2059,7 +2025,6 @@ oppo
 opsgenie
 opslevel
 optimism
-oracle
 orange
 orcid
 oreilly
@@ -2215,7 +2180,6 @@ podman
 poe
 poetry
 pointy
-pokemon
 polars
 polestar
 polkadot
@@ -2321,6 +2285,7 @@ qiwi
 qlik
 qmk
 qnap
+qq
 qt
 qualcomm
 qualtrics
@@ -2349,7 +2314,6 @@ rabbitmq
 racket
 radar
 radarr
-radiopublic
 radixui
 radstudio
 railway
@@ -2380,7 +2344,6 @@ reacttable
 readdotcv
 readme
 readthedocs
-realm
 reason
 reasonstudios
 recoil
@@ -2431,7 +2394,6 @@ revealdotjs
 reverbnation
 revoltdotchat
 revolut
-revue
 rewe
 rezgo
 rhinoceros
@@ -2620,7 +2582,6 @@ skillshare
 skoda
 sky
 skypack
-skyrock
 slack
 slackware
 slashdot
@@ -2630,7 +2591,6 @@ slideshare
 slint
 smart
 smartthings
-smashdotgg
 smashingmagazine
 smrt
 smugmug
@@ -2690,7 +2650,6 @@ sphinx
 spigotmc
 spine
 spinnaker
-spinrilla
 splunk
 spoj
 spond
@@ -2717,7 +2676,6 @@ stackedit
 stackexchange
 stackhawk
 stackoverflow
-stackpath
 stackshare
 stadia
 staffbase
@@ -2728,6 +2686,7 @@ starbucks
 stardock
 starlingbank
 starship
+startdotgg
 startpage
 startrek
 starz
@@ -2747,7 +2706,6 @@ stellar
 stencil
 stencyl
 stimulus
-stitcher
 stmicroelectronics
 stockx
 stopstalk
@@ -2764,7 +2722,6 @@ strongswan
 stryker
 stubhub
 studio3t
-studyverse
 styledcomponents
 stylelint
 styleshare
@@ -2810,7 +2767,6 @@ syncthing
 synology
 system76
 tabelog
-tableau
 tablecheck
 tacobell
 tado
@@ -2851,7 +2807,6 @@ telegram
 telegraph
 telequebec
 temporal
-tencentqq
 tensorflow
 teradata
 teratail
@@ -2915,7 +2870,6 @@ tinygrad
 tinyletter
 tistory
 tldraw
-tmobile
 tmux
 todoist
 toggl
@@ -2984,7 +2938,7 @@ turborepo
 turbosquid
 turkishairlines
 turso
-tutanota
+tuta
 tv4play
 tvtime
 twilio
@@ -3041,7 +2995,6 @@ upptime
 ups
 upstash
 uptimekuma
-uptobox
 upwork
 usps
 utorrent
@@ -3180,8 +3133,6 @@ wezterm
 wgpu
 whatsapp
 wheniwork
-wii
-wiiu
 wikibooks
 wikidata
 wikidotgg
@@ -3251,6 +3202,7 @@ yelp
 yeti
 yii
 yoast
+youhodler
 youtube
 youtubegaming
 youtubekids
@@ -3283,7 +3235,6 @@ zenodo
 zensar
 zerodha
 zerotier
-zerply
 zettlr
 zhihu
 zig
