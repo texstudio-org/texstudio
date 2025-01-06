@@ -1,5 +1,5 @@
 # tikzlings-addons package
-# Matthew Bertucci 2024/12/10 for v2.0
+# Matthew Bertucci 2025/01/06 for v2.2
 
 #include:tikz
 #include:tikzlibrarypatterns
@@ -135,6 +135,8 @@ scale=%<factor%>
 xshift=##L
 yshift=##L
 #endkeyvals
+
+\shufflethings
 
 \scalingfactor#S
 \xscalefactor#S
