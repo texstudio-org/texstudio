@@ -1,5 +1,5 @@
 # zugferd package
-# Matthew Bertucci 2024/11/08 for v0.9a
+# Matthew Bertucci 2025/01/06 for v0.9d
 
 #include:siunitx
 
@@ -9,6 +9,7 @@ zugferd#true,false
 write-xml#true,false
 xml-file=%<filename%>
 auto-exemption#true,false
+unknown-value-warning#true,false
 #endkeyvals
 
 \SetZUGFeRDData{keyvals}
@@ -26,3 +27,6 @@ auto-exemption#true,false
 \startWritingZUGFeRDxml#*
 \stopWritingZUGFeRDxml#*
 \setupZUGFeRDStrings{property}{settings}#*
+
+# not documented
+\UseZUGFeRDElement{arg}#S

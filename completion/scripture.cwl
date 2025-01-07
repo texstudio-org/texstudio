@@ -1,15 +1,19 @@
 # scripture package
-# Matthew Bertucci 2023/12/28 for v2.0
+# Matthew Bertucci 2025/01/06 for v2.1
 
 \ch{chapter number}
+\ch[letter]{chapter number}
 \ch*{chapter number}
+\ch*[letter]{chapter number}
 \extraskip
+\heading{section heading%text}
 \added{words%text}
 \name{divine name}
 \LORD
 \GOD
 \nofirstverse
 \nohang
+\nopilcrow
 \redletteron
 \redletteroff
 \scripturecurrentchapter
@@ -47,7 +51,10 @@
 aboveskip=##L
 added/font=%<font commands%>
 added/format=%<macro%>
+after=%<code%>
+befire=%<code%>
 belowskip=##L
+chapter/align=#left,right
 chapter/colour=#%color
 chapter/color=#%color
 chapter/drop#true,false
@@ -55,14 +62,30 @@ chapter/font=%<font commands%>
 chapter/format=%<macro%>
 chapter/hide#true,false
 chapter/nodrop#true,false
+chapter/para#true,false
+chapter/para/aboveskip=##L
+chapter/para/belowskip=##L
+chapter/para/indent#true,false
 chapter/sep=##L
 chapter/show#true,false
 chapter/showverse#true,false
+chapter/smash#true,false
+chapter/valign=#bottom,middle,top
+chapter/xchar=%<character%>
 colour=#%color
 color=#%color
 compact#true,false
+defaults
 extraskip=##L
 font=%<font commands%>
+heading/aboveskip=##L
+heading/afterindent#true,false
+heading/align=#left,right,center
+heading/belowskip=##L
+heading/font=%<font commands%>
+heading/format=%<macro%>
+heading/hide#true,false
+heading/show#true,false
 inline#true,false
 inline/begin=%<code%>
 inline/end=%<code%>
@@ -79,6 +102,8 @@ name/format=%<macro%>
 noindent#true,false
 parindent=##L
 parskip=##L
+pilcrow#true,false
+pilcrow/sep=##L
 redletter#true,false
 redletter/colour=#%color
 redletter/color=#%color
@@ -88,7 +113,12 @@ reference/color=#%color
 reference/font=%<font commands%>
 reference/format=%<macro%>
 reference/newline
+reference/position=#start,end
 reference/sep=##L
+reference/start/inline#true,false
+reference/start/newline#true,false
+reference/start/sep=##L
+reference/start/vsep=##L
 rightmargin=##L
 selah/font=%<font commands%>
 selah/format=%<macro%>
@@ -104,11 +134,14 @@ verse/firstsep=##L
 verse/font=%<font commands%>
 verse/format=%<macro%>
 verse/hide#true,false
+verse/para#true,false
+verse/para/indent=##L
 verse/sep=##L
 verse/show#true,false
 version=%<version%>
 version/delim=%<delim%>
 version/format=%<macro%>
+version/position=#withref,end
 center/aboveskip=##L
 center/belowskip=##L
 center/leftmargin=##L
@@ -119,9 +152,13 @@ flushright/leftmargin=##L
 flushright/rightmargin=##L
 hanging/aboveskip=##L
 hanging/belowskip=##L
+hanging/chapter/indent#true,false
 hanging/hang=##L
 hanging/leftmargin=##L
 hanging/rightmargin=##L
+hanging/verse/left#true,false
+hanging/verse/right#true,false
+hanging/verse/sep=##L
 midparachap/hideverse#true,false
 midparachap/showverse#true,false
 narrow/aboveskip=##L

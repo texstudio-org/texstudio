@@ -1,5 +1,5 @@
 # tikzlings-pandas package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/01/06 for v2.2
 
 #include:tikz
 #include:tikzlings-addons
@@ -12,6 +12,7 @@ body=#%color
 eye=#%color
 pupil=#%color
 mouth=#%color
+openmouth
 back
 3D
 contour

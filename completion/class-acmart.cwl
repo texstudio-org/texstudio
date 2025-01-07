@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2024/04/14 for v2.06
+# Matthew Bertucci 2025/01/06 for v2.12
 
 #include:xkeyval
 #include:xstring
@@ -12,7 +12,6 @@
 #include:totpages
 #include:environ
 #include:setspace
-#include:textcase
 #include:natbib
 #include:hyperxmp
 #include:hyperref

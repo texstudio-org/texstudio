@@ -1,5 +1,5 @@
 # glossary-bookindex package
-# Matthew Bertucci 2022/10/19 for v1.49
+# Matthew Bertucci 2025/01/06 for v1.54
 
 #include:multicol
 #include:glossary-tree
@@ -7,6 +7,8 @@
 \glsxtrbookindexcols#*
 \glsxtrbookindexcolspread#*
 \glsxtrbookindexmulticolsenv#*
+\glsxtrbookindextarget{label}{text}#*r
+\glsxtrbookindexsubtarget{label}{text}#*r
 \glsxtrbookindexname{label}#*r
 \glsxtrbookindexsubname{label}#*r
 \glsxtrbookindexprelocation{label}#*r
@@ -21,6 +23,7 @@
 \glsxtrbookindexsubsubatendgroup{sub-sub-label}#*
 \glsxtrbookindexsubatendgroup{sub-label}#*
 \glsxtrbookindexatendgroup{label}#*r
+\glsxtrbookindexsubsubitem{level}#*
 \glsxtrbookindexbookmark{group title}{name}#*
 \glsxtrbookindexformatheader{group title}
 \glsxtrbookindexmarkentry{label}#*r

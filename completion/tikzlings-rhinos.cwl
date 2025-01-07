@@ -1,5 +1,5 @@
 # tikzlings-rhinos package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/01/06 for v2.2
 
 #include:tikz
 #include:tikzlings-addons
@@ -13,6 +13,7 @@ eye=#%color
 pupil=#%color
 mouth=#%color
 horn=#%color
+openmouth
 toes=#%color
 back
 3D
