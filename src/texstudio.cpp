@@ -356,7 +356,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
         resetDocks();
     }
 #ifdef Q_OS_MAC
-    if(qApp->primaryScreen()->size().height()<=900){
+    bool disable_OSX_workaround=config->value("texmaker/Editor/Disable_OSX_DockFallback",false).toBool();
+    if(qApp->primaryScreen()->size().height()<=900 && !disable_OSX_workaround){
         // on OSX only, force style to FUSION if style is MACOS (https://github.com/texstudio-org/texstudio/issues/3637)
         if(configManager.interfaceStyle.isEmpty() || configManager.interfaceStyle == "macOS"){
             configManager.interfaceStyle = "Fusion";
@@ -368,7 +369,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     if(checkDockSpread()){
 #ifdef Q_OS_MAC
         // on OSX only, force style to FUSION if style is MACOS (https://github.com/texstudio-org/texstudio/issues/3637)
-        if(configManager.interfaceStyle.isEmpty() || configManager.interfaceStyle == "macOS"){
+        if( (configManager.interfaceStyle.isEmpty() || configManager.interfaceStyle == "macOS")&& !disable_OSX_workaround){
             configManager.interfaceStyle = "Fusion";
             configManager.setInterfaceStyle();
         }
