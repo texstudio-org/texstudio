@@ -6,7 +6,7 @@
 
 #keyvals:\usepackage/scrlayer-fancyhdr#c
 nocheck
-compatV3
+twoside
 myheadings
 headings
 #endkeyvals
