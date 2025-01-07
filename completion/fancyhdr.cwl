@@ -7,7 +7,6 @@
 #keyvals:\usepackage/fancyhdr#c
 nocheck
 twoside
-twoside
 myheadings
 headings
 #endkeyvals
