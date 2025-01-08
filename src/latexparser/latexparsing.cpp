@@ -695,7 +695,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 //lastComma = -1;
                 lastEqual = level;
                 level++;
-                if(lp->commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)){
+                if(!commandStack.isEmpty() && lp->commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)){
                     // handle keyval values with normal commandStack mechanism (mandatory argument only!!)
                     // allows argument classification
                     CommandDescription cd = lp->commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
