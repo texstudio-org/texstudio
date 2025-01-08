@@ -1,5 +1,5 @@
 # glossaries-extra package
-# Matthew Bertucci 2023/04/25 for v1.51
+# Matthew Bertucci 2025/01/06 for v1.54
 
 #include:glossaries
 
@@ -1590,6 +1590,7 @@ theHvalue=%<<prefix><location>%>
 \glsxtrinitwrglosstrue#*
 \glsxtrinitwrglossfalse#*
 \glsxtrsupphypernumber{location}#*
+\glspdfsentencecase{text}#*
 
 ## Entries in Sectioning Titles, Headers, Captions and Contents ##
 \glsxtrRevertMarks
@@ -1761,6 +1762,7 @@ theHvalue=%<<prefix><location>%>
 ## Hyperlinks ##
 \glsxtrtarget{label}{text}#*
 \glsxtrtargetfield#*
+\glsxtrtargetdup{label}{text}#*r
 
 ## Label Prefixes ##
 \glsxtrnewgls{prefix}{cmd}#*d
@@ -2326,21 +2328,31 @@ leveloffset=%<<n> or ++<n>%>
 
 ## Standalone Entry Items ##
 \glsxtrglossentry{label}#*r
+\Glsxtrglossentry{label}#*r
 \GlsXtrStandaloneGlossaryType#*
 \GlsXtrStandaloneSubEntryItem{label}#*r
 \GlsXtrStandaloneEntryName{label}#*r
+\GlsXtrStandaloneEntryNameFirstUc{label}#*r
 \glsxtractivatenopost#*
 \glsxtrglossentryother{header}{label}{field}#*r
+\Glsxtrglossentryother{header}{label}{field}#*r
 \GlsXtrStandaloneEntryOther{label}{field}#*r
+\GlsXtrStandaloneEntryOtherFirstUc{label}{field}#*r
 \GlsXtrStandaloneEntryPdfName{label}#*r
 \GlsXtrStandaloneEntryHeadName{label}#*r
+\GlsXtrStandaloneEntryPdfNameFirstUc{label}#*r
+\GlsXtrStandaloneEntryHeadNameFirstUc{label}#*r
 \GlsXtrStandaloneEntryPdfOther{label}{field}#*r
 \GlsXtrStandaloneEntryHeadOther{label}{field}#*r
+\GlsXtrStandaloneEntryPdfOtherFirstUc{label}{field}#*r
+\GlsXtrStandaloneEntryHeadOtherFirstUc{label}{field}#*r
 
 ## Glossary Style Modifications ##
 \glsxtrpreglossarystyle#*
 \glsentrypdfsymbol{label}#*r
 \glossentrynameother{label}{field}#*r
+\Glossentrynameother{label}{field}#*r
+\glsxtrprenamehook{label}#*r
 \glsxtrpostnamehook{label}#*r
 \glsdefpostname{category}{definition}#*
 \glsextrapostnamehook{label}#*r
@@ -2557,6 +2569,7 @@ topicmcols
 \glsifcategoryattributehasitem{category}{attribute}{item}{true}{false}#*
 
 ### 11 bib2gls: Managing Reference Databases ###
+\BibGlsOptions{options}
 \glsxtrresourcefile{filename%file}
 \glsxtrresourcefile[options%keyvals]{filename%file}
 \GlsXtrLoadResources

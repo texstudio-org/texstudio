@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2024/10/08 for v3.8.0
+# Matthew Bertucci 2025/01/06 for v3.8.1
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -209,6 +209,7 @@ const/heading={%<键值列表%>}
 \MakeTitle
 \MakeTOC
 \pubsection{text}
+\pubsection*{text}
 \SecretInfo{arg}
 \SecretInfo{arg}[opt]
 

@@ -1,5 +1,5 @@
 # ffcode package
-# Matthew Bertucci 2024/01/10 for v0.9.0
+# Matthew Bertucci 2025/01/06 for v0.10.0
 
 #include:pgfopts
 #include:xcolor
@@ -13,9 +13,12 @@ nonumbers
 nocn
 bold
 sf
+samepage
 #endkeyvals
 
 \ff{code%definition}
 \begin{ffcode}#V
 \begin{ffcode}[listings options]#V
 \end{ffcode}
+\ffinput{file}
+\ffinput[listings options]{file}

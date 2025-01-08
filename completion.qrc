@@ -1096,6 +1096,7 @@
 <file>completion/commutative-diagrams.cwl</file>
 <file>completion/competences.cwl</file>
 <file>completion/complexity.cwl</file>
+<file>completion/complexpolylongdiv.cwl</file>
 <file>completion/compsci.cwl</file>
 <file>completion/concepts.cwl</file>
 <file>completion/concmath.cwl</file>
@@ -1575,6 +1576,7 @@
 <file>completion/fixfoot.cwl</file>
 <file>completion/fixjfm.cwl</file>
 <file>completion/fixlatvian.cwl</file>
+<file>completion/fixltxhyph.cwl</file>
 <file>completion/fixmath.cwl</file>
 <file>completion/fixme.cwl</file>
 <file>completion/fjodor.cwl</file>

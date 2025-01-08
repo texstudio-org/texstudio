@@ -2,11 +2,10 @@
 # dani/2006-02-18
 # modified Edson 30-12-2010
 # modified T. Hoffmann 15-05-2014
-# modified Matthew Bertucci 2022/11/09 for v4.1
+# modified Matthew Bertucci 2025/01/06 for v5.0
 
 #keyvals:\usepackage/fancyhdr#c
 nocheck
-compatV3
 twoside
 myheadings
 headings
@@ -28,8 +27,19 @@ headings
 \fancyhfoffset[places]{length}
 \fancyhfoffset{length}
 
+\fancyheadwidth{length}
+\fancyheadwidth[places]{length}
+\fancyfootwidth{length}
+\fancyfootwidth[places]{length}
+\fancyhfwidth{length}
+\fancyhfwidth[places]{length}
+
 \fancypagestyle{style name}[base style]{definitions%text}
 \fancypagestyle{style name%specialDef}{definitions%text}#s#%fancypagestyle
+\fancypagestyle*{style name}[base style]{definitions%text}
+\fancypagestyle*{style name}{definitions%text}
+
+\fancypagestyleassign{style1%specialDef}{style2}#s#%fancypagestyle
 
 #keyvals:\pagestyle#c,\thispagestyle#c
 fancy
@@ -53,9 +63,17 @@ fancy
 \fancyfootinit{code}
 \fancyhfinit{code}
 
+\fancyfootalign{length}
+
 \fancycenter[distance%l][stretch]{left-mark%text}{center-mark%text}{right-mark%text}
 \fancycenter[distance%l]{left-mark%text}{center-mark%text}{right-mark%text}
 \fancycenter{left-mark%text}{center-mark%text}{right-mark%text}
+
+\fancyhdrbox{content%text}
+\fancyhdrbox[alignment]{content%text}
+\fancyhdrbox[alignment][width]{content%text}
+
+\fancyhdrsettoheight{length}{header/footer}
 
 \nouppercase{text}#*
 

@@ -1,5 +1,5 @@
 # glossaries-extra-bib2gls package
-# Matthew Bertucci 2023/04/25 for v1.51
+# Matthew Bertucci 2025/01/06 for v1.54
 
 \dgls{label}#r
 \dgls[options%keyvals]{label}#r
@@ -113,6 +113,8 @@ local#true,false
 \glsxtrcombiningdiacriticIIrules#*
 \glsxtrcombiningdiacriticIIIrules#*
 \glsxtrcombiningdiacriticIVrules#*
+\glsxtrcontrolIrules#*
+\glsxtrcontrolIIrules#*
 \glsxtrhyphenrules#*
 \glsxtrgeneralpuncrules#*
 \glsxtrgeneralpuncIrules#*
@@ -234,6 +236,7 @@ local#true,false
 \glsxtrUpXi#*
 \glsxtrUpZeta#*
 \IfTeXParserLib{TeX-parser-lib-code}{TeX-code}#*
+\IfNotBibGls{LaTeX code}{bib2gls code}#*
 \glshashchar#*
 \glsxtrrecentanchor#*
 \glsxtrlocationanchor#*

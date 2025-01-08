@@ -1,5 +1,5 @@
 # tikzlings-bats package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/01/06 for v2.2
 
 #include:tikz
 #include:tikzlings-addons
@@ -14,6 +14,7 @@ pupil=#%color
 mouth=#%color
 ears=#%color
 feet=#%color
+openmouth
 wings=%<num 0-1%>
 teeth=#%color
 back

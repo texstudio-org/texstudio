@@ -1,5 +1,5 @@
 # tikzlings-bugs package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/01/06 for v2.2
 
 #include:tikz
 #include:tikzlings-addons
@@ -16,6 +16,7 @@ mouth=#%color
 arms=#%color
 wings=#%color
 feet=#%color
+openmouth
 leftstep
 rightstep
 back

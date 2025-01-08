@@ -1,9 +1,15 @@
 # mahjong package
-# Matthew Bertucci 9/16/2021 for v1.0
+# Matthew Bertucci 2024/01/07 for v1.1
 
 #include:l3keys2e
 #include:graphicx
 #include:stackengine
 
-\mahjong{tile-code}
-\mahjong[height]{tile-code}
+#keyvals:\usepackage/mahjong#c
+height=##L
+scale=%<factor%>
+#endkeyvals
+
+\mahjong{tile sequence}
+\mahjong[height]{tile sequence}
+\mahjong[height][scale]{tile sequence}

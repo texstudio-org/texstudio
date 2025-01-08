@@ -1,5 +1,5 @@
 # tikzlings-bees package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/01/06 for v2.2
 
 #include:tikz
 #include:tikzlings-addons
@@ -15,6 +15,7 @@ mouth=#%color
 wings=#%color
 hands=#%color
 stripes=#%color
+openmouth
 back
 3D
 contour
