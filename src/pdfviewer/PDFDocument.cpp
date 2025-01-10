@@ -1589,9 +1589,16 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 		usingTool = kNone;
 	}
 
-	if (pdfDoc && pdfDoc->menuShow) {
-		menu.addSeparator();
-		menu.addMenu(pdfDoc->menuShow);
+	if (pdfDoc) {
+		if (pdfDoc->menuGrid || pdfDoc->menuShow) {
+			menu.addSeparator();
+			if (pdfDoc->menuGrid) {
+				menu.addMenu(pdfDoc->menuGrid);
+			}
+			if (pdfDoc->menuShow) {
+				menu.addMenu(pdfDoc->menuShow);
+			}
+		}
 	}
 
 	QAction *action = menu.exec(event->globalPos());
@@ -2982,17 +2989,6 @@ void PDFDocument::setupToolBar(bool embedded){
     toolBar->addAction(actionFit_to_Text_Width);
     toolBar->addAction(actionFit_to_Window);
     toolBar->addSeparator();
-    if (embedded) {
-        QToolButton *tbPdfView = new QToolButton(toolBar);
-        actionContinuous->setCheckable(true);
-        actionContinuous->setChecked(true);
-        menuGrid->addAction(actionContinuous);
-        tbPdfView->setMenu(menuGrid);
-        tbPdfView->setPopupMode(QToolButton::MenuButtonPopup);
-        tbPdfView->setText(tr("Grid"));
-        toolBar->addWidget(tbPdfView);
-        toolBar->addSeparator();
-    }
     toolBar->addAction(actionAutoHideToolbars);
     toolBar->addAction(actionEnlargeViewer);
     toolBar->addAction(actionShrinkViewer);
@@ -3116,6 +3112,9 @@ void PDFDocument::setupMenus(bool embedded)
     actionGroupGrid->addAction(actionCustom);
 	menuGrid->addSeparator();
     actionSinglePageStep=configManager->newManagedAction(menuroot,menuGrid, "singlePageStep", tr("Single Page Step"), pdfWidget, SLOT(setSinglePageStep(bool)), QList<QKeySequence>());
+//    if (embedded) {
+        menuGrid->addAction(actionContinuous);
+//    }
 	menuWindow->addAction(menuShow->menuAction());
 #if (QT_VERSION > 0x050a00) && (defined(Q_OS_MAC))
     actionCloseElement=configManager->newManagedAction(menuroot,menuWindow, "closeElement", tr("&Close something"), this, SLOT(closeElement()), QList<QKeySequence>()); // osx work around
@@ -3188,7 +3187,6 @@ void PDFDocument::init(bool embedded)
     pdfWidget = new PDFWidget(embedded); // needs to be initialized before setup menu
     pdfWidget->setPDFDocument(this);
 
-    //if (!embedded)
     setupMenus(embedded);
 
     setupToolBar(embedded);

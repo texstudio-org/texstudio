@@ -598,7 +598,6 @@ private:
 	QMenu *menuFile;
 	QMenu *menuEdit;
 	QMenu *menuView;
-	QMenu *menuGrid;
 	QMenu *menuWindow;
     QList<QMenu *>menus;
 
@@ -686,6 +685,7 @@ private:
     QToolBar *tbPdfView;
     QTimer *toolBarTimer;
 public:
+	QMenu *menuGrid;
 	QMenu *menuShow;
 private:
 	QMenu *menuEdit_2;
