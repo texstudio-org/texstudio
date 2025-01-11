@@ -580,7 +580,8 @@ void UserMenuDialog::triggerChanged()
     const QStringList fixedTriggers{"?txs-start","?new-file","?new-from-template","?load-file","?load-this-file","?save-file","?close-file","?master-changed","?after-typeset","?after-command-run","?highlighted-as","?not-highlighted-as","?language"};
     const QString text=ui.triggerEdit->text();
     QRegularExpression re(text);
-    if(!re.isValid() && !fixedTriggers.contains(text)){
+    bool fixedTriggerFound=std::any_of(fixedTriggers.constBegin(),fixedTriggers.constEnd(),[text](const QString elem){return text.contains(elem);});
+    if(!re.isValid() && !fixedTriggerFound){
         // syntax error in regex
         ui.triggerEdit->setToolTip(re.errorString()+tr(" (col. %1)").arg(re.patternErrorOffset()));
         ui.triggerEdit->setStyleSheet("QLineEdit { background: orange; color : black; }");
