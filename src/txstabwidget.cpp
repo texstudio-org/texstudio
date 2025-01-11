@@ -98,7 +98,7 @@ LatexEditorView *TxsTabWidget::editorAt(QPoint p) {
 void TxsTabWidget::setActive(bool active) {
 	if (active == m_active) return;
 	m_active = active;
-	QString baseStyle = "QTabBar::close-button {image: url(:/images-ng/close-tab.svgz)} QTabBar::close-button:hover {image: url(:/images-ng/close-tab-hover.svgz)}";
+    QString baseStyle="";
 	if (active) {
 		setStyleSheet(baseStyle);// + " QTabBar {font-weight: bold;} QTabBar::tab:!selected {font-weight: normal;}");
 	} else {
