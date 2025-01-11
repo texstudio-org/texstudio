@@ -580,7 +580,7 @@ void UserMenuDialog::triggerChanged()
     const QStringList fixedTriggers{"?txs-start","?new-file","?new-from-template","?load-file","?load-this-file","?save-file","?close-file","?master-changed","?after-typeset","?after-command-run","?highlighted-as","?not-highlighted-as","?language","?inEnv"};
     const QString text=ui.triggerEdit->text();
     QRegularExpression re(text);
-    bool fixedTriggerFound=std::any_of(fixedTriggers.constBegin(),fixedTriggers.constEnd(),[text](const QString elem){return text.contains(elem);});
+    bool fixedTriggerFound=std::any_of(fixedTriggers.constBegin(),fixedTriggers.constEnd(),[&text](const QString elem){return text.contains(elem);});
     if(!re.isValid() && !fixedTriggerFound){
         // syntax error in regex
         ui.triggerEdit->setToolTip(re.errorString()+tr(" (col. %1)").arg(re.patternErrorOffset()));
