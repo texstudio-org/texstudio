@@ -1589,15 +1589,13 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 		usingTool = kNone;
 	}
 
-	if (pdfDoc) {
-		if (pdfDoc->menuGrid || pdfDoc->menuShow) {
-			menu.addSeparator();
-			if (pdfDoc->menuGrid) {
-				menu.addMenu(pdfDoc->menuGrid);
-			}
-			if (pdfDoc->menuShow) {
-				menu.addMenu(pdfDoc->menuShow);
-			}
+	if (pdfDoc && pdfDoc->menuShow) {
+		menu.addSeparator();
+		if (pdfDoc->menuGrid) {
+			menu.addMenu(pdfDoc->menuGrid);
+		}
+		if (pdfDoc->menuShow) {
+			menu.addMenu(pdfDoc->menuShow);
 		}
 	}
 
@@ -2959,7 +2957,7 @@ PDFDocument::~PDFDocument()
 /*!
  * \brief setup ToolBar
  */
-void PDFDocument::setupToolBar(bool embedded){
+void PDFDocument::setupToolBar(){
     toolBar = new QToolBar(this);
     toolBar->setWindowTitle(tr("Toolbar"));
     toolBar->setObjectName(QString("toolBar"));
@@ -3110,12 +3108,10 @@ void PDFDocument::setupMenus(bool embedded)
     actionCustom->setProperty("grid","xx");
     actionCustom->setCheckable(true);
     actionGroupGrid->addAction(actionCustom);
-	menuGrid->addSeparator();
+    menuGrid->addSeparator();
     actionSinglePageStep=configManager->newManagedAction(menuroot,menuGrid, "singlePageStep", tr("Single Page Step"), pdfWidget, SLOT(setSinglePageStep(bool)), QList<QKeySequence>());
-//    if (embedded) {
-        menuGrid->addAction(actionContinuous);
-//    }
-	menuWindow->addAction(menuShow->menuAction());
+    menuGrid->addAction(actionContinuous);
+    menuWindow->addAction(menuShow->menuAction());
 #if (QT_VERSION > 0x050a00) && (defined(Q_OS_MAC))
     actionCloseElement=configManager->newManagedAction(menuroot,menuWindow, "closeElement", tr("&Close something"), this, SLOT(closeElement()), QList<QKeySequence>()); // osx work around
 #else
@@ -3189,7 +3185,7 @@ void PDFDocument::init(bool embedded)
 
     setupMenus(embedded);
 
-    setupToolBar(embedded);
+    setupToolBar();
 
 
 	setAttribute(Qt::WA_DeleteOnClose, true);

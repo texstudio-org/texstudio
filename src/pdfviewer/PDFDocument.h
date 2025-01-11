@@ -570,7 +570,7 @@ signals:
 private:
 	void init(bool embedded = false);
 	void setupMenus(bool embedded);
-	void setupToolBar(bool embedded);
+	void setupToolBar();
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
 
@@ -682,11 +682,10 @@ private:
 
     QStatusBar *statusbar;
     QToolBar *toolBar;
-    QToolBar *tbPdfView;
     QTimer *toolBarTimer;
 public:
-	QMenu *menuGrid;
-	QMenu *menuShow;
+	QMenu *menuGrid = nullptr;
+	QMenu *menuShow = nullptr;
 private:
 	QMenu *menuEdit_2;
 
