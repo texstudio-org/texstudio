@@ -2,6 +2,7 @@
 Makefile
 .obj
 .ui
+.vscode
 qrc_*.cpp
 texstudio
 texstudio.pro.user
