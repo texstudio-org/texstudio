@@ -5,6 +5,7 @@
 - hide grammar errors in math/non-text environments (word repetition and language tool)
 - hide spelling errors in picture envs like tikzpicture
 - better handle \newtcbox [#3878](https://github.com/texstudio-org/texstudio/issues/3878)
+- fix rare crash [#3936](https://github.com/texstudio-org/texstudio/issues/3936)
 
 ## TeXstudio 4.8.5
 
