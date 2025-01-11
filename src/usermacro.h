@@ -57,6 +57,7 @@ public:
     bool hasFormatTriggers() const;
     QList<int>getFormatTriggers() const;
     QList<int>getFormatExcludeTriggers() const;
+    QStringList getTriggerInEnvs() const;
 
     bool load(const QString &fileName);
     bool loadFromText(const QString &text);
@@ -78,6 +79,8 @@ private:
 	QList<int> triggerFormats;
 	QString triggerFormatExcludesUnprocessed;
 	QList<int> triggerFormatExcludes;
+
+    QStringList triggerInEnvs;
 
     QString m_shortcut;
 };

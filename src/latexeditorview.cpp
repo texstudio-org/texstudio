@@ -113,6 +113,9 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
         // workaround for #2866 (tab as trigger in macro on osx)
         prev+="\t";
     }
+    const LatexDocument *doc = qobject_cast<LatexDocument *>(editor->document());
+    StackEnvironment env;
+
 	foreach (const Macro &m, completerConfig->userMacros) {
 		if (!m.isActiveForTrigger(Macro::ST_REGEX)) continue;
 		if (!m.isActiveForLanguage(language)) continue;
@@ -131,6 +134,26 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
                 if(!fr.isValid()){
                     continue;
                 }
+            }
+        }
+        QStringList envTriggers = m.getTriggerInEnvs();
+        if(!envTriggers.isEmpty()){
+            if(env.isEmpty()){
+                doc->getEnv(editor->cursor().lineNumber(),env);
+            }
+            // use topEnv as trigger env
+            const QStringList ignoreEnv = {"document","normal"};
+            if(!env.isEmpty() && !ignoreEnv.contains(env.top().name)){
+                QString envName=env.top().name;
+                QStringList envAliases = doc->lp->environmentAliases.values(envName);
+                bool aliasNotFound=std::none_of(envAliases.cbegin(),envAliases.cend(),[&envTriggers](const QString &alias){
+                    return envTriggers.contains(alias);
+                });
+                if(!envTriggers.contains(envName)&& aliasNotFound){
+                    continue;
+                }
+            } else {
+                continue;
             }
         }
         const QRegularExpression &r = m.triggerRegex;

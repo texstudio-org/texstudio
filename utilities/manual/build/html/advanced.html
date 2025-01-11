@@ -1051,6 +1051,9 @@ expression of the pattern <code class="docutils literal notranslate"><span class
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">(?not-highlighted-as:...)</span></code></p></td>
 <td><p>Similar to <code class="docutils literal notranslate"><span class="pre">(?highlighted-as:...)</span></code>, but the macro is deactivated in the given environments.</p></td>
 </tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">(?inEnv:...)</span></code></p></td>
+<td><p>Restrict the macro to certain environments. Only the latest environment is checked in case of nested environments. Environments are only detected in the lines between “\begin”/”\end”, excluding the lines that conatin those commands! It also checks for aliases, i.e. all math type environments are aliased as “math” as well.<br>Example: <code class="docutils literal notranslate"><span class="pre">(?inEnv:math)</span></code></p></td>
+</tr>
 </tbody>
 </table>
 </div>

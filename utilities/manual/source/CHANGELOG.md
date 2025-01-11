@@ -6,6 +6,8 @@
 - hide spelling errors in picture envs like tikzpicture
 - better handle \newtcbox [#3878](https://github.com/texstudio-org/texstudio/issues/3878)
 - fix rare crash [#3936](https://github.com/texstudio-org/texstudio/issues/3936)
+- repair user macro triger (?highlight-as:...), still not usable for math env detection
+- add new user macro trigger (?inEnv:...)
 
 ## TeXstudio 4.8.5
 

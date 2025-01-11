@@ -608,6 +608,7 @@ expression of the pattern `(?[scope-type]:...)`.
 | `(?language:...)`       | The macro is only active if the highlighting of the document matches the given language.<br> Example: `(?language:latex)` |
 | `(?highlighted-as:...)` | Restrict the macro to certain highlighted environments. The possible values correspond to the list on the syntax highlighting config page.<br>Example: `(?highlighted-as:numbers,math-delimiter,math-keyword)` |
 | `(?not-highlighted-as:...)` |  Similar to `(?highlighted-as:...)`, but the macro is deactivated in the given environments. |
+| `(?inEnv:...)` | Restrict the macro to certain environments. Only the latest environment is checked in case of nested environments. Environments are only detected in the lines between "\begin"/"\end", excluding the lines that conatin those commands! It also checks for aliases, i.e. all math type environments are aliased as "math" as well.<br>Example: `(?inEnv:math)` |
 
 You may combine `(?language:...)` and `(?highlighted-as:...)`
 expressions. However, combing `(?highlighted-as:...)` and

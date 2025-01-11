@@ -113,6 +113,13 @@ void Macro::init(const QString &nname, Macro::Type ntype, const QString &ntag, c
 			triggerFormatExcludesUnprocessed = realtrigger.mid(start, closing - start).replace(',', '|').replace(" ", ""); //handle later, when the formats are loaded
 			realtrigger.remove(0, closing + 1);
 		}
+        if (realtrigger.startsWith("(?inEnv:")) {
+            int start = realtrigger.indexOf(':') + 1;
+            int closing = realtrigger.indexOf(")");
+            QString envs= realtrigger.mid(start, closing - start).replace(',', '|').replace(" ", ""); //handle later, when the formats are loaded
+            triggerInEnvs = envs.split("|");
+            realtrigger.remove(0, closing + 1);
+        }
 
 	} while (lastLen != realtrigger.length());
 
@@ -273,6 +280,14 @@ QList<int> Macro::getFormatTriggers() const
 QList<int> Macro::getFormatExcludeTriggers() const
 {
     return triggerFormatExcludes;
+}
+/*!
+ * \brief return the list of environment trigger
+ * \return
+ */
+QStringList Macro::getTriggerInEnvs() const
+{
+    return triggerInEnvs;
 }
 
 bool Macro::save(const QString &fileName) const {
