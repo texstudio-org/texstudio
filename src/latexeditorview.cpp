@@ -141,6 +141,7 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
             if(env.isEmpty()){
                 doc->getEnv(editor->cursor().lineNumber(),env);
             }
+
             // use topEnv as trigger env
             const QStringList ignoreEnv = {"document","normal"};
             if(!env.isEmpty() && !ignoreEnv.contains(env.top().name)){
@@ -153,7 +154,27 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
                     continue;
                 }
             } else {
-                continue;
+                // special treatment for math env as that be be toggled with special symbols
+                if(envTriggers.contains("math")){
+                    QVector<QParenthesis>parenthesis=line.parentheses();
+                    bool inMath=false;
+                    for(int i=0;i<parenthesis.size();++i){
+                        QParenthesis &p=parenthesis[i];
+                        if(p.id==61){
+                            if(p.offset<column){
+                                inMath=(p.role & QParenthesis::Open)>0;
+                            }
+                            if(p.offset>=column){
+                                break;
+                            }
+                        }
+                    }
+                    if(!inMath){
+                        continue; // skip further trigger checks
+                    }
+                }else{
+                    continue;
+                }
             }
         }
         const QRegularExpression &r = m.triggerRegex;
