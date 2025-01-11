@@ -248,11 +248,31 @@ bool Macro::isActiveForLanguage(QLanguageDefinition *lang) const
 	return triggerLanguage.isEmpty() || triggerLanguages.contains(lang);
 }
 
-bool Macro::isActiveForFormat(int format) const
+/*!
+ * \brief check if any format trigger are set
+ * Included or excluded formats are considered
+ * \return
+ */
+bool Macro::hasFormatTriggers() const
 {
-	if (!triggerFormatsUnprocessed.isEmpty() || !triggerFormatExcludesUnprocessed.isEmpty()) (const_cast<Macro *>(this))->initTriggerFormats();
-	// if no trigger format is specified, the macro is active for all formats.
-	return (triggerFormats.isEmpty() || triggerFormats.contains(format)) && (!triggerFormatExcludes.contains(format));
+    if (!triggerFormatsUnprocessed.isEmpty() || !triggerFormatExcludesUnprocessed.isEmpty()) (const_cast<Macro *>(this))->initTriggerFormats();
+    return !triggerFormats.isEmpty() || !triggerFormatExcludes.isEmpty();
+}
+/*!
+ * \brief return the list of format triggers
+ * \return
+ */
+QList<int> Macro::getFormatTriggers() const
+{
+    return triggerFormats;
+}
+/*!
+ * \brief return the list of format triggers which should be excluded
+ * \return
+ */
+QList<int> Macro::getFormatExcludeTriggers() const
+{
+    return triggerFormatExcludes;
 }
 
 bool Macro::save(const QString &fileName) const {

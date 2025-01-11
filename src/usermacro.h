@@ -54,7 +54,9 @@ public:
 	void parseTriggerLanguage(QLanguageFactory *langFactory);
 	bool isActiveForTrigger(SpecialTrigger trigger) const;
 	bool isActiveForLanguage(QLanguageDefinition *lang) const;
-	bool isActiveForFormat(int format) const;
+    bool hasFormatTriggers() const;
+    QList<int>getFormatTriggers() const;
+    QList<int>getFormatExcludeTriggers() const;
 
     bool load(const QString &fileName);
     bool loadFromText(const QString &text);

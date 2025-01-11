@@ -116,7 +116,23 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 	foreach (const Macro &m, completerConfig->userMacros) {
 		if (!m.isActiveForTrigger(Macro::ST_REGEX)) continue;
 		if (!m.isActiveForLanguage(language)) continue;
-		if (!(m.isActiveForFormat(line.getFormatAt(column)) || (column > 0 && m.isActiveForFormat(line.getFormatAt(column - 1))))) continue; //two checks, so it works at beginning and end of an environment
+        if(m.hasFormatTriggers()){
+            // check formats at column from overlays
+            QList<int> formats=m.getFormatExcludeTriggers();
+            if(!formats.isEmpty()){
+                QFormatRange fr = line.getOverlayAt(column, formats);
+                if(fr.isValid()){
+                    continue;
+                }
+            }
+            formats=m.getFormatTriggers();
+            if(!formats.isEmpty()){
+                QFormatRange fr = line.getOverlayAt(column, formats);
+                if(!fr.isValid()){
+                    continue;
+                }
+            }
+        }
         const QRegularExpression &r = m.triggerRegex;
         QRegularExpressionMatch match=r.match(prev);
         if (match.hasMatch()) {
