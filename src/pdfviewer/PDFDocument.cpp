@@ -1589,14 +1589,10 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 		usingTool = kNone;
 	}
 
-	if (pdfDoc && pdfDoc->menuShow) {
+	if (pdfDoc && pdfDoc->menuShow && pdfDoc->menuGrid) {
 		menu.addSeparator();
-		if (pdfDoc->menuGrid) {
-			menu.addMenu(pdfDoc->menuGrid);
-		}
-		if (pdfDoc->menuShow) {
-			menu.addMenu(pdfDoc->menuShow);
-		}
+		menu.addMenu(pdfDoc->menuGrid);
+		menu.addMenu(pdfDoc->menuShow);
 	}
 
 	QAction *action = menu.exec(event->globalPos());
@@ -2155,11 +2151,11 @@ void PDFWidget::setGridSize(int gx, int gy, bool setAsDefault)
 	else if (gridx == 2 && gridy == 1) {
 		setPageOffset(1, false, true);
 	}
-	else if (!embedded) {
-		setPageOffset(globalConfig->pageOffset, true, true);
+	else if (embedded) {
+		setPageOffset(globalConfig->pageOffsetEmbedded, true, true);
 	}
 	else {
-		setPageOffset(globalConfig->pageOffsetEmbedded, true, true);
+		setPageOffset(globalConfig->pageOffset, true, true);
 	}
 
 	if (setAsDefault)
