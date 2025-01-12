@@ -144,38 +144,46 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 
             // use topEnv as trigger env
             const QStringList ignoreEnv = {"document","normal"};
+            bool inMath=false;
+            bool passed=false;
             if(!env.isEmpty() && !ignoreEnv.contains(env.top().name)){
                 QString envName=env.top().name;
                 QStringList envAliases = doc->lp->environmentAliases.values(envName);
-                bool aliasNotFound=std::none_of(envAliases.cbegin(),envAliases.cend(),[&envTriggers](const QString &alias){
+                bool aliasFound=std::any_of(envAliases.cbegin(),envAliases.cend(),[&envTriggers](const QString &alias){
                     return envTriggers.contains(alias);
                 });
-                if(!envTriggers.contains(envName)&& aliasNotFound){
-                    continue;
-                }
-            } else {
-                // special treatment for math env as that be be toggled with special symbols
-                if(envTriggers.contains("math")){
-                    QVector<QParenthesis>parenthesis=line.parentheses();
-                    bool inMath=false;
-                    for(int i=0;i<parenthesis.size();++i){
-                        QParenthesis &p=parenthesis[i];
-                        if(p.id==61){
-                            if(p.offset<column){
-                                inMath=(p.role & QParenthesis::Open)>0;
-                            }
-                            if(p.offset>=column){
-                                break;
-                            }
-                        }
+                if(envTriggers.contains(envName)|| aliasFound){
+                    passed=true;
+                    if(envName=="math"){
+                        // continued math mode from previous line
+                        passed=false;
+                        inMath=true;
                     }
-                    if(!inMath){
-                        continue; // skip further trigger checks
-                    }
-                }else{
-                    continue;
                 }
             }
+            // special treatment for math env as that be be toggled with special symbols
+            if(!passed && envTriggers.contains("math")){
+                QVector<QParenthesis>parenthesis=line.parentheses();
+
+                for(int i=0;i<parenthesis.size();++i){
+                    QParenthesis &p=parenthesis[i];
+                    if(p.id==61){
+                        if(p.offset<column){
+                            inMath=(p.role & QParenthesis::Open)>0;
+                        }
+                        if(p.offset>=column){
+                            break;
+                        }
+                    }
+                }
+                if(!inMath){
+                    continue; // skip further trigger checks
+                }else{
+                    passed=true;
+                }
+            }
+            if(!passed)
+                continue; // skip further trigger checks, no valid env found
         }
         const QRegularExpression &r = m.triggerRegex;
         QRegularExpressionMatch match=r.match(prev);
