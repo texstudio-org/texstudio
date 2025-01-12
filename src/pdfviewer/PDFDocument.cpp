@@ -3375,7 +3375,7 @@ void PDFDocument::init(bool embedded)
 	connect(actionFit_to_Window, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWindow(bool)));
 
 
-	QString gs=QString("%1x%2");
+	QString gs="%1x%2";
 	if (embedded) {
 		conf->registerOption("Preview/GridX-Embedded", &globalConfig->gridxEmbedded, 1);
 		conf->registerOption("Preview/GridY-Embedded", &globalConfig->gridyEmbedded, 1);
@@ -3864,11 +3864,11 @@ void PDFDocument::setGrid()
 			}
 		}
 		// set grid menu entry checked
-		QString gs;
+		QString gs="%1x%2";
 		if (embeddedMode)
-			gs=QString("%1x%2").arg(globalConfig->gridxEmbedded).arg(globalConfig->gridyEmbedded);
+			gs=gs.arg(globalConfig->gridxEmbedded).arg(globalConfig->gridyEmbedded);
 		else
-			gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
+			gs=gs.arg(globalConfig->gridx).arg(globalConfig->gridy);
 		bool found=false;
 		for(QAction *a:actionGroupGrid->actions()){
 			if(a->property("grid").toString()==gs){
