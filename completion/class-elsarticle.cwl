@@ -1,5 +1,5 @@
 # elsarticle class
-# Matthew Bertucci 3/22/2022 for v3.3
+# Matthew Bertucci 2025/01/12 for v3.4c
 
 #include:etoolbox
 #include:graphicx
@@ -263,7 +263,6 @@ abstract
 \stmexpandonce{arg}#*
 \textmarker{color}{text}#*
 \theaffn#*
-\theauthor#*
 \thecnote#*
 \theead#*
 \thefnote#*
