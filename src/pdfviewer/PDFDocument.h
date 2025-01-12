@@ -232,14 +232,6 @@ public:
 	Q_INVOKABLE void zoom(qreal scale);
 
 	virtual void wheelEvent(QWheelEvent *event);
-	int getGridxEmbedded() {return gridxEmbedded;};
-	int getGridyEmbedded() {return gridyEmbedded;};
-	int getPageOffsetEmbedded() {return pageOffsetEmbedded;};
-	bool getSinglePageStepEmbedded() {return singlePageStepEmbedded;};
-	void setGridxEmbedded(int x) {gridxEmbedded=x;};
-	void setGridyEmbedded(int y) {gridyEmbedded=y;};
-	void setPageOffsetEmbedded(int o) {pageOffsetEmbedded=o;};
-	void setSinglePageStepEmbedded(bool s) {singlePageStepEmbedded=s;};
 
 protected slots: //not private, so scripts have access
 	void goFirst();
@@ -368,12 +360,11 @@ private:
 #ifdef MEDIAPLAYER
 	PDFMovie	*movie;
 #endif
-	int		currentTool;	// the current tool selected in the toolbar
-	int		usingTool;	// the tool actually being used in an ongoing mouse drag
-	bool	singlePageStep, singlePageStepEmbedded;
+	int 	currentTool;	// the current tool selected in the toolbar
+	int 	usingTool;		// the tool actually being used in an ongoing mouse drag
+	bool	singlePageStep;
 
 	int gridx, gridy, pageOffset;
-	int gridxEmbedded, gridyEmbedded, pageOffsetEmbedded;
 
 	bool forceUpdate;
 

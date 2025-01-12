@@ -41,10 +41,12 @@ struct PDFDocumentConfig {
 //live options
 	int editTool;
 	bool continuous, singlepagestep;
+	bool continuousEmbedded, singlepagestepEmbedded;
 	bool followFromCursor, followFromScroll, syncViews;
 	bool invertColors;
 	bool grayscale;
 	int gridx, gridy, pageOffset;
+	int gridxEmbedded, gridyEmbedded, pageOffsetEmbedded;
 };
 
 #endif // PDFDOCUMENT_CONFIG_H

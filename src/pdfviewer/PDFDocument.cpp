@@ -907,7 +907,7 @@ void PDFWidget::setDocument(const QSharedPointer<Poppler::Document> &doc, bool e
 	if (!document.isNull()) {
 		docPages = document->numPages();
 		if (embedded)
-			setSinglePageStep(false);
+			setSinglePageStep(globalConfig->singlepagestepEmbedded);
 		else
 			setSinglePageStep(globalConfig->singlepagestep);
 	} else
@@ -2110,7 +2110,7 @@ void PDFWidget::setPageOffset(int offset, bool setAsDefault, bool refresh){
 	if (!setAsDefault) {
 		bool embedded = pdfdocument->embeddedMode;
 		if (embedded)
-			pageOffsetEmbedded = pageOffset;
+			globalConfig->pageOffsetEmbedded = pageOffset;
 		else
 			globalConfig->pageOffset = pageOffset;
 	}
@@ -2159,7 +2159,7 @@ void PDFWidget::setGridSize(int gx, int gy, bool setAsDefault)
 		setPageOffset(globalConfig->pageOffset, true, true);
 	}
 	else {
-		setPageOffset(pageOffsetEmbedded, true, true);
+		setPageOffset(globalConfig->pageOffsetEmbedded, true, true);
 	}
 
 	if (setAsDefault)
@@ -2223,7 +2223,7 @@ int PDFWidget::gridCols(bool fromConfig) const
         result = gridx;
     else {
         if (pdfdocument->embeddedMode)
-            result = gridxEmbedded;
+            result = globalConfig->gridxEmbedded;
         else
             result = globalConfig->gridx;
     }
@@ -2241,7 +2241,7 @@ int PDFWidget::gridRows(bool fromConfig) const
         result = gridy;
     else {
         if (pdfdocument->embeddedMode)
-            result = gridyEmbedded;
+            result = globalConfig->gridyEmbedded;
         else
             result = globalConfig->gridy;
     }
@@ -2515,20 +2515,20 @@ void PDFWidget::fitWindow(bool checked)
 			qreal portWidth = scrollArea->viewport()->width() - GridBorder * (gridx - 1);
             int gy;
             if(pdfdocument->embeddedMode)
-                gy=gridyEmbedded;
+                gy=globalConfig->gridyEmbedded;
             else
                 gy=globalConfig->gridy;
             qreal portHeight = scrollArea->viewport()->height() - GridBorder * (gy - 1); // use globalConfig->gridy as gridy is automatically increased in continous mode to force rendering of surrounding pages
 			QSizeF	pageSize = maxPageSizeFDpiAdjusted();
-            qreal sfh = portWidth / pageSize.width() / gridx;
-            qreal sfv = portHeight / pageSize.height() / gy;
+			qreal sfh = portWidth / pageSize.width() / gridx;
+			qreal sfv = portHeight / pageSize.height() / gy;
 			scaleFactor = sfh < sfv ? sfh : sfv;
 			if (scaleFactor < kMinScaleFactor)
 				scaleFactor = kMinScaleFactor;
 			else if (scaleFactor > kMaxScaleFactor)
 				scaleFactor = kMaxScaleFactor;
 			adjustSize();
-            delayedUpdate();
+			delayedUpdate();
 			updateStatusBar();
 			emit changedZoom(scaleFactor);
 		}
@@ -3379,41 +3379,54 @@ void PDFDocument::init(bool embedded)
 	connect(actionFit_to_Window, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWindow(bool)));
 
 
-	if (!embedded) {
+	QString gs=QString("%1x%2");
+	if (embedded) {
+		conf->registerOption("Preview/GridX-Embedded", &globalConfig->gridxEmbedded, 1);
+		conf->registerOption("Preview/GridY-Embedded", &globalConfig->gridyEmbedded, 1);
+		pdfWidget->setGridSize(globalConfig->gridxEmbedded, globalConfig->gridyEmbedded, true);
+		gs=gs.arg(globalConfig->gridxEmbedded).arg(globalConfig->gridyEmbedded);
+	} else {
 		conf->registerOption("Preview/GridX", &globalConfig->gridx, 1);
 		conf->registerOption("Preview/GridY", &globalConfig->gridy, 1);
 		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy, true);
+		gs=gs.arg(globalConfig->gridx).arg(globalConfig->gridy);
+	}
+	if (embedded) {
+		conf->registerOption("Preview/PageOffset-Embedded", &globalConfig->pageOffsetEmbedded, 0);
+		pdfWidget->setPageOffset(globalConfig->pageOffsetEmbedded, true);
+	} else {
 		conf->registerOption("Preview/PageOffset", &globalConfig->pageOffset, 0);
 		pdfWidget->setPageOffset(globalConfig->pageOffset, true);
-        // set grid menu entry checked
-        QString gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
-        bool found=false;
-        for(QAction *a:actionGroupGrid->actions()){
-            if(a->property("grid").toString()==gs){
-                a->setChecked(true);
-                found=true;
-                break;
-            }
-        }
-        if(!found){
-            // if no other grid action fits, use custom
-            actionCustom->setChecked(true);
-        }
+	}
+	// set grid menu entry checked
+	bool found=false;
+	for(QAction *a:actionGroupGrid->actions()){
+		if(a->property("grid").toString()==gs){
+			a->setChecked(true);
+			found=true;
+			break;
+		}
+	}
+	if(!found){
+		// if no other grid action fits, use custom
+		actionCustom->setChecked(true);
+	}
 
-        //connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
-		conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
-        conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, LO_NONE);
-        connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
-		conf->registerOption("Preview/Continuous", &globalConfig->continuous, true);
-        conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, LO_NONE);
+	if (embedded) {
+		conf->registerOption("Preview/Single Page Step-Embedded", &globalConfig->singlepagestepEmbedded, true);
+		conf->linkOptionToObject(&globalConfig->singlepagestepEmbedded, actionSinglePageStep, LO_NONE);
 	} else {
-		pdfWidget->setGridxEmbedded(1);
-		pdfWidget->setGridyEmbedded(1);
-		pdfWidget->setGridSize(pdfWidget->getGridxEmbedded(), pdfWidget->getGridyEmbedded(), true);
-		pdfWidget->setPageOffsetEmbedded(0);
-		pdfWidget->setSinglePageStep(false);
-		scrollArea->setContinuous(true);
+		conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
+		conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, LO_NONE);
+	}
+	if (embedded) {
 		connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
+		conf->registerOption("Preview/Continuous-Embedded", &globalConfig->continuousEmbedded, true);
+		conf->linkOptionToObject(&globalConfig->continuousEmbedded, actionContinuous, LO_NONE);
+	} else {
+		connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
+		conf->registerOption("Preview/Continuous", &globalConfig->continuous, true);
+		conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, LO_NONE);
 	}
 
     //connect(actionZoom_In, SIGNAL(triggered()), pdfWidget, SLOT(zoomIn()));
@@ -3840,15 +3853,15 @@ void PDFDocument::setGrid()
 	QString gs = sender()->property("grid").toString();
 	if (gs == "xx") {
 		UniversalInputDialog d;
-        int x = pdfWidget->gridCols(true);
-        int y = pdfWidget->gridRows(true);
+		int x = pdfWidget->gridCols(true);
+		int y = pdfWidget->gridRows(true);
 		d.addVariable(&x , "X-Grid:");
 		d.addVariable(&y , "Y-Grid:");
 		if (d.exec()) {
 			pdfWidget->setGridSize(x, y);
 			if (embeddedMode) {
-				pdfWidget->setGridxEmbedded(x);
-				pdfWidget->setGridyEmbedded(y);
+				globalConfig->gridxEmbedded = x;
+				globalConfig->gridyEmbedded = y;
 			} else{
 				globalConfig->gridx = x;
 				globalConfig->gridy = y;
@@ -3857,7 +3870,7 @@ void PDFDocument::setGrid()
 		// set grid menu entry checked
 		QString gs;
 		if (embeddedMode)
-			gs=QString("%1x%2").arg(pdfWidget->getGridxEmbedded()).arg(pdfWidget->getGridyEmbedded());
+			gs=QString("%1x%2").arg(globalConfig->gridxEmbedded).arg(globalConfig->gridyEmbedded);
 		else
 			gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
 		bool found=false;
@@ -3878,14 +3891,14 @@ void PDFDocument::setGrid()
 		int y = gs.mid(p + 1).toInt();
 		pdfWidget->setGridSize(x, y);
 		if (embeddedMode) {
-			pdfWidget->setGridxEmbedded(x);
-			pdfWidget->setGridyEmbedded(y);
+			globalConfig->gridxEmbedded = x;
+			globalConfig->gridyEmbedded = y;
 		} else{
 			globalConfig->gridx = x;
 			globalConfig->gridy = y;
 		}
 	}
-    pdfWidget->windowResized();
+	pdfWidget->windowResized();
 }
 
 void PDFDocument::jumpToPage()
