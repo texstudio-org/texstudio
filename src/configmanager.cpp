@@ -1961,7 +1961,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 bool ConfigManager::systemUsesDarkMode(const QPalette &pal)
 {
 #if (QT_VERSION >= 0x060500) && (defined( Q_OS_WIN )||defined( Q_OS_LINUX ))
-    if(interfaceStyle=="Fusion" && interfaceStyle=="Windows"){
+    if(interfaceStyle=="Fusion" || interfaceStyle=="Windows"){
         // only style Fusion and Windows work properly with stylehints
         QStyleHints *sh=QGuiApplication::styleHints();
         return sh->colorScheme() == Qt::ColorScheme::Dark;
