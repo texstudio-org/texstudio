@@ -9,7 +9,7 @@
 - repair user macro triger (?highlight-as:...), still not usable for math env detection
 - add new user macro trigger (?inEnv:...)
 - add Grid menu to windowed and embedded pdf-viewer's context menu [#3942](https://github.com/texstudio-org/texstudio/pull/3942)
-- fix pdf-viewers's scrollbar with Fit to Width/Window and changing Continuous mode [#3928](https://github.com/texstudio-org/texstudio/pull/3928)
+- fix pdf-viewer's scrollbar with Fit to Width/Window and changing Continuous mode [#3928](https://github.com/texstudio-org/texstudio/pull/3928)
 - fix pdf-viewer's Custom Grid dialog not preset with current Grid settings in Continuous mode [#3929](https://github.com/texstudio-org/texstudio/pull/3929)
 - add maximize button to Packages Help (Texdoc) dialog [#3911](https://github.com/texstudio-org/texstudio/pull/3911)
 - fix option 'all packages' no longer checked in Packages Help with no tex documents opened [#3917](https://github.com/texstudio-org/texstudio/pull/3917)
