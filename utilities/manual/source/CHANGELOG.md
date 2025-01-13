@@ -8,6 +8,13 @@
 - fix rare crash [#3936](https://github.com/texstudio-org/texstudio/issues/3936)
 - repair user macro triger (?highlight-as:...), still not usable for math env detection
 - add new user macro trigger (?inEnv:...)
+- add Grid menu to windowed and embedded pdf-viewer's context menu [#3942](https://github.com/texstudio-org/texstudio/pull/3942)
+- fix pdf-viewers's scrollbar with Fit to Width/Window and changing Continuous mode [#3928](https://github.com/texstudio-org/texstudio/pull/3928)
+- fix pdf-viewer's Custom Grid dialog not preset with current Grid settings in Continuous mode [#3929](https://github.com/texstudio-org/texstudio/pull/3929)
+- add maximize button to Packages Help (Texdoc) dialog [#3911](https://github.com/texstudio-org/texstudio/pull/3911)
+- fix option 'all packages' no longer checked in Packages Help with no tex documents opened [#3917](https://github.com/texstudio-org/texstudio/pull/3917)
+- when context menu of a package name is used to open the Packages Help dialog then preset search filter with the name [#3918](https://github.com/texstudio-org/texstudio/pull/3918)
+- fix both View menu actions 'Show embedded PDF large/small' available, whether PDF area is large or small [#3931](https://github.com/texstudio-org/texstudio/pull/3931)
 
 ## TeXstudio 4.8.5
 
@@ -26,6 +33,7 @@
 - handle special columntypes (m[l],NiceMatrix) better [#3881](https://github.com/texstudio-org/texstudio/issues/3881)
 - handle key/val completion in frame environment better [#3846](https://github.com/texstudio-org/texstudio/issues/3846)
 - fix caching of newly defined colornames
+- fix not all log lines with 'Process started ...' are highlight [#3873](https://github.com/texstudio-org/texstudio/pull/3873)
 
 ## TeXstudio 4.8.4
 
@@ -713,7 +721,7 @@ before changing to windowed mode (Bug #1876)
 - fix: clear replace highlights when search term is changed
 - fix: cancel in marco dialog (bug 1662)
 - fixed interpretation of % !BIB program = ... (bug 1667)
-- fix AltGr+F not typing [ on Croatian keyboard
+- fix AltGr+F not typing \[ on Croatian keyboard
 - fix cursor jumping to end of file when trying to jump from a non-matched bracket (bug 1668)
 - fix pasting columns over an existing selection (bug 1726)
 - fix broken language triggers (bug 1735)
@@ -1457,7 +1465,7 @@ texmaker file [-master] [-line xxx]
 
 ## Texmaker 1.2
 
-- Don't use anymore double-clic to open a file from the structure view (Qt-4.0.0 bug). A simple clic must be used now.
+- Don't use anymore double-click to open a file from the structure view (Qt-4.0.0 bug). A simple clic must be used now.
 - Don't use anymore / to separate commands (quick build and users commands) but | to avoid confusion with the directories separator.
 - A selected icon is no more highlighted (trouble on windows and macosx - the selected icon was masked).
 - Added the option '-line' for the application.
