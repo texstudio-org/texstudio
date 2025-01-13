@@ -6,7 +6,7 @@
 - hide spelling errors in picture envs like tikzpicture
 - better handle \newtcbox [#3878](https://github.com/texstudio-org/texstudio/issues/3878)
 - fix rare crash [#3936](https://github.com/texstudio-org/texstudio/issues/3936)
-- repair user macro triger (?highlight-as:...), still not usable for math env detection
+- repair user macro trigger (?highlight-as:...), still not usable for math env detection
 - add new user macro trigger (?inEnv:...)
 - add Grid menu to windowed and embedded pdf-viewer's context menu [#3942](https://github.com/texstudio-org/texstudio/pull/3942)
 - fix pdf-viewer's scrollbar with Fit to Width/Window and changing Continuous mode [#3928](https://github.com/texstudio-org/texstudio/pull/3928)
@@ -181,7 +181,7 @@
 - show macro trigger and shortcut in configuration window ([#2635](https://github.com/texstudio-org/texstudio/issues/2635))
 - support import of several macros at once ([#2911](https://github.com/texstudio-org/texstudio/issues/2911))
 - fix wrong side panel title when changing grid size in config ([#2743](https://github.com/texstudio-org/texstudio/issues/2743))
-- preview/clear preview now use position of context menu as reference [(#2794](https://github.com/texstudio-org/texstudio/issues/2794))
+- preview/clear preview now use position of context menu as reference ([#2794](https://github.com/texstudio-org/texstudio/issues/2794))
 - add a Package Tab to the QuickStart Wizard ([#2831](https://github.com/texstudio-org/texstudio/issues/2831))
 - Editor option 'Show Only Monospaced Fonts' is now persistent ([#788](https://github.com/texstudio-org/texstudio/issues/788))
 - fix size of config dialog on low res screens ([#995](https://github.com/texstudio-org/texstudio/issues/995))
@@ -1465,7 +1465,7 @@ texmaker file [-master] [-line xxx]
 
 ## Texmaker 1.2
 
-- Don't use anymore double-click to open a file from the structure view (Qt-4.0.0 bug). A simple clic must be used now.
+- Don't use anymore double-click to open a file from the structure view (Qt-4.0.0 bug). A simple click must be used now.
 - Don't use anymore / to separate commands (quick build and users commands) but | to avoid confusion with the directories separator.
 - A selected icon is no more highlighted (trouble on windows and macosx - the selected icon was masked).
 - Added the option '-line' for the application.
