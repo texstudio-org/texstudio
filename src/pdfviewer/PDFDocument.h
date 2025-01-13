@@ -182,7 +182,7 @@ public:
 	explicit PDFWidget(bool embedded = false);
 	virtual ~PDFWidget();
 
-	void setDocument(const QSharedPointer<Poppler::Document> &doc);
+	void setDocument(const QSharedPointer<Poppler::Document> &doc, bool embedded);
 	void setPDFDocument(PDFDocument *docu);
 
 	void saveState(); // used when toggling full screen mode
@@ -324,7 +324,6 @@ private:
 	QSharedPointer<Poppler::Document> document;
 	QMutex textwidthCalculationMutex;
 
-	//QList<int> pages;
 	QSharedPointer<Poppler::Link> clickedLink;
 	QSharedPointer<Poppler::Annotation> clickedAnnotation;
 
@@ -361,9 +360,9 @@ private:
 #ifdef MEDIAPLAYER
 	PDFMovie	*movie;
 #endif
-	int		currentTool;	// the current tool selected in the toolbar
-	int		usingTool;	// the tool actually being used in an ongoing mouse drag
-	bool		singlePageStep;
+	int 	currentTool;	// the current tool selected in the toolbar
+	int 	usingTool;		// the tool actually being used in an ongoing mouse drag
+	bool	singlePageStep;
 
 	int gridx, gridy, pageOffset;
 
@@ -561,8 +560,8 @@ signals:
 
 private:
 	void init(bool embedded = false);
-    void setupMenus(bool embedded);
-    void setupToolBar();
+	void setupMenus(bool embedded);
+	void setupToolBar();
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
 
@@ -590,7 +589,6 @@ private:
 	QMenu *menuFile;
 	QMenu *menuEdit;
 	QMenu *menuView;
-	QMenu *menuGrid;
 	QMenu *menuWindow;
     QList<QMenu *>menus;
 
@@ -677,7 +675,8 @@ private:
     QToolBar *toolBar;
     QTimer *toolBarTimer;
 public:
-	QMenu *menuShow;
+	QMenu *menuGrid = nullptr;
+	QMenu *menuShow = nullptr;
 private:
 	QMenu *menuEdit_2;
 
