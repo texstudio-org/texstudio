@@ -887,7 +887,7 @@ Please change your configuration and define command lists only at &apos;Options 
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="182"/>
-        <location filename="../src/configdialog.ui" line="4911"/>
+        <location filename="../src/configdialog.ui" line="4904"/>
         <source>Color Scheme:</source>
         <translation>Συνδυασμός χρωμάτων:</translation>
     </message>
@@ -898,7 +898,7 @@ Please change your configuration and define command lists only at &apos;Options 
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="238"/>
-        <location filename="../src/configdialog.ui" line="3839"/>
+        <location filename="../src/configdialog.ui" line="3832"/>
         <source>Language:</source>
         <translation>Γλώσσα:</translation>
     </message>
@@ -925,7 +925,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="283"/>
         <location filename="../src/configdialog.ui" line="1808"/>
-        <location filename="../src/configdialog.ui" line="4939"/>
+        <location filename="../src/configdialog.ui" line="4932"/>
         <source>Font Size:</source>
         <translation>Μέγεθος γραμματοσειράς:</translation>
     </message>
@@ -1145,7 +1145,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="872"/>
         <location filename="../src/configdialog.ui" line="2317"/>
-        <location filename="../src/configdialog.ui" line="4120"/>
+        <location filename="../src/configdialog.ui" line="4113"/>
         <source>Never</source>
         <translation>ποτέ</translation>
     </message>
@@ -1426,7 +1426,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1629"/>
         <location filename="../src/configdialog.cpp" line="544"/>
-        <location filename="../src/configmanager.cpp" line="1528"/>
+        <location filename="../src/configmanager.cpp" line="1527"/>
         <source>Editor</source>
         <translation>Επεξεργαστής κειμένου</translation>
     </message>
@@ -1477,7 +1477,7 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1711"/>
-        <location filename="../src/configdialog.ui" line="4925"/>
+        <location filename="../src/configdialog.ui" line="4918"/>
         <source>Font Family:</source>
         <translation>Γραμματοσειρά:</translation>
     </message>
@@ -1518,8 +1518,8 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1789"/>
-        <location filename="../src/configdialog.ui" line="4201"/>
-        <location filename="../src/configdialog.ui" line="4298"/>
+        <location filename="../src/configdialog.ui" line="4194"/>
+        <location filename="../src/configdialog.ui" line="4291"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -2137,63 +2137,58 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <translation>Αυτόματη επιλογή των καλύτερων τρόπων προβολής</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2877"/>
+        <location filename="../src/configdialog.ui" line="2896"/>
         <source>Render Mode:</source>
         <translation>Διαδικασίας απόδοσης:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2885"/>
+        <location filename="../src/configdialog.ui" line="2872"/>
         <source>QCE (recommended)</source>
         <translation>QCE (συνιστώμενη)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2890"/>
+        <location filename="../src/configdialog.ui" line="2877"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2895"/>
+        <location filename="../src/configdialog.ui" line="2882"/>
         <source>Single Letter</source>
         <translation>Single Letter</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2903"/>
+        <location filename="../src/configdialog.ui" line="2917"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>Αν η μνήμη cache των γραμμών που έχουν ήδη αποδοθεί είναι ενεργοποιημένη, τότε αυτές αποθηκεύονται στη μνήμη cache, ώστε να μην είναι απαραίτητη η εκ νέου απόδοσή τους. Σε αυτήν την περίπτωση, αν και ο χρόνος μεταγλώττισης μειώνεται (ειδικά σε Mac), χρησιμοποιείται περισσότερη μνήμη.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2906"/>
+        <location filename="../src/configdialog.ui" line="2920"/>
         <source>Disable cache of rendered lines</source>
         <translation>Απενεργοποίηση μνήμης cache των γραμμών που έχουν αποδοθεί</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2913"/>
+        <location filename="../src/configdialog.ui" line="2903"/>
         <source>Disable fixed pitch mode</source>
         <translation>Απενεργοποίηση λειτουργίας fixed pitch</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2920"/>
+        <location filename="../src/configdialog.ui" line="2910"/>
         <source>Disable cache of character width</source>
         <translation>Απενεργοποίηση μνήμης cache του πλάτους χαρακτήρα</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2927"/>
-        <source>Use QImage as cache type</source>
-        <translation>Χρήση QImage ως τύπο μνήμης cache</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2990"/>
+        <location filename="../src/configdialog.ui" line="2983"/>
         <source>Formats</source>
         <translation>Μορφή</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3019"/>
+        <location filename="../src/configdialog.ui" line="3012"/>
         <location filename="../src/configdialog.cpp" line="547"/>
         <source>Completion</source>
         <translation>Αυτόματη συμπλήρωση</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3025"/>
+        <location filename="../src/configdialog.ui" line="3018"/>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
@@ -2212,118 +2207,118 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3035"/>
+        <location filename="../src/configdialog.ui" line="3028"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Αυτόματη αντικατάσταση των εντολών LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3042"/>
+        <location filename="../src/configdialog.ui" line="3035"/>
         <source>Insert Arguments</source>
         <translation>Εισαγωγή εντολών με τις αντίστοιχες παραμέτρους τους</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3052"/>
+        <location filename="../src/configdialog.ui" line="3045"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation>Επιτρέπει την εμφάνιση tooltip με προτάσεις για τη συμπλήρωση ετικετών/βιβλιογραφίας ή με την προεπισκόπηση χρωμάτων/εικόνων</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3055"/>
+        <location filename="../src/configdialog.ui" line="3048"/>
         <source>ToolTip-Preview</source>
         <translation>Εμφάνιση προεπισκόπησης εντολών μέσω tooltip</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3062"/>
+        <location filename="../src/configdialog.ui" line="3055"/>
         <source>Arguments as Placeholders</source>
         <translation>Εισαγωγή placeholders στη θέση των παραμέτρων των εντολών</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3072"/>
+        <location filename="../src/configdialog.ui" line="3065"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
         <translation>Επιτρέπει την εμφάνιση ενός tooltip με την περιγραφή της επιλεγμένης εντολής του εργαλείου αυτόματης συμπλήρωσης</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3075"/>
+        <location filename="../src/configdialog.ui" line="3068"/>
         <source>ToolTip-Help</source>
         <translation>Εμφάνιση βοήθειας εντολών σε tooltip</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3085"/>
+        <location filename="../src/configdialog.ui" line="3078"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>Το εργαλείο αυτόματης συμπλήρωσης εμφανίζει προτάσεις με την πληκτρολόγηση του χαρακτήρα &apos;\&apos; (αυτόματα) ή με τη χρήση του συνδυασμού πλήκτρων Ctrl+Space (χειροκίνητα).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3088"/>
+        <location filename="../src/configdialog.ui" line="3081"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Αυτόματη εκκίνηση εργαλείου αυτόματης συμπλήρωσης με την πληκτρολόγηση εντολών LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3097"/>
+        <location filename="../src/configdialog.ui" line="3090"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>Μέγεθος της γραμμής καρτελών στο πάνω ή κάτω μέρος του εργαλείου αυτόματης συμπλήρωσης</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3100"/>
+        <location filename="../src/configdialog.ui" line="3093"/>
         <source>Tab Bar Size</source>
         <translation>Μέγεθος της γραμμής καρτελών</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3110"/>
+        <location filename="../src/configdialog.ui" line="3103"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
         <translation>Μέγεθος της γραμμής καρτελών στο πάνω ή κάτω μέρος του εργαλείου αυτόματης συμπλήρωσης</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3144"/>
+        <location filename="../src/configdialog.ui" line="3137"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Αποδοχή πρότασης εργαλείου αυτόματης συμπλήρωσης με την πληκτρολόγηση μη αλφαριθμητικού χαρακτήρα ή παύλας</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3154"/>
+        <location filename="../src/configdialog.ui" line="3147"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation>Αν όλες οι προτάσεις του εργαλείου αυτόματης συμπλήρωσης έχουν του επόμενους χαρακτήρες τους κοινούς, μπορείτε να χρησιμοποιήσετε το πλήκτρο &lt;Tab&gt; για να τις εισάγετε αυτόματα.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3157"/>
+        <location filename="../src/configdialog.ui" line="3150"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Αυτόματη εισαγωγή κοινών αρχικών χαρακτήρων</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3169"/>
+        <location filename="../src/configdialog.ui" line="3162"/>
         <source>Preferred Commands Set:</source>
         <translation>Προεπιλεγμένη καρτέλα εργαλείου αυτόματης συμπλήρωσης:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3177"/>
+        <location filename="../src/configdialog.ui" line="3170"/>
         <source>Typical</source>
         <translation>τυπικά</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3182"/>
+        <location filename="../src/configdialog.ui" line="3175"/>
         <source>Most Used</source>
         <translation>πιο δημοφιλή</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3187"/>
+        <location filename="../src/configdialog.ui" line="3180"/>
         <source>Fuzzy</source>
         <translation>fuzzy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3192"/>
+        <location filename="../src/configdialog.ui" line="3185"/>
         <source>All</source>
         <translation>όλα</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3215"/>
+        <location filename="../src/configdialog.ui" line="3208"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
         <translation>Εάν μια μαθηματική εντολή εισαχθεί μέσω του εργαλείου αυτόματης συμπλήρωσης εκτός μαθηματικού περιβάλλοντος, αυτή εσωκλείεται αυτόματα σε $$.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3218"/>
+        <location filename="../src/configdialog.ui" line="3211"/>
         <source>Auto Insert Math Delimiters where needed</source>
         <translation>Αυτόματη εισαγωγή οριοθετών όπου χρειάζεται</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3230"/>
-        <location filename="../src/configdialog.ui" line="3268"/>
+        <location filename="../src/configdialog.ui" line="3223"/>
+        <location filename="../src/configdialog.ui" line="3261"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2337,569 +2332,569 @@ them here.</source>
 ειδικά αρχεία αυτόματης συμπλήρωσης χρήστη, αυτό μπορείτε να το κάνετε εδώ.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3238"/>
+        <location filename="../src/configdialog.ui" line="3231"/>
         <source>Permanently active completion files:</source>
         <translation>Μόνιμα ενεργά αρχεία αυτόματης συμπλήρωσης:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3248"/>
+        <location filename="../src/configdialog.ui" line="3241"/>
         <source>Filter list below</source>
         <translation>Αναζητήστε αρχεία από την παρακάτω λίστα</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3359"/>
+        <location filename="../src/configdialog.ui" line="3352"/>
         <source>Spell Check</source>
         <translation>Ορθογραφικός έλεγχος</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3365"/>
+        <location filename="../src/configdialog.ui" line="3358"/>
         <source>Default Language:</source>
         <translation>Προεπιλεγμένη γλώσσα:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3392"/>
+        <location filename="../src/configdialog.ui" line="3385"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Φάκελοι λεξικών:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3399"/>
+        <location filename="../src/configdialog.ui" line="3392"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
         <translation>Φάκελοι που περιέχουν λεξικά Hunspell διαχωρισμένοι με ερωτηματικό (;).
 Οι ειδικές λέξεις [txs-settings-dir] και [txs-app-dir] αντικαθίστανται με τα αντίστοιχα ονόματα φακέλων.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3409"/>
+        <location filename="../src/configdialog.ui" line="3402"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3416"/>
+        <location filename="../src/configdialog.ui" line="3409"/>
         <source>Thesaurus Database:</source>
         <translation>Βάση δεδομένων Thesaurus:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3446"/>
+        <location filename="../src/configdialog.ui" line="3439"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3459"/>
+        <location filename="../src/configdialog.ui" line="3452"/>
         <source>Import Dictionary...</source>
         <translation>Εισαγωγή λεξικού...</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3469"/>
+        <location filename="../src/configdialog.ui" line="3462"/>
         <source>Internal Grammar Check</source>
         <translation>Εσωτερικός γραμματικός έλεγχος</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3475"/>
+        <location filename="../src/configdialog.ui" line="3468"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation>Λέξεις που επαναλαμβάνονται σε μία παράγραφο θα επισημαίνονται.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3478"/>
+        <location filename="../src/configdialog.ui" line="3471"/>
         <source>Check for Word Repetitions</source>
         <translation>Έλεγχος για επαναλήψεις λέξεων</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3485"/>
+        <location filename="../src/configdialog.ui" line="3478"/>
         <source>Words Between Repetitions:</source>
         <translation>Λέξεις μεταξύ επαναλήψεων:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3495"/>
+        <location filename="../src/configdialog.ui" line="3488"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation>Ίδιες λέξεις - μεταξύ των οποίων δε βρίσκεται μεγαλύτερος αριθμός λέξεων από αυτόν - θεωρείται πως επαναλαμβάνονται και θα επισημαίνονται.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3505"/>
+        <location filename="../src/configdialog.ui" line="3498"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation>Ίδιες λέξεις με σχετικά μεγάλο πλήθος γραμμάτων - μεταξύ των οποίων δε βρίσκεται μεγαλύτερος αριθμός λέξεων από αυτόν - θεωρείται πως επαναλαμβάνονται και θα επισημαίνονται.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3515"/>
+        <location filename="../src/configdialog.ui" line="3508"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation>Λέξεις με αυτό (τουλάχιστον) το πλήθος γραμμάτων θα θεωρούνται «μεγάλες».</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3525"/>
+        <location filename="../src/configdialog.ui" line="3518"/>
         <source>Long Range Repetitions:</source>
         <translation>Επαναλήψεις μεγαλύτερων λέξεων:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3535"/>
+        <location filename="../src/configdialog.ui" line="3528"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation>Ελάχιστο πλήθος γραμμάτων «μεγάλης» λέξης</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3545"/>
+        <location filename="../src/configdialog.ui" line="3538"/>
         <source>Wordlist Directory:</source>
         <translation>Φάκελος λίστας λέξεων:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3552"/>
+        <location filename="../src/configdialog.ui" line="3545"/>
         <source>Certain informal or weak words will be highlighted.</source>
         <translation>Συγκεκριμένες ανεπίσημες, ανακριβείς ή ακατάλληλες λέξεις θα επισημαίνονται.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3555"/>
+        <location filename="../src/configdialog.ui" line="3548"/>
         <source>Check for Bad Words</source>
         <translation>Έλεγχος για αργκό ή ανεπίσημες λέξεις</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3562"/>
+        <location filename="../src/configdialog.ui" line="3555"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation>Φάκελος που περιέχει λίστες λέξεων οι οποίες είναι ακατάλληλες ή επαναλαμβάνονται συχνά.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3589"/>
+        <location filename="../src/configdialog.ui" line="3582"/>
         <source>Store the conversation with AI provider on disk to allow later retrieval</source>
         <translation>Αποθήκευση της συνομιλίας του AI στον δίσκο ώστε να είναι δυνατή η ανάκτησή της αργότερα.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3592"/>
+        <location filename="../src/configdialog.ui" line="3585"/>
         <source>AI chat assistant</source>
         <translation>Βοηθός AI</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3659"/>
+        <location filename="../src/configdialog.ui" line="3652"/>
         <source>Local Model</source>
         <translation>Τοπικό μοντέλο</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3599"/>
+        <location filename="../src/configdialog.ui" line="3592"/>
         <source>open-mistral-7b</source>
         <translation>open-mistral-7b</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3604"/>
+        <location filename="../src/configdialog.ui" line="3597"/>
         <source>open-mixtral-8x7b</source>
         <translation>open-mixtral-8x7b</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3609"/>
+        <location filename="../src/configdialog.ui" line="3602"/>
         <source>mistral-small-latest</source>
         <translation>mistral-small-latest</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3614"/>
+        <location filename="../src/configdialog.ui" line="3607"/>
         <source>mistral-medium-latest</source>
         <translation>mistral-medium-latest</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3619"/>
+        <location filename="../src/configdialog.ui" line="3612"/>
         <source>mistral-large-latest</source>
         <translation>mistral-large-latest</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3649"/>
+        <location filename="../src/configdialog.ui" line="3642"/>
         <source>Mistral AI</source>
         <translation>Mistral AI</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3654"/>
+        <location filename="../src/configdialog.ui" line="3647"/>
         <source>OpenAI</source>
         <translation>OpenAI</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3627"/>
+        <location filename="../src/configdialog.ui" line="3620"/>
         <source>AI provider:</source>
         <translation>Πάροχος AI:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3674"/>
+        <location filename="../src/configdialog.ui" line="3667"/>
         <source>Preferred model:</source>
         <translation>Προτιμώμενο μοντέλο:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3641"/>
+        <location filename="../src/configdialog.ui" line="3634"/>
         <source>API key:</source>
         <translation>API key:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3667"/>
+        <location filename="../src/configdialog.ui" line="3660"/>
         <source>Record Conversation</source>
         <translation>Καταγραφή συνομιλίας</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3634"/>
+        <location filename="../src/configdialog.ui" line="3627"/>
         <source>Retrieve list of models</source>
         <translation>Λήψη λίστας μοντέλων</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3687"/>
+        <location filename="../src/configdialog.ui" line="3680"/>
         <source>API URL:</source>
         <translation>Διεύθυνση URL API:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3694"/>
+        <location filename="../src/configdialog.ui" line="3687"/>
         <source>Default</source>
         <translation>Προεπιλογή</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3704"/>
+        <location filename="../src/configdialog.ui" line="3697"/>
         <source>LanguageTool</source>
         <translation>LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3710"/>
+        <location filename="../src/configdialog.ui" line="3703"/>
         <source>Path containing the LanguageTool java archive.</source>
         <translation>Διαδρομή που περιέχει το αρχείο java LanguageTool.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3717"/>
+        <location filename="../src/configdialog.ui" line="3710"/>
         <source>LT Path:</source>
         <translation>Διαδρομή LT:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3724"/>
+        <location filename="../src/configdialog.ui" line="3717"/>
         <source>Start LanguageTool if not running</source>
         <translation>Εκκίνηση LanguageTool εάν δεν εκτελείται ήδη</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3731"/>
+        <location filename="../src/configdialog.ui" line="3724"/>
         <source>Server URL: </source>
         <translation>URL διακομιστή:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3738"/>
+        <location filename="../src/configdialog.ui" line="3731"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
         <translation>Λίστα διαχωρισμένων με κόμμα κανόνων του LanguageTool που θα αγνοηθούν κατά τον γλωσσικό έλεγχο.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3762"/>
+        <location filename="../src/configdialog.ui" line="3755"/>
         <source>Ignored Rules:</source>
         <translation>Εξαιρεθέντες κανόνες:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3769"/>
-        <location filename="../src/configdialog.ui" line="3779"/>
-        <location filename="../src/configdialog.ui" line="3789"/>
-        <location filename="../src/configdialog.ui" line="3819"/>
+        <location filename="../src/configdialog.ui" line="3762"/>
+        <location filename="../src/configdialog.ui" line="3772"/>
+        <location filename="../src/configdialog.ui" line="3782"/>
+        <location filename="../src/configdialog.ui" line="3812"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
         <translation>Λίστα διαχωρισμένων με κόμμα κανόνων του LanguageTool, οι αντιστοιχίες των οποίων θα επισημαίνονται με ειδικό, προσαρμόσιμο τρόπο.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3799"/>
+        <location filename="../src/configdialog.ui" line="3792"/>
         <source>Special Rules 3:</source>
         <translation>Ειδικοί κανόνες 3:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3809"/>
+        <location filename="../src/configdialog.ui" line="3802"/>
         <source>Special Rules 2:</source>
         <translation>Ειδικοί κανόνες 2:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3829"/>
+        <location filename="../src/configdialog.ui" line="3822"/>
         <source>Special Rules 1:</source>
         <translation>Ειδικοί κανόνες 1:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3846"/>
+        <location filename="../src/configdialog.ui" line="3839"/>
         <source>Special Rules 4:</source>
         <translation>Ειδικοί κανόνες 4:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3856"/>
+        <location filename="../src/configdialog.ui" line="3849"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
         <translation>Θα εντοπιστεί αυτόματα από τη γλώσσα του ορθογραφικού ελέγχου που χρησιμοποιείται στο έγγραφο.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3863"/>
+        <location filename="../src/configdialog.ui" line="3856"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
         <translation>Εκτελέσιμο αρχείο της Java, χρησιμοποιείται για την εκκίνηση του LanguageTool, εάν δεν τρέχει ήδη.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3870"/>
+        <location filename="../src/configdialog.ui" line="3863"/>
         <source>Java:</source>
         <translation>Java:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3877"/>
-        <location filename="../src/configdialog.ui" line="3925"/>
+        <location filename="../src/configdialog.ui" line="3870"/>
+        <location filename="../src/configdialog.ui" line="3918"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
         <translation>Οι παράμετροι που δίνονται κατά την εκκίνηση του LanguageTool, εφόσον αυτή έχει γίνει από το TeXstudio και όχι από κάποιον ήδη σε λειτουργία διακομιστή.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3880"/>
+        <location filename="../src/configdialog.ui" line="3873"/>
         <source>LT Arguments:</source>
         <translation>Παράμετροι LT:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3904"/>
-        <location filename="../src/configdialog.ui" line="3932"/>
+        <location filename="../src/configdialog.ui" line="3897"/>
+        <location filename="../src/configdialog.ui" line="3925"/>
         <source>Restore Default</source>
         <translation>Επαναφορά προεπιλογής</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3918"/>
+        <location filename="../src/configdialog.ui" line="3911"/>
         <source>Url to connect to LanguageTool. </source>
         <translation>Διεύθυνση URL για τη σύνδεση με τον διακομιστή του LanguageTool.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4015"/>
+        <location filename="../src/configdialog.ui" line="4008"/>
         <source>Command:</source>
         <translation>Εντολή:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4026"/>
+        <location filename="../src/configdialog.ui" line="4019"/>
         <source>Preview with dvipng</source>
         <translation>Προεπισκόπηση με το dvipng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4031"/>
+        <location filename="../src/configdialog.ui" line="4024"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>Προεπισκόπηση με την εντολή dvipng --follow (παράλληλη εκτέλεση)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4036"/>
+        <location filename="../src/configdialog.ui" line="4029"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>Προεπισκόπηση με το dvips/ghostscript</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4041"/>
+        <location filename="../src/configdialog.ui" line="4034"/>
         <source>Preview with pdflatex</source>
         <translation>Προεπισκόπηση με το pdflatex</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4046"/>
+        <location filename="../src/configdialog.ui" line="4039"/>
         <source>Preview with lualatex</source>
         <translation>Προεπισκόπηση με το lualatex</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4051"/>
+        <location filename="../src/configdialog.ui" line="4044"/>
         <source>Preview with xelatex</source>
         <translation>Προεπισκόπηση με το xelatex</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4059"/>
+        <location filename="../src/configdialog.ui" line="4052"/>
         <source>Display Mode:</source>
         <translation>Εμφάνιση προεπισκόπησης:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4069"/>
+        <location filename="../src/configdialog.ui" line="4062"/>
         <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
         <translation>Με την τροποποίηση της ρύθμισης αυτής ενημερώνεται αυτόματα και η εμφάνιση προεπισκόπησης,
 η οποία ωστόσο παραμένει σε tooltip για την επιλογή «στην ίδια γραμμή».</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4076"/>
+        <location filename="../src/configdialog.ui" line="4069"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>σε tooltip, αν ο αντίστοιχος πίνακας είναι κρυμμένος</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4081"/>
+        <location filename="../src/configdialog.ui" line="4074"/>
         <source>Always show preview in preview panel</source>
         <translation>στον αντίστοιχο πίνακα</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4086"/>
+        <location filename="../src/configdialog.ui" line="4079"/>
         <source>Always show preview as tool tip</source>
         <translation>σε tooltip</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4091"/>
+        <location filename="../src/configdialog.ui" line="4084"/>
         <source>Always show both</source>
         <translation>και σε tooltip και στον αντίστοιχο πίνακα</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4096"/>
+        <location filename="../src/configdialog.ui" line="4089"/>
         <source>Inline</source>
         <translation>στην ίδια γραμμή</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4101"/>
+        <location filename="../src/configdialog.ui" line="4094"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>στο εσωτερικό πρόγραμμα προβολής αρχείων PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4109"/>
+        <location filename="../src/configdialog.ui" line="4102"/>
         <source>Update the preview on text change</source>
         <translation>Ενημέρωση της προεπισκόπησης σε πραγματικό χρόνο</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4112"/>
+        <location filename="../src/configdialog.ui" line="4105"/>
         <source>Auto Update:</source>
         <translation>Αυτόματη ενημέρωση:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4125"/>
+        <location filename="../src/configdialog.ui" line="4118"/>
         <source>Previously previewed text</source>
         <translation>στο κείμενο που εμφανίστηκε η προεπισκόπηση προηγουμένως</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4133"/>
+        <location filename="../src/configdialog.ui" line="4126"/>
         <source>Auto Update Delay:</source>
         <translation>Καθυστέρηση ενημέρωσης:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4143"/>
+        <location filename="../src/configdialog.ui" line="4136"/>
         <source> ms</source>
         <translation>ms</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4159"/>
+        <location filename="../src/configdialog.ui" line="4152"/>
         <source>Replace beamer class by article</source>
         <translation>Αντικατάσταση της κλάσης beamer από την κλάση article</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4172"/>
+        <location filename="../src/configdialog.ui" line="4165"/>
         <source>Precompile Preamble</source>
         <translation>Μεταγλώττιση προοιμίου εκ των προτέρων</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4188"/>
-        <location filename="../src/configdialog.ui" line="4311"/>
+        <location filename="../src/configdialog.ui" line="4181"/>
+        <location filename="../src/configdialog.ui" line="4304"/>
         <source>Scaling:</source>
         <translation>Μέγεθος:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4283"/>
+        <location filename="../src/configdialog.ui" line="4276"/>
         <location filename="../src/configdialog.cpp" line="550"/>
         <source>Internal PDF Viewer</source>
         <translation>Εσωτερικό πρόγραμμα προβολής PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4318"/>
+        <location filename="../src/configdialog.ui" line="4311"/>
         <source>Load Strategy:</source>
         <translation>Τρόπος φόρτωσης αρχείων:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4328"/>
+        <location filename="../src/configdialog.ui" line="4321"/>
         <source>Auto-recompile document on changes</source>
         <translation>Αυτόματη μεταγλώττιση εγγράφου στις αλλαγές</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4335"/>
+        <location filename="../src/configdialog.ui" line="4328"/>
         <source>Cache Size:</source>
         <translation>Μέγεθος μνήμης cache:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4345"/>
-        <location filename="../src/configdialog.ui" line="4710"/>
+        <location filename="../src/configdialog.ui" line="4338"/>
+        <location filename="../src/configdialog.ui" line="4703"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4367"/>
+        <location filename="../src/configdialog.ui" line="4360"/>
         <source>Infinite</source>
         <translation>Άπειρο</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4386"/>
+        <location filename="../src/configdialog.ui" line="4379"/>
         <source> dpi</source>
         <translation> dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4396"/>
+        <location filename="../src/configdialog.ui" line="4389"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ο τρόπος με τον οποίο φορτώνονται τα αρχεία PDF:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Το αρχείο φορτώνεται στην ενδιάμεση μνήμη (buffer) και ελέγχεται η ορθότητά του. Τα δεδομένα στη συνέχεια διαβιβάζονται στη βιβλιοθήκη poppler. Η επιλογή αυτή εισήχθη ώστε να βελτιώσει τον χρόνο φόρτωσης αρχείων PDF με παλαιότερες εκδόσεις της poppler (&amp;lt;0.24), οι οποίες δεν ήταν thread-safe. Έχει ωστόσο αναφερθεί πως η poppler παρουσιάζει προβλήματα με την επεξεργασία μεγάλων αρχείων και γι&apos; αυτό η επιλογή θεωρείται απαρχαιωμένη.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Άμεσος:&lt;/b&gt; Το αρχείο φορτώνεται με τις αντίστοιχες εγγενείς διαδικασίες της βιβλιοθήκης poppler. Με αυτήν την επιλογή, η φόρτωση είναι μεν πιο γρήγορη, ωστόσο δεν ελέγχεται η ορθότητα του αρχείου.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Υβριδικός (συνιστάται):&lt;/b&gt; Το αρχείο φορτώνεται στην ενδιάμεση μνήμη (buffer) και ελέγχεται η ορθότητά του. Αν το αρχείο είναι μικρό (&amp;lt; 50MB), χρησιμοποιείται αυτή η ενδιάμεση μνήμη για τη φόρτωσή του. Σε διαφορετική περίπτωση, χρησιμοποιούνται οι αντίστοιχες εγγενείς διαδικασίες της poppler. Η επιλογή αυτή συνδυάζει τις παραπάνω δύο χωρίς να «κληρονομεί» τα μειονεκτήματά τους.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4406"/>
+        <location filename="../src/configdialog.ui" line="4399"/>
         <source>Buffered</source>
         <translation>Buffered</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4411"/>
+        <location filename="../src/configdialog.ui" line="4404"/>
         <source>Direct</source>
         <translation>Άμεσος</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4416"/>
+        <location filename="../src/configdialog.ui" line="4409"/>
         <source>Hybrid</source>
         <translation>Υβριδικός</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4424"/>
+        <location filename="../src/configdialog.ui" line="4417"/>
         <source>Highlight Duration</source>
         <translation>Διάρκεια επισήμανσης</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4434"/>
+        <location filename="../src/configdialog.ui" line="4427"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>Δεκαεξαδική τιμή RGBA. Επειδή το χρώμα της επισήμανσης τοποθετείται πάνω από το κείμενο, είναι απαραίτητος ο καθορισμός της διαφάνειας.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4437"/>
+        <location filename="../src/configdialog.ui" line="4430"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4451"/>
+        <location filename="../src/configdialog.ui" line="4444"/>
         <source>Rectangle</source>
         <translation>Ορθογώνιο παραλληλόγραμμο</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4456"/>
+        <location filename="../src/configdialog.ui" line="4449"/>
         <source>Circle</source>
         <translation>Κύκλος</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4477"/>
+        <location filename="../src/configdialog.ui" line="4470"/>
         <source>Highlight Color</source>
         <translation>Χρώμα επισήμανσης</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4487"/>
+        <location filename="../src/configdialog.ui" line="4480"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation>Προεπιλεγμένο χρώμα φόντου (δεκαεξαδική τιμή RGB). Σημείωση: Μόνο τα αρχεία PDF που έχουν φορτωθεί μετά την εφαρμογή της ρύθμισης επηρεάζονται από αυτήν την επιλογή. Το χρώμα χαρτιού των ήδη ανοιγμένων αρχείων δε θα αλλάξει.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4512"/>
+        <location filename="../src/configdialog.ui" line="4505"/>
         <source>Border</source>
         <translation>Περίγραμμα</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4519"/>
+        <location filename="../src/configdialog.ui" line="4512"/>
         <source>Shadow</source>
         <translation>Σκιά</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4542"/>
+        <location filename="../src/configdialog.ui" line="4535"/>
         <source>Original Size</source>
         <translation>διατήρηση αρχικού</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4547"/>
+        <location filename="../src/configdialog.ui" line="4540"/>
         <source>Fit to Window Width</source>
         <translation>προσαρμογή στο πλάτος του παραθύρου</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4552"/>
+        <location filename="../src/configdialog.ui" line="4545"/>
         <source>Fit to Window Size</source>
         <translation>προσαρμογή στο παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4557"/>
+        <location filename="../src/configdialog.ui" line="4550"/>
         <source>Scaled Size</source>
         <translation>μεταβλητό (με αρχική τιμή αυτήν που ορίζεται παρακάτω)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4562"/>
+        <location filename="../src/configdialog.ui" line="4555"/>
         <source>Fit to Text Width</source>
         <translation>προσαρμογή στο πλάτος του κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4570"/>
+        <location filename="../src/configdialog.ui" line="4563"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4592"/>
+        <location filename="../src/configdialog.ui" line="4585"/>
         <source>Synchronized Files Types:</source>
         <translation>Τύποι συγχρονισμένων αρχείων:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4602"/>
+        <location filename="../src/configdialog.ui" line="4595"/>
         <source>Paper Color</source>
         <translation>Χρώμα χαρτιού</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4612"/>
-        <location filename="../src/configdialog.ui" line="4666"/>
+        <location filename="../src/configdialog.ui" line="4605"/>
+        <location filename="../src/configdialog.ui" line="4659"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2910,123 +2905,123 @@ Note: Changing this setting will only affect documents that are opened afterward
 Σημείωση: Η εφαρμογή αυτής της επιλογής ξεκινά με το άνοιγμα του επόμενου αρχείου PDF.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4618"/>
+        <location filename="../src/configdialog.ui" line="4611"/>
         <source>Render Backend:</source>
         <translation>Σύστημα υποστήριξης απόδοσης:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4628"/>
+        <location filename="../src/configdialog.ui" line="4621"/>
         <source>Presentation Laser Pointer Size:</source>
         <translation>Μέγεθος δείκτη λέιζερ:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4635"/>
+        <location filename="../src/configdialog.ui" line="4628"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>Σημείωση: μπορείτε να επιλέξετε αν θέλετε το πρόγραμμα προβολής ενσωματωμένο ή σε νέο παράθυρο στην καρτέλα Δημιουργία -&gt; Προβολή PDF αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4642"/>
+        <location filename="../src/configdialog.ui" line="4635"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>Απενεργοποίηση οριζόντιας κύλισης για την επιλογή μεγέθους &quot;προσαρμογή στο πλάτος του κειμένου&quot;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4652"/>
+        <location filename="../src/configdialog.ui" line="4645"/>
         <source>Scale Option:</source>
         <translation>Επιλογές μεγέθους:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4659"/>
+        <location filename="../src/configdialog.ui" line="4652"/>
         <source>Magnifier Shape:</source>
         <translation>Σχήμα μεγεθυντικού φακού:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4689"/>
+        <location filename="../src/configdialog.ui" line="4682"/>
         <source>Magnifier Size:</source>
         <translation>Μέγεθος μεγεθυντικού φακού:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4696"/>
+        <location filename="../src/configdialog.ui" line="4689"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Αυτόματη απόκρυψη των γραμμών εργαλείων του ενσωματωμένου προγράμματος προβολής PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4703"/>
+        <location filename="../src/configdialog.ui" line="4696"/>
         <source>Presentation Laser Pointer Color:</source>
         <translation>Χρώμα δείκτη λέιζερ:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4793"/>
+        <location filename="../src/configdialog.ui" line="4786"/>
         <source>Use SVN</source>
         <translation>Χρήση SVN</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4798"/>
+        <location filename="../src/configdialog.ui" line="4791"/>
         <source>Use GIT</source>
         <translation>Χρήση GIT</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4806"/>
+        <location filename="../src/configdialog.ui" line="4799"/>
         <source>Select how txs checks in saved files</source>
         <translation>Ο τρόπος με τον οποίο το txs κάνει check-in τα αποθηκευμένα αρχεία.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4810"/>
+        <location filename="../src/configdialog.ui" line="4803"/>
         <source>No automatic check-in after save</source>
         <translation>Μη αυτόματο check-in μετά την αποθήκευση</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4815"/>
+        <location filename="../src/configdialog.ui" line="4808"/>
         <source>Check-in after File/Save only</source>
         <translation>Αυτόματο check-in μόνο με το κλικ στην επιλογή Αρχείο/Αποθήκευση</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4820"/>
+        <location filename="../src/configdialog.ui" line="4813"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>Αυτόματο check-in κάθε φορά που το αρχείο αποθηκεύεται (δηλαδή ακόμα και πριν τη μεταγλώττιση)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4828"/>
+        <location filename="../src/configdialog.ui" line="4821"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation>Χρήση του ιστορικού εκδόσεων SVN/GIT για την αναίρεση αλλαγών που έγιναν πριν την τελευταία αποθήκευση του αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4835"/>
+        <location filename="../src/configdialog.ui" line="4828"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>Πριν την εντολή svn add, εκτελείται η svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4838"/>
+        <location filename="../src/configdialog.ui" line="4831"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>Αντικατάσταση Keywords με Properties (στην εντολή svn add)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4847"/>
+        <location filename="../src/configdialog.ui" line="4840"/>
         <source>SVN Directory Search Depth: </source>
         <translation>Βάθος εύρεσης φακέλου SVN:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4905"/>
+        <location filename="../src/configdialog.ui" line="4898"/>
         <location filename="../src/configdialog.cpp" line="553"/>
         <source>Internal Terminal</source>
         <translation>Εσωτερική γραμμή εντολών</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4956"/>
+        <location filename="../src/configdialog.ui" line="4949"/>
         <source>Shell:</source>
         <translation>Shell:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5012"/>
+        <location filename="../src/configdialog.ui" line="5005"/>
         <source>Show Advanced Options</source>
         <translation>Εμφάνιση ρυθμίσεων για προχωρημένους</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5038"/>
+        <location filename="../src/configdialog.ui" line="5031"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5048"/>
+        <location filename="../src/configdialog.ui" line="5041"/>
         <source>Cancel</source>
         <translation>Άκυρο</translation>
     </message>
@@ -3105,7 +3100,7 @@ to set the key anyway?</source>
         <translation>Διαφορές</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4009"/>
+        <location filename="../src/configdialog.ui" line="4002"/>
         <location filename="../src/configdialog.cpp" line="507"/>
         <location filename="../src/configdialog.cpp" line="549"/>
         <source>Preview</source>
@@ -3193,7 +3188,7 @@ to set the key anyway?</source>
         <translation>Γλωσσικός έλεγχος</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4786"/>
+        <location filename="../src/configdialog.ui" line="4779"/>
         <location filename="../src/configdialog.cpp" line="551"/>
         <source>SVN/GIT</source>
         <translation>SVN/GIT</translation>
@@ -3312,7 +3307,7 @@ options again to only view the most common settings.</source>
 επιλογή αυτή αν θέλετε να δείτε τις πιο συνηθισμένες ρυθμίσεις.</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1529"/>
+        <location filename="../src/configmanager.cpp" line="1528"/>
         <source>Basic Key Mapping</source>
         <translation>Βασικοί συνδυασμοί πλήκτρων</translation>
     </message>
@@ -4454,164 +4449,164 @@ text: το κείμενο του αντικειμένου</translation>
         <translation>pageref</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1100"/>
-        <location filename="../src/configmanager.cpp" line="1106"/>
-        <location filename="../src/configmanager.cpp" line="1122"/>
-        <location filename="../src/configmanager.cpp" line="1127"/>
+        <location filename="../src/configmanager.cpp" line="1099"/>
+        <location filename="../src/configmanager.cpp" line="1105"/>
+        <location filename="../src/configmanager.cpp" line="1121"/>
+        <location filename="../src/configmanager.cpp" line="1126"/>
         <source>Key replacement: %1 %2</source>
         <translation>Αντικατάσταση πλήκτρου: %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1100"/>
-        <location filename="../src/configmanager.cpp" line="1122"/>
+        <location filename="../src/configmanager.cpp" line="1099"/>
+        <location filename="../src/configmanager.cpp" line="1121"/>
         <source>before word</source>
         <translation>πριν τη λέξη</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1106"/>
-        <location filename="../src/configmanager.cpp" line="1127"/>
+        <location filename="../src/configmanager.cpp" line="1105"/>
+        <location filename="../src/configmanager.cpp" line="1126"/>
         <source>after word</source>
         <translation>μετά τη λέξη</translation>
     </message>
     <message>
+        <location filename="../src/configmanager.cpp" line="1447"/>
         <location filename="../src/configmanager.cpp" line="1448"/>
-        <location filename="../src/configmanager.cpp" line="1449"/>
-        <location filename="../src/configmanager.cpp" line="1632"/>
-        <location filename="../src/configmanager.cpp" line="1916"/>
-        <location filename="../src/configmanager.cpp" line="1924"/>
+        <location filename="../src/configmanager.cpp" line="1631"/>
+        <location filename="../src/configmanager.cpp" line="1915"/>
+        <location filename="../src/configmanager.cpp" line="1923"/>
         <source>default</source>
         <translation>προεπιλεγμένο</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1506"/>
+        <location filename="../src/configmanager.cpp" line="1505"/>
         <source>Menus</source>
         <translation>Μενού</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1514"/>
+        <location filename="../src/configmanager.cpp" line="1513"/>
         <source>Menus PDF-Viewer</source>
         <translation>Μενού PDF-Viewer</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1550"/>
-        <location filename="../src/configmanager.cpp" line="2801"/>
+        <location filename="../src/configmanager.cpp" line="1549"/>
+        <location filename="../src/configmanager.cpp" line="2800"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;καμία&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1596"/>
+        <location filename="../src/configmanager.cpp" line="1595"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Προσθήκη νέου αντικειμένου στο μενού (πριν)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1599"/>
+        <location filename="../src/configmanager.cpp" line="1598"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Προσθήκη νέου δευτερεύοντος μενού (πριν)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1602"/>
+        <location filename="../src/configmanager.cpp" line="1601"/>
         <source>Revert/Remove User Menu Item</source>
         <translation>Διαγραφή αντικειμένου/δευτερεύοντος μενού (πρέπει να έχει προστεθεί από εσάς)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1620"/>
+        <location filename="../src/configmanager.cpp" line="1619"/>
         <source>Latex/Math menus</source>
         <translation>Μενού μαθηματικών/LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1621"/>
+        <location filename="../src/configmanager.cpp" line="1620"/>
         <source>All menus</source>
         <translation>Όλα τα μενού</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1622"/>
+        <location filename="../src/configmanager.cpp" line="1621"/>
         <source>Special Tags</source>
         <translation>Ειδικές ετικέτες</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1716"/>
+        <location filename="../src/configmanager.cpp" line="1715"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Έχετε ενεργοποιήσει την αυτόματη αντικατάσταση εισαγωγικών. Ωστόσο, υπάρχουν μακροεντολές των οποίων το πεδίο trigger είναι (?language:latex)(?&lt;=\s|^) ή (?language:latex)(?&lt;=\S), με αποτέλεσμα να υπερισχύουν της παραπάνω ρύθμισης.
 Θέλετε να καταργήσετε τις μακροεντολές αυτές;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1999"/>
+        <location filename="../src/configmanager.cpp" line="1998"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Για να αξιοποιήσετε πλήρως το εσωτερικό πρόγραμμα προβολής PDF, πρέπει να ενεργοποιηθεί το synctex. Να γίνει η ενεργοποίηση τώρα από το TeXstudio;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2014"/>
+        <location filename="../src/configmanager.cpp" line="2013"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Πρόσφατα &apos;κύρια αρχεία&apos; %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2017"/>
+        <location filename="../src/configmanager.cpp" line="2016"/>
         <source>Recent File %1</source>
         <translation>Πρόσφατο αρχείο %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2018"/>
+        <location filename="../src/configmanager.cpp" line="2017"/>
         <source>Clear file list</source>
         <translation>Εκκαθάριση λίστας αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2019"/>
+        <location filename="../src/configmanager.cpp" line="2018"/>
         <source>File list</source>
         <translation>Λίστα αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2020"/>
+        <location filename="../src/configmanager.cpp" line="2019"/>
         <source>Open first non-open file</source>
         <translation>Άνοιγμα του πρώτου μη ανοιγμένου αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2021"/>
+        <location filename="../src/configmanager.cpp" line="2020"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Άνοιγμα όλων των αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2031"/>
+        <location filename="../src/configmanager.cpp" line="2030"/>
         <source>Root Document: </source>
         <translation>Κύριο έγγραφο: </translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2802"/>
+        <location filename="../src/configmanager.cpp" line="2801"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;προεπιλεγμένο&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3061"/>
+        <location filename="../src/configmanager.cpp" line="3060"/>
         <source>Configure</source>
         <translation>Επιλογές</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3068"/>
+        <location filename="../src/configmanager.cpp" line="3067"/>
         <source>Select Program</source>
         <translation>Επιλογή εκτελέσιμου αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3075"/>
+        <location filename="../src/configmanager.cpp" line="3074"/>
         <source>Restore Default</source>
         <translation>Επαναφορά προεπιλογής</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3122"/>
+        <location filename="../src/configmanager.cpp" line="3121"/>
         <source>Repeat contained compilation commands</source>
         <translation>Να επαναλαμβάνεται η εκτέλεση αυτής της εντολής μεταγλώττισης αν χρειαστεί.</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3170"/>
+        <location filename="../src/configmanager.cpp" line="3169"/>
         <source>Add</source>
         <translation>Προσθήκη</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3253"/>
+        <location filename="../src/configmanager.cpp" line="3252"/>
         <source>Browse program</source>
         <translation>Αναζήτηση προγράμματος</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3592"/>
+        <location filename="../src/configmanager.cpp" line="3591"/>
         <source>text is restored after restart</source>
         <translation>το κείμενο επαναφέρεται μετά την επανεκκίνηση</translation>
     </message>
@@ -4903,23 +4898,23 @@ You have to make sure yourself that the file encoding and the value passed to th
 <context>
     <name>GrammarCheck</name>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="324"/>
+        <location filename="../src/grammarcheck.cpp" line="332"/>
         <source>Word repetition</source>
         <translation>Επανάληψη λέξεων</translation>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="334"/>
+        <location filename="../src/grammarcheck.cpp" line="342"/>
         <source>Word repetition. Distance %1</source>
         <translation>Επανάληψη λέξεων. Απόσταση %1</translation>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="336"/>
+        <location filename="../src/grammarcheck.cpp" line="344"/>
         <source>Long range word repetition. Distance %1</source>
         <translation>Επανάληψη μεγάλων λέξεων. Απόσταση %1</translation>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="346"/>
-        <location filename="../src/grammarcheck.cpp" line="348"/>
+        <location filename="../src/grammarcheck.cpp" line="354"/>
+        <location filename="../src/grammarcheck.cpp" line="356"/>
         <source>Bad word</source>
         <translation>Αργκό/ανεπίσημη λέξη</translation>
     </message>
@@ -4927,7 +4922,7 @@ You have to make sure yourself that the file encoding and the value passed to th
 <context>
     <name>Help</name>
     <message>
-        <location filename="../src/help.cpp" line="89"/>
+        <location filename="../src/help.cpp" line="97"/>
         <source>texdoc not found.</source>
         <translation>Δε βρέθηκε το texdoc</translation>
     </message>
@@ -5175,52 +5170,52 @@ The wizard does not support command </source>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1484"/>
-        <location filename="../src/latexcompleter.cpp" line="1494"/>
+        <location filename="../src/latexcompleter.cpp" line="1500"/>
+        <location filename="../src/latexcompleter.cpp" line="1510"/>
         <source>typical</source>
         <translation>τυπικά</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1485"/>
-        <location filename="../src/latexcompleter.cpp" line="1495"/>
+        <location filename="../src/latexcompleter.cpp" line="1501"/>
+        <location filename="../src/latexcompleter.cpp" line="1511"/>
         <source>most used</source>
         <translation>πιο δημοφιλή</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1486"/>
-        <location filename="../src/latexcompleter.cpp" line="1496"/>
+        <location filename="../src/latexcompleter.cpp" line="1502"/>
+        <location filename="../src/latexcompleter.cpp" line="1512"/>
         <source>fuzzy</source>
         <translation>fuzzy</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1487"/>
-        <location filename="../src/latexcompleter.cpp" line="1497"/>
+        <location filename="../src/latexcompleter.cpp" line="1503"/>
+        <location filename="../src/latexcompleter.cpp" line="1513"/>
         <source>all</source>
         <translation>όλα</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1488"/>
-        <location filename="../src/latexcompleter.cpp" line="1498"/>
+        <location filename="../src/latexcompleter.cpp" line="1504"/>
+        <location filename="../src/latexcompleter.cpp" line="1514"/>
         <source>press shift+space to change view</source>
         <translation>πατήστε shift+space για αλλαγή προβολής</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1699"/>
+        <location filename="../src/latexcompleter.cpp" line="1715"/>
         <source> (Usertag)</source>
         <translation>(Usertag)</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2073"/>
+        <location filename="../src/latexcompleter.cpp" line="2098"/>
         <source>label missing!</source>
         <translation>λείπει η ετικέτα!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2075"/>
+        <location filename="../src/latexcompleter.cpp" line="2100"/>
         <source>label defined multiple times!</source>
         <translation>η ετικέτα έχει οριστεί παραπάνω από μία φορές!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2085"/>
+        <location filename="../src/latexcompleter.cpp" line="2110"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Όνομα αρχείου: %1&lt;/b&gt;
@@ -5235,226 +5230,231 @@ The wizard does not support command </source>
         <translation>Παρουσιάστηκε άγνωστο σφάλμα. Πιθανό crash. Συνιστάται η επανεκκίνηση του TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2631"/>
+        <location filename="../src/latexdocument.cpp" line="2658"/>
         <source>Root file not found</source>
         <translation>Δεν ήταν δυνατή η εύρεση του κύριου αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2636"/>
+        <location filename="../src/latexdocument.cpp" line="2663"/>
         <source>Invalid codec</source>
         <translation>Μη έγκυρος κωδικοποιητής</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2650"/>
+        <location filename="../src/latexdocument.cpp" line="2677"/>
         <source>Missing value for -job-name</source>
         <translation>Λείπει η τιμή για -job-name</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2653"/>
+        <location filename="../src/latexdocument.cpp" line="2680"/>
         <source>Unknown magic comment</source>
         <translation>Άγνωστο μαγικό σχόλιο</translation>
+    </message>
+    <message>
+        <location filename="../src/tests/structureview_t.cpp" line="15"/>
+        <source>LABELS</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>LatexEditorView</name>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="316"/>
+        <location filename="../src/latexeditorview.cpp" line="399"/>
         <source>Could not open url:</source>
         <translation>Δεν ήταν δυνατό το άνοιγμα της διεύθυνσης URL:</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="396"/>
+        <location filename="../src/latexeditorview.cpp" line="479"/>
         <source>Copy Image</source>
         <translation>Αντιγραφή εικόνας</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="397"/>
+        <location filename="../src/latexeditorview.cpp" line="480"/>
         <source>Save Image As...</source>
         <translation>Αποθήκευση εικόνας ως...</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="456"/>
+        <location filename="../src/latexeditorview.cpp" line="539"/>
         <source>Spelling</source>
         <translation>Ορθογραφικός έλεγχος</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="470"/>
+        <location filename="../src/latexeditorview.cpp" line="553"/>
         <source>New BibTeX Entry %1</source>
         <translation>Νέα εγγραφή BibTeX %1</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="496"/>
+        <location filename="../src/latexeditorview.cpp" line="579"/>
         <source>Open %1</source>
         <translation>Άνοιγμα %1</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="503"/>
+        <location filename="../src/latexeditorview.cpp" line="586"/>
         <source>Open Bibliography</source>
         <translation>Άνοιγμα βιβλιογραφίας</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="512"/>
-        <location filename="../src/latexeditorview.cpp" line="528"/>
-        <location filename="../src/latexeditorview.cpp" line="541"/>
+        <location filename="../src/latexeditorview.cpp" line="595"/>
+        <location filename="../src/latexeditorview.cpp" line="611"/>
+        <location filename="../src/latexeditorview.cpp" line="624"/>
         <source>Open package documentation</source>
         <translation>Άνοιγμα τεκμηρίωσης πακέτου</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="549"/>
+        <location filename="../src/latexeditorview.cpp" line="632"/>
         <source>Go to Definition</source>
         <translation>Μετάβαση στον ορισμό</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="555"/>
+        <location filename="../src/latexeditorview.cpp" line="638"/>
         <source>Find Usages</source>
         <translation>Εύρεση αναφορών</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="562"/>
+        <location filename="../src/latexeditorview.cpp" line="645"/>
         <source>Thesaurus...</source>
         <translation>Thesaurus...</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="589"/>
+        <location filename="../src/latexeditorview.cpp" line="672"/>
         <source>use yours</source>
         <translation>εφαρμογή των δικών σας αλλαγών</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="593"/>
+        <location filename="../src/latexeditorview.cpp" line="676"/>
         <source>use other&apos;s</source>
         <translation>εφαρμογή αλλαγών του άλλου αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="613"/>
+        <location filename="../src/latexeditorview.cpp" line="696"/>
         <source>Go to PDF</source>
         <translation>Μετάβαση στο PDF</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="1214"/>
+        <location filename="../src/latexeditorview.cpp" line="1303"/>
         <source>untitled</source>
         <translation>χωρίς τίτλο</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2382"/>
+        <location filename="../src/latexeditorview.cpp" line="2492"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2415"/>
+        <location filename="../src/latexeditorview.cpp" line="2525"/>
         <source>Add to Dictionary</source>
         <translation>Προσθήκη στο λεξικό</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2417"/>
+        <location filename="../src/latexeditorview.cpp" line="2527"/>
         <source>Ignore all</source>
         <translation>Παράβλεψη όλων</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2682"/>
+        <location filename="../src/latexeditorview.cpp" line="2792"/>
         <source>label missing!</source>
         <translation>λείπει η ετικέτα!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2684"/>
-        <location filename="../src/latexeditorview.cpp" line="2704"/>
+        <location filename="../src/latexeditorview.cpp" line="2794"/>
+        <location filename="../src/latexeditorview.cpp" line="2814"/>
         <source>label defined multiple times!</source>
         <translation>η ετικέτα έχει οριστεί παραπάνω από μία φορές!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2693"/>
-        <location filename="../src/latexeditorview.cpp" line="2768"/>
+        <location filename="../src/latexeditorview.cpp" line="2803"/>
+        <location filename="../src/latexeditorview.cpp" line="2880"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Όνομα αρχείου: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/latexeditorview.cpp" line="2707"/>
+        <location filename="../src/latexeditorview.cpp" line="2817"/>
         <source>%n reference(s) to this label</source>
         <translation><numerusform>%n αναφορά σε αυτήν την ετικέτα</numerusform><numerusform>%n αναφορές σε αυτήν την ετικέτα</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2712"/>
+        <location filename="../src/latexeditorview.cpp" line="2822"/>
         <source>Class</source>
         <translation>Κλάση</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2712"/>
+        <location filename="../src/latexeditorview.cpp" line="2822"/>
         <source>Package</source>
         <translation>Πακέτο</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2716"/>
+        <location filename="../src/latexeditorview.cpp" line="2826"/>
         <source>Beamer Theme</source>
         <translation>Θέμα Beamer</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2726"/>
+        <location filename="../src/latexeditorview.cpp" line="2838"/>
         <source>not found</source>
         <translation>δε βρέθηκε</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2743"/>
+        <location filename="../src/latexeditorview.cpp" line="2855"/>
         <source>Citation correct (reading ...)</source>
         <translation>Παραπομπή σωστή (ανάγνωση ...)</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2749"/>
+        <location filename="../src/latexeditorview.cpp" line="2861"/>
         <source>Citation missing</source>
         <translation>Η παραπομπή λείπει</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2752"/>
+        <location filename="../src/latexeditorview.cpp" line="2864"/>
         <source>Warning:</source>
         <translation>Προειδοποίηση:</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2752"/>
+        <location filename="../src/latexeditorview.cpp" line="2864"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>Το αναγνωριστικό BibTeX τελειώνει με κενό. Τα διαστήματα στο τέλος ή στην αρχή αναγνωριστικών δεν αγνοούνται από το BibTeX.</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3157"/>
+        <location filename="../src/latexeditorview.cpp" line="3269"/>
         <source>Save Preview Image</source>
         <translation>Αποθήκευση προεπισκόπησης ως εικόνα</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3157"/>
+        <location filename="../src/latexeditorview.cpp" line="3269"/>
         <source>Images</source>
         <translation>Εικόνες</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3291"/>
+        <location filename="../src/latexeditorview.cpp" line="3403"/>
         <source>Remove Bookmark</source>
         <translation>Κατάργηση σελιδοδείκτη</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3299"/>
+        <location filename="../src/latexeditorview.cpp" line="3411"/>
         <source>Unnamed Bookmark</source>
         <translation>Σελιδοδείκτης χωρίς όνομα</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3305"/>
+        <location filename="../src/latexeditorview.cpp" line="3417"/>
         <source>Bookmark</source>
         <translation>Σελιδοδείκτης</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3332"/>
+        <location filename="../src/latexeditorview.cpp" line="3444"/>
         <source>Collapse All</source>
         <translation>Σύμπτυξη όλων</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3336"/>
+        <location filename="../src/latexeditorview.cpp" line="3448"/>
         <source>Collapse Level %1</source>
         <translation>Επίπεδο σύμπτυξης %1</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3341"/>
+        <location filename="../src/latexeditorview.cpp" line="3453"/>
         <source>Expand All</source>
         <translation>Ανάπτυξη όλων</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3345"/>
+        <location filename="../src/latexeditorview.cpp" line="3457"/>
         <source>Expand Level %1</source>
         <translation>Επίπεδο ανάπτυξης %1</translation>
     </message>
@@ -5678,6 +5678,14 @@ The wizard does not support command </source>
         <location filename="../src/letterdialog.ui" line="122"/>
         <source>Cancel</source>
         <translation>Άκυρο</translation>
+    </message>
+</context>
+<context>
+    <name>LogHighlighter</name>
+    <message>
+        <location filename="../src/loghighlighter.cpp" line="38"/>
+        <source>Process started:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -6012,439 +6020,439 @@ Do you want to overwrite it?</source>
 <context>
     <name>PDFDocument</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2924"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2958"/>
         <source>Toolbar</source>
         <translation>Γραμμή εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2978"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3012"/>
         <source>&amp;File</source>
         <translation>&amp;Αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2979"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3013"/>
         <source>&amp;Edit</source>
         <translation>&amp;Επεξεργασία</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2980"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3014"/>
         <source>&amp;View</source>
         <translation>&amp;Προβολή</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2981"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3015"/>
         <source>Grid</source>
         <translation>Πλέγμα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2982"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3016"/>
         <source>&amp;Window</source>
         <translation>&amp;Παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2983"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3017"/>
         <source>&amp;Configure</source>
         <translation>&amp;Διαμόρφωση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2984"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3018"/>
         <source>&amp;Help</source>
         <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2990"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3024"/>
         <source>User &amp;Manual...</source>
         <translation>Εγχειρίδιο &amp;χρήσης...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2993"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3027"/>
         <source>About</source>
         <translation>Σχετικά με το TeXstudio...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2994"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3028"/>
         <source>&amp;Open...</source>
         <translation>&amp;Άνοιγμα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2995"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3029"/>
         <source>Split &amp;&amp; Merge...</source>
         <translation>Διαίρεση &amp;&amp; Συγχώνευση...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2996"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3030"/>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2998"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3032"/>
         <source>&amp;Quit TeXstudio</source>
         <translation>&amp;Έξοδος από το TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2999"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3033"/>
         <source>&amp;Configure TeXstudio</source>
         <translation>&amp;Ρυθμίσεις TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3001"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3035"/>
         <source>Scrolling follows cursor</source>
         <translation>Συγχρονισμός θέσης στο PDF με τη θέση κέρσορα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3003"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3037"/>
         <source>Cursor follows scrolling</source>
         <translation>Συγχρονισμός θέσης κέρσορα με το PDF</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3005"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3039"/>
         <source>Synchronize multiple views</source>
         <translation>Συγχρονισμός πολλαπλών προβολών</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3007"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3041"/>
         <source>Ignore for synchronization</source>
         <translation>Να μη γίνεται συγχρονισμός</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3010"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3044"/>
         <source>Invert Colors</source>
         <translation>Αντιστροφή χρωμάτων</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3012"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3046"/>
         <source>Grayscale</source>
         <translation>Κλίμακα του γκρι</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3016"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3050"/>
         <source>&amp;Magnify</source>
         <translation>&amp;Μεγεθυντικός φακός</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3019"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3053"/>
         <source>&amp;Scroll</source>
         <translation>&amp;Κύλιση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3024"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3058"/>
         <source>&amp;First Page</source>
         <translation>&amp;Πρώτη σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3025"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3059"/>
         <source>Back</source>
         <translation>Πίσω</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3026"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3060"/>
         <source>&amp;Previous Page</source>
         <translation>Π&amp;ροηγούμενη σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3027"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3061"/>
         <source>&amp;Next Page</source>
         <translation>&amp;Επόμενη σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3028"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3062"/>
         <source>Forward</source>
         <translation>Εμπρός</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3029"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3063"/>
         <source>&amp;Last Page</source>
         <translation>&amp;Τελευταία σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3031"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3065"/>
         <source>&amp;Go to Page...</source>
         <translation>&amp;Μετάβαση σε σελίδα...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3033"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3067"/>
         <source>Zoom &amp;In</source>
         <translation>Μεγέθυνση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3034"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3068"/>
         <source>Zoom &amp;Out</source>
         <translation>Σμίκρυνση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3035"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3069"/>
         <source>&amp;Actual Size</source>
         <translation>&amp;Πραγματικό μέγεθος</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3036"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3070"/>
         <source>Fit to Wi&amp;dth</source>
         <translation>Προσαρμογή στο πλάτος</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3038"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3072"/>
         <source>Fit to &amp;Text Width</source>
         <translation>Προσαρμογή στο &amp;πλάτος του κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3040"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3074"/>
         <source>Fit to &amp;Window</source>
         <translation>Προσαρμογή στο &amp;παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3042"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3076"/>
         <source>&amp;Continuous</source>
         <translation>&amp;Συνεχής</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3047"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3081"/>
         <source>Full &amp;Screen</source>
         <translation>Πλήρης &amp;οθόνη</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3048"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3082"/>
         <source>Presentation</source>
         <translation>Παρουσίαση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3049"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3083"/>
         <source>External Viewer</source>
         <translation>Άνοιγμα αρχείου με εξωτερικό πρόγραμμα προβολής</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3050"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3084"/>
         <source>Enlarge Viewer</source>
         <translation>Μεγέθυνση προγράμματος προβολής</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3051"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3085"/>
         <source>Shrink Viewer</source>
         <translation>Σμίκρυνση προγράμματος προβολής</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3052"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3086"/>
         <source>Windowed/Embedded</source>
         <translation>Προβολή σε νέο παράθυρο/στο κύριο παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3053"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3087"/>
         <source>Auto-hide Toolbar</source>
         <translation>Αυτόματη απόκρυψη γραμμής εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3069"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3103"/>
         <source>Custom...</source>
         <translation>Προσαρμοσμένο...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3074"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3108"/>
         <source>Single Page Step</source>
         <translation>Βήμα μιας σελίδας</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3077"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3079"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3112"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3114"/>
         <source>&amp;Close something</source>
         <translation>&amp;Κλείσιμο κάποιου στοιχείου</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3082"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3117"/>
         <source>Stac&amp;k</source>
         <translation>Στοί&amp;βαξη</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3083"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3118"/>
         <source>&amp;Tile</source>
         <translation>&amp;Παράθεση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3084"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3119"/>
         <source>&amp;Side by Side</source>
         <translation>&amp;Δίπλα-δίπλα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3086"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3121"/>
         <source>&amp;Go to Source</source>
         <translation>&amp;Μετάβαση στον αντίστοιχο κώδικα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3087"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3122"/>
         <source>Focus Editor</source>
         <translation>Εστίαση στον επεξεργαστή κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3089"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3124"/>
         <source>New Window</source>
         <translation>Νέο παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3090"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3125"/>
         <source>&amp;Find</source>
         <translation>&amp;Εύρεση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3091"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3126"/>
         <source>Find &amp;again</source>
         <translation>Εύρεση &amp;ξανά</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3093"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3128"/>
         <source>Quick Build</source>
         <translation>Γρήγορη μεταγλώττιση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3142"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3177"/>
         <source>Show</source>
         <translation>Εμφάνιση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3165"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3199"/>
         <source>Windowed Viewer</source>
         <translation>Προβολή σε νέο παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3168"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3202"/>
         <source>Embedded Viewer</source>
         <translation>Προβολή στο κύριο παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3232"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3266"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation>από</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3255"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3289"/>
         <source>Scale</source>
         <translation>Κλίμακα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3273"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3307"/>
         <source>Zoom Out</source>
         <translation>Σμίκρυνση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3283"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3317"/>
         <source>Zoom</source>
         <translation>Ζουμ</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3292"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3326"/>
         <source>Zoom In</source>
         <translation>Μεγέθυνση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3320"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3323"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3354"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3357"/>
         <source>Annotations</source>
         <translation>Παρατηρήσεις/Σχόλια</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3463"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3513"/>
         <source>Page Down</source>
         <translation>Σελίδα Κάτω</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3467"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3517"/>
         <source>Page Up</source>
         <translation>Σελίδα Πάνω</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3657"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3707"/>
         <source>Retry</source>
         <translation>Προσπαθήστε ξανά</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3660"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4855"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3710"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4927"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3663"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3713"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation>Το αρχείο PDF %1 δεν είναι έγκυρο. Πιθανώς να έχει φθαρεί ή να είναι στη διαδικασία της δημιουργίας. Θα γίνεται προσπάθεια προβολής του κάθε 2 δευτερόλεπτα.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3677"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3727"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation>Δεν ήταν δυνατή η εύρεση του αρχείου &quot;%1&quot; - πιθανώς να έχει διαγραφεί.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3680"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3730"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>Δεν ήταν δυνατή η φόρτωση του αρχείου PDF &quot;%1&quot; - πιθανώς το έγγραφο να μην είναι ένα έγκυρο.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3683"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3733"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
         <translation>Δεν ήταν δυνατή η φόρτωση του αρχείου PDF &quot;%1&quot; επειδή παρουσιάστηκε σφάλμα bad_alloc. Πιθανώς το έγγραφο να μην είναι έγκυρο.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3686"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3736"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation>Δεν ήταν δυνατή η φόρτωση του αρχείου PDF &quot;%1&quot; επειδή παρουσιάστηκε μη αναμενόμενο σφάλμα. Πιθανώς το έγγραφο να μην είναι έγκυρο.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3689"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3739"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
         <translation>Το αρχείο PDF &quot;%1&quot; είναι κλειδωμένο.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3691"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3741"/>
         <source>PDF password</source>
         <translation>Κωδικός PDF</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3691"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3741"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
         <translation>Το PDF αρχείο &quot;%1&quot; είναι κλειδωμένο.
 Πληκτρολογήστε τον κωδικό πρόσβασης:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4080"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4146"/>
         <source>Searching for</source>
         <translation>Εύρεση του όρου</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4192"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4258"/>
         <source>No SyncTeX data available</source>
         <translation>Δεν υπάρχουν διαθέσιμα δεδομένα του SyncTeX</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4194"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4260"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4289"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4355"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4376"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4442"/>
         <source>Page %1 of %2</source>
         <translation>Σελίδα %1 από %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4377"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4443"/>
         <source>Pages %1 to %2 of %3</source>
         <translation>Σελίδες %1 ως %2 από %3</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4402"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4468"/>
         <source>Open PDF</source>
         <translation>Άνοιγμα PDF</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4677"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4749"/>
         <source>Print</source>
         <translation>Εκτύπωση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4856"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4928"/>
         <source>Close Message</source>
         <translation>Κλείσιμο μηνύματος</translation>
     </message>
@@ -6690,42 +6698,42 @@ You can now enter the password:</source>
         <translation>Προσαρμογή στο παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1434"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1437"/>
         <source>Opening external files is currently only supported for PDFs.</source>
         <translation>Το άνοιγμα εξωτερικών αρχείων υποστηρίζεται προς το παρόν μόνο για αρχεία PDF.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1453"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1456"/>
         <source>Error</source>
         <translation>Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1453"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1456"/>
         <source>Could not open link:</source>
         <translation>Δεν ήταν δυνατό το άνοιγμα του συνδέσμου:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1569"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1572"/>
         <source>Go to Source</source>
         <translation>Μετάβαση στον αντίστοιχο κώδικα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2377"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2409"/>
         <source>Go to Page</source>
         <translation>Μετάβαση σε σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2378"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2410"/>
         <source>Page number:</source>
         <translation>Αριθμός σελίδας:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2767"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2802"/>
         <source>Calculating text width</source>
         <translation>Υπολογισμός πλάτους κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2767"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2802"/>
         <source>Cancel</source>
         <translation>Άκυρο</translation>
     </message>
@@ -6826,6 +6834,16 @@ You can now enter the password:</source>
         <location filename="../src/qcodeedit/lib/qcodecompletionengine.cpp" line="63"/>
         <source>&amp;Trigger completion</source>
         <translation>&amp;Ενεργοποίηση συμπλήρωσης</translation>
+    </message>
+</context>
+<context>
+    <name>QDocument</name>
+    <message>
+        <location filename="../src/qcodeedit/lib/document/qdocument.cpp" line="839"/>
+        <source>Writing the document to file
+%1
+failed.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7212,319 +7230,319 @@ Notes:
         <translation>Unix</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4759"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4760"/>
         <source>None</source>
         <translation>Κανένα</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4760"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4761"/>
         <source>Invalid</source>
         <translation>Μη έγκυρο</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4762"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4782"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4802"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4763"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4783"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4803"/>
         <source>Internal</source>
         <translation>Εσωτερικό</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4764"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4765"/>
         <source>Move cursor up</source>
         <translation>Μετακίνηση κέρσορα πάνω</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4765"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4766"/>
         <source>Move cursor down</source>
         <translation>Μετακίνηση κέρσορα κάτω</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4766"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4767"/>
         <source>Move cursor left (1 character)</source>
         <translation>Μετακίνηση κέρσορα αριστερά (1 χαρακτήρα)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4767"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4768"/>
         <source>Move cursor right (1 character)</source>
         <translation>Μετακίνηση κέρσορα δεξιά (1 χαρακτήρα)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4768"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4769"/>
         <source>Move cursor left (1 word)</source>
         <translation>Μετακίνηση κέρσορα αριστερά (1 λέξη)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4769"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4770"/>
         <source>Move cursor right (1 word)</source>
         <translation>Μετακίνηση κέρσορα δεξιά (1 λέξη)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4770"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4771"/>
         <source>Move cursor to line start</source>
         <translation>Μετακίνηση κέρσορα στην αρχή της γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4771"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4772"/>
         <source>Move cursor to first character in line</source>
         <translation>Μετακίνηση κέρσορα στον πρώτο χαρακτήρα της γραμμής.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4772"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4773"/>
         <source>Move cursor to line end</source>
         <translation>Μετακίνηση κέρσορα στο τέλος της γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4773"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4774"/>
         <source>Move cursor to document start</source>
         <translation>Μετακίνηση κέρσορα στην αρχή του αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4774"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4775"/>
         <source>Move cursor to document end</source>
         <translation>Μετακίνηση κέρσορα στο τέλος του αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4776"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4777"/>
         <source>Move cursor one page up</source>
         <translation>Μετακίνηση κέρσορα μία σελίδα πάνω</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4777"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4778"/>
         <source>Move cursor one page down</source>
         <translation>Μετακίνηση κέρσορα μία σελίδα κάτω</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
         <source>Move cursor to next block</source>
         <translation>Μετακίνηση κέρσορα στο επόμενο μπλοκ</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4781"/>
         <source>Move cursor to previous block</source>
         <translation>Μετακίνηση κέρσορα στο προηγούμενο μπλοκ</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
         <source>Select up</source>
         <translation>Επιλογή πάνω</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
         <source>Select down</source>
         <translation>Επιλογή κάτω</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4787"/>
         <source>Select left (1 character)</source>
         <translation>Επιλογή προηγούμενου χαρακτήρα</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4787"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
         <source>Select right (1 character)</source>
         <translation>Επιλογή επόμενου χαρακτήρα</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4789"/>
         <source>Select left (1 word)</source>
         <translation>Επιλογή προηγούμενης λέξης</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4789"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4790"/>
         <source>Select right (1 word)</source>
         <translation>Επιλογή επόμενης λέξης</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4790"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4791"/>
         <source>Select to line start</source>
         <translation>Επιλογή μέχρι την αρχή της γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4791"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4792"/>
         <source>Select to first character in line</source>
         <translation>Επιλογή πρώτου χαρακτήρα γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4792"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4793"/>
         <source>Select to line end</source>
         <translation>Επιλογή μέχρι το τέλος της γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4793"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4794"/>
         <source>Select to document start</source>
         <translation>Επιλογή μέχρι την αρχή του αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4794"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4795"/>
         <source>Select to document end</source>
         <translation>Επιλογή μέχρι το τέλος του αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4796"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4797"/>
         <source>Select page up</source>
         <translation>Επιλογή σελίδας πάνω</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4797"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4798"/>
         <source>Select page down</source>
         <translation>Επιλογή σελίδας κάτω</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4799"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
         <source>Select to next block</source>
         <translation>Επιλογή μέχρι το επόμενο μπλοκ</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4801"/>
         <source>Select to previous block</source>
         <translation>Επιλογή μέχρι το προηγούμενο μπλοκ</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4804"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4805"/>
         <source>Delete left character</source>
         <translation>Διαγραφή προηγούμενου χαρακτήρα</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4805"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4806"/>
         <source>Delete right character</source>
         <translation>Διαγραφή επόμενου χαρακτήρα</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4806"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4807"/>
         <source>Delete left word</source>
         <translation>Διαγραφή προηγούμενης λέξης</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4807"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4808"/>
         <source>Delete right word</source>
         <translation>Διαγραφή επόμενης λέξης</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4808"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4809"/>
         <source>New line</source>
         <translation>Νέα γραμμή</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4810"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4811"/>
         <source>Change overwrite mode</source>
         <translation>Αλλαγή λειτουργίας overwrite</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4811"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4812"/>
         <source>Undo</source>
         <translation>Αναίρεση</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4812"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4813"/>
         <source>Redo</source>
         <translation>Ακύρωση αναίρεσης</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4813"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4814"/>
         <source>Copy</source>
         <translation>Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4814"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4815"/>
         <source>Paste</source>
         <translation>Επικόλληση</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4815"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4816"/>
         <source>Cut</source>
         <translation>Αποκοπή</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4816"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4817"/>
         <source>Print</source>
         <translation>Εκτύπωση</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4817"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4818"/>
         <source>Select all</source>
         <translation>Επιλογή όλων</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4818"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4819"/>
         <source>Find</source>
         <translation>Εύρεση</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4819"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4820"/>
         <source>Find next</source>
         <translation>Εύρεση επόμενου</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4820"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4821"/>
         <source>Find previous</source>
         <translation>Εύρεση προηγούμενου</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4821"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4822"/>
         <source>Replace</source>
         <translation>Αντικατάσταση</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4823"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4824"/>
         <source>Create cursor mirror up</source>
         <translation>Δημιουργία νέου κέρσορα πάνω</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4824"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4825"/>
         <source>Create cursor mirror down</source>
         <translation>Δημιουργία νέου κέρσορα κάτω</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4825"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4826"/>
         <source>Next placeholder</source>
         <translation>Επόμενο placeholder</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4826"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4827"/>
         <source>Previous placeholder</source>
         <translation>Προηγούμενο placeholder</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4827"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4828"/>
         <source>Next placeholder or one word right</source>
         <translation>Επόμενο placeholder ή μία λέξη δεξιά</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4828"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4829"/>
         <source>Previous placeholder or one word left</source>
         <translation>Προηγούμενο placeholder ή μία λέξη αριστερά</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4829"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4830"/>
         <source>Next placeholder or character</source>
         <translation>Επόμενος χαρακτήρας ή placeholder</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4830"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4831"/>
         <source>Previous placeholder or character</source>
         <translation>Προηγούμενος χαρακτήρας ή placeholder</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4831"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4832"/>
         <source>Tab or Indent selection</source>
         <translation>Εισαγωγή Tab/Προσθήκη εσοχής</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4832"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4833"/>
         <source>Insert tab</source>
         <translation>Εισαγωγή καρτέλας</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4833"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4834"/>
         <source>Indent selection</source>
         <translation>Προσθήκη εσοχής στο επιλεγμένο κείμενο</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4834"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4835"/>
         <source>Unindent selection</source>
         <translation>Κατάργηση εσοχής στο επιλεγμένο κείμενο</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4837"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4838"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
@@ -8118,12 +8136,18 @@ Do you want them to be saved?</source>
     <message>
         <location filename="../src/codesnippet.cpp" line="255"/>
         <location filename="../src/codesnippet.cpp" line="257"/>
+        <location filename="../src/tests/codesnippet_t.cpp" line="56"/>
+        <location filename="../src/tests/codesnippet_t.cpp" line="358"/>
+        <location filename="../src/tests/latexcompleter_t.cpp" line="321"/>
         <source>*environment-name*</source>
         <translation>*environment-name*</translation>
     </message>
     <message>
         <location filename="../src/codesnippet.cpp" line="256"/>
         <location filename="../src/codesnippet.cpp" line="282"/>
+        <location filename="../src/tests/codesnippet_t.cpp" line="140"/>
+        <location filename="../src/tests/codesnippet_t.cpp" line="437"/>
+        <location filename="../src/tests/latexcompleter_t.cpp" line="322"/>
         <source>content...</source>
         <translation>περιεχόμενο...</translation>
     </message>
@@ -8153,7 +8177,7 @@ Do you want them to be saved?</source>
         <translation>Σφάλμα: </translation>
     </message>
     <message>
-        <location filename="../src/usermacro.cpp" line="298"/>
+        <location filename="../src/usermacro.cpp" line="333"/>
         <source>Macro read-in failed
 Error: </source>
         <translation>Η ανάγνωση της μακροεντολής απέτυχε
@@ -8405,72 +8429,72 @@ r*: εύρεση χαρακτήρων r (ανεξαρτήτως του πλήθ�
 <context>
     <name>QuickDocumentDialog</name>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="59"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="94"/>
         <source>Quick Start</source>
         <translation>Γρήγορο ξεκίνημα</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="308"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="343"/>
         <source>Mathematical symbols from AMS</source>
         <translation>Μαθηματικά σύμβολα από την Αμερικανική Μαθηματική Εταιρεία (AMS)</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="309"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="344"/>
         <source>Graphics package, easily include images (s. Insert Graphic Wizard)</source>
         <translation>Πακέτο που διευκολύνει την εισαγωγή εικόνων (βλ. Εισαγωγή εικόνας)</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="310"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="345"/>
         <source>Support for hyperlinks in your document</source>
         <translation>Επιτρέπει τη χρήση υπερσυνδέσμων στο έγγραφο</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="311"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="346"/>
         <source>Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath</source>
         <translation>Επέκταση του πακέτου amsmath που περιλαμβάνει διορθώσεις. Φορτώνει το amsmath</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="312"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="347"/>
         <source>Define your theorem like env., has to be loaded after amsmath</source>
         <translation>Επιτρέπει τη δημιουργία θεωρημάτων σε περιβάλλον, πρέπει να φορτωθεί πριν το amsmath </translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="313"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="348"/>
         <source>Reference to names of chapters, sections, ..., loaded by hyperref</source>
         <translation>Επιτρέπει την αναφορά κεφαλαίων, κλπ., φορτώνεται από το hyperref</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="314"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="349"/>
         <source>Extension package to amsthm</source>
         <translation>Επέκταση του πακέτου amsthm</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="315"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="350"/>
         <source>Sophisticated package for colors, with table option to use colors in tables</source>
         <translation>Εξεζητημένο πακέτο για χρώματα, με τη δυνατότητα χρήσης χρωμάτων σε πίνακες</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="501"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="512"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="523"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="534"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="545"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="564"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="536"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="547"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="558"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="569"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="580"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="599"/>
         <source>New:</source>
         <translation>Νέο:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="568"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="603"/>
         <source>Hint</source>
         <translation>Υπόδειξη</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="568"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="603"/>
         <source>Package %1 is already defined.</source>
         <translation>Το πακέτο %1 υπάρχει ήδη σε αυτήν τη λίστα.</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="581"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="616"/>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
         <translation>Όλα τα πακέτα που έχουν αυτήν την επιλογή ενεργοποιημένη θα εμφανιστούν σε νέο έγγραφο μέσα σε εντολές \usepackage μετά από το πάτημα του ΟΚ.</translation>
     </message>
@@ -9131,92 +9155,92 @@ r*: εύρεση χαρακτήρων r (ανεξαρτήτως του πλήθ�
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="237"/>
+        <location filename="../src/syntaxcheck.cpp" line="250"/>
         <source>no error</source>
         <translation>κανένα σφάλμα</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="238"/>
+        <location filename="../src/syntaxcheck.cpp" line="251"/>
         <source>unrecognized environment</source>
         <translation>άγνωστο περιβάλλον</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="239"/>
+        <location filename="../src/syntaxcheck.cpp" line="252"/>
         <source>unrecognized command</source>
         <translation>άγνωστη εντολή</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="240"/>
+        <location filename="../src/syntaxcheck.cpp" line="253"/>
         <source>unrecognized math command</source>
         <translation>άγνωστη μαθηματική εντολή</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="241"/>
+        <location filename="../src/syntaxcheck.cpp" line="254"/>
         <source>unrecognized tabular command</source>
         <translation>άγνωστη εντολή πίνακα</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="242"/>
+        <location filename="../src/syntaxcheck.cpp" line="255"/>
         <source>tabular command outside tabular env</source>
         <translation>εντολή πίνακα εκτός περιβάλλοντος πίνακα</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="243"/>
+        <location filename="../src/syntaxcheck.cpp" line="256"/>
         <source>math command outside math env</source>
         <translation>μαθηματική εντολή εκτός μαθηματικού περιβάλλοντος</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="244"/>
+        <location filename="../src/syntaxcheck.cpp" line="257"/>
         <source>tabbing command outside tabbing env</source>
         <translation>tabbing εντολή εκτός περιβάλλοντος tabbing</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="245"/>
+        <location filename="../src/syntaxcheck.cpp" line="258"/>
         <source>more cols in tabular than specified</source>
         <translation>ο πίνακας περιέχει περισσότερες στήλες από τις καθορισμένες</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="246"/>
+        <location filename="../src/syntaxcheck.cpp" line="259"/>
         <source>cols in tabular missing</source>
         <translation>λείπουν στήλες στον πίνακα</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="247"/>
+        <location filename="../src/syntaxcheck.cpp" line="260"/>
         <source>\\ missing</source>
         <translation>λείπει \\</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="248"/>
+        <location filename="../src/syntaxcheck.cpp" line="261"/>
         <source>closing environment which has not been opened</source>
         <translation>κλείσιμο περιβάλλοντος που δεν έχει ανοιχτεί</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="249"/>
+        <location filename="../src/syntaxcheck.cpp" line="262"/>
         <source>environment not closed</source>
         <translation>το περιβάλλον δεν έκλεισε</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="250"/>
+        <location filename="../src/syntaxcheck.cpp" line="263"/>
         <source>unrecognized key in key option</source>
         <translation>άγνωστο κλειδί στην επιλογή κλειδιών</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="251"/>
+        <location filename="../src/syntaxcheck.cpp" line="264"/>
         <source>unrecognized value in key option</source>
         <translation>άγνωστη τιμή στην επιλογή κλειδιών</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="252"/>
+        <location filename="../src/syntaxcheck.cpp" line="265"/>
         <source>command outside suitable env</source>
         <translation>εντολή εκτός του κατάλληλου περιβάλλοντος</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="253"/>
+        <location filename="../src/syntaxcheck.cpp" line="266"/>
         <source>spelling</source>
         <translation>ορθογραφικός έλεγχος</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="256"/>
+        <location filename="../src/syntaxcheck.cpp" line="269"/>
         <source>unknown</source>
         <translation>άγνωστο</translation>
     </message>
@@ -9668,7 +9692,7 @@ template to edit individual files.</source>
 <context>
     <name>TexdocDialog</name>
     <message>
-        <location filename="../src/texdocdialog.cpp" line="272"/>
+        <location filename="../src/texdocdialog.cpp" line="249"/>
         <source>No Documentation Available</source>
         <translation>Η τεκμηρίωση δεν είναι διαθέσιμη</translation>
     </message>
@@ -9841,1718 +9865,1718 @@ template to edit individual files.</source>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2175"/>
+        <location filename="../src/configmanager.cpp" line="2174"/>
         <source>Edit &amp;Macros...</source>
         <translation>Επεξεργασία &amp;μακροεντολών...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="383"/>
-        <location filename="../src/texstudio.cpp" line="6408"/>
+        <location filename="../src/texstudio.cpp" line="384"/>
+        <location filename="../src/texstudio.cpp" line="6459"/>
         <source>Ready</source>
         <translation>Έτοιμο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="457"/>
+        <location filename="../src/texstudio.cpp" line="458"/>
         <source>TeX files</source>
         <translation>Αρχεία TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="458"/>
+        <location filename="../src/texstudio.cpp" line="459"/>
         <source>LilyPond files</source>
         <translation>Αρχεία LilyPond</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="459"/>
+        <location filename="../src/texstudio.cpp" line="460"/>
         <source>Plaintext files</source>
         <translation>Αρχεία απλού κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="460"/>
+        <location filename="../src/texstudio.cpp" line="461"/>
         <source>Pweave files</source>
         <translation>Αρχεία Pweave</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="461"/>
+        <location filename="../src/texstudio.cpp" line="462"/>
         <source>Sweave files</source>
         <translation>Αρχεία Sweave</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="462"/>
+        <location filename="../src/texstudio.cpp" line="463"/>
         <source>Asymptote files</source>
         <translation>Αρχεία Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="463"/>
+        <location filename="../src/texstudio.cpp" line="464"/>
         <source>PDF files</source>
         <translation>Αρχεία PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="464"/>
-        <location filename="../src/texstudio.cpp" line="9960"/>
-        <location filename="../src/texstudio.cpp" line="9967"/>
+        <location filename="../src/texstudio.cpp" line="465"/>
+        <location filename="../src/texstudio.cpp" line="10012"/>
+        <location filename="../src/texstudio.cpp" line="10019"/>
         <source>All files</source>
         <translation>Όλα τα αρχεία</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="666"/>
+        <location filename="../src/texstudio.cpp" line="667"/>
         <source>Macros</source>
         <translation>Μακροεντολές</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="685"/>
+        <location filename="../src/texstudio.cpp" line="686"/>
         <source>Side Panel</source>
         <translation>Πλαϊνός πίνακας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="704"/>
+        <location filename="../src/texstudio.cpp" line="705"/>
         <source>Structure</source>
         <translation>Δομή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="723"/>
+        <location filename="../src/texstudio.cpp" line="724"/>
         <source>Bookmarks</source>
         <translation>Σελιδοδείκτες</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="733"/>
+        <location filename="../src/texstudio.cpp" line="734"/>
         <source>Symbols</source>
         <translation>Σύμβολα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="761"/>
+        <location filename="../src/texstudio.cpp" line="762"/>
         <source>Left/Right Brackets</source>
         <translation>Αριστερές/Δεξιές παρενθέσεις</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="763"/>
+        <location filename="../src/texstudio.cpp" line="764"/>
         <source>MetaPost Commands</source>
         <translation>Εντολές MetaPost</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="762"/>
+        <location filename="../src/texstudio.cpp" line="763"/>
         <source>PSTricks Commands</source>
         <translation>PSTricks Εντολές</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="715"/>
+        <location filename="../src/texstudio.cpp" line="716"/>
         <source>TOC</source>
         <translation>Πίνακας περιεχομένων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="764"/>
+        <location filename="../src/texstudio.cpp" line="765"/>
         <source>TikZ Commands</source>
         <translation>Εντολές Tikz</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="765"/>
+        <location filename="../src/texstudio.cpp" line="766"/>
         <source>Asymptote Commands</source>
         <translation>Εντολές Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="766"/>
+        <location filename="../src/texstudio.cpp" line="767"/>
         <source>Beamer Commands</source>
         <translation>Εντολές Beamer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="767"/>
+        <location filename="../src/texstudio.cpp" line="768"/>
         <source>XY Commands</source>
         <translation>Εντολές XY</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="898"/>
+        <location filename="../src/texstudio.cpp" line="899"/>
         <source>&amp;File</source>
         <translation>&amp;Αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="900"/>
+        <location filename="../src/texstudio.cpp" line="901"/>
         <source>&amp;New</source>
         <translation>&amp;Νέο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="901"/>
+        <location filename="../src/texstudio.cpp" line="902"/>
         <source>New From &amp;Template...</source>
         <translation>Νέο από &amp;πρότυπο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="902"/>
+        <location filename="../src/texstudio.cpp" line="903"/>
         <source>&amp;Open...</source>
         <translation>&amp;Άνοιγμα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="904"/>
+        <location filename="../src/texstudio.cpp" line="905"/>
         <source>Open &amp;Recent</source>
         <translation>Άνοιγμα &amp;πρόσφατου εγγράφου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="906"/>
+        <location filename="../src/texstudio.cpp" line="907"/>
         <source>Session</source>
         <translation>Συνεδρία</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="907"/>
+        <location filename="../src/texstudio.cpp" line="908"/>
         <source>Load Session...</source>
         <translation>Φόρτωση συνεδρίας...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="908"/>
+        <location filename="../src/texstudio.cpp" line="909"/>
         <source>Save Session...</source>
         <translation>Αποθήκευση συνεδρίας...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="909"/>
+        <location filename="../src/texstudio.cpp" line="910"/>
         <source>Restore Previous Session</source>
         <translation>Επαναφορά προηγούμενης συνεδρίας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="918"/>
+        <location filename="../src/texstudio.cpp" line="919"/>
         <source>&amp;Save</source>
         <translation>&amp;Αποθήκευση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="919"/>
+        <location filename="../src/texstudio.cpp" line="920"/>
         <source>Save &amp;As...</source>
         <translation>Αποθήκευση &amp;ως...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="920"/>
+        <location filename="../src/texstudio.cpp" line="921"/>
         <source>Save A&amp;ll</source>
         <translation>Αποθήκευση &amp;όλων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="921"/>
+        <location filename="../src/texstudio.cpp" line="922"/>
         <source>&amp;Make Template...</source>
         <translation>&amp;Δημιουργία προτύπου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="924"/>
+        <location filename="../src/texstudio.cpp" line="925"/>
         <source>Fifi&amp;x</source>
         <translation>Fifi&amp;x</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="925"/>
+        <location filename="../src/texstudio.cpp" line="926"/>
         <source>Save renamed/&amp;moved file...</source>
         <translation>Αποθήκευση μετονομασμένου/&amp;μετακινούμενου αρχείου...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="926"/>
+        <location filename="../src/texstudio.cpp" line="927"/>
         <source>Save copied file...</source>
         <translation>Αποθήκευση αντιγεγραμμένου αρχείου...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="927"/>
+        <location filename="../src/texstudio.cpp" line="928"/>
         <source>&amp;Delete file</source>
         <translation>&amp;Διαγραφή αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="928"/>
+        <location filename="../src/texstudio.cpp" line="929"/>
         <source>Set &amp;permissions...</source>
         <translation>Ρύθμιση &amp;δικαιωμάτων...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="930"/>
+        <location filename="../src/texstudio.cpp" line="931"/>
         <source>&amp;Revert to saved...</source>
         <translation>&amp;Επαναφορά στην τελευταία αποθηκευμένη έκδοση...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="932"/>
+        <location filename="../src/texstudio.cpp" line="933"/>
         <source>Copy filename to &amp;clipboard</source>
         <translation>Αντιγραφή ονόματος αρχείου στο &amp;πρόχειρο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="935"/>
+        <location filename="../src/texstudio.cpp" line="936"/>
         <source>S&amp;VN/GIT...</source>
         <translation>S&amp;VN/GIT...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="936"/>
+        <location filename="../src/texstudio.cpp" line="937"/>
         <source>Check &amp;in...</source>
         <translation>Check &amp;in...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="937"/>
+        <location filename="../src/texstudio.cpp" line="938"/>
         <source>SVN &amp;update...</source>
         <translation>Ενημέρωση &amp;SVN...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="938"/>
+        <location filename="../src/texstudio.cpp" line="939"/>
         <source>SVN update &amp;work directory</source>
         <translation>Ενημέρωση του &amp;φακέλου εργασίας (work directory) SVN</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="939"/>
+        <location filename="../src/texstudio.cpp" line="940"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>Εμ&amp;φάνιση παλαιότερων εκδόσεων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="940"/>
+        <location filename="../src/texstudio.cpp" line="941"/>
         <source>Lock &amp;PDF</source>
         <translation>Κλείδωμα &amp;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="941"/>
+        <location filename="../src/texstudio.cpp" line="942"/>
         <source>Check in P&amp;DF</source>
         <translation>Ελέγξτε στο P&amp;DF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="942"/>
+        <location filename="../src/texstudio.cpp" line="943"/>
         <source>Show difference between two files</source>
         <translation>Εμφάνιση διαφορών μεταξύ δύο αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="943"/>
+        <location filename="../src/texstudio.cpp" line="944"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>Εμφάνιση διαφορών μεταξύ δύο αρχείων σε σχέση με το αρχείο βάσης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="944"/>
+        <location filename="../src/texstudio.cpp" line="945"/>
         <source>Check SVN Conflict</source>
         <translation>Έλεγχος για SVN conflicts</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="945"/>
+        <location filename="../src/texstudio.cpp" line="946"/>
         <source>Try to merge differences</source>
         <translation>Προσπάθεια συγχώνευσης διαφορών</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="946"/>
+        <location filename="../src/texstudio.cpp" line="947"/>
         <source>Remove Difference-Markers</source>
         <translation>Κατάργηση επισήμανσης διαφορών</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="947"/>
+        <location filename="../src/texstudio.cpp" line="948"/>
         <source>Declare Conflict Resolved</source>
         <translation>Ορισμός conflict ως επιλυμένου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="948"/>
+        <location filename="../src/texstudio.cpp" line="949"/>
         <source>Jump to next difference</source>
         <translation>Μετάβαση στην επόμενη διαφορά</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="949"/>
+        <location filename="../src/texstudio.cpp" line="950"/>
         <source>Jump to previous difference</source>
         <translation>Μετάβαση στην προηγούμενη διαφορά</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="952"/>
-        <location filename="../src/texstudio.cpp" line="10161"/>
+        <location filename="../src/texstudio.cpp" line="953"/>
+        <location filename="../src/texstudio.cpp" line="10213"/>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="953"/>
+        <location filename="../src/texstudio.cpp" line="954"/>
         <source>Clos&amp;e All</source>
         <translation>Κλείσιμ&amp;ο όλων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="956"/>
+        <location filename="../src/texstudio.cpp" line="957"/>
         <source>Print Source Code...</source>
         <translation>Εκτύπωση πηγαίου κώδικα...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="959"/>
+        <location filename="../src/texstudio.cpp" line="960"/>
         <source>Exit</source>
         <translation>Έξοδος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="962"/>
+        <location filename="../src/texstudio.cpp" line="963"/>
         <source>&amp;Edit</source>
         <translation>&amp;Επεξεργασία</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="963"/>
+        <location filename="../src/texstudio.cpp" line="964"/>
         <source>&amp;Undo</source>
         <translation>&amp;Αναίρεση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="964"/>
+        <location filename="../src/texstudio.cpp" line="965"/>
         <source>&amp;Redo</source>
         <translation>&amp;Ακύρωση αναίρεσης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="966"/>
+        <location filename="../src/texstudio.cpp" line="967"/>
         <source>Debug undo stack</source>
         <translation>Αποσφαλμάτωση στοίβας undo</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="970"/>
+        <location filename="../src/texstudio.cpp" line="971"/>
         <source>&amp;Copy</source>
         <translation>&amp;Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="969"/>
+        <location filename="../src/texstudio.cpp" line="970"/>
         <source>C&amp;ut</source>
         <translation>Α&amp;ποκοπή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="753"/>
+        <location filename="../src/texstudio.cpp" line="754"/>
         <source>Insert filename</source>
         <translation>Εισάγετε το όνομα του αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="758"/>
+        <location filename="../src/texstudio.cpp" line="759"/>
         <source>Files</source>
         <translation>Αρχεία</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="933"/>
+        <location filename="../src/texstudio.cpp" line="934"/>
         <source>Copy root filename to clipboard</source>
         <translation>Αντιγραφή ονόματος κύριου αρχείου στο πρόχειρο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="971"/>
+        <location filename="../src/texstudio.cpp" line="972"/>
         <source>&amp;Paste</source>
         <translation>&amp;Επικόλληση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="973"/>
+        <location filename="../src/texstudio.cpp" line="974"/>
         <source>&amp;Selection</source>
         <translation>&amp;Επιλογή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="974"/>
+        <location filename="../src/texstudio.cpp" line="975"/>
         <source>Select &amp;All</source>
         <translation>Επιλογή &amp;όλων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="975"/>
+        <location filename="../src/texstudio.cpp" line="976"/>
         <source>Select All &amp;Occurrences</source>
         <translation>Επιλογή όλων των &amp;αποτελεσμάτων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="976"/>
+        <location filename="../src/texstudio.cpp" line="977"/>
         <source>Select &amp;Prev Occurrence</source>
         <translation>Επιλογή &amp;προηγούμενου αποτελέσματος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="977"/>
+        <location filename="../src/texstudio.cpp" line="978"/>
         <source>Select &amp;Next Occurrence</source>
         <translation>Επιλογή &amp;επόμενου αποτελέσματος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="978"/>
+        <location filename="../src/texstudio.cpp" line="979"/>
         <source>Also Select Prev Occurrence</source>
         <translation>Επιλογή και του προηγούμενου αποτελέσματος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="979"/>
+        <location filename="../src/texstudio.cpp" line="980"/>
         <source>Also Select Next Occurrence</source>
         <translation>Επιλογή και του επόμενου αποτελέσματος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="980"/>
+        <location filename="../src/texstudio.cpp" line="981"/>
         <source>Expand Selection to Word</source>
         <translation>Επέκταση επιλογής στη λέξη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="981"/>
+        <location filename="../src/texstudio.cpp" line="982"/>
         <source>Expand Selection to Line</source>
         <translation>Επέκταση επιλογής στη γραμμή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="983"/>
+        <location filename="../src/texstudio.cpp" line="984"/>
         <source>&amp;Line Operations</source>
         <translation>Επιλογές &amp;γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="984"/>
+        <location filename="../src/texstudio.cpp" line="985"/>
         <source>Delete &amp;Line</source>
         <translation>Διαγραφή &amp;γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="987"/>
-        <location filename="../src/texstudio.cpp" line="989"/>
+        <location filename="../src/texstudio.cpp" line="988"/>
+        <location filename="../src/texstudio.cpp" line="990"/>
         <source>Delete To &amp;End Of Line</source>
         <translation>Διαγραφή μέχρι το &amp;τέλος της γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="991"/>
+        <location filename="../src/texstudio.cpp" line="992"/>
         <source>Delete From &amp;Start Of Line</source>
         <translation>Διαγραφή από &amp;την αρχή της γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="992"/>
+        <location filename="../src/texstudio.cpp" line="993"/>
         <source>Move Line &amp;Up</source>
         <translation>Μετακίνηση γραμμής &amp;πάνω</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="993"/>
+        <location filename="../src/texstudio.cpp" line="994"/>
         <source>Move Line &amp;Down</source>
         <translation>Μετακίνηση γραμμής &amp;κάτω</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="994"/>
+        <location filename="../src/texstudio.cpp" line="995"/>
         <source>Du&amp;plicate Line</source>
         <translation>Δι&amp;πλασιασμός γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="995"/>
+        <location filename="../src/texstudio.cpp" line="996"/>
         <source>S&amp;ort Lines</source>
         <translation>Τ&amp;αξινόμηση επιλεγμένων γραμμών</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="996"/>
+        <location filename="../src/texstudio.cpp" line="997"/>
         <source>&amp;Align Cursors</source>
         <translation>&amp;Ευθυγράμμιση δρομέων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="998"/>
+        <location filename="../src/texstudio.cpp" line="999"/>
         <source>&amp;Text Operations</source>
         <translation>&amp;Αλλαγή πεζών-κεφαλαίων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="999"/>
+        <location filename="../src/texstudio.cpp" line="1000"/>
         <source>To Lowercase</source>
         <translation>Όλα πεζά</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1000"/>
+        <location filename="../src/texstudio.cpp" line="1001"/>
         <source>To Uppercase</source>
         <translation>Όλα κεφαλαία</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1001"/>
+        <location filename="../src/texstudio.cpp" line="1002"/>
         <source>To Titlecase (strict)</source>
         <translation>Το πρώτο γράμμα κάθε λέξης κεφαλαίο (αυστηρά)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1002"/>
+        <location filename="../src/texstudio.cpp" line="1003"/>
         <source>To Titlecase (smart)</source>
         <translation>Το πρώτο γράμμα κάθε λέξης κεφαλαίο («έξυπνη» αντικατάσταση)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1006"/>
+        <location filename="../src/texstudio.cpp" line="1007"/>
         <source>&amp;Searching</source>
         <translation>&amp;Εύρεση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1007"/>
+        <location filename="../src/texstudio.cpp" line="1008"/>
         <source>&amp;Find</source>
         <translation>&amp;Εύρεση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1008"/>
+        <location filename="../src/texstudio.cpp" line="1009"/>
         <source>Find &amp;Next</source>
         <translation>Εύρεση &amp;επόμενου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1009"/>
+        <location filename="../src/texstudio.cpp" line="1010"/>
         <source>Find &amp;Prev</source>
         <translation>Εύρεση &amp;προηγούμενου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1010"/>
+        <location filename="../src/texstudio.cpp" line="1011"/>
         <source>Continue F&amp;ind</source>
         <translation>Συνέχιση ε&amp;ύρεσης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1011"/>
+        <location filename="../src/texstudio.cpp" line="1012"/>
         <source>&amp;Count</source>
         <translation>&amp;Πλήθος αποτελεσμάτων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1012"/>
+        <location filename="../src/texstudio.cpp" line="1013"/>
         <source>&amp;Select all matches...</source>
         <translation>&amp;Επιλογή όλων των αποτελεσμάτων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1014"/>
+        <location filename="../src/texstudio.cpp" line="1015"/>
         <source>&amp;Replace</source>
         <translation>&amp;Αντικατάσταση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1015"/>
+        <location filename="../src/texstudio.cpp" line="1016"/>
         <source>Replace Next</source>
         <translation>Αντικατάσταση επόμενου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1016"/>
+        <location filename="../src/texstudio.cpp" line="1017"/>
         <source>Replace Prev</source>
         <translation>Αντικατάσταση προηγούμενου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1017"/>
+        <location filename="../src/texstudio.cpp" line="1018"/>
         <source>Replace &amp;All</source>
         <translation>Αντικατάσταση &amp;όλων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1020"/>
+        <location filename="../src/texstudio.cpp" line="1021"/>
         <source>Go to</source>
         <translation>Μετάβαση σε</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1022"/>
-        <location filename="../src/texstudio.cpp" line="7880"/>
-        <location filename="../src/texstudio.cpp" line="7905"/>
-        <location filename="../src/texstudio.cpp" line="7925"/>
+        <location filename="../src/texstudio.cpp" line="1023"/>
+        <location filename="../src/texstudio.cpp" line="7932"/>
+        <location filename="../src/texstudio.cpp" line="7957"/>
+        <location filename="../src/texstudio.cpp" line="7977"/>
         <source>Line</source>
         <translation>Γραμμή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1023"/>
+        <location filename="../src/texstudio.cpp" line="1024"/>
         <source>Previous Change</source>
         <translation>Προηγούμενη αλλαγή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1025"/>
-        <location filename="../src/texstudio.cpp" line="1027"/>
+        <location filename="../src/texstudio.cpp" line="1026"/>
+        <location filename="../src/texstudio.cpp" line="1028"/>
         <source>Next Change</source>
         <translation>Επόμενη αλλαγή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1030"/>
+        <location filename="../src/texstudio.cpp" line="1031"/>
         <source>Previous mark</source>
         <translation>Προηγούμενο σημάδι</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1031"/>
+        <location filename="../src/texstudio.cpp" line="1032"/>
         <source>Next mark</source>
         <translation>Επόμενο σημάδι</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1034"/>
+        <location filename="../src/texstudio.cpp" line="1035"/>
         <source>Go Back</source>
         <translation>Προηγούμενη θέση κέρσορα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1035"/>
+        <location filename="../src/texstudio.cpp" line="1036"/>
         <source>Go Forward</source>
         <translation>Επόμενη θέση κέρσορα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1038"/>
+        <location filename="../src/texstudio.cpp" line="1039"/>
         <source>Goto Bookmark</source>
         <translation>Μετάβαση σε σελιδοδείκτη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1051"/>
-        <location filename="../src/texstudio.cpp" line="1060"/>
-        <location filename="../src/texstudio.cpp" line="1064"/>
+        <location filename="../src/texstudio.cpp" line="1052"/>
+        <location filename="../src/texstudio.cpp" line="1061"/>
+        <location filename="../src/texstudio.cpp" line="1065"/>
         <source>Bookmark %1</source>
         <translation>Σελιδοδείκτης %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1055"/>
+        <location filename="../src/texstudio.cpp" line="1056"/>
         <source>Toggle Bookmark</source>
         <translation>Εναλλαγή σελιδοδείκτη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1058"/>
-        <location filename="../src/texstudio.cpp" line="1062"/>
+        <location filename="../src/texstudio.cpp" line="1059"/>
+        <location filename="../src/texstudio.cpp" line="1063"/>
         <source>Unnamed Bookmark</source>
         <translation>Σελιδοδείκτης χωρίς όνομα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1069"/>
+        <location filename="../src/texstudio.cpp" line="1070"/>
         <source>Line Ending</source>
         <translation>Τέλος γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1071"/>
+        <location filename="../src/texstudio.cpp" line="1072"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1075"/>
+        <location filename="../src/texstudio.cpp" line="1076"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1079"/>
+        <location filename="../src/texstudio.cpp" line="1080"/>
         <source>Old Mac (CR)</source>
         <translation>Παλαιού Mac (CR)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1085"/>
+        <location filename="../src/texstudio.cpp" line="1086"/>
         <source>Setup Encoding...</source>
         <translation>Επιλογή κωδικοποίησης αρχείου...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1087"/>
-        <location filename="../src/texstudio.cpp" line="1089"/>
+        <location filename="../src/texstudio.cpp" line="1088"/>
+        <location filename="../src/texstudio.cpp" line="1090"/>
         <source>Insert Unicode Character...</source>
         <translation>Εισαγωγή χαρακτήρα Unicode...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1095"/>
+        <location filename="../src/texstudio.cpp" line="1096"/>
         <source>&amp;Idefix</source>
         <translation>&amp;Idefix</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1096"/>
+        <location filename="../src/texstudio.cpp" line="1097"/>
         <source>Erase &amp;Word/Cmd/Env</source>
         <translation>Διαγραφή &amp;λέξης/εντολής/περιβάλλοντος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1099"/>
+        <location filename="../src/texstudio.cpp" line="1100"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Επικό&amp;λληση ως LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1100"/>
+        <location filename="../src/texstudio.cpp" line="1101"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation>Με&amp;τατροπή σε LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1103"/>
+        <location filename="../src/texstudio.cpp" line="1104"/>
         <source>Pre&amp;view Selection/Parentheses</source>
         <translation>Προεπισκόπηση επιλογής/περιεχομένου παρενθέσεων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1104"/>
+        <location filename="../src/texstudio.cpp" line="1105"/>
         <source>C&amp;lear Inline Preview</source>
         <translation>Κ&amp;αθαρισμός προεπισκόπησης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1106"/>
+        <location filename="../src/texstudio.cpp" line="1107"/>
         <source>Preview Dis&amp;play Mode</source>
         <translation>Εμφάνιση &amp;προεπισκόπησης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1108"/>
+        <location filename="../src/texstudio.cpp" line="1109"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>σε tooltip, αν ο αντίστοιχος πίνακας είναι κρυμμένος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1112"/>
+        <location filename="../src/texstudio.cpp" line="1113"/>
         <source>Always show preview in preview panel</source>
         <translation>στον αντίστοιχο πίνακα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1116"/>
+        <location filename="../src/texstudio.cpp" line="1117"/>
         <source>Always show preview as tool tip</source>
         <translation>σε tooltip</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1120"/>
+        <location filename="../src/texstudio.cpp" line="1121"/>
         <source>Always show both</source>
         <translation>και σε tooltip και στον αντίστοιχο πίνακα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1124"/>
+        <location filename="../src/texstudio.cpp" line="1125"/>
         <source>Inline</source>
         <translation>στην ίδια γραμμή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1130"/>
+        <location filename="../src/texstudio.cpp" line="1131"/>
         <source>Show in embedded viewer</source>
         <translation>στο εσωτερικό πρόγραμμα προβολής αρχείων PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1139"/>
+        <location filename="../src/texstudio.cpp" line="1140"/>
         <source>Toggle &amp;Comment</source>
         <translation>Εναλλαγή &amp;κειμένου-σχολίου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1140"/>
+        <location filename="../src/texstudio.cpp" line="1141"/>
         <source>&amp;Comment</source>
         <translation>&amp;Δημιουργία σχολίου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1141"/>
+        <location filename="../src/texstudio.cpp" line="1142"/>
         <source>&amp;Uncomment</source>
         <translation>&amp;Κατάργηση σχολίου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1142"/>
+        <location filename="../src/texstudio.cpp" line="1143"/>
         <source>&amp;Indent</source>
         <translation>&amp;Εσοχή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1143"/>
+        <location filename="../src/texstudio.cpp" line="1144"/>
         <source>Unin&amp;dent</source>
         <translation>Κατάργηση ε&amp;σοχής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1144"/>
+        <location filename="../src/texstudio.cpp" line="1145"/>
         <source>Hard Line &amp;Break...</source>
         <translation>Εισαγωγή hard line &amp;breaks...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1145"/>
+        <location filename="../src/texstudio.cpp" line="1146"/>
         <source>R&amp;epeat Hard Line Break</source>
         <translation>Ε&amp;πανάληψη εισαγωγής hard line breaks</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1148"/>
+        <location filename="../src/texstudio.cpp" line="1149"/>
         <source>&amp;Go to</source>
         <translation>&amp;Μετάβαση σε</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1150"/>
+        <location filename="../src/texstudio.cpp" line="1151"/>
         <source>Previous Error</source>
         <translation>Προηγούμενο σφάλμα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1150"/>
         <location filename="../src/texstudio.cpp" line="1151"/>
+        <location filename="../src/texstudio.cpp" line="1152"/>
         <source>No LaTeX errors detected !</source>
         <translation>Δεν ανιχνεύτηκαν σφάλματα LaTeX!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1151"/>
+        <location filename="../src/texstudio.cpp" line="1152"/>
         <source>Next Error</source>
         <translation>Επόμενο σφάλμα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1152"/>
+        <location filename="../src/texstudio.cpp" line="1153"/>
         <source>Previous Warning</source>
         <translation>Προηγούμενη προειδοποίηση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1152"/>
         <location filename="../src/texstudio.cpp" line="1153"/>
+        <location filename="../src/texstudio.cpp" line="1154"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Δεν ανιχνεύτηκαν προειδοποιήσεις LaTeX!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1153"/>
+        <location filename="../src/texstudio.cpp" line="1154"/>
         <source>Next Warning</source>
         <translation>Επόμενη προειδοποίηση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1154"/>
+        <location filename="../src/texstudio.cpp" line="1155"/>
         <source>Previous Bad Box</source>
         <translation>Προηγούμενο Bad Box</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1154"/>
         <location filename="../src/texstudio.cpp" line="1155"/>
+        <location filename="../src/texstudio.cpp" line="1156"/>
         <source>No bad boxes detected !</source>
         <translation>Δε βρέθηκε κανένα bad box!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1155"/>
+        <location filename="../src/texstudio.cpp" line="1156"/>
         <source>Next Bad Box</source>
         <translation>Επόμενο Bad Box</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1158"/>
+        <location filename="../src/texstudio.cpp" line="1159"/>
         <source>Definition</source>
         <translation>Ορισμός</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1161"/>
+        <location filename="../src/texstudio.cpp" line="1162"/>
         <source>Re&amp;name Environment</source>
         <translation>Μετονομασία περιβάλλοντος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1163"/>
+        <location filename="../src/texstudio.cpp" line="1164"/>
         <source>Parenthesis</source>
         <translation>Παρένθεση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1165"/>
-        <location filename="../src/texstudio.cpp" line="1175"/>
+        <location filename="../src/texstudio.cpp" line="1166"/>
+        <location filename="../src/texstudio.cpp" line="1176"/>
         <source>Jump to Match</source>
         <translation>Μετάβαση στην αντίστοιχη παρένθεση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1166"/>
-        <location filename="../src/texstudio.cpp" line="1176"/>
+        <location filename="../src/texstudio.cpp" line="1167"/>
+        <location filename="../src/texstudio.cpp" line="1177"/>
         <source>Select Inner</source>
         <translation>Επιλογή περιεχομένου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1167"/>
-        <location filename="../src/texstudio.cpp" line="1177"/>
+        <location filename="../src/texstudio.cpp" line="1168"/>
+        <location filename="../src/texstudio.cpp" line="1178"/>
         <source>Select Outer</source>
         <translation>Επιλογή περιεχομένου και παρενθέσεων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1168"/>
-        <location filename="../src/texstudio.cpp" line="1178"/>
+        <location filename="../src/texstudio.cpp" line="1169"/>
+        <location filename="../src/texstudio.cpp" line="1179"/>
         <source>Select Command</source>
         <translation>Επιλογή εντολής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1169"/>
-        <location filename="../src/texstudio.cpp" line="1179"/>
+        <location filename="../src/texstudio.cpp" line="1170"/>
+        <location filename="../src/texstudio.cpp" line="1180"/>
         <source>Select Line</source>
         <translation>Επιλογή γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1170"/>
-        <location filename="../src/texstudio.cpp" line="1180"/>
+        <location filename="../src/texstudio.cpp" line="1171"/>
+        <location filename="../src/texstudio.cpp" line="1181"/>
         <source>Select Inverting</source>
         <translation>Αντιστροφή επιλογής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1173"/>
-        <location filename="../src/texstudio.cpp" line="1183"/>
+        <location filename="../src/texstudio.cpp" line="1174"/>
+        <location filename="../src/texstudio.cpp" line="1184"/>
         <source>Find Mismatch</source>
         <translation>Εύρεση αναντιστοιχίας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1186"/>
+        <location filename="../src/texstudio.cpp" line="1187"/>
         <source>Complete</source>
         <translation>Αυτόματη συμπλήρωση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1187"/>
+        <location filename="../src/texstudio.cpp" line="1188"/>
         <source>Normal</source>
         <translation>Κανονική</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1188"/>
+        <location filename="../src/texstudio.cpp" line="1189"/>
         <source>\begin{ Completion</source>
         <translation>Περιβάλλοντων \begin{</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1189"/>
+        <location filename="../src/texstudio.cpp" line="1190"/>
         <source>Normal Text</source>
         <translation>Απλού κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1190"/>
+        <location filename="../src/texstudio.cpp" line="1191"/>
         <source>Close latest open environment</source>
         <translation>Τελευταίου ανοιχτού περιβάλλοντος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1193"/>
+        <location filename="../src/texstudio.cpp" line="1194"/>
         <source>update TOC</source>
         <translation>Ενημέρωση πίνακα TOC (περιεχομένων)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1194"/>
+        <location filename="../src/texstudio.cpp" line="1195"/>
         <source>Refresh Structure</source>
         <translation>Ανανέωση δομής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1195"/>
+        <location filename="../src/texstudio.cpp" line="1196"/>
         <source>Refresh Language Model</source>
         <translation>Ανανέωση μοντέλου γλώσσας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1196"/>
+        <location filename="../src/texstudio.cpp" line="1197"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
         <translation>Ενημερώνει το δυναμικό μοντέλο γλώσσας που χρησιμοποιείται για την επισήμανση του κώδικα. Επειδή οι ενημερώσεις είναι συνήθως αυτόματες, δε χρειάζεται κατά κανόνα να κάνετε χρήση αυτής της επιλογής.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1197"/>
+        <location filename="../src/texstudio.cpp" line="1198"/>
         <source>Remove Placeholders</source>
         <translation>Διαγραφή placeholders</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1198"/>
+        <location filename="../src/texstudio.cpp" line="1199"/>
         <source>Remove Current Placeholder</source>
         <translation>Διαγραφή υπάρχοντος placeholder</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1203"/>
+        <location filename="../src/texstudio.cpp" line="1204"/>
         <source>&amp;Tools</source>
         <translation>&amp;Εργαλεία</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1205"/>
+        <location filename="../src/texstudio.cpp" line="1206"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>&amp;Δημιουργία &amp;&amp; Προβολή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1206"/>
+        <location filename="../src/texstudio.cpp" line="1207"/>
         <source>&amp;Compile</source>
         <translation>&amp;Μεταγλώττιση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1207"/>
+        <location filename="../src/texstudio.cpp" line="1208"/>
         <source>Stop Compile</source>
         <translation>Διακοπή μεταγλώττισης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1211"/>
-        <location filename="../src/texstudio.cpp" line="1366"/>
+        <location filename="../src/texstudio.cpp" line="1212"/>
+        <location filename="../src/texstudio.cpp" line="1367"/>
         <source>&amp;View</source>
         <translation>&amp;Προβολή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1212"/>
-        <location filename="../src/texstudio.cpp" line="1313"/>
+        <location filename="../src/texstudio.cpp" line="1213"/>
+        <location filename="../src/texstudio.cpp" line="1314"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Βιβλιογραφία</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1213"/>
+        <location filename="../src/texstudio.cpp" line="1214"/>
         <source>&amp;Glossary</source>
         <translation>&amp;Γλωσσάριο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1214"/>
+        <location filename="../src/texstudio.cpp" line="1215"/>
         <source>&amp;Index</source>
         <translation>&amp;Ευρετήριο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1217"/>
+        <location filename="../src/texstudio.cpp" line="1218"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation>&amp;Εντολές</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1218"/>
+        <location filename="../src/texstudio.cpp" line="1219"/>
         <source>&amp;Latexmk</source>
         <translation>&amp;Latexmk</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1220"/>
-        <location filename="../src/texstudio.cpp" line="1270"/>
+        <location filename="../src/texstudio.cpp" line="1221"/>
+        <location filename="../src/texstudio.cpp" line="1271"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1221"/>
+        <location filename="../src/texstudio.cpp" line="1222"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1225"/>
+        <location filename="../src/texstudio.cpp" line="1226"/>
         <source>DVI-&gt;PS</source>
         <translation>DVI-&gt;PS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1226"/>
+        <location filename="../src/texstudio.cpp" line="1227"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1227"/>
+        <location filename="../src/texstudio.cpp" line="1228"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1229"/>
+        <location filename="../src/texstudio.cpp" line="1230"/>
         <source>View &amp;DVI</source>
         <translation>Προβολή &amp;DVI</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1230"/>
+        <location filename="../src/texstudio.cpp" line="1231"/>
         <source>Vie&amp;w PS</source>
         <translation>Προβολ&amp;ή PS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1231"/>
+        <location filename="../src/texstudio.cpp" line="1232"/>
         <source>View PD&amp;F</source>
         <translation>Προβολή PD&amp;F</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1233"/>
+        <location filename="../src/texstudio.cpp" line="1234"/>
         <source>&amp;Bibtex</source>
         <translation>&amp;Bibtex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1234"/>
+        <location filename="../src/texstudio.cpp" line="1235"/>
         <source>&amp;Bibtex 8-Bit</source>
         <translation>&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1235"/>
+        <location filename="../src/texstudio.cpp" line="1236"/>
         <source>Bibe&amp;r</source>
         <translation>Bibe&amp;r</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1237"/>
+        <location filename="../src/texstudio.cpp" line="1238"/>
         <source>&amp;MakeIndex</source>
         <translation>&amp;MakeIndex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1238"/>
+        <location filename="../src/texstudio.cpp" line="1239"/>
         <source>&amp;TexIndy</source>
         <translation>&amp;TexIndy</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1239"/>
+        <location filename="../src/texstudio.cpp" line="1240"/>
         <source>&amp;Xindex</source>
         <translation>&amp;Xindex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1240"/>
+        <location filename="../src/texstudio.cpp" line="1241"/>
         <source>&amp;Makeglossaries</source>
         <translation>&amp;Makeglossaries</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1242"/>
+        <location filename="../src/texstudio.cpp" line="1243"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1243"/>
+        <location filename="../src/texstudio.cpp" line="1244"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1245"/>
+        <location filename="../src/texstudio.cpp" line="1246"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>&amp;Εντολές χρήστη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1248"/>
+        <location filename="../src/texstudio.cpp" line="1249"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>Εκκα&amp;θάριση βοηθητικών αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1249"/>
+        <location filename="../src/texstudio.cpp" line="1250"/>
         <source>Open External &amp;Terminal</source>
         <translation>Άνοιγμα γραμμής &amp;εντολών</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1251"/>
+        <location filename="../src/texstudio.cpp" line="1252"/>
         <source>View &amp;Log</source>
         <translation>Προβολή αρχείου &amp;καταγραφής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1252"/>
+        <location filename="../src/texstudio.cpp" line="1253"/>
         <source>Show Log Markers</source>
         <translation>Επισήμανση γραμμών με προβλήματα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1256"/>
+        <location filename="../src/texstudio.cpp" line="1257"/>
         <source>C&amp;onvert to Html...</source>
         <translation>Μ&amp;ετατροπή σε HTML...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1257"/>
+        <location filename="../src/texstudio.cpp" line="1258"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>Μ&amp;ετατροπή πηγαίου κώδικα σε HTML...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1259"/>
+        <location filename="../src/texstudio.cpp" line="1260"/>
         <source>Convert to Abridged Plaintext</source>
         <translation>Μετατροπή σε συντετμημένο απλό κείμενο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1260"/>
+        <location filename="../src/texstudio.cpp" line="1261"/>
         <source>A&amp;nalyse Text...</source>
         <translation>Α&amp;νάλυση κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1261"/>
+        <location filename="../src/texstudio.cpp" line="1262"/>
         <source>Generate &amp;Random Text...</source>
         <translation>Δημιουργία &amp;τυχαίου κειμένου...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1263"/>
+        <location filename="../src/texstudio.cpp" line="1264"/>
         <source>Check Spelling...</source>
         <translation>Γλωσσικός έλεγχος...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1264"/>
+        <location filename="../src/texstudio.cpp" line="1265"/>
         <source>Thesaurus...</source>
         <translation>Thesaurus...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1265"/>
+        <location filename="../src/texstudio.cpp" line="1266"/>
         <source>Find Word Repetitions...</source>
         <translation>Αναζήτηση επαναλαμβανόμενων λέξεων...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1272"/>
+        <location filename="../src/texstudio.cpp" line="1273"/>
         <source>Insert \ref to Next Label</source>
         <translation>Δημιουργία \ref με την επόμενη ετικέτα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1273"/>
+        <location filename="../src/texstudio.cpp" line="1274"/>
         <source>Insert \ref to Previous Label</source>
         <translation>Δημιουργία \ref με την προηγούμενη ετικέτα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1274"/>
+        <location filename="../src/texstudio.cpp" line="1275"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation>Χειρισμός πινάκων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1275"/>
+        <location filename="../src/texstudio.cpp" line="1276"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation>Προσθήκη γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1276"/>
+        <location filename="../src/texstudio.cpp" line="1277"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation>Προσθήκη στήλης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1277"/>
+        <location filename="../src/texstudio.cpp" line="1278"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation>Διαγραφή γραμμής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1278"/>
+        <location filename="../src/texstudio.cpp" line="1279"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation>Διαγραφή στήλης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1279"/>
+        <location filename="../src/texstudio.cpp" line="1280"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation>Αποκοπή στήλης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1280"/>
+        <location filename="../src/texstudio.cpp" line="1281"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>Επικόλληση στήλης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1281"/>
+        <location filename="../src/texstudio.cpp" line="1282"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation>Προσθήκη \hline</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1282"/>
+        <location filename="../src/texstudio.cpp" line="1283"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation>Κατάργηση \hline</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1283"/>
+        <location filename="../src/texstudio.cpp" line="1284"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation>Μετατροπή πίνακα χρησιμοποιώντας πρότυπο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1284"/>
+        <location filename="../src/texstudio.cpp" line="1285"/>
         <source>Align Columns</source>
         <translation>Στοίχιση στηλών</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1285"/>
+        <location filename="../src/texstudio.cpp" line="1286"/>
         <source>Add magic comments ...</source>
         <translation>Προσθήκη μαγικών σχολίων...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1286"/>
+        <location filename="../src/texstudio.cpp" line="1287"/>
         <source>Insert root document name as TeX comment</source>
         <translation>Εισαγωγή του ονόματος του κύριου αρχείου ως σχόλιο TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1287"/>
-        <location filename="../src/texstudio.cpp" line="1696"/>
+        <location filename="../src/texstudio.cpp" line="1288"/>
+        <location filename="../src/texstudio.cpp" line="1698"/>
         <source>Insert language as TeX comment</source>
         <translation>Εισαγωγή γλώσσας ως σχόλιο TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1288"/>
+        <location filename="../src/texstudio.cpp" line="1289"/>
         <source>Insert document coding as TeX comment</source>
         <translation>Εισαγωγή κωδικοποίησης εγγράφου ως σχόλιο TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1289"/>
+        <location filename="../src/texstudio.cpp" line="1290"/>
         <source>Insert program as TeX comment</source>
         <translation>Εισαγωγή προγράμματος ως σχόλιο TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1290"/>
+        <location filename="../src/texstudio.cpp" line="1291"/>
         <source>Insert bibliography tool as TeX comment</source>
         <translation>Εισαγωγή εργαλείου βιβλιογραφίας ως σχόλιο TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1292"/>
+        <location filename="../src/texstudio.cpp" line="1293"/>
         <source>&amp;Math</source>
         <translation>&amp;Μαθηματικά</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1296"/>
+        <location filename="../src/texstudio.cpp" line="1297"/>
         <source>&amp;Wizards</source>
         <translation>&amp;Οδηγοί</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1297"/>
+        <location filename="../src/texstudio.cpp" line="1298"/>
         <source>Quick &amp;Start...</source>
         <translation>Γρήγορη &amp;ξεκίνημα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1298"/>
+        <location filename="../src/texstudio.cpp" line="1299"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation>Γρήγορη &amp;παρουσίαση Beamer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1299"/>
+        <location filename="../src/texstudio.cpp" line="1300"/>
         <source>Quick &amp;Letter...</source>
         <translation>Γρήγορη &amp;επιστολή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1302"/>
+        <location filename="../src/texstudio.cpp" line="1303"/>
         <source>AI &amp;Chat...</source>
         <translation>AI &amp;Chat...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1305"/>
+        <location filename="../src/texstudio.cpp" line="1306"/>
         <source>Quick &amp;Tabular...</source>
         <translation>Γρήγορος &amp;πίνακας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1306"/>
+        <location filename="../src/texstudio.cpp" line="1307"/>
         <source>Quick T&amp;abbing...</source>
         <translation>Γρήγορο T&amp;abbing</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1307"/>
+        <location filename="../src/texstudio.cpp" line="1308"/>
         <source>Quick &amp;Array...</source>
         <translation>Γρήγορο A&amp;rray</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1308"/>
+        <location filename="../src/texstudio.cpp" line="1309"/>
         <source>Insert &amp;Graphic...</source>
         <translation>Εισαγωγή &amp;εικόνας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1310"/>
+        <location filename="../src/texstudio.cpp" line="1311"/>
         <source>Math Assistant...</source>
         <translation>Βοηθός μαθηματικών...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1338"/>
+        <location filename="../src/texstudio.cpp" line="1339"/>
         <source>&amp;Clean</source>
         <translation>Καθαρισμός</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1340"/>
+        <location filename="../src/texstudio.cpp" line="1341"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>&amp;Εισαγωγή βιβλιογραφικής εγγραφής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1342"/>
+        <location filename="../src/texstudio.cpp" line="1343"/>
         <source>Type</source>
         <translation>Τύπος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1346"/>
-        <location filename="../src/texstudio.cpp" line="1356"/>
+        <location filename="../src/texstudio.cpp" line="1347"/>
+        <location filename="../src/texstudio.cpp" line="1357"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1351"/>
-        <location filename="../src/texstudio.cpp" line="1357"/>
+        <location filename="../src/texstudio.cpp" line="1352"/>
+        <location filename="../src/texstudio.cpp" line="1358"/>
         <source>BibLaTeX</source>
         <translation>BibLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1361"/>
+        <location filename="../src/texstudio.cpp" line="1362"/>
         <source>Ma&amp;cros</source>
         <translation>Μα&amp;κροεντολές</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1367"/>
+        <location filename="../src/texstudio.cpp" line="1368"/>
         <source>Previous Document</source>
         <translation>Προηγούμενο αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1368"/>
+        <location filename="../src/texstudio.cpp" line="1369"/>
         <source>Next Document</source>
         <translation>Επόμενο αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1369"/>
+        <location filename="../src/texstudio.cpp" line="1370"/>
         <source>Open Documents</source>
         <translation>Άνοιγμα πρόσφατων αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1370"/>
+        <location filename="../src/texstudio.cpp" line="1371"/>
         <source>List Of Open Documents</source>
         <translation>Λίστα ανοιχτών αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1371"/>
+        <location filename="../src/texstudio.cpp" line="1372"/>
         <source>List Of Hidden Documents</source>
         <translation>Λίστα κρυμμένων αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1373"/>
+        <location filename="../src/texstudio.cpp" line="1374"/>
         <source>Focus Editor</source>
         <translation>Εστίαση στον επεξεργαστή κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1374"/>
+        <location filename="../src/texstudio.cpp" line="1375"/>
         <source>Focus Viewer</source>
         <translation>Εστίαση στο πρόγραμμα προβολής PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1377"/>
+        <location filename="../src/texstudio.cpp" line="1378"/>
         <source>Show</source>
         <translation>Εμφάνιση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1380"/>
+        <location filename="../src/texstudio.cpp" line="1381"/>
         <source>Statusbar</source>
         <translation>Γραμμή προόδου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1383"/>
+        <location filename="../src/texstudio.cpp" line="1384"/>
         <source>Reset Sidepanel/docks</source>
         <translation>Επαναφορά πλαϊνού πίνακα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1406"/>
+        <location filename="../src/texstudio.cpp" line="1407"/>
         <source>Show embedded PDF large</source>
         <translation>Μεγιστοποίηση προγράμματος προβολής PDF </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1407"/>
+        <location filename="../src/texstudio.cpp" line="1409"/>
         <source>Show embedded PDF small</source>
         <translation>Επαναφορά κάτω προγράμματος προβολής PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1409"/>
+        <location filename="../src/texstudio.cpp" line="1411"/>
         <source>Close Element</source>
         <translation>Κλείσιμο στοιχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1412"/>
+        <location filename="../src/texstudio.cpp" line="1414"/>
         <source>Collapse</source>
         <translation>Σύμπτυξη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1413"/>
-        <location filename="../src/texstudio.cpp" line="1418"/>
+        <location filename="../src/texstudio.cpp" line="1415"/>
+        <location filename="../src/texstudio.cpp" line="1420"/>
         <source>Everything</source>
         <translation>όλων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1414"/>
-        <location filename="../src/texstudio.cpp" line="1419"/>
+        <location filename="../src/texstudio.cpp" line="1416"/>
+        <location filename="../src/texstudio.cpp" line="1421"/>
         <source>Nearest Block</source>
         <translation>πλησιέστερων block</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1416"/>
-        <location filename="../src/texstudio.cpp" line="1421"/>
+        <location filename="../src/texstudio.cpp" line="1418"/>
+        <location filename="../src/texstudio.cpp" line="1423"/>
         <source>Level %1</source>
         <translation>επιπέδου %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1417"/>
+        <location filename="../src/texstudio.cpp" line="1419"/>
         <source>Expand</source>
         <translation>Ανάπτυξη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1423"/>
+        <location filename="../src/texstudio.cpp" line="1425"/>
         <source>Grammar errors</source>
         <translation>Γλωσσικός έλεγχος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1426"/>
+        <location filename="../src/texstudio.cpp" line="1428"/>
         <source>Word Repetition</source>
         <translation>Επανάληψη λέξεων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1427"/>
+        <location filename="../src/texstudio.cpp" line="1429"/>
         <source>Long-range Word Repetition</source>
         <translation>Επαναλήψεις μεγαλύτερων λέξεων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1428"/>
+        <location filename="../src/texstudio.cpp" line="1430"/>
         <source>Bad words</source>
         <translation>Αργκό/ανεπίσημες λέξεις</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1429"/>
+        <location filename="../src/texstudio.cpp" line="1431"/>
         <source>Grammar Mistake</source>
         <translation>Γραμματικό λάθος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1431"/>
+        <location filename="../src/texstudio.cpp" line="1433"/>
         <source>Grammar Mistake Special %1</source>
         <translation>Ειδικό γραμματικό λάθος %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1440"/>
+        <location filename="../src/texstudio.cpp" line="1442"/>
         <source>Editor Zoom</source>
         <translation>Μεγέθυνση/σμίκρυνση επεξεργαστή κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1441"/>
+        <location filename="../src/texstudio.cpp" line="1443"/>
         <source>Zoom In</source>
         <translation>Μεγέθυνση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1442"/>
+        <location filename="../src/texstudio.cpp" line="1444"/>
         <source>Zoom Out</source>
         <translation>Σμίκρυνση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1443"/>
+        <location filename="../src/texstudio.cpp" line="1445"/>
         <source>Reset Zoom</source>
         <translation>Επαναφορά στο προεπιλεγμένο μέγεθος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1445"/>
+        <location filename="../src/texstudio.cpp" line="1447"/>
         <source>Full &amp;Screen</source>
         <translation>Πλήρης &amp;οθόνη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1452"/>
+        <location filename="../src/texstudio.cpp" line="1454"/>
         <source>Highlighting</source>
         <translation>Επισήμανση κώδικα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1476"/>
+        <location filename="../src/texstudio.cpp" line="1478"/>
         <source>&amp;Options</source>
         <translation>&amp;Επιλογές</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1477"/>
+        <location filename="../src/texstudio.cpp" line="1479"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>&amp;Ρυθμίσεις TeXstudio...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1480"/>
+        <location filename="../src/texstudio.cpp" line="1482"/>
         <source>Load &amp;Profile...</source>
         <translation>Φόρτωση &amp;προφιλ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1481"/>
+        <location filename="../src/texstudio.cpp" line="1483"/>
         <source>S&amp;ave Profile...</source>
         <translation>Α&amp;ποθήκευση προφίλ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1482"/>
+        <location filename="../src/texstudio.cpp" line="1484"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation>Αποθήκευση &amp;υπάρχοντων ρυθμίσεων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1483"/>
+        <location filename="../src/texstudio.cpp" line="1485"/>
         <source>Restore &amp;Default Settings...</source>
         <translation>Επαναφορά &amp;προεπιλεγμένων ρυθμίσεων...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1486"/>
+        <location filename="../src/texstudio.cpp" line="1488"/>
         <source>Root Document</source>
         <comment>menu</comment>
         <translation>Κύρια αρχεία</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1489"/>
+        <location filename="../src/texstudio.cpp" line="1491"/>
         <source>Detect &amp;Automatically</source>
         <translation>Αυτόματη &amp;ανίχνευση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1497"/>
+        <location filename="../src/texstudio.cpp" line="1499"/>
         <source>Set Current Document As Explicit Root</source>
         <translation>Ορισμός αυτού του εγγράφου ως κύριο αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1500"/>
+        <location filename="../src/texstudio.cpp" line="1502"/>
         <source>&amp;Help</source>
         <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1501"/>
+        <location filename="../src/texstudio.cpp" line="1503"/>
         <source>LaTeX Reference...</source>
         <translation>Ανεπίσημη τεκμηρίωση LaTeX...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1502"/>
+        <location filename="../src/texstudio.cpp" line="1504"/>
         <source>User Manual...</source>
         <translation>Εγχειρίδιο χρήσης...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1503"/>
+        <location filename="../src/texstudio.cpp" line="1505"/>
         <source>Packages Help...</source>
         <translation>Τεκμηρίωση πακέτων...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1506"/>
+        <location filename="../src/texstudio.cpp" line="1508"/>
         <source>Check LaTeX Installation</source>
         <translation>Έλεγχος της εγκατάστασης LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1507"/>
+        <location filename="../src/texstudio.cpp" line="1509"/>
         <source>Check Active Completion Files</source>
         <translation>Έλεγχος αρχείων αυτόματης συμπλήρωσης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1508"/>
+        <location filename="../src/texstudio.cpp" line="1510"/>
         <source>Check LanguageTool</source>
         <translation>Έλεγχος LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1509"/>
+        <location filename="../src/texstudio.cpp" line="1511"/>
         <source>Bugs Report/Feature Request</source>
         <translation>Αναφορά σφάλματος/Υποβολή προτάσεων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1510"/>
+        <location filename="../src/texstudio.cpp" line="1512"/>
         <source>About TeXstudio...</source>
         <translation>Σχετικά με το TeXstudio...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1679"/>
-        <location filename="../src/texstudio.cpp" line="5921"/>
+        <location filename="../src/texstudio.cpp" line="1681"/>
+        <location filename="../src/texstudio.cpp" line="5971"/>
         <source>show more entries ...</source>
         <translation>εμφάνιση περισσότερων...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1687"/>
+        <location filename="../src/texstudio.cpp" line="1689"/>
         <source>Default</source>
         <translation>Προκαθορισμένο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1721"/>
+        <location filename="../src/texstudio.cpp" line="1723"/>
         <source>Connected to LanguageTool at %1</source>
         <translation>Συνδέθηκε με το LanguageTool στον διακομιστή %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1725"/>
+        <location filename="../src/texstudio.cpp" line="1727"/>
         <source>No LanguageTool server found at %1</source>
         <translation>Δε βρέθηκε διακομιστής LanguageTool στη διεύθυνση %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1729"/>
+        <location filename="../src/texstudio.cpp" line="1731"/>
         <source>LanguageTool status unknown</source>
         <translation>Άγνωστη κατάσταση LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1733"/>
+        <location filename="../src/texstudio.cpp" line="1735"/>
         <source>Inline grammar checking disabled by user!</source>
         <translation>Ο ενσωματωμένος γραμματικός έλεγχος είναι απενεργοποιημένος!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1796"/>
+        <location filename="../src/texstudio.cpp" line="1798"/>
         <source>Language</source>
         <translation>Γλώσσα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1808"/>
-        <location filename="../src/texstudio.cpp" line="1809"/>
-        <location filename="../src/texstudio.cpp" line="5951"/>
-        <location filename="../src/texstudio.cpp" line="5954"/>
-        <location filename="../src/texstudio.cpp" line="5955"/>
+        <location filename="../src/texstudio.cpp" line="1810"/>
+        <location filename="../src/texstudio.cpp" line="1811"/>
+        <location filename="../src/texstudio.cpp" line="6001"/>
+        <location filename="../src/texstudio.cpp" line="6004"/>
+        <location filename="../src/texstudio.cpp" line="6005"/>
         <source>Encoding</source>
         <translation>Κωδικοποίηση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1831"/>
+        <location filename="../src/texstudio.cpp" line="1833"/>
         <source>More Encodings...</source>
         <translation>Περισσότερες κωδικοποιήσεις...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1839"/>
+        <location filename="../src/texstudio.cpp" line="1841"/>
         <source>Insert encoding as TeX comment</source>
         <translation>Εισαγωγή κωδικοποίησης ως σχόλιο TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1853"/>
+        <location filename="../src/texstudio.cpp" line="1855"/>
         <source>Go to bookmark</source>
         <translation>Μετάβαση σε σελιδοδείκτη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1895"/>
+        <location filename="../src/texstudio.cpp" line="1897"/>
         <source>Automatic</source>
         <translation>Αυτόματο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1896"/>
+        <location filename="../src/texstudio.cpp" line="1898"/>
         <source>Automatic root document detection active</source>
         <translation>Ο αυτόματος εντοπισμός κύριων αρχείων είναι ενεργός</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1901"/>
+        <location filename="../src/texstudio.cpp" line="1903"/>
         <source>&amp;Explicit</source>
         <translation>&amp;Κύριο αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1902"/>
+        <location filename="../src/texstudio.cpp" line="1904"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation>Root</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1903"/>
+        <location filename="../src/texstudio.cpp" line="1905"/>
         <source>Explict root document:
 %1</source>
         <translation>Κύριο αρχείο:
 %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2214"/>
+        <location filename="../src/texstudio.cpp" line="2216"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>Θέλετε να γίνει αποσφαλμάτωση σε ένα αρχείο SyncTeX;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2313"/>
-        <location filename="../src/texstudio.cpp" line="4251"/>
-        <location filename="../src/texstudio.cpp" line="6005"/>
-        <location filename="../src/texstudio.cpp" line="6058"/>
-        <location filename="../src/texstudio.cpp" line="6624"/>
-        <location filename="../src/texstudio.cpp" line="6805"/>
-        <location filename="../src/texstudio.cpp" line="6807"/>
-        <location filename="../src/texstudio.cpp" line="6817"/>
-        <location filename="../src/texstudio.cpp" line="6819"/>
-        <location filename="../src/texstudio.cpp" line="10640"/>
+        <location filename="../src/texstudio.cpp" line="2315"/>
+        <location filename="../src/texstudio.cpp" line="4266"/>
+        <location filename="../src/texstudio.cpp" line="6055"/>
+        <location filename="../src/texstudio.cpp" line="6108"/>
+        <location filename="../src/texstudio.cpp" line="6675"/>
+        <location filename="../src/texstudio.cpp" line="6856"/>
+        <location filename="../src/texstudio.cpp" line="6858"/>
+        <location filename="../src/texstudio.cpp" line="6868"/>
+        <location filename="../src/texstudio.cpp" line="6870"/>
+        <location filename="../src/texstudio.cpp" line="10692"/>
         <source>Error</source>
         <translation>Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2313"/>
+        <location filename="../src/texstudio.cpp" line="2315"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>Δεν έχετε δικαίωμα ανάγνωσης στο αρχείο %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2365"/>
+        <location filename="../src/texstudio.cpp" line="2367"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>Βρέθηκε αρχείο ανάκτησης για το έγγραφο &quot;%2&quot; (με ημερομηνία %1).
 Θέλετε να γίνει επαναφορά του εγγράφου;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2371"/>
+        <location filename="../src/texstudio.cpp" line="2373"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>Δεν ήταν δυνατό το άνοιγμα του αρχείου ανάκτησης &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2521"/>
+        <location filename="../src/texstudio.cpp" line="2523"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
         <translation>Το %1 μεταγλωττίστηκε με την έκδοση %2 της βιβλιοθήκης Qt, αλλά λειτουργεί με την έκδοση %3. Για να αποφύγετε την παρουσίαση τυχαίων σφαλμάτων εγκαταστήστε τη σωστή βιβλιοθήκη runtime (π.χ. αρχεία .dll ή .so).</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2611"/>
+        <location filename="../src/texstudio.cpp" line="2613"/>
         <source>Could not write template data:</source>
         <translation>Δεν ήταν δυνατή η εγγραφή δεδομένων προτύπου:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2643"/>
+        <location filename="../src/texstudio.cpp" line="2645"/>
         <source>Could not write template meta data:</source>
         <translation>Δεν ήταν δυνατή η ανάγνωση των μεταδεδομένων του προτύπου:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2694"/>
-        <location filename="../src/texstudio.cpp" line="2758"/>
+        <location filename="../src/texstudio.cpp" line="2696"/>
+        <location filename="../src/texstudio.cpp" line="2760"/>
         <source>File not found:</source>
         <translation>Το αρχείο δε βρέθηκε:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2698"/>
-        <location filename="../src/texstudio.cpp" line="2762"/>
+        <location filename="../src/texstudio.cpp" line="2700"/>
+        <location filename="../src/texstudio.cpp" line="2764"/>
         <source>You do not have read permission to this file:</source>
         <translation>Δεν έχετε δικαίωμα ανάγνωσης σε αυτό το αρχείο:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2879"/>
-        <location filename="../src/texstudio.cpp" line="10469"/>
+        <location filename="../src/texstudio.cpp" line="2881"/>
+        <location filename="../src/texstudio.cpp" line="10521"/>
         <source>Open Files</source>
         <translation>Ανοικτά αρχεία</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2897"/>
-        <location filename="../src/texstudio.cpp" line="2904"/>
+        <location filename="../src/texstudio.cpp" line="2899"/>
+        <location filename="../src/texstudio.cpp" line="2906"/>
         <source>Loading of last session failed.</source>
         <translation>Η φόρτωση της τελευταίας συνεδρίας απέτυχε.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2970"/>
+        <location filename="../src/texstudio.cpp" line="2972"/>
         <source>Save As</source>
         <translation>Αποθήκευση ως</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2988"/>
+        <location filename="../src/texstudio.cpp" line="2990"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -11565,183 +11589,183 @@ this other file before you can overwrite it.</source>
 αυτού του εγγράφου πριν το αντικαταστήσετε.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3006"/>
+        <location filename="../src/texstudio.cpp" line="3008"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>Το έγγραφο που αντιστοιχεί σε αυτό το αρχείο PDF έχει μετονομαστεί επειδή αποθηκεύτηκε εκ νέου με άλλο όνομα. Κατά συνέπεια, είναι αδύνατος ο συγχρονισμός του PDF με αυτό. Πρέπει να μεταγλωττίσετε το μετονομασμένο αρχείο για να εμφανιστεί το ενημερωμένο PDF.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3106"/>
+        <location filename="../src/texstudio.cpp" line="3115"/>
         <source>Rename/Move</source>
         <translation>Μετονομασία/Μετακίνηση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3106"/>
-        <location filename="../src/texstudio.cpp" line="12089"/>
+        <location filename="../src/texstudio.cpp" line="3115"/>
+        <location filename="../src/texstudio.cpp" line="12151"/>
         <source>Copy</source>
         <translation>Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3121"/>
+        <location filename="../src/texstudio.cpp" line="3130"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>Θέλετε να διαγράψετε το αρχείο &quot;%1&quot;;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3130"/>
+        <location filename="../src/texstudio.cpp" line="3139"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>Θέλετε να γίνει επαναφορά του αρχείου «%1» στην τελευταία αποθηκευμένη έκδοσή του;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3157"/>
+        <location filename="../src/texstudio.cpp" line="3166"/>
         <source>Numeric permissions</source>
         <translation>Αριθμητικά δικαιώματα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3158"/>
+        <location filename="../src/texstudio.cpp" line="3167"/>
         <source>Verbose permissions</source>
         <translation>Λεπτομερή δικαιώματα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3291"/>
+        <location filename="../src/texstudio.cpp" line="3300"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>Το αρχείο &quot;%1&quot; περιέχει αλλαγές που δεν έχουν αποθηκευτεί. Θέλετε να γίνει αποθήκευση πριν κλείσει το αρχείο;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3418"/>
-        <location filename="../src/texstudio.cpp" line="3477"/>
-        <location filename="../src/texstudio.cpp" line="3557"/>
+        <location filename="../src/texstudio.cpp" line="3433"/>
+        <location filename="../src/texstudio.cpp" line="3492"/>
+        <location filename="../src/texstudio.cpp" line="3572"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>Το αρχείο &quot;%1&quot; δεν υπάρχει πια. Θέλετε να καταργηθεί από τη λίστα πρόσφατων αρχείων;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3570"/>
+        <location filename="../src/texstudio.cpp" line="3585"/>
         <source>Loading of session failed.</source>
         <translation>Η φόρτωση της συνεδρίας απέτυχε.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3587"/>
+        <location filename="../src/texstudio.cpp" line="3602"/>
         <source>Load Session</source>
         <translation>Φόρτωση συνεδρίας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3587"/>
-        <location filename="../src/texstudio.cpp" line="3605"/>
+        <location filename="../src/texstudio.cpp" line="3602"/>
+        <location filename="../src/texstudio.cpp" line="3620"/>
         <source>TeXstudio Session</source>
         <translation>Συνεδρία του TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3605"/>
+        <location filename="../src/texstudio.cpp" line="3620"/>
         <source>Save Session</source>
         <translation>Αποθήκευση συνεδρίας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3611"/>
+        <location filename="../src/texstudio.cpp" line="3626"/>
         <source>Saving of session failed.</source>
         <translation>Η αποθήκευση της συνεδρίας απέτυχε.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3687"/>
+        <location filename="../src/texstudio.cpp" line="3702"/>
         <source>The following files could not be loaded:</source>
         <translation>Δεν ήταν δυνατή η φόρτωση των παρακάτω αρχείων:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3852"/>
+        <location filename="../src/texstudio.cpp" line="3867"/>
         <source>Image Formats (%1)</source>
         <translation>Τύποι Εικόνων (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3854"/>
+        <location filename="../src/texstudio.cpp" line="3869"/>
         <source>Save Image</source>
         <translation>Αποθήκευση εικόνας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3859"/>
+        <location filename="../src/texstudio.cpp" line="3874"/>
         <source>Could not save the image file.</source>
         <translation>Δεν ήταν δυνατή η αποθήκευση του αρχείου εικόνας.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3947"/>
+        <location filename="../src/texstudio.cpp" line="3962"/>
         <source>Ascending</source>
         <translation>αύξουσα σειρά</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3947"/>
+        <location filename="../src/texstudio.cpp" line="3962"/>
         <source>Descending</source>
         <translation>φθίνουσα σειρά</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3947"/>
+        <location filename="../src/texstudio.cpp" line="3962"/>
         <source>No Sorting</source>
         <translation>καμία ταξινόμηση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3947"/>
+        <location filename="../src/texstudio.cpp" line="3962"/>
         <source>Random (Shuffle)</source>
         <translation>τυχαία ανακατάταξη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3953"/>
+        <location filename="../src/texstudio.cpp" line="3968"/>
         <source>Sorting</source>
         <translation>Τύπος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3954"/>
+        <location filename="../src/texstudio.cpp" line="3969"/>
         <source>Complete Lines</source>
         <translation>Ολόκληρες γραμμές</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3955"/>
+        <location filename="../src/texstudio.cpp" line="3970"/>
         <source>Case Sensitive</source>
         <translation>Διάκριση πεζών-κεφαλαίων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3956"/>
+        <location filename="../src/texstudio.cpp" line="3971"/>
         <source>Remove Duplicates</source>
         <translation>Διαγραφή ίδιων γραμμών</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4214"/>
+        <location filename="../src/texstudio.cpp" line="4229"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Εισαγωγή hard line breaks μετά από αυτό το πλήθος χαρακτήρων:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4215"/>
+        <location filename="../src/texstudio.cpp" line="4230"/>
         <source>Smart scope selecting</source>
         <translation>«Έξυπνη» επιλογή γραμμών</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4216"/>
+        <location filename="../src/texstudio.cpp" line="4231"/>
         <source>Join lines before wrapping</source>
         <translation>Ένωση γραμμών πριν την εισαγωγή hard line breaks</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4230"/>
-        <location filename="../src/texstudio.cpp" line="6501"/>
-        <location filename="../src/texstudio.cpp" line="6558"/>
+        <location filename="../src/texstudio.cpp" line="4245"/>
+        <location filename="../src/texstudio.cpp" line="6552"/>
+        <location filename="../src/texstudio.cpp" line="6609"/>
         <source>No document open</source>
         <translation>Κανένα έγγραφο δεν είναι ανοιχτό</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4236"/>
+        <location filename="../src/texstudio.cpp" line="4251"/>
         <source>No dictionary available.</source>
         <translation>Κανένα λεξικό δεν είναι διαθέσιμο.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4251"/>
+        <location filename="../src/texstudio.cpp" line="4266"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Δεν είναι δυνατή η φόρτωση της βάσης δεδομένων Thesaurus </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4664"/>
+        <location filename="../src/texstudio.cpp" line="4679"/>
         <source>Storing session failed</source>
         <translation>Η αποθήκευση της συνεδρίας απέτυχε</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4664"/>
+        <location filename="../src/texstudio.cpp" line="4679"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation>Η αποθήκευση αυτής της συνεδρίας στο αρχείο %1 απέτυχε. Αν και το αρχείο υπάρχει, η εγγραφή δεδομένων σε αυτό ήταν αδύνατη.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4750"/>
+        <location filename="../src/texstudio.cpp" line="4765"/>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
@@ -11750,96 +11774,96 @@ Do you want to continue?</source>
 Θέλετε να συνεχίσετε;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4760"/>
+        <location filename="../src/texstudio.cpp" line="4775"/>
         <source>Unable to write to settings file %1</source>
         <translation>Δεν ήταν δυνατή η εγγραφή των ρυθμίσεων στο αρχείο %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5533"/>
+        <location filename="../src/texstudio.cpp" line="5583"/>
         <source>AI Chat</source>
         <translation>AI Chat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5533"/>
+        <location filename="../src/texstudio.cpp" line="5583"/>
         <source>Please set the API key in the settings.</source>
         <translation>Για να συνεχίσετε, πρέπει να ορίσετε το API key στις ρυθμίσεις.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5621"/>
+        <location filename="../src/texstudio.cpp" line="5671"/>
         <source>Quick Start</source>
         <translation>Γρήγορο ξεκίνημα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5643"/>
+        <location filename="../src/texstudio.cpp" line="5693"/>
         <source>Quick Beamer Presentation</source>
         <translation>Γρήγορη παρουσίαση Beamer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5680"/>
+        <location filename="../src/texstudio.cpp" line="5730"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;τρέχον αρχείο&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5712"/>
+        <location filename="../src/texstudio.cpp" line="5762"/>
         <source>Type: %1</source>
         <translation>Τύπος: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5754"/>
+        <location filename="../src/texstudio.cpp" line="5804"/>
         <source>Edit User &amp;Tags</source>
         <translation>Επεξεργασία ετικετών &amp;χρήστη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5816"/>
+        <location filename="../src/texstudio.cpp" line="5866"/>
         <source>empty</source>
         <translation>κενό</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5820"/>
+        <location filename="../src/texstudio.cpp" line="5870"/>
         <source>Labels:</source>
         <translation>Ετικέτες:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5908"/>
+        <location filename="../src/texstudio.cpp" line="5958"/>
         <source>show less entries ...</source>
         <translation>εμφάνιση λιγότερων αντικειμένων...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5949"/>
+        <location filename="../src/texstudio.cpp" line="5999"/>
         <source>Encoding Aliases: </source>
         <translation>Ψευδώνυμα κωδικοποιήσεων: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6005"/>
+        <location filename="../src/texstudio.cpp" line="6055"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Δεν ήταν δυνατός ο εντοπισμός του ονόματος του αρχείου.
 Πρέπει να αποθηκεύσετε ένα έγγραφο ώστε να μπορείτε να το μεταγλωττίσετε.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6013"/>
+        <location filename="../src/texstudio.cpp" line="6063"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Δεν ήταν δυνατός ο εντοπισμός του ονόματος του αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6052"/>
+        <location filename="../src/texstudio.cpp" line="6102"/>
         <source>  Running this command: </source>
         <translation>  Γίνεται εκτέλεση της εντολής: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6058"/>
+        <location filename="../src/texstudio.cpp" line="6108"/>
         <source>could not start the command</source>
         <translation>δεν ήταν δυνατή η έναρξη εκτέλεσης της εντολής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6181"/>
+        <location filename="../src/texstudio.cpp" line="6232"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Δεν ήταν δυνατή η εκτέλεση της εντολής που εκκινεί το ενσωματωμένο πρόγραμμα προβολής αρχείων PDF.
 Χρησιμοποιείτε μία έκδοση του TeXstudio που μεταγλωττίστηκε χωρίς το πρόγραμμα αυτό.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6201"/>
+        <location filename="../src/texstudio.cpp" line="6252"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -11856,222 +11880,222 @@ Do you want to allow and run the new, overriding command?
 (γ) Όχι, να χρησιμοποιηθεί η αρχική εντολή &quot;%2&quot; αντί της &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6285"/>
+        <location filename="../src/texstudio.cpp" line="6336"/>
         <source>Unknown internal command: %1</source>
         <translation>Άγνωστη εσωτερική εντολή: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6320"/>
+        <location filename="../src/texstudio.cpp" line="6371"/>
         <source>%!TeX program used: %1</source>
         <translation>%!Πρόγραμμα TeX που χρησιμοποιείται: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6323"/>
+        <location filename="../src/texstudio.cpp" line="6374"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>%!Δεν ήταν δυνατή η αναγνώριση του προγράμματος TeX! (%1) Χρησιμοποιείται το προεπιλεγμένο αντί αυτού.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6384"/>
+        <location filename="../src/texstudio.cpp" line="6435"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>Δεν είναι δυνατή η μεταγλώττιση του εγγράφου σε φάκελο όπου δεν έχετε δικαιώματα εγγραφής αρχείων.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6386"/>
+        <location filename="../src/texstudio.cpp" line="6437"/>
         <source>Could not start %1.</source>
         <translation>Δεν ήταν δυνατή η έναρξη εκτέλεσης της εντολής %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6415"/>
+        <location filename="../src/texstudio.cpp" line="6466"/>
         <source>Error:</source>
         <translation>Σφάλμα:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6491"/>
+        <location filename="../src/texstudio.cpp" line="6542"/>
         <source>No open project or tex file to clean.</source>
         <translation>Κανένα αρχείο project ή tex για εκκαθάριση.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6562"/>
+        <location filename="../src/texstudio.cpp" line="6613"/>
         <source>Text Analysis</source>
         <translation>Ανάλυση κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6586"/>
+        <location filename="../src/texstudio.cpp" line="6637"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>Το εργαλείο δημιουργίας τυχαίου κειμένου δημιουργεί το τυχαίο κειμένου από ήδη υπάρχουσες λέξεις. Πρέπει, επομένως, να ανοίξετε μερικά αρχεία κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6624"/>
+        <location filename="../src/texstudio.cpp" line="6675"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>Για να μπορέσετε να δείτε το αρχείο καταγραφής, πρέπει να γίνει αποθήκευση και μεταγλώττιση του εγγράφου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6805"/>
-        <location filename="../src/texstudio.cpp" line="6817"/>
+        <location filename="../src/texstudio.cpp" line="6856"/>
+        <location filename="../src/texstudio.cpp" line="6868"/>
         <source>File not found</source>
         <translation>Το αρχείο δε βρέθηκε</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6807"/>
-        <location filename="../src/texstudio.cpp" line="6819"/>
+        <location filename="../src/texstudio.cpp" line="6858"/>
+        <location filename="../src/texstudio.cpp" line="6870"/>
         <source>Could not open browser</source>
         <translation>Δεν ήταν δυνατό το άνοιγμα του προγράμματος περιήγησης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7135"/>
+        <location filename="../src/texstudio.cpp" line="7186"/>
         <source>%1 is an invalid TeX project directory.</source>
         <translation>Ο φάκελος έργου TeX %1 δεν είναι έγκυρος.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7428"/>
+        <location filename="../src/texstudio.cpp" line="7479"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Πρέπει να γίνει αποθήκευση του αρχείου πριν αυτό οριστεί ως κύριο έγγραφο.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7883"/>
+        <location filename="../src/texstudio.cpp" line="7935"/>
         <source>Label</source>
         <translation>Ετικέτα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7885"/>
-        <location filename="../src/texstudio.cpp" line="7907"/>
+        <location filename="../src/texstudio.cpp" line="7937"/>
+        <location filename="../src/texstudio.cpp" line="7959"/>
         <source>Beyond end of document.</source>
         <translation>Μετά το τέλος του αρχείου.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7888"/>
-        <location filename="../src/texstudio.cpp" line="7909"/>
+        <location filename="../src/texstudio.cpp" line="7940"/>
+        <location filename="../src/texstudio.cpp" line="7961"/>
         <source>In Appendix.</source>
         <translation>Στο παράρτημα.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7927"/>
+        <location filename="../src/texstudio.cpp" line="7979"/>
         <source>File not found.</source>
         <translation>Το αρχείο δε βρέθηκε.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7942"/>
+        <location filename="../src/texstudio.cpp" line="7994"/>
         <source> (Line %1)</source>
         <translation> (Γραμμή %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9256"/>
+        <location filename="../src/texstudio.cpp" line="9308"/>
         <source>commit comment:</source>
         <translation>κείμενο commit:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9260"/>
+        <location filename="../src/texstudio.cpp" line="9312"/>
         <source>check in whole directory ?</source>
         <translation>Check in όλου του φακέλου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9262"/>
+        <location filename="../src/texstudio.cpp" line="9314"/>
         <source>Push to repository ?</source>
         <translation>Προώθηση στο αποθετήριο;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9620"/>
+        <location filename="../src/texstudio.cpp" line="9672"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Προσοχή: το παράθυρο διαλόγου κλείνει αυτόματα εάν γίνει χειροκίνητη επεξεργασία του κειμένου!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9921"/>
+        <location filename="../src/texstudio.cpp" line="9973"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>Δεν ήταν δυνατό το άνοιγμα του αρχείου &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9923"/>
+        <location filename="../src/texstudio.cpp" line="9975"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>Το αρχείο &quot;%1&quot; δεν υπάρχει.
 Θέλετε να το δημιουργήσετε;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9960"/>
+        <location filename="../src/texstudio.cpp" line="10012"/>
         <source>Save Profile</source>
         <translation>Αποθήκευση προφίλ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9960"/>
-        <location filename="../src/texstudio.cpp" line="9967"/>
+        <location filename="../src/texstudio.cpp" line="10012"/>
+        <location filename="../src/texstudio.cpp" line="10019"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>Προφίλ TXS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9967"/>
+        <location filename="../src/texstudio.cpp" line="10019"/>
         <source>Load Profile</source>
         <translation>Φόρτωση προφίλ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10020"/>
+        <location filename="../src/texstudio.cpp" line="10072"/>
         <source>Failed to read profile file %1.</source>
         <translation>Δεν ήταν δυνατή η ανάγνωση του αρχείου προφίλ %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10143"/>
+        <location filename="../src/texstudio.cpp" line="10195"/>
         <source>Problem</source>
         <translation>Πρόβλημα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10143"/>
+        <location filename="../src/texstudio.cpp" line="10195"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>Η δυνατότητα αναζήτησης επαναλαμβανόμενων λέξεων είναι διαθέσιμη μόνο όταν ο γλωσσικός έλεγχος είναι ενεργοποιημένος!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10148"/>
+        <location filename="../src/texstudio.cpp" line="10200"/>
         <source>Find Word Repetitions</source>
         <translation>Αναζήτηση επαναλαμβανόμενων λέξεων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10157"/>
+        <location filename="../src/texstudio.cpp" line="10209"/>
         <source>&amp;Find Next</source>
         <translation>&amp;Εύρεση επόμενου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10159"/>
+        <location filename="../src/texstudio.cpp" line="10211"/>
         <source>&amp;Find Previous</source>
         <translation>&amp;Εύρεση προηγούμενου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10210"/>
+        <location filename="../src/texstudio.cpp" line="10262"/>
         <source>Reached beginning of text.</source>
         <translation>Αρχή του κειμένου.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10210"/>
+        <location filename="../src/texstudio.cpp" line="10262"/>
         <source>Reached end of text.</source>
         <translation>Τέλος του κειμένου.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10469"/>
-        <location filename="../src/texstudio.cpp" line="10680"/>
-        <location filename="../src/texstudio.cpp" line="10683"/>
+        <location filename="../src/texstudio.cpp" line="10521"/>
+        <location filename="../src/texstudio.cpp" line="10732"/>
+        <location filename="../src/texstudio.cpp" line="10735"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>Αρχεία LaTeX (*.tex);;Όλα τα αρχεία (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10640"/>
+        <location filename="../src/texstudio.cpp" line="10692"/>
         <source>You do not have read permission to this file.</source>
         <translation>Δεν έχετε άδεια ανάγνωσης σε αυτό το αρχείο.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10680"/>
+        <location filename="../src/texstudio.cpp" line="10732"/>
         <source>Open Compare File</source>
         <translation>Άνοιγμα συγκρινόμενου αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10683"/>
+        <location filename="../src/texstudio.cpp" line="10735"/>
         <source>Open Base File</source>
         <translation>Άνοιγμα βασικού αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10764"/>
+        <location filename="../src/texstudio.cpp" line="10816"/>
         <source>SVN Conflict!</source>
         <translation>SVN Conflict!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10765"/>
+        <location filename="../src/texstudio.cpp" line="10817"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -12081,14 +12105,14 @@ Press &quot;Cancel&quot;to do nothing.
 Πατήστε «Cancel» αν δεν επιθυμείτε να γίνει τίποτα.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10862"/>
-        <location filename="../src/texstudio.cpp" line="10953"/>
-        <location filename="../src/texstudio.cpp" line="10959"/>
+        <location filename="../src/texstudio.cpp" line="10914"/>
+        <location filename="../src/texstudio.cpp" line="11005"/>
+        <location filename="../src/texstudio.cpp" line="11011"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio Emergency</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10866"/>
+        <location filename="../src/texstudio.cpp" line="10918"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -12099,7 +12123,7 @@ Please provide this file if you send a bug report.
 Σε περίπτωση που υποβάλετε αναφορά σφάλματος, επισυνάψτε και το παραπάνω αρχείο.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10869"/>
+        <location filename="../src/texstudio.cpp" line="10921"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -12108,18 +12132,18 @@ Please provide this file if you send a bug report.
 %2 Θέλετε να γίνει προσπάθεια συνέχισης της λειτουργίας του TeXstudio; Αυτό μπορεί να έχει ως αποτέλεσμα απώλεια δεδομένων.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10870"/>
+        <location filename="../src/texstudio.cpp" line="10922"/>
         <source>Yes, try to recover</source>
         <translation>Ναι, να γίνει προσπάθεια επαναφοράς</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10871"/>
-        <location filename="../src/texstudio.cpp" line="10876"/>
+        <location filename="../src/texstudio.cpp" line="10923"/>
+        <location filename="../src/texstudio.cpp" line="10928"/>
         <source>No, kill the program</source>
         <translation>Όχι, έξοδος από το πρόγραμμα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10873"/>
+        <location filename="../src/texstudio.cpp" line="10925"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -12128,17 +12152,17 @@ Please provide this file if you send a bug report.
 %1 Θέλετε να συνεχιστεί η λειτουργία του TeXstudio; Αυτό μπορεί να έχει ως αποτέλεσμα απώλεια δεδομένων.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10874"/>
+        <location filename="../src/texstudio.cpp" line="10926"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Ναι, διακοπή βρόχου και προσπάθεια επαναφοράς</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10875"/>
+        <location filename="../src/texstudio.cpp" line="10927"/>
         <source>Yes, continue the loop</source>
         <translation>Ναι, συνέχιση βρόχου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10954"/>
+        <location filename="../src/texstudio.cpp" line="11006"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -12147,50 +12171,50 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 Θέλετε να συνεχίσετε τη λειτουργία του TeXstudio; Αυτό μπορεί να έχει ως αποτέλεσμα απώλεια δεδομένων.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10959"/>
+        <location filename="../src/texstudio.cpp" line="11011"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Έγινε προσπάθεια εξόδου από το TeXstudio, ωστόσο τίποτε δε συνέβη.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10991"/>
+        <location filename="../src/texstudio.cpp" line="11043"/>
         <source>System Report</source>
         <translation>Αναφορά συστήματος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11129"/>
+        <location filename="../src/texstudio.cpp" line="11181"/>
         <source>LT Report</source>
         <translation>Αναφορά του LT</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11155"/>
+        <location filename="../src/texstudio.cpp" line="11207"/>
         <source>process failed to start
 </source>
         <translation>δεν ήταν δυνατή η έναρξη εκτέλεσης της διαδικασίας
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11158"/>
+        <location filename="../src/texstudio.cpp" line="11210"/>
         <source>process crashed
 </source>
         <translation>η διαδικασία παρουσίασε πρόβλημα
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11168"/>
+        <location filename="../src/texstudio.cpp" line="11220"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>Ο έλεγχος σε πραγματικό χρόνο είναι ενεργοποιημένος.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11170"/>
+        <location filename="../src/texstudio.cpp" line="11222"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>Ο έλεγχος σε πραγματικό χρόνο είναι απενεργοποιημένος.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11173"/>
+        <location filename="../src/texstudio.cpp" line="11225"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -12199,7 +12223,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11175"/>
+        <location filename="../src/texstudio.cpp" line="11227"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -12208,7 +12232,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11178"/>
+        <location filename="../src/texstudio.cpp" line="11230"/>
         <source>Tries to start automatically.
 
 </source>
@@ -12217,7 +12241,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11180"/>
+        <location filename="../src/texstudio.cpp" line="11232"/>
         <source>Autostart disabled.
 
 </source>
@@ -12226,203 +12250,203 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11185"/>
+        <location filename="../src/texstudio.cpp" line="11237"/>
         <source>LT current status: </source>
         <translation>Τρέχουσα κατάσταση του LT: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11188"/>
+        <location filename="../src/texstudio.cpp" line="11240"/>
         <source>working</source>
         <translation>σε λειτουργία</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11191"/>
+        <location filename="../src/texstudio.cpp" line="11243"/>
         <source>error</source>
         <translation>προέκυψε σφάλμα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11195"/>
+        <location filename="../src/texstudio.cpp" line="11247"/>
         <source>unknown</source>
         <translation>άγνωστη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11198"/>
+        <location filename="../src/texstudio.cpp" line="11250"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11502"/>
+        <location filename="../src/texstudio.cpp" line="11564"/>
         <source>Error when communicating with LT: %1</source>
         <translation>Σφάλμα κατά την επικοινωνία με τον διακομιστή του LT: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11793"/>
-        <location filename="../src/texstudio.cpp" line="12586"/>
+        <location filename="../src/texstudio.cpp" line="11855"/>
+        <location filename="../src/texstudio.cpp" line="12648"/>
         <source>untitled</source>
         <translation>χωρίς τίτλο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11803"/>
-        <location filename="../src/texstudio.cpp" line="12629"/>
+        <location filename="../src/texstudio.cpp" line="11865"/>
+        <location filename="../src/texstudio.cpp" line="12691"/>
         <source>TODO</source>
         <translation>TODO</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11936"/>
-        <location filename="../src/texstudio.cpp" line="11944"/>
-        <location filename="../src/texstudio.cpp" line="11975"/>
+        <location filename="../src/texstudio.cpp" line="11998"/>
+        <location filename="../src/texstudio.cpp" line="12006"/>
+        <location filename="../src/texstudio.cpp" line="12037"/>
         <source>Document: </source>
         <translation>Έγγραφο:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12028"/>
+        <location filename="../src/texstudio.cpp" line="12090"/>
         <source>Close document</source>
         <translation>Κλείσιμο αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12029"/>
+        <location filename="../src/texstudio.cpp" line="12091"/>
         <source>Set as explicit root document</source>
         <translation>Ορισμός ως κύριο αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12030"/>
+        <location filename="../src/texstudio.cpp" line="12092"/>
         <source>Open all related documents</source>
         <translation>Άνοιγμα όλων των σχετικών αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12031"/>
+        <location filename="../src/texstudio.cpp" line="12093"/>
         <source>Close all related documents</source>
         <translation>Κλείσιμο όλων των σχετικών αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12033"/>
+        <location filename="../src/texstudio.cpp" line="12095"/>
         <source>Remove explicit root document role</source>
         <translation>Αναίρεση ορισμού ως κύριο αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12035"/>
+        <location filename="../src/texstudio.cpp" line="12097"/>
         <source>Show all open documents in this tree</source>
         <translation>Εμφάνιση όλων των ανοιχτών αρχείων σε αυτό το δέντρο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12037"/>
+        <location filename="../src/texstudio.cpp" line="12099"/>
         <source>Show only current document in this tree</source>
         <translation>Εμφάνιση μόνο αυτού του αρχείου σε αυτό το δέντρο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12050"/>
+        <location filename="../src/texstudio.cpp" line="12112"/>
         <source>Copy filename</source>
         <translation>Αντιγραφή ονόματος αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12051"/>
+        <location filename="../src/texstudio.cpp" line="12113"/>
         <source>Copy file path</source>
         <translation>Αντιγραφή διαδρομής αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12060"/>
+        <location filename="../src/texstudio.cpp" line="12122"/>
         <source>Insert</source>
         <translation>Εισαγωγή ως απλό κείμενο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12061"/>
-        <location filename="../src/texstudio.cpp" line="12062"/>
+        <location filename="../src/texstudio.cpp" line="12123"/>
+        <location filename="../src/texstudio.cpp" line="12124"/>
         <source>Insert as %1</source>
         <translation>Εισαγωγή ως %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12064"/>
+        <location filename="../src/texstudio.cpp" line="12126"/>
         <source>Find Usages</source>
         <translation>Εύρεση αναφορών</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12075"/>
+        <location filename="../src/texstudio.cpp" line="12137"/>
         <source>Insert Label</source>
         <translation>Προσθήκη ετικέτας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12079"/>
+        <location filename="../src/texstudio.cpp" line="12141"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation>Προσθήκη %1 στην ετικέτα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12083"/>
+        <location filename="../src/texstudio.cpp" line="12145"/>
         <source>Create Label</source>
         <translation>Δημιουργία ετικέτας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12087"/>
+        <location filename="../src/texstudio.cpp" line="12149"/>
         <source>Cut</source>
         <translation>Αποκοπή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12091"/>
+        <location filename="../src/texstudio.cpp" line="12153"/>
         <source>Paste Before</source>
         <translation>Επικόλληση πριν</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12093"/>
+        <location filename="../src/texstudio.cpp" line="12155"/>
         <source>Paste After</source>
         <translation>Επικόλληση μετά</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12096"/>
+        <location filename="../src/texstudio.cpp" line="12158"/>
         <source>Indent Section</source>
         <translation>Προσθήκη εσοχής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12098"/>
+        <location filename="../src/texstudio.cpp" line="12160"/>
         <source>Unindent Section</source>
         <translation>Κατάργηση εσοχής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12044"/>
-        <location filename="../src/texstudio.cpp" line="12102"/>
+        <location filename="../src/texstudio.cpp" line="12106"/>
+        <location filename="../src/texstudio.cpp" line="12164"/>
         <source>Expand Subitems</source>
         <translation>Ανάπτυξη όλων των αντικειμένων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="985"/>
+        <location filename="../src/texstudio.cpp" line="986"/>
         <source>C&amp;ut Line or Selection</source>
         <translation>Α&amp;ποκοπή γραμμής ή επιλογής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12045"/>
-        <location filename="../src/texstudio.cpp" line="12104"/>
+        <location filename="../src/texstudio.cpp" line="12107"/>
+        <location filename="../src/texstudio.cpp" line="12166"/>
         <source>Collapse Subitems</source>
         <translation>Σύμπτυξη όλων των αντικειμένων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12117"/>
+        <location filename="../src/texstudio.cpp" line="12179"/>
         <source>Open Document</source>
         <translation>Άνοιγμα αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12118"/>
-        <location filename="../src/texstudio.cpp" line="12125"/>
+        <location filename="../src/texstudio.cpp" line="12180"/>
+        <location filename="../src/texstudio.cpp" line="12187"/>
         <source>Go to Definition</source>
         <translation>Μετάβαση στον ορισμό</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12613"/>
+        <location filename="../src/texstudio.cpp" line="12675"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAPHY</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12621"/>
+        <location filename="../src/texstudio.cpp" line="12683"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MAGIC_COMMENTS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12637"/>
+        <location filename="../src/texstudio.cpp" line="12699"/>
         <source>BLOCK</source>
         <translation>BLOCK</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12645"/>
+        <location filename="../src/texstudio.cpp" line="12707"/>
         <source>LABELS</source>
         <translation>LABELS</translation>
     </message>
@@ -12956,7 +12980,7 @@ included document in %1</source>
         <translation>Εξαγωγή μακροεντολής</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="585"/>
+        <location filename="../src/usermenudialog.cpp" line="586"/>
         <source> (col. %1)</source>
         <translation>(στήλη %1)</translation>
     </message>
