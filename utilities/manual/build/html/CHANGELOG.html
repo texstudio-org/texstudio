@@ -216,8 +216,15 @@
 <li><p>hide spelling errors in picture envs like tikzpicture</p></li>
 <li><p>better handle \newtcbox <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3878">#3878</a></p></li>
 <li><p>fix rare crash <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3936">#3936</a></p></li>
-<li><p>repair user macro triger (?highlight-as:…), still not usable for math env detection</p></li>
+<li><p>repair user macro trigger (?highlight-as:…), still not usable for math env detection</p></li>
 <li><p>add new user macro trigger (?inEnv:…)</p></li>
+<li><p>add Grid menu to windowed and embedded pdf-viewer’s context menu <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3942">#3942</a></p></li>
+<li><p>fix pdf-viewer’s scrollbar with Fit to Width/Window and changing Continuous mode <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3928">#3928</a></p></li>
+<li><p>fix pdf-viewer’s Custom Grid dialog not preset with current Grid settings in Continuous mode <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3929">#3929</a></p></li>
+<li><p>add maximize button to Packages Help (Texdoc) dialog <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3911">#3911</a></p></li>
+<li><p>fix option ‘all packages’ no longer checked in Packages Help with no tex documents opened <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3917">#3917</a></p></li>
+<li><p>when context menu of a package name is used to open the Packages Help dialog then preset search filter with the name <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3918">#3918</a></p></li>
+<li><p>fix both View menu actions ‘Show embedded PDF large/small’ available, whether PDF area is large or small <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3931">#3931</a></p></li>
 </ul>
 </section>
 <section id="texstudio-4-8-5">
@@ -238,6 +245,7 @@
 <li><p>handle special columntypes (m[l],NiceMatrix) better <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3881">#3881</a></p></li>
 <li><p>handle key/val completion in frame environment better <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3846">#3846</a></p></li>
 <li><p>fix caching of newly defined colornames</p></li>
+<li><p>fix not all log lines with ‘Process started …’ are highlight <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3873">#3873</a></p></li>
 </ul>
 </section>
 <section id="texstudio-4-8-4">
@@ -415,7 +423,7 @@
 <li><p>show macro trigger and shortcut in configuration window (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2635">#2635</a>)</p></li>
 <li><p>support import of several macros at once (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2911">#2911</a>)</p></li>
 <li><p>fix wrong side panel title when changing grid size in config (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2743">#2743</a>)</p></li>
-<li><p>preview/clear preview now use position of context menu as reference <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2794">(#2794</a>)</p></li>
+<li><p>preview/clear preview now use position of context menu as reference (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2794">#2794</a>)</p></li>
 <li><p>add a Package Tab to the QuickStart Wizard (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2831">#2831</a>)</p></li>
 <li><p>Editor option ‘Show Only Monospaced Fonts’ is now persistent (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/788">#788</a>)</p></li>
 <li><p>fix size of config dialog on low res screens (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/995">#995</a>)</p></li>
@@ -1808,7 +1816,7 @@ texmaker file [-master] [-line xxx]</p></li>
 <section id="texmaker-1-2">
 <h2>Texmaker 1.2<a class="headerlink" href="#texmaker-1-2" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Don’t use anymore double-clic to open a file from the structure view (Qt-4.0.0 bug). A simple clic must be used now.</p></li>
+<li><p>Don’t use anymore double-click to open a file from the structure view (Qt-4.0.0 bug). A simple click must be used now.</p></li>
 <li><p>Don’t use anymore / to separate commands (quick build and users commands) but | to avoid confusion with the directories separator.</p></li>
 <li><p>A selected icon is no more highlighted (trouble on windows and macosx - the selected icon was masked).</p></li>
 <li><p>Added the option ‘-line’ for the application.

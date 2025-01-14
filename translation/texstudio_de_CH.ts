@@ -5235,7 +5235,7 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>LABELS</translation>
     </message>
 </context>
 <context>
@@ -5667,7 +5667,7 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <location filename="../src/loghighlighter.cpp" line="38"/>
         <source>Process started:</source>
-        <translation type="unfinished"/>
+        <translation>Prozess gestartet:</translation>
     </message>
 </context>
 <context>
@@ -6825,7 +6825,9 @@ Bitte geben Sie das Passwort ein:</translation>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Das Speichern des Dokumentes in die Datei
+%1
+fehlgeschlagen.</translation>
     </message>
 </context>
 <context>

@@ -5252,7 +5252,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>LABELS</translation>
     </message>
 </context>
 <context>
@@ -6843,7 +6843,9 @@ You can now enter the password:</source>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Η αποθήκευση του εγγράφου στο αρχείο
+%1
+απέτυχε.</translation>
     </message>
 </context>
 <context>

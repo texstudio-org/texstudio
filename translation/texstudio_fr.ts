@@ -5240,7 +5240,7 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>ÉTIQUETTES</translation>
     </message>
 </context>
 <context>
@@ -5670,7 +5670,7 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <location filename="../src/loghighlighter.cpp" line="38"/>
         <source>Process started:</source>
-        <translation type="unfinished"/>
+        <translation>Processus en cours</translation>
     </message>
 </context>
 <context>
@@ -6829,7 +6829,9 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;écriture du document dans le fichier
+%1
+a échoué.</translation>
     </message>
 </context>
 <context>

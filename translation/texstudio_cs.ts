@@ -5237,7 +5237,7 @@ Průvodce nepodporuje příkaz </translation>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>ŠTÍTKY</translation>
     </message>
 </context>
 <context>
@@ -6828,7 +6828,8 @@ Nyní můžete zadat heslo:</translation>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Nepodařilo se zapsat dokument do souboru
+%1.</translation>
     </message>
 </context>
 <context>

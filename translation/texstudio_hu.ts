@@ -5231,7 +5231,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>CÍMKÉK</translation>
     </message>
 </context>
 <context>
@@ -5664,7 +5664,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/loghighlighter.cpp" line="38"/>
         <source>Process started:</source>
-        <translation type="unfinished"/>
+        <translation>Folyamat elindult:</translation>
     </message>
 </context>
 <context>
@@ -6822,7 +6822,9 @@ Most megadhatja a jelszót:</translation>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>A dokumentum írása a következő fájlba:
+%1
+sikertelen.</translation>
     </message>
 </context>
 <context>

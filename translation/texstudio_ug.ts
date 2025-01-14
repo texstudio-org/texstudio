@@ -5236,7 +5236,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>بەلگە</translation>
     </message>
 </context>
 <context>
@@ -6823,7 +6823,9 @@ You can now enter the password:</source>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>ھۆججەتنى ھۆججەتكە يېزىش
+%1
+مەغلۇپ بولدى.</translation>
     </message>
 </context>
 <context>

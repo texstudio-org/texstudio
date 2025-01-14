@@ -5201,7 +5201,7 @@ Guiden stödjer inte kommandon.</translation>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>ETIKETTER</translation>
     </message>
 </context>
 <context>
@@ -6787,7 +6787,9 @@ Du kan nu skriva in lösenordet:</translation>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Skrivande av dokumentet till fil
+%1
+misslyckades.</translation>
     </message>
 </context>
 <context>

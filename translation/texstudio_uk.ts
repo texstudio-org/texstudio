@@ -5242,7 +5242,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>МІТКИ</translation>
     </message>
 </context>
 <context>
@@ -5675,7 +5675,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/loghighlighter.cpp" line="38"/>
         <source>Process started:</source>
-        <translation type="unfinished"/>
+        <translation>Процес стартував:</translation>
     </message>
 </context>
 <context>
@@ -6834,7 +6834,9 @@ You can now enter the password:</source>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Запис документу в файл
+%1
+завершився невдачею.</translation>
     </message>
 </context>
 <context>

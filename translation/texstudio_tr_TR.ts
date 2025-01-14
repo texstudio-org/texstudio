@@ -5241,7 +5241,7 @@ Yardımcı komutu desteklemiyor</translation>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>ETİKETLER</translation>
     </message>
 </context>
 <context>
@@ -6833,7 +6833,9 @@ You can now enter the password:</source>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Belge
+%1
+dosyasına yazılamadı.</translation>
     </message>
 </context>
 <context>

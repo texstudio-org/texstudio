@@ -5241,7 +5241,7 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>ETIQUETAS</translation>
     </message>
 </context>
 <context>
@@ -6832,7 +6832,9 @@ Por favor ingrese la contraseña:</translation>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>La escritura del documento
+%1
+falló.</translation>
     </message>
 </context>
 <context>

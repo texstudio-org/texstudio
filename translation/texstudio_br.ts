@@ -5236,7 +5236,7 @@ Ne vez ket kemeret e kont an urzhiad gant ar Skoazeller</translation>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>LABELIOÙ</translation>
     </message>
 </context>
 <context>
@@ -6823,7 +6823,9 @@ Gellout a rit ebarzhiñ ar ger-tremen bremañ:</translation>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Skrivadur an teuliad er restr
+%1
+c&apos;hwitet.</translation>
     </message>
 </context>
 <context>

@@ -5216,7 +5216,7 @@ Trình thuật sỹ không hỗ trợ lệnh</translation>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>LABELS</translation>
     </message>
 </context>
 <context>
@@ -6803,7 +6803,9 @@ Bạn có thể nhập mật khẩu ngay bây giờ:</translation>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Ghi tài liệu vào tệp
+%1
+đã thất bại.</translation>
     </message>
 </context>
 <context>

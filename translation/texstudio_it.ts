@@ -5251,7 +5251,7 @@ Sei fortemente invitato a riavviare TeXstudio</translation>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>ETICHETTE</translation>
     </message>
 </context>
 <context>
@@ -6843,7 +6843,9 @@ Ora puoi inserire la password:</translation>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>La scrittura del documento nel file
+%1
+è fallita.</translation>
     </message>
 </context>
 <context>

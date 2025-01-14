@@ -5225,7 +5225,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>ETYKIETY</translation>
     </message>
 </context>
 <context>
@@ -6810,7 +6810,9 @@ Możesz wprowadzić hasło:</translation>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Zapis do pliku dokumentu
+%1
+nie powiódł się.</translation>
     </message>
 </context>
 <context>

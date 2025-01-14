@@ -5240,7 +5240,7 @@ Sprievodca nepodporuje príkaz </translation>
     <message>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>LABELS</translation>
     </message>
 </context>
 <context>
@@ -6826,7 +6826,8 @@ Teraz môžete zadať heslo:</translation>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Nepodarilo sa zapísať dokument do súboru
+%1.</translation>
     </message>
 </context>
 <context>
