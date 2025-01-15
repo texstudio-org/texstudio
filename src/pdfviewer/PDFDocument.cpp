@@ -2040,7 +2040,8 @@ void PDFWidget::reloadPage(bool sync)
 		if (realPageIndex >= realNumPages())
 			realPageIndex = realNumPages() - 1;
 		if (realPageIndex >= 0) {
-			int visiblePageCount = qMin(gridx * gridy, realNumPages() - realPageIndex);
+			int availableGridFaces = gridx * gridy - (realPageIndex>0 ? 0 : getPageOffset());
+			int visiblePageCount = qMin(availableGridFaces, realNumPages() - realPageIndex);
 			for (int i = 0; i < visiblePageCount; i++)
 				pages << i + realPageIndex;
 			oldRealPageIndex = realPageIndex;
