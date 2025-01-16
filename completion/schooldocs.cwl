@@ -1,10 +1,10 @@
 # schooldocs package
-# Matthew Bertucci 2024/02/01 for v1.5
+# Matthew Bertucci 2025/01/16 for v1.6
 
 #include:geometry
 #include:fancyhdr
 #include:ifthen
-#include:lastpage
+#include:totpages
 #include:fancybox
 #include:xcolor
 #include:translations
