@@ -319,6 +319,7 @@
 <file>completion/beamerthemeTUDa.cwl</file>
 <file>completion/beamerthemeVerona.cwl</file>
 <file>completion/beamerthemeXiaoshan.cwl</file>
+<file>completion/beamertools.cwl</file>
 <file>completion/bearwear.cwl</file>
 <file>completion/begingreek.cwl</file>
 <file>completion/begriff.cwl</file>
@@ -523,6 +524,7 @@
 <file>completion/CascadiaCodePL.cwl</file>
 <file>completion/CascadiaMono.cwl</file>
 <file>completion/CascadiaMonoPL.cwl</file>
+<file>completion/cascadiamono-otf.cwl</file>
 <file>completion/cas-common.cwl</file>
 <file>completion/cases.cwl</file>
 <file>completion/casiofont.cwl</file>
@@ -1563,6 +1565,7 @@
 <file>completion/filemod.cwl</file>
 <file>completion/filemod-expmin.cwl</file>
 <file>completion/filesdo.cwl</file>
+<file>completion/fillpages.cwl</file>
 <file>completion/fillwith.cwl</file>
 <file>completion/finstrut.cwl</file>
 <file>completion/firamath-otf.cwl</file>
@@ -1695,6 +1698,7 @@
 <file>completion/gensymb.cwl</file>
 <file>completion/gentiumbook.cwl</file>
 <file>completion/gentium.cwl</file>
+<file>completion/gentium-otf.cwl</file>
 <file>completion/gentombow.cwl</file>
 <file>completion/geometry.cwl</file>
 <file>completion/german.cwl</file>
@@ -1985,6 +1989,7 @@
 <file>completion/iwonamath.cwl</file>
 <file>completion/jamtimes.cwl</file>
 <file>completion/javascripthttp.cwl</file>
+<file>completion/jetbrainsmono-otf.cwl</file>
 <file>completion/JeuxCartes.cwl</file>
 <file>completion/jiazhu.cwl</file>
 <file>completion/jigsaw.cwl</file>
