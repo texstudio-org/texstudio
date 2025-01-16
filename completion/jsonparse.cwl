@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2024/11/29 for v0.9.8
+# Matthew Bertucci 2025/01/16 for v0.9.11
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -32,6 +32,8 @@
 \JSONParseArrayKey
 \JSONParseArrayValue
 \JSONParseArrayCount{token variable}{key%plain}
+\JSONParseSetArrayCount{token variable%cmd}{token variable}{key%plain}#d
+\JSONParseArrayMapInline{token variable}{key%plain}{inline function}
 \JSONParseSet{keyvals}
 
 ## global
