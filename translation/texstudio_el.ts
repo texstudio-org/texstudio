@@ -5685,7 +5685,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/loghighlighter.cpp" line="38"/>
         <source>Process started:</source>
-        <translation type="unfinished"/>
+        <translation>Η διαδικασία ξεκίνησε:</translation>
     </message>
 </context>
 <context>
