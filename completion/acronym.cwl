@@ -2,12 +2,13 @@
 # ygrange 04/16/2007, Moritz Struebe 21/03/2013, GenosseFlosse 26/03/2021
 # URL: http://www.ctan.org/tex-archive/help/Catalogue/entries/acronym.html
 # URL: https://www.ctan.org/pkg/acronym
-# updated 2024/09/19 for v1.49
+# updated 2025/01/17 for v1.50
 
 #include:suffix
 #include:xstring
 
 #keyvals:\usepackage/acronym#c
+error
 footnote
 nohyperlinks
 noforwardlinks
