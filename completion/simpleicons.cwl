@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/01/13 for v14.1.0
+# Matthew Bertucci 2025/01/17 for v14.2.0
 
 #include:iftex
 
@@ -1052,6 +1052,7 @@ furaffinity
 furrynetwork
 fusionauth
 futurelearn
+fyle
 g2
 g2a
 g2g
@@ -1185,6 +1186,7 @@ googletasks
 googletranslate
 gotomeeting
 grab
+gradio
 gradle
 gradleplaypublisher
 grafana
@@ -3002,6 +3004,7 @@ usps
 utorrent
 uv
 v
+v0
 v2ex
 v8
 vaadin
@@ -3172,6 +3175,7 @@ wprocket
 writedotas
 wwe
 wwise
+wxt
 wykop
 wyze
 x
