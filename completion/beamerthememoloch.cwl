@@ -1,5 +1,5 @@
 # moloch beamertheme
-# Matthew Bertucci 2024/07/10 for v0.4.0
+# Matthew Bertucci 2025/01/17 for v0.6.0
 
 #include:etoolbox
 #include:pgfopts
@@ -11,6 +11,7 @@ titleformat=#regular,smallcaps,allsmallcaps,allcaps
 titleformat plain=#regular,smallcaps,allsmallcaps,allcaps
 sectionpage=#none,simple,progressbar
 subsectionpage=#none,simple,progressbar
+standoutnumbering=#none,hide,show
 numbering=#none,counter,fraction
 progressbar=#none,head,frametitle,foot
 block=#transparent,fill
