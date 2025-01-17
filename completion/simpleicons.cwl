@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/12/28 for v14.0.0
+# Matthew Bertucci 2025/01/13 for v14.1.0
 
 #include:iftex
 
@@ -613,6 +613,7 @@ comma
 commerzbank
 commitlint
 commodore
+commonlisp
 commonworkflowlanguage
 compilerexplorer
 composer
@@ -1900,6 +1901,7 @@ nextflow
 nextra
 nextui
 nexusmods
+nfcore
 nfc
 nginx
 nginxproxymanager

@@ -1,5 +1,5 @@
 # skeldoc package
-# Matthew Bertucci 2022/07/20 for v0.1.2
+# Matthew Bertucci 2025/01/16 for v0.1.3
 
 #include:xcolor
 #include:tabularx
@@ -45,6 +45,8 @@ bib-item-lines=%<integer%>
 pseudo-lines=%<integer%>
 pseudo-head=
 pseudo-newlines={%<cmd1,cmd2,...%>}
+hide-notes#true,false
+hide-all
 #endkeyvals
 
 \skelline

@@ -1,5 +1,5 @@
 # xdupgthesis class
-# Matthew Bertucci 2023/03/05 for v6.1.0.1
+# Matthew Bertucci 2025/01/13 for v6.2.3.1
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -102,7 +102,6 @@ info/supv-ent-title*={%<校外导师职称英文名称%>}
 info/student-id={%<作者学号%>}
 info/clc={%<中图分类号%>}
 info/secret-level=#秘密,公开
-info/secret-year={%<保密年限%>}
 info/submit-date={%<yyyy-mm%>}
 info/statement-scan={%<学位论文独创性声明和关于论文使用授权的说明页扫描文件路径%>}
 info/statement-sign={%<文件路径1,文件路径2,文件路径3,文件路径4,文件路径5,文件路径6%>}

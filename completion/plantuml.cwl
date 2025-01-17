@@ -1,5 +1,5 @@
 # plantuml package
-# Matthew Bertucci 2024/09/18 for v0.4.0
+# Matthew Bertucci 2025/01/13 for v0.5.0
 
 #include:adjustbox
 #include:fancyvrb
@@ -12,6 +12,7 @@
 \begin{plantuml}
 \end{plantuml}
 
+\CurrentDirectory#S
 \PlantUMLJobname#S
 \PlantUmlMode#S
 \maxwidth{width}#S
