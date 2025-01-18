@@ -4,12 +4,12 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="16"/>
         <source>Search in previous conversations</source>
-        <translation type="unfinished"/>
+        <translation>在之前的对话中搜索</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="20"/>
         <source>Search in conversations</source>
-        <translation type="unfinished"/>
+        <translation>在对话中搜索</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="46"/>
@@ -22,12 +22,12 @@
         <location filename="../src/aichatassistant.cpp" line="373"/>
         <location filename="../src/aichatassistant.cpp" line="419"/>
         <source>Send Query to AI provider</source>
-        <translation type="unfinished"/>
+        <translation>给AI提供者发送查询</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="56"/>
         <source>Insert response</source>
-        <translation type="unfinished"/>
+        <translation>插入回复</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="62"/>
@@ -42,17 +42,17 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="225"/>
         <source>Stop current query !</source>
-        <translation type="unfinished"/>
+        <translation>停止现有查询！</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="301"/>
         <source>System prompt</source>
-        <translation type="unfinished"/>
+        <translation>系统提示</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="315"/>
         <source>Values between 0 and %1</source>
-        <translation type="unfinished"/>
+        <translation>0和%1之间的值</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="322"/>
@@ -63,7 +63,7 @@
         <location filename="../src/aichatassistant.cpp" line="411"/>
         <location filename="../src/aichatassistant.cpp" line="448"/>
         <source>Execute as macro</source>
-        <translation type="unfinished"/>
+        <translation>作为宏运行</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="413"/>
@@ -74,7 +74,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="317"/>
         <source>Temperature</source>
-        <translation type="unfinished"/>
+        <translation>温度</translation>
     </message>
 </context>
 <context>
@@ -99,7 +99,7 @@
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="201"/>
         <source>Older</source>
-        <translation type="unfinished"/>
+        <translation>更旧</translation>
     </message>
 </context>
 <context>
@@ -967,7 +967,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="374"/>
         <source>Max. Recent Root Documents:</source>
-        <translation type="unfinished"/>
+        <translation>最近使用最大根文档数：</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="381"/>
@@ -987,7 +987,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="437"/>
         <source>Always Show Structure of Root Document</source>
-        <translation type="unfinished"/>
+        <translation>总是显示根文档结构</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="447"/>
@@ -1373,7 +1373,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1379"/>
         <source>Note: The change of symbols can be monitored live</source>
-        <translation type="unfinished"/>
+        <translation>注意：符号的改变可以被动态监视</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1386"/>
@@ -1958,7 +1958,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2565"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;全局目录使用不同阴影的背景色来区分不同的文件。可以在此处更改配色方案。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2569"/>
@@ -1978,7 +1978,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2587"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如 &amp;quot;\section&amp;quot; 一样的元素以一种不同的背景色被高亮，表示它们将 &lt;span style=&quot; font-weight:600;&quot;&gt;不会&lt;/span&gt; 在文档中出现&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
@@ -2459,7 +2459,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3652"/>
         <source>Local Model</source>
-        <translation type="unfinished"/>
+        <translation>本地模型</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3592"/>
@@ -2494,27 +2494,27 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3647"/>
         <source>OpenAI</source>
-        <translation type="unfinished"/>
+        <translation>OpenAI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3620"/>
         <source>AI provider:</source>
-        <translation type="unfinished"/>
+        <translation>AI提供者：</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3667"/>
         <source>Preferred model:</source>
-        <translation type="unfinished"/>
+        <translation>偏好的模型：</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3634"/>
         <source>API key:</source>
-        <translation type="unfinished"/>
+        <translation>API密钥：</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3660"/>
         <source>Record Conversation</source>
-        <translation type="unfinished"/>
+        <translation>记录对话</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3627"/>
@@ -2524,7 +2524,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3680"/>
         <source>API URL:</source>
-        <translation type="unfinished"/>
+        <translation>API URL：</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3687"/>
@@ -3819,23 +3819,23 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>The \vline command draws a vertical line extending the full height and depth of its row.</source>
-        <translation type="unfinished"/>
+        <translation>\vline 命令绘制一条垂直线，其高度和深度延伸至所在行的全部高度和深度。</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>The command \space gives you a space where you can&apos;t enter a space character.</source>
-        <translation type="unfinished"/>
+        <translation>命令\space可以在无法直接输入空格字符时提供一个空格。</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>The \enspace command inserts a horizontal space of 1/2em.</source>
-        <translation type="unfinished"/>
+        <translation>\enspace 命令插入一个宽度为1/2em的水平空间。</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
-        <translation type="unfinished"/>
+        <translation>\quad 命令插入一个宽度为1em的水平空间（1em即为字母“M”的宽度）。</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
@@ -8317,7 +8317,7 @@ r* 将会找到任意数量的r, r+等于rr*, a？ 将会匹配a或者不匹配�
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="867"/>
         <source> (col. %1)</source>
-        <translation type="unfinished"/>
+        <translation> (列 %1)</translation>
     </message>
 </context>
 <context>
@@ -8453,12 +8453,12 @@ r* 将会找到任意数量的r, r+等于rr*, a？ 将会匹配a或者不匹配�
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="349"/>
         <source>Extension package to amsthm</source>
-        <translation type="unfinished"/>
+        <translation>amsthm包的扩展宏包</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="350"/>
         <source>Sophisticated package for colors, with table option to use colors in tables</source>
-        <translation type="unfinished"/>
+        <translation>复杂的颜色宏包，带有在表格中使用颜色的表格选项</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="536"/>
@@ -8473,17 +8473,18 @@ r* 将会找到任意数量的r, r+等于rr*, a？ 将会匹配a或者不匹配�
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="603"/>
         <source>Hint</source>
-        <translation type="unfinished"/>
+        <translation>提示</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="603"/>
         <source>Package %1 is already defined.</source>
-        <translation type="unfinished"/>
+        <translation>包%1已经被定义。</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="616"/>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
-        <translation type="unfinished"/>
+        <translation>按下 OK 后，所有复选框选中的包都会出现在新文档中的 \usepackage 命令里。
+</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="36"/>
@@ -8771,7 +8772,7 @@ r* 将会找到任意数量的r, r+等于rr*, a？ 将会匹配a或者不匹配�
     <message>
         <location filename="../src/searchresultwidget.cpp" line="21"/>
         <source>Files on disk</source>
-        <translation type="unfinished"/>
+        <translation>硬盘里的文件</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="30"/>
@@ -8798,7 +8799,7 @@ r* 将会找到任意数量的r, r+等于rr*, a？ 将会匹配a或者不匹配�
     <message>
         <location filename="../src/searchresultwidget.cpp" line="44"/>
         <source>Bib files</source>
-        <translation type="unfinished"/>
+        <translation>Bib文件</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="45"/>
@@ -8823,12 +8824,12 @@ r* 将会找到任意数量的r, r+等于rr*, a？ 将会匹配a或者不匹配�
     <message>
         <location filename="../src/searchresultwidget.cpp" line="180"/>
         <source>Search in:</source>
-        <translation type="unfinished"/>
+        <translation>在此搜索：</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="216"/>
         <source>Select folder where to search</source>
-        <translation type="unfinished"/>
+        <translation>选择要搜索的文件夹</translation>
     </message>
 </context>
 <context>
@@ -8933,7 +8934,7 @@ r* 将会找到任意数量的r, r+等于rr*, a？ 将会匹配a或者不匹配�
     <message>
         <location filename="../src/spellerdialog.ui" line="87"/>
         <source>Ignore &amp;Once</source>
-        <translation type="unfinished"/>
+        <translation>忽略一次(&amp;O)</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="101"/>
@@ -8963,7 +8964,7 @@ r* 将会找到任意数量的r, r+等于rr*, a？ 将会匹配a或者不匹配�
     <message>
         <location filename="../src/spellerdialog.ui" line="184"/>
         <source>Ig&amp;nore All</source>
-        <translation type="unfinished"/>
+        <translation>忽略全部(&amp;n)</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="191"/>
@@ -9593,12 +9594,12 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="507"/>
         <source>&lt;No Description&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;No Description&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="508"/>
         <source>&lt;Unknown Author&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Unknown Author&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="509"/>
@@ -9640,7 +9641,9 @@ failed.</source>
         <source>Editing of multi-file templates is not supported.
 Please open the template location and unzip the
 template to edit individual files.</source>
-        <translation type="unfinished"/>
+        <translation>不支持编辑多文件模板。
+请打开模板的位置并解压
+模板以编辑单个文件。</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="585"/>
@@ -9706,7 +9709,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texdocdialog.ui" line="157"/>
         <source>Enter a term to search for in both columns.</source>
-        <translation type="unfinished"/>
+        <translation>在两列中输入要搜索的术语。</translation>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="164"/>
@@ -11088,7 +11091,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1303"/>
         <source>AI &amp;Chat...</source>
-        <translation type="unfinished"/>
+        <translation>AI聊天(&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1306"/>
@@ -11769,12 +11772,12 @@ Do you want to continue?</source>
     <message>
         <location filename="../src/texstudio.cpp" line="5583"/>
         <source>AI Chat</source>
-        <translation type="unfinished"/>
+        <translation>AI聊天</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5583"/>
         <source>Please set the API key in the settings.</source>
-        <translation type="unfinished"/>
+        <translation>请在设置中设置API密钥。</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5671"/>
@@ -11930,7 +11933,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="7186"/>
         <source>%1 is an invalid TeX project directory.</source>
-        <translation type="unfinished"/>
+        <translation>%1 是无效的TeX项目目录。</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="7479"/>
@@ -11977,7 +11980,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="9314"/>
         <source>Push to repository ?</source>
-        <translation type="unfinished"/>
+        <translation>推送至仓库？</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9672"/>
@@ -12430,7 +12433,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="12699"/>
         <source>BLOCK</source>
-        <translation type="unfinished"/>
+        <translation>阻止</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12707"/>
@@ -12893,7 +12896,7 @@ included document in %1</source>
     <message>
         <location filename="../src/updatechecker.cpp" line="201"/>
         <source>Update check for stable version failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>检查稳定版本更新失败(更新文件格式无效)。</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="214"/>
@@ -12947,7 +12950,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.cpp" line="359"/>
         <source>Do you really want to delete the current macro(s)?</source>
-        <translation type="unfinished"/>
+        <translation>确定要删除当前宏？</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="441"/>
@@ -12968,7 +12971,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.cpp" line="586"/>
         <source> (col. %1)</source>
-        <translation type="unfinished"/>
+        <translation> (列 %1)</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="19"/>
@@ -13337,7 +13340,8 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="319"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Browser command. Leave empty to not run the browser at the end of the conversion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;浏览器命令, 留空则在转换后不打开浏览器
+&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="339"/>
