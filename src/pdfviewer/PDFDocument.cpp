@@ -2040,7 +2040,8 @@ void PDFWidget::reloadPage(bool sync)
 		if (realPageIndex >= realNumPages())
 			realPageIndex = realNumPages() - 1;
 		if (realPageIndex >= 0) {
-			int visiblePageCount = qMin(gridx * gridy, realNumPages() - realPageIndex);
+			int availableGridFaces = gridx * gridy - (realPageIndex>0 ? 0 : getPageOffset());
+			int visiblePageCount = qMin(availableGridFaces, realNumPages() - realPageIndex);
 			for (int i = 0; i < visiblePageCount; i++)
 				pages << i + realPageIndex;
 			oldRealPageIndex = realPageIndex;
@@ -4114,7 +4115,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
         // function to check that lastSearchResult is visible is missing
         // quick workaround is that the at least the page is shown, even partially
         // visible pages
-        int visPages=pdfWidget->visiblePages(); // function return too large a number, buggy
+        int visPages=pdfWidget->visiblePages();
         if (((pdfWidget->getPageIndex()+visPages-1) < pdfWidget->normalizedPageIndex(lastSearchResult.pageIdx)) || (pdfWidget->getPageIndex() > pdfWidget->normalizedPageIndex(lastSearchResult.pageIdx))) {
 			startPage = pdfWidget->getPageIndex();
 			lastSearchResult.selRect = backwards ? QRectF(0, 100000, 1, 1) : QRectF();
