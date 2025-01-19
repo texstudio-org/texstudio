@@ -1,5 +1,5 @@
 # mitthesis class
-# Matthew Bertucci 2024/07/03 for v1.13
+# Matthew Bertucci 2025/01/19 for v1.18
 
 #include:class-report
 #include:etoolbox
@@ -45,6 +45,7 @@ twoside
 \begin{nomenclature}[space]
 \begin{nomenclature}[space][heading%text]
 \begin{nomenclature}[space][heading%text][level]
+\begin{nomenclature}[space][heading%text][level][style]
 \end{nomenclature}
 
 \EntryHeading{text}
