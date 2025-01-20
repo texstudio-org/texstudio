@@ -2265,7 +2265,8 @@ void PDFWidget::setSinglePageStep(bool step)
 		return;
 	singlePageStep = step;
 	getScrollArea()->goToPage(realPageIndex);
-    delayedUpdate();
+	reloadPage();
+	getScrollArea()->updateScrollBars();
 }
 
 void PDFWidget::goFirst()
