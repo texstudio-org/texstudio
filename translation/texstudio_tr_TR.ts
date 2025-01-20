@@ -5674,7 +5674,7 @@ Yardımcı komutu desteklemiyor</translation>
     <message>
         <location filename="../src/loghighlighter.cpp" line="38"/>
         <source>Process started:</source>
-        <translation type="unfinished"/>
+        <translation>İşlem başlatıldı:</translation>
     </message>
 </context>
 <context>
