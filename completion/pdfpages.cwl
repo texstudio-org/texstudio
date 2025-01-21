@@ -1,10 +1,11 @@
 # pdfpages package
 # mario 09/06/2007, Tim Hoffmann 25/02/2017
 # muzimuzhi 29 Apr 2020, pdfpages v0.5q
-# Matthew Bertucci 28 Oct 2024 for v0.6c
+# Matthew Bertucci 21 Jan 2025 for v0.6d
 # URL: http://tug.ctan.org/tex-archive/macros/latex/contrib/pdfpages/
 
 #include:eso-pic
+#include:etoolbox
 #include:atbegshi
 #include:pdflscape
 #include:graphicx
@@ -51,6 +52,8 @@ reflect*#true,false
 signature=%<size%>
 signature*=%<size%>
 booklet#true,false
+booklet*#true,false
+flip-other-edge#true,false
 picturecommand=%<code%>
 picturecommand*=%<code%>
 pagetemplate=%<page number%>
