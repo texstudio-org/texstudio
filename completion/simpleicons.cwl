@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/01/17 for v14.2.0
+# Matthew Bertucci 2025/01/21 for v14.3.0
 
 #include:iftex
 
@@ -352,6 +352,7 @@ bentoml
 bereal
 betfair
 betterstack
+betterdiscord
 bevy
 bigbasket
 bigbluebutton
@@ -666,6 +667,7 @@ creativetechnology
 credly
 crehana
 crewunited
+crewai
 criticalrole
 crowdin
 crowdsource
@@ -1559,6 +1561,7 @@ lada
 lamborghini
 landrover
 langchain
+langgraph
 languagetool
 lapce
 laragon
@@ -2429,6 +2432,7 @@ roku
 roll20
 rollsroyce
 rollupdotjs
+rook
 roon
 rootme
 roots
@@ -2969,6 +2973,7 @@ ufc
 uikit
 uipath
 ukca
+ultralytics
 ulule
 umami
 umbraco
