@@ -11,8 +11,8 @@
 - add Grid menu to windowed and embedded pdf-viewer's context menu [#3942](https://github.com/texstudio-org/texstudio/pull/3942)
 - fix pdf-viewer's scrollbar with Fit to Width/Window and changing Continuous mode [#3928](https://github.com/texstudio-org/texstudio/pull/3928)
 - fix pdf-viewer's Custom Grid dialog not preset with current Grid settings in Continuous mode [#3929](https://github.com/texstudio-org/texstudio/pull/3929)
-- fix pfd-viewer's page display in non continuous mode [3952](https://github.com/texstudio-org/texstudio/pull/3952)
-- fix pdf-viewer has a small issue when activating single page step [3957](https://github.com/texstudio-org/texstudio/pull/3957)
+- fix pfd-viewer's page display in non continuous mode [#3952](https://github.com/texstudio-org/texstudio/pull/3952)
+- fix pdf-viewer has a small issue when activating single page step [#3957](https://github.com/texstudio-org/texstudio/pull/3957)
 - add maximize button to Packages Help (Texdoc) dialog [#3911](https://github.com/texstudio-org/texstudio/pull/3911)
 - fix option 'all packages' no longer checked in Packages Help with no tex documents opened [#3917](https://github.com/texstudio-org/texstudio/pull/3917)
 - when context menu of a package name is used to open the Packages Help dialog then preset search filter with the name [#3918](https://github.com/texstudio-org/texstudio/pull/3918)
@@ -29,7 +29,7 @@
 - fix crash when %Tex root document was not found
 - class are used for completion in documentclass
 - class names are not used anymore for package name completion
-- local packages can provide local cwl files ,[see manual](https://texstudio-org.github.io/advanced.html#local-packages)
+- local packages can provide local cwl files, [see manual](https://texstudio-org.github.io/advanced.html#local-packages)
 - fix handling of user definition commands in subfiles [#3885](https://github.com/texstudio-org/texstudio/issues/3885)
 - fix crash in preview tooltip if no pdflatex is defined [#3875](https://github.com/texstudio-org/texstudio/issues/3875)
 - handle special columntypes (m[l],NiceMatrix) better [#3881](https://github.com/texstudio-org/texstudio/issues/3881)
