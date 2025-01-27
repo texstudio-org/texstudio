@@ -2174,10 +2174,19 @@ int PDFWidget::visiblePages() const
 	if (pages.isEmpty()) return 0;
 	int firstPage = pages.first();
 	int lastPage = pages.last();
+	int page = lastPage;
 	int visibleHeight = getScrollArea()->viewport()->height() - this->y();
-	while (lastPage > firstPage && pageRect(lastPage).top() >= visibleHeight)
-		lastPage--;
-	return lastPage - firstPage + 1;
+	int lowerBound=firstPage+gridx;
+	while (page > firstPage && pageRect(page).top() >= visibleHeight) {
+		if (page>=lowerBound)
+			page-=gridx;
+		else
+			page=firstPage;
+	}
+	int po=getPageOffset();
+	page+=(gridx-1)-(page+po)%gridx;	// page at right end of the same row
+	page=qMin(page,lastPage);
+	return page - firstPage + 1;
 }
 
 int PDFWidget::pseudoNumPages()  const
