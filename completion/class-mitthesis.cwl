@@ -1,5 +1,5 @@
 # mitthesis class
-# Matthew Bertucci 2025/01/19 for v1.18
+# Matthew Bertucci 2025/01/28 for v1.19
 
 #include:class-report
 #include:etoolbox
@@ -118,7 +118,6 @@ twoside
 # loads dvipsnames, svgnames, and x11names options of xcolor
 #include:caption
 #include:subcaption
-#include:titlesec
 # from dvipsnames option of xcolor
 Apricot#B
 Aquamarine#B
