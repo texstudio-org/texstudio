@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2024/11/25 for v3.9.0
+# Matthew Bertucci 2025/01/28 for v3.10.0
 
 #include:paralist
 #include:amsmath
@@ -42,7 +42,7 @@
 
 #keyvals:\usepackage/markdown#c,\begin{markdown}#c,\begin{yaml}#c,\markinline#c,\markdownInput#c,\yamlInput#c,\markdownSetup#c,\markdownSetupSnippet#c,\yamlSetup#c
 plain#true,false
-import=#witiko/dot,witiko/graphicx/http,witiko/tilde,witiko/markdown/defaults
+import=#witiko/diagrams@v1,witiko/diagrams@v2,witiko/graphicx/http,witiko/tilde,witiko/markdown/defaults
 snippet=#%markdownsnippet
 helperScriptFileName=%<file name%>
 inputTempFileName=%<file name%>
@@ -106,6 +106,7 @@ stripPercentSigns#true,false
 finalizeCache#true,false
 frozenCache#true,false
 frozenCacheFileName=%<file name%>
+jekyllDataKeyValue=%<module%>
 #endkeyvals
 
 #keyvals:\begin{markdown}#c,\markinline#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c
