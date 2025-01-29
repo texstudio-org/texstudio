@@ -1906,6 +1906,9 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 				break;
 			}
 		}
+        if(i<0){
+            start=0; // take complete text if no eow is detected (#3966)
+        }
 		QString path;
 		if (flags & CF_FORCE_GRAPHIC) {
 			QString fn = lineText.mid(start, c.columnNumber() - start);
