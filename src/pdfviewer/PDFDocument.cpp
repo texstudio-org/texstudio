@@ -1589,9 +1589,9 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 		usingTool = kNone;
 	}
 
-	if (pdfDoc && pdfDoc->menuShow && pdfDoc->menuGrid) {
+	if (pdfDoc && pdfDoc->menuShow && pdfDoc->menuGridContext) {
 		menu.addSeparator();
-		menu.addMenu(pdfDoc->menuGrid);
+		menu.addMenu(pdfDoc->menuGridContext);
 		menu.addMenu(pdfDoc->menuShow);
 	}
 
@@ -3015,6 +3015,7 @@ void PDFDocument::setupMenus(bool embedded)
     menuEdit_2=configManager->newManagedMenu(menuroot,menubar,"pdf/edit",QApplication::translate("PDFDocument", "&Edit"));
     menuView=configManager->newManagedMenu(menuroot,menubar,"pdf/view",QApplication::translate("PDFDocument", "&View"));
     menuGrid=configManager->newManagedMenu(menuView,nullptr,"pdf/view/grid",QApplication::translate("PDFDocument", "Grid"));
+    menuGridContext=configManager->newManagedMenu(menuroot,nullptr,"pdf/context/grid",QApplication::translate("PDFDocument", "Grid"));
     menuWindow=configManager->newManagedMenu(menuroot,menubar,"pdf/window",QApplication::translate("PDFDocument", "&Window"));
     menuEdit=configManager->newManagedMenu(menuroot,menubar,"pdf/config",QApplication::translate("PDFDocument", "&Configure"));
     menuHelp=configManager->newManagedMenu(menuroot,menubar,"pdf/help",QApplication::translate("PDFDocument", "&Help"));
@@ -3100,15 +3101,19 @@ void PDFDocument::setupMenus(bool embedded)
         a->setCheckable(true);
         a->setChecked(first);
         actionGroupGrid->addAction(a);
+        menuGridContext->addAction(a);
         first=false;
     }
     actionCustom=configManager->newManagedAction(menuroot,menuGrid, "gridCustom", tr("Custom..."), this, SLOT(setGrid()), QList<QKeySequence>());
     actionCustom->setProperty("grid","xx");
     actionCustom->setCheckable(true);
     actionGroupGrid->addAction(actionCustom);
+    menuGridContext->addAction(actionCustom);
     menuGrid->addSeparator();
+    menuGridContext->addSeparator();
     actionSinglePageStep=configManager->newManagedAction(menuroot,menuGrid, "singlePageStep", tr("Single Page Step"), pdfWidget, SLOT(setSinglePageStep(bool)), QList<QKeySequence>());
-    menuGrid->addAction(actionContinuous);
+    menuGridContext->addAction(actionSinglePageStep);
+    menuGridContext->addAction(actionContinuous);
     menuWindow->addAction(menuShow->menuAction());
 #if (QT_VERSION > 0x050a00) && (defined(Q_OS_MAC))
     actionCloseElement=configManager->newManagedAction(menuroot,menuWindow, "closeElement", tr("&Close something"), this, SLOT(closeElement()), QList<QKeySequence>()); // osx work around
