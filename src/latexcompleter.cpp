@@ -1908,6 +1908,11 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 		}
         if(i<0){
             start=0; // take complete text if no eow is detected (#3966)
+            // skip spaces at the beginning
+            i = c.columnNumber() - 1;
+            while(start<lineText.length() && lineText.at(start)==' ' && start<i){
+                ++start;
+            }
         }
 		QString path;
 		if (flags & CF_FORCE_GRAPHIC) {
