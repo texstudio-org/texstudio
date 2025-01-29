@@ -1318,7 +1318,8 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 	TokenStack ts;
 	for (int i = 0; i < tl.length(); i++) {
 		Token tk = tl.at(i);
-		if (tk.start > pos) {
+        if (tk.start >= pos) {
+            // break if token is right of cursor, fix #3967
 			break;
 		}
         if (Token::tkClose().contains(tk.type) && !stack.isEmpty() ) {
