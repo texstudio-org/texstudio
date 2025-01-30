@@ -1,7 +1,6 @@
 # pagecolor package
-# Matthew Bertucci 2023/04/18 for v1.2c
+# Matthew Bertucci 2025/01/30 for v1.2d
 
-#include:kvoptions
 #include:xcolor
 
 #keyvals:\usepackage/pagecolor#c
