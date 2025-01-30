@@ -1,5 +1,5 @@
 # lineno package
-# Matthew Bertucci 2023/05/20 for v5.3
+# Matthew Bertucci 2025/01/30 for v5.4
 
 #include:etoolbox
 #include:kvoptions
@@ -22,6 +22,7 @@ modulo*
 mathlines
 sep=##L
 width=##L
+nolinelabelerror
 #endkeyvals
 
 #ifOption:addpageno
