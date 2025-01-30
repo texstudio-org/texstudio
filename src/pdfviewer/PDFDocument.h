@@ -676,6 +676,7 @@ private:
     QTimer *toolBarTimer;
 public:
 	QMenu *menuGrid = nullptr;
+	QMenu *menuGridContext = nullptr;
 	QMenu *menuShow = nullptr;
 private:
 	QMenu *menuEdit_2;
