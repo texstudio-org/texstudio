@@ -1,5 +1,5 @@
 # jslectureplanner package
-# Matthew Bertucci 2024/03/08 for v1.13
+# Matthew Bertucci 2025/01/30 for v1.14
 
 #include:etoolbox
 #include:datetime2
@@ -162,6 +162,7 @@ span=%<span%>
 \end{labeling}
 
 \makeprogram
+\makeprogram*
 \makeexamprogram
 \makebeamerprogram
 \makebeamerprogram[options%keyvals]
@@ -172,6 +173,7 @@ span=%<span%>
 title=%<title%>
 blocksonly#true,false
 uncover#true,false
+instructors#true,false
 options={%<frame options%>}
 overlayarg=%<overlay specification%>
 #endkeyvals

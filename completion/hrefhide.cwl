@@ -1,9 +1,8 @@
 # hrefhide package
-# Matthew Bertucci 2023/02/26 for v1.1a
+# Matthew Bertucci 2025/01/30 for v1.1b
 
 #include:xcolor
 #include:hyperref
-#include:kvoptions
 
 #keyvals:\usepackage/hrefhide#c
 linktextcolour=#%color

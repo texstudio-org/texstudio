@@ -1,123 +1,136 @@
 # tracklang package
-# Matthew Bertucci 2022/12/13 for v1.6.1
+# Matthew Bertucci 2025/01/23 for v1.6.3
 
 #keyvals:\usepackage/tracklang#c
 %<language%>
+verbose
+noverbose
 #endkeyvals
 
-\TrackPredefinedDialect{dialect label}#*
-\TrackLocale{locale}#*
-\TrackLanguageTag{tag}#*
-\TrackIfKnownLanguage{tag}{success code}{fail code}#*
-\TrackLangFromEnv#*
-\TrackLangShowWarningsfalse#*
-\TrackLangShowWarningstrue#*
-\TrackLangEnv#*
-\TrackLangEnvLang#*
-\TrackLangEnvTerritory#*
-\TrackLangEnvCodeSet#*
-\TrackLangEnvModifier#*
-\TrackLangQueryEnv#*
-\TrackLangQueryOtherEnv{env-name}#*
-\TrackLangParseFromEnv#*
+\AddTrackedCountryIsoCode{root language}#*
+\AddTrackedDialect{dialect label}{root language label}#*
+\AddTrackedIsoLanguage{code type}{code}{language}#*
+\AddTrackedLanguage{root language label}#*
+\AddTrackedLanguageIsoCodes{root language label}#*
+\AddTrackedRegion{country code}{dialect}#*
 \AnyTrackedLanguages{true}{false}#*
-\GetTrackedDialectFromLanguageTag{tag}{cmd}#*d
-\TrackedDialectClosestSubMatch#*
+\AnyTrackedRegions{true}{false}#*
+\CurrentTrackedDialect#*
+\CurrentTrackedDialectAdditional#*
+\CurrentTrackedDialectModifier#*
+\CurrentTrackedDialectScript#*
+\CurrentTrackedDialectSubLang#*
+\CurrentTrackedDialectSubLang#*
+\CurrentTrackedDialectVariant#*
+\CurrentTrackedIsoCode#*
+\CurrentTrackedLanguage#*
+\CurrentTrackedLanguageTag#*
+\CurrentTrackedRegion#*
+\CurrentTrackedTag#*
 \ForEachTrackedDialect{cmd}{body}#*d
 \ForEachTrackedLanguage{cmd}{body}#*d
-\IfTrackedLanguage{language-label}{true}{false}#*
-\IfTrackedDialect{dialect-label}{true}{false}#*
-\TrackedLanguageFromDialect{dialect}#*
-\TrackedDialectsFromLanguage{root language label}#*
-\IfTrackedLanguageHasIsoCode{code type}{label}{true}{false}#*
-\IfTrackedIsoCode{code type}{code}{true}{false}#*
-\TrackedLanguageFromIsoCode{code type}{code}#*
-\TrackedIsoCodeFromLanguage{code type}{label}#*
-\TwoLetterIsoCountryCode#*
-\TwoLetterIsoLanguageCode#*
-\ThreeLetterIsoLanguageCode#*
-\ThreeLetterExtIsoLanguageCode#*
-\GetTrackedLanguageTag{dialect}#*
-\GetTrackedDialectModifier{dialect}#*
-\IfHasTrackedDialectModifier{dialect}{true}{false}#*
-\GetTrackedDialectVariant{dialect}#*
-\IfHasTrackedDialectVariant{dialect}{true}{false}#*
-\GetTrackedDialectScript{dialect}#*
-\IfHasTrackedDialectScript{dialect}{true}{false}#*
-\TrackLangGetDefaultScript{language}#*
-\IfTrackedDialectIsScriptCs{dialect}{cs}{true}{false}#*
-\GetTrackedDialectSubLang{dialect}#*
-\IfHasTrackedDialectSubLang{dialect}{true}{false}#*
+\ForEachTrackedRegion{cmd}{body}#*d
 \GetTrackedDialectAdditional{dialect}#*
+\GetTrackedDialectFromLanguageTag{tag}{cmd}#*d
+\GetTrackedDialectModifier{dialect}#*
+\GetTrackedDialectScript{dialect}#*
+\GetTrackedDialectSubLang{dialect}#*
+\GetTrackedDialectVariant{dialect}#*
+\GetTrackedLanguageTag{dialect}#*
 \IfHasTrackedDialectAdditional{dialect}{true}{false}#*
+\IfHasTrackedDialectModifier{dialect}{true}{false}#*
+\IfHasTrackedDialectScript{dialect}{true}{false}#*
+\IfHasTrackedDialectSubLang{dialect}{true}{false}#*
+\IfHasTrackedDialectVariant{dialect}{true}{false}#*
+\IfTrackedDialect{dialect-label}{true}{false}#*
+\IfTrackedDialectIsScriptCs{dialect}{cs}{true}{false}#*
+\IfTrackedIsoCode{code type}{code}{true}{false}#*
+\IfTrackedLanguage{language-label}{true}{false}#*
 \IfTrackedLanguageFileExists{dialect}{prefix}{suffix}{true}{false}#*
-\CurrentTrackedTag#*
-\TrackLangRequireDialect{pkgname}{dialect}#*
-\TrackLangRequireDialect[load code]{pkgname}{dialect}#*
-\TrackLangRequireDialectPrefix#*
-\CurrentTrackedDialect#*
-\CurrentTrackedLanguage#*
-\CurrentTrackedRegion#*
-\CurrentTrackedIsoCode#*
-\CurrentTrackedDialectModifier#*
-\CurrentTrackedDialectVariant#*
-\CurrentTrackedDialectSubLang#*
-\CurrentTrackedDialectAdditional#*
-\CurrentTrackedLanguageTag#*
-\CurrentTrackedDialectScript#*
-\TrackLangProvidesResource{tag}{version info}#*
-\TrackLangRequireResource{tag}#*
-\TrackLangEncodingName#*
-\TrackLangRequireResourceOrDo{tag}{code1}{code2}#*
-\TrackLangRequestResource{tag}{not found code}#*
-\TrackLangAddToHook{code}{type}#*
-\TrackLangAddToCaptions{code}#*
-\TrackLangRedefHook{code}{type}#*
-\TrackLangAddExtraScriptFile{file}#*i
-\TrackLangAddExtraRegionFile{file}#*i
-\TrackPredefinedDialect{dialect}#*
+\IfTrackedLanguageFileExistsOmitDialectLabel{dialect}{prefix}{suffix}{true}{false}#*
+\IfTrackedLanguageFileExistsOmitDialectLabelOmitOnlyRegion{dialect}{prefix}{suffix}{true}{false}#*
+\IfTrackedLanguageFileExistsOmitOnlyRegion{dialect}{prefix}{suffix}{true}{false}#*
+\IfTrackedLanguageHasIsoCode{code type}{label}{true}{false}#*
 \SetCurrentTrackedDialect{dialect}#*
-\TrackLangNewLanguage{%<language%>}{%<639-1 code%>}{%<639-2 (T)%>}{%<639-2 (B)%>}{%<639-3%>}{%<3166-1%>}{%<default script%>}#*
-\AddTrackedDialect{dialect label}{root language label}#*
-\AddTrackedLanguage{root language label}#*
-\TrackLangLastTrackedDialect#*
-\TrackLangProvidePredefinedLanguage{language label}#*
-\TrackLangProvidePredefinedDialect{dialect}{language}{3166-1 code}{modifier}{variant}{map}{script}#*
+\SetTrackedDialectAdditional{dialect}{value}#*
 \SetTrackedDialectLabelMap{tracklang-label}{hook-label}#*
-\AddTrackedLanguageIsoCodes{root language label}#*
 \SetTrackedDialectModifier{dialect}{value}#*
 \SetTrackedDialectScript{dialect}{value}#*
-\SetTrackedDialectVariant{dialect}{value}#*
 \SetTrackedDialectSubLang{dialect}{value}#*
-\SetTrackedDialectAdditional{dialect}{value}#*
-
-\AddTrackedCountryIsoCode{root language}#*
-\AddTrackedIsoLanguage{code type}{code}{language}#*
-\CurrentTrackedDialectSubLang#*
+\SetTrackedDialectVariant{dialect}{value}#*
+\ThreeLetterExtIsoLanguageCode#*
+\ThreeLetterIsoLanguageCode#*
+\TrackedDialectClosestSubMatch#*
+\TrackedDialectsFromLanguage{root language label}#*
+\TrackedIsoCodeFromLanguage{code type}{label}#*
+\TrackedLanguageFromDialect{dialect}#*
+\TrackedLanguageFromIsoCode{code type}{code}#*
+\TrackIfKnownLanguage{tag}{success code}{fail code}#*
+\TrackLangAddExtraRegionFile{file}#*i
+\TrackLangAddExtraScriptFile{file}#*i
+\TrackLangAddToCaptions{code}#*
+\TrackLangAddToHook{code}{type}#*
 \TrackLangDeclareDialectOption{dialect}{root lang}{3166-1 code}{modifier}{variant}{map}{script}#*
 \TrackLangDeclareLanguageOption{%<language%>}{%<639-1 code%>}{%<639-2 (T)%>}{%<639-2 (B)%>}{%<639-3%>}{%<3166-1%>}{%<default script%>}#*
+\TrackLangEncodingName#*
+\TrackLangEnv#*
+\TrackLangEnvCodeSet#*
+\TrackLangEnvLang#*
+\TrackLangEnvModifier#*
+\TrackLangEnvTerritory#*
+\TrackLangFromEnv#*
+\TrackLangGetDefaultScript{language}#*
 \TrackLangGetKnownCountry{language}#*
-\TrackLangGetKnownIsoThreeLetterLangB{language}#*
 \TrackLangGetKnownIsoThreeLetterLang{language}#*
+\TrackLangGetKnownIsoThreeLetterLangB{language}#*
 \TrackLangGetKnownIsoTwoLetterLang{language}#*
 \TrackLangGetKnownLangFromIso{ISO code}#*
 \TrackLangIfAlphaNumericChar{tag}{true}{false}#*
 \TrackLangIfHasDefaultScript{language}{true}{false}#*
 \TrackLangIfHasKnownCountry{language}{true}{false}#*
-\TrackLangIfKnownIsoThreeLetterLangB{language}{true}{false}#*
 \TrackLangIfKnownIsoThreeLetterLang{language}{true}{false}#*
+\TrackLangIfKnownIsoThreeLetterLangB{language}{true}{false}#*
 \TrackLangIfKnownIsoTwoLetterLang{language}{true}{false}#*
-\TrackLangIfKnownLangFromIso{ISO code}{true}{false}#*
 \TrackLangIfKnownLang{language}{true}{false}#*
+\TrackLangIfKnownLangFromIso{ISO code}{true}{false}#*
 \TrackLangIfLanguageTag{tag}{true}{false}#*
 \TrackLangIfRegionTag{tag}{true}{false}#*
 \TrackLangIfScriptTag{tag}{true}{false}#*
 \TrackLangIfVariantTag{tag}{true}{false}#*
+\TrackLangLastTrackedDialect#*
+\TrackLangNewLanguage{%<language%>}{%<639-1 code%>}{%<639-2 (T)%>}{%<639-2 (B)%>}{%<639-3%>}{%<3166-1%>}{%<default script%>}#*
+\TrackLangParseFromEnv#*
+\TrackLangProvidePredefinedDialect{dialect}{language}{3166-1 code}{modifier}{variant}{map}{script}#*
+\TrackLangProvidePredefinedLanguage{language label}#*
+\TrackLangProvidesResource{tag}{version info}#*
+\TrackLangQueryEnv#*
+\TrackLangQueryOtherEnv{env-name}#*
+\TrackLangRedefHook{code}{type}#*
+\TrackLangRequestResource{tag}{not found code}#*
+\TrackLangRequireDialect[load code]{pkgname}{dialect}#*
+\TrackLangRequireDialect{pkgname}{dialect}#*
+\TrackLangRequireDialectOmitDialectLabel[load code]{pkgname}{dialect}#*
+\TrackLangRequireDialectOmitDialectLabel{pkgname}{dialect}#*
+\TrackLangRequireDialectOmitDialectLabelOmitOnlyRegion[load code]{pkgname}{dialect}#*
+\TrackLangRequireDialectOmitDialectLabelOmitOnlyRegion{pkgname}{dialect}#*
+\TrackLangRequireDialectOmitOnlyRegion[load code]{pkgname}{dialect}#*
+\TrackLangRequireDialectOmitOnlyRegion{pkgname}{dialect}#*
+\TrackLangRequireDialectPrefix#*
+\TrackLangRequireResource{tag}#*
+\TrackLangRequireResourceOrDo{tag}{code1}{code2}#*
+\TrackLangShowWarningsfalse#*
+\TrackLangShowWarningstrue#*
+\TrackLanguageTag{tag}#*
+\TrackLocale{locale}#*
+\TrackPredefinedDialect{dialect label}#*
+\TrackPredefinedDialect{dialect}#*
+\TwoLetterIsoCountryCode#*
+\TwoLetterIsoLanguageCode#*
 
 # not in main documentation
-\CurrentTrackedIsoCodeI#*
-\CurrentTrackedIsoCodeII#*
-\CurrentTrackedIsoCodeIII#*
+\CurrentTrackedIsoCodeI#S
+\CurrentTrackedIsoCodeII#S
+\CurrentTrackedIsoCodeIII#S
 \GetTrackedDialectFromMapping{language hook}#*
 \GetTrackedDialectToMapping{tracklang label}#*
 \IfHookHasMappingFromTrackedDialect{hook label}{true}{false}#*

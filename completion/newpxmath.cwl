@@ -1,5 +1,5 @@
 # newpxmath package
-# Matthew Bertucci 2023/11/11 for v1.533
+# Matthew Bertucci 2025/01/24 for v1.539
 
 #include:amsmath
 #include:etoolbox
@@ -376,8 +376,6 @@ curlybraces
 \mathbb{text%plain}#m
 \mathfrak{text%plain}#m
 \mathscr{text%plain}#m
-\mathslscr{text%plain}#*m
-\mathuscr{text%plain}#*m
 \measuredangle#m
 \medbullet#m
 \medcirc#m
@@ -788,7 +786,9 @@ curlybraces
 \ShowMathFonts#*
 \setSYdimens#*
 \setEXdimens#*
-\ifiscseq{arg}{true}{false}#*
-\loadsubfile{file}#*
-\readsufile{file}#*
-\DeclareMathSymbolCtr{cmd}{type}{sym-font}{slot}#*d
+
+\ifiscseq{arg}{true}{false}#S
+\loadsubfile{file}#S
+\readsufile{file}#S
+\DeclareMathSymbolCtr{cmd}{type}{sym-font}{slot}#Sd
+\mathScr{text%plain}#S

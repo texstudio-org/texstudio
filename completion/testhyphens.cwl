@@ -1,11 +1,10 @@
 # testhyphens package
-# Matthew Bertucci 1/18/2022 for v0.7
+# Matthew Bertucci 2025/01/17 for v1.0
 
 \begin{checkhyphens}
 \begin{checkhyphens}[%<left%>-%<right%>]
 \end{checkhyphens}
-\testhyphens
 
-\breakafterword#*
-\getlastline#*
-\nomorelines#*
+\breakafterword#S
+\getlastline#S
+\nomorelines#S

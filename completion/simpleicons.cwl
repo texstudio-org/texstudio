@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/01/13 for v14.1.0
+# Matthew Bertucci 2025/01/21 for v14.3.0
 
 #include:iftex
 
@@ -352,6 +352,7 @@ bentoml
 bereal
 betfair
 betterstack
+betterdiscord
 bevy
 bigbasket
 bigbluebutton
@@ -666,6 +667,7 @@ creativetechnology
 credly
 crehana
 crewunited
+crewai
 criticalrole
 crowdin
 crowdsource
@@ -1052,6 +1054,7 @@ furaffinity
 furrynetwork
 fusionauth
 futurelearn
+fyle
 g2
 g2a
 g2g
@@ -1185,6 +1188,7 @@ googletasks
 googletranslate
 gotomeeting
 grab
+gradio
 gradle
 gradleplaypublisher
 grafana
@@ -1557,6 +1561,7 @@ lada
 lamborghini
 landrover
 langchain
+langgraph
 languagetool
 lapce
 laragon
@@ -2427,6 +2432,7 @@ roku
 roll20
 rollsroyce
 rollupdotjs
+rook
 roon
 rootme
 roots
@@ -2967,6 +2973,7 @@ ufc
 uikit
 uipath
 ukca
+ultralytics
 ulule
 umami
 umbraco
@@ -3002,6 +3009,7 @@ usps
 utorrent
 uv
 v
+v0
 v2ex
 v8
 vaadin
@@ -3172,6 +3180,7 @@ wprocket
 writedotas
 wwe
 wwise
+wxt
 wykop
 wyze
 x

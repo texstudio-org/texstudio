@@ -182,6 +182,7 @@
 <file>completion/asyprocess.cwl</file>
 <file>completion/atbegshi.cwl</file>
 <file>completion/at.cwl</file>
+<file>completion/atableau.cwl</file>
 <file>completion/atendofenv.cwl</file>
 <file>completion/athnum.cwl</file>
 <file>completion/atkinson.cwl</file>
@@ -4009,6 +4010,7 @@
 <file>completion/undolabl.cwl</file>
 <file>completion/unfontsxe.cwl</file>
 <file>completion/uni8.cwl</file>
+<file>completion/unibidi-lua.cwl</file>
 <file>completion/unicode-alphabets.cwl</file>
 <file>completion/unicodefonttable.cwl</file>
 <file>completion/unicode-math.cwl</file>

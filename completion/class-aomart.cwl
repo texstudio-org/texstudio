@@ -1,5 +1,5 @@
 # aomart class
-# Matthew Bertucci 2024/06/11 for v1.28
+# Matthew Bertucci 2025/01/27 for v1.32
 
 #include:class-amsart
 #include:fancyhdr
@@ -82,7 +82,13 @@ twoside
 \arxivnumber{number}
 \oldsubsections#*
 \widebar{arg}#m
-\EditorialComment{comment%todo}#D
+\EditorialComment{comments%todo}#D
+\EditorialComment[audience]{comments%todo}#D
+\Highlight{text}
+\Highlight[audience]{text}
+\ECSelect{audiences}
+\HSelect{audience}
+\HSelect[color]{audience}
 \fullref{word%text}{label}#r
 \pfullref{word%text}{label}#r
 \bfullref{word%text}{label}#r
@@ -91,6 +97,8 @@ twoside
 \fullpageref[prefix text%text]{label}#r
 \newtheorem[code]{envname}{caption}#*N
 \newtheorem*[code]{envname}{caption}#*N
+\includecolorgraphics{color file%imagefile}{bw file%imagefile}#g
+\includecolorgraphics[options%keyvals]{color file%imagefile}{bw file%imagefile}#g
 \funding{sponsor}{grant-id}
 \funding[text]{sponsor}{grant-id}
 \doi{DOI%URL}#U

@@ -1,7 +1,9 @@
 # tikzdotncross package
-# Matthew Bertucci 2023/10/23 for v1.2
+# Matthew Bertucci 2025/01/27 for v1.2c
 
+#include:tikzlibrarymath
 #include:tikzlibraryintersections
+#include:etoolbox
 
 \setpindefaults{options%keyvals}
 

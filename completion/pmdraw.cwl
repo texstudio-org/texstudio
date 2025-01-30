@@ -1,7 +1,7 @@
 # pmdraw package
-# Matthew Bertucci 2024/10/08 for v1.5
+# Matthew Bertucci 2025/01/24 for v1.5
 
-#include:keyval
+#include:xkeyval
 #include:tikz
 #include:tikzlibrarymath
 #include:tikzlibrarydecorations.pathreplacing
@@ -120,4 +120,15 @@ vertex sep=%<number%>
 edges added={%<\draw options%>}
 edges added phantom
 edges added uncover={%<overlay spec%>}
+#endkeyvals
+
+\pmdSetDefault{options%keyvals}
+\pmdSetToOriginalDefault
+
+#keyvals:\pmdSetDefault#c
+brick={%<keyvals%>}
+NTedges={%<keyvals%>}
+Tedges={%<keyvals%>}
+brace={%<keyvals%>}
+diagram={%<keyvals%>}
 #endkeyvals

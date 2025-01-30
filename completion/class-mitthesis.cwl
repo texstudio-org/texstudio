@@ -1,5 +1,5 @@
 # mitthesis class
-# Matthew Bertucci 2024/07/03 for v1.13
+# Matthew Bertucci 2025/01/28 for v1.19
 
 #include:class-report
 #include:etoolbox
@@ -45,6 +45,7 @@ twoside
 \begin{nomenclature}[space]
 \begin{nomenclature}[space][heading%text]
 \begin{nomenclature}[space][heading%text][level]
+\begin{nomenclature}[space][heading%text][level][style]
 \end{nomenclature}
 
 \EntryHeading{text}
@@ -117,7 +118,6 @@ twoside
 # loads dvipsnames, svgnames, and x11names options of xcolor
 #include:caption
 #include:subcaption
-#include:titlesec
 # from dvipsnames option of xcolor
 Apricot#B
 Aquamarine#B

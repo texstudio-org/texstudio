@@ -1,5 +1,5 @@
 # mathalpha package
-# Matthew Bertucci 11/2/2021 for v1.142
+# Matthew Bertucci 2025/01/19 for v1.145
 
 #include:xkeyval
 
@@ -16,7 +16,7 @@ frak=#euler,lucida,mathpi,mma,mt,esstix,boondox,pxtx,stixtwo
 frakscaled=%<factor%>
 bffrak
 fraksymbols
-bb=#ams,lucida,mathpi,mma,mt,mth,pazo,fourier,esstix,boondox,px,tx,txof,libus,dsserif,bboldx,bboldx-light,dsfontserif,dsfontsans,stixtwo,stix
+bb=#ams,lucida,mathpi,mma,mt,mth,pazo,fourier,esstix,boondox,px,tx,txof,libus,dsserif,bboldx,bboldxLight,dsfontserif,dsfontsans,stixtwo,stix,ncmbbr,ncmbbk
 bbscaled=%<factor%>
 bfbb
 bbsymbols
@@ -366,6 +366,14 @@ showoptions
 \bbRangle#m
 \bbLparen#m
 \bbRparen#m
+#endif
+#ifOption:bb=ncmbbr
+\mathbb{text%plain}#m
+\mathbfbb{text%plain}#m
+#endif
+#ifOption:bb=ncmbbk
+\mathbb{text%plain}#m
+\mathbfbb{text%plain}#m
 #endif
 
 \mathalphaVersion#S
