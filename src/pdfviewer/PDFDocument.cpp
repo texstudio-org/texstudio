@@ -3019,7 +3019,7 @@ void PDFDocument::setupMenus(bool embedded)
     menuWindow=configManager->newManagedMenu(menuroot,menubar,"pdf/window",QApplication::translate("PDFDocument", "&Window"));
     menuEdit=configManager->newManagedMenu(menuroot,menubar,"pdf/config",QApplication::translate("PDFDocument", "&Configure"));
     menuHelp=configManager->newManagedMenu(menuroot,menubar,"pdf/help",QApplication::translate("PDFDocument", "&Help"));
-    menus<<menuFile<<menuEdit<<menuEdit_2<<menuGrid<<menuHelp<<menuWindow<<menuView; // housekeeping for later removal
+    menus<<menuFile<<menuEdit<<menuEdit_2<<menuGrid<<menuGridContext<<menuHelp<<menuWindow<<menuView; // housekeeping for later removal
 
     if(!embedded)
         setMenuBar(menubar);
