@@ -551,13 +551,14 @@ debug={%<options%>}
 \stockheight#*L
 \stockwidth#*L
 
-# pdftex 2023-02-11
+# pdftex 2025-01-25
 \efcode#*
 \expanded#*
 \ifincsname#*
 \ifpdfabsdim#*
 \ifpdfabsnum#*
 \ifpdfprimitive#*
+\ignoreprimitiveerror#*
 \knaccode#*
 \knbccode#*
 \knbscode#*
