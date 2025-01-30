@@ -1,5 +1,5 @@
 # asmeconf class
-# Matthew Bertucci 2024/08/02 for v1.38
+# Matthew Bertucci 2025/01/30 for v1.40
 
 #include:etoolbox
 #include:ifthen
@@ -25,7 +25,6 @@
 #include:newtxmath
 #include:mathalfa
 #include:bm
-#include:metalogo
 #include:hologo
 #include:fancyhdr
 #include:footmisc
@@ -1957,18 +1956,13 @@ SuppressWarning#true,false
 
 # asmeconf class commands
 \affil{number}
-\AffiliationBlock#*
-\AffiliationsBlock#*
 \appendicesname#*
 \arabicabstractname#S
-\authorblock#*
-\AuthorBlock#*
 \begin{abstract*}
 \begin{nomenclature}
 \begin{nomenclature}[dimen%l]
 \begin{nomenclature}[dimen%l][title%text]
 \CAwords#*
-\coffinsep#*
 \ConfAcronym{acronym}
 \ConfCity{city}
 \ConfDate{date}
@@ -1978,11 +1972,8 @@ SuppressWarning#true,false
 \end{nomenclature}
 \entry{entry}{text}
 \EntryHeading{heading%text}
-\fifthrowauthorblock#*
-\firstrowauthorblock#*
-\fontspecloadedfalse#*
-\fontspecloadedtrue#*
-\fourthrowauthorblock#*
+\fontspecloadedfalse#S
+\fontspecloadedtrue#S
 \hrefurl{URL}{text%plain}#U
 \iffontspecloaded#*
 \JAwords#*
@@ -2002,7 +1993,6 @@ SuppressWarning#true,false
 \savitemsep#*
 \scaption[short text%text]{text}#*
 \scaption{text}#*
-\secondrowauthorblock#*
 \SetAffiliation{number}{address}
 \SetAuthors{name1,name2,...}
 \sfalpha#m
@@ -2052,12 +2042,9 @@ SuppressWarning#true,false
 \sfxi#m
 \sfzeta#m
 \shortcaption#*
-\theauthorcnt#*
-\theauthorno#*
-\thirdrowauthorblock#*
-\versiondate#*
+\versiondate#S
 \versionfootnote{text}
-\versionno#*
+\versionno#S
 
 # from dvipsnames option of xcolor
 Apricot#B
