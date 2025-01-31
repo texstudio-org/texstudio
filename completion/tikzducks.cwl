@@ -1,5 +1,5 @@
 # tikzducks package
-# Matthew Bertucci 2024/12/10 for v1.9
+# Matthew Bertucci 2025/01/31 for v2.0
 
 #include:tikz
 #include:tikzlibrarypatterns.meta
@@ -16,6 +16,9 @@
 \randuck[options%keyvals]
 
 #keyvals:\duck#c
+invisible
+randomhead
+randomaccessories
 body=#%color
 head=#%color
 bill=#%color
@@ -262,13 +265,6 @@ yshift=##L
 \duckpathkingcrown#*
 \duckpathdarthvader#*
 \duckpathhorsetail#*
-
-\duckhookbackground#*
-\duckhookbody#*
-\duckhookclothing#*
-\duckhookhair#*
-\duckhookhat#*
-\duckhookforeground#*
 
 \stripes
 \stripes[options%keyvals]
