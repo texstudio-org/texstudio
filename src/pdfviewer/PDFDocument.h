@@ -678,6 +678,7 @@ public:
 	QMenu *menuGrid = nullptr;
 	QMenu *menuGridContext = nullptr;
 	QMenu *menuShow = nullptr;
+	QAction *actionSetPageOffsetMenu;
 private:
 	QMenu *menuEdit_2;
 
