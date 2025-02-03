@@ -1,5 +1,5 @@
 # principia package
-# Matthew Bertucci 2024/12/19 for v3.0
+# Matthew Bertucci 2025/02/03 for v3.2
 
 #include:amssymb
 #include:amsmath
@@ -314,8 +314,8 @@
 \pmrl{arg1}{arg2}#m
 \pmrlcd{arg1}{arg2}#m
 \pmrld{arg1}{arg2}#m
-\pmrlF{arg1}{arg2}#m
-\pmrlf{arg1}{arg2}{arg3}#m
+\pmrlf{arg1}{arg2}#m
+\pmrldcd{arg1}{arg2}{arg3}#m
 \pmrmin{arg1}{arg2}#m
 \pmrn{arg}#m
 \pmrndsum{arg1}{arg2}#m
