@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2025/01/21 for v1.0.1
+# Matthew Bertucci 2025/02/03 for v1.1.0
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -13,22 +13,14 @@
 \JSONParseExpandableValue{token variable}{key%plain}
 \JSONParseSetValue{token variable%cmd}{token variable}{key%plain}#d
 \JSONParseSetRescanValue{token variable%cmd}{token variable}{key%plain}#d
-\JSONParseArrayValues{token variable}{key%plain}{string}
-\JSONParseArrayValues{token variable}{key%plain}[subkey]{string}
-\JSONParseArrayValues[options%keyvals]{token variable}{key%plain}{string}
-\JSONParseArrayValues[options%keyvals]{token variable}{key%plain}[subkey]{string}
-\JSONParseArrayValuesMap{token variable}{key%plain}{command name}
-\JSONParseArrayValuesMap{token variable}{key%plain}{command name}[before code]
-\JSONParseArrayValuesMap{token variable}{key%plain}{command name}[before code][after code]
-\JSONParseArrayValuesMap{token variable}{key%plain}[subkey]{command name}
-\JSONParseArrayValuesMap{token variable}{key%plain}[subkey]{command name}[before code]
-\JSONParseArrayValuesMap{token variable}{key%plain}[subkey]{command name}[before code][after code]
-\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}{command name}
-\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}{command name}[before code]
-\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}{command name}[before code][after code]
-\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}[subkey]{command name}
-\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}[subkey]{command name}[before code]
-\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}[subkey]{command name}[before code][after code]
+\JSONParseArrayUse{token variable}{key%plain}{string}
+\JSONParseArrayUse{token variable}{key%plain}[subkey]{string}
+\JSONParseArrayUse[options%keyvals]{token variable}{key%plain}{string}
+\JSONParseArrayUse[options%keyvals]{token variable}{key%plain}[subkey]{string}
+\JSONParseArrayMapFunction{token variable}{key%plain}{command}
+\JSONParseArrayMapFunction{token variable}{key%plain}[subkey]{command}
+\JSONParseArrayMapFunction[options%keyvals]{token variable}{key%plain}{command}
+\JSONParseArrayMapFunction[options%keyvals]{token variable}{key%plain}[subkey]{command}
 \JSONParseArrayNewline
 \JSONParseArrayIndex
 \JSONParseArrayKey
@@ -52,13 +44,13 @@ separator/child=%<string%>
 separator/array left=%<string%>
 separator/array right=%<string%>
 zero-based#true,false
-replace/true=%<string%>
-replace/false=%<string%>
-replace/null=%<string%>
+keyword/true=%<string%>
+keyword/false=%<string%>
+keyword/null=%<string%>
 #endkeyvals
 
 ## typeset
-#keyvals:\JSONParseSet,\JSONParseValue,\JSONParseArrayValues,\JSONParseArrayValuesMap
+#keyvals:\JSONParseSet,\JSONParseValue,\JSONParseArrayUse,\JSONParseArrayMapFunction
 replace/backspace=%<string%>
 replace/formfeed=%<string%>
 replace/linefeed=%<string%>
@@ -67,6 +59,11 @@ replace/horizontal tab=%<string%>
 check num#true,false
 escape={%<list%>}
 rescan#true,false
+#endkeyvals
+
+#keyvals:\JSONParseArrayMapFunction
+code before=%<code%>
+code after=%<code%>
 #endkeyvals
 
 # expl3 interface
@@ -78,3 +75,24 @@ rescan#true,false
 \jsonparse_if_num_p:n {%<⟨string⟩%>}#/%expl3
 \jsonparse_parse:n {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_parse_to_prop:Nn %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_unicode_convert_surrogate_pair:ee {%<⟨codepoint⟩%>} {%<⟨codepoint⟩%>}#/%expl3
+\jsonparse_unicode_convert_surrogate_pair:nn {%<⟨codepoint⟩%>} {%<⟨codepoint⟩%>}#/%expl3
+\jsonparse_unicode_if_high_surrogate:nTF {%<⟨codepoint⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\jsonparse_unicode_if_high_surrogate:nT {%<⟨codepoint⟩%>} {%<⟨true code⟩%>}#/%expl3
+\jsonparse_unicode_if_high_surrogate:nF {%<⟨codepoint⟩%>} {%<⟨false code⟩%>}#/%expl3
+\jsonparse_unicode_if_high_surrogate_p:n {%<⟨codepoint⟩%>}#/%expl3
+\jsonparse_unicode_if_low_surrogate:nTF {%<⟨codepoint⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\jsonparse_unicode_if_low_surrogate:nT {%<⟨codepoint⟩%>} {%<⟨true code⟩%>}#/%expl3
+\jsonparse_unicode_if_low_surrogate:nF {%<⟨codepoint⟩%>} {%<⟨false code⟩%>}#/%expl3
+\jsonparse_unicode_if_low_surrogate_p:n {%<⟨codepoint⟩%>}#/%expl3
+
+# deprecated
+\JSONParseArrayValues{token variable}{key%plain}{string}#S
+\JSONParseArrayValues{token variable}{key%plain}[subkey]{string}#S
+\JSONParseArrayValues[options%keyvals]{token variable}{key%plain}{string}#S
+\JSONParseArrayValues[options%keyvals]{token variable}{key%plain}[subkey]{string}#S
+\JSONParseArrayValuesMap{token variable}{key%plain}{command}#S
+\JSONParseArrayValuesMap{token variable}{key%plain}[subkey]{command}#S
+\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}{command}#S
+\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}[subkey]{command}#S
+
