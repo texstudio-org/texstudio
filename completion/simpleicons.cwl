@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/01/21 for v14.3.0
+# Matthew Bertucci 2025/02/03 for v14.4.0
 
 #include:iftex
 
@@ -1561,6 +1561,7 @@ lada
 lamborghini
 landrover
 langchain
+langflow
 langgraph
 languagetool
 lapce
@@ -1662,6 +1663,7 @@ loopback
 lootcrate
 lospec
 lotpolishairlines
+lottiefiles
 ltspice
 lua
 lubuntu
@@ -3213,6 +3215,7 @@ yelp
 yeti
 yii
 yoast
+yolo
 youhodler
 youtube
 youtubegaming
