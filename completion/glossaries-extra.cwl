@@ -1,5 +1,5 @@
 # glossaries-extra package
-# Matthew Bertucci 2025/01/06 for v1.54
+# Matthew Bertucci 2025/02/03 for v1.55
 
 #include:glossaries
 
@@ -1907,6 +1907,32 @@ theHvalue=%<<prefix><location>%>
 \GlsXtrIfXpFieldEqXpStr{field}{label}{text}{true}{false}#*r
 \GlsXtrIfXpFieldEqXpStr*{field}{label}{text}{true}{false}#*r
 
+## LaTeX3 Commands ##
+\glossaries_if_field_exists:nnTF {%<⟨entry label⟩%>} {%<⟨field label⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_exists:nnT {%<⟨entry label⟩%>} {%<⟨field label⟩%>} {%<⟨true code⟩%>}#/%expl3
+\glossaries_if_field_exists:nnF {%<⟨entry label⟩%>} {%<⟨field label⟩%>} {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_exists_p:nn {%<⟨entry label⟩%>} {%<⟨field label⟩%>}#/%expl3
+\glossaries_if_field_set:nnTF {%<⟨entry label⟩%>} {%<⟨field label⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_set:nnT {%<⟨entry label⟩%>} {%<⟨field label⟩%>} {%<⟨true code⟩%>}#/%expl3
+\glossaries_if_field_set:nnF {%<⟨entry label⟩%>} {%<⟨field label⟩%>} {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_set_p:nn {%<⟨entry label⟩%>} {%<⟨field label⟩%>}#/%expl3
+\glossaries_if_field_eq:nnNTF {%<⟨entry label⟩%>} {%<⟨field label⟩%>} %<⟨tl var⟩%> {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_eq:nnNT {%<⟨entry label⟩%>} {%<⟨field label⟩%>} %<⟨tl var⟩%> {%<⟨true code⟩%>}#/%expl3
+\glossaries_if_field_eq:nnNF {%<⟨entry label⟩%>} {%<⟨field label⟩%>} %<⟨tl var⟩%> {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_eq_p:nnN {%<⟨entry label⟩%>} {%<⟨field label⟩%>} %<⟨tl var⟩%>#/%expl3
+\glossaries_if_field_eq:nnnTF {%<⟨entry label⟩%>} {%<⟨field label⟩%>} {%<⟨tokens⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_eq:nnnT {%<⟨entry label⟩%>} {%<⟨field label⟩%>} {%<⟨tokens⟩%>} {%<⟨true code⟩%>}#/%expl3
+\glossaries_if_field_eq:nnnF {%<⟨entry label⟩%>} {%<⟨field label⟩%>} {%<⟨tokens⟩%>} {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_eq_field:nnnTF {%<⟨entry label⟩%>} {%<⟨field1 label⟩%>} {%<⟨field2 label⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_eq_field:nnnT {%<⟨entry label⟩%>} {%<⟨field1 label⟩%>} {%<⟨field2 label⟩%>} {%<⟨true code⟩%>}#/%expl3
+\glossaries_if_field_eq_field:nnnF {%<⟨entry label⟩%>} {%<⟨field1 label⟩%>} {%<⟨field2 label⟩%>} {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_eq_field_p:nnn {%<⟨entry label⟩%>} {%<⟨field1 label⟩%>} {%<⟨field2 label⟩%>}#/%expl3
+\glossaries_if_field_eq_field:nnnnTF {%<⟨entry1 label⟩%>} {%<⟨field1 label⟩%>} {%<⟨entry2 label⟩%>} {%<⟨field2 label⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_eq_field:nnnnT {%<⟨entry1 label⟩%>} {%<⟨field1 label⟩%>} {%<⟨entry2 label⟩%>} {%<⟨field2 label⟩%>} {%<⟨true code⟩%>}#/%expl3
+\glossaries_if_field_eq_field:nnnnF {%<⟨entry1 label⟩%>} {%<⟨field1 label⟩%>} {%<⟨entry2 label⟩%>} {%<⟨field2 label⟩%>} {%<⟨false code⟩%>}#/%expl3
+\glossaries_if_field_eq_field_p:nnnn {%<⟨entry1 label⟩%>} {%<⟨field1 label⟩%>} {%<⟨entry2 label⟩%>} {%<⟨field2 label⟩%>}#/%expl3
+\glossaries_use_field:nn {%<⟨entry label⟩%>} {%<⟨field label⟩%>}#/%expl3
+
 ### 6 Counting References ###
 \GlsXtrEnableEntryCounting{category-list}{value}#*
 \cGLS{label}#*r
@@ -2570,12 +2596,12 @@ topicmcols
 
 ### 11 bib2gls: Managing Reference Databases ###
 \BibGlsOptions{options}
-\glsxtrresourcefile{filename%file}
-\glsxtrresourcefile[options%keyvals]{filename%file}
 \GlsXtrLoadResources
 \GlsXtrLoadResources[options%keyvals]
+\glsbibdata{bib list}
+\glsbibdata[options%keyvals]{bib list}
 
-#keyvals:\glsxtrresourcefile#c,\GlsXtrLoadResources#c
+#keyvals:\GlsXtrLoadResources#c,\glsbibdata#c
 charset=%<encoding name%>
 locale=%<lang tag%>
 interpret-preamble#true,false
@@ -3042,5 +3068,7 @@ compound-write-def=#none,all,ref
 \mglsWriteSeparateRefsTrue#S
 
 # deprecated
+\glsxtrresourcefile{filename%file}#S
+\glsxtrresourcefile[options%keyvals]{filename%file}#S
 \preglossarypreamble{text}#S
 \preglossarypreamble[type]{text}#S
