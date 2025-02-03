@@ -28,14 +28,13 @@
 \JSONParseArrayCount{token variable}{key%plain}
 \JSONParseSetArrayCount{token variable%cmd}{token variable}{key%plain}#d
 \JSONParseArrayMapInline{token variable}{key%plain}{inline function}
+\JSONParseArrayMapInline[options%keyvals]{token variable}{key%plain}{inline function}
 \JSONParseSet{keyvals}
 
-## global
 #keyvals:\usepackage/jsonparse#c,\JSONParseSet,\JSONParse,\JSONParseFromFile
 debug
 #endkeyvals
 
-## parse
 #keyvals:\JSONParseSet,\JSONParse,\JSONParseFromFile
 externalize#true,false
 externalize prefix=%<string%>
@@ -49,7 +48,6 @@ keyword/false=%<string%>
 keyword/null=%<string%>
 #endkeyvals
 
-## typeset
 #keyvals:\JSONParseSet,\JSONParseValue,\JSONParseArrayUse,\JSONParseArrayMapFunction
 replace/backspace=%<string%>
 replace/formfeed=%<string%>
@@ -66,7 +64,12 @@ code before=%<code%>
 code after=%<code%>
 #endkeyvals
 
+#keyvals:\JSONParseArrayMapInline
+store in=%<token variable%>
+#endkeyvals
+
 # expl3 interface
+\g_jsonparse_entries_prop#/%expl3
 \jsonparse_array_count:NN %<⟨tl var⟩ ⟨integer⟩%>#/%expl3
 \jsonparse_filter:Nn %<⟨tl var⟩%> {%<⟨key⟩%>}#/%expl3
 \jsonparse_if_num:nF {%<⟨false code⟩%>} {%<⟨string⟩%>}#/%expl3
@@ -74,6 +77,7 @@ code after=%<code%>
 \jsonparse_if_num:nTF {%<⟨true code⟩%>} {%<⟨false code⟩%>} {%<⟨string⟩%>}#/%expl3
 \jsonparse_if_num_p:n {%<⟨string⟩%>}#/%expl3
 \jsonparse_parse:n {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_parse_keys:NN %<⟨tl var⟩ ⟨str var⟩%>#/%expl3
 \jsonparse_parse_to_prop:Nn %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_unicode_convert_surrogate_pair:ee {%<⟨codepoint⟩%>} {%<⟨codepoint⟩%>}#/%expl3
 \jsonparse_unicode_convert_surrogate_pair:nn {%<⟨codepoint⟩%>} {%<⟨codepoint⟩%>}#/%expl3
