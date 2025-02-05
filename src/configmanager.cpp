@@ -1767,7 +1767,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
         buildManager->dvi2pngMode = static_cast<BuildManager::Dvi2PngMode>(confDlg->ui.comboBoxDvi2PngMode->currentIndex());
         buildManager->autoPreviewCmd = confDlg->ui.checkBoxAutoPreviewCmd->isChecked();
 #ifdef NO_POPPLER_PREVIEW
-		if (buildManager.modifyHeader.contains(dvi2pngMode)) {
+		if (buildManager->modifyHeader.contains(buildManager->dvi2pngMode)) {
 			buildManager->dvi2pngMode = BuildManager::DPM_DVIPNG; //fallback when poppler is not included
 			buildManager->autoPreviewCmd = false;
 		}
