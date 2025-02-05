@@ -1342,6 +1342,7 @@ void BuildManager::registerOptions(ConfigManagerInterface &cmi)
 	cmi.registerOption("Tools/Max Expanding Nesting Deep", &maxExpandingNestingDeep, 10);
 	Q_ASSERT(sizeof(dvi2pngMode) == sizeof(int));
     cmi.registerOption("Tools/Dvi2Png Mode", reinterpret_cast<int *>(&dvi2pngMode), 3);
+	cmi.registerOption("Tools/AutoPreviewCmd", &autoPreviewCmd, true);
     cmi.registerOption("Files/Save Files Before Compiling", reinterpret_cast<int *>(&saveFilesBeforeCompiling), static_cast<int>(SFBC_ONLY_NAMED));
 	cmi.registerOption("Preview/Remove Beamer Class", &previewRemoveBeamer, true);
 	cmi.registerOption("Preview/Precompile Preamble", &previewPrecompilePreamble, true);
@@ -1771,6 +1772,32 @@ void addLaTeXInputPaths(ProcessX *p, const QStringList &paths)
 	p->setOverrideEnvironment(env);
 }
 
+/*!
+ * \brief find a Preview Mode which uses the Build Compiler (Default or by Magic Comment)
+ * it was reported (#3851) that external storage was filled up when running a preview with a different compiler than the Build Compiler
+ * from the Build setup. To prevent this check option autoPreviewCmd. This is also usefull when you switch between documents which can't
+ * be compiled with the same compiler and a manuell switch would also be necessary for previews.
+ */
+BuildManager::Dvi2PngMode BuildManager::guessDvi2PngMode() {
+	bool user;
+	QString compiler;
+	emit commandLineRequested("compile", &compiler, &user);
+	Dvi2PngMode dvi2pngModeDerived = dvi2pngMode;
+	if (autoPreviewCmd && !user) {
+		if (isCommandDirectlyDefined(compiler)) {
+			if (compiler==CMD_PDFLATEX)
+				dvi2pngModeDerived = DPM_EMBEDDED_PDF;
+			else if (compiler==CMD_LUALATEX)
+				dvi2pngModeDerived = DPM_LUA_EMBEDDED_PDF;
+			else if (compiler==CMD_XELATEX)
+				dvi2pngModeDerived = DPM_XE_EMBEDDED_PDF;
+			else if (compiler==CMD_LATEX)
+				dvi2pngModeDerived = DPM_DVIPNG;
+		}
+	}
+	return dvi2pngModeDerived;
+}
+
 //there are 3 ways to generate a preview png:
 //1. latex is called => dvipng is called after latex finished and converts the dvi
 //2. latex is called and dvipng --follow is called at the same time, and will manage the wait time on its own
@@ -1779,6 +1806,7 @@ void addLaTeXInputPaths(ProcessX *p, const QStringList &paths)
 void BuildManager::preview(const QString &preamble, const PreviewSource &source, const QString &masterFile, QTextCodec *outputCodec)
 {
 	QString tempPath = QDir::tempPath() + QDir::separator() + "." + QDir::separator();
+	Dvi2PngMode dvi2pngModeDerived = guessDvi2PngMode();
 
 	//process preamble
 	QString preamble_mod = preamble;
@@ -1832,11 +1860,11 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				preambleFormatFile = fi.completeBaseName();
 				previewFileNames.append(fi.absoluteFilePath());
 				ProcessX *p = nullptr;
-				if (dvi2pngMode == DPM_EMBEDDED_PDF) {
+				if (dvi2pngModeDerived == DPM_EMBEDDED_PDF) {
                     p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&pdflatex %2 \\dump\"").arg(getCommandInfo(CMD_PDFLATEX).getProgramName(),preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
-				} else if (dvi2pngMode == DPM_LUA_EMBEDDED_PDF) {
+				} else if (dvi2pngModeDerived == DPM_LUA_EMBEDDED_PDF) {
                     p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&lualatex %2 \\dump\"").arg(getCommandInfo(CMD_LUALATEX).getProgramName(),preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
-				} else if (dvi2pngMode == DPM_XE_EMBEDDED_PDF) {
+				} else if (dvi2pngModeDerived == DPM_XE_EMBEDDED_PDF) {
                     p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&xelatex %2 \\dump\"").arg(getCommandInfo(CMD_XELATEX).getProgramName(),preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
 				} else {
                     p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&latex %2 \\dump\"").arg(getCommandInfo(CMD_LATEX).getProgramName(),preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
@@ -1894,11 +1922,11 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	tf->close();
 	delete tf; // tex file needs to be freed
     ProcessX *p1 = nullptr;
-	if (dvi2pngMode == DPM_EMBEDDED_PDF) {
+	if (dvi2pngModeDerived == DPM_EMBEDDED_PDF) {
 		// start conversion
 		// tex -> pdf
 		p1 = firstProcessOfDirectExpansion(CMD_PDFLATEX, QFileInfo(ffn)); //no delete! goes automatically
-	} else if (dvi2pngMode == DPM_LUA_EMBEDDED_PDF) {
+	} else if (dvi2pngModeDerived == DPM_LUA_EMBEDDED_PDF) {
 		// start conversion
 		// tex -> pdf
 		QString command = getCommandInfo(CMD_LUALATEX).commandLine;
@@ -1907,7 +1935,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 			command = command.insert(pgm.length(), " -fmt=" + preambleFormatFile);
 		}
 		p1 = firstProcessOfDirectExpansion(command, QFileInfo(ffn)); //no delete! goes automatically
-	} else if (dvi2pngMode == DPM_XE_EMBEDDED_PDF) {
+	} else if (dvi2pngModeDerived == DPM_XE_EMBEDDED_PDF) {
 		// start conversion
 		// tex -> pdf
 		QString command = getCommandInfo(CMD_XELATEX).commandLine;
@@ -1927,7 +1955,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	p1->startCommand();
 	QTimer::singleShot(previewCompileTimeOut, p1, SLOT(kill()));
 
-	if (dvi2pngMode == DPM_DVIPNG_FOLLOW) {
+	if (dvi2pngModeDerived == DPM_DVIPNG_FOLLOW) {
 		p1->waitForStarted();
 		// dvi -> png
 		//follow mode is a tricky features which allows dvipng to run while tex isn't finished
@@ -2097,7 +2125,8 @@ void BuildManager::latexPreviewCompleted(int status)
     if(status>0){
         return; // compilation has failed
     }
-	if (dvi2pngMode == DPM_DVIPNG) {
+	Dvi2PngMode dvi2pngModeDerived = guessDvi2PngMode();
+	if (dvi2pngModeDerived == DPM_DVIPNG) {
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;
 		// dvi -> png
@@ -2108,7 +2137,7 @@ void BuildManager::latexPreviewCompleted(int status)
         connect(p2, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
 	}
-	if (dvi2pngMode == DPM_DVIPS_GHOSTSCRIPT) {
+	if (dvi2pngModeDerived == DPM_DVIPS_GHOSTSCRIPT) {
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;
 		// dvi -> ps
@@ -2119,7 +2148,7 @@ void BuildManager::latexPreviewCompleted(int status)
         connect(p2, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(dvi2psPreviewCompleted(int)));
 		p2->startCommand();
 	}
-	if (dvi2pngMode == DPM_EMBEDDED_PDF) {
+	if (dvi2pngModeDerived == DPM_EMBEDDED_PDF) {
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;
 		QString processedFile = p1->getFile();
@@ -2133,7 +2162,7 @@ void BuildManager::latexPreviewCompleted(int status)
 			emit previewAvailable(fn, previewFileNameToSource[processedFile]);
 		}
 	}
-	if (dvi2pngMode == DPM_LUA_EMBEDDED_PDF) {
+	if (dvi2pngModeDerived == DPM_LUA_EMBEDDED_PDF) {
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;
 		QString processedFile = p1->getFile();
@@ -2147,7 +2176,7 @@ void BuildManager::latexPreviewCompleted(int status)
 			emit previewAvailable(fn, previewFileNameToSource[processedFile]);
 		}
 	}
-	if (dvi2pngMode == DPM_XE_EMBEDDED_PDF) {
+	if (dvi2pngModeDerived == DPM_XE_EMBEDDED_PDF) {
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;
 		QString processedFile = p1->getFile();

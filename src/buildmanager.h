@@ -181,7 +181,12 @@ public:
 	QStringList deprecatedUserToolCommands, deprecatedUserToolNames;
 	QStringList userToolOrder, userToolDisplayNames;
 	enum Dvi2PngMode { DPM_DVIPNG, DPM_DVIPNG_FOLLOW, DPM_DVIPS_GHOSTSCRIPT, DPM_EMBEDDED_PDF, DPM_LUA_EMBEDDED_PDF, DPM_XE_EMBEDDED_PDF};
+	// following Dvi2PngModes add tight page modifications for to the document preamble preview
+	const QList<Dvi2PngMode> modifyHeader = {DPM_EMBEDDED_PDF, DPM_LUA_EMBEDDED_PDF, DPM_XE_EMBEDDED_PDF};
+
 	Dvi2PngMode dvi2pngMode;
+	BuildManager::Dvi2PngMode guessDvi2PngMode();
+	bool autoPreviewCmd;
 	enum SaveFilesBeforeCompiling {SFBC_ALWAYS, SFBC_ONLY_CURRENT_OR_NAMED, SFBC_ONLY_NAMED};
 	SaveFilesBeforeCompiling saveFilesBeforeCompiling;
 	bool previewRemoveBeamer, previewPrecompilePreamble;
