@@ -1,5 +1,5 @@
 # beamerbasecolor package
-# Matthew Bertucci 1/30/2022 for v3.65
+# Matthew Bertucci 2025/02/05 for v3.72
 
 \setbeamercolor{beamer-color name}{options%keyvals}
 \setbeamercolor*{beamer-color name}{options%keyvals}
@@ -49,6 +49,7 @@ shadow#true,false
 rounded#true,false
 ignorebg
 vmode
+bgopacity=%<factor%>
 #endkeyvals
 
 \donotcoloroutermaths#*
