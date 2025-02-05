@@ -1,5 +1,5 @@
 # beamerbaseboxes package
-# Matthew Bertucci 1/30/2022 for v3.65
+# Matthew Bertucci 2025/02/05 for v3.72
 
 \beamerboxesdeclarecolorscheme{name}{upper color}{lower color}#*
 \begin{beamerboxesrounded}{head%text}
@@ -14,4 +14,5 @@ upper=%<beamer color%>
 lower=%<beamer color%>
 width=##L
 shadow#true,false
+bgopacity=%<factor%>
 #endkeyvals
