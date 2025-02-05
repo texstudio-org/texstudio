@@ -1775,8 +1775,8 @@ void addLaTeXInputPaths(ProcessX *p, const QStringList &paths)
 /*!
  * \brief find a Preview Mode which uses the Build Compiler (Default or by Magic Comment)
  * it was reported (#3851) that external storage was filled up when running a preview with a different compiler than the Build Compiler
- * from the Build setup. To prevent this check option autoPreviewCmd. This is also usefull when you switch between documents which can't
- * be compiled with the same compiler and a manuell switch would also be necessary for previews.
+ * from the Build setup. To prevent this check option autoPreviewCmd. This is also useful when you switch between documents which can't
+ * be compiled with the same compiler and a manual switch would also be necessary for previews.
  */
 BuildManager::Dvi2PngMode BuildManager::guessDvi2PngMode() {
 	bool user;

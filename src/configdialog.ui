@@ -4049,10 +4049,10 @@ them here.</string>
                   <item row="1" column="1">
                    <widget class="QCheckBox" name="checkBoxAutoPreviewCmd">
                     <property name="text">
-                     <string notr="true">Preferre Preview with Build Compiler</string>
+                     <string notr="true">Prefer Preview with Build Compiler</string>
                     </property>
                     <property name="toolTip">
-                     <string>The option applys when the build compiler is pdflatex, lualatex, xelatex, or latex.</string>
+                     <string>The option applies when the build compiler is pdflatex, lualatex, xelatex, or latex.</string>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
