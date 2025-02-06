@@ -1,10 +1,11 @@
 # nameauth package
-# Matthew Bertucci 2024/02/09 for v4.0
+# Matthew Bertucci 2025/02/06 for v4.1
 
 #include:etoolbox
 #include:trimspaces
 
 #keyvals:\usepackage/nameauth#c
+strictsyntax
 comma
 allcaps
 allreversed
@@ -51,17 +52,23 @@ oldargs
 \AltFormatInactive
 \AltOff
 \AltOn
+\begin{AltFormatZone}
+\begin{AltFormatZone*}
 \begin{nameauth}#\array
 \CapName
 \CapThis
 \DropAffix
 \end{nameauth}
+\end{AltFormatZone}
+\end{AltFormatZone*}
 \ExcludeName[forename]{surname}
 \ExcludeName[forename]{surname}[alternate]#*
 \ExcludeName{surname,affix}
+\FixateFormat
 \FName[forename]{surname}
 \FName[forename]{surname}[alternate]#*
 \FName{surname,affix}
+\ForceAffix
 \ForceFN
 \ForceName
 \ForgetName[forename]{surname}
@@ -184,6 +191,9 @@ oldargs
 \ShowNameState[forename]{surname}#*
 \ShowNameState[forename]{surname}[alternate]#*
 \ShowNameState{surname,affix}#*
+\ShowNameState*[forename]{surname}#*
+\ShowNameState*[forename]{surname}[alternate]#*
+\ShowNameState*{surname,affix}#*
 \ShowPattern[forename]{surname}#*
 \ShowPattern[forename]{surname}[alternate]#*
 \ShowPattern{surname,affix}#*
