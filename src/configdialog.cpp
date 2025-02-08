@@ -592,14 +592,6 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 	ui.lineEditMetaFilter->setPlaceholderText(tr("(option filter)"));
 	connect(ui.lineEditMetaFilter, SIGNAL(textChanged(QString)), SLOT(metaFilterChanged(QString)));
 
-	// poppler preview
-#ifdef NO_POPPLER_PREVIEW
-	int l = ui.comboBoxDvi2PngMode->count();
-	ui.comboBoxDvi2PngMode->removeItem(l - 1);
-	l = ui.comboBoxPreviewMode->count();
-	ui.comboBoxPreviewMode->removeItem(l - 1);
-	// maybe add some possibility to disable some preview modes in poppler mode
-#endif
 	ui.labelScreenResolution->setText(labelSystemdpi);
 
 	// set-up GUI scaling

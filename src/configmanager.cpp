@@ -1466,6 +1466,13 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	}
 	//preview
 	confDlg->ui.comboBoxDvi2PngMode->setCurrentIndex(buildManager->index(buildManager->dvi2pngMode));
+#ifdef NO_POPPLER_PREVIEW
+	int l = confDlg->ui.comboBoxDvi2PngMode->count();
+	for (int index=l-1; index>=0; index--) {
+		if (buildManager->modifyHeader.contains(buildManager->dvi2PngMode(index)))
+			confDlg->ui.comboBoxDvi2PngMode->removeItem(index);
+	}
+#endif
 
 	//Autosave
 	if (autosaveEveryMinutes == 0) confDlg->ui.comboBoxAutoSave->setCurrentIndex(0);

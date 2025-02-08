@@ -1453,7 +1453,7 @@ void BuildManager::readSettings(QSettings &settings)
 
 	int md = dvi2pngMode;
 #ifdef NO_POPPLER_PREVIEW
-	if (md == DPM_EMBEDDED_PDF || md == DPM_LUA_EMBEDDED_PDF || md == DPM_XE_EMBEDDED_PDF)
+	if (modifyHeader.contains(static_cast<Dvi2PngMode>(md)))
 		md = -1;
 #endif
 	if (md < 0) {
