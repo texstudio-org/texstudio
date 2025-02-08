@@ -1465,7 +1465,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		else  item->setCheckState(Qt::Unchecked);
 	}
 	//preview
-	confDlg->ui.comboBoxDvi2PngMode->setCurrentIndex(buildManager->dvi2pngMode);
+	confDlg->ui.comboBoxDvi2PngMode->setCurrentIndex(buildManager->index(buildManager->dvi2pngMode));
 
 	//Autosave
 	if (autosaveEveryMinutes == 0) confDlg->ui.comboBoxAutoSave->setCurrentIndex(0);
@@ -1763,7 +1763,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		completerConfig->setFiles(newFiles);
 		//preview
         previewMode = static_cast<PreviewMode>(confDlg->ui.comboBoxPreviewMode->currentIndex());
-        buildManager->dvi2pngMode = static_cast<BuildManager::Dvi2PngMode>(confDlg->ui.comboBoxDvi2PngMode->currentIndex());
+        buildManager->dvi2pngMode = buildManager->dvi2PngMode(confDlg->ui.comboBoxDvi2PngMode->currentIndex());
 #ifdef NO_POPPLER_PREVIEW
 		if (buildManager->modifyHeader.contains(buildManager->dvi2pngMode)) {
 			buildManager->dvi2pngMode = BuildManager::DPM_DVIPNG; //fallback when poppler is not included

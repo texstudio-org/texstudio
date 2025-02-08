@@ -1801,6 +1801,16 @@ BuildManager::Dvi2PngMode BuildManager::guessDvi2PngMode() {
 	return dvi2pngModeDerived;
 }
 
+int BuildManager::index(BuildManager::Dvi2PngMode dvi2pngMode) {
+	if (dvi2pngMode==DPM_BUILD_COMPILER) return 0;
+	return static_cast <int>(dvi2pngMode) + 1;
+}
+
+BuildManager::Dvi2PngMode BuildManager::dvi2PngMode(int index) {
+	if (index==0) return DPM_BUILD_COMPILER;
+	return static_cast <BuildManager::Dvi2PngMode>(index - 1);
+}
+
 //there are 3 ways to generate a preview png:
 //1. latex is called => dvipng is called after latex finished and converts the dvi
 //2. latex is called and dvipng --follow is called at the same time, and will manage the wait time on its own

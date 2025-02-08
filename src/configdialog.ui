@@ -4016,6 +4016,11 @@ them here.</string>
                     </property>
                     <item>
                      <property name="text">
+                      <string>Default Compiler as set up in Build configuration</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
                       <string>Preview with dvipng</string>
                      </property>
                     </item>
@@ -4042,11 +4047,6 @@ them here.</string>
                     <item>
                      <property name="text">
                       <string>Preview with xelatex</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Default Compiler as set up in Build configuration</string>
                      </property>
                     </item>
                    </widget>

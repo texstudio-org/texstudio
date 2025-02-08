@@ -186,6 +186,9 @@ public:
 
 	Dvi2PngMode dvi2pngMode;
 	BuildManager::Dvi2PngMode guessDvi2PngMode();
+	BuildManager::Dvi2PngMode dvi2PngMode(int index);
+	int index(BuildManager::Dvi2PngMode dvi2pngMode);
+
 	enum SaveFilesBeforeCompiling {SFBC_ALWAYS, SFBC_ONLY_CURRENT_OR_NAMED, SFBC_ONLY_NAMED};
 	SaveFilesBeforeCompiling saveFilesBeforeCompiling;
 	bool previewRemoveBeamer, previewPrecompilePreamble;
