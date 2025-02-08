@@ -1341,8 +1341,7 @@ void BuildManager::registerOptions(ConfigManagerInterface &cmi)
 	cmi.registerOption("Tools/Quick Mode", &deprecatedQuickmode, -1);
 	cmi.registerOption("Tools/Max Expanding Nesting Deep", &maxExpandingNestingDeep, 10);
 	Q_ASSERT(sizeof(dvi2pngMode) == sizeof(int));
-    cmi.registerOption("Tools/Dvi2Png Mode", reinterpret_cast<int *>(&dvi2pngMode), 3);
-	cmi.registerOption("Tools/AutoPreviewCmd", &autoPreviewCmd, true);
+	cmi.registerOption("Tools/Dvi2Png Mode", reinterpret_cast<int *>(&dvi2pngMode), 6);
     cmi.registerOption("Files/Save Files Before Compiling", reinterpret_cast<int *>(&saveFilesBeforeCompiling), static_cast<int>(SFBC_ONLY_NAMED));
 	cmi.registerOption("Preview/Remove Beamer Class", &previewRemoveBeamer, true);
 	cmi.registerOption("Preview/Precompile Preamble", &previewPrecompilePreamble, true);
@@ -1774,27 +1773,31 @@ void addLaTeXInputPaths(ProcessX *p, const QStringList &paths)
 
 /*!
  * \brief find a Preview Mode which uses the Build Compiler (Default or by Magic Comment)
- * it was reported (#3851) that external storage was filled up when running a preview with a different compiler than the Build Compiler
- * from the Build setup. To prevent this check option autoPreviewCmd. This is also useful when you switch between documents which can't
- * be compiled with the same compiler and a manual switch would also be necessary for previews.
+ * It was reported (#3851) that external storage was filled up when running a preview with a different compiler than the Build Compiler from the
+ * Build setup. To prevent this use "Default Compiler as set up in Build config" (DPM_BUILD_COMPILER) from combobox. This is also useful when you
+ * switch between documents which can't be compiled with the same compiler and a manual switch would also be necessary for previews.
  */
 BuildManager::Dvi2PngMode BuildManager::guessDvi2PngMode() {
-	bool user;
-	QString compiler;
-	emit commandLineRequested("compile", &compiler, &user);
-	Dvi2PngMode dvi2pngModeDerived = dvi2pngMode;
-	if (autoPreviewCmd && !user) {
-		if (isCommandDirectlyDefined(compiler)) {
-			if (compiler==CMD_PDFLATEX)
-				dvi2pngModeDerived = DPM_EMBEDDED_PDF;
-			else if (compiler==CMD_LUALATEX)
-				dvi2pngModeDerived = DPM_LUA_EMBEDDED_PDF;
-			else if (compiler==CMD_XELATEX)
-				dvi2pngModeDerived = DPM_XE_EMBEDDED_PDF;
-			else if (compiler==CMD_LATEX)
-				dvi2pngModeDerived = DPM_DVIPNG;
+	Dvi2PngMode dvi2pngModeDerived = DPM_DVIPNG;
+	if (dvi2pngMode==DPM_BUILD_COMPILER) {
+		bool user;
+		QString compiler;
+		emit commandLineRequested("compile", &compiler, &user);
+		if (!user) {
+			if (isCommandDirectlyDefined(compiler)) {
+				if (compiler==CMD_PDFLATEX)
+					dvi2pngModeDerived = DPM_EMBEDDED_PDF;
+				else if (compiler==CMD_LUALATEX)
+					dvi2pngModeDerived = DPM_LUA_EMBEDDED_PDF;
+				else if (compiler==CMD_XELATEX)
+					dvi2pngModeDerived = DPM_XE_EMBEDDED_PDF;
+				else if (compiler==CMD_LATEX)
+					dvi2pngModeDerived = DPM_DVIPNG;
+			}
 		}
 	}
+	else dvi2pngModeDerived = dvi2pngMode;
+
 	return dvi2pngModeDerived;
 }
 

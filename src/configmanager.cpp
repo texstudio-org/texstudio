@@ -1466,7 +1466,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	}
 	//preview
 	confDlg->ui.comboBoxDvi2PngMode->setCurrentIndex(buildManager->dvi2pngMode);
-	confDlg->ui.checkBoxAutoPreviewCmd->setChecked(buildManager->autoPreviewCmd);
 
 	//Autosave
 	if (autosaveEveryMinutes == 0) confDlg->ui.comboBoxAutoSave->setCurrentIndex(0);
@@ -1765,11 +1764,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		//preview
         previewMode = static_cast<PreviewMode>(confDlg->ui.comboBoxPreviewMode->currentIndex());
         buildManager->dvi2pngMode = static_cast<BuildManager::Dvi2PngMode>(confDlg->ui.comboBoxDvi2PngMode->currentIndex());
-        buildManager->autoPreviewCmd = confDlg->ui.checkBoxAutoPreviewCmd->isChecked();
 #ifdef NO_POPPLER_PREVIEW
 		if (buildManager->modifyHeader.contains(buildManager->dvi2pngMode)) {
 			buildManager->dvi2pngMode = BuildManager::DPM_DVIPNG; //fallback when poppler is not included
-			buildManager->autoPreviewCmd = false;
 		}
 #endif
 

@@ -4002,14 +4002,14 @@ them here.</string>
                   <string>Preview</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_5" columnstretch="0,1">
-                  <item row="0" column="0">
+                  <item row="1" column="0">
                    <widget class="QLabel" name="label_31">
                     <property name="text">
                      <string>Command:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1">
+                  <item row="1" column="1">
                    <widget class="QComboBox" name="comboBoxDvi2PngMode">
                     <property name="advancedOption" stdset="0">
                      <bool>false</bool>
@@ -4044,22 +4044,11 @@ them here.</string>
                       <string>Preview with xelatex</string>
                      </property>
                     </item>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QCheckBox" name="checkBoxAutoPreviewCmd">
-                    <property name="text">
-                     <string notr="true">Prefer Preview with Build Compiler</string>
-                    </property>
-                    <property name="toolTip">
-                     <string>The option applies when the build compiler is pdflatex, lualatex, xelatex, or latex.</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
-                    </property>
-                    <property name="advancedOption" stdset="0">
-                     <bool>false</bool>
-                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Default Compiler as set up in Build configuration</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                   <item row="2" column="0">
