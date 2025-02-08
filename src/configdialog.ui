@@ -4002,18 +4002,23 @@ them here.</string>
                   <string>Preview</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_5" columnstretch="0,1">
-                  <item row="0" column="0">
+                  <item row="1" column="0">
                    <widget class="QLabel" name="label_31">
                     <property name="text">
                      <string>Command:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1">
+                  <item row="1" column="1">
                    <widget class="QComboBox" name="comboBoxDvi2PngMode">
                     <property name="advancedOption" stdset="0">
                      <bool>false</bool>
                     </property>
+                    <item>
+                     <property name="text">
+                      <string>Default Compiler as set up in Build configuration</string>
+                     </property>
+                    </item>
                     <item>
                      <property name="text">
                       <string>Preview with dvipng</string>
@@ -4046,7 +4051,7 @@ them here.</string>
                     </item>
                    </widget>
                   </item>
-                  <item row="1" column="0">
+                  <item row="2" column="0">
                    <widget class="QLabel" name="label_32">
                     <property name="text">
                      <string>Display Mode:</string>
@@ -4056,7 +4061,7 @@ them here.</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="1">
+                  <item row="2" column="1">
                    <widget class="QComboBox" name="comboBoxPreviewMode">
                     <property name="toolTip">
                      <string>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it's still a tooltip).</string>
@@ -4097,82 +4102,6 @@ them here.</string>
                    </widget>
                   </item>
                   <item row="3" column="0">
-                   <widget class="QLabel" name="label_35">
-                    <property name="toolTip">
-                     <string>Update the preview on text change</string>
-                    </property>
-                    <property name="text">
-                     <string>Auto Update:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QComboBox" name="comboBoxAutoPreview">
-                    <item>
-                     <property name="text">
-                      <string>Never</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Previously previewed text</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_36">
-                    <property name="text">
-                     <string>Auto Update Delay:</string>
-                    </property>
-                    <property name="advancedOption" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="1">
-                   <widget class="QSpinBox" name="spinBoxAutoPreviewDelay">
-                    <property name="suffix">
-                     <string> ms</string>
-                    </property>
-                    <property name="minimum">
-                     <number>40</number>
-                    </property>
-                    <property name="maximum">
-                     <number>3000</number>
-                    </property>
-                    <property name="advancedOption" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxReplaceBeamer">
-                    <property name="text">
-                     <string>Replace beamer class by article</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
-                    </property>
-                    <property name="advancedOption" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxPrecompilePreamble">
-                    <property name="text">
-                     <string>Precompile Preamble</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
-                    </property>
-                    <property name="advancedOption" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
                    <widget class="QLabel" name="label_75">
                     <property name="toolTip">
                      <string/>
@@ -4182,7 +4111,7 @@ them here.</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="1">
+                  <item row="3" column="1">
                    <widget class="QSpinBox" name="spinBoxSegmentPreviewScalePercent">
                     <property name="toolTip">
                      <string/>
@@ -4201,6 +4130,82 @@ them here.</string>
                     </property>
                     <property name="singleStep">
                      <number>10</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_35">
+                    <property name="toolTip">
+                     <string>Update the preview on text change</string>
+                    </property>
+                    <property name="text">
+                     <string>Auto Update:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QComboBox" name="comboBoxAutoPreview">
+                    <item>
+                     <property name="text">
+                      <string>Never</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Previously previewed text</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_36">
+                    <property name="text">
+                     <string>Auto Update Delay:</string>
+                    </property>
+                    <property name="advancedOption" stdset="0">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QSpinBox" name="spinBoxAutoPreviewDelay">
+                    <property name="suffix">
+                     <string> ms</string>
+                    </property>
+                    <property name="minimum">
+                     <number>40</number>
+                    </property>
+                    <property name="maximum">
+                     <number>3000</number>
+                    </property>
+                    <property name="advancedOption" stdset="0">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxReplaceBeamer">
+                    <property name="text">
+                     <string>Replace beamer class by article</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                    <property name="advancedOption" stdset="0">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxPrecompilePreamble">
+                    <property name="text">
+                     <string>Precompile Preamble</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                    <property name="advancedOption" stdset="0">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>

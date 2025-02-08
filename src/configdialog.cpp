@@ -443,7 +443,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 	connect(UpdateChecker::instance(), SIGNAL(checkCompleted()), this, SLOT(refreshLastUpdateTime()));
 	refreshLastUpdateTime();
 
-	//pageditor
+	//pageEditor
 	populateComboBoxFont(false);
 	connect(ui.checkBoxShowOnlyMonospacedFonts, SIGNAL(toggled(bool)), this, SLOT(populateComboBoxFont(bool)));
 
@@ -489,7 +489,8 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
             .arg("<a href=\"https://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>",
                  "<a href=\"https://extensions.libreoffice.org/?Tag%5B0%5D=50&q=&Tags%5B%5D=50\">LibreOffice</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
-	//pagequick
+
+	//pageQuick
 	connect(ui.pushButtonGrammarWordlists, SIGNAL(clicked()), this, SLOT(browseGrammarWordListsDir()));
 	connect(ui.pushButtonGrammarLTPath, SIGNAL(clicked()), this, SLOT(browseGrammarLTPath()));
 	connect(ui.pushButtonGrammarLTJava, SIGNAL(clicked()), this, SLOT(browseGrammarLTJavaPath()));
@@ -591,14 +592,6 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 	ui.lineEditMetaFilter->setPlaceholderText(tr("(option filter)"));
 	connect(ui.lineEditMetaFilter, SIGNAL(textChanged(QString)), SLOT(metaFilterChanged(QString)));
 
-	// poppler preview
-#ifdef NO_POPPLER_PREVIEW
-	int l = ui.comboBoxDvi2PngMode->count();
-	ui.comboBoxDvi2PngMode->removeItem(l - 1);
-	l = ui.comboBoxPreviewMode->count();
-	ui.comboBoxPreviewMode->removeItem(l - 1);
-	// maybe add some possibility to disable some preview modes in poppler mode
-#endif
 	ui.labelScreenResolution->setText(labelSystemdpi);
 
 	// set-up GUI scaling
