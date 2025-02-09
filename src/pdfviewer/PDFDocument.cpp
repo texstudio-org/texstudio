@@ -1601,7 +1601,8 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 		doZoom(event->pos(), 1);
 	else if (action == ctxZoomOutAction)
 		doZoom(event->pos(), -1);
-
+	else if (action == pdfDoc->actionSetPageOffsetMenu)
+		setPageOffsetClick(event->pos());
 }
 
 bool PDFWidget::event(QEvent *event)
@@ -3114,6 +3115,8 @@ void PDFDocument::setupMenus(bool embedded)
     actionSinglePageStep=configManager->newManagedAction(menuroot,menuGrid, "singlePageStep", tr("Single Page Step"), pdfWidget, SLOT(setSinglePageStep(bool)), QList<QKeySequence>());
     menuGridContext->addAction(actionSinglePageStep);
     menuGridContext->addAction(actionContinuous);
+    menuGridContext->addSeparator();
+    actionSetPageOffsetMenu=configManager->newManagedAction(menuroot,menuGridContext, "setPageOffset", tr("Start Column"), this, "", QList<QKeySequence>());
     menuWindow->addAction(menuShow->menuAction());
 #if (QT_VERSION > 0x050a00) && (defined(Q_OS_MAC))
     actionCloseElement=configManager->newManagedAction(menuroot,menuWindow, "closeElement", tr("&Close something"), this, SLOT(closeElement()), QList<QKeySequence>()); // osx work around
