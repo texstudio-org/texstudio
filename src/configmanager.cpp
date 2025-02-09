@@ -1465,11 +1465,15 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		else  item->setCheckState(Qt::Unchecked);
 	}
 	//preview
-	confDlg->ui.comboBoxDvi2PngMode->setCurrentIndex(buildManager->index(buildManager->dvi2pngMode));
+    int m_dvi2pngModeIndex = 0;
+    if (buildManager->dvi2pngMode!=BuildManager::DPM_BUILD_COMPILER){
+        m_dvi2pngModeIndex = static_cast <int>(buildManager->dvi2pngMode) + 1;
+    }
+    confDlg->ui.comboBoxDvi2PngMode->setCurrentIndex(m_dvi2pngModeIndex);
 #ifdef NO_POPPLER_PREVIEW
 	int l = confDlg->ui.comboBoxDvi2PngMode->count();
 	for (int index=l-1; index>=0; index--) {
-		if (buildManager->modifyHeader.contains(buildManager->dvi2PngMode(index)))
+        if (buildManager->dvi2PngMode(index)>=BuildManager::DPM_EMBEDDED_PDF)
 			confDlg->ui.comboBoxDvi2PngMode->removeItem(index);
 	}
 #endif
@@ -1770,9 +1774,14 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		completerConfig->setFiles(newFiles);
 		//preview
         previewMode = static_cast<PreviewMode>(confDlg->ui.comboBoxPreviewMode->currentIndex());
-        buildManager->dvi2pngMode = buildManager->dvi2PngMode(confDlg->ui.comboBoxDvi2PngMode->currentIndex());
+        int m_dvi2pngModeIndex=confDlg->ui.comboBoxDvi2PngMode->currentIndex();
+        if (m_dvi2pngModeIndex==0){
+            buildManager->dvi2pngMode = BuildManager::DPM_BUILD_COMPILER;
+        }else{
+            buildManager->dvi2pngMode = static_cast <BuildManager::Dvi2PngMode>(m_dvi2pngModeIndex - 1);
+        }
 #ifdef NO_POPPLER_PREVIEW
-		if (buildManager->modifyHeader.contains(buildManager->dvi2pngMode)) {
+        if (buildManager->dvi2pngMode>=BuildManager::DPM_EMBEDDED_PDF){
 			buildManager->dvi2pngMode = BuildManager::DPM_DVIPNG; //fallback when poppler is not included
 		}
 #endif
