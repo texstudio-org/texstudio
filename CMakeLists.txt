@@ -29,6 +29,7 @@ else()
 	set(VARPREFIX_WC_LATEST_TAG_LONG "${CMAKE_PROJECT_VERSION}+0+0")
 endif()
 include(cmake/project_version.cmake)
+include(GNUInstallDirs)
 
 if(MSVC)
 	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -DUNICODE)
@@ -344,6 +345,11 @@ else()
 endif()
 add_subdirectory(src/pdfviewer)
 
+# set prefix path on unix
+if(UNIX)
+    set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DPREFIX="${CMAKE_INSTALL_PREFIX}")
+endif()
+
 # Build texstudio application
 add_executable(texstudio ${SOURCE_FILES} ${HEADER_FILES} ${RESOURCE_FILES} ${FORM_FILES} ${OSX_FILES} ${manual} ${images} ${static} ${static_scripts} ${static_styles} ${design_static}
 )
@@ -451,8 +457,6 @@ endif()
 
 ## installation
 
-include(GNUInstallDirs)
-
 install(TARGETS texstudio DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(UNIX AND NOT APPLE AND NOT HAIKU)
@@ -481,26 +485,26 @@ if(UNIX)
 		PATTERN *
 	)
 	install(DIRECTORY utilities/manual/build/html/
-		DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio
+                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio
 		FILES_MATCHING
 		PATTERN *.html
 	)
 	install(DIRECTORY utilities/manual/build/html/_images
-		DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio
+                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio
 		FILES_MATCHING
 		PATTERN *.webp
 	)
 	install(DIRECTORY utilities/manual/build/html/_sphinx_design_static
-		DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio
+                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio
 	)
 	install(DIRECTORY utilities/manual/build/html/_static
-		DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio
+                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio
 	)
-	install(FILES utilities/manual/build/html/searchindex.js DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio)
-	install(FILES utilities/latex2e.html DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio)
-	install(FILES utilities/latex2e.css DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio)
-	install(FILES utilities/list.png DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio)
-	install(FILES utilities/AUTHORS DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio)
-	install(FILES utilities/COPYING DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio)
-	install(FILES utilities/manual/source/CHANGELOG.md DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio)
+        install(FILES utilities/manual/build/html/searchindex.js DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
+        install(FILES utilities/latex2e.html DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
+        install(FILES utilities/latex2e.css DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
+        install(FILES utilities/list.png DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
+        install(FILES utilities/AUTHORS DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
+        install(FILES utilities/COPYING DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
+        install(FILES utilities/manual/source/CHANGELOG.md DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
 endif()
