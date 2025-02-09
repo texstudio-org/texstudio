@@ -111,7 +111,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>8</number>
+          <number>12</number>
          </property>
          <widget class="QWidget" name="pageGeneral">
           <layout class="QVBoxLayout">
@@ -143,7 +143,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
+                <width>825</width>
                 <height>731</height>
                </rect>
               </property>
@@ -744,7 +744,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
+                <width>872</width>
                 <height>629</height>
                </rect>
               </property>
@@ -1590,7 +1590,7 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
+                <width>953</width>
                 <height>568</height>
                </rect>
               </property>
@@ -2048,7 +2048,7 @@ Then you can select a new shortcut by one of the following ways:
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-1395</y>
+                <y>0</y>
                 <width>1132</width>
                 <height>1853</height>
                </rect>
@@ -4016,7 +4016,7 @@ them here.</string>
                     </property>
                     <item>
                      <property name="text">
-                      <string>Default Compiler as set up in Build configuration</string>
+                      <string>Preview with default compiler</string>
                      </property>
                     </item>
                     <item>
@@ -4258,7 +4258,7 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
+                <width>556</width>
                 <height>645</height>
                </rect>
               </property>
@@ -4761,8 +4761,8 @@ Note: Changing this setting will only affect documents that are opened afterward
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1146</width>
-                <height>458</height>
+                <width>413</width>
+                <height>204</height>
                </rect>
               </property>
               <layout class="QGridLayout">
