@@ -1473,7 +1473,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 #ifdef NO_POPPLER_PREVIEW
 	int l = confDlg->ui.comboBoxDvi2PngMode->count();
 	for (int index=l-1; index>=0; index--) {
-        if (static_cast <BuildManager::Dvi2PngMode>(index)>=BuildManager::DPM_EMBEDDED_PDF || index==0)
+        if (static_cast <BuildManager::Dvi2PngMode>(index)>=BuildManager::DPM_EMBEDDED_PDF)
 			confDlg->ui.comboBoxDvi2PngMode->removeItem(index);
 	}
 #endif

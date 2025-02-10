@@ -2,7 +2,7 @@
 ## TeXstudio 4.8.7
 
 - add "Start Column" (sets column of first page, same as Shift+Click) to Grid menu of pdf-viewer's context menu [#3974](https://github.com/texstudio-org/texstudio/pull/3974)
-- add preview with default compiler option
+- add preview with default compiler option [#3978](https://github.com/texstudio-org/texstudio/pull/3978)
 
 ## TeXstudio 4.8.6
 
