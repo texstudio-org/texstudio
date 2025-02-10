@@ -1,5 +1,5 @@
 # LuaTeX primitives
-# Matthew Bertucci updated 2023/03/31 for v1.16
+# Matthew Bertucci updated 2025/02/10 for v1.21
 
 ### from LuaTeX Reference Manual ###
 ## 2 Basic TeX enhancements ##
@@ -35,12 +35,12 @@
 \savecatcodetable%<<15-bit number>%>#*
 
 # 2.6 Suppressing errors #
-\suppressfontnotfounderror = %<<0 or 1>%>#*
-\suppresslongerror = %<<0 or 1>%>#*
-\suppressifcsnameerror = %<<0 or 1>%>#*
-\suppressoutererror = %<<0 or 1>%>#*
-\suppressmathparerror = %<<0 or 1>%>#*
-\suppressprimitiveerror = %<<0 or 1>%>#*
+\suppressfontnotfounderror=%<<0 or 1>%>#*
+\suppresslongerror=%<<0 or 1>%>#*
+\suppressifcsnameerror=%<<0 or 1>%>#*
+\suppressoutererror=%<<0 or 1>%>#*
+\suppressmathparerror=%<<0 or 1>%>#*
+\suppressprimitiveerror=%<<0 or 1>%>#*
 
 # 2.7 Fonts #
 \fontid#*
@@ -89,19 +89,19 @@
 \gleaders#*
 
 # 2.10 Languages #
-\hyphenationmin = %<<integer>%>#*
+\hyphenationmin=%<<integer>%>#*
 \boundary#*
 \noboundary#*
 \protrusionboundary#*
 \wordboundary#*
-\glyphdimensionsmode = %<<0,1,2,or 3>%>#*
+\glyphdimensionsmode=%<<0,1,2,or 3>%>#*
 
 # 2.11 Control and debugging #
-\outputmode = %<<0 or 1>%>#*
-\draftmode = %<<0 or 1>%>#*
+\outputmode=%<<0 or 1>%>#*
+\draftmode=%<<0 or 1>%>#*
 
 # 2.12 Files #
-\tracingfonts = %<<0-6>%>#*
+\tracingfonts=%<<0-6>%>#*
 
 ## 3 Modifications ##
 # 3.1 The merged engines #
@@ -144,28 +144,29 @@
 # 3.3 Directions #
 \textdir#*
 \linedir#*
-\breakafterdirmode = %<<0 or 1>%>#*
-\shapemode = %<<0,1,2,or 3>%>#*
+\breakafterdirmode=%<<0 or 1>%>#*
+\shapemode=%<<0,1,2,or 3>%>#*
 \pardir#*
 \pagedir#*
 \pardir#*
 \bodydir#*
 \mathdir#*
 \boxdir#*
-\textdirection = %<<0 or 1>%>#*
-\pardirection = %<<0 or 1>%>#*
-\pagedirection = %<<0 or 1>%>#*
-\bodydirection = %<<0 or 1>%>#*
-\mathdirection = %<<0 or 1>%>#*
-\boxdirection = %<<0 or 1>%>#*
-\linedirection = %<<0 or 1>%>#*
+\textdirection=%<<0 or 1>%>#*
+\pardirection=%<<0 or 1>%>#*
+\pagedirection=%<<0 or 1>%>#*
+\bodydirection=%<<0 or 1>%>#*
+\mathdirection=%<<0 or 1>%>#*
+\boxdirection=%<<0 or 1>%>#*
+\linedirection=%<<0 or 1>%>#*
+\mathemptydisplaymode=%<<0 or 1>%>#*
 
 ## 5 Languages, characters, fonts and glyphs ##
 # 5.2 Characters, glyphs and discretionaries #
-\firstvalidlanguage = %<<0 or 1>%>#*
+\firstvalidlanguage=%<<0 or 1>%>#*
 \hjcode#*
 \hyphenationbounds#*
-\automatichyphenmode = %<<0,1,or 2>%>#*
+\automatichyphenmode=%<<0,1,or 2>%>#*
 \explicitdiscretionary#*
 \automaticdiscretionary#*
 
@@ -186,7 +187,7 @@
 
 ## 6 Font structure ##
 # 6.5 The font library #
-\discretionaryligaturemode = %<<0,1,or 2>%>#*
+\discretionaryligaturemode=%<<0,1,or 2>%>#*
 
 ## 7 Math ##
 # 7.2 Unicode math characters #
@@ -268,7 +269,7 @@
 \Umathskewedfractionvgap#*
 
 # 7.5 Math spacing #
-\mathsurroundmode = %<<mode>%>#*
+\mathsurroundmode=%<<mode>%>#*
 \mathsurroundskip%<<length>%>#*
 \Umathordordspacing#*
 \Umathordopspacing#*
@@ -334,22 +335,22 @@
 \Umathinnerclosespacing#*
 \Umathinnerpunctspacing#*
 \Umathinnerinnerspacing#*
-\mathdisplayskipmode = %<<0,1,2,or 3>%>#*
-\matheqdirmode = %<<integer>%>#*
+\mathdisplayskipmode=%<<0,1,2,or 3>%>#*
+\matheqdirmode=%<<integer>%>#*
 \Umathnolimitsupfactor#*
 \Umathnolimitsubfactor#*
-\mathnolimitsmode = %<<mode>%>#*
-\mathitalicsmode = %<<0 or 1>%>#*
-\mathscriptboxmode = %<<0,1,2,or 3>%>#*
-\mathscriptcharmode = %<<mode>%>#*
-\mathscriptsmode = %<<mode>%>#*
-\mathpenaltiesmode = %<<mode>%>#*
-\prebinoppenalty = %<<penalty>%>#*
-\prerelpenalty = %<<penalty>%>#*
-\matheqnogapstep = %<<integer>%>#*
+\mathnolimitsmode=%<<mode>%>#*
+\mathitalicsmode=%<<0 or 1>%>#*
+\mathscriptboxmode=%<<0,1,2,or 3>%>#*
+\mathscriptcharmode=%<<mode>%>#*
+\mathscriptsmode=%<<mode>%>#*
+\mathpenaltiesmode=%<<mode>%>#*
+\prebinoppenalty=%<<penalty>%>#*
+\prerelpenalty=%<<penalty>%>#*
+\matheqnogapstep=%<<integer>%>#*
 
 # 7.6 Math constructs #
-\mathdelimitersmode = %<<mode>%>#*
+\mathdelimitersmode=%<<mode>%>#*
 \Uhextensible#*
 \Uvextensible#*
 \Uskewed#*
@@ -377,8 +378,8 @@
 \Unosubscript{text%plain}#*
 
 # 7.9 Goodies #
-\mathflattenmode = %<<mode>%>#*
-\mathdefaultsmode = %<<mode>%>#*
+\mathflattenmode=%<<mode>%>#*
+\mathdefaultsmode=%<<mode>%>#*
 \mathoption#*
 
 ## 8 Nodes ##
