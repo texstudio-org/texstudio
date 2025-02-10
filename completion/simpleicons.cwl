@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/02/03 for v14.4.0
+# Matthew Bertucci 2025/02/09 for v14.5.0
 
 #include:iftex
 
@@ -755,6 +755,7 @@ deutschepost
 deutschetelekom
 deutschewelle
 devdotto
+devbox
 devexpress
 deviantart
 devpost
@@ -967,6 +968,7 @@ figshare
 fila
 filament
 filedotio
+filen
 files
 filezilla
 fineco
@@ -1103,6 +1105,7 @@ gitlab
 gitlfs
 gitpod
 gitter
+gldotinet
 glassdoor
 glide
 glitch
@@ -2015,6 +2018,7 @@ opensea
 opensearch
 opensourcehardware
 opensourceinitiative
+open3d
 openssl
 openstack
 openstreetmap
@@ -2895,6 +2899,7 @@ topdotgg
 toptal
 torbrowser
 torproject
+torizon
 toshiba
 totvs
 tourbox
@@ -3032,6 +3037,7 @@ veed
 veepee
 vega
 vegas
+velocity
 velog
 vencord
 venmo
