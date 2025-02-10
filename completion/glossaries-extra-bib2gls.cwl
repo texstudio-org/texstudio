@@ -1,5 +1,5 @@
 # glossaries-extra-bib2gls package
-# Matthew Bertucci 2025/01/06 for v1.54
+# Matthew Bertucci 2025/02/09 for v1.56
 
 \dgls{label}#r
 \dgls[options%keyvals]{label}#r
@@ -268,3 +268,13 @@ local#true,false
 \glsxtrGeneralLatinHtoMrules#*
 \glsxtrGeneralLatinNtoSrules#*
 \glsxtrGeneralLatinTtoZrules#*
+\glsxtrGeneralPuncRules#*
+\glsxtrhyphenIrules#*
+\glsxtrhyphenIIrules#*
+\glsxtrminusrules#*
+\glsxtrgeneralpuncdotrules#*
+\glsxtrgeneralpuncbracketIrules#*
+\glsxtrgeneralpuncbracketIIrules#*
+\glsxtrgeneralpuncbracketIIIrules#*
+\glsxtrgeneralpuncbracketIVrules#*
+\glsxtrgeneralpuncIIIrules#*
