@@ -511,7 +511,7 @@ Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
     <message>
         <location filename="../src/buildmanager.cpp" line="122"/>
         <location filename="../src/buildmanager.cpp" line="144"/>
-        <location filename="../src/buildmanager.cpp" line="2015"/>
+        <location filename="../src/buildmanager.cpp" line="2046"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;unknown&gt;</translation>
     </message>
@@ -786,12 +786,12 @@ Please change your configuration and define command lists only at &apos;Options 
         <translation>ප්‍රාථමික විධානය</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1981"/>
+        <location filename="../src/buildmanager.cpp" line="2012"/>
         <source>Internal Pdf Viewer</source>
         <translation>අභ්‍යන්තර Pdf නරඹන්නා</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2278"/>
+        <location filename="../src/buildmanager.cpp" line="2310"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation>ඔබ dde:// විධානයක් භාවිතා කර ඇති අතර එය කපා හැර ඇත. කරුණාකර එය ත්‍රිත්ව slash විධානයකට වෙනස් කරන්න dde:/// වෙනත් slash එකක් එක් කිරීමෙන්.</translation>
     </message>
@@ -884,7 +884,7 @@ Please change your configuration and define command lists only at &apos;Options 
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="182"/>
-        <location filename="../src/configdialog.ui" line="4904"/>
+        <location filename="../src/configdialog.ui" line="4909"/>
         <source>Color Scheme:</source>
         <translation>වර්ණ පරාසය:</translation>
     </message>
@@ -922,7 +922,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="283"/>
         <location filename="../src/configdialog.ui" line="1808"/>
-        <location filename="../src/configdialog.ui" line="4932"/>
+        <location filename="../src/configdialog.ui" line="4937"/>
         <source>Font Size:</source>
         <translation>අකුරු ප්රමාණය:</translation>
     </message>
@@ -1142,7 +1142,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="872"/>
         <location filename="../src/configdialog.ui" line="2317"/>
-        <location filename="../src/configdialog.ui" line="4113"/>
+        <location filename="../src/configdialog.ui" line="4150"/>
         <source>Never</source>
         <translation>කවදාවත් නැහැ</translation>
     </message>
@@ -1227,7 +1227,7 @@ Linux, OS X:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1073"/>
-        <location filename="../src/configdialog.cpp" line="540"/>
+        <location filename="../src/configdialog.cpp" line="541"/>
         <source>Shortcuts</source>
         <translation>කෙටිමං</translation>
     </message>
@@ -1297,7 +1297,7 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1176"/>
-        <location filename="../src/configdialog.cpp" line="541"/>
+        <location filename="../src/configdialog.cpp" line="542"/>
         <source>Menus</source>
         <translation>මෙනු</translation>
     </message>
@@ -1313,7 +1313,7 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1201"/>
-        <location filename="../src/configdialog.cpp" line="529"/>
+        <location filename="../src/configdialog.cpp" line="530"/>
         <source>Command</source>
         <translation>විධානය</translation>
     </message>
@@ -1422,8 +1422,8 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1629"/>
-        <location filename="../src/configdialog.cpp" line="544"/>
-        <location filename="../src/configmanager.cpp" line="1527"/>
+        <location filename="../src/configdialog.cpp" line="545"/>
+        <location filename="../src/configmanager.cpp" line="1538"/>
         <source>Editor</source>
         <translation>සංස්කරණය හෝ</translation>
     </message>
@@ -1474,7 +1474,7 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1711"/>
-        <location filename="../src/configdialog.ui" line="4918"/>
+        <location filename="../src/configdialog.ui" line="4923"/>
         <source>Font Family:</source>
         <translation>අකුරු පවුල:</translation>
     </message>
@@ -1515,8 +1515,8 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1789"/>
-        <location filename="../src/configdialog.ui" line="4194"/>
-        <location filename="../src/configdialog.ui" line="4291"/>
+        <location filename="../src/configdialog.ui" line="4123"/>
+        <location filename="../src/configdialog.ui" line="4296"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -2179,7 +2179,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3012"/>
-        <location filename="../src/configdialog.cpp" line="547"/>
+        <location filename="../src/configdialog.cpp" line="548"/>
         <source>Completion</source>
         <translation>සම්පූර්ණ කිරීම</translation>
     </message>
@@ -2634,262 +2634,267 @@ them here.</source>
         <translation>විධානය:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4019"/>
+        <location filename="../src/configdialog.ui" line="4024"/>
         <source>Preview with dvipng</source>
         <translation>dvipng සමඟ පෙරදසුන් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4024"/>
+        <location filename="../src/configdialog.ui" line="4029"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>dvipng සමග පෙරදසුන --අනුගමනය (සමාන්තර)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4029"/>
+        <location filename="../src/configdialog.ui" line="4034"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>dvips/ghostscript සමඟ පෙරදසුන් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4034"/>
+        <location filename="../src/configdialog.ui" line="4039"/>
         <source>Preview with pdflatex</source>
         <translation>pdflatex සමඟ පෙරදසුන් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4039"/>
+        <location filename="../src/configdialog.ui" line="4044"/>
         <source>Preview with lualatex</source>
         <translation>ලුලාටෙක්ස් සමඟ පෙරදසුන් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4044"/>
+        <location filename="../src/configdialog.ui" line="4049"/>
         <source>Preview with xelatex</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4052"/>
+        <location filename="../src/configdialog.ui" line="4057"/>
         <source>Display Mode:</source>
         <translation>සංදර්ශක මාදිලිය:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4062"/>
+        <location filename="../src/configdialog.ui" line="4067"/>
         <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4069"/>
+        <location filename="../src/configdialog.ui" line="4074"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>පැනලය සැඟවී ඇත්නම් මෙවලම් ඉඟියක් ලෙස පෙරදසුන පෙන්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4074"/>
+        <location filename="../src/configdialog.ui" line="4079"/>
         <source>Always show preview in preview panel</source>
         <translation>පෙරදසුන් පැනලයේ සෑම විටම පෙරදසුන පෙන්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4079"/>
+        <location filename="../src/configdialog.ui" line="4084"/>
         <source>Always show preview as tool tip</source>
         <translation>මෙවලම් ඉඟිය ලෙස සැමවිටම පෙරදසුන පෙන්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4084"/>
+        <location filename="../src/configdialog.ui" line="4089"/>
         <source>Always show both</source>
         <translation>සෑම විටම දෙකම පෙන්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4089"/>
+        <location filename="../src/configdialog.ui" line="4094"/>
         <source>Inline</source>
         <translation>පෙළට</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4094"/>
+        <location filename="../src/configdialog.ui" line="4099"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>කාවැද්දූ නරඹන්නා තුළ පෙන්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4102"/>
+        <location filename="../src/configdialog.ui" line="4139"/>
         <source>Update the preview on text change</source>
         <translation>පෙළ වෙනස් කිරීම පිළිබඳ පෙරදසුන යාවත්කාලීන කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4105"/>
+        <location filename="../src/configdialog.ui" line="4142"/>
         <source>Auto Update:</source>
         <translation>ස්වයං යාවත්කාලීන:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4118"/>
+        <location filename="../src/configdialog.ui" line="4155"/>
         <source>Previously previewed text</source>
         <translation>පෙර පෙරදසුන් පෙළ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4126"/>
+        <location filename="../src/configdialog.ui" line="4163"/>
         <source>Auto Update Delay:</source>
         <translation>ස්වයංක්‍රීය යාවත්කාලීන ප්‍රමාදය:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4136"/>
+        <location filename="../src/configdialog.ui" line="4173"/>
         <source> ms</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4152"/>
+        <location filename="../src/configdialog.ui" line="4189"/>
         <source>Replace beamer class by article</source>
         <translation>ලිපිය අනුව බීමර් පන්තිය ප්‍රතිස්ථාපනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4165"/>
+        <location filename="../src/configdialog.ui" line="4202"/>
         <source>Precompile Preamble</source>
         <translation>පූර්ව සම්පාදනය පූර්විකාව</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4181"/>
-        <location filename="../src/configdialog.ui" line="4304"/>
+        <location filename="../src/configdialog.ui" line="4110"/>
+        <location filename="../src/configdialog.ui" line="4309"/>
         <source>Scaling:</source>
         <translation>පරිමාණ කිරීම:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4276"/>
-        <location filename="../src/configdialog.cpp" line="550"/>
+        <location filename="../src/configdialog.ui" line="4019"/>
+        <source>Preview with default compiler</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4281"/>
+        <location filename="../src/configdialog.cpp" line="551"/>
         <source>Internal PDF Viewer</source>
         <translation>අභ්‍යන්තර PDF නරඹන්නා</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4311"/>
+        <location filename="../src/configdialog.ui" line="4316"/>
         <source>Load Strategy:</source>
         <translation>පැටවීමේ උපාය:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4321"/>
+        <location filename="../src/configdialog.ui" line="4326"/>
         <source>Auto-recompile document on changes</source>
         <translation>වෙනස්කම් මත ලේඛනය ස්වයංක්‍රීයව නැවත සම්පාදනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4328"/>
+        <location filename="../src/configdialog.ui" line="4333"/>
         <source>Cache Size:</source>
         <translation>හැඹිලි ප්රමාණය:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4338"/>
-        <location filename="../src/configdialog.ui" line="4703"/>
+        <location filename="../src/configdialog.ui" line="4343"/>
+        <location filename="../src/configdialog.ui" line="4708"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4360"/>
+        <location filename="../src/configdialog.ui" line="4365"/>
         <source>Infinite</source>
         <translation>අනන්තයි</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4379"/>
+        <location filename="../src/configdialog.ui" line="4384"/>
         <source> dpi</source>
         <translation> dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4389"/>
+        <location filename="../src/configdialog.ui" line="4394"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PDF එකක් පූරණය වන ආකාරය නිර්වචනය කරයි:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; ගොනුව බෆරයකට පූරණය කර සම්පූර්ණත්වය පරීක්ෂා කරන්න. ඉන්පසු දත්ත පොප්ලර් වෙත යවන්න. මෙය මූලික වශයෙන් හඳුන්වා දෙනු ලැබුවේ නූල්-ආරක්ෂිත නොවන පැරණි පොප්ලර් අනුවාද (&amp;lt;0.24) සඳහා වේගවත් කිරීමක් ලෙසිනි. විශාල බෆර පැටවීමේදී පොප්ලර් කඩා වැටෙන බව වාර්තා වී ඇත. එබැවින් මෙම විකල්පය අත්හරිනු ලැබේ.&lt;/p&gt;&lt;p&gt;&lt;b&gt;සෘජු:&lt;/b&gt; දේශීය පොප්ලර් ගොනු පැටවීම භාවිතා කරන්න. මෙය වේගවත්ම වේ, නමුත් අසම්පූර්ණ ගොනු සඳහා පරීක්ෂා කිරීමට ඉඩ නොදේ.&lt;/p&gt;&lt;p&gt;&lt;b&gt;දෙමුහුන් (නිර්දේශිත):&lt;/b&gt; පළමුව ගොනුව බෆරයට පූරණය කර සම්පූර්ණත්වය සඳහා පරීක්ෂා කරන්න. කුඩා ලේඛන සඳහා එම බෆරය භාවිතා කරන්න (&amp;lt; 50MB). දේශීය පොප්ලර් ගොනු පැටවීම භාවිතයෙන් විශාල ගොනු පූරණය වේ. මෙය විශාල PDF ගොනු සමඟ ගැටලු වළක්වා ගනිමින් ගොනු පරීක්ෂා කිරීම ඒකාබද්ධ කරයි.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4399"/>
+        <location filename="../src/configdialog.ui" line="4404"/>
         <source>Buffered</source>
         <translation>බෆර් කර ඇත</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4404"/>
+        <location filename="../src/configdialog.ui" line="4409"/>
         <source>Direct</source>
         <translation>සෘජු</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4409"/>
+        <location filename="../src/configdialog.ui" line="4414"/>
         <source>Hybrid</source>
         <translation>දෙමුහුන්</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4417"/>
+        <location filename="../src/configdialog.ui" line="4422"/>
         <source>Highlight Duration</source>
         <translation>උද්දීපනය කාලසීමාව</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4427"/>
+        <location filename="../src/configdialog.ui" line="4432"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>ෂඩ් දශම RGBA අගය ලෙස සඳහන් කරන්න. සටහන: තාක්ෂණික සීමාවන් හේතුවෙන් උද්දීපනය පෙළට ඉහළින් ඇඳ ඇති නිසා විනිවිදභාවය අවශ්‍ය වේ.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4430"/>
+        <location filename="../src/configdialog.ui" line="4435"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4444"/>
+        <location filename="../src/configdialog.ui" line="4449"/>
         <source>Rectangle</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4449"/>
+        <location filename="../src/configdialog.ui" line="4454"/>
         <source>Circle</source>
         <translation>කවය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4470"/>
+        <location filename="../src/configdialog.ui" line="4475"/>
         <source>Highlight Color</source>
         <translation>වර්ණ උද්දීපනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4480"/>
+        <location filename="../src/configdialog.ui" line="4485"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation>පෙරනිමි පසුබිම් වර්ණය. ෂඩ් දශම RGB අගය ලෙස සඳහන් කරන්න. සටහන: මෙය බලපානු ලබන්නේ විකල්පය වෙනස් කිරීමෙන් පසුව පටවන ලද PDF වලට පමණි. දැනටමත් විවෘත PDF වල කඩදාසි වර්ණය වෙනස් කර නැත.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4505"/>
+        <location filename="../src/configdialog.ui" line="4510"/>
         <source>Border</source>
         <translation>මායිම</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4512"/>
+        <location filename="../src/configdialog.ui" line="4517"/>
         <source>Shadow</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4535"/>
+        <location filename="../src/configdialog.ui" line="4540"/>
         <source>Original Size</source>
         <translation>මුල් ප්රමාණය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4540"/>
+        <location filename="../src/configdialog.ui" line="4545"/>
         <source>Fit to Window Width</source>
         <translation>කවුළු පළලට ගැලපේ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4545"/>
+        <location filename="../src/configdialog.ui" line="4550"/>
         <source>Fit to Window Size</source>
         <translation>කවුළු ප්‍රමාණයට ගැලපේ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4550"/>
+        <location filename="../src/configdialog.ui" line="4555"/>
         <source>Scaled Size</source>
         <translation>පරිමාණ ප්රමාණය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4555"/>
+        <location filename="../src/configdialog.ui" line="4560"/>
         <source>Fit to Text Width</source>
         <translation>පෙළ පළලට ගැලපෙන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4563"/>
+        <location filename="../src/configdialog.ui" line="4568"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4585"/>
+        <location filename="../src/configdialog.ui" line="4590"/>
         <source>Synchronized Files Types:</source>
         <translation>සමමුහුර්ත ගොනු වර්ග:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4595"/>
+        <location filename="../src/configdialog.ui" line="4600"/>
         <source>Paper Color</source>
         <translation>කඩදාසි වර්ණය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4605"/>
-        <location filename="../src/configdialog.ui" line="4659"/>
+        <location filename="../src/configdialog.ui" line="4610"/>
+        <location filename="../src/configdialog.ui" line="4664"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2900,123 +2905,123 @@ Note: Changing this setting will only affect documents that are opened afterward
 සටහන: මෙම සැකසුම වෙනස් කිරීම බලපානු ලබන්නේ පසුව විවෘත කරන ලද ලේඛනවලට පමණි.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4611"/>
+        <location filename="../src/configdialog.ui" line="4616"/>
         <source>Render Backend:</source>
         <translation>Render Backend:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4621"/>
+        <location filename="../src/configdialog.ui" line="4626"/>
         <source>Presentation Laser Pointer Size:</source>
         <translation>ඉදිරිපත් කිරීමේ ලේසර් පොයින්ටර් ප්‍රමාණය:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4628"/>
+        <location filename="../src/configdialog.ui" line="4633"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>සටහන: ජනේල/Embedded මාදිලිය Build -&gt; PDF Viewer හි වින්‍යාස කර ඇත</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4635"/>
+        <location filename="../src/configdialog.ui" line="4640"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>&quot;Fit to Text Width&quot;සඳහා තිරස් අනුචලන අක්‍රීය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4645"/>
+        <location filename="../src/configdialog.ui" line="4650"/>
         <source>Scale Option:</source>
         <translation>පරිමාණ විකල්පය:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4652"/>
+        <location filename="../src/configdialog.ui" line="4657"/>
         <source>Magnifier Shape:</source>
         <translation>විශාලන හැඩය:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4682"/>
+        <location filename="../src/configdialog.ui" line="4687"/>
         <source>Magnifier Size:</source>
         <translation>විශාලන ප්‍රමාණය:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4689"/>
+        <location filename="../src/configdialog.ui" line="4694"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Embedded මාදිලියේ මෙවලම් තීරු ස්වයංක්‍රීයව සඟවන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4696"/>
+        <location filename="../src/configdialog.ui" line="4701"/>
         <source>Presentation Laser Pointer Color:</source>
         <translation>ඉදිරිපත් කිරීමේ ලේසර් පොයින්ටර් වර්ණය:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4786"/>
+        <location filename="../src/configdialog.ui" line="4791"/>
         <source>Use SVN</source>
         <translation>SVN භාවිතා කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4791"/>
+        <location filename="../src/configdialog.ui" line="4796"/>
         <source>Use GIT</source>
         <translation>GIT භාවිතා කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4799"/>
+        <location filename="../src/configdialog.ui" line="4804"/>
         <source>Select how txs checks in saved files</source>
         <translation>සුරකින ලද ගොනු තුළ txs පරීක්ෂා කරන ආකාරය තෝරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4803"/>
+        <location filename="../src/configdialog.ui" line="4808"/>
         <source>No automatic check-in after save</source>
         <translation>සුරැකීමෙන් පසු ස්වයංක්‍රීය ඇතුල්වීමක් නොමැත</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4808"/>
+        <location filename="../src/configdialog.ui" line="4813"/>
         <source>Check-in after File/Save only</source>
         <translation>ගොනු/සුරකින්නට පසුව පමණක් ඇතුල් වන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4813"/>
+        <location filename="../src/configdialog.ui" line="4818"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>සියලුම සුරැකීමේ මෙහෙයුම් වලින් පසුව, එනම් සම්පාදනය කිරීමට පෙර ඇතුල් වන්න.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4821"/>
+        <location filename="../src/configdialog.ui" line="4826"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation>අවසන් වරට සුරකින ලද අනුවාදයට පෙර අහෝසි කිරීමට SVN/GIT සංශෝධන භාවිතා කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4828"/>
+        <location filename="../src/configdialog.ui" line="4833"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>svn මත add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4831"/>
+        <location filename="../src/configdialog.ui" line="4836"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>ප්‍රොපටීස් සමඟ මූලපද ආදේශ කරන්න (svn add මත)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4840"/>
+        <location filename="../src/configdialog.ui" line="4845"/>
         <source>SVN Directory Search Depth: </source>
         <translation>SVN නාමාවලි සෙවුම් ගැඹුර: </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4898"/>
-        <location filename="../src/configdialog.cpp" line="553"/>
+        <location filename="../src/configdialog.ui" line="4903"/>
+        <location filename="../src/configdialog.cpp" line="554"/>
         <source>Internal Terminal</source>
         <translation>අභ්යන්තර පර්යන්තය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4949"/>
+        <location filename="../src/configdialog.ui" line="4954"/>
         <source>Shell:</source>
         <translation>කවචය:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5005"/>
+        <location filename="../src/configdialog.ui" line="5010"/>
         <source>Show Advanced Options</source>
         <translation>උසස් විකල්ප පෙන්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5031"/>
+        <location filename="../src/configdialog.ui" line="5036"/>
         <source>OK</source>
         <translation>හරි</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5041"/>
+        <location filename="../src/configdialog.ui" line="5046"/>
         <source>Cancel</source>
         <translation>අවලංගු කරන්න</translation>
     </message>
@@ -3060,231 +3065,231 @@ to set the key anyway?</source>
         <translation>%1 හෝ %2සිට අමතර ශබ්දකෝෂ බාගන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="500"/>
+        <location filename="../src/configdialog.cpp" line="501"/>
         <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
         <translation>මෙහිදී විවිධ විධාන, පරිසරයන් සහ තේරීම් සඳහා වන සින්ටැක්ස් උද්දීපනය වෙනස් කළ හැක.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="501"/>
+        <location filename="../src/configdialog.cpp" line="502"/>
         <source>Basic highlighting</source>
         <translation>මූලික උද්දීපනය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="502"/>
+        <location filename="../src/configdialog.cpp" line="503"/>
         <source>LaTeX checking</source>
         <translation>LaTeX පරීක්ෂා කිරීම</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="503"/>
+        <location filename="../src/configdialog.cpp" line="504"/>
         <source>Language checking</source>
         <translation>භාෂා පරීක්ෂා කිරීම</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="504"/>
+        <location filename="../src/configdialog.cpp" line="505"/>
         <source>Line highlighting</source>
         <translation>රේඛා උද්දීපනය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="505"/>
+        <location filename="../src/configdialog.cpp" line="506"/>
         <source>Search</source>
         <translation>සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="506"/>
+        <location filename="../src/configdialog.cpp" line="507"/>
         <source>Diff</source>
         <translation>වෙනස</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4002"/>
-        <location filename="../src/configdialog.cpp" line="507"/>
-        <location filename="../src/configdialog.cpp" line="549"/>
+        <location filename="../src/configdialog.cpp" line="508"/>
+        <location filename="../src/configdialog.cpp" line="550"/>
         <source>Preview</source>
         <translation>පෙරදසුන</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="508"/>
+        <location filename="../src/configdialog.cpp" line="509"/>
         <source>DTX files</source>
         <translation>DTX ගොනු</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="509"/>
+        <location filename="../src/configdialog.cpp" line="510"/>
         <source>Sweave / Pweave</source>
         <translation>Sweave / Pweave</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="510"/>
+        <location filename="../src/configdialog.cpp" line="511"/>
         <source>Asymptote</source>
         <translation>අසමමිතිය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="511"/>
+        <location filename="../src/configdialog.cpp" line="512"/>
         <source>Lua</source>
         <translation>ලුවා</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="512"/>
+        <location filename="../src/configdialog.cpp" line="513"/>
         <source>QtScript</source>
         <translation>QtScript</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="529"/>
+        <location filename="../src/configdialog.cpp" line="530"/>
         <source>Default Shortcut</source>
         <translation>පෙරනිමි කෙටිමං</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="529"/>
+        <location filename="../src/configdialog.cpp" line="530"/>
         <source>Current Shortcut</source>
         <translation>වත්මන් කෙටිමං</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="529"/>
+        <location filename="../src/configdialog.cpp" line="530"/>
         <source>Additional Shortcut</source>
         <translation>අතිරේක කෙටිමං</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="537"/>
+        <location filename="../src/configdialog.cpp" line="538"/>
         <source>General</source>
         <translation>ජනරාල්</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="538"/>
+        <location filename="../src/configdialog.cpp" line="539"/>
         <source>Commands</source>
         <translation>විධාන</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="539"/>
+        <location filename="../src/configdialog.cpp" line="540"/>
         <source>Build</source>
         <translation>ගොඩනඟන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="542"/>
+        <location filename="../src/configdialog.cpp" line="543"/>
         <source>Toolbars</source>
         <translation>මෙවලම් තීරු</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1370"/>
-        <location filename="../src/configdialog.cpp" line="543"/>
+        <location filename="../src/configdialog.cpp" line="544"/>
         <source>GUI Scaling</source>
         <translation>GUI පරිමාණය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="545"/>
+        <location filename="../src/configdialog.cpp" line="546"/>
         <source>Adv. Editor</source>
         <translation>නීතිඥ සංස්කරණය හෝ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="546"/>
+        <location filename="../src/configdialog.cpp" line="547"/>
         <source>Syntax Highlighting</source>
         <translation>සින්ටැක්ස් උද්දීපනය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="548"/>
+        <location filename="../src/configdialog.cpp" line="549"/>
         <source>Language Checking</source>
         <translation>භාෂා පරීක්ෂා කිරීම</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4779"/>
-        <location filename="../src/configdialog.cpp" line="551"/>
+        <location filename="../src/configdialog.ui" line="4784"/>
+        <location filename="../src/configdialog.cpp" line="552"/>
         <source>SVN/GIT</source>
         <translation>SVN/GIT</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="591"/>
+        <location filename="../src/configdialog.cpp" line="592"/>
         <source>(option filter)</source>
         <translation>(විකල්ප පෙරහන)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="851"/>
+        <location filename="../src/configdialog.cpp" line="844"/>
         <source>Select thesaurus database</source>
         <translation>නිබන්ධන දත්ත සමුදාය තෝරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="856"/>
+        <location filename="../src/configdialog.cpp" line="849"/>
         <source>Select the grammar word lists dir</source>
         <translation>ව්‍යාකරණ වචන ලැයිස්තු dir තෝරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="861"/>
+        <location filename="../src/configdialog.cpp" line="854"/>
         <source>Select the LanguageTool jar</source>
         <translation>LanguageTool jar තෝරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="866"/>
+        <location filename="../src/configdialog.cpp" line="859"/>
         <source>Select java</source>
         <translation>java තෝරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="879"/>
+        <location filename="../src/configdialog.cpp" line="872"/>
         <source>Select dictionary directory</source>
         <translation>ශබ්දකෝෂ නාමාවලිය තෝරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="884"/>
+        <location filename="../src/configdialog.cpp" line="877"/>
         <source>Search Path for Logs</source>
         <translation>ලඝු-සටහන් සඳහා මාර්ගය සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="889"/>
+        <location filename="../src/configdialog.cpp" line="882"/>
         <source>Search Path .bib Files</source>
         <translation>Path .bib ගොනු සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="894"/>
+        <location filename="../src/configdialog.cpp" line="887"/>
         <source>Search Path for Images</source>
         <translation>පින්තූර සඳහා මාර්ගය සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="899"/>
+        <location filename="../src/configdialog.cpp" line="892"/>
         <source>Search Path for PDFs</source>
         <translation>PDF සඳහා සෙවුම් මාර්ගය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="904"/>
+        <location filename="../src/configdialog.cpp" line="897"/>
         <source>Search Path for Commands</source>
         <translation>විධාන සඳහා මාර්ගය සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="950"/>
+        <location filename="../src/configdialog.cpp" line="943"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;unknown&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1230"/>
+        <location filename="../src/configdialog.cpp" line="1223"/>
         <source>Load Other Icon</source>
         <translation>වෙනත් අයිකනය පූරණය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1231"/>
+        <location filename="../src/configdialog.cpp" line="1224"/>
         <source>Insert Separator</source>
         <translation>Separator ඇතුල් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1239"/>
+        <location filename="../src/configdialog.cpp" line="1232"/>
         <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
         <translation>ඔබට එම අයිතමය සඳහා අයිකනයක් පූරණය කිරීමට පෙර මෙවලම් තීරුවට (දකුණු පැත්තේ ක්‍රියා ලැයිස්තුවෙන්) ක්‍රියාවක් එක් කිරීමට අවශ්‍ය වේ.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1242"/>
+        <location filename="../src/configdialog.cpp" line="1235"/>
         <source>Select a File</source>
         <translation>ගොනුවක් තෝරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1242"/>
+        <location filename="../src/configdialog.cpp" line="1235"/>
         <source>Images</source>
         <translation>රූප</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1300"/>
+        <location filename="../src/configdialog.cpp" line="1293"/>
         <source>Import Dictionary</source>
         <translation>ශබ්දකෝෂය ආනයනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1300"/>
+        <location filename="../src/configdialog.cpp" line="1293"/>
         <source>OpenOffice Dictionary</source>
         <translation>OpenOffice ශබ්දකෝෂය</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1311"/>
+        <location filename="../src/configdialog.cpp" line="1304"/>
         <source>The dictionary files have been imported to
 %1.
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
@@ -3293,7 +3298,7 @@ However this path is not contained in the dictionary path list. Do you want to a
 කෙසේ වෙතත් මෙම මාර්ගය ශබ්ද කෝෂ මාර්ග ලැයිස්තුවේ අඩංගු නොවේ. ඔබට එය එක් කිරීමට අවශ්‍යද?</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1409"/>
+        <location filename="../src/configdialog.cpp" line="1402"/>
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
@@ -3302,7 +3307,7 @@ options again to only view the most common settings.</source>
 විකල්ප නැවත අබල කරන්න.</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1528"/>
+        <location filename="../src/configmanager.cpp" line="1539"/>
         <source>Basic Key Mapping</source>
         <translation>මූලික යතුරු සිතියම්කරණය</translation>
     </message>
@@ -4460,142 +4465,142 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/configmanager.cpp" line="1447"/>
         <location filename="../src/configmanager.cpp" line="1448"/>
-        <location filename="../src/configmanager.cpp" line="1631"/>
-        <location filename="../src/configmanager.cpp" line="1915"/>
-        <location filename="../src/configmanager.cpp" line="1923"/>
+        <location filename="../src/configmanager.cpp" line="1642"/>
+        <location filename="../src/configmanager.cpp" line="1931"/>
+        <location filename="../src/configmanager.cpp" line="1939"/>
         <source>default</source>
         <translation>පෙරනිමිය</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1505"/>
+        <location filename="../src/configmanager.cpp" line="1516"/>
         <source>Menus</source>
         <translation>මෙනු</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1513"/>
+        <location filename="../src/configmanager.cpp" line="1524"/>
         <source>Menus PDF-Viewer</source>
         <translation>මෙනු PDF-නරඹන්නා</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1549"/>
-        <location filename="../src/configmanager.cpp" line="2800"/>
+        <location filename="../src/configmanager.cpp" line="1560"/>
+        <location filename="../src/configmanager.cpp" line="2816"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;none&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1595"/>
+        <location filename="../src/configmanager.cpp" line="1606"/>
         <source>Insert New Menu Item (before)</source>
         <translation>නව මෙනු අයිතමය ඇතුළු කරන්න (පෙර)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1598"/>
+        <location filename="../src/configmanager.cpp" line="1609"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>නව උප මෙනුව ඇතුළු කරන්න (පෙර)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1601"/>
+        <location filename="../src/configmanager.cpp" line="1612"/>
         <source>Revert/Remove User Menu Item</source>
         <translation>පරිශීලක මෙනු අයිතමය ප්‍රතිවර්තනය කරන්න/ඉවත් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1619"/>
+        <location filename="../src/configmanager.cpp" line="1630"/>
         <source>Latex/Math menus</source>
         <translation>රබර් කිරි/ගණිත මෙනු</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1620"/>
+        <location filename="../src/configmanager.cpp" line="1631"/>
         <source>All menus</source>
         <translation>සියලුම මෙනු</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1621"/>
+        <location filename="../src/configmanager.cpp" line="1632"/>
         <source>Special Tags</source>
         <translation>විශේෂ ටැග්</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1715"/>
+        <location filename="../src/configmanager.cpp" line="1726"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>ඔබ ස්වයංක්‍රීය උද්ධෘත ප්‍රතිස්ථාපනය සබල කර ඇත. කෙසේ වෙතත්, ප්‍රේරක තන්තුව (?භාෂාව:ලැටෙක්ස්)(?&lt;=\s|^) හෝ (?භාෂාව:ලැටෙක්ස්)(?&lt;=\S) නව උද්ධෘත ආදේශනය අභිබවා යන මැක්‍රෝ ඇත.
 ඔබට ඒවා ඉවත් කිරීමට අවශ්‍යද?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1998"/>
+        <location filename="../src/configmanager.cpp" line="2014"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>අභ්‍යන්තර pdf නරඹන්නා සම්පූර්ණයෙන්ම භාවිතා කිරීමට, synctex සක්‍රිය කළ යුතුය. TeXstudio දැන් එය කරයිද?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2013"/>
+        <location filename="../src/configmanager.cpp" line="2029"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>මෑත &apos;ප්‍රධාන ලේඛනය&apos; %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2016"/>
+        <location filename="../src/configmanager.cpp" line="2032"/>
         <source>Recent File %1</source>
         <translation>මෑත ගොනුව %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2017"/>
+        <location filename="../src/configmanager.cpp" line="2033"/>
         <source>Clear file list</source>
         <translation>ගොනු ලැයිස්තුව හිස් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2018"/>
+        <location filename="../src/configmanager.cpp" line="2034"/>
         <source>File list</source>
         <translation>ගොනු ලැයිස්තුව</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2019"/>
+        <location filename="../src/configmanager.cpp" line="2035"/>
         <source>Open first non-open file</source>
         <translation>පළමු විවෘත නොවන ගොනුව විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2020"/>
+        <location filename="../src/configmanager.cpp" line="2036"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* සියලුම ගොනු විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2030"/>
+        <location filename="../src/configmanager.cpp" line="2046"/>
         <source>Root Document: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2801"/>
+        <location filename="../src/configmanager.cpp" line="2817"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;default&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3060"/>
+        <location filename="../src/configmanager.cpp" line="3076"/>
         <source>Configure</source>
         <translation>වින්‍යාස කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3067"/>
+        <location filename="../src/configmanager.cpp" line="3083"/>
         <source>Select Program</source>
         <translation>වැඩසටහන තෝරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3074"/>
+        <location filename="../src/configmanager.cpp" line="3090"/>
         <source>Restore Default</source>
         <translation>පෙරනිමිය ප්‍රතිසාධනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3121"/>
+        <location filename="../src/configmanager.cpp" line="3137"/>
         <source>Repeat contained compilation commands</source>
         <translation>අඩංගු සම්පාදන විධාන නැවත නැවත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3169"/>
+        <location filename="../src/configmanager.cpp" line="3185"/>
         <source>Add</source>
         <translation>එකතු කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3252"/>
+        <location filename="../src/configmanager.cpp" line="3268"/>
         <source>Browse program</source>
         <translation>වැඩසටහන බ්‍රවුස් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3591"/>
+        <location filename="../src/configmanager.cpp" line="3607"/>
         <source>text is restored after restart</source>
         <translation>නැවත ආරම්භ කිරීමෙන් පසු පෙළ ප්‍රතිසාධනය වේ</translation>
     </message>
@@ -5191,17 +5196,17 @@ The wizard does not support command </source>
         <translation> (පරිශීලක ටැගය)</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2098"/>
+        <location filename="../src/latexcompleter.cpp" line="2106"/>
         <source>label missing!</source>
         <translation>ලේබලය අතුරුදහන්!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2100"/>
+        <location filename="../src/latexcompleter.cpp" line="2108"/>
         <source>label defined multiple times!</source>
         <translation>ලේබලය කිහිප වතාවක් අර්ථ දක්වා ඇත!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2110"/>
+        <location filename="../src/latexcompleter.cpp" line="2118"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;ගොනු නාමය: %1&lt;/b&gt;
@@ -5234,11 +5239,6 @@ The wizard does not support command </source>
         <location filename="../src/latexdocument.cpp" line="2680"/>
         <source>Unknown magic comment</source>
         <translation>නොදන්නා මැජික් අදහස්</translation>
-    </message>
-    <message>
-        <location filename="../src/tests/structureview_t.cpp" line="15"/>
-        <source>LABELS</source>
-        <translation>ලේබල්</translation>
     </message>
 </context>
 <context>
@@ -6001,440 +6001,446 @@ Do you want to overwrite it?</source>
 <context>
     <name>PDFDocument</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2958"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2961"/>
         <source>Toolbar</source>
         <translation>මෙවලම් තීරුව</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3012"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3015"/>
         <source>&amp;File</source>
         <translation>&amp;ගොනුව</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3013"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3016"/>
         <source>&amp;Edit</source>
         <translation>&amp;සංස්කරණය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3014"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3017"/>
         <source>&amp;View</source>
         <translation>&amp;දැක්ම</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3015"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3018"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3019"/>
         <source>Grid</source>
         <translation>ජාලකය</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3016"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3020"/>
         <source>&amp;Window</source>
         <translation>&amp;කවුළුව</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3017"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3021"/>
         <source>&amp;Configure</source>
         <translation>&amp;වින්‍යාස කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3018"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3022"/>
         <source>&amp;Help</source>
         <translation>&amp;උදව්</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3024"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3028"/>
         <source>User &amp;Manual...</source>
         <translation>පරිශීලක අත්පොත...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3027"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3031"/>
         <source>About</source>
         <translation>ගැන</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3028"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3032"/>
         <source>&amp;Open...</source>
         <translation>&amp;විවෘත...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3029"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3033"/>
         <source>Split &amp;&amp; Merge...</source>
         <translation>බෙදීම සහ ඒකාබද්ධ කිරීම...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3030"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3034"/>
         <source>&amp;Close</source>
         <translation>&amp;වසන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3032"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3036"/>
         <source>&amp;Quit TeXstudio</source>
         <translation>&amp;Texstudio වලින් ඉවත් වන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3033"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3037"/>
         <source>&amp;Configure TeXstudio</source>
         <translation>&amp;Texstudio වින්‍යාස කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3035"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3039"/>
         <source>Scrolling follows cursor</source>
         <translation>අනුචලනය කර්සරය අනුගමනය කරයි</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3037"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3041"/>
         <source>Cursor follows scrolling</source>
         <translation>කර්සරය අනුචලනය අනුගමනය කරයි</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3039"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3043"/>
         <source>Synchronize multiple views</source>
         <translation>බහු දර්ශන සමමුහුර්ත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3041"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3045"/>
         <source>Ignore for synchronization</source>
         <translation>සමමුහුර්තකරණය සඳහා නොසලකා හරින්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3044"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3048"/>
         <source>Invert Colors</source>
         <translation>වර්ණ පෙරළන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3046"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3050"/>
         <source>Grayscale</source>
         <translation>අළු පරිමාණ</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3050"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3054"/>
         <source>&amp;Magnify</source>
         <translation>&amp;විශාල කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3053"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3057"/>
         <source>&amp;Scroll</source>
         <translation>&amp;අනුචලනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3058"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3062"/>
         <source>&amp;First Page</source>
         <translation>&amp;පළමු පිටුව</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3059"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3063"/>
         <source>Back</source>
         <translation>ආපසු</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3060"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3064"/>
         <source>&amp;Previous Page</source>
         <translation>&amp;පෙර පිටුව</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3061"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3065"/>
         <source>&amp;Next Page</source>
         <translation>&amp;ඊළඟ පිටුව</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3062"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3066"/>
         <source>Forward</source>
         <translation>ඉදිරියට</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3063"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3067"/>
         <source>&amp;Last Page</source>
         <translation>&amp;පසුගිය පිටුව</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3065"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3069"/>
         <source>&amp;Go to Page...</source>
         <translation>&amp;පිටුවට යන්න...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3067"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3071"/>
         <source>Zoom &amp;In</source>
         <translation>විශාලනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3068"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3072"/>
         <source>Zoom &amp;Out</source>
         <translation>විශාලනය සහ පිටතට</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3069"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3073"/>
         <source>&amp;Actual Size</source>
         <translation>&amp;නියම ප්රමාණය</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3070"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3074"/>
         <source>Fit to Wi&amp;dth</source>
         <translation>Wi&amp;dth වලට ගැලපෙන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3072"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3076"/>
         <source>Fit to &amp;Text Width</source>
         <translation>&amp;පෙළ පළලට ගැලපෙන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3074"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3078"/>
         <source>Fit to &amp;Window</source>
         <translation>&amp;කවුළුවට ගැලපේ</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3076"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3080"/>
         <source>&amp;Continuous</source>
         <translation>&amp;අඛණ්ඩ</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3081"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3085"/>
         <source>Full &amp;Screen</source>
         <translation>පුන් තිරය</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3082"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3086"/>
         <source>Presentation</source>
         <translation>ඉදිරිපත් කිරීම</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3083"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3087"/>
         <source>External Viewer</source>
         <translation>බාහිර නරඹන්නා</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3084"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3088"/>
         <source>Enlarge Viewer</source>
         <translation>නරඹන්නා විශාල කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3085"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3089"/>
         <source>Shrink Viewer</source>
         <translation>බලන්නා හැකිලීම</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3086"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3090"/>
         <source>Windowed/Embedded</source>
         <translation>ජනේල/Embedded</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3087"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3091"/>
         <source>Auto-hide Toolbar</source>
         <translation>මෙවලම් තීරුව ස්වයංක්‍රීයව සඟවන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3103"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3108"/>
         <source>Custom...</source>
         <translation>අභිරුචි...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3108"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3115"/>
         <source>Single Page Step</source>
         <translation>තනි පිටු පියවර</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3112"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3114"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3119"/>
+        <source>Start Column</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3122"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3124"/>
         <source>&amp;Close something</source>
         <translation>&amp;යමක් වසන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3117"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3127"/>
         <source>Stac&amp;k</source>
         <translation>Stac&amp;k</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3118"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3128"/>
         <source>&amp;Tile</source>
         <translation>&amp;උළු</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3119"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3129"/>
         <source>&amp;Side by Side</source>
         <translation>&amp;පැත්තෙන් පැත්ත</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3121"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3131"/>
         <source>&amp;Go to Source</source>
         <translation>&amp;මූලාශ්‍රය වෙත යන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3122"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3132"/>
         <source>Focus Editor</source>
         <translation>නාභිගත සංස්කාරකය</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3124"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3134"/>
         <source>New Window</source>
         <translation>නව කවුළුව</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3125"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3135"/>
         <source>&amp;Find</source>
         <translation>&amp;සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3126"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3136"/>
         <source>Find &amp;again</source>
         <translation>නැවත සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3128"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3138"/>
         <source>Quick Build</source>
         <translation>ඉක්මන් ගොඩනැගීම</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3177"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3187"/>
         <source>Show</source>
         <translation>පෙන්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3199"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3209"/>
         <source>Windowed Viewer</source>
         <translation>කවුළු සහිත නරඹන්නා</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3202"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3212"/>
         <source>Embedded Viewer</source>
         <translation>Embedded Viewer</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3266"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3276"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation>වල</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3289"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3299"/>
         <source>Scale</source>
         <translation>පරිමාණ</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3307"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3317"/>
         <source>Zoom Out</source>
         <translation>විශාලනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3317"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3327"/>
         <source>Zoom</source>
         <translation>විශාලනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3326"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3336"/>
         <source>Zoom In</source>
         <translation>විශාලනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3354"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3357"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3364"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3367"/>
         <source>Annotations</source>
         <translation>විවරණ</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3513"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3523"/>
         <source>Page Down</source>
         <translation>පිටුව පහළට</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3517"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3527"/>
         <source>Page Up</source>
         <translation>පිටුව ඉහළට</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3707"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3717"/>
         <source>Retry</source>
         <translation>නැවත උත්සාහ කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3710"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4927"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3720"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4937"/>
         <source>Close</source>
         <translation>වසන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3713"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3723"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation>%1
 වලංගු PDF ලේඛනයක් ලෙස නොපෙනේ. එක්කෝ ගොනුව දූෂිත හෝ එය නිර්මාණය කිරීමේ ක්‍රියාවලියේ පවතී. සෑම තත්පර දෙකකට වරක් නැවත උත්සාහ කිරීම.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3727"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3737"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation>ගොනුව &quot;%1&quot;සොයා ගැනීමට අපොහොසත් විය ; සමහර විට එය මකා ඇත.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3730"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3740"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>&quot;%1&quot;ගොනුව පූරණය කිරීමට අසමත් විය ; සමහර විට එය වලංගු PDF ලේඛනයක් නොවේ.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3733"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3743"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
         <translation>අයහපත් වෙන් කිරීමක් හේතුවෙන් &quot;%1&quot; ගොනුව පූරණය කිරීමට අසමත් විය; සමහර විට එය වලංගු PDF ලේඛනයක් නොවේ.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3736"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3746"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation>ව්යතිරේකයක් හේතුවෙන් &quot;%1&quot; ගොනුව පූරණය කිරීමට අසමත් විය; සමහර විට එය වලංගු PDF ලේඛනයක් නොවේ.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3739"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3749"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
         <translation>PDF ගොනුව &quot;%1&quot; අගුලු දමා ඇත.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3741"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3751"/>
         <source>PDF password</source>
         <translation>PDF මුරපදය</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3741"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3751"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
         <translation>PDF ගොනුව &quot;%1&quot; අගුලු දමා ඇත.
 ඔබට දැන් මුරපදය ඇතුළත් කළ හැක:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4146"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4156"/>
         <source>Searching for</source>
         <translation>සොයනවා</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4258"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4268"/>
         <source>No SyncTeX data available</source>
         <translation>SyncTeX දත්ත නොමැත</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4260"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4270"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4355"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4365"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4442"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4452"/>
         <source>Page %1 of %2</source>
         <translation>%2හි %1 පිටුව</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4443"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4453"/>
         <source>Pages %1 to %2 of %3</source>
         <translation>පිටු %1 සිට %2 න් %3දක්වා</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4468"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4478"/>
         <source>Open PDF</source>
         <translation>PDF විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4749"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4759"/>
         <source>Print</source>
         <translation>මුද්‍රණය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4928"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4938"/>
         <source>Close Message</source>
         <translation>පණිවිඩය වසන්න</translation>
     </message>
@@ -6700,22 +6706,22 @@ You can now enter the password:</source>
         <translation>මූලාශ්රය වෙත යන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2409"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2412"/>
         <source>Go to Page</source>
         <translation>පිටුවට යන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2410"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2413"/>
         <source>Page number:</source>
         <translation>පිටු අංකය:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2802"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2805"/>
         <source>Calculating text width</source>
         <translation>පෙළ පළල ගණනය කිරීම</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2802"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2805"/>
         <source>Cancel</source>
         <translation>අවලංගු කරන්න</translation>
     </message>
@@ -6751,42 +6757,42 @@ You can now enter the password:</source>
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2376"/>
+        <location filename="../src/buildmanager.cpp" line="2408"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation>නිශ්චිත stdout යළි-යොමුවීම් සඳහා සහය නොදක්වයි: &quot;%1&quot;. විස්තර සඳහා කරුණාකර අත්පොත බලන්න.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2385"/>
+        <location filename="../src/buildmanager.cpp" line="2417"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation>නිශ්චිත stderr යළි-යොමුවීම් සඳහා සහය නොදක්වයි: &quot;%1&quot;. විස්තර සඳහා කරුණාකර අත්පොත බලන්න.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2582"/>
+        <location filename="../src/buildmanager.cpp" line="2614"/>
         <source>Process started: %1</source>
         <translation>ක්‍රියාවලිය ආරම්භ විය: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2588"/>
+        <location filename="../src/buildmanager.cpp" line="2620"/>
         <source>Error: Could not start the command: %1</source>
         <translation>දෝෂය: විධානය ආරම්භ කළ නොහැක: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2591"/>
+        <location filename="../src/buildmanager.cpp" line="2623"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;ඔබ (La)TeX බෙදාහැරීමක් ස්ථාපනය කර ඇති බවට වග බලා ගන්න&lt;/b&gt; උදා. MiKTeX හෝ TeX Live, සහ විධාන වින්‍යාස පිටුවේ මෙම බෙදා හැරීමට නිවැරදි මාර්ග සකසා ඇත.&lt;br&gt;A (La)TeX සංස්කාරකය වැනි TeXstudio එවැනි බෙදාහැරීමකින් සපයන (La)TeX විධාන නොමැතිව ක්‍රියා කළ නොහැක.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2595"/>
+        <location filename="../src/buildmanager.cpp" line="2627"/>
         <source>Error: Command crashed: %1</source>
         <translation>දෝෂය: විධානය බිඳ වැටුණි: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2602"/>
+        <location filename="../src/buildmanager.cpp" line="2634"/>
         <source>Process exited with error(s)</source>
         <translation>ක්‍රියාවලිය දෝෂ(ය) සමඟින් ඉවත් විය</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2605"/>
+        <location filename="../src/buildmanager.cpp" line="2637"/>
         <source>Process exited normally</source>
         <translation>ක්‍රියාවලිය සාමාන්‍ය පරිදි පිටවිය</translation>
     </message>
@@ -8124,18 +8130,12 @@ Do you want them to be saved?</source>
     <message>
         <location filename="../src/codesnippet.cpp" line="255"/>
         <location filename="../src/codesnippet.cpp" line="257"/>
-        <location filename="../src/tests/codesnippet_t.cpp" line="56"/>
-        <location filename="../src/tests/codesnippet_t.cpp" line="358"/>
-        <location filename="../src/tests/latexcompleter_t.cpp" line="321"/>
         <source>*environment-name*</source>
         <translation>*පරිසරයේ නම*</translation>
     </message>
     <message>
         <location filename="../src/codesnippet.cpp" line="256"/>
         <location filename="../src/codesnippet.cpp" line="282"/>
-        <location filename="../src/tests/codesnippet_t.cpp" line="140"/>
-        <location filename="../src/tests/codesnippet_t.cpp" line="437"/>
-        <location filename="../src/tests/latexcompleter_t.cpp" line="322"/>
         <source>content...</source>
         <translation>අන්තර්ගතය...</translation>
     </message>
@@ -9853,7 +9853,7 @@ template to edit individual files.</source>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2174"/>
+        <location filename="../src/configmanager.cpp" line="2190"/>
         <source>Edit &amp;Macros...</source>
         <translation>&amp;මැක්‍රෝස් සංස්කරණය කරන්න...</translation>
     </message>
@@ -9900,8 +9900,8 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="465"/>
-        <location filename="../src/texstudio.cpp" line="10012"/>
-        <location filename="../src/texstudio.cpp" line="10019"/>
+        <location filename="../src/texstudio.cpp" line="10013"/>
+        <location filename="../src/texstudio.cpp" line="10020"/>
         <source>All files</source>
         <translation>සියලුම ගොනු</translation>
     </message>
@@ -10147,7 +10147,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="953"/>
-        <location filename="../src/texstudio.cpp" line="10213"/>
+        <location filename="../src/texstudio.cpp" line="10214"/>
         <source>&amp;Close</source>
         <translation>&amp;වසන්න</translation>
     </message>
@@ -11496,7 +11496,7 @@ template to edit individual files.</source>
         <location filename="../src/texstudio.cpp" line="6858"/>
         <location filename="../src/texstudio.cpp" line="6868"/>
         <location filename="../src/texstudio.cpp" line="6870"/>
-        <location filename="../src/texstudio.cpp" line="10692"/>
+        <location filename="../src/texstudio.cpp" line="10693"/>
         <source>Error</source>
         <translation>දෝෂයකි</translation>
     </message>
@@ -11550,7 +11550,7 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2881"/>
-        <location filename="../src/texstudio.cpp" line="10521"/>
+        <location filename="../src/texstudio.cpp" line="10522"/>
         <source>Open Files</source>
         <translation>ගොනු විවෘත කරන්න</translation>
     </message>
@@ -11590,7 +11590,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3115"/>
-        <location filename="../src/texstudio.cpp" line="12151"/>
+        <location filename="../src/texstudio.cpp" line="12152"/>
         <source>Copy</source>
         <translation>පිටපත් කරන්න</translation>
     </message>
@@ -11967,123 +11967,123 @@ Do you want to allow and run the new, overriding command?
         <translation> (පේළිය %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9308"/>
+        <location filename="../src/texstudio.cpp" line="9309"/>
         <source>commit comment:</source>
         <translation>අදහස් දක්වන්න:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9312"/>
+        <location filename="../src/texstudio.cpp" line="9313"/>
         <source>check in whole directory ?</source>
         <translation>සම්පූර්ණ නාමාවලිය පරීක්ෂා කරන්න?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9314"/>
+        <location filename="../src/texstudio.cpp" line="9315"/>
         <source>Push to repository ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9672"/>
+        <location filename="../src/texstudio.cpp" line="9673"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>අවධානය: පෙළ අතින් සංස්කරණය කළහොත් සංවාදය ස්වයංක්‍රීයව වැසෙයි!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9973"/>
+        <location filename="../src/texstudio.cpp" line="9974"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>&quot;%1&quot;ගොනුව විවෘත කළ නොහැක.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9975"/>
+        <location filename="../src/texstudio.cpp" line="9976"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>&quot;%1&quot; ගොනුව නොපවතී.
 ඔබට එය නිර්මාණය කිරීමට අවශ්‍යද?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10012"/>
+        <location filename="../src/texstudio.cpp" line="10013"/>
         <source>Save Profile</source>
         <translation>පැතිකඩ සුරකින්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10012"/>
-        <location filename="../src/texstudio.cpp" line="10019"/>
+        <location filename="../src/texstudio.cpp" line="10013"/>
+        <location filename="../src/texstudio.cpp" line="10020"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>TXS පැතිකඩ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10019"/>
+        <location filename="../src/texstudio.cpp" line="10020"/>
         <source>Load Profile</source>
         <translation>පැතිකඩ පූරණය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10072"/>
+        <location filename="../src/texstudio.cpp" line="10073"/>
         <source>Failed to read profile file %1.</source>
         <translation>පැතිකඩ ගොනුව %1කියවීමට අසමත් විය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10195"/>
+        <location filename="../src/texstudio.cpp" line="10196"/>
         <source>Problem</source>
         <translation>ගැටලුව</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10195"/>
+        <location filename="../src/texstudio.cpp" line="10196"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>වචන පුනරාවර්තන සෙවීම ක්‍රියාත්මක වන්නේ සක්‍රිය සබැඳි අක්ෂර වින්‍යාස පරීක්ෂාව සමඟ පමණි!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10200"/>
+        <location filename="../src/texstudio.cpp" line="10201"/>
         <source>Find Word Repetitions</source>
         <translation>වචන පුනරාවර්තන සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10209"/>
+        <location filename="../src/texstudio.cpp" line="10210"/>
         <source>&amp;Find Next</source>
         <translation>&amp;ඊළඟ සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10211"/>
+        <location filename="../src/texstudio.cpp" line="10212"/>
         <source>&amp;Find Previous</source>
         <translation>&amp;පෙර සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10262"/>
+        <location filename="../src/texstudio.cpp" line="10263"/>
         <source>Reached beginning of text.</source>
         <translation>පෙළ ආරම්භයට ළඟා විය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10262"/>
+        <location filename="../src/texstudio.cpp" line="10263"/>
         <source>Reached end of text.</source>
         <translation>පෙළ අවසානයට ළඟා විය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10521"/>
-        <location filename="../src/texstudio.cpp" line="10732"/>
-        <location filename="../src/texstudio.cpp" line="10735"/>
+        <location filename="../src/texstudio.cpp" line="10522"/>
+        <location filename="../src/texstudio.cpp" line="10733"/>
+        <location filename="../src/texstudio.cpp" line="10736"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeX ගොනු (*.tex);;සියලු ගොනු (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10692"/>
+        <location filename="../src/texstudio.cpp" line="10693"/>
         <source>You do not have read permission to this file.</source>
         <translation>ඔබට මෙම ගොනුව කියවීමට අවසර නැත.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10732"/>
+        <location filename="../src/texstudio.cpp" line="10733"/>
         <source>Open Compare File</source>
         <translation>සංසන්දනය කිරීමේ ගොනුව විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10735"/>
+        <location filename="../src/texstudio.cpp" line="10736"/>
         <source>Open Base File</source>
         <translation>මූලික ගොනුව විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10816"/>
+        <location filename="../src/texstudio.cpp" line="10817"/>
         <source>SVN Conflict!</source>
         <translation>SVN ගැටුම!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10817"/>
+        <location filename="../src/texstudio.cpp" line="10818"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -12094,14 +12094,14 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10914"/>
-        <location filename="../src/texstudio.cpp" line="11005"/>
-        <location filename="../src/texstudio.cpp" line="11011"/>
+        <location filename="../src/texstudio.cpp" line="10915"/>
+        <location filename="../src/texstudio.cpp" line="11006"/>
+        <location filename="../src/texstudio.cpp" line="11012"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio හදිසි අවස්ථාව</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10918"/>
+        <location filename="../src/texstudio.cpp" line="10919"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -12114,7 +12114,7 @@ Please provide this file if you send a bug report.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10921"/>
+        <location filename="../src/texstudio.cpp" line="10922"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -12123,18 +12123,18 @@ Please provide this file if you send a bug report.
 %2Do ඔබට TeXstudio දිගටම ක්‍රියාත්මක වීමට අවශ්‍යද? මෙය දත්ත දූෂණයට හේතු විය හැක.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10922"/>
+        <location filename="../src/texstudio.cpp" line="10923"/>
         <source>Yes, try to recover</source>
         <translation>ඔව්, යථා තත්ත්වයට පත් කිරීමට උත්සාහ කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10923"/>
-        <location filename="../src/texstudio.cpp" line="10928"/>
+        <location filename="../src/texstudio.cpp" line="10924"/>
+        <location filename="../src/texstudio.cpp" line="10929"/>
         <source>No, kill the program</source>
         <translation>නැහැ, වැඩසටහන මරා දමන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10925"/>
+        <location filename="../src/texstudio.cpp" line="10926"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -12143,17 +12143,17 @@ Please provide this file if you send a bug report.
 %1Do ඔබට වැඩසටහන දිගටම ක්‍රියාත්මක කිරීමට අවශ්‍යද? මෙය දත්ත දූෂණයට හේතු විය හැක.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10926"/>
+        <location filename="../src/texstudio.cpp" line="10927"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>ඔව්, loop එක නවත්වන්න සහ නැවත ලබා ගැනීමට උත්සාහ කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10927"/>
+        <location filename="../src/texstudio.cpp" line="10928"/>
         <source>Yes, continue the loop</source>
         <translation>ඔව්, ලූපය දිගටම කරගෙන යන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11006"/>
+        <location filename="../src/texstudio.cpp" line="11007"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -12162,50 +12162,50 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 ඔබට TeXstudio දිගටම ක්‍රියාත්මක වීමට අවශ්‍යද? මෙය දත්ත දූෂණයට හේතු විය හැක.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11011"/>
+        <location filename="../src/texstudio.cpp" line="11012"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>මම මැරෙන්න හැදුවත් කිසිම දෙයක් වුණේ නැහැ.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11043"/>
+        <location filename="../src/texstudio.cpp" line="11044"/>
         <source>System Report</source>
         <translation>පද්ධති වාර්තාව</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11181"/>
+        <location filename="../src/texstudio.cpp" line="11182"/>
         <source>LT Report</source>
         <translation>LT වාර්තාව</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11207"/>
+        <location filename="../src/texstudio.cpp" line="11208"/>
         <source>process failed to start
 </source>
         <translation>ක්‍රියාවලිය
 ආරම්භ කිරීමට අසමත් විය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11210"/>
+        <location filename="../src/texstudio.cpp" line="11211"/>
         <source>process crashed
 </source>
         <translation>ක්‍රියාවලිය බිඳවැටීම
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11220"/>
+        <location filename="../src/texstudio.cpp" line="11221"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>තත්‍ය කාලීන පරීක්ෂාව සබල කර ඇත.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11222"/>
+        <location filename="../src/texstudio.cpp" line="11223"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>තත්‍ය කාලීන පරීක්‍ෂාව අක්‍රියයි!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11225"/>
+        <location filename="../src/texstudio.cpp" line="11226"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -12214,7 +12214,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11227"/>
+        <location filename="../src/texstudio.cpp" line="11228"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -12223,7 +12223,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11230"/>
+        <location filename="../src/texstudio.cpp" line="11231"/>
         <source>Tries to start automatically.
 
 </source>
@@ -12232,7 +12232,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11232"/>
+        <location filename="../src/texstudio.cpp" line="11233"/>
         <source>Autostart disabled.
 
 </source>
@@ -12241,161 +12241,161 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11237"/>
+        <location filename="../src/texstudio.cpp" line="11238"/>
         <source>LT current status: </source>
         <translation>LT වත්මන් තත්ත්වය: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11240"/>
+        <location filename="../src/texstudio.cpp" line="11241"/>
         <source>working</source>
         <translation>වැඩ කරනවා</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11243"/>
+        <location filename="../src/texstudio.cpp" line="11244"/>
         <source>error</source>
         <translation>දෝෂය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11247"/>
+        <location filename="../src/texstudio.cpp" line="11248"/>
         <source>unknown</source>
         <translation>නොදන්නා</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11250"/>
+        <location filename="../src/texstudio.cpp" line="11251"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11564"/>
+        <location filename="../src/texstudio.cpp" line="11565"/>
         <source>Error when communicating with LT: %1</source>
         <translation>LT සමඟ සන්නිවේදනය කිරීමේදී දෝෂය: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11855"/>
-        <location filename="../src/texstudio.cpp" line="12648"/>
+        <location filename="../src/texstudio.cpp" line="11856"/>
+        <location filename="../src/texstudio.cpp" line="12649"/>
         <source>untitled</source>
         <translation>මාතෘකා රහිත</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11865"/>
-        <location filename="../src/texstudio.cpp" line="12691"/>
+        <location filename="../src/texstudio.cpp" line="11866"/>
+        <location filename="../src/texstudio.cpp" line="12692"/>
         <source>TODO</source>
         <translation>TODO</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11998"/>
-        <location filename="../src/texstudio.cpp" line="12006"/>
-        <location filename="../src/texstudio.cpp" line="12037"/>
+        <location filename="../src/texstudio.cpp" line="11999"/>
+        <location filename="../src/texstudio.cpp" line="12007"/>
+        <location filename="../src/texstudio.cpp" line="12038"/>
         <source>Document: </source>
         <translation>ලේඛනය: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12090"/>
+        <location filename="../src/texstudio.cpp" line="12091"/>
         <source>Close document</source>
         <translation>ලේඛනය වසන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12091"/>
+        <location filename="../src/texstudio.cpp" line="12092"/>
         <source>Set as explicit root document</source>
         <translation>පැහැදිලි මූල ලේඛනයක් ලෙස සකසන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12092"/>
+        <location filename="../src/texstudio.cpp" line="12093"/>
         <source>Open all related documents</source>
         <translation>අදාළ සියලුම ලේඛන විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12093"/>
+        <location filename="../src/texstudio.cpp" line="12094"/>
         <source>Close all related documents</source>
         <translation>අදාළ සියලුම ලියකියවිලි වසන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12095"/>
+        <location filename="../src/texstudio.cpp" line="12096"/>
         <source>Remove explicit root document role</source>
         <translation>පැහැදිලි මූල ලේඛන භූමිකාව ඉවත් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12097"/>
+        <location filename="../src/texstudio.cpp" line="12098"/>
         <source>Show all open documents in this tree</source>
         <translation>මෙම ගසේ ඇති සියලුම විවෘත ලේඛන පෙන්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12099"/>
+        <location filename="../src/texstudio.cpp" line="12100"/>
         <source>Show only current document in this tree</source>
         <translation>මෙම ගසෙහි වත්මන් ලේඛනය පමණක් පෙන්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12112"/>
+        <location filename="../src/texstudio.cpp" line="12113"/>
         <source>Copy filename</source>
         <translation>ගොනු නාමය පිටපත් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12113"/>
+        <location filename="../src/texstudio.cpp" line="12114"/>
         <source>Copy file path</source>
         <translation>ගොනු මාර්ගය පිටපත් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12122"/>
+        <location filename="../src/texstudio.cpp" line="12123"/>
         <source>Insert</source>
         <translation>ඇතුල් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12123"/>
         <location filename="../src/texstudio.cpp" line="12124"/>
+        <location filename="../src/texstudio.cpp" line="12125"/>
         <source>Insert as %1</source>
         <translation>%1ලෙස ඇතුළු කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12126"/>
+        <location filename="../src/texstudio.cpp" line="12127"/>
         <source>Find Usages</source>
         <translation>භාවිත සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12137"/>
+        <location filename="../src/texstudio.cpp" line="12138"/>
         <source>Insert Label</source>
         <translation>ලේබලය ඇතුළු කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12141"/>
+        <location filename="../src/texstudio.cpp" line="12142"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation>ලේබලයට %1 ඇතුළු කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12145"/>
+        <location filename="../src/texstudio.cpp" line="12146"/>
         <source>Create Label</source>
         <translation>ලේබලය සාදන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12149"/>
+        <location filename="../src/texstudio.cpp" line="12150"/>
         <source>Cut</source>
         <translation>කපනවා</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12153"/>
+        <location filename="../src/texstudio.cpp" line="12154"/>
         <source>Paste Before</source>
         <translation>පෙර අලවන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12155"/>
+        <location filename="../src/texstudio.cpp" line="12156"/>
         <source>Paste After</source>
         <translation>පසු අලවන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12158"/>
+        <location filename="../src/texstudio.cpp" line="12159"/>
         <source>Indent Section</source>
         <translation>ඉන්ඩෙන්ට් අංශය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12160"/>
+        <location filename="../src/texstudio.cpp" line="12161"/>
         <source>Unindent Section</source>
         <translation>Unindent කොටස</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12106"/>
-        <location filename="../src/texstudio.cpp" line="12164"/>
+        <location filename="../src/texstudio.cpp" line="12107"/>
+        <location filename="../src/texstudio.cpp" line="12165"/>
         <source>Expand Subitems</source>
         <translation>උප අයිතම පුළුල් කරන්න</translation>
     </message>
@@ -12405,39 +12405,39 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12107"/>
-        <location filename="../src/texstudio.cpp" line="12166"/>
+        <location filename="../src/texstudio.cpp" line="12108"/>
+        <location filename="../src/texstudio.cpp" line="12167"/>
         <source>Collapse Subitems</source>
         <translation>උප අයිතම හකුළන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12179"/>
+        <location filename="../src/texstudio.cpp" line="12180"/>
         <source>Open Document</source>
         <translation>ලේඛනය විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12180"/>
-        <location filename="../src/texstudio.cpp" line="12187"/>
+        <location filename="../src/texstudio.cpp" line="12181"/>
+        <location filename="../src/texstudio.cpp" line="12188"/>
         <source>Go to Definition</source>
         <translation>අර්ථ දැක්වීම වෙත යන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12675"/>
+        <location filename="../src/texstudio.cpp" line="12676"/>
         <source>BIBLIOGRAPHY</source>
         <translation>ග්‍රන්ථ නාමාවලිය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12683"/>
+        <location filename="../src/texstudio.cpp" line="12684"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MAGIC_COMMENTS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12699"/>
+        <location filename="../src/texstudio.cpp" line="12700"/>
         <source>BLOCK</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12707"/>
+        <location filename="../src/texstudio.cpp" line="12708"/>
         <source>LABELS</source>
         <translation>ලේබල්</translation>
     </message>
