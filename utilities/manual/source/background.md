@@ -622,10 +622,10 @@ Options:
 
 ### Updating translations
 With `cmake` the command `lupdate` does not work directly.
-Instead when building for qt6 a debug build (`DCMAKE_BUILD_TYPE=Debug`), a target `texstudio_lupdate` is defined which needs to be called.
+Instead when building for qt6 a debug build (`DCMAKE_BUILD_TYPE=Debug`), a target `update_translations` is defined which needs to be called.
 ```
 build>qt-cmake .. -DCMAKE_BUILD_TYPE=Debug
-build>cmake --build . -t texstudio_lupdate
+build>cmake --build . -t update_translations
 ```
 
 ### Translating manual

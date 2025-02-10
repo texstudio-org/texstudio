@@ -1001,9 +1001,9 @@ The change is done via cmake options, e.g. <code class="docutils literal notrans
 <section id="updating-translations">
 <h3>Updating translations<a class="headerlink" href="#updating-translations" title="Link to this heading">#</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">cmake</span></code> the command <code class="docutils literal notranslate"><span class="pre">lupdate</span></code> does not work directly.
-Instead when building for qt6 a debug build (<code class="docutils literal notranslate"><span class="pre">DCMAKE_BUILD_TYPE=Debug</span></code>), a target <code class="docutils literal notranslate"><span class="pre">texstudio_lupdate</span></code> is defined which needs to be called.</p>
+Instead when building for qt6 a debug build (<code class="docutils literal notranslate"><span class="pre">DCMAKE_BUILD_TYPE=Debug</span></code>), a target <code class="docutils literal notranslate"><span class="pre">update_translations</span></code> is defined which needs to be called.</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>build&gt;qt-cmake .. -DCMAKE<span class="nb">_</span>BUILD<span class="nb">_</span>TYPE=Debug
-build&gt;cmake --build . -t texstudio<span class="nb">_</span>lupdate
+build&gt;cmake --build . -t update<span class="nb">_</span>translations
 </pre></div>
 </div>
 </section>
