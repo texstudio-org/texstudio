@@ -1,7 +1,8 @@
 # CHANGELOG
 ## TeXstudio 4.8.7
 
-- 
+- add "Start Column" (sets column of first page, same as Shift+Click) to Grid menu of pdf-viewer's context menu [#3974](https://github.com/texstudio-org/texstudio/pull/3974)
+- add preview with default compiler option
 
 ## TeXstudio 4.8.6
 
@@ -13,7 +14,6 @@
 - repair user macro trigger (?highlight-as:...), still not usable for math env detection
 - add new user macro trigger (?inEnv:...)
 - add Grid menu to windowed and embedded pdf-viewer's context menu [#3942](https://github.com/texstudio-org/texstudio/pull/3942)
-- add "Start Column" (sets column of first page, same as Shift+Click) to Grid menu of pdf-viewer's context menu [#3974](https://github.com/texstudio-org/texstudio/pull/3974)
 - fix pdf-viewer's scrollbar with Fit to Width/Window and changing Continuous mode [#3928](https://github.com/texstudio-org/texstudio/pull/3928)
 - fix pdf-viewer's Custom Grid dialog not preset with current Grid settings in Continuous mode [#3929](https://github.com/texstudio-org/texstudio/pull/3929)
 - fix pfd-viewer's page display in non continuous mode [#3952](https://github.com/texstudio-org/texstudio/pull/3952)
