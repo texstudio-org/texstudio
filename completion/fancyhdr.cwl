@@ -2,7 +2,7 @@
 # dani/2006-02-18
 # modified Edson 30-12-2010
 # modified T. Hoffmann 15-05-2014
-# modified Matthew Bertucci 2025/01/06 for v5.0
+# modified Matthew Bertucci 2025/02/09 for v5.2
 
 #keyvals:\usepackage/fancyhdr#c
 nocheck
@@ -29,10 +29,24 @@ headings
 
 \fancyheadwidth{length}
 \fancyheadwidth[places]{length}
+\fancyheadwidth[places][alignment]{length}
+\fancyheadwidth*{length}
+\fancyheadwidth*[places]{length}
+\fancyheadwidth*[places][alignment]{length}
 \fancyfootwidth{length}
 \fancyfootwidth[places]{length}
+\fancyfootwidth[places]{length}
+\fancyfootwidth[places][alignment]{length}
+\fancyfootwidth*{length}
+\fancyfootwidth*[places]{length}
+\fancyfootwidth*[places][alignment]{length}
 \fancyhfwidth{length}
 \fancyhfwidth[places]{length}
+\fancyhfwidth[places]{length}
+\fancyhfwidth[places][alignment]{length}
+\fancyhfwidth*{length}
+\fancyhfwidth*[places]{length}
+\fancyhfwidth*[places][alignment]{length}
 
 \fancypagestyle{style name}[base style]{definitions%text}
 \fancypagestyle{style name%specialDef}{definitions%text}#s#%fancypagestyle
