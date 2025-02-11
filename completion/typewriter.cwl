@@ -1,7 +1,7 @@
 # typewriter package
 # Matthew Bertucci 2025/02/11 for v1.3
 
-#include:luaotfload
+#include:luatex
 
 \ttgreybolda
 \ttgreyboldb
