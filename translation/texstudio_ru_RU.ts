@@ -2754,7 +2754,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4019"/>
         <source>Preview with default compiler</source>
-        <translation type="unfinished"/>
+        <translation>Предпросмотр с компилятором по умолчанию</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4281"/>
@@ -5229,7 +5229,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexdocument.cpp" line="2658"/>
         <source>Root file not found</source>
-        <translation type="unfinished"/>
+        <translation>Корневой файл не найден</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="2663"/>
@@ -5678,7 +5678,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/loghighlighter.cpp" line="38"/>
         <source>Process started:</source>
-        <translation type="unfinished"/>
+        <translation>Процесс запущен:</translation>
     </message>
 </context>
 <context>
@@ -6246,7 +6246,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3119"/>
         <source>Start Column</source>
-        <translation type="unfinished"/>
+        <translation>Начальный столбец</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3122"/>
@@ -12451,7 +12451,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="12700"/>
         <source>BLOCK</source>
-        <translation type="unfinished"/>
+        <translation>БЛОК</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12708"/>
@@ -12968,7 +12968,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.cpp" line="359"/>
         <source>Do you really want to delete the current macro(s)?</source>
-        <translation type="unfinished"/>
+        <translation>Вы действительно хотите удалить текущи(й/е) макрос(ы)?</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="441"/>
@@ -13357,7 +13357,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="319"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Browser command. Leave empty to not run the browser at the end of the conversion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Команда браузера. Оставьте её пустой, чтобы не запускать браузер в конце конвертирования&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="339"/>

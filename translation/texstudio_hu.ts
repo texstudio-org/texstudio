@@ -2659,7 +2659,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="../src/configdialog.ui" line="4049"/>
         <source>Preview with xelatex</source>
-        <translation>Előnézet xelatex-hel</translation>
+        <translation>Előnézet xelatex segítségével</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4057"/>
@@ -2746,7 +2746,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="../src/configdialog.ui" line="4019"/>
         <source>Preview with default compiler</source>
-        <translation type="unfinished"/>
+        <translation>Előnézet alapértelmezett fordítóval</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4281"/>
@@ -6231,7 +6231,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3119"/>
         <source>Start Column</source>
-        <translation type="unfinished"/>
+        <translation>Oszlop kezdése</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3122"/>

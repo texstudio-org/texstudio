@@ -2753,7 +2753,7 @@ leur usage en les activant ici.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4019"/>
         <source>Preview with default compiler</source>
-        <translation type="unfinished"/>
+        <translation>Aperçu avec le compilateur par défaut</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4281"/>
@@ -6238,7 +6238,7 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3119"/>
         <source>Start Column</source>
-        <translation type="unfinished"/>
+        <translation>Colonne de départ</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3122"/>

@@ -2751,7 +2751,7 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4019"/>
         <source>Preview with default compiler</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan derleyici ile ön izle</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4281"/>
@@ -6242,7 +6242,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3119"/>
         <source>Start Column</source>
-        <translation type="unfinished"/>
+        <translation>Başlangıç sütunu</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3122"/>

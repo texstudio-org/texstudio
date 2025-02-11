@@ -2750,7 +2750,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4019"/>
         <source>Preview with default compiler</source>
-        <translation type="unfinished"/>
+        <translation>Antever com o compilador pré-definido</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4281"/>
@@ -6241,7 +6241,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3119"/>
         <source>Start Column</source>
-        <translation type="unfinished"/>
+        <translation>Coluna inicial</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3122"/>
