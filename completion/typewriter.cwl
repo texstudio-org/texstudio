@@ -1,5 +1,5 @@
 # typewriter package
-# Matthew Bertucci 2023/01/16 for v1.2
+# Matthew Bertucci 2025/02/11 for v1.3
 
 #include:luaotfload
 
@@ -20,14 +20,11 @@
 \ttoverprintnormal
 
 \ttbasefont
+\ttmathfont
 \ttfontsize
 
 \cmuntt#*
 \cmunttid#*
-\myfont#S
-\myfonts#S
-\mybfont#S
-\mybfonts#S
 
 \xUnicodeMathSymbol{char number}{cmd}{type}{description}#*d
 \xxUnicodeMathSymbol{char number}{cmd}{definition}#*d
@@ -160,8 +157,4 @@
 \eighthnote#m
 \neuter#m
 
-# deprecated
 \oldhrule#S
-\ttgreyone#S
-\ttgreytwo#S
-\ttdownshifttwo#S
