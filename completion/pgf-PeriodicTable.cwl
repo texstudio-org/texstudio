@@ -1,5 +1,5 @@
 # pgf-PeriodicTable package
-# Matthew Bertucci 2024/09/10 for v2.1.4
+# Matthew Bertucci 2025/02/11 for v2.1.5
 
 #include:tikz
 #include:tikzlibraryfadings
@@ -14,27 +14,39 @@ de
 it
 es
 br
-userlang=%<ISO 639-1 code%>
+userlang=#nl,zh
 numerals=#dvn,zh
+beamer
+beamer*
+beamer**
 #endkeyvals
+
+#ifOption:userlang=zh
+\pgfPTzhFontFeatures{font features}
+\pgfPTzhtextfontSS{font name}
+\pgfPTzhtextfontSSB{font name}
+\pgfPTzhtextfontLv{font name}
+#endif
 
 #ifOption:numerals=dvn
 #include:xetex
-#endif
-
-#ifOption:numerals=zh
-#include:zhnumber
-#endif
-
 \pgfPTdvnfont{font name}
 \pgfPTdvnfont[font options]{font name}
 \pgfPTdvn#S
 \pgfPTnumberfont#S
-\pgfPTzhfont{font name}
-\pgfPTzhfont[font options]{font name}
+#endif
+
+#ifOption:numerals=zh
+#include:zhnumber
+\pgfPTzhnumberfont{font name}
+\pgfPTzhnumberfont[font options]{font name}
+\pgfPTzhfont{font name}#S
+\pgfPTzhfont[font options]{font name}#S
 \pgfPTzhnumber{list}
 \pgfPTzhnumber[true|false]{list}
-\pgfPTzhnumberfont#S
+\pgfPTzhthenumberfont#S
+\pgfPTnumberfont#S
+#endif
 
 \pgfPT
 \pgfPT[options%keyvals]
@@ -61,7 +73,7 @@ cell line color=#%color
 cell style=#pgfPT2lang,pgfPT3lang,pgfPTR,pgfPTEi,pgfPTeaff,pgfPTREi,pgfPTdisc,%pgfPTcellstyle
 cell={%<keyvals%>}
 font=%<font family%>
-back color scheme=#pgfPTSoft,pgfPTJmol,pgfPTCPK,pgfPTRasmol,pgfPTRasmolNew,pgfPTWikipedia,pgfPTMNM,pgfPTPS,pgfPTRadio,pgfPTBlocks,solid,%pgfPTcolorscheme
+back color scheme=#pgfPTSoft,pgfPTJmol,pgfPTCPK,pgfPTRasmol,pgfPTRasmolNew,pgfPTWikipedia,pgfPTWikipediaI,pgfPTWikipediaII,pgfPTMNM,pgfPTPS,pgfPTRadio,pgfPTBlocks,solid,%pgfPTcolorscheme
 back color=#%color
 csSolid
 csSolid=#%color
@@ -71,6 +83,8 @@ csCPK
 csRasmol
 csRasmolNew
 csWikipedia
+csWikipediaI
+csWikipediaII
 csMNM
 csPS
 csRadio
@@ -93,6 +107,7 @@ title color=#%color
 title={%<keyvals%>}
 show legend#true,false
 legend acronyms#true,false
+legend acronyms font size=%<font size%>
 legend box={%<TikZ keys%>}
 legend back color=#%color
 legend radio color=#%color
@@ -174,6 +189,9 @@ cells+p+g+Z
 exnocaps
 exColor=#%color
 exFont=%<font commands%>
+decimal separator=%<symbol%>
+comma separator
+dot separator
 ex={%<keyvals%>}
 Z backcolor=#%color
 Z color=#%color
