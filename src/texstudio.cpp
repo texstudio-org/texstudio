@@ -8253,6 +8253,7 @@ void Texstudio::gotoLine(LatexDocument *doc, int line, int col)
  */
 void Texstudio::gotoLine(QTreeWidgetItem *item, int)
 {
+    shrinkEmbeddedPDFViewer();
     StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
     if(!se){
         // sepcial treatment for doc header
