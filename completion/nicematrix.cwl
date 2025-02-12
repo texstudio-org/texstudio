@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2024/12/16 for v7.0a
+# Matthew Bertucci 2025/02/03 for v7.1
 
 #include:amsmath
 #include:array
@@ -322,6 +322,19 @@ draw-first
 
 \Hdotsfor{number}#t
 \Vdotsfor{number}#t
+
+\Hbrace{number}{label%plain}#t
+\Hbrace[options%keyvals]{number}{label%plain}#t
+\Vbrace{number}{label%plain}#t
+\Vbrace[options%keyvals]{number}{label%plain}#t
+
+#keyvals:\Hbrace,\Vbrace
+color=#%color
+horizontal-labels
+shorten=##L
+shorten-start=##L
+shorten-end=##L
+#endkeyvals
 
 \CodeAfter#t
 \CodeAfter[options%keyvals]#t

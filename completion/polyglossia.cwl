@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 2024/07/15 for v2.2
+# Matthew Bertucci 2025/02/03 for v2.4
 
 #include:etoolbox
 #include:fontspec
@@ -1060,8 +1060,6 @@ lang=#local,main,%<language%>
 \PolyglossiaSetup{arg1}{arg2}#S
 \CheckHyphenationPatterns{arg}#S
 \SetupPolyglossiaLangPatterns{arg}#S
-\SetupLatinPolyglossiaFont{arg}#S
-\SetupNonLatinPolyglossiaFont{arg}#S
 \InheritGlossFile{arg}#S
 \SetGlossOptions{arg1}{arg2}#S
 \InitializeGlossOptions{arg1}{arg2}#S

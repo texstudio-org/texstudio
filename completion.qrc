@@ -2302,6 +2302,7 @@
 <file>completion/luwiantype.cwl</file>
 <file>completion/luximono.cwl</file>
 <file>completion/lwarp.cwl</file>
+<file>completion/lxfonts.cwl</file>
 <file>completion/lyluatex.cwl</file>
 <file>completion/maa-monthly.cwl</file>
 <file>completion/macrolist.cwl</file>

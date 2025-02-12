@@ -1,5 +1,5 @@
 # classicthesis package
-# Matthew Bertucci 12/13/2021 for v4.6
+# Matthew Bertucci 2025/02/03 for v4.8
 
 #include:ifthen
 #include:kvoptions
@@ -20,7 +20,6 @@
 #include:footmisc
 #include:scrtime
 #include:caption
-#include:remreset
 #include:hyperref
 
 #ifOption:drafting
@@ -36,9 +35,7 @@
 
 #keyvals:\usepackage/classicthesis#c
 drafting#true,false
-parts#true,false
-linedheaders#true,false
-style=#classicthesis,arsclassica
+style=#classicthesis,arsclassica,linedheaders,plain
 palatino#true,false
 eulerchapternumbers#true,false
 beramono#true,false
@@ -62,26 +59,26 @@ halfgray#B
 webgreen#B
 webbrown#B
 
-\begin{aenumerate}
-\end{aenumerate}
-\ctparttext{text}
-\spacedallcaps{text}
-\spacedlowsmallcaps{text}
-
-\classicthesis#*
-\chapterNumber{text}#*
-\beforebibskip#*
-\figurelabelwidth#*
-\finalVersionString#*
-\listingslabelwidth#*
-\myVersion#*
-\newchnumberwidth#*
-\newnumberwidth#*
-\oldmarginpar{right%text}#*
-\oldmarginpar[left]{right%text}#*
-\tablelabelwidth#*
-\tocEntry{text}#*
-\deactivateaddvspace#*
+\begin{aenumerate}#S
+\end{aenumerate}#S
+\ctparttext{text}#S
+\spacedallcaps{text}#S
+\spacedlowsmallcaps{text}#S
+\spacedlowsmallcapsstyle#S
+\classicthesis#S
+\chapterNumber{text}#S
+\beforebibskip#S
+\figurelabelwidth#S
+\finalVersionString#S
+\listingslabelwidth#S
+\myVersion#S
+\newchnumberwidth#S
+\newnumberwidth#S
+\oldmarginpar{right%text}#S
+\oldmarginpar[left]{right%text}#S
+\tablelabelwidth#S
+\tocEntry{text}#S
+\deactivateaddvspace#S
 
 # deprecated
 \myChapter#S

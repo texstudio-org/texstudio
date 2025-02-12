@@ -1,5 +1,5 @@
 # lettrine package
-# Matthew Bertucci 2023/08/14 for v2.52
+# Matthew Bertucci 2025/02/03 for v2.80
 
 #keyvals:\usepackage/lettrine#c
 optionsfile=%<filename%>
@@ -19,6 +19,7 @@ nindent=##L
 slope=##L
 image#true,false
 grid#true,false
+nextpage#true,false
 novskip=##L
 realheight#true,false
 refstring
@@ -45,16 +46,19 @@ viewport=%<llx lly urx ury%>
 \LettrineFontHook#*
 \LettrineHeight#*
 \ifLettrineImage#*
-\LettrineImagetrue#*
-\LettrineImagefalse#*
+\LettrineImagetrue#S
+\LettrineImagefalse#S
 \ifLettrineOnGrid#*
-\LettrineOnGridtrue#*
-\LettrineOnGridfalse#*
+\LettrineOnGridtrue#S
+\LettrineOnGridfalse#S
 \LettrineOptionsFor{letter}{options%keyvals}#*
 \ifLettrineRealHeight#*
-\LettrineRealHeightfalse#*
-\LettrineRealHeighttrue#*
+\LettrineRealHeightfalse#S
+\LettrineRealHeighttrue#S
 \LettrineSecondString#*
 \LettrineTestString#*
 \LettrineTextFont#*
 \LettrineWidth#*
+\ifLettrineMoveAtEOP#*
+\LettrineMoveAtEOPtrue#S
+\LettrineMoveAtEOPfalse#S
