@@ -3605,7 +3605,7 @@ void QDocumentLineHandle::drawBorders(QPainter *p, qreal yStart, qreal yEnd) con
 	if (d->hardLineWrap() || d->lineWidthConstraint()) {
 		QColor linescolor = QDocumentPrivate::m_formatScheme->format("background").linescolor;
 		if (!linescolor.isValid()) {
-			return;
+			linescolor = QColor("lightGray").rgb();
 		}
 		p->save();
 		p->setPen(linescolor);
