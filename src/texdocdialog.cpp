@@ -28,7 +28,11 @@ TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
 	connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
 	connect(help, SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
 	connect(ui->buttonCTAN, SIGNAL(clicked()), SLOT(openCtanUrl()));
+#if (QT_VERSION<QT_VERSION_CHECK(6,9,0))
 	connect(ui->cbShowAllPackages,&QCheckBox::stateChanged,this,&TexdocDialog::regenerateTable);
+#else
+	connect(ui->cbShowAllPackages,&QCheckBox::checkStateChanged,this,&TexdocDialog::regenerateTable);
+#endif
 }
 
 TexdocDialog::~TexdocDialog()
