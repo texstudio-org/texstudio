@@ -25,6 +25,7 @@
 #include "encoding.h"
 #include "latexparser/latexparser.h"
 #include <QtMath>
+#include <QOperatingSystemVersion>
 
 // returns the number of chars/columns from column to the next tab location
 // for a given tabstop periodicity
@@ -3605,7 +3606,11 @@ void QDocumentLineHandle::drawBorders(QPainter *p, qreal yStart, qreal yEnd) con
 	if (d->hardLineWrap() || d->lineWidthConstraint()) {
 		QColor linescolor = QDocumentPrivate::m_formatScheme->format("background").linescolor;
 		if (!linescolor.isValid()) {
-			linescolor = QColor("lightGray").rgb();
+			// workaround for windows10 only
+			if (QOperatingSystemVersion::currentType()==QOperatingSystemVersion(QOperatingSystemVersion::Windows, 10).type()
+				&& QOperatingSystemVersion::current().majorVersion()==10)
+				linescolor = QColor("lightGray").rgb();
+			else return;
 		}
 		p->save();
 		p->setPen(linescolor);
