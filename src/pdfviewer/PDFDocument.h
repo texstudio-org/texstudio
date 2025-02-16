@@ -553,8 +553,7 @@ signals:
 	void triggeredQuit();
 	void triggeredPlaceOnLeft();
 	void triggeredConfigure();
-	void triggeredEnlarge();
-	void triggeredShrink();
+	void triggeredEnlarge(bool);
 
 	void triggeredClone();
 

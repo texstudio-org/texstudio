@@ -1404,10 +1404,11 @@ void Texstudio::setupMenus()
         }
     }
 
-	act=newManagedAction(menu, "enlargePDF", tr("Show embedded PDF large"), SLOT(enlargeEmbeddedPDFViewer()));
-	act->setEnabled(false);
-	act=newManagedAction(menu, "shrinkPDF", tr("Show embedded PDF small"), SLOT(shrinkEmbeddedPDFViewer()));
-	act->setEnabled(false);
+	enlargePdfAction = newManagedAction(menu, "enlargePDF", tr("Show embedded PDF large"), nullptr);
+	connect(enlargePdfAction, SIGNAL(triggered(bool)), this, SLOT(toggleEnlargeEmbeddedPDFViewer(bool)));
+	enlargePdfAction->setCheckable(true);
+	enlargePdfAction->setChecked(false);
+	enlargePdfAction->setEnabled(false);
 	newManagedAction(menu, "closeelement", tr("Close Element"), SLOT(viewCloseElement()), Qt::Key_Escape);
 
 	menu->addSeparator();
@@ -6217,10 +6218,17 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 			viewer->setStateEnlarged(true);
             centralVSplitter->hide();
 		}
-		setEnabledMenusEnlargeShrink(viewer->embeddedMode && !configManager.viewerEnlarged, viewer->embeddedMode && configManager.viewerEnlarged);
-
 		if (preserveDuplicates) break;
 	}
+	bool foundEmbedded = false;
+	foreach (PDFDocument *viewer, PDFDocument::documentList()) {
+		if (viewer->embeddedMode) {
+			foundEmbedded = true;
+			break;
+		}
+	}
+	enlargePdfAction->setChecked(foundEmbedded && configManager.viewerEnlarged);
+	enlargePdfAction->setEnabled(foundEmbedded);
 #if defined Q_OS_MAC
 	if (embedded)
 		setMenuBar(configManager.menuParentsBar);
@@ -7742,8 +7750,9 @@ void Texstudio::pdfClosed()
 	PDFDocument *from = qobject_cast<PDFDocument *>(sender());
 	if (from) {
 		if (from->embeddedMode) {
-			setEnabledMenusEnlargeShrink(false, false);
-			shrinkEmbeddedPDFViewer(true);
+			toggleEnlargeEmbeddedPDFViewer(false, true);
+			enlargePdfAction->setChecked(false);
+			enlargePdfAction->setEnabled(false);
 			QList<int> sz = mainHSplitter->sizes(); // set widths to 50%, eventually restore user setting
 			int sum = 0;
 			int last = 0;
@@ -7780,8 +7789,7 @@ QObject *Texstudio::newPdfPreviewer(bool embedded)
 		mainHSplitter->setSizes(sz);
 	}
 	connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(helpAbout()));
-	connect(pdfviewerWindow, SIGNAL(triggeredEnlarge()), SLOT(enlargeEmbeddedPDFViewer()));
-	connect(pdfviewerWindow, SIGNAL(triggeredShrink()), SLOT(shrinkEmbeddedPDFViewer()));
+	connect(pdfviewerWindow, SIGNAL(triggeredEnlarge(bool)), SLOT(toggleEnlargeEmbeddedPDFViewer(bool)));
 	connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(userManualHelp()));
 	connect(pdfviewerWindow, SIGNAL(documentClosed()), SLOT(pdfClosed()));
 	connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
@@ -8253,7 +8261,7 @@ void Texstudio::gotoLine(LatexDocument *doc, int line, int col)
  */
 void Texstudio::gotoLine(QTreeWidgetItem *item, int)
 {
-    shrinkEmbeddedPDFViewer();
+    toggleEnlargeEmbeddedPDFViewer(false);
     StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
     if(!se){
         // sepcial treatment for doc header
@@ -8522,7 +8530,7 @@ void Texstudio::syncFromViewer(const QString &fileName, int line, bool activate,
 			w->setFocus();  // restore focus
 		if (!success) return;
 	}
-	shrinkEmbeddedPDFViewer();
+	toggleEnlargeEmbeddedPDFViewer(false);
 
 	QDocumentLine l = currentEditorView()->document->lineFromLineSnapshot(line);
 	if (l.isValid()) {
@@ -11364,64 +11372,57 @@ void Texstudio::closeEnvironment()
 
 
 /*!
- * \brief make embedded viewer larger so that it covers the text edit
+ * \brief toggle horizontal size of embedded viewer 
+ * enlarge embedded viewer to the left so that it covers the text edit or return back to normal size
  * If the viewer is not embedded, no action is performed.
- */
-void Texstudio::enlargeEmbeddedPDFViewer()
-{
-#ifndef NO_POPPLER_PREVIEW
-	QList<PDFDocument *> oldPDFs = PDFDocument::documentList();
-	if (oldPDFs.isEmpty())
-		return;
-	PDFDocument *viewer = oldPDFs.first();
-	if (!viewer->embeddedMode)
-		return;
-    centralVSplitter->hide();
-    configManager.viewerEnlarged = true;
-	PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
-	if(!enlargedViewer){
-		rememberFollowFromScroll=pdfConfig->followFromScroll;
-	}
-	enlargedViewer=true;
-	pdfConfig->followFromScroll=false;
-	viewer->setStateEnlarged(true);
-	setEnabledMenusEnlargeShrink(false, true);
-#endif
-}
-/*!
- * \brief set size of embedded viewer back to previous value
+ * \param stateEnlarged  if true switch to enlarged layout
  * \param preserveConfig note change in config
  */
-void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
+void Texstudio::toggleEnlargeEmbeddedPDFViewer(bool stateEnlarged, bool preserveConfig)
 {
 #ifndef NO_POPPLER_PREVIEW
-    centralVSplitter->show();
-    if (!preserveConfig)
-		configManager.viewerEnlarged = false;
 	QList<PDFDocument *> oldPDFs = PDFDocument::documentList();
-	if (oldPDFs.isEmpty())
-		return;
-	PDFDocument *viewer = oldPDFs.first();
-	if (!viewer->embeddedMode)
-		return;
-	if(enlargedViewer){
-		PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
-		pdfConfig->followFromScroll=rememberFollowFromScroll;
-		enlargedViewer=false;
+	PDFDocument *viewer;
+	bool foundEmbedded = false;
+	if (!oldPDFs.isEmpty()) {
+		foreach(viewer, oldPDFs) {
+			if (viewer->embeddedMode) {
+				foundEmbedded = true;
+				break;
+			}
+		}
 	}
-	viewer->setStateEnlarged(false);
-	setEnabledMenusEnlargeShrink(true, false);
+	if (stateEnlarged) {
+		if (!foundEmbedded)
+			return;
+		centralVSplitter->hide();
+		configManager.viewerEnlarged = true;
+		PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
+		if(!enlargedViewer){
+			rememberFollowFromScroll=pdfConfig->followFromScroll;
+		}
+		enlargedViewer=true;
+		pdfConfig->followFromScroll=false;
+		viewer->setStateEnlarged(true);
+		enlargePdfAction->setChecked(true);
+	}
+	else {
+		centralVSplitter->show();
+		if (!preserveConfig)
+			configManager.viewerEnlarged = false;
+		if (!foundEmbedded)
+			return;
+		if(enlargedViewer){
+			PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
+			pdfConfig->followFromScroll=rememberFollowFromScroll;
+			enlargedViewer=false;
+		}
+		viewer->setStateEnlarged(false);
+		enlargePdfAction->setChecked(false);
+	}
 #else
 	Q_UNUSED(preserveConfig)
 #endif
-}
-
-void Texstudio::setEnabledMenusEnlargeShrink(bool enabledEnlarge, bool enabledShrink)
-{
-	QAction *act=configManager.getManagedAction("main/view/enlargePDF");
-	act->setEnabled(enabledEnlarge);
-	act=configManager.getManagedAction("main/view/shrinkPDF");
-	act->setEnabled(enabledShrink);
 }
 
 void Texstudio::showStatusbar()

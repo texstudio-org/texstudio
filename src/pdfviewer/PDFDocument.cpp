@@ -3917,13 +3917,13 @@ void PDFDocument::jumpToPage()
 void PDFDocument::shrink()
 {
 	setStateEnlarged(false);
-	emit triggeredShrink();
+	emit triggeredEnlarge(false);
 }
 
 void PDFDocument::enlarge()
 {
 	setStateEnlarged(true);
-	emit triggeredEnlarge();
+	emit triggeredEnlarge(true);
 }
 
 void PDFDocument::setStateEnlarged(bool state)

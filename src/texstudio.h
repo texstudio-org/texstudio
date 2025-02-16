@@ -235,6 +235,7 @@ private:
 	LatexEditorView *getEditorViewFromHandle(const QDocumentLineHandle *dlh);
 
 	QAction *fullscreenModeAction;
+	QAction *enlargePdfAction;
 
 	int runningPDFCommands, runningPDFAsyncCommands;
 	QEditor *previewEditorPending; bool previewIsAutoCompiling;
@@ -558,9 +559,7 @@ protected slots:
 
 	void focusEditor();
 	void focusViewer();
-	void enlargeEmbeddedPDFViewer();
-	void shrinkEmbeddedPDFViewer(bool preserveConfig = false);
-	void setEnabledMenusEnlargeShrink(bool enabledEnlarge, bool enabledShrink);
+	void toggleEnlargeEmbeddedPDFViewer(bool stateEnlarged = false, bool preserveConfig = false);
 
 	void showStatusbar();
 	void viewCloseElement();
