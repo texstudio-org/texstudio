@@ -1,8 +1,8 @@
 # scaletextbullet package
-# Matthew Bertucci 2024/11/11 for v1.0.0
+# Matthew Bertucci 2025/02/16 for v2.0.0
 
-\SetTextBulletFactor{fp expr}
-\ScaleTextBullet{fp expr}
-\ScaleTextBullets{int expr}
-\ScaleTextBullets[fp expr]{int expr}
+\settextbulletfactor{fp expr}
+\scaletextbullet{fp expr}
+\scaletextbullets{int expr}
+\scaletextbullets[fp expr]{int expr}
 \scaletextbulletdebug
