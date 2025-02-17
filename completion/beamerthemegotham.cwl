@@ -1,8 +1,9 @@
 # gotham beamertheme
-# Matthew Bertucci 2024/11/14 for v1.2.0.a
+# Matthew Bertucci 2025/02/16 for v1.2.1.c
 
 \gothamset{options%keyvals}
 
+\gothamreset{arg}#*
 \mreducelistspacing#S
 
 # from color theme
@@ -43,7 +44,6 @@ colorTitlepage#B
 \gothamHookPostColorBGSet#*
 
 # from font theme
-#include:etoolbox
 #include:ifxetex
 #include:ifluatex
 \iffontsavailable{list of fonts}{true code}{false code}#S
@@ -56,8 +56,19 @@ colorTitlepage#B
 \partContentName#*
 \secContentName#*
 \subsecContentName#*
+\subsubsecContentName#*
 \sectionhoffset#*
 \gothamProgressSectionHeight#*
+\partpageOptions#*
+\sectionpageOptions#*
+\subsectionpageOptions#*
+\subsubsectionpageOptions#*
+\partpageTocOptions#*
+\sectionpageTocOptions#*
+\subsectionpageTocOptions#*
+\partTocOptions#*
+\sectionTocOptions#*
+\subsectionTocOptions#*
 
 # from outer theme
 \gothamInstituteLogoCircle#*
