@@ -1,5 +1,5 @@
 # systeme package
-# Matthew Bertucci 9/8/2021 for v0.34
+# Matthew Bertucci 2025/02/16 for v0.35
 
 #include:xstring
 
@@ -24,7 +24,6 @@
 \syssubstitute{%<symbol1%>%<symbol2%>%<{term1}{term2}...%>}#*
 \sysnosubstitute#*
 \+#*
-\SYSunder#S
 \SYSstyfile#S
 \SYSname#S
 \SYSver#S
