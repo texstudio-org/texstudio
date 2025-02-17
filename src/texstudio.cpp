@@ -6217,10 +6217,9 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 			viewer->setStateEnlarged(true);
             centralVSplitter->hide();
 		}
-		setEnabledMenusEnlargeShrink(viewer->embeddedMode && !configManager.viewerEnlarged, viewer->embeddedMode && configManager.viewerEnlarged);
-
 		if (preserveDuplicates) break;
 	}
+	setEnabledMenusEnlargeShrink(embedded && !configManager.viewerEnlarged, embedded && configManager.viewerEnlarged);
 #if defined Q_OS_MAC
 	if (embedded)
 		setMenuBar(configManager.menuParentsBar);
@@ -11371,10 +11370,15 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 {
 #ifndef NO_POPPLER_PREVIEW
 	QList<PDFDocument *> oldPDFs = PDFDocument::documentList();
-	if (oldPDFs.isEmpty())
-		return;
-	PDFDocument *viewer = oldPDFs.first();
-	if (!viewer->embeddedMode)
+	PDFDocument *viewer;
+	bool foundEmbedded = false;
+	foreach(viewer, oldPDFs) {
+		if (viewer->embeddedMode) {
+			foundEmbedded = true;
+			break;
+		}
+	}
+	if (!foundEmbedded)
 		return;
     centralVSplitter->hide();
     configManager.viewerEnlarged = true;
@@ -11399,10 +11403,15 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
     if (!preserveConfig)
 		configManager.viewerEnlarged = false;
 	QList<PDFDocument *> oldPDFs = PDFDocument::documentList();
-	if (oldPDFs.isEmpty())
-		return;
-	PDFDocument *viewer = oldPDFs.first();
-	if (!viewer->embeddedMode)
+	PDFDocument *viewer;
+	bool foundEmbedded = false;
+	foreach(viewer, oldPDFs) {
+		if (viewer->embeddedMode) {
+			foundEmbedded = true;
+			break;
+		}
+	}
+	if (!foundEmbedded)
 		return;
 	if(enlargedViewer){
 		PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
