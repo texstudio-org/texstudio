@@ -1,6 +1,5 @@
 # gregoriotex package
-# Matthew Bertucci 2022/05/07 for v6.0.0
-
+# Matthew Bertucci 2025/02/16 for v6.1.0-beta1
 #include:iftex
 #include:xcolor
 #include:luacolor
@@ -262,6 +261,25 @@ auto
 \grebeforeheaders{code}
 \GreEndHeaders#*
 \greafterheaders{code}
+\gresetoutputdir{directory}
+\gresetinitialposition{choice%keyvals}
+#keyvals:\gresetinitialposition
+firsttop
+firstbaseline
+lastbaseline
+lastbottom
+#endif
+\gresetinitialanchor{choice%keyvals}
+#keyvals:\gresetinitialanchor
+top
+baseline
+bottom
+#endif
+\gresetunisonbreakbehavior{choice%keyvals}
+#keyvals:\gresetunisonbreakbehavior
+breakable
+unbreakable
+#endif
 
 # from gregoriotex-common.tex
 # no user commands
@@ -479,6 +497,14 @@ normal
 #endkeyvals
 \GreCavum{glyph name}#*
 \GreBracket{0 or 1}{lowest height}{highest height}{info string}#*
+\gresetalterationeffect{effect%keyvals}
+#keyvals:\gresetalterationeffect
+line
+note
+#endkeyvals
+\GreFlatSoft{height}{0 or 1}{before code}{after code}{info string}#*
+\GreNaturalSoft{height}{0 or 1}{before code}{after code}{info string}#*
+\GreSharpSoft{height}{0 or 1}{before code}{after code}{info string}#*
 
 # from gregoriotex-syllable.tex
 \gresetpointandclick{choice%keyvals}
