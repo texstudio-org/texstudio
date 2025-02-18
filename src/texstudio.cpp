@@ -6217,10 +6217,9 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 			viewer->setStateEnlarged(true);
             centralVSplitter->hide();
 		}
-		setEnabledMenusEnlargeShrink(viewer->embeddedMode && !configManager.viewerEnlarged, viewer->embeddedMode && configManager.viewerEnlarged);
-
 		if (preserveDuplicates) break;
 	}
+	setEnabledMenusEnlargeShrink(embedded && !configManager.viewerEnlarged, embedded && configManager.viewerEnlarged);
 #if defined Q_OS_MAC
 	if (embedded)
 		setMenuBar(configManager.menuParentsBar);
