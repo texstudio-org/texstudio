@@ -551,7 +551,7 @@ debug={%<options%>}
 \stockheight#*L
 \stockwidth#*L
 
-# pdftex 2025-01-25
+# pdftex 2025-02-18 for v1.40.27
 \efcode#*
 \expanded#*
 \ifincsname#*
@@ -697,6 +697,7 @@ debug={%<options%>}
 \pdfunescapehex{string}#*
 \pdfuniformdeviate#*
 \pdfuniqueresname#*
+\pdfuseptexunderscore#*
 \pdfvorigin#*
 \pdfxform#*
 \pdfxformname#*
