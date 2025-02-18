@@ -4,7 +4,6 @@
 - add "Start Column" (sets column of first page, same as Shift+Click) to Grid menu of pdf-viewer's context menu [#3974](https://github.com/texstudio-org/texstudio/pull/3974)
 - add preview with default compiler option [#3978](https://github.com/texstudio-org/texstudio/pull/3978)
 - shrink embedded pdf-viewer when an item of the Structure or TOC tree view is selected [#3989](https://github.com/texstudio-org/texstudio/pull/3989)
-- fix enlarge/shrink not available when windowed and embedded pdf-viewer exist [#3994](https://github.com/texstudio-org/texstudio/pull/3994)
 
 ## TeXstudio 4.8.6
 

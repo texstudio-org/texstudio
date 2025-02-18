@@ -11370,15 +11370,10 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 {
 #ifndef NO_POPPLER_PREVIEW
 	QList<PDFDocument *> oldPDFs = PDFDocument::documentList();
-	PDFDocument *viewer;
-	bool foundEmbedded = false;
-	foreach(viewer, oldPDFs) {
-		if (viewer->embeddedMode) {
-			foundEmbedded = true;
-			break;
-		}
-	}
-	if (!foundEmbedded)
+	if (oldPDFs.isEmpty())
+		return;
+	PDFDocument *viewer = oldPDFs.first();
+	if (!viewer->embeddedMode)
 		return;
     centralVSplitter->hide();
     configManager.viewerEnlarged = true;
@@ -11403,15 +11398,10 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
     if (!preserveConfig)
 		configManager.viewerEnlarged = false;
 	QList<PDFDocument *> oldPDFs = PDFDocument::documentList();
-	PDFDocument *viewer;
-	bool foundEmbedded = false;
-	foreach(viewer, oldPDFs) {
-		if (viewer->embeddedMode) {
-			foundEmbedded = true;
-			break;
-		}
-	}
-	if (!foundEmbedded)
+	if (oldPDFs.isEmpty())
+		return;
+	PDFDocument *viewer = oldPDFs.first();
+	if (!viewer->embeddedMode)
 		return;
 	if(enlargedViewer){
 		PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
