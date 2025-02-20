@@ -49,21 +49,4 @@ style verso outer=%<code%>
 style verso inner=%<code%>
 style right between=%<code%>
 style left between=%<code%>
-
 #endkeyvals
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
