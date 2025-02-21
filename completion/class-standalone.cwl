@@ -1,5 +1,5 @@
 # standalone class
-# Matthew Bertucci 3/26/2022 for v1.3a
+# Matthew Bertucci 2025/02/21 for v1.5
 
 #include:ifluatex
 #include:ifpdf
@@ -16,6 +16,8 @@ class=%<class name%>
 convert#true,false
 convert={%<conversion options%>}
 crop#true,false
+emf#true,false
+emf={%<conversion options%>}
 float#true,false
 float#true,false
 gif#true,false
@@ -33,6 +35,8 @@ png#true,false
 png={%<conversion options%>}
 preview#true,false
 pstricks#true,false
+svg#true,false
+svg={%<conversion options%>}
 tikz#true,false
 varwidth#true,false
 varwidth=##L
