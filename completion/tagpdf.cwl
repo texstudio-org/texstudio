@@ -1,11 +1,9 @@
 # tagpdf package
-# Matthew Bertucci 2024/12/21 for v0.99k
+# Matthew Bertucci 2025/02/18 for v0.99m
 
 #include:pdfmanagement-testphase
 
 #keyvals:\usepackage/tagpdf#c
-luamode
-genericmode
 disabledelayedshipout
 #endkeyvals
 
@@ -95,6 +93,7 @@ texsource=%<text%>
 lang=%<lang id%>
 ref=%<label1,label2,...%>}
 E=%<text%>
+phoneme=%<IPA text%>
 #endkeyvals
 
 \tagstructend

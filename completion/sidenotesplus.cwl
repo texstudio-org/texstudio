@@ -1,5 +1,5 @@
 # sidenotesplus package
-# Matthew Bertucci 2023/10/05 for v1.03
+# Matthew Bertucci 2025/02/19 for v1.05
 
 #include:marginnote
 #include:caption
@@ -21,6 +21,7 @@ Ragged
 classic
 sepdiff=##L
 alerton
+per=#page,section,chapter,none
 #endkeyvals
 
 #ifOption:Ragged

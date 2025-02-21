@@ -1339,6 +1339,7 @@
 <file>completion/easy-todo.cwl</file>
 <file>completion/easyvector.cwl</file>
 <file>completion/ebgaramond.cwl</file>
+<file>completion/ebgaramond-maths.cwl</file>
 <file>completion/ebook.cwl</file>
 <file>completion/ebproof.cwl</file>
 <file>completion/eco.cwl</file>
@@ -1866,6 +1867,7 @@
 <file>completion/highlightx.cwl</file>
 <file>completion/HindMadurai.cwl</file>
 <file>completion/hitex.cwl</file>
+<file>completion/hittype.cwl</file>
 <file>completion/hlist.cwl</file>
 <file>completion/hmtrump.cwl</file>
 <file>completion/hnja2hngl.cwl</file>
@@ -2337,6 +2339,7 @@
 <file>completion/manyind.cwl</file>
 <file>completion/marathi.cwl</file>
 <file>completion/marcellus.cwl</file>
+<file>completion/marginalia.cwl</file>
 <file>completion/marginfix.cwl</file>
 <file>completion/marginnote.cwl</file>
 <file>completion/markdown.cwl</file>
@@ -2768,6 +2771,7 @@
 <file>completion/pdfsync.cwl</file>
 <file>completion/pdftexcmds.cwl</file>
 <file>completion/pdfx.cwl</file>
+<file>completion/pegmatch.cwl</file>
 <file>completion/penlight.cwl</file>
 <file>completion/penlightplus.cwl</file>
 <file>completion/perfectcut.cwl</file>
@@ -3883,6 +3887,7 @@
 <file>completion/tikzviolinplots.cwl</file>
 <file>completion/tile-graphic.cwl</file>
 <file>completion/time.cwl</file>
+<file>completion/timechart.cwl</file>
 <file>completion/timing-diagrams.cwl</file>
 <file>completion/tinos.cwl</file>
 <file>completion/tipa.cwl</file>

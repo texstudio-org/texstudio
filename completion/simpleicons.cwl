@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/02/09 for v14.5.0
+# Matthew Bertucci 2025/02/16 for v14.6.0
 
 #include:iftex
 
@@ -563,6 +563,7 @@ clubhouse
 clyp
 cmake
 cncf
+cnes
 cnet
 cnn
 cocacola
@@ -1742,6 +1743,7 @@ mclaren
 mdbook
 mdnwebdocs
 mdx
+mealie
 mediafire
 mediamarkt
 mediapipe

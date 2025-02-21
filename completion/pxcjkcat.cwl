@@ -1,5 +1,5 @@
 # pxcjkcat package
-# Matthew Bertucci 2022/07/22 for v1.4
+# Matthew Bertucci 2025/02/19 for v1.6
 
 #include:uplatex
 #include:keyval
@@ -9,6 +9,7 @@ ccv1
 ccv2
 ccv3
 ccv4
+ccv5
 ccv+
 real
 nomode

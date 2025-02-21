@@ -1,5 +1,5 @@
 # exam-zh-question package
-# Matthew Bertucci 2024/02/13 for v0.2.1
+# Matthew Bertucci 2025/02/19 for v0.2.5
 
 #include:amsthm
 #include:tcolorbox
@@ -56,10 +56,12 @@ fillin/paren-type=#banjiao,quanjiao
 fillin/depth=##L
 solution={%<键值列表%>}
 solution/show-solution=#hide,show-stay,show-move
+solution/pre-analysis=%<content%>
 solution/parbreak#true,false
 solution/show-qed#true,false
 solution/qedsymbol=%<symbol%>
 solution/label-content=%<content%>
+solution/label-indentation#true,false
 solution/label-punct=%<punct%>
 solution/score-pre-content=%<content%>
 solution/score-post-content=%<content%>
