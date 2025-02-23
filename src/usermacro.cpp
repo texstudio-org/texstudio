@@ -192,6 +192,7 @@ QString Macro::typedTag() const
     case Snippet: return tag;
     case Environment: return "%" + tag;
     case Script: return "%SCRIPT\n" + tag;
+    case AIQuery: return "%AIQUERY\n" + tag;
 	default:
 		qDebug() << "unknown macro type" << type;
 	}
@@ -223,6 +224,9 @@ QString Macro::parseTypedTag(QString typedTag, Macro::Type &retType)
 	if (typedTag.startsWith("%SCRIPT\n")) {
 		retType = Script;
 		return typedTag.mid(8);
+    } else if (typedTag.startsWith("%AIQUERY\n")){
+        retType = AIQuery;
+        return typedTag.mid(9);
 	} else if (typedTag.startsWith('%') && (typedTag.length() == 1 || typedTag.at(1).isLetter())) {
 		// Note: while % is an empty environemnt, reserved sequences like %%, %<, %| are snippets.
 		retType = Environment;
@@ -298,7 +302,11 @@ bool Macro::save(const QString &fileName) const {
     QJsonObject dd;
     dd.insert("formatVersion",2);
     dd.insert("name",name);
-    dd.insert("type", ( type==Script ? "Script" : ( type==Environment ? "Environment" : "Snippet" ) ) );
+    QString typeName=( type==Script ? "Script" : ( type==Environment ? "Environment" : "Snippet" ) );
+    if(type==AIQuery){
+        typeName="AIQuery";
+    }
+    dd.insert("type", typeName );
     dd.insert("tag",QJsonArray::fromStringList(tag.split("\n")));
     dd.insert("description",QJsonArray::fromStringList(description.split("\n")));
     dd.insert("abbrev",abbrev);
@@ -372,6 +380,9 @@ bool Macro::loadFromText(const QString &text)
       case 2: {
         QString qtype = rawData.value("type");
         typ = ( qtype=="Script" ? Script : ( qtype=="Environment" ? Environment : Snippet ) );
+        if(qtype=="AIQuery"){
+            typ=AIQuery;
+        }
         tag = rawData.value("tag");
         break;
       }

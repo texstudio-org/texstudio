@@ -57,6 +57,7 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(ui.radioButtonNormal, SIGNAL(clicked()), SLOT(changeType()));
 	connect(ui.radioButtonEnvironment, SIGNAL(clicked()), SLOT(changeType()));
 	connect(ui.radioButtonScript, SIGNAL(clicked()), SLOT(changeType()));
+    connect(ui.radioButtonAIQuery, SIGNAL(clicked()), SLOT(changeType()));
 
 	//editor options
 	ui.tagEdit->setLayout(new QVBoxLayout());
@@ -312,6 +313,9 @@ void UserMenuDialog::setLanguageFromType(QTreeWidgetItem *current)
 		} else if (m.type==Macro::Environment) {
 			languages->setLanguage(codeedit->editor(), "Plain text");
 			ui.radioButtonEnvironment->setChecked(true);
+        } else if (m.type==Macro::AIQuery) {
+            languages->setLanguage(codeedit->editor(), "Plain text");
+            ui.radioButtonAIQuery->setChecked(true);
 		} else {
 			languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
 			ui.radioButtonNormal->setChecked(true);
@@ -500,6 +504,10 @@ void UserMenuDialog::changeType()
         }
         else if (ui.radioButtonEnvironment->isChecked()) {
             m.setType(Macro::Environment);
+            languages->setLanguage(codeedit->editor(), "Plain text");
+        }
+        else if (ui.radioButtonAIQuery->isChecked()) {
+            m.setType(Macro::AIQuery);
             languages->setLanguage(codeedit->editor(), "Plain text");
         }
         else if (ui.radioButtonScript->isChecked()) {

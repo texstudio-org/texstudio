@@ -421,6 +421,13 @@ p, li { white-space: pre-wrap; }
          </item>
          <item>
           <widget class="QRadioButton" name="radioButtonScript">
+           <property name="text">
+            <string>Script</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButtonAIQuery">
            <property name="sizePolicy">
             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -428,7 +435,7 @@ p, li { white-space: pre-wrap; }
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Script</string>
+            <string>AI Query</string>
            </property>
           </widget>
          </item>
@@ -615,6 +622,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>radioButtonNormal</tabstop>
   <tabstop>radioButtonEnvironment</tabstop>
   <tabstop>radioButtonScript</tabstop>
+  <tabstop>radioButtonAIQuery</tabstop>
   <tabstop>pushButtonAdd</tabstop>
   <tabstop>pushButtonAddFolder</tabstop>
   <tabstop>pushButtonRemove</tabstop>

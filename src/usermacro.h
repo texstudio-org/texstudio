@@ -17,7 +17,7 @@ public:
 	                      ST_FILE_SAVED = 0x40, ST_FILE_CLOSED = 0x80, ST_MASTER_CHANGED = 0x100,
 	                      ST_AFTER_TYPESET = 0x200, ST_AFTER_COMMAND_RUN = 0x400
 	                    };
-	enum Type { Snippet, Environment, Script };
+    enum Type { Snippet, Environment, Script, AIQuery };
 
 	Q_DECLARE_FLAGS(SpecialTriggers, SpecialTrigger)
 	Macro();
