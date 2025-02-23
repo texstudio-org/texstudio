@@ -282,8 +282,16 @@ void AIChatAssistant::slotInsert()
             }
         }
     }else{
-        // insert whole text
-        emit insertText(m_response);
+        // check if text=""" ... """ is repeated
+        // this is used to manipulate selected text
+        if(m_response.startsWith("text=\"\"\"")){
+            int l=m_response.indexOf("\"\"\"",8); // find second delimiter
+            m_response=m_response.mid(8,l-8);
+            emit insertText(m_response);
+        }else{
+            // insert whole text
+            emit insertText(m_response);
+        }
     }
 }
 /*!
