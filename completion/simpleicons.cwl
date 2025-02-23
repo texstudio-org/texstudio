@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/02/16 for v14.6.0
+# Matthew Bertucci 2025/02/23 for v14.7.0
 
 #include:iftex
 
@@ -3211,6 +3211,7 @@ xrp
 xsplit
 xstate
 xubuntu
+xyflow
 yabai
 yale
 yamahacorporation
