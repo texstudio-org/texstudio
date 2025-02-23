@@ -1,5 +1,5 @@
 # citation-style-language package
-# Matthew Bertucci 2024/11/18 for v0.6.6
+# Matthew Bertucci 2025/02/23 for v0.7.0
 
 #include:filehook
 #include:url
@@ -23,7 +23,11 @@ suffix-separator=%<separator%>
 #endkeyvals
 
 \addbibresource{bib file}
-\addbibresource[options]{bib file}#S
+\addbibresource[options%keyvals]{bib file}
+
+#keyvals:\addbibresource
+journal-abbreviation#true,false
+#endkeyvals
 
 \cite[options%keyvals]{keylist}
 \cite*[options%keyvals]{keylist}
