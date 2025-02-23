@@ -17,7 +17,9 @@ public:
     ~AIChatAssistant() override;
 
     void setSelectedText(QString text);
+    void setQueryText(const QString &text);
     void clearConversation();
+    void executeQuery();
 
 signals:
     void insertText(QString text);

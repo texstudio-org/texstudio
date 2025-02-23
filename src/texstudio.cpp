@@ -5576,7 +5576,7 @@ void Texstudio::quickMath()
 #endif
 }
 
-void Texstudio::aiChat()
+void Texstudio::aiChat(const QString queryText)
 {
     if(configManager.ai_apikey.isEmpty() && configManager.ai_provider<2){
         // message box for now, only for external ai provider
@@ -5598,7 +5598,14 @@ void Texstudio::aiChat()
         }
     }
     aiChatDlg->clearConversation();
+    if(!queryText.isEmpty()){
+        aiChatDlg->setQueryText(queryText);
+    }
     aiChatDlg->show();
+    if(!queryText.isEmpty()){
+        // in case of preset query, execute query
+        aiChatDlg->executeQuery();
+    }
 }
 
 void Texstudio::quickTabbing()
@@ -5780,6 +5787,9 @@ void Texstudio::execMacro(const Macro &m, const MacroExecContext &context, bool 
 {
 	if (m.type == Macro::Script) {
 		runScript(m.script(), context, allowWrite);
+    } else if (m.type == Macro::AIQuery) {
+        // perform ai query
+        aiChat(m.snippet());
 	} else {
 		if (currentEditorView()) {
 			currentEditorView()->insertSnippet(m.snippet());

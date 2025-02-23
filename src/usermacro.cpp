@@ -156,6 +156,8 @@ QString Macro::snippet() const
 		return tag;
 	else if (type == Environment)
 		return "\\begin{" + tag + "}";
+    else if (type == AIQuery)
+        return tag;
 	return QString();
 }
 

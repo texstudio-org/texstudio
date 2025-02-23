@@ -109,6 +109,15 @@ void AIChatAssistant::setSelectedText(QString text)
     m_selectedText=text;
 }
 /*!
+ * \brief preset query text
+ * This comes typically from a macro
+ * \param text
+ */
+void AIChatAssistant::setQueryText(const QString &text)
+{
+    leEntry->setText(text);
+}
+/*!
  * \brief start a new conversation
  */
 void AIChatAssistant::clearConversation()
@@ -123,6 +132,14 @@ void AIChatAssistant::clearConversation()
     // append new filename to list of conversations
     AIQueryStorageModel *model=dynamic_cast<AIQueryStorageModel *>(treeView->model());
     model->addFileName(fileName);
+}
+/*!
+ * \brief execute query from outer level
+ * This is used when macros are involved
+ */
+void AIChatAssistant::executeQuery()
+{
+    slotSend();
 }
 /*!
  * \brief send question to ai provider
@@ -284,9 +301,10 @@ void AIChatAssistant::slotInsert()
     }else{
         // check if text=""" ... """ is repeated
         // this is used to manipulate selected text
-        if(m_response.startsWith("text=\"\"\"")){
-            int l=m_response.indexOf("\"\"\"",8); // find second delimiter
-            m_response=m_response.mid(8,l-8);
+        const int i=m_response.indexOf("text=\"\"\"");
+        if(i>=0){
+            int l=m_response.indexOf("\"\"\"",i+8); // find second delimiter
+            m_response=m_response.mid(i+8,l-8-i);
             emit insertText(m_response);
         }else{
             // insert whole text
