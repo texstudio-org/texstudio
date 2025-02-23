@@ -1359,7 +1359,7 @@ void Texstudio::setupMenus()
 	act->trigger(); // initialize menu for specified type
 
 	//  User
-        newManagedMenu("main/macros", tr("Ma&cros"));
+    newManagedMenu("main/macros", tr("Ma&cros"));
 	updateUserMacros();
 	scriptengine::macros = &configManager.completerConfig->userMacros;
 
