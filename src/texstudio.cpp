@@ -5567,7 +5567,6 @@ void Texstudio::quickGraphics(const QString &graphicsFile)
 
 	delete graphicsDlg;
 }
-
 void Texstudio::quickMath()
 {
 #ifdef Q_OS_WIN
