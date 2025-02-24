@@ -521,6 +521,11 @@ inserted as:</p>
 </pre></div>
 </div>
 </section>
+<section id="ai-queries">
+<h3>AI queries<a class="headerlink" href="#ai-queries" title="Link to this heading">#</a></h3>
+<p>These queries are sent to the ai chat assistant, see <a class="reference internal" href="#ai-chat-assistant">here</a>. This allows to regular use standard request like <code class="docutils literal notranslate"><span class="pre">shorten</span> <span class="pre">text</span></code>.
+The query is directly executed, the result is shown on the chat assistant dialog, so that the user can decide to use or ignore it.</p>
+</section>
 <section id="script-macros">
 <h3>Script Macros<a class="headerlink" href="#script-macros" title="Link to this heading">#</a></h3>
 <p>Instead of using code snippets, you can also make use of scripting with
@@ -916,37 +921,40 @@ menus</p></li>
 <tr class="row-even"><td><p>app.simulateKeyPress(shortcut)</p></td>
 <td><p>Trigger a KeyPress event for the given shortcut, e.g. <code class="docutils literal notranslate"><span class="pre">app.simulateKeyPress(&quot;Shift+Up&quot;)</span></code>. <em>Note</em>: this is mainly intended for shortcuts and navigation. Currently, it does not support all functions of a KeyPress event. In particular, you cannot type any text.</p></td>
 </tr>
-<tr class="row-odd"><td><p>new UniversalInputDialog()</p></td>
+<tr class="row-odd"><td><p>app.aiChat(query)</p></td>
+<td><p>start the ai chat assistant. If query is not empty, query is executed and the result is shown in the chat assistant, like ai query macros, see <a class="reference internal" href="#ai-queries">macro</a></p></td>
+</tr>
+<tr class="row-even"><td><p>new UniversalInputDialog()</p></td>
 <td><p>Creates a new dialog</p></td>
 </tr>
-<tr class="row-even"><td><p>dialog.add(defaultValue, [description, [id]])</p></td>
+<tr class="row-odd"><td><p>dialog.add(defaultValue, [description, [id]])</p></td>
 <td><p>Adds a new variable with the given default value, optional description and id to the dialog; and returns the corresponding qt component. A string default value becomes a QLineEdit, a number a QSpinBox and an array a QComboBox.</p></td>
 </tr>
-<tr class="row-odd"><td><p>dialog.get(nr/id)</p></td>
+<tr class="row-even"><td><p>dialog.get(nr/id)</p></td>
 <td><p>Returns the current value of the nr-th added variable or the variable with a certain id.</p></td>
 </tr>
-<tr class="row-even"><td><p>dialog.getAll()</p></td>
+<tr class="row-odd"><td><p>dialog.getAll()</p></td>
 <td><p>Returns the value of all variables as combined numerical/associative array. You can use returnvalue[i] to get the i-th variable, and returnvalue.id to get the variable with a certain id.</p></td>
 </tr>
-<tr class="row-odd"><td><p>dialog.exec()</p></td>
+<tr class="row-even"><td><p>dialog.exec()</p></td>
 <td><p>Displays the dialog. Returns 1 if the user accepted the dialog, 0 if it was canceled.</p></td>
 </tr>
-<tr class="row-even"><td><p>dialog.show()</p></td>
+<tr class="row-odd"><td><p>dialog.show()</p></td>
 <td><p>Displays the dialog asynchronously.</p></td>
 </tr>
-<tr class="row-odd"><td><p><s>UniversalInputDialog([[defaultValue_0, description_0, id_0],[defaultValue_1, description_1, id_1], …])</s></p></td>
+<tr class="row-even"><td><p><s>UniversalInputDialog([[defaultValue_0, description_0, id_0],[defaultValue_1, description_1, id_1], …])</s></p></td>
 <td><p>Not working in txs 4.0.0. <s>Short form: Creates a new dialog, adds all variables of the array and call exec on it.</s></p></td>
 </tr>
-<tr class="row-even"><td><p>fileChooser.exec()</p></td>
+<tr class="row-odd"><td><p>fileChooser.exec()</p></td>
 <td><p>show dialog and wait until it is closed again</p></td>
 </tr>
-<tr class="row-odd"><td><p>fileChooser.setDir(dir)</p></td>
+<tr class="row-even"><td><p>fileChooser.setDir(dir)</p></td>
 <td><p>set directory in the dialog to <em>dir</em></p></td>
 </tr>
-<tr class="row-even"><td><p>fileChooser.setFilter(filter)</p></td>
+<tr class="row-odd"><td><p>fileChooser.setFilter(filter)</p></td>
 <td><p>set file filter to <em>filter</em>, using the QT-format, see above</p></td>
 </tr>
-<tr class="row-odd"><td><p>fileChooser.fileName()</p></td>
+<tr class="row-even"><td><p>fileChooser.fileName()</p></td>
 <td><p>return selected filename (after exec)</p></td>
 </tr>
 </tbody>
@@ -1241,6 +1249,7 @@ to html” tool.</p>
 <li><a class="reference internal" href="#personal-macros">Personal macros</a><ul>
 <li><a class="reference internal" href="#text-macros">Text macros</a></li>
 <li><a class="reference internal" href="#environment-macros">Environment macros</a></li>
+<li><a class="reference internal" href="#ai-queries">AI queries</a></li>
 <li><a class="reference internal" href="#script-macros">Script Macros</a></li>
 <li><a class="reference internal" href="#triggers">Triggers</a><ul>
 <li><a class="reference internal" href="#regular-expressions">Regular Expressions</a></li>

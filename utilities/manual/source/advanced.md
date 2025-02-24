@@ -356,6 +356,10 @@ inserted as:
 
 \end{environment}
 ```
+### AI queries
+
+These queries are sent to the ai chat assistant, see [here](#ai-chat-assistant). This allows to regular use standard request like `shorten text`.
+The query is directly executed, the result is shown on the chat assistant dialog, so that the user can decide to use or ignore it.
 
 ### Script Macros
 
@@ -502,6 +506,7 @@ The following table gives an overview on the provided commands.
 | app.createUIFromString(string, \[parent\]) | Creates a QWidget\* described in the string |
 | app.slowOperationStarted()/slowOperationEnded() | Notify txs about the start/end of a slow operation to temporary disable the endless loop detection. |
 | app.simulateKeyPress(shortcut) | Trigger a KeyPress event for the given shortcut, e.g. `app.simulateKeyPress("Shift+Up")`. *Note*: this is mainly intended for shortcuts and navigation. Currently, it does not support all functions of a KeyPress event. In particular, you cannot type any text. |
+| app.aiChat(query) | start the ai chat assistant. If query is not empty, query is executed and the result is shown in the chat assistant, like ai query macros, see [macro](#ai-queries) |
 | new UniversalInputDialog() | Creates a new dialog |
 | dialog.add(defaultValue, \[description, \[id\]\]) | Adds a new variable with the given default value, optional description and id to the dialog; and returns the corresponding qt component. A string default value becomes a QLineEdit, a number a QSpinBox and an array a QComboBox. |
 | dialog.get(nr/id) | Returns the current value of the nr-th added variable or the variable with a certain id. |
