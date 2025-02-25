@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2025/02/24 for v1.2.0
+# Matthew Bertucci 2025/02/25 for v1.2.1
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -64,6 +64,7 @@ code after=%<code%>
 
 #keyvals:\JSONParseKeys,\JSONParseValue,\JSONParseArrayCount,\JSONParseArrayMapInline
 store in=%<token variable%>
+global#true,false
 #endkeyvals
 
 # expl3 interface
@@ -85,6 +86,9 @@ store in=%<token variable%>
 \jsonparse_parse_to_prop:Nn %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_parse_to_prop:Ne %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_parse_to_prop:No %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_parse_to_prop_local:Nn %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_parse_to_prop_local:Ne %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_parse_to_prop_local:No %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_put_right_rescan:Nn %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_put_right_rescan:Ne %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_rescan:n {%<⟨JSON value⟩%>}#/%expl3
