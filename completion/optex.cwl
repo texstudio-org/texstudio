@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2024/12/13 for v1.16
+# Matthew Bertucci 2025/02/25 for v1.17
 
 #include:plaintex
 #include:luatex
@@ -378,6 +378,7 @@
 \OpTeX
 \LaTeX
 \LuaTeX
+\LuaHBTeX
 \XeTeX
 \lastpage
 \totalpages
@@ -718,6 +719,7 @@
 \mathclap{formula}#*
 \mathrlap{formula}#*
 \mathllap{formula}#*
+\mathselector{command}{fontspecA}{fontspecB}{factor}{features}#d
 \mathsetup{options%keyvals}#*
 #keyvals:\mathsetup
 dots
@@ -742,6 +744,7 @@ enablefic
 
 # availability depends on font
 \Adventor#S
+\Alegreya#S
 \alter#S
 \angular#S
 \Baskervald#S
@@ -878,6 +881,7 @@ enablefic
 \pdflastypos
 \pdflinkmargin
 \pdfliteral{literal}
+\pdfmajorversion
 \pdfmapfile{file}
 \pdfmapline{map spec}
 \pdfminorversion
