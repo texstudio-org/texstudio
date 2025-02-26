@@ -1,7 +1,7 @@
 # tkz-elements package
-# Matthew Bertucci 2025/02/24 for v3.30c
+# Matthew Bertucci 2025/02/26 for v3.32c
 
-#include:luacode
+#include:unicode-math
 
 \tkzGetNodes
 \tkzUseLua{variable}
