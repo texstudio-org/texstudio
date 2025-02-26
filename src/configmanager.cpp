@@ -3732,6 +3732,21 @@ QVariant ConfigManager::getOption(const QString &name, const QVariant &defaultVa
 		return option->valueToQVariant();
 	return persistentConfig->value(rname, defaultValue);
 }
+/*!
+ * \brief return default value for given managed property
+ * \param name
+ * \return
+ */
+QVariant ConfigManager::getDefault(const QString &name) const
+{
+    REQUIRE_RET(persistentConfig, QVariant());
+    QString rname = name.startsWith("/") ? name.mid(1) : ("texmaker/" + name);
+    const ManagedProperty *option = nullptr;
+    if (rname.startsWith("texmaker/") && (option = getManagedProperty(rname.mid(9)))){
+        return option->def;
+    }
+    return QVariant();
+}
 
 bool ConfigManager::existsOption(const QString &name) const
 {

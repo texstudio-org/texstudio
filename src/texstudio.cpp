@@ -1508,6 +1508,7 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "checkinstall", tr("Check LaTeX Installation"), SLOT(checkLatexInstall()));
 	newManagedAction(menu, "checkcwls", tr("Check Active Completion Files"), SLOT(checkCWLs()));
     newManagedAction(menu, "checklt", tr("Check LanguageTool"), SLOT(checkLanguageTool()));
+    newManagedAction(menu, "showsettings", tr("Show settings"), SLOT(showSettings()));
 	newManagedAction(menu, "bugreport", tr("Bugs Report/Feature Request"), SLOT(openBugsAndFeatures()));
 	newManagedAction(menu, "appinfo", tr("About TeXstudio..."), SLOT(helpAbout()), 0, APPICON)->setMenuRole(QAction::AboutRole);
 
@@ -4777,6 +4778,55 @@ void Texstudio::restoreDefaultSettings()
 		}
 		qApp->exit(0);
 	}
+}
+
+void Texstudio::showSettings()
+{
+    QFile f(configManager.configFileName);
+    if (f.exists()) {
+        LatexEditorView *edView=load(f.fileName());
+        const QString fn=QDir::tempPath() + QDir::separator()+"texstudio_settings.txt";
+
+        fileSaveAs(fn,true); // rename to avoid accidental overwrite
+        // blank some sensitive info
+        QString completeText=edView->document->text();
+        completeText=completeText.replace(QRegularExpression("AIchat\\\\APIKEY=.+"),"AIchat\\APIKEY=...");
+        // filter out default values
+        QStringList lines=completeText.split("\n");
+        completeText.clear();
+        bool texmakerRegion=false;
+        for(QString &line:lines){
+            if(line=="[texmaker]"){
+                texmakerRegion=true;
+                completeText+=line+"\n";
+                continue;
+            } else if(line.startsWith("[")){
+                texmakerRegion=false;
+            }
+            if(!texmakerRegion) continue;
+            QString key=line.section('=',0,0);
+            key=key.replace("\\","/");
+            key=key.replace("%20"," ");
+            // skip some keys
+            const QStringList skipKeys={"Tools/","qttwp","MainWindow","Preview","Geometries","InsertGraphics","Files"};
+            bool skip=false;
+            for(const QString &skipKey:skipKeys){
+                if(key.startsWith(skipKey)){
+                    skip=true;
+                    break;
+                }
+            }
+            if(skip) continue;
+            QVariant def=configManager.getDefault(key);
+            QVariant val=configManager.getOption(key);
+            if(def!=val){
+                completeText+=line+"\n";
+            }
+        }
+        edView->document->setText(completeText,false);
+    } else {
+        UtilsUi::txsWarning(tr("Settings file does not exist"));
+    }
 }
 
 ////////////////// STRUCTURE ///////////////////

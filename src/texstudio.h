@@ -410,6 +410,7 @@ private slots:
 	void readSettings(bool reread = false); ///< read configured/default settings from ini
 	void saveSettings(const QString &configName = ""); ///< save all setting to ini
 	void restoreDefaultSettings(); ///< restore default settings, removing all changed values
+    void showSettings(); ///< show settings ini in editor for bug reporting
 
 protected slots:
 	void showMarkTooltipForLogMessage(QList<int> errors);
