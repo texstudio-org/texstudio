@@ -1,13 +1,8 @@
 # spreadtab package
-# Matthew Bertucci 10/25/2021 for v0.5
+# Matthew Bertucci 2025/02/27 for v0.6
 
 #include:xstring
-#include:fp
-
-#keyvals:\usepackage/spreadtab#c
-fp
-xfp
-#endkeyvals
+#include:simplekv
 
 \begin{spreadtab}{{envname}{preamble}}#\array
 \end{spreadtab}
@@ -49,27 +44,9 @@ text
 code
 #endkeyvals
 
-\STusefp#*
-\STusexfp#*
 \STtextcell#*
-\STnumericfieldmarker#*
 \STtransposecar#*
 \STprintnum{arg}#*
-\STeval{variable%cmd}{expression}#*d
-\STround{variable%cmd}{value}{digits}#*d
-\STclip{variable%cmd}{value}#*d
-\STtrunc{variable%cmd}{value}{digits}#*d
-\STadd{variable%cmd}{value1}{value2}#*d
-\STmul{variable%cmd}{value1}{value2}#*d
-\STdiv{variable%cmd}{value1}{value2}#*d
-\STseed#*
-\STrandom{variable%cmd}#*d
-\STifzero{value}#*
-\STifgt{value1}{value2}#*
-\STiflt{value1}{value2}#*
-\STifeq{value1}{value2}#*
-\STifint{value}#*
-\STifneg{value}#*
 \STaddcol#*
 \STaddrow#*
 \STrounddigit#S
