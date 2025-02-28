@@ -4792,7 +4792,8 @@ void Texstudio::showSettings()
         QString completeText=edView->document->text();
         completeText=completeText.replace(QRegularExpression("AIchat\\\\APIKEY=.+"),"AIchat\\APIKEY=...");
         // filter out default values
-        QStringList lines=completeText.split("\n");
+        const QString lineEnd=edView->document->lineEndingString();
+        QStringList lines=completeText.split(lineEnd);
         completeText.clear();
         bool texmakerRegion=false;
         for(QString &line:lines){
