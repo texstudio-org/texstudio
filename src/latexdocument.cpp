@@ -53,6 +53,7 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
     *lp= LatexParser::getInstance();
 
     updateSettings();
+    synChecker.setRUNAWAYLIMIT(ConfigManager::RUNAWAYLIMIT);
     synChecker.setLtxCommands(lp);
 
     connect(&synChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle*,bool,int,int)), Qt::QueuedConnection);

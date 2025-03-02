@@ -186,6 +186,17 @@ void SyntaxCheck::run()
 			//if excessCols has changed the subsequent lines need to be rechecked.
             // don't on initial check
             if (cookieChanged) {
+                // handle runAway arguments
+                for (int i = 0; i < activeEnv.size(); i++) {
+                    if (activeEnv[i].runAway == 0) {
+                        activeEnv.remove(i);
+                        --i;
+                    }else{
+                        if(activeEnv[i].runAway>0){
+                            activeEnv[i].runAway = activeEnv[i].runAway - 1;
+                        }
+                    }
+                }
 				QVariant env;
 				env.setValue(activeEnv);
 				newLine.dlh->setCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE, env);
@@ -762,7 +773,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 // invalidates math env as active
                 Environment env;
                 env.name = "text";
-                env.id = 1; // to be changed
+                env.id = 1;
+                env.runAway = mRUNAWAYLIMIT;
                 env.dlh = dlh;
                 env.ticket = ticket;
                 env.level = tk.level;

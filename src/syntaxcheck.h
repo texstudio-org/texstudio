@@ -23,6 +23,7 @@ public:
     QString origName; ///< original name of environment if alias is used, otherwise empty
 	int id; ///< mostly unused, contains the number of columns for tabular-environments
 	int excessCol; ///< number of unused tabular-columns if columns are strechted over several text lines
+    int runAway=-1; ///< number of lines to check for runaway closing delimiter
 	QDocumentLineHandle *dlh; ///< linehandle of starting line
     int startingColumn;
     int endingColumn;
@@ -121,6 +122,9 @@ public:
     void setNonTextGrammarFormats(const QList<int> formats);
 
 	void markUnclosedEnv(Environment env);
+    void setRUNAWAYLIMIT(const int limit){
+        mRUNAWAYLIMIT=limit;
+    };
 
 signals:
     void checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket, int hint); ///< enqueue next line for syntax checking as context has changed
@@ -150,6 +154,8 @@ private:
 
     QMap<QString,QString> newReplacementList,mReplacementList;
     QMap<QString,int> newFormatList,mFormatList;
+
+    int mRUNAWAYLIMIT=30;
 
 };
 
