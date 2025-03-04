@@ -1,5 +1,5 @@
 # causets package
-# Matthew Bertucci 2023/03/06 for v1.4
+# Matthew Bertucci 2025/02/23 for v1.5
 
 #include:tikz
 # loads arrows.meta tikzlibrary
@@ -39,38 +39,14 @@ vunlabeled
 
 \pcauset{permutation}
 \pcauset[options%keyvals]{permutation}
-\pcausetP{permutation}
-\pcausetP[options%keyvals]{permutation}
-\pcausetL{permutation}
-\pcausetL[options%keyvals]{permutation}
-\pcausetX{permutation}
-\pcausetX[options%keyvals]{permutation}
-
 \rcauset{permutation}{event pairs}
 \rcauset[options%keyvals]{permutation}{event pairs}
-\rcausetP{permutation}{event pairs}
-\rcausetP[options%keyvals]{permutation}{event pairs}
-\rcausetL{permutation}{event pairs}
-\rcausetL[options%keyvals]{permutation}{event pairs}
-\rcausetX{permutation}{event pairs}
-\rcausetX[options%keyvals]{permutation}{event pairs}
-
 \causet{permutation}{event pairs}
 \causet[options%keyvals]{permutation}{event pairs}
-\causetP{permutation}{event pairs}
-\causetP[options%keyvals]{permutation}{event pairs}
-\causetL{permutation}{event pairs}
-\causetL[options%keyvals]{permutation}{event pairs}
-\causetX{permutation}{event pairs}
-\causetX[options%keyvals]{permutation}{event pairs}
 
-\causetFence{number}
-\causetFence[options%keyvals]{number}
-\causetCrown{number}
-\causetCrown[options%keyvals]{number}
-
-#keyvals:\tikzcausetsset#c,\pcauset#c,\pcausetP#c,\pcausetL#c,\pcausetX#c,\rcauset#c,\rcausetP#c,\rcausetL#c,\rcausetX#c,\causet#c,\causetP#c,\causetL#c,\causetX#c,\causetFence#c,\causetCrown#c
+#keyvals:\tikzcausetsset#c,\pcauset#c,\pcausetP#c,\pcausetL#c,\pcausetX#c,\rcauset#c,\rcausetP#c,\rcausetL#c,\rcausetX#c,\causet#c,\causetP#c,\causetL#c,\causetX#c
 all labels={%<TikZ keys%>}
+alt=%<text%>
 arrow links
 baseline=##L
 black colors
@@ -204,3 +180,23 @@ decodearray={%<color array%>}
 \drawpcauset{permutation}#*
 \drawrcauset{permutation}{event pairs}#*
 \drawcauset{permutation}{event pairs}#*
+
+# deprecated
+\pcausetP{permutation}#S
+\pcausetP[options%keyvals]{permutation}#S
+\pcausetL{permutation}#S
+\pcausetL[options%keyvals]{permutation}#S
+\pcausetX{permutation}#S
+\pcausetX[options%keyvals]{permutation}#S
+\rcausetP{permutation}{event pairs}#S
+\rcausetP[options%keyvals]{permutation}{event pairs}#S
+\rcausetL{permutation}{event pairs}#S
+\rcausetL[options%keyvals]{permutation}{event pairs}#S
+\rcausetX{permutation}{event pairs}#S
+\rcausetX[options%keyvals]{permutation}{event pairs}#S
+\causetP{permutation}{event pairs}#S
+\causetP[options%keyvals]{permutation}{event pairs}#S
+\causetL{permutation}{event pairs}#S
+\causetL[options%keyvals]{permutation}{event pairs}#S
+\causetX{permutation}{event pairs}#S
+\causetX[options%keyvals]{permutation}{event pairs}#S

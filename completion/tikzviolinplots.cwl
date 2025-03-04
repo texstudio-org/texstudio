@@ -1,5 +1,5 @@
 # tikzviolinplots package
-# Matthew Bertucci 2023/01/30 for v0.7.1
+# Matthew Bertucci 2025/02/26 for v0.8.0
 
 #include:pgfplots
 #include:pgfplotstable
@@ -47,6 +47,7 @@ average fill=#%color
 dataset fill=#%color
 average fill opacity=%<factor%>
 dataset fill opacity=%<factor%>
+dataset jitter=%<factor%>
 #endkeyvals
 
 # keys only for \violinplotwholefile

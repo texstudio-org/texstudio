@@ -1428,6 +1428,7 @@
 <file>completion/eqnalign.cwl</file>
 <file>completion/eqname.cwl</file>
 <file>completion/eqnarray.cwl</file>
+<file>completion/eqnlines.cwl</file>
 <file>completion/eqnnumwarn.cwl</file>
 <file>completion/eqparbox.cwl</file>
 <file>completion/eq-pin2corr.cwl</file>
@@ -1949,6 +1950,7 @@
 <file>completion/inconsolata-nerd-font.cwl</file>
 <file>completion/index.cwl</file>
 <file>completion/indextools.cwl</file>
+<file>completion/indextra.cwl</file>
 <file>completion/infix-RPN.cwl</file>
 <file>completion/inlinedef.cwl</file>
 <file>completion/inline-images.cwl</file>
@@ -2344,6 +2346,7 @@
 <file>completion/marginnote.cwl</file>
 <file>completion/markdown.cwl</file>
 <file>completion/marvosym.cwl</file>
+<file>completion/math-operator.cwl</file>
 <file>completion/mathabx.cwl</file>
 <file>completion/mathalfa.cwl</file>
 <file>completion/mathalpha.cwl</file>
@@ -2701,6 +2704,7 @@
 <file>completion/OutilsGeomTikz.cwl</file>
 <file>completion/outlines.cwl</file>
 <file>completion/outlining.cwl</file>
+<file>completion/outoruby.cwl</file>
 <file>completion/overarrows.cwl</file>
 <file>completion/overcite.cwl</file>
 <file>completion/overlays.cwl</file>

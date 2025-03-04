@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2025/02/18 for v0.99m
+# Matthew Bertucci 2025/02/23 for v0.99n
 
 #include:pdfmanagement-testphase
 
@@ -87,6 +87,7 @@ title=%<text%>
 title-o=%<text%>
 AF=%<object%>
 root-AF=%<object%>
+root-supplemental-file=%<file name%>
 AFinline=%<text%>
 AFinline-o=%<text%>
 texsource=%<text%>

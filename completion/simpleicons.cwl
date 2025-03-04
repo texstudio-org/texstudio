@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/02/16 for v14.6.0
+# Matthew Bertucci 2025/03/02 for v14.8.0
 
 #include:iftex
 
@@ -1523,6 +1523,7 @@ kinsta
 kirby
 kit
 kitsu
+kiwix
 klarna
 kleinanzeigen
 klm
@@ -2480,6 +2481,7 @@ s7airlines
 sabanci
 safari
 sage
+sagemath
 sahibinden
 sailfishos
 sailsdotjs
@@ -3211,6 +3213,7 @@ xrp
 xsplit
 xstate
 xubuntu
+xyflow
 yabai
 yale
 yamahacorporation

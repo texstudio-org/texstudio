@@ -128,7 +128,7 @@ alignedleftspaceyesifneg
 \mathdisplay{envname}#*
 \mintagsep#*
 \minalignsep#*
-\mod#m
+\mod{arg}#m
 \mspace{dimen}#m
 \MultiIntegral{integer}#*m
 \multlinegap#*
@@ -140,7 +140,7 @@ alignedleftspaceyesifneg
 \overleftrightarrow{argument}#m
 \overset{superscript}{argument}#m
 \overunderset{superscript}{subscript}{argument}#m
-\pod#m
+\pod{arg}#m
 \raisetag{dimen}
 \rvert#m
 \rVert#m

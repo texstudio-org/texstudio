@@ -1,18 +1,16 @@
 # jsonparse package
-# Matthew Bertucci 2025/02/11 for v1.1.2
+# Matthew Bertucci 2025/02/25 for v1.2.1
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
 \JSONParseFromFile{token variable%cmd}{JSON file%file}#d
 \JSONParseFromFile[options%keyvals]{token variable%cmd}{JSON file%file}#d
 \JSONParseKeys{token variable}{key%plain}
-\JSONParseSetKeys{token variable%cmd}{token variable}{key%plain}#d
+\JSONParseKeys[options%keyvals]{token variable}{key%plain}
 \JSONParseFilter{token variable%cmd}{token variable}{key%plain}#d
 \JSONParseValue{token variable}{key%plain}
 \JSONParseValue[options%keyvals]{token variable}{key%plain}
 \JSONParseExpandableValue{token variable}{key%plain}
-\JSONParseSetValue{token variable%cmd}{token variable}{key%plain}#d
-\JSONParseSetRescanValue{token variable%cmd}{token variable}{key%plain}#d
 \JSONParseArrayUse{token variable}{key%plain}{string}
 \JSONParseArrayUse{token variable}{key%plain}[subkey]{string}
 \JSONParseArrayUse[options%keyvals]{token variable}{key%plain}{string}
@@ -26,7 +24,7 @@
 \JSONParseArrayKey
 \JSONParseArrayValue
 \JSONParseArrayCount{token variable}{key%plain}
-\JSONParseSetArrayCount{token variable%cmd}{token variable}{key%plain}#d
+\JSONParseArrayCount[options%keyvals]{token variable}{key%plain}
 \JSONParseArrayMapInline{token variable}{key%plain}{inline function}
 \JSONParseArrayMapInline[options%keyvals]{token variable}{key%plain}{inline function}
 \JSONParseSet{keyvals}
@@ -59,13 +57,14 @@ escape={%<list%>}
 rescan#true,false
 #endkeyvals
 
-#keyvals:\JSONParseArrayMapFunction
+#keyvals:\JSONParseSet,\JSONParseValue,\JSONParseArrayMapFunction
 code before=%<code%>
 code after=%<code%>
 #endkeyvals
 
-#keyvals:\JSONParseArrayMapInline
+#keyvals:\JSONParseKeys,\JSONParseValue,\JSONParseArrayCount,\JSONParseArrayMapInline
 store in=%<token variable%>
+global#true,false
 #endkeyvals
 
 # expl3 interface
@@ -86,6 +85,10 @@ store in=%<token variable%>
 \jsonparse_parse_keys:NN %<⟨tl var⟩ ⟨str var⟩%>#/%expl3
 \jsonparse_parse_to_prop:Nn %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_parse_to_prop:Ne %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_parse_to_prop:No %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_parse_to_prop_local:Nn %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_parse_to_prop_local:Ne %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_parse_to_prop_local:No %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_put_right_rescan:Nn %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_put_right_rescan:Ne %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_rescan:n {%<⟨JSON value⟩%>}#/%expl3
@@ -104,12 +107,15 @@ store in=%<token variable%>
 \jsonparse_unicode_if_low_surrogate_p:n {%<⟨codepoint⟩%>}#/%expl3
 
 # deprecated
-\JSONParseArrayValues{token variable}{key%plain}{string}#S
-\JSONParseArrayValues{token variable}{key%plain}[subkey]{string}#S
-\JSONParseArrayValues[options%keyvals]{token variable}{key%plain}{string}#S
 \JSONParseArrayValues[options%keyvals]{token variable}{key%plain}[subkey]{string}#S
-\JSONParseArrayValuesMap{token variable}{key%plain}{command}#S
-\JSONParseArrayValuesMap{token variable}{key%plain}[subkey]{command}#S
-\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}{command}#S
+\JSONParseArrayValues[options%keyvals]{token variable}{key%plain}{string}#S
+\JSONParseArrayValues{token variable}{key%plain}[subkey]{string}#S
+\JSONParseArrayValues{token variable}{key%plain}{string}#S
 \JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}[subkey]{command}#S
-
+\JSONParseArrayValuesMap[options%keyvals]{token variable}{key%plain}{command}#S
+\JSONParseArrayValuesMap{token variable}{key%plain}[subkey]{command}#S
+\JSONParseArrayValuesMap{token variable}{key%plain}{command}#S
+\JSONParseSetArrayCount{token variable%cmd}{token variable}{key%plain}#Sd
+\JSONParseSetKeys{token variable%cmd}{token variable}{key%plain}#Sd
+\JSONParseSetRescanValue{token variable%cmd}{token variable}{key%plain}#Sd
+\JSONParseSetValue{token variable%cmd}{token variable}{key%plain}#Sd
