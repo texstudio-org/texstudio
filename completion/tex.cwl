@@ -701,7 +701,7 @@
 \Pi#m
 \pm#m
 \pmatrix{%<line%> \cr %<line%> \cr}#*m
-\pmod#m
+\pmod{arg}#m
 \Pr#m
 \prec#m
 \preceq#m
