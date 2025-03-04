@@ -1,10 +1,9 @@
 # href-ul package
-# Matthew Bertucci 2025/03/03 for v0.5.1
+# Matthew Bertucci 2024/01/09 for v0.4.0
 
 #include:pgfopts
-#include:soul
+#include:ulem
 #include:hyperref
-#include:url
 
 #keyvals:\usepackage/href-ul#c
 plain
