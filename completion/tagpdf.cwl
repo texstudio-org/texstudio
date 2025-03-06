@@ -1,11 +1,7 @@
 # tagpdf package
-# Matthew Bertucci 2025/02/23 for v0.99n
+# Matthew Bertucci 2025/03/06 for v0.99o
 
 #include:pdfmanagement-testphase
-
-#keyvals:\usepackage/tagpdf#c
-disabledelayedshipout
-#endkeyvals
 
 \tagpdfsetup{keyvals}
 
@@ -19,6 +15,10 @@ activate/struct#true,false
 activate/struct-dest#true,false
 activate/tagunmarked#true,false
 activate/tree#true,false
+attach-css#true,false
+css-list={%<file1,file2,...%>}
+css-list-add={%<file1,file2,...%>}
+css-list-remove={%<file1,file2,...%>}
 role/mathml-tags#true,false
 role/new-tag=%<tag/role%>
 role/new-attribute={%<name%>}{%<content%>}
