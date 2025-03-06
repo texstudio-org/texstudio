@@ -1,4 +1,4 @@
-# updated 2024/01/26 for v3.8.2
+# updated 2025/03/06 for v3.8.3
 
 #include:iftex
 #include:array
@@ -103,10 +103,6 @@ twoside
 \addappheadtotoc#*
 \added{change-id}#*
 \addperiod{text}#*
-\addtodef{cmd}{prepend}{append}#*
-\addtodef*{cmd}{prepend}{append}#*
-\addtoiargdef{cmd}{prepend}{append}#*
-\addtoiargdef*{cmd}{prepend}{append}#*
 \addtonotes{text}#*
 \addtopsmarks{pagestyle%keyvals}{prepend}{append}#*
 \addtostream{stream}{text}#*
@@ -287,10 +283,13 @@ twoside
 \cftaddnumtitleline{ext}{kind}{num}{title%text}{page}#*
 \cftaddtitleline{ext}{kind}{title%text}{page}#*
 \cftappendixname#*
+\cftbeforebookpenalty*
 \cftbeforebookskip#*
+\cftbeforechapterpenalty#*
 \cftbeforechapterskip#*
 \cftbeforefigureskip#*
 \cftbeforeparagraphskip#*
+\cftbeforepartpenalty#*
 \cftbeforepartskip#*
 \cftbeforesectionskip#*
 \cftbeforesubparagraphskip#*
@@ -347,6 +346,7 @@ twoside
 \cftinsert{name}#*
 \cftinsertcode{name}{code}#*
 \cftinserthook{file}{name}#*
+\cftinserthook*{file}{name}#*
 \cftlocalchange{ext}{pnumwidth}{toc}#*
 \cftnodots#*
 \cftpagenumbersoff{kind}#*
@@ -980,6 +980,8 @@ right
 \marg{arg}
 \marginfloatmarginmacro#*
 \marginparmargin{placement}#*
+\MarkDeprecated{command}{text}#S
+\MarkDeprecated*{command}{text}#S
 \maxsecnumdepth{secname%keyvals}#*
 #keyvals:\maxsecnumdepth
 book
@@ -1118,8 +1120,6 @@ none
 \newlistentry{counter}{ext}{level-1}#*
 \newlistentry[within]{counter}{ext}{level-1}#*
 \newlistof{csname}{ext}{name}#*
-\newloglike{cmd}{string}#*d
-\newloglike*{cmd}{string}#*d
 \newoutputstream{stream}#*
 \newpmemlabel{arg1}{arg2}#*
 \newsubfloat{float}#*
@@ -1300,8 +1300,6 @@ none
 \partpageend#*
 \partrefname#*
 \parttitlefont#*
-\patchcmdError{arg1}{arg2}#*
-\patchcommand{cmd}{start code}{end code}#*
 \pfbreak#*
 \pfbreak*#*
 \pfbreakdisplay{text}#*
@@ -1395,7 +1393,6 @@ none
 \providefixedcaption{cmd}{float}#*d
 \providefixedcaption[cap-cmd]{cmd}{float}#*d
 \providelength{cmd}#*d
-\provideloglike{cmd}{string}#*d
 \qitem{text}{source%text}#*
 \qitemlabel{text}#*
 \quarkmarks#*
@@ -1457,6 +1454,7 @@ none
 \setbiblabel{style}#*
 \setbinding{length}#*
 \setbvlinenums{first}{start at}#*
+\setcftvspacecmd{macro}#*
 \setcolsepandrule{colsep%l}{thickness}#*
 \setDisplayskipStretch{factor}#*
 \setfillsize{T}{C}{L}{R}{r}#*
@@ -1534,6 +1532,7 @@ none
 \setsubsubsecindent{length}#*
 \setthesection#*
 \settocdepth{secname}#*
+\settocdepth*{secname}#*
 \settocpreprocessor{type}{code}#*
 \settrimmedsize{height}{width}{ratio}#*
 \settrims{top}{foredge}#*
@@ -1834,6 +1833,15 @@ titlingpage
 #endkeyvals
 
 # deprecated
+\addtodef{cmd}{prepend}{append}#S
+\addtodef*{cmd}{prepend}{append}#S
+\addtoiargdef{cmd}{prepend}{append}#S
+\addtoiargdef*{cmd}{prepend}{append}#S
+\newloglike{cmd}{string}#Sd
+\newloglike*{cmd}{string}#Sd
+\patchcmdError{arg1}{arg2}#S
+\patchcommand{cmd}{start code}{end code}#S
+\provideloglike{cmd}{string}#Sd
 \tabsoff#S
 \tabson#S
 \setverbatimbreak#S
