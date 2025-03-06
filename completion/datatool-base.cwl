@@ -174,6 +174,7 @@ datetime={%<keyvals%>}
 \dtlpadleadingzerosminus#*
 \dtlpadleadingzerosplus#*
 \dtladd{cmd}{num1}{num2}#*d
+\dtladdall{cmd}{num list}#*d
 \dtlsub{cmd}{num1}{num2}#*d
 \dtlmul{cmd}{num1}{num2}#*d
 \dtldiv{cmd}{num1}{num2}#*d
