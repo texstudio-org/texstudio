@@ -5,6 +5,7 @@
 - add preview with default compiler option [#3978](https://github.com/texstudio-org/texstudio/pull/3978)
 - shrink embedded pdf-viewer when an item of the Structure or TOC tree view is selected [#3989](https://github.com/texstudio-org/texstudio/pull/3989)
 - allow executing ai queries from macros [see manual](https://texstudio-org.github.io/advanced.html#ai-queries)
+- fix completion of empty key/val values [#4017](https://github.com/texstudio-org/texstudio/issues/4017)
 
 ## TeXstudio 4.8.6
 
