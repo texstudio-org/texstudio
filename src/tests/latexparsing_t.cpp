@@ -984,6 +984,10 @@ void LatexParsingTest::test_getContext_data() {
                             << 28
                             << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
                             << (STypes() << T::none << T::keyValArg<<T::none);
+    QTest::newRow("command with empty keyval") << "\\includegraphics[width=]{abc}"  // #4017
+                            << 23
+                            << (TTypes() << T::command << T::squareBracket<<T::keyVal_key<<T::keyVal_val)
+                            << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val);
     QTest::newRow("command with keyval as defined argument") << "\\lstdefinelanguage{Excel}{morekeywords={ab$c}}"
                                           << 41
                                                              << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::braces)
@@ -992,6 +996,10 @@ void LatexParsingTest::test_getContext_data() {
                                                              << 35
                                                              << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::label)
                                                              << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val);
+    QTest::newRow("following command") << "bummerang\\text" // command after word, #3967
+                            << 9
+                            << (TTypes() << T::word)
+                            << (STypes() << T::none);
 
 
 
