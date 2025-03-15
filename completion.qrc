@@ -173,6 +173,7 @@
 <file>completion/assoccnt.cwl</file>
 <file>completion/association-matrix.cwl</file>
 <file>completion/assurelatexmode.cwl</file>
+<file>completion/assyr.cwl</file>
 <file>completion/asternote.cwl</file>
 <file>completion/asyalign.cwl</file>
 <file>completion/asycolors.cwl</file>
@@ -3330,6 +3331,7 @@
 <file>completion/sepnum.cwl</file>
 <file>completion/seqsplit.cwl</file>
 <file>completion/serbian-lig.cwl</file>
+<file>completion/serto.cwl</file>
 <file>completion/sesstime.cwl</file>
 <file>completion/setdeck.cwl</file>
 <file>completion/setdim.cwl</file>
@@ -3528,6 +3530,7 @@
 <file>completion/syntaxdi.cwl</file>
 <file>completion/synthslant.cwl</file>
 <file>completion/syntonly.cwl</file>
+<file>completion/syriac.cwl</file>
 <file>completion/systeme.cwl</file>
 <file>completion/t1enc.cwl</file>
 <file>completion/t4phonet.cwl</file>
@@ -3555,8 +3558,10 @@
 <file>completion/tabularraylibrarybooktabs.cwl</file>
 <file>completion/tabularraylibrarydiagbox.cwl</file>
 <file>completion/tabularraylibraryfunctional.cwl</file>
+<file>completion/tabularraylibraryhook.cwl</file>
 <file>completion/tabularraylibrarynameref.cwl</file>
 <file>completion/tabularraylibrarysiunitx.cwl</file>
+<file>completion/tabularraylibrarytikz.cwl</file>
 <file>completion/tabularraylibraryvarwidth.cwl</file>
 <file>completion/tabularraylibraryzref.cwl</file>
 <file>completion/tabularx.cwl</file>
@@ -3686,6 +3691,7 @@
 <file>completion/tikz-among-us-watermark-eso-pic.cwl</file>
 <file>completion/tikz-bagua.cwl</file>
 <file>completion/tikzbricks.cwl</file>
+<file>completion/tikzcalendarnotes.cwl</file>
 <file>completion/tikz-cd.cwl</file>
 <file>completion/tikzcodeblocks.cwl</file>
 <file>completion/tikz.cwl</file>
