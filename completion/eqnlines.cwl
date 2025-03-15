@@ -1,5 +1,5 @@
 # eqnlines package
-# Matthew Bertucci 2025/02/26 for v0.5
+# Matthew Bertucci 2025/03/15 for v0.6
 
 #include:keyval
 
@@ -100,7 +100,9 @@ class=#ampeq,eqamp
 allowbreaks=#0,1,2,3,4
 allowdisplaybreaks=#0,1,2,3,4
 displayheight=##L
+displayheight*
 displaydepth=##L
+displaydepth*
 tagmargin=##L
 tagmargin*=##L
 mintagsep=##L
@@ -139,26 +141,42 @@ marginright=##L
 
 #keyvals:\usepackage/eqnlines#c,\eqnlinesset
 native#true,false
+scanequation#true,false
 sqropt={%<options%>}
 angopt={%<options%>}
 displaybreak=#0,1,2,3,4
 noskip
 noskip=#above,below,both
 skip=##L
+longskip=##L
 aboveskip=##L
 belowskip=##L
+abovelongskip=##L
+belowlongskip=##L
 aboveshortskip=##L
 belowshortskip=##L
 tagskip=##L
 abovetagskip=##L
 belowtagskip=##L
+medtagskip=##L
+abovemedtagskip=##L
+belowmedtagskip=##L
 medskip=##L
 abovemedskip=##L
 abovetopskip=##L
 aboveparskip=##L
 abovecontskip=##L
+abovecontskip*
 belowmedskip=##L
+belowtopskip=##L
+belowparskip=##L
+belowcontskip=##L
+abovepartagskip=##L
+belowpartagskip=##L
 shortmode=#off,above,belowone,belowall
+belowcontmode=#long,short,cont
+belowparmode=#long,short,cont,par
+belowtopmode=#long,short,cont,par,top
 taglayout=%<code%>
 taglayout*=%<code%>
 tagform=%<code%>
@@ -166,9 +184,11 @@ tagform*=%<code%>
 subeqtemplate=%<code%>
 autolabel#true,false
 autotag#true,false
+defaults=#classic,eqnlines
 linesfallback#true,false
 ampproof#true,false
 crerror#true,false
+eqref#true,false
 #endkeyvals
 
 #keyvals:\usepackage/eqnlines#c
@@ -201,14 +221,15 @@ col
 @
 native#true,false
 displaybreak=#0,1,2,3,4
-noskip
-noskip=#above,below,both
 short
 short=#above,below,both
 long
 long=#above,below,both
+noskip
+noskip=#above,below,both
 medskip
 medskip=#above,below,both
+par=#cont,par,top
 skip=##L
 aboveskip=##L
 belowskip=##L
@@ -246,6 +267,9 @@ eqref
 notag
 thetag
 allowdisplaybreaks
+numberwithin
+tagform
+maketag
 #endkeyvals
 
 # not defined by default (need to use \eqnlinesprovide)
