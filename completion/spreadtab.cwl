@@ -1,5 +1,5 @@
 # spreadtab package
-# Matthew Bertucci 2025/02/27 for v0.6
+# Matthew Bertucci 2025/03/15 for v0.61
 
 #include:xstring
 #include:simplekv
@@ -23,10 +23,14 @@ autoround=%<integer%>
 save list={%<macro=abs ref,...%>}
 aux save list={%<macro=abs ref,...%>}
 display marks=%<marks%>
+copy char=%<char%>
 tag to aux#true,false
 messages#true,false
 debug={%<options%>}
 #endkeyvals
+
+\STxp{code}
+\STrep{n}{code}
 
 \STcopy{>x,vy}{formula}#t
 \SThiderow#t
@@ -39,13 +43,3 @@ debug={%<options%>}
 \STname#S
 \STver#S
 \STdate#S
-
-# deprecated
-\STautoround{number of digits}#S
-\STeol{macro}#S
-\STmessage{true|false}#S
-\STnumericfieldmarker{arg}#S
-\STsetdecimalsep{character}#S
-\STsetdisplaymarks{left-delim}{right-delim}#S
-\STtextcell{arg}#S
-\STtransposechar{arg}#S
