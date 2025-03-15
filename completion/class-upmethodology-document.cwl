@@ -1,5 +1,5 @@
 # upmethodology-document class
-# Matthew Bertucci 2022/04/21 for release 2022/02/10
+# Matthew Bertucci 2025/03/15 for release 2025/03/11
 
 #include:class-report
 #include:upmethodology-p-common
@@ -18,6 +18,7 @@ french
 francais
 english
 standardlists
+nohyperref
 nodocumentinfo
 documentinfo
 nopubpage
