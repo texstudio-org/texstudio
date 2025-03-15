@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/03/02 for v14.8.0
+# Matthew Bertucci 2025/03/15 for v14.9.0
 
 #include:iftex
 
@@ -1020,6 +1020,7 @@ formik
 formspree
 formstack
 fortinet
+fortnite
 fortran
 fossa
 fossilscm
@@ -1553,6 +1554,7 @@ ktm
 ktor
 kuaishou
 kubernetes
+kubespray
 kubuntu
 kucoin
 kueski
@@ -2988,6 +2990,7 @@ ultralytics
 ulule
 umami
 umbraco
+umbrel
 uml
 unacademy
 underarmour
