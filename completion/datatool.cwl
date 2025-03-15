@@ -1,5 +1,5 @@
 # datatool package
-# Matthew Bertucci 2025/03/05 for v3.0
+# Matthew Bertucci 2025/03/15 for v3.2
 
 #include:ifthen
 #include:xfor
@@ -370,7 +370,7 @@ separator=%<char%>
 #keyvals:\DTLread,\DTLloaddb,\DTLloadrawdb
 convert-numbers#true,false
 csv-blank=#ignore,empty-row,end
-csv-content=#tex,literal
+csv-content=#tex,literal,no-parse
 csv-escape-chars=#double-delim,delim,delim+bksl,none
 csv-skip-lines=%<integer%>
 data-types={%<list%>}
