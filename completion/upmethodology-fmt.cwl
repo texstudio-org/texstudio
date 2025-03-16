@@ -1,5 +1,5 @@
 # upmethodology-fmt package
-# Matthew Bertucci 2025/03/15 for release 2025/03/11
+# Matthew Bertucci 2025/03/16 for release 2025/03/15
 
 #include:upmethodology-p-common
 #include:titlesec
@@ -8,6 +8,7 @@
 #include:tabularx
 #include:multicol
 #include:colortbl
+#include:tcolorbox
 #include:picinpar
 #include:amsmath
 #include:amsthm
@@ -23,6 +24,8 @@
 #include:environ
 #include:xcolor
 #include:tikz
+#include:fontawesome5
+#include:tocbibind
 
 #keyvals:\usepackage/upmethodology-fmt#c
 french
@@ -76,8 +79,6 @@ standardlists
 \mfigurewtex[position]{options%keyvals}{imagefile}{caption%text}{label}#g
 \mfigurewtex*{options%keyvals}{imagefile}{caption%text}{label}#g
 \mfigurewtex*[position]{options%keyvals}{imagefile}{caption%text}{label}#g
-backtableheader#B
-fronttableheader#B
 \tabularheaderstyle{text}#*
 \tabulartitlespec{colspec}
 \begin{mtabular}{N}{cols}#\tabular
@@ -232,17 +233,16 @@ definitionbackground#B
 definitionheaderforeground#B
 definitionborder#B
 definitiontextforeground#B
+definitionsourceforeground#B
 \definitionname#*
 \listdefinitionname#*
-#keyvals:\theoremstyle#c
-upmdefinition
-#endkeyvals
-\declareupmtheorem{envname}{label%text}{list title%text}#N
-\declareupmtheorem[theoremstyle]{envname}{label%text}{list title%text}#N
-\upmtheoremopt{arg}#*
+\declareupmtheorem{envname}{label%text}{list title%text}{prefix}{format macro}#N
+\declareupmtheorem[tcb style]{envname}{label%text}{list title%text}{prefix}{format macro}#N
 \begin{definition}
 \begin{definition}[header%text]
 \end{definition}
+\defref{label}#r
+\defpageref{label}#r
 emphboxbackground#B
 emphboxborder#B
 emphboxtext#B
@@ -263,6 +263,10 @@ emphboxbackgroundc#B
 \overridedescriptionenvironment#*
 \restoredescriptionenvironment#*
 \sectionhoffset#*L
+figuresourceforeground#B
+\figuresourcename#*
+\mfigureformatsource{arg}#*
+\definitionsourcename#*
 
 #keyvals:\mfigure,\mfigure*,\msubfigure,\mfigurewtex,\mfigurewtex*
 alt={%<alt text%>}
