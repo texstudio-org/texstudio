@@ -1,10 +1,12 @@
 # tracklang package
-# Matthew Bertucci 2025/01/23 for v1.6.3
+# Matthew Bertucci 2025/03/04 for v1.6.5
 
 #keyvals:\usepackage/tracklang#c
 %<language%>
 verbose
 noverbose
+warn
+nowarn
 #endkeyvals
 
 \AddTrackedCountryIsoCode{root language}#*
@@ -131,12 +133,12 @@ noverbose
 \CurrentTrackedIsoCodeI#S
 \CurrentTrackedIsoCodeII#S
 \CurrentTrackedIsoCodeIII#S
-\GetTrackedDialectFromMapping{language hook}#*
-\GetTrackedDialectToMapping{tracklang label}#*
-\IfHookHasMappingFromTrackedDialect{hook label}{true}{false}#*
-\IfTrackedDialectHasMapping{tracklang label}{true}{false}#*
-\LetTrackLangOption{option}{synonym}#*
-\LetTrackLangSynonym{option}{synonym}#*
+\GetTrackedDialectFromMapping{language hook}#S
+\GetTrackedDialectToMapping{tracklang label}#S
+\IfHookHasMappingFromTrackedDialect{hook label}{true}{false}#S
+\IfTrackedDialectHasMapping{tracklang label}{true}{false}#S
+\LetTrackLangOption{option}{synonym}#S
+\LetTrackLangSynonym{option}{synonym}#S
 \tracklangparseenvatmod#S
 \tracklangparsemod#S
 \tracklangtmp#S

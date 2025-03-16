@@ -1,12 +1,13 @@
 # fvextra package
-# Matthew Bertucci 2025/02/10 for v1.11.0
+# Matthew Bertucci 2025/03/05 for v1.12.0
 
 #include:etoolbox
 #include:fancyvrb
+#include:pdftexcmds
 #include:upquote
 #include:lineno
 
-#keyvals:\Verb,\Verb*,\DefineShortVerb,\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\SaveVerb,\SaveVerb*,\UseVerb,\UseVerb*,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\fvinlineset,\EscVerb,\EscVerb*,\begin{VerbEnv},\VerbatimInsertBuffer,\VerbatimClearBuffer,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
+#keyvals:\Verb,\Verb*,\DefineShortVerb,\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\SaveVerb,\SaveVerb*,\UseVerb,\UseVerb*,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\fvinlineset,\EscVerb,\EscVerb*,\begin{VerbEnv},\VerbatimInsertBuffer,\VerbatimClearBuffer,\InsertBuffer,\ClearBuffer,\IterateBuffer,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
 backgroundcolor=#%color
 backgroundcolorboxoverlap=##L
 backgroundcolorpadding=##L
@@ -75,7 +76,7 @@ breakbytokenanywhere#true,false
 \fvinlineset{options%keyvals}
 
 # keys from fancyvrb for fvextra commands
-#keyvals:\fvinlineset,\EscVerb,\EscVerb*,\begin{VerbEnv},\VerbatimInsertBuffer,\VerbatimClearBuffer,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
+#keyvals:\fvinlineset,\EscVerb,\EscVerb*,\begin{VerbEnv},\VerbatimInsertBuffer,\VerbatimClearBuffer,\InsertBuffer,\ClearBuffer,\IterateBuffer,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
 commentchar=%<single char%>
 gobble=%<integer%>
 formatcom=%<commands%>
@@ -163,8 +164,14 @@ writer=%<macro%>
 \InsertBuffer[options%keyvals]
 \ClearBuffer
 \ClearBuffer[options%keyvals]
+\BufferMdfivesum
+\IterateBuffer{macro}
+\IterateBuffer[options%keyvals]{macro}
+\IterateBufferBreak#*
+\WriteBuffer
+\WriteBuffer[options%keyvals]
 
-#keyvals:\begin{VerbatimBuffer},\VerbatimInsertBuffer,\VerbatimClearBuffer,\InsertBuffer,\ClearBuffer,\fvset
+#keyvals:\begin{VerbatimBuffer},\VerbatimInsertBuffer,\VerbatimClearBuffer,\InsertBuffer,\ClearBuffer,\IterateBuffer,\fvset
 afterbuffer=%<macro%>
 bufferer=%<macro%>
 bufferlengthname=%<string%>
@@ -173,8 +180,11 @@ buffername=%<string%>
 globalbuffer#true,false
 #endkeyvals
 
-#keyvals:\VerbatimInsertBuffer
+#keyvals:\VerbatimInsertBuffer,\InsertBuffer
 insertenvname=%<string%>
+wrapperenvname=%<envname%>
+wrapperenvopt=%<optional argument%>
+wrapperenvarg=%<argument%>
 #endkeyvals
 
 \FancyVerbBreakStart#*

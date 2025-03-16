@@ -1,9 +1,10 @@
 # diagram package
-# Matthew Bertucci 2024/10/15 for v1.22
+# Matthew Bertucci 2025/03/15 for v1.23
 
 #include:ifthen
 #include:calc
-#include:pstricks
+#include:tikz
+#include:xstring
 
 #keyvals:\usepackage/diagram#c
 10pt

@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2024/10/20 for v24.12
+# tbraun 4.11.2008; Matthew Bertucci 2025/03/15 for v25.5
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -161,7 +161,7 @@ Alph=%<counter%>
 onchar=#ids,fonts,letters
 intraspace=%<base shrink stretch%>
 intrapenalty=%<penalty%>
-transforms=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,prehyphen.nobreak,diaeresis.hyphen,transliteration.omega,sigma.final,transliteration.hk,punctuation.space,digraphs.hyphen,danda.nobreak,letters.noj,letters.uv,transliteration.iast,transliteration.gajica,kashida.plain
+transforms=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,prehyphen.nobreak,diaeresis.hyphen,transliteration.omega,sigma.final,transliteration.hk,punctuation.space,longs.unifraktur,digraphs.hyphen,danda.nobreak,linebreak.strict,letters.noj,letters.uv,transliteration.iast,transliteration.gajica,kashida.plain
 justification=#kashida,elongated,unhyphenated,padding
 linebreaking=#kashida,elongated,unhyphenated,padding
 mapfont=
@@ -240,7 +240,7 @@ extension.u.tag.bcp47
 \babelprehyphenation[options%keyvals]{locale-name}{lua-pattern}{replacement}#*
 
 #keyvals:\babelposthyphenation#c,\babelprehyphenation#c
-label=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,prehyphen.nobreak,punctuation.space,diaeresis.hyphen,transliteration.omega,sigma.final,transliteration.hk,punctuation.space,digraphs.hyphen,danda.nobreak,letters.noj,letters.uv,transliteration.iast,transliteration.gajica,kashida.plain
+label=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,prehyphen.nobreak,diaeresis.hyphen,transliteration.omega,sigma.final,transliteration.hk,punctuation.space,longs.unifraktur,digraphs.hyphen,danda.nobreak,linebreak.strict,letters.noj,letters.uv,transliteration.iast,transliteration.gajica,kashida.plain
 fonts=%<tag1 tag2 ...%>
 attribute=%<attribute%>
 #endkeyvals
@@ -259,8 +259,10 @@ transliteration.omega
 sigma.final
 transliteration.hk
 punctuation.space
+longs.unifraktur
 digraphs.hyphen
 danda.nobreak
+linebreak.strict
 letters.noj
 letters.uv
 transliteration.iast

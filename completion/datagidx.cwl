@@ -1,104 +1,129 @@
 # datagidx package
-# Matthew Bertucci 2022/06/07 for v2.32
+# Matthew Bertucci 2025/03/06 for v3.0
 
 #include:datatool
-#include:etoolbox
-#include:xkeyval
 #include:mfirstuc
-#include:xfor
 #include:multicol
-#include:textcase
-#include:afterpage
 
 #keyvals:\usepackage/datagidx#c
-utf8#true,false
 optimize=#off,low,high
+draft
+final
+nowarn#true,false
+compositor=%<symbol%>
+counter=%<counter%>
 columns=%<integer%>
 child=#named,noname
 namecase=#nochange,uc,lc,firstuc,capitalise
-namefont=%<font cmd%>
 postname=%<text%>
 postdesc=#dot,none
 prelocation=#none,enspace,space,dotfill,hfill
 location=#hide,list,first
 see=#comma,brackets,dot,space,nosep,semicolon,location
 symboldesc=#symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol
-compositor=%<symbol%>
-draft
-final
+namefont=%<font cmd%>
+# options passed to datatool
+delimiter=%<char%>
+separator=%<char%>
+default-name=%<db name%>
+new-value-expand#true,false
+new-value-trim#true,false
+store-datum#true,false
+# options passed to datatool-base
+math=#l3fp,lua,fp,pgfmath
+lang-warn#true,false
+nolocale
+locales={%<locales list%>}
+lang={%<locales list%>}
 verbose#true,false
-nowarn#true,false
+initial-purify=#early,late
+auto-reformat-types={%<list of types%>}
+lists={%<keyvals%>}
+compare={%<keyvals%>}
+numeric={%<keyvals%>}
+datetime={%<keyvals%>}
 #endkeyvals
 
-## 7.1 Defining Index/Glossary Databases ##
-\loadgidx{file}{title%text}
-\loadgidx[options%keyvals]{file}{title%text}
+#ifOption:math=fp
+#include:fp
+#endif
+
+#ifOption:math=pgfmath
+#include:pgfrcs
+#include:pgfkeys
+#include:pgfmath
+#endif
+
+#keyvals:\DTLsetup
+index={%<keyvals%>}
+#endkeyvals
+
+## Defining Index/Glossary Databases ##
 \newgidx{db%specialDef}{title%text}#s#%db
 \newgidx[options%keyvals]{db%specialDef}{title%text}#s#%db
 
-#keyvals:\loadgidx,\newgidx
-showgroups#true,false
-style=#index,indexalign,align,gloss,dict
-sort={%<sort cmd%>}
+## Loading Data Created by datatooltk ##
+\loadgidx{file}{title%text}
+\loadgidx[options%keyvals]{file}{title%text}
+
+#keyvals:\loadgidx,\newgidx,\printterms
 balance#true,false
 heading=%<text%>
+post-heading=%<text%>
 postheading=%<text%>
+show-groups#true,false
+showgroups#true,false
+sort={%<sort code%>}
+style=#index,indexalign,align,gloss,dict
 #endkeyvals
 
-## 7.2 Locations ##
-\DTLgidxCounter#*
-\DTLgidxAddLocationType{cmd}
-\DTLgidxSetCompositor{symbol}
-
-## 7.3 Defining Terms ##
+## Defining Terms ##
 \newterm{name}
 \newterm[options%keyvals]{name}
 
 #keyvals:\newterm#c,\newacro#c
 database=%<database name%>
 label=%<label%>
-sort=%<sort key%>
-parent=%<parent entry%>
+parent=%<parent label%>
 text=%<text%>
-description=%<text%>
 plural=%<plural form%>
 symbol=%<symbol%>
-short=%<short form%>
-long=%<long form%>
-shortplural=%<short plural form%>
-longplural=%<long plural form%>
+description=%<text%>
 see=%<label%>
 seealso=%<label%>
+sort=%<text%>
+short=%<text%>
+shortplural=%<text%>
+long=%<text%>
+longplural=%<text%>
 #endkeyvals
 
-\DTLgidxSetDefaultDB{label%plain}
-\DTLgidxParen{text}
+\DTLgidxName{forename}{surname}
+\DTLgidxNameNum{number}
 \DTLgidxPlace{country/county}{city/town}
 \DTLgidxSubject{subject}{text}
-\DTLgidxName{forename}{surname}
+\DTLgidxOffice{office}{name}
 \DTLgidxRank{title%plain}{forename/initials}
-\DTLgidxNameNum{number}
+\DTLgidxParticle{particle}{surname}
 \DTLgidxMac{text}
 \DTLgidxSaint{text}
-\DTLgidxParticle{text}
-\DTLgidxOffice{office}{name}
-\newtermlabelhook#*
-\DTLgidxNoFormat{text}
-\DTLgidxGobble{text}
-\DTLgidxIgnore
+\DTLgidxParen{text}
+\DTLgidxIgnore{text}
 \DTLgidxStripBackslash{cmd}
+\newtermlabelhook#*
+\newtermsorthook#*
 
-## 7.4 Referencing Terms ##
-\useentry{label%plain}{field}
-\Useentry{label%plain}{field}
-\USEentry{label%plain}{field}
-\useentrynl{label%plain}{field}#*
-\Useentrynl{label%plain}{field}#*
-\USEentrynl{label%plain}{field}#*
+## Referencing Terms ##
+\useentry{label%plain}{col key}
+\Useentry{label%plain}{col key}
+\USEentry{label%plain}{col key}
+\useentrynl{label%plain}{col key}#*
+\Useentrynl{label%plain}{col key}#*
+\USEentrynl{label%plain}{col key}#*
 \glslink{label%plain}{text}
-\glsdispentry{label%plain}{field}
-\Glsdispentry{label%plain}{field}
-\DTLgidxFetchEntry{cmd}{label%plain}{field}#d
+\glsdispentry{label%plain}{col key}
+\Glsdispentry{label%plain}{col key}
+\DTLgidxFetchEntry{cmd}{label%plain}{col key}#d
 \glsadd{label%plain}
 \glsaddall{db%special}
 \gls{label%plain}#*
@@ -112,154 +137,180 @@ seealso=%<label%>
 \glssym{label%plain}#*
 \Glssym{label%plain}#*
 
-## 7.5 Adding Extra Fields ##
-\newtermaddfield{field name}{key name}{default value}#*
-\newtermaddfield[db list]{field name}{key name}{default value}#*
+## Locations ##
+\DTLgidxCounter#*
+\DTLgidxSetCompositor{char}#*
+
+## Adding Extra Fields ##
+\newtermaddfield{col key}{new term key}{default value}#*
+\newtermaddfield{col key}{new term key}[data type]{default value}#*
+\newtermaddfield{col key}[placeholder cmd]{new term key}{default value}#*
+\newtermaddfield{col key}[placeholder cmd]{new term key}[data type]{default value}#*
+\newtermaddfield[db list]{col key}{new term key}{default value}#*
+\newtermaddfield[db list]{col key}{new term key}[data type]{default value}#*
+\newtermaddfield[db list]{col key}[placeholder cmd]{new term key}{default value}#*
+\newtermaddfield[db list]{col key}[placeholder cmd]{new term key}[data type]{default value}#*
 \field{key%plain}#*
 
-## 7.6 Acronyms ##
+## Abbreviations ##
 \newacro{short}{long}
 \newacro[options%keyvals]{short}{long}
-\acronymfont#*
+\acronymfont{text}#*
 \DTLgidxAcrStyle{long}{short}
-
 \acr{label%plain}
 \acrpl{label%plain}
-\Acr{label%plain}#*
-\Acrpl{label%plain}#*
+\Acr{label%plain}
+\Acrpl{label%plain}
+\DTLgidxFormatAcr{label}{long}{short}#*
+\DTLgidxFormatAcrUC{label}{long}{short}#*
 \glsreset{label%plain}
 \glsunset{label%plain}
 \glsresetall{db%special}
 \glsunsetall{db%special}
-
-## 7.7 Conditionals ##
-\iftermexists{label%plain}{true case}{false case}#*
-\ifentryused{label%plain}{true case}{false case}#*
 
 ## 7.8 Displaying the Index or Glossary ##
 \printterms
 \printterms[options%keyvals]
 
 #keyvals:\printterms
-database=%<database name%>
-postdesc=#dot,none
-prelocation=#none,enspace,space,dotfill,hfill
-location=#hide,list,first
-symboldesc=#symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol
-columns=%<integer%>
-namecase=#nochange,uc,lc,firstuc,capitalise
-namefont=%<font cmd%>
-postname=%<text%>
-see=#comma,brackets,dot,space,nosep,semicolon,location
 child=#named,noname
-showgroups#true,false
-style=#index,indexalign,align,gloss,dict
-symbolwidth=##L
-locationwidth=##L
+child-sort#true,false
 childsort#true,false
-heading=%<text%>
-postheading=%<text%>
-sort={%<sort cmd%>}
-balance#true,false
+columns=%<integer%>
 condition={%<condition%>}
+database=#%db
+include-if=%<definition%>
+include-if-fn=%<cmd%>
+location=#hide,list,first
+location-width=##L
+locationwidth=##L
+name-case=#nochange,uc,lc,firstuc,capitalise
+namecase=#nochange,uc,lc,firstuc,capitalise
+name-font=%<font cmd%>
+namefont=%<font cmd%>
+post-name=%<text%>
+postname=%<text%>
+post-desc=#dot,none
+postdesc=#dot,none
+pre-location=#none,enspace,space,dotfill,hfill
+prelocation=#none,enspace,space,dotfill,hfill
+see=#comma,brackets,dot,space,nosep,semicolon,location
+symbol-desc=#symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol
+symboldesc=#symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol
+symbol-width=##L
+symbolwidth=##L
 #endkeyvals
 
-\DTLgidxChildSep#*
-\DTLgidxPostChild#*
-\DTLgidxCategoryNameFont#*
-\DTLgidxCategorySep#*
-\DTLgidxSubCategorySep#*
-\DTLgidxDictPostItem#*
-\datagidxdictindent#*
-
-\DTLgidxCurrentdb
-
-# not in main documentation
-\datagidxbalancefalse#*
-\datagidxbalancetrue#*
-\datagidxchildend#*
-\datagidxchilditem#*
-\datagidxchildstart#*
-\datagidxconvertchars#*
-\datagidxcurrentgroup#*
-\datagidxdb{entry}#*
-\datagidxdescwidth#*
-\datagidxdictparshape#*
-\datagidxdoseealso{arg}#*
-\datagidxend#*
-\datagidxextendedtoascii#*
-\datagidxgroupheader#*
-\datagidxgroupsep#*
-\datagidxhighoptfilename{filename%file}#*
-\datagidxindent#*
-\datagidxitem#*
-\datagidxlastlabel#*
-\datagidxlink{arg1}{arg2}#*
-\datagidxlocalign#*
-\datagidxlocationwidth#*
-\datagidxnamewidth#*
-\datagidxprevgroup#*
-\datagidxseealsoend#*
-\datagidxseealsostart#*
-\datagidxsetstyle{style}#*
-\datagidxshowgroupsfalse#*
-\datagidxshowgroupstrue#*
-\datagidxshowifdraft{arg}#*
-\datagidxstart#*
-\datagidxstripaccents#*
-\datagidxsymalign#*
-\datagidxsymbolwidth#*
-\datagidxtarget{arg}#*
-\datagidxtermkeys#*
-\datagidxwordifygreek#*
-\dtldofirstlocation#*
-\dtldolocationlist#*
-\DTLgidxChildCountLabel#*
-\DTLgidxChildren#*
-\DTLgidxChildrenSeeAlso#*
-\DTLgidxChildStyle{text}#*
-\DTLgidxDictHead#*
-\DTLgidxDisableHyper#*
-\DTLgidxDoSeeOrLocation#*
-\DTLgidxEnableHyper#*
-\DTLgidxForeachEntry{body}#*
-\DTLgidxFormatAcr{label}{long}{short}#*
-\DTLgidxFormatAcrUC{label}{long}{short}#*
-\DTLgidxFormatDesc{text}#*
-\DTLgidxFormatSee{tag}{label list}#*
-\DTLgidxFormatSeeAlso{tag}{label list}#*
+\DTLgidxCurrentdb#*
 \DTLgidxGroupHeaderTitle{text}#*
-\DTLgidxLocation#*
-\DTLgidxLocationF{loc1}{loc2}#*
-\DTLgidxLocationFF{loc1}{loc2}#*
-\DTLgidxLocationSep#*
+\printtermsrestoreonecolumn#*
+\DTLgidxSetColumns{integer}#*
 \DTLgidxNameCase{text}#*
 \DTLgidxNameFont{text}#*
-\DTLgidxNoHeading#*
-\DTLgidxPostChildName#*
-\DTLgidxPostDescription#*
 \DTLgidxPostName#*
-\DTLgidxPreLocation#*
-\DTLgidxSee#*
-\DTLgidxSeeAlso#*
-\DTLgidxSeeList{label list}#*
-\DTLgidxSeeTagFont{text}#*
-\DTLgidxSetColumns{integer}#*
-\DTLgidxSymbolDescLeft#*
-\DTLgidxSymbolDescRight#*
-\DTLgidxSymbolDescription#*
+\DTLgidxPostChildName#*
+\DTLgidxChildStyle{text}#*
+\DTLgidxChildCountLabel#*
 \DTLgidxSymDescSep#*
+\DTLgidxFormatDesc{text}#*
+\DTLgidxPostDescription#*
+\DTLgidxEndItem#*
+\DTLgidxPreLocation#*
+\DTLgidxPostLocation#*
+\DTLgidxFormatSee{tag}{label list}#*
+\DTLgidxFormatSeeAlso{tag}{label list}#*
+\DTLgidxSeeTagFont{text}#*
 \DTLidxFormatSeeItem{label}#*
 \DTLidxSeeLastSep#*
 \DTLidxSeeSep#*
-\ifdatagidxbalance#*
-\ifdatagidxshowgroups#*
-\ifnewtermfield{name}{true}{false}#*
-\newtermfield{name}#*
-\postnewtermhook#*
-\printtermsrestoreonecolumn#*
-\printtermsstartpar#*
-\seealsoname#*
 \seename#*
+\seealsoname#*
+\datagidxsymbolwidth#*L
+\datagidxlocationwidth#*L
+\datagidxsymalign#*
+\datagidxlocalign#*
+\DTLgidxChildSep#*
+\DTLgidxPostChild#*
+\DTLgidxDictPostItem#*
+\datagidxdictindent#*
+\DTLgidxDictHead#*
+\DTLgidxCategoryNameFont#*
+\DTLgidxCategorySep#*
+\DTLgidxSubCategorySep#*
+
+## Supplementary Commands ##
+\DTLgidxEnableHyper#*
+\DTLgidxDisableHyper#*
+\iftermexists{label%plain}{true code}{false code}#*
+\ifentryused{label%plain}{true code}{false code}#*
+\datagidxprevgroup#*
+\DTLgidxAssignList#*
+\datagidxmapdata{body}#*
+\postnewtermhook#*
+\datagidxlastlabel#*
+\DTLgidxNoFormat{text}#*
+\DTLgidxGobble{text}#*
+\datagidxconvertchars#*
+\datagidxnewstyle{name}{definitions}#*
+\datagidxtarget{target name}{text}#*
+\datagidxlink{target name}{text}#*
 \theDTLgidxChildCount#*
-\theHDTLgidxChildCount#*
+\theHDTLgidxChildCount#S
+
+# misc
+\DTLgidxForeachEntry{body}#*
+\DTLgidxLocation#*
+\DTLgidxSetDefaultDB{db%special}#*
+\datagidxcurrentgroup#*
+\datagidxend#*
+\datagidxitem#*
+\datagidxsetstyle{style name}#*
+\datagidxstart#*
+\datagidxwordifygreek#*
+
+# not in main documentation
+\DTLgidxChildren#S
+\DTLgidxChildrenSeeAlso#S
+\DTLgidxDoSeeOrLocation#S
+\DTLgidxLocationFF{loc1}{loc2}#S
+\DTLgidxLocationF{loc1}{loc2}#S
+\DTLgidxLocationSep#S
+\DTLgidxNoHeading#S
+\DTLgidxSee#S
+\DTLgidxSeeAlso#S
+\DTLgidxSeeList{label list}#S
+\DTLgidxSymbolDescLeft#S
+\DTLgidxSymbolDescRight#S
+\DTLgidxSymbolDescription#S
+\datagidxbalancefalse#S
+\datagidxbalancetrue#S
+\datagidxchildend#S
+\datagidxchilditem#S
+\datagidxchildstart#S
+\datagidxdb{entry}#S
+\datagidxdescwidth#S
+\datagidxdictparshape#S
+\datagidxdoseealso{arg}#S
+\datagidxextendedtoascii#S
+\datagidxgroupheader#S
+\datagidxgroupsep#S
+\datagidxhighoptfilename{filename%file}#S
+\datagidxindent#S
+\datagidxnamewidth#S
+\datagidxseealsoend#S
+\datagidxseealsostart#S
+\datagidxshowgroupsfalse#S
+\datagidxshowgroupstrue#S
+\datagidxshowifdraft{arg}#S
+\datagidxstripaccents#S
+\datagidxtermkeys#S
+\dtldofirstlocation#S
+\dtldolocationlist#S
+\ifdatagidxbalance#S
+\ifdatagidxshowgroups#S
+\ifnewtermfield{name}{true}{false}#S
+\newtermfield{name}#S
+\printtermsstartpar#S
+
+# deprecated
+\DTLgidxAddLocationType{cmd}#S

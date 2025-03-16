@@ -1,5 +1,5 @@
 # latex2pydata package
-# Matthew Bertucci 2024/05/20 for v0.2.0
+# Matthew Bertucci 2025/03/04 for v0.5.0
 
 #include:etoolbox
 #include:fvextra
@@ -24,6 +24,9 @@
 \pydatawritekeyvalue{key%plain}{value}#*
 \begin{pydatawritemlvalue}#*
 \end{pydatawritemlvalue}#*
+\pydatawritemlvalueopen#*
+\pydatawritemlvalueline{line}#*
+\pydatawritemlvalueclose#*
 \pydatasetbuffername{buffername}#*
 \pydataclearbuffername{buffername}#*
 \pydatabuffermdfivesum#*
@@ -34,11 +37,12 @@
 \pydatabufferkeyvalue{key%plain}{value}#*
 \begin{pydatabuffermlvalue}#*
 \end{pydatabuffermlvalue}#*
+\pydatabuffermlvalueopen#*
+\pydatabuffermlvalueline{line}#*
+\pydatabuffermlvalueclose#*
 
-# not documented
+# deprecated
 \pydatawritemlvaluestart#S
-\pydatawritemlvalueline#S
 \pydatawritemlvalueend#S
 \pydatabuffermlvaluestart#S
-\pydatabuffermlvalueline{arg}#S
 \pydatabuffermlvalueend#S

@@ -1,7 +1,8 @@
 # upmethodology-fmt package
-# Matthew Bertucci 2022/10/05 for release 2022/10/04
+# Matthew Bertucci 2025/03/15 for release 2025/03/11
 
 #include:upmethodology-p-common
+#include:titlesec
 #include:graphicx
 #include:subcaption
 #include:tabularx
@@ -20,6 +21,8 @@
 #include:hyphenat
 #include:bbm
 #include:environ
+#include:xcolor
+#include:tikz
 
 #keyvals:\usepackage/upmethodology-fmt#c
 french
@@ -94,6 +97,12 @@ fronttableheader#B
 sectiontitlecolor#B
 chaptertitlecolor#B
 parttitlecolor#B
+chaptertitlenumcolor#B
+sectiontitlenumcolor#B
+subsectiontitlecolor#B
+subsectiontitlenumcolor#B
+subsubsectiontitlecolor#B
+paragraphtitlecolor#B
 \parttoc{title}#L0
 \parttoc[short title]{title}#L0
 \parttoc*{title}#L0
@@ -253,6 +262,7 @@ emphboxbackgroundc#B
 \end{titleemphbox3}
 \overridedescriptionenvironment#*
 \restoredescriptionenvironment#*
+\sectionhoffset#*L
 
 #keyvals:\mfigure,\mfigure*,\msubfigure,\mfigurewtex,\mfigurewtex*
 alt={%<alt text%>}

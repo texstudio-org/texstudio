@@ -1,5 +1,5 @@
 # tabularray package
-# Matthew Bertucci 2024/02/17 for v2024A
+# Matthew Bertucci 2025/03/15 for v2025A
 
 #include:ninecolors
 
@@ -253,21 +253,21 @@ leftspace+=##L
 rightspace+=##L
 #endkeyvals
 
-\NewColumnType{name}{definition}
-\NewColumnType{name}[args][default]{definition}
-\NewRowType{name}{definition}
-\NewRowType{name}[args][default]{definition}
-\NewColumnRowType{name}{definition}#*
-\NewColumnRowType{name}[args][default]{definition}#*
+\NewTblrColumnType{name}{definition}
+\NewTblrColumnType{name}[args]{definition}
+\NewTblrColumnType{name}[args][default]{definition}
+\NewTblrRowType{name}{definition}
+\NewTblrRowType{name}[args]{definition}
+\NewTblrRowType{name}[args][default]{definition}
+\NewTblrColumnRowType{name}{definition}#*
+\NewTblrColumnRowType{name}[args]{definition}#*
+\NewTblrColumnRowType{name}[args][default]{definition}#*
 
 \NewTblrEnviron{envname}#N
 
-\NewTableCommand{cmd}{definition}#d
-\NewTableCommand{cmd}[args]{definition}#d
-\NewTableCommand{cmd}[args][default]{definition}#d
-
-\NewChildSelector{arg1}{arg2}#*
-\NewChildSelector{arg1}[opt1][opt2]{arg2}#*
+\NewTblrTableCommand{cmd}{definition}#d
+\NewTblrTableCommand{cmd}[args]{definition}#d
+\NewTblrTableCommand{cmd}[args][default]{definition}#d
 
 \leftsep#*
 \rightsep#*
@@ -338,13 +338,12 @@ note{%<name%>}={%<text%>}
 remark{%<name%>}={%<text%>}
 #endkeyvals
 
-\DefTblrTemplate{element%keyvals}{template name}{definition}#*
 \DeclareTblrTemplate{element%keyvals}{template name}{definition}#*
 \SetTblrTemplate{element%keyvals}{template name}#*
 \UseTblrTemplate{element%keyvals}{default}#*
 \ExpTblrTemplate{element%keyvals}{default}#*
 
-#keyvals:\DefTblrTemplate#c,\DeclareTblrTemplate#c,\SetTblrTemplate#c,\UseTblrTemplate#c,\ExpTblrTemplate#c
+#keyvals:\DeclareTblrTemplate#c,\SetTblrTemplate#c,\UseTblrTemplate#c,\ExpTblrTemplate#c
 contfoot-text
 contfoot
 conthead-text
@@ -417,55 +416,129 @@ hook
 html
 nameref
 siunitx
+tikz
 varwidth
 zref
 #endkeyvals
 
-# miscellaneous undocumented
-\LogTblrTracing{arg}#*
-\LogTabularrayTracing{arg}#S
-\GetTblrStyle{element}{key%plain}#*
-\UseTblrAlign{element}#*
-\UseTblrIndent{element}#*
-\UseTblrHang{element}#*
-\UseTblrColor{element}#*
-\UseTblrFont{element}#*
-\InsertTblrMore{arg}#*
-\NewDashStyle{name}{definition}#*
-\NewContentCommand{cmd}{definition}#*d
-\NewContentCommand{cmd}[args]{definition}#*d
-\NewContentCommand{cmd}[args][default]{definition}#*d
-\TblrParboxRestore#*
 \TblrAlignBoth#*
 \TblrAlignLeft#*
 \TblrAlignCenter#*
 \TblrAlignRight#*
-\TblrNewPage#*
-\rulewidth#*L
-\SetTblrDefault{options}#S
-\TblrOverlap#*
-\begin{tblrNoHyper}#S
-\end{tblrNoHyper}#S
-\pagebreak[number]#*
-\nopagebreak[number]#*
-\lTblrCaptionTl#S
-\lTblrEntryTl#S
-\lTblrLabelTl#S
+
+\lTblrDefaultHruleWidthDim#*L
+\lTblrDefaultVruleWidthDim#*L
+\lTblrDefaultHruleColorTl#*
+\lTblrDefaultVruleColorTl#*
+
+\DeclareTblrKeys{path}{keyvals%plain}#*
+\SetTblrKeys{path}{keyvals}#*
+
+\AddToTblrHook{name}{code}#*
+\AddToTblrHook{name}[label]{code}#*
+\AddToTblrHookNext{name}{code}#*
+
+\lTblrCellBreakBool#*
 \lTblrMeasuringBool#*
-\lTblrRefMoreClist#S
-\lTblrCellRowSpanTl#*
-\lTblrCellColSpanTl#*
-\lTblrCellBackgroundTl#*
+\lTblrPortraitTypeTl#*
+\lTblrRowHeadInt#*
+\lTblrRowFootInt#*
+\lTblrTablePageInt#*
+\lTblrRowFirstInt#*
+\lTblrRowLastInt#*
+\lTblrCellRowSpanInt#*
+\lTblrCellColSpanInt#*
 \lTblrCellOmittedBool#*
+\lTblrCellBackgroundTl#*
 \lTblrCellAboveBorderStyleTl#*
-\lTblrCellAboveBorderWidthTl#*
+\lTblrCellAboveBorderWidthDim#*
 \lTblrCellAboveBorderColorTl#*
 \lTblrCellBelowBorderStyleTl#*
-\lTblrCellBelowBorderWidthTl#*
+\lTblrCellBelowBorderWidthDim#*
 \lTblrCellBelowBorderColorTl#*
 \lTblrCellLeftBorderStyleTl#*
-\lTblrCellLeftBorderWidthTl#*
+\lTblrCellLeftBorderWidthDim#*
 \lTblrCellLeftBorderColorTl#*
 \lTblrCellRightBorderStyleTl#*
-\lTblrCellRightBorderWidthTl#*
+\lTblrCellRightBorderWidthDim#*
 \lTblrCellRightBorderColorTl#*
+
+\NewTblrChildIndexer{name}{definition}#*
+\NewTblrChildIndexer{name}[args]{definition}#*
+\NewTblrChildIndexer{name}[args][default]{definition}#*
+\lTblrChildTotalInt#*
+\lTblrChildIndexTl#*
+\NewTblrChildSelector{name}{definition}#*
+\NewTblrChildSelector{name}[args]{definition}#*
+\NewTblrChildSelector{name}[args][default]{definition}#*
+\lTblrChildHtotalInt#*
+\lTblrChildVtotalInt#*
+\lTblrChildClist#*
+
+\SetChild{keyvals}#t
+
+#keyvals:\SetChild
+id=%<indexer%>
+idh=%<indexer%>
+idv=%<indexer%>
+id*=%<indexer%>
+class=%<selector%>
+classh=%<selector%>
+classv=%<selector%>
+class*=%<selector%>
+#endkeyvals
+
+\ExpTblrChildId{id}#*
+\ExpTblrChildClass{class%plain}#*
+
+# miscellaneous undocumented
+\begin{tblrNoHyper}#*
+\cTblrPrimitiveColrowTypeStr#*
+\end{tblrNoHyper}#*
+\GetTblrStyle{element}{key%plain}#*
+\gTblrLevelInt#*
+\gTblrUsedColumnTypeStr#*
+\gTblrUsedRowTypeStr#*
+\InsertTblrMore{arg}#*
+\LogTblrTracing{arg}#*
+\lTblrCaptionTl#*
+\lTblrEntryTl#*
+\lTblrLabelTl#*
+\lTblrRefMoreClist#*
+\lTblrTableWidthDim#*
+\lTblrUsedChildIndexerClist#*
+\lTblrUsedChildSelectorClist#*
+\NewTblrContentCommand{cmd}[args][default]{definition}#*d
+\NewTblrContentCommand{cmd}[args]{definition}#*d
+\NewTblrContentCommand{cmd}{definition}#*d
+\NewTblrDashStyle{name}{definition}#*
+\TblrNewPage#*
+\TblrOverlap#*
+\TblrParboxRestore#*
+\thetblrcount#*
+\UseTblrAlign{element}#*
+\UseTblrColor{element}#*
+\UseTblrFont{element}#*
+\UseTblrHang{element}#*
+\UseTblrIndent{element}#*
+
+# deprecated
+\DefTblrTemplate{element%keyvals}{template name}{definition}#S
+\NewChildSelector{name}{definition}#S
+\NewChildSelector{name}[args]{definition}#S
+\NewChildSelector{name}[args][default]{definition}#S
+\NewColumnRowType{name}{definition}#S
+\NewColumnRowType{name}[args][default]{definition}#S
+\NewColumnType{name}{definition}#S
+\NewColumnType{name}[args][default]{definition}#S
+\NewDashStyle{name}{definition}#S
+\NewRowType{name}{definition}#S
+\NewRowType{name}[args][default]{definition}#S
+\NewTableCommand{cmd}{definition}#Sd
+\NewTableCommand{cmd}[args]{definition}#Sd
+\NewTableCommand{cmd}[args][default]{definition}#Sd
+\NewContentCommand{cmd}{definition}#Sd
+\NewContentCommand{cmd}[args]{definition}#Sd
+\NewContentCommand{cmd}[args][default]{definition}#Sd
+\SetTblrDefault{options}#S
+\tablewidth#S

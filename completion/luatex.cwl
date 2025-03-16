@@ -1,5 +1,5 @@
 # LuaTeX primitives
-# Matthew Bertucci updated 2025/02/10 for v1.21
+# Matthew Bertucci updated 2025/03/15 for v1.21
 
 ### from LuaTeX Reference Manual ###
 ## 2 Basic TeX enhancements ##
@@ -340,7 +340,7 @@
 \Umathnolimitsupfactor#*
 \Umathnolimitsubfactor#*
 \mathnolimitsmode=%<<mode>%>#*
-\mathitalicsmode=%<<0 or 1>%>#*
+\mathitalicsmode=%<<0,1,2,or 3>%>#*
 \mathscriptboxmode=%<<0,1,2,or 3>%>#*
 \mathscriptcharmode=%<<mode>%>#*
 \mathscriptsmode=%<<mode>%>#*
@@ -380,7 +380,6 @@
 # 7.9 Goodies #
 \mathflattenmode=%<<mode>%>#*
 \mathdefaultsmode=%<<mode>%>#*
-\mathoption#*
 
 ## 8 Nodes ##
 \localinterlinepenalty#*
