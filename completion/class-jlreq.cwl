@@ -1,5 +1,5 @@
 # jlreq class
-# Matthew Bertucci 2024-02-15 for release 2024-02-13
+# Matthew Bertucci 2025/03/16 for release 2025/03/16
 
 #include:l3keys2e
 #include:etoolbox
@@ -107,6 +107,7 @@ footnote_second_indent=##L
 sidenote_type=#number,symbol
 sidenote_symbol=%<symbol%>
 sidenote_keyword_font=%<font commands%>
+endnote_counter=%<counter%>
 endnote_second_indent=##L
 endnote_position=#headings,paragraph,{%<list of _<sectionname>s%>}
 caption_font=%<font commands%>
@@ -120,9 +121,6 @@ quote_beforeafter_space
 quote_fontsize=#normalsize,small,footnotesize,scriptsize,tiny
 itemization_beforeafter_space=##L
 itemization_itemsep=##L
-theorem_beforeafter_space=##L
-theorem_label_font=%<font commands%>
-theorem_font=%<font commands%>
 frontmatter_pagebreak=#cleardoublepage,clearpage
 frontmatter_counter={%<counter%>={value=%<integer%>,the=%<code%>,restore=%<true|false%>}%<,...%>}
 frontmatter_heading={%<sectionname%>={%<settings%>}%<,...%>}
@@ -150,6 +148,26 @@ appendix_precode=%<code%>
 appendix_postcode=%<code%>
 abstract_with_maketitle#true,false
 tableofcontents_twocolumn#true,false
+# from jlreq-complements
+thebibliography_heading=%<code%>
+thebibliography_after_label_space=##L
+thebibliography_indent=##L
+thebibliography_mark=%<code%>
+thebibliography_precode=%<code%>
+thebibliography_postcode=%<code%>
+theindex_heading=%<code%>
+theindex_mark=%<code%>
+theindex_twocolumn#true,false
+theindex_column_gap=##L
+theindex_column_rule_width=##L
+theindex_pagestyle=%<page style%>
+theindex_precode=%<code%>
+theindex_postcode=%<code%>
+theorem_beforeafter_space=##L
+theorem_label_font=%<font commands%>
+theorem_font=%<font commands%>
+theorem_indent=##L
+proof_label_font=%<font commands%>
 #endkeyvals
 
 \part{title}[subtitle%text]#L0
@@ -294,9 +312,9 @@ clear_markcommand#true,false
 
 # not documented
 \ifjlreqadjustreferencemark#S
-\if西暦#*
-\inlinenote*{text}
-\inlinenote{text}
+\if西暦#S
+\inlinenote*{text}#*
+\inlinenote{text}#*
 \inlinenotesize#*
 \jaspace{type}#*
 \jlreqadjustreferencemarkfalse#S
