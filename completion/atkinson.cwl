@@ -1,5 +1,5 @@
 # atkinson package
-# Matthew Bertucci 2025/03/17
+# Matthew Bertucci 2025/03/18
 
 #include:ifxetex
 #include:ifluatex
@@ -19,6 +19,7 @@ medium
 light
 extralight
 t
+nomono
 #endkeyvals
 
 \atkinsonfamily#*
