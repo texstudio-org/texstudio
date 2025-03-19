@@ -24,3 +24,9 @@ ext/full arc=%<number%>
 ext/no separator
 ext/normal list
 #endkeyvals
+
+# from tikzext-util.tex
+\tikzextversion#S
+\tikzextversionnumber#S
+\tikzextset{options%keyvals}
+\pgfextset{options%keyvals}
