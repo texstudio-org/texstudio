@@ -21,6 +21,10 @@ ext/full arc=%<number%>
 
 # from pgffor-ext.code.tex
 #keyvals:\foreach#c
+ext/use int=%<<start> to <end>%>
+ext/use int=%<<start> to <end> step <delta>%>
+ext/use float=%<<start> to <end>%>
+ext/use float=%<<start> to <end> step <delta>%>
 ext/no separator
 ext/normal list
 #endkeyvals
