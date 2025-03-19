@@ -2,7 +2,7 @@
 # 2025/03/19 for v0.6
 
 #keyvals:\node#c,\coordinate#c,\nodepart#c,\pic#c
-ext/circle cross split
+ext_circle cross split
 #endkeyvals
 
 #keyvals:\begin{tikzpicture}#c,\tikz#c,\begin{scope}#c,\tikzset#c,\scoped#c,\node#c,\coordinate#c,\nodepart#c,\pic#c
