@@ -1,8 +1,8 @@
 # ext.patterns.images tikzlibrary
-# 2022/12/09 for v0.4.2
+# 2025/03/19 for v0.6
 
-\pgfsetupimageaspattern{name}{imagefile}#g
-\pgfsetupimageaspattern[options%keyvals]{name}{imagefile}#g
+\tikzextsetupimageaspattern{name}{imagefile}#g
+\tikzextsetupimageaspattern[options%keyvals]{name}{imagefile}#g
 
 #keyvals:\pgfsetupimageaspattern
 height=##L
@@ -13,5 +13,11 @@ mask=%<mask name%>
 #endkeyvals
 
 #keyvals:\node#c
-image as pattern={%<options%>}
+ext/image as pattern={%<options%>}
 #endkeyvals
+
+# from tikzext-util.tex
+\tikzextversion#S
+\tikzextversionnumber#S
+\tikzextset{options%keyvals}
+\pgfextset{options%keyvals}
