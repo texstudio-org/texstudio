@@ -1,5 +1,5 @@
 # LuaTeX primitives
-# Matthew Bertucci updated 2025/03/20 for v1.21
+# Matthew Bertucci updated 2025/03/20 for v1.23.1
 
 ### from LuaTeX Reference Manual ###
 ## 2 Basic TeX enhancements ##
