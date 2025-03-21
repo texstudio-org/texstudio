@@ -2501,11 +2501,11 @@ std::pair<bool,bool> LatexDocuments::addDocsToLoad(QStringList filenames, LatexD
             if(doc==nullptr){
                 doc=new LatexDocument();
                 doc->parent=this;
+                doc->setFileName(fn);
+                addDocument(doc,true);
                 if(!doc->restoreCachedData(getCachingFolder(),fn)){
                     doc->load(fn,QDocument::defaultCodec());
                 }
-                doc->setFileName(fn);
-                addDocument(doc,true);
                 doc->setLtxCommands(parentDocument->lp);
                 if(doc->isIncompleteInMemory()){
                     // gather all commands from all child documents
