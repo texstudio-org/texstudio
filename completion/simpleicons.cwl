@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/03/15 for v14.9.0
+# Matthew Bertucci 2025/03/22 for v14.10.0
 
 #include:iftex
 
@@ -1109,6 +1109,7 @@ gitpod
 gitter
 gldotinet
 glassdoor
+gleam
 glide
 glitch
 globus
@@ -2209,6 +2210,7 @@ pond5
 popos
 porkbun
 porsche
+portableappsdotcom
 portainer
 portswigger
 posit
