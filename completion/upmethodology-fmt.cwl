@@ -1,5 +1,5 @@
 # upmethodology-fmt package
-# Matthew Bertucci 2025/03/16 for release 2025/03/15
+# Matthew Bertucci 2025/03/24 for release 2025/03/23
 
 #include:upmethodology-p-common
 #include:titlesec
@@ -104,6 +104,7 @@ subsectiontitlecolor#B
 subsectiontitlenumcolor#B
 subsubsectiontitlecolor#B
 paragraphtitlecolor#B
+subparagraphtitlecolor#B
 \parttoc{title}#L0
 \parttoc[short title]{title}#L0
 \parttoc*{title}#L0
@@ -267,6 +268,9 @@ figuresourceforeground#B
 \figuresourcename#*
 \mfigureformatsource{arg}#*
 \definitionsourcename#*
+algorithmcaptionlabel#B
+algorithmcaption#B
+algorithmborder#B
 
 #keyvals:\mfigure,\mfigure*,\msubfigure,\mfigurewtex,\mfigurewtex*
 alt={%<alt text%>}
