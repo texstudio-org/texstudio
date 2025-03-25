@@ -1,5 +1,5 @@
 # tikzlings-elephants package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -10,7 +10,7 @@
 #keyvals:\elephant#c
 body=#%color
 ears=#%color
-eye=#%color
+eyes=#%color
 hands=#%color
 belly=#%color
 feet=#%color
@@ -90,6 +90,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -147,11 +149,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\elephanthookbackground#*
-\elephanthookbelly#*
-\elephanthookbody#*
-\elephanthookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\elephanthookbackground#S
+\elephanthookbelly#S
+\elephanthookbody#S
+\elephanthookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

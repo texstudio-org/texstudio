@@ -1,16 +1,22 @@
 # ext.shapes.heatmark tikzlibrary
-# 2022/12/09 for v0.4.2
+# 2025/03/19 for v0.6
 
 #keyvals:\node#c,\coordinate#c,\nodepart#c,\pic#c
-heatmark
+ext_heatmark
 #endkeyvals
 
 #keyvals:\begin{tikzpicture}#c,\tikz#c,\begin{scope}#c,\tikzset#c,\scoped#c,\node#c,\coordinate#c,\nodepart#c,\pic#c
-heatmark arcs=%<integer%>
-heatmark arc width=##L
-heatmark arc sep=##L
-heatmark arc rings=%<integer%>
-heatmark arc sep angle=%<degrees%>
-heatmark inner opacity=%<factor%>
-heatmark outer opacity=%<factor%>
+ext/heatmark arcs=%<integer%>
+ext/heatmark arc width=##L
+ext/heatmark arc sep=##L
+ext/heatmark arc rings=%<integer%>
+ext/heatmark arc sep angle=%<degrees%>
+ext/heatmark inner opacity=%<factor%>
+ext/heatmark outer opacity=%<factor%>
 #endkeyvals
+
+# from tikzext-util.tex
+\tikzextversion#S
+\tikzextversionnumber#S
+\tikzextset{options%keyvals}
+\pgfextset{options%keyvals}

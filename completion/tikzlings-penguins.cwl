@@ -1,5 +1,5 @@
 # tikzlings-penguins package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -9,8 +9,8 @@
 
 #keyvals:\penguin#c
 body=#%color
-eye=#%color
-pupil=#%color
+eyes=#%color
+pupils=#%color
 bill=#%color
 belly=#%color
 feet=#%color
@@ -89,6 +89,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -146,11 +148,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\penguinhookbackground#*
-\penguinhookbelly#*
-\penguinhookbody#*
-\penguinhookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\penguinhookbackground#S
+\penguinhookbelly#S
+\penguinhookbody#S
+\penguinhookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

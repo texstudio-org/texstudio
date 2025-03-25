@@ -1,20 +1,26 @@
 # ext.shapes.superellipse tikzlibrary
-# 2022/12/09 for v0.4.2
+# 2025/03/19 for v0.6
 
 #include:tikzlibraryshapes.geometric
 #include:tikzlibraryintersections
 
 #keyvals:\node#c,\coordinate#c,\nodepart#c,\pic#c
-superellipse
+ext_superellipse
 #endkeyvals
 
 #keyvals:\begin{tikzpicture}#c,\tikz#c,\begin{scope}#c,\tikzset#c,\scoped#c,\node#c,\coordinate#c,\nodepart#c,\pic#c
-superellipse x exponent=%<exponent%>
-superellipse y exponent=%<exponent%>
-superellipse step=%<integer%>
-superellipse exponent=%<exponent%>
+ext/superellipse x exponent=%<exponent%>
+ext/superellipse y exponent=%<exponent%>
+ext/superellipse step=%<integer%>
+ext/superellipse exponent=%<exponent%>
 #endkeyvals
 
 \pgfmathsuperellipsex{t}{2/m}{r_x}#*
 \pgfmathsuperellipsey{t}{2/n}{r_y}#*
 \pgfmathsuperellipseXY{t}{2/m}{2/n}{a}{b}#*
+
+# from tikzext-util.tex
+\tikzextversion#S
+\tikzextversionnumber#S
+\tikzextset{options%keyvals}
+\pgfextset{options%keyvals}

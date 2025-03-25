@@ -1,5 +1,5 @@
 # tikzlings-anteaters package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -9,7 +9,7 @@
 
 #keyvals:\anteater#c
 body=#%color
-eye=#%color
+eyes=#%color
 leftstep
 rightstep
 back
@@ -87,6 +87,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -144,11 +146,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\anteaterhookbackground#*
-\anteaterhookbelly#*
-\anteaterhookbody#*
-\anteaterhookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\anteaterhookbackground#S
+\anteaterhookbelly#S
+\anteaterhookbody#S
+\anteaterhookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

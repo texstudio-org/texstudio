@@ -1,5 +1,5 @@
 # tikzlings-owls package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -9,8 +9,8 @@
 
 #keyvals:\owl#c
 body=#%color
-eye=#%color
-pupil=#%color
+eyes=#%color
+pupils=#%color
 bill=#%color
 feet=#%color
 back
@@ -88,6 +88,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -145,11 +147,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\owlhookbackground#*
-\owlhookbelly#*
-\owlhookbody#*
-\owlhookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\owlhookbackground#S
+\owlhookbelly#S
+\owlhookbody#S
+\owlhookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

@@ -1,5 +1,5 @@
 # tikzlings-chickens package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -11,8 +11,8 @@
 #keyvals:\chicken#c
 body=#%color
 comb=#%color
-eye=#%color
-pupil=#%color
+eyes=#%color
+pupils=#%color
 bill=#%color
 feet=#%color
 baby
@@ -92,6 +92,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -149,11 +151,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\chickenhookbackground#*
-\chickenhookbelly#*
-\chickenhookbody#*
-\chickenhookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\chickenhookbackground#S
+\chickenhookbelly#S
+\chickenhookbody#S
+\chickenhookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

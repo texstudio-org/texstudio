@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2025/02/25 for v1.2.1
+# Matthew Bertucci 2025/03/24 for v1.2.3
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -75,10 +75,14 @@ global#true,false
 \jsonparse_gput_right_rescan:Ne %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_gset_rescan:Nn %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_gset_rescan:Ne %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
-\jsonparse_if_num:nF {%<⟨false code⟩%>} {%<⟨string⟩%>}#/%expl3
-\jsonparse_if_num:nT {%<⟨true code⟩%>} {%<⟨string⟩%>}#/%expl3
-\jsonparse_if_num:nTF {%<⟨true code⟩%>} {%<⟨false code⟩%>} {%<⟨string⟩%>}#/%expl3
+\jsonparse_if_num:nF {%<⟨string⟩%>} {%<⟨false code⟩%>}#/%expl3
+\jsonparse_if_num:nT {%<⟨string⟩%>} {%<⟨true code⟩%>}#/%expl3
+\jsonparse_if_num:nTF {%<⟨string⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
 \jsonparse_if_num_p:n {%<⟨string⟩%>}#/%expl3
+\jsonparse_if_num:VF %<⟨str var⟩%> {%<⟨false code⟩%>}#/%expl3
+\jsonparse_if_num:VT %<⟨str var⟩%> {%<⟨true code⟩%>}#/%expl3
+\jsonparse_if_num:VTF %<⟨str var⟩%> {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\jsonparse_if_num_p:V %<⟨str var⟩%>#/%expl3
 \jsonparse_parse:e {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_parse:n {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_parse:o {%<⟨JSON string⟩%>}#/%expl3

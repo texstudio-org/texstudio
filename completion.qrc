@@ -594,6 +594,7 @@
 <file>completion/chordbars.cwl</file>
 <file>completion/chordbox.cwl</file>
 <file>completion/chronology.cwl</file>
+<file>completion/chronos.cwl</file>
 <file>completion/chronosys.cwl</file>
 <file>completion/churchslavonic.cwl</file>
 <file>completion/cinzel.cwl</file>
@@ -3855,6 +3856,7 @@
 <file>completion/tikzlings-chickens.cwl</file>
 <file>completion/tikzlings-coatis.cwl</file>
 <file>completion/tikzlings.cwl</file>
+<file>completion/tikzlings-dogs.cwl</file>
 <file>completion/tikzlings-elephants.cwl</file>
 <file>completion/tikzlings-hippos.cwl</file>
 <file>completion/tikzlings-koalas.cwl</file>
