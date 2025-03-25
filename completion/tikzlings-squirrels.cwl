@@ -1,5 +1,5 @@
 # tikzlings-squirrels package
-# Matthew Bertucci 2025/01/06 for v2.2
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -9,8 +9,8 @@
 
 #keyvals:\squirrel#c
 body=#%color
-eye=#%color
-pupil=#%color
+eyes=#%color
+pupils=#%color
 openmouth
 leftstep
 rightstep
@@ -89,6 +89,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -146,11 +148,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\squirrelhookbackground#*
-\squirrelhookbelly#*
-\squirrelhookbody#*
-\squirrelhookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\squirrelhookbackground#S
+\squirrelhookbelly#S
+\squirrelhookbody#S
+\squirrelhookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

@@ -1,5 +1,5 @@
 # tikzlings-meerkat package
-# Matthew Bertucci 2025/01/06 for v2.2
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -9,7 +9,7 @@
 
 #keyvals:\meerkat#c
 body=#%color
-eye=#%color
+eyes=#%color
 eyecircles=#%color
 ears=#%color
 muzzle=#%color
@@ -97,6 +97,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -154,11 +156,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\meerkathookbackground#*
-\meerkathookbelly#*
-\meerkathookbody#*
-\meerkathookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\meerkathookbackground#S
+\meerkathookbelly#S
+\meerkathookbody#S
+\meerkathookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

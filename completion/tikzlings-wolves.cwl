@@ -1,5 +1,5 @@
 # tikzlings-wolves package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -10,8 +10,8 @@
 
 #keyvals:\wolf#c
 body=#%color
-eye=#%color
-pupil=#%color
+eyes=#%color
+pupils=#%color
 rotatearms=%<degrees%>
 leftstep
 rightstep
@@ -90,6 +90,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -147,11 +149,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\wolfhookbackground#*
-\wolfhookbelly#*
-\wolfhookbody#*
-\wolfhookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\wolfhookbackground#S
+\wolfhookbelly#S
+\wolfhookbody#S
+\wolfhookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

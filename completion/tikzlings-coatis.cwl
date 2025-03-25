@@ -1,5 +1,5 @@
 # tikzlings-coatis package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -9,7 +9,7 @@
 
 #keyvals:\coati#c
 body=#%color
-eye=#%color
+eyes=#%color
 rotatehead=%<number%>
 sideward
 leftstep
@@ -89,6 +89,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -146,11 +148,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\coatihookbackground#*
-\coatihookbelly#*
-\coatihookbody#*
-\coatihookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\coatihookbackground#S
+\coatihookbelly#S
+\coatihookbody#S
+\coatihookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

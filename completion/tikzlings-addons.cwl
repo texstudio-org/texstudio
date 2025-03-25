@@ -1,5 +1,5 @@
 # tikzlings-addons package
-# Matthew Bertucci 2025/01/06 for v2.2
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlibrarypatterns
@@ -79,6 +79,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -136,9 +138,5 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\shufflethings
-
-\scalingfactor#S
-\xscalefactor#S
-\yscalefactor#S
-\decoscalefactor#S
+# deprecated
+\shufflethings#S
