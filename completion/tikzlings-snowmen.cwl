@@ -1,5 +1,5 @@
 # tikzlings-snowmen package
-# Matthew Bertucci 2025/01/06 for v2.2
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -9,7 +9,7 @@
 
 #keyvals:\snowman#c
 body=#%color
-eye=#%color
+eyes=#%color
 nose=#%color
 mouth=#%color
 buttons=#%color
@@ -90,6 +90,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -147,11 +149,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\snowmanhookbackground#*
-\snowmanhookbelly#*
-\snowmanhookbody#*
-\snowmanhookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\snowmanhookbackground#S
+\snowmanhookbelly#S
+\snowmanhookbody#S
+\snowmanhookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

@@ -1,5 +1,5 @@
 # tikzlings-sheep package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -11,7 +11,7 @@
 
 #keyvals:\sheep#c
 body=#%color
-eye=#%color
+eyes=#%color
 nose=#%color
 blush
 blush=#%color
@@ -91,6 +91,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -148,11 +150,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\sheephookbackground#*
-\sheephookbelly#*
-\sheephookbody#*
-\sheephookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\sheephookbackground#S
+\sheephookbelly#S
+\sheephookbody#S
+\sheephookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

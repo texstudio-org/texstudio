@@ -1,5 +1,5 @@
 # tikzlings-bugs package
-# Matthew Bertucci 2025/01/06 for v2.2
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -10,8 +10,8 @@
 #keyvals:\bug#c
 body=#%color
 antennas=#%color
-eye=#%color
-pupil=#%color
+eyes=#%color
+pupils=#%color
 mouth=#%color
 arms=#%color
 wings=#%color
@@ -94,6 +94,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -151,11 +153,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\bughookbackground#*
-\bughookbelly#*
-\bughookbody#*
-\bughookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\bughookbackground#S
+\bughookbelly#S
+\bughookbody#S
+\bughookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

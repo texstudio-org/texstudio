@@ -1,5 +1,5 @@
 # tikzlings-apes package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -9,7 +9,7 @@
 
 #keyvals:\ape#c
 body=#%color
-eye=#%color
+eyes=#%color
 nose=#%color
 mouth=#%color
 muzzle=#%color
@@ -98,6 +98,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -155,11 +157,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\apehookbackground#*
-\apehookbelly#*
-\apehookbody#*
-\apehookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\apehookbackground#S
+\apehookbelly#S
+\apehookbody#S
+\apehookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

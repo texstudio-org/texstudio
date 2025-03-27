@@ -1,5 +1,5 @@
 # tikzlings package
-# Matthew Bertucci 2024/12/12 for v2.1
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-anteaters
@@ -10,22 +10,23 @@
 #include:tikzlings-bugs
 #include:tikzlings-cats
 #include:tikzlings-chickens
-#include:tikzlings-coatis	
+#include:tikzlings-coatis
+#include:tikzlings-dogs
 #include:tikzlings-elephants
-#include:tikzlings-hippos	
+#include:tikzlings-hippos
 #include:tikzlings-koalas
 #include:tikzlings-marmots
 #include:tikzlings-meerkats
 #include:tikzlings-mice
 #include:tikzlings-moles
 #include:tikzlings-owls
-#include:tikzlings-pandas	
+#include:tikzlings-pandas
 #include:tikzlings-penguins
 #include:tikzlings-pigs
 #include:tikzlings-rhinos
 #include:tikzlings-sheep
 #include:tikzlings-sloths
-#include:tikzlings-snowmen	
+#include:tikzlings-snowmen
 #include:tikzlings-squirrels
 #include:tikzlings-wolves
 #include:tikzlings-addons
@@ -149,11 +150,11 @@ umbrellaclosed=#%color
 handbag
 handbag=#%color
 cocktail
+randomhead
+randomaccessories
 ## << common tikz options >> ##
 rotate=%<degrees%>
 scale=%<factor%>
 xshift=##L
 yshift=##L
 #endkeyvals
-
-\ExpArgsNnx#*

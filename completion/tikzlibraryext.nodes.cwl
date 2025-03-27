@@ -1,12 +1,18 @@
 # ext.nodes tikzlibrary
-# 2023/03/19 for v0.5.0
+# 2025/03/19 for v0.6
 
 #keyvals:\path#c,\draw#c,\fill#c,\filldraw#c,\pattern#c,\shade#c,\shadedraw#c,\clip#c
-node on line
-node on line=%<anchor spec%>
-nodes on line
-nodes on curve
-nodes on curve=%<to path%>
-nodes on curve'
-nodes on curve'=%<to path%>
+ext/node on line
+ext/node on line=%<anchor spec%>
+ext/nodes on line
+ext/nodes on curve
+ext/nodes on curve=%<to path%>
+ext/nodes on curve'
+ext/nodes on curve'=%<to path%>
 #endkeyvals
+
+# from tikzext-util.tex
+\tikzextversion#S
+\tikzextversionnumber#S
+\tikzextset{options%keyvals}
+\pgfextset{options%keyvals}

@@ -1,5 +1,5 @@
 # glossaries-extra package
-# Matthew Bertucci 2025/02/03 for v1.55
+# Matthew Bertucci 2025/03/18 for v1.59
 
 #include:glossaries
 
@@ -1795,6 +1795,7 @@ theHvalue=%<<prefix><location>%>
 \GlsXtrSetDefaultRangeFormat{encap}
 \GlsXtrAutoAddOnFormat{format list}{glsadd options%keyvals}
 \GlsXtrAutoAddOnFormat[label]{format list}{glsadd options%keyvals}
+\GlsXtrClearAutoAddOnFormat
 \glsxtrdowrglossaryhook{label}#*
 \glsentryindexcount{label}#*r
 \glsifindexed{label}{true}{false}#*r

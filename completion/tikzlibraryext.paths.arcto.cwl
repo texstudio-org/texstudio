@@ -1,6 +1,12 @@
 # ext.paths.arcto tikzlibrary
-# 2022/12/09 for v0.4.2
+# 2025/03/19 for v0.6
 
 #keyvals:\begin{tikzpicture}#c,\tikz#c,\begin{scope}#c,\tikzset#c,\scoped#c
-every arc to/.style={%<TikZ keys%>}
+ext/every arc to/.style={%<TikZ keys%>}
 #endkeyvals
+
+# from tikzext-util.tex
+\tikzextversion#S
+\tikzextversionnumber#S
+\tikzextset{options%keyvals}
+\pgfextset{options%keyvals}

@@ -1,5 +1,5 @@
 # tikzlings-moles package
-# Matthew Bertucci 2025/01/06 for v2.2
+# Matthew Bertucci 2025/03/25 for v2.3
 
 #include:tikz
 #include:tikzlings-addons
@@ -9,7 +9,7 @@
 
 #keyvals:\moles#c
 body=#%color
-eye=#%color
+eyes=#%color
 muzzle=#%color
 hands=#%color
 feet=#%color
@@ -92,6 +92,8 @@ milkshake=#%color
 wine
 wine=#%color
 cocktail
+randomhead
+randomaccessories
 banana
 banana=#%color
 cricket
@@ -149,11 +151,12 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\moleshookbackground#*
-\moleshookbelly#*
-\moleshookbody#*
-\moleshookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+# deprecated
+\moleshookbackground#S
+\moleshookbelly#S
+\moleshookbody#S
+\moleshookforeground#S
+\tikzlinghookbackground#S
+\tikzlinghookbelly#S
+\tikzlinghookbody#S
+\tikzlinghookforeground#S

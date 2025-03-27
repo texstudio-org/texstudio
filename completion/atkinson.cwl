@@ -1,5 +1,5 @@
 # atkinson package
-# Matthew Bertucci 2024/04/20
+# Matthew Bertucci 2025/03/18
 
 #include:ifxetex
 #include:ifluatex
@@ -13,9 +13,13 @@ scaled=%<factor%>
 default
 sfdefault
 type1
+semibold
+extrabold
+medium
+light
+extralight
 t
-proportional
-p
+nomono
 #endkeyvals
 
 \atkinsonfamily#*
