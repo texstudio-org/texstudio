@@ -399,8 +399,10 @@ uncompress
 lang=%<lang%>
 pdfstandard=#A-1b,A-2a,A-2b,A-2u,A-3a,A-3b,A-3u,A-4 
 colorprofiles={%<options%>}
-testphase=#phase-I,phase-II,phase-III
+testphase=#phase-I,phase-II,phase-III,latest
 debug={%<options%>}
+tagging=#on,off,draft
+tagging-setup={%<options%>}
 #endkeyvals
 \IfDocumentMetadataTF{true code}{false code}#*
 
