@@ -71,7 +71,7 @@ environments in smallUsefulFunctions.cpp)
 	<!-- ========================= dtx COMMAND ====================== -->
 	
 	<context id="comment/single" format="comment" stayOnLine="true" >
-		<start>\^\^A</start>
+		<start>^^A</start>
 		<stop exclusive="false">\n</stop>
 	</context>	
 	
