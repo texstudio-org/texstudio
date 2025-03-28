@@ -1,5 +1,5 @@
 # eqnlines package
-# Matthew Bertucci 2025/03/15 for v0.6
+# Matthew Bertucci 2025/03/28 for v0.6.1
 
 #include:keyval
 
@@ -105,6 +105,9 @@ displaydepth=##L
 displaydepth*
 tagmargin=##L
 tagmargin*=##L
+tagmargincalc
+tagmarginratio=%<factor%>
+tagmarginthreshold=%<threshold%>
 mintagsep=##L
 mintagwidth=##L
 mintagwidth*=##L
@@ -123,6 +126,7 @@ layout=#left,center
 center
 left
 leftmargin=##L
+leftmargin*=%<text%>
 minleftmargin=##L
 maxleftmargin=##L
 marginbadness=%<integer%>
