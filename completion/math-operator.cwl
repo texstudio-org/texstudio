@@ -1,5 +1,5 @@
 # math-operator package
-# Matthew Bertucci 2025/03/02 for v1.0
+# Matthew Bertucci 2025/03/30 for v1.1
 
 #keyvals:\usepackage/math-operator#c
 blackboard
@@ -25,6 +25,12 @@ no-trigonometry
 \operatordefmode=%<-1|0|1|2%>#*
 \pilcrow#*
 \operatorhyphen#*
+\operatorhyphen*#*
+\operatorsquared#*
+\operatorsquared*#*
+\operatorinverse#*
+\operatorinverse*#*
+\defaultinverse#*
 \DeclareMathText{command}{text%definition}#d
 \DeclareBoldMathText{command}{text%definition}#d
 \DeclareMathOperator{command}{text%definition}#d
@@ -35,7 +41,7 @@ no-trigonometry
 \overbar*{arg}#m
 \overbar[decimal]{arg}#m
 \overbar*[decimal]{arg}#m
-\operatorbaroffset#*
+\overbaroffset#*
 
 \N#m
 \Z#m
@@ -106,6 +112,7 @@ no-trigonometry
 \Burr#m
 \Categorical#m
 \Cauchy#m
+\chiop#*m
 \ChiSq#m
 \Dagum#m
 \Exponential#m
@@ -122,7 +129,8 @@ no-trigonometry
 \MaxwellBoltzmann#m
 \Multinomial#m
 \NegBinomial#m
-\Normalhoptional#m
+\Normal#m
+\Normal*#m
 \Pareto#m
 \Poisson#m
 \Weibull#m
@@ -158,11 +166,13 @@ no-trigonometry
 \curl#m
 \divop#m
 \grad#m
+\Hess#m
 \Hom#m
 \id#m
 \Im#m
 \varIm#m
 \img#m
+\Info#m
 \interior#m
 \lcm#m
 \Proj#m
