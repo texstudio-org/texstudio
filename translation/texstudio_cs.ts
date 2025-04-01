@@ -57,7 +57,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="348"/>
         <source>Stream results</source>
-        <translation type="unfinished"/>
+        <translation>Průběžné výsledky</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="437"/>
@@ -187,7 +187,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="56"/>
         <source>couldn&apos;t retrieve data</source>
-        <translation>nemohu načíst data</translation>
+        <translation>nelze načíst data</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="80"/>
@@ -1032,9 +1032,9 @@ Změňte, prosím, své nastavení a stanovte seznamy příkazů pouze ve Volby 
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Určuje druh oznámení o aktualizaci, jejž budete přijímat:
-- Stálá vydání: Vyberte, pokud je pro vás stálost důležitá.
-- Uchazeči o vydání: Jsou blízko budoucímu, pokud jde o vlastnosti a stálost. Vyberte, abyste získal představu o budoucích vydáních a pomohl nám zkoušením verze před jejím zveřejněním jako veřejného vydání (na stálá vydání je upozorňováno také)
-- Vývojářské verze: Obsahují nejnovější vlastnosti, mohou však vykazovat nestálost. (na stálá vydání a uchazeče o vydání je upozorňováno také).</translation>
+– Stálá vydání: Vyberte, pokud je pro vás stálost důležitá.
+– Uchazeči o vydání: Jsou blízko budoucímu, pokud jde o vlastnosti a stálost. Vyberte, abyste získal představu o budoucích vydáních a pomohl nám zkoušením verze před jejím zveřejněním jako veřejného vydání (na stálá vydání je upozorňováno také)
+– Vývojářské verze: Obsahují nejnovější vlastnosti, mohou však vykazovat nestálost. (na stálá vydání a uchazeče o vydání je upozorňováno také).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="524"/>
@@ -1433,7 +1433,7 @@ Potom můžete vybrat novou klávesovou zkratku jedním z následujících způs
     <message>
         <location filename="../src/configdialog.ui" line="1641"/>
         <source>Inline Checking:</source>
-        <translation>Přezkoušení vkládaného:</translation>
+        <translation>Přezkoušení v řádku:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1651"/>
@@ -2673,7 +2673,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4067"/>
         <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
-        <translation type="unfinished"/>
+        <translation>Při změně režimu se odpovídajícím způsobem zobrazí náhled na vzorce (ale pro vzorce v řádku je to stále nápověda).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4074"/>
@@ -2698,7 +2698,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4094"/>
         <source>Inline</source>
-        <translation>Vkládaný</translation>
+        <translation>V řádku</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4099"/>
@@ -2792,7 +2792,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4394"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stanovuje, jakým způsobem je PDF nahráno:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Uložen ve vyrovnávací paměti:&lt;/b&gt; Nahrát soubor do vyrovnávací paměti a ověřit úplnost. Potom data předat poppleru. Toto bylo v první řadě zavedeno jako zrychlení pro starší verze poppleru (&amp;lt;0.24), které nebyly &quot;thread-safe&quot;. bylo hlášeno, že poppler může při nahrávání velkých objemů dat uložených do vyrovnávací paměti spadnout. Z toho důvodu je tato volba zamítnuta.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Přímý:&lt;/b&gt; Používá vlastní funkce poppleru pro nahrávání ze souborů. Toto je nejrychlejší cesta, ale neumožňuje přezkoušení neúplných souborů.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Smíšený (doporučeno):&lt;/b&gt; Nejprve soubor nahraje do vyrovnávací paměti a přezkouší jej na úplnost. U malých souborů (&amp;lt; 50MB) jsou data předána dál přímo poppleru.Velké soubory jsou nahrány pomocí vlastních funkcí poppleru pro nahrávání souborů. Tento postup podporuje přezkoušení souborů na úplnost a zabraňuje možným potížím spojeným s pády velkých souborů PDF.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stanovuje, jakým způsobem je PDF nahráno:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Uložen ve vyrovnávací paměti:&lt;/b&gt; Nahrát soubor do vyrovnávací paměti a ověřit úplnost. Potom data předat poppleru. Toto bylo v první řadě zavedeno jako zrychlení pro starší verze poppleru (&amp;lt;0.24), které nebyly &quot;thread-safe&quot;. bylo hlášeno, že poppler může při nahrávání velkých objemů dat uložených do vyrovnávací paměti spadnout. Z toho důvodu je tato volba zamítnuta.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Přímý:&lt;/b&gt; Používá vlastní funkce poppleru pro nahrávání ze souborů. Toto je nejrychlejší cesta, ale neumožňuje přezkoušení neúplných souborů.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Smíšený (doporučeno):&lt;/b&gt; Nejprve soubor nahraje do vyrovnávací paměti a přezkouší jej na úplnost. U malých souborů (&amp;lt; 50MB) jsou data předána dál přímo poppleru. Velké soubory jsou nahrány pomocí vlastních funkcí poppleru pro nahrávání souborů. Tento postup podporuje přezkoušení souborů na úplnost a zabraňuje možným potížím spojeným s pády velkých souborů PDF.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4404"/>
@@ -3297,7 +3297,7 @@ chcete nastavit?</translation>
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
         <translation>Soubory se slovníky byly zavedeny do
 %1.
-Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?</translation>
+Tato cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1402"/>
@@ -3875,22 +3875,22 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>The \dotfill command produces an infinite horizontal rubber length that LaTeX fills with dots, instead of white space.</source>
-        <translation type="unfinished"/>
+        <translation>Příkaz \dotfill vytvoří nekonečnou vodorovnou tečkovanou čáru namísto prázdného prostoru. </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>The \newpage command ends the current page</source>
-        <translation type="unfinished"/>
+        <translation>Příkaz \newpage ukončuje danou stránku</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>The \linebreak command tells LaTeX to break the current line at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>Příkaz \linebreak říká LaTeXu, že má ukončit daný řádek na místě příkazu.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>The \pagebreak command tells LaTeX to break the current page at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>Příkaz \pagebreak říká LaTeXu, že má ukončit danou stránku na místě příkazu.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
@@ -3925,7 +3925,7 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>The \newline command breaks the line right where it is.</source>
-        <translation type="unfinished"/>
+        <translation>Příkaz \newline ukončí daný řádek přesně tam, kde se nachází.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
@@ -3940,7 +3940,7 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="153"/>
         <source>Inline math - $...$</source>
-        <translation type="unfinished"/>
+        <translation>Matematika v řádku – $...$</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
@@ -3950,7 +3950,7 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="155"/>
         <source>Inline math - \(...\)</source>
-        <translation type="unfinished"/>
+        <translation>Matematika v řádku – \(...\)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="156"/>
@@ -3960,7 +3960,7 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="157"/>
         <source>Display math - \[...\]</source>
-        <translation type="unfinished"/>
+        <translation>Matematika na samostatném řádku – \[...\]</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="158"/>
@@ -3995,7 +3995,7 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>Single equation centered in a row</source>
-        <translation type="unfinished"/>
+        <translation>Jedna rovnice vycentrovaná na řádku</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
@@ -4015,12 +4015,12 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>Multiple equations centered in rows</source>
-        <translation type="unfinished"/>
+        <translation>Více rovnic vystředěných na řádcích</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>Single equation split into multiple lines</source>
-        <translation type="unfinished"/>
+        <translation>Jedna rovnice rozdělená do více řádků</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="194"/>
@@ -10519,7 +10519,7 @@ pro úpravu jednotlivých souborů.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1105"/>
         <source>C&amp;lear Inline Preview</source>
-        <translation>S&amp;mazat vkládaný náhled</translation>
+        <translation>S&amp;mazat náhled na v řádku</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1107"/>
@@ -10549,7 +10549,7 @@ pro úpravu jednotlivých souborů.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1125"/>
         <source>Inline</source>
-        <translation>Vkládaný</translation>
+        <translation>V řádku</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1131"/>
@@ -12944,7 +12944,7 @@ zahrnut dokument v %1</translation>
         <location filename="../src/usermenudialog.cpp" line="50"/>
         <location filename="../src/usermenudialog.cpp" line="475"/>
         <source>Export all macros</source>
-        <translation>Exportovat všechna makra</translation>
+        <translation>Vyvést všechna makra</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="358"/>
@@ -12965,7 +12965,7 @@ zahrnut dokument v %1</translation>
     <message>
         <location filename="../src/usermenudialog.cpp" line="445"/>
         <source>Import macros</source>
-        <translation>Importovat makra</translation>
+        <translation>Zavést makra</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="457"/>
@@ -13009,7 +13009,7 @@ zahrnut dokument v %1</translation>
     <message>
         <location filename="../src/usermenudialog.ui" line="110"/>
         <source>Export macro(s) to file(s)</source>
-        <translation>Exportovat makro/makra do souboru/souborů</translation>
+        <translation>Vyvést makro/makra do souboru/souborů</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="113"/>
@@ -13111,7 +13111,7 @@ Můžete použít zvláštní hodnotu ?txs-start pro spuštění skriptu při sp
     <message>
         <location filename="../src/usermenudialog.ui" line="438"/>
         <source>AI Query</source>
-        <translation type="unfinished"/>
+        <translation>Zeptat se AI</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="480"/>

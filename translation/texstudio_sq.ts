@@ -18,9 +18,9 @@
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="49"/>
-        <location filename="../src/aichatassistant.cpp" line="137"/>
-        <location filename="../src/aichatassistant.cpp" line="373"/>
-        <location filename="../src/aichatassistant.cpp" line="419"/>
+        <location filename="../src/aichatassistant.cpp" line="154"/>
+        <location filename="../src/aichatassistant.cpp" line="399"/>
+        <location filename="../src/aichatassistant.cpp" line="445"/>
         <source>Send Query to AI provider</source>
         <translation>Dërgoje Kërkesën te shërbim IA</translation>
     </message>
@@ -40,39 +40,39 @@
         <translation>Asistent fjalosjeje IA</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="225"/>
+        <location filename="../src/aichatassistant.cpp" line="242"/>
         <source>Stop current query !</source>
         <translation>Ndale kërkimin e tanishëm!</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="301"/>
+        <location filename="../src/aichatassistant.cpp" line="327"/>
         <source>System prompt</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="315"/>
+        <location filename="../src/aichatassistant.cpp" line="341"/>
         <source>Values between 0 and %1</source>
         <translation>Vlera mes 0 dhe %1</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="322"/>
+        <location filename="../src/aichatassistant.cpp" line="348"/>
         <source>Stream results</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="411"/>
-        <location filename="../src/aichatassistant.cpp" line="448"/>
+        <location filename="../src/aichatassistant.cpp" line="437"/>
+        <location filename="../src/aichatassistant.cpp" line="474"/>
         <source>Execute as macro</source>
         <translation>Ekzekutoje si makro</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="413"/>
-        <location filename="../src/aichatassistant.cpp" line="450"/>
+        <location filename="../src/aichatassistant.cpp" line="439"/>
+        <location filename="../src/aichatassistant.cpp" line="476"/>
         <source>Insert into text</source>
         <translation>Fute në tekst</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="317"/>
+        <location filename="../src/aichatassistant.cpp" line="343"/>
         <source>Temperature</source>
         <translation>Temperaturë</translation>
     </message>
@@ -210,7 +210,7 @@
     <message>
         <location filename="../src/arraydialog.cpp" line="108"/>
         <source>Quick Array</source>
-        <translation type="unfinished"/>
+        <translation>Matricë e Shpejtë</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="31"/>
@@ -231,7 +231,8 @@
         <location filename="../src/arraydialog.ui" line="75"/>
         <source>In case of an array environment sets the alignment for the column of the currently selected cell.
 For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
-        <translation type="unfinished"/>
+        <translation>Në rast të n jë mjedisi matricash, cakton drejtimin për shtyllën e kutizës së përzgjedhur atë çast.
+Për matrix* dhe të ngjashëm (paketa mathtools) cakton njëherësh drejtimin për krejt shtyllat.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="86"/>
@@ -417,7 +418,7 @@ Paketa mathtools mbulon alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatri
     <message>
         <location filename="../src/bibtexdialog.cpp" line="286"/>
         <source>Multi-volume Reference Entry</source>
-        <translation type="unfinished"/>
+        <translation>Zë Reference Shumëvëllimëshe</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="297"/>
@@ -984,7 +985,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="437"/>
         <source>Always Show Structure of Root Document</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq Përherë Strukturën e Dokumentit Rrënjë</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="447"/>
@@ -1027,7 +1028,10 @@ Please change your configuration and define command lists only at &apos;Options 
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Përcakton llojet e njoftimeve për përditësime që do të merrni:
+- Hedhje të Qëndrueshme Në Qarkullim: Zgjidhni këtë, nëse qëndrueshmëria është gjëja më e rëndësishme për ju.
+- Kandidatë për Hedhje Në Qarkullim: Janë pranë një hedhje të ardhshme në qarkullim, për sa i përket veçorive dhe qëndrueshmërisë. Zgjidheni këtë që të merrni paraparje të hedhjeve të ardhshme në qarkullim dhe të na ndihmoni duke testuar versionin para se të botohet si një hedhje zyrtare në qarkullim. (Njoftohet edhe për hedhje të qëndrueshme në qarkullim)
+- Versione Zhvillim: Përmbajnë veçoritë më të reja, por mund të jenë të paqëndrueshëm. (Njoftohet dhe për hedhje të qëndrueshme në qarkullim dhe kandidatë për hedhje në qarkullim).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="524"/>
@@ -1052,7 +1056,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="582"/>
         <source>Last Checked:</source>
-        <translation>Kontrolluar Së Fundi Më %s.</translation>
+        <translation>Kontrolluar Së Fundi Më:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="589"/>
@@ -1087,7 +1091,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="688"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Përzgjedhës kartelash (Opsional. Në qoftë i pranishëm, përfshini pikëpresjen përfunduese):&lt;/i&gt; Nëse s’ka përzgjedhës, atëherë përzgjidhni kartelën rrënjë. &lt;b&gt;c:&lt;/b&gt; përzgjidh kartelën e tanishme, &lt;b&gt;p{ext}:&lt;/b&gt; Gjej një kartelë me të njëjtin emër bazë si kartela rrënjë dhe me të njëjtin zgjatim &lt;b&gt;ext&lt;/b&gt;. Kërkimi bëhet te drejtori rrënjë kartelash dhe drejtori të tjera PDF.&lt;br /&gt;&lt;i&gt;Pjesë emrash shtigjesh:&lt;/i&gt; një ndërthurje e &lt;b&gt;a&lt;/b&gt;: shtegu absolut, &lt;b&gt;m&lt;/b&gt;: emër kartele pa zgjatim,&lt;b&gt;e&lt;/b&gt;: zgjatim, &lt;b&gt;r&lt;/b&gt;: shteg relativ për te rrënja, &lt;b&gt;*&lt;/b&gt;: krejt kartelat që përkojnë me rregullsinë vijuese&lt;br/&gt;&lt;i&gt;Shenja përfunduese:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: përfundon përzgjedhësin. Shenjat vijues përfundojnë përzgjedhësin dhe kanë domethënie shtesë&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: mbyllje në thonjëza dyshe, &lt;b&gt;.&lt;/b&gt; (pikë) shtoni një pikë te fundi, (hapësirë): shtoni një një hapësirë te fundi&lt;br/&gt;&lt;i&gt;Shembuj:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: emër kartele i plotë absolut, i përfshirë brenda thonjëzash, &lt;b&gt;?e)&lt;/b&gt; thjesht zgjatimin, pa pikën që i paraprin (p.sh., tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; emër kartele brenda thonjëzash dyshe, pa zgjatimin (identike me &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; emër kartele me zgjatimin (p.sh., example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: krejt kartelat .aux te drejtoria e çastit</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="704"/>
@@ -1114,7 +1118,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="820"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
-        <translation type="unfinished"/>
+        <translation>Ekzekuton txs:///recompile-bibliography, nëse qenë ndryshuar kartela bib.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="823"/>
@@ -1161,7 +1165,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="893"/>
         <source>Maximum Compile Repetitions:</source>
-        <translation>Maksimum Përsëritjesh Përpilimi</translation>
+        <translation>Maksimum Përsëritjesh Përpilimi:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="949"/>
@@ -1235,7 +1239,11 @@ Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
 (3) type the string of the shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Për përpunim, dyklikoni mbi zëra te “Shkurtore e Tanishme”, ose “Shkurtore Shtesë”.
+Mandej mund të përzgjidhni një shkurtore të re nga sipas njërës prej mënyra vijuese:
+(1) përzgjidhni prej listës hapmbyllt
+(2) shtypni ndërthurjen e tasteve për shkurtoren
+(3) Shtypni vargun e shkurtores</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1097"/>
@@ -1261,7 +1269,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1120"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"/>
+        <translation>Mbylle Elementin aplikohet mbi një listë të fiksuar elementësh GUI (këtu s’shfaqen të tërë). Do të mbyllet elementi i parë. Me këtë rregullim mund të përjashtoni disa elementë nga mbyllja.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1123"/>
@@ -1297,7 +1305,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1183"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
-        <translation type="unfinished"/>
+        <translation>Këtu paraqiten zërat e menusë dhe mund të kalohen të fshehur, ose të përpunohen.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1196"/>
@@ -1318,7 +1326,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1214"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation type="unfinished"/>
+        <translation>Kjo kontrollon nëse lista më sipër shfaq krejt zërat e menusë, apo vetëm ata të ndryshuar rëndom.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1217"/>
@@ -1333,7 +1341,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1249"/>
         <source>This shows all actions on the currently edited toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Kjo shfaq krejt veprimet te paneli i përpunuar aktualisht.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1274"/>
@@ -1353,22 +1361,22 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1324"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Këtu mund të zgjidhni një listë urdhrash që mund të përshoqërohen te paneli.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1331"/>
         <source>This shows available actions to map on a toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Kjo shfaq veprime të gatshëm që mund të përshoqërohen te një panel.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1379"/>
         <source>Note: The change of symbols can be monitored live</source>
-        <translation type="unfinished"/>
+        <translation>Shënim: Ndryshimi i simboleve mund të mbikëqyret drejtpërdrejt</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1386"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Kjo ndryshon përshkallëzimin e mozaikut të simboleve (për ekranë me qartësi të lartë).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1417"/>
@@ -1381,22 +1389,22 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="../src/configdialog.ui" line="1488"/>
         <location filename="../src/configdialog.ui" line="1541"/>
         <source>Reset</source>
-        <translation type="unfinished"/>
+        <translation>Riktheje te parazgjedhjet</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1438"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Kjo ndryshon përshkallëzimin e paneleve vertikalë (për ekranë me qartësi të lartë).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1460"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Kjo ndryshon përshkallëzimin e paneleve horizontalë (për ekranë me qartësi të lartë).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1495"/>
         <source>Symbol Grid</source>
-        <translation type="unfinished"/>
+        <translation>Mozaik Simbolesh</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1502"/>
@@ -1406,12 +1414,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1509"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kjo ndryshon përshkallëzimin e panelit të parësit të trupëzuar të PDF-ve (për ekrane me qartësi të lartë).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1534"/>
         <source>Embedded PDF Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Panel i Trupëzuar PDF-sh</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1629"/>
@@ -1438,22 +1446,22 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1664"/>
         <source>All Line Numbers</source>
-        <translation type="unfinished"/>
+        <translation>Krejt Numrat e Rreshtave</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1669"/>
         <source>Only Important Line Numbers</source>
-        <translation type="unfinished"/>
+        <translation>Vetëm Numra Rreshtash të Rëndësishëm</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1677"/>
         <source>Check non tex files</source>
-        <translation type="unfinished"/>
+        <translation>Kontrollo kartela që s’janë tekst</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1687"/>
         <source>Scan LaTeX distribution for installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Kontrollo shpërndarjen LaTeX për paketa të instaluara</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1697"/>
@@ -1463,7 +1471,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1704"/>
         <source>Replace Indentation Tab by Spaces</source>
-        <translation type="unfinished"/>
+        <translation>Zëvendëso Tabulacion Kryeradhe me Hapësira</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1711"/>
@@ -1494,12 +1502,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1755"/>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
-        <translation type="unfinished"/>
+        <translation>Analizo LaTeX (kodim % !TeX, inputenc, inputenx)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1762"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
-        <translation type="unfinished"/>
+        <translation>mund të vendosë vetëm mes utf16/utf-8 dhe ISO 8859-1 !</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1765"/>
@@ -1541,7 +1549,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1846"/>
         <source>French Quotes (babel): \og{} \fg{}</source>
-        <translation type="unfinished"/>
+        <translation>Thonjëza Frënge (babel): \og{} \fg{}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1851"/>
@@ -1586,7 +1594,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1900"/>
         <source>Indent and Unindent Automatically</source>
-        <translation type="unfinished"/>
+        <translation>Apliko dhe Hiq Automatikisht Kryeradhë</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1920"/>
@@ -1621,22 +1629,22 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1965"/>
         <source>Replace Tab in Text by Spaces</source>
-        <translation type="unfinished"/>
+        <translation>Në Tekst Zëvendëso Tabulacione me Hapësira</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1972"/>
         <source>Hide grammar errors in non-text environments</source>
-        <translation type="unfinished"/>
+        <translation>Fshih gabime gramatikore në mjedise jo tekst</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1982"/>
         <source>Hide spelling errors in non-text environments</source>
-        <translation type="unfinished"/>
+        <translation>Fshih gabime shkrimi në mjedise jo tekst</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1992"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation type="unfinished"/>
+        <translation>Gjatë Ruajtjes, Hiq Hapësirë të Zbrazët Në Fund</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1999"/>
@@ -1646,7 +1654,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2009"/>
         <source>Cache documents for faster reopening</source>
-        <translation type="unfinished"/>
+        <translation>Ruaj dokumente në fshehtinë, për rihapje më të shpejtë</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2092"/>
@@ -1676,27 +1684,27 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2165"/>
         <source>Bold Cursor</source>
-        <translation type="unfinished"/>
+        <translation>Kursor i Trashë</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2181"/>
         <source>Search Panel</source>
-        <translation type="unfinished"/>
+        <translation>Panel Kërkimesh</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2187"/>
         <source>Close search and replace panel together</source>
-        <translation type="unfinished"/>
+        <translation>Panelin e kërkimeve dhe atë të zëvendësimeve mbylli tok</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2197"/>
         <source>Use single line selection as Search Word</source>
-        <translation type="unfinished"/>
+        <translation>Si Fjalë Kërkimi përdor përzgjedhje rreshti njësh</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2207"/>
         <source>Restrict search scope to an existing selection</source>
-        <translation type="unfinished"/>
+        <translation>Kufizo fushëveprim kërkimi te një përzgjedhje ekzistuese</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2217"/>
@@ -1706,7 +1714,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2226"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kjo përdor QSaveFile për të parandaluar humbje të dhënash ekzistuese, nëse dështon veprimi i shkrimit. Si mangësi, përdoruesi aktual bëhet zot i kartelës dhe humbin atribute të zgjeruar kartele. Veç kësaj, duket të ketë probleme të kësaj metode me dosje Dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2229"/>
@@ -1716,7 +1724,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2236"/>
         <source>Show preview as tooltip on formulas in editor</source>
-        <translation type="unfinished"/>
+        <translation>Te përpunuesi, paraparjen te formula shfaqe si ndihmëz</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2243"/>
@@ -1731,37 +1739,37 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2257"/>
         <source>Show log markers when clicking log entry</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq shenja regjistrimi, kur klikohet zë regjistri</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2264"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Mbishkruaj Kllapë Hapëse të Pasuar nga një Vendmbajtëse</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2276"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
-        <translation type="unfinished"/>
+        <translation>Ngarko heshtazi kartela, pas ndryshimesh të jashtme (s’merr parasysh grupin zhbëje/ribëje)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2285"/>
         <source>Monitor open files for external changes</source>
-        <translation type="unfinished"/>
+        <translation>Mbikëqyr për ndryshime të jashtme kartela të hapura</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2292"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Programe të jashtëm (fjala vjen, Zotero) mund të fusin citime në texstudio duke përdorur: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citim&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Nëse kursori s’gjendet tashmë brenda një urdhri citimi, si \cite-command përdoret &amp;quot;urdhri&amp;quot; i dhënë këtu.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2295"/>
         <source>Latex Command for pushed citations:</source>
-        <translation type="unfinished"/>
+        <translation>Urdhër Latex për citimet e dhëna:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2303"/>
         <source>Add Entries Directly To Context  Menu</source>
-        <translation type="unfinished"/>
+        <translation>Shto Zëra Drejt e Te Menu Konteksti</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2308"/>
@@ -1802,7 +1810,8 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="../src/configdialog.ui" line="2355"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>Kur te kodi burim përdoren shenja Unikod, LaTeX-it prapë
+i duhet të formojë shenjat. Ngaqë Unikod s’mbulohet së brendshmi nga LaTeX-i, duhet të përfshini te dokumenti juaj paketat e duhura për shenja Unikod.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2359"/>
@@ -1817,32 +1826,32 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2373"/>
         <source>Mouse Wheel Zoom</source>
-        <translation type="unfinished"/>
+        <translation>Zoom Me Rrotëz Miu</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2380"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Kjo ka efekt vetëm nëse gjerësia e dokumentit është e kufizuar nga mbështjellje “soft” ose “hard” rreshtash.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2383"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Vëre në Qendër të Përpunuesit Dokumentin</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2393"/>
         <source>Triple-Click Selection:</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjedhje Me Triklikim:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2403"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq ndihmë për urdhra, te parësi i brendshëm i PDF-ve (texdoc)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2410"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"/>
+        <translation>Mbirrëshqitje Vertikale (Rrëshqit nën funsin e kartelës)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2418"/>
@@ -1857,7 +1866,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2428"/>
         <source>Select Parentheses Content</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidh Lëndë Brenda Parantezash</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2433"/>
@@ -1877,12 +1886,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2456"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Mbishkruaj Kllapë Mbyllëse të Pasuar nga një Vendmbajtëse</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2463"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Kodim Parazgjedhje Regjistri</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2470"/>
@@ -1897,17 +1906,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2496"/>
         <source>Soft Line Wrap at Window Edge</source>
-        <translation type="unfinished"/>
+        <translation>Mbështjellje “Soft” Rreshtash në Skaj Dritareje</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2501"/>
         <source>Soft Line Wrap after max. Characters</source>
-        <translation type="unfinished"/>
+        <translation>Mbështjellje “Soft” Rreshtash pas maks. Shenjash</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2506"/>
         <source>Hard Line Wrap after max. Characters</source>
-        <translation type="unfinished"/>
+        <translation>Mbështjellje “Hard” Rreshtash pas maks. Shenjash</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2514"/>
@@ -1917,7 +1926,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2521"/>
         <source>Go to error when displaying log</source>
-        <translation type="unfinished"/>
+        <translation>Kalo te gabim, kur shfaqet regjistri</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2528"/>
@@ -1927,7 +1936,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2535"/>
         <source>Auto Complete Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>Vetëplotëso Paranteza</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2542"/>
@@ -1937,17 +1946,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2549"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjedhje Dyklikimi; Përshi Pjerrëse Së Prapthi Paraprijëse</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2559"/>
         <source>Structure Panel</source>
-        <translation type="unfinished"/>
+        <translation>Panel Strukture</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2565"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Për të bërë dallimin mes kartelash të ndryshme, TOC globale përdor hijëzime të ndryshme të ngjyrës së sfondit. Skema e ngjyrave mund të ndryshohet këtu.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2569"/>
@@ -1967,12 +1976,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2587"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Për të treguar se &lt;span style=&quot; font-weight:600;&quot;&gt;nuk&lt;/span&gt; do të shfaqen te dokumenti, elementë të tillë si &amp;quot;\section&amp;quot; theksohen me një ngjyrë tjetër sfondi.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation type="unfinished"/>
+        <translation>Trego elementë strukture tej \end{document}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2597"/>
@@ -1982,7 +1991,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2610"/>
         <source>Regular expression for TODO comment: </source>
-        <translation type="unfinished"/>
+        <translation>Shprehje e rregullt për koment TODO: </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2617"/>
@@ -1992,7 +2001,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2624"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pozicioni aktual i kursorit theksohet te pamja strukturë.&lt;/p&gt;&lt;p&gt;Nëse kjo mundësi është aktive, zëri zgjerohet dhe rrëshqitet në të që të jetë i dukshëm.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2627"/>
@@ -2002,7 +2011,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2634"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elementë të tillë si &amp;quot;\section&amp;quot; theksohen me një ngjyrë tjetër sfondi, për të treguar se do të shfaqen si shtesë në fund.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2637"/>
@@ -2012,7 +2021,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2644"/>
         <source>Use color in global TOC:</source>
-        <translation type="unfinished"/>
+        <translation>Përdor ngjyrë ne TOC global:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2664"/>
@@ -2027,7 +2036,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2677"/>
         <source>Parse BibTeX</source>
-        <translation type="unfinished"/>
+        <translation>Analizo BibTeX</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2690"/>
@@ -2052,12 +2061,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2714"/>
         <source>Separate Line (Indented to First Column)</source>
-        <translation type="unfinished"/>
+        <translation>Rresht Më Vete (Kryeradhë e Zhvendosur te Shtylla e Parë)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2722"/>
         <source>Special Commands Position:</source>
-        <translation type="unfinished"/>
+        <translation>Pozicion Urdhrash Specialë:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2732"/>
@@ -2087,7 +2096,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2808"/>
         <source>Automatically insert LRM characters</source>
-        <translation type="unfinished"/>
+        <translation>Fut automatikisht shenja LRM</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2815"/>
@@ -2102,17 +2111,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2829"/>
         <source>depending on character direction</source>
-        <translation type="unfinished"/>
+        <translation>në varësi të kahut të shenjave</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2836"/>
         <source>depending on text/math mode</source>
-        <translation type="unfinished"/>
+        <translation>në varësi të mënyrës tekst/math</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2846"/>
         <source>Hacks/Workarounds</source>
-        <translation type="unfinished"/>
+        <translation>Marifete/Rrugëzgjidhje</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2852"/>
@@ -2122,12 +2131,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2859"/>
         <source>Try to automatically choose best display options</source>
-        <translation type="unfinished"/>
+        <translation>Provo të zgjedhësh automatikisht mundësitë më të mira për ekranin</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2896"/>
         <source>Render Mode:</source>
-        <translation type="unfinished"/>
+        <translation>Mënyrë Vizatimi:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2872"/>
@@ -2142,27 +2151,27 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2882"/>
         <source>Single Letter</source>
-        <translation type="unfinished"/>
+        <translation>Një Shkronjë</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2917"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
-        <translation type="unfinished"/>
+        <translation>Nëse fshehtina e rreshtave të vizuatuar është e aktivizuar, rreshtat e vizatuar depozitohen në një të tillë, që të mos duhet të vizatohen prapë. Duke shpënë në një përmirësim të shpejtësisë (veçanërisht në Mac), me koston e një përdorimi më të madh të kujtesës.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2920"/>
         <source>Disable cache of rendered lines</source>
-        <translation type="unfinished"/>
+        <translation>Çaktivizo fshetinë rreshtash të vizuatuar</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2903"/>
         <source>Disable fixed pitch mode</source>
-        <translation type="unfinished"/>
+        <translation>Çaktivizo mënyrë “pitch i fiksuar”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2910"/>
         <source>Disable cache of character width</source>
-        <translation type="unfinished"/>
+        <translation>Çaktivizo fshehtinë gjerësish shenjash</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2983"/>
@@ -2215,7 +2224,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3065"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
-        <translation type="unfinished"/>
+        <translation>Bën shfaqjen e një ndihmëze me një përshkrim të urdhrit të përzgjedhur për plotësuesin</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3068"/>
@@ -2225,12 +2234,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3078"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
-        <translation type="unfinished"/>
+        <translation>E vë në punë plotësuesin sapo të shtypet &apos;\&apos;. Ndryshe, plotësuesi mund të niset përherë dorazi, përmes Ctrl+Space.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3081"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation type="unfinished"/>
+        <translation>Vër në punë automatikisht plotësuesin, kur shtypen Urdhra LaTeX</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3090"/>
@@ -2250,7 +2259,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3137"/>
         <source>Complete selected text when non-word character is pressed</source>
-        <translation type="unfinished"/>
+        <translation>Plotëso tekstin e përzgjedhur, kur shtypet shenjë që s’është fjalë</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3147"/>
@@ -2260,12 +2269,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3150"/>
         <source>Auto Complete Common Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Vetëplotëso Parashtesë të Rëndomtë</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3162"/>
         <source>Preferred Commands Set:</source>
-        <translation type="unfinished"/>
+        <translation>Grup i Parapëlqyer Urdhrash:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3170"/>
@@ -2306,12 +2315,17 @@ are not shown here. Checking additional packages here is usually not
 necessary. However if automatic detection fails or you want to include
 specfic user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"/>
+        <translation>TXS provon të ngarkojë automatikisht kartela plotësimi për paketa,
+nëse gjendet një urdhër \usepackage{}. Këtu s’shfaqen këto kartela
+të përfshira automatikisht. Zakonisht s’është e nevojshme të zgjidhen
+paketave shtesë këtu. Por, nëse dështon pikasja e automatizuar, ose
+doni të përfshini kartela plotësimi specifike përdoruesi, mund
+të detyroni përdorimin e tyre duke i aktivizuar këtu.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3231"/>
         <source>Permanently active completion files:</source>
-        <translation type="unfinished"/>
+        <translation>Aktivizo në mënyrë permanente kartela plotësimi:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3241"/>
@@ -2336,7 +2350,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3392"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation type="unfinished"/>
+        <translation>Dosje me fjalorë Hunspell, ndarë me pikëpresje. Fjalëkyçet e posaçme [txs-settings-dir] dhe [txs-app-dir] do të ftillohen sipas drejtorive përkatëse.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3402"/>
@@ -2366,7 +2380,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3468"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
-        <translation type="unfinished"/>
+        <translation>Fjalët e përsëritura brenda një paragrafi do të theksohen.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3471"/>
@@ -2391,17 +2405,17 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3508"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
-        <translation type="unfinished"/>
+        <translation>Për përsëritje në interval të gjatë kontrollohen vetëm fjalë me këtë gjatësi.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3518"/>
         <source>Long Range Repetitions:</source>
-        <translation type="unfinished"/>
+        <translation>Përsëritje Në Interval të Gjatë:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3528"/>
         <source>Min Length of Words with Long Repetition:</source>
-        <translation type="unfinished"/>
+        <translation>Gjatësi Minimum Fjalësh me Përsëritje të Gjatë:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3538"/>
@@ -2411,7 +2425,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3545"/>
         <source>Certain informal or weak words will be highlighted.</source>
-        <translation type="unfinished"/>
+        <translation>Do të theksohen disa fjalë joformale, apo të dobëta.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3548"/>
@@ -2421,12 +2435,12 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3555"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
-        <translation type="unfinished"/>
+        <translation>Drejtori që përmban listat me fjalë që janë “të këqija”, ose mund të jenë përsëritur.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3582"/>
         <source>Store the conversation with AI provider on disk to allow later retrieval</source>
-        <translation type="unfinished"/>
+        <translation>Depozito në disk bisedën me shërbimin IA, për të lejuar parje të mëvonshme</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3585"/>
@@ -2436,72 +2450,72 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3652"/>
         <source>Local Model</source>
-        <translation type="unfinished"/>
+        <translation>Model Vendor</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3592"/>
         <source>open-mistral-7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mistral-7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3597"/>
         <source>open-mixtral-8x7b</source>
-        <translation type="unfinished"/>
+        <translation>open-mixtral-8x7b</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3602"/>
         <source>mistral-small-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-small-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3607"/>
         <source>mistral-medium-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-medium-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3612"/>
         <source>mistral-large-latest</source>
-        <translation type="unfinished"/>
+        <translation>mistral-large-latest</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3642"/>
         <source>Mistral AI</source>
-        <translation type="unfinished"/>
+        <translation>Mistral AI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3647"/>
         <source>OpenAI</source>
-        <translation type="unfinished"/>
+        <translation>OpenAI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3620"/>
         <source>AI provider:</source>
-        <translation type="unfinished"/>
+        <translation>Shërbim IA:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3667"/>
         <source>Preferred model:</source>
-        <translation type="unfinished"/>
+        <translation>Model i parapëlqyer:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3634"/>
         <source>API key:</source>
-        <translation type="unfinished"/>
+        <translation>Kyç API:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3660"/>
         <source>Record Conversation</source>
-        <translation type="unfinished"/>
+        <translation>Regjistro Bisedën</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3627"/>
         <source>Retrieve list of models</source>
-        <translation type="unfinished"/>
+        <translation>Merr listë modelesh</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3680"/>
         <source>API URL:</source>
-        <translation type="unfinished"/>
+        <translation>URL API:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3687"/>
@@ -2516,12 +2530,12 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3703"/>
         <source>Path containing the LanguageTool java archive.</source>
-        <translation type="unfinished"/>
+        <translation>Shteg që përmban arkivin java LanguageTool.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3710"/>
         <source>LT Path:</source>
-        <translation type="unfinished"/>
+        <translation>Shteg LT:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3717"/>
@@ -2536,7 +2550,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3731"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
-        <translation type="unfinished"/>
+        <translation>Listë rregullash LanguageTool, ndarë me presje, që s’do të theksohen si gabime.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3755"/>
@@ -2549,7 +2563,7 @@ them here.</source>
         <location filename="../src/configdialog.ui" line="3782"/>
         <location filename="../src/configdialog.ui" line="3812"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
-        <translation type="unfinished"/>
+        <translation>Listë rregullash LanguageTool, ndarë me presje, që do të theksohen në një format special.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3792"/>
@@ -2574,12 +2588,12 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3849"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
-        <translation type="unfinished"/>
+        <translation>Do të deduktohet nga gjuha e kontrollit të drejtshkrimit të përdorur te dokumenti.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3856"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
-        <translation type="unfinished"/>
+        <translation>I ekzekutueshëm Java, i përdorur për të nisur LanguageTool, nëse s’është duke funksionuar tashmë.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3863"/>
@@ -2590,7 +2604,7 @@ them here.</source>
         <location filename="../src/configdialog.ui" line="3870"/>
         <location filename="../src/configdialog.ui" line="3918"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Argumente dhënë kur niset starting LanguageTool. Kjo mundësi ka efekt vetëm nëse LanguageTool është nisur nga TeXstudio (d.m.th, jo për një shërbyes tashmë në funksionim).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3873"/>
@@ -2641,7 +2655,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4049"/>
         <source>Preview with xelatex</source>
-        <translation type="unfinished"/>
+        <translation>Paraparje me xelatex</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4057"/>
@@ -2728,7 +2742,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4019"/>
         <source>Preview with default compiler</source>
-        <translation type="unfinished"/>
+        <translation>Paraparje me përpiluesin parazgjedhje</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4281"/>
@@ -2795,7 +2809,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4432"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
-        <translation type="unfinished"/>
+        <translation>Jepeni si një vlerë RGBA gjashtëmbëdhjetëshe. Shënim: Tejdukshmëria është e domosdoshme ngaqë, për shkak kufizimesh teknike, theksimi vizatohet përmbi tekstin.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4435"/>
@@ -2820,7 +2834,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4485"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"/>
+        <translation>Ngjyrë parazgjedhje sfondi. Jepeni si një vlerë RGB gjashtëmbëdhjetëshe. Shënim: Kjo do të ketë efekt vetëm te PDF-ra të ngarkuara pas ndryshimit të mundësisë. Ngjyra e letrës e PDF-ve tashmë të hapura nuk ndryshohet.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4510"/>
@@ -2850,7 +2864,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4555"/>
         <source>Scaled Size</source>
-        <translation type="unfinished"/>
+        <translation>Madhësi e Ripërmasuar</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4560"/>
@@ -2919,12 +2933,12 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4694"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
-        <translation type="unfinished"/>
+        <translation>Vetëfshihi Panelet nën Mënyrën e Trupëzuar</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4701"/>
         <source>Presentation Laser Pointer Color:</source>
-        <translation type="unfinished"/>
+        <translation>Ngjyrë Treguesi Lazer për Paraqitjet:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4791"/>
@@ -3012,17 +3026,19 @@ Note: Changing this setting will only affect documents that are opened afterward
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
-        <translation type="unfinished"/>
+        <translation>Shkurtorja që dhatë është një tast shenje standarde.
+S’do të jeni në gjendje të shtypni këtë shenjë. Doni
+të caktohet tasti, sido qoftë?</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="255"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
-        <translation type="unfinished"/>
+        <translation>Shkurtorja &lt;%1&gt; i është caktuar tashmë urdhrit:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="255"/>
         <source>Do you wish to remove the old assignment and bind the shortcut to the new command?</source>
-        <translation type="unfinished"/>
+        <translation>Doni të hiqet përshoqërimi i vjetër dhe shkurtorja t’i caktohet urdhrit të ri?</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="315"/>
@@ -3032,17 +3048,17 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="409"/>
         <source>Screen Resolution (System: %1 dpi):</source>
-        <translation type="unfinished"/>
+        <translation>Qartësi Ekrani (Sistem: %1 dpi):</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="488"/>
         <source>Download additional dictionaries from %1 or %2</source>
-        <translation type="unfinished"/>
+        <translation>Shkarko fjalorë shtesë nga %1 ose %2</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="501"/>
         <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
-        <translation type="unfinished"/>
+        <translation>Këtu, theksimi i sintaksës për urdhra, mjedise dhe përzgjedhje të ndryshme, mund të ndryshohet.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="502"/>
@@ -3094,7 +3110,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="511"/>
         <source>Asymptote</source>
-        <translation type="unfinished"/>
+        <translation>Asymptote</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="512"/>
@@ -3181,7 +3197,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="849"/>
         <source>Select the grammar word lists dir</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni drejtori listash fjalësh gramatike</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="854"/>
@@ -3241,7 +3257,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="1232"/>
         <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
-        <translation type="unfinished"/>
+        <translation>Para se të mund të ngarkoni një ikonë për atë zë, duhet të shtoni një veprim te paneli (që nga lista e veprimeve te ana e djathtë.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1235"/>
@@ -3268,14 +3284,19 @@ to set the key anyway?</source>
         <source>The dictionary files have been imported to
 %1.
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
-        <translation type="unfinished"/>
+        <translation>Kartelat e fjalorit janë importuar te
+%1.
+Por, ky shteg s’përmbahet te lista e shtigjeve të fjalorëve. Doni të shtohet?</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1402"/>
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation type="unfinished"/>
+        <translation>Keni aktivizuar mundësitë e thelluara. Kjo i lejon dikujt
+të formësojë hollësisht TXS-në. Çaktivizojini mundësitë
+e thelluara rishtas, që të shihni vetëm rregullimet më
+të rëndomta.</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1539"/>
@@ -3303,7 +3324,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="13"/>
         <source>&amp;List Environments</source>
-        <translation type="unfinished"/>
+        <translation>Mjedise &amp;Listash</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="14"/>
@@ -3378,7 +3399,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Input/Include &amp;Files</source>
-        <translation type="unfinished"/>
+        <translation>Futni/Përfshini &amp;Kartela</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="18"/>
@@ -3413,12 +3434,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="35"/>
         <source>\begin{document}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{document}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="36"/>
         <source>Text is allowed only between \begin{document} and \end{document}.</source>
-        <translation type="unfinished"/>
+        <translation>Tekst lejohet vetëm mes \begin{document} dhe \end{document}.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="37"/>
@@ -3428,22 +3449,22 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>The \author command declares the author(s), where names is a list of authors separated by \and commands.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \author deklaron autorin(ët), kur emrat janë një listë e autorëve ndarë me urdhra \and.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>
         <source>If used, the \date command declares the date, either with explicit arg for explicit date or with empty arg for no date. If not used, the current date will automatically be inserted by \maketitle.</source>
-        <translation type="unfinished"/>
+        <translation>Në u përdortë, urdhri \date deklaron datën, ose me argument shprehimisht për datë shprehimish, ose me argument të zbrazët, për pa datë. Nëse s’përdoret, data aktuale do të futet automatikisht përmes \maketitle.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="40"/>
         <source>This command generates a title on a separate title page%n- except in the article class, where the title normally goes at the top of the first page.</source>
-        <translation type="unfinished"/>
+        <translation>Ky urdhër prodhon një titull në një faqe më vete titulli%n- hiq te klasa artikull, ku titulli normalisht shkon të krye të faqes së parë.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="41"/>
         <source>Put this command where you want the table of contents to go</source>
-        <translation type="unfinished"/>
+        <translation>Vendoseni këtë urdhër atje ku doni të keni tryezën e lëndës</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="42"/>
@@ -3518,97 +3539,97 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="56"/>
         <source>\begin{&lt;environment&gt;}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{&lt;environment&gt;}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="57"/>
         <source>\begin{center}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{center}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="58"/>
         <source>\begin{flushleft}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{flushleft}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="59"/>
         <source>\begin{flushright}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{flushright}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="60"/>
         <source>\begin{quote}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{quote}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="61"/>
         <source>\begin{quotation}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{quotation}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="62"/>
         <source>\begin{verse}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{verse}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="63"/>
         <source>\begin{verbatim}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{verbatim}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="64"/>
         <source>\begin{table}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{table}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="65"/>
         <source>\begin{figure}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{figure}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="66"/>
         <source>\begin{titlepage}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{titlepage}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="67"/>
         <source>\begin{itemize}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{itemize}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="68"/>
         <source>The itemize environment produces a &apos;bulleted&apos; list.%nEach item of an itemized list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>Mjedisi “objektëzoji” prodhon një listë “me toptha”.%nSecili zë i një liste të objektëzuar fillon me një urdhër \item.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="69"/>
         <source>\begin{enumerate}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{enumerate}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="70"/>
         <source>The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>Mjedisi “numërtoji” prodhon një listë të numërtuar.%nSecili zë i një liste të numërtuar fillon me një urdhër \item.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="71"/>
         <source>\begin{description}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{description}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="73"/>
         <source>\begin{list}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{list}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="74"/>
         <source>The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>Argumenti {label} është një copë tekst që është futur në një kuadrat për të formuar etiketën.%nArgumenti {spacing} përmban urdhra për të ndryshuar parametrat për listën.%nÇdo zë i listës fillon me një urdhër \item.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="75"/>
         <source>\item[label] Hello</source>
-        <translation type="unfinished"/>
+        <translation>\item[label] Tungjatjeta</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="76"/>
@@ -3618,52 +3639,52 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="77"/>
         <source>makebox</source>
-        <translation type="unfinished"/>
+        <translation>makebox</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="78"/>
         <source>fbox</source>
-        <translation type="unfinished"/>
+        <translation>fbox</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="79"/>
         <source>framebox</source>
-        <translation type="unfinished"/>
+        <translation>framebox</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="80"/>
         <source>newsavebox</source>
-        <translation type="unfinished"/>
+        <translation>newsavebox</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="81"/>
         <source>sbox</source>
-        <translation type="unfinished"/>
+        <translation>sbox</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="82"/>
         <source>savebox</source>
-        <translation type="unfinished"/>
+        <translation>savebox</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="83"/>
         <source>usebox</source>
-        <translation type="unfinished"/>
+        <translation>usebox</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="84"/>
         <source>raisebox</source>
-        <translation type="unfinished"/>
+        <translation>raisebox</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="85"/>
         <source>parbox</source>
-        <translation type="unfinished"/>
+        <translation>parbox</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="86"/>
         <source>\begin{minipage}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{minipage}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="87"/>
@@ -3693,7 +3714,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="92"/>
         <source>Typewriter - \texttt</source>
-        <translation>Typewriter - \texttt</translation>
+        <translation>Makinë shkrimi - \texttt</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="93"/>
@@ -3763,7 +3784,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="106"/>
         <source>\begin{tabbing}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabbing}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="107"/>
@@ -3773,7 +3794,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="108"/>
         <source>\begin{tabular}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabular}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="109"/>
@@ -3788,103 +3809,103 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="111"/>
         <source>The \hline command draws a horizontal line the width of the table.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \hline vizaton një vijë horizontale sa gjerësia e tabelës.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>The \vline command draws a vertical line extending the full height and depth of its row.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \vline vizaton një vijë vertikale që shtrihet sa tërë lartësia dhe thellësia e rreshtit të saj.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>The command \space gives you a space where you can&apos;t enter a space character.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \space ju jep një hapësirë kur s’mund të futni një shenjë hapësire.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>The \enspace command inserts a horizontal space of 1/2em.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \enspace fut një hapësirë horizontale prej 1/2em.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \quad fut një hapësirë horizontale prej 1em (ku 1em është gjerësia e shkronjës M).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>The \qquad command inserts a horizontal space of 2em.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \qquad fut një hapësirë horizontale prej 2em.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>The command \thinspace produces unbreakable and unstretchable space of 1/6em (same as \, in math mode).</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \thinspace prodhon hapësirë të pandashme dhe të pashformueshme prej 1/6em (njësoj si \, nën mënyrën matematikë).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>The command \negthinspace produces unbreakable and unstretchable space of -1/6em (same as \, in math mode).</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \negthinspace prodhon hapësirë të pandashme dhe të pashformueshme prej 1/6em (njësoj si \, nën mënyrën matematikë).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>The \hspace command inserts an amount of skip of horizontal space.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \hspace fut një sasi hapësire horizontale që duhet anashkaluar.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>The \hfill command inserts a rubber length which has no natural space but that can stretch horizontally as far as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \hfill fut një gjatësi “llastik” e cila s’ka hapësirë natyrore, por që mund të tërhiqet horizontalisht sa të jetë nevoja.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>The \hrulefill command produces an infinite horizontal rubber length that LaTeX fills with a rule (that is, a line), instead of white space.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \hrulefill fut një gjatësi “llastik” horizontale të pafundme, të cilën LaTeX-i e mbush me një vizore (pra një vijë) në vend se hapësirë të zbrazët.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>The \dotfill command produces an infinite horizontal rubber length that LaTeX fills with dots, instead of white space.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \dotfill prodhon një gjatësi “llastik” horizontale të pafundme, të cilën LaTeX-i e mbush me pika, në vend se hapësirë të zbrazët.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>The \newpage command ends the current page</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \newpage përfundon faqen aktuale</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>The \linebreak command tells LaTeX to break the current line at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \linebreak i thotë LaTeX-it të ndërpresë rreshtin aktual te pozicioni i urdhrit.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>The \pagebreak command tells LaTeX to break the current page at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \pagebreak i thotë LaTeX-it të ndërpresë faqen aktuale te pozicioni i urdhrit.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>The \bigskip command adds a &apos;big&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \bigskip shton një hapësirë “të madhe” vertikale.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>The \medskip command adds a &apos;medium&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \medskip shton një hapësirë “mesatare” vertikale.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>The \smallskip command adds a &apos;small&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \smallskip shton një hapësirë “të vogël” vertikale.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>The \vspace command inserts an amount of skip (positive, zero or negative) of vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \vspace fut një sasi (pozitivem zero, ose negative) anashkalimi hapësire vertikale.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>The \vfill command inserts a rubber length which has no natural space but that can stretch vertically as far as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \vfill fut një gjatësi “llastik” e cila s’ka hapësirë natyrore, por që mund të tërhiqet vertikalisht sa të jetë nevoja.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
@@ -3894,47 +3915,47 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>The \newline command breaks the line right where it is.</source>
-        <translation type="unfinished"/>
+        <translation>Urdhri \newline e ndërpret rreshtin mu atje ku gjendet.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
         <source>\includeonly{filelist}</source>
-        <translation type="unfinished"/>
+        <translation>\includeonly{listëkartelash}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="136"/>
         <source>\includegraphics{file}</source>
-        <translation type="unfinished"/>
+        <translation>\includegraphics{kartelë}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="153"/>
         <source>Inline math - $...$</source>
-        <translation type="unfinished"/>
+        <translation>Shprehje matematikore brendazi - $...$</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>Math (in text style) within a paragraph of text</source>
-        <translation type="unfinished"/>
+        <translation>Shprehjeh matematikore (në stil teksti) brenda një paragrafi teksti</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="155"/>
         <source>Inline math - \(...\)</source>
-        <translation type="unfinished"/>
+        <translation>Shprehje matematikore brendazi - \(...\)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>Same as $...$ and the math environment</source>
-        <translation type="unfinished"/>
+        <translation>Njësoj si $...$ dhe mjedisi për matematikë</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="157"/>
         <source>Display math - \[...\]</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq shprehje matematikore - \[...\]</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>Math (in display style) apart from paragraph of text</source>
-        <translation type="unfinished"/>
+        <translation>Shprehjeh matematikore (në stil shfaqjeje) më vete nga paragraf teksti</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="165"/>
@@ -3964,32 +3985,32 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>Single equation centered in a row</source>
-        <translation type="unfinished"/>
+        <translation>Ekuacion njësh i qendërzuar te një rresht</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>Multiple equations aligned within columns</source>
-        <translation type="unfinished"/>
+        <translation>Ekuacione të shumtë të vendosur brenda shtyllash</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>Multiple equations aligned within columns with customizable column spacing</source>
-        <translation type="unfinished"/>
+        <translation>Ekuacione të shumtë të vendosur brenda shtyllash me hapësirë shtyllash që mund të përshtatet</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>Multiple equations aligned within columns having column spacing to fill full line</source>
-        <translation type="unfinished"/>
+        <translation>Ekuacione të shumtë të vendosur brenda shtyllash me hapësirë shtyllash për të plotësuar rresht të plotë</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>Multiple equations centered in rows</source>
-        <translation type="unfinished"/>
+        <translation>Ekuacione të shumtë të qendërzuar në rreshta</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>Single equation split into multiple lines</source>
-        <translation type="unfinished"/>
+        <translation>Ekuacion njësh i ndarë në rreshta të shumtë</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="194"/>
@@ -4004,17 +4025,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="200"/>
         <source>Single equation split into multiple aligned lines (within other math env)</source>
-        <translation type="unfinished"/>
+        <translation>Ndarje ekuacioni njësh në disa rreshta të drejtuar (brenda mjedisi tjetër matematikor)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
         <source>\include{file}</source>
-        <translation type="unfinished"/>
+        <translation>\include{kartelë}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="133"/>
         <source>\input{file}</source>
-        <translation type="unfinished"/>
+        <translation>\input{kartelë}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="144"/>
@@ -4124,32 +4145,32 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="72"/>
         <source>The description environment produces a labelled list.%nEach item of the list begins with an \item[label] command.</source>
-        <translation type="unfinished"/>
+        <translation>Mjedisi i përshkrimeve prodhon një listë të etiketuar.%nÇdo zë i listës fillon me një urdhër \item[label].</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\alert{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\alert{tekst} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{text}{comment} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\comment{tekst}{koment} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>\add{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\add{tekst} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>\remove{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\remove{tekst} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replace{text}{replacement} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\replace{tekst}{zëvendësim} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
@@ -4174,17 +4195,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page.</source>
-        <translation type="unfinished"/>
+        <translation>\footnote[numër]{tekst}%nUrdhri \footnote vendos te fundi i faqes aktuale tekstin e poshtëshënimit të numërtuar.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look</source>
-        <translation type="unfinished"/>
+        <translation>Argumenti për \bibliographystyle i referohet një kartele style.bst, e cila përcakton se si do të duken citimet tuaja</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. &apos;\addbibresource{mybibliography.bib}&apos;). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands.</source>
-        <translation type="unfinished"/>
+        <translation>\addbibresource{kartelëbib} përcakton vendndodhjen e një kartele burimi për biblatex, bie fjala, një kartelë .bib.Emri i kartelës duhet të përmbajë zgjatimin (p.sh. &apos;\addbibresource{bibliografiaime.bib}&apos;). Mund të shtoni vetëm një kartel për urdhër \addbibresource{} (nuk lejohen lista zërash të ndarë me presje). Por mund të përdorni urdhra të shumtë.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="161"/>
@@ -4236,7 +4257,7 @@ options again to only view the most common settings.</source>
         <location filename="../src/additionaltranslations.cpp" line="214"/>
         <location filename="../src/additionaltranslations.cpp" line="216"/>
         <source>Needs \usepackage[standard]{ntheorem}</source>
-        <translation type="unfinished"/>
+        <translation>Lyp \usepackage[standard]{ntheorem}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="203"/>
@@ -4425,7 +4446,7 @@ options again to only view the most common settings.</source>
         <location filename="../src/configmanager.cpp" line="1099"/>
         <location filename="../src/configmanager.cpp" line="1121"/>
         <source>before word</source>
-        <translation type="unfinished"/>
+        <translation>para fjale</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1105"/>
@@ -4492,12 +4513,13 @@ options again to only view the most common settings.</source>
         <location filename="../src/configmanager.cpp" line="1726"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation type="unfinished"/>
+        <translation>Keni aktivizuar zëvendësim të automatizuar thonjëzash. Por, ka makro që vihen në punë me vargun (?language:latex)(?&lt;=\s|^) ose (?language:latex)(?&lt;=\S) çka do të sjellë anashkalimin e zëvendësimit të ri të thonjëzave.
+Doni të hiqen?</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="2014"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
-        <translation type="unfinished"/>
+        <translation>Që të shfrytëzohet plotësisht parësi i brendshëm i pdf-ve, duhet aktivizuar synctex. Ta bëjë TeXstudio-ja tani?</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="2029"/>
@@ -4572,7 +4594,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/configmanager.cpp" line="3607"/>
         <source>text is restored after restart</source>
-        <translation type="unfinished"/>
+        <translation>teksti rikthehet pas rinisjes</translation>
     </message>
 </context>
 <context>
@@ -4585,7 +4607,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="79"/>
         <source>text which &lt;i&gt;should&lt;/i&gt; be a &lt;b&gt;fair&lt;/b&gt; test of the font</source>
-        <translation type="unfinished"/>
+        <translation>tekst  i cili &lt;i&gt;duhet&lt;/i&gt; të je një test &lt;b&gt;i mirë&lt;/b&gt; për llojin e shkronjave</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="114"/>
@@ -4605,17 +4627,17 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="173"/>
         <source>Show tabs which are neither leading nor trailing</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq tabulacione që s’janë as në fillim, as në fund</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="183"/>
         <source>Show trailing whitespaces</source>
-        <translation>Shfaq hapësira të zbrazëta paraprijëse</translation>
+        <translation>Shfaq hapësira të zbrazëta në fund</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="193"/>
         <source>Replace tabs by blanks</source>
-        <translation type="unfinished"/>
+        <translation>Zëvendësoji tabulacionet me shenja hapësirash të zbrazëta</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="203"/>
@@ -4655,7 +4677,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="256"/>
         <source>Remove trailing spaces</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq hapësira të zbrazëta në fund</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="266"/>
@@ -4727,7 +4749,8 @@ Do you want to remove them?</source>
         <location filename="../src/encodingdialog.cpp" line="52"/>
         <source>If the new and old encodings are incompatible, some characters may be destroyed.
 Are you sure you want accept data loss?</source>
-        <translation type="unfinished"/>
+        <translation>Nëse kodimi i ri dhe i vjetri janë të papërputhshmë, disa shenja mund të shkatërrohen.
+Jeni i sigurt se doni të pranonni humbje të dhënash?</translation>
     </message>
     <message>
         <location filename="../src/encodingdialog.cpp" line="69"/>
@@ -4776,13 +4799,14 @@ Jeni i sigurt se doni tëëë zhbëhen krejt ndryshimet?</translation>
     <message>
         <location filename="../src/encodingdialog.ui" line="95"/>
         <source>inputenc Parameter</source>
-        <translation type="unfinished"/>
+        <translation>Parametër inputenc</translation>
     </message>
     <message>
         <location filename="../src/encodingdialog.ui" line="98"/>
         <source>The codec names as the inputenc package expects them. The names are only given for reference.
 You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
-        <translation type="unfinished"/>
+        <translation>Emrat e kodekëve, ashtu siç i pret paketa inputenc. Emrat jepen vetëm për referencë.
+Duhet të garantoni ju vetë se kodimi i kartelës dhe vlera dhënë paketës inputenc përkojnë me njëra-tjetrën.</translation>
     </message>
 </context>
 <context>
@@ -4872,7 +4896,7 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="../src/grammarcheck.cpp" line="344"/>
         <source>Long range word repetition. Distance %1</source>
-        <translation type="unfinished"/>
+        <translation>Përsëritje fjale në interval të larfët. Largësi %1</translation>
     </message>
     <message>
         <location filename="../src/grammarcheck.cpp" line="354"/>
@@ -4909,37 +4933,51 @@ You have to make sure yourself that the file encoding and the value passed to th
 [!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"/>
+        <translation>Parapëlqime vendosjeje për figurën
+
+[t] Top: Në krye të faqes
+[b] Bottom: Në fund të faqes
+[p] Page: Në një faqe kushtuar figurave
+[h] Here: Në këtë pozicion te teksti
+[H] Here: Në mënyrë strikte te ky pozicon te teksti (Lyp paketën “float”)
+[!]: Anashkalo parametra të brendshëm që LaTeX-i përdor për përcaktim pozicionesh “`good&apos; float”.
+
+Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="262"/>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
-        <translation type="unfinished"/>
+        <translation>S’u analizua dot kod përfshirjeje grafike:
+Numër i pamjaftueshëm argumentesh </translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="279"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
-        <translation type="unfinished"/>
+        <translation>S’u analizua dot kod përfshirjeje grafike:
+Ndihmësi nuk mbulon mjedisin në fjalë </translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="288"/>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
-        <translation type="unfinished"/>
+        <translation>S’u analizua dot kod përfshirjeje grafike:
+Urdhër i pavlefshëm \caption.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="302"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
-        <translation type="unfinished"/>
+        <translation>S’u analizua dot kod përfshirjeje grafike:
+Mungojnë mundës \includegraphics.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="319"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
-        <translation type="unfinished"/>
+        <translation>S’u analizua dot kod përfshirjeje grafike:
+Ndihmësi nuk mbulon urdhrin </translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="421"/>
@@ -5081,7 +5119,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
         <source>Override Internal Layout Parameters</source>
-        <translation type="unfinished"/>
+        <translation>Anashkalo Parametra të Brendshëm Skeme</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="440"/>
@@ -5175,22 +5213,22 @@ The wizard does not support command </source>
         <translation>Gabim i panjohur. Vithisje e mundshme. Këshilloheni të rinisni TeXstudio-n</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2658"/>
+        <location filename="../src/latexdocument.cpp" line="2659"/>
         <source>Root file not found</source>
-        <translation type="unfinished"/>
+        <translation>S’u gjet kartelë rrënjë</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2663"/>
+        <location filename="../src/latexdocument.cpp" line="2664"/>
         <source>Invalid codec</source>
         <translation>Kodek i pavlefshëm</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2677"/>
+        <location filename="../src/latexdocument.cpp" line="2678"/>
         <source>Missing value for -job-name</source>
         <translation>Mungon vlerë për -job-name</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2680"/>
+        <location filename="../src/latexdocument.cpp" line="2681"/>
         <source>Unknown magic comment</source>
         <translation>Koment magjik i panjohur</translation>
     </message>
@@ -5247,7 +5285,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="638"/>
         <source>Find Usages</source>
-        <translation type="unfinished"/>
+        <translation>Gjej Përdorime</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="645"/>
@@ -5311,7 +5349,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2817"/>
         <source>%n reference(s) to this label</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n referencë ndaj kësaj etikete</numerusform><numerusform>%n referenca ndaj kësaj etikete</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2822"/>
@@ -5326,7 +5364,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2826"/>
         <source>Beamer Theme</source>
-        <translation type="unfinished"/>
+        <translation>Temë Beamer-i</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2838"/>
@@ -5351,12 +5389,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2864"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation type="unfinished"/>
+        <translation>ID-ja BibTeX ID përfundon me një hapësirë. Hapësirat në fund nuk shpërfillen nga BibTeX-i.</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3269"/>
         <source>Save Preview Image</source>
-        <translation type="unfinished"/>
+        <translation>Ruaj Figurë Parapamje</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3269"/>
@@ -5396,7 +5434,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3457"/>
         <source>Expand Level %1</source>
-        <translation type="unfinished"/>
+        <translation>Zgjero Nivlein %1</translation>
     </message>
 </context>
 <context>
@@ -5404,7 +5442,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlog.cpp" line="27"/>
         <source>Click to jump to the line</source>
-        <translation type="unfinished"/>
+        <translation>Klikojeni që të kalohet te rreshti</translation>
     </message>
     <message>
         <location filename="../src/latexlog.cpp" line="36"/>
@@ -5807,7 +5845,7 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="44"/>
         <source>Caret</source>
-        <translation type="unfinished"/>
+        <translation>Kursor</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="46"/>
@@ -5949,12 +5987,12 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1044"/>
         <source>%1 sec</source>
-        <translation>$1 sek.</translation>
+        <translation>%1 s</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1046"/>
         <source>%1 min</source>
-        <translation>%1 min.</translation>
+        <translation>%1 m</translation>
     </message>
 </context>
 <context>
@@ -6038,22 +6076,22 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3039"/>
         <source>Scrolling follows cursor</source>
-        <translation type="unfinished"/>
+        <translation>Rrëshqitja ndjek kursorin</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3041"/>
         <source>Cursor follows scrolling</source>
-        <translation type="unfinished"/>
+        <translation>Kursori ndjek rrëshqitjen</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3043"/>
         <source>Synchronize multiple views</source>
-        <translation type="unfinished"/>
+        <translation>Njëkohëso pamje të shumta</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3045"/>
         <source>Ignore for synchronization</source>
-        <translation>Pa TOC</translation>
+        <translation>Shpërfille për njëkohësim</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3048"/>
@@ -6113,37 +6151,37 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3071"/>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"/>
+        <translation>Z&amp;madhoje</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3072"/>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"/>
+        <translation>Z&amp;vogëloje</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3073"/>
         <source>&amp;Actual Size</source>
-        <translation type="unfinished"/>
+        <translation>Madhësi &amp;Faktike</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3074"/>
         <source>Fit to Wi&amp;dth</source>
-        <translation type="unfinished"/>
+        <translation>Vëre Sa e Nxë &amp;Gjerësia</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3076"/>
         <source>Fit to &amp;Text Width</source>
-        <translation type="unfinished"/>
+        <translation>Vëre Sa e Nxë Gjerësia e &amp;Tekstit</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3078"/>
         <source>Fit to &amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>Vëre Sa e Nxë &amp;Dritarja</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3080"/>
         <source>&amp;Continuous</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Vazhdueshëm</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3085"/>
@@ -6214,7 +6252,7 @@ Doni të mbishkruhet?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3129"/>
         <source>&amp;Side by Side</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Krah për Krah</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3131"/>
@@ -6318,17 +6356,18 @@ Doni të mbishkruhet?</translation>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3723"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+s’duket si dokument PDF i vlefshëm. Ose kartela është e dëmtuar, ose është duke u krijuar. Po provohet çdo dy sekonda.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3737"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation type="unfinished"/>
+        <translation>S’u arrit të gjendej kartelë “%1”; ndoshta është fshirë.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3740"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"/>
+        <translation>S’u arrit të gjendej kartelë “%1”; ndoshta s’është kartelë PDF e vlefshme.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3743"/>
@@ -6338,7 +6377,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3746"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"/>
+        <translation>S’u arrit të ngarkohej kartela “%1”, për shkak të një përjashtimi; ndoshta s’është kartelë PDF e vlefshme.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3749"/>
@@ -6354,7 +6393,8 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3751"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
-        <translation type="unfinished"/>
+        <translation>Kartela PDF “%1” është e kyçur.
+Tani mund të jepni fjalëkalimin:</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="4156"/>
@@ -6364,7 +6404,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="4268"/>
         <source>No SyncTeX data available</source>
-        <translation type="unfinished"/>
+        <translation>S’ka të dhëna SyncTeX</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="4270"/>
@@ -6442,7 +6482,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="433"/>
         <source>[embedded]</source>
-        <translation type="unfinished"/>
+        <translation>[trupëzuar]</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.h" line="205"/>
@@ -6482,7 +6522,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="204"/>
         <source>No TOC</source>
-        <translation type="unfinished"/>
+        <translation>Pa TOC</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.h" line="107"/>
@@ -6716,12 +6756,12 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/buildmanager.cpp" line="2408"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"/>
+        <translation>Ridrejtimi i treguar për “stdout” nuk mbulohet: “%1”. Për hollësi, ju lutemi, lexoni doracakun.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="2417"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"/>
+        <translation>Ridrejtimi i treguar për “stderr” nuk mbulohet: “%1”. Për hollësi, ju lutemi, lexoni doracakun.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="2614"/>
@@ -6778,13 +6818,13 @@ You can now enter the password:</source>
         <location filename="../src/qcodeedit/lib/qcodecompletionengine.cpp" line="35"/>
         <location filename="../src/qcodeedit/lib/qcodecompletionengine.cpp" line="63"/>
         <source>&amp;Trigger completion</source>
-        <translation type="unfinished"/>
+        <translation>Sh&amp;kakto plotësim</translation>
     </message>
 </context>
 <context>
     <name>QDocument</name>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocument.cpp" line="839"/>
+        <location filename="../src/qcodeedit/lib/document/qdocument.cpp" line="840"/>
         <source>Writing the document to file
 %1
 failed.</source>
@@ -6803,7 +6843,7 @@ dështoi.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="784"/>
         <source>Shall it be replaced?</source>
-        <translation type="unfinished"/>
+        <translation>Duhet zëvendësuar?</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="789"/>
@@ -6813,19 +6853,21 @@ dështoi.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="789"/>
         <source>%1 (of %2 found so far) occurrences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>Janë zëvendësuar %1 (prej %2 të gjetura deri këtu) hasje</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="828"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
-        <translation type="unfinished"/>
+        <translation>U mbërrit pa përkim te fillimi i fushëveprimit.
+Të riniset që nga fundi?</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="833"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
-        <translation type="unfinished"/>
+        <translation>U mbërrit pa përkim te fundi i fushëveprimit.
+Të riniset që nga fillimi?</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="840"/>
@@ -6842,7 +6884,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="861"/>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="882"/>
         <source>%1 (of %2) occurrences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>Janë zëvendësuar %1 (prej %2) hasje</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="862"/>
@@ -6904,19 +6946,19 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="605"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq/Fshih &amp;Koment</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="610"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1450"/>
         <source>Co&amp;mment</source>
-        <translation type="unfinished"/>
+        <translation>Ko&amp;mentoni</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="618"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1451"/>
         <source>Unc&amp;omment</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Hiqe komentin</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="630"/>
@@ -7024,7 +7066,9 @@ Press &quot;Ignore&quot; to ignore this warning.
         <source>%1
 Could not be written. Error (%2): %3.
 If the file already existed on disk, it was not modified by this operation.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+S’u shkrua dot. Gabim (%2): %3.
+Nëse kartela ekziston tashmë në disk, s’u ndryshua nga ky veprim.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1022"/>
@@ -7033,7 +7077,10 @@ If the file already existed on disk, it was not modified by this operation.</sou
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"/>
+        <translation>S’u morën dot leje shkrimi mbi kartelën
+%1.
+
+Ndoshta është vetëm-lexim, ose e hapur në një tjetër program?</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1052"/>
@@ -7049,7 +7096,18 @@ When ignoring this warning TeXstudio will try save to the specified
 location. However if there is really not enough space, this will
 result in data loss.
 </source>
-        <translation type="unfinished"/>
+        <translation>Duket se s’ka hapësirë të majftueshme për ruajtjen e kartelës te
+%1
+
+Madhësi kartele: %2 kB
+Hapësirë e lirë: %3 kB
+
+Duhet të spastroni ca hapësirë dhe të riprovoni. Ndryshe, mund
+të anuloni veprimin e ruajtjes dhe ta ruani në një tjetër vend.
+Kur shpërfillet ky sinjalizim, TeXstudio-ja do të provojë ruajtje te
+vendi i treguar. Por, nëse vërtet s’ka hapësirë të mjaftueshme,
+kjo do të sjellë humbje të dhënash.
+</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1077"/>
@@ -7059,7 +7117,7 @@ result in data loss.
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1078"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Dështoi krijimi i një kopjeruajtjeje të kartelës. Mund të vazhdoni prapë ruajtjen. Por nëse veprimi i ruajtjes dështon, mund të humbni të dhëna te kartela origjinale. Doni të vazhdohet?</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1101"/>
@@ -7075,7 +7133,9 @@ dështoi.</translation>
         <source>The original file on disk was destroyed during the save operation.
 You'll find a copy at
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Kartela origjinale në disk qe asgjësuar gjatë veprimit të ruajtjes.
+Do të gjeni një kopje te
+%1</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1233"/>
@@ -7088,13 +7148,16 @@ You'll find a copy at
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
-        <translation type="unfinished"/>
+        <translation>Kartela %1 është fshirë në disk.
+Duhet ta ruaj dokumentin si të ishte rikthim i kartelës?
+</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1237"/>
         <source>Well, this is strange: The file %1 is not deleted anymore.
 Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
-        <translation type="unfinished"/>
+        <translation>Hëm, kjo është e çuditshme: Kartela %1 s’është fshirë më.
+Ndoshta e riktheu dikush tjetër, ndaj s’do të mbishkruaj versionin (mbase të ndryshuar) në disk.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1263"/>
@@ -7109,7 +7172,12 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+qe ndryshuar jashtë TeXstudio-s. Të ringarkohet prej disku?
+
+Shënime:
+- Ringarkimi mbishkruan lëndën e përpunuesit me kartelën nga disku. Kjo s’mund të zhbëhet.
+- Te mundësitë mund të aktivizoni në mënyrë permanente ringarkim heshtazi.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1338"/>
@@ -7124,7 +7192,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1472"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kërko</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1474"/>
@@ -7176,32 +7244,32 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4767"/>
         <source>Move cursor left (1 character)</source>
-        <translation>Lëvize kursorin majtas (1 shenjë)</translation>
+        <translation>Zhvendose kursorin majtas (1 shenjë)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4768"/>
         <source>Move cursor right (1 character)</source>
-        <translation>Lëvize kursorin djathtas (1 shenjë)</translation>
+        <translation>Zhvendose kursorin djathtas (1 shenjë)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4769"/>
         <source>Move cursor left (1 word)</source>
-        <translation>Lëvize kursorin majtas (1 fjalë)</translation>
+        <translation>Zhvendose kursorin majtas (1 fjalë)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4770"/>
         <source>Move cursor right (1 word)</source>
-        <translation>Lëvize kursorin djathtas (1 fjalë)</translation>
+        <translation>Zhvendose kursorin djathtas (1 fjalë)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4771"/>
         <source>Move cursor to line start</source>
-        <translation>Lëvize kursorin majtas (1 fjalë)Kursorin vizatoje si një vijë të trashë</translation>
+        <translation>Kaloje kursorin te fillimi i rreshtit</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4772"/>
         <source>Move cursor to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Kaloje kursorin te shenja e parë në rresht</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4773"/>
@@ -7211,7 +7279,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4774"/>
         <source>Move cursor to document start</source>
-        <translation>Kaloje kursorin te fillimi i rreshtit</translation>
+        <translation>Kaloje kursorin te fillimi i dokumentit</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4775"/>
@@ -7231,87 +7299,87 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
         <source>Move cursor to next block</source>
-        <translation type="unfinished"/>
+        <translation>Kaloje kursorin te blloku pasues</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4781"/>
         <source>Move cursor to previous block</source>
-        <translation type="unfinished"/>
+        <translation>Kaloje kursorin te blloku i mëparshëm</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
         <source>Select up</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni për sipër</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
         <source>Select down</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni për poshtë</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4787"/>
         <source>Select left (1 character)</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni majtas (1 shenjë)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
         <source>Select right (1 character)</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni djathtas (1 shenjë)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4789"/>
         <source>Select left (1 word)</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni majtas (1 fjalë)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4790"/>
         <source>Select right (1 word)</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni djathtas (1 fjalë)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4791"/>
         <source>Select to line start</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni nga këtu e te fillim rreshti</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4792"/>
         <source>Select to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni nga këtu e te shenja e parë në rresht</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4793"/>
         <source>Select to line end</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni nga këtu e te fund rreshti</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4794"/>
         <source>Select to document start</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni nga këtu e te fillim dokumenti</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4795"/>
         <source>Select to document end</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni nga këtu e te fund dokumenti</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4797"/>
         <source>Select page up</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni faqen sipër</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4798"/>
         <source>Select page down</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni faqen poshtë</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
         <source>Select to next block</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni nga këtu e blloku pasues</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4801"/>
         <source>Select to previous block</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni nga këtu e blloku i mëparshëm</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4805"/>
@@ -7341,7 +7409,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4811"/>
         <source>Change overwrite mode</source>
-        <translation type="unfinished"/>
+        <translation>Ndryshoni mënyrë mbishkrimi</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4812"/>
@@ -7386,12 +7454,12 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4820"/>
         <source>Find next</source>
-        <translation>Gjej pasuesin</translation>
+        <translation>Gjej pasuesen</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4821"/>
         <source>Find previous</source>
-        <translation>Gjej të mëparshmin</translation>
+        <translation>Gjej të mëparshmen</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4822"/>
@@ -7421,12 +7489,12 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4828"/>
         <source>Next placeholder or one word right</source>
-        <translation type="unfinished"/>
+        <translation>Vendmbajtësja pasuese, ose një fjalë djathtas</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4829"/>
         <source>Previous placeholder or one word left</source>
-        <translation type="unfinished"/>
+        <translation>Vendmbajtësja e mëparshme, ose një fjalë majtas</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4830"/>
@@ -7451,12 +7519,12 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4834"/>
         <source>Indent selection</source>
-        <translation type="unfinished"/>
+        <translation>Zhvendose brendazi përzgjedhjen</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4835"/>
         <source>Unindent selection</source>
-        <translation type="unfinished"/>
+        <translation>Hiqi përzgjedhjes zhvendosjen brendazi</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4838"/>
@@ -8085,7 +8153,7 @@ Do you want them to be saved?</source>
         <translation>Gabim: </translation>
     </message>
     <message>
-        <location filename="../src/usermacro.cpp" line="333"/>
+        <location filename="../src/usermacro.cpp" line="343"/>
         <source>Macro read-in failed
 Error: </source>
         <translation type="unfinished"/>
@@ -8130,7 +8198,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="202"/>
         <source>Starts the search from the current cursor position.</source>
-        <translation type="unfinished"/>
+        <translation>E nis kërkimin që nga pozicioni aktual i kursorit</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="212"/>
@@ -8140,7 +8208,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="221"/>
         <source>Only searches in selected text type (math, commands, etc.)</source>
-        <translation type="unfinished"/>
+        <translation>Kërkon vetëm në llojin e përzgjedhur të teksteve (matematikë, urdhra, etj.)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="242"/>
@@ -8150,13 +8218,14 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
         <source>Ask before any match is replaced.</source>
-        <translation type="unfinished"/>
+        <translation>Pyet, para se të zëvendësohet çfarëdo përputhje.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
         <source>Enables the use of escape characters. These are:
  \n = new line, \r = carriage return, \t = tab, \\ = \</source>
-        <translation type="unfinished"/>
+        <translation>Aktivizon përdorimin e shenjave paraprijëse. Këto janë:
+ \n = rresht i ri, \r = carriage return, \t = tab, \\ = \</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="358"/>
@@ -8222,12 +8291,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="629"/>
         <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
-        <translation type="unfinished"/>
+        <translation>Teksti i kërkimit haset %1 herë pas kursorit aktual. Doni të riniset që nga fillimi i fushëveprimit?</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="634"/>
         <source>The search text occurs %1 times within the search scope.</source>
-        <translation type="unfinished"/>
+        <translation>Teksti i kërkimit haset %1 herë brenda fushëveprimit të kërkimit.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="867"/>
@@ -8290,7 +8359,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickbeamerdialog.cpp" line="30"/>
         <source>Quick Beamer Presentation</source>
-        <translation type="unfinished"/>
+        <translation>Paraqitje Beamer e Shpejtë</translation>
     </message>
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="14"/>
@@ -8343,7 +8412,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="344"/>
         <source>Graphics package, easily include images (s. Insert Graphic Wizard)</source>
-        <translation type="unfinished"/>
+        <translation>Paketë grafike, përfshini kollaj figura (s. Insert Graphic Wizard)</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="345"/>
@@ -8358,12 +8427,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="347"/>
         <source>Define your theorem like env., has to be loaded after amsmath</source>
-        <translation type="unfinished"/>
+        <translation>Përkufizojeni teoremën tuaj si mjedis, duhet ngarkuar pas amsmath-it</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="348"/>
         <source>Reference to names of chapters, sections, ..., loaded by hyperref</source>
-        <translation type="unfinished"/>
+        <translation>Referencë te emra kapitujsh, seksionesh, …, ngarkuar nga hyperref</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="349"/>
@@ -8373,7 +8442,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="350"/>
         <source>Sophisticated package for colors, with table option to use colors in tables</source>
-        <translation type="unfinished"/>
+        <translation>Paketë e sofistikuar për ngjyra, me mundësi tabele të përdorë ngjyra në tabela</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="536"/>
@@ -8398,7 +8467,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="616"/>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
-        <translation type="unfinished"/>
+        <translation>Pas shtypjes së “OK”, krejt paketat që kanë shenjë te kutiza do të shfaqen në një dokument të ri brenda urdhrave \usepackage..</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="36"/>
@@ -8418,7 +8487,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="78"/>
         <source>Adds language support to your document with Babel package</source>
-        <translation type="unfinished"/>
+        <translation>Shton përmes paketës Babel mbulim gjuhe te dokumenti juaj</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="94"/>
@@ -8522,12 +8591,13 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="../src/randomtextgenerator.cpp" line="53"/>
         <source>Reading all words
 (This will take a while but only on the first generation)</source>
-        <translation type="unfinished"/>
+        <translation>Po lexohen krejt fjalët
+(Kjo do të zgjasë ca, por vetëm gjatë regjistrimit të parë)</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="90"/>
         <source>The current document contains no words, but we need some phrases as a base to create the random text from</source>
-        <translation type="unfinished"/>
+        <translation>Dokumenti i tanishëm s’përmban fjalë, por na duhen disa togfjalësh si bazë prej nga të krijohet teksti kuturu</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="119"/>
@@ -8605,7 +8675,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="138"/>
         <source>Punctation</source>
-        <translation type="unfinished"/>
+        <translation>Pikësim</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="145"/>
@@ -8685,12 +8755,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="21"/>
         <source>Files on disk</source>
-        <translation type="unfinished"/>
+        <translation>Kartela në disk</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="30"/>
         <source>Update Search</source>
-        <translation type="unfinished"/>
+        <translation>Përditëso Kërkimin</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="34"/>
@@ -8712,7 +8782,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="44"/>
         <source>Bib files</source>
-        <translation type="unfinished"/>
+        <translation>Kartela Bib</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="45"/>
@@ -8737,12 +8807,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="180"/>
         <source>Search in:</source>
-        <translation type="unfinished"/>
+        <translation>Kërko në:</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="216"/>
         <source>Select folder where to search</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni dosje ku të kërkohet</translation>
     </message>
 </context>
 <context>
@@ -8763,12 +8833,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/configdialog.cpp" line="140"/>
         <source>To change a shortcut, edit the column &quot;Current Shortcut&quot; or &quot;Additional Shortcut&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Që të ndryshoni një shkurtore, përpunoni shtyllën “Shkurtore e Tanishme”, ose “Shkurtore Shtesë”.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="190"/>
         <source>Only single characters are allowed as key</source>
-        <translation type="unfinished"/>
+        <translation>Si kyç lejohen vetëm shenja njëshe</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="200"/>
@@ -9056,92 +9126,92 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="250"/>
+        <location filename="../src/syntaxcheck.cpp" line="261"/>
         <source>no error</source>
         <translation>s’ka gabim</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="251"/>
+        <location filename="../src/syntaxcheck.cpp" line="262"/>
         <source>unrecognized environment</source>
         <translation>mjedis i panjohur</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="252"/>
+        <location filename="../src/syntaxcheck.cpp" line="263"/>
         <source>unrecognized command</source>
         <translation>urdhër i panjohur</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="253"/>
+        <location filename="../src/syntaxcheck.cpp" line="264"/>
         <source>unrecognized math command</source>
         <translation>urdhër matematikor i panjohur</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="254"/>
+        <location filename="../src/syntaxcheck.cpp" line="265"/>
         <source>unrecognized tabular command</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="255"/>
+        <location filename="../src/syntaxcheck.cpp" line="266"/>
         <source>tabular command outside tabular env</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="256"/>
+        <location filename="../src/syntaxcheck.cpp" line="267"/>
         <source>math command outside math env</source>
-        <translation type="unfinished"/>
+        <translation>urdhrë matematikor jashtë mjedisi matematikor</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="257"/>
+        <location filename="../src/syntaxcheck.cpp" line="268"/>
         <source>tabbing command outside tabbing env</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="258"/>
+        <location filename="../src/syntaxcheck.cpp" line="269"/>
         <source>more cols in tabular than specified</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="259"/>
+        <location filename="../src/syntaxcheck.cpp" line="270"/>
         <source>cols in tabular missing</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="260"/>
+        <location filename="../src/syntaxcheck.cpp" line="271"/>
         <source>\\ missing</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="261"/>
+        <location filename="../src/syntaxcheck.cpp" line="272"/>
         <source>closing environment which has not been opened</source>
-        <translation type="unfinished"/>
+        <translation>mbyllje mjedisi që s’është hapur</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="262"/>
+        <location filename="../src/syntaxcheck.cpp" line="273"/>
         <source>environment not closed</source>
         <translation>mjedis jo i mbyllur</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="263"/>
+        <location filename="../src/syntaxcheck.cpp" line="274"/>
         <source>unrecognized key in key option</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="264"/>
+        <location filename="../src/syntaxcheck.cpp" line="275"/>
         <source>unrecognized value in key option</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="265"/>
+        <location filename="../src/syntaxcheck.cpp" line="276"/>
         <source>command outside suitable env</source>
-        <translation type="unfinished"/>
+        <translation>urdhër jashtë mjedisi të përshtatshëm</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="266"/>
+        <location filename="../src/syntaxcheck.cpp" line="277"/>
         <source>spelling</source>
-        <translation type="unfinished"/>
+        <translation>drejtshkrim</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="269"/>
+        <location filename="../src/syntaxcheck.cpp" line="280"/>
         <source>unknown</source>
         <translation>i panjohur</translation>
     </message>
@@ -9390,7 +9460,11 @@ From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio gjeti gjedhe përdoruesi në vendndodhje nxjerrë nga përdorimi.
+Nga tani e tutje gjedhet e përdoruesit strehohen te
+%1
+A duhet TeXstudio t’i kalojë atje gjedhet ekzistuese të përdoruesit?
+Nëse jo, s’do të jenë të përdorshme përmes dialogut Krijoni Gjedhe.</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="92"/>
@@ -9399,7 +9473,11 @@ If not, they will not be available via the Make Template dialog.</source>
 to
 %2
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Kopjimi i gjedhes nga
+%1
+në
+%2
+dështoi.</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="95"/>
@@ -9413,7 +9491,7 @@ failed.</source>
     <message>
         <location filename="../src/templatemanager.cpp" line="102"/>
         <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
-        <translation type="unfinished"/>
+        <translation>Ka ende gjedhe të pazhvendosura. A duhet të reshtë mbikqyrjen e tyre TeXstudio-ja?</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="117"/>
@@ -9423,7 +9501,7 @@ failed.</source>
     <message>
         <location filename="../src/templatemanager.cpp" line="119"/>
         <source>Basic template files shipped with TeXstudio.</source>
-        <translation type="unfinished"/>
+        <translation>Kartela gjedhesh elementare sjellë me TeXstudio-n.</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="118"/>
@@ -9449,7 +9527,7 @@ failed.</source>
     <message>
         <location filename="../src/templatemanager_p.cpp" line="58"/>
         <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
-        <translation type="unfinished"/>
+        <translation>Dosja e synuar s’është e zbrazët. Rekomandohet të nisni në dosje të reja.Përndryshe mund të mbishkruhen kartela ekzistuese. Doni të përdoret kjo dosje, sido qoftë?</translation>
     </message>
     <message>
         <location filename="../src/templatemanager_p.cpp" line="124"/>
@@ -9468,7 +9546,7 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="99"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
-        <translation type="unfinished"/>
+        <translation>Rekomandohet t’i nisni gjedhet në një dosje të re. Ndryshe, kartelat ekzistuese mund të mbishkruhen.</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="136"/>
@@ -9478,7 +9556,7 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="140"/>
         <source>Online available template files</source>
-        <translation type="unfinished"/>
+        <translation>Kartela të gatshme gjedhe në internet</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="145"/>
@@ -9499,12 +9577,12 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="507"/>
         <source>&lt;No Description&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Pa Përshkrim&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="508"/>
         <source>&lt;Unknown Author&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Autor i Panjohur&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="509"/>
@@ -9546,7 +9624,9 @@ failed.</source>
         <source>Editing of multi-file templates is not supported.
 Please open the template location and unzip the
 template to edit individual files.</source>
-        <translation type="unfinished"/>
+        <translation>Nuk mbulohet përpunim gjedhesh me shumë kartela.
+Ju lutemi, hapni vendndodhjen e gjedhes dhe përftoni
+kartela individuale për përpunim.</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="585"/>
@@ -9607,7 +9687,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texdocdialog.ui" line="138"/>
         <source>open CTAN</source>
-        <translation type="unfinished"/>
+        <translation>hap CTAN-in</translation>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="157"/>
@@ -9677,7 +9757,7 @@ template to edit individual files.</source>
         <location filename="../src/additionaltranslations.cpp" line="348"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>Asymptote</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="349"/>
@@ -9689,7 +9769,7 @@ template to edit individual files.</source>
         <location filename="../src/additionaltranslations.cpp" line="350"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>Dyor</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="351"/>
@@ -9713,7 +9793,7 @@ template to edit individual files.</source>
         <location filename="../src/additionaltranslations.cpp" line="354"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>Pweave</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="355"/>
@@ -9725,7 +9805,7 @@ template to edit individual files.</source>
         <location filename="../src/additionaltranslations.cpp" line="356"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>Sweave</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="357"/>
@@ -9764,7 +9844,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="384"/>
-        <location filename="../src/texstudio.cpp" line="6459"/>
+        <location filename="../src/texstudio.cpp" line="6518"/>
         <source>Ready</source>
         <translation>Gati</translation>
     </message>
@@ -9796,7 +9876,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="463"/>
         <source>Asymptote files</source>
-        <translation type="unfinished"/>
+        <translation>Kartela Asymptote</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="464"/>
@@ -9805,8 +9885,8 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="465"/>
-        <location filename="../src/texstudio.cpp" line="10013"/>
-        <location filename="../src/texstudio.cpp" line="10020"/>
+        <location filename="../src/texstudio.cpp" line="10073"/>
+        <location filename="../src/texstudio.cpp" line="10080"/>
         <source>All files</source>
         <translation>Krejt kartelat</translation>
     </message>
@@ -9863,12 +9943,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="766"/>
         <source>Asymptote Commands</source>
-        <translation type="unfinished"/>
+        <translation>Urdhra Asymptote</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="767"/>
         <source>Beamer Commands</source>
-        <translation type="unfinished"/>
+        <translation>Urdhra Beamer</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="768"/>
@@ -9968,7 +10048,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="931"/>
         <source>&amp;Revert to saved...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Riktheje te e ruajtura…</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="933"/>
@@ -9998,7 +10078,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="940"/>
         <source>Sh&amp;ow old Revisions</source>
-        <translation type="unfinished"/>
+        <translation>Sh&amp;faq Rishikime të dikurshëm</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="941"/>
@@ -10028,7 +10108,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="946"/>
         <source>Try to merge differences</source>
-        <translation type="unfinished"/>
+        <translation>Provo të përziesh dallimet</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="947"/>
@@ -10052,7 +10132,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="953"/>
-        <location filename="../src/texstudio.cpp" line="10214"/>
+        <location filename="../src/texstudio.cpp" line="10274"/>
         <source>&amp;Close</source>
         <translation>&amp;Mbylle</translation>
     </message>
@@ -10099,12 +10179,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="970"/>
         <source>C&amp;ut</source>
-        <translation type="unfinished"/>
+        <translation>Pr&amp;ije</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="754"/>
         <source>Insert filename</source>
-        <translation type="unfinished"/>
+        <translation>Futni emër kartele</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="759"/>
@@ -10149,7 +10229,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="979"/>
         <source>Also Select Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidh Edhe Hasjen e Mëparshme</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="980"/>
@@ -10174,18 +10254,18 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="985"/>
         <source>Delete &amp;Line</source>
-        <translation type="unfinished"/>
+        <translation>Fshije &amp;Rreshtin</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="988"/>
         <location filename="../src/texstudio.cpp" line="990"/>
         <source>Delete To &amp;End Of Line</source>
-        <translation type="unfinished"/>
+        <translation>Fshi Nga Aty e Te F&amp;und Rreshti</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="992"/>
         <source>Delete From &amp;Start Of Line</source>
-        <translation type="unfinished"/>
+        <translation>Fshi Nga &amp;Fillim Rreshti e Tëhu</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="993"/>
@@ -10195,7 +10275,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="994"/>
         <source>Move Line &amp;Down</source>
-        <translation>&amp;Ule rreshin</translation>
+        <translation>&amp;Ule Rreshtin</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="995"/>
@@ -10250,12 +10330,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1009"/>
         <source>Find &amp;Next</source>
-        <translation type="unfinished"/>
+        <translation>Gjej &amp;Pasuesen</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1010"/>
         <source>Find &amp;Prev</source>
-        <translation type="unfinished"/>
+        <translation>Gjej të &amp;Mëparshmen</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1011"/>
@@ -10299,9 +10379,9 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1023"/>
-        <location filename="../src/texstudio.cpp" line="7932"/>
-        <location filename="../src/texstudio.cpp" line="7957"/>
-        <location filename="../src/texstudio.cpp" line="7977"/>
+        <location filename="../src/texstudio.cpp" line="7991"/>
+        <location filename="../src/texstudio.cpp" line="8016"/>
+        <location filename="../src/texstudio.cpp" line="8036"/>
         <source>Line</source>
         <translation>Rresht</translation>
     </message>
@@ -10319,12 +10399,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1031"/>
         <source>Previous mark</source>
-        <translation type="unfinished"/>
+        <translation>Shenja e mëparshme</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1032"/>
         <source>Next mark</source>
-        <translation type="unfinished"/>
+        <translation>Shenja pasuese</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1035"/>
@@ -10339,7 +10419,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1039"/>
         <source>Goto Bookmark</source>
-        <translation type="unfinished"/>
+        <translation>Shko Te Faqerojtësi</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1052"/>
@@ -10413,7 +10493,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1104"/>
         <source>Pre&amp;view Selection/Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>Bëj &amp;Paraparje të Përzgjedhjes/Parantezave</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1105"/>
@@ -10458,7 +10538,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1140"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq/Fshih &amp;Koment</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1141"/>
@@ -10643,7 +10723,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1197"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
-        <translation type="unfinished"/>
+        <translation>Detyro një përditësim të modelit dinamik të gjuhës të përdorur për theksim dhe palosje. Ka shumë mundësi të mos ju duhet ta bëni këtë, ngaqë përditësimet zakonisht janë të automatizuara.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1198"/>
@@ -10737,12 +10817,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1230"/>
         <source>View &amp;DVI</source>
-        <translation type="unfinished"/>
+        <translation>Shihni &amp;DVI</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1231"/>
         <source>Vie&amp;w PS</source>
-        <translation type="unfinished"/>
+        <translation>Shihni &amp;PS</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1232"/>
@@ -10792,7 +10872,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1244"/>
         <source>&amp;Asymptote</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Asymptote</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1246"/>
@@ -10828,7 +10908,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1258"/>
         <source>C&amp;onvert Source to Html...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Shndërrojeni Burimin në HTML…</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1260"/>
@@ -10863,12 +10943,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1273"/>
         <source>Insert \ref to Next Label</source>
-        <translation type="unfinished"/>
+        <translation>Fut \ref te Etiketa Pasuese</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1274"/>
         <source>Insert \ref to Previous Label</source>
-        <translation type="unfinished"/>
+        <translation>Fut \ref te Etiketa e Mëparshme</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1275"/>
@@ -10916,13 +10996,13 @@ template to edit individual files.</source>
         <location filename="../src/texstudio.cpp" line="1282"/>
         <source>Add \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Shto \hline</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1283"/>
         <source>Remove \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Hiq \hline</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1284"/>
@@ -10947,7 +11027,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1288"/>
-        <location filename="../src/texstudio.cpp" line="1698"/>
+        <location filename="../src/texstudio.cpp" line="1699"/>
         <source>Insert language as TeX comment</source>
         <translation>Futni gjuhë si koment TeX</translation>
     </message>
@@ -11290,184 +11370,189 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1511"/>
+        <source>Show settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1512"/>
         <source>Bugs Report/Feature Request</source>
         <translation>Njoftim të Mete/Kërkesë Veçorie</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1512"/>
+        <location filename="../src/texstudio.cpp" line="1513"/>
         <source>About TeXstudio...</source>
         <translation>Mbi TeXstudio…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1681"/>
-        <location filename="../src/texstudio.cpp" line="5971"/>
+        <location filename="../src/texstudio.cpp" line="1682"/>
+        <location filename="../src/texstudio.cpp" line="6031"/>
         <source>show more entries ...</source>
         <translation>shfaq më tepër zëra …</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1689"/>
+        <location filename="../src/texstudio.cpp" line="1690"/>
         <source>Default</source>
         <translation>Parazgjedhje</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1723"/>
+        <location filename="../src/texstudio.cpp" line="1724"/>
         <source>Connected to LanguageTool at %1</source>
         <translation>I lidhur me LanguageTool te %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1727"/>
+        <location filename="../src/texstudio.cpp" line="1728"/>
         <source>No LanguageTool server found at %1</source>
         <translation>S’u gjet shërbyes LanguageTool te %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1731"/>
+        <location filename="../src/texstudio.cpp" line="1732"/>
         <source>LanguageTool status unknown</source>
         <translation>Gjendje e panjohur e LanguageTool-it</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1735"/>
+        <location filename="../src/texstudio.cpp" line="1736"/>
         <source>Inline grammar checking disabled by user!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1798"/>
+        <location filename="../src/texstudio.cpp" line="1799"/>
         <source>Language</source>
         <translation>Gjuhë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1810"/>
         <location filename="../src/texstudio.cpp" line="1811"/>
-        <location filename="../src/texstudio.cpp" line="6001"/>
-        <location filename="../src/texstudio.cpp" line="6004"/>
-        <location filename="../src/texstudio.cpp" line="6005"/>
+        <location filename="../src/texstudio.cpp" line="1812"/>
+        <location filename="../src/texstudio.cpp" line="6061"/>
+        <location filename="../src/texstudio.cpp" line="6064"/>
+        <location filename="../src/texstudio.cpp" line="6065"/>
         <source>Encoding</source>
         <translation>Kodim</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1833"/>
+        <location filename="../src/texstudio.cpp" line="1834"/>
         <source>More Encodings...</source>
         <translation>Më Tepër Kodime…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1841"/>
+        <location filename="../src/texstudio.cpp" line="1842"/>
         <source>Insert encoding as TeX comment</source>
         <translation>Fut kodim si një koment TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1855"/>
+        <location filename="../src/texstudio.cpp" line="1856"/>
         <source>Go to bookmark</source>
         <translation>Shko te faqerojtësi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1897"/>
+        <location filename="../src/texstudio.cpp" line="1898"/>
         <source>Automatic</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1898"/>
+        <location filename="../src/texstudio.cpp" line="1899"/>
         <source>Automatic root document detection active</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1903"/>
+        <location filename="../src/texstudio.cpp" line="1904"/>
         <source>&amp;Explicit</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1904"/>
+        <location filename="../src/texstudio.cpp" line="1905"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation>Rrënjë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1905"/>
+        <location filename="../src/texstudio.cpp" line="1906"/>
         <source>Explict root document:
 %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2216"/>
+        <location filename="../src/texstudio.cpp" line="2217"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>Doni të diagnostikohet një kartelë SyncTeX?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2315"/>
-        <location filename="../src/texstudio.cpp" line="4266"/>
-        <location filename="../src/texstudio.cpp" line="6055"/>
-        <location filename="../src/texstudio.cpp" line="6108"/>
-        <location filename="../src/texstudio.cpp" line="6675"/>
-        <location filename="../src/texstudio.cpp" line="6856"/>
-        <location filename="../src/texstudio.cpp" line="6858"/>
-        <location filename="../src/texstudio.cpp" line="6868"/>
-        <location filename="../src/texstudio.cpp" line="6870"/>
-        <location filename="../src/texstudio.cpp" line="10693"/>
+        <location filename="../src/texstudio.cpp" line="2316"/>
+        <location filename="../src/texstudio.cpp" line="4267"/>
+        <location filename="../src/texstudio.cpp" line="6115"/>
+        <location filename="../src/texstudio.cpp" line="6168"/>
+        <location filename="../src/texstudio.cpp" line="6734"/>
+        <location filename="../src/texstudio.cpp" line="6915"/>
+        <location filename="../src/texstudio.cpp" line="6917"/>
+        <location filename="../src/texstudio.cpp" line="6927"/>
+        <location filename="../src/texstudio.cpp" line="6929"/>
+        <location filename="../src/texstudio.cpp" line="10753"/>
         <source>Error</source>
         <translation>Gabim</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2315"/>
+        <location filename="../src/texstudio.cpp" line="2316"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>S’keni leje leximi mbi kartelën %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2367"/>
+        <location filename="../src/texstudio.cpp" line="2368"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2373"/>
+        <location filename="../src/texstudio.cpp" line="2374"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>S’u arrit të hapet kartelë rimarrjeje “%1”.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2523"/>
+        <location filename="../src/texstudio.cpp" line="2524"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2613"/>
+        <location filename="../src/texstudio.cpp" line="2614"/>
         <source>Could not write template data:</source>
         <translation>S’u shkruan dot të dhëna gjedheje:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2645"/>
+        <location filename="../src/texstudio.cpp" line="2646"/>
         <source>Could not write template meta data:</source>
         <translation>S’u shkruan dot tejtëdhëna gjedheje:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2696"/>
-        <location filename="../src/texstudio.cpp" line="2760"/>
+        <location filename="../src/texstudio.cpp" line="2697"/>
+        <location filename="../src/texstudio.cpp" line="2761"/>
         <source>File not found:</source>
         <translation>S’u gjet kartelë:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2700"/>
-        <location filename="../src/texstudio.cpp" line="2764"/>
+        <location filename="../src/texstudio.cpp" line="2701"/>
+        <location filename="../src/texstudio.cpp" line="2765"/>
         <source>You do not have read permission to this file:</source>
         <translation>S’keni leje për lexim të kësaj kartele:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2881"/>
-        <location filename="../src/texstudio.cpp" line="10522"/>
+        <location filename="../src/texstudio.cpp" line="2882"/>
+        <location filename="../src/texstudio.cpp" line="10582"/>
         <source>Open Files</source>
         <translation>Hapni Kartela</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2899"/>
-        <location filename="../src/texstudio.cpp" line="2906"/>
+        <location filename="../src/texstudio.cpp" line="2900"/>
+        <location filename="../src/texstudio.cpp" line="2907"/>
         <source>Loading of last session failed.</source>
         <translation>Ngarkimi i sesionit të fundit dështoi.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2972"/>
+        <location filename="../src/texstudio.cpp" line="2973"/>
         <source>Save As</source>
         <translation>Ruaje Si</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2990"/>
+        <location filename="../src/texstudio.cpp" line="2991"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -11476,277 +11561,282 @@ this other file before you can overwrite it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3008"/>
+        <location filename="../src/texstudio.cpp" line="3009"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3115"/>
+        <location filename="../src/texstudio.cpp" line="3116"/>
         <source>Rename/Move</source>
         <translation>Riemërtojeni/Lëvizeni</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3115"/>
-        <location filename="../src/texstudio.cpp" line="12152"/>
+        <location filename="../src/texstudio.cpp" line="3116"/>
+        <location filename="../src/texstudio.cpp" line="12212"/>
         <source>Copy</source>
         <translation>Kopjoje</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3130"/>
+        <location filename="../src/texstudio.cpp" line="3131"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>Doni vërtet të fshihet kartela “%1”?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3139"/>
+        <location filename="../src/texstudio.cpp" line="3140"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>Doni vërtet të rikthehet kartela “%1”?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3166"/>
+        <location filename="../src/texstudio.cpp" line="3167"/>
         <source>Numeric permissions</source>
         <translation>Leje numerike</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3167"/>
+        <location filename="../src/texstudio.cpp" line="3168"/>
         <source>Verbose permissions</source>
         <translation>Leje të qeni fjalaman</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3300"/>
+        <location filename="../src/texstudio.cpp" line="3301"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3433"/>
-        <location filename="../src/texstudio.cpp" line="3492"/>
-        <location filename="../src/texstudio.cpp" line="3572"/>
+        <location filename="../src/texstudio.cpp" line="3434"/>
+        <location filename="../src/texstudio.cpp" line="3493"/>
+        <location filename="../src/texstudio.cpp" line="3573"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3585"/>
+        <location filename="../src/texstudio.cpp" line="3586"/>
         <source>Loading of session failed.</source>
         <translation>Ngarkim i sesionit dështoi.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3602"/>
+        <location filename="../src/texstudio.cpp" line="3603"/>
         <source>Load Session</source>
         <translation>Ngarkoje Sesionin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3602"/>
-        <location filename="../src/texstudio.cpp" line="3620"/>
+        <location filename="../src/texstudio.cpp" line="3603"/>
+        <location filename="../src/texstudio.cpp" line="3621"/>
         <source>TeXstudio Session</source>
         <translation>Sesion TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3620"/>
+        <location filename="../src/texstudio.cpp" line="3621"/>
         <source>Save Session</source>
         <translation>Ruaje Sesionin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3626"/>
+        <location filename="../src/texstudio.cpp" line="3627"/>
         <source>Saving of session failed.</source>
         <translation>Ruajtja e sesionit dështoi.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3702"/>
+        <location filename="../src/texstudio.cpp" line="3703"/>
         <source>The following files could not be loaded:</source>
         <translation>S’u ngarkuan dot kartelat vijuese:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3867"/>
+        <location filename="../src/texstudio.cpp" line="3868"/>
         <source>Image Formats (%1)</source>
         <translation>Formate Figurash (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3869"/>
+        <location filename="../src/texstudio.cpp" line="3870"/>
         <source>Save Image</source>
         <translation>Ruaje Figurën</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3874"/>
+        <location filename="../src/texstudio.cpp" line="3875"/>
         <source>Could not save the image file.</source>
         <translation>S’u ruajt dot kartela e figurës.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3962"/>
+        <location filename="../src/texstudio.cpp" line="3963"/>
         <source>Ascending</source>
         <translation>Ngjitës</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3962"/>
+        <location filename="../src/texstudio.cpp" line="3963"/>
         <source>Descending</source>
         <translation>Zbritës</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3962"/>
+        <location filename="../src/texstudio.cpp" line="3963"/>
         <source>No Sorting</source>
         <translation>Pa Renditje</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3962"/>
+        <location filename="../src/texstudio.cpp" line="3963"/>
         <source>Random (Shuffle)</source>
         <translation>Kuturu (Përzieji)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3968"/>
+        <location filename="../src/texstudio.cpp" line="3969"/>
         <source>Sorting</source>
         <translation>Renditje</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3969"/>
+        <location filename="../src/texstudio.cpp" line="3970"/>
         <source>Complete Lines</source>
         <translation>Rreshta të Plotë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3970"/>
+        <location filename="../src/texstudio.cpp" line="3971"/>
         <source>Case Sensitive</source>
         <translation>Siç është shkruar</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3971"/>
+        <location filename="../src/texstudio.cpp" line="3972"/>
         <source>Remove Duplicates</source>
         <translation>Hiq Përsëdytje</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4229"/>
+        <location filename="../src/texstudio.cpp" line="4230"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4230"/>
+        <location filename="../src/texstudio.cpp" line="4231"/>
         <source>Smart scope selecting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4231"/>
+        <location filename="../src/texstudio.cpp" line="4232"/>
         <source>Join lines before wrapping</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4245"/>
-        <location filename="../src/texstudio.cpp" line="6552"/>
-        <location filename="../src/texstudio.cpp" line="6609"/>
+        <location filename="../src/texstudio.cpp" line="4246"/>
+        <location filename="../src/texstudio.cpp" line="6611"/>
+        <location filename="../src/texstudio.cpp" line="6668"/>
         <source>No document open</source>
         <translation>S’ka dokument të hapur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4251"/>
+        <location filename="../src/texstudio.cpp" line="4252"/>
         <source>No dictionary available.</source>
         <translation>S’ka fjalor.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4266"/>
+        <location filename="../src/texstudio.cpp" line="4267"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>S’ngarkohet dot Bazë të Dhënash Fjalor Sinonimik</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4679"/>
+        <location filename="../src/texstudio.cpp" line="4680"/>
         <source>Storing session failed</source>
         <translation>Depozitimi i sesionit dështoi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4679"/>
+        <location filename="../src/texstudio.cpp" line="4680"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4765"/>
+        <location filename="../src/texstudio.cpp" line="4766"/>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4775"/>
+        <location filename="../src/texstudio.cpp" line="4776"/>
         <source>Unable to write to settings file %1</source>
         <translation>S’arrihet të shkruhet te kartelë rregullimesh %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5583"/>
+        <location filename="../src/texstudio.cpp" line="4829"/>
+        <source>Settings file does not exist</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="5633"/>
         <source>AI Chat</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5583"/>
+        <location filename="../src/texstudio.cpp" line="5633"/>
         <source>Please set the API key in the settings.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5671"/>
+        <location filename="../src/texstudio.cpp" line="5728"/>
         <source>Quick Start</source>
         <translation>Nisje e Shpejtë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5693"/>
+        <location filename="../src/texstudio.cpp" line="5750"/>
         <source>Quick Beamer Presentation</source>
-        <translation type="unfinished"/>
+        <translation>Paraqitje Beamer e Shpejtë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5730"/>
+        <location filename="../src/texstudio.cpp" line="5787"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Kartela e Tanishme&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5762"/>
+        <location filename="../src/texstudio.cpp" line="5819"/>
         <source>Type: %1</source>
         <translation>Lloj: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5804"/>
+        <location filename="../src/texstudio.cpp" line="5864"/>
         <source>Edit User &amp;Tags</source>
         <translation>Përpunoni &amp;Etiketa Përdoruesi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5866"/>
+        <location filename="../src/texstudio.cpp" line="5926"/>
         <source>empty</source>
         <translation>e zbrazët</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5870"/>
+        <location filename="../src/texstudio.cpp" line="5930"/>
         <source>Labels:</source>
         <translation>Etiketa:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5958"/>
+        <location filename="../src/texstudio.cpp" line="6018"/>
         <source>show less entries ...</source>
         <translation>shfaq më pak zëra …</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5999"/>
+        <location filename="../src/texstudio.cpp" line="6059"/>
         <source>Encoding Aliases: </source>
         <translation>Aliase Kodimesh: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6055"/>
+        <location filename="../src/texstudio.cpp" line="6115"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6063"/>
+        <location filename="../src/texstudio.cpp" line="6123"/>
         <source>Can&apos;t detect the file name</source>
         <translation>S’pikaset dot emri i kartelës</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6102"/>
+        <location filename="../src/texstudio.cpp" line="6162"/>
         <source>  Running this command: </source>
         <translation>  Duke xhiruar këtë urdhër: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6108"/>
+        <location filename="../src/texstudio.cpp" line="6168"/>
         <source>could not start the command</source>
         <translation>s’u nis dot urdhri</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6232"/>
+        <location filename="../src/texstudio.cpp" line="6291"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6252"/>
+        <location filename="../src/texstudio.cpp" line="6311"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -11757,222 +11847,222 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6336"/>
+        <location filename="../src/texstudio.cpp" line="6395"/>
         <source>Unknown internal command: %1</source>
         <translation>Urdhër i brendshëm i panjohur: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6371"/>
+        <location filename="../src/texstudio.cpp" line="6430"/>
         <source>%!TeX program used: %1</source>
         <translation>Program %!TeX i përdorur: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6374"/>
+        <location filename="../src/texstudio.cpp" line="6433"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6435"/>
+        <location filename="../src/texstudio.cpp" line="6494"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6437"/>
+        <location filename="../src/texstudio.cpp" line="6496"/>
         <source>Could not start %1.</source>
         <translation>S’u nis dot %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6466"/>
+        <location filename="../src/texstudio.cpp" line="6525"/>
         <source>Error:</source>
         <translation>Gabim:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6542"/>
+        <location filename="../src/texstudio.cpp" line="6601"/>
         <source>No open project or tex file to clean.</source>
         <translation>S’ka projekt të hapur, ose kartelë tekst për t’u spastruar.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6613"/>
+        <location filename="../src/texstudio.cpp" line="6672"/>
         <source>Text Analysis</source>
         <translation>Analizë Teskti</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6637"/>
+        <location filename="../src/texstudio.cpp" line="6696"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6675"/>
+        <location filename="../src/texstudio.cpp" line="6734"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6856"/>
-        <location filename="../src/texstudio.cpp" line="6868"/>
+        <location filename="../src/texstudio.cpp" line="6915"/>
+        <location filename="../src/texstudio.cpp" line="6927"/>
         <source>File not found</source>
         <translation>S’u gjet kartelë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6858"/>
-        <location filename="../src/texstudio.cpp" line="6870"/>
+        <location filename="../src/texstudio.cpp" line="6917"/>
+        <location filename="../src/texstudio.cpp" line="6929"/>
         <source>Could not open browser</source>
         <translation>S’u hap dot shfletuesi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7186"/>
+        <location filename="../src/texstudio.cpp" line="7245"/>
         <source>%1 is an invalid TeX project directory.</source>
         <translation>%1 është një drejtori e pavlefshme projekti TeX.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7479"/>
+        <location filename="../src/texstudio.cpp" line="7538"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7935"/>
+        <location filename="../src/texstudio.cpp" line="7994"/>
         <source>Label</source>
         <translation>Etiketë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7937"/>
-        <location filename="../src/texstudio.cpp" line="7959"/>
+        <location filename="../src/texstudio.cpp" line="7996"/>
+        <location filename="../src/texstudio.cpp" line="8018"/>
         <source>Beyond end of document.</source>
         <translation>Tej fundit të dokumentit.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7940"/>
-        <location filename="../src/texstudio.cpp" line="7961"/>
+        <location filename="../src/texstudio.cpp" line="7999"/>
+        <location filename="../src/texstudio.cpp" line="8020"/>
         <source>In Appendix.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7979"/>
+        <location filename="../src/texstudio.cpp" line="8038"/>
         <source>File not found.</source>
         <translation>S’u gjet kartelë.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7994"/>
+        <location filename="../src/texstudio.cpp" line="8053"/>
         <source> (Line %1)</source>
         <translation> (Rreshti %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9309"/>
+        <location filename="../src/texstudio.cpp" line="9369"/>
         <source>commit comment:</source>
         <translation>koment parashtrimi:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9313"/>
+        <location filename="../src/texstudio.cpp" line="9373"/>
         <source>check in whole directory ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9315"/>
+        <location filename="../src/texstudio.cpp" line="9375"/>
         <source>Push to repository ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9673"/>
+        <location filename="../src/texstudio.cpp" line="9733"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9974"/>
+        <location filename="../src/texstudio.cpp" line="10034"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>S’arrihet të hapet kartela “%1”.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9976"/>
+        <location filename="../src/texstudio.cpp" line="10036"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>Kartela “&quot;%1” s’ekziston.
 Doni të krijohet?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10013"/>
+        <location filename="../src/texstudio.cpp" line="10073"/>
         <source>Save Profile</source>
         <translation>Ruaje Profilin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10013"/>
-        <location filename="../src/texstudio.cpp" line="10020"/>
+        <location filename="../src/texstudio.cpp" line="10073"/>
+        <location filename="../src/texstudio.cpp" line="10080"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>Profil TXS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10020"/>
+        <location filename="../src/texstudio.cpp" line="10080"/>
         <source>Load Profile</source>
         <translation>Ngarkoje Profilin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10073"/>
+        <location filename="../src/texstudio.cpp" line="10133"/>
         <source>Failed to read profile file %1.</source>
         <translation>S’u arrit të lexohej kartelë profili %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10196"/>
+        <location filename="../src/texstudio.cpp" line="10256"/>
         <source>Problem</source>
         <translation>Problem</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10196"/>
+        <location filename="../src/texstudio.cpp" line="10256"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10201"/>
+        <location filename="../src/texstudio.cpp" line="10261"/>
         <source>Find Word Repetitions</source>
         <translation>Gjej Përsëritje Fjalësh</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10210"/>
+        <location filename="../src/texstudio.cpp" line="10270"/>
         <source>&amp;Find Next</source>
         <translation>Gjej &amp;Pasuesin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10212"/>
+        <location filename="../src/texstudio.cpp" line="10272"/>
         <source>&amp;Find Previous</source>
         <translation>Gjej të &amp;Mëparshmin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10263"/>
+        <location filename="../src/texstudio.cpp" line="10323"/>
         <source>Reached beginning of text.</source>
         <translation>U mbërrit në fillim të tekstit.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10263"/>
+        <location filename="../src/texstudio.cpp" line="10323"/>
         <source>Reached end of text.</source>
         <translation>U mbërrit në fund të tekstit.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10522"/>
-        <location filename="../src/texstudio.cpp" line="10733"/>
-        <location filename="../src/texstudio.cpp" line="10736"/>
+        <location filename="../src/texstudio.cpp" line="10582"/>
+        <location filename="../src/texstudio.cpp" line="10793"/>
+        <location filename="../src/texstudio.cpp" line="10796"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>Kartela LaTeX (*.tex);;Krejt Kartelat (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10693"/>
+        <location filename="../src/texstudio.cpp" line="10753"/>
         <source>You do not have read permission to this file.</source>
         <translation>S’keni leje leximi për këtë kartelë.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10733"/>
+        <location filename="../src/texstudio.cpp" line="10793"/>
         <source>Open Compare File</source>
         <translation>Hap Kartelë Krahasimi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10736"/>
+        <location filename="../src/texstudio.cpp" line="10796"/>
         <source>Open Base File</source>
         <translation>Hap Kartelën Bazë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10817"/>
+        <location filename="../src/texstudio.cpp" line="10877"/>
         <source>SVN Conflict!</source>
         <translation>Përplasje SVN!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10818"/>
+        <location filename="../src/texstudio.cpp" line="10878"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -11980,14 +12070,14 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10915"/>
-        <location filename="../src/texstudio.cpp" line="11006"/>
-        <location filename="../src/texstudio.cpp" line="11012"/>
+        <location filename="../src/texstudio.cpp" line="10975"/>
+        <location filename="../src/texstudio.cpp" line="11066"/>
+        <location filename="../src/texstudio.cpp" line="11072"/>
         <source>TeXstudio Emergency</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10919"/>
+        <location filename="../src/texstudio.cpp" line="10979"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -11996,92 +12086,92 @@ Please provide this file if you send a bug report.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10922"/>
+        <location filename="../src/texstudio.cpp" line="10982"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10923"/>
+        <location filename="../src/texstudio.cpp" line="10983"/>
         <source>Yes, try to recover</source>
         <translation>Po, provo ta rimarrësh</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10924"/>
-        <location filename="../src/texstudio.cpp" line="10929"/>
+        <location filename="../src/texstudio.cpp" line="10984"/>
+        <location filename="../src/texstudio.cpp" line="10989"/>
         <source>No, kill the program</source>
         <translation>Jo, asgjësoje programin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10926"/>
+        <location filename="../src/texstudio.cpp" line="10986"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10927"/>
+        <location filename="../src/texstudio.cpp" line="10987"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10928"/>
+        <location filename="../src/texstudio.cpp" line="10988"/>
         <source>Yes, continue the loop</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11007"/>
+        <location filename="../src/texstudio.cpp" line="11067"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11012"/>
+        <location filename="../src/texstudio.cpp" line="11072"/>
         <source>I tried to die, but nothing happened.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11044"/>
+        <location filename="../src/texstudio.cpp" line="11104"/>
         <source>System Report</source>
         <translation>Raport Sistemi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11182"/>
+        <location filename="../src/texstudio.cpp" line="11242"/>
         <source>LT Report</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11208"/>
+        <location filename="../src/texstudio.cpp" line="11268"/>
         <source>process failed to start
 </source>
         <translation>procesi s’arriti të nisej
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11211"/>
+        <location filename="../src/texstudio.cpp" line="11271"/>
         <source>process crashed
 </source>
         <translation>procesi u vithis
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11221"/>
+        <location filename="../src/texstudio.cpp" line="11281"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>Kontrolli i atypëratyshëm është aktivizuar.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11223"/>
+        <location filename="../src/texstudio.cpp" line="11283"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>Kontrolli i atypëratyshëm është çaktivizuar!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11226"/>
+        <location filename="../src/texstudio.cpp" line="11286"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -12090,7 +12180,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11228"/>
+        <location filename="../src/texstudio.cpp" line="11288"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -12099,14 +12189,14 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11231"/>
+        <location filename="../src/texstudio.cpp" line="11291"/>
         <source>Tries to start automatically.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11233"/>
+        <location filename="../src/texstudio.cpp" line="11293"/>
         <source>Autostart disabled.
 
 </source>
@@ -12115,160 +12205,160 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11238"/>
+        <location filename="../src/texstudio.cpp" line="11298"/>
         <source>LT current status: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11241"/>
+        <location filename="../src/texstudio.cpp" line="11301"/>
         <source>working</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11244"/>
+        <location filename="../src/texstudio.cpp" line="11304"/>
         <source>error</source>
         <translation>gabim</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11248"/>
+        <location filename="../src/texstudio.cpp" line="11308"/>
         <source>unknown</source>
         <translation>e panjohur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11251"/>
+        <location filename="../src/texstudio.cpp" line="11311"/>
         <source>LT-URL: %1
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11565"/>
+        <location filename="../src/texstudio.cpp" line="11625"/>
         <source>Error when communicating with LT: %1</source>
         <translation>Gabim gjatë komunikimit me LT: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11856"/>
-        <location filename="../src/texstudio.cpp" line="12649"/>
+        <location filename="../src/texstudio.cpp" line="11916"/>
+        <location filename="../src/texstudio.cpp" line="12709"/>
         <source>untitled</source>
         <translation>pa titull</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11866"/>
-        <location filename="../src/texstudio.cpp" line="12692"/>
+        <location filename="../src/texstudio.cpp" line="11926"/>
+        <location filename="../src/texstudio.cpp" line="12752"/>
         <source>TODO</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11999"/>
-        <location filename="../src/texstudio.cpp" line="12007"/>
-        <location filename="../src/texstudio.cpp" line="12038"/>
+        <location filename="../src/texstudio.cpp" line="12059"/>
+        <location filename="../src/texstudio.cpp" line="12067"/>
+        <location filename="../src/texstudio.cpp" line="12098"/>
         <source>Document: </source>
         <translation>Dokument: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12091"/>
+        <location filename="../src/texstudio.cpp" line="12151"/>
         <source>Close document</source>
         <translation>Mbylle dokumentin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12092"/>
+        <location filename="../src/texstudio.cpp" line="12152"/>
         <source>Set as explicit root document</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12093"/>
+        <location filename="../src/texstudio.cpp" line="12153"/>
         <source>Open all related documents</source>
         <translation>Hap krejt dokumentet e afërt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12094"/>
+        <location filename="../src/texstudio.cpp" line="12154"/>
         <source>Close all related documents</source>
         <translation>Mbyll krejt dokumentet e afërt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12096"/>
+        <location filename="../src/texstudio.cpp" line="12156"/>
         <source>Remove explicit root document role</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12098"/>
+        <location filename="../src/texstudio.cpp" line="12158"/>
         <source>Show all open documents in this tree</source>
         <translation>Shfaq krejt dokumentet e hapur në këtë pemë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12100"/>
+        <location filename="../src/texstudio.cpp" line="12160"/>
         <source>Show only current document in this tree</source>
         <translation>Shfaq vetëm dokumentin e tanishëm në këtë pemë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12113"/>
+        <location filename="../src/texstudio.cpp" line="12173"/>
         <source>Copy filename</source>
         <translation>Kopjo emër kartele</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12114"/>
+        <location filename="../src/texstudio.cpp" line="12174"/>
         <source>Copy file path</source>
         <translation>Kopjo shteg kartele</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12123"/>
+        <location filename="../src/texstudio.cpp" line="12183"/>
         <source>Insert</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12124"/>
-        <location filename="../src/texstudio.cpp" line="12125"/>
+        <location filename="../src/texstudio.cpp" line="12184"/>
+        <location filename="../src/texstudio.cpp" line="12185"/>
         <source>Insert as %1</source>
         <translation>Fute si %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12127"/>
+        <location filename="../src/texstudio.cpp" line="12187"/>
         <source>Find Usages</source>
-        <translation type="unfinished"/>
+        <translation>Gjej Përdorime</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12138"/>
+        <location filename="../src/texstudio.cpp" line="12198"/>
         <source>Insert Label</source>
         <translation>Futni Etiketë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12142"/>
+        <location filename="../src/texstudio.cpp" line="12202"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12146"/>
+        <location filename="../src/texstudio.cpp" line="12206"/>
         <source>Create Label</source>
         <translation>Krijoni Etiketë</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12150"/>
+        <location filename="../src/texstudio.cpp" line="12210"/>
         <source>Cut</source>
         <translation>Prije</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12154"/>
+        <location filename="../src/texstudio.cpp" line="12214"/>
         <source>Paste Before</source>
         <translation>Ngjite Para</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12156"/>
+        <location filename="../src/texstudio.cpp" line="12216"/>
         <source>Paste After</source>
         <translation>Ngjite Pas</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12159"/>
+        <location filename="../src/texstudio.cpp" line="12219"/>
         <source>Indent Section</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12161"/>
+        <location filename="../src/texstudio.cpp" line="12221"/>
         <source>Unindent Section</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12107"/>
-        <location filename="../src/texstudio.cpp" line="12165"/>
+        <location filename="../src/texstudio.cpp" line="12167"/>
+        <location filename="../src/texstudio.cpp" line="12225"/>
         <source>Expand Subitems</source>
         <translation>Zgjeroji Nënobjektet</translation>
     </message>
@@ -12278,39 +12368,39 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12108"/>
-        <location filename="../src/texstudio.cpp" line="12167"/>
+        <location filename="../src/texstudio.cpp" line="12168"/>
+        <location filename="../src/texstudio.cpp" line="12227"/>
         <source>Collapse Subitems</source>
         <translation>Tkurri Nënobjektet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12180"/>
+        <location filename="../src/texstudio.cpp" line="12240"/>
         <source>Open Document</source>
         <translation>Hap Dokument</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12181"/>
-        <location filename="../src/texstudio.cpp" line="12188"/>
+        <location filename="../src/texstudio.cpp" line="12241"/>
+        <location filename="../src/texstudio.cpp" line="12248"/>
         <source>Go to Definition</source>
         <translation>Shko te Përkufizimi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12676"/>
+        <location filename="../src/texstudio.cpp" line="12736"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAFI</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12684"/>
+        <location filename="../src/texstudio.cpp" line="12744"/>
         <source>MAGIC_COMMENTS</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12700"/>
+        <location filename="../src/texstudio.cpp" line="12760"/>
         <source>BLOCK</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12708"/>
+        <location filename="../src/texstudio.cpp" line="12768"/>
         <source>LABELS</source>
         <translation>ETIKETA</translation>
     </message>
@@ -12802,38 +12892,38 @@ përfshirë në dokument te %1</translation>
     <name>UserMenuDialog</name>
     <message>
         <location filename="../src/usermenudialog.cpp" line="50"/>
-        <location filename="../src/usermenudialog.cpp" line="471"/>
+        <location filename="../src/usermenudialog.cpp" line="475"/>
         <source>Export all macros</source>
         <translation>Eksportoni tërë makrot</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="354"/>
+        <location filename="../src/usermenudialog.cpp" line="358"/>
         <source>Folder is not empty.</source>
         <translation>Dosja s’është e zbrazët.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="359"/>
+        <location filename="../src/usermenudialog.cpp" line="363"/>
         <source>Do you really want to delete the current macro(s)?</source>
-        <translation type="unfinished"/>
+        <translation>Doni vërtet të fshihet kartela makroja(t) e tanishme?</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="441"/>
-        <location filename="../src/usermenudialog.cpp" line="453"/>
+        <location filename="../src/usermenudialog.cpp" line="445"/>
+        <location filename="../src/usermenudialog.cpp" line="457"/>
         <source>txs macro files (*.txsMacro)</source>
         <translation>Kartela makro txs (*.txsMacro)</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="441"/>
+        <location filename="../src/usermenudialog.cpp" line="445"/>
         <source>Import macros</source>
         <translation>Importo makro</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="453"/>
+        <location filename="../src/usermenudialog.cpp" line="457"/>
         <source>Export macro</source>
         <translation>Eksporto makro</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="586"/>
+        <location filename="../src/usermenudialog.cpp" line="594"/>
         <source> (col. %1)</source>
         <translation> (sht. %1)</translation>
     </message>
@@ -12850,7 +12940,7 @@ përfshirë në dokument te %1</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="65"/>
-        <location filename="../src/usermenudialog.ui" line="516"/>
+        <location filename="../src/usermenudialog.ui" line="523"/>
         <source>Shortcut</source>
         <translation>Shkurtore</translation>
     </message>
@@ -12869,7 +12959,7 @@ përfshirë në dokument te %1</translation>
     <message>
         <location filename="../src/usermenudialog.ui" line="110"/>
         <source>Export macro(s) to file(s)</source>
-        <translation type="unfinished"/>
+        <translation>Eksportoje makron(t) si kartelë(a)</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="113"/>
@@ -12889,7 +12979,7 @@ përfshirë në dokument te %1</translation>
     <message>
         <location filename="../src/usermenudialog.ui" line="139"/>
         <source>Browse offered macros on txs site.</source>
-        <translation type="unfinished"/>
+        <translation>Shfletoni makro të ofruara në sajt txs.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="142"/>
@@ -12953,83 +13043,88 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <translation>Mjedis</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="431"/>
+        <location filename="../src/usermenudialog.ui" line="425"/>
         <source>Script</source>
         <translation>Programth</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="473"/>
+        <location filename="../src/usermenudialog.ui" line="438"/>
+        <source>AI Query</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="480"/>
         <source>Exec Macro</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="493"/>
+        <location filename="../src/usermenudialog.ui" line="500"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="500"/>
+        <location filename="../src/usermenudialog.ui" line="507"/>
         <source>Cancel</source>
         <translation>Anuloje</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="509"/>
+        <location filename="../src/usermenudialog.ui" line="516"/>
         <source>Description</source>
         <translation>Përshkrim</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="532"/>
+        <location filename="../src/usermenudialog.ui" line="539"/>
         <source>Shift+F1</source>
         <translation>Shift+F1</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="537"/>
+        <location filename="../src/usermenudialog.ui" line="544"/>
         <source>Shift+F2</source>
         <translation>Shift+F2</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="542"/>
+        <location filename="../src/usermenudialog.ui" line="549"/>
         <source>Shift+F4</source>
         <translation>Shift+F4</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="547"/>
-        <location filename="../src/usermenudialog.ui" line="552"/>
+        <location filename="../src/usermenudialog.ui" line="554"/>
+        <location filename="../src/usermenudialog.ui" line="559"/>
         <source>Shift+F5</source>
         <translation>Shift+F5</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="557"/>
+        <location filename="../src/usermenudialog.ui" line="564"/>
         <source>Shift+F6</source>
         <translation>Shift+F6</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="562"/>
+        <location filename="../src/usermenudialog.ui" line="569"/>
         <source>Shift+F7</source>
         <translation>Shift+F7</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="567"/>
+        <location filename="../src/usermenudialog.ui" line="574"/>
         <source>Shift+F8</source>
         <translation>Shift+F8</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="572"/>
+        <location filename="../src/usermenudialog.ui" line="579"/>
         <source>Shift+F9</source>
         <translation>Shift+F9</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="577"/>
+        <location filename="../src/usermenudialog.ui" line="584"/>
         <source>Shift+F10</source>
         <translation>Shift+F10</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="582"/>
+        <location filename="../src/usermenudialog.ui" line="589"/>
         <source>Shift+F11</source>
         <translation>Shift+F11</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="587"/>
+        <location filename="../src/usermenudialog.ui" line="594"/>
         <source>Shift+F12</source>
         <translation>Shift+F12</translation>
     </message>
@@ -13079,7 +13174,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/unixutils.cpp" line="60"/>
         <source>&lt;table border=1 cellspacing=0 cellpadding=3&gt;&lt;tr&gt;&lt;th&gt;Variable&lt;/th&gt;&lt;th&gt;Expands to&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%d&lt;/td&gt;&lt;td&gt;directory of current file&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%f&lt;/td&gt;&lt;td&gt;file name (with full path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%n&lt;/td&gt;&lt;td&gt;file name (without path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%%&lt;/td&gt;&lt;td&gt;%&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;table border=1 cellspacing=0 cellpadding=3&gt;&lt;tr&gt;&lt;th&gt;Ndryshore&lt;/th&gt;&lt;th&gt;Zgjerohet në&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%d&lt;/td&gt;&lt;td&gt;drejtori e kartelës së tanishme&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%f&lt;/td&gt;&lt;td&gt;emër kartele (me shteg të plotë)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%n&lt;/td&gt;&lt;td&gt;emër kartele (pa shtegun)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%%&lt;/td&gt;&lt;td&gt;%&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</translation>
     </message>
 </context>
 <context>
@@ -13193,7 +13288,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="319"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Browser command. Leave empty to not run the browser at the end of the conversion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Urdhër shfletuesi. Që të mos xhirohet shfletuesi në fund të shndërrimit, lëreni të zbrazët&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="339"/>
@@ -13293,7 +13388,7 @@ Kartelat html gjenden te drejtoria %1.</translation>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="146"/>
         <source>Input file not found.</source>
-        <translation type="unfinished"/>
+        <translation>S’u gjet kartelë për t’u dhënë.</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="165"/>
