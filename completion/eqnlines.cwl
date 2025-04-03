@@ -1,5 +1,5 @@
 # eqnlines package
-# Matthew Bertucci 2025/03/28 for v0.6.1
+# Matthew Bertucci 2025/04/03 for v0.7
 
 #include:keyval
 
@@ -49,6 +49,7 @@
 \eqnlinesprovide{features%keyvals}
 \eqnlinesset{options%keyvals}
 \eqnpunct{punct}
+\eqnpunctapply
 \eqnpunctcol{punct}
 \eqnpunctline{punct}
 \eqnpunctmain{punct}
@@ -66,6 +67,9 @@
 \shoveright{arg}
 \tag*{label%text}#m
 \tag{label%text}#m
+\tagform#*
+\tagbox#*
+\tagboxed#*
 \theHparentequation#*
 \theparentequation#*
 
@@ -91,6 +95,7 @@ indent*=##L
 classout=%<class%>
 classin=%<class%>
 classin*=%<class%>
+classlead=%<class%>
 ampeq
 eqamp
 class=#ampeq,eqamp
@@ -105,7 +110,6 @@ displaydepth=##L
 displaydepth*
 tagmargin=##L
 tagmargin*=##L
-tagmargincalc
 tagmarginratio=%<factor%>
 tagmarginthreshold=%<threshold%>
 mintagsep=##L
@@ -178,11 +182,14 @@ belowcontskip=##L
 abovepartagskip=##L
 belowpartagskip=##L
 shortmode=#off,above,belowone,belowall
+abovecontmode=#long,short,cont
+aboveparmode=#long,short,cont,par
+abovetopmode=#long,short,cont,par,top
 belowcontmode=#long,short,cont
 belowparmode=#long,short,cont,par
 belowtopmode=#long,short,cont,par,top
-taglayout=%<code%>
-taglayout*=%<code%>
+tagbox=%<code%>
+tagbox*=%<code%>
 tagform=%<code%>
 tagform*=%<code%>
 subeqtemplate=%<code%>
@@ -268,18 +275,6 @@ subequations
 sqr
 ang
 eqref
-notag
-thetag
-allowdisplaybreaks
-numberwithin
 tagform
 maketag
 #endkeyvals
-
-# not defined by default (need to use \eqnlinesprovide)
-\allowdisplaybreaks#S
-\allowdisplaybreaks[value]#S
-\notag#Sm
-\numberwithin[format]{counter}{within-counter}#S
-\numberwithin{counter}{within-counter}#S
-\thetag#S
