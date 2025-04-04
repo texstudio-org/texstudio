@@ -1,5 +1,5 @@
 # mathfont package
-# Matthew Bertucci 2023/09/11 for v2.3
+# Matthew Bertucci 2025/04/04 for v2.4
 
 #keyvals:\usepackage/mathfont#c
 easter-egg
@@ -460,8 +460,3 @@ italic
 \surdbox#*
 \radicandoffset#*
 \setmathfontcommands{font name}#*
-
-# deprecated
-\restoremathinternals#S
-\newmathbold{cmd}{font name}#Sd
-\newmathboldit{cmd}{font name}#Sd
