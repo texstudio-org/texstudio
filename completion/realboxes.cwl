@@ -22,6 +22,7 @@ all
 \Framebox{content%text}
 \Framebox[width]{content%text}
 \Framebox[width][position]{content%text}
+\Frame{content%text}
 \Raisebox{length}{content%text}
 \Raisebox{length}[height]{content%text}
 \Raisebox{length}[height][depth]{content%text}
