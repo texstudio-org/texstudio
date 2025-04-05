@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/03/22 for v14.10.0
+# Matthew Bertucci 2025/04/04 for v14.12.0
 
 #include:iftex
 
@@ -1068,6 +1068,7 @@ gamedeveloper
 gamejolt
 gameloft
 gamemaker
+gandi
 gamescience
 garmin
 gatling
@@ -1244,6 +1245,7 @@ hackthebox
 hal
 handlebarsdotjs
 handm
+h2database
 handshake
 handshakeprotocol
 happycow
@@ -2054,6 +2056,7 @@ osano
 osf
 osgeo
 oshkosh
+osmand
 osmc
 osu
 otto
@@ -3258,6 +3261,7 @@ zebpay
 zebratechnologies
 zedindustries
 zelle
+zenbrowser
 zend
 zendesk
 zenn

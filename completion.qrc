@@ -1869,6 +1869,7 @@
 <file>completion/highlightlatex.cwl</file>
 <file>completion/highlightx.cwl</file>
 <file>completion/HindMadurai.cwl</file>
+<file>completion/hiraprop.cwl</file>
 <file>completion/hitex.cwl</file>
 <file>completion/hittype.cwl</file>
 <file>completion/hlist.cwl</file>
@@ -2301,6 +2302,7 @@
 <file>completion/lucbmath.cwl</file>
 <file>completion/lucidabr.cwl</file>
 <file>completion/lucida-otf.cwl</file>
+<file>completion/luciole-math.cwl</file>
 <file>completion/lucmin.cwl</file>
 <file>completion/lucmtime.cwl</file>
 <file>completion/luctime.cwl</file>

@@ -1,5 +1,5 @@
 # thuthesis class
-# Matthew Bertucci 2024/07/01 for v7.5.2
+# Matthew Bertucci 2025/03/29 for v7.6.0
 
 #include:iftex
 #include:kvdefinekeys
@@ -118,7 +118,6 @@ start-date={%<YYYY-MM-DD%>}
 end-date={%<YYYY-MM-DD%>}
 keywords={%<关键词 1, 关键词 2%>}
 keywords*={%<keyword1,keyword2,...%>}
-toc-chapter-style=#arial,times
 figure-number-separator={%<separator%>}
 table-number-separator={%<separator%>}
 equation-number-separator={%<separator%>}
@@ -167,12 +166,6 @@ file=%<file path%>
 \end{abstract}
 \begin{abstract*}
 \end{abstract*}
-\listoffigures*
-\listoftables*
-\listofequations
-\listofequations*
-\listofalgorithms*
-\equcaption{text}
 \begin{denotation}
 \begin{denotation}[width]
 \end{denotation}
@@ -277,7 +270,7 @@ file=%<PDF file%>
 \listequationname#*
 \listoffiguresandtables#*
 \thuthesis#*
-\version#*
+\version#S
 
 # compatibility
 \begin{acknowledgement}#S

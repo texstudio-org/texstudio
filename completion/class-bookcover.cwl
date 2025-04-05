@@ -1,5 +1,5 @@
 # bookcover class
-# Matthew Bertucci 2024/04/08 for v3.6
+# Matthew Bertucci 2025/03/30 for v3.8
 
 #include:kvoptions
 #include:geometry
@@ -27,6 +27,8 @@ markcolor=#%color
 pagecolor=#%color
 trimmed#true,false
 trimmingcolor=#%color
+showonlypart=%<part%>
+showonlycovernum=%<number%>
 #endkeyvals
 
 \begin{bookcover}

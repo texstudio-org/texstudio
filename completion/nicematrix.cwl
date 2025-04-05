@@ -1,9 +1,8 @@
 # nicematrix package
-# Matthew Bertucci 2025/02/03 for v7.1
+# Matthew Bertucci 2025/03/30 for v7.1b
 
 #include:amsmath
 #include:array
-#include:l3keys2e
 #include:pgfcore
 
 #keyvals:\usepackage/nicematrix#c

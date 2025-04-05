@@ -1,5 +1,5 @@
 # ClearSans package
-# Matthew Bertucci 8/10/2021
+# Matthew Bertucci 2025/03/27
 
 #include:ifxetex
 #include:ifluatex
@@ -23,3 +23,4 @@ regular
 \textsfl{text}
 \textsft{text}
 \clearfamily#*
+\clearlgr#*

@@ -1,7 +1,6 @@
 # piton package
-# Matthew Bertucci 2024/11/18 for v4.2
+# Matthew Bertucci 2025/03/25 for v4.3
 
-#include:l3keys2e
 #include:luatexbase
 #include:luacode
 #include:xcolor
@@ -11,7 +10,6 @@
 footnote
 footnotehyper
 beamer#true,false
-old-PitonInputFile#true,false
 #endkeyvals
 
 #ifOption:footnote
@@ -70,6 +68,7 @@ marker/include-lines
 comment-latex=%<string%>
 math-comments#true,false
 detected-commands={%<csname1,csname2,...%>}
+raw-detected-commands={%<csname1,csname2,...%>}
 detected-beamer-commands={%<csname1,csname2,...%>}
 detected-beamer-environments={%<envname1,envname2,...%>}
 line-numbers/absolute
