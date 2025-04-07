@@ -58,6 +58,7 @@ libertinus#true,false
 \textinit{text}#S
 
 # unicode-math symbols not present in default font
+\intextender#*m
 \mbfscra#*m
 \mbfscrb#*m
 \mbfscrc#*m

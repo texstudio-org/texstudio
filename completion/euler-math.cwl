@@ -19,7 +19,6 @@ Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle
 \blacktriangledown#m
 \cuberoot{arg}#m
 \cuberootsign{arg}#*m
-\digamma#m
 \doublebarwedge#m
 \downdasharrow#m
 \eqqslantgtr#m

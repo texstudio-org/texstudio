@@ -49,6 +49,7 @@ Scale=%<factor%>
 \doublecap#m
 \doublecup#m
 \downdasharrow#m
+\downrightcurvedarrow#m
 \enleadertwodots#m
 \eqqslantgtr#m
 \eqqslantless#m
@@ -67,6 +68,7 @@ Scale=%<factor%>
 \leadsto#m
 \leftcurvedarrow#m
 \leftdasharrow#m
+\leftdowncurvedarrow#m
 \leqqslant#m
 \lesseqqslantgtr#m
 \lesseqslantgtr#m
@@ -167,6 +169,7 @@ Scale=%<factor%>
 \upbackepsilon#m
 \updasharrow#m
 \updigamma#*m
+\uprightcurvearrow#m
 \varemptyset#m
 \varpropto#m
 \varsubsetneq#m

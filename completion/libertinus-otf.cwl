@@ -156,7 +156,6 @@ mono#true,false
 \blacksmiley#m
 \bullseye#m
 \candra{arg}#m
-\caretinsert#m
 \circlebottomhalfblack#m
 \circlelefthalfblack#m
 \circleonleftarrow#m
@@ -165,8 +164,11 @@ mono#true,false
 \circletophalfblack#m
 \circleurquadblack#m
 \cuberoot{arg}#m
+\cuberootsign{arg}#*m
 \cwgapcirclearrow#m
 \Ddownarrow#m
+\Digamma#m
+\digamma#m
 \downdasharrow#m
 \downzigzagarrow#m
 \droang{arg}#m
@@ -178,6 +180,7 @@ mono#true,false
 \female#m
 \fisheye#m
 \fourthroot{arg}#m
+\fourthrootsign{arg}#*m
 \harrowextender#*m
 \Hermaphrodite#m
 \house#m
@@ -260,7 +263,9 @@ mono#true,false
 \nvrightarrow#m
 \nVrightarrow#m
 \nvRightarrow#m
+\obot#m
 \ocommatopright{arg}#m
+\operp#m
 \otimeshat#m
 \oturnedcomma{arg}#m
 \preceqq#m
