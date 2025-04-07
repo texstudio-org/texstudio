@@ -1,5 +1,5 @@
 # pst-labo package
-# Matthew Bertucci 2023/05/18 for v2.06
+# Matthew Bertucci 2025/04/07 for v2.07
 
 #include:pstricks
 #include:pst-plot
@@ -37,6 +37,8 @@
 \pstEprouvette[options%keyvals]
 \pstpipette
 \pstpipette[options%keyvals]
+\pstBigPipette
+\pstBigPipette[options%keyvals]
 \pstDosage
 \pstDosage[options%keyvals]
 \pstDistillation(x1,y1)(x2,y2)
@@ -45,10 +47,12 @@
 \pstSeparateFunnel[options%keyvals]
 \pstSupport
 
-\chauffe#*
-\Cristallisoir#*
-\InterieurCristallisoir#*
+\pscolon#*
+\psrefri#*
 
+\chauffe#S
+\Cristallisoir#S
+\InterieurCristallisoir#S
 \BulleX#S
 \BulleY#S
 \GrenailleX#S
