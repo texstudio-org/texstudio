@@ -14,6 +14,8 @@
 \draw_end:#/%expl3
 \draw_evenodd_rule:#/%expl3
 \draw_hidden_begin:#/%expl3
+\draw_hidden_begin:#/%expl3
+\draw_hidden_end:#/%expl3
 \draw_hidden_end:#/%expl3
 \draw_join_bevel:#/%expl3
 \draw_join_miter:#/%expl3
@@ -83,6 +85,11 @@
 \draw_xvec:n {%<⟨point⟩%>}#/%expl3
 \draw_yvec:n {%<⟨point⟩%>}#/%expl3
 \draw_zvec:n {%<⟨point⟩%>}#/%expl3
+\g_draw_bb_xmax_dim#/%expl3
+\g_draw_bb_xmin_dim#/%expl3
+\g_draw_bb_ymax_dim#/%expl3
+\g_draw_bb_ymin_dim#/%expl3
+\g_draw_id_int#/%expl3
 \l_draw_bb_update_bool#/%expl3
 \l_draw_default_linewidth_dim#/%expl3
 \l_draw_layers_clist#/%expl3
