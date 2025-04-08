@@ -14,7 +14,7 @@ chmod +x appimagetool-*.AppImage
 unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
 export VERSION=linux-${VERSION_NAME}
 cp ../utilities/texstudio.svg appdir
-./appimagetool-*.AppImage deploy appdir/usr/share/applications/*.desktop
+./appimagetool-*.AppImage -s deploy appdir/usr/share/applications/*.desktop
 # ./appimagetool-*.AppImage -s deploy appdir/usr/share/applications/*.desktop # Bundle EVERYTHING
 # ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -extra-plugins=iconengines/libqsvgicon.so -appimage
 # ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
