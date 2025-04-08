@@ -22,6 +22,7 @@ all
 \Framebox{content%text}
 \Framebox[width]{content%text}
 \Framebox[width][position]{content%text}
+\Frame{content%text}
 \Raisebox{length}{content%text}
 \Raisebox{length}[height]{content%text}
 \Raisebox{length}[height][depth]{content%text}
@@ -30,10 +31,10 @@ all
 \Rightline{content%text}
 \Rlap{content%text}
 \Llap{content%text}
-\parbox[position][height][inner-pos]{width}{content%text}
-\parbox[position][height]{width}{content%text}
-\parbox[position]{width}{content%text}
-\parbox{width}{content%text}
+\Parbox[position][height][inner-pos]{width}{content%text}
+\Parbox[position][height]{width}{content%text}
+\Parbox[position]{width}{content%text}
+\Parbox{width}{content%text}
 \Sbox{register}{content%text}
 \Savebox{register}{content%text}
 \Savebox{register}[width]{content%text}

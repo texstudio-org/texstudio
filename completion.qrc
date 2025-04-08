@@ -1565,6 +1565,7 @@
 <file>completion/figlatex.cwl</file>
 <file>completion/figput.cwl</file>
 <file>completion/figsize.cwl</file>
+<file>completion/figureversions.cwl</file>
 <file>completion/filecontentsdef.cwl</file>
 <file>completion/filehook.cwl</file>
 <file>completion/filemod.cwl</file>
@@ -2273,6 +2274,7 @@
 <file>completion/luaprogtable.cwl</file>
 <file>completion/luaquotes.cwl</file>
 <file>completion/luarandom.cwl</file>
+<file>completion/lua-regression.cwl</file>
 <file>completion/luaset.cwl</file>
 <file>completion/luasseq.cwl</file>
 <file>completion/luatex85.cwl</file>

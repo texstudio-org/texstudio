@@ -52,6 +52,7 @@ Style=#leqslant,smaller,subsetneq,upint
 \gvertneqq#m
 \harrowextender#*m
 \intextender#*m
+\Join#m
 \leftdasharrow#m
 \leqqslant#m
 \lesseqqslantgtr#m

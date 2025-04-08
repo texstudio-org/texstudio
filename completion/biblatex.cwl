@@ -2863,7 +2863,7 @@ namelinked#true,false
 #include:xpatch
 #endif
 
-### biblatex-bath v6.0 ###
+### biblatex-bath v7.0 ###
 #ifOption:style=bath
 # from bath.bbx
 #include:xpatch
@@ -2876,6 +2876,8 @@ nonodate#true,false
 \mknoyeardaterangefull{arg1}{arg2}#*
 \mknoyeardaterangetrunc{arg1}{arg2}#*
 \ifrelatedloop{true}{false}#*
+\explanatorynote#*
+\parliamentarytype#*
 #endif
 
 ### biblatex-caspervector v0.3.5 ###

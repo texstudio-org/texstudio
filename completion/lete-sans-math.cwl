@@ -482,8 +482,9 @@ Scale=%<factor%>
 \minusrdots#m
 \mlcp#m
 \modtwosum#m
-\mscre#m
-\mscro#m
+\mscre#*m
+\mscrg#*m
+\mscro#*m
 \neovnwarrow#m
 \neovsearrow#m
 \neswarrow#m
@@ -766,10 +767,10 @@ Scale=%<factor%>
 \upand#m
 \uparrowbarred#m
 \uparrowoncircle#m
-\upbackepsilon#m
+\upbackepsilon#*m
 \updasharrow#m
-\upDigamma#m
-\updigamma#m
+\upDigamma#*m
+\updigamma#*m
 \updownarrowbar#m
 \updownharpoonleftleft#m
 \updownharpoonleftright#m
