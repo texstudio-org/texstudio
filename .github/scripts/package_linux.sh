@@ -18,6 +18,7 @@ cp ../utilities/texstudio.svg appdir
 # ./appimagetool-*.AppImage -s deploy appdir/usr/share/applications/*.desktop # Bundle EVERYTHING
 # ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -extra-plugins=iconengines/libqsvgicon.so -appimage
 # ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
+./appimagetool-*.AppImage ./appdir # create actual appimage
 cp TeXstudio-${VERSION}-x86_64.AppImage ../texstudio-${VERSION}-x86_64.AppImage
 cp TeXstudio-${VERSION}-x86_64.AppImage ../texstudio-${GIT_VERSION}-x86_64.AppImage
 sha256sum appdir/usr/bin/texstudio 
