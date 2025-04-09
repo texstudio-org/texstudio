@@ -26,7 +26,7 @@ void LatexParserTest::addRow(const char *name, LatexParserTest::TokenFilter filt
 	switch (filter) {
 	case FILTER_NEXTTOKEN:
 		for (int i = tokens.size() - 1; i >= 0; i--)
-			if (tokens[i].type == NW_IGNORED_TOKEN && tokens[i] != "{" && tokens[i] != "}" && tokens[i] != "[" && tokens[i] != "]")
+            if (tokens[i].type == NW_IGNORED_TOKEN && (tokens[i] != QString("{")) && (tokens[i] != QString("}")) && (tokens[i] != QString("[")) && (tokens[i] != QString("]")))
 				tokens.removeAt(i);
 		break;
 	case FILTER_NEXTWORD_WITH_COMMANDS:
