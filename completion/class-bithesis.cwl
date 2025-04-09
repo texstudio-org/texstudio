@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2025/01/06 for v3.8.1
+# Matthew Bertucci 2025/04/08 for v3.8.3
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -79,6 +79,8 @@ info/authorEn=%<字符串%>
 info/studentId=%<字符串%>
 info/supervisor=%<字符串%>
 info/supervisorEn=%<字符串%>
+info/industrialMentor=%<字符串%>
+info/industrialMentorEn=%<字符串%>
 info/externalSupervisor=%<字符串%>
 info/class=%<字符串%>
 info/keywords={%<字符串；以全角分号分割%>}
@@ -87,6 +89,7 @@ info/translationTitle=%<字符串%>
 info/translationOriginTitleEn=%<字符串%>
 info/classification=%<字符串%>
 info/UDC=%<字符串%>
+info/degreeType=#professional,academic
 info/chairman=%<字符串%>
 info/chairmanEn=%<字符串%>
 info/degree=%<字符串%>
@@ -96,6 +99,7 @@ info/instituteEn=%<字符串%>
 info/defenseDate=%<字符串%>
 info/defenseDateEn=%<字符串%>
 info/classifiedLevel=%<字符串%>
+info/工程硕博士专项#true,false
 info/crossResearch#true,false
 info/internationalStudentUGP#true,false
 info/teacher=%<字符串%>
