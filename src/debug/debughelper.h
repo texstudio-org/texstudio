@@ -4,6 +4,7 @@
 #include "modifiedQObject.h"
 #include "smallUsefulFunctions.h"
 
+void handler(int sig);
 
 QString print_backtrace(const QString &message);
 

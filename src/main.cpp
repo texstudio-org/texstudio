@@ -26,6 +26,10 @@
 #include <qtsingleapplication.h>
 #include <QSplashScreen>
 
+#ifdef CPP_CRASH_HANDLER
+#include <signal.h>
+#endif
+
 #ifdef Q_OS_WIN32
 #include "windows.h"
 typedef BOOL (WINAPI *AllowSetForegroundWindowFunc)(DWORD);
@@ -228,6 +232,11 @@ int main(int argc, char **argv)
 
     QObject::connect(&a, SIGNAL(messageReceived(const QString&)),
                      a.mw, SLOT(onOtherInstanceMessage(const QString&)));
+
+#ifdef CPP_CRASH_HANDLER
+    // cpp23 crash handler
+    signal(SIGSEGV, handler);
+#endif
 
 	try {
 		int execResult = a.exec();

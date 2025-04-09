@@ -4,6 +4,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifdef CPP_CRASH_HANDLER
+#include <stacktrace>
+#include <iostream>
+#include <fstream>
+
+#include <signal.h>
+#include <unistd.h>
+
+void handler(int sig) {
+    (void)sig;
+    /* De-register this signal in the hope of avoiding infinite loops
+     * if asyns signal unsafe things fail later on. But can likely still deadlock. */
+    signal(sig, SIG_DFL);
+    // std::stacktrace::current
+    //std::cout << std::stacktrace::current();
+    recover();
+    // C99 async signal safe version of exit().
+    //_Exit(1);
+}
+#endif
 //backtrace is only available on GNU libc
 #if !defined(__GLIBC__)&&!defined(Q_OS_WIN32)
 #define NO_CRASH_HANDLER
@@ -1290,7 +1310,25 @@ void catchUnhandledException()
 
 QString print_backtrace(const QString &message)
 {
+#ifdef CPP_CRASH_HANDLER
+    static int count = 0;
+    count++;
+    auto trace=std::stacktrace::current();
+    QString backtraceFilename = QDir::tempPath() + QString("/texstudio_backtrace%1.txt").arg(count);
+    std::ofstream f(backtraceFilename.toLatin1());
+
+    std::cout<<std::stacktrace::current();
+
+    // Write to the file
+    f << message.toStdString()<< std::endl;
+    f << std::stacktrace::current();
+
+    // Close the file
+    f.close();
+    return backtraceFilename;
+#else
 	Q_UNUSED(message) return "";
+#endif
 }
 
 void registerCrashHandler(int mode)
