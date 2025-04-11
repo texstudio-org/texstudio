@@ -6159,6 +6159,7 @@ bool Texstudio::runCommandAsync(const QString &commandline, const char * returnC
     QObject *obj=sender();
     QString finame = documents.getTemporaryCompileFileName();
     ProcessX *proc = buildManager.firstProcessOfDirectExpansion(commandline, QFileInfo(finame));
+    if(!proc) return false;
     setStatusMessageProcess(tr("  Running this command: ") + proc->getCommandLine());
     connect(proc, SIGNAL(finished(int,QProcess::ExitStatus)), obj, returnCMD);
     QString *buffer=new QString();
