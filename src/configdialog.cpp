@@ -590,6 +590,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 	ui.treePossibleToolbarActions->setHeaderHidden(true);
 
 	ui.lineEditMetaFilter->setPlaceholderText(tr("(option filter)"));
+	ui.lineEditMetaFilter->setClearButtonEnabled(true);
 	connect(ui.lineEditMetaFilter, SIGNAL(textChanged(QString)), SLOT(metaFilterChanged(QString)));
 
 	ui.labelScreenResolution->setText(labelSystemdpi);
