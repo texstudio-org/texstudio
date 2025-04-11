@@ -1,5 +1,5 @@
 # achemso class (distinct from achemso package; see achemso.cwl)
-# Matthew Bertucci 2022/10/31 for v3.13e
+# Matthew Bertucci 2025/04/11 for v3.13j
 
 #include:xkeyval
 #include:geometry
@@ -23,7 +23,7 @@ doi#true,false
 email#true,false
 etalmode=#firstonly,truncate
 hyperref#true,false
-journal=#aaembp,aaemcq,aamick,aanmf6,aapmcd,aastgj,abmcb8,abseba,acbcct,accacs,achre4,acncdm,acsccc,acscii,acsodf,aeacb3,aeacc4,aeecco,aelccp,aesccq,aewcaa,afsthl,aidcbc,amacgu,amachv,amclct,amlccd,amlcef,amrcda,anaccx,ancac3,ancham,aoiab5,apcach,apchd5,appccd,asbcd6,ascecg,ascefj,bcches,bichaw,bomaf6,cgdefu,chreay,cmatex,crtoec,enfuem,esthag,estlcu,iecred,inoraj,jaaucr,jacsat,jafcau,jceaax,jceda8,jcisd8,jctcce,jmcmar,jnprdf,joceah,jpcafh,jpcbfk,jpccck,jpclcd,jprobs,langd5,mamobx,mpohbp,nalefd,oprdfk,orgnd7,orlef7
+journal=#aaembp,aaemcq,aamick,aanmf6,aapmcd,aastgj,abmcb8,abseba,acbcct,accacs,achre4,acncdm,acsccc,acscii,acsodf,aeacb3,aeacc4,aeecco,aelccp,aesccq,aewcaa,afsthl,aidcbc,amacgu,amachv,amclct,amlccd,amlcef,amrcda,anaccx,ancac3,anmafm,ancham,aoiab5,apcach,apchd5,appccd,asbcd6,ascecg,ascefj,bcches,bichaw,bomaf6,cgdefu,chreay,cmatex,crtoec,enfuem,esthag,estlcu,iecred,inoraj,jaaucr,jacsat,jafcau,jceaax,jceda8,jcisd8,jctcce,jmcmar,jnprdf,joceah,jpcafh,jpcbfk,jpccck,jpclcd,jprobs,langd5,mamobx,mpohbp,nalefd,oprdfk,orgnd7,orlef7
 keywords#true,false
 layout=#traditional,twocolumn
 manuscript=#article,note,communication,review,letter,perspective
