@@ -135,6 +135,7 @@ void SymbolWidget::setupSearchArea(QVBoxLayout *vLayout)
 	vLayout->addLayout(hLayout);
 
 	leFilter = new QLineEdit();
+    leFilter->setClearButtonEnabled(true);
 	leFilter->setPlaceholderText(tr("Search"));
 	hLayout->addWidget(leFilter);
 
