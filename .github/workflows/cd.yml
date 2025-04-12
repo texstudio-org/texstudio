@@ -45,7 +45,7 @@ jobs:
           sed -i ../win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
           sed -i ../win.rc -e "s/git[\]0/$VERSION_NAME/"
           # qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
-          cmake .. -Wno-dev
+          cmake .. -Wno-dev -DTEXSTUDIO_ENABLE_CPP23_CRASH_HANDLER=ON
           # work-around strange git behaviour on msys2
           . ../git_revision.sh
           mkdir signed-artifacts
