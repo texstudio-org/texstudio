@@ -236,7 +236,7 @@ nextactionraw={%<PDF code%>}
 \autoref{label}#r
 \autoref*{label}#r
 \thispdfpagelabel
-\pdfstringdef{macroname%cmd}{TeXstring}#d
+\pdfstringdef{command}{TeX code}#d
 \begin{NoHyper}
 \end{NoHyper}
 \pdfbookmark{text}{name}
@@ -244,8 +244,8 @@ nextactionraw={%<PDF code%>}
 \currentpdfbookmark{text}{name}
 \subpdfbookmark{text}{name}
 \belowpdfbookmark{text}{name}
-\texorpdfstring{TEXstring}{PDFstring}
-\pdfstringdefDisableCommands{hooks}
+\texorpdfstring{TeX code}{PDF string}
+\pdfstringdefDisableCommands{code}
 \hypercalcbp{dimen specification}
 
 \Acrobatmenu{menuoption}{text}
