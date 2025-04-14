@@ -1,5 +1,5 @@
 # glossaries-extra package
-# Matthew Bertucci 2025/03/18 for v1.59
+# Matthew Bertucci 2025/04/14 for v1.6
 
 #include:glossaries
 
@@ -2379,6 +2379,8 @@ leveloffset=%<<n> or ++<n>%>
 \glsentrypdfsymbol{label}#*r
 \glossentrynameother{label}{field}#*r
 \Glossentrynameother{label}{field}#*r
+\GLOSSentrynameother{label}{field}#*r
+\GlossEntryNameOther{label}{field}#*r
 \glsxtrprenamehook{label}#*r
 \glsxtrpostnamehook{label}#*r
 \glsdefpostname{category}{definition}#*
