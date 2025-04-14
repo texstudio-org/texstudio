@@ -604,6 +604,7 @@
 <file>completion/circledtext.cwl</file>
 <file>completion/circuitikz.cwl</file>
 <file>completion/circularglyphs.cwl</file>
+<file>completion/cistercian.cwl</file>
 <file>completion/citation-style-language.cwl</file>
 <file>completion/citeall.cwl</file>
 <file>completion/cite.cwl</file>
