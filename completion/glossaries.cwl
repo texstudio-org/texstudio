@@ -1738,7 +1738,7 @@ nogroupskip#true,false
 nopostdot#true,false
 entrycounter#true,false
 subentrycounter#true,false
-sort=#use,def,nocase,case,word,letter,standard
+sort=#use,def,nocase,case,word,letter,standard,wordcase,lettercase
 #endkeyvals
 
 \glsnoidxinithook#*
