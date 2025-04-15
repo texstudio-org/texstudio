@@ -1,5 +1,5 @@
 # robust-externalize package
-# Matthew Bertucci 2024/03/16 for v2.9
+# Matthew Bertucci 2025/04/08 for v3.0
 
 #include:pgfkeys
 #include:pgffor
@@ -52,8 +52,6 @@
 \cacheEnvironment{envname}{preset options}
 \cacheMe[preset style]{content%definition}
 \cacheMe{content%definition}
-\cacheMeCode[preset style]{code%definition}
-\cacheMeCode{code%definition}
 \cacheTikz
 \cacheTikz[preset for TikZ]
 \cacheTikz[preset for TikZ][preset for TikZpicture]
@@ -168,7 +166,6 @@
 \RenewDocumentCommandAutoForward{cmd}{xargs}{def}
 \RenewExpandableDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}
 \RenewExpandableDocumentCommandAutoForward{cmd}{xargs}{def}
-\res{name}
 \rescanPlaceholderInVariableNoReplacement{name macro}{name placeholder%definition}
 \robExtAddCachePath{path%file}#*
 \robExtAddCachePathAndName{path%file}#*
@@ -330,7 +327,7 @@
 \robExtGetPrefixPath#S
 \RobExtIfFormatAtLeastTF{true}{false}#S
 \robExtIfMatchesRegex{arg1}{arg2}#S
-\robExtIfMatchesString{arg1}{arg2}#S
+\robExtIfMatchesString{arg1}{arg2}{arg3}#S
 \robExtIfWindowsTF{true}{false}#S
 \robExtImagePlaceholderIfFallbackMode#S
 \robExtImagePlaceholderIfManualMode#S
@@ -468,8 +465,7 @@
 \robExtLenToCmNoUnit{arg}#S
 \robExtLenToCmNoUnit[opt]{arg}#S
 \robExtCurrentPlaceholderName#S
-\robExtCacheMeCode[preset style]{code%definition}#S
-\robExtCacheMeCode{code%definition}#S
-\robExtResForceNumber{arg}#S
-\robExtNoResult{arg}#S
-\robExtRes{arg}#S
+\robExtMsgError{arg}#S
+\robExtIfPlaceholderMatchesString{arg1}{arg2}{arg3}{arg4}#S
+\ifPlaceholderMatchesString{arg1}{arg2}{arg3}{arg4}#S
+

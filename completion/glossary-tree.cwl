@@ -1,6 +1,17 @@
 # glossary-tree package
-# Matthew Bertucci 2022/10/28 for v4.50
+# Matthew Bertucci 2025/04/14 for v4.58
 
+\GlsTreeSetup{keyvals}
+\GlsTreeUpdateWidestNameOrSymbol{label}#*
+\GlsTreeUpdateWidestNameOrSymbol[level]{label}#*
+\GlsTreeUpdateWidestNameAndSymbol{label}#*
+\GlsTreeUpdateWidestNameAndSymbol[level]{label}#*
+\GlsTreeStarBox{text}#*
+\GlsTreeStarOuterBox{text}#*
+\GlsTreeStarNameBox{text}#*
+\GlsTreeStarSymbolBox{text}#*
+\GlsTreeStarItemCounterBox{text}#*
+\GlsTreeStarSubItemCounterBox{text}#*
 \glstreenamefmt{text}#*
 \glstreegroupheaderfmt{text}#*
 \glstreenavigationfmt{text}#*

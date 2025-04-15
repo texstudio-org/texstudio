@@ -1,5 +1,5 @@
 # cuted package
-# Matthew Bertucci 10/14/2021 for v2.0
+# Matthew Bertucci 2025/04/14 for v2.4
 
 #keyvals:\usepackage/cuted#c
 spread
@@ -22,6 +22,7 @@ nodebug
 \end{strip}
 \preCutedStrip{tokens}
 \postCutedStrip{tokens}
-
 \stripsep#*
 \oldcolsbreak{adds}#*
+\switchonecolumn
+\switchtwocolumn
