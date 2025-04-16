@@ -1,7 +1,7 @@
 # Getting started
 
 ## Requirements
-TeXstudio is a specialized LaTeX-editor. It helps to type [LaTeX-documents](https://www.latex-project.org/about/) more comfortable by helping to find the right commands, supporting error analysis and providing an easy way to view the results.
+TeXstudio is a specialized LaTeX-editor. It helps to type [LaTeX-documents](https://www.latex-project.org/about/) more comfortably by helping to find the right commands, supporting error analysis and providing an easy way to view the results.
 
 The actual latex system needs to be [installed separately](https://www.latex-project.org/get/) and is **not** provided by TeXstudio.
 

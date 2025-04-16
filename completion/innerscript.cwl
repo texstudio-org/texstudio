@@ -1,5 +1,5 @@
 # innerscript package
-# Matthew Bertucci 2023/11/08 for v1.2
+# Matthew Bertucci 2025/04/08 for v1.4
 
 #include:luatex
 
@@ -9,8 +9,6 @@ scriptscript
 inner
 close
 cover
-legacy-script
-legacy-scriptscript
 no-script
 no-scriptscript
 no-inner

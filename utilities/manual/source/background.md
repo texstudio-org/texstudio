@@ -616,6 +616,7 @@ Options:
 | Option | default | description |
 | --- | --- | --- |
 | TEXSTUDIO_ENABLE_CRASH_HANDLER | on | provide a crash handler |
+| TEXSTUDIO_ENABLE_CPP23_CRASH_HANDLER | off | provide a crash handler based on CPP23 |
 | TEXSTUDIO_BUILD_ADWAITA  | on | build adwaita style |
 | TEXSTUDIO_ENABLE_TESTS  | off | build self-tests |
 | TEXSTUDIO_ENABLE_DEBUG_LOGGER  | off | build debug logger |

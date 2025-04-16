@@ -1,12 +1,12 @@
 # xistercian package
-# Matthew Bertucci 12/22/2021 for v1.2
+# Matthew Bertucci 2025/04/14 for v1.3
 
 #include:pgf
 #include:expkv-opt
 
 \cistercian{counter}
 \cisterciannum{integer}
-\cisterciannumE{integer expression}
+\cistercianeval{integer expr}
 \cisterciansetup{options%keyvals}
 \cistercianredraw#*
 \cistercianredrawlazy#*
@@ -65,3 +65,6 @@ r!
 #keyvals:\usepackage/xistercian#c
 debug
 #endkeyvals
+
+# deprecated
+\cisterciannumE{integer expr}#S

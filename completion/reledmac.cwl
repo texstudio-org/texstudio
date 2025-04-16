@@ -1,5 +1,5 @@
 # reledmac package
-# Matthew Bertucci 2023/09/30 for v2.39.7
+# Matthew Bertucci 2025/04/14 for v2.40.4
 
 #include:xargs
 #include:etoolbox
@@ -89,6 +89,8 @@ outer
 \Xsublinesepside{separator}
 \startlock
 \endlock
+\stanzastartlock#*
+\stanzaendlock#*
 \lockdisp{type%keyvals}
 #keyvals:\lockdisp
 first

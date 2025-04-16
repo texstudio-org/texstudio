@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2025/03/28 for v25.6
+# tbraun 4.11.2008; Matthew Bertucci 2025/04/14 for v25.7
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -275,6 +275,7 @@ kashida.plain
 kashida.base
 #endkeyvals
 
+\ShowBabelTransforms{string}#*
 \localeprehyphenation{string}#*
 
 \babelcharclass{locale}{name}{char-list}#*

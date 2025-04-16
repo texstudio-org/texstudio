@@ -1,6 +1,7 @@
 # lua-regression package
-# Matthew Bertucci 2025/04/07 for v1.0.0
+# Matthew Bertucci 2025/04/11 for v1.0.1
 
+#include:ifthen
 #include:luacode
 #include:pgfkeys
 #include:pgfplots
