@@ -140,6 +140,9 @@ Section "install"
 # sets $SMPROGRAMS to all users 
 SetShellVarContext all
 
+# remove all installed files
+Delete $INSTDIR\*
+
 # define the output path for this file
 SetOutPath $INSTDIR
  
