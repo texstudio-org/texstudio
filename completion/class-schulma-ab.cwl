@@ -1,5 +1,5 @@
 # schulma-ab class
-# Matthew Bertucci 2/16/2022 for v1.2
+# Matthew Bertucci 2025/04/18 for v1.7
 
 #include:class-scrartcl
 #include:adjustbox
@@ -42,6 +42,7 @@ Musterloesung
 \Teilaufgabenabstand#*
 \begin{Teilaufgaben}
 \end{Teilaufgaben}
+\rechnerfrei
 \Luecke{Breite}
 \begin{Lsg}
 \begin{Lsg}*
