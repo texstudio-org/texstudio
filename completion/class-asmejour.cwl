@@ -1,5 +1,5 @@
 # asmejour class
-# Matthew Bertucci 2025/04/07 for v1.25
+# Matthew Bertucci 2025/04/18 for v1.26
 
 #include:class-extarticle
 #include:etoolbox
@@ -1579,7 +1579,6 @@ SuppressWarning#true,false
 
 # asmejour class commands
 \AbstractSep{dimen%l}
-\appendicesname#*
 \begin{nomenclature}
 \begin{nomenclature}[dimen%l]
 \begin{nomenclature}[dimen%l][title%text]
