@@ -1,5 +1,5 @@
 # rit-fonts package
-# Matthew Bertucci 2023/07/17 for v0.9
+# Matthew Bertucci 2025/04/21 for v1.0
 
 #include:ifxetex
 #include:ifluatex
@@ -22,15 +22,23 @@ lining
 df={%<font features%>}
 #endkeyvals
 
+\Ala
+\Chingam
+\ChingamAlt
 \Ezhuthu
+\Indira
 \Joy
 \Karuna
 \Keraleeyam
+\Keram
 \Kutty
+\Lasya
+\Lekha
 \Meera
 \Panmana
 \Rachana
 \Sundar
+\Thaara
 \Uroob
 
 # not documented
