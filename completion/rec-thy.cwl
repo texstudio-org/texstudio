@@ -1,5 +1,5 @@
 # rec-thy package
-# Matthew Bertucci 2024/03/30 for v4.0
+# Matthew Bertucci 2025/04/21 for v4.5
 
 #include:ltxcmds
 #include:iftex
@@ -43,7 +43,7 @@ nofixtype
 nodoubleangles
 steps
 noshortO
-altcompat
+midcompat
 norsfs
 nobbm
 modulescr=%<csname%>
@@ -60,6 +60,7 @@ lcodedelim=%<csname%>
 rcodedelim=%<csname%>
 lpairdelim=%<csname%>
 rpairdelim=%<csname%>
+version=%<version%>
 #endkeyvals
 
 #ifOption:steps
@@ -187,9 +188,17 @@ rpairdelim=%<csname%>
 \forces[sub]#*m
 \fpmapsfrom#m
 \fpmapsto#m
+\ggeq#m
+\ggneq#m
+\GHn#m
+\GIn#m
+\GLn#m
 \godelnum{arg}#m
 \godelpair{arg}{sub}#Sm
 \hgt{arg}#m
+\hgt[ordering]{arg}#m
+\highN{sub%formula}
+\highN[sup%formula]{sub%formula}
 \Hop[sub2]{sub1}#m
 \Hop[sub2]{sub1}(arg)#m
 \Hop{sub}#m
@@ -209,6 +218,10 @@ rpairdelim=%<csname%>
 \join#m
 \jump{arg}#m
 \jumpn{arg}{sup}#m
+\KBless#m
+\KBgtr#m
+\KBleq#m
+\KBgeq#m
 \kleeneO#m
 \kleeneO(sup)#*m
 \kleeneO(sup)[sub]#m
@@ -221,17 +234,18 @@ rpairdelim=%<csname%>
 \Land#m
 \leftof#m
 \leftofeq#m
+\leftofneq#m
 \lh{arg}#m
 \LLand#m
 \llangle#m
+\lleq#m
+\llneq#m
 \LLor#m
 \logic{sub1}{sub2}#m
 \Lor#m
 \Low
 \Low[sup%formula]
-\LowN[sup%formula]{sub%formula}
 \lowN[sup%formula]{sub%formula}
-\LowN{sub%formula}
 \lowN{sub%formula}
 \majsubset#m
 \majsupset#m
@@ -256,12 +270,18 @@ rpairdelim=%<csname%>
 \nexistsuniq#m
 \nforall#m
 \nforallae#m
+\ngg#*m
 \nin#m
+\nKBgeq#m
+\nKBgtr#m
+\nKBleq#m
 \nleftof#m
 \nleftofeq#m
+\nll#*m
 \nprecsucc#m
 \nrightof#m
 \nrightofeq#m
+\rightofneq#m
 \nSearrow#m
 \nsubfun#m
 \nsubfuneq#m
@@ -286,6 +306,8 @@ rpairdelim=%<csname%>
 \Oleq#m
 \Oless#m
 \Olim{arg}{sub}#m
+\omegaCK#*
+\omegaCK[opt]#*
 \Omul#m
 \Ongeq#m
 \Ongtr#m
@@ -446,6 +468,7 @@ rpairdelim=%<csname%>
 \use{arg}#m
 \utilde{arg}#m
 \wck
+\wck[opt]
 \wforces#m
 \wjump{arg}#*m
 \wstrs#m
@@ -455,3 +478,7 @@ rpairdelim=%<csname%>
 \zerojjj#m
 \zeron{sup}#m
 \zerow{arg}#*m
+
+# not documented
+\ifVersionGreater{arg1}{arg2}#S
+\ifRecthyVersionGreater{arg1}{arg2}#S
