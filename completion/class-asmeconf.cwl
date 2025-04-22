@@ -1,5 +1,5 @@
 # asmeconf class
-# Matthew Bertucci 2025/04/17 for v1.42
+# Matthew Bertucci 2025/04/22 for v1.43
 
 #include:etoolbox
 #include:geometry
@@ -1601,7 +1601,7 @@ SuppressWarning#true,false
 \hrefurl{URL}{text%plain}#U
 \ifFontspecLoaded#*
 \ifJapaneseLoaded#*
-\ifPDFtex#*
+\ifpdftex#*
 \ifScriptsLoaded#*
 \JAwords#*
 \JointFirstAuthor
