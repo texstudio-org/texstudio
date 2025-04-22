@@ -1,5 +1,5 @@
 # nicefilelist package
-# Matthew Bertucci 2023/01/08 for v0.9a
+# Matthew Bertucci 2025/04/22 for v0.9c
 
 #include:monofill
 #include:myfilist
@@ -21,6 +21,7 @@ autolength
 \NFLspaceI
 \NFLspaceII
 \NFLspaceIII
+\NFLspaceIV
 \NFLnodate
 \NFLnoversion
 \NFLnotfound
