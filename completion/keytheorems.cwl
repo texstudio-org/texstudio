@@ -1,5 +1,5 @@
 # keytheorems package
-# Matthew Bertucci 2025/02/16 for v0.2.5
+# Matthew Bertucci 2025/04/24 for v0.2.6
 
 #include:aliascnt
 #include:amsthm
@@ -135,6 +135,9 @@ body
 \IfRestatingTF{true code}{false code}#*
 \IfRestatingT{true code}#*
 \IfRestatingF{false code}#*
+
+\externaltheorems{file}
+\externaltheorems[prefix]{file}
 
 \listofkeytheorems
 \listofkeytheorems[options%keyvals]
