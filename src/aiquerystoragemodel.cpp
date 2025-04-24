@@ -20,7 +20,7 @@ QVariant AIQueryStorageModel::data(const QModelIndex &index, int role) const
             if(m_segments.size()>0){
                 int previous=0;
                 if(parent_row>1 && parent_row<=m_segments.size()){
-                    previous=m_segments.at(parent_row-2).index;
+                    previous=m_segments.at(parent_row-1).index;
                 }
                 int r=index.row();
                 return m_shownFiles.value(previous+r);
@@ -62,12 +62,12 @@ int AIQueryStorageModel::rowCount(const QModelIndex &parent) const
         if (row == 0) {
             if(m_segments.size()>0){
                 int row=parent.row();
-                if(row>0){
-                    int previous=m_segments.at(row-1).index;
-                    int current=m_segments.at(row).index;
-                    return current-previous;
+                int current=m_segments.at(row).index;
+                if(row+1>=m_segments.size()){
+                    return m_shownFiles.size()-current;
                 }else{
-                    return m_segments.at(row).index;
+                    int next=m_segments.at(row+1).index;
+                    return next-current;
                 }
             }
             return m_shownFiles.size();
@@ -110,7 +110,7 @@ QString AIQueryStorageModel::getFileName(const QModelIndex &index) const
     if(m_segments.size()>0){
         int previous=0;
         if(row>1 && row<=m_segments.size()){
-            previous=m_segments.at(row-2).index;
+            previous=m_segments.at(row-1).index;
         }
         int r=index.row();
         if(m_filterActive){
@@ -133,6 +133,7 @@ void AIQueryStorageModel::addFileName(const QString &name)
 {
     beginInsertRows(QModelIndex{},m_files.size(),m_files.size());
     m_files.prepend(name);
+    m_shownFiles.prepend(name);
     for(auto &tf:m_segments){
         ++tf.index;
     }
@@ -140,8 +141,10 @@ void AIQueryStorageModel::addFileName(const QString &name)
         if(m_segments[0].name!=tr("Today")){
             TimeFrame tf;
             tf.name=tr("Today");
-            tf.index=1;
+            tf.index=0;
             m_segments.prepend(tf);
+        }else{
+            m_segments[0].index=0;
         }
     }
     endInsertRows();
@@ -188,7 +191,7 @@ void AIQueryStorageModel::generateSegments()
         if (it-last_it > 0) {
             TimeFrame tf;
             tf.name=lst_names.at(i);
-            tf.index=it-m_shownFiles.constBegin();
+            tf.index=last_it-m_shownFiles.constBegin();
             m_segments.append(tf);
             last_it=it;
         }
