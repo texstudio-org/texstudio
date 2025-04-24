@@ -208,6 +208,7 @@ void AIChatAssistant::slotSend()
         QJsonObject ja_message;
         ja_message["role"]="system";
         ja_message["content"]=config->ai_systemPrompt;
+        ja_messages.append(ja_message);
     }
     QJsonObject ja_message;
     ja_message["role"]="user";
