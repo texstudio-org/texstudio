@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.8.8
+
+- 
+
 ## TeXstudio 4.8.7
 
 - add "Start Column" (sets column of first page, same as Shift+Click) to Grid menu of pdf-viewer's context menu [#3974](https://github.com/texstudio-org/texstudio/pull/3974)
