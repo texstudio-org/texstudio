@@ -478,6 +478,7 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
         }
     }else{
         // no query sent yet
+        ja_messages=QJsonArray();
         textBrowser->clear();
     }
 }
