@@ -323,9 +323,16 @@ void AIChatAssistant::slotOptions()
     QDialog dlg;
     auto *ly=new QVBoxLayout();
     auto *leSystemPrompt=new QTextEdit();
-    leSystemPrompt->setText(config->ai_systemPrompt);
-    if(config->ai_systemPrompt.isEmpty()){
-        leSystemPrompt->setPlaceholderText(tr("System prompt"));
+    if(!ja_messages.isEmpty()){
+        leSystemPrompt->setEnabled(false);
+        if(ja_messages.first()["role"]=="system")
+            leSystemPrompt->setText(ja_messages.first()["content"].toString());
+        leSystemPrompt->setToolTip(tr("System prompt can't be altered mid-conversation"));
+    }else{
+        leSystemPrompt->setText(config->ai_systemPrompt);
+        if(config->ai_systemPrompt.isEmpty()){
+            leSystemPrompt->setPlaceholderText(tr("System prompt"));
+        }
     }
     ly->addWidget(leSystemPrompt);
     auto *leTemp=new QLineEdit();
@@ -337,9 +344,15 @@ void AIChatAssistant::slotOptions()
         maxTemp=2.0;
         rx.setPattern("[01]\\.[0-9]*|2");
     }
-    auto *validator=new QRegularExpressionValidator(rx);
-    leTemp->setValidator(validator);
-    leTemp->setToolTip(tr("Values between 0 and %1").arg(maxTemp));
+    if(config->ai_provider==2){
+        leTemp->setEnabled(false);
+        leTemp->setText(tr("-"));
+        leTemp->setToolTip(tr("Temperature not supported for local models"));
+    }else{
+        auto *validator=new QRegularExpressionValidator(rx);
+        leTemp->setValidator(validator);
+        leTemp->setToolTip(tr("Values between 0 and %1").arg(maxTemp));
+    }
     // add label in front of slider
     auto *lblTemp=new QLabel(tr("Temperature"));
     auto *hl=new QHBoxLayout();
