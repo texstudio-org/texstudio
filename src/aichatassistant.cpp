@@ -203,12 +203,19 @@ void AIChatAssistant::slotSend()
         m_timer->setInterval(100);
         connect(m_timer,&QTimer::timeout,this,&AIChatAssistant::slotUpdateResults);
     }
+    if(ja_messages.isEmpty()){
+        // set first message as system prompt. Empty at first
+        QJsonObject ja_message;
+        ja_message["role"]="system";
+        ja_message["content"]="";
+        ja_messages.append(ja_message);
+    }
     if(!config->ai_systemPrompt.isEmpty()){
         // add system prompt to query
         QJsonObject ja_message;
         ja_message["role"]="system";
         ja_message["content"]=config->ai_systemPrompt;
-        ja_messages.append(ja_message);
+        ja_messages.replace(0, ja_message);
     }
     QJsonObject ja_message;
     ja_message["role"]="user";
