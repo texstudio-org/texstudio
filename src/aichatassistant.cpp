@@ -203,16 +203,12 @@ void AIChatAssistant::slotSend()
         m_timer->setInterval(100);
         connect(m_timer,&QTimer::timeout,this,&AIChatAssistant::slotUpdateResults);
     }
-    if(!config->ai_systemPrompt.isEmpty()){
+    if(ja_messages.isEmpty() and !config->ai_systemPrompt.isEmpty()){
         // add system prompt to query
         QJsonObject ja_message;
         ja_message["role"]="system";
         ja_message["content"]=config->ai_systemPrompt;
-        // overwrites if there's already a system prompt
-        if(!ja_messages.isEmpty() and ja_messages.first()["role"]=="system")
-            ja_messages.replace(0, ja_message);
-        else
-            ja_messages.prepend(ja_message);
+        ja_messages.append(ja_message);
     }
     QJsonObject ja_message;
     ja_message["role"]="user";
