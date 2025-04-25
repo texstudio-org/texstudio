@@ -367,8 +367,10 @@ void AIChatAssistant::slotOptions()
                                      | QDialogButtonBox::Cancel);
 
     connect(buttonBox, &QDialogButtonBox::accepted,[&](){
-        config->ai_systemPrompt=leSystemPrompt->toPlainText();
-        config->ai_temperature=leTemp->text();
+        if(ja_messages.isEmpty())
+            config->ai_systemPrompt=leSystemPrompt->toPlainText();
+        if(config->ai_provider!=2)
+            config->ai_temperature=leTemp->text();
         config->ai_streamResults=cbStream->isChecked();
         dlg.close();
     });
