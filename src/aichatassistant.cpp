@@ -207,15 +207,14 @@ void AIChatAssistant::slotSend()
         // add system prompt to query
         QJsonObject ja_message;
         ja_message["role"]="system";
-        ja_message["content"]=config->ai_systemPrompt;
+        QString msg=config->ai_systemPrompt;
+        msg.replace("%txsSelectedText%",m_selectedText);
+        ja_message["content"]=msg;
         ja_messages.append(ja_message);
     }
     QJsonObject ja_message;
     ja_message["role"]="user";
     // prepend selected text to question
-    if(!m_selectedText.isEmpty()){
-        question="text=\"\"\""+m_selectedText+"\"\"\"\n"+question;
-    }
     ja_message["content"]=question;
 
     // for now single questions only

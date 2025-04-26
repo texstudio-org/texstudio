@@ -703,7 +703,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("AIchat/PreferredModel",&ai_preferredModel,"open-mistral-7b",&pseudoDialog->cbAIPreferredModel);
     registerOption("AIchat/CustomURL",&ai_apiurl,"http://localhost:8080/v1/chat/completions",&pseudoDialog->leAIAPIURL);
     registerOption("AIchat/KnownModels",&ai_knownModels,QStringList(),nullptr);
-    registerOption("AIchat/SystemPrompt_test",&ai_systemPrompt,"");
+    registerOption("AIchat/SystemPrompt",&ai_systemPrompt,"text:'''%txsSelectedText%'''\n");
     registerOption("AIchat/Temperature",&ai_temperature,"0.7");
     registerOption("AIchat/RecordConversation",&ai_recordConversation,true,&pseudoDialog->cbAIRecordConversation);
     registerOption("AIchat/StreamResults",&ai_streamResults,false);
