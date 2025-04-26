@@ -20,6 +20,10 @@ The conversation is stored on disk, so that results can be reused later on. This
 Local models can easily be set up via [llamafile](https://github.com/Mozilla-Ocho/llamafile). Please refer their help for details. TeXstudio expects the OpenAI API interface on 127.0.0.1:8080 to work which is the default for llamafile, hence the llamafile needs to be started manually next to TeXstudio.
 Local models do not leak information to providers. A powerful GPU is recommended to get reasonable response times.
 
+By default, the system prompt is `text:'''%txsSelectedText%'''`
+`%txsSelectedText%` will be replaced by txs by the actual selected text in the editor before sending it to the AI provider.
+The system prompt can be tweaked to deliver better results, however the construct `text:'''%txsSelectedText%'''` should be kept in the system prompt, otherwise the selected text is unknown to the AI.
+
 ### Usage
 
 The ai chat assistant is called via the menu "Wizards/AI chat...".
