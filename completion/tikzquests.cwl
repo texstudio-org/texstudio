@@ -1,5 +1,5 @@
 # tikzquests package
-# Matthew Bertucci 2024/01/04 for v1.0
+# Matthew Bertucci 2025/04/26 for v1.3
 
 #keyvals:\usepackage/tikzquests#c
 no alias
@@ -22,9 +22,13 @@ no defs
 \defQuestion*[repository]{name}{code}
 \defQuestion*[repository]{name}{code}[remarks]
 \defQuestionAlias{alias}{name}
-\defQuestionAlias[repository]{alias}{name}
+\defQuestionAlias{alias}[org-repository]{name}
+\defQuestionAlias[dst-repository]{alias}{name}
+\defQuestionAlias[dst-repository]{alias}[org-repository]{name}
 \defQuestionAlias*{alias}{name}
-\defQuestionAlias*[repository]{alias}{name}
+\defQuestionAlias*{alias}[org-repository]{name}
+\defQuestionAlias*[dst-repository]{alias}{name}
+\defQuestionAlias*[dst-repository]{alias}[org-repository]{name}
 \ftikzQuestion{name}
 \ftikzQuestion{name}[keyvals]
 \ftikzQuestion[repository]{name}[keyvals]
