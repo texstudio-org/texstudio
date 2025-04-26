@@ -47,7 +47,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="330"/>
         <source>System prompt can&apos;t be altered mid-conversation</source>
-        <translation type="unfinished"/>
+        <translation>Системну підказку не можна змінити під час розмови</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="334"/>
@@ -57,12 +57,12 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="349"/>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="350"/>
         <source>Temperature not supported for local models</source>
-        <translation type="unfinished"/>
+        <translation>Температура не підтримується для локальних моделей</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="354"/>

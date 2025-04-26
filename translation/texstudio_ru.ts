@@ -47,7 +47,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="330"/>
         <source>System prompt can&apos;t be altered mid-conversation</source>
-        <translation type="unfinished"/>
+        <translation>Системный промпт нельзя изменить в середине диалога.</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="334"/>
@@ -57,12 +57,12 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="349"/>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="350"/>
         <source>Temperature not supported for local models</source>
-        <translation type="unfinished"/>
+        <translation>Температура не поддерживается в локальных моделях.</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="354"/>
@@ -11423,7 +11423,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1511"/>
         <source>Show settings</source>
-        <translation type="unfinished"/>
+        <translation>Показать настройки</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1512"/>
@@ -11815,7 +11815,7 @@ Do you want to continue?</source>
     <message>
         <location filename="../src/texstudio.cpp" line="4829"/>
         <source>Settings file does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Файла с настройками не существует</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5633"/>
@@ -12680,7 +12680,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignore.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equally to &amp;quot;this test&amp;quot;, while the other options would separate it in &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of this phrases would be shown)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если выбрано &amp;quot;показать всё&amp;quot;, показываются все фразы.&lt;/p&gt;&lt;p&gt;Если выбрано &amp;quot;минимальная длина фразы&amp;quot;, то показываются только фразы с длиной, не меньшей указанного числа символов (напр. &amp;quot;я тест&amp;quot; содержит 6 символов)&lt;/p&gt;&lt;p&gt;Если выбрано &amp;quot;минимальная длина слова (одного)&amp;quot;, то показываются только фразы, в которых хотя бы одно слово имеет длину, не меньшую указанного числа символов (напр. &amp;quot;мой тест&amp;quot; содержит 4 символа)&lt;/p&gt;&lt;p&gt;Если выбрано &amp;quot;минимальная длина слов (всех)&amp;quot;, то показываются только фразы, все слова которых имеют длину, не меньшую указанного числа символов (напр. &amp;quot;я тест&amp;quot; содержит 1 символ)&lt;/p&gt;&lt;p&gt;Если выбрать &amp;quot;полностью игнорировать&amp;quot;, то более короткие слова полностью игнорируются.&lt;/p&gt;&lt;p&gt;(напр. с длиной 3 предложение &amp;quot;это не мой тест&amp;quot; эквивалентно &amp;quot;это мой тест&amp;quot;, в то время как при других параметрах оно бы разделилось на &amp;quot;это не&amp;quot;, &amp;quot;не мой&amp;quot;, &amp;quot;мой тест&amp;quot;, даже если ни одна из этих фраз не была бы отображена)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="274"/>
@@ -13155,7 +13155,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.ui" line="438"/>
         <source>AI Query</source>
-        <translation type="unfinished"/>
+        <translation>ИИ-запрос</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="480"/>
