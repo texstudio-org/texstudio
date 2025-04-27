@@ -47,7 +47,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="330"/>
         <source>System prompt can&apos;t be altered mid-conversation</source>
-        <translation type="unfinished"/>
+        <translation>Sistem istemi, görüşmenin ortasında değiştirilemez</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="334"/>
@@ -57,12 +57,12 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="349"/>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="350"/>
         <source>Temperature not supported for local models</source>
-        <translation type="unfinished"/>
+        <translation>Yerel modeller için sıcaklık desteklenmiyor</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="354"/>
@@ -137,7 +137,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="67"/>
         <source>html conversion: </source>
-        <translation>html dönüştürme:</translation>
+        <translation>HTML dönüştürme:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
