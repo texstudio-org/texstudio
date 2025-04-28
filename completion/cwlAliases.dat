@@ -1602,3 +1602,7 @@ anima:
 class-anima
 latex-document
 tex
+scrjrnl:
+class-scrjrnl
+latex-document
+tex
