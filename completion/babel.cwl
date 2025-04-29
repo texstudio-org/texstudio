@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2025/04/14 for v25.7
+# tbraun 4.11.2008; Matthew Bertucci 2025/04/29 for v25.8
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -161,7 +161,7 @@ Alph=%<counter%>
 onchar=#ids,fonts,letters
 intraspace=%<base shrink stretch%>
 intrapenalty=%<penalty%>
-transforms=#digits.native,transliteration.dad,input.nospaces,spacing.basic,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,diaeresis.hyphen,prehyphen.nobreak,punctuation.space,longs.unifraktur,transliteration.omega,sigma.final,transliteration.cj,transliteration.hk,transliteration.iast,digraphs.hyphen,danda.nobreak,linebreak.strict,letters.noj,letters.uv,transliteration.gajica,kashida.plain,kashida.base
+transforms=#digits.native,transliteration.dad,input.nospaces,spacing.basic,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,diaeresis.hyphen,prehyphen.nobreak,punctuation.space,longs.unifraktur,transliteration.omega,sigma.final,transliteration.cj,justification.interletter,transliteration.hk,transliteration.iast,digraphs.hyphen,danda.nobreak,linebreak.strict,letters.noj,letters.uv,transliteration.gajica,kashida.plain,kashida.base
 justification=#kashida,elongated,unhyphenated,padding
 linebreaking=#kashida,elongated,unhyphenated,padding
 mapfont=
@@ -240,7 +240,7 @@ extension.u.tag.bcp47
 \babelprehyphenation[options%keyvals]{locale-name}{lua-pattern}{replacement}#*
 
 #keyvals:\babelposthyphenation#c,\babelprehyphenation#c
-label=#digits.native,transliteration.dad,input.nospaces,spacing.basic,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,diaeresis.hyphen,prehyphen.nobreak,punctuation.space,longs.unifraktur,transliteration.omega,sigma.final,transliteration.cj,transliteration.hk,transliteration.iast,digraphs.hyphen,danda.nobreak,linebreak.strict,letters.noj,letters.uv,transliteration.gajica,kashida.plain,kashida.base
+label=#digits.native,transliteration.dad,input.nospaces,spacing.basic,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,diaeresis.hyphen,prehyphen.nobreak,punctuation.space,longs.unifraktur,transliteration.omega,sigma.final,transliteration.cj,justification.interletter,transliteration.hk,transliteration.iast,digraphs.hyphen,danda.nobreak,linebreak.strict,letters.noj,letters.uv,transliteration.gajica,kashida.plain,kashida.base
 fonts=%<tag1 tag2 ...%>
 attribute=%<attribute%>
 #endkeyvals
@@ -263,6 +263,7 @@ longs.unifraktur
 transliteration.omega
 sigma.final
 transliteration.cj
+justification.interletter
 transliteration.hk
 transliteration.iast
 digraphs.hyphen
