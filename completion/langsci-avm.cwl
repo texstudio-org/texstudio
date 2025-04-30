@@ -1,5 +1,5 @@
 # langsci-avm package
-# Matthew Bertucci 2023/02/21 for v0.3.0
+# Matthew Bertucci 2025/04/29 for v0.4.0
 
 #include:array
 
@@ -41,7 +41,10 @@ picname=%<name%>
 \avmdefinecommand{name}{settings%keyvals}
 \avmdefinecommand{name}[label]{settings%keyvals}
 
-#keyvals:\avm,\avmsetup,\avmdefinestyle
+\begin{scope}{options%keyvals}
+\end{scope}
+
+#keyvals:\avm,\avmsetup,\avmdefinestyle,\begin{scope}
 framewidth=##L
 framesep=##L
 id align=%<token%>

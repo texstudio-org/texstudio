@@ -1,5 +1,5 @@
 # codedescribe package
-# Matthew Bertucci 2023/11/22 for v1.2
+# Matthew Bertucci 2025/04/22 for v1.7
 
 #include:xcolor
 #include:pifont
@@ -66,6 +66,9 @@ color=#%color
 \begin{tsremark}
 \begin{tsremark}[NB]
 \end{tsremark}
+\begin{tsremark*}
+\begin{tsremark*}[NB]
+\end{tsremark*}
 
 #keyvals:\begin{codedescribe}#c,\begin{describelist}#c,\begin{describelist*}#c,\typesetobj#c,\tsobj#c,\typesetargs#c,\tsargs#c,\typesetverb#c,\tsverb#c
 arg

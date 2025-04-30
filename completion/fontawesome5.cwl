@@ -21,7 +21,12 @@ pro
 #  - icons whose names end with "-alt":
 #    e.g. \faComment* and \faIcon{comment-alt}
 
-\faStyle{solid/regular}
+\faStyle{style%keyvals}
+
+#keyvals:\faStyle
+solid
+regular
+#endkeyvals
 
 # call by hyphen-joined icon name
 \faIcon{name%keyvals}
@@ -3186,5 +3191,10 @@ transporter-empty
 wifi-1
 wifi-2
 wifi-slash
+#endkeyvals
+
+#keyvals:\faStyle
+duotone
+light
 #endkeyvals
 #endif

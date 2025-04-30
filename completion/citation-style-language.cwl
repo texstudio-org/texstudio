@@ -1,5 +1,5 @@
 # citation-style-language package
-# Matthew Bertucci 2025/02/23 for v0.7.0
+# Matthew Bertucci 2025/04/28 for v0.8.0
 
 #include:filehook
 #include:url
@@ -82,6 +82,7 @@ supplement=%<number%>
 table=%<number%>
 timestamp=%<number%>
 title=%<number%>
+unsorted#true,false
 verse=%<number%>
 version=%<number%>
 volume=%<number%>
@@ -121,6 +122,8 @@ locale=%<language code%>
 
 # not documented
 \addtocategory{category}{keys%plain}#S
+\autocite{keylist}#S
+\autocite[options%keyvals]{keylist}#S
 \backref{arg}#S
 \cslcitation{arg1}{arg2}#S
 \cslcite{arg1}{arg2}#S
@@ -129,6 +132,8 @@ locale=%<language code%>
 \DeclareBibliographyCategory{category}#S
 \defbibenvironment{name}{begdef}{enddef}{item code}#S
 \defbibnote{name}{text}#S
+\parencites{%<key1%>}{%<key2%>}%<...{keyN}%>#S
+\parencites[%<options%>]{%<key1%>}[%<options%>]{%<key2%>}%<...[options]{keyN}%>#S
 \printbibheading#S
 \printbibheading[options%keyvals]#S
 #keyvals:\printbibheading

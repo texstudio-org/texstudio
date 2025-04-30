@@ -1,9 +1,11 @@
 # cistercian package
-# Matthew Bertucci 2025/04/14 for v0.2
+# Matthew Bertucci 2025/04/15 for v0.3
 
 #include:tikz
+#include:etoolbox
 
 \cistercianset{options%keyvals}
+\cistercianreset
 \cistercian{number}
 \cistercian[options%keyvals]{number}
 

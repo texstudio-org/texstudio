@@ -1,5 +1,5 @@
 # algpseudocodex package
-# Matthew Bertucci 2023/02/17 for v1.1.0
+# Matthew Bertucci 2025/04/17 for v1.2.0
 
 #include:kvoptions
 #include:algorithmicx
@@ -54,6 +54,18 @@ endLComment=%<text%>
 \Function{name}{parameters}#/algorithmic
 \EndFunction#/algorithmic
 
+\Structure{name}#/algorithmic
+\EndStructure#/algorithmic
+
+\Class{name}#/algorithmic
+\EndClass#/algorithmic
+
+\Properties#/algorithmic
+\EndProperties#/algorithmic
+
+\Methods#/algorithmic
+\EndMethods#/algorithmic
+
 \Require#/algorithmic
 \Ensure#/algorithmic
 
@@ -82,3 +94,9 @@ endLComment=%<text%>
 \algorithmicensure#*
 \algorithmicreturn#*
 \algorithmicoutput#*
+\algorithmicstructure#*
+\algorithmicclass#*
+\algorithmicproperties#*
+\algorithmicmethods#*
+\textproc{text}#*
+\textstruc{text}#*

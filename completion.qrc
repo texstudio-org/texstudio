@@ -455,6 +455,7 @@
 <file>completion/boxhandler.cwl</file>
 <file>completion/boxit.cwl</file>
 <file>completion/bpchem.cwl</file>
+<file>completion/bracealign.cwl</file>
 <file>completion/bracketkey.cwl</file>
 <file>completion/braille.cwl</file>
 <file>completion/braket.cwl</file>
@@ -927,6 +928,7 @@
 <file>completion/class-scrbook.cwl</file>
 <file>completion/class-scrdoc.cwl</file>
 <file>completion/class-screenplay.cwl</file>
+<file>completion/class-scrjrnl.cwl</file>
 <file>completion/class-scrlttr2.cwl</file>
 <file>completion/class-scrreprt.cwl</file>
 <file>completion/class-sdapsclassic.cwl</file>
@@ -1622,6 +1624,7 @@
 <file>completion/foliono.cwl</file>
 <file>completion/fonetika.cwl</file>
 <file>completion/fontawesome5.cwl</file>
+<file>completion/fontawesome6.cwl</file>
 <file>completion/fontawesome.cwl</file>
 <file>completion/fontaxes.cwl</file>
 <file>completion/fontbook.cwl</file>

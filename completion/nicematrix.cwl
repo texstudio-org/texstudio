@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2025/03/30 for v7.1b
+# Matthew Bertucci 2025/04/28 for v7.1c
 
 #include:amsmath
 #include:array
@@ -303,6 +303,7 @@ auto-columns-width
 
 #keyvals:\Ldots,\Cdots,\Vdots,\Ddots,\Iddots,\line
 horizontal-labels
+horizontal-label
 color=#%color
 radius=##L
 shorten-start=##L

@@ -1,5 +1,5 @@
 # asmeconf class
-# Matthew Bertucci 2025/03/28 for v1.41
+# Matthew Bertucci 2025/04/22 for v1.43
 
 #include:etoolbox
 #include:geometry
@@ -1583,7 +1583,6 @@ SuppressWarning#true,false
 
 # asmeconf class commands
 \affil{number}
-\appendicesname#*
 \arabicabstractname#S
 \begin{abstract*}
 \begin{nomenclature}
@@ -1599,10 +1598,11 @@ SuppressWarning#true,false
 \end{nomenclature}
 \entry{entry}{text}
 \EntryHeading{heading%text}
-\fontspecloadedfalse#S
-\fontspecloadedtrue#S
 \hrefurl{URL}{text%plain}#U
-\iffontspecloaded#*
+\ifFontspecLoaded#*
+\ifJapaneseLoaded#*
+\ifpdftex#*
+\ifScriptsLoaded#*
 \JAwords#*
 \JointFirstAuthor
 \keywordname#*

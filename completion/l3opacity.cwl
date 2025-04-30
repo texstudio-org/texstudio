@@ -1,6 +1,5 @@
 # l3opacity package
-# Matthew Bertucci 2024/12/21
+# Matthew Bertucci 2025/04/28
 
-\opacity_select:n {%<⟨expression⟩%>}#/%expl3
-\opacity_fill:n {%<⟨expression⟩%>}#/%expl3
-\opacity_stroke:n {%<⟨expression⟩%>}#/%expl3
+# This package is deprecated. It's been incorporated into the kernel.
+# All commands added to expl3-commands.cwl

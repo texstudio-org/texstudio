@@ -1,5 +1,5 @@
 # quran package
-# Matthew Bertucci 2023/06/27 for v1.9
+# Matthew Bertucci 2025/04/26 for v2.41
 
 #include:ifxetex
 #include:biditools
@@ -66,7 +66,9 @@ ornbraces
 \ayahcount
 \ToggleAyahNumber
 \ToggleBasmalah
-\SetOrnamentalBraces{starting brace}{ending brace}
+\SetOrnamentalBraces{opening brace}{closing brace}
+\SetAyahMarkerStyle{begin marker}{end marker}
+\ResetAyahMarkerStyle
 
 ## All option-specific commands listed with #S to account for many
 ## ways of loading, e.g. translt, trans=lt, trans={de,en,lt}, ...
