@@ -2,7 +2,7 @@
 # Matthew Bertucci 2025/05/08 for v0.4
 
 #include:etoolbox
-#include:parserange
+#include:updatemarks-nums
 
 #keyvals:\usepackage/updatemarks#c
 minipage
