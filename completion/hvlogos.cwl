@@ -1,10 +1,11 @@
 # hvlogos package
-# Matthew Bertucci 2022/05/05 for v0.08
+# Matthew Bertucci 2025/05/08 for v0.14
 
 #include:fetamont
 #include:hologo
 #include:dantelogo
 #include:xspace
+#include:tikz
 
 \ALEPH#n
 \AmS#n
@@ -28,6 +29,9 @@
 \emTeX#n
 \eTeX#n
 \eV#n
+\explbanner#n
+\expl3logo#n
+\expl#Sn
 \ExTeX#n
 \HanTheThanh#n
 \iniTeX#n
@@ -85,11 +89,13 @@
 \XeTeX#n
 \xypic#n
 
+\AllTeX#*n
 \AMS#*n
 \biblatex#*n
 \BibTeXacht#*n
 \context#*n
 \HTT#*n
+\La#*n
 \lmtx#*n
 \luahbtex#*n
 \LuahbTeX#*n
