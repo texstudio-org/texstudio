@@ -915,7 +915,8 @@ QSettings *ConfigManager::readSettings(bool reread)
 #endif
 			fallBackPaths << PREFIX"/share/hunspell" << PREFIX"/share/myspell"
                           << "/usr/share/hunspell" << "/usr/share/myspell"
-                          << parseDir("[txs-app-dir]/../share/texstudio") ;
+                          << parseDir("[txs-app-dir]/../share/texstudio")
+                          << parseDir("[txs-app-dir]/../usr/share/texstudio") ;
 #endif
 #ifdef Q_OS_MAC
             fallBackPaths << parseDir("[txs-app-dir]/../Resources") << "/Applications/texstudio.app/Contents/Resources";
