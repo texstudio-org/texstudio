@@ -1,5 +1,5 @@
 # didec package
-# Matthew Bertucci 2024/02/28 for v1.0.0
+# Matthew Bertucci 2025/05/28 for v1.0.0
 
 #keyvals:\usepackage/didec#c
 int
@@ -61,3 +61,68 @@ color-negative=#%color
 didec-green#B
 didec-red#B
 didec-blue#B
+
+# expl3 interface
+\c_didec_kernel_str#/%expl3
+\didec_if_kernel_int_p:#/%expl3
+\didec_if_kernel_int:T {%<⟨true code⟩%>}#/%expl3
+\didec_if_kernel_int:TF {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\didec_if_kernel_fp_p:#/%expl3
+\didec_if_kernel_fp:T {%<⟨true code⟩%>}#/%expl3
+\didec_if_kernel_fp:TF {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\didec_new:n {%<⟨var⟩%>}#/%expl3
+\didec_gset:nn {%<⟨var⟩%>} {%<⟨expr⟩%>}#/%expl3
+\didec_gset_check:nn {%<⟨var⟩%>} {%<⟨expr⟩%>}#/%expl3
+\didec_gset_eq:nn {%<⟨var1⟩%>} {%<⟨var2⟩%>}#/%expl3
+\didec_gset_eq_check:nn {%<⟨var1⟩%>} {%<⟨var2⟩%>}#/%expl3
+\didec_gset_negative:nn {%<⟨var⟩%>} {%<⟨expr⟩%>}#/%expl3
+\didec_gset_negative_check:nn {%<⟨var⟩%>} {%<⟨expr⟩%>}#/%expl3
+\didec_gset_fp:nn {%<⟨var⟩%>} {%<⟨fp expr⟩%>}#/%expl3
+\didec_gset_fp_check:nn {%<⟨var⟩%>} {%<⟨fp expr⟩%>}#/%expl3
+\didec_gadd:nn {%<⟨var⟩%>} {%<⟨expr⟩%>}#/%expl3
+\didec_gadd_check:nn {%<⟨var⟩%>} {%<⟨expr⟩%>}#/%expl3
+\didec_gadd_to:nnn {%<⟨var⟩%>} {%<⟨expr1⟩%>} {%<⟨expr2⟩%>}#/%expl3
+\didec_gadd_to_check:nnn {%<⟨var⟩%>} {%<⟨expr1⟩%>} {%<⟨expr2⟩%>}#/%expl3
+\didec_gsub:nn {%<⟨var⟩%>} {%<⟨expr⟩%>}#/%expl3
+\didec_gsub_check:nn {%<⟨var⟩%>} {%<⟨expr⟩%>}#/%expl3
+\didec_gsub_to:nnn {%<⟨var⟩%>} {%<⟨expr1⟩%>} {%<⟨expr2⟩%>}#/%expl3
+\didec_gsub_to_check:nnn {%<⟨var⟩%>} {%<⟨expr1⟩%>} {%<⟨expr2⟩%>}#/%expl3
+\didec_gmul_fp:nn {%<⟨var⟩%>} {%<⟨fp expr⟩%>}#/%expl3
+\didec_gmul_fp_check:nn {%<⟨var⟩%>} {%<⟨fp expr⟩%>}#/%expl3
+\didec_gmul_fp_to:nnn {%<⟨var2⟩%>} {%<⟨var⟩%>} {%<⟨fp expr⟩%>}#/%expl3
+\didec_gmul_fp_to_check:nnn {%<⟨var2⟩%>} {%<⟨var⟩%>} {%<⟨fp expr⟩%>}#/%expl3
+\didec_gdiv_fp:nn {%<⟨var⟩%>} {%<⟨fp expr⟩%>}#/%expl3
+\didec_gdiv_fp_check:nn {%<⟨var⟩%>} {%<⟨fp expr⟩%>}#/%expl3
+\didec_gdiv_fp_to:nnn {%<⟨var2⟩%>} {%<⟨var⟩%>} {%<⟨fp expr⟩%>}#/%expl3
+\didec_gdiv_fp_to_check:nnn {%<⟨var2⟩%>} {%<⟨var⟩%>} {%<⟨fp expr⟩%>}#/%expl3
+\didec_to_int:n {%<⟨var⟩%>}#/%expl3
+\didec_to_int_check:n {%<⟨var⟩%>}#/%expl3
+\didec_to_fp:n {%<⟨var⟩%>}#/%expl3
+\didec_to_fp_check:n {%<⟨var⟩%>}#/%expl3
+\didec_to_fc:n {%<⟨var⟩%>}#/%expl3
+\didec_to_fc_check:n {%<⟨var⟩%>}#/%expl3
+\didec_use:n {%<⟨var⟩%>}#/%expl3
+\didec_use_check:n {%<⟨var⟩%>}#/%expl3
+\didec_color_use:n {%<⟨var⟩%>}#/%expl3
+\didec_color_use_check:n {%<⟨var⟩%>}#/%expl3
+\didec_color_inverse_use:n {%<⟨var⟩%>}#/%expl3
+\didec_color_inverse_use_check:n {%<⟨var⟩%>}#/%expl3
+\didec_write:nn {%<⟨var⟩%>} {%<⟨stream⟩%>}#/%expl3
+\didec_write_check:nn {%<⟨var⟩%>} {%<⟨stream⟩%>}#/%expl3
+\didec_if_positive_p:n {%<⟨var⟩%>}#/%expl3
+\didec_if_positive:nTF {%<⟨var⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\didec_if_positive:nT {%<⟨var⟩%>} {%<⟨true code⟩%>}#/%expl3
+\didec_if_positive:nF {%<⟨var⟩%>} {%<⟨false code⟩%>}#/%expl3
+\didec_if_negative_p:n {%<⟨var⟩%>}#/%expl3
+\didec_if_negative:nTF {%<⟨var⟩%>} {%<⟨true code⟩%>}{%<⟨false code⟩%>}#/%expl3
+\didec_if_negative:nT {%<⟨var⟩%>} {%<⟨true code⟩%>}#/%expl3
+\didec_if_negative:nF {%<⟨var⟩%>} {%<⟨false code⟩%>}#/%expl3
+\didec_if_zero_p:n {%<⟨var⟩%>}#/%expl3
+\didec_if_zero:nTF {%<⟨var⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\didec_if_zero:nT {%<⟨var⟩%>} {%<⟨true code⟩%>}#/%expl3
+\didec_if_zero:nF {%<⟨var⟩%>} {%<⟨false code⟩%>}#/%expl3
+\didec_compare_p:nNn {%<⟨expr1⟩%>} %<⟨relation⟩%> {%<⟨expr2⟩%>}#/%expl3
+\didec_compare:nNnTF {%<⟨expr1⟩%>} %<⟨relation⟩%> {%<⟨expr2⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\didec_compare:nNnT {%<⟨expr1⟩%>} %<⟨relation⟩%> {%<⟨expr2⟩%>} {%<⟨true code⟩%>}#/%expl3
+\didec_compare:nNnF {%<⟨expr1⟩%>} %<⟨relation⟩%> {%<⟨expr2⟩%>} {%<⟨false code⟩%>}#/%expl3
+\didec_show:n {%<⟨var⟩%>}#/%expl3
