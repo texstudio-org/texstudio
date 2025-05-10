@@ -956,7 +956,8 @@ QSettings *ConfigManager::readSettings(bool reread)
 		QStringList fallBackPaths;
 #ifdef Q_OS_LINUX
         fallBackPaths << PREFIX"/share/mythes" << "/usr/share/mythes"
-                      << parseDir("[txs-app-dir]/../share/texstudio") ;
+                      << parseDir("[txs-app-dir]/../share/texstudio")
+                      << parseDir("[txs-app-dir]/../usr/share/texstudio") ;
 #endif
 		thesaurus_database = findResourceFile("th_" + QString(QLocale::system().name()) + "_v2.dat", true, preferredPaths, fallBackPaths);
 		if (thesaurus_database == "") thesaurus_database = findResourceFile("th_en_US_v2.dat", true, preferredPaths, fallBackPaths);
