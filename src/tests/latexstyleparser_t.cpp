@@ -29,7 +29,7 @@ void LatexStyleParserTest::parseLine_basic_data() {
     QTest::newRow("newenvironment") << "\\newenvironment{myenv}" << (QStringList() << "\\begin{myenv}#S" << "\\end{myenv}#S");
 
     QTest::newRow("mathSymbol") << "\\DeclareMathSymbol{\\myop}" << (QStringList() << "\\myop#Sm");
-    QTest::newRow("newLength") << "\\newlength{\\mylen}" << (QStringList() << "\\mylen");
+    QTest::newRow("newLength") << "\\newlength{\\mylen}" << (QStringList() << "\\mylen#*L");
     QTest::newRow("newCounter") << "\\newcounter{duke}" << (QStringList() << "\\theduke");
     QTest::newRow("loadClass") << "\\LoadClass{myclass}" << (QStringList() << "#include:myclass");
 }
