@@ -424,6 +424,7 @@ bool LatexStyleParser::parseLineNewLength(QStringList &results, const QString &l
 	if (name.contains("@")) {
 		return true;
 	}
+    name.append("#*L");
 	if (!results.contains(name)) {
 		results << name;
 	}
