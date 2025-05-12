@@ -1636,6 +1636,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 
 	//appearance
+    const QString oldInterfaceStyle = interfaceStyle;
 	confDlg->ui.comboBoxInterfaceStyle->clear();
 	QStringList availableStyles=QStyleFactory::keys();
 #ifdef ADWAITA
@@ -1934,7 +1935,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
             if(displayedInterfaceStyle=="Orion Dark" && interfaceStyle!=displayedInterfaceStyle){
                 qApp->setStyleSheet("");
             }
-			setInterfaceStyle();
+            if(interfaceStyle!=oldInterfaceStyle){
+                setInterfaceStyle();
+            }
 		}
 
 		//language
