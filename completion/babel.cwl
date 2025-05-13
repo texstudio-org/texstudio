@@ -4487,7 +4487,24 @@ mexico-com
 \glossaryname#*
 #endif
 
-### slovene.ldf v1.2n ###
+### slovenian.ldf v1.2p ###
+#ifOption:slovenian
+\captionsslovenian#*
+\dateslovenian#*
+\extrasslovenian#*
+\noextrasslovenian#*
+\prefacename#*
+\bibname#*
+\chaptername#*
+\enclname#*
+\ccname#*
+\headtoname#*
+\pagename#*
+\seename#*
+\alsoname#*
+\proofname#*
+\glossaryname#*
+#endif
 #ifOption:slovene
 \captionsslovene#*
 \dateslovene#*
