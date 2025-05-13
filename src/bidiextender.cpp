@@ -59,7 +59,7 @@ bool isProbablyLTRLanguageRaw(const std::string &symb)
 bool isProbablyLTRLanguageCode(HKL id)
 {
 #if defined( Q_OS_WIN )
-	return isProbablyLTRLanguageRaw(((int) id) & 0x000000FF);
+    return isProbablyLTRLanguageRaw(((long long) id) & 0x000000FF);
 #elif defined( WS_X11 )
 	try {
 		kb::XKeyboard xkb;
@@ -98,7 +98,7 @@ void initializeLanguages()
 
 	HKL bestLTR = 0;
 	for (int i = 0; i < count; ++i) {
-		int id = (int)langs[i] & 0x000000FF;
+        int id = (long long)langs[i] & 0x000000FF;
 		if (id == LANG_ENGLISH) bestLTR = langs[i];
 		if (isProbablyLTRLanguageRaw(id)) {
 			if (!bestLTR) bestLTR = langs[i];
