@@ -178,6 +178,7 @@ const SAFE_INT
 
 //===========================STACK TRACE PRINTING=========================
 
+#ifndef NO_CRASH_HANDLER
 #ifdef Q_OS_WIN32
 #include <QSysInfo>
 #include "windows.h"
@@ -1023,7 +1024,7 @@ QString getLastCrashInformationInternal()
 void registerCrashHandler(int mode) {}
 #endif
 
-
+#endif
 //========================NEW ASSERT==============================
 
 
