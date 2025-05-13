@@ -330,8 +330,7 @@ jobs:
 
       - name: copy signed installer
         id: copy_signed_binary
-        if: False
-        # if: env.IF_CODESIGN == 'true'
+        if: env.IF_CODESIGN == 'true'
         run: |
           cp signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6-signed.exe
     
@@ -348,12 +347,12 @@ jobs:
         uses: actions/upload-artifact@v4
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: release-win
+          name: release-win-arm
           path: |
             ${{ env.IF_CODESIGN == 'true'
-                && format('texstudio-{0}-win-qt6-signed.exe', steps.package.outputs.GIT_VERSION)
+                && format('texstudio-{0}-win-arm-qt6-signed.exe', steps.package.outputs.GIT_VERSION)
                 || '' }}
-            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-arm-portable-qt6.zip
 
 ###################################
 
