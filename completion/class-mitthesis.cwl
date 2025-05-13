@@ -1,9 +1,8 @@
 # mitthesis class
-# Matthew Bertucci 2025/01/28 for v1.19
+# Matthew Bertucci 2025/05/07 for v1.20
 
 #include:class-report
 #include:etoolbox
-#include:iftex
 #include:geometry
 #include:mathtools
 #include:graphicx
@@ -47,6 +46,12 @@ twoside
 \begin{nomenclature}[space][heading%text][level]
 \begin{nomenclature}[space][heading%text][level][style]
 \end{nomenclature}
+\begin{nomenclature*}
+\begin{nomenclature*}[space]
+\begin{nomenclature*}[space][heading%text]
+\begin{nomenclature*}[space][heading%text][level]
+\begin{nomenclature*}[space][heading%text][level][style]
+\end{nomenclature*}
 
 \EntryHeading{text}
 \entry{symbol}{description%text}

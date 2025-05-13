@@ -2922,7 +2922,7 @@ SuppressWarning#true,false
 \decembername
 #endif
 
-### latin.ldf v4.0 (and associated classiclatin, ecclesiasticlatin, medievallatin) ###
+### latin.ldf v4.1 (and associated classicallatin, ecclesiasticallatin, medievallatin) ###
 #ifOption:latin
 \captionslatin#*
 \datelatin#*
@@ -2946,11 +2946,13 @@ SuppressWarning#true,false
 #repl:"| 
 #endif
 
-#ifOption:classiclatin
-\captionsclassiclatin#*
-\dateclassiclatin#*
-\extrasclassiclatin#*
-\noextrasclassiclatin#*
+#ifOption:classicallatin
+\captionsclassicallatin#*
+\dateclassicallatin#*
+\extrasclassicallatin#*
+\noextrasclassicallatin#*
+\ProsodicMarksOn
+\ProsodicMarksOff
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2967,11 +2969,13 @@ SuppressWarning#true,false
 #repl:"| 
 #endif
 
-#ifOption:ecclesiasticlatin
-\captionsecclesiasticlatin#*
-\dateecclesiasticlatin#*
-\extrasecclesiasticlatin#*
-\noextrasecclesiasticlatin#*
+#ifOption:ecclesiasticallatin
+\captionsecclesiasticallatin#*
+\dateecclesiasticallatin#*
+\extrasecclesiasticallatin#*
+\noextrasecclesiasticallatin#*
+\ProsodicMarksOn
+\ProsodicMarksOff
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2999,6 +3003,8 @@ SuppressWarning#true,false
 \datemedievallatin#*
 \extrasmedievallatin#*
 \noextrasmedievallatin#*
+\ProsodicMarksOn
+\ProsodicMarksOff
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -4481,7 +4487,24 @@ mexico-com
 \glossaryname#*
 #endif
 
-### slovene.ldf v1.2n ###
+### slovenian.ldf v1.2p ###
+#ifOption:slovenian
+\captionsslovenian#*
+\dateslovenian#*
+\extrasslovenian#*
+\noextrasslovenian#*
+\prefacename#*
+\bibname#*
+\chaptername#*
+\enclname#*
+\ccname#*
+\headtoname#*
+\pagename#*
+\seename#*
+\alsoname#*
+\proofname#*
+\glossaryname#*
+#endif
 #ifOption:slovene
 \captionsslovene#*
 \dateslovene#*

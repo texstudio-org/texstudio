@@ -1,5 +1,5 @@
 # zitie package
-# Matthew Bertucci 4/18/2022 for v1.4.0
+# Matthew Bertucci 2025/05/08 for v1.4.0
 
 #include:l3draw
 #include:l3keys2e
@@ -150,3 +150,42 @@ yrange={%<top,bottom%>}
 \zitierawCJKfamily{font family}#*
 \zitierawCJKfamily+{font family}#*
 \zitierawCJKfamily-{font family}#*
+
+# todo: add arg specs for expl3 interface
+\zitie_new_frame_construct:nn#/%expl3
+\zitie_frame_type:n#/%expl3
+\zitie_frame_type_c:n#/%expl3
+\zitie_frame_type_set_eq:nn#/%expl3
+\zitie_new_resize_method:nn#/%expl3
+\zitie_resize_method_set_eq:nn#/%expl3
+\zitie_new_font:n#/%expl3
+\zitie_new_font:nnn#/%expl3
+\zitie_new_process_rule:nnn#/%expl3
+\zitie_new_process_rule:nnnn#/%expl3
+\zitie_processor:n#/%expl3
+\zitie_processor_c:n#/%expl3
+\zitie_processor:nnn#/%expl3
+\zitie_processor_c:nnn#/%expl3
+\zitie_color_set:nn#/%expl3
+\zitie_color_set:nnn#/%expl3
+\zitie_cjk_glyph_use:nN#/%expl3
+\zitie_token_class_dispatch:Nnnnn#/%expl3
+\zitie_token_class_dispatch_o:Nnnnn#/%expl3
+\zitie_token_class_dispatch_f:Nnnnn#/%expl3
+\zitie_token_if_punctuation:NT#/%expl3
+\zitie_token_if_punctuation:NF#/%expl3
+\zitie_token_if_punctuation:NTF#/%expl3
+\zitie_token_if_punctuation_o:NT#/%expl3
+\zitie_token_if_punctuation_o:NF#/%expl3
+\zitie_token_if_punctuation_o:NTF#/%expl3
+\zitie_token_if_punctuation_f:NT#/%expl3
+\zitie_token_if_punctuation_f:NF#/%expl3
+\zitie_token_if_punctuation_f:NTF#/%expl3
+\zitie_single_construct:N#/%expl3
+\zitie_single_construct:nN#/%expl3
+\zitie_single_validate_glyph_construct:N#/%expl3
+\zitie_single_validate_glyph_construct:nN#/%expl3
+\zitie_background_new_frame_construct:nn#/%expl3
+\zitie_background_frame_type:n#/%expl3
+\zitie_background_frame_type_c:n#/%expl3
+\zitie_background_frame_type_set_eq:nn#/%expl3

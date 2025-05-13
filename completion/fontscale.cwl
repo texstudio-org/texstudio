@@ -1,11 +1,10 @@
 # fontscale package
-# Matthew Bertucci 2025/04/07 for v4.1.0
+# Matthew Bertucci 2025/05/07 for v4.2.0
 
 \fontscalesetup{keyvals}
 \fontscalesetup*{keyvals}
 
 #keyvals:\fontscalesetup,\fontscalesetup*
-baselineskip-size-ratio=%<number%>
 typographic-scale=#classic-10pt,classic-11pt,classic-12pt,classic-10bp,classic-11bp,classic-12bp,classic-10dd,classic-11dd,classic-12dd,classic-10nd,classic-11nd,classic-12nd,musical
 classic-10pt
 classic-11pt
@@ -24,6 +23,7 @@ musical/base=##L
 musical/ratio=%<number%>
 musical/notes=%<integer%>
 baselineskip-size-ratio=%<factor%>
+magscale=%<factor%>
 tiny/scale=%<number%>
 tiny/size=%<size%>
 tiny/baselineskip-size-ratio=%<factor%>

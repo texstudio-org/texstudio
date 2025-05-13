@@ -84,7 +84,7 @@
 \begin{verbatim*}#V
 \begin{verse}
 \end{abstract}
-\end{array}
+\end{array}#m
 \end{center}
 \end{description}
 \end{displaymath}
@@ -109,11 +109,11 @@
 \end{list}
 \end{lrbox}
 \end{math}
-\end{matrix}
+\end{matrix}#m
 \end{minipage}
 \end{normalsize}
 \end{picture}
-\end{pmatrix}
+\end{pmatrix}#m
 \end{quotation}
 \end{quote}
 \end{scriptsize}

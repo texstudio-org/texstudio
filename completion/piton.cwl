@@ -1,7 +1,6 @@
 # piton package
-# Matthew Bertucci 2025/03/25 for v4.3
+# Matthew Bertucci 2025/05/07 for v4.4
 
-#include:luatexbase
 #include:luacode
 #include:xcolor
 #include:amstext
@@ -91,6 +90,7 @@ line-numbers/start
 #keyvals:\PitonOptions,\begin{Piton}
 language=#Python,OCaml,C,SQL,minimal,verbatim,%newpitonlang
 font-command=%<font commands%>
+gobble
 gobble=%<integer%>
 auto-gobble
 tabs-auto-gobble
@@ -122,6 +122,7 @@ continuation-symbol=%<symbol%>
 continuation-symbol-on-indentation=%<symbol%>
 write=%<file%>
 path-write=%<path%>
+join=%<file%>
 split-on-empty-lines#true,false
 split-separation=%<code%>
 break-strings-anywhere
@@ -137,6 +138,7 @@ String.Short=%<formatting%>
 String.Long=%<formatting%>
 String=%<formatting%>
 String.Doc=%<formatting%>
+String.Doc.Internal=%<formatting%>
 String.Interpol=%<formatting%>
 Interpol.Inside=%<formatting%>
 Operator=%<formatting%>
@@ -192,6 +194,7 @@ String.Short
 String.Long
 String
 String.Doc
+String.Doc.Internal
 String.Interpol
 Interpol.Inside
 Operator
@@ -271,5 +274,9 @@ alsoother={%<character sequence%>}
 \SetPitonIdentifier{id1,id2,...}{code}
 \SetPitonIdentifier[language]{id1,id2,...}{code}
 
+\PitonDetectedCommands#S
+\PitonRawDetectedCommands#S
+\PitonBeamerCommands#S
+\PitonBeamerEnvironments#S
 \PitonFileVersion#S
 \PitonFileDate#S

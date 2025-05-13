@@ -1,5 +1,5 @@
 # eqnlines package
-# Matthew Bertucci 2025/04/03 for v0.7
+# Matthew Bertucci 2025/05/07 for v0.8
 
 #include:keyval
 
@@ -7,8 +7,16 @@
 \end{align}
 \begin{align*}#\math,array
 \end{align*}
-\begin{aligned}#m
+\begin{alignat}{ncols}#\math,array
+\begin{alignat}[alignment]{ncols}#\math,array
+\end{alignat}
+\begin{alignat*}{ncols}#\math,array
+\begin{alignat*}[alignment]{ncols}#\math,array
+\end{alignat*}
+\begin{aligned}#m\array
 \end{aligned}#m
+\begin{alignedat}{ncols}#m\array
+\end{alignedat}#m
 \begin{equation*}#\math
 \end{equation*}
 \begin{equations}#\math,array
@@ -39,6 +47,12 @@
 \begin{subequations}
 \begin{subequations}[options%keyvals]
 \end{subequations}
+\begin{xalignat}#*\math,array
+\end{xalignat}#*
+\begin{xalignat*}#*\math,array
+\end{xalignat*}#*
+\begin{xxalignat}#*\math,array
+\end{xxalignat}#*
 \<
 \>
 
@@ -46,25 +60,31 @@
 \displaybreak[value]
 \donumber
 \eqnaddopt{options%keyvals}
+\eqnalt{text}
+\eqnalt[line|cell]{text}
 \eqnlinesprovide{features%keyvals}
 \eqnlinesset{options%keyvals}
 \eqnpunct{punct}
 \eqnpunctapply
 \eqnpunctcol{punct}
 \eqnpunctline{punct}
-\eqnpunctmain{punct}
+\eqnpunctdefault{punct}
 \eqref{label}#r
+\framecell
+\framecell[cmd]
 \intertext[options%keyvals]{text}
 \intertext{text}
 \numberhere
 \numbernext
 \raisetag{dimen}
-\shovecenter{arg}
-\shoveleft!{arg}
-\shoveleft*{arg}
-\shoveleft[dimen]{arg}
-\shoveleft{arg}
-\shoveright{arg}
+\shoveby{dimen}
+\shoveby*{dimen}
+\shovecenter
+\shoveleft!
+\shoveleft*
+\shoveleft[dimen]
+\shoveleft
+\shoveright
 \tag*{label%text}#m
 \tag{label%text}#m
 \tagform#*
@@ -76,7 +96,6 @@
 #keyvals:\usepackage/eqnlines#c,\eqnlinesset,\begin{equation},\eqnaddopt,\begin{equationsbox}
 spread=##L
 strut#true,false
-struttag#true,false
 punctsep=%<sep%>
 punct=%<punct%>
 punctline=%<punct%>
@@ -91,7 +110,6 @@ padleft=##L
 padright=##L
 padmax#true,false
 indent=##L
-indent*=##L
 classout=%<class%>
 classin=%<class%>
 classin*=%<class%>
@@ -99,15 +117,17 @@ classlead=%<class%>
 ampeq
 eqamp
 class=#ampeq,eqamp
+margin=##L
+marginleft=##L
+marginright=##L
+scanpar#true,false
 #endkeyvals
 
 #keyvals:\usepackage/eqnlines#c,\eqnlinesset,\begin{equation},\eqnaddopt
 allowbreaks=#0,1,2,3,4
 allowdisplaybreaks=#0,1,2,3,4
 displayheight=##L
-displayheight*
 displaydepth=##L
-displaydepth*
 tagmargin=##L
 tagmargin*=##L
 tagmarginratio=%<factor%>
@@ -135,16 +155,28 @@ minleftmargin=##L
 maxleftmargin=##L
 marginbadness=%<integer%>
 maxbadness=%<integer%>
+fulllength=#on,off
 mincolsep=##L
 maxcolsep=##L
-maxcolsep*
 margins#true,false
+bestlineauto#true,false
+alignshrink=
+tagshrink=
+alignbadness=%<integer%>
+tagbadness=%<integer%>
 #endkeyvals
 
 #keyvals:\usepackage/eqnlines#c,\eqnlinesset,\begin{equationsbox}
-margin=##L
-marginleft=##L
-marginright=##L
+top
+t
+center
+c
+bottom
+b
+colsep=##L
+frame
+frame=%<cmd%>
+wrap={{%<cmd-l%>}{%<cmd-r%>}}
 #endkeyvals
 
 #keyvals:\usepackage/eqnlines#c,\eqnlinesset
@@ -152,7 +184,7 @@ native#true,false
 scanequation#true,false
 sqropt={%<options%>}
 angopt={%<options%>}
-displaybreak=#0,1,2,3,4
+boxangopt={%<options%>}
 noskip
 noskip=#above,below,both
 skip=##L
@@ -196,10 +228,11 @@ subeqtemplate=%<code%>
 autolabel#true,false
 autotag#true,false
 defaults=#classic,eqnlines
-linesfallback#true,false
+linesfallback=#true,false,reuse
 ampproof#true,false
 crerror#true,false
 eqref#true,false
+strutdepth=##L
 #endkeyvals
 
 #keyvals:\usepackage/eqnlines#c
@@ -213,6 +246,8 @@ ang#true,false
 label=##l
 tag=%<text%>
 tag*=%<text%>
+labelname=%<name%>
+alt=%<text%>
 #endkeyvals
 
 #keyvals:\begin{equations},\eqnaddopt
@@ -246,6 +281,12 @@ aboveskip=##L
 belowskip=##L
 abovespace=##L
 belowspace=##L
+prebreak=#0,1,2,3,4
+postbreak=#0,1,2,3,4
+prepenalty=
+postpenalty=
+interpenalty=
+linewidth=##L
 #endkeyvals
 
 #keyvals:\begin{intertext},\intertext
@@ -264,11 +305,16 @@ medskip=#above,below,both
 
 #keyvals:\eqnlinesprovide
 equation
+displaymath
 gather
 multline
 align
 flalign
+alignat
+xalignat
+xxalignat
 aligned
+alignedat
 gathered
 multlined
 subequations
