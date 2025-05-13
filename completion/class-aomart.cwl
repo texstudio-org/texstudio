@@ -1,11 +1,12 @@
 # aomart class
-# Matthew Bertucci 2025/01/27 for v1.32
+# Matthew Bertucci 2025/05/13 for v1.34
 
 #include:class-amsart
 #include:fancyhdr
 #include:lastpage
 #include:ifpdf
 #include:graphicx
+#include:zref-savepos
 #include:environ
 #include:yhmath
 #include:cmtiup
@@ -83,10 +84,13 @@ twoside
 \oldsubsections#*
 \widebar{arg}#m
 \EditorialComment{comments%todo}#D
+\EditorialComment{comments%todo}[voffset]#D
 \EditorialComment[audience]{comments%todo}#D
+\EditorialComment[audience]{comments%todo}[voffset]#D
 \Highlight{text}
 \Highlight[audience]{text}
 \ECSelect{audiences}
+\ECSelect[color]{audiences}
 \HSelect{audience}
 \HSelect[color]{audience}
 \fullref{word%text}{label}#r
