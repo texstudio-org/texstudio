@@ -24,6 +24,17 @@ store-all
 \begin{restatable*}{envname}{tag}
 \begin{restatable*}[options%keyvals]{envname}{tag}
 \end{restatable*}
+#keyvals:\begin{restatable},\begin{restatable*}
+note=%<text%>
+short-note=%<text%>
+label=##l
+manual-num=%<text%>
+continues=#%label
+continues*=#%label
+restate-keys={%<keyvals%>}
+listhack=#true,false
+seq=%<name%>
+#endkeyvals
 \listoftheorems
 \listoftheorems[options%keyvals]
 \listtheoremname#*
