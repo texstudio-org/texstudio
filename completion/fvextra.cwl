@@ -71,6 +71,7 @@ breaksymbolseprightnchars=%<integer%>
 spacebreak=%<macro%>
 breakbytoken#true,false
 breakbytokenanywhere#true,false
+texcomments#true,false
 #endkeyvals
 
 \fvinlineset{options%keyvals}
