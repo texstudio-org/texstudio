@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2025/04/08 for v3.8.3
+# Matthew Bertucci 2025/05/15 for v3.8.5
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -7,7 +7,6 @@
 #include:xcolor
 # loads table option of xcolor
 #include:colortbl
-#include:xeCJK
 #include:zhlineskip
 #include:titletoc
 #include:setspace
