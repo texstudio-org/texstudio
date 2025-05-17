@@ -175,6 +175,15 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 	int lastEqual = -1e6;
     int commentStart=-1;
 	QString keyName;
+    // extra stack for storing lastComma/lastEqual in case of new argument is introduced
+    // this works single line only (for now)
+    // see issue #4074
+    struct ArgumentSeparator
+    {
+        int lastComma;
+        int lastEqual;
+    };
+    QStack<ArgumentSeparator> argumentStack;
 
     bool unknownCommandsPresent = false;
 
@@ -479,6 +488,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 tk.level++;
                 lexed << tk;
                 level++;
+                // stack lastEqual/lastComma
+                ArgumentSeparator argSep;
+                argSep.lastComma=lastComma;
+                argSep.lastEqual=lastEqual;
+                argumentStack.push(argSep);
+                lastComma = -1;
+                lastEqual = -1e6;
             }else{
                 if(tk.type==Token::openBrace){ // check braces within arguments, not brackets/squareBrackets
                     //level++; // not an argument
@@ -554,6 +570,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     }
                     lastEqual = -1e6;
                 }
+                // handle stacked lastComma/lastEqual
+                if(!argumentStack.isEmpty()){
+                    ArgumentSeparator argSep=argumentStack.pop();
+                    lastComma=argSep.lastComma;
+                    lastEqual=argSep.lastEqual;
+                }
+
                 if (tk1.dlh == dlh) { // same line
                     int j = lexed.length() - 1;
                     while (j >= 0 && lexed.at(j).start > tk1.start)

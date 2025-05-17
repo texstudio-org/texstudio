@@ -215,3 +215,7 @@ podcomment#true,false
 \lstdefinelanguage{language name}{keyvals}#*
 \lstdefinelanguage{language name}{keyvals}[required aspects]#*
 
+\mycommand{keyvals}
+#keyvals:\mycommand
+note=%<text%>
+#endkeyvals

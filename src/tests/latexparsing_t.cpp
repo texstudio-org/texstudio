@@ -1002,6 +1002,12 @@ void LatexParsingTest::test_getContext_data() {
                             << 9
                             << (TTypes() << T::word)
                             << (STypes() << T::none);
+    // stacked commands, keyval with arguments which are comma separated (#4074)
+    QTest::newRow("command with keyval with command with comma separated arguments")
+        << "\\mycommand{note=\\cite{abc}}"
+        << 23
+        << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::command<<T::braces<<T::bibItem)
+        << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val<<T::bibItem<<T::none);
 
 
 
