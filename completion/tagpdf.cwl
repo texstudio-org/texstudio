@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2025/03/06 for v0.99o
+# Matthew Bertucci 2025/05/17 for v0.99q
 
 #include:pdfmanagement-testphase
 
@@ -27,6 +27,7 @@ debug/show
 debug/show=#para,paraOff,spaces,spacesOff
 debug/log=#none,v,vv,vvv,all
 debug/uncompress
+debug/parent-child-check=#on,off,atend
 viewer/pane/mathml#true,false
 viewer/pane/mathsource#true,false
 viewer/startstructure=%<number%>
