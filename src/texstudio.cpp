@@ -6490,12 +6490,14 @@ void Texstudio::beginRunningSubCommand(ProcessX *p, const QString &commandMain, 
 
 void Texstudio::endRunningSubCommand(ProcessX *p, const QString &commandMain, const QString &subCommand, const RunCommandFlags &flags)
 {
+#ifndef Q_OS_OSX //deactivate this code as pop-up messes with the extra started eventloop (#4070)
 	if (p->exitCode() && (flags & RCF_COMPILES_TEX) && !logExists()) {
 		if (!QFileInfo(QFileInfo(documents.getTemporaryCompileFileName()).absolutePath()).isWritable())
 			UtilsUi::txsWarning(tr("You cannot compile the document in a non writable directory."));
 		else
 			UtilsUi::txsWarning(tr("Could not start %1.").arg( buildManager.getCommandInfo(commandMain).displayName + ":" + buildManager.getCommandInfo(subCommand).displayName + ":\n" + p->getCommandLine()));
 	}
+#endif
 	if ((flags & RCF_CHANGE_PDF)  && !(flags & RCF_WAITFORFINISHED) && (runningPDFAsyncCommands > 0)) {
 		runningPDFAsyncCommands--;
 #ifndef NO_POPPLER_PREVIEW
