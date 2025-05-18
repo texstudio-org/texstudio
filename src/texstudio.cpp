@@ -116,14 +116,6 @@ bool programStopped = false;
 Texstudio *txsInstance = nullptr;
 QCache<QString, QIcon> iconCache;
 
-// workaround needed on OSX due to https://bugreports.qt.io/browse/QTBUG-49576
-void hideSplash()
-{
-#ifdef Q_OS_MAC
-	if (txsInstance)
-		txsInstance->hideSplash();
-#endif
-}
 /*!
  * \brief constructor
  *
@@ -159,8 +151,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	editors = nullptr;
 	m_languages = nullptr; //initial state to avoid crash on OSX
     currentSection=nullptr;
-
-	connect(&buildManager, SIGNAL(hideSplash()), this, SLOT(hideSplash()));
 
 	readSettings();
 
@@ -7292,13 +7282,6 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 
 	if (realCmdLine) Guardian::summon();
     return;
-}
-/*!
- * \brief hide splash screen again
- */
-void Texstudio::hideSplash()
-{
-	if (splashscreen) splashscreen->hide();
 }
 /*!
  * \brief execute self tests

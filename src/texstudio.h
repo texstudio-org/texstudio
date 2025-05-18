@@ -94,7 +94,6 @@ public:
 public slots:
 	LatexEditorView *load(const QString &f , bool asProject = false, bool recheck = true, bool dontAsk = false);
     void executeCommandLine(const QStringList &args, bool realCmdLine);
-	void hideSplash(); ///< hide splash screen
 	void startupCompleted();
 	void onOtherInstanceMessage(const QString &);  ///< For messages for the single instance
 	void fuzzCursorHistory();
