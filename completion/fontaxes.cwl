@@ -1,35 +1,9 @@
 # fontaxes package
-# Matthew Bertucci 2022/05/09 for v1.0e
+# Matthew Bertucci 2025/05/18 for v2.0
 
-\figureversion{versions%keyvals}
+# this package is deprecated and just loads the figureversions package
+#include:figureversions
 
-#keyvals:\figureversion#c
-text
-osf
-lining
-lf
-tabular
-tab
-proportional
-prop
-#endkeyvals
-
-\liningfigures{text}
-\lnfigures
-\noscshape#*
-\prfigures
-\proportionalfigures{text}
-\proportionalmath
-\tabularfigures{text}
-\tabularmath
-\tbfigures
-\textfigures{text}
-\txfigures
-
-\fontbasefamily{value}#*
-\fontfigurealignment{value}#*
-\fontfigurestyle{value}#*
-\fontprimaryshape{value}#*
-\fontsecondaryshape{value}#*
-\mathfigurealignment{value}#*
-\mathweight{value}#*
+# for compatibility
+\fontprimaryshape{value}#S
+\fontsecondaryshape{value}#S
