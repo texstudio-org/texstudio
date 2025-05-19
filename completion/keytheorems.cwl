@@ -1,5 +1,5 @@
 # keytheorems package
-# Matthew Bertucci 2025/04/24 for v0.2.6
+# Matthew Bertucci 2025/05/19 for v0.2.7
 
 #include:aliascnt
 #include:amsthm
@@ -103,6 +103,7 @@ tcolorbox-no-titlebar
 tcolorbox-no-titlebar={%<tcolorbox options%>}
 leftmargin=##L
 rightmargin=##L
+margin=##L
 counter-format=%<code%>
 #endkeyvals
 
