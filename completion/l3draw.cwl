@@ -1,5 +1,5 @@
 # l3draw package
-# Matthew Bertucci 2025/03/15
+# Matthew Bertucci 2025/05/19
 
 \draw_baseline:n {%<⟨length⟩%>}#/%expl3
 \draw_begin:#/%expl3
@@ -13,10 +13,6 @@
 \draw_dash_pattern:nn {%<⟨pattern⟩%>} {%<⟨phase⟩%>}#/%expl3
 \draw_end:#/%expl3
 \draw_evenodd_rule:#/%expl3
-\draw_hidden_begin:#/%expl3
-\draw_hidden_begin:#/%expl3
-\draw_hidden_end:#/%expl3
-\draw_hidden_end:#/%expl3
 \draw_join_bevel:#/%expl3
 \draw_join_miter:#/%expl3
 \draw_join_round:#/%expl3
