@@ -1,5 +1,5 @@
 # documentation tcolorboxlibrary
-# 2024/09/27 for v6.4.0
+# 2025/05/20 for v6.5.0
 
 #include:tcolorboxlibrarylistings
 #include:tcolorboxlibraryskins
@@ -198,6 +198,7 @@ documentation minted language=%<language%>
 #keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\tcbmakedocSubKey,\tcbmakedocSubKeys,\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*,\begin{dispExample*},\begin{dispListing*}
 keywords bold#true,false
 page ref formatter=%<macro%>
+ctan formatter=%<macro%>
 index command=%<macro%>
 index command name=%<name%>
 index format=#pgfsection,pgfchapter,pgf,doc,off
