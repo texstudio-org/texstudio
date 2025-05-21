@@ -312,6 +312,7 @@
 <file>completion/beamerthemeSimpleDarkBlue.cwl</file>
 <file>completion/beamerthemeSimplePlus.cwl</file>
 <file>completion/beamerthemeSingapore.cwl</file>
+<file>completion/beamerthemespectrum.cwl</file>
 <file>completion/beamerthemeSzeged.cwl</file>
 <file>completion/beamerthemetamu.cwl</file>
 <file>completion/beamerthemethubeamer.cwl</file>
@@ -2178,6 +2179,12 @@
 <file>completion/ling-macros.cwl</file>
 <file>completion/linguex.cwl</file>
 <file>completion/linguisticspro.cwl</file>
+<file>completion/linguistix-base.cwl</file>
+<file>completion/linguistix-fonts.cwl</file>
+<file>completion/linguistix-ipa.cwl</file>
+<file>completion/linguistix-logos.cwl</file>
+<file>completion/linguistix-nfss.cwl</file>
+<file>completion/linguistix.cwl</file>
 <file>completion/linop.cwl</file>
 <file>completion/linsys.cwl</file>
 <file>completion/lips.cwl</file>
