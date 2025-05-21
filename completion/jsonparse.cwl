@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2025/04/09 for v1.4.0
+# Matthew Bertucci 2025/05/21 for v1.6.0
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -70,8 +70,8 @@ global#true,false
 
 # expl3 interface
 \g_jsonparse_entries_prop#/%expl3
-\jsonparse_array_count:NN %<⟨tl var⟩ ⟨integer⟩%>#/%expl3
-\jsonparse_filter:Nn %<⟨tl var⟩%> {%<⟨key⟩%>}#/%expl3
+\jsonparse_set_array_count:NN %<⟨tl var⟩ ⟨integer⟩%>#/%expl3
+\jsonparse_set_filter:Nn %<⟨tl var⟩%> {%<⟨key⟩%>}#/%expl3
 \jsonparse_gput_right_rescan:Nn %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_gput_right_rescan:Ne %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_gset_rescan:Nn %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
@@ -87,13 +87,13 @@ global#true,false
 \jsonparse_parse:e {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_parse:n {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_parse:o {%<⟨JSON string⟩%>}#/%expl3
-\jsonparse_parse_keys:NN %<⟨tl var⟩ ⟨str var⟩%>#/%expl3
-\jsonparse_parse_to_prop:Nn %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
-\jsonparse_parse_to_prop:Ne %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
-\jsonparse_parse_to_prop:No %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
-\jsonparse_parse_to_prop_local:Nn %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
-\jsonparse_parse_to_prop_local:Ne %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
-\jsonparse_parse_to_prop_local:No %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_set_parse_keys:NN %<⟨tl var⟩ ⟨str var⟩%>#/%expl3
+\jsonparse_set_parse:Nn %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_set_parse:Ne %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_set_parse:No %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_gset_parse:Nn %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_gset_parse:Ne %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
+\jsonparse_gset_parse:No %<⟨tl var⟩%> {%<⟨JSON string⟩%>}#/%expl3
 \jsonparse_put_right_rescan:Nn %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_put_right_rescan:Ne %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_rescan:n {%<⟨JSON value⟩%>}#/%expl3
