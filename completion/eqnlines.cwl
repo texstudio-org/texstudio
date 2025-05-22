@@ -1,5 +1,5 @@
 # eqnlines package
-# Matthew Bertucci 2025/05/07 for v0.8
+# Matthew Bertucci 2025/05/21 for v0.9
 
 #include:keyval
 
@@ -62,13 +62,11 @@
 \eqnaddopt{options%keyvals}
 \eqnalt{text}
 \eqnalt[line|cell]{text}
+\eqncontrol{options%keyvals}
 \eqnlinesprovide{features%keyvals}
 \eqnlinesset{options%keyvals}
 \eqnpunct{punct}
 \eqnpunctapply
-\eqnpunctcol{punct}
-\eqnpunctline{punct}
-\eqnpunctdefault{punct}
 \eqref{label}#r
 \framecell
 \framecell[cmd]
@@ -135,17 +133,6 @@ tagmarginthreshold=%<threshold%>
 mintagsep=##L
 mintagwidth=##L
 mintagwidth*=##L
-numberline
-numberline=%<mode%>
-nonumber
-donumber
-number
-tagsleft
-leqno
-tagsright
-reqno
-tags
-eqno
 layout=#left,center
 center
 left
@@ -159,11 +146,11 @@ fulllength=#on,off
 mincolsep=##L
 maxcolsep=##L
 margins#true,false
-bestlineauto#true,false
 alignshrink=
 tagshrink=
 alignbadness=%<integer%>
 tagbadness=%<integer%>
+transpose=#plain,cont
 #endkeyvals
 
 #keyvals:\usepackage/eqnlines#c,\eqnlinesset,\begin{equationsbox}
@@ -228,18 +215,18 @@ subeqtemplate=%<code%>
 autolabel#true,false
 autotag#true,false
 defaults=#classic,eqnlines
-linesfallback=#true,false,reuse
 ampproof#true,false
 crerror#true,false
-eqref#true,false
 strutdepth=##L
+modifierwarning#true,false
 #endkeyvals
 
 #keyvals:\usepackage/eqnlines#c
-equation#true,false
-amsmath#true,false
+env=#none,equation,amsmath
 amsmathends#true,false
+backup#true,false
 ang#true,false
+eqref#true,false
 #endkeyvals
 
 #keyvals:\begin{equations},\begin{subequations}
@@ -248,6 +235,22 @@ tag=%<text%>
 tag*=%<text%>
 labelname=%<name%>
 alt=%<text%>
+#endkeyvals
+
+#keyvals:\usepackage/eqnlines#c,\eqnlinesset,\begin{equations},\eqnaddopt
+numberline=%<mode%>
+nonumber
+*
+donumber
+!
+tagsleft
+leqno
+tagsright
+reqno
+tags
+eqno
+bestlineauto#true,false
+linesfallback=#true,false,reuse
 #endkeyvals
 
 #keyvals:\begin{equations},\eqnaddopt
@@ -259,12 +262,10 @@ gather
 ga
 lines
 ln
-~
 align
 al
 columns
 col
-@
 native#true,false
 displaybreak=#0,1,2,3,4
 short
@@ -287,6 +288,38 @@ prepenalty=
 postpenalty=
 interpenalty=
 linewidth=##L
+colsep=##L
+#endkeyvals
+
+#keyvals:\eqncontrol
+vspace=
+vspace*=
+break=
+penalty=
+label=
+labelname=
+tag=
+tag*=
+taglabel=
+raisetag=
+raisetag!
+framecell
+framecell=%<command%>
+frametag
+frametag=%<command%>
+nonumber
+*
+donumber
+!
+numberhere
+numbernext
+align=
+shift=
+shift*=
+punctsep=
+punct=
+punct*
+punctapply
 #endkeyvals
 
 #keyvals:\begin{intertext},\intertext

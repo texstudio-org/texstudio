@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/04/04 for v14.12.0
+# Matthew Bertucci 2025/05/15 for v14.13.0
 
 #include:iftex
 
@@ -1790,6 +1790,7 @@ microstation
 microstrategy
 midi
 migadu
+mihon
 mihoyo
 mikrotik
 milanote
@@ -2342,6 +2343,7 @@ radstudio
 railway
 rainmeter
 rakuten
+rakutenkobo
 ram
 rancher
 rapid

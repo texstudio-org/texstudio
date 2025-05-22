@@ -1,5 +1,5 @@
 # keytheorems package
-# Matthew Bertucci 2025/04/24 for v0.2.6
+# Matthew Bertucci 2025/05/19 for v0.2.7
 
 #include:aliascnt
 #include:amsthm
@@ -24,6 +24,17 @@ store-all
 \begin{restatable*}{envname}{tag}
 \begin{restatable*}[options%keyvals]{envname}{tag}
 \end{restatable*}
+#keyvals:\begin{restatable},\begin{restatable*}
+note=%<text%>
+short-note=%<text%>
+label=##l
+manual-num=%<text%>
+continues=#%label
+continues*=#%label
+restate-keys={%<keyvals%>}
+listhack=#true,false
+seq=%<name%>
+#endkeyvals
 \listoftheorems
 \listoftheorems[options%keyvals]
 \listtheoremname#*
@@ -92,6 +103,7 @@ tcolorbox-no-titlebar
 tcolorbox-no-titlebar={%<tcolorbox options%>}
 leftmargin=##L
 rightmargin=##L
+margin=##L
 counter-format=%<code%>
 #endkeyvals
 

@@ -2,7 +2,7 @@
 # modified by Tim Hoffmann 2014-03-24
 # modified by Elias Kirchgässner 2016-07-27
 # modified by muzimuzhi 2020 Feb 15, minted v2.5
-# modified by Matthew Bertucci 2024 Nov 11, v3.3.0
+# modified by Matthew Bertucci 2025 May 15, v3.7.0
 
 #include:catchfile
 #include:etoolbox
@@ -187,8 +187,9 @@ tab=%<macro%>
 tabcolor=#%color
 tabsize=%<integer%>
 texcl#true,false
-vspace=##L
 texcomments#true,false
+tokenmerge#true,false
+vspace=##L
 xleftmargin=##L
 xrightmargin=##L
 #endkeyvals

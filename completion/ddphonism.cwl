@@ -1,18 +1,16 @@
 # ddphonism package
-# Matthew Bertucci 10/1/2021 for v0.2
+# Matthew Bertucci 2025/05/13 for v0.3
 
-#include:etoolbox
-#include:pgfkeys
 #include:tikz
-#include:xstring
+#include:tikzlibrarymatrix
 
 \dmatrix{number list}
 \dmatrix[options%keyvals]{number list}
 
 #keyvals:\dmatrix
-sep=
-vsep=
-hsep=
+sep=%<number%>
+vsep=%<number%>
+hsep=%<number%>
 lines
 outside lines
 inside lines
@@ -25,13 +23,13 @@ no tikz
 \ddiagram[options%keyvals]{number list}
 
 #keyvals:\ddiagram
-name=
-up=
-arrow shift=
+name=%<text%>
+up=%<integer%>
+arrow shift=%<number%>
 no numbers
 no arrow
-xshift=
-yshift=
+xshift=%<number%>
+yshift=%<number%>
 no tikz
 #endkeyvals
 

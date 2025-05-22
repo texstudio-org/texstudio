@@ -1,5 +1,5 @@
 # minted tcolorboxlibrary
-# 2024/01/10 for v6.2.0
+# 2025/05/20 for v6.5.0
 
 #include:minted
 # loads processing and listingscore tcolorbox libraries
@@ -101,10 +101,16 @@ run system command=%<system command%>
 compilable listing
 run pdflatex=%<arguments%>
 run pdflatex
+run pdflatex-dev=%<arguments%>
+run pdflatex-dev
 run xelatex=%<arguments%>
 run xelatex
+run xelatex-dev=%<arguments%>
+run xelatex-dev
 run lualatex=%<arguments%>
 run lualatex
+run lualatex-dev=%<arguments%>
+run lualatex-dev
 run makeindex=%<arguments%>
 run makeindex
 run bibtex=%<arguments%>
@@ -113,8 +119,12 @@ run biber=%<arguments%>
 run biber
 run arara=%<arguments%>
 run arara
+run latexmk=%<arguments%>
+run latexmk
 run latex=%<arguments%>
 run latex
+run latex-dev=%<arguments%>
+run latex-dev
 run dvips=%<arguments%>
 run dvips
 run ps2pdf=%<arguments%>
