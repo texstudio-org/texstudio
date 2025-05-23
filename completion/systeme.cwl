@@ -1,5 +1,5 @@
 # systeme package
-# Matthew Bertucci 2025/05/13 for v0.4
+# Matthew Bertucci 2025/05/23 for v0.41
 
 #include:xstring
 #include:simplekv
@@ -32,9 +32,10 @@ member sep list={%<code1,code2,...%>}
 coeff space=##L
 post subst={%<x1%>}{%<y1%>}%<{x2}{y2}...%>
 store=%<command%>
+align const sign#true,false
 #endkeyvals
 
-\aligncal{eq1,eq2,...%formula}
+\aligncalc{eq1,eq2,...%formula}
 
 \SYSeqnum#*
 \+#*
