@@ -2743,7 +2743,7 @@ QRect PDFWidget::pageRect(int page) const
 {
 	if (document.isNull())
 		return QRect();
-	if (page < pages.first() || page > pages.last())
+    if (pages.isEmpty() || page < pages.first() || page > pages.last())
 		return QRect();
 	QRect grect;
 	if (realPageIndex == 0) grect = gridPageRect(page + getPageOffset());
