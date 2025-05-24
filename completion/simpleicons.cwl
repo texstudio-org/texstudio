@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/05/15 for v14.13.0
+# Matthew Bertucci 2025/05/24 for v14.14.0
 
 #include:iftex
 
@@ -316,6 +316,7 @@ backbone
 backbonedotjs
 backendless
 backstage
+backstagecasting
 badoo
 baidu
 bakalari
@@ -1044,6 +1045,7 @@ freelancermap
 freenas
 freenet
 freepik
+freetube
 fresh
 frontendmentor
 frontify
@@ -1193,6 +1195,7 @@ googlestreetview
 googletagmanager
 googletasks
 googletranslate
+googletv
 gotomeeting
 grab
 gradio
@@ -1219,6 +1222,7 @@ groupon
 grubhub
 grunt
 gsk
+gsma
 gsmarenadotcom
 gstreamer
 gtk
@@ -1259,6 +1263,7 @@ hatenabookmark
 haveibeenpwned
 haxe
 hbo
+hbomax
 hcl
 hdfcbank
 headlessui
@@ -1498,6 +1503,7 @@ kaspersky
 katana
 kaufland
 kde
+kdeneon
 kdenlive
 kdeplasma
 kedro
@@ -1901,12 +1907,14 @@ netdata
 neteasecloudmusic
 netflix
 netgear
+netim
 netlify
 nette
 netto
 neutralinojs
 newbalance
 newegg
+newpipe
 newjapanprowrestling
 newrelic
 newyorktimes
@@ -2007,6 +2015,7 @@ openaigym
 openapiinitiative
 openbadges
 openbsd
+opencritic
 openbugbounty
 opencollective
 opencontainersinitiative
@@ -2228,6 +2237,7 @@ prdotco
 preact
 precommit
 prefect
+premid
 premierleague
 prepbytes
 prestashop
@@ -2338,6 +2348,7 @@ rabbitmq
 racket
 radar
 radarr
+radiofrance
 radixui
 radstudio
 railway
