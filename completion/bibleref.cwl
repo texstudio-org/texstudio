@@ -1,10 +1,11 @@
 # bibleref package
-# Matthew Bertucci 2022/05/30 for v1.25
+# Matthew Bertucci 2025/05/18 for v1.26.0
 
 #include:ifthen
 #include:fmtcount
 #include:amsgen
 #include:ifxetex
+#include:xstring
 
 #keyvals:\usepackage/bibleref#c,\biblerefstyle
 default
@@ -16,6 +17,7 @@ NTG
 MLA
 chicago
 text
+splitmultiplerefinindex
 %biblerefstyle
 #endkeyvals
 
@@ -56,19 +58,19 @@ text
 \biblerefmap{label}{new sort key}#*
 
 # not documented
-\brabbrvname#*
-\braltabbrvname#*
-\BRbkchsep#*
-\BRbooknumberstyle{text}#*
-\BRbookof#*
-\BRbooktitlestyle{text}#*
-\BRchapterstyle{text}#*
-\BRepistlenumberstyle{text}#*
-\BRepistleof#*
-\BRepistleto#*
-\BRepistletothe#*
-\brfullname#*
-\BRgospel#*
-\BRotherchapterstyle{text}#*
-\BRversestyle{text}#*
-\BRversesuffixstyle{text}#*
+\brabbrvname#S
+\braltabbrvname#S
+\BRbkchsep#S
+\BRbooknumberstyle{text}#S
+\BRbookof#S
+\BRbooktitlestyle{text}#S
+\BRchapterstyle{text}#S
+\BRepistlenumberstyle{text}#S
+\BRepistleof#S
+\BRepistleto#S
+\BRepistletothe#S
+\brfullname#S
+\BRgospel#S
+\BRotherchapterstyle{text}#S
+\BRversestyle{text}#S
+\BRversesuffixstyle{text}#S

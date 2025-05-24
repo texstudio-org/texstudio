@@ -1,5 +1,5 @@
 # scontents package
-# Matthew Bertucci 2024/06/15 for v2.1
+# Matthew Bertucci 2025/05/16 for v2.4
 
 \setupsc{options%keyvals}
 
@@ -32,11 +32,10 @@ force-eol#true,false
 \newenvsc{envname}#N
 \newenvsc{envname}[initial keys%keyvals]#N
 
-## for the moment keyval completion in last arg is broken
-## #keyvals:\newenvsc
-## store-env=%<seq name%>
-## print-env#true,false
-## #endkeyvals
+#keyvals:\newenvsc
+store-env=%<seq name%>
+print-env#true,false
+#endkeyvals
 
 \Scontents{argument}
 \Scontents[options%keyvals]{argument}
@@ -44,7 +43,6 @@ force-eol#true,false
 #keyvals:\Scontents
 store-cmd=%<seq name%>
 print-cmd#true,false
-force-eol#true,false
 #endkeyvals
 
 \Scontents*{argument}
@@ -81,19 +79,22 @@ wrapper={%<code%>}
 \meaningsc[options%keyvals]{seq name}
 
 #keyvals:\typestored#c,\meaningsc#c
-width-tab=%<integer%>
 %<index%>
+print-cmd#true,false
+write-out=%<file.ext%>
+overwrite#true,false
+width-tab=%<integer%>
 #endkeyvals
 
 \mergesc[%<options%>]{%<{seqA}[index],{seqB}[start-stop],{seqC}[1-end]%>}
 
 #keyvals:\mergesc
-typestored
-meaningsc
 print-cmd#true,false
 write-out=%<file.ext%>
-width-tab=%<integer%>
 overwrite#true,false
+width-tab=%<integer%>
+typestored
+meaningsc
 #endkeyvals
 
 \begin{verbatimsc}#V

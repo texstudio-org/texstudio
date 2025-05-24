@@ -1,29 +1,44 @@
 # systeme package
-# Matthew Bertucci 2025/02/16 for v0.35
+# Matthew Bertucci 2025/05/13 for v0.4
 
 #include:xstring
+#include:simplekv
 
 \systeme{eq1,eq2,...%formula}
-\systeme[alignment_chars%formula]{eq1,eq2,...%formula}
+\systeme[keyvals]{eq1,eq2,...%formula}
+\setsysteme{keyvals}
+\resetsysteme
 
-\syslineskipcoeff{value}#*
-\sysdelim{delim1%formula}{delim2%formula}#*
-\sysequivsign{sign%formula}{substitution%formula}#*
-\sysaddeqsign{sign%formula}#*
-\sysremoveeqsign{sign%formula}#*
-\syseqsep{character%formula}#*
-\sysalign{%<l|c|r%>,%<l|c|r%>}#*
-\syssignspace{dimen%l}#*
-\syseqspace{dimen%l}#*
-\sysextracolsign{sign%formula}#*
-\syscodeextracol{start code}{end code}#*
-\sysautonum{expression%formula}#*
-\sysautonum*{expression%formula}#*
+#keyvals:\systeme,\setsysteme
+eq sep=%<code%>
+delim=%<code%>
+align={%<list%>}
+sign space=##L
+member sep space=##L
+line skip coeff=%<number%>
+member sep subst={%<code1,code2,...%>}
+add member sep=%<code%>
+remove member sep=%<code%>
+extra col sign=%<character%>
+extra col pre=%<code%>
+extra col post=%<code%>
+autonum code=%<code%>
+autonum continue#true,false
+sort={%<instructions%>}
+align terms#true,false
+main eq count=%<integer%>
+extra height=##L
+member sep list={%<code1,code2,...%>}
+coeff space=##L
+post subst={%<x1%>}{%<y1%>}%<{x2}{y2}...%>
+store=%<command%>
+#endkeyvals
+
+\aligncal{eq1,eq2,...%formula}
+
 \SYSeqnum#*
-\sysreseteqnum#*
-\syssubstitute{%<symbol1%>%<symbol2%>%<{term1}{term2}...%>}#*
-\sysnosubstitute#*
 \+#*
+
 \SYSstyfile#S
 \SYSname#S
 \SYSver#S

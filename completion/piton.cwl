@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2025/05/07 for v4.4
+# Matthew Bertucci 2025/05/14 for v4.5
 
 #include:luacode
 #include:xcolor
@@ -88,87 +88,88 @@ line-numbers/start
 
 # keys for both \PitonOptions and \begin{Piton}
 #keyvals:\PitonOptions,\begin{Piton}
-language=#Python,OCaml,C,SQL,minimal,verbatim,%newpitonlang
+auto-gobble
+background-color=#%color
+break-lines
+break-lines-in-Piton
+break-lines-in-piton
+break-numbers-anywhere
+break-strings-anywhere
+continuation-symbol-on-indentation=%<symbol%>
+continuation-symbol=%<symbol%>
+end-of-broken-line=%<symbol%>
+env-gobble
+env-used-by-split=%<envname%>
 font-command=%<font commands%>
 gobble
 gobble=%<integer%>
-auto-gobble
-tabs-auto-gobble
-env-gobble
+indent-broken-lines
+join=%<file%>
+language=#Python,OCaml,C,SQL,minimal,verbatim,%newpitonlang
+left-margin=##L
 line-numbers
-line-numbers={%<options%>}
-line-numbers/skip-empty-lines#true,false
+line-numbers/format=%<font commands%>
 line-numbers/label-empty-lines#true,false
 line-numbers/resume
 line-numbers/sep=##L
-line-numbers/format=%<font commands%>
-splittable
-splittable=%<integer%>
-splittable-on-empty-lines#true,false
-env-used-by-split=%<envname%>
-background-color=#%color
+line-numbers/skip-empty-lines#true,false
+line-numbers={%<options%>}
+path-write=%<path%>
+print#true,false
 prompt-background-color=#%color
-width=##L
-left-margin=##L
-tab-size=%<integer%>
 show-spaces
 show-spaces-in-strings
-break-lines-in-Piton
-break-lines-in-piton
-break-lines
-indent-broken-lines
-end-of-broken-line=%<symbol%>
-continuation-symbol=%<symbol%>
-continuation-symbol-on-indentation=%<symbol%>
-write=%<file%>
-path-write=%<path%>
-join=%<file%>
 split-on-empty-lines#true,false
 split-separation=%<code%>
-break-strings-anywhere
-break-numbers-anywhere
+splittable
+splittable-on-empty-lines#true,false
+splittable=%<integer%>
+tab-size=%<integer%>
+tabs-auto-gobble
+width=##L
+write=%<file%>
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}
 \SetPitonStyle[language]{options%keyvals}
 
 #keyvals:\SetPitonStyle
-Number=%<formatting%>
-String.Short=%<formatting%>
-String.Long=%<formatting%>
-String=%<formatting%>
-String.Doc=%<formatting%>
-String.Doc.Internal=%<formatting%>
-String.Interpol=%<formatting%>
-Interpol.Inside=%<formatting%>
-Operator=%<formatting%>
-Operator.Word=%<formatting%>
-Name.Builtin=%<formatting%>
-Name.Decorator=%<formatting%>
-Name.Namespace=%<formatting%>
-Name.Class=%<formatting%>
-Name.Function=%<formatting%>
-UserFunction=%<formatting%>
+Comment.LaTeX=%<formatting%>
+Comment=%<formatting%>
+Directive=%<formatting%>
 Exception=%<formatting%>
 InitialValues=%<formatting%>
-Comment=%<formatting%>
-Comment.LaTeX=%<formatting%>
+Interpol.Inside=%<formatting%>
 Keyword.Constant=%<formatting%>
-Keyword=%<formatting%>
 Keyword.Governing=%<formatting%>
-Name.Type=%<formatting%>
-Name.Field=%<formatting%>
+Keyword=%<formatting%>
+Name.Builtin=%<formatting%>
+Name.Class=%<formatting%>
 Name.Constructor=%<formatting%>
+Name.Decorator=%<formatting%>
+Name.Field=%<formatting%>
+Name.Function=%<formatting%>
 Name.Module=%<formatting%>
-TypeParameter=%<formatting%>
-Preproc=%<formatting%>
+Name.Namespace=%<formatting%>
 Name.Table=%<formatting%>
-Directive=%<formatting%>
+Name.Type=%<formatting%>
+Number=%<formatting%>
+Operator.Word=%<formatting%>
+Operator=%<formatting%>
+Preproc=%<formatting%>
+String.Doc.Internal=%<formatting%>
+String.Doc=%<formatting%>
+String.Interpol=%<formatting%>
+String.Long=%<formatting%>
+String.Short=%<formatting%>
+String=%<formatting%>
+TypeParameter=%<formatting%>
+UserFunction=%<formatting%>
 # not documented
-FormattingType=%<formatting%>
-Identifier.Internal=%<formatting%>
 Comment.Math=%<formatting%>
 Discard=%<formatting%>
+FormattingType=%<formatting%>
+Identifier.Internal=%<formatting%>
 Identifier=%<formatting%>
 Keyword2=%<formatting%>
 Keyword3=%<formatting%>
@@ -178,54 +179,54 @@ Keyword6=%<formatting%>
 Keyword7=%<formatting%>
 Keyword8=%<formatting%>
 Keyword9=%<formatting%>
-Prompt=%<formatting%>
-Tag=%<formatting%>
-TypeExpression=%<formatting%>
 Number.Internal=%<formatting%>
+Prompt=%<formatting%>
 String.Long.Internal=%<formatting%>
 String.Short.Internal=%<formatting%>
+Tag=%<formatting%>
+TypeExpression=%<formatting%>
 #endkeyvals
 
 \PitonStyle{style%keyvals}{text%plain}
 
 #keyvals:\PitonStyle
+Comment
+Comment.LaTeX
+Directive
+Exception
+InitialValues
+Interpol.Inside
+Keyword
+Keyword.Constant
+Keyword.Governing
+Name.Builtin
+Name.Class
+Name.Constructor
+Name.Decorator
+Name.Field
+Name.Function
+Name.Module
+Name.Namespace
+Name.Table
+Name.Type
 Number
-String.Short
-String.Long
+Operator
+Operator.Word
+Preproc
 String
 String.Doc
 String.Doc.Internal
 String.Interpol
-Interpol.Inside
-Operator
-Operator.Word
-Name.Builtin
-Name.Decorator
-Name.Namespace
-Name.Class
-Name.Function
-UserFunction
-Exception
-InitialValues
-Comment
-Comment.LaTeX
-Keyword.Constant
-Keyword
-Keyword.Governing
-Name.Type
-Name.Field
-Name.Constructor
-Name.Module
+String.Long
+String.Short
 TypeParameter
-Preproc
-Name.Table
-Directive
+UserFunction
 # not documented
-FormattingType
-Identifier.Internal
 Comment.Math
 Discard
+FormattingType
 Identifier
+Identifier.Internal
 Keyword2
 Keyword3
 Keyword4
@@ -234,41 +235,44 @@ Keyword6
 Keyword7
 Keyword8
 Keyword9
-Prompt
-Tag
-TypeExpression
 Number.Internal
+Prompt
 String.Long.Internal
 String.Short.Internal
+Tag
+TypeExpression
 #endkeyvals
 
 \PitonClearUserFunctions
 \PitonClearUserFunctions[languages]
 
 \NewPitonEnvironment{envname}{xargs}{begdef}{enddef}#N
+\DeclarePitonEnvironment{envname}{xargs}{begdef}{enddef}#N
+\RenewPitonEnvironment{envname}{xargs}{begdef}{enddef}
+\ProvidePitonEnvironment{envname}{xargs}{begdef}{enddef}#N
 
 \NewPitonLanguage{language}{keyvals}#s#%newpitonlang
 
 #keyvals:\NewPitonLanguage
-morekeywords={%<list of keywords%>}
-morekeywords=[%<number%>]{%<list of keywords%>}
-otherkeywords={%<keywords%>}
-sensitive#true,false
-keywordsprefix=%<prefix%>
-moretexcs={%<list of csnames%>}
-moretexcs=[%<class number%>]{%<list of csnames%>}
-morestring=%<delimiter%>
-morestring=[%<b|d|m|s%>]%<delimiter%>
-morecomment=%<delimiter(s)%>
-morecomment=[%<i|l|s|n%>]%<delimiter(s)%>
-moredelim=[%<type%>][%<style%>]%<delimiters%>
-moredelim=*[%<type%>][%<style%>]%<delimiters%>
-moredelim=**[%<type%>][%<style%>]%<delimiters%>
-moredirectives={%<list of compiler directives%>}
-tag=%<<char1><char2>%>
 alsodigit={%<character sequence%>}
 alsoletter={%<character sequence%>}
 alsoother={%<character sequence%>}
+keywordsprefix=%<prefix%>
+morecomment=%<delimiter(s)%>
+morecomment=[%<i|l|s|n%>]%<delimiter(s)%>
+moredelim=**[%<type%>][%<style%>]%<delimiters%>
+moredelim=*[%<type%>][%<style%>]%<delimiters%>
+moredelim=[%<type%>][%<style%>]%<delimiters%>
+moredirectives={%<list of compiler directives%>}
+morekeywords=[%<number%>]{%<list of keywords%>}
+morekeywords={%<list of keywords%>}
+morestring=%<delimiter%>
+morestring=[%<b|d|m|s%>]%<delimiter%>
+moretexcs=[%<class number%>]{%<list of csnames%>}
+moretexcs={%<list of csnames%>}
+otherkeywords={%<keywords%>}
+sensitive#true,false
+tag=%<<char1><char2>%>
 #endkeyvals
 
 \SetPitonIdentifier{id1,id2,...}{code}

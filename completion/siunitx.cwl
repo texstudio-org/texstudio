@@ -1,7 +1,7 @@
 # dbitouze/2015-03-20 for siunitx v2.6e
 # thatlittleboy/2018-06-18
 # r0the/2021-10-07 for siunitx v3
-# Matthew Bertucci 2024-12-06 for v3.4.0
+# Matthew Bertucci 2025-05-17 for v3.4.11
 
 #include:translations
 #include:amstext
@@ -497,7 +497,7 @@ table-text-alignment=#left,center,right,none
 
 ## 4.13 Locale options
 #keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\unit,\SI,\si,\SIlist,\SIrange
-locale=#DE,UK,US,ZA,FR
+locale=#BR,DE,FR,UK,US,ZA
 #endkeyvals
 
 ## 4.14 Preamble-only options

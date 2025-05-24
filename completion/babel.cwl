@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2025/04/29 for v25.8
+# tbraun 4.11.2008; Matthew Bertucci 2025/05/14 for v25.9
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -19,7 +19,7 @@ showlanguages
 silent
 hyphenmap=#off,first,select,other,other*
 bidi=#default,basic,basic-r,bidi-l,bidi-r
-layout=#sectioning,counters,counters*,contents,footnotes,captions,columns,graphics,extras
+layout=#sectioning,counters,counters*,contents,footnotes,captions,columns,graphics,extras,pars,nopars
 provide=*
 provide+=*
 provide*=*
@@ -243,6 +243,7 @@ extension.u.tag.bcp47
 label=#digits.native,transliteration.dad,input.nospaces,spacing.basic,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,diaeresis.hyphen,prehyphen.nobreak,punctuation.space,longs.unifraktur,transliteration.omega,sigma.final,transliteration.cj,justification.interletter,transliteration.hk,transliteration.iast,digraphs.hyphen,danda.nobreak,linebreak.strict,letters.noj,letters.uv,transliteration.gajica,kashida.plain,kashida.base
 fonts=%<tag1 tag2 ...%>
 attribute=%<attribute%>
+prepend
 #endkeyvals
 
 \enablelocaletransform{transform%keyvals}

@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2024/03/30 for v0.41
+# Matthew Bertucci 2025/05/14 for v0.42
 
 #include:shellesc
 #include:xkeyval
@@ -31,6 +31,7 @@ checkCode
 
 #keyvals:\begin{externalDocument},\runExtCmd,\hvExternSetKeys
 progpath=%<path%>
+pwd=
 runsequence={%<command sequence%>}
 runs=%<integer%>
 runsAfter=%<integer%>
@@ -76,6 +77,7 @@ align=%<alignment commands%>
 ExampleDir=%<name%>
 eps#true,false
 verbose#true,false
+inactive#true,false
 compiler=#mpost,tex,latex,luatex,python3,perl,lua,java,xetex,pdflatex,lualatex,xelatex,context,sh,texlua,Rscript
 aboveskip=##L
 belowpreambleskip=##L

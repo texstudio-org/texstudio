@@ -1,5 +1,5 @@
 # luamplib package
-# Matthew Bertucci 2024/11/29 for v2.35.2
+# Matthew Bertucci 2025/05/15 for v2.37.3
 
 #include:luatex
 
@@ -57,13 +57,14 @@
 \endmplibgroup#S
 
 #keyvals:\begin{mplibcode}#c,\mpfig#c,\mpfig*#c,\usemplibgroup#c
-tag=%<tag name%>
-debug
-correct-BBox=%<llx lly urx ury%>
 alt=%<alt text%>
-artifact
 actualtext=%<text%>
+artifact
 text
+off
+tag=%<tag name%>
+adjust-BBox=%<llx lly urx ury%>
+tagging-setup={%<keyvals%>}
 instance=%<instance name%>
 #endkeyvals
 
@@ -103,11 +104,17 @@ resources=%<PDF resources%>
 
 # not documented
 \domplibcolor{color}{arg}#S
-\ltxdomplibcode{arg}#S
 \ltxdomplibcodeindeed{arg}#S
+\ltxdomplibcode{arg}#S
 \luamplibateveryshipout{arg}#S
 \luamplibatfirstshipout{arg}#S
 \luamplibatnextshipout{arg}#S
+\luamplibnotagtextboxset{arg1}{arg2}#S
+\luamplibtagasgroupput#S
+\luamplibtagasgroupset#S
+\luamplibtagtextboxset{arg1}{arg2}#S
+\mplibactualtext{arg}#S
+\mplibalttext{arg}#S
 \mplibdocancelnocache{arg}#S
 \mplibdocode{arg}#S
 \mplibdoeveryendmplib[instance name]{MetaPost code}#S
@@ -116,6 +123,7 @@ resources=%<PDF resources%>
 \mplibdomainmpfig#S
 \mplibdomakenocache{arg}#S
 \mplibdoprempfig#S
+\mplibgobbleoptsmpfig[arg]#S
 \mplibgroupbranch#S
 \mplibgroupgetnexttok#S
 \mplibgroupmain#S
@@ -139,20 +147,3 @@ resources=%<PDF resources%>
 \mplibtmptoks{arg}#S
 \mplibtoPDF{pdfliteral}#S
 \usemplibgroupmain{arg}#S
-\mplibgobbleoptsmpfig[arg]#S
-\luamplibtagtextbegin{arg}#S
-\luamplibtagtextend#S
-\mplibalttext{arg}#S
-\mplibactualtext{arg}#S
-\mplibstarttoPDForiginal#S
-\mplibstoptoPDForiginal#S
-\mplibputtextboxoriginal#S
-\luamplibtaggingbegin#S
-\luamplibtaggingend#S
-\luamplibtaggingBBox#S
-\mplibstarttousemplibgroup#S
-\mplibstoptousemplibgroup#S
-\luamplibtagasgroupbegin#S
-\luamplibtagasgroupend#S
-\mplibstarttousemplibgrouporiginal#S
-\mplibstoptousemplibgrouporiginal#S

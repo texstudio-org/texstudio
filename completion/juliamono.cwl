@@ -1,12 +1,11 @@
 # juliamono package
-# Matthew Bertucci 2025/05/13 for v0.01
+# Matthew Bertucci 2025/05/14 for v0.02
 
 #include:iftex
 #include:xkeyval
 #include:fontspec
 
 #keyvals:\usepackage/juliamono#c
-TT={%<fontspec features%>}
 DefaultFeatures={%<fontspec features%>}
 Black#true,false
 ExtraBold#true,false
