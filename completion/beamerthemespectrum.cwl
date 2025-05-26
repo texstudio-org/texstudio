@@ -1,8 +1,7 @@
 # spectrum beamertheme
-# Matthew Bertucci 2025/05/17 for v0.1
+# Matthew Bertucci 2025/05/26 for v0.2
 
 #include:tikz
-#include:pgf-spectra
 
 #keyvals:\usetheme/spectrum#c
 themecolor=#%color
