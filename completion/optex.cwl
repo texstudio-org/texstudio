@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2025/02/25 for v1.17
+# Matthew Bertucci 2025/05/26 for v1.18
 
 #include:plaintex
 #include:luatex
@@ -55,8 +55,11 @@
 \boldmath
 \mathbox{text}#m
 \bbig#m
+\bBigl#m
 \bbigl#m
+\bBigm#m
 \bbigm#m
+\bBigr#m
 \bbigr#m
 \setmathstyle
 \usemathstyle
@@ -411,6 +414,7 @@
 \foreach %<⟨list⟩%>\do %<⟨parameters⟩%>{%<what%>}
 \foreachdef%<\macro ⟨parameters⟩%>{%<what%>}
 \foreachdef{cmd}#Sd
+\foreachx %<⟨list⟩%>\do %<⟨parameters⟩%>{%<what%>}
 \fornum %<⟨from⟩..⟨to⟩%>\do {%<what%>}
 \incr %<⟨counter⟩%>
 \decr %<⟨counter⟩%>
@@ -753,20 +757,25 @@ enablefic
 \BodoniModa#S
 \Bonum#S
 \book#S
+\bookMath#S
 \bs#S
 \calli#S
 \ccond#S
 \Clara#S
 \Comicneue#S
+\Concrete#S
 \Culmus#S
 \Cursor#S
 \Dejavu#S
 \displ#S
 \DraftingMono#S
 \EBGaramond#S
+\Eczar#S
 \eexpd#S
 \elight#S
+\ETbb#S
 \Erewhon#S
+\EulerMath#S
 \expd#S
 \extend#S
 \FBembo#S
@@ -806,6 +815,7 @@ enablefic
 \noexpd#S
 \normal#S
 \noswash#S
+\Noto#S
 \Oldstandard#S
 \onum#S
 \osize#S
@@ -815,6 +825,7 @@ enablefic
 \Poltawski#S
 \Raleway#S
 \Roboto#S
+\sansMath#S
 \sanssemi#S
 \Schola#S
 \semibold#S
