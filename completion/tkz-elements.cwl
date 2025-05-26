@@ -1,7 +1,7 @@
 # tkz-elements package
-# Matthew Bertucci 2025/02/26 for v3.32c
+# Matthew Bertucci 2025/05/26 for v4.00c
 
-#include:unicode-math
+#include:iftex
 
 \tkzGetNodes
 \tkzUseLua{variable}
@@ -11,9 +11,12 @@
 \tkzDrawLuaEllipse[options](pt1,pt2,pt3)
 \tkzDrawCoordinates(type)
 \tkzDrawCoordinates[options](type)
-\tkzDrawPointOnCurve(pt)
-\tkzDrawPointOnCurve[options](pt)
+\tkzGetNodesMP{mp file}
 
+# not documented
+\tkzDrawPointOnCurve(pt)#S
+\tkzDrawPointOnCurve[options](pt)#S
+\tkzEraseLuaObj{arg}#S
 # deprecated
 \begin{tkzelements}#S
 \end{tkzelements}#S
