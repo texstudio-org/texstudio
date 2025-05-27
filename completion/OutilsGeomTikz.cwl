@@ -1,5 +1,5 @@
 # OutilsGeomTikz package
-# Matthew Bertucci 2023/10/21 for v0.1.4
+# Matthew Bertucci 2025/05/27 for v0.1.6
 
 #include:tikz
 #include:pgffor
@@ -34,6 +34,7 @@ Fond#true,false
 CouleurFond=#%color
 Opacite=%<factor%>
 AfficheValeurs#true,false
+EchelleValeurs=%<factor%>
 PosVal=#h,m,b,hb
 #endkeyvals
 
@@ -51,6 +52,7 @@ Fond#true,false
 CouleurFond=#%color
 Opacite=%<factor%>
 AfficheValeurs#true,false
+EchelleValeurs=%<factor%>
 Retourne#true,false
 #endkeyvals
 
@@ -63,6 +65,7 @@ Largeur=%<nombre%>
 Origine={(%<x,y%>)}
 Rotation=%<degrees%>
 Echelle=%<nombre%>
+EchelleValeurs=%<factor%>
 Couleur=#%color
 Fond#true,false
 CouleurFond=#%color
@@ -83,6 +86,7 @@ Couleur=#%color
 Fond#true,false
 CouleurFond=#%color
 Opacite=%<factor%>
+GraduationsInt#true,false
 AfficheAngles#true,false
 #endkeyvals
 
@@ -116,6 +120,7 @@ Fond#true,false
 CouleurFond=#%color
 Opacite=%<factor%>
 AfficheValeurs#true,false
+EchelleValeurs=%<factor%>
 #endkeyvals
 
 \tkzRappEquerre
@@ -163,76 +168,3 @@ Origine={(%<x,y%>)}
 Rotation=%<degrees%>
 Ombre#true,false
 #endkeyvals
-
-\COMPAScouleur#S
-\COMPAScouleurcrayon#S
-\COMPASechelle#S
-\COMPASechellecrayon#S
-\COMPASLLB#S
-\COMPASLLC#S
-\COMPASunittikz#S
-\EQangle#S
-\EQcouleur#S
-\EQcouleurfond#S
-\EQechelle#S
-\EQlargeur#S
-\EQlongueur#S
-\EQopac#S
-\EQposOrigin#S
-\MiniEQangle#S
-\MiniEQcouleur#S
-\MiniEQechelle#S
-\MiniEQposOrigin#S
-\MiniREGLangle#S
-\MiniREGLcouleur#S
-\MiniREGLechelle#S
-\MiniREGLposOrigin#S
-\NodeTmpAngle{arg1}{arg2}#S
-\NodeTmpDist{arg1}{arg2}#S
-\PENangle#S
-\PENcouleur#S
-\PENechelle#S
-\PENlongueur#S
-\PENposOrigin#S
-\RAPPangle#S
-\RAPPcouleur#S
-\RAPPcouleurfond#S
-\RAPPechangle#S
-\RAPPechelle#S
-\RAPPEQangle#S
-\RAPPEQcouleur#S
-\RAPPEQcouleurfond#S
-\RAPPEQechangle#S
-\RAPPEQechelle#S
-\RAPPEQlargeur#S
-\RAPPEQopac#S
-\RAPPEQposOrigin#S
-\RAPPopac#S
-\RAPPposOrigin#S
-\recupunitexencm#S
-\REGLangle#S
-\REGLcouleur#S
-\REGLcouleurfond#S
-\REGLechelle#S
-\REGLlargeur#S
-\REGLlongueur#S
-\REGLopac#S
-\REGLposOrigin#S
-\REGLposval#S
-\REQangle#S
-\REQcouleur#S
-\REQcouleurfond#S
-\REQechelle#S
-\REQlargeur#S
-\REQlongueur#S
-\REQopac#S
-\REQposOrigin#S
-\TmpUniteX#S
-\REGLREPechelle#S
-\REGLREPlongueur#S
-\REGLREPlargeur#S
-\REGLREPcouleur#S
-\REGLREPcouleurfond#S
-\REGLREPposOrigin#S
-\REGLREPangle#S
-\REGLREPopac#S
