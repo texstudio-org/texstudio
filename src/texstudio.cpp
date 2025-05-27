@@ -483,9 +483,18 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	connectWithAdditionalArguments(this, SIGNAL(infoAfterTypeset()), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_TYPESET);
 	connectWithAdditionalArguments(&buildManager, SIGNAL(endRunningCommands(QString, bool, bool, bool)), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_COMMAND_RUN);
 
+    QString txsLastStartupCompletion=config->value("texmaker/startupCompletion","new").toString();
+    if(txsLastStartupCompletion=="restoreSession"){
+        // last txs start failed in restore, don't restore this time
+        ConfigManager::dontRestoreSession=true;
+    }
 	if (configManager.sessionRestore && !ConfigManager::dontRestoreSession) {
+        config->setValue("texmaker/startupCompletion","restoreSession");
+        config->sync();
 		fileRestoreSession(false, false);
 	}
+    config->setValue("texmaker/startupCompletion","complete");
+    config->sync();
 	splashscreen = nullptr;
 }
 /*!
