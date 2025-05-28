@@ -23,6 +23,8 @@ private slots:
 	void test_getArg();
 	void test_getArg2_data();
 	void test_getArg2();
+    void test_getArgContent_data();
+    void test_getArgContent();
 	void test_getTokenAtCol_data();
 	void test_getTokenAtCol();
 	void test_getCommandFromToken_data();

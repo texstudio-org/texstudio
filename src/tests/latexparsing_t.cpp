@@ -756,6 +756,78 @@ void LatexParsingTest::test_getArg2() {
     ConfigManager::RUNAWAYLIMIT=storeRUNAWAYLIMIT;
 }
 
+void LatexParsingTest::test_getArgContent_data()
+{
+    QTest::addColumn<QString>("lines");
+    QTest::addColumn<STypes>("types");
+    QTest::addColumn<STypes>("subtypes");
+    QTest::addColumn<int>("pos");
+    QTest::addColumn<int>("level");
+
+    QTest::newRow("newcommand command") << "\\newcommand{text}{test}"
+                                        << (TTypes() <<T::braces << T::def << T::braces)
+                                        << (STypes() <<T::def << T::none << T::definition)
+                                        << 0 << 1;
+    QTest::newRow("newcommand command2") << "\\newcommand{\\ext}{test}"
+                                         <<  (STypes() <<T::braces << T::def << T::braces)
+                                         <<  (STypes() <<T::def << T::none << T::definition)
+                                         << 0 << 1;
+    QTest::newRow("newcommand command, no braces") << "\\newcommand text {test}"
+                                                   <<  (STypes() <<T::word << T::braces)
+                                                   <<  (STypes() <<T::def << T::definition)
+                                                   << 0 << 1;
+    QTest::newRow("newcommand command, no braces2") << "\\newcommand text test"
+                                                    <<  (TTypes() << T::word << T::word)
+                                                    <<  (STypes() << T::def << T::definition)
+                                                    << 0 << 1;
+    QTest::newRow("newcommand command with trail") << "\\newcommand{text}{test} abc"
+                                        << (TTypes() <<T::braces << T::def << T::braces)
+                                        << (STypes() <<T::def << T::none << T::definition)
+                                        << 0 << 1;
+    QTest::newRow("newcommand command with trailing braces") << "\\newcommand{text}{test} {abc}"
+                                                   << (TTypes() <<T::braces << T::def << T::braces)
+                                                   << (STypes() <<T::def << T::none << T::definition)
+                                                   << 0 << 1;
+}
+
+void LatexParsingTest::test_getArgContent()
+{
+    QSharedPointer<LatexParser> lp = QSharedPointer<LatexParser>::create();
+    *lp=LatexParser::getInstance();
+    LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
+    lp->commandDefs.unite(pkg_graphics.commandDescriptions);
+    QFETCH(QString,lines);
+    QFETCH(TTypes, types);
+    QFETCH(STypes, subtypes);
+    QFETCH(int, pos);
+    QFETCH(int, level);
+
+    QDocument *doc = new QDocument();
+    doc->setText(lines, false);
+    for(int i=0; i<doc->lines(); i++){
+        QDocumentLineHandle *dlh = doc->line(i).handle();
+        Parsing::simpleLexLatexLine(dlh);
+    }
+    TokenStack stack;
+    CommandStack commandStack;
+    for(int i=0; i<doc->lines(); i++){
+        QDocumentLineHandle *dlh = doc->line(i).handle();
+        Parsing::latexDetermineContexts2(dlh, stack, commandStack, lp);
+    }
+    QDocumentLineHandle *dlh = doc->line(0).handle();
+    TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+    // first token is command
+    Token tkCmd;
+    TokenList args;
+    TokenList result=Parsing::getArgContent(tl, pos,level);
+    QCOMPARE(result.length(), types.length());
+    for(int i=0;i<result.length();++i){
+        QCOMPARE(result.at(i).type, types.at(i));
+        QCOMPARE(result.at(i).subtype, subtypes.at(i));
+    }
+    delete doc;
+}
+
 void LatexParsingTest::test_getTokenAtCol_data() {
     QTest::addColumn<QString>("lines");
     QTest::addColumn<QList<int> >("nr");
