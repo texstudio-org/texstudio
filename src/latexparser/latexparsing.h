@@ -19,6 +19,8 @@ int findCommandWithArgsFromTL(const TokenList &tl, Token &cmd, TokenList &args, 
 QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type, bool enableMultiLineSearch = true,int hint=-1);
 QString getArg(const TokenList &tl, Token::TokenType type);
 QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int hint=-1, int count = 10); ///< internal
+TokenList getArgTL(const TokenList &tl, Token::TokenType type);
+TokenList findRestArgTL(QDocumentLineHandle *dlh, Token::TokenType type, int hint=-1, int count = 10); ///< internal
 
 Token getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first = false);
 int getTokenAtCol(TokenList &tl, int pos, bool first = false);

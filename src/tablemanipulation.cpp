@@ -5,6 +5,7 @@
 #include "latexparser/latexparser.h"
 #include "scriptengine.h"
 #include "configmanager.h"
+#include "latexparsing.h"
 
 QSet<QString> LatexTables::tabularNames = QSet<QString>() << "tabular" << "array" << "longtable" << "supertabular" << "tabu" << "longtabu"
                                                           << "IEEEeqnarray" << "xtabular" << "xtabular*" << "mpxtabular" << "mpxtabular*"<<"tblr"<<"longtblr"<<"talltblr";
@@ -137,6 +138,7 @@ void LatexTables::addColumn(QDocument *doc, const int lineNumber, const int afte
 	}
 	cur.insertText(def);
 	//continue adding col
+    //move cursor after definition -> \begin{tabularlike}{def}|
 	cur.movePosition(2, QDocumentCursor::NextCharacter);
 	QString line;
 	bool breakLoop = false;
@@ -210,6 +212,126 @@ void LatexTables::addColumn(QDocument *doc, const int lineNumber, const int afte
 		if (line.contains("\\end{")) breakLoop = true;
 	}
 	cur.endEditBlock();
+}
+
+void LatexTables::addColumn(Environment env, const int lineNumber, const int afterColumn, QStringList *cutBuffer)
+{
+    QDocumentLineHandle *dlh=env.dlh;
+    QDocument *doc=dlh->document();
+    int ln = doc->indexOf(dlh,lineNumber);
+    dlh->lockForRead();
+    TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    dlh->unlock();
+    int nextLine,nextCol;
+    Token tkColDef=getDef(tl,env,ln,nextLine,nextCol,doc);
+
+    QStringList pasteBuffer;
+    if (cutBuffer) {
+        pasteBuffer = *cutBuffer;
+        if (pasteBuffer.size() == 0)
+            return;
+    }
+    QString def = tkColDef.getInnerText();
+
+    if (def.isEmpty()) {
+        return; // begin not found
+    }
+
+    //add col in definition
+    QStringList defs = splitColDef(def);
+    QString addCol = "l";
+    if (cutBuffer) {
+        addCol = pasteBuffer.takeFirst();
+    }
+    def.clear();
+    if (afterColumn == 0)
+        def = addCol;
+    for (int i = 0; i < defs.count(); i++) {
+        def.append(defs[i]);
+        if (i + 1 == afterColumn || (i + 1 == defs.count() && i + 1 < afterColumn))
+            def.append(addCol);
+    }
+    QDocumentCursor cur(doc,ln,tkColDef.innerStart(),ln,tkColDef.innerStart()+tkColDef.innerLength());
+    cur.beginEditBlock();
+    cur.insertText(def);
+    //continue adding col
+    //move cursor after definition -> \begin{tabularlike}{def}|
+    if(ln==nextLine) ++nextCol; // move col by one as we inserted a column
+    cur.moveTo(nextLine,nextCol);
+    cur.movePosition(1);
+    QString line;
+    const QStringList nTokens{"\\\\","\\tabularnewline","\\&","&"};
+    bool breakLoop = false;
+    int result = 3;
+    while (!breakLoop) {
+        for (int col = 0; col < afterColumn; col++) {
+            do {
+                result = findNextToken(cur, nTokens);
+            } while (result == 2);
+            if (result < 2) break; //end of tabular line reached
+        }
+        if (result == -1) break;
+        //if last line before end, check whether the user was too lazy to put in a linebreak
+        if (result == -2) {
+            QDocumentCursor ch(cur);
+            QStringList tokens{"\\\\","\\tabularnewline"};
+            int res = findNextToken(ch, tokens, true, true);
+            if (res == 0) {
+                ch.movePosition(2, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+                if (ch.selectedText().contains(QRegularExpression("^\\S+$")))
+                    break;
+            }
+        }
+        // add element
+        if (result == 3) {
+            if (pasteBuffer.isEmpty()) {
+                cur.insertText(" &");
+            } else {
+                if (afterColumn == 0) {
+                    QDocumentCursor ch(cur);
+                    int res = findNextToken(ch, nTokens);
+                    cur.insertText(pasteBuffer.takeFirst());
+                    if (res != 0) {
+                        cur.insertText("&");
+                    }
+                } else {
+                    cur.insertText(pasteBuffer.takeFirst() + "&");
+                }
+
+            }
+        }
+        if (result <= 1) {
+            int count =  1;
+            switch (result) {
+            case 0: count=2;
+                break;
+            case 1: count=15;
+                break;
+            }
+            cur.movePosition(count, QDocumentCursor::PreviousCharacter);
+            if (pasteBuffer.isEmpty()) {
+                cur.insertText("& ");
+            } else {
+                cur.insertText("&" + pasteBuffer.takeFirst());
+            }
+        }
+        const QStringList tokens{"\\\\","\\tabularnewline"};
+        breakLoop = (findNextToken(cur, tokens) == -1);
+        // go over \hline if present
+        QString text = cur.line().text();
+        int col = cur.columnNumber();
+        text = text.mid(col);
+        QRegularExpression rxHL("^(\\s*\\\\hline\\s*)");
+        QRegularExpressionMatch rxHLm=rxHL.match(text);
+        if (rxHLm.hasMatch()) {
+            int l = rxHLm.capturedLength();
+            cur.movePosition(l, QDocumentCursor::NextCharacter);
+        }
+        if (cur.atLineEnd()) cur.movePosition(1, QDocumentCursor::NextCharacter);
+        line = cur.line().text();
+        if (line.contains("\\end{")) breakLoop = true;
+    }
+    cur.endEditBlock();
 }
 
 void LatexTables::removeColumn(QDocument *doc, const int lineNumber, const int column, QStringList *cutBuffer)
@@ -513,6 +635,100 @@ QString LatexTables::getDef(QDocumentCursor &cur)
 	return opt;
 }
 
+Token LatexTables::getDef(TokenList &tl, Environment env,int &ln,int &nextLine, int &nextCol, QDocument *doc)
+{
+    int k=-1;
+    for(int i=tl.size()-1;i>0;--i){
+        if(tl.at(i).type==Token::beginEnv && tl.at(i).getInnerText()==env.name){
+            k=i;
+            break;
+        }
+    }
+    if(k<0){
+        // no begin found
+        return Token();
+    }
+    // find colDef if present
+    Token tkColDef;
+    QString def;
+
+    if(env.name=="tabu"||env.name=="longtabu"){
+        Token tk=tl.value(k+1);
+        def=tk.getText();
+        if(def=="to" || def=="spread"){
+            def="";
+            for(k=k+3;k<tl.size();++k){
+                if(tl[k].type==Token::braces){
+                    tkColDef=tl[k];
+                    def=tkColDef.getInnerText();
+                    nextLine=ln;
+                    nextCol=tkColDef.start+tkColDef.length;
+                    break;
+                }
+            }
+        }else{
+            def=tk.getInnerText();
+            nextLine=ln;
+            nextCol=tk.start+tk.length;
+            ++k;
+            tkColDef=tk;
+        }
+    }else{
+        if(env.name=="tblr"){
+            TokenList result=Parsing::getArgTL(tl,Token::colDef);
+            if(!result.isEmpty()){
+                if(result.at(0).type==Token::braces){
+                    def=result.at(0).getInnerText();
+                    tkColDef=result.at(0);
+                    nextLine=ln;
+                    nextCol=tkColDef.start+tkColDef.length;
+                }
+                if(def.isEmpty() /*multilline*/ || def.contains(',')|| def.contains('=')){
+                    // new interface
+                    for(int i=0;i<result.size();++i){
+                        const Token &tk=result.at(i);
+                        if(tk.type==Token::word && tk.getText()=="colspec"){
+                            // colspec found
+                            ++i;
+                            if(i<result.size() && result.at(i).length==1 && result.at(i).getText()=="="){
+                                ++i;
+                                if(i<result.size() && result.at(i).type==Token::braces){
+
+                                    tkColDef=result.at(i);
+                                    if(def.isEmpty()){
+                                        // multiline handling
+                                        ln=doc->indexOf(tkColDef.dlh,ln);
+                                        i=result.size()-1;
+                                        nextLine=doc->indexOf(result.at(i).dlh,ln);
+                                        nextCol=result.at(i).start+result.at(i).length;
+                                    }
+                                    def=tkColDef.getInnerText();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }else{
+            // try simple token analysis
+            Token tk;
+
+            for(k=k+1;k<tl.size();++k){
+                if(tl[k].subtype==Token::colDef){
+                    tk=tl[k];
+                    def=tk.getInnerText();
+                    nextLine=ln;
+                    nextCol=tk.start+tk.length;
+                    tkColDef=tk;
+                    break;
+                }
+            }
+        }
+    }
+    return tkColDef;
+}
+
 // get the number of columns which are defined by the tabular (or alike) env
 int LatexTables::getNumberOfColumns(QDocumentCursor &cur)
 {
@@ -589,6 +805,17 @@ bool LatexTables::inTableEnv(QDocumentCursor &cur)
 		}
 	}
 	return false;
+}
+
+int LatexTables::inTableEnv(StackEnvironment &stackEnv)
+{
+    for(int i=stackEnv.size()-1;i>0;--i){
+        Environment env=stackEnv.at(i);
+        if(tabularNames.contains(env.name) || tabularNamesWithOneOption.contains(env.name)){
+            return i;
+        }
+    }
+    return -1;
 }
 
 // return number of columns a \multicolumn command spans (number in first braces)

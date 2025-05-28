@@ -1498,5 +1498,65 @@ EnumsTokenType::TokenType getCompleterContext(QDocumentLineHandle *dlh, int colu
 
     return type;
 }
+/*!
+ * \brief return argument as a token list
+ * \param tl initial token list, starting with the first token of an argument
+ * \param type which is searched
+ * \return argument as tokenlist
+ */
+TokenList getArgTL(const TokenList &tl, EnumsTokenType::TokenType type)
+{
+    for(int i=0;i<tl.size();++i) {
+        Token tk=tl.value(i);
+        if (tk.subtype==type) {
+            TokenList result;
+            if (Token::tkBraces().contains(tk.type)) {
+                // braces token and all within
+                int j=i+1;
+                for(;j<tl.size();++j){
+                    if(tl.value(j).start>(tk.start+tk.length)){
+                        break;
+                    }
+                }
+                result = tl.mid(i, j-i);
+            }
+            if (Token::tkOpen().contains(tk.type)) {
+                result = tl.mid(i) + findRestArgTL(tk.dlh, Token::opposite(tk.type), -1,ConfigManager::RUNAWAYLIMIT);
+            }
+            if (Token::tkClose().contains(tk.type)) {
+                result = tl.mid(0,i+1); // include closing token
+            }
+            return result;
+        }
+    }
+    return TokenList();
+}
+
+TokenList findRestArgTL(QDocumentLineHandle *dlh, Token::TokenType type, int hint, int count)
+{
+    // dlh is current line, next line will be checked here!!!
+    if (count <= 0)
+        return TokenList(); // limit search depth
+    QDocument *document = dlh->document();
+    int index = document->indexOf(dlh,hint);
+    if (index + 1 >= document->lines())
+        return TokenList(); // last line reached
+    dlh = document->line(index + 1).handle();
+    TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    for (int i = 0; i < tl.length(); i++) {
+        Token tk = tl.at(i);
+        if (tk.type == type) {
+            // closing found
+            return tl.mid(0,i+1); // include closing token
+        }
+        if (Token::tkClose().contains(tk.type)) {
+            // wrong closing found/ syntax problem
+            //return value anyway
+            return tl.mid(0,i+1); // include closing token
+        }
+    }
+    return tl + findRestArgTL(dlh, type, index+1, count - 1);
+}
+
 
 }  // namespace Parsing

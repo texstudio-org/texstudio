@@ -3,6 +3,7 @@
 
 #include "mostQtHeaders.h"
 #include "qdocument.h"
+#include "syntaxcheck.h"
 
 class QEditor;
 class LatexEditorView;
@@ -12,15 +13,18 @@ class LatexTables
 public:
 	static void addRow(QDocumentCursor &c, const int numberOfColumns );
     static void addColumn(QDocument *doc, const int lineNumber, const int afterColumn, QStringList *cutBuffer = nullptr);
+    static void addColumn(Environment env, const int lineNumber, const int afterColumn, QStringList *cutBuffer = nullptr);
     static void removeColumn(QDocument *doc, const int lineNumber, const int column, QStringList *cutBuffer = nullptr);
 	static void removeRow(QDocumentCursor &c);
 	static int findNextToken(QDocumentCursor &cur, QStringList tokens, bool keepAnchor = false, bool backwards = false);
 	static int getColumn(QDocumentCursor &cur);
 	static QString getDef(QDocumentCursor &cur);
+    static Token getDef(TokenList &tl, Environment env, int &ln, int &nextLine, int &nextCol, QDocument *doc);
 	static QString getSimplifiedDef(QDocumentCursor &cur);
 	static int getNumberOfColumns(QDocumentCursor &cur);
 	static int getNumberOfColumns(QStringList values);
 	static bool inTableEnv(QDocumentCursor &cur);
+    static int inTableEnv(StackEnvironment &stackEnv);
     static int getNumOfColsInMultiColumn(const QString &str, QString *outAlignment = nullptr, QString *outText = nullptr);
 	static int incNumOfColsInMultiColumn(const QString &str, int add);
 	static void addHLine(QDocumentCursor &c, const int numberOfLines = -1, const bool remove = false);

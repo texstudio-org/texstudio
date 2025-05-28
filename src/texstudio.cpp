@@ -10142,11 +10142,16 @@ void Texstudio::addColumnCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
-	if (!LatexTables::inTableEnv(cur)) return;
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(cur.document());
+    StackEnvironment stackEnv;
+    doc->getEnv(cur.lineNumber(),stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    if (i<0) return;
 	int col = LatexTables::getColumn(cur) + 1;
 	if (col < 1) return;
 	if (col == 1 && cur.atLineStart()) col = 0;
-	LatexTables::addColumn(currentEditorView()->document, currentEditorView()->editor->cursor().lineNumber(), col);
+    //LatexTables::addColumn(currentEditorView()->document, currentEditorView()->editor->cursor().lineNumber(), col);
+    LatexTables::addColumn(stackEnv[i], currentEditorView()->editor->cursor().lineNumber(), col);
 }
 
 void Texstudio::removeColumnCB()
