@@ -331,7 +331,7 @@ jobs:
         id: copy_signed_binary
         if: env.IF_CODESIGN == 'true'
         run: |
-          cp signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6-signed.exe
+          cp signed-artifacts/texstudio-win-arm-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-arm-qt6-signed.exe
     
 
       - name: Upload signed installer to GitHub Artifacts
