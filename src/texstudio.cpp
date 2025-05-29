@@ -10158,7 +10158,11 @@ void Texstudio::removeColumnCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
-	if (!LatexTables::inTableEnv(cur)) return;
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(cur.document());
+    StackEnvironment stackEnv;
+    doc->getEnv(cur.lineNumber(),stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    if (i<0) return;
 	// check if cursor has selection
 	int numberOfColumns = 1;
 	int col = LatexTables::getColumn(cur);
@@ -10173,8 +10177,8 @@ void Texstudio::removeColumnCB()
 		if (col2 < col) col = col2;
 	}
 	int ln = cur.lineNumber();
-	for (int i = 0; i < numberOfColumns; i++) {
-	        LatexTables::removeColumn(currentEditorView()->document, ln, col, nullptr);
+    for (int j = 0; j < numberOfColumns; j++) {
+            LatexTables::removeColumn(stackEnv[i], ln, col, nullptr);
 	}
 }
 
@@ -10190,7 +10194,12 @@ void Texstudio::cutColumnCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
-	if (!LatexTables::inTableEnv(cur)) return;
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(cur.document());
+    StackEnvironment stackEnv;
+    doc->getEnv(cur.lineNumber(),stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    if (i<0) return;
+    Environment env=stackEnv[i];
 	// check if cursor has selection
 	int numberOfColumns = 1;
 	int col = LatexTables::getColumn(cur);
@@ -10207,16 +10216,16 @@ void Texstudio::cutColumnCB()
 	int ln = cur.lineNumber();
 	m_columnCutBuffer.clear();
 	QStringList lst;
-	for (int i = 0; i < numberOfColumns; i++) {
+    for (int j = 0; j < numberOfColumns; j++) {
 		lst.clear();
-		LatexTables::removeColumn(currentEditorView()->document, ln, col, &lst);
+        LatexTables::removeColumn(env, ln, col, &lst);
 		if (m_columnCutBuffer.isEmpty()) {
 			m_columnCutBuffer = lst;
 		} else {
-			for (int i = 0; i < m_columnCutBuffer.size(); i++) {
+            for (int l = 0; l < m_columnCutBuffer.size(); l++) {
 				QString add = "&";
 				if (!lst.isEmpty()) add += lst.takeFirst();
-				m_columnCutBuffer[i] += add;
+                m_columnCutBuffer[l] += add;
 			}
 		}
 	}

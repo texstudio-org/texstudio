@@ -15,6 +15,7 @@ public:
     static void addColumn(QDocument *doc, const int lineNumber, const int afterColumn, QStringList *cutBuffer = nullptr);
     static void addColumn(Environment env, const int lineNumber, const int afterColumn, QStringList *cutBuffer = nullptr);
     static void removeColumn(QDocument *doc, const int lineNumber, const int column, QStringList *cutBuffer = nullptr);
+    static void removeColumn(Environment env, const int lineNumber, const int column, QStringList *cutBuffer = nullptr);
 	static void removeRow(QDocumentCursor &c);
 	static int findNextToken(QDocumentCursor &cur, QStringList tokens, bool keepAnchor = false, bool backwards = false);
 	static int getColumn(QDocumentCursor &cur);
