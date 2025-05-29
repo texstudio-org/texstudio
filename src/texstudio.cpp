@@ -10217,7 +10217,7 @@ void Texstudio::cutColumnCB()
 	m_columnCutBuffer.clear();
 	QStringList lst;
     for (int j = 0; j < numberOfColumns; j++) {
-		lst.clear();
+        lst.clear();
         LatexTables::removeColumn(env, ln, col, &lst);
 		if (m_columnCutBuffer.isEmpty()) {
 			m_columnCutBuffer = lst;
@@ -10236,10 +10236,15 @@ void Texstudio::pasteColumnCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
-	if (!LatexTables::inTableEnv(cur)) return;
-	int col = LatexTables::getColumn(cur) + 1;
-	if (col == 1 && cur.atLineStart()) col = 0;
-	LatexTables::addColumn(currentEditorView()->document, currentEditorView()->editor->cursor().lineNumber(), col, &m_columnCutBuffer);
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(cur.document());
+    StackEnvironment stackEnv;
+    doc->getEnv(cur.lineNumber(),stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    if (i<0) return;
+    int col = LatexTables::getColumn(cur) + 1;
+    if (col < 1) return;
+    if (col == 1 && cur.atLineStart()) col = 0;
+    LatexTables::addColumn(stackEnv[i], currentEditorView()->editor->cursor().lineNumber(), col, &m_columnCutBuffer);
 }
 
 void Texstudio::addHLineCB()
