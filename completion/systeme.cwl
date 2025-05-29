@@ -1,5 +1,5 @@
 # systeme package
-# Matthew Bertucci 2025/05/23 for v0.41
+# Matthew Bertucci 2025/05/29 for v0.42
 
 #include:xstring
 #include:simplekv
@@ -33,6 +33,7 @@ coeff space=##L
 post subst={%<x1%>}{%<y1%>}%<{x2}{y2}...%>
 store=%<command%>
 align const sign#true,false
+code before=%<code%>
 #endkeyvals
 
 \aligncalc{eq1,eq2,...%formula}
