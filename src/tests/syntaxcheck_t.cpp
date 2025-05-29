@@ -170,6 +170,15 @@ void SyntaxCheckTest::checktabular_data(){
            << "\\begin{tabular}{ll}\na&b\\\\\\hline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
            << 1 << 4
            << "no error";
+    QTest::newRow("tblr,multiline cell")
+        << "\\usepackage{tabularry}\n\\begin{tblr}{ll}\na&{b\\\\b}\\\\\\hline\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 2 << 4
+        << "no error";
+    QTest::newRow("tblr,multiline cell")
+        << "\\usepackage{tabularry}\n\\begin{tblr}{ll}\na&{b\\\\b}\\\\\\hline\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 2 << 8
+        << "no error";
+
 
 }
 void SyntaxCheckTest::checktabular(){

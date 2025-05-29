@@ -1179,7 +1179,22 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                     }
 					continue;
 				}
-
+                // special treatment { \\ } in tblr (multirow cell)
+                if(word=="\\\\" && activeEnv.top().name=="tblr"){
+                    // check if this token lies with braces/none
+                    bool skipToken=false;
+                    for(int j=i-1;j>=0;--j){
+                        Token tk2=tl.at(j);
+                        if(tk2.type==Token::braces && tk2.subtype==Token::none && tk2.start+tk2.length>tk.start){
+                            // inside braces, ignore
+                            skipToken=true;
+                            break;
+                        }
+                    }
+                    if(skipToken){
+                        continue;
+                    }
+                }
 				if ((word == "\\\\") || (word == "\\tabularnewline")) {
 					if (activeEnv.top().excessCol < (activeEnv.top().id - 1)) {
 						Error elem;
