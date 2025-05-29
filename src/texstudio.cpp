@@ -10223,7 +10223,7 @@ void Texstudio::cutColumnCB()
 			m_columnCutBuffer = lst;
 		} else {
             for (int l = 0; l < m_columnCutBuffer.size(); l++) {
-				QString add = "&";
+                QString add = l>0 ? "&" : ""; // no & in first line as it is the preamble
 				if (!lst.isEmpty()) add += lst.takeFirst();
                 m_columnCutBuffer[l] += add;
 			}

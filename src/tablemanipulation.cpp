@@ -533,6 +533,15 @@ void LatexTables::removeColumn(Environment env, const int lineNumber, const int 
                 result = findNextToken(cur, nTokens, true);
             } while (result == 2);
             QString selText = cur.selectedText();
+            if(result==-2){
+                //special treatment when we are at the end of the tabular and no \\ is employed
+                int i= selText.size()-1; // check at end
+                while(i>=0 && selText.at(i).isSpace()){
+                    cur.movePosition(1,QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+                    --i;
+                }
+                selText = cur.selectedText();
+            }
             int add = 0;
             if (selText.startsWith("\\multicolumn")) {
                 add = getNumOfColsInMultiColumn(selText);

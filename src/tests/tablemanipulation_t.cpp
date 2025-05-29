@@ -211,7 +211,7 @@ void TableManipulationTest::remCol_data(){
 	QTest::addColumn<QString>("newText");
 
 	//-------------cursor without selection--------------
-    /*QTest::newRow("rem col 0")
+    QTest::newRow("rem col 0")
 		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
 		<< "\\begin{tabular}{y}\nb\\\\\nd\\\\\nf\\\\\n\\end{tabular}\n";
@@ -274,12 +274,17 @@ void TableManipulationTest::remCol_data(){
     QTest::newRow("rem col 0 containing \\hline 3")
 			<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\\\hline\n\\end{tabular}\n"
 			<< 1 << 0
-            << "\\begin{tabular}{l}\nb\\\\ \\hline\nd\\\\\nf\\\\ \\hline\n\\end{tabular}\n";*/
+            << "\\begin{tabular}{l}\nb\\\\ \\hline\nd\\\\\nf\\\\ \\hline\n\\end{tabular}\n";
 
 	QTest::newRow("rem last col")
 			<< "\\begin{tabular}{l}\na\\\\ \\hline\nd\\\\\nf\\\\\\hline\n\\end{tabular}\n"
 			<< 1 << 0
 			<< "\\begin{tabular}{}\n\\\\ \\hline\n\\\\\n\\\\ \\hline\n\\end{tabular}\n";
+
+    QTest::newRow("rem last col, no final \\\\")
+        << "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\n\\end{tabular}\n"
+        << 1 << 1
+        << "\\begin{tabular}{l}\na\\\\ \\hline\nc\\\\\ne\n\\end{tabular}\n";
     // tests for tabu/longtabu
     QTest::newRow("rem col 0 tabu")
         << "\\usepackage{tabu}\n\\begin{tabu}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabu}\n"
