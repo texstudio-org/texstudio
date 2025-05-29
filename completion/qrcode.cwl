@@ -2,6 +2,7 @@
 # Matthew Bertucci 2024/05/26 for v1.51
 
 #include:xcolor
+#include:xkeyval
 
 #keyvals:\usepackage/qrcode#c
 nolinks

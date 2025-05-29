@@ -1,12 +1,11 @@
 # Scrabble package
-# Matthew Bertucci 2023/01/10 for v0.1.3
+# Matthew Bertucci 2025/05/27 for v0.1.8
 
 #include:tikz
 #include:pgf
 #include:pgffor
-#include:xstring
-#include:simplekv
-#include:listofitems
+#include:randintlist
+#include:calc
 #include:tikzlibrarycalc
 #include:tikzlibraryshapes.geometric
 
@@ -56,27 +55,7 @@ H
 V
 #endkeyvals
 
-# not documented
-\AlphabetMajuscule#S
-\AlphabetMinuscule#S
-\PLSCRBBLEechelle#S
-\PLSCRBBLEechelleLabel#S
-\PLSCRBBLElangue#S
-\PointsScrabbleDE#S
-\PointsScrabbleEN#S
-\PointsScrabbleES#S
-\PointsScrabbleFR#S
-\PtsScrbDE#S
-\PtsScrbEN#S
-\PtsScrbES#S
-\PtsScrbFR#S
-\scrabblescorelettre[langue]{arg}#S
-\scrabblescorelettre{arg}#S
-\SCRBLCD#S
-\SCRBLCD[langue]#S
-\SCRBLCT#S
-\SCRBLCT[langue]#S
-\SCRBMCD#S
-\SCRBMCD[langue]#S
-\SCRBMCT#S
-\SCRBMCT[langue]#S
+\ScrabbleWord{word}
+\ScrabbleWord[keyvals]{word}
+\MotScrabble{mot}
+\MotScrabble[clés%keyvals]{mot}
