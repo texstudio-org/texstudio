@@ -1,53 +1,86 @@
 # wordle package
-# Matthew Bertucci 2023/07/13 for v0.1.0
+# Matthew Bertucci 2025/05/28 for v0.3.0
 
+#include:xcolor
 #include:tikz
-#include:simplekv
-#include:xstring
 
 ## English version
-\begin{WordleGrid}{word%text}
-\begin{WordleGrid}[keyvals]{word%text}
-\end{WordleGrid}
+\begin{wordle}{solution%text}
+\begin{wordle}{solution%text}[TikZ commands]
+\begin{wordle}[keyvals]{solution%text}
+\begin{wordle}[keyvals]{solution%text}[TikZ commands]
+\end{wordle}
+\WordleSetup{keyvals}
 
-#keyvals:\begin{WordleGrid}
-Colors={%<back,misplaced,good%>}
-Rounded=%<number%>
-Unit=%<number%>
-Font=%<font commands%>
-ColorLetters=#%color
-BorderColor=#%color
-Letters#true,false
-Style=
-Thickness=%<number%>
+#keyvals:\begin{wordle},\WordleSetup,\usepackage/wordle#c
+style=#sutom,standard,hard
+colours={%<color1,color2,...%>}
+colors={%<color1,color2,...%>}
+absent colour=#%color
+absent color=#%color
+present colour=#%color
+present color=#%color
+correct colour=#%color
+correct color=#%color
+borders={%<absent color,present color,correct color,empty color%>}
+frames={%<absent bool,present bool,correct bool,empty bool%>}
+shapes={%<absent shape,present shape,correct shape,empty shape%>}
+text={%<absent color,present color,correct color,empty color%>}
+noalign
+align
+font=%<font commands%>
+rounded=##L
+separation=##L
+scale=%<factor%>
+size=##L
+thickness=##L
+tile style={%<TikZ keys%>}
+letters
+noletters
+strict#true,false
+rows=%<integer%>
+case sensitive#true,false
+natural case
+lower case
+upper case
+tikz={%<TikZ keys%>}
+name=%<name%>
 #endkeyvals
 
 ## French version
-\begin{GrilleSutom}{mot%text}
-\begin{GrilleSutom}[clés%keyvals]{mot%text}
+\begin{GrilleSutom}{solution%text}
+\begin{GrilleSutom}{solution%text}[TikZ commands]
+\begin{GrilleSutom}[keyvals]{solution%text}
+\begin{GrilleSutom}[keyvals]{solution%text}[TikZ commands]
 \end{GrilleSutom}
+\ParamsSutom{keyvals}
 
-#keyvals:\begin{GrilleSutom}
-Couleurs={%<fond,mal placée,bien placée%>}
-Arrondi=%<nombre%>
-Unite=%<nombre%>
+#keyvals:\begin{GrilleSutom},\ParamsSutom
+Style=#sutom,standard,hard
+Couleurs={%<color1,color2,...%>}
+couleur absent=#%color
+couleur present=#%color
+couleur correct=#%color
+CouleurBordures={%<absent color,present color,correct color,empty color%>}
+Cadres={%<absent bool,present bool,correct bool,empty bool%>}
+Formes={%<absent shape,present shape,correct shape,empty shape%>}
+CouleurLettres={%<absent color,present color,correct color,empty color%>}
+nonalign
+align
 Police=%<font commands%>
-CouleurLettres=#%color
-CouleurBordure=#%color
-Lettres#true,false
-Style=
-Epaisseur=%<number%>
+Arrondi=##L
+Separation=##L
+Echelle=%<factor%>
+Taille=##L
+Epaisseur=##L
+Lettres
+NonLettres
+Strict#true,false
+Lignes=%<integer%>
+case sensitive#true,false
+natural case
+lower case
+upper case
+tikz={%<TikZ keys%>}
+name=%<name%>
 #endkeyvals
-
-# not documented
-\SutomCouleurs#S
-\SutomRounded#S
-\SutomUnit#S
-\SutomFonte#S
-\SutomFonteColor#S
-\SutomStyle#S
-\SutomWidth#S
-\SutomBorder#S
-WordleBack#B
-WordleBad#B
-WordleGood#B

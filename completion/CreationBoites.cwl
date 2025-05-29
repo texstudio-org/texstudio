@@ -1,5 +1,5 @@
 # CreationBoites package
-# Matthew Bertucci 2023/08/27 for v0.1.0
+# Matthew Bertucci 2025/05/25 for v0.1.2
 
 #include:tcolorbox
 #include:tcolorboxlibraryfitting
@@ -7,6 +7,19 @@
 #include:fontawesome5
 #include:simplekv
 #include:xstring
+
+#keyvals:\usepackage/CreationBoites#c
+breakable
+fa6
+#endkeyvals
+
+#ifOption:breakable
+#include:tcolorboxlibrarybreakable
+#endif
+
+#ifOption:fa6
+#include:fontawesome6
+#endif
 
 \CreationBoite{envname}{compteur}{icône}{libéllés}#N
 \CreationBoite[color]{envname}{compteur}{icône}{libéllés}#N
@@ -26,4 +39,5 @@ baseboite/.style={%<options%>}
 \TitreBoite#*
 \SousTitreBoite#*
 \LogoCoinDroit#*
+\IconeCoinDroit#*
 \CreerCompteur{counter}#*

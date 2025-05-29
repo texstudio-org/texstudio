@@ -1,5 +1,5 @@
 # WriteOnGrid package
-# Matthew Bertucci 2023/11/15 for v0.1.5
+# Matthew Bertucci 2025/05/27 for v0.1.8
 
 #include:tikz
 #include:simplekv
@@ -129,6 +129,8 @@ Couleur=#%color
 CouleurMarge=#%color
 NumLignes#true,false
 FormatPapier=#A4,A5,lxh
+MargeG=%<nombre%>
+MargeH=%<nombre%>
 #endkeyvals
 
 \LignePapierCinqCinq{text}
@@ -193,52 +195,3 @@ Echelle=%<nombre%>
 Espacement=%<nombre%>
 Largeur=%<nombre%>
 #endkeyvals
-
-# not documented
-\CCFullCoul#S
-\CCFullCoulM#S
-\CCLigne#S
-\CCLigneCouleur#S
-\CCLigneEchelle#S
-\CCLigneLarg#S
-\CCPar#S
-\CCParBase#S
-\CCParCouleur#S
-\CCParEchelle#S
-\CCParLarg#S
-\QuadCoulA#S
-\QuadCoulB#S
-\QuadCoulSeyes#S
-\QuadEchelle#S
-\QuadElar#S
-\QuadElarD#S
-\QuadElarG#S
-\QuadNbCar#S
-\QuadNbLig#S
-\QuadReglureSeyes#S
-\QuadType#S
-\RuledFullCoul#S
-\RuledFullCoulMarge#S
-\RuledLigne#S
-\RuledLigneCouleur#S
-\RuledLigneEchelle#S
-\RuledLigneLarg#S
-\RuledPar#S
-\RuledParBase#S
-\RuledParCouleur#S
-\RuledParEchelle#S
-\RuledParLarg#S
-\SeyesFullCoulM#S
-\SeyesFullCoulP#S
-\SeyesFullCoulS#S
-\SeyesLigne#S
-\SeyesLigneCouleur#S
-\SeyesLigneEchelle#S
-\SeyesLigneLarg#S
-\SeyesPar#S
-\SeyesParBase#S
-\SeyesParCouleur#S
-\SeyesParEchelle#S
-\SeyesParLarg#S
-\thelgquadri#S
-\ValeurCarreau#S

@@ -1,5 +1,5 @@
 # PanneauxRoute package
-# Matthew Bertucci 2023/08/16 for v0.1.0
+# Matthew Bertucci 2025/05/27 for v0.1.2
 
 #include:graphicx
 
@@ -80,10 +80,32 @@
 \prFinRoutePrio[options%keyvals]
 \prRondPoint
 \prRondPoint[options%keyvals]
+\prDosAneTemp
+\prDosAneTemp[options%keyvals]
+\prChaussGlissTemp
+\prChaussGlissTemp[options%keyvals]
+\prChausRetTemp
+\prChausRetTemp[options%keyvals]
+\prTravauxTemp
+\prTravauxTemp[options%keyvals]
+\prDangerTemp
+\prDangerTemp[options%keyvals]
+\prFeuxTemp
+\prFeuxTemp[options%keyvals]
+\prGraviersTemp
+\prGraviersTemp[options%keyvals]
+\prBouchonTemp
+\prBouchonTemp[options%keyvals]
+\prAccidentTemp
+\prAccidentTemp[options%keyvals]
+\prBrouillardTemp
+\prBrouillardTemp[options%keyvals]
 \prCircInterd
 \prCircInterd[options%keyvals]
 \prSensInterdit
 \prSensInterdit[options%keyvals]
+\prSensInterditJ
+\prSensInterditJ[options%keyvals]
 \prInterdTournG
 \prInterdTournG[options%keyvals]
 \prInterdTournD
@@ -382,7 +404,7 @@
 \prLimVites{nombre}
 \prLimVites[options%keyvals]{nombre}
 
-#keyvals:\AffPanneau,\prVirDroit,\prVirGauche,\prVirsDroit,\prVirsGauche,\prDosAne,\prRalDosAne,\prChausRet,\prChausRetD,\prChausRetG,\prChaussGliss,\prPontMob,\prPassNiv,\prPassNivVap,\prPassTram,\prEnfants,\prPietons,\prDanger,\prAnimaux,\prAnimauxSauv,\prCavaliers,\prDescente,\prFeux,\prDeuxSens,\prChute,\prQuai,\prVelos,\prAvions,\prVent,\prIntersect,\prIntersectPrio,\prCedez,\prCedezInter,\prStop,\prArretInter,\prRoutePrio,\prFinRoutePrio,\prRondPoint,\prCircInterd,\prSensInterdit,\prInterdTournG,\prInterdTournD,\prInterdDemiTour,\prInterdDepass,\prInterdVehic,\prHalteDouane,\prHalteGendarm,\prHaltePolice,\prHaltePeage,\prStationInterd,\prStationInterdQA,\prStationInterdQB,\prArStatInterd,\prInterdMotSaufCyc,\prInterdMot,\prInterdMarchand,\prInterdPietons,\prInterdCycles,\prInterdTracAnim,\prInterdAgricMot,\prInterdBras,\prInterdTranspComm,\prInterdCyclomot,\prInterdCycloMoto,\prInterdCaravanes,\prInterdLong,\prInterdLarg,\prInterdHaut,\prInterdPoids,\prInterdPoidsEssieu,\prCedezInv,\prInterdSons,\prDistance,\prExplos,\prPollu,\prDangereuses,\prObliAvDroite,\prObliAvGauche,\prContournDroite,\prContournGauche,\prToutDroit,\prObliDroite,\prObliGauche,\prObliToutDroite,\prObliToutGauche,\prObliDroiteGauche,\prObliCycles,\prObliPietons,\prObliCavaliers,\prObliVitesse,\prObliChaines,\prObliBus,\prObliTrams,\prFinInterd,\prFinIntDepass,\prFinIntDepassCam,\prFinIntSons,\prFinPisteOblCycl,\prFinChemPiet,\prFinChemCav,\prFinVitObli,\prFinChaines,\prFinVoieBus,\prParking,\prParkDisq,\prParkPay,\prIncendie,\prVitConseil,\prFinVitConseil,\prTaxis,\prArretBus,\prArretUrg,\prCircSensUniq,\prImpasse,\prPreImpasse,\prPriorSensInv,\prPassPietons,\prTravTrams,\prStatCarav,\prVoiesAffA,\prVoiesAffB,\prVoiesAffC,\prVoiesAffD,\prVoiesAffE,\prVoiesAffF,\prVitFront,\prVitAutor,\prDetresseD,\prDetresseG,\prChausseSur,\prReducVoieA,\prReducVoieB,\prCreneauDepas,\prFinCreneauDepas,\prTickPeage,\prPaiemPeage,\prPaiemCB,\prPaiemPieces,\prPaiemPiecBil,\prPaiemTelepeage,\prRouteRegl,\prFinRouteRegl,\prEntrTunnel,\prSortieTunnel,\prPisteCycl,\prFinPisteCycl,\prVoieVerte,\prFinVoieVerte,\prDebAutor,\prFinAutor,\prPosteSecours,\prPosteSecUrg,\prCabineTel,\prInfos,\prCampingT,\prCampingC,\prCampingTC,\prAubergJeun,\prGite,\prItinPedest,\prItinSkiFond,\prPicNic,\prGareAutoTrain,\prParkVideo,\prEmbarcad,\prToilettes,\prAccesHandic,\prEssence,\prEssenceGPL,\prRestau,\prHotel,\prBoissons,\prEmbarcLeg,\prTelepher,\prTelecabin,\prPointVue,\prRadio,\prJeuxEnfants,\prVidange,\prDistribBill,\prGonflage,\prDetente,\prPosteDepann,\prLutteIncendie,\prIssueSecD,\prIssueSecG,\prFinLimVit,\prLimVites
+#keyvals:\AffPanneau,\prVirDroit,\prVirGauche,\prVirsDroit,\prVirsGauche,\prDosAne,\prRalDosAne,\prChausRet,\prChausRetD,\prChausRetG,\prChaussGliss,\prPontMob,\prPassNiv,\prPassNivVap,\prPassTram,\prEnfants,\prPietons,\prDanger,\prAnimaux,\prAnimauxSauv,\prCavaliers,\prDescente,\prFeux,\prDeuxSens,\prChute,\prQuai,\prVelos,\prAvions,\prVent,\prIntersect,\prIntersectPrio,\prCedez,\prCedezInter,\prStop,\prArretInter,\prRoutePrio,\prFinRoutePrio,\prRondPoint,\prDosAneTemp,\prChaussGlissTemp,\prChausRetTemp,\prTravauxTemp,\prDangerTemp,\prFeuxTemp,\prGraviersTemp,\prBouchonTemp,\prAccidentTemp,\prBrouillardTemp,\prCircInterd,\prSensInterdit,\prSensInterditJ,\prInterdTournG,\prInterdTournD,\prInterdDemiTour,\prInterdDepass,\prInterdVehic,\prHalteDouane,\prHalteGendarm,\prHaltePolice,\prHaltePeage,\prStationInterd,\prStationInterdQA,\prStationInterdQB,\prArStatInterd,\prInterdMotSaufCyc,\prInterdMot,\prInterdMarchand,\prInterdPietons,\prInterdCycles,\prInterdTracAnim,\prInterdAgricMot,\prInterdBras,\prInterdTranspComm,\prInterdCyclomot,\prInterdCycloMoto,\prInterdCaravanes,\prInterdLong,\prInterdLarg,\prInterdHaut,\prInterdPoids,\prInterdPoidsEssieu,\prCedezInv,\prInterdSons,\prDistance,\prExplos,\prPollu,\prDangereuses,\prObliAvDroite,\prObliAvGauche,\prContournDroite,\prContournGauche,\prToutDroit,\prObliDroite,\prObliGauche,\prObliToutDroite,\prObliToutGauche,\prObliDroiteGauche,\prObliCycles,\prObliPietons,\prObliCavaliers,\prObliVitesse,\prObliChaines,\prObliBus,\prObliTrams,\prFinInterd,\prFinIntDepass,\prFinIntDepassCam,\prFinIntSons,\prFinPisteOblCycl,\prFinChemPiet,\prFinChemCav,\prFinVitObli,\prFinChaines,\prFinVoieBus,\prParking,\prParkDisq,\prParkPay,\prIncendie,\prVitConseil,\prFinVitConseil,\prTaxis,\prArretBus,\prArretUrg,\prCircSensUniq,\prImpasse,\prPreImpasse,\prPriorSensInv,\prPassPietons,\prTravTrams,\prStatCarav,\prVoiesAffA,\prVoiesAffB,\prVoiesAffC,\prVoiesAffD,\prVoiesAffE,\prVoiesAffF,\prVitFront,\prVitAutor,\prDetresseD,\prDetresseG,\prChausseSur,\prReducVoieA,\prReducVoieB,\prCreneauDepas,\prFinCreneauDepas,\prTickPeage,\prPaiemPeage,\prPaiemCB,\prPaiemPieces,\prPaiemPiecBil,\prPaiemTelepeage,\prRouteRegl,\prFinRouteRegl,\prEntrTunnel,\prSortieTunnel,\prPisteCycl,\prFinPisteCycl,\prVoieVerte,\prFinVoieVerte,\prDebAutor,\prFinAutor,\prPosteSecours,\prPosteSecUrg,\prCabineTel,\prInfos,\prCampingT,\prCampingC,\prCampingTC,\prAubergJeun,\prGite,\prItinPedest,\prItinSkiFond,\prPicNic,\prGareAutoTrain,\prParkVideo,\prEmbarcad,\prToilettes,\prAccesHandic,\prEssence,\prEssenceGPL,\prRestau,\prHotel,\prBoissons,\prEmbarcLeg,\prTelepher,\prTelecabin,\prPointVue,\prRadio,\prJeuxEnfants,\prVidange,\prDistribBill,\prGonflage,\prDetente,\prPosteDepann,\prLutteIncendie,\prIssueSecD,\prIssueSecG,\prFinLimVit,\prLimVites
 alt={%<alt text%>}
 bb=%<llx lly urx ury%>
 bbllx=

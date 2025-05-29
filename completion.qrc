@@ -505,6 +505,7 @@
 <file>completion/calctab.cwl</file>
 <file>completion/calculation.cwl</file>
 <file>completion/calculator.cwl</file>
+<file>completion/calculatoritems.cwl</file>
 <file>completion/calculus.cwl</file>
 <file>completion/calligra.cwl</file>
 <file>completion/callouts.cwl</file>
@@ -1078,6 +1079,7 @@
 <file>completion/color.cwl</file>
 <file>completion/colordoc.cwl</file>
 <file>completion/colordvi.cwl</file>
+<file>completion/coloredbelts.cwl</file>
 <file>completion/color-edits.cwl</file>
 <file>completion/colorframed.cwl</file>
 <file>completion/colorinfo.cwl</file>
@@ -1469,6 +1471,7 @@
 <file>completion/eulerpx.cwl</file>
 <file>completion/eulervm.cwl</file>
 <file>completion/euroitc.cwl</file>
+<file>completion/euromoney.cwl</file>
 <file>completion/europasscv-bibliography.cwl</file>
 <file>completion/europs.cwl</file>
 <file>completion/eurosym.cwl</file>
@@ -1962,6 +1965,7 @@
 <file>completion/indextra.cwl</file>
 <file>completion/infix-RPN.cwl</file>
 <file>completion/inlinedef.cwl</file>
+<file>completion/inlinegraphicx.cwl</file>
 <file>completion/inline-images.cwl</file>
 <file>completion/inlinelabel.cwl</file>
 <file>completion/innerscript.cwl</file>
@@ -2634,6 +2638,7 @@
 <file>completion/nm.cwl</file>
 <file>completion/nndraw.cwl</file>
 <file>completion/nnext.cwl</file>
+<file>completion/nodepthtext.cwl</file>
 <file>completion/nodetree.cwl</file>
 <file>completion/nodetree-embed.cwl</file>
 <file>completion/noindentafter.cwl</file>
@@ -2877,6 +2882,7 @@
 <file>completion/picinpar.cwl</file>
 <file>completion/picins.cwl</file>
 <file>completion/pict2e.cwl</file>
+<file>completion/pictochrono.cwl</file>
 <file>completion/picture.cwl</file>
 <file>completion/pifont.cwl</file>
 <file>completion/pigpen.cwl</file>
@@ -3150,6 +3156,7 @@
 <file>completion/qqru.cwl</file>
 <file>completion/qrbill.cwl</file>
 <file>completion/qrcode.cwl</file>
+<file>completion/qrcodetikz.cwl</file>
 <file>completion/qrcstamps.cwl</file>
 <file>completion/qsharp.cwl</file>
 <file>completion/qstest.cwl</file>
@@ -3170,6 +3177,7 @@
 <file>completion/ragged2e.cwl</file>
 <file>completion/raleway.cwl</file>
 <file>completion/randbild.cwl</file>
+<file>completion/randintlist.cwl</file>
 <file>completion/randomlist.cwl</file>
 <file>completion/randomwalk.cwl</file>
 <file>completion/randtext.cwl</file>
@@ -3679,6 +3687,7 @@
 <file>completion/TheanoModern.cwl</file>
 <file>completion/TheanoOldStyle.cwl</file>
 <file>completion/theatre.cwl</file>
+<file>completion/thematicpuzzle.cwl</file>
 <file>completion/theorem.cwl</file>
 <file>completion/theoremref.cwl</file>
 <file>completion/thepdfnumber.cwl</file>
@@ -3713,6 +3722,7 @@
 <file>completion/tikz-cd.cwl</file>
 <file>completion/tikzcodeblocks.cwl</file>
 <file>completion/tikz.cwl</file>
+<file>completion/tikz-decofonts.cwl</file>
 <file>completion/tikz-dependency.cwl</file>
 <file>completion/tikz-dimline.cwl</file>
 <file>completion/tikzdotncross.cwl</file>
@@ -3911,6 +3921,7 @@
 <file>completion/tikzsymbols.cwl</file>
 <file>completion/tikz-timing.cwl</file>
 <file>completion/tikz-trackschematic.cwl</file>
+<file>completion/tikz-triminos.cwl</file>
 <file>completion/tikz-truchet.cwl</file>
 <file>completion/tikz-uml.cwl</file>
 <file>completion/tikzviolinplots.cwl</file>
@@ -3918,6 +3929,7 @@
 <file>completion/time.cwl</file>
 <file>completion/timechart.cwl</file>
 <file>completion/timing-diagrams.cwl</file>
+<file>completion/timeop.cwl</file>
 <file>completion/tinos.cwl</file>
 <file>completion/tipa.cwl</file>
 <file>completion/tipauni.cwl</file>
@@ -3990,6 +4002,7 @@
 <file>completion/trig.cwl</file>
 <file>completion/trimclip.cwl</file>
 <file>completion/trivfloat.cwl</file>
+<file>completion/TrivialPursuit.cwl</file>
 <file>completion/trsym.cwl</file>
 <file>completion/truncate.cwl</file>
 <file>completion/truthtable.cwl</file>
@@ -4037,6 +4050,7 @@
 <file>completion/uhrzeit.cwl</file>
 <file>completion/ulem.cwl</file>
 <file>completion/ulgothic.cwl</file>
+<file>completion/ullrcorners.cwl</file>
 <file>completion/ulsy.cwl</file>
 <file>completion/umoline.cwl</file>
 <file>completion/underlin.cwl</file>
