@@ -150,7 +150,12 @@ QStringList findResourceFiles(const QString &dirName, const QString &filter, QSt
 #define PREFIX ""
 #endif
 
+#if !defined(CMAKE_INSTALL_DATADIR)
+#define CMAKE_INSTALL_DATADIR ""
+#endif
+
 #if defined( Q_WS_X11 ) || defined (Q_OS_LINUX)
+    searchFiles << PREFIX"/" CMAKE_INSTALL_DATADIR"/texstudio" + dn; //X_11
 	searchFiles << PREFIX"/share/texstudio" + dn; //X_11
 #endif
 #ifdef Q_OS_MAC
@@ -193,6 +198,7 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 		if (s.endsWith('/') || s.endsWith('\\')) searchFiles << s;
 		else searchFiles << s + "/";
 #if defined Q_WS_X11 || defined Q_OS_LINUX || defined Q_OS_UNIX
+    searchFiles << PREFIX"/" CMAKE_INSTALL_DATADIR "/texstudio"; //CMAKE definitin
 	searchFiles << PREFIX"/share/texstudio/"; //X_11
 	searchFiles << QCoreApplication::applicationDirPath() + "/../share/texstudio/"; // relative path for appimage
     searchFiles << QCoreApplication::applicationDirPath() + "/../usr/share/texstudio/"; // relative path for appimage

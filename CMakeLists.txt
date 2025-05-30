@@ -365,6 +365,7 @@ add_subdirectory(src/pdfviewer)
 # set prefix path on unix
 if(UNIX)
     set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DPREFIX="${CMAKE_INSTALL_PREFIX}")
+    set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DCMAKE_INSTALL_DATADIR="${CMAKE_INSTALL_DATADIR}")
 endif()
 
 # Build texstudio application
