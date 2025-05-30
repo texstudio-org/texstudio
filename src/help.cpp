@@ -50,7 +50,7 @@ void Help::viewTexdoc(QString package)
 		package = act->data().toString();
 	}
 	if (!package.isEmpty()) {
-        QString answer=runTexdoc("--view "+package);
+        QString answer=runTexdoc("--nointeract --view "+package);
 	}
 }
 
