@@ -87,7 +87,7 @@ void TableManipulationTest::addCol_data(){
 		<< 1 << 2
 		<< "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tabular}\n";
 
-	QTest::newRow("add 4th col")
+    QTest::newRow("add third col, pos before \\\\")
 		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 3
 		<< "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tabular}\n";

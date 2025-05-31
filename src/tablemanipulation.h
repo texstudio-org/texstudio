@@ -12,12 +12,12 @@ class LatexTables
 {
 public:
 	static void addRow(QDocumentCursor &c, const int numberOfColumns );
-    static void addColumn(QDocument *doc, const int lineNumber, const int afterColumn, QStringList *cutBuffer = nullptr);
     static void addColumn(Environment env, const int lineNumber, const int afterColumn, QStringList *cutBuffer = nullptr);
-    static void removeColumn(QDocument *doc, const int lineNumber, const int column, QStringList *cutBuffer = nullptr);
     static void removeColumn(Environment env, const int lineNumber, const int column, QStringList *cutBuffer = nullptr);
 	static void removeRow(QDocumentCursor &c);
 	static int findNextToken(QDocumentCursor &cur, QStringList tokens, bool keepAnchor = false, bool backwards = false);
+    static Token findColumn(QDocumentCursor &cur,Environment env);
+    static bool findNextColumn(QDocumentCursor &cur,Token &tk);
 	static int getColumn(QDocumentCursor &cur);
     static int getColumn(const QDocumentCursor &cur, const Environment env);
 	static QString getDef(QDocumentCursor &cur);

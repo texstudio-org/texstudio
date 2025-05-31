@@ -104,117 +104,13 @@ void LatexTables::removeRow(QDocumentCursor &c)
 	}
 }
 
-void LatexTables::addColumn(QDocument *doc, const int lineNumber, const int afterColumn, QStringList *cutBuffer)
-{
-	QDocumentCursor cur(doc);
-	QStringList pasteBuffer;
-	QStringList nTokens;
-    nTokens << "\\\\" << "\\tabularnewline" << "\\&" << "&";
-	if (cutBuffer) {
-		pasteBuffer = *cutBuffer;
-		if (pasteBuffer.size() == 0)
-			return;
-	}
-	cur.beginEditBlock();
-	cur.moveTo(lineNumber, 0);
-	QString def = getDef(cur);
-	//int result=findNextToken(cur,QStringList(),false,true); // move to \begin{...}
-	if (def.isEmpty()) {
-		cur.endEditBlock();
-		return; // begin not found
-	}
-	//add col in definition
-	QStringList defs = splitColDef(def);
-	QString addCol = "l";
-	if (cutBuffer) {
-		addCol = pasteBuffer.takeFirst();
-	}
-	def.clear();
-	if (afterColumn == 0)
-		def = addCol;
-	for (int i = 0; i < defs.count(); i++) {
-		def.append(defs[i]);
-		if (i + 1 == afterColumn || (i + 1 == defs.count() && i + 1 < afterColumn))
-			def.append(addCol);
-	}
-	cur.insertText(def);
-	//continue adding col
-    //move cursor after definition -> \begin{tabularlike}{def}|
-	cur.movePosition(2, QDocumentCursor::NextCharacter);
-	QString line;
-	bool breakLoop = false;
-    int result = 3;
-	while (!breakLoop) {
-		for (int col = 0; col < afterColumn; col++) {
-			do {
-				result = findNextToken(cur, nTokens);
-            } while (result == 2);
-            if (result < 2) break; //end of tabular line reached
-		}
-		if (result == -1) break;
-		//if last line before end, check whether the user was too lazy to put in a linebreak
-		if (result == -2) {
-			QDocumentCursor ch(cur);
-            QStringList tokens{"\\\\","\\tabularnewline"};
-			int res = findNextToken(ch, tokens, true, true);
-			if (res == 0) {
-				ch.movePosition(2, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-                if (ch.selectedText().contains(QRegularExpression("^\\S+$")))
-					break;
-			}
-		}
-		// add element
-        if (result == 3) {
-			if (pasteBuffer.isEmpty()) {
-				cur.insertText(" &");
-			} else {
-				if (afterColumn == 0) {
-					QDocumentCursor ch(cur);
-					int res = findNextToken(ch, nTokens);
-					cur.insertText(pasteBuffer.takeFirst());
-					if (res != 0) {
-						cur.insertText("&");
-					}
-				} else {
-					cur.insertText(pasteBuffer.takeFirst() + "&");
-				}
-
-			}
-		}
-        if (result <= 1) {
-            int count =  1;
-            switch (result) {
-            case 0: count=2;
-                break;
-            case 1: count=15;
-                break;
-            }
-			cur.movePosition(count, QDocumentCursor::PreviousCharacter);
-			if (pasteBuffer.isEmpty()) {
-				cur.insertText("& ");
-			} else {
-				cur.insertText("&" + pasteBuffer.takeFirst());
-			}
-		}
-        const QStringList tokens{"\\\\","\\tabularnewline"};
-		breakLoop = (findNextToken(cur, tokens) == -1);
-		// go over \hline if present
-		QString text = cur.line().text();
-		int col = cur.columnNumber();
-		text = text.mid(col);
-        QRegularExpression rxHL("^(\\s*\\\\hline\\s*)");
-        QRegularExpressionMatch rxHLm=rxHL.match(text);
-        if (rxHLm.hasMatch()) {
-            int l = rxHLm.capturedLength();
-			cur.movePosition(l, QDocumentCursor::NextCharacter);
-		}
-		if (cur.atLineEnd()) cur.movePosition(1, QDocumentCursor::NextCharacter);
-		line = cur.line().text();
-		if (line.contains("\\end{")) breakLoop = true;
-	}
-	cur.endEditBlock();
-}
-
+/*!
+ * \brief add column in tabular-like environment
+ * \param env the actual environment
+ * \param lineNumber
+ * \param afterColumn
+ * \param cutBuffer
+ */
 void LatexTables::addColumn(Environment env, const int lineNumber, const int afterColumn, QStringList *cutBuffer)
 {
     QDocumentLineHandle *dlh=env.dlh;
@@ -260,211 +156,51 @@ void LatexTables::addColumn(Environment env, const int lineNumber, const int aft
     if(ln==nextLine) ++nextCol; // move col by one as we inserted a column
     cur.moveTo(nextLine,nextCol);
     cur.movePosition(1);
-    QString line;
-    const QStringList nTokens{"\\\\","\\tabularnewline","\\&","&"};
     bool breakLoop = false;
-    int result = 3;
     while (!breakLoop) {
+        Token tkResult;
         for (int col = 0; col < afterColumn; col++) {
-            do {
-                result = findNextToken(cur, nTokens);
-            } while (result == 2);
-            if (result < 2) break; //end of tabular line reached
-        }
-        if (result == -1) break;
-        //if last line before end, check whether the user was too lazy to put in a linebreak
-        if (result == -2) {
-            QDocumentCursor ch(cur);
-            QStringList tokens{"\\\\","\\tabularnewline"};
-            int res = findNextToken(ch, tokens, true, true);
-            if (res == 0) {
-                ch.movePosition(2, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-                if (ch.selectedText().contains(QRegularExpression("^\\S+$")))
-                    break;
-            }
+            if(col>0) findNextColumn(cur,tkResult);
+            tkResult = findColumn(cur, env);
+            if (tkResult.length>1) break; // end of row reached
         }
         // add element
-        if (result == 3) {
-            if (pasteBuffer.isEmpty()) {
-                cur.insertText(" &");
-            } else {
-                if (afterColumn == 0) {
-                    QDocumentCursor ch(cur);
-                    int res = findNextToken(ch, nTokens);
-                    cur.insertText(pasteBuffer.takeFirst());
-                    if (res != 0) {
-                        cur.insertText("&");
-                    }
-                } else {
-                    cur.insertText(pasteBuffer.takeFirst() + "&");
-                }
+        if (tkResult.length>0) { // column separator found
+            cur.setColumnNumber(cur.anchorColumnNumber());
+            cur.setLineNumber(cur.anchorLineNumber());
+            cur.setAnchorColumnNumber(-1);
+            cur.setAnchorLineNumber(-1);
+        }
+        QString txt=" ";
+        if(!pasteBuffer.isEmpty()){
+            txt=pasteBuffer.takeFirst();
+        }
+        if(afterColumn==0){
+            cur.insertText(txt+"&");
+        }else{
+            cur.insertText("&"+txt);
+        }
+        tkResult.start+=txt.length()+1; // shift start
 
-            }
+        // move to next row
+        // jump over &
+        while(tkResult.length==1 || tkResult.length<0 /* first column*/){
+            if(tkResult.length>0) findNextColumn(cur,tkResult);
+            tkResult = findColumn(cur, env);
         }
-        if (result <= 1) {
-            int count =  1;
-            switch (result) {
-            case 0: count=2;
-                break;
-            case 1: count=15;
-                break;
-            }
-            cur.movePosition(count, QDocumentCursor::PreviousCharacter);
-            if (pasteBuffer.isEmpty()) {
-                cur.insertText("& ");
-            } else {
-                cur.insertText("&" + pasteBuffer.takeFirst());
-            }
-        }
-        const QStringList tokens{"\\\\","\\tabularnewline"};
-        breakLoop = (findNextToken(cur, tokens) == -1);
-        // go over \hline if present
-        QString text = cur.line().text();
-        int col = cur.columnNumber();
-        text = text.mid(col);
-        QRegularExpression rxHL("^(\\s*\\\\hline\\s*)");
-        QRegularExpressionMatch rxHLm=rxHL.match(text);
-        if (rxHLm.hasMatch()) {
-            int l = rxHLm.capturedLength();
-            cur.movePosition(l, QDocumentCursor::NextCharacter);
-        }
-        if (cur.atLineEnd()) cur.movePosition(1, QDocumentCursor::NextCharacter);
-        line = cur.line().text();
-        if (line.contains("\\end{")) breakLoop = true;
+        if (tkResult.getText()=="\\end{") break;
+        breakLoop=!findNextColumn(cur,tkResult);
     }
     cur.endEditBlock();
 }
 
-void LatexTables::removeColumn(QDocument *doc, const int lineNumber, const int column, QStringList *cutBuffer)
-{
-	QDocumentCursor cur(doc);
-	//preparations for search
-	QStringList nTokens;
-    nTokens << "\\\\" << "\\tabularnewline" << "\\&" << "&";
-
-	cur.moveTo(lineNumber, 0);
-	QString def = getDef(cur);
-	//int result=findNextToken(cur,QStringList(),false,true); // move to \begin{...}
-	if (def.isEmpty()) {
-		return; // begin not found
-	}
-	cur.beginEditBlock();
-	//remove col in definition
-	QStringList defs = splitColDef(def);
-	def.clear();
-	for (int i = 0; i < defs.count(); i++) {
-		if (i == column) {
-			if (cutBuffer)
-				cutBuffer->append(defs[i]);
-		} else {
-			def.append(defs[i]);
-		}
-	}
-	if (def.isEmpty()) {
-		cur.removeSelectedText();
-	} else {
-		cur.insertText(def);
-	}
-	cur.movePosition(2, QDocumentCursor::NextCharacter);
-	// remove column
-	QString line;
-	bool breakLoop = false;
-	while (!breakLoop) {
-        int result = 3;
-		int off = 0;
-		for (int col = 0; col < column; col++) {
-			if (off > 0) off--;
-			cur.clearSelection();
-			QDocumentCursor oldCur(cur);
-			do {
-				result = findNextToken(cur, nTokens, true);
-            } while (result == 2);
-			QString selText = cur.selectedText();
-			if (selText.startsWith("\\multicolumn")) {
-				int add = getNumOfColsInMultiColumn(selText);
-				if (off == 0) off = add;
-				if (off > 1) cur = oldCur;
-			}
-			breakLoop = (result < 0); // end of tabular reached (eof or \end)
-			if (result < 1) break; //end of tabular line reached
-		}
-		cur.clearSelection();
-		if (result == -1) break;
-		// add element
-        if (result > 1 || off) {
-			do {
-				result = findNextToken(cur, nTokens, true);
-            } while (result == 2);
-			QString selText = cur.selectedText();
-			int add = 0;
-			if (selText.startsWith("\\multicolumn")) {
-				add = getNumOfColsInMultiColumn(selText);
-			}
-			if (add > 1) {
-				//multicolumn handling
-				QStringList values;
-                resolveCommandOptions(selText, 0, values);
-				values.takeFirst();
-				values.prepend(QString("{%1}").arg(add - 1));
-				cur.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-                if (result == 0) cur.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-                if (result == 1) cur.movePosition(14, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-				cur.insertText("\\multicolumn" + values.join(""));
-			} else {
-				//normal handling
-                if (result == 3 && column > 0) {
-					cur.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-				}
-				if (result == 0) {
-					cur.movePosition(2, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-				}
-                if (result == 1) {
-                    cur.movePosition(15, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-                }
-				QString zw = cur.selectedText();
-				if (cutBuffer) {
-                    if (column == 0 && result > 1) zw.chop(1);
-					cutBuffer->append(zw);
-				}
-				// detect elements which need to be kept like \hline
-				QString keep;
-				if (column == 0) {
-					QStringList elementsToKeep;
-					elementsToKeep << "\\hline" << "\\endhead" << "\\endfoot" << "\\endfirsthead" << "\\endlastfoot";
-					for (int i = 0; i < zw.length(); i++) {
-						if (zw.at(i) == '\n') {
-							if (!keep.endsWith('\n'))
-								keep += "\n";
-						}
-						//commands
-						if (zw.at(i) == '\\') {
-                            QRegularExpression rx("\\w+");
-                            QRegularExpressionMatch rxm=rx.match(zw,i+1);
-                            QString cmd = "\\" + rxm.captured();
-							if (elementsToKeep.contains(cmd)) {
-								keep += " " + cmd;
-							}
-						}
-					}
-                    if (keep.length() == 1) keep.clear();
-				}
-				cur.removeSelectedText();
-				if (column > 0) {
-					cur.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-					cur.removeSelectedText();
-				}
-				cur.insertText(keep);
-			}
-            const QStringList tokens{"\\\\","\\tabularnewline"};
-			breakLoop = (findNextToken(cur, tokens) == -1);
-		}
-		if (cur.atLineEnd()) cur.movePosition(1, QDocumentCursor::NextCharacter);
-		line = cur.line().text();
-		if (line.contains("\\end{")) breakLoop = true;
-	}
-	cur.endEditBlock();
-}
-
+/*!
+ * \brief remove a column from a tabular-like environment
+ * \param env environment in which the column is removed
+ * \param lineNumber line number of the tabular-like environment
+ * \param column column to be removed, starting with 0
+ * \param cutBuffer buffer to store cut text, can be nullptr
+ */
 void LatexTables::removeColumn(Environment env, const int lineNumber, const int column, QStringList *cutBuffer)
 {
     QDocumentLineHandle *dlh=env.dlh;
@@ -675,6 +411,133 @@ int LatexTables::findNextToken(QDocumentCursor &cur, QStringList tokens, bool ke
 		cur.movePosition(pos + tokens.at(nextToken).length() + offset, mvNextChar, mvFlag);
 	}
 	return nextToken;
+}
+/*!
+ * \brief find and select column in which the cursor is positioned
+ * \param cur
+ * \return
+ */
+Token LatexTables::findColumn(QDocumentCursor &cur, Environment env)
+{
+    int ln=cur.lineNumber();
+    int col=cur.columnNumber();
+    // reset anchor point
+    cur.setAnchorColumnNumber(-1);
+    cur.setAnchorLineNumber(-1);
+    Token tkResult;
+    QDocument *doc=cur.document();
+    QDocumentLineHandle *dlh=doc->line(ln).handle();
+    dlh->lockForRead();
+    TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    dlh->unlock();
+    int ignoreUntilColumn=-1; // special ignore new row cmd in tblr (multi line cells)
+    for(int i=0;i<tl.size();++i){
+        tkResult=tl.at(i);
+        if(tkResult.start<col) continue; // jump through tokens until we reach the column
+        if(tkResult.type==Token::command){
+            const QString cmd=tkResult.getText();
+            if(cmd=="&"){
+                // column end found
+                cur.setAnchorColumnNumber(tkResult.start);
+                cur.setAnchorLineNumber(ln);
+                break;
+            }
+            const QStringList tokens{"\\\\","\\tabularnewline","\\end"}; // end preliminary, to be refined
+            if(tokens.contains(cmd) && tkResult.start>=ignoreUntilColumn){
+                // column break is found, handle like column end
+                cur.setAnchorColumnNumber(tkResult.start);
+                cur.setAnchorLineNumber(ln);
+                break;
+            }
+        }
+        if(env.name=="tblr"){
+            // skip over braces (multi line cells)
+            if(tkResult.type==Token::braces && tkResult.subtype==Token::none){
+                ignoreUntilColumn=tkResult.start+tkResult.length;
+            }
+        }
+        // when at end of line, go for next line
+        if(i==tl.size()-1){
+            // no column separator found, go for next line
+            i=-1;
+            ++ln;
+            col=65535; // set to max value
+            QDocumentLineHandle *dlh=doc->line(ln).handle();
+            dlh->lockForRead();
+            tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            dlh->unlock();
+        }
+    }
+    return tkResult;
+}
+
+/*!
+ * \brief set cursor to start of next column after tk
+ * Jumps over \hline at end of row and any spaces to first character of next column.
+ * \param cur
+ * \param tk column separator
+ * \return
+ */
+bool LatexTables::findNextColumn(QDocumentCursor &cur, Token &tk)
+{
+    int ln=cur.lineNumber();
+    int col=cur.columnNumber();
+    QDocument *doc=cur.document();
+    QDocumentLineHandle *dlh=doc->line(ln).handle();
+    dlh->lockForRead();
+    TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    dlh->unlock();
+    int i;
+    int j=-1;
+    for(i=0;i<tl.size();++i){
+        if(tl.at(i)== tk){
+            // found token
+            j=i;
+            break;
+        }
+    }
+    if(j<0){
+        // token not found
+        return false;
+    }
+    // now search for next column start
+    bool breakLoop=false;
+    do{
+        for(++i;i<tl.size();++i){
+            const Token &tk2=tl.at(i);
+            if(tk2.type==Token::command){
+                if(tk2.getText()=="\\hline"){
+                    // skip over \hline
+                    // todo, skip over potential optional argument
+                    continue;
+                }
+                if(tk2.getText()=="\\end"){
+                    // end of env
+                    // todo: refine
+                    return false;
+                }
+            }
+            breakLoop=true;
+            cur.setLineNumber(ln);
+            cur.setColumnNumber(tk2.start);
+            break;
+        }
+        if(!breakLoop){
+            // check next line
+            ++ln;
+            if(ln>=doc->lineCount()){
+                // no next line
+                return false;
+            }
+            dlh=doc->line(ln).handle();
+            dlh->lockForRead();
+            tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            dlh->unlock();
+            i=-1; // reset token index
+        }
+    }while(!breakLoop);
+
+    return true;
 }
 
 // get column in which the cursor is positioned.
