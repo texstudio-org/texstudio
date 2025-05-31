@@ -731,8 +731,14 @@ int LatexTables::getColumn(const QDocumentCursor &cur,const Environment env)
                 ++resultColumn;
             }
             const QStringList tokens{"\\\\","\\tabularnewline"};
-            if(tokens.contains(cmd) && tk.start>ignoreUntilColumn){
+            if(tokens.contains(cmd) && tk.start>=ignoreUntilColumn){
                 resultColumn=0; // reset column count, new row
+                if(tk.start+tk.length>col){
+                    //cursor is within the row break command
+                    // so we ddeclare invalid (-1)
+                    resultColumn=-1;
+                    break;
+                }
             }
         }
         if(env.name=="tblr"){

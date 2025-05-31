@@ -434,7 +434,7 @@ void TableManipulationTest::getCol_data(){
 	QTest::addColumn<int>("colFound");
 
 	//-------------cursor without selection--------------
-	QTest::newRow("col 0")
+    QTest::newRow("col 0")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
 		<< 0;
@@ -457,12 +457,12 @@ void TableManipulationTest::getCol_data(){
     QTest::newRow("col 1b")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 4
-		<< 1;
+        << -1;
 
 	QTest::newRow("col -1")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 5
-		<< -1;
+        << 0;
 
 	QTest::newRow("row 2,col 1")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
@@ -515,24 +515,29 @@ void TableManipulationTest::getCol_data(){
 		<< 1;
     // special tblr
     QTest::newRow("tblr")
-        << "\\begin{tblr}{ll}\na&b\\\\\nc&d\n\\end{tblr}\n"
+        << "\\usepackage{tabularray}\\begin{tblr}{ll}\na&b\\\\\nc&d\n\\end{tblr}\n"
         << 2 << 2
         << 1;
     QTest::newRow("tblr, multi line cell 1")
-        << "\\begin{tblr}{ll}\na&{b\\\\b}\\\\\nc&d\n\\end{tblr}\n"
+        << "\\usepackage{tabularray}\\begin{tblr}{ll}\na&{b\\\\b}\\\\\nc&d\n\\end{tblr}\n"
         << 1 << 2
         << 1;
     QTest::newRow("tblr, multi line cell 2")
-        << "\\begin{tblr}{ll}\na&{b\\\\b}\\\\\nc&d\n\\end{tblr}\n"
+        << "\\usepackage{tabularray}\\begin{tblr}{ll}\na&{b\\\\b}\\\\\nc&d\n\\end{tblr}\n"
         << 1 << 8
         << 1;
     QTest::newRow("tblr, multi line cell 3")
-        << "\\begin{tblr}{ll}\na&{b\\\\b}\\\\\nc&d\n\\end{tblr}\n"
+        << "\\usepackage{tabularray}\\begin{tblr}{ll}\na&{b\\\\b}\\\\\nc&d\n\\end{tblr}\n"
         << 1 << 5
         << 1;
-
-
-
+    QTest::newRow("tblr, multi line cell 4")
+        << "\\usepackage{tabularray}\\begin{tblr}{ll}\na&{b\\\\b}\\\\\nc&d\n\\end{tblr}\n"
+        << 1 << 10
+        << 0;
+    QTest::newRow("tblr, multi line cell 5")
+        << "\\usepackage{tabularray}\\begin{tblr}{ll}\na&\n{b\\\\b}\\\\\nc&d\n\\end{tblr}\n"
+        << 2 << 0
+        << 1;
 }
 void TableManipulationTest::getCol(){
 	QFETCH(QString, text);
