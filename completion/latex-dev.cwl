@@ -1,7 +1,7 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
-# Matthew Bertucci 2024/11/01 release
+# Matthew Bertucci 2025/06/01 release
 
 #include:expl3-commands
 
@@ -17,6 +17,7 @@
 \AfterEndEnvironment[label]{environment}{code}#*
 \AfterEndEnvironment{environment}{code}#*
 \AssignSocketPlug{socket}{socket plug}#*
+\AssignTaggingSocketPlug{socket}{socket plug}#*
 \AssignTemplateKeys#*
 \AtBeginDocument[label]{code}#*
 \AtBeginDocument{code}#*
@@ -169,6 +170,8 @@
 \IfClassLoadedWithOptionsF{class}{options}{false code}#*
 \IfClassLoadedWithOptionsT{class}{options}{true code}#*
 \IfClassLoadedWithOptionsTF{class}{options}{true code}{false code}#*
+\IfExplAtLeastF{date}{false code}#*
+\IfExplAtLeastT{date}{true code}#*
 \IfExplAtLeastTF{date}{true code}{false code}#*
 \IfFileAtLeastF{file}{date}{false code}#*
 \IfFileAtLeastT{file}{date}{true code}#*
@@ -177,6 +180,8 @@
 \IfFileLoadedF{file}{false code}#*
 \IfFileLoadedT{file}{true code}#*
 \IfFileLoadedTF{file}{true code}{false code}#*
+\IfFontSeriesContextF{face}{false code}#*
+\IfFontSeriesContextT{face}{true code}#*
 \IfFontSeriesContextTF{face}{true code}{false code}#*
 \IfFormatAtLeastF{date}{false code}#*
 \IfFormatAtLeastT{date}{true code}#*
@@ -208,6 +213,8 @@
 \IfPackageLoadedWithOptionsF{package}{options}{false code}#*
 \IfPackageLoadedWithOptionsT{package}{options}{true code}#*
 \IfPackageLoadedWithOptionsTF{package}{options}{true code}{false code}#*
+\IfPDFManagementActiveF{false code}#*
+\IfPDFManagementActiveT{true code}#*
 \IfPDFManagementActiveTF{true code}{false code}#*
 \IfPropertyExistsF{property}{false code}#*
 \IfPropertyExistsT{property}{true code}#*
@@ -215,6 +222,15 @@
 \IfPropertyRecordedF{label}{property}{false code}#*
 \IfPropertyRecordedT{label}{property}{true code}#*
 \IfPropertyRecordedTF{label}{property}{true code}{false code}#*
+\IfSocketExistsF{socket}{false code}#*
+\IfSocketExistsT{socket}{true code}#*
+\IfSocketExistsTF{socket}{true code}{false code}#*
+\IfSocketPlugAssignedF{socket}{plug}{false code}#*
+\IfSocketPlugAssignedT{socket}{plug}{true code}#*
+\IfSocketPlugAssignedTF{socket}{plug}{true code}{false code}#*
+\IfSocketPlugExistsF{socket}{plug}{false code}#*
+\IfSocketPlugExistsT{socket}{plug}{true code}#*
+\IfSocketPlugExistsTF{socket}{plug}{true code}{false code}#*
 \IfTargetDateBefore{date}{before code}{after code}#*
 \IfValueF{arg}{-NoValue-Code}#*
 \IfValueT{arg}{ValueCode}#*
@@ -243,6 +259,8 @@
 \MakeLinkTarget[prefix]{counter}#*
 \MakeLinkTarget{counter}#*
 \MakeRobust{cmd}#*
+\MathCollectTrue#*
+\MathCollectFalse#*
 \MessageBreak#*
 \NeedsTeXFormat{format}#*
 \NeedsTeXFormat{format}[release]#*
@@ -262,6 +280,8 @@
 \NewReversedHookWithArguments{hook}{number}#*
 \NewSocket{socket}{number of inputs}#*
 \NewSocketPlug{socket}{socket plug}{code}#*
+\NewTaggingSocket{socket}{number of inputs}#*
+\NewTaggingSocketPlug{socket}{socket plug}{code}#*
 \NewTemplateType{template type}{no. of args}#*
 \NextLinkTarget{target name}#*
 \OmitIndent#*
@@ -326,6 +346,7 @@
 \SetDefaultHookLabel{default label}#*
 \SetKeys[family]{keyvals}#*
 \SetKeys{keyvals}#*
+\SetKnownTemplateKeys{type}{template}{keyvals}#*
 \SetMathAlphabet{math-alph%cmd}{version}{encoding}{family}{series}{shape}#*d
 \SetProperty{property}{setpoint}{default}{code}#*
 \SetSymbolFont{sym-font}{version}{encoding}{family}{series}{shape}#*
@@ -340,6 +361,7 @@
 \ShowHook{hook}#*
 \ShowInstanceValues{type}{instance}#*
 \ShowMarksAt{text}#*
+\ShowMarksAt{text}[integer]#*
 \ShowSocket{socket}#*
 \ShowTemplateCode{type}{template}#*
 \ShowTemplateDefaults{type}{template}#*
@@ -353,6 +375,7 @@
 \TopMark{class%plain}#*
 \TrimSpaces#*
 \UndeclareTextCommand{cmd}{encoding}#*
+\UnusedTemplateKeys#*
 \UseExpandableTaggingSocket{socket}#*
 \UseHook{hook}#*
 \UseHookWithArguments{%<hook%>}{%<number%>}{%<arg1%>}%<{arg2}...%>#*
@@ -404,10 +427,13 @@ debug={%<options%>}
 tagging=#on,off,draft
 tagging-setup={%<options%>}
 #endkeyvals
+\IfDocumentMetadataF{false code}#*
+\IfDocumentMetadataT{true code}#*
 \IfDocumentMetadataTF{true code}{false code}#*
 
 # counter, lengths and dimens
 \setcounter{counter}{value}#*
+\setcounter*{value}#*
 \setlength{\gnat}{length}#*
 \setpapersize{layout}#*
 \settodepth{\gnat}{text}#*
@@ -415,18 +441,22 @@ tagging-setup={%<options%>}
 \settowidth{\gnat}{text}#*
 \addtocontents{ext}{text}#*
 \addtocounter{counter}{value}#*
+\addtocounter*{value}#*
 \addtolength{\gnat}{length}#*
 \addvspace{length}#*
 \newcounter{foo}#*
 \newcounter{foo}[counter]#*
 \refstepcounter{counter}#*
+\refstepcounter*#*
 \restorecr#*
 \reversemarginpar#*
 \stepcounter{counter}#*
+\stepcounter*#*
 \stretch{number}#*
 \usecounter{counter}#*
 \usefont{enc}{family}{series}{shape}#*
 \value{counter}#*
+\value*#*
 \newfont{cmd}{fontname}#*d
 
 # counter representative
@@ -727,6 +757,7 @@ tagging-setup={%<options%>}
 \emforce#*
 \eminnershape#*
 \emreset#*
+\expandableinput{file}#*i
 \extrafloats{number}#*
 \familydefault#*
 \fill#*
