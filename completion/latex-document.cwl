@@ -3,18 +3,21 @@
 # tbraun/2006-08-03 removed dup inserted by me ...
 # tbraun/2007-02-24 added left/right variants
 # dbitouze/2015-02-21 obsolete font style commands made unusual
-# Matthew Bertucci 2024/11/01 release
+# Matthew Bertucci 2025/06/01 release
 
 #include:latex-dev
 
 \abstractname#*
 \addcontentsline{ext}{type}{entry%text}#*
 \Alph{counter}#*
+\Alph*#*
 \alph{counter}#*
+\alph*#*
 \and#*
 \appendix
 \appendixname#*
 \arabic{counter}#*
+\arabic*#*
 \asciispace#*
 \author{names}
 # the following line generates the general "\begin{%<environment%>}"
@@ -185,6 +188,7 @@
 \figurename
 \flushbottom
 \fnsymbol{counter}#*
+\fnsymbol*#*
 \fontencoding{enc}
 \fontfamily{family}
 \fontseries{series}
@@ -382,7 +386,9 @@
 \rm#*
 \rmfamily
 \Roman{counter}
+\Roman*#*
 \roman{counter}
+\roman*#*
 \rootbox#*
 \rule[raise%l]{width}{thickness%l}
 \rule{width}{thickness%l}
@@ -642,6 +648,7 @@ sizes
 #keyvals:\MakeLowercase#c,\MakeTitlecase#c,\MakeUppercase#c
 locale=%<BCP-47 tag%>
 lang=%<BCP-47 tag%>
+words=#all,first
 #endkeyvals
 
 #keyvals:\mathversion#c
