@@ -10147,11 +10147,12 @@ void Texstudio::addColumnCB()
     doc->getEnv(cur.lineNumber(),stackEnv);
     int i=LatexTables::inTableEnv(stackEnv);
     if (i<0) return;
-	int col = LatexTables::getColumn(cur) + 1;
+    Environment env=stackEnv.at(i);
+    int col = LatexTables::getColumn(cur,env) + 1;
 	if (col < 1) return;
 	if (col == 1 && cur.atLineStart()) col = 0;
     //LatexTables::addColumn(currentEditorView()->document, currentEditorView()->editor->cursor().lineNumber(), col);
-    LatexTables::addColumn(stackEnv[i], currentEditorView()->editor->cursor().lineNumber(), col);
+    LatexTables::addColumn(env, currentEditorView()->editor->cursor().lineNumber(), col);
 }
 
 void Texstudio::removeColumnCB()

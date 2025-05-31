@@ -19,6 +19,7 @@ public:
 	static void removeRow(QDocumentCursor &c);
 	static int findNextToken(QDocumentCursor &cur, QStringList tokens, bool keepAnchor = false, bool backwards = false);
 	static int getColumn(QDocumentCursor &cur);
+    static int getColumn(const QDocumentCursor &cur, const Environment env);
 	static QString getDef(QDocumentCursor &cur);
     static Token getDef(TokenList &tl, Environment env, int &ln, int &nextLine, int &nextCol, QDocument *doc);
 	static QString getSimplifiedDef(QDocumentCursor &cur);
