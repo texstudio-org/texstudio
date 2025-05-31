@@ -513,6 +513,25 @@ void TableManipulationTest::getCol_data(){
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\n\\end{tabular}\n"
 		<< 2 << 2
 		<< 1;
+    // special tblr
+    QTest::newRow("tblr")
+        << "\\begin{tblr}{ll}\na&b\\\\\nc&d\n\\end{tblr}\n"
+        << 2 << 2
+        << 1;
+    QTest::newRow("tblr, multi line cell 1")
+        << "\\begin{tblr}{ll}\na&{b\\\\b}\\\\\nc&d\n\\end{tblr}\n"
+        << 1 << 2
+        << 1;
+    QTest::newRow("tblr, multi line cell 2")
+        << "\\begin{tblr}{ll}\na&{b\\\\b}\\\\\nc&d\n\\end{tblr}\n"
+        << 1 << 8
+        << 1;
+    QTest::newRow("tblr, multi line cell 3")
+        << "\\begin{tblr}{ll}\na&{b\\\\b}\\\\\nc&d\n\\end{tblr}\n"
+        << 1 << 5
+        << 1;
+
+
 
 }
 void TableManipulationTest::getCol(){
@@ -524,7 +543,12 @@ void TableManipulationTest::getCol(){
 	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
-	int nc=LatexTables::getColumn(c);
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(ed->document());
+    StackEnvironment stackEnv;
+    doc->getEnv(row,stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    if (i<0) return;
+    int nc=LatexTables::getColumn(c,stackEnv[i]);
 
 	QEQUAL(nc,colFound);
 
