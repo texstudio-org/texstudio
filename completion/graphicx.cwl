@@ -1,6 +1,7 @@
 # graphicx package
 # mario 09/06/2007
 # muzimuzhi/10 Aug 2019 for graphicx v1.1a
+# updated for v1.2e
 # URL: http://tug.ctan.org/tex-archive/macros/latex/required/graphics/
 
 #include:keyval
@@ -61,7 +62,9 @@ hidescale
 \scalebox{h-scale}[v-scale]{text}
 
 #keyvals:\includegraphics
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=
