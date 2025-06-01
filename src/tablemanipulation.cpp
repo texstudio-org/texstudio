@@ -252,6 +252,9 @@ void LatexTables::removeColumn(Environment env, const int lineNumber, const int 
             if (tkResult.length>1) break; // end of row reached
         }
         const QString txt=cur.selectedText();
+        if(cutBuffer){
+            cutBuffer->append(txt);
+        }
         // extend anchor to column separator
         if(tkResult.length==1){
             // & found
@@ -260,14 +263,24 @@ void LatexTables::removeColumn(Environment env, const int lineNumber, const int 
         }else{
             if(tkPrevious.length==1){
                 // previous token was & so we extend start to that
+                int lnOld=doc->indexOf(tkPrevious.dlh,cur.lineNumber());
+                cur.setLineNumber(lnOld,QDocumentCursor::KeepAnchor);
                 cur.setColumnNumber(tkPrevious.start,QDocumentCursor::KeepAnchor);
             }
         }
-        tkResult.start-=cur.selectedText().length(); // shift start
-        if(cutBuffer){
-            cutBuffer->append(txt);
+
+        int len;
+        if(cur.lineNumber()!=cur.anchorLineNumber()){
+            // multi line selection, shifts token into new line
+            // simply search again
+            cur.removeSelectedText();
+            tkResult = findColumn(cur, env);
+        }else{
+            tkResult.start-=cur.anchorColumnNumber()-cur.columnNumber(); // shift start
+            cur.removeSelectedText();
         }
-        cur.removeSelectedText();
+
+
 
         // move to next row
         // jump over &
