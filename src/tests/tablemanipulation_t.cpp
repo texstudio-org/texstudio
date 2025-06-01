@@ -154,6 +154,15 @@ void TableManipulationTest::addCol_data(){
         << "\\begin{tabular}{x}\na\\\\\nc\\\\\ne\n\\end{tabular}\n"
         << 1 << 1
         << "\\begin{tabular}{xl}\na& \\\\\nc& \\\\\ne& \n\\end{tabular}\n";
+    // hline
+    QTest::newRow("add first col, hline")
+        << "\\begin{tabular}{xy}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\ \\hline\n\\end{tabular}\n"
+        << 1 << 0
+        << "\\begin{tabular}{lxy}\n &a&b\\\\ \\hline\n &c&d\\\\\n &e&f\\\\ \\hline\n\\end{tabular}\n";
+    QTest::newRow("add second col, hline")
+        << "\\begin{tabular}{xy}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\ \\hline\n\\end{tabular}\n"
+        << 1 << 1
+        << "\\begin{tabular}{xly}\na& &b\\\\ \\hline\nc& &d\\\\\ne& &f\\\\ \\hline\n\\end{tabular}\n";
 }
 void TableManipulationTest::addCol(){
 	QFETCH(QString, text);
