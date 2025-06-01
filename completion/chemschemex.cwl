@@ -157,7 +157,9 @@ arrowadvance=##L
 \structminus
 
 #keyvals:\CSXimage,\struct,\struct*,\struct-,\structalt,\structalt*,\Struct,\Struct*,\Structalt,\Structalt*
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

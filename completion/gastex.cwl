@@ -42,7 +42,9 @@ ignore#true,false
 showname#true,false
 namefont=%<font commands%>
 # \includegraphics options
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

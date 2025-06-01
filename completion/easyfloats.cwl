@@ -84,7 +84,9 @@ placement=%<placement%>
 align=%<code%>
 exec=%<code%>
 exec +=%<code%>
+graphic actualtext={%<text%>}
 graphic alt={%<alt text%>}
+graphic artifact#true,false
 graphic bb=%<llx lly urx ury%>
 graphic bbllx=
 graphic bblly=
@@ -191,7 +193,9 @@ no env#true,false
 before graphic=%<code%>
 after graphic=%<code%>
 # \includegraphics options
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

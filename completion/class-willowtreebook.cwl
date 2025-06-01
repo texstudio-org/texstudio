@@ -147,7 +147,9 @@ twoside
 \includegraphicsinexample{imagefile}#g
 \includegraphicsinexample[options%keyvals]{imagefile}#g
 #keyvals:\includegraphicsinexample
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

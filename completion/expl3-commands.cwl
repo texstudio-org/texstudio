@@ -4515,6 +4515,18 @@
 \socket_assign_plug:nn {%<⟨socket⟩%>} {%<⟨plug⟩%>}#/%expl3
 \socket_debug_off:#/%expl3
 \socket_debug_on:#/%expl3
+\socket_if_exist:nF {%<⟨socket⟩%>} {%<⟨false code⟩%>}#/%expl3
+\socket_if_exist:nT {%<⟨socket⟩%>} {%<⟨true code⟩%>}#/%expl3
+\socket_if_exist:nTF {%<⟨socket⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\socket_if_exist_p:n {%<⟨socket⟩%>}#/%expl3
+\socket_if_plug_assigned:nnF {%<⟨socket⟩%>} {%<⟨plug⟩%>} {%<⟨false code⟩%>}#/%expl3
+\socket_if_plug_assigned:nnT {%<⟨socket⟩%>} {%<⟨plug⟩%>} {%<⟨true code⟩%>}#/%expl3
+\socket_if_plug_assigned:nnTF {%<⟨socket⟩%>} {%<⟨plug⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\socket_if_plug_assigned_p:nn {%<⟨socket⟩%>} {%<⟨plug⟩%>}#/%expl3
+\socket_if_plug_exist:nnF {%<⟨socket⟩%>} {%<⟨plug⟩%>} {%<⟨false code⟩%>}#/%expl3
+\socket_if_plug_exist:nnT {%<⟨socket⟩%>} {%<⟨plug⟩%>} {%<⟨true code⟩%>}#/%expl3
+\socket_if_plug_exist:nnTF {%<⟨socket⟩%>} {%<⟨plug⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\socket_if_plug_exist_p:nn {%<⟨socket⟩%>} {%<⟨plug⟩%>}#/%expl3
 \socket_log:n {%<⟨socket⟩%>}#/%expl3
 \socket_new_plug:nnn {%<⟨socket⟩%>} {%<⟨plug⟩%>} {%<⟨code⟩%>}#/%expl3
 \socket_set_plug:nnn {%<⟨socket⟩%>} {%<⟨plug⟩%>} {%<⟨code⟩%>}#/%expl3
@@ -4589,6 +4601,10 @@
 \mark_use_top:nn {%<⟨region⟩%>} {%<⟨class⟩%>}#/%expl3
 
 ## lttagging ##
+\tag_if_active:F {%<⟨false code⟩%>}#/%expl3
+\tag_if_active:T {%<⟨true code⟩%>}#/%expl3
+\tag_if_active:TF {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\tag_if_active_p:#/%expl3
 \tag_resume:n {%<⟨string⟩%>}#/%expl3
 \tag_socket_use:n {%<⟨socket⟩%>}#/%expl3
 \tag_socket_use:nn {%<⟨socket⟩%>} {%<⟨arg1⟩%>}#/%expl3

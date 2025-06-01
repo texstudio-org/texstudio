@@ -59,7 +59,9 @@ postsp={%<PS code%>}
 
 #keyvals:\insertEPS
 # \includegraphics keys
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

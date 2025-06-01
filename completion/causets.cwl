@@ -146,7 +146,9 @@ vlabels={%<TikZ keys%>}
 \causetfile[options%keyvals]{imagefile}#g
 
 #keyvals:\causetfile
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

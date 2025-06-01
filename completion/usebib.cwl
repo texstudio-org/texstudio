@@ -7,7 +7,7 @@
 \bibinput{bib file}
 \newbibfield{field%specialDef}#s#%usebibfield
 \newbibignore{type}
-\usebibentry{citekey}{field%keyvals}#c
+\usebibentry{bibid}{field%keyvals}#c
 #keyvals:\usebibentry#c
 title
 year
@@ -15,5 +15,5 @@ note
 isbn
 %usebibfield
 #endkeyvals
-\usebibentryurl{citekey}#c
-\usebibentryurl[delim]{citekey}#*c
+\usebibentryurl{bibid}#c
+\usebibentryurl[delim]{bibid}#*c

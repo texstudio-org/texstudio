@@ -23,7 +23,9 @@ tmpdir
 \inputdigraph[options%keyvals]{name}{graph}{type}#*
 
 #keyvals:\digraph,\neatograph,\inputdigraph
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

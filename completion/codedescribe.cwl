@@ -1,5 +1,5 @@
 # codedescribe package
-# Matthew Bertucci 2025/04/22 for v1.7
+# Matthew Bertucci 2025/05/31 for v1.9
 
 #include:xcolor
 #include:pifont
@@ -104,7 +104,11 @@ rEXP
 #endkeyvals
 
 #keyvals:\typesetobj#c,\tsobj#c
+mid sep=%<separator%>
 sep=%<separator%>
+comma
+bnf or
+meta or
 #endkeyvals
 
 \typesettitle{title-keys%keyvals}#*

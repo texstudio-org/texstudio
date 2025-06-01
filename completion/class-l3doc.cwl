@@ -1,5 +1,5 @@
 # l3doc class
-# Matthew Bertucci 2024/06/02 for v2024-05-08
+# Matthew Bertucci 2025/05/31 for v2025-05-26
 
 #include:calc
 #include:doc
@@ -35,6 +35,7 @@ cs-break#true,false
 cs-break-nohyphen
 show-notes#true,false
 hide-notes#true,false
+base-date=%<date%>
 # options passed to article class
 a4paper
 b5paper

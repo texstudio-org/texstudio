@@ -273,7 +273,9 @@ algorithmcaption#B
 algorithmborder#B
 
 #keyvals:\mfigure,\mfigure*,\msubfigure,\mfigurewtex,\mfigurewtex*
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

@@ -13,7 +13,9 @@
 #keyvals:\begin{asypicture}#c,\asyset#c
 name=%<name%>
 # options passed to \includegraphics
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

@@ -1,5 +1,5 @@
 # codelisting package
-# Matthew Bertucci 2025/05/08 for v1.8
+# Matthew Bertucci 2025/05/31 for v1.9
 
 #include:listings
 #include:scontents
@@ -92,6 +92,8 @@ emphstyle=%<font commands%>
 emph2style=%<font commands%>
 emph3style=%<font commands%>
 emph4style=%<font commands%>
+letter=
+other=
 numbers=#none,left
 numberstyle=%<font commands%>
 stringstyle=%<font commands%>

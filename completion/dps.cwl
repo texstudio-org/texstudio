@@ -67,7 +67,9 @@ lang=#english,german,custom
 \insertSideshow{rows}{cols}{imagefile}#g
 \insertSideshow{rows}{cols}[options%keyvals]{imagefile}#g
 #keyvals:\insertSideshow
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

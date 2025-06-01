@@ -534,7 +534,9 @@ deadline=%<deadline%>
 
 #keyvals:\begin{adjustcell},\begin{adjustcell*}
 ### \includegraphics keys
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=
