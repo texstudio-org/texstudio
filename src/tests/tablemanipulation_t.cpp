@@ -62,7 +62,7 @@ void TableManipulationTest::addCol_data(){
 	QTest::addColumn<QString>("newText");
 	
 	//-------------cursor without selection--------------
-	QTest::newRow("add first col")
+    QTest::newRow("add first col")
 		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
 		<< "\\begin{tabular}{lxy}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tabular}\n";
@@ -85,11 +85,6 @@ void TableManipulationTest::addCol_data(){
 	QTest::newRow("add third col")
 		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 2
-		<< "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tabular}\n";
-
-    QTest::newRow("add third col, pos before \\\\")
-		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 1 << 3
 		<< "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tabular}\n";
     // tests for tabu/longtabu
     QTest::newRow("add first col tabu")
@@ -129,7 +124,23 @@ void TableManipulationTest::addCol_data(){
         << "\\usepackage{tabularray}\n\\begin{tblr}{\ncolspec={xy}\n}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
         << 4 << 0
         << "\\usepackage{tabularray}\n\\begin{tblr}{\ncolspec={lxy}\n}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
-
+    QTest::newRow("add first col tblr, mulitline cell")
+        << "\\usepackage{tabularray}\n\\begin{tblr}{xy}\na&{b\\\\b}\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 4 << 0
+        << "\\usepackage{tabularray}\n\\begin{tblr}{lxy}\n &a&{b\\\\b}\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
+    QTest::newRow("add second col tblr, mulitline cell")
+        << "\\usepackage{tabularray}\n\\begin{tblr}{xy}\na&{b\\\\b}\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 4 << 2
+        << "\\usepackage{tabularray}\n\\begin{tblr}{xyl}\na&{b\\\\b}& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tblr}\n";
+    // incorrect table
+    QTest::newRow("add second col, incorrect tabular")
+        << "\\begin{tabular}{xy}\na&b\\\\\nc&d&e\\\\\nf\\\\\n\\end{tabular}\n"
+        << 1 << 1
+        << "\\begin{tabular}{xly}\na& &b\\\\\nc& &d&e\\\\\nf& \\\\\n\\end{tabular}\n";
+    QTest::newRow("add third col, incorrect tabular")
+        << "\\begin{tabular}{xy}\na&b\\\\\nc&d&e\\\\\nf\\\\\n\\end{tabular}\n"
+        << 1 << 2
+        << "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& &e\\\\\nf& \\\\\n\\end{tabular}\n";
 }
 void TableManipulationTest::addCol(){
 	QFETCH(QString, text);
