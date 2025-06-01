@@ -1,5 +1,5 @@
 # eqnlines package
-# Matthew Bertucci 2025/05/21 for v0.9
+# Matthew Bertucci 2025/06/01 for v0.10
 
 #include:keyval
 
@@ -133,6 +133,7 @@ tagmarginthreshold=%<threshold%>
 mintagsep=##L
 mintagwidth=##L
 mintagwidth*=##L
+tagsnap=
 layout=#left,center
 center
 left
@@ -185,9 +186,6 @@ belowshortskip=##L
 tagskip=##L
 abovetagskip=##L
 belowtagskip=##L
-medtagskip=##L
-abovemedtagskip=##L
-belowmedtagskip=##L
 medskip=##L
 abovemedskip=##L
 abovetopskip=##L
@@ -198,8 +196,6 @@ belowmedskip=##L
 belowtopskip=##L
 belowparskip=##L
 belowcontskip=##L
-abovepartagskip=##L
-belowpartagskip=##L
 shortmode=#off,above,belowone,belowall
 abovecontmode=#long,short,cont
 aboveparmode=#long,short,cont,par
@@ -219,6 +215,9 @@ ampproof#true,false
 crerror#true,false
 strutdepth=##L
 modifierwarning#true,false
+marksymbol=%<symbol%>
+qedsymbol=%<symbol%>
+markpos=#below,baseline,bottom
 #endkeyvals
 
 #keyvals:\usepackage/eqnlines#c
@@ -249,7 +248,8 @@ tagsright
 reqno
 tags
 eqno
-bestlineauto#true,false
+evadetag#true,false
+tagbetween#true,false
 linesfallback=#true,false,reuse
 #endkeyvals
 
@@ -294,6 +294,7 @@ colsep=##L
 #keyvals:\eqncontrol
 vspace=
 vspace*=
+vspace!=
 break=
 penalty=
 label=
@@ -301,12 +302,19 @@ labelname=
 tag=
 tag*=
 taglabel=
-raisetag=
-raisetag!
+shifttag=##L
+smashtag=##L
+pushtag
 framecell
 framecell=%<command%>
 frametag
 frametag=%<command%>
+inject=%<command%>
+inject*=%<command%>
+markline={%<symbol=<symbol>,<options>%>}
+markline*={%<symbol=<symbol>,<options>%>}
+qed
+qed={%<options%>}
 nonumber
 *
 donumber
