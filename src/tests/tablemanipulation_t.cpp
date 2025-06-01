@@ -163,6 +163,16 @@ void TableManipulationTest::addCol_data(){
         << "\\begin{tabular}{xy}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\ \\hline\n\\end{tabular}\n"
         << 1 << 1
         << "\\begin{tabular}{xly}\na& &b\\\\ \\hline\nc& &d\\\\\ne& &f\\\\ \\hline\n\\end{tabular}\n";
+    // multi lines per row
+    QTest::newRow("add col 0, row over multiple lines")
+        << "\\begin{tabular}{ll}\na&\nb\\\\\nc\n&\nd\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 1 << 0
+        << "\\begin{tabular}{lll}\n &a&\nb\\\\\n &c\n&\nd\\\\\n &e&f\\\\\n\\end{tabular}\n";
+
+    QTest::newRow("add col 1, row over multiple lines")
+        << "\\begin{tabular}{ll}\na&\nb\\\\\nc\n&\nd\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 1 << 1
+        << "\\begin{tabular}{lll}\na& &\nb\\\\\nc\n& &\nd\\\\\ne& &f\\\\\n\\end{tabular}\n";
 }
 void TableManipulationTest::addCol(){
 	QFETCH(QString, text);
@@ -313,12 +323,12 @@ void TableManipulationTest::remCol_data(){
     QTest::newRow("rem col 0 containing \\hline 3")
 			<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\\\hline\n\\end{tabular}\n"
 			<< 1 << 0
-            << "\\begin{tabular}{l}\nb\\\\ \\hline\nd\\\\\nf\\\\ \\hline\n\\end{tabular}\n";
+            << "\\begin{tabular}{l}\nb\\\\ \\hline\nd\\\\\nf\\\\\\hline\n\\end{tabular}\n";
 
 	QTest::newRow("rem last col")
 			<< "\\begin{tabular}{l}\na\\\\ \\hline\nd\\\\\nf\\\\\\hline\n\\end{tabular}\n"
 			<< 1 << 0
-			<< "\\begin{tabular}{}\n\\\\ \\hline\n\\\\\n\\\\ \\hline\n\\end{tabular}\n";
+            << "\\begin{tabular}{}\n\\\\ \\hline\n\\\\\n\\\\\\hline\n\\end{tabular}\n";
 
     QTest::newRow("rem last col, no final \\\\")
         << "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\n\\end{tabular}\n"
@@ -366,6 +376,10 @@ void TableManipulationTest::remCol_data(){
         << "\\begin{tblr}{\ncolspec={xy}\n}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
         << 3 << 0
         << "\\begin{tblr}{\ncolspec={y}\n}\nb\\\\\nd\\\\\nf\\\\\n\\end{tblr}\n";
+    QTest::newRow("rem col 1 tblr, multiline cell")
+        << "\\begin{tblr}{xy}\na&{b\\\\b}\\\\\n{c\\\\c}&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 1 << 1
+        << "\\begin{tblr}{x}\na\\\\\n{c\\\\c}\\\\\ne\\\\\n\\end{tblr}\n";
 
 }
 void TableManipulationTest::remCol(){
