@@ -270,6 +270,11 @@ void TableManipulationTest::remCol_data(){
 		<< 1 << 1
 		<< "\\begin{tabular}{x}\na\\\\\nc\\\\\ne\\\\\n\\end{tabular}\n";
 
+    QTest::newRow("rem col 2")
+        << "\\begin{tabular}{xyz}\na&b&c\\\\\nc&d&e\\\\\ne&f&g\\\\\n\\end{tabular}\n"
+        << 1 << 2
+        << "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+
     QTest::newRow("rem col 1, tabularx")
         << "\\begin{tabularx}{\\linewidth}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
         << 1 << 1
@@ -296,7 +301,7 @@ void TableManipulationTest::remCol_data(){
 		<< "\\begin{tabular}{l}\na\\\\\n\\multicolumn{1}{c}{txt}&d\\\\\ne\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("rem col 2, multicolumn")
-		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}{txt}&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << "\\begin{tabular}{lll}\na&b&c\\\\\n\\multicolumn{2}{c}{txt}&d\\\\\ne&f&g\\\\\n\\end{tabular}\n"
 		<< 1 << 2
 		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}{txt}\\\\\ne&f\\\\\n\\end{tabular}\n";
 
@@ -380,6 +385,11 @@ void TableManipulationTest::remCol_data(){
         << "\\begin{tblr}{xy}\na&{b\\\\b}\\\\\n{c\\\\c}&d\\\\\ne&f\\\\\n\\end{tblr}\n"
         << 1 << 1
         << "\\begin{tblr}{x}\na\\\\\n{c\\\\c}\\\\\ne\\\\\n\\end{tblr}\n";
+    // faulty tables
+    QTest::newRow("rem col 1, less/more columns")
+        << "\\begin{tabular}{xy}\na&b\\\\\nc\\\\\ne&f&g\\\\\n\\end{tabular}\n"
+        << 1 << 1
+        << "\\begin{tabular}{x}\na\\\\\nc\\\\\ne&g\\\\\n\\end{tabular}\n";
 
 }
 void TableManipulationTest::remCol(){

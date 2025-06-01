@@ -162,6 +162,13 @@ void LatexTables::addColumn(Environment env, const int lineNumber, const int aft
         for (int col = 0; col < afterColumn; col++) {
             if(col>0) findNextColumn(cur,tkResult);
             tkResult = findColumn(cur, env);
+            const QString txt=cur.selectedText();
+            int add = 0;
+            if (txt.startsWith("\\multicolumn")) {
+                add = getNumOfColsInMultiColumn(txt)-1;
+                if(add<0) add=0; // no negative number of columns
+            }
+            col+=add; // add number of columns in multicolumn
             if (tkResult.length>1) break; // end of row reached
         }
         // add element
@@ -245,41 +252,67 @@ void LatexTables::removeColumn(Environment env, const int lineNumber, const int 
     while (!breakLoop) {
         Token tkResult;
         Token tkPrevious;
-        for (int col = 0; col <= column; col++) {
+        int add=0;
+        int col=0;
+        for (col = 0; col <= column; col++) {
+            add = 0;
             tkPrevious=tkResult;
             if(col>0) findNextColumn(cur,tkResult);
             tkResult = findColumn(cur, env);
+            const QString txt=cur.selectedText();
+            if (txt.startsWith("\\multicolumn")) {
+                add = getNumOfColsInMultiColumn(txt)-1;
+            }
+            col+=add; // add number of columns in multicolumn
             if (tkResult.length>1) break; // end of row reached
         }
-        const QString txt=cur.selectedText();
-        if(cutBuffer){
-            cutBuffer->append(txt);
-        }
-        // extend anchor to column separator
-        if(tkResult.length==1){
-            // & found
-            cur.setAnchorColumnNumber(tkResult.start+tkResult.length);
-            tkResult=Token(); // reset token as removed
-        }else{
-            if(tkPrevious.length==1){
-                // previous token was & so we extend start to that
-                int lnOld=doc->indexOf(tkPrevious.dlh,cur.lineNumber());
-                cur.setLineNumber(lnOld,QDocumentCursor::KeepAnchor);
-                cur.setColumnNumber(tkPrevious.start,QDocumentCursor::KeepAnchor);
+        if(col>=column){
+            if(add>0){
+                // multicolumn found, so we manipulate just the number of columns
+                QString selText=cur.selectedText();
+                //multicolumn handling
+                QStringList values;
+                resolveCommandOptions(selText, 0, values);
+                if(values.isEmpty()){
+                    // no multicolumn arguments found, so we bail out
+                    cur.endEditBlock();
+                    return;
+                }
+                values.takeFirst();
+                values.prepend(QString("{%1}").arg(add));
+                cur.insertText("\\multicolumn" + values.join(""));
+                tkResult = findColumn(cur, env);
+            }else{
+                const QString txt=cur.selectedText();
+                if(cutBuffer){
+                    cutBuffer->append(txt);
+                }
+                // extend anchor to column separator
+                if(tkResult.length==1){
+                    // & found
+                    cur.setAnchorColumnNumber(tkResult.start+tkResult.length);
+                    tkResult=Token(); // reset token as removed
+                }else{
+                    if(tkPrevious.length==1){
+                        // previous token was & so we extend start to that
+                        int lnOld=doc->indexOf(tkPrevious.dlh,cur.lineNumber());
+                        cur.setLineNumber(lnOld,QDocumentCursor::KeepAnchor);
+                        cur.setColumnNumber(tkPrevious.start,QDocumentCursor::KeepAnchor);
+                    }
+                }
+
+                int len;
+                if(cur.lineNumber()!=cur.anchorLineNumber()){
+                    // multi line selection, shifts token into new line
+                    // simply search again
+                    cur.removeSelectedText();
+                    tkResult = findColumn(cur, env);
+                }else{
+                    tkResult.start-=cur.anchorColumnNumber()-cur.columnNumber(); // shift start
+                    cur.removeSelectedText();
+                }
             }
         }
-
-        int len;
-        if(cur.lineNumber()!=cur.anchorLineNumber()){
-            // multi line selection, shifts token into new line
-            // simply search again
-            cur.removeSelectedText();
-            tkResult = findColumn(cur, env);
-        }else{
-            tkResult.start-=cur.anchorColumnNumber()-cur.columnNumber(); // shift start
-            cur.removeSelectedText();
-        }
-
 
 
         // move to next row
