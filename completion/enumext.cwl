@@ -1,8 +1,7 @@
 # enumext package
-# Matthew Bertucci 2024/11/17 for v1.1
+# Matthew Bertucci 2025/06/01 for v1.3
 
 #include:multicol
-#include:scontents
 
 \begin{enumext}
 \begin{enumext}[keyvals]
