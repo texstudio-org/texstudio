@@ -94,6 +94,7 @@ public:
     friend class LatexEditorViewTest;
 	friend class ScriptEngineTest;
     friend class LatexDocumentTest;
+    friend class TableManipulationTest;
     friend class TexStudioTest;
 
 private:

@@ -73,9 +73,9 @@ void TableManipulationTest::addCol_data(){
 		<< "\\begin{tabular}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tabular}\n";
 
     QTest::newRow("add second col, tabularx")
-        << "\\usepackage{tabularx}\n\\begin{tabularx}{\\linewidth}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabularx}\n"
-        << 2 << 1
-        << "\\usepackage{tabularx}\n\\begin{tabularx}{\\linewidth}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tabularx}\n";
+        << "\\begin{tabularx}{\\linewidth}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabularx}\n"
+        << 1 << 1
+        << "\\begin{tabularx}{\\linewidth}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tabularx}\n";
 
     QTest::newRow("add second col tnl")
         << "\\begin{tabular}{xy}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
@@ -88,50 +88,50 @@ void TableManipulationTest::addCol_data(){
 		<< "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tabular}\n";
     // tests for tabu/longtabu
     QTest::newRow("add first col tabu")
-        << "\\usepackage{tabu}\n\\begin{tabu}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabu}\n"
-        << 2 << 0
-        << "\\usepackage{tabu}\n\\begin{tabu}{lxy}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tabu}\n";
+        << "\\begin{tabu}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabu}\n"
+        << 1 << 0
+        << "\\begin{tabu}{lxy}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tabu}\n";
     QTest::newRow("add second col tabu")
-        << "\\usepackage{tabu}\n\\begin{tabu}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabu}\n"
+        << "\\begin{tabu}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabu}\n"
         << 1 << 1
-        << "\\usepackage{tabu}\n\\begin{tabu}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tabu}\n";
+        << "\\begin{tabu}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tabu}\n";
     QTest::newRow("add second col tabu with to")
-        << "\\usepackage{tabu}\n\\begin{tabu}to 2cm {xy}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabu}\n"
-        << 2 << 1
-        << "\\usepackage{tabu}\n\\begin{tabu}to 2cm {xly}\na& &b\\tabularnewline\nc& &d\\\\\ne& &f\\\\\n\\end{tabu}\n";
+        << "\\begin{tabu}to 2cm {xy}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabu}\n"
+        << 1 << 1
+        << "\\begin{tabu}to 2cm {xly}\na& &b\\tabularnewline\nc& &d\\\\\ne& &f\\\\\n\\end{tabu}\n";
     QTest::newRow("add second col tabu with spread")
-        << "\\usepackage{tabu}\n\\begin{tabu} spread 2cm {xy}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabu}\n"
-        << 2 << 1
-        << "\\usepackage{tabu}\n\\begin{tabu} spread 2cm {xly}\na& &b\\tabularnewline\nc& &d\\\\\ne& &f\\\\\n\\end{tabu}\n";
+        << "\\begin{tabu} spread 2cm {xy}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabu}\n"
+        << 1 << 1
+        << "\\begin{tabu} spread 2cm {xly}\na& &b\\tabularnewline\nc& &d\\\\\ne& &f\\\\\n\\end{tabu}\n";
     // tests for tblr
     QTest::newRow("add first col tblr")
-        << "\\usepackage{tabularray}\n\\begin{tblr}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
-        << 2 << 0
-        << "\\usepackage{tabularray}\n\\begin{tblr}{lxy}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
+        << "\\begin{tblr}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 1 << 0
+        << "\\begin{tblr}{lxy}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
     QTest::newRow("add second col tblr")
-        << "\\usepackage{tabularray}\n\\begin{tblr}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
-        << 2 << 1
-        << "\\usepackage{tabularray}\n\\begin{tblr}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tblr}\n";
+        << "\\begin{tblr}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 1 << 1
+        << "\\begin{tblr}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tblr}\n";
     QTest::newRow("add first col tblr with new interface")
-        << "\\usepackage{tabularray}\n\\begin{tblr}{colspec={xy}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
-        << 2 << 0
-        << "\\usepackage{tabularray}\n\\begin{tblr}{colspec={lxy}}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
+        << "\\begin{tblr}{colspec={xy}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 1 << 0
+        << "\\begin{tblr}{colspec={lxy}}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
     QTest::newRow("add first col tblr with new interface, comma separated")
-        << "\\usepackage{tabularray}\n\\begin{tblr}{colspec={xy},hlines}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
-        << 2 << 0
-        << "\\usepackage{tabularray}\n\\begin{tblr}{colspec={lxy},hlines}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
+        << "\\begin{tblr}{colspec={xy},hlines}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 1 << 0
+        << "\\begin{tblr}{colspec={lxy},hlines}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
     QTest::newRow("add first col tblr with new interface,mulitline")
-        << "\\usepackage{tabularray}\n\\begin{tblr}{\ncolspec={xy}\n}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
-        << 4 << 0
-        << "\\usepackage{tabularray}\n\\begin{tblr}{\ncolspec={lxy}\n}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
+        << "\\begin{tblr}{\ncolspec={xy}\n}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 3 << 0
+        << "\\begin{tblr}{\ncolspec={lxy}\n}\n &a&b\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
     QTest::newRow("add first col tblr, mulitline cell")
-        << "\\usepackage{tabularray}\n\\begin{tblr}{xy}\na&{b\\\\b}\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
-        << 4 << 0
-        << "\\usepackage{tabularray}\n\\begin{tblr}{lxy}\n &a&{b\\\\b}\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
+        << "\\begin{tblr}{xy}\na&{b\\\\b}\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 3 << 0
+        << "\\begin{tblr}{lxy}\n &a&{b\\\\b}\\\\\n &c&d\\\\\n &e&f\\\\\n\\end{tblr}\n";
     QTest::newRow("add second col tblr, mulitline cell")
-        << "\\usepackage{tabularray}\n\\begin{tblr}{xy}\na&{b\\\\b}\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
-        << 4 << 2
-        << "\\usepackage{tabularray}\n\\begin{tblr}{xyl}\na&{b\\\\b}& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tblr}\n";
+        << "\\begin{tblr}{xy}\na&{b\\\\b}\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 3 << 2
+        << "\\begin{tblr}{xyl}\na&{b\\\\b}& \\\\\nc&d& \\\\\ne&f& \\\\\n\\end{tblr}\n";
     // incorrect table
     QTest::newRow("add second col, incorrect tabular")
         << "\\begin{tabular}{xy}\na&b\\\\\nc&d&e\\\\\nf\\\\\n\\end{tabular}\n"
@@ -169,12 +169,18 @@ void TableManipulationTest::addCol(){
 	QFETCH(int, row);
 	QFETCH(int, col);
 	QFETCH(QString, newText);
-	
+
+    //add latex preample
+    text="\\usepackage{tabularx,tabu,tabularray}\n\\begin{document}\n"+text+"\n\\end{document}\n";
+    newText="\\usepackage{tabularx,tabu,tabularray}\n\\begin{document}\n"+newText+"\n\\end{document}\n";
+    row+=2; // adjust row number to account for preamble
 	ed->setText(text, false);
     LatexDocument *doc=dynamic_cast<LatexDocument*>(ed->document());
+    doc->synChecker.waitForQueueProcess();
     StackEnvironment stackEnv;
     doc->getEnv(row,stackEnv);
     int i=LatexTables::inTableEnv(stackEnv);
+    QVERIFY(i>=0);
     if (i<0) return;
     LatexTables::addColumn(stackEnv[i], row, col);
 
@@ -368,11 +374,18 @@ void TableManipulationTest::remCol(){
 	QFETCH(int, col);
 	QFETCH(QString, newText);
 
+    //add latex preample
+    text="\\usepackage{tabularx,tabu,tabularray}\n\\begin{document}\n"+text+"\n\\end{document}\n";
+    newText="\\usepackage{tabularx,tabu,tabularray}\n\\begin{document}\n"+newText+"\n\\end{document}\n";
+    row+=2; // adjust row number to account for preamble
+
 	ed->setText(text, false);
     LatexDocument *doc=dynamic_cast<LatexDocument*>(ed->document());
+    doc->synChecker.waitForQueueProcess();
     StackEnvironment stackEnv;
     doc->getEnv(row,stackEnv);
     int i=LatexTables::inTableEnv(stackEnv);
+    QVERIFY(i>=0);
     if (i<0) return;
     LatexTables::removeColumn(stackEnv[i], row, col);
 	
