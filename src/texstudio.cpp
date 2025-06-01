@@ -10147,11 +10147,12 @@ void Texstudio::addColumnCB()
     doc->getEnv(cur.lineNumber(),stackEnv);
     int i=LatexTables::inTableEnv(stackEnv);
     if (i<0) return;
-	int col = LatexTables::getColumn(cur) + 1;
+    Environment env=stackEnv.at(i);
+    int col = LatexTables::getColumn(cur,env) + 1;
 	if (col < 1) return;
 	if (col == 1 && cur.atLineStart()) col = 0;
     //LatexTables::addColumn(currentEditorView()->document, currentEditorView()->editor->cursor().lineNumber(), col);
-    LatexTables::addColumn(stackEnv[i], currentEditorView()->editor->cursor().lineNumber(), col);
+    LatexTables::addColumn(env, currentEditorView()->editor->cursor().lineNumber(), col);
 }
 
 void Texstudio::removeColumnCB()
@@ -10163,22 +10164,25 @@ void Texstudio::removeColumnCB()
     doc->getEnv(cur.lineNumber(),stackEnv);
     int i=LatexTables::inTableEnv(stackEnv);
     if (i<0) return;
+    Environment env=stackEnv[i];
 	// check if cursor has selection
 	int numberOfColumns = 1;
-	int col = LatexTables::getColumn(cur);
+    int col = LatexTables::getColumn(cur,env);
 	if (cur.hasSelection()) {
 		// if selection span within one row, romove all touched columns
 		QDocumentCursor c2(cur.document(), cur.anchorLineNumber(), cur.anchorColumnNumber());
-		if (!LatexTables::inTableEnv(c2)) return;
+        i=LatexTables::inTableEnv(c2);
+        if (i<0) return;
+        env=stackEnv[i];
 		QString res = cur.selectedText();
 		if (res.contains("\\\\")) return;
-		int col2 = LatexTables::getColumn(c2);
+        int col2 = LatexTables::getColumn(c2,env);
 		numberOfColumns = abs(col - col2) + 1;
 		if (col2 < col) col = col2;
 	}
 	int ln = cur.lineNumber();
     for (int j = 0; j < numberOfColumns; j++) {
-            LatexTables::removeColumn(stackEnv[i], ln, col, nullptr);
+            LatexTables::removeColumn(env, ln, col, nullptr);
 	}
 }
 
@@ -10202,14 +10206,16 @@ void Texstudio::cutColumnCB()
     Environment env=stackEnv[i];
 	// check if cursor has selection
 	int numberOfColumns = 1;
-	int col = LatexTables::getColumn(cur);
+    int col = LatexTables::getColumn(cur,env);
 	if (cur.hasSelection()) {
 		// if selection span within one row, romove all touched columns
 		QDocumentCursor c2(cur.document(), cur.anchorLineNumber(), cur.anchorColumnNumber());
-		if (!LatexTables::inTableEnv(c2)) return;
+        i=LatexTables::inTableEnv(c2);
+        if (i<0) return;
+        env=stackEnv[i];
 		QString res = cur.selectedText();
 		if (res.contains("\\\\")) return;
-		int col2 = LatexTables::getColumn(c2);
+        int col2 = LatexTables::getColumn(c2,env);
 		numberOfColumns = abs(col - col2) + 1;
 		if (col2 < col) col = col2;
 	}
@@ -10241,10 +10247,11 @@ void Texstudio::pasteColumnCB()
     doc->getEnv(cur.lineNumber(),stackEnv);
     int i=LatexTables::inTableEnv(stackEnv);
     if (i<0) return;
-    int col = LatexTables::getColumn(cur) + 1;
+    Environment env=stackEnv[i];
+    int col = LatexTables::getColumn(cur,env) + 1;
     if (col < 1) return;
     if (col == 1 && cur.atLineStart()) col = 0;
-    LatexTables::addColumn(stackEnv[i], currentEditorView()->editor->cursor().lineNumber(), col, &m_columnCutBuffer);
+    LatexTables::addColumn(env, currentEditorView()->editor->cursor().lineNumber(), col, &m_columnCutBuffer);
 }
 
 void Texstudio::addHLineCB()
