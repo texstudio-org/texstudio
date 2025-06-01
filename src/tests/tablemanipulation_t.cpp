@@ -141,6 +141,19 @@ void TableManipulationTest::addCol_data(){
         << "\\begin{tabular}{xy}\na&b\\\\\nc&d&e\\\\\nf\\\\\n\\end{tabular}\n"
         << 1 << 2
         << "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& &e\\\\\nf& \\\\\n\\end{tabular}\n";
+    // lazy tables
+    QTest::newRow("add second col, last \\\\ missing")
+        << "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tabular}\n"
+        << 1 << 1
+        << "\\begin{tabular}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\n\\end{tabular}\n";
+    QTest::newRow("add third col, last \\\\ missing")
+        << "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tabular}\n"
+        << 1 << 2
+        << "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& \\\\\ne&f& \n\\end{tabular}\n";
+    QTest::newRow("add 2nd col, single col, last \\\\ missing")
+        << "\\begin{tabular}{x}\na\\\\\nc\\\\\ne\n\\end{tabular}\n"
+        << 1 << 1
+        << "\\begin{tabular}{xl}\na& \\\\\nc& \\\\\ne& \n\\end{tabular}\n";
 }
 void TableManipulationTest::addCol(){
 	QFETCH(QString, text);

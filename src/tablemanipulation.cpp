@@ -430,6 +430,8 @@ Token LatexTables::findColumn(QDocumentCursor &cur, Environment env)
     dlh->lockForRead();
     TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
     dlh->unlock();
+    TokenList tl_prev;
+    int ln_previous=-1;
     int ignoreUntilColumn=-1; // special ignore new row cmd in tblr (multi line cells)
     for(int i=0;i<tl.size();++i){
         tkResult=tl.at(i);
@@ -445,8 +447,36 @@ Token LatexTables::findColumn(QDocumentCursor &cur, Environment env)
             const QStringList tokens{"\\\\","\\tabularnewline","\\end"}; // end preliminary, to be refined
             if(tokens.contains(cmd) && tkResult.start>=ignoreUntilColumn){
                 // column break is found, handle like column end
-                cur.setAnchorColumnNumber(tkResult.start);
-                cur.setAnchorLineNumber(ln);
+                // special treatment for end if before end is empty
+                if(cmd=="\\end"){
+                    if(i+2>tl.size()) continue; // no next token in same line, so ignore this
+                    // check for matchin env name
+                    const Token &nextTk=tl.at(i+1);
+                    if(nextTk.subtype==Token::env && nextTk.getInnerText()==env.name){
+                        // end of env found (no nesting)
+                        if(i>0 || tl_prev.isEmpty()){
+                            // token in front, column selection includes that or fallback for missing previous line info
+                            cur.setAnchorColumnNumber(tkResult.start);
+                            cur.setAnchorLineNumber(ln);
+                        }else{
+                            // no token in front, so we select end of last token
+                            int c=0;
+                            for(int j=0; j<tl_prev.size();++j){
+                                int lastCol=tl_prev.at(j).start+tl_prev.at(j).length;
+                                if(c<lastCol){
+                                    c=lastCol; // find last text col in previous token list, go through list to find braces
+                                }
+                            }
+                            cur.setAnchorColumnNumber(c);
+                            cur.setAnchorLineNumber(ln_previous);
+                        }
+                    }else{
+                        continue; // different \end, ignore
+                    }
+                }else{
+                    cur.setAnchorColumnNumber(tkResult.start);
+                    cur.setAnchorLineNumber(ln);
+                }
                 break;
             }
         }
@@ -458,10 +488,15 @@ Token LatexTables::findColumn(QDocumentCursor &cur, Environment env)
         }
         // when at end of line, go for next line
         if(i==tl.size()-1){
+            // copy to previous tokenlist, unless empty
+            if(!tl.isEmpty()){
+                tl_prev=tl;
+                ln_previous=ln;
+            }
             // no column separator found, go for next line
             i=-1;
             ++ln;
-            col=65535; // set to max value
+            col=0; // set to min value
             QDocumentLineHandle *dlh=doc->line(ln).handle();
             dlh->lockForRead();
             tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
