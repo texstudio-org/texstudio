@@ -110,7 +110,9 @@ doubleFULLPAGEbindCorr#true,false
 #endkeyvals
 
 #keyvals:\IncludeGraphics
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

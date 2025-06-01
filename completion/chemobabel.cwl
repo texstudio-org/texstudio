@@ -24,7 +24,9 @@ nocrop
 \smilesobabel*[options%keyvals]{SMILES notation%definition}
 
 #keyvals:\chemobabel,\chemobabel*,\smilesobabel,\smilesobabel*
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

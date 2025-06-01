@@ -59,7 +59,9 @@ namefont=%<font commands%>
 #endkeyvals
 
 #keyvals:\usepicture,\begin{postscript}
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

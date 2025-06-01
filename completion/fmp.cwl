@@ -44,7 +44,9 @@ hidescale
 \fmpfigure[options%keyvals]{IDstring}
 
 #keyvals:\fmpfigure
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

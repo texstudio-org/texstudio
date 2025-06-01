@@ -19,7 +19,9 @@ pdfcreator=#pdflatex,lualatex,xelatex,ps2pdf,distiller
 \setTileParams[options%keyvals]{rows}{cols}{imagefile}#g
 
 #keyvals:\setTileParams
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

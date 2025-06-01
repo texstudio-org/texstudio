@@ -214,7 +214,9 @@ countryselect
 \EPSopt#*
 \addEPSopt{options%keyvals}
 #keyvals:\placeEPS,\addEPSopt
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

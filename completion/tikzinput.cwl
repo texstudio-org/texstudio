@@ -16,7 +16,9 @@ image#true,false
 \ctikzinput[options%keyvals]{file}#i
 
 #keyvals:\tikzinput,\ctikzinput
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

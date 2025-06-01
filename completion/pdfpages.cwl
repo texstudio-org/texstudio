@@ -81,7 +81,9 @@ survey#true,false
 survey-nolink#true,false
 xr-prefix=%<prefix%>
 # options passed to \includegraphics
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

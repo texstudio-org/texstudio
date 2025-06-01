@@ -74,6 +74,9 @@ tex
 \mglgraphics[options%keyvals]{file}
 
 #keyvals:\begin{mgl},\begin{mglcode},\mglplot,\mglgraphics
+actualtext={%<text%>}
+alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

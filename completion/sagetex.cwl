@@ -30,7 +30,9 @@ dgraycolor#B
 \sageplot[options%keyvals][fmt]{graphics obj, keyword args}
 
 #keyvals:\sageplot
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

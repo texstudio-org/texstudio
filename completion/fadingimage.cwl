@@ -22,7 +22,9 @@
 \RITFadingImage*[options%keyvals]{imagefile}#g
 
 #keyvals:\UPFadingImage,\UPFadingImage*,\LOWFadingImage,\LOWFadingImage*,\LTFadingImage,\LTFadingImage*,\RITFadingImage,\RITFadingImage*
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

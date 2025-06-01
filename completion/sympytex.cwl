@@ -20,7 +20,9 @@ imagemagick
 \sympyplot[options%keyvals][fmt]{graphics obj, keyword args%definition}
 
 #keyvals:\sympyplot
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

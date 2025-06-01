@@ -129,7 +129,9 @@ dvipdfmx
 
 ### \includegraphics keys
 #keyvals:\adjustbox,\begin{adjustbox},\adjustimage,\adjincludegraphics,\newadjustboxenv,\newadjustboxenv*,\renewadjustboxenv,\renewadjustboxenv*,\provideadjustboxenv,\provideadjustboxenv*,\declareadjustboxenv,\declareadjustboxenv*,\newadjustboxcmd,\renewadjustboxcmd,\provideadjustboxcmd,\declareadjustboxcmd,\newadjustimage,\renewadjustimage,\provideadjustimage,\declareadjustimage,\NewAdjustImage,\RenewAdjustImage,\ProvideAdjustImage,\DeclareAdjustImage,\bgimagebox,\bgimagebox*,\begin{bgimagebox},\begin{bgimagebox*},\fgimagebox,\fgimagebox*,\begin{fgimagebox},\begin{fgimagebox*},\backgroundbox,\backgroundbox*,\begin{backgroundbox},\begin{backgroundbox*},\foregroundbox,\foregroundbox*,\begin{foregroundbox},\begin{foregroundbox*}
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

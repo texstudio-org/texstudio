@@ -120,7 +120,9 @@
 \listofwebvpythonprograms
 
 #keyvals:\image
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

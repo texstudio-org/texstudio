@@ -18,7 +18,9 @@ bmpsizefast#true,false
 #endkeyvals
 
 #keyvals:\bmpsizesetup
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=

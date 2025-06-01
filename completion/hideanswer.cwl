@@ -29,7 +29,9 @@
 \switchanswer*{unsethide-text%text}{sethide-text%text}
 
 #keyvals:\hidegraphics,\hidegraphics*,\smashgraphics,\smashgraphics*
+actualtext={%<text%>}
 alt={%<alt text%>}
+artifact#true,false
 bb=%<llx lly urx ury%>
 bbllx=
 bblly=
