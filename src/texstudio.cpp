@@ -10132,10 +10132,13 @@ void Texstudio::addRowCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
-	if (!LatexTables::inTableEnv(cur)) return;
-	int cols = LatexTables::getNumberOfColumns(cur);
-	if (cols < 1) return;
-	LatexTables::addRow(cur, cols);
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(cur.document());
+    StackEnvironment stackEnv;
+    doc->getEnv(cur.lineNumber(),stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    if (i<0) return;
+    Environment env=stackEnv[i];
+    LatexTables::addRow(cur, env);
 }
 
 void Texstudio::addColumnCB()

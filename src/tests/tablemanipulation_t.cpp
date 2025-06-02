@@ -224,7 +224,7 @@ void TableManipulationTest::addRow_data(){
     QTest::newRow("add row 2")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
-		<< "\\begin{tabular}{ll}\na&b\\\\\n & \\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+        << "\\begin{tabular}{ll}\na&b\\\\ & \\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
 
     QTest::newRow("add row 3")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
@@ -235,14 +235,22 @@ void TableManipulationTest::addRow_data(){
         << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tabular}\n"
         << 3 << 0
         << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n & \\\\\n\\end{tabular}\n";
-    QTest::newRow("add row, tblr, multi line cell, no final \\\\")
+    QTest::newRow("add row, no final \\\\, cursor at end of line")
+        << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tabular}\n"
+        << 3 << 3
+        << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n & \\\\\n\\end{tabular}\n";
+    QTest::newRow("add row, tblr, multi line cell")
         << "\\begin{tblr}{ll}\n{a\\\\a}&b\\\\\nc&{d\\\\d}\\\\\ne&f\n\\end{tblr}\n"
         << 1 << 0
-        << "\\begin{tblr}{ll}\n{a\\\\a}&b\\\\\nc&{d\\\\d}\\\\\ne&f\\\\\n & \\\\\n\\end{tblr}\n";
+        << "\\begin{tblr}{ll}\n{a\\\\a}&b\\\\\n & \\\\\nc&{d\\\\d}\\\\\ne&f\n\\end{tblr}\n";
     QTest::newRow("add row 3,tblr, colspec")
         << "\\begin{tblr}{colspec={ll}}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tblr}\n"
         << 1 << 6
         << "\\begin{tblr}{colspec={ll}}\na&b\\\\c&d\\\\\n & \\\\\ne&f\\\\\n\\end{tblr}\n";
+    QTest::newRow("add row, indented")
+        << "\\begin{tabular}{ll}\n\ta&b\\\\\n\tc&d\\\\\n\te&f\\\\\n\\end{tabular}\n"
+        << 1 << 0
+        << "\\begin{tabular}{ll}\n\ta&b\\\\\n\t & \\\\\n\tc&d\\\\\n\te&f\\\\\n\\end{tabular}\n";
 
 }
 void TableManipulationTest::addRow(){
@@ -259,7 +267,15 @@ void TableManipulationTest::addRow(){
 	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
-	LatexTables::addRow(c,2);
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(ed->document());
+    doc->synChecker.waitForQueueProcess();
+    StackEnvironment stackEnv;
+    doc->getEnv(row,stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    QVERIFY(i>=0);
+    if (i<0) return;
+    Environment env=stackEnv[i];
+    LatexTables::addRow(c,env);
 
     ed->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(ed->document()->text(), newText);
@@ -500,6 +516,10 @@ void TableManipulationTest::remRow_data(){
         << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tblr}\n"
         << 3 << 0
         << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\n\\end{tblr}\n";
+    QTest::newRow("rem row, third row, lazy newline, cursor at end of line")
+        << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tblr}\n"
+        << 3 << 3
+        << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\n\\end{tblr}\n";
     QTest::newRow("rem row, second row, tblr, indented")
         << "\\begin{tblr}{ll}\n\ta&b\\\\\n\t{c\\\\c}&d\\\\\n\te&f\\\\\n\\end{tblr}\n"
         << 2 << 1
@@ -516,8 +536,6 @@ void TableManipulationTest::remRow_data(){
         << "\\begin{tblr}{ll}\n\ta&b\\\\\n\tc&d\\\\\n\te&f\\\\\n\\end{tblr}\n"
         << 3 << 0
         << "\\begin{tblr}{ll}\n\ta&b\\\\\n\tc&d\\\\\n\\end{tblr}\n";
-
-
 }
 void TableManipulationTest::remRow(){
 	QFETCH(QString, text);

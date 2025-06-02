@@ -71,6 +71,80 @@ void LatexTables::addRow(QDocumentCursor &c, const int numberOfColumns )
 		cur.endEditBlock();
 	}
 }
+/*!
+ * \brief add row in tabular-like environment
+ * After current cursor position, a new row is added with the given number of columns.
+ * \param c
+ * \param numberOfColumns
+ * \param env
+ */
+void LatexTables::addRow(QDocumentCursor &c, Environment env)
+{
+    QDocumentLineHandle *dlh=env.dlh;
+    QDocument *doc=dlh->document();
+    int ln = doc->indexOf(dlh,c.lineNumber());
+    dlh->lockForRead();
+    TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    dlh->unlock();
+    int nextLine,nextCol;
+    Token tkColDef=getDef(tl,env,ln,nextLine,nextCol,doc);
+    QString def = tkColDef.getInnerText();
+
+    if (def.isEmpty()) {
+        return; // preamble empty
+    }
+
+    //add col in definition
+    QStringList defs = splitColDef(def);
+    int numberOfColumns = defs.count();
+    // move cursor to start of tabular
+    QDocumentCursor cur(doc,nextLine,nextCol);
+    // find row
+    for(;;){
+        enum NextRowAvailable cont=findRow(cur,env);
+        if(cur.isWithinSelection(c)){
+            // check that c is not at the end of selection
+            if(cur.anchorLineNumber()!=c.lineNumber() || cur.anchorColumnNumber()!=c.columnNumber() || cont==RowNotAvailableLazyNewLine){
+                // cursor is not at end of selection
+                // row found, remove it
+                int row0=cur.lineNumber();
+                int col0=cur.columnNumber();
+                // check if row is indented
+                const QString line= cur.line().text();
+                QRegularExpression re("^\\s*");
+                QRegularExpressionMatch match=re.match(line);
+                QString indent;
+                if(match.hasMatch()){
+                    indent=match.captured(0);
+                }
+                if(cont==RowNotAvailableLazyNewLine){
+                    // \\ missing, add here
+                    indent.prepend("\\\\\n");
+                }
+                int row=cur.anchorLineNumber();
+                int col=cur.anchorColumnNumber();
+                cur.setLineNumber(row);
+                cur.setColumnNumber(col);
+                cur.beginEditBlock();
+                QString str("& ");
+                QString outStr(indent+ " ");
+                for (int i = 1; i < numberOfColumns; i++) {
+                    outStr += str;
+                }
+                cur.insertText(outStr);
+                cur.insertText("\\\\");
+                if (!cur.atLineEnd()) cur.insertText("\n");
+                cur.endEditBlock();
+                break;
+            }
+        }
+        if(cont != RowAvailable) break; // no next row
+        int row=cur.anchorLineNumber();
+        int col=cur.anchorColumnNumber();
+        cur.setLineNumber(row);
+        cur.setColumnNumber(col);
+    }
+}
 
 void LatexTables::removeRow(QDocumentCursor &c)
 {
@@ -121,10 +195,10 @@ void LatexTables::removeRow(QDocumentCursor &c, Environment env)
     QDocumentCursor cur(doc,nextLine,nextCol);
     // find row
     for(;;){
-        bool cont=findRow(cur,env);
+        enum NextRowAvailable cont=findRow(cur,env);
         if(cur.isWithinSelection(c)){
             // check that c is not at the end of selection
-            if(cur.anchorLineNumber()!=c.lineNumber() || cur.anchorColumnNumber()!=c.columnNumber()){
+            if(cur.anchorLineNumber()!=c.lineNumber() || cur.anchorColumnNumber()!=c.columnNumber() || cont==RowNotAvailableLazyNewLine){
                 // cursor is not at end of selection
                 // row found, remove it
                 cur.beginEditBlock();
@@ -134,7 +208,7 @@ void LatexTables::removeRow(QDocumentCursor &c, Environment env)
                 break;
             }
         }
-        if(!cont) break; // no next row
+        if(cont != RowAvailable) break; // no next row
         int row=cur.anchorLineNumber();
         int col=cur.anchorColumnNumber();
         cur.setLineNumber(row);
@@ -620,7 +694,7 @@ bool LatexTables::findNextColumn(QDocumentCursor &cur, Token &tk)
  * \param env
  * \return
  */
-bool LatexTables::findRow(QDocumentCursor &cur, Environment env)
+LatexTables::NextRowAvailable LatexTables::findRow(QDocumentCursor &cur, Environment env)
 {
     int ln=cur.lineNumber();
     const int ln_cur=ln;
@@ -636,15 +710,18 @@ bool LatexTables::findRow(QDocumentCursor &cur, Environment env)
     }while(tl.isEmpty() && ++ln<doc->lineCount()); // skip empty lines)
     if(tl.isEmpty()){
         // missing closing element
-        return false;
+        return RowNotAvailable;
     }
     enum ScanMode {ScanModeSkipInitial,ScanModeSkipNewLine,ScanModeInRow};
     ScanMode mode=ScanModeSkipInitial;
     int ignoreUntilColumn=-1; // special ignore new row cmd in tblr (multi line cells)
     const QStringList skipTokens{"\\\\","\\tabularnewline","\\hline"};
+    Token prevTk; // previous token, used for end of env detection
+    int prevLn=-1;
     for(int i=0;i<tl.size();++i){
         const Token &tk=tl.at(i);
         bool skip=false;
+        NextRowAvailable nextRow = RowAvailable;
         if(mode==ScanModeSkipInitial){
             if(tk.start<col && ln==ln_cur){
                 skip=true; // skip tokens before cursor
@@ -670,35 +747,47 @@ bool LatexTables::findRow(QDocumentCursor &cur, Environment env)
             if(tk.type==Token::command  && tk.start>=ignoreUntilColumn){
                 const QString cmd=tk.getText();
                 int idx= skipTokens.indexOf(cmd);
-                if(idx>=0 || checkEndEnv(tl,i,env)){
+                if(idx>=0){
                     // end of row reached
                     mode= ScanModeSkipNewLine;
+                }
+                if(checkEndEnv(tl,i,env)){
+                    mode= ScanModeSkipNewLine;
+                    nextRow= RowNotAvailableLazyNewLine;
+                    if(prevLn>-1){
+                        cur.setAnchorLineNumber(prevLn);
+                        cur.setAnchorColumnNumber(prevTk.start+prevTk.length); // TODO: handle braces !!!
+                        return nextRow;
+                    }
                 }
             }
         }
         if(mode==ScanModeSkipNewLine){
             skip=false;
-            bool endReached=false;
+
             if(tk.type==Token::command){
                 const QString cmd=tk.getText();
                 int idx= skipTokens.indexOf(cmd);
                 skip=idx>=0;
                 // special treatment \end
-                endReached=checkEndEnv(tl,i,env);
+                bool endReached=checkEndEnv(tl,i,env);
 
                 if(endReached && i==0){
                     // no token in front, so we select end of line
                     const int len=doc->line(ln-1).length();
                     cur.setAnchorColumnNumber(len);
                     cur.setAnchorLineNumber(ln-1);
+                    if(nextRow==RowAvailable) nextRow = RowNotAvailable;
                 }
             }
             if(!skip){
                 cur.setAnchorLineNumber(ln);
                 cur.setAnchorColumnNumber(i==0 ? 0 : tk.start); // if indented, start at start of line
-                return !endReached; // row found
+                return nextRow; // row found
             }
         }
+        prevTk=tk;
+        prevLn=ln;
         // when at end of line, go for next line
         if(i==tl.size()-1){
             i=-1;
@@ -710,7 +799,7 @@ bool LatexTables::findRow(QDocumentCursor &cur, Environment env)
             dlh->unlock();
         }
     }
-    return false;
+    return RowNotAvailable;
 }
 /*!
  * \brief check whether the end of the environment is reached
