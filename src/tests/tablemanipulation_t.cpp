@@ -235,6 +235,14 @@ void TableManipulationTest::addRow_data(){
         << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tabular}\n"
         << 3 << 0
         << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n & \\\\\n\\end{tabular}\n";
+    QTest::newRow("add row, tblr, multi line cell, no final \\\\")
+        << "\\begin{tblr}{ll}\n{a\\\\a}&b\\\\\nc&{d\\\\d}\\\\\ne&f\n\\end{tblr}\n"
+        << 1 << 0
+        << "\\begin{tblr}{ll}\n{a\\\\a}&b\\\\\nc&{d\\\\d}\\\\\ne&f\\\\\n & \\\\\n\\end{tblr}\n";
+    QTest::newRow("add row 3,tblr, colspec")
+        << "\\begin{tblr}{colspec={ll}}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 1 << 6
+        << "\\begin{tblr}{colspec={ll}}\na&b\\\\c&d\\\\\n & \\\\\ne&f\\\\\n\\end{tblr}\n";
 
 }
 void TableManipulationTest::addRow(){
@@ -242,6 +250,11 @@ void TableManipulationTest::addRow(){
 	QFETCH(int, row);
 	QFETCH(int, col);
 	QFETCH(QString, newText);
+
+    //add latex preample
+    text="\\usepackage{tabularray}\n\\begin{document}\n"+text+"\n\\end{document}\n";
+    newText="\\usepackage{tabularray}\n\\begin{document}\n"+newText+"\n\\end{document}\n";
+    row+=2; // adjust row number to account for preamble
 
 	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
@@ -432,7 +445,7 @@ void TableManipulationTest::remRow_data(){
 	QTest::newRow("rem row, cursor at end of line")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 5
-		<< "\\begin{tabular}{ll}\na&b\\\\\ne&f\\\\\n\\end{tabular}\n";
+        << "\\begin{tabular}{ll}\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("rem row, second row")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
@@ -458,7 +471,7 @@ void TableManipulationTest::remRow_data(){
 	QTest::newRow("rem row, multi rows in one line 2")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 6
-		<< "\\begin{tabular}{ll}\na&b\\\\\ne&f\\\\\n\\end{tabular}\n";
+        << "\\begin{tabular}{ll}\na&b\\\\e&f\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("rem row, multi rows in one line 3")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
@@ -473,12 +486,36 @@ void TableManipulationTest::remRow_data(){
     QTest::newRow("rem row, multi rows in one line 3 b")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 2 << 5
-		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+        << "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\n\\end{tabular}\n";
 
     QTest::newRow("rem row, multi rows in one line 4 b")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 3 << 6
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+    QTest::newRow("rem row, second row, tblr, multi line cell")
+        << "\\begin{tblr}{ll}\na&b\\\\\n{c\\\\c}&d\\\\\ne&f\\\\\n\\end{tblr}\n"
+        << 2 << 0
+        << "\\begin{tblr}{ll}\na&b\\\\\ne&f\\\\\n\\end{tblr}\n";
+    QTest::newRow("rem row, third row, lazy newline")
+        << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tblr}\n"
+        << 3 << 0
+        << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\n\\end{tblr}\n";
+    QTest::newRow("rem row, second row, tblr, indented")
+        << "\\begin{tblr}{ll}\n\ta&b\\\\\n\t{c\\\\c}&d\\\\\n\te&f\\\\\n\\end{tblr}\n"
+        << 2 << 1
+        << "\\begin{tblr}{ll}\n\ta&b\\\\\n\te&f\\\\\n\\end{tblr}\n";
+    QTest::newRow("rem row, second row, tblr, indented, cursor at line start")
+        << "\\begin{tblr}{ll}\n\ta&b\\\\\n\tc&d\\\\\n\te&f\\\\\n\\end{tblr}\n"
+        << 2 << 0
+        << "\\begin{tblr}{ll}\n\ta&b\\\\\n\te&f\\\\\n\\end{tblr}\n";
+    QTest::newRow("rem row, third row, tblr, indented")
+        << "\\begin{tblr}{ll}\n\ta&b\\\\\n\tc&d\\\\\n\te&f\\\\\n\\end{tblr}\n"
+        << 3 << 1
+        << "\\begin{tblr}{ll}\n\ta&b\\\\\n\tc&d\\\\\n\\end{tblr}\n";
+    QTest::newRow("rem row, third row, tblr, indented, cursor at line start")
+        << "\\begin{tblr}{ll}\n\ta&b\\\\\n\tc&d\\\\\n\te&f\\\\\n\\end{tblr}\n"
+        << 3 << 0
+        << "\\begin{tblr}{ll}\n\ta&b\\\\\n\tc&d\\\\\n\\end{tblr}\n";
 
 
 }
@@ -488,10 +525,23 @@ void TableManipulationTest::remRow(){
 	QFETCH(int, col);
 	QFETCH(QString, newText);
 
+    //add latex preample
+    text="\\usepackage{tabularray}\n\\begin{document}\n"+text+"\n\\end{document}\n";
+    newText="\\usepackage{tabularray}\n\\begin{document}\n"+newText+"\n\\end{document}\n";
+    row+=2; // adjust row number to account for preamble
+
 	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
-	LatexTables::removeRow(c);
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(ed->document());
+    doc->synChecker.waitForQueueProcess();
+    StackEnvironment stackEnv;
+    doc->getEnv(row,stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    QVERIFY(i>=0);
+    if (i<0) return;
+    Environment env=stackEnv[i];
+    LatexTables::removeRow(c,env);
 
 	QEQUAL(ed->document()->text(), newText);
 

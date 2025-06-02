@@ -103,6 +103,44 @@ void LatexTables::removeRow(QDocumentCursor &c)
 		cur.endEditBlock();
 	}
 }
+/*! remove row in tabular-like environment
+ * \param c the cursor in the tabular-like environment
+ * \param env the actual environment
+ */
+void LatexTables::removeRow(QDocumentCursor &c, Environment env)
+{
+    QDocumentLineHandle *dlh=env.dlh;
+    QDocument *doc=dlh->document();
+    int ln = doc->indexOf(dlh,c.lineNumber());
+    dlh->lockForRead();
+    TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    dlh->unlock();
+    int nextLine,nextCol;
+    Token tkColDef=getDef(tl,env,ln,nextLine,nextCol,doc);
+    // move cursor to start of tabular
+    QDocumentCursor cur(doc,nextLine,nextCol);
+    // find row
+    for(;;){
+        bool cont=findRow(cur,env);
+        if(cur.isWithinSelection(c)){
+            // check that c is not at the end of selection
+            if(cur.anchorLineNumber()!=c.lineNumber() || cur.anchorColumnNumber()!=c.columnNumber()){
+                // cursor is not at end of selection
+                // row found, remove it
+                cur.beginEditBlock();
+                cur.removeSelectedText();
+                if (cur.line().text().isEmpty()) cur.deleteChar(); // don't leave empty lines
+                cur.endEditBlock();
+                break;
+            }
+        }
+        if(!cont) break; // no next row
+        int row=cur.anchorLineNumber();
+        int col=cur.anchorColumnNumber();
+        cur.setLineNumber(row);
+        cur.setColumnNumber(col);
+    }
+}
 
 /*!
  * \brief add column in tabular-like environment
@@ -496,6 +534,7 @@ Token LatexTables::findColumn(QDocumentCursor &cur, Environment env)
             i=-1;
             ++ln;
             col=0; // set to min value
+            ignoreUntilColumn=-1; // reset ignore column
             QDocumentLineHandle *dlh=doc->line(ln).handle();
             dlh->lockForRead();
             tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
@@ -573,33 +612,128 @@ bool LatexTables::findNextColumn(QDocumentCursor &cur, Token &tk)
 
     return true;
 }
-
-// get column in which the cursor is positioned.
-// is determined by number of "&" before last line break (\\)
-int LatexTables::getColumn(QDocumentCursor &cur)
+/*!
+ * \brief find row in tabular-like environment
+ * Start at current cursor position and search for next row break (\\ or \tabularnewline).
+ * Skip over \hlines,\\ and alike
+ * \param cur
+ * \param env
+ * \return
+ */
+bool LatexTables::findRow(QDocumentCursor &cur, Environment env)
 {
-	QDocumentCursor c(cur);
-    QStringList tokens{"\\\\","\\tabularnewline"};
-	int result = findNextToken(c, tokens, true, true);
-	if (result == 0) c.movePosition(2, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-    if (result == 1) c.movePosition(15, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-    if (c.lineNumber() == cur.lineNumber() && c.selectedText().contains(QRegularExpression("^\\s*$"))) {
-		c.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
-		QString zw = c.selectedText();
-        if (zw.contains(QRegularExpression("^\\s*$"))) return -1;
-	}
+    int ln=cur.lineNumber();
+    const int ln_cur=ln;
+    int col=cur.columnNumber();
+    // reset anchor point
+    QDocument *doc=cur.document();
+    TokenList tl;
+    do{
+        QDocumentLineHandle *dlh=doc->line(ln).handle();
+        dlh->lockForRead();
+        tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        dlh->unlock();
+    }while(tl.isEmpty() && ++ln<doc->lineCount()); // skip empty lines)
+    if(tl.isEmpty()){
+        // missing closing element
+        return false;
+    }
+    enum ScanMode {ScanModeSkipInitial,ScanModeSkipNewLine,ScanModeInRow};
+    ScanMode mode=ScanModeSkipInitial;
+    int ignoreUntilColumn=-1; // special ignore new row cmd in tblr (multi line cells)
+    const QStringList skipTokens{"\\\\","\\tabularnewline","\\hline"};
+    for(int i=0;i<tl.size();++i){
+        const Token &tk=tl.at(i);
+        bool skip=false;
+        if(mode==ScanModeSkipInitial){
+            if(tk.start<col && ln==ln_cur){
+                skip=true; // skip tokens before cursor
+            }
+            if(!skip && tk.type==Token::command){
+                const QString cmd=tk.getText();
+                int idx= skipTokens.indexOf(cmd);
+                skip=idx>=2;
+            }
+            if(!skip){
+                mode= ScanModeInRow; // we are in a row now
+                cur.setLineNumber(ln);
+                cur.setColumnNumber(i==0 ? 0 : tk.start); // if indented, start at start of line
+            }
+        }
+        if(mode==ScanModeInRow){
+            if(env.name=="tblr"){
+                // skip over braces (multi line cells)
+                if(tk.type==Token::braces && tk.subtype==Token::none){
+                    ignoreUntilColumn=tk.start+tk.length;
+                }
+            }
+            if(tk.type==Token::command  && tk.start>=ignoreUntilColumn){
+                const QString cmd=tk.getText();
+                int idx= skipTokens.indexOf(cmd);
+                if(idx>=0 || checkEndEnv(tl,i,env)){
+                    // end of row reached
+                    mode= ScanModeSkipNewLine;
+                }
+            }
+        }
+        if(mode==ScanModeSkipNewLine){
+            skip=false;
+            bool endReached=false;
+            if(tk.type==Token::command){
+                const QString cmd=tk.getText();
+                int idx= skipTokens.indexOf(cmd);
+                skip=idx>=0;
+                // special treatment \end
+                endReached=checkEndEnv(tl,i,env);
 
-	c.clearSelection();
-
-	tokens << "\\&" << "&";
-	int col = 0;
-
-	do {
-		result = findNextToken(c, tokens);
-		if (c.lineNumber() > cur.lineNumber() || (c.lineNumber() == cur.lineNumber() && c.columnNumber() > cur.columnNumber())) break;
-        if (result == 3) col++;
-    } while (result > 1);
-	return col;
+                if(endReached && i==0){
+                    // no token in front, so we select end of line
+                    const int len=doc->line(ln-1).length();
+                    cur.setAnchorColumnNumber(len);
+                    cur.setAnchorLineNumber(ln-1);
+                }
+            }
+            if(!skip){
+                cur.setAnchorLineNumber(ln);
+                cur.setAnchorColumnNumber(i==0 ? 0 : tk.start); // if indented, start at start of line
+                return !endReached; // row found
+            }
+        }
+        // when at end of line, go for next line
+        if(i==tl.size()-1){
+            i=-1;
+            ++ln;
+            ignoreUntilColumn=-1; // reset ignore column
+            QDocumentLineHandle *dlh=doc->line(ln).handle();
+            dlh->lockForRead();
+            tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            dlh->unlock();
+        }
+    }
+    return false;
+}
+/*!
+ * \brief check whether the end of the environment is reached
+ * \param tl
+ * \param pos
+ * \param env
+ * \return
+ */
+bool LatexTables::checkEndEnv(const TokenList &tl, int pos, const Environment &env)
+{
+    if(pos+2>=tl.size()){
+        // no next token, so no end of env
+        return false;
+    }
+    const QString cmd= tl.at(pos).getText();
+    if(cmd=="\\end"){
+        // check for matchin env name
+        const Token &nextTk=tl.at(pos+1);
+        if(nextTk.subtype==Token::env && nextTk.getInnerText()==env.name){
+            return true;
+        }
+    }
+    return false;
 }
 
 /*!
@@ -1642,3 +1776,8 @@ void LatexTableLine::appendCol(const QString &col)
 		mcAlign.append(QChar());
 	}
 }
+
+/* TODO
+ * - \hline before first line (add/rem col)
+ * - add row with multi-line cell
+*/

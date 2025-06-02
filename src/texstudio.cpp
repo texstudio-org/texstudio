@@ -10190,8 +10190,13 @@ void Texstudio::removeRowCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
-	if (!LatexTables::inTableEnv(cur)) return;
-	LatexTables::removeRow(cur);
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(cur.document());
+    StackEnvironment stackEnv;
+    doc->getEnv(cur.lineNumber(),stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    if (i<0) return;
+    Environment env=stackEnv[i];
+    LatexTables::removeRow(cur,env);
 }
 
 void Texstudio::cutColumnCB()
