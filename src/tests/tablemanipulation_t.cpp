@@ -239,6 +239,10 @@ void TableManipulationTest::addRow_data(){
         << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tabular}\n"
         << 3 << 3
         << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n & \\\\\n\\end{tabular}\n";
+    QTest::newRow("add row, no final \\\\, cursor at end of line, tblr, multi line cell")
+        << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\ne&{f\\\\f}\n\\end{tblr}\n"
+        << 3 << 8
+        << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\ne&{f\\\\f}\\\\\n & \\\\\n\\end{tblr}\n";
     QTest::newRow("add row, tblr, multi line cell")
         << "\\begin{tblr}{ll}\n{a\\\\a}&b\\\\\nc&{d\\\\d}\\\\\ne&f\n\\end{tblr}\n"
         << 1 << 0
@@ -519,6 +523,10 @@ void TableManipulationTest::remRow_data(){
     QTest::newRow("rem row, third row, lazy newline, cursor at end of line")
         << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tblr}\n"
         << 3 << 3
+        << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\n\\end{tblr}\n";
+    QTest::newRow("rem row, third row, lazy newline, multi line cell,cursor at end of line")
+        << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\ne&{f\\\\f}\n\\end{tblr}\n"
+        << 3 << 8
         << "\\begin{tblr}{ll}\na&b\\\\\nc&d\\\\\n\\end{tblr}\n";
     QTest::newRow("rem row, second row, tblr, indented")
         << "\\begin{tblr}{ll}\n\ta&b\\\\\n\t{c\\\\c}&d\\\\\n\te&f\\\\\n\\end{tblr}\n"

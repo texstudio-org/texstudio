@@ -756,7 +756,7 @@ LatexTables::NextRowAvailable LatexTables::findRow(QDocumentCursor &cur, Environ
                     nextRow= RowNotAvailableLazyNewLine;
                     if(prevLn>-1){
                         cur.setAnchorLineNumber(prevLn);
-                        cur.setAnchorColumnNumber(prevTk.start+prevTk.length); // TODO: handle braces !!!
+                        cur.setAnchorColumnNumber(prevTk.start+prevTk.length);
                         return nextRow;
                     }
                 }
@@ -786,7 +786,14 @@ LatexTables::NextRowAvailable LatexTables::findRow(QDocumentCursor &cur, Environ
                 return nextRow; // row found
             }
         }
-        prevTk=tk;
+        if(prevLn==ln){
+            if(tk.start+tk.length>prevTk.start+prevTk.length){
+                // token is further than previous token, so we update
+                prevTk=tk;
+            }
+        }else{
+            prevTk=tk;
+        }
         prevLn=ln;
         // when at end of line, go for next line
         if(i==tl.size()-1){
@@ -1868,5 +1875,4 @@ void LatexTableLine::appendCol(const QString &col)
 
 /* TODO
  * - \hline before first line (add/rem col)
- * - add row with multi-line cell
 */
