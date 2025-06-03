@@ -1,6 +1,6 @@
 # mode: koma letter class (scrlttr2)
 # dani/2006-02-21
-# Matthew Bertucci updated 2024/10/15 for v3.42
+# Matthew Bertucci updated 2025/06/03 for v3.44
 
 #include:scrkbase
 #include:typearea
@@ -154,6 +154,8 @@ footnotes=#multiple,nomultiple
 \setplengthtototalheight{pseudo-length%keyvals}{content}
 \setplengthtowidth[factor]{pseudo-length%keyvals}{content}
 \setplengthtowidth{pseudo-length%keyvals}{content}
+\sigalign#*
+\sigspace#*
 \startbreaks#*
 \stopbreaks#*
 \stopletter#*
@@ -337,6 +339,11 @@ labelitemi
 labelitemii
 labelitemiii
 labelitemiv
+enumeratelabel
+labelenumi
+labelenumii
+labelenumiii
+labelenumiv
 pagefoot
 pagehead
 pageheadfoot

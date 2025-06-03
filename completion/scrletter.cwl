@@ -1,5 +1,5 @@
 # scrletter package
-# Matthew Bertucci 2024/10/15 for v3.42
+# Matthew Bertucci 2025/06/03 for v3.44
 
 #include:scrkbase
 #include:scrextend
@@ -103,6 +103,8 @@ pagenumber=#bot,foot,botcenter,botcentered,botmittle,footcenter,footcentered,foo
 \setplengthtototalheight{pseudo-length%keyvals}{content}
 \setplengthtowidth[factor]{pseudo-length%keyvals}{content}
 \setplengthtowidth{pseudo-length%keyvals}{content}
+\sigalign#*
+\sigspace#*
 \startbreaks#*
 \stopbreaks#*
 \stopletter#*

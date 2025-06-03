@@ -1,5 +1,5 @@
 # scrartcl class
-# Matthew Bertucci 2023/07/08 for v3.41
+# Matthew Bertucci 2025/06/03 for v3.44
 
 #include:scrkbase
 #include:tocbasic
@@ -53,6 +53,11 @@ labelitemi
 labelitemii
 labelitemiii
 labelitemiv
+enumeratelabel
+labelenumi
+labelenumii
+labelenumiii
+labelenumiv
 minisec
 pagefoot
 pagehead
@@ -194,6 +199,8 @@ titlehead
 \labelinglabel{arg}#*
 \listoftocname#*
 \lowertitleback{titlebackfoot%text}
+\MakeCaptionLabelCase{text}#*
+\MakeCaptionTextCase{text}#*
 \maketitle[page number]
 \marginline{margin note%text}
 \maybesffamily

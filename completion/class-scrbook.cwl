@@ -1,5 +1,5 @@
 # scrbook class
-# Matthew Bertucci 2023/07/08 for v3.41
+# Matthew Bertucci 2025/06/03 for v3.44
 
 #include:scrkbase
 #include:tocbasic
@@ -62,6 +62,11 @@ labelitemi
 labelitemii
 labelitemiii
 labelitemiv
+enumeratelabel
+labelenumi
+labelenumii
+labelenumiii
+labelenumiv
 minisec
 pagefoot
 pagehead
@@ -229,6 +234,8 @@ titlehead
 \lowertitleback{titlebackfoot%text}
 \mainmatter
 \maketitle[page number]
+\MakeCaptionLabelCase{text}#*
+\MakeCaptionTextCase{text}#*
 \marginline{margin note%text}
 \maybesffamily
 \minisec{title}

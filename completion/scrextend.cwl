@@ -1,5 +1,5 @@
 # scrextend package
-# Matthew Bertucci 2023/04/17 for v3.39
+# Matthew Bertucci 2025/06/03 for v3.44
 
 #include:scrkbase
 #include:scrlogo
@@ -25,6 +25,11 @@ disposition
 dictum
 dictumauthor
 dictumtext
+enumeratelabel
+labelenumi
+labelenumii
+labelenumiii
+labelenumiv
 labelinglabel
 labelingseparator
 #endkeyvals
