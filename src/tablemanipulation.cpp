@@ -283,6 +283,15 @@ void LatexTables::addColumn(Environment env, const int lineNumber, const int aft
             col+=add; // add number of columns in multicolumn
             if (tkResult.length>1) break; // end of row reached
         }
+        if(afterColumn==0){
+            // prepend column
+            // call findColumn to move left side after potential hline
+            findColumn(cur, env);
+            const int c=cur.columnNumber();
+            const int r=cur.lineNumber();
+            cur.setColumnNumber(c);
+            cur.setLineNumber(r);
+        }
         // add element
         if (tkResult.length>0) { // column separator found
             const int c=cur.anchorColumnNumber();
@@ -512,6 +521,11 @@ int LatexTables::findNextToken(QDocumentCursor &cur, QStringList tokens, bool ke
 }
 /*!
  * \brief find and select column in which the cursor is positioned
+ * At start cursor sit at start of column,i.e. after last \\
+ * Skip over \hline and similar, set cursor at first useable token
+ * Scan for & or \\ (or env end) and set anchor to that position (start of token)
+ * In case of tblr, handle multiline cells correctly ( {a\\b} is one cell, so we skip over the braces)
+ * Result delivers the separator token (&,\\,etc.)
  * \param cur
  * \return
  */
@@ -538,6 +552,8 @@ Token LatexTables::findColumn(QDocumentCursor &cur, Environment env)
     TokenList tl_prev;
     int ln_previous=-1;
     int ignoreUntilColumn=-1; // special ignore new row cmd in tblr (multi line cells)
+    enum ScanMode {ScanModeSkipInitial,ScanModeInColumn};
+    ScanMode mode= ScanModeSkipInitial;
     for(int i=0;i<tl.size();++i){
         tkResult=tl.at(i);
         if(tkResult.start<col){
@@ -549,6 +565,15 @@ Token LatexTables::findColumn(QDocumentCursor &cur, Environment env)
         }
         if(tkResult.type==Token::command){
             const QString cmd=tkResult.getText();
+            if(cmd=="\\hline" && mode== ScanModeSkipInitial){
+                // skip over \hline
+                // todo, skip over potential optional argument
+                // move cursor start
+                cur.setLineNumber(ln);
+                cur.setColumnNumber(tkResult.start+tkResult.length);
+            }else{
+                mode= ScanModeInColumn; // we are in a column now
+            }
             if(cmd=="&"){
                 // column end found
                 cur.setAnchorColumnNumber(tkResult.start);
@@ -589,6 +614,15 @@ Token LatexTables::findColumn(QDocumentCursor &cur, Environment env)
                     cur.setAnchorLineNumber(ln);
                 }
                 break;
+            }
+        }else{
+            if(tkResult.length>0){
+                if(mode== ScanModeSkipInitial){
+                    // column start found, so we set anchor
+                    cur.setLineNumber(ln);
+                    cur.setColumnNumber(tkResult.start);
+                    mode= ScanModeInColumn; // we are in a column now
+                }
             }
         }
         if(env.name=="tblr"){
