@@ -1,5 +1,5 @@
 # documentation tcolorboxlibrary
-# 2025/05/20 for v6.5.0
+# 2025/06/04 for v6.6.0
 
 #include:tcolorboxlibrarylistings
 #include:tcolorboxlibraryskins
@@ -78,6 +78,7 @@
 \meta{text%plain}
 \marg{text%plain}
 \oarg{text%plain}
+\pbarg{text%plain}
 \sarg
 \brackets{text%plain}
 \begin{dispExample}
