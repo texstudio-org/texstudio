@@ -3496,6 +3496,38 @@ QString LatexDocument::getLastEnvName(int lineNumber)
     return env.top().name;
 }
 
+/*!
+ * \brief check if env is closed in document
+ * Take last line's StackEnv and check if given env is not present (i.e. closed somewhere earlier)
+ * \param env
+ * \return true if env was closed
+ */
+bool LatexDocument::isEnvClosed(const Environment &env)
+{
+    LatexDocument *doc = edView->document;
+
+    int lineCount = doc->lineCount();
+    if (lineCount < 1)
+        return false; // general error
+
+    StackEnvironment stackEnv_at_lastLine;
+    QDocumentLineHandle *dlh = doc->line(lineCount - 1).handle();
+    QVariant envVar = dlh->getCookieLocked(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
+    if (envVar.isValid())
+        stackEnv_at_lastLine = envVar.value<StackEnvironment>();
+    else
+        return true; // no env, all closed
+
+    for(int i=0;i<stackEnv_at_lastLine.count();++i) {
+        const Environment &e = stackEnv_at_lastLine.at(i);
+        if (e.name==env.name && e.dlh==env.dlh && e.id==env.id && e.origName==env.origName && e.level==env.level) { //excessCol may change but name,id and dlh should be the same
+            // found the environment, so it is not closed
+            return false;
+        }
+    }
+    return true;
+}
+
 void LatexDocument::enableSyntaxCheck(bool enable)
 {
     syntaxChecking = enable;

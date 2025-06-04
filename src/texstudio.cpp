@@ -10138,6 +10138,7 @@ void Texstudio::addRowCB()
     int i=LatexTables::inTableEnv(stackEnv);
     if (i<0) return;
     Environment env=stackEnv[i];
+    if(!doc->isEnvClosed(env)) return; // don't work on unclosed envs
     LatexTables::addRow(cur, env);
 }
 
@@ -10151,6 +10152,7 @@ void Texstudio::addColumnCB()
     int i=LatexTables::inTableEnv(stackEnv);
     if (i<0) return;
     Environment env=stackEnv.at(i);
+    if(!doc->isEnvClosed(env)) return; // don't work on unclosed envs
     int col = LatexTables::getColumn(cur,env) + 1;
 	if (col < 1) return;
 	if (col == 1 && cur.atLineStart()) col = 0;
@@ -10168,6 +10170,7 @@ void Texstudio::removeColumnCB()
     int i=LatexTables::inTableEnv(stackEnv);
     if (i<0) return;
     Environment env=stackEnv[i];
+    if(!doc->isEnvClosed(env)) return; // don't work on unclosed envs
 	// check if cursor has selection
 	int numberOfColumns = 1;
     int col = LatexTables::getColumn(cur,env);
@@ -10199,6 +10202,7 @@ void Texstudio::removeRowCB()
     int i=LatexTables::inTableEnv(stackEnv);
     if (i<0) return;
     Environment env=stackEnv[i];
+    if(!doc->isEnvClosed(env)) return; // don't work on unclosed envs
     LatexTables::removeRow(cur,env);
 }
 
@@ -10212,6 +10216,7 @@ void Texstudio::cutColumnCB()
     int i=LatexTables::inTableEnv(stackEnv);
     if (i<0) return;
     Environment env=stackEnv[i];
+    if(!doc->isEnvClosed(env)) return; // don't work on unclosed envs
 	// check if cursor has selection
 	int numberOfColumns = 1;
     int col = LatexTables::getColumn(cur,env);
@@ -10256,6 +10261,7 @@ void Texstudio::pasteColumnCB()
     int i=LatexTables::inTableEnv(stackEnv);
     if (i<0) return;
     Environment env=stackEnv[i];
+    if(!doc->isEnvClosed(env)) return; // don't work on unclosed envs
     int col = LatexTables::getColumn(cur,env) + 1;
     if (col < 1) return;
     if (col == 1 && cur.atLineStart()) col = 0;
