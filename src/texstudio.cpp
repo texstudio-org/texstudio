@@ -3526,7 +3526,7 @@ void Texstudio::viewDocumentList()
 	int i = 0;
 	QStringList names;
 	foreach (LatexEditorView *edView, editorList) {
-		names << edView->displayName();
+        names << edView->document->getFileName();
 		if (!configManager.mruDocumentChooser && edView == curEdView) curIndex = i;
 		i++;
 	}
@@ -3540,7 +3540,7 @@ void Texstudio::viewDocumentOpenFromChoosen(const QString &doc, int duplicate, i
 {
 	if (duplicate < 0) return;
 	foreach (LatexEditorView *edView, editors->editors()) {
-		QString  name = edView->displayName();
+        QString  name = edView->document->getFileName();
 		if (name == doc) {
 			duplicate -= 1;
 			if (duplicate < 0) {
