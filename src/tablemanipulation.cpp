@@ -25,52 +25,6 @@ static QSet<QString> environmentsRequiringTrailingLineBreak = QSet<QString>() <<
 // environment needs it, or there is additional stuff after the line break, such as "\\ \hline".
 // See also: https://tex.stackexchange.com/questions/400827/should-i-use-a-line-break-after-the-last-tabular-row
 
-
-void LatexTables::addRow(QDocumentCursor &c, const int numberOfColumns )
-{
-	QDocumentCursor cur(c);
-	bool stopSearch = false;
-	if (cur.columnNumber() > 1) {
-		cur.movePosition(2, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-		QString res = cur.selectedText();
-		if (res == "\\\\") stopSearch = true;
-		cur.movePosition(2, QDocumentCursor::NextCharacter);
-	}
-    const QStringList tokens{"\\\\","\\tabularnewline"};
-	int result = 0;
-	if (!stopSearch) result = findNextToken(cur, tokens);
-    if (result >= 0 || result == -2) {
-		//if last line before end, check whether the user was too lazy to put in a linebreak
-		if (result == -2) {
-			QDocumentCursor ch(cur);
-			int res = findNextToken(ch, tokens, true, true);
-			if (res == -2) {
-				cur.movePosition(1, QDocumentCursor::PreviousCharacter);
-				cur.insertText("\\\\\n");
-			} else {
-				ch.movePosition(2, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-                const QString txt=ch.selectedText();
-                if (!txt.contains("\\\\") && !txt.contains("\\tabularnewline")) {
-					cur.movePosition(1, QDocumentCursor::PreviousCharacter);
-					cur.insertText("\\\\\n");
-				}
-			}
-		}
-		//
-		//result=findNextToken(cur,tokens);
-		cur.beginEditBlock();
-		if (result > -2) cur.insertText("\n");
-		QString str("& ");
-		QString outStr(" ");
-		for (int i = 1; i < numberOfColumns; i++) {
-			outStr += str;
-		}
-		cur.insertText(outStr);
-		cur.insertText("\\\\");
-		if (!cur.atLineEnd()) cur.insertText("\n");
-		cur.endEditBlock();
-	}
-}
 /*!
  * \brief add row in tabular-like environment
  * After current cursor position, a new row is added with the given number of columns.
@@ -1083,59 +1037,6 @@ Token LatexTables::getDef(TokenList &tl, Environment env,int &ln,int &nextLine, 
     return tkColDef;
 }
 
-// get the number of columns which are defined by the tabular (or alike) env
-int LatexTables::getNumberOfColumns(QDocumentCursor &cur)
-{
-	QDocumentCursor c(cur);
-	int result = findNextToken(c, QStringList(), false, true);
-	if (result != -2) return -1;
-    QDocumentCursor tmpCur(cur);
-    QString tableText = getTableText(tmpCur);
-    int pos = tableText.indexOf("\\begin");
-	if (pos > -1) {
-		QStringList values;
-        resolveCommandOptions(tableText, pos, values);
-		return getNumberOfColumns(values);
-	}
-	return -1;
-}
-
-// get the number of columns which are defined by the tabular (or alike) env, strings contain definition
-int LatexTables::getNumberOfColumns(QStringList values)
-{
-	if (values.isEmpty())
-		return -1;
-	QString env = values.takeFirst();
-	if (!env.startsWith("{") || !env.endsWith("}")) return -1;
-	env = env.mid(1);
-	env.chop(1);
-	int numberOfOptions = -1;
-	if (tabularNames.contains(env)) numberOfOptions = 0;
-	if (tabularNamesWithOneOption.contains(env)) numberOfOptions = 1;
-	if (numberOfOptions >= 0) {
-		while (!values.isEmpty()) {
-			QString opt = values.takeFirst();
-			if (opt.startsWith("[") && opt.endsWith("]")) continue;
-			if (numberOfOptions > 0) {
-				numberOfOptions--;
-				continue;
-			}
-			if (!opt.startsWith("{") || !opt.endsWith("}")) return -1;
-			opt = opt.mid(1);
-            opt.chop(1);
-            // in case of colspec, refine further
-            opt=handleColSpec(opt);
-			//calculate number of columns ...
-			QStringList res = splitColDef(opt);
-			int cols = res.count();
-			//return result
-			return cols;
-		}
-		return -1;
-	}
-	return -1;
-}
-
 // check whether the cursor is inside a table environemnt
 bool LatexTables::inTableEnv(QDocumentCursor &cur)
 {
@@ -1182,39 +1083,58 @@ int LatexTables::getNumOfColsInMultiColumn(const QString &str, QString *outAlign
 	return -1;
 }
 
-// add \hline and end of rows (remove==true => remove instead)
-// start from cursor position for numberOfLines ( until end if -1 )
-void LatexTables::addHLine(QDocumentCursor &cur, const int numberOfLines, const bool remove)
+/*!
+ * \brief add/remove \hline in tables
+ * Works only on complete table
+ * \param c
+ * \param env
+ * \param remove
+ */
+void LatexTables::addHLine(QDocumentCursor &c, const Environment &env, const bool remove)
 {
-	QDocumentCursor c(cur);
-	c.beginEditBlock();
-    QStringList tokens{"\\\\","\\tabularnewline"};
-	QStringList hline("\\hline");
-	int ln = numberOfLines;
-	while (ln != 0) {
-		int result = findNextToken(c, tokens);
-		if (result < 0) break;
-		if (remove) {
-			QDocumentCursor c2(c);
-			result = findNextToken(c, hline, true);
-            if (c.selectedText().contains(QRegularExpression("^\\s*\\\\hline$"))) {
-				c.removeSelectedText();
-			} else {
-				c = c2;
-			}
-		} else {
-			// don't add \hline if already present
-			QString text = c.line().text();
-			int col = c.columnNumber();
-			int pos_hline = text.indexOf(" \\hline", col);
-            if (pos_hline < 0 || !text.mid(col, pos_hline - col).contains(QRegularExpression("^\\s*$"))) {
-				c.insertText(" \\hline");
-				if (!c.atLineEnd()) c.insertText("\n");
-			}
-		}
-		ln--;
-	}
-	c.endEditBlock();
+    QDocumentLineHandle *dlh=env.dlh;
+    QDocument *doc=dlh->document();
+    int ln = doc->indexOf(dlh,c.lineNumber());
+    dlh->lockForRead();
+    TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    dlh->unlock();
+    int nextLine,nextCol;
+    Token tkColDef=getDef(tl,env,ln,nextLine,nextCol,doc);
+    // set cursor to start of first row
+    QDocumentCursor cur(doc,nextLine,nextCol);
+    cur.beginEditBlock();
+    // find row
+    for(;;){
+        enum NextRowAvailable cont=findRow(cur,env);
+        QString text = cur.selectedText();
+
+        static const QRegularExpression re("(\\s*\\\\hline[ \t]*)$");
+        QRegularExpressionMatch match = re.match(text);
+        if (match.hasMatch()) {
+            text.remove(match.capturedStart(),match.capturedLength(1));
+        }
+        if(!remove) {
+            QString newToken=" \\hline";
+            int pos=-1;
+            const QStringList tokens{"\\\\","\\tabularnewline"};
+            for(const QString &token:tokens){
+                pos = text.lastIndexOf(token);
+                if (pos >= 0){
+                    pos += token.length(); // insert after token
+                    break;
+                }
+            }
+            if(pos<0) pos= text.length(); // no row break found, so insert at end
+            text.insert(pos,newToken);
+        }
+        cur.insertText(text,true);
+        if(cont != RowAvailable) break; // no next row
+        int row=cur.anchorLineNumber();
+        int col=cur.anchorColumnNumber();
+        cur.setLineNumber(row);
+        cur.setColumnNumber(col);
+    }
+    cur.endEditBlock();
 }
 
 QStringList LatexTables::splitColDef(QString def)

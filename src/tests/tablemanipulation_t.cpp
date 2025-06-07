@@ -721,105 +721,6 @@ void TableManipulationTest::getCol(){
 
 }
 
-void TableManipulationTest::getNumberOfCol_data(){
-	QTest::addColumn<QString>("text");
-	QTest::addColumn<int>("row");
-	QTest::addColumn<int>("col");
-	QTest::addColumn<int>("colFound");
-
-	//-------------cursor without selection--------------
-	QTest::newRow("cols 2")
-		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 1 << 0
-		<< 2;
-
-	QTest::newRow("cols 4")
-		<< "\\begin{tabular}{|l|l|cc}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 2 << 0
-		<< 4;
-
-    QTest::newRow("tabularx")
-        << "\\usepackage{tabularx}\n\\begin{tabularx}{\\linewidth}{|l|l|cc}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabularx}\n"
-        << 2 << 0
-        << 4;
-
-	QTest::newRow("cols 0")
-		<< "\\begin{tabular}{}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 1 << 0
-		<< 0;
-
-	QTest::newRow("spaced in definition")
-		<< "\\begin{tabular}{l l c}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 1 << 0
-		<< 3;
-
-	QTest::newRow("p")
-		<< "\\begin{tabular}{llp{3cm}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 1 << 0
-		<< 3;
-
-	QTest::newRow("m")
-		<< "\\begin{tabular}{llm{3cm}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 1 << 0
-		<< 3;
-
-	QTest::newRow("col commands (array)")
-		<< "\\begin{tabular}{>{\\bfseries}ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 1 << 0
-		<< 2;
-
-	QTest::newRow("no Table")
-		<< "test\na&b\\\\\nc&d\\\\\ne&f\\\\\ntest\n"
-		<< 1 << 0
-		<< -1;
-
-	QTest::newRow("separators")
-		<< "\\begin{tabular}{|l|l|@{ll}cc}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 2 << 0
-		<< 4;
-
-	QTest::newRow("multipliers")
-		<< "\\begin{tabular}{|l|l|@{ll}c*{2}{lc}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 2 << 0
-		<< 7;
-
-	QTest::newRow("multipliers, nested")
-		<< "\\begin{tabular}{|l|l|@{ll}c*{2}{*{2}{l}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 2 << 0
-        << 7;
-    QTest::newRow("colspec")
-        << "\\begin{tblr}{colspec={|l|l|@{ll}c*{2}{*{2}{l}}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
-        << 2 << 0
-        << 7;
-    QTest::newRow("colspec2")
-        << "\\begin{tblr}{\n\tcolspec={|l|l|@{ll}c*{2}{*{2}{l}}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
-        << 3 << 0
-        << 7;
-    QTest::newRow("colspec3")
-        << "\\begin{tblr}{\n\tcolspec={|l|l|@{ll}c*{2}{*{2}{l}}},width={3cm}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
-        << 3 << 0
-        << 7;
-    QTest::newRow("colspec4")
-        << "\\begin{tblr}{\n\tcolspec= {Q[1,r,m]Q[1,l,m]},width = 0.4\\linewidth,column{1} = {font=\bfseries}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tblr}\n"
-        << 3 << 0
-        << 2;
-
-}
-void TableManipulationTest::getNumberOfCol(){
-	QFETCH(QString, text);
-	QFETCH(int, row);
-	QFETCH(int, col);
-	QFETCH(int, colFound);
-
-	ed->setText(text, false);
-	ed->setCursorPosition(row,col);
-	QDocumentCursor c(ed->cursor());
-	int nc=LatexTables::getNumberOfColumns(c);
-
-	QEQUAL(nc,colFound);
-
-}
-
 void TableManipulationTest::findNextToken_data(){
 	QTest::addColumn<QString>("text");
 	QTest::addColumn<int>("row");
@@ -936,59 +837,69 @@ void TableManipulationTest::addHLine_data(){
 	QTest::addColumn<QString>("text");
 	QTest::addColumn<int>("row");
 	QTest::addColumn<int>("col");
-	QTest::addColumn<int>("numberOfLines");
 	QTest::addColumn<bool>("remove");
 	QTest::addColumn<QString>("newText");
 
 	//-------------cursor without selection--------------
 	QTest::newRow("add to all")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 1 << 0 << -1 << false
+        << 1 << 0 << false
 		<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n";
+
+    QTest::newRow("add to all, tabularnewline")
+        << "\\begin{tabular}{ll}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 1 << 0 << false
+        << "\\begin{tabular}{ll}\na&b\\tabularnewline \\hline\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n";
 
     QTest::newRow("add to all tnl")
         << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-        << 1 << 0 << -1 << false
+        << 1 << 0 << false
         << "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n";
 
-	QTest::newRow("add to 2 (in single line)")
-		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 1 << 0 << 2 << false
-		<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\ \\hline\ne&f\\\\\n\\end{tabular}\n";
+    QTest::newRow("add to all, previous \\hline")
+        << "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 1 << 0 << false
+        << "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n";
+
+    QTest::newRow("add to all, previous \\hline before first row")
+        << "\\begin{tabular}{ll}\n\\hline\na&b\\\\ \\hline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 1 << 0 << false
+        << "\\begin{tabular}{ll}\n\\hline\na&b\\\\ \\hline\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n";
 
 	QTest::newRow("remove all, none present")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 1 << 0 << -1 << true
+        << 1 << 0 << true
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("remove all")
 		<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n"
-		<< 1 << 0 << -1 << true
+        << 1 << 0 << true
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("remove all, missing hlines")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n"
-		<< 1 << 0 << -1 << true
+        << 1 << 0 << true
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
-
-	QTest::newRow("remove some")
-		<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\\\hline\ne&f\\\\ \\hline\n\\end{tabular}\n"
-		<< 1 << 0 << 2 << true
-		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\ \\hline\n\\end{tabular}\n";
 
 }
 void TableManipulationTest::addHLine(){
 	QFETCH(QString, text);
 	QFETCH(int, row);
 	QFETCH(int, col);
-	QFETCH(int, numberOfLines);
 	QFETCH(bool, remove);
 	QFETCH(QString, newText);
 
 	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
-	LatexTables::addHLine(c,numberOfLines,remove);
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(ed->document());
+    doc->synChecker.waitForQueueProcess();
+    StackEnvironment stackEnv;
+    doc->getEnv(row,stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    QVERIFY(i>=0);
+    if (i<0) return;
+    LatexTables::addHLine(c,stackEnv[i],remove);
 
     ed->document()->setLineEndingDirect(QDocument::Unix,true);
     QString result=ed->document()->text();

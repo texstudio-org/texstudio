@@ -10271,17 +10271,27 @@ void Texstudio::pasteColumnCB()
 void Texstudio::addHLineCB()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor cur = currentEditorView()->editor->cursor();
-	if (!LatexTables::inTableEnv(cur)) return;
-	LatexTables::addHLine(cur);
+    QDocumentCursor cur = currentEditorView()->editor->cursor();
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(cur.document());
+    StackEnvironment stackEnv;
+    doc->getEnv(cur.lineNumber(),stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    if (i<0) return;
+    Environment env=stackEnv[i];
+    LatexTables::addHLine(cur,env);
 }
 
 void Texstudio::remHLineCB()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor cur = currentEditorView()->editor->cursor();
-	if (!LatexTables::inTableEnv(cur)) return;
-	LatexTables::addHLine(cur, -1, true);
+    QDocumentCursor cur = currentEditorView()->editor->cursor();
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(cur.document());
+    StackEnvironment stackEnv;
+    doc->getEnv(cur.lineNumber(),stackEnv);
+    int i=LatexTables::inTableEnv(stackEnv);
+    if (i<0) return;
+    Environment env=stackEnv[i];
+    LatexTables::addHLine(cur,env, true);
 }
 
 void Texstudio::findWordRepetions()
