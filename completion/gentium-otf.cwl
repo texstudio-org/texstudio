@@ -1,12 +1,12 @@
 # gentium-otf package
-# Matthew Bertucci 2025/01/13 for v0.01
+# Matthew Bertucci 2025/06/07 for v1.00
 
 #include:iftex
 #include:xkeyval
 #include:fontspec
 
 #keyvals:\usepackage/gentium-otf#c
-book
+medium
 ScaleRM=%<factor%>
 math=%<font name%>
 mathFeatures={%<fontspec features%>}
@@ -16,6 +16,10 @@ mono=%<font name%>
 monoFeatures={%<fontspec features%>}
 defaultfeatures={%<fontspec features%>}
 #endkeyvals
+
+\GentiumRegular
+\GentiumMedium
+\GentiumExtraBold
 
 \Lctosc{text}
 \LCtoSC-
