@@ -24,81 +24,81 @@ verbose
 
 ## Sec. II.1 Main commands
 \setmainfont{font}
-\setmainfont[font features]{font}#*
 \setmainfont{font}[font features%keyvals]
-\setmainfont[font features]{font}[font features%keyvals]#*
+\setmainfont[font features%keyvals]{font}#*
+\setmainfont[font features%keyvals]{font}[font features%keyvals]#S
 \setromanfont{font}
-\setromanfont[font features]{font}#*
 \setromanfont{font}[font features%keyvals]
-\setromanfont[font features]{font}[font features%keyvals]#*
+\setromanfont[font features%keyvals]{font}#*
+\setromanfont[font features%keyvals]{font}[font features%keyvals]#S
 \setsansfont{font}
-\setsansfont[font features]{font}#*
 \setsansfont{font}[font features%keyvals]
-\setsansfont[font features]{font}[font features%keyvals]#*
+\setsansfont[font features%keyvals]{font}#*
+\setsansfont[font features%keyvals]{font}[font features%keyvals]#S
 \setmonofont{font}
-\setmonofont[font features]{font}#*
 \setmonofont{font}[font features%keyvals]
-\setmonofont[font features]{font}[font features%keyvals]#*
+\setmonofont[font features%keyvals]{font}#*
+\setmonofont[font features%keyvals]{font}[font features%keyvals]#S
 
 \newfontfamily{cmd}{font}#d
-\newfontfamily{cmd}[font features]{font}#*d
 \newfontfamily{cmd}{font}[font features%keyvals]#d
-\newfontfamily{cmd}[font features]{font}[font features%keyvals]#*d
+\newfontfamily{cmd}[font features%keyvals]{font}#*d
+\newfontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
 \setfontfamily{cmd}{font}#d
-\setfontfamily{cmd}[font features]{font}#*d
 \setfontfamily{cmd}{font}[font features%keyvals]#d
-\setfontfamily{cmd}[font features]{font}[font features%keyvals]#*d
+\setfontfamily{cmd}[font features%keyvals]{font}#*d
+\setfontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
 \renewfontfamily{cmd}{font}
-\renewfontfamily{cmd}[font features]{font}#*
 \renewfontfamily{cmd}{font}[font features%keyvals]
-\renewfontfamily{cmd}[font features]{font}[font features%keyvals]#*
+\renewfontfamily{cmd}[font features%keyvals]{font}#*
+\renewfontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#S
 \providefontfamily{cmd}{font}#d
-\providefontfamily{cmd}[font features]{font}#*d
 \providefontfamily{cmd}{font}[font features%keyvals]#d
-\providefontfamily{cmd}[font features]{font}[font features%keyvals]#*d
+\providefontfamily{cmd}[font features%keyvals]{font}#*d
+\providefontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
 
 \fontspec{font}
-\fontspec[font features]{font}#*
 \fontspec{font}[font features%keyvals]
-\fontspec[font features]{font}[font features%keyvals]#*
+\fontspec[font features%keyvals]{font}#*
+\fontspec[font features%keyvals]{font}[font features%keyvals]#S
 
 ## Sec. II.2 Font selection
 \IfFontExistsTF{font name}{true}{false}
 
 ## Sec. II.4 Commands to select single font faces
 \newfontface{cmd}{font}#d
-\newfontface{cmd}[font features]{font}#*d
 \newfontface{cmd}{font}[font features%keyvals]#d
-\newfontface{cmd}[font features]{font}[font features%keyvals]#*d
+\newfontface{cmd}[font features%keyvals]{font}#*d
+\newfontface{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
 \setfontface{cmd}{font}#d
-\setfontface{cmd}[font features]{font}#*d
 \setfontface{cmd}{font}[font features%keyvals]#d
-\setfontface{cmd}[font features]{font}[font features%keyvals]#*d
+\setfontface{cmd}[font features%keyvals]{font}#*d
+\setfontface{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
 \renewfontface{cmd}{font}
-\renewfontface{cmd}[font features]{font}#*
 \renewfontface{cmd}{font}[font features%keyvals]
-\renewfontface{cmd}[font features]{font}[font features%keyvals]#*
+\renewfontface{cmd}[font features%keyvals]{font}#*
+\renewfontface{cmd}[font features%keyvals]{font}[font features%keyvals]#S
 \providefontface{cmd}{font}#d
-\providefontface{cmd}[font features]{font}#*d
 \providefontface{cmd}{font}[font features%keyvals]#d
-\providefontface{cmd}[font features]{font}[font features%keyvals]#*d
+\providefontface{cmd}[font features%keyvals]{font}#*d
+\providefontface{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
 
 \setmathrm{font}
-\setmathrm[font features]{font}#*
 \setmathrm{font}[font features%keyvals]
-\setmathrm[font features]{font}[font features%keyvals]#*
+\setmathrm[font features%keyvals]{font}#*
+\setmathrm[font features%keyvals]{font}[font features%keyvals]#S
 \setmathsf{font}
-\setmathsf[font features]{font}#*
 \setmathsf{font}[font features%keyvals]
-\setmathsf[font features]{font}[font features%keyvals]#*
+\setmathsf[font features%keyvals]{font}#*
+\setmathsf[font features%keyvals]{font}[font features%keyvals]#S
 \setmathtt{font}
-\setmathtt[font features]{font}#*
 \setmathtt{font}[font features%keyvals]
-\setmathtt[font features]{font}[font features%keyvals]#*
+\setmathtt[font features%keyvals]{font}#*
+\setmathtt[font features%keyvals]{font}[font features%keyvals]#S
 \setboldmathrm{font}
-\setboldmathrm[font features]{font}#*
 \setboldmathrm{font}[font features%keyvals]
-\setboldmathrm[font features]{font}[font features%keyvals]#*
+\setboldmathrm[font features%keyvals]{font}#*
+\setboldmathrm[font features%keyvals]{font}[font features%keyvals]#S
 
 ## Sec. III.1 Default settings
 \defaultfontfeatures{font features%keyvals}
@@ -107,9 +107,9 @@ verbose
 \defaultfontfeatures+[font name list]{font features%keyvals}
 
 ## Sec. III.2 Working with the currently selected features
-\IfFontFeatureActiveTF{font feature}{true}{false}
+\IfFontFeatureActiveTF{font feature}{true code}{false code}
 \addfontfeatures{font features%keyvals}
-\addfontfeature{font features%keyvals}
+\addfontfeature{font features%keyvals}#*
 
 ## Sec. V Commands for accents and symbols ('encodings')
 \EncodingCommand{cmd}[num][default]{code}#*d
@@ -125,10 +125,10 @@ verbose
 ## Sec. VIII Customisation and programming interface
 \newAATfeature{feature}{option}{feature code}{selector code}
 \newopentypefeature{feature}{option}{feature tag}
-\newfontfeature{name}{input string}
+\newfontfeature{name%specialDef}{input string}#s#%fontspecfeature
 \newfontscript{fontspec name}{OpenType tag list}
 \newfontlanguage{fontspec name}{OpenType tag list}
-\aliasfontfeature{existing name}{new name}
+\aliasfontfeature{existing name%specialDef}{new name}#s#%fontspecfeature
 \aliasfontfeatureoption{font feature}{existing name}{new name}
 
 ## common keyvals list, 
@@ -205,7 +205,8 @@ Weight=%<number%>
 Width=%<number%>
 WordSpace=%<number%>
 Mapping=%<xetex-only feature%>
-Renderer=%<renderer%>
+Renderer=#Node,Base,Harfbuzz,OpenType,AAT,Graphite
+%fontspecfeature
 #endkeyvals
 
 # not documented

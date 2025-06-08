@@ -11,7 +11,6 @@
 
 #include:l3keys2e
 #include:fontspec
-#include:fix-cm
 #include:amsmath
 
 \unimathsetup{options%keyvals}
