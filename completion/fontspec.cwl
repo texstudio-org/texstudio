@@ -40,22 +40,22 @@ verbose
 \setmonofont[font features%keyvals]{font}#*
 \setmonofont[font features%keyvals]{font}[font features%keyvals]#S
 
-\newfontfamily{cmd}{font}#d
-\newfontfamily{cmd}{font}[font features%keyvals]#d
-\newfontfamily{cmd}[font features%keyvals]{font}#*d
-\newfontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
-\setfontfamily{cmd}{font}#d
-\setfontfamily{cmd}{font}[font features%keyvals]#d
-\setfontfamily{cmd}[font features%keyvals]{font}#*d
-\setfontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
-\renewfontfamily{cmd}{font}
-\renewfontfamily{cmd}{font}[font features%keyvals]
-\renewfontfamily{cmd}[font features%keyvals]{font}#*
-\renewfontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#S
-\providefontfamily{cmd}{font}#d
-\providefontfamily{cmd}{font}[font features%keyvals]#d
-\providefontfamily{cmd}[font features%keyvals]{font}#*d
-\providefontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
+\newfontfamily{command}{font}#d
+\newfontfamily{command}{font}[font features%keyvals]#d
+\newfontfamily{command}[font features%keyvals]{font}#*d
+\newfontfamily{command}[font features%keyvals]{font}[font features%keyvals]#Sd
+\setfontfamily{command}{font}#d
+\setfontfamily{command}{font}[font features%keyvals]#d
+\setfontfamily{command}[font features%keyvals]{font}#*d
+\setfontfamily{command}[font features%keyvals]{font}[font features%keyvals]#Sd
+\renewfontfamily{command}{font}
+\renewfontfamily{command}{font}[font features%keyvals]
+\renewfontfamily{command}[font features%keyvals]{font}#*
+\renewfontfamily{command}[font features%keyvals]{font}[font features%keyvals]#S
+\providefontfamily{command}{font}#d
+\providefontfamily{command}{font}[font features%keyvals]#d
+\providefontfamily{command}[font features%keyvals]{font}#*d
+\providefontfamily{command}[font features%keyvals]{font}[font features%keyvals]#Sd
 
 \fontspec{font}
 \fontspec{font}[font features%keyvals]
@@ -66,22 +66,22 @@ verbose
 \IfFontExistsTF{font name}{true}{false}
 
 ## Sec. II.4 Commands to select single font faces
-\newfontface{cmd}{font}#d
-\newfontface{cmd}{font}[font features%keyvals]#d
-\newfontface{cmd}[font features%keyvals]{font}#*d
-\newfontface{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
-\setfontface{cmd}{font}#d
-\setfontface{cmd}{font}[font features%keyvals]#d
-\setfontface{cmd}[font features%keyvals]{font}#*d
-\setfontface{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
-\renewfontface{cmd}{font}
-\renewfontface{cmd}{font}[font features%keyvals]
-\renewfontface{cmd}[font features%keyvals]{font}#*
-\renewfontface{cmd}[font features%keyvals]{font}[font features%keyvals]#S
-\providefontface{cmd}{font}#d
-\providefontface{cmd}{font}[font features%keyvals]#d
-\providefontface{cmd}[font features%keyvals]{font}#*d
-\providefontface{cmd}[font features%keyvals]{font}[font features%keyvals]#Sd
+\newfontface{command}{font}#d
+\newfontface{command}{font}[font features%keyvals]#d
+\newfontface{command}[font features%keyvals]{font}#*d
+\newfontface{command}[font features%keyvals]{font}[font features%keyvals]#Sd
+\setfontface{command}{font}#d
+\setfontface{command}{font}[font features%keyvals]#d
+\setfontface{command}[font features%keyvals]{font}#*d
+\setfontface{command}[font features%keyvals]{font}[font features%keyvals]#Sd
+\renewfontface{command}{font}
+\renewfontface{command}{font}[font features%keyvals]
+\renewfontface{command}[font features%keyvals]{font}#*
+\renewfontface{command}[font features%keyvals]{font}[font features%keyvals]#S
+\providefontface{command}{font}#d
+\providefontface{command}{font}[font features%keyvals]#d
+\providefontface{command}[font features%keyvals]{font}#*d
+\providefontface{command}[font features%keyvals]{font}[font features%keyvals]#Sd
 
 \setmathrm{font}
 \setmathrm{font}[font features%keyvals]
@@ -112,15 +112,15 @@ verbose
 \addfontfeature{font features%keyvals}#*
 
 ## Sec. V Commands for accents and symbols ('encodings')
-\EncodingCommand{cmd}[num][default]{code}#*d
-\EncodingAccent{cmd}{code}#*d
-\EncodingSymbol{cmd}{code}#*d
-\EncodingComposite{cmd}{letter}{slot}#*d
-\EncodingCompositeCommand(cmd){letter}{code}#*d
-\UndeclareSymbol{cmd}
-\UndeclareAccent{cmd}
-\UndeclareCommand{cmd}
-\UndeclareComposite{cmd}{letter}
+\EncodingCommand{command}[num][default]{code}#*d
+\EncodingAccent{command}{code}#*d
+\EncodingSymbol{command}{code}#*d
+\EncodingComposite{command}{letter}{slot}#*d
+\EncodingCompositeCommand(command){letter}{code}#*d
+\UndeclareSymbol{command}
+\UndeclareAccent{command}
+\UndeclareCommand{command}
+\UndeclareComposite{command}{letter}
 
 ## Sec. VIII Customisation and programming interface
 \newAATfeature{feature}{option}{feature code}{selector code}
@@ -132,7 +132,7 @@ verbose
 \aliasfontfeatureoption{font feature}{existing name}{new name}
 
 ## common keyvals list, 
-## both cmds and keys are in alphabetic order, except for engine specific keys
+## both commands and keys are in alphabetic order, except for engine specific keys
 #keyvals:\addfontfeature,\addfontfeatures,\defaultfontfeatures,\fontspec,\newfontface,\newfontfamily,\providefontface,\providefontfamily,\renewfontface,\renewfontfamily,\setboldmathrm,\setfontface,\setfontfamily,\setmainfont,\setmathrm,\setmathsf,\setmathtt,\setmonofont,\setromanfont,\setsansfont
 Alternate=%<feature%>
 Annotation=
@@ -147,6 +147,7 @@ BoldSlantedFont=%<font name%>
 BoldSwashFeatures={%<features%>}
 BoldSwashFont=%<font name%>
 CJKShape=#Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC
+CharacterVariant=%<number%>
 CharacterVariant={%<glyph num list%>:%<variety num%>}
 CharacterWidth=#Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll
 Color=#%color
@@ -225,9 +226,9 @@ Renderer=#Node,Base,Harfbuzz,OpenType,AAT,Graphite
 \UnicodeFontTeXLigatures#*
 \UnicodeFontFile{arg1}{arg2}#*
 \UnicodeFontName{arg1}{arg2}#*
-\DeclareUnicodeAccent{cmd}{encoding}{char code}#*d
+\DeclareUnicodeAccent{command}{encoding}{char code}#*d
 \DeclareUnicodeCommand{command}{slot}#*d
-\DeclareUnicodeComposite{cmd}{letter}{definition}#*d
+\DeclareUnicodeComposite{command}{letter}{definition}#*d
 \DeclareUnicodeSymbol{command}{definition}#*d
 \textquotedbl#n
 \guillemetleft#n

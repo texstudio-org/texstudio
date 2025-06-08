@@ -75,6 +75,7 @@ BoldSlantedFont=%<font name%>
 BoldSwashFeatures={%<features%>}
 BoldSwashFont=%<font name%>
 CJKShape=#Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC
+CharacterVariant=%<number%>
 CharacterVariant={%<glyph num list%>:%<variety num%>}
 CharacterWidth=#Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll
 Color=#%color
