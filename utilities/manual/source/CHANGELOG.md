@@ -1,7 +1,9 @@
 # CHANGELOG
 ## TeXstudio 4.8.8
 
-- 
+- improve handling tblr env for table manipulation
+- provide win-arm build
+- small bug fixes
 
 ## TeXstudio 4.8.7
 
