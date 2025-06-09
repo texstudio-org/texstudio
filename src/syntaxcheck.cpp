@@ -1435,6 +1435,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					if(options.startsWith("#")){
 						continue; // ignore type keys, like width#L
 					}
+                    if(options.endsWith("#c")){
+                        continue; // ignore values for syntax checking (#c)
+                    }
                     if(options.startsWith("%")){
                         if (!ltxCommands->possibleCommands[options].contains(word)) {
                             // special treatement for %color (mix)
