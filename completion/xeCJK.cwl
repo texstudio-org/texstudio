@@ -69,53 +69,55 @@ LoadFandol#true,false
 # key completion does not work in final arg so alternative syntax used below
 ## 3.2
 \setCJKmainfont{font name}
-\setCJKmainfont{font name}[font features]#*
-\setCJKmainfont[font features%keyvals]{font name}
+\setCJKmainfont{font name}[font features%keyvals]
+\setCJKmainfont[font features%keyvals]{font name}#*
 
 \setCJKsansfont{font name}
-\setCJKsansfont{font name}[font features]#*
-\setCJKsansfont[font features%keyvals]{font name}
+\setCJKsansfont{font name}[font features%keyvals]
+\setCJKsansfont[font features%keyvals]{font name}#*
 
 \setCJKmonofont{font name}
-\setCJKmonofont{font name}[font features]#*
-\setCJKmonofont[font features%keyvals]{font name}
+\setCJKmonofont{font name}[font features%keyvals]
+\setCJKmonofont[font features%keyvals]{font name}#*
 
 \setCJKfamilyfont{family}{font name}
-\setCJKfamilyfont{family}{font name}[font features]#*
-\setCJKfamilyfont{family}[font features%keyvals]{font name}
+\setCJKfamilyfont{family}{font name}[font features%keyvals]
+\setCJKfamilyfont{family}[font features%keyvals]{font name}#*
 
 \CJKfamily{family}
 \CJKfamily+{family}#*
 \CJKfamily-{family}#*
 
 \newCJKfontfamily{cmd}{font name}#d
-\newCJKfontfamily{cmd}[font features%keyvals]{font name}#d
-\newCJKfontfamily[family]{cmd}{font name}#*d
-\newCJKfontfamily[family]{cmd}[font features%keyvals]{font name}#d
+\newCJKfontfamily{cmd}{font name}[font features%keyvals]#d
+\newCJKfontfamily{cmd}[font features%keyvals]{font name}#*d
+\newCJKfontfamily[family]{cmd}{font name}#d
+\newCJKfontfamily[family]{cmd}{font name}[font features%keyvals]#d
+\newCJKfontfamily[family]{cmd}[font features%keyvals]{font name}#*d
 
 \CJKfontspec{font name}
-\CJKfontspec{font name}[font features]#*
-\CJKfontspec[font features%keyvals]{font name}
+\CJKfontspec{font name}[font features%keyvals]
+\CJKfontspec[font features%keyvals]{font name}#*
 
 \defaultCJKfontfeatures{font features%keyvals}#*
 
-\addCJKfontfeatures{font features%keyvals}#*
-\addCJKfontfeatures*{font features%keyvals}#*
-\addCJKfontfeatures[blocks]{font features%keyvals}#*
-\addCJKfontfeatures*[blocks]{font features%keyvals}#*
+\addCJKfontfeatures{font features%keyvals}
+\addCJKfontfeatures*{font features%keyvals}
+\addCJKfontfeatures[blocks]{font features%keyvals}
+\addCJKfontfeatures*[blocks]{font features%keyvals}
 
-\CJKrmdefault#S
-\CJKsfdefault#S
-\CJKttdefault#S
+\CJKrmdefault#*
+\CJKsfdefault#*
+\CJKttdefault#*
 
-\CJKfamilydefault#S
+\CJKfamilydefault#*
 
-\setCJKmathfont{font name}#*
-\setCJKmathfont{font name}[font features]#*
+\setCJKmathfont{font name}
+\setCJKmathfont{font name}[font features%keyvals]
 \setCJKmathfont[font features%keyvals]{font name}#*
 
-\setCJKfallbackfamilyfont{family}{font name}#*
-\setCJKfallbackfamilyfont{family}{font name}[font features]#*
+\setCJKfallbackfamilyfont{family}{font name}
+\setCJKfallbackfamilyfont{family}{font name}[font features%keyvals]
 \setCJKfallbackfamilyfont{family}[font features%keyvals]{font name}#*
 
 ## 3.3
@@ -192,11 +194,15 @@ kerning-margin-minimum=##L
 
 ## font feature keyvals list
 #keyvals:\setCJKmainfont,\setCJKsansfont,\setCJKmonofont,\setCJKfamilyfont,\newCJKfontfamily,\CJKfontspec,\defaultCJKfontfeatures,\addCJKfontfeatures,\setCJKmathfont,\setCJKfallbackfamilyfont
+# keys unique to xeCJK
+AutoFakeBold
+AutoFakeSlant
+FallBack
+FallBack=%<font name%>
+# keys from fontspec
 Alternate=%<feature%>
 Annotation=
-AutoFakeBold
 AutoFakeBold=%<number%>
-AutoFakeSlant
 AutoFakeSlant=%<number%>
 BoldFeatures={%<features%>}
 BoldFont=%<font name%>
@@ -207,49 +213,52 @@ BoldSlantedFont=%<font name%>
 BoldSwashFeatures={%<features%>}
 BoldSwashFont=%<font name%>
 CJKShape=#Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC
+CharacterVariant=%<number%>
 CharacterVariant={%<glyph num list%>:%<variety num%>}
 CharacterWidth=#Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll
 Color=#%color
 Colour=#%color
-Contextuals=#Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll
+Contextuals=#Swash,SwashOff,Alternate,AlternateOff,WordInitial,WordInitialOff,WordFinal,WordFinalOff,LineFinal,LineFinalOff,Inner,InnerOff,ResetAll
 Diacritics=#MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll
 Extension=%<extension%>
 FakeBold=%<number%>
 FakeSlant=%<number%>
 FakeStretch=%<number%>
-FallBack
-FallBack=%<font name%>
 Font=%<font name%>
 FontFace={%<series%>}{%<shape%>}{%<font name%>}
 Fractions=#On,Off,Reset,Alternate,ResetAll
 HyphenChar=%<character%>
 IgnoreFontspecFile
+Instance=%<instance%>
 ItalicFeatures={%<features%>}
 ItalicFont=%<font name%>
 Kerning=#On,Off,Reset,Uppercase,ResetAll
+KpseOnly
 Language=%<language%>
 LetterSpace=%<number%>
-Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll
+Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,Uppercase,Lowercase,ResetAll
 Ligatures=#Required,Common,Contextual,Rare,Discretionary,Historic,TeX
 LocalForms=#On,Off,Reset
-Mapping=#fullwidth-stop,full-stop,han-trad,han-simp
 NFSSFamily=%<font family%>
 Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle,OldStyleOff,Proportional,ProportionalOff,Monospaced,MonospacedOff,SlashedZero,SlashedZeroOff,Arabic,ArabicOff,ResetAll
+Opacity=%<factor%>
 OpticalSize=%<size%>
 Ornament=
 Path=%<file path%>
 PunctuationSpace=%<number%>
+RawAxis={%<tag=number%>}
 RawFeature=%<feature tag%>
 Scale=%<number%>
 ScaleAgain=%<number%>
 Script=%<name%>
 Size=%<number%>
 SizeFeatures={%<features%>}
+Slant=%<number%>
 SlantedFeatures={%<features%>}
 SlantedFont=%<font name%>
 SmallCapsFeatures={%<features%>}
 SmallCapsFont=%<font name%>
-Style=#Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll
+Style=#Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,Uppercase,HorizontalKana,VerticalKana,ResetAll
 StylisticAlternates=%<feature%>
 StylisticSet=%<set number%>
 SwashFeatures={%<features%>}
@@ -259,7 +268,10 @@ UprightFont=%<font name%>
 Variant=%<integer%>
 Vertical=#RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll
 VerticalPosition=#Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll
+Weight=%<number%>
+Width=%<number%>
 WordSpace=%<number%>
 Mapping=%<xetex-only feature%>
-Renderer=%<renderer%>
+Renderer=#Node,Base,Harfbuzz,OpenType,AAT,Graphite
+%fontspecfeature
 #endkeyvals

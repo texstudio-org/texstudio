@@ -1,5 +1,5 @@
 # skins tcolorboxlibrary
-# 2024/07/10 for v6.3.0
+# 2025/06/04 for v6.6.0
 
 #include:tikzfill.image
 
@@ -277,6 +277,8 @@ extend freelancefirst={%<options%>}
 extend freelancemiddle={%<options%>}
 extend freelancelast={%<options%>}
 only=<%<overlay spec%>>{%<options%>}
+alt=<%<overlay spec%>>{%<default%>}{%<alternative%>}
+temporal=<%<overlay spec%>>{%<before slide%>}{%<default%>}{%<after slide%>}
 hide=<%<overlay spec%>>
 beamer hidden/.style={%<options%>}
 alert=<%<overlay spec%>>

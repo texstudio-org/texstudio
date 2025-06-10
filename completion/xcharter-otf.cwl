@@ -15,6 +15,7 @@ math-style=#ISO,TeX,french,upright
 bold-style=#ISO,TeX,upright
 nabla=#italic,upright,literal
 partial=#italic,upright,literal
+CharacterVariant=%<number%>
 CharacterVariant={%<glyph num list%>:%<variety num%>}
 StylisticSet=#4,5,6
 Style=#upint,leqslant,smaller,subsetneq,parallelslant

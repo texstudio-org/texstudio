@@ -62,17 +62,17 @@ LoadFandol#true,false
 \zxJaFamilyName#*
 \inhibitglue
 \setjamainfont{font name}
-\setjamainfont{font name}[font features]#*
-\setjamainfont[font features%keyvals]{font name}
+\setjamainfont{font name}[font features%keyvals]
+\setjamainfont[font features%keyvals]{font name}#*
 \setjasansfont{font name}
-\setjasansfont{font name}[font features]#*
-\setjasansfont[font features%keyvals]{font name}
+\setjasansfont{font name}[font features%keyvals]
+\setjasansfont[font features%keyvals]{font name}#*
 \setjamonofont{font name}
-\setjamonofont{font name}[font features]#*
-\setjamonofont[font features%keyvals]{font name}
+\setjamonofont{font name}[font features%keyvals]
+\setjamonofont[font features%keyvals]{font name}#*
 \setjafamilyfont{family}{font name}
-\setjafamilyfont{family}{font name}[font features]#*
-\setjafamilyfont{family}[font features%keyvals]{font name}
+\setjafamilyfont{family}{font name}[font features%keyvals]
+\setjafamilyfont{family}[font features%keyvals]{font name}#*
 \jafamily{family}
 \zxjapanesestyle
 \zxusejapaneseparameters
@@ -90,11 +90,15 @@ LoadFandol#true,false
 \end{rawentext}
 
 #keyvals:\setjamainfont,\setjasansfont,\setjamonofont,\setjafamilyfont
+# keys unique to xeCJK
+AutoFakeBold
+AutoFakeSlant
+FallBack
+FallBack=%<font name%>
+# keys from fontspec
 Alternate=%<feature%>
 Annotation=
-AutoFakeBold
 AutoFakeBold=%<number%>
-AutoFakeSlant
 AutoFakeSlant=%<number%>
 BoldFeatures={%<features%>}
 BoldFont=%<font name%>
@@ -105,49 +109,52 @@ BoldSlantedFont=%<font name%>
 BoldSwashFeatures={%<features%>}
 BoldSwashFont=%<font name%>
 CJKShape=#Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC
+CharacterVariant=%<number%>
 CharacterVariant={%<glyph num list%>:%<variety num%>}
 CharacterWidth=#Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll
 Color=#%color
 Colour=#%color
-Contextuals=#Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll
+Contextuals=#Swash,SwashOff,Alternate,AlternateOff,WordInitial,WordInitialOff,WordFinal,WordFinalOff,LineFinal,LineFinalOff,Inner,InnerOff,ResetAll
 Diacritics=#MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll
 Extension=%<extension%>
 FakeBold=%<number%>
 FakeSlant=%<number%>
 FakeStretch=%<number%>
-FallBack
-FallBack=%<font name%>
 Font=%<font name%>
 FontFace={%<series%>}{%<shape%>}{%<font name%>}
 Fractions=#On,Off,Reset,Alternate,ResetAll
 HyphenChar=%<character%>
 IgnoreFontspecFile
+Instance=%<instance%>
 ItalicFeatures={%<features%>}
 ItalicFont=%<font name%>
 Kerning=#On,Off,Reset,Uppercase,ResetAll
+KpseOnly
 Language=%<language%>
 LetterSpace=%<number%>
-Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll
+Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,Uppercase,Lowercase,ResetAll
 Ligatures=#Required,Common,Contextual,Rare,Discretionary,Historic,TeX
 LocalForms=#On,Off,Reset
-Mapping=#fullwidth-stop,full-stop,han-trad,han-simp
 NFSSFamily=%<font family%>
 Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle,OldStyleOff,Proportional,ProportionalOff,Monospaced,MonospacedOff,SlashedZero,SlashedZeroOff,Arabic,ArabicOff,ResetAll
+Opacity=%<factor%>
 OpticalSize=%<size%>
 Ornament=
 Path=%<file path%>
 PunctuationSpace=%<number%>
+RawAxis={%<tag=number%>}
 RawFeature=%<feature tag%>
 Scale=%<number%>
 ScaleAgain=%<number%>
 Script=%<name%>
 Size=%<number%>
 SizeFeatures={%<features%>}
+Slant=%<number%>
 SlantedFeatures={%<features%>}
 SlantedFont=%<font name%>
 SmallCapsFeatures={%<features%>}
 SmallCapsFont=%<font name%>
-Style=#Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll
+Style=#Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,Uppercase,HorizontalKana,VerticalKana,ResetAll
 StylisticAlternates=%<feature%>
 StylisticSet=%<set number%>
 SwashFeatures={%<features%>}
@@ -157,7 +164,10 @@ UprightFont=%<font name%>
 Variant=%<integer%>
 Vertical=#RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll
 VerticalPosition=#Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll
+Weight=%<number%>
+Width=%<number%>
 WordSpace=%<number%>
 Mapping=%<xetex-only feature%>
-Renderer=%<renderer%>
+Renderer=#Node,Base,Harfbuzz,OpenType,AAT,Graphite
+%fontspecfeature
 #endkeyvals

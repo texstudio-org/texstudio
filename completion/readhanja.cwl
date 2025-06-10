@@ -8,9 +8,9 @@ draft
 #endkeyvals
 
 \readhanjahangulfont{font}
-\readhanjahangulfont[font features]{font}#*
 \readhanjahangulfont{font}[font features%keyvals]
-\readhanjahangulfont[font features]{font}[font features%keyvals]#*
+\readhanjahangulfont[font features%keyvals]{font}#*
+\readhanjahangulfont[font features%keyvals]{font}[font features%keyvals]#S
 
 \readhanjaraise{%<dimen%>}
 \readhanjalocate{%<options%>}
@@ -49,6 +49,7 @@ BoldSlantedFont=%<font name%>
 BoldSwashFeatures={%<features%>}
 BoldSwashFont=%<font name%>
 CJKShape=#Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC
+CharacterVariant=%<number%>
 CharacterVariant={%<glyph num list%>:%<variety num%>}
 CharacterWidth=#Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll
 Color=#%color
@@ -64,12 +65,14 @@ FontFace={%<series%>}{%<shape%>}{%<font name%>}
 Fractions=#On,Off,Reset,Alternate,ResetAll
 HyphenChar=%<character%>
 IgnoreFontspecFile
+Instance=%<instance%>
 ItalicFeatures={%<features%>}
 ItalicFont=%<font name%>
 Kerning=#On,Off,Reset,Uppercase,ResetAll
+KpseOnly
 Language=%<language%>
 LetterSpace=%<number%>
-Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll
+Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,Uppercase,Lowercase,ResetAll
 Ligatures=#Required,Common,Contextual,Rare,Discretionary,Historic,TeX
 LocalForms=#On,Off,Reset
 NFSSFamily=%<font family%>
@@ -79,12 +82,14 @@ OpticalSize=%<size%>
 Ornament=
 Path=%<file path%>
 PunctuationSpace=%<number%>
+RawAxis={%<tag=number%>}
 RawFeature=%<feature tag%>
 Scale=%<number%>
 ScaleAgain=%<number%>
 Script=%<name%>
 Size=%<number%>
 SizeFeatures={%<features%>}
+Slant=%<number%>
 SlantedFeatures={%<features%>}
 SlantedFont=%<font name%>
 SmallCapsFeatures={%<features%>}
@@ -99,8 +104,11 @@ UprightFont=%<font name%>
 Variant=%<integer%>
 Vertical=#RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll
 VerticalPosition=#Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll
+Weight=%<number%>
+Width=%<number%>
 WordSpace=%<number%>
-Renderer=%<renderer%>
+Renderer=#Node,Base,Harfbuzz,OpenType,AAT,Graphite
+%fontspecfeature
 #endkeyvals
 
 # not documented

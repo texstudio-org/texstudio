@@ -175,45 +175,45 @@ perpagefootnote
 \xepersianversion#*
 \xepersiandate#*
 \settextfont{font name}
-\settextfont[Options%keyvals]{font name}
+\settextfont[options%keyvals]{font name}
 \settextdigitfont{font name}#*
-\settextdigitfont[Options%keyvals]{font name}#*
+\settextdigitfont[options%keyvals]{font name}#*
 \setdigitfont{font name}#*
-\setdigitfont[Options%keyvals]{font name}#*
+\setdigitfont[options%keyvals]{font name}#*
 \setlatintextfont{font name}
-\setlatintextfont[Options%keyvals]{font name}
-\defpersianfont%<\CS%>[%<Options%>]{%<font name%>}
-\defpersianfont{cmd}#Sd
-\deflatinfont%<\CS%>[%<Options%>]{%<font name%>}
-\deflatinfont{cmd}#Sd
+\setlatintextfont[options%keyvals]{font name}
+\defpersianfont{command}{font name}#d
+\defpersianfont{command}[options%keyvals]{font name}#d
+\deflatinfont{command}{font name}#d
+\deflatinfont{command}[options%keyvals]{font name}#d
 \setpersiansansfont{font name}
-\setpersiansansfont[Options%keyvals]{font name}
+\setpersiansansfont[options%keyvals]{font name}
 \persiansffamily
 \textpersiansf{text}
 \setpersianmonofont{font name}
-\setpersianmonofont[Options%keyvals]{font name}
+\setpersianmonofont[options%keyvals]{font name}
 \persianttfamily
 \textpersiantt{text}
 \setiranicfont{font name}
-\setiranicfont[Options%keyvals]{font name}
+\setiranicfont[options%keyvals]{font name}
 \iranicfamily
 \textiranic{text}
 \setnavarfont{font name}#*
-\setnavarfont[Options%keyvals]{font name}#*
+\setnavarfont[options%keyvals]{font name}#*
 \navarfamily#*
 \textnavar{text}#*
 \setpookfont{font name}#*
-\setpookfont[Options%keyvals]{font name}#*
+\setpookfont[options%keyvals]{font name}#*
 \pookfamily#*
 \textpook{text}#*
 \setsayehfont{font name}#*
-\setsayehfont[Options%keyvals]{font name}#*
+\setsayehfont[options%keyvals]{font name}#*
 \sayehfamily#*
 \textsayeh{text}#*
 \setlatinsansfont{font name}
-\setlatinsansfont[Options%keyvals]{font name}
+\setlatinsansfont[options%keyvals]{font name}
 \setlatinmonofont{font name}
-\setlatinmonofont[Options%keyvals]{font name}
+\setlatinmonofont[options%keyvals]{font name}
 \begin{latin}
 \end{latin}
 \begin{persian}
@@ -245,7 +245,7 @@ perpagefootnote
 \writexviiitrue#*
 \writexviiifalse#*
 
-#keyvals:\settextfont,\settextdigitfont,\setdigitfont,\setlatintextfont,\setpersiansansfont,\setpersianmonofont,\setiranicfont,\setnavarfont,\setpookfont,\setsayehfont,\setlatinsansfont,\setlatinmonofont
+#keyvals:\settextfont,\settextdigitfont,\setdigitfont,\setlatintextfont,\defpersianfont,\deflatinfont,\setpersiansansfont,\setpersianmonofont,\setiranicfont,\setnavarfont,\setpookfont,\setsayehfont,\setlatinsansfont,\setlatinmonofont,\redeflatinfont,\redefpersianfont
 Alternate=%<feature%>
 Annotation=
 AutoFakeBold=%<number%>
@@ -259,11 +259,12 @@ BoldSlantedFont=%<font name%>
 BoldSwashFeatures={%<features%>}
 BoldSwashFont=%<font name%>
 CJKShape=#Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC
+CharacterVariant=%<number%>
 CharacterVariant={%<glyph num list%>:%<variety num%>}
 CharacterWidth=#Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll
 Color=#%color
 Colour=#%color
-Contextuals=#Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll
+Contextuals=#Swash,SwashOff,Alternate,AlternateOff,WordInitial,WordInitialOff,WordFinal,WordFinalOff,LineFinal,LineFinalOff,Inner,InnerOff,ResetAll
 Diacritics=#MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll
 Extension=%<extension%>
 FakeBold=%<number%>
@@ -274,30 +275,36 @@ FontFace={%<series%>}{%<shape%>}{%<font name%>}
 Fractions=#On,Off,Reset,Alternate,ResetAll
 HyphenChar=%<character%>
 IgnoreFontspecFile
+Instance=%<instance%>
 ItalicFeatures={%<features%>}
 ItalicFont=%<font name%>
 Kerning=#On,Off,Reset,Uppercase,ResetAll
+KpseOnly
 Language=%<language%>
 LetterSpace=%<number%>
-Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll
+Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,Uppercase,Lowercase,ResetAll
 Ligatures=#Required,Common,Contextual,Rare,Discretionary,Historic,TeX
 LocalForms=#On,Off,Reset
 NFSSFamily=%<font family%>
 Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle,OldStyleOff,Proportional,ProportionalOff,Monospaced,MonospacedOff,SlashedZero,SlashedZeroOff,Arabic,ArabicOff,ResetAll
+Opacity=%<factor%>
 OpticalSize=%<size%>
 Ornament=
 Path=%<file path%>
 PunctuationSpace=%<number%>
+RawAxis={%<tag=number%>}
 RawFeature=%<feature tag%>
 Scale=%<number%>
 ScaleAgain=%<number%>
+Script=%<name%>
 Size=%<number%>
 SizeFeatures={%<features%>}
+Slant=%<number%>
 SlantedFeatures={%<features%>}
 SlantedFont=%<font name%>
 SmallCapsFeatures={%<features%>}
 SmallCapsFont=%<font name%>
-Style=#Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll
+Style=#Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,Uppercase,HorizontalKana,VerticalKana,ResetAll
 StylisticAlternates=%<feature%>
 StylisticSet=%<set number%>
 SwashFeatures={%<features%>}
@@ -307,9 +314,12 @@ UprightFont=%<font name%>
 Variant=%<integer%>
 Vertical=#RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll
 VerticalPosition=#Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll
+Weight=%<number%>
+Width=%<number%>
 WordSpace=%<number%>
 Mapping=%<xetex-only feature%>
-Renderer=%<renderer%>
+Renderer=#Node,Base,Harfbuzz,OpenType,AAT,Graphite
+%fontspecfeature
 #endkeyvals
 
 # not documented
@@ -321,7 +331,6 @@ Renderer=%<renderer%>
 \ccname#*
 \chaptername#*
 \datename#*
-\defpersianfont{cmd}#Sd
 \enclname#*
 \headtoname#*
 \IfxepersianPackageVersion{version}{true}{false}#*
@@ -339,9 +348,10 @@ Renderer=%<renderer%>
 \persianttdefault#*
 \pookdefault#*
 \proofname#*
-\redeflatinfont%<\CS%>[%<Options%>]{%<font name%>}#*
-\redeflatinfont{cmd}#Sd
-\redefpersianfont%<\CS%>[%<Options%>]{%<font name%>}#*
+\redeflatinfont{command}{font name}#*
+\redeflatinfont{command}[options%keyvals]{font name}#*
+\redefpersianfont{command}{font name}#*
+\redefpersianfont{command}[options%keyvals]{font name}#*
 \resetlatinfont#*
 \sayehdefault#*
 \setfontsize[opt]{arg}#*

@@ -1,11 +1,13 @@
 # farbe package
-# Matthew Bertucci 2025/05/31 for v0.1.0
+# Matthew Bertucci 2025/06/08 for v0.2.0
 
 #include:luatex
 
+\FarbeImport{color}
+\FarbeColor{color}
+\FarbeColorEnd
+\FarbeTextColor{color}{text}
+
 # not documented
-\FarbePdfLiteral{arg}#S
-\FarbeImport{arg}#S
-\FarbeColor{arg}#S
-\FarbeTextColor{arg1}{arg2}#S
-\FarbeBox{arg}#S
+\FarbePdfLiteral{arg}#*
+\FarbeBox{arg}#*

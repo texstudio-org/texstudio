@@ -11,21 +11,20 @@
 
 #include:l3keys2e
 #include:fontspec
-#include:fix-cm
 #include:amsmath
 
 \unimathsetup{options%keyvals}
 \setmathfont{font}
-\setmathfont[font features]{font}#*
 \setmathfont{font}[font features%keyvals]
-\setmathfont[font features]{font}[font features%keyvals]#*
-\setmathfontface{cmd}{font}#d
-\setmathfontface{cmd}[font features]{font}#*d
-\setmathfontface{cmd}{font}[font features%keyvals]#d
-\setmathfontface{cmd}[font features]{font}[font features%keyvals]#*d
-\setoperatorfont{cmd}
-\NewNegationCommand{symbol or cmd%cmd}{definition}#*d
-\RenewNegationCommand{symbol or cmd%cmd}{definition}#*
+\setmathfont[font features%keyvals]{font}#*
+\setmathfont[font features%keyvals]{font}[font features%keyvals]#*
+\setmathfontface{command}{font}#d
+\setmathfontface{command}{font}[font features%keyvals]#d
+\setmathfontface{command}[font features%keyvals]{font}#*d
+\setmathfontface{command}[font features%keyvals]{font}[font features%keyvals]#*d
+\setoperatorfont{command}
+\NewNegationCommand{symbol or command%cmd}{definition}#*d
+\RenewNegationCommand{symbol or command%cmd}{definition}#*
 
 #keyvals:\unimathsetup#c,\setmathfont#c,\setmathfontface#c,\usepackage/unicode-math#c
 normal-style=#ISO,TeX,french,upright,literal
@@ -57,7 +56,11 @@ sscript-font=%<font name%>
 script-features={%<features%>}
 sscript-features={%<features%>}
 version=%<version name%>
-# and all the keys inherited from fontspec
+# and all the keys inherited from fontspec; we list a few useful ones here
+CharacterVariant=%<number%>
+CharacterVariant={%<glyph num list%>:%<variety num%>}
+SizeFeatures={%<features%>}
+StylisticSet=%<set number%>
 #endkeyvals
 
 \symnormal{text%plain}#*m
@@ -120,7 +123,7 @@ version=%<version name%>
 \mathstraightquote#S
 \mathunder#S
 \removenolimits{math commands%formula}#*
-\UnicodeMathSymbol{code point}{cmd}{math class}{unicode name}#*d
+\UnicodeMathSymbol{code point}{command}{math class}{unicode name}#*d
 
 # commands defined by default font (computer modern) for both math and text
 \Angstrom
