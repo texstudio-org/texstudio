@@ -1,5 +1,5 @@
 # cloze package
-# Matthew Bertucci 2025/06/07 for v1.7.0
+# Matthew Bertucci 2025/06/12 for v1.8.0
 
 #include:luatex
 #include:setspace
@@ -20,6 +20,7 @@ linecolor=#%color
 margin=##L
 minlines=%<integer%>
 spacing=%<number%>
+spread=%<number%>
 textcolor=#%color
 thickness=##L
 width=##L
@@ -96,6 +97,10 @@ margin=##L
 
 #keyvals:\begin{clozespace},\clozeset
 spacing=%<number%>
+#endkeyvals
+
+#keyvals:\cloze,\clozenol,\clozeset
+spread=%<number%>
 #endkeyvals
 
 \ifclozeshow#*
