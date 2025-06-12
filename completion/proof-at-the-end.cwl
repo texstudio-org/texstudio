@@ -1,5 +1,5 @@
 # proof-at-the-end package
-# Matthew Bertucci 2022/08/29 for v2022-08-24
+# Matthew Bertucci 2025/06/12 for v2025/06/11
 
 #include:etoolbox
 #include:thmtools
@@ -177,6 +177,7 @@ text link section
 text link section full proof
 default text link
 default text proof
+text proof only theorem
 text proof translated=%<text%>
 text link external appendix
 only external appendix
