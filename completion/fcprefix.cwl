@@ -10,8 +10,8 @@
 \latinnumeralstringnum{number}
 \latinnumeralstringnum{number}[prefix options%keyvals]
 
-#keyvals:\latinnumeralstring#c,\latinnumeralstringnum#c
-use duode and unde=#below 20,never
+#keyvals:\latinnumeralstring,\latinnumeralstringnum
+use duode and unde=#below 20,never#c
 numeral u in duo#true,false
 e accute
 power of millia=#recursive,arabic,prefix

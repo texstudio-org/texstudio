@@ -65,11 +65,11 @@ alttext=#none,%<alt description%>
 \multiframe{number of frames}{variables}{content%definition}
 \multiframebreak
 
-#keyvals:\animategraphics#c,\begin{animateinline}#c
+#keyvals:\animategraphics,\begin{animateinline}
 label=%<label%>
 type=%<file ext%>
 poster
-poster=#first,last,none,%<number%>
+poster=#first,last,none,%<number%>#c
 every=%<number%>
 autopause
 autoplay
@@ -90,7 +90,7 @@ hiresbb
 interpolate
 pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
 controls=#all,true,on,none,false,off
-controlsaligned=#left,left+%<<indent>%>,center,right,right+%<<indent>%>
+controlsaligned=#left,left+%<<indent>%>,center,right,right+%<<indent>%>#c
 buttonsize=##L
 buttonbg=%<color array%>
 buttonfg=%<color array%>
@@ -100,7 +100,7 @@ final
 nomouse
 method=#icon,widget,ocg
 measure
-alttext=#none,%<alt description%>
+alttext=#none,%<alt description%>#c
 begin={%<begin code%>}
 end={%<end code%>}
 timeline=%<file%>

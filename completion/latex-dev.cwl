@@ -414,13 +414,13 @@ ypos
 \GetIdInfo $Id: %<SVN info field%> $ {%<description%>}#*
 
 # document metadata
-\DocumentMetadata{options%keyvals}#*
-#keyvals:\DocumentMetadata#c
+\DocumentMetadata{options%keyvals}
+#keyvals:\DocumentMetadata
 backend=%<backend%>
 pdfversion=%<version%>
 uncompress
 lang=%<lang%>
-pdfstandard=#A-1b,A-2a,A-2b,A-2u,A-3a,A-3b,A-3u,A-4 
+pdfstandard=#A-1b,A-2a,A-2b,A-2u,A-3a,A-3b,A-3u,A-4#c
 colorprofiles={%<options%>}
 testphase=#phase-I,phase-II,phase-III,latest
 debug={%<options%>}

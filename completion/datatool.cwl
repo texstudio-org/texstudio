@@ -314,7 +314,7 @@ expand-once-value=%<value%>
 #keyvals:\DTLsortdata
 function=%<function%>
 encap=%<cmd%>
-replace=#null,null or empty
+replace=#null,null or empty#c
 missing-column-action=#error,warn,ignore
 save-group-key=%<col key%>
 save-group-column=%<col index%>

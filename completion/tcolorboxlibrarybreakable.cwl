@@ -30,7 +30,7 @@ pad before break*=##L
 pad after break=##L
 pad at break=##L
 pad at break*=##L
-height fixed for=#none,first,middle,last,first and middle,middle and last,all
+height fixed for=#none,first,middle,last,first and middle,middle and last,all#c
 vfill before first#true,false
 segmentation at break#true,false
 extras={%<options%>}
