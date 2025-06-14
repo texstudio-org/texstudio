@@ -200,8 +200,8 @@ tikz-external-disable=#true,false
 # Chapter 14. Lewis Formulae
 #
 #
-\chlewis{electron spec}{atom}#
-\chlewis[options%keyvals]{electron spec}{atom}#
+\chlewis{electron spec}{atom}
+\chlewis[options%keyvals]{electron spec}{atom}
 #keyvals:\chlewis,\setchemformula
 lewis-default=#.,:,|,o,single,pair,{pair (dotted)},{pair (line)},empty#c
 lewis-distance=##L
