@@ -1,12 +1,9 @@
 # cloze package
-# Matthew Bertucci 2025/06/12 for v1.8.0
+# Matthew Bertucci 2025/06/19 for v1.8.1
 
 #include:luatex
 #include:setspace
 #include:xcolor
-#include:stackengine
-#include:ulem
-#include:transparent
 #include:luakeys
 
 #keyvals:\usepackage/cloze#c
@@ -116,5 +113,4 @@ spread=%<number%>
 \clozefont#*
 \ClozeSetLocalOptions{options%keyvals}#*
 \ClozeTextColor{color}#*
-\ClozeStrikeLine#*
 \ClozeBox#*
