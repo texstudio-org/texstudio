@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2025/05/14 for v4.5
+# Matthew Bertucci 2025/06/19 for v4.6
 
 #include:luacode
 #include:xcolor
@@ -52,33 +52,34 @@ beamer#true,false
 \PitonInputFileF<overlay spec>[options%keyvals]{file}{false code}#*
 
 #keyvals:\PitonInputFile,\PitonInputFileTF,\PitonInputFileT,\PitonInputFileF
-first-line=%<integer%>
-last-line=%<integer%>
 begin-range=%<content%>
 end-range=%<content%>
-range=%<content%>
+first-line=%<integer%>
+last-line=%<integer%>
 marker/include-lines
+range=%<content%>
 #endkeyvals
 
 \PitonOptions{options%keyvals}
 
 # keys for \PitonOptions only
 #keyvals:\PitonOptions
+begin-escape-math=%<character%>
+begin-escape=%<character%>
 comment-latex=%<string%>
-math-comments#true,false
-detected-commands={%<csname1,csname2,...%>}
-raw-detected-commands={%<csname1,csname2,...%>}
 detected-beamer-commands={%<csname1,csname2,...%>}
 detected-beamer-environments={%<envname1,envname2,...%>}
+detected-commands={%<csname1,csname2,...%>}
+end-escape-math=%<character%>
+end-escape=%<character%>
 line-numbers/absolute
-marker={%<options%>}
 marker/beginning=%<spec%>
 marker/end=%<spec%>
-begin-escape=%<character%>
-end-escape=%<character%>
-begin-escape-math=%<character%>
-end-escape-math=%<character%>
+marker={%<options%>}
+math-comments#true,false
 path={%<list of paths%>}
+raw-detected-commands={%<csname1,csname2,...%>}
+vertical-detected-commands={%<csname1,csname2,...%>}
 #endkeyvals
 
 # keys for \begin{Piton} only
@@ -90,6 +91,7 @@ line-numbers/start
 #keyvals:\PitonOptions,\begin{Piton}
 auto-gobble
 background-color=#%color
+box=#c,t,b,m
 break-lines
 break-lines-in-Piton
 break-lines-in-piton
@@ -114,6 +116,7 @@ line-numbers/resume
 line-numbers/sep=##L
 line-numbers/skip-empty-lines#true,false
 line-numbers={%<options%>}
+max-width=##L
 path-write=%<path%>
 print#true,false
 prompt-background-color=#%color
@@ -126,6 +129,7 @@ splittable-on-empty-lines#true,false
 splittable=%<integer%>
 tab-size=%<integer%>
 tabs-auto-gobble
+tcolorbox
 width=##L
 write=%<file%>
 #endkeyvals
@@ -166,6 +170,7 @@ String=%<formatting%>
 TypeParameter=%<formatting%>
 UserFunction=%<formatting%>
 # not documented
+Comment.Internal=%<formatting%>
 Comment.Math=%<formatting%>
 Discard=%<formatting%>
 FormattingType=%<formatting%>
@@ -222,6 +227,7 @@ String.Short
 TypeParameter
 UserFunction
 # not documented
+Comment.Internal
 Comment.Math
 Discard
 FormattingType
@@ -251,7 +257,7 @@ TypeExpression
 \RenewPitonEnvironment{envname}{xargs}{begdef}{enddef}
 \ProvidePitonEnvironment{envname}{xargs}{begdef}{enddef}#N
 
-\NewPitonLanguage{language}{keyvals}#s#%newpitonlang
+\NewPitonLanguage{language%specialDef}{keyvals}#s#%newpitonlang
 
 #keyvals:\NewPitonLanguage
 alsodigit={%<character sequence%>}
