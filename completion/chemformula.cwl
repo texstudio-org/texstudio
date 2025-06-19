@@ -6,7 +6,6 @@
 # Contact: contact@mychemistry.eu
 # File written on 02/23/2016
 
-#include:l3keys2e
 #include:tikz
 #include:amsmath
 #include:xfrac
@@ -167,7 +166,7 @@ arrow-style={%<TikZ%>}
 #
 #keyvals:\ch,\setchemformula,\chcpd
 name-format={%<commands%>}
-name-width=###L,auto
+name-width=##L,auto
 #endkeyvals
 #
 # Section 10.3. Standalone Names
@@ -208,6 +207,8 @@ lewis-distance=##L
 lewis-line-length=##L
 lewis-line-width=##L
 lewis-offset=##L
+# other useful keys
+radical-radius=##L
 #endkeyvals
 #
 #
