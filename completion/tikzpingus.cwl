@@ -1,5 +1,5 @@
 # tikzpingus package
-# Matthew Bertucci 2024/11/29 for v1.2
+# Matthew Bertucci 2025/06/19 for v1.3
 
 #include:etoolbox
 #include:tikz
@@ -138,12 +138,14 @@ hairs color=#%color
 hairstyle=#none,normal,!random
 hairstyle none=#%color
 hairstyle normal=#%color
-bill=#none,normal,foreground,flat,angry,!random
+bill=#none,normal,foreground,flat,open,angry,!random
 bill color=#%color
+bill above#true,false
 bill none=#%color
 bill normal=#%color
 bill foreground=#%color
 bill flat=#%color
+bill open=#%color
 bill angry=#%color
 :line
 :fill
@@ -260,6 +262,10 @@ devil wings b=#%color
 belt
 belt=#%color
 belt knot color=#%color
+bunny ears
+bunny ears=#%color
+bunny ears band=#%color
+bunny ears b=#%color
 head band
 head band=#%color
 head band bend=%<degrees%>
@@ -345,6 +351,23 @@ construction helmet=#%color
 construction helmet padding=##L
 construction helmet extra height=##L
 construction helmet position={%<angle%>:(%<x,y%>){%<scale%>}}
+detective cap
+detective cap
+detective cap padding
+detective cap position
+drums
+drums=#%color
+drums center band=#%color
+drums center side=#%color
+drums center text=%<text%>
+drums left base=#%color
+drums left band=#%color
+drums left side=#%color
+drums left color=#%color
+drums right base=#%color
+drums right band=#%color
+drums right side=#%color
+drums right color=#%color
 crown
 crown=#%color
 crown 3d#true,false
@@ -486,6 +509,22 @@ snowball right=#%color
 snowball right size=##L
 snowball right xshift=##L
 snowball right yshift=##L
+basket left
+basket left=#%color
+basket left back=#%color
+basket left egg a=#%color
+basket left egg b=#%color
+basket left egg c=#%color
+basket left xshift=##L
+basket left yshift=##L
+basket right
+basket right=#%color
+basket right back=#%color
+basket right egg a=#%color
+basket right egg b=#%color
+basket right egg c=#%color
+basket right xshift=##L
+basket right yshift=##L
 wool hat
 wool hat=#%color
 wool hat second=#%color
@@ -494,6 +533,29 @@ deer hat
 deer hat=#%color
 deer hat b=#%color
 deer hat band=#%color
+flip-flops
+flip-flops=#%color
+flip-flops base left=#%color
+flip-flops base right=#%color
+flip-flops band left=#%color
+flip-flops band right=#%color
+flip-flops color right=#%color
+shoes
+shoes=#%color
+shoes base left=#%color
+shoes base right=#%color
+shoes color right=#%color
+sneaker
+sneaker=#%color
+sneaker base left=#%color
+sneaker base right=#%color
+sneaker front left=#%color
+sneaker front right=#%color
+sneaker side left=#%color
+sneaker side right=#%color
+sneaker band left=#%color
+sneaker band right=#%color
+sneaker color right=#%color
 mask
 mask=#%color
 mask band=#%color
@@ -529,6 +591,14 @@ lollipop right
 lollipop right=#%color
 lollipop right handle=#%color
 lollipop right second=#%color
+fish left
+fish left=#%color
+fish left scales=#%color
+fish left eye=#%color
+fish right
+fish right=#%color
+fish right scales=#%color
+fish right eye=#%color
 flower left
 flower left=#%color
 flower left size=##L
@@ -641,6 +711,34 @@ broom right band=#%color
 broom right bristles a=#%color
 broom right bristles b=#%color
 broom right bristles c=#%color
+guitar left
+guitar left=#%color
+guitar left side color=#%color
+guitar left tint color=#%color
+guitar left outline color=#%color
+guitar left fret color=#%color
+guitar left fret side color=#%color
+guitar left head color=#%color
+guitar left strings color=#%color
+guitar left peg color=#%color
+guitar left strings end color=#%color
+guitar left pickup color=#%color
+guitar left fret lines color=#%color
+guitar left strings shift=##L
+guitar right
+guitar right=#%color
+guitar right side color=#%color
+guitar right tint color=#%color
+guitar right outline color=#%color
+guitar right fret color=#%color
+guitar right fret side color=#%color
+guitar right head color=#%color
+guitar right strings color=#%color
+guitar right peg color=#%color
+guitar right strings end color=#%color
+guitar right pickup color=#%color
+guitar right fret lines color=#%color
+guitar right strings shift=##L
 flag left
 flag left=#%color
 flag left pole=#%color
@@ -735,6 +833,34 @@ hammer right yshift=##L
 hammer right handle=#%color
 hammer right with knob
 hammer right with knob=#%color
+drum stick left
+drum stick left=#%color
+drum stick left handle length=##L
+drum stick left handle shift=##L
+drum stick left xshift=##L
+drum stick left yshift=##L
+drum stick left handle=#%color
+drum stick right
+drum stick right=#%color
+drum stick right handle length=##L
+drum stick right handle shift=##L
+drum stick right xshift=##L
+drum stick right yshift=##L
+drum stick right handle=#%color
+microphone left
+microphone left=#%color
+microphone left handle length=##L
+microphone left handle shift=##L
+microphone left xshift=##L
+microphone left yshift=##L
+microphone left handle=#%color
+microphone right
+microphone right=#%color
+microphone right handle length=##L
+microphone right handle shift=##L
+microphone right xshift=##L
+microphone right yshift=##L
+microphone right handle=#%color
 magnifier left
 magnifier left=#%color
 magnifier left handle length=##L
