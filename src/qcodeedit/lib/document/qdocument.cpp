@@ -1395,7 +1395,7 @@ void QDocument::clearWidthConstraint()
 */
 void QDocument::setWidthConstraint(int width)
 {
-	if ( m_impl )
+    if ( m_impl && width>0)
         m_impl->setWidth(qMax(0, width));
 }
 
