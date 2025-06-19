@@ -1391,7 +1391,8 @@ void QDocument::clearWidthConstraint()
 	\brief Set a new width constraint
 	\param width maximum width to allow
 
-	Passing a value inferior (or equal) to zero clear the width constraint, if any.
+    Width <=0 are ignored as they are invalied.
+    To clear width constraint, use clearWidthConstraint()
 */
 void QDocument::setWidthConstraint(int width)
 {
