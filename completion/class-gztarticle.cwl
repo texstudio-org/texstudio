@@ -293,10 +293,10 @@ coltitle=#%color
 fontupper=%<text%>
 fontlower=%<text%>
 fonttitle=%<text%>
-halign=#justify,left,flush left,right,flush right,center,flush center
-halign upper=#justify,left,flush left,right,flush right,center,flush center
-halign lower=#justify,left,flush left,right,flush right,center,flush center
-halign title=#justify,left,flush left,right,flush right,center,flush center
+halign=#justify,left,flush left,right,flush right,center,flush center#c
+halign upper=#justify,left,flush left,right,flush right,center,flush center#c
+halign lower=#justify,left,flush left,right,flush right,center,flush center#c
+halign title=#justify,left,flush left,right,flush right,center,flush center#c
 flushleft upper
 center upper
 flushright upper
@@ -549,10 +549,10 @@ IfBooleanT={%<arg%>}{%<true%>}
 IfBooleanF={%<arg%>}{%<false%>}
 void
 nirvana
-blend before title=#colon,dash,colon hang,dash hang
+blend before title=#colon,dash,colon hang,dash hang#c
 blend before title code={%<code%>}
 sidebyside#true,false
-sidebyside align=#center,top,bottom,center seam,top seam,bottom seam
+sidebyside align=#center,top,bottom,center seam,top seam,bottom seam#c
 sidebyside gap=##L
 lefthand width=##L
 righthand width=##L
@@ -875,7 +875,7 @@ ams gather*
 ams nodisplayskip upper
 ams nodisplayskip lower
 ams nodisplayskip
-theorem style=#standard,change standard,plain,break,plain apart,change,change break,change apart,margin,margin break,margin apart
+theorem style=#standard,change standard,plain,break,plain apart,change,change break,change apart,margin,margin break,margin apart#c
 
 ### << breakable library keys >> ###
 breakable
@@ -902,7 +902,7 @@ pad before break*=##L
 pad after break=##L
 pad at break=##L
 pad at break*=##L
-height fixed for=#none,first,middle,last,first and middle,middle and last,all
+height fixed for=#none,first,middle,last,first and middle,middle and last,all#c
 vfill before first#true,false
 segmentation at break#true,false
 extras={%<options%>}

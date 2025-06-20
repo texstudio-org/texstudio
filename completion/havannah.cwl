@@ -9,7 +9,7 @@
 
 #keyvals:\begin{HavannahBoard},\begin{InnerHavannahBoard}
 board size=%<integer%>
-coordinate style=#little golem,classical
+coordinate style=#little golem,classical#c
 hex height=##L
 show coordinates#true,false
 show hexes#true,false

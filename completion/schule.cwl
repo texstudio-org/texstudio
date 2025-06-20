@@ -208,7 +208,7 @@ farbig
 datumAnzeigen
 namensfeldAnzeigen
 seitenzahlen=#auto,autoGesamt,immer,immerGesamt,keine
-zitate=#guillemets,quotes,swiss 
+zitate=#guillemets,quotes,swiss
 #endkeyvals
 
 \achtung{Text%text}

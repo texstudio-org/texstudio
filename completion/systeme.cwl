@@ -1,5 +1,5 @@
 # systeme package
-# Matthew Bertucci 2025/05/29 for v0.42
+# Matthew Bertucci 2025/06/19 for v0.43
 
 #include:xstring
 #include:simplekv
@@ -11,6 +11,8 @@
 
 #keyvals:\systeme,\setsysteme
 eq sep=%<code%>
+cr eq sep#true,false
+ignore empty eq#true,false
 delim=%<code%>
 align={%<list%>}
 sign space=##L
@@ -39,6 +41,8 @@ code before=%<code%>
 \aligncalc{eq1,eq2,...%formula}
 
 \SYSeqnum#*
+\SYSmakecrother#*
+\SYSrestorecr#*
 \+#*
 
 \SYSstyfile#S

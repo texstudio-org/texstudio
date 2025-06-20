@@ -8,7 +8,7 @@
 
 #keyvals:\gprKeys
 name part order=%<list%>
-name type=#given and surname,nordic historical
+name type=#given and surname,nordic historical#c
 auto id#true,false
 auto id prefix=%<prefix%>
 begin profile=%<code%>

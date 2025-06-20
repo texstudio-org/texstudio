@@ -1,5 +1,5 @@
 # enumext package
-# Matthew Bertucci 2025/06/01 for v1.3
+# Matthew Bertucci 2025/06/12 for v1.5
 
 #include:multicol
 
@@ -87,6 +87,9 @@ align=#left,right,center
 wrap-label={%<code%>}
 wrap-label*={%<code%>}
 ref=%<code%>
+beginpenalty=%<integer%>
+midpenalty=%<integer%>
+endpenalty=%<integer%>
 show-length#true,false
 topsep=##L
 parsep=##L

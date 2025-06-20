@@ -1,12 +1,9 @@
 # cloze package
-# Matthew Bertucci 2025/06/07 for v1.7.0
+# Matthew Bertucci 2025/06/19 for v1.8.1
 
 #include:luatex
 #include:setspace
 #include:xcolor
-#include:stackengine
-#include:ulem
-#include:transparent
 #include:luakeys
 
 #keyvals:\usepackage/cloze#c
@@ -20,6 +17,7 @@ linecolor=#%color
 margin=##L
 minlines=%<integer%>
 spacing=%<number%>
+spread=%<number%>
 textcolor=#%color
 thickness=##L
 width=##L
@@ -98,6 +96,10 @@ margin=##L
 spacing=%<number%>
 #endkeyvals
 
+#keyvals:\cloze,\clozenol,\clozeset
+spread=%<number%>
+#endkeyvals
+
 \ifclozeshow#*
 \clozeshowtrue#*
 \clozeshowfalse#*
@@ -111,5 +113,4 @@ spacing=%<number%>
 \clozefont#*
 \ClozeSetLocalOptions{options%keyvals}#*
 \ClozeTextColor{color}#*
-\ClozeStrikeLine#*
 \ClozeBox#*

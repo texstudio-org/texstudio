@@ -73,5 +73,5 @@ ams gather*
 ams nodisplayskip upper
 ams nodisplayskip lower
 ams nodisplayskip
-theorem style=#standard,change standard,plain,break,plain apart,change,change break,change apart,margin,margin break,margin apart
+theorem style=#standard,change standard,plain,break,plain apart,change,change break,change apart,margin,margin break,margin apart#c
 #endkeyvals

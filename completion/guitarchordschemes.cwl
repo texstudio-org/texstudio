@@ -24,15 +24,15 @@ mute={%<strings%>}
 \scales
 \scales[options%keyvals]
 
-#keyvals:\scales#c
+#keyvals:\scales
 fret-number=%<number%>
 name=%<title%>
 position=%<position%>
 finger=%<fret%>/%<string%>:%<label%>
 root=%<fret%>/%<string%>:%<label%>
-fingering=#type 1,type 1A,type 2,type 3,type 4
-fingering*=#type 1,type 1A,type 2,type 3,type 4
-fingering?=#type 1,type 1A,type 2,type 3,type 4
+fingering=#type 1,type 1A,type 2,type 3,type 4#c
+fingering*=#type 1,type 1A,type 2,type 3,type 4#c
+fingering?=#type 1,type 1A,type 2,type 3,type 4#c
 #endkeyvals
 
 \setfingering{name}{fingers}{roots}
