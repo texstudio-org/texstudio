@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/06/13 for v15.1.0
+# Matthew Bertucci 2025/06/21 for v15.2.0
 
 #include:iftex
 
@@ -42,6 +42,7 @@ activitypub
 actix
 actualbudget
 acura
+ada
 adafruit
 adblock
 adblockplus
@@ -274,6 +275,7 @@ avajs
 avast
 avianca
 avira
+avm
 awesomelists
 awesomewm
 awwwards
@@ -750,6 +752,7 @@ dior
 directus
 discogs
 discord
+discorddotjs
 discourse
 discover
 disqus
@@ -770,6 +773,7 @@ docusaurus
 dogecoin
 doi
 dolby
+dolibarr
 doordash
 dota2
 dotenv
@@ -1025,6 +1029,7 @@ freepik
 freetube
 fresh
 frigate
+fritz
 frontendmentor
 frontify
 fsharp
@@ -1684,6 +1689,7 @@ lyft
 maas
 macos
 macpaw
+macports
 macys
 magasinsu
 magic
@@ -1775,6 +1781,7 @@ metrodelaciudaddemexico
 metrodemadrid
 metrodeparis
 mewe
+mezmo
 mg
 microbit
 microdotblog
@@ -1913,6 +1920,7 @@ nextcloud
 nextdns
 nextdoor
 nextdotjs
+nodebb
 nextflow
 nextra
 nexusmods
@@ -2077,6 +2085,7 @@ packt
 paddle
 paddlepaddle
 paddypower
+padlet
 pagekit
 pagerduty
 pagespeedinsights
@@ -2104,6 +2113,7 @@ payhip
 payloadcms
 payoneer
 paypal
+paysafe
 paytm
 pcgamingwiki
 pdm
@@ -2307,6 +2317,7 @@ qiwi
 qlik
 qmk
 qnap
+qodo
 qq
 qt
 quad9
@@ -2416,6 +2427,7 @@ retroarch
 retropie
 revanced
 revealdotjs
+revenuecat
 reverbnation
 revoltdotchat
 revolut
@@ -3173,6 +3185,7 @@ westernunion
 wetransfer
 wezterm
 wgpu
+what3words
 whatsapp
 wheniwork
 wikibooks
