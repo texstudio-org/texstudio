@@ -477,7 +477,8 @@ QRect getAvailableGeometryAt(const QPoint &pos)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 	QScreen *pScreen = QGuiApplication::screenAt(pos);
 	if (pScreen == nullptr) {
-		return QRect();
+        // fallback to main screen
+        return QGuiApplication::primaryScreen()->availableGeometry();
 	}
 	return pScreen->availableGeometry();
 #else
