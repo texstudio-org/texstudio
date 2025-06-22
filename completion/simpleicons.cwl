@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/06/07 for v15.0.0
+# Matthew Bertucci 2025/06/13 for v15.1.0
 
 #include:iftex
 
@@ -859,6 +859,7 @@ emirates
 emlakjet
 endeavouros
 enpass
+ens
 enterprisedb
 envato
 envoyproxy
@@ -1395,6 +1396,7 @@ internetarchive
 internetcomputer
 intigriti
 intuit
+invidious
 invision
 invoiceninja
 iobroker
@@ -2971,6 +2973,7 @@ turbosquid
 turkishairlines
 turso
 tuta
+tuxedocomputers
 tv4play
 twenty
 tvtime

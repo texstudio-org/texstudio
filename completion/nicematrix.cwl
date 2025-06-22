@@ -319,7 +319,7 @@ shorten-start=##L
 shorten-end=##L
 shorten=##L
 inter=##L
-line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed
+line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed#c
 #endkeyvals
 
 #keyvals:\Ddots,\Iddots
@@ -368,7 +368,7 @@ xdots/shorten-start=##L
 xdots/shorten-end=##L
 xdots/shorten=##L
 xdots/inter=##L
-xdots/line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed
+xdots/line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed#c
 #endkeyvals
 
 \SubMatrix{delim1}{i-j}{k-l}{delim2}#t

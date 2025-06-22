@@ -619,7 +619,7 @@ link=%<link%>
 \nlctuserguidegls{commands}
 \nlctuserguidegls[bib2gls options%keyvals]{commands}
 
-#keyvals:\nlctuserguidegls
+#keyvals:\nlctuserguidegls#c
 charset=%<encoding name%>
 interpret-preamble#true,false
 write-preamble#true,false

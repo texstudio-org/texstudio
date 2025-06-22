@@ -21,5 +21,5 @@ extension start style=
 extension end style=
 extension start path=
 extension end path=
-arrows=#dimline-dimline,dimline reverse-dimline reverse
+arrows=#dimline-dimline,dimline reverse-dimline reverse#c
 #endkeyvals

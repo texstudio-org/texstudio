@@ -9,20 +9,20 @@
 \includespread*
 \includespread*[options%keyvals]
 
-#keyvals:\includespread#c,\includespread*#c,\loadodsfile#c
+#keyvals:\includespread,\includespread*,\loadodsfile
 file=%<file name%>
 sheet=%<sheet name%>
 range=%<cell1:cell2%>
-columns=#head,top,{%<list of headings%>}
+columns=#head,top,{%<list of headings%>}#c
 columnbreak=%<command%>
-rowseparator=#tableline,hline,newline,%<command%>
+rowseparator=#tableline,hline,newline,%<command%>#c
 newline=%<code%>
 lastnewline=%<code%>
-template=#%<template name%>,{%<code%>}
+template=#%<template name%>,{%<code%>}#c
 coltypes=%<coltypes%>
-rowtemplate=#%<template name%>,{%<code%>}
-celltemplate=#%<template name%>,{%<code%>}
-multicoltemplate=#%<template name%>,{%<code%>}
+rowtemplate=#%<template name%>,{%<code%>}#c
+celltemplate=#%<template name%>,{%<code%>}#c
+multicoltemplate=#%<template name%>,{%<code%>}#c
 escape#true,false
 save=%<file%>
 debug=#true,false

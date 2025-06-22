@@ -7,7 +7,7 @@
 \tikzexternalize
 \tikzexternalize[options%keyvals]
 
-#keyvals:\tikzexternalize#c
+#keyvals:\tikzexternalize
 system call={%<template%>}
 shell escape={%<command-line arg%>}
 aux in dpth#true,false
@@ -20,7 +20,7 @@ export next#true,false
 export#true,false
 up to date check=imple,md5,diff
 figure list#true,false
-mode=#only graphics,no graphics,only pictures,graphics if exists,list only,list and make
+mode=#only graphics,no graphics,only pictures,graphics if exists,list only,list and make#c
 verbose IO#true,false
 verbose optimize#true,false
 verbose#true,false

@@ -195,8 +195,8 @@ postdesc=#dot,none
 pre-location=#none,enspace,space,dotfill,hfill
 prelocation=#none,enspace,space,dotfill,hfill
 see=#comma,brackets,dot,space,nosep,semicolon,location
-symbol-desc=#symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol
-symboldesc=#symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol
+symbol-desc=#symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol#c
+symboldesc=#symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol#c
 symbol-width=##L
 symbolwidth=##L
 #endkeyvals

@@ -116,7 +116,7 @@ arrows=%<start spec%>-%<end spec%>
 <-
 <->
 tips
-tips=#true,proper,on draw,on proper draw,never,false
+tips=#true,proper,on draw,on proper draw,never,false#c
 >=%<end arrow spec%>
 shorten <=##L
 shorten >=##L
@@ -137,10 +137,10 @@ text=#%color
 node font=%<font commands%>
 font=%<font commands%>
 text width=##L
-align=#left,flush left,right,flush right,center,flush center,justify
+align=#left,flush left,right,flush right,center,flush center,justify#c
 text height=##L
 text depth=##L
-anchor=#north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text
+anchor=#north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text#c
 above
 above=##L
 below
@@ -205,7 +205,7 @@ every new -!-
 new set=%<set name%>
 set=%<set name%>
 # making trees grow
-growth parent anchor=#north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text
+growth parent anchor=#north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text#c
 growth function=%<macro%>
 edge from parent path=%<path%>
 # transparency

@@ -38,11 +38,11 @@ inline#true,false
 \ASYanimategraphics{frame rate}{file}{first}{last}#*
 \ASYanimategraphics[options%keyvals]{frame rate}{file}{first}{last}#*
 
-#keyvals:\ASYanimategraphics#c
+#keyvals:\ASYanimategraphics
 label=%<label%>
 type=%<file ext%>
 poster
-poster=#first,last,none,%<number%>
+poster=#first,last,none,%<number%>#c
 every=%<number%>
 autopause
 autoplay
@@ -73,7 +73,7 @@ final
 nomouse
 method=#icon,widget,ocg
 measure
-alttext=#none,%<alt description%>
+alttext=#none,%<alt description%>#c
 begin={%<begin code%>}
 end={%<end code%>}
 timeline=%<file%>

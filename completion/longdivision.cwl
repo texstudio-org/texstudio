@@ -7,11 +7,11 @@
 \intlongdivision[options%keyvals]{dividend}{divisor}
 \longdivisionkeys{options%keyvals}
 
-#keyvals:\longdivision#c,\intlongdivision#c,\longdivisionkeys#c
+#keyvals:\longdivision,\intlongdivision,\longdivisionkeys
 max extra digits=%<integer%>
 stage=%<integer%>
 style=#default,standard,tikz,german
-repeating decimal style=#overline,dots,dots all,parentheses,none
+repeating decimal style=#overline,dots,dots all,parentheses,none#c
 decimal separator=%<character%>
 digit separator=%<character%>
 digit group length=%<integer%>

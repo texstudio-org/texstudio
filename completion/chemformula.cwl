@@ -6,7 +6,6 @@
 # Contact: contact@mychemistry.eu
 # File written on 02/23/2016
 
-#include:l3keys2e
 #include:tikz
 #include:amsmath
 #include:xfrac
@@ -16,36 +15,20 @@
 # Chapter 3. Setup
 #
 #
-\setchemformula{%<options%>}
+\setchemformula{options%keyvals}
 #
 #
 # Chapter 4. The Basic Principle
 #
 #
 \ch{formula}
-\ch[%<options%>]{formula}
+\ch[options%keyvals]{formula}
 #
 #
 # Chapter 5. Stoichiometric Factors
 #
 #
-#keyvals:\ch
-decimal-marker={%<marker%>}
-frac-style=#math,xfrac,nicefrac
-frac-math-cmd={%<command sequence%>}
-stoich-space={%<skip%>}
-stoich-paren-parse=#true,false
-stoich-format={%<code%>}
-#endkeyvals
-#keyvals:\setchemformula
-decimal-marker={%<marker%>}
-frac-style=#math,xfrac,nicefrac
-frac-math-cmd={%<command sequence%>}
-stoich-space={%<skip%>}
-stoich-paren-parse=#true,false
-stoich-format={%<code%>}
-#endkeyvals
-#keyvals:\chcpd
+#keyvals:\ch,\setchemformula,\chcpd
 decimal-marker={%<marker%>}
 frac-style=#math,xfrac,nicefrac
 frac-math-cmd={%<command sequence%>}
@@ -60,18 +43,10 @@ stoich-format={%<code%>}
 #
 # Section 6.4. Charges and Other Superscripts
 #
-#keyvals:\ch
+#keyvals:\ch,\setchemformula,\chcpd
 circled=#formal,all,none
 circletype=#chem,math
-charge-hshift={%<dim%>}
-#endkeyvals
-#keyvals:\setchemformula
-circled=#formal,all,none
-circletype=#chem,math
-#endkeyvals
-#keyvals:\chcpd
-circled=#formal,all,none
-circletype=#chem,math
+charge-hshift=##L
 #endkeyvals
 #
 # Section 6.5. Bonds
@@ -87,68 +62,30 @@ circletype=#chem,math
 #
 # Section 6.6. Customization
 #
-#keyvals:\ch
-subscript-vshift={%<dim%>}
+#keyvals:\ch,\setchemformula,\chcpd
+subscript-vshift=##L
 subscript-style=#text,math
-charge-hshift={%<dim%>}
-charge-vshift={%<dim%>}
+charge-hshift=##L
+charge-vshift=##L
 charge-style=#text,math
 math-scripts#true,false
-adduct-space={%<dim%>}
+adduct-space=##L
 adduct-penalty={%<num%>}
-bond-length={%<dim%>}
-bond-offset={%<dim%>}
+bond-length=##L
+bond-offset=##L
 bond-style={%<TikZ%>}
 bond-penalty={%<num%>}
 radical-style={%<TikZ%>}
-radical-radius={%<dim%>}
-radical-hshift={%<dim%>}
-radical-vshift={%<dim%>}
-radical-space={%<dim%>}
-#endkeyvals
-#keyvals:\setchemformula
-subscript-vshift={%<dim%>}
-subscript-style=#text,math
-charge-hshift={%<dim%>}
-charge-vshift={%<dim%>}
-charge-style=#text,math
-math-scripts#true,false
-adduct-space={%<dim%>}
-adduct-penalty={%<num%>}
-bond-length={%<dim%>}
-bond-offset={%<dim%>}
-bond-style={%<TikZ%>}
-bond-penalty={%<num%>}
-radical-style={%<TikZ%>}
-radical-radius={%<dim%>}
-radical-hshift={%<dim%>}
-radical-vshift={%<dim%>}
-radical-space={%<dim%>}
-#endkeyvals
-#keyvals:\chcpd
-subscript-vshift={%<dim%>}
-subscript-style=#text,math
-charge-hshift={%<dim%>}
-charge-vshift={%<dim%>}
-charge-style=#text,math
-math-scripts#true,false
-adduct-space={%<dim%>}
-adduct-penalty={%<num%>}
-bond-length={%<dim%>}
-bond-offset={%<dim%>}
-bond-style={%<TikZ%>}
-bond-penalty={%<num%>}
-radical-style={%<TikZ%>}
-radical-radius={%<dim%>}
-radical-hshift={%<dim%>}
-radical-vshift={%<dim%>}
-radical-space={%<dim%>}
+radical-radius=##L
+radical-hshift=##L
+radical-vshift=##L
+radical-space=##L
 #endkeyvals
 #
 # Section 6.7. Standalone Formulae
 #
 \chcpd{compound}
-\chcpd[%<options%>]{compound}
+\chcpd[options%keyvals]{compound}
 #
 # Section 6.8. Extend Compound Properties
 #
@@ -166,23 +103,7 @@ radical-space={%<dim%>}
 \ProvideChemAdditionSymbol{name}{input}{output}#*
 \RenewChemAdditionSymbol{name}{input}{output}#*
 \DeclareChemAdditionSymbol{name}{input}{output}#*
-#keyvals:\ch
-plus-space={%<skip%>}
-plus-penalty={%<num%>}
-plus-output-symbol={%<code%>}
-minus-space={%<skip%>}
-minus-penalty={%<num%>}
-minus-output-symbol={%<code%>}
-#endkeyvals
-#keyvals:\setchemformula
-plus-space={%<skip%>}
-plus-penalty={%<num%>}
-plus-output-symbol={%<code%>}
-minus-space={%<skip%>}
-minus-penalty={%<num%>}
-minus-output-symbol={%<code%>}
-#endkeyvals
-#keyvals:\chcpd
+#keyvals:\ch,\setchemformula,\chcpd
 plus-space={%<skip%>}
 plus-penalty={%<num%>}
 plus-output-symbol={%<code%>}
@@ -201,13 +122,7 @@ minus-output-symbol={%<code%>}
 #
 # Section 8.2. Math
 #
-#keyvals:\ch
-math-space={%<skip%>}
-#endkeyvals
-#keyvals:\setchemformula
-math-space={%<skip%>}
-#endkeyvals
-#keyvals:\chcpd
+#keyvals:\ch,\setchemformula,\chcpd
 math-space={%<skip%>}
 #endkeyvals
 #
@@ -217,35 +132,13 @@ math-space={%<skip%>}
 #
 # Section 9.3. Customization
 #
-#keyvals:\ch
-arrow-offset={%<dim%>}
-arrow-min-length={%<dim%>}
-arrow-yshift={%<dim%>}
+#keyvals:\ch,\setchemformula,\chcpd
+arrow-offset=##L
+arrow-min-length=##L
+arrow-yshift=##L
 arrow-ratio={%<factor%>}
-compound-sep={%<dim%>}
-label-offset={%<dim%>}
-label-style={%<font command%>}
-arrow-penalty={%<num%>}
-arrow-style={%<TikZ%>}
-#endkeyvals
-#keyvals:\setchemformula
-arrow-offset={%<dim%>}
-arrow-min-length={%<dim%>}
-arrow-yshift={%<dim%>}
-arrow-ratio={%<factor%>}
-compound-sep={%<dim%>}
-label-offset={%<dim%>}
-label-style={%<font command%>}
-arrow-penalty={%<num%>}
-arrow-style={%<TikZ%>}
-#endkeyvals
-#keyvals:\chcpd
-arrow-offset={%<dim%>}
-arrow-min-length={%<dim%>}
-arrow-yshift={%<dim%>}
-arrow-ratio={%<factor%>}
-compound-sep={%<dim%>}
-label-offset={%<dim%>}
+compound-sep=##L
+label-offset=##L
 label-style={%<font command%>}
 arrow-penalty={%<num%>}
 arrow-style={%<TikZ%>}
@@ -271,17 +164,9 @@ arrow-style={%<TikZ%>}
 #
 # Section 10.2. Customization
 #
-#keyvals:\ch
-name-format={%<comands%>}
-name-width=#{%<dim%>},auto
-#endkeyvals
-#keyvals:\setchemformula
-name-format={%<comands%>}
-name-width=#{%<dim%>},auto
-#endkeyvals
-#keyvals:\chcpd
-name-format={%<comands%>}
-name-width=#{%<dim%>},auto
+#keyvals:\ch,\setchemformula,\chcpd
+name-format={%<commands%>}
+name-width=##L,auto
 #endkeyvals
 #
 # Section 10.3. Standalone Names
@@ -292,25 +177,7 @@ name-width=#{%<dim%>},auto
 # Chapter 11. Format and Font
 #
 #
-#keyvals:\ch
-format={%<code%>}
-atom-format={%<code%>}
-font-family={%<family%>}
-font-series={%<series%>}
-font-shape={%<shape%>}
-font-spec={%<font%>}
-font-spec={[%<options%>]%<font%>}
-#endkeyvals
-#keyvals:\setchemformula
-format={%<code%>}
-atom-format={%<code%>}
-font-family={%<family%>}
-font-series={%<series%>}
-font-shape={%<shape%>}
-font-spec={%<font%>}
-font-spec={[%<options%>]%<font%>}
-#endkeyvals
-#keyvals:\chcpd
+#keyvals:\ch,\setchemformula,\chcpd
 format={%<code%>}
 atom-format={%<code%>}
 font-family={%<family%>}
@@ -332,43 +199,29 @@ tikz-external-disable=#true,false
 # Chapter 14. Lewis Formulae
 #
 #
-\chlewis{electron spec}{atom}#
-\chlewis[%<options%>]{electron spec}{atom}#
-#keyvals:\chlewis
-lewis-default=#.,:,|,o,single,pair,{pair (dotted)},{pair (line)},empty
-lewis-distance={%<dim%>}
-lewis-line-length={%<dim%>}
-lewis-line-width={%<dim%>}
-lewis-offset={%<dim%>}5ex
-#endkeyvals
-#keyvals:\setchemformula
-lewis-default=#.,:,|,o,single,pair,{pair (dotted)},{pair (line)},empty
-lewis-distance={%<dim%>}
-lewis-line-length={%<dim%>}
-lewis-line-width={%<dim%>}
-lewis-offset={%<dim%>}
+\chlewis{electron spec}{atom}
+\chlewis[options%keyvals]{electron spec}{atom}
+#keyvals:\chlewis,\setchemformula
+lewis-default=#.,:,|,o,single,pair,{pair (dotted)},{pair (line)},empty#c
+lewis-distance=##L
+lewis-line-length=##L
+lewis-line-width=##L
+lewis-offset=##L
+# other useful keys
+radical-radius=##L
 #endkeyvals
 #
 #
 # Chapter 15. Kröger-Vink Notation
 #
 #
-#keyvals:\ch
+#keyvals:\ch,\setchemformula
 kroeger-vink=#true,false
 kv-positive-style={%<TikZ%>}
-kv-positive-radius={%<dim%>}
-kv-positive-hshift={%<dim%>}
-kv-positive-vshift={%<dim%>}
-kv-positive-offset={%<dim%>}
-kv-positive-symbol={%<TeX code%>}
-#endkeyvals
-#keyvals:\setchemformula
-kroeger-vink=#true,false
-kv-positive-style={%<TikZ%>}
-kv-positive-radius={%<dim%>}
-kv-positive-hshift={%<dim%>}
-kv-positive-vshift={%<dim%>}
-kv-positive-offset={%<dim%>}
+kv-positive-radius=##L
+kv-positive-hshift=##L
+kv-positive-vshift=##L
+kv-positive-offset=##L
 kv-positive-symbol={%<TeX code%>}
 #endkeyvals
 #
@@ -378,5 +231,3 @@ kv-positive-symbol={%<TeX code%>}
 #
 \chstoich{arg1}#S
 \DeprecatedFormulaCommand{deprecated macro}{replacement macro}{code}#S
-\chemformula@version#S
-\chemformula@date#S
