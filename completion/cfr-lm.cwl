@@ -1,5 +1,5 @@
 # cfr-lm package
-# Matthew Bertucci 2024/09/30 for v1.7
+# Matthew Bertucci 2025/06/22 for v1.9
 
 #include:svn-prov
 #include:fontenc
@@ -10,6 +10,7 @@ rm={%<options%>}
 sf={%<options%>}
 tt={%<options%>}
 qt#true,false
+nomaths#true,false
 #endkeyvals
 
 \regwidth#n
