@@ -1,10 +1,9 @@
 # rerunfilecheck package
-# Matthew Bertucci 11/5/2021 for v1.9
+# Matthew Bertucci 2025/06/21 for v1.11
 
 #include:kvoptions
 #include:infwarerr
 #include:pdftexcmds
-#include:atveryend
 #include:uniquecounter
 
 \RerunFileCheckSetup{options%keyvals}#*
