@@ -1,5 +1,5 @@
-# pdfmanagement-testphase package
-# Matthew Bertucci 2024/03/26 for v0.96g
+# pdfmanagement package
+# Matthew Bertucci 2025/06/24 for v0.96s
 
 #include:tagpdf
 
@@ -7,18 +7,14 @@
 \PDFManagementAdd{resource path}{name}{value}
 
 ## l3docinit
-# \DocumentMetadata{options} in latex-dev.cwl
 \AddToDocumentProperties{property}{value}
 \AddToDocumentProperties[label]{property}{value}
-\GetDocumentProperties{label/property}
+\GetDocumentProperty{label/property}
 \ShowDocumentProperties
 
 ## documentmetadata-support.ltx
 \documentmetadatasupportversion#S
 \documentmetadatasupportdate#S
-
-# deprecated
-\DeclareDocumentMetadata{options}#S
 
 # available if hyperref loaded
 \url[options%keyvals]{URL}#U
