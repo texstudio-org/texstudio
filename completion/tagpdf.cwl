@@ -1,7 +1,7 @@
 # tagpdf package
 # Matthew Bertucci 2025/05/17 for v0.99q
 
-#include:pdfmanagement-testphase
+#include:pdfmanagement
 
 \tagpdfsetup{keyvals}
 
