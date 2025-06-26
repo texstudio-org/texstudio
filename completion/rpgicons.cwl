@@ -1,12 +1,9 @@
 # rpgicons package
-# Matthew Bertucci 2024/04/30 for v1.8.2
+# Matthew Bertucci 2025/06/25 for v1.8.9
 
 #keyvals:\usepackage/rpgicons#c
 l3
 pgf
-# specific to l3
-compat
-opacity
 # specific to pgf
 pics
 #endkeyvals
