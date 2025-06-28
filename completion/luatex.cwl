@@ -1,5 +1,5 @@
 # LuaTeX primitives
-# Matthew Bertucci updated 2025/03/20 for v1.23.1
+# Matthew Bertucci updated 2025/06/28 for v1.23.3
 
 ### from LuaTeX Reference Manual ###
 ## 2 Basic TeX enhancements ##
@@ -73,7 +73,7 @@
 \ifcondition#*
 
 # 2.9 Boxes, rules and leaders #
-\outputbox = %<<integer>%>#*
+\outputbox=%<<integer>%>#*
 \vpack#*
 \hpack#*
 \tpack#*
@@ -358,7 +358,7 @@
 \Umathcharclass%<<char>%>#*
 \Umathcharfam%<<char>%>#*
 \Umathcharslot%<<char>%>#*
-\predisplaygapfactor = %<<factor>%>#*
+\predisplaygapfactor=%<<factor>%>#*
 
 # 7.8 Math mode #
 \Usuperscript#*
@@ -369,6 +369,9 @@
 \Ustopdisplaymath#*
 \Unosuperscript{text%plain}#*
 \Unosubscript{text%plain}#*
+
+# 7.9 Goodies #
+\mathflattenmode=%<<integer>%>#*
 
 ## 8 Nodes ##
 \localinterlinepenalty#*
@@ -392,7 +395,6 @@
 ## deprecated
 \mathdefaultsmode#S
 \mathdelimitersmode#S
-\mathflattenmode#S
 \mathitalicsmode#S
 \mathnolimitsmode#S
 \mathoption#S
