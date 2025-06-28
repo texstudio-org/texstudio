@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/06/21 for v15.2.0
+# Matthew Bertucci 2025/06/28 for v15.3.0
 
 #include:iftex
 
@@ -37,6 +37,7 @@ accuweather
 acer
 acm
 actigraph
+activeloop
 activision
 activitypub
 actix
@@ -44,6 +45,7 @@ actualbudget
 acura
 ada
 adafruit
+adaway
 adblock
 adblockplus
 addydotio
@@ -164,6 +166,7 @@ apachecloudstack
 apachecordova
 apachecouchdb
 apachedolphinscheduler
+apachedoris
 apachedruid
 apacheecharts
 apacheflink
@@ -325,6 +328,7 @@ bentobox
 bentoml
 bereal
 betfair
+betterauth
 betterstack
 betterdiscord
 bevy
@@ -376,6 +380,7 @@ bohemiainteractive
 bombardier
 bookalope
 bookbub
+bookingdotcom
 bookmeter
 bookmyshow
 bookstack
@@ -419,6 +424,7 @@ bukalapak
 bulma
 bun
 bungie
+bunnydotnet
 bunq
 burgerking
 burpsuite
@@ -530,6 +536,7 @@ cloudflare
 cloudflarepages
 cloudflareworkers
 cloudfoundry
+cloudnativebuild
 cloudinary
 cloudron
 cloudsmith
@@ -1244,6 +1251,7 @@ hatenabookmark
 haveibeenpwned
 havells
 haxe
+haystack
 hbo
 hbomax
 hcl
@@ -1502,6 +1510,7 @@ keepachangelog
 keepassxc
 keeper
 keeweb
+kenmei
 kentico
 keras
 keybase
@@ -1806,6 +1815,7 @@ minutemailer
 miraheze
 miro
 misskey
+mistralai
 mitsubishi
 mix
 mixcloud
@@ -1866,6 +1876,7 @@ mxlinux
 myanimelist
 myget
 myob
+myshows
 myspace
 mysql
 n26
@@ -3059,6 +3070,7 @@ vagrant
 vala
 valorant
 valve
+vanillaextract
 vapor
 vault
 vaultwarden
