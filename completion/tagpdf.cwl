@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2025/05/17 for v0.99q
+# Matthew Bertucci 2025/06/28 for v0.99s
 
 #include:pdfmanagement
 
@@ -65,6 +65,7 @@ stash#true,false
 label=%<name%>
 alt=%<text%>
 actualtext=%<text%>
+lang=%<lang%>
 raw=%<PDF code%>
 #endkeyvals
 
@@ -87,8 +88,7 @@ attribute-class={%<attr1,attr2,...%>}
 title=%<text%>
 title-o=%<text%>
 AF=%<object%>
-root-AF=%<object%>
-root-supplemental-file=%<file name%>
+catalog-supplemental-file=%<file name%>
 AFinline=%<text%>
 AFinline-o=%<text%>
 texsource=%<text%>
