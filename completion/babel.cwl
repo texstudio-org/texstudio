@@ -1279,14 +1279,13 @@ select.encoding=#off
 #repl:"> »
 #endif
 
-### french.ldf v3.6a (and associated acadian.ldf) ###
+### french.ldf v4.0a (and associated acadian.ldf) ###
 #ifOption:french
 \frenchsetup{options%keyvals}
 \frenchbsetup{options%keyvals}#S
 #keyvals:\frenchsetup,\frenchbsetup
 ShowOptions#true,false
 StandardLayout#true,false
-GlobalLayoutFrench#true,false
 IndentFirst#true,false
 PartNameFull#true,false
 ListItemsAsPar#true,false
@@ -1300,7 +1299,6 @@ ItemLabelii=
 ItemLabeliii=
 ItemLabeliv=
 StandardLists#true,false
-ListOldLayout#true,false
 FrenchFootnotes#true,false
 AutoSpaceFootnotes#true,false
 AutoSpacePunctuation#true,false
@@ -1316,10 +1314,10 @@ InnerGuillSingle#true,false
 ThinSpaceInFrenchNumbers#true,false
 SmallCapsFigTabCaptions#true,false
 CustomiseFigTabCaptions#true,false
-OldFigTabCaptions#true,false
 FrenchSuperscripts#true,false
 LowercaseSuperscripts#true,false
 SuppressWarning#true,false
+TocPartFullName#true,false
 #endkeyvals
 \AddThinSpaceBeforeFootnotes#*
 \alsoname#*
@@ -1334,7 +1332,6 @@ SuppressWarning#true,false
 \boi
 \bname{text}
 \bsc{text}
-\CaptionSeparator#*
 \captionsfrench#*
 \ccname#*
 \chaptername#*
@@ -1363,7 +1360,6 @@ SuppressWarning#true,false
 \FBFrenchFootnotesfalse#*
 \FBFrenchFootnotestrue#*
 \FBFrenchSuperscriptstrue#*
-\FBGlobalLayoutFrenchtrue#*
 \FBgspchar#*
 \FBguillopen#*
 \FBguillspace
@@ -1390,6 +1386,8 @@ SuppressWarning#true,false
 \FBthinspace
 \FBthousandsep#*
 \FBWarning{message%text}#*
+\FBtocpartsep#*
+\FBtocpartname{roman num}#*
 \fg
 \fgi#*
 \fgii#*
@@ -1426,16 +1424,13 @@ SuppressWarning#true,false
 \ifFBfrench#*
 \ifFBFrenchFootnotes#*
 \ifFBFrenchSuperscripts#*
-\ifFBGlobalLayoutFrench#*
 \ifFBIndentFirst#*
 \ifFBINGuillSpace#*
 \ifFBListItemsAsPar#*
-\ifFBListOldLayout#*
 \ifFBLowercaseSuperscripts#*
-\ifFBLuaTeX#*
-\ifFBOldFigTabCaptions#*
 \ifFBOriginalTypewriter#*
 \ifFBPartNameFull#*
+\ifFBTocPartNameFull#*
 \ifFBShowOptions#*
 \ifFBSmallCapsFigTabCaptions#*
 \ifFBStandardEnumerateEnv#*
@@ -1447,9 +1442,8 @@ SuppressWarning#true,false
 \ifFBSuppressWarning#*
 \ifFBThinColonSpace#*
 \ifFBThinSpaceInFrenchNumbers#*
-\ifFBunicode#*
-\ifFBXeTeX#*
 \ifLaTeXe#*
+\ifFBUnicodeNoBreakSpaces#*
 \kernFFN#*
 \labelindentFB#*
 \labelwidthFB#*
@@ -1490,6 +1484,7 @@ SuppressWarning#true,false
 \ttfamilyFB#*
 \up{text}
 \xspace
+\setlistindentFB#*
 #endif
 
 #ifOption:acadian
@@ -1498,7 +1493,6 @@ SuppressWarning#true,false
 #keyvals:\frenchsetup,\frenchbsetup
 ShowOptions#true,false
 StandardLayout#true,false
-GlobalLayoutFrench#true,false
 IndentFirst#true,false
 PartNameFull#true,false
 ListItemsAsPar#true,false
@@ -1512,7 +1506,6 @@ ItemLabelii=
 ItemLabeliii=
 ItemLabeliv=
 StandardLists#true,false
-ListOldLayout#true,false
 FrenchFootnotes#true,false
 AutoSpaceFootnotes#true,false
 AutoSpacePunctuation#true,false
@@ -1528,10 +1521,10 @@ InnerGuillSingle#true,false
 ThinSpaceInFrenchNumbers#true,false
 SmallCapsFigTabCaptions#true,false
 CustomiseFigTabCaptions#true,false
-OldFigTabCaptions#true,false
 FrenchSuperscripts#true,false
 LowercaseSuperscripts#true,false
 SuppressWarning#true,false
+TocPartFullName#true,false
 #endkeyvals
 \acadiandate{day}{month}{year}
 \acadiantoday
@@ -1548,7 +1541,6 @@ SuppressWarning#true,false
 \boi
 \bname{text}
 \bsc{text}
-\CaptionSeparator#*
 \captionsfrench#*
 \captionsacadian#*
 \ccname#*
@@ -1579,7 +1571,6 @@ SuppressWarning#true,false
 \FBFrenchFootnotesfalse#*
 \FBFrenchFootnotestrue#*
 \FBFrenchSuperscriptstrue#*
-\FBGlobalLayoutFrenchtrue#*
 \FBgspchar#*
 \FBguillopen#*
 \FBguillspace
@@ -1601,11 +1592,12 @@ SuppressWarning#true,false
 \FBStandardListstrue#*
 \FBsupR#*
 \FBsupS#*
-\FBtextellipsis#*
 \FBthickkern#*
 \FBthinspace
 \FBthousandsep#*
 \FBWarning{message%text}#*
+\FBtocpartsep#*
+\FBtocpartname{roman num}#*
 \fg
 \fgi#*
 \fgii#*
@@ -1642,16 +1634,13 @@ SuppressWarning#true,false
 \ifFBfrench#*
 \ifFBFrenchFootnotes#*
 \ifFBFrenchSuperscripts#*
-\ifFBGlobalLayoutFrench#*
 \ifFBIndentFirst#*
 \ifFBINGuillSpace#*
 \ifFBListItemsAsPar#*
-\ifFBListOldLayout#*
 \ifFBLowercaseSuperscripts#*
-\ifFBLuaTeX#*
-\ifFBOldFigTabCaptions#*
 \ifFBOriginalTypewriter#*
 \ifFBPartNameFull#*
+\ifFBTocPartNameFull#*
 \ifFBShowOptions#*
 \ifFBSmallCapsFigTabCaptions#*
 \ifFBStandardEnumerateEnv#*
@@ -1663,9 +1652,8 @@ SuppressWarning#true,false
 \ifFBSuppressWarning#*
 \ifFBThinColonSpace#*
 \ifFBThinSpaceInFrenchNumbers#*
-\ifFBunicode#*
-\ifFBXeTeX#*
 \ifLaTeXe#*
+\ifFBUnicodeNoBreakSpaces#*
 \kernFFN#*
 \labelindentFB#*
 \labelwidthFB#*
@@ -1707,6 +1695,7 @@ SuppressWarning#true,false
 \ttfamilyFB#*
 \up{text}
 \xspace
+\setlistindentFB#*
 #endif
 
 ### friulan.ldf v1.3 ###
