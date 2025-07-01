@@ -1,2 +1,13 @@
 Symbol generation code was copied and adapted from kile.
 Use batik toolkit (apache) for svg to png conversion
+
+Requirements:
+download compiled batik version (https://xmlgraphics.apache.org/batik/download.html)
+Unzip in symbols-ng
+Adapt paths in batikConvert.sh
+
+Compile gesymb (qmake symbols-ng.pro; make)
+
+How to use:
+Adapt generate-all-symbols.sh (which symbols to generate)
+Run "generate-all-symbols.sh"

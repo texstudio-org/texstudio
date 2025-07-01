@@ -120,6 +120,17 @@
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
+	<!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg math \varkappa -->
+	<commandDefinition>
+		<latexCommand>\varkappa</latexCommand>
+		<unicodeCommand>𝜅</unicodeCommand>
+		<mathMode>true</mathMode>
+		<package>
+			<name>amssymb</name>
+		</package>
+	</commandDefinition>
+
 	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
 	<!-- arg math \lambda -->
 	<commandDefinition>
