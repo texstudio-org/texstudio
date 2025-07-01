@@ -17,6 +17,8 @@ cov-int/
 git_revision.o
 texstudio.app/
 build*/
+symbols-ng/generate
+symbols-ng/batik*
 !utilities/manual/build/html
 !utilities/manual/build
 utilities/manual/build/html/_sources
