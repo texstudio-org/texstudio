@@ -1,5 +1,5 @@
 # luamml-demo package
-# Matthew Bertucci 2024/08/19 for v0.1.0
+# Matthew Bertucci 2025/07/01 for v0.5.0
 
 #include:luatex
 #include:amsmath
@@ -12,15 +12,14 @@ files
 l3build
 #endkeyvals
 
-# not documented
-\LuaMMLSetFilename{arg}#S
-\LuaMMLTagAF{arg1}{arg2}#S
-\AnnotateFormula{arg1}{arg2}#S
-\AnnotateFormula[opt]{arg1}{arg2}#S
-\WriteoutFormula#S
+\LuaMMLSetFilename{file}
+\LuaMMLTagAF{struct keys}{content}
+\AnnotateFormula{annotation}{content}
+\AnnotateFormula[number]{annotation}{content}#S
+\WriteoutFormula
 
 # from luamml.sty
-\tracingmathml#S
+\tracingmathml=%<integer%>
 
 # from luamml-pdf.sty
-\RegisterFamilyMapping{arg1}{arg2}#S
+\RegisterFamilyMapping{family}{encoding}
