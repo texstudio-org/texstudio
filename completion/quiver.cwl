@@ -1,5 +1,5 @@
 # quiver package
-# Matthew Bertucci 2023/07/31 for v1.3.0
+# Matthew Bertucci 2025/06/25 for v1.5.5
 
 #include:tikz-cd
 #include:amssymb
@@ -12,4 +12,5 @@ tail reversed
 2tail
 2tail reversed
 no body
+between={%<num1%>}{%<num2%>}
 #endkeyvals

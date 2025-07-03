@@ -3,7 +3,7 @@
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
 #modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
-#modified Matthew Bertucci 21 May 2025 for v7.01m
+#modified Matthew Bertucci 21 June 2025 for v7.01n
 
 #include:iftex
 #include:keyval
@@ -16,7 +16,6 @@
 #include:url
 #include:bitset
 #include:bigintcalc
-#include:atbegshi
 #include:rerunfilecheck
 #include:nameref
 #include:etoolbox
@@ -56,10 +55,10 @@
 #endif
 
 #ifOption:hyperindex
-\hyperindexformat{arg1}{arg2}#*
+\hyperxindexformat{arg1}{arg2}#*
 #endif
 #ifOption:hyperindex=true
-\hyperindexformat{arg1}{arg2}#*
+\hyperxindexformat{arg1}{arg2}#*
 #endif
 
 \hypersetup{keyvals}

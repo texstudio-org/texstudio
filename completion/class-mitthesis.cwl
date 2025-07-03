@@ -10,7 +10,7 @@
 #include:doi
 #include:bm
 #include:unicode-math
-#include:pdfmanagement-testphase
+#include:pdfmanagement
 
 #keyvals:\documentclass/mitthesis#c
 fontset=#fira-newtxsf,newtx,newtx-sans-text,defaultfonts,libertine,lucida,heros-stix2,stix2,termes,termes-stix2

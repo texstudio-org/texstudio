@@ -1,8 +1,9 @@
 # biblatex-ext-oasymb-l3draw package
-# Matthew Bertucci 4/23/2022 for v0.15
+# Matthew Bertucci 2025/06/24 for v0.20
 
 #include:l3keys2e
 #include:l3draw
+#include:xsavebox
 
 #keyvals:\usepackage/biblatex-ext-oasymb-l3draw#c
 symbol=#plos,oanet

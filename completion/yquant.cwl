@@ -1,5 +1,5 @@
 # yquant package
-# Matthew Bertucci 2022/12/25 for v0.7.2
+# Matthew Bertucci 2025/07/01 for v0.8.0
 
 #include:etoolbox
 #include:tikz
@@ -9,7 +9,7 @@
 #include:tikzlibrarydecorations.pathmorphing
 
 #keyvals:\usepackage/yquant#c
-compat=#newest,0.3,0.4,0.6
+compat=#newest,0.3,0.4,0.6,0.8
 #endkeyvals
 
 \ifyquantdebug#S
@@ -133,12 +133,37 @@ qasm
 \yquantredefinegate{name}[style]{content}
 \yquantdefinebox{name}{content}
 \yquantdefinebox{name}[style]{content}
+\yquantedefinebox{name}{content}
+\yquantedefinebox{name}[style]{content}
+\yquanteredefinebox{name}{content}
+\yquanteredefinebox{name}[style]{content}
 \yquantdefinemultibox{name}{content}
 \yquantdefinemultibox{name}[style]{content}
 \yquantredefinebox{name}{content}
 \yquantredefinebox{name}[style]{content}
 \yquantredefinemultibox{name}{content}
 \yquantredefinemultibox{name}[style]{content}
+\yquantedefinemultibox{name}{content}
+\yquantedefinemultibox{name}[style]{content}
+\yquanteredefinemultibox{name}{content}
+\yquanteredefinemultibox{name}[style]{content}
+\yquantdeclareattr{attr declaration}
+\yquantdefinegate{name}{content}
+\yquantdefinegate{name}[style]{content}
+\yquantdefinegate[attributes]{name}{content}
+\yquantdefinegate[attributes]{name}[style]{content}
+\yquantredefinegate{name}{content}
+\yquantredefinegate{name}[style]{content}
+\yquantredefinegate[attributes]{name}{content}
+\yquantredefinegate[attributes]{name}[style]{content}
+\yquantedefinegate{name}{content}
+\yquantedefinegate{name}[style]{content}
+\yquantedefinegate[attributes]{name}{content}
+\yquantedefinegate[attributes]{name}[style]{content}
+\yquanteredefinegate{name}{content}
+\yquanteredefinegate{name}[style]{content}
+\yquanteredefinegate[attributes]{name}{content}
+\yquanteredefinegate[attributes]{name}[style]{content}
 
 ## << keyvals >> ##
 #keyvals:\begin{yquant}#c,\begin{yquant*}#c,\yquantset#c,\yquantimport#c,\yquantimport*#c,\begin{yquantgroup}#c,\begin{yquantgroup*}#c
