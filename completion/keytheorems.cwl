@@ -1,5 +1,5 @@
 # keytheorems package
-# Matthew Bertucci 2025/05/19 for v0.2.7
+# Matthew Bertucci 2025/06/22 for v0.3.0
 
 #include:aliascnt
 #include:amsthm
@@ -64,6 +64,8 @@ restate-counter
 qed-symbol=%<symbol%>
 auto-translate#true,false
 store-sets-label
+predefined
+predefined={%<options%>}
 #endkeyvals
 
 #keyvals:\keytheoremset#c
@@ -191,3 +193,6 @@ format-code=%<code%>
 
 # expl3 interface
 \l_keythms_thmuse_envname_tl#/%expl3
+\keythms_getthm_theorem:nnnnn {%<⟨name⟩%>} {%<⟨number⟩%>} {%<⟨restate counters⟩%>} {%<⟨keys⟩%>} {%<⟨body text⟩%>}#/%expl3
+\keythms_getthm_body:nnn {%<⟨name⟩%>} {%<⟨restate counters⟩%>} {%<⟨body text⟩%>}#/%expl3
+\keythms_listof_listcmd:nnnnnnn {%<⟨name⟩%>} {%<⟨number⟩%>} {%<⟨Href⟩%>} {%<⟨page⟩%>} {%<⟨restate counters⟩%>} {%<⟨keys⟩%>} {%<⟨body text⟩%>}#/%expl3

@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 2025/02/03 for v2.4
+# Matthew Bertucci 2025/06/30 for v2.6
 
 #include:etoolbox
 #include:fontspec
@@ -615,9 +615,14 @@ script=#latin,blackletter,fraktur
 #keyvals:\setdefaultlanguage/greek#c,\setmainlanguage/greek#c,\setotherlanguage/greek#c,\textlang/greek#c,\textgreek#c,\begin{lang}/greek#c,\begin{greek}#c,\selectlanguage/greek#c,\foreignlanguage/greek#c,\begin{otherlanguage}/greek#c,\begin{otherlanguage*}/greek#c,\resetdefaultlanguage/greek#c,\setlanguagealias/greek#c,\setlanguagealias*/greek#c,\pghyphenation/greek#c,\setlanghyphenmins/greek#c
 variant=#monotonic,mono,polytonic,poly,ancient
 numerals=#greek,arabic
-attic#true,false
+capitaliota#true,false
+koppa=#modern,archaic
 #endkeyvals
 
+\greeknumeralsix#*
+\greeknumeralSix#*
+\greeknumeralninety#*
+\greeknumeralNinety#*
 \Greeknumber{number}#S
 \greeknumber{number}#S
 \atticnumeral#*

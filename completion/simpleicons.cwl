@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/06/13 for v15.1.0
+# Matthew Bertucci 2025/06/28 for v15.3.0
 
 #include:iftex
 
@@ -37,12 +37,15 @@ accuweather
 acer
 acm
 actigraph
+activeloop
 activision
 activitypub
 actix
 actualbudget
 acura
+ada
 adafruit
+adaway
 adblock
 adblockplus
 addydotio
@@ -163,6 +166,7 @@ apachecloudstack
 apachecordova
 apachecouchdb
 apachedolphinscheduler
+apachedoris
 apachedruid
 apacheecharts
 apacheflink
@@ -274,6 +278,7 @@ avajs
 avast
 avianca
 avira
+avm
 awesomelists
 awesomewm
 awwwards
@@ -323,6 +328,7 @@ bentobox
 bentoml
 bereal
 betfair
+betterauth
 betterstack
 betterdiscord
 bevy
@@ -374,6 +380,7 @@ bohemiainteractive
 bombardier
 bookalope
 bookbub
+bookingdotcom
 bookmeter
 bookmyshow
 bookstack
@@ -417,6 +424,7 @@ bukalapak
 bulma
 bun
 bungie
+bunnydotnet
 bunq
 burgerking
 burpsuite
@@ -528,6 +536,7 @@ cloudflare
 cloudflarepages
 cloudflareworkers
 cloudfoundry
+cloudnativebuild
 cloudinary
 cloudron
 cloudsmith
@@ -750,6 +759,7 @@ dior
 directus
 discogs
 discord
+discorddotjs
 discourse
 discover
 disqus
@@ -770,6 +780,7 @@ docusaurus
 dogecoin
 doi
 dolby
+dolibarr
 doordash
 dota2
 dotenv
@@ -1025,6 +1036,7 @@ freepik
 freetube
 fresh
 frigate
+fritz
 frontendmentor
 frontify
 fsharp
@@ -1239,6 +1251,7 @@ hatenabookmark
 haveibeenpwned
 havells
 haxe
+haystack
 hbo
 hbomax
 hcl
@@ -1497,6 +1510,7 @@ keepachangelog
 keepassxc
 keeper
 keeweb
+kenmei
 kentico
 keras
 keybase
@@ -1684,6 +1698,7 @@ lyft
 maas
 macos
 macpaw
+macports
 macys
 magasinsu
 magic
@@ -1775,6 +1790,7 @@ metrodelaciudaddemexico
 metrodemadrid
 metrodeparis
 mewe
+mezmo
 mg
 microbit
 microdotblog
@@ -1799,6 +1815,7 @@ minutemailer
 miraheze
 miro
 misskey
+mistralai
 mitsubishi
 mix
 mixcloud
@@ -1859,6 +1876,7 @@ mxlinux
 myanimelist
 myget
 myob
+myshows
 myspace
 mysql
 n26
@@ -1913,6 +1931,7 @@ nextcloud
 nextdns
 nextdoor
 nextdotjs
+nodebb
 nextflow
 nextra
 nexusmods
@@ -2077,6 +2096,7 @@ packt
 paddle
 paddlepaddle
 paddypower
+padlet
 pagekit
 pagerduty
 pagespeedinsights
@@ -2104,6 +2124,7 @@ payhip
 payloadcms
 payoneer
 paypal
+paysafe
 paytm
 pcgamingwiki
 pdm
@@ -2307,6 +2328,7 @@ qiwi
 qlik
 qmk
 qnap
+qodo
 qq
 qt
 quad9
@@ -2416,6 +2438,7 @@ retroarch
 retropie
 revanced
 revealdotjs
+revenuecat
 reverbnation
 revoltdotchat
 revolut
@@ -3047,6 +3070,7 @@ vagrant
 vala
 valorant
 valve
+vanillaextract
 vapor
 vault
 vaultwarden
@@ -3173,6 +3197,7 @@ westernunion
 wetransfer
 wezterm
 wgpu
+what3words
 whatsapp
 wheniwork
 wikibooks

@@ -1,5 +1,9 @@
 # stabular package
-# Matthew Bertucci 10/14/2021 for v2.1
+# Matthew Bertucci 2025/06/25 for v2.3
+
+#keyvals:\usepackage/stabular#c
+array
+#endkeyvals
 
 #ifOption:array
 #include:array

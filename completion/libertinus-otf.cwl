@@ -1,12 +1,12 @@
 # libertinus-otf package
-# Matthew Bertucci 2023/09/21 for v0.32
+# Matthew Bertucci 2025/06/28 for v0.33
 
-#include:ifxetex
-#include:ifluatex
+#include:iftex
 #include:xkeyval
 #include:unicode-math
 
 #keyvals:\usepackage/libertinus-otf#c
+monofont=%<font name%>
 oldstyle#true,false
 lining#true,false
 proportional#true,false
@@ -23,6 +23,7 @@ mathfeature={%<\setmathfont options%>}
 greek#true,false
 greekitalic#true,false
 nomath#true,false
+math={%<unicode-math options%>}
 mono#true,false
 #endkeyvals
 

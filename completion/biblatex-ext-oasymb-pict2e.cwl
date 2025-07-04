@@ -1,8 +1,9 @@
 # biblatex-ext-oasymb-pict2e package
-# Matthew Bertucci 4/23/2022 for v0.15
+# Matthew Bertucci 2025/06/24 for v0.20
 
 #include:etoolbox
 #include:kvoptions
+#include:xsavebox
 #include:pict2e
 #include:xcolor
 

@@ -2097,6 +2097,7 @@
 <file>completion/l3graphics.cwl</file>
 <file>completion/l3keys2e.cwl</file>
 <file>completion/l3opacity.cwl</file>
+<file>completion/l3pdffield.cwl</file>
 <file>completion/l3sys-query.cwl</file>
 <file>completion/labels4easylist.cwl</file>
 <file>completion/labels.cwl</file>
@@ -2783,7 +2784,7 @@
 <file>completion/pdfescape.cwl</file>
 <file>completion/pdfextra.cwl</file>
 <file>completion/pdflscape.cwl</file>
-<file>completion/pdfmanagement-testphase.cwl</file>
+<file>completion/pdfmanagement.cwl</file>
 <file>completion/pdfmarginpar.cwl</file>
 <file>completion/pdfmsym.cwl</file>
 <file>completion/pdfoverlay.cwl</file>
@@ -3711,6 +3712,7 @@
 <file>completion/thumby.cwl</file>
 <file>completion/ticket.cwl</file>
 <file>completion/ticollege.cwl</file>
+<file>completion/tictactoe.cwl</file>
 <file>completion/tikz2d-fr.cwl</file>
 <file>completion/tikz3d-fr.cwl</file>
 <file>completion/tikz-3dplot.cwl</file>
@@ -3722,6 +3724,7 @@
 <file>completion/tikzcalendarnotes.cwl</file>
 <file>completion/tikz-cd.cwl</file>
 <file>completion/tikzcodeblocks.cwl</file>
+<file>completion/tikz-cookingsymbols.cwl</file>
 <file>completion/tikz.cwl</file>
 <file>completion/tikz-decofonts.cwl</file>
 <file>completion/tikz-dependency.cwl</file>
@@ -3969,6 +3972,7 @@
 <file>completion/todonotes.cwl</file>
 <file>completion/tokcycle.cwl</file>
 <file>completion/tokenizer.cwl</file>
+<file>completion/tokmap.cwl</file>
 <file>completion/tolkienfonts.cwl</file>
 <file>completion/tone.cwl</file>
 <file>completion/tonevalue.cwl</file>
