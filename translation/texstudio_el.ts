@@ -10138,12 +10138,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="941"/>
         <source>Lock &amp;PDF</source>
-        <translation>Κλείδωμα &amp;PDF</translation>
+        <translation>Κλείδωμα αρχείου &amp;PDF</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="942"/>
         <source>Check in P&amp;DF</source>
-        <translation>Ελέγξτε στο P&amp;DF</translation>
+        <translation>Check in P&amp;DF</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="943"/>
