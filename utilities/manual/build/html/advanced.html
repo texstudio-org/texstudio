@@ -708,256 +708,259 @@ menus</p></li>
 <tr class="row-even"><td><p>editor.text(int line)</p></td>
 <td><p>return text of <em>line</em></p></td>
 </tr>
-<tr class="row-odd"><td><p>editor.document().lineCount()</p></td>
+<tr class="row-odd"><td><p>editor.getLineTokens(lineNr)</p></td>
+<td><p>Returns an array of parser tokens for a given zero-based line number. Each token is an object with the following properties:<br>-    type: Token type (integer)<br>-    subtype: Token subtype (integer)<br>-    startColumn: Starting column number (integer)<br>-    level: Token level (integer)<br>-    text: Token text (string)<br><br>The token type and subtype values can be compared with the integer properties of the latexTokenType object. Each property of this object corresponds to one token type:<br><br><code class="docutils literal notranslate"><span class="pre">none,</span> <span class="pre">word,</span> <span class="pre">command,</span> <span class="pre">braces,</span> <span class="pre">bracket,</span> <span class="pre">squareBracket,</span> <span class="pre">openBrace,</span> <span class="pre">openBracket,</span> <span class="pre">openSquare,</span> <span class="pre">less,</span> <span class="pre">closeBrace,</span> <span class="pre">closeBracket,</span> <span class="pre">closeSquareBracket,</span> <span class="pre">greater,</span> <span class="pre">math,</span> <span class="pre">comment,</span> <span class="pre">commandUnknown,</span> <span class="pre">label,</span> <span class="pre">bibItem,</span> <span class="pre">file,</span> <span class="pre">imagefile,</span> <span class="pre">bibfile,</span> <span class="pre">keyValArg,</span> <span class="pre">keyVal_key,</span> <span class="pre">keyVal_val,</span> <span class="pre">list,</span> <span class="pre">text,</span> <span class="pre">env,</span> <span class="pre">beginEnv,</span> <span class="pre">def,</span> <span class="pre">labelRef,</span> <span class="pre">package,</span> <span class="pre">width,</span> <span class="pre">placement,</span> <span class="pre">colDef,</span> <span class="pre">title,</span> <span class="pre">shorttitle,</span> <span class="pre">todo,</span> <span class="pre">url,</span> <span class="pre">documentclass,</span> <span class="pre">beamertheme,</span> <span class="pre">packageoption,</span> <span class="pre">color,</span> <span class="pre">verbatimStart,</span> <span class="pre">verbatimStop,</span> <span class="pre">verbatim,</span> <span class="pre">symbol,</span> <span class="pre">punctuation,</span> <span class="pre">number,</span> <span class="pre">generalArg,</span> <span class="pre">defArgNumber,</span> <span class="pre">optionalArgDefinition,</span> <span class="pre">definition,</span> <span class="pre">defWidth,</span> <span class="pre">labelRefList,</span> <span class="pre">specialArg,</span> <span class="pre">newTheorem,</span> <span class="pre">newBibItem,</span> <span class="pre">formula,</span> <span class="pre">overlay,</span> <span class="pre">overlayRegion</span></code><br><br>This method returns false on error. This could happen in one of the following cases:<br>-    lineNr is outside of the range of valid line numbers (negative or greater or equal to the number of document lines).<br>-    The parser has not finished parsing the specified line yet.<br>-    The currently open file is not a TeX file.</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.document().lineCount()</p></td>
 <td><p>Returns the number of lines</p></td>
 </tr>
-<tr class="row-even"><td><p>editor.document().visualLineCount()</p></td>
+<tr class="row-odd"><td><p>editor.document().visualLineCount()</p></td>
 <td><p>Returns the number of visual lines (counting wrapped lines)</p></td>
 </tr>
-<tr class="row-odd"><td><p><s>editor.document().cursor(line, [column = 0], [lineTo = -1],[columnTo = length of lineTo])</s></p></td>
+<tr class="row-even"><td><p><s>editor.document().cursor(line, [column = 0], [lineTo = -1],[columnTo = length of lineTo])</s></p></td>
 <td><p>Unsupported in txs 4.x. Use new QDocumentCursor(…) instead, see section cursor.</p></td>
 </tr>
-<tr class="row-even"><td><p>editor.document().text([removeTrailing = false], [preserveIndent = true])</p></td>
+<tr class="row-odd"><td><p>editor.document().text([removeTrailing = false], [preserveIndent = true])</p></td>
 <td><p>Returns the complete text of the document</p></td>
 </tr>
-<tr class="row-odd"><td><p>editor.document().textLines()</p></td>
+<tr class="row-even"><td><p>editor.document().textLines()</p></td>
 <td><p>Returns an array of all text lines</p></td>
 </tr>
-<tr class="row-even"><td><p>editor.document().lineEndingString()</p></td>
+<tr class="row-odd"><td><p>editor.document().lineEndingString()</p></td>
 <td><p>Returns a string containing the ending of a line (\n or \n\r)</p></td>
 </tr>
-<tr class="row-odd"><td><p><s>editor.document().getLineTokens(lineNr)</s></p></td>
+<tr class="row-even"><td><p><s>editor.document().getLineTokens(lineNr)</s></p></td>
 <td><p>Unsupported in txs 4.x.</p></td>
 </tr>
-<tr class="row-even"><td><p>editor.document().canUndo()</p></td>
+<tr class="row-odd"><td><p>editor.document().canUndo()</p></td>
 <td><p>Returns true if undo is possible</p></td>
 </tr>
-<tr class="row-odd"><td><p>editor.document().canRedo()</p></td>
+<tr class="row-even"><td><p>editor.document().canRedo()</p></td>
 <td><p>Returns true if redo is possible</p></td>
 </tr>
-<tr class="row-even"><td><p>editor.document().expand(lineNr)</p></td>
+<tr class="row-odd"><td><p>editor.document().expand(lineNr)</p></td>
 <td><p>Unfold the line in editor</p></td>
 </tr>
-<tr class="row-odd"><td><p>editor.document().collapse(lineNr)</p></td>
+<tr class="row-even"><td><p>editor.document().collapse(lineNr)</p></td>
 <td><p>Fold the line in editor</p></td>
 </tr>
-<tr class="row-even"><td><p>editor.document().expandParents(lineNr)</p></td>
+<tr class="row-odd"><td><p>editor.document().expandParents(lineNr)</p></td>
 <td><p>Expand all parents of the line until it is visible</p></td>
 </tr>
-<tr class="row-odd"><td><p>editor.document().foldBlockAt(bool unFold, lineNr);</p></td>
+<tr class="row-even"><td><p>editor.document().foldBlockAt(bool unFold, lineNr);</p></td>
 <td><p>Collapses or expands the first block before lineNr</p></td>
 </tr>
-<tr class="row-even"><td><p>editor.document().getMasterDocument();</p></td>
+<tr class="row-odd"><td><p>editor.document().getMasterDocument();</p></td>
 <td><p>Returns the open document which directly includes this document</p></td>
 </tr>
-<tr class="row-odd"><td><p><s>editor.document().getTopMasterDocument();</s></p></td>
+<tr class="row-even"><td><p><s>editor.document().getTopMasterDocument();</s></p></td>
 <td><p><em>Deprecated:</em> Use getRootDocument() instead</p></td>
 </tr>
-<tr class="row-even"><td><p>editor.document().getRootDocument();</p></td>
+<tr class="row-odd"><td><p>editor.document().getRootDocument();</p></td>
 <td><p>Returns the open document which indireclty includes this document and is not itself included by any other document</p></td>
 </tr>
-<tr class="row-odd"><td><p>editor.document().getMagicComment(name);</p></td>
+<tr class="row-even"><td><p>editor.document().getMagicComment(name);</p></td>
 <td><p>Returns the content of a magic comment, if it exists</p></td>
 </tr>
-<tr class="row-even"><td><p>editor.document().updateMagicComment(name, value, [create = false]);</p></td>
+<tr class="row-odd"><td><p>editor.document().updateMagicComment(name, value, [create = false]);</p></td>
 <td><p>Changes a magic comment</p></td>
 </tr>
-<tr class="row-odd"><td><p>editor.document().labelItems/refItems/bibItems</p></td>
+<tr class="row-even"><td><p>editor.document().labelItems/refItems/bibItems</p></td>
 <td><p>Returns the ids of all labels/references or included bibliography files.</p></td>
 </tr>
-<tr class="row-even"><td><p>editor.document().getLastEnvName(lineNr)</p></td>
+<tr class="row-odd"><td><p>editor.document().getLastEnvName(lineNr)</p></td>
 <td><p>Returns the name of the current environment (at the end of the line).</p></td>
 </tr>
-<tr class="row-odd"><td><p>documentManager.currentDocument</p></td>
+<tr class="row-even"><td><p>documentManager.currentDocument</p></td>
 <td><p>Current document (usually the same as editor.document(), unless the script is running in background mode)</p></td>
 </tr>
-<tr class="row-even"><td><p>documents.masterDocument</p></td>
+<tr class="row-odd"><td><p>documents.masterDocument</p></td>
 <td><p>Master document if defined</p></td>
 </tr>
-<tr class="row-odd"><td><p>[documentManager.]documents</p></td>
+<tr class="row-even"><td><p>[documentManager.]documents</p></td>
 <td><p>Array of all open documents</p></td>
 </tr>
-<tr class="row-even"><td><p>documentManager.findDocument(fileName)</p></td>
+<tr class="row-odd"><td><p>documentManager.findDocument(fileName)</p></td>
 <td><p>Returns the open document with a certain file name</p></td>
 </tr>
-<tr class="row-odd"><td><p>documentManager.singleMode()</p></td>
+<tr class="row-even"><td><p>documentManager.singleMode()</p></td>
 <td><p>Returns true if there is no explicit master document</p></td>
 </tr>
-<tr class="row-even"><td><p><s>documentManager.</s> <s>getMasterDocumentForDoc(document)</s></p></td>
+<tr class="row-odd"><td><p><s>documentManager.</s> <s>getMasterDocumentForDoc(document)</s></p></td>
 <td><p><em>Deprecated:</em> Use getRootDocumentForDoc(document) instead</p></td>
 </tr>
-<tr class="row-odd"><td><p>documentManager. getRootDocumentForDoc(document)</p></td>
+<tr class="row-even"><td><p>documentManager. getRootDocumentForDoc(document)</p></td>
 <td><p>Returns the open document (possibly indirectly) including the given document</p></td>
 </tr>
-<tr class="row-even"><td><p>documentManager.findFileFromBibId(id)</p></td>
+<tr class="row-odd"><td><p>documentManager.findFileFromBibId(id)</p></td>
 <td><p>Returns the file name of the bib file containing an entry with the given id</p></td>
 </tr>
-<tr class="row-odd"><td><p>new QDocumentCursor(editor.document(),line, [column = 0], [lineTo = -1], [columnTo = length of lineTo])</p></td>
+<tr class="row-even"><td><p>new QDocumentCursor(editor.document(),line, [column = 0], [lineTo = -1], [columnTo = length of lineTo])</p></td>
 <td><p>Returns a cursor object. If lineTo is given the cursor has a selection from line:column to lineTo:columnTo, otherwise not.</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.atEnd()</p></td>
+<tr class="row-odd"><td><p>cursor.atEnd()</p></td>
 <td><p>returns whether the cursor is at the end of the document</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.atStart()</p></td>
+<tr class="row-even"><td><p>cursor.atStart()</p></td>
 <td><p>returns whether the cursor is at the start of the document</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.atBlockEnd()</p></td>
+<tr class="row-odd"><td><p>cursor.atBlockEnd()</p></td>
 <td><p>returns whether the cursor is at the end of a block</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.atBlockStart()</p></td>
+<tr class="row-even"><td><p>cursor.atBlockStart()</p></td>
 <td><p>returns whether the cursor is at the start of a block</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.atLineEnd()</p></td>
+<tr class="row-odd"><td><p>cursor.atLineEnd()</p></td>
 <td><p>returns whether the cursor is at the end of a line</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.atLineStart()</p></td>
+<tr class="row-even"><td><p>cursor.atLineStart()</p></td>
 <td><p>returns whether the cursor is at the start of a line</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.hasSelection()</p></td>
+<tr class="row-odd"><td><p>cursor.hasSelection()</p></td>
 <td><p>return whether the cursor has a selection</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.lineNumber()</p></td>
+<tr class="row-even"><td><p>cursor.lineNumber()</p></td>
 <td><p>returns the line number of the cursor</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.columnNumber()</p></td>
+<tr class="row-odd"><td><p>cursor.columnNumber()</p></td>
 <td><p>returns the column of the cursor</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.anchorLineNumber()</p></td>
+<tr class="row-even"><td><p>cursor.anchorLineNumber()</p></td>
 <td><p>returns the line number of the anchor.</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.anchorColumnNumber()</p></td>
+<tr class="row-odd"><td><p>cursor.anchorColumnNumber()</p></td>
 <td><p>returns the column of the anchor.</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.shift(int offset)</p></td>
+<tr class="row-even"><td><p>cursor.shift(int offset)</p></td>
 <td><p>Shift cursor position (text column) by a number of columns (characters)</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.setPosition(int pos, MoveMode m = MoveAnchor)</p></td>
+<tr class="row-odd"><td><p>cursor.setPosition(int pos, MoveMode m = MoveAnchor)</p></td>
 <td><p>set the cursor position after pos-characters counted from document start (very slow)</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.movePosition(int offset, MoveOperation op = NextCharacter, MoveMode m = MoveAnchor);</p></td>
+<tr class="row-even"><td><p>cursor.movePosition(int offset, MoveOperation op = NextCharacter, MoveMode m = MoveAnchor);</p></td>
 <td><p>move cursor <em>offset</em> times. MoveOperations may be: <br>-   cursorEnums.NoMove<br>-   cursorEnums.Up<br>-   cursorEnums.Down<br>-   cursorEnums.Left<br>-   cursorEnums.PreviousCharacter = Left<br>-   cursorEnums.Right<br>-   cursorEnums.NextCharacter = Right<br>-   cursorEnums.Start<br>-   cursorEnums.StartOfLine<br>-   cursorEnums.StartOfBlock = StartOfLine<br>-   cursorEnums.StartOfWord<br>-   cursorEnums.StartOfWordOrCommand<br>-   cursorEnums.PreviousBlock<br>-   cursorEnums.PreviousLine = PreviousBlock<br>-   cursorEnums.PreviousWord<br>-   cursorEnums.WordLeft<br>-   cursorEnums.WordRight<br>-   cursorEnums.End<br>-   cursorEnums.EndOfLine<br>-   cursorEnums.EndOfBlock = EndOfLine<br>-   cursorEnums.EndOfWord<br>-   cursorEnums.EndOfWordOrCommand<br>-   cursorEnums.NextWord<br>-   cursorEnums.NextBlock<br>-   cursorEnums.NextLine = NextBlock<br><br>Options for MoveMode are:<br><br>-   cursorEnums.MoveAnchor<br>-   cursorEnums.KeepAnchor<br>-   cursorEnums.ThroughWrap</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.moveTo(int line, int column);</p></td>
+<tr class="row-odd"><td><p>cursor.moveTo(int line, int column);</p></td>
 <td><p>move cursor to <em>line</em> and <em>column</em></p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.eraseLine();</p></td>
+<tr class="row-even"><td><p>cursor.eraseLine();</p></td>
 <td><p>remove current line</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.insertLine(bool keepAnchor = false);</p></td>
+<tr class="row-odd"><td><p>cursor.insertLine(bool keepAnchor = false);</p></td>
 <td><p>insert empty line</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.insertText(text, bool keepAnchor = false)</p></td>
+<tr class="row-even"><td><p>cursor.insertText(text, bool keepAnchor = false)</p></td>
 <td><p>insert <em>text</em> text at cursor (this function will ignore indentations and mirrors, see editor.write and editor.insertText)</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.selectedText()</p></td>
+<tr class="row-odd"><td><p>cursor.selectedText()</p></td>
 <td><p>return the selected text</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.clearSelection();</p></td>
+<tr class="row-even"><td><p>cursor.clearSelection();</p></td>
 <td><p>clears selection</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.removeSelectedText();</p></td>
+<tr class="row-odd"><td><p>cursor.removeSelectedText();</p></td>
 <td><p>removes selected text</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.replaceSelectedText(text);</p></td>
+<tr class="row-even"><td><p>cursor.replaceSelectedText(text);</p></td>
 <td><p>replace selected text with <em>text</em></p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.deleteChar();</p></td>
+<tr class="row-odd"><td><p>cursor.deleteChar();</p></td>
 <td><p>removes char right to the cursor</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.deletePreviousChar();</p></td>
+<tr class="row-even"><td><p>cursor.deletePreviousChar();</p></td>
 <td><p>removes char left to the cursor</p></td>
 </tr>
-<tr class="row-even"><td><p>cursor.beginEditBlock();</p></td>
+<tr class="row-odd"><td><p>cursor.beginEditBlock();</p></td>
 <td><p>begins a new edit block. All cursor operations encapsulated in an edit block are undone/redone at once.</p></td>
 </tr>
-<tr class="row-odd"><td><p>cursor.endEditBlock();</p></td>
+<tr class="row-even"><td><p>cursor.endEditBlock();</p></td>
 <td><p>ends an edit block</p></td>
 </tr>
-<tr class="row-even"><td><p>app.getVersion()</p></td>
+<tr class="row-odd"><td><p>app.getVersion()</p></td>
 <td><p>Current version (0xMMmm00)</p></td>
 </tr>
-<tr class="row-odd"><td><p>app.clipboard</p></td>
+<tr class="row-even"><td><p>app.clipboard</p></td>
 <td><p>Property to read/write to the clipboard</p></td>
 </tr>
-<tr class="row-even"><td><p>app.getCurrentFileName()</p></td>
+<tr class="row-odd"><td><p>app.getCurrentFileName()</p></td>
 <td><p>File name of currently edited file</p></td>
 </tr>
-<tr class="row-odd"><td><p>app.getAbsoluteFilePath(rel, ext = “”)</p></td>
+<tr class="row-even"><td><p>app.getAbsoluteFilePath(rel, ext = “”)</p></td>
 <td><p>Converts a relative filename to an absolute one</p></td>
 </tr>
-<tr class="row-even"><td><p>app.load(file)</p></td>
+<tr class="row-odd"><td><p>app.load(file)</p></td>
 <td><p>Loads a file</p></td>
 </tr>
-<tr class="row-odd"><td><p>app.fileOpen/Save/Close/…/editUndo/…/QuickBuild/…</p></td>
+<tr class="row-even"><td><p>app.fileOpen/Save/Close/…/editUndo/…/QuickBuild/…</p></td>
 <td><p>All menu commands (i.e. all slots in the texstudio.h file). You can view a list of all currently existing slots on the “menu” page of the config dialog.</p></td>
 </tr>
-<tr class="row-even"><td><p>app.completerIsVisible()</p></td>
+<tr class="row-odd"><td><p>app.completerIsVisible()</p></td>
 <td><p>check if completer is visible.</p></td>
 </tr>
-<tr class="row-odd"><td><p>app.newManagedMenu([parent menu,] id, caption)</p></td>
+<tr class="row-even"><td><p>app.newManagedMenu([parent menu,] id, caption)</p></td>
 <td><p>Creates a new menu and returns it</p></td>
 </tr>
-<tr class="row-even"><td><p>app.getManagedMenu(id)</p></td>
+<tr class="row-odd"><td><p>app.getManagedMenu(id)</p></td>
 <td><p>Returns a <a class="reference external" href="https://doc.qt.io/qt-6/qmenu.html">QMenu</a> with a certain id</p></td>
 </tr>
-<tr class="row-odd"><td><p>app.newManagedAction(menu, id, caption)</p></td>
+<tr class="row-even"><td><p>app.newManagedAction(menu, id, caption)</p></td>
 <td><p>Creates a new action and returns it<br><br>-   menu: Parent menu<br>-   id: Id of the new action (the final, unique id will be <em>menu id/action id</em>)<br>-   caption: Visible text<br><br>You can use action.triggered.connect(function(){ … }); to link a function to the returned action (for details see the <a class="reference external" href="https://doc.qt.io/qt-6/signalsandslots.html">qt signal/slot</a> documentation).</p></td>
 </tr>
-<tr class="row-even"><td><p>app.getManagedAction([id])</p></td>
+<tr class="row-odd"><td><p>app.getManagedAction([id])</p></td>
 <td><p>Returns a <a class="reference external" href="https://doc.qt.io/qt-6/qaction.html">QAction</a> with a certain id (all ids have the form main/menu1/menu2/…/menuN/action, with usually one menu, e.g. “main/edit/undo”, see texstudio.cpp)</p></td>
 </tr>
-<tr class="row-odd"><td><p>app.loadManagedMenu(filename)</p></td>
+<tr class="row-even"><td><p>app.loadManagedMenu(filename)</p></td>
 <td><p>load menu structure from an xml-file, same format as uiconfig.xml</p></td>
 </tr>
-<tr class="row-even"><td><p>app.setupToolBars()</p></td>
+<tr class="row-odd"><td><p>app.setupToolBars()</p></td>
 <td><p>recreate toolbars. Call this if a newly created menu is used in the toolbar.</p></td>
 </tr>
-<tr class="row-odd"><td><p>app.createUI(file, [parent])</p></td>
+<tr class="row-even"><td><p>app.createUI(file, [parent])</p></td>
 <td><p>Loads a certain ui file and creates a QWidget* from it</p></td>
 </tr>
-<tr class="row-even"><td><p>app.createUIFromString(string, [parent])</p></td>
+<tr class="row-odd"><td><p>app.createUIFromString(string, [parent])</p></td>
 <td><p>Creates a QWidget* described in the string</p></td>
 </tr>
-<tr class="row-odd"><td><p>app.slowOperationStarted()/slowOperationEnded()</p></td>
+<tr class="row-even"><td><p>app.slowOperationStarted()/slowOperationEnded()</p></td>
 <td><p>Notify txs about the start/end of a slow operation to temporary disable the endless loop detection.</p></td>
 </tr>
-<tr class="row-even"><td><p>app.simulateKeyPress(shortcut)</p></td>
+<tr class="row-odd"><td><p>app.simulateKeyPress(shortcut)</p></td>
 <td><p>Trigger a KeyPress event for the given shortcut, e.g. <code class="docutils literal notranslate"><span class="pre">app.simulateKeyPress(&quot;Shift+Up&quot;)</span></code>. <em>Note</em>: this is mainly intended for shortcuts and navigation. Currently, it does not support all functions of a KeyPress event. In particular, you cannot type any text.</p></td>
 </tr>
-<tr class="row-odd"><td><p>app.aiChat(query)</p></td>
+<tr class="row-even"><td><p>app.aiChat(query)</p></td>
 <td><p>start the ai chat assistant. If query is not empty, query is executed and the result is shown in the chat assistant, like ai query macros, see <a class="reference internal" href="#ai-queries">macro</a></p></td>
 </tr>
-<tr class="row-even"><td><p>new UniversalInputDialog()</p></td>
+<tr class="row-odd"><td><p>new UniversalInputDialog()</p></td>
 <td><p>Creates a new dialog</p></td>
 </tr>
-<tr class="row-odd"><td><p>dialog.add(defaultValue, [description, [id]])</p></td>
+<tr class="row-even"><td><p>dialog.add(defaultValue, [description, [id]])</p></td>
 <td><p>Adds a new variable with the given default value, optional description and id to the dialog; and returns the corresponding qt component. A string default value becomes a QLineEdit, a number a QSpinBox and an array a QComboBox.</p></td>
 </tr>
-<tr class="row-even"><td><p>dialog.get(nr/id)</p></td>
+<tr class="row-odd"><td><p>dialog.get(nr/id)</p></td>
 <td><p>Returns the current value of the nr-th added variable or the variable with a certain id.</p></td>
 </tr>
-<tr class="row-odd"><td><p>dialog.getAll()</p></td>
+<tr class="row-even"><td><p>dialog.getAll()</p></td>
 <td><p>Returns the value of all variables as combined numerical/associative array. You can use returnvalue[i] to get the i-th variable, and returnvalue.id to get the variable with a certain id.</p></td>
 </tr>
-<tr class="row-even"><td><p>dialog.exec()</p></td>
+<tr class="row-odd"><td><p>dialog.exec()</p></td>
 <td><p>Displays the dialog. Returns 1 if the user accepted the dialog, 0 if it was canceled.</p></td>
 </tr>
-<tr class="row-odd"><td><p>dialog.show()</p></td>
+<tr class="row-even"><td><p>dialog.show()</p></td>
 <td><p>Displays the dialog asynchronously.</p></td>
 </tr>
-<tr class="row-even"><td><p><s>UniversalInputDialog([[defaultValue_0, description_0, id_0],[defaultValue_1, description_1, id_1], …])</s></p></td>
+<tr class="row-odd"><td><p><s>UniversalInputDialog([[defaultValue_0, description_0, id_0],[defaultValue_1, description_1, id_1], …])</s></p></td>
 <td><p>Not working in txs 4.0.0. <s>Short form: Creates a new dialog, adds all variables of the array and call exec on it.</s></p></td>
 </tr>
-<tr class="row-odd"><td><p>fileChooser.exec()</p></td>
+<tr class="row-even"><td><p>fileChooser.exec()</p></td>
 <td><p>show dialog and wait until it is closed again</p></td>
 </tr>
-<tr class="row-even"><td><p>fileChooser.setDir(dir)</p></td>
+<tr class="row-odd"><td><p>fileChooser.setDir(dir)</p></td>
 <td><p>set directory in the dialog to <em>dir</em></p></td>
 </tr>
-<tr class="row-odd"><td><p>fileChooser.setFilter(filter)</p></td>
+<tr class="row-even"><td><p>fileChooser.setFilter(filter)</p></td>
 <td><p>set file filter to <em>filter</em>, using the QT-format, see above</p></td>
 </tr>
-<tr class="row-even"><td><p>fileChooser.fileName()</p></td>
+<tr class="row-odd"><td><p>fileChooser.fileName()</p></td>
 <td><p>return selected filename (after exec)</p></td>
 </tr>
 </tbody>
