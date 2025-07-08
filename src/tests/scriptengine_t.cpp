@@ -248,7 +248,7 @@ void ScriptEngineTest::getLineTokens(void)
 	eng.setScript(
 		QString(
 			"tlExpected = JSON.stringify(%2);"
-			"tlActual = JSON.stringify(editor.document().getLineTokens(%1));"
+            "tlActual = JSON.stringify(editor.getLineTokens(%1));"
 			"if (tlExpected !== tlActual) {"
 				"throw ('Wrong tokens list. Expected ' + tlExpected + ', got ' + tlActual);"
 			"}"
