@@ -43,6 +43,7 @@ public:
 	static QList<Macro> *macros;
 
 protected slots:
+    QJSValue getLineTokens(int lineNr);
     void insertSnippet(const QString& arg);
     QJSValue replaceSelectedText(QJSValue replacementText,QJSValue options=QJSValue());
     QJSValue searchFunction(QJSValue searchFor, QJSValue arg1=QJSValue(), QJSValue arg2=QJSValue(), QJSValue arg3=QJSValue());

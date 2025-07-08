@@ -243,6 +243,7 @@ void scriptengine::run(const bool quiet)
 		QQmlEngine::setObjectOwnership(m_editor, QQmlEngine::CppOwnership);
 		editorValue.setProperty("cutBuffer", m_editor->cutBuffer);
 		editorValue.setProperty("insertSnippet", scriptJS.property("insertSnippet"));
+        editorValue.setProperty("getLineTokens", scriptJS.property("getLineTokens"));
 		editorValue.setProperty("replaceSelectedText", scriptJS.property("replaceSelectedText"));
 		editorValue.setProperty("search", scriptJS.property("searchFunction"));
 		editorValue.setProperty("replace", scriptJS.property("replaceFunction"));
@@ -268,6 +269,8 @@ void scriptengine::run(const bool quiet)
     QJSValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
     engine->globalObject().setProperty("cursorEnums", qsMetaObject);
     engine->globalObject().setProperty("QDocumentCursor", qsMetaObject);
+    qsMetaObject = engine->newQMetaObject(&EnumsTokenType::staticMetaObject);
+    engine->globalObject().setProperty("latexTokenType", qsMetaObject);
 
 	QJSValue uidClass = engine->newQMetaObject(&UniversalInputDialogScript::staticMetaObject);
 	engine->globalObject().setProperty("UniversalInputDialog", uidClass);
@@ -314,6 +317,39 @@ void scriptengine::insertSnippet(const QString& arg)
 		cs.insertAt(m_editor, &c);
 	}
 }
+
+QJSValue scriptengine::getLineTokens(int lineNr)
+{
+    if (!m_editor) return QJSValue(false);;
+    QDocument *document = m_editor->document();
+    if ((lineNr < 0) || (lineNr >= document->lineCount())) {
+        return QJSValue(false);
+    }
+    QDocumentLineHandle *dlh = document->line(lineNr).handle();
+    QVariant cookie = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE);
+    if (cookie.isValid() == false) {
+        return QJSValue(false);
+    }
+    if (cookie.canConvert<TokenList>() == false) {
+        return QJSValue(false);
+    }
+    TokenList tlNative = cookie.value<TokenList>();
+    QJSValue tlJs = engine->newArray(tlNative.size());
+    int tokenNum = 0;
+    foreach(const Token &tokenNative, tlNative) {
+        QJSValue tokenJs = engine->newObject();
+        tokenJs.setProperty("type", tokenNative.type);
+        tokenJs.setProperty("subtype", tokenNative.subtype);
+        tokenJs.setProperty("startColumn", tokenNative.start);
+        tokenJs.setProperty("level", tokenNative.level);
+        tokenJs.setProperty("text", tokenNative.getText());
+        tlJs.setProperty(tokenNum, tokenJs);
+        ++tokenNum;
+    }
+    return tlJs;
+}
+
+
 
 #if ( QT_VERSION >= QT_VERSION_CHECK(5,12,0) )
     #define SCRIPT_ASSERT(condition,message)                     \
