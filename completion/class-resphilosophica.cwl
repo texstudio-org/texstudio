@@ -1,12 +1,11 @@
 # resphilosophica class
-# Matthew Bertucci 3/28/2022 for v1.35
+# Matthew Bertucci 2025/07/09 for v1.38
 
 #include:xkeyval
 #include:class-amsart
 #include:microtype
 #include:fancyhdr
 #include:xcolor
-#include:lastpage
 #include:collect
 #include:footmisc
 #include:hyperref
