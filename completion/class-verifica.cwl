@@ -1,5 +1,5 @@
 # verifica class
-# Matthew Bertucci 2022/06/12 for v1.3
+# Matthew Bertucci 2025/07/09 for v2.0
 
 #include:enumitem
 # loads shortlabels and inline options of enumitem
@@ -16,6 +16,7 @@
 #include:tabto
 #include:tabularx
 #include:lineno
+#include:tikz
 #include:eurosym
 #include:bm
 
@@ -112,6 +113,12 @@ senzagrazie
 \vf
 \vfitem{testo%text}
 \Z#m
+\gridsize#S
+\gridwidth#S
+\desiredHeight#S
+\gridheight#S
+\drawgrid{altezza griglia}
+\drawgrid[dimensione quadretto]{altezza griglia}
 
 #keyvals:\begin{test-vf},\begin{test-verofalso}
 fattorevf=%<fattore%>
