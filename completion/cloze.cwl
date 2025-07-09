@@ -1,5 +1,5 @@
 # cloze package
-# Matthew Bertucci 2025/07/04 for v2.0.0
+# Matthew Bertucci 2025/07/09 for v2.0.0
 
 #include:luatex
 #include:setspace
@@ -64,9 +64,12 @@ extension_width=##L
 show
 hide
 distance=##L
-linecolor=#%color
-textcolor=#%color
+line_color=#%color
+text_color=#%color
 thickness=##L
+debug
+font=%<font commands%>
+visibility#true,false
 #endkeyvals
 
 #keyvals:\clozefix,\clozeset
@@ -78,13 +81,13 @@ width=##L
 #endkeyvals
 
 #keyvals:\begin{clozepar},\clozeparplain,\clozeset
-minlines=%<integer%>
+min_lines=%<integer%>
 #endkeyvals
 
 #keyvals:\begin{clozebox},\begin{clozebox}*,\clozeset
-boxheight=##L
-boxrule=##L
-boxwidth=##L
+box_height=##L
+box_rule=##L
+box_width=##L
 #endkeyvals
 
 #keyvals:\cloze,\clozefix,\clozenol,\clozefil,\clozeset
@@ -97,6 +100,12 @@ spacing=%<number%>
 
 #keyvals:\cloze,\clozenol,\clozeset
 spread=%<number%>
+#endkeyvals
+
+#keyvals:\clozeset
+extend_count=%<integer%>
+extend_height=##L
+extend_width=##L
 #endkeyvals
 
 \clozefont#*
