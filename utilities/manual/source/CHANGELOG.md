@@ -4,6 +4,7 @@
 - improve handling tblr env for table manipulation
 - provide win-arm build
 - small bug fixes
+- implement macro function editor.getLineTokens, see [#4111](https://github.com/texstudio-org/texstudio/issues/4111)
 
 ## TeXstudio 4.8.7
 
