@@ -1,5 +1,5 @@
 # skins tcolorboxlibrary
-# 2025/06/04 for v6.6.0
+# 2025/07/09 for v6.7.1
 
 #include:tikzfill.image
 
@@ -7,6 +7,7 @@
 tcb fill frame
 tcb fill interior
 tcb fill title
+tcb fill lower bicolor
 #endkeyvals
 
 \tcboxedtitlewidth#L
@@ -278,7 +279,11 @@ extend freelancemiddle={%<options%>}
 extend freelancelast={%<options%>}
 only=<%<overlay spec%>>{%<options%>}
 alt=<%<overlay spec%>>{%<default%>}{%<alternative%>}
+set alt={%<default%>}{%<alternative%>}
+use alt=<%<overlay spec%>>
 temporal=<%<overlay spec%>>{%<before slide%>}{%<default%>}{%<after slide%>}
+set temporal={%<before slide%>}{%<default%>}{%<after slide%>}
+use temporal=<%<overlay spec%>>
 hide=<%<overlay spec%>>
 beamer hidden/.style={%<options%>}
 alert=<%<overlay spec%>>
