@@ -1279,7 +1279,7 @@ select.encoding=#off
 #repl:"> »
 #endif
 
-### french.ldf v4.0a (and associated acadian.ldf) ###
+### french.ldf v4.0b (and associated acadian.ldf) ###
 #ifOption:french
 \frenchsetup{options%keyvals}
 \frenchbsetup{options%keyvals}#S
@@ -1430,6 +1430,8 @@ TocPartFullName#true,false
 \ifFBLowercaseSuperscripts#*
 \ifFBOriginalTypewriter#*
 \ifFBPartNameFull#*
+\ifFBnewlists#*
+\ifFBnewfootnotes#*
 \ifFBTocPartNameFull#*
 \ifFBShowOptions#*
 \ifFBSmallCapsFigTabCaptions#*
@@ -1450,6 +1452,7 @@ TocPartFullName#true,false
 \leftmarginFB#*
 \listfigurename#*
 \listindentFB#*
+\newfootnotemarkFB#*
 \No
 \no
 \NoAutoSpaceBeforeFDP#*
@@ -1640,6 +1643,8 @@ TocPartFullName#true,false
 \ifFBLowercaseSuperscripts#*
 \ifFBOriginalTypewriter#*
 \ifFBPartNameFull#*
+\ifFBnewlists#*
+\ifFBnewfootnotes#*
 \ifFBTocPartNameFull#*
 \ifFBShowOptions#*
 \ifFBSmallCapsFigTabCaptions#*
@@ -1660,6 +1665,7 @@ TocPartFullName#true,false
 \leftmarginFB#*
 \listfigurename#*
 \listindentFB#*
+\newfootnotemarkFB#*
 \No
 \no
 \NoAutoSpaceBeforeFDP#*
