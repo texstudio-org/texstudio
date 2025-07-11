@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.8.9
+
+- 
+
 ## TeXstudio 4.8.8
 
 - improve handling tblr env for table manipulation
