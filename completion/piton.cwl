@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2025/06/19 for v4.6
+# Matthew Bertucci 2025/07/09 for v4.7
 
 #include:luacode
 #include:xcolor
@@ -120,6 +120,8 @@ max-width=##L
 path-write=%<path%>
 print#true,false
 prompt-background-color=#%color
+rounded-corners
+rounded-corners=##L
 show-spaces
 show-spaces-in-strings
 split-on-empty-lines#true,false

@@ -1,27 +1,27 @@
 # l3draw package
-# Matthew Bertucci 2025/05/19
+# Matthew Bertucci 2025/06/30
 
-\draw_baseline:n {%<⟨length⟩%>}#/%expl3
+\draw_set_baseline:n {%<⟨length⟩%>}#/%expl3
 \draw_begin:#/%expl3
 \draw_box_use:N %<⟨box⟩%>#/%expl3
 \draw_box_use:Nn %<⟨box⟩%> {%<⟨point⟩%>}#/%expl3
-\draw_cap_butt:#/%expl3
-\draw_cap_rectangle:#/%expl3
-\draw_cap_round:#/%expl3
+\draw_set_cap_butt:#/%expl3
+\draw_set_cap_rectangle:#/%expl3
+\draw_set_cap_round:#/%expl3
 \draw_coffin_use:Nnn %<⟨coffin⟩%> {%<⟨hpole⟩%>} {%<⟨vpole⟩%>}#/%expl3
 \draw_coffin_use:Nnnn %<⟨coffin⟩%> {%<⟨hpole⟩%>} {%<⟨vpole⟩%>} {%<⟨point⟩%>}#/%expl3
-\draw_dash_pattern:nn {%<⟨pattern⟩%>} {%<⟨phase⟩%>}#/%expl3
+\draw_set_dash_pattern:nn {%<⟨pattern⟩%>} {%<⟨phase⟩%>}#/%expl3
 \draw_end:#/%expl3
-\draw_evenodd_rule:#/%expl3
-\draw_join_bevel:#/%expl3
-\draw_join_miter:#/%expl3
-\draw_join_round:#/%expl3
+\draw_set_evenodd_rule:#/%expl3
+\draw_set_join_bevel:#/%expl3
+\draw_set_join_miter:#/%expl3
+\draw_set_join_round:#/%expl3
 \draw_layer_begin:n {%<⟨layer⟩%>}#/%expl3
 \draw_layer_end:#/%expl3
 \draw_layer_new:n {%<⟨layer⟩%>}#/%expl3
-\draw_linewidth:n {%<⟨width⟩%>}#/%expl3
-\draw_miterlimit:n {%<⟨factor⟩%>}#/%expl3
-\draw_nonzero_rule:#/%expl3
+\draw_set_linewidth:n {%<⟨width⟩%>}#/%expl3
+\draw_set_miterlimit:n {%<⟨factor⟩%>}#/%expl3
+\draw_set_nonzero_rule:#/%expl3
 \draw_path_arc:nnn {%<⟨angle1⟩%>} {%<⟨angle2⟩%>} {%<⟨radius⟩%>}#/%expl3
 \draw_path_arc:nnnn {%<⟨angle1⟩%>} {%<⟨angle2⟩%>} {%<⟨radius-a⟩%>} {%<⟨radius-b⟩%>}#/%expl3
 \draw_path_arc_axes:nnn {%<⟨angle1⟩%>} {%<⟨angle2⟩%>} {%<⟨vector1⟩%>} {%<⟨vector2⟩%>}#/%expl3

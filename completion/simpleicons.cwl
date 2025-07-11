@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/06/28 for v15.3.0
+# Matthew Bertucci 2025/07/07 for v15.4.0
 
 #include:iftex
 
@@ -397,6 +397,7 @@ bower
 box
 boxysvg
 braintree
+braintrust
 brandfetch
 brandfolder
 brave
@@ -781,6 +782,7 @@ dogecoin
 doi
 dolby
 dolibarr
+dolphin
 doordash
 dota2
 dotenv
@@ -871,6 +873,7 @@ emlakjet
 endeavouros
 enpass
 ens
+ente
 enterprisedb
 envato
 envoyproxy
@@ -1186,6 +1189,7 @@ googletasks
 googletranslate
 googletv
 gotomeeting
+gplv3
 grab
 gradio
 gradle
@@ -1683,6 +1687,7 @@ lotpolishairlines
 lottiefiles
 ltspice
 lua
+luau
 lubuntu
 lucia
 lucid
@@ -3102,6 +3107,7 @@ viber
 viblo
 victoriametrics
 victronenergy
+vikunja
 vim
 vimeo
 vimeolivestream
@@ -3269,6 +3275,7 @@ yaml
 yandexcloud
 yarn
 ycombinator
+yaak
 yelp
 yeti
 yii

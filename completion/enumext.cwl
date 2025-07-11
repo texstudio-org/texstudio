@@ -1,5 +1,5 @@
 # enumext package
-# Matthew Bertucci 2025/06/12 for v1.5
+# Matthew Bertucci 2025/07/09 for v1.6
 
 #include:multicol
 
@@ -22,7 +22,12 @@
 \setenumext{keyvals}
 \setenumext[type,levels]{keyvals}
 \setenumextmeta{key name%specialDef}{keyvals}#s#%enumextmetakey
-\setenumextmeta[type,levels]{key name%specialDef}{keyvals}#s#%enumextmetakey
+\setenumextmeta[level]{key name%specialDef}{keyvals}#s#%enumextmetakey
+\setenumextmeta*{key name%specialDef}{keyvals}#s#%enumextmetakey
+
+\resetenumext{counter}
+\resetenumext[level]{counter}
+\resetenumext*{counter}
 
 \miniright
 
@@ -70,13 +75,13 @@
 
 \itemwidth#L
 
-#keyvals:\begin{enumext},\begin{enumext*},\setenumext,\setenumextmeta,\printkeyans,\printkeyans*
+#keyvals:\begin{enumext},\begin{enumext*},\setenumext,\setenumextmeta,\setenumextmeta*,\printkeyans,\printkeyans*
 item-sym*=%<symbol%>
 item-pos*=##L
 %enumextmetakey
 #endkeyvals
 
-#keyvals:\begin{enumext},\begin{enumext*},\setenumext,\setenumextmeta,\begin{keyans},\begin{keyans*},\printkeyans,\printkeyans*
+#keyvals:\begin{enumext},\begin{enumext*},\setenumext,\setenumextmeta,\setenumextmeta*,\begin{keyans},\begin{keyans*},\printkeyans,\printkeyans*
 mode-box
 label=%<code%>
 labelsep=##L
@@ -121,11 +126,14 @@ mini-sep=##L
 
 #keyvals:\begin{enumext},\begin{enumext*}
 series=%<series name%>
+resume
 resume=%<series name%>
 resume*
+reset
+reset*
 #endkeyvals
 
-#keyvals:\begin{enumext},\begin{enumext*},\setenumext,\setenumextmeta,\printkeyans,\printkeyans*
+#keyvals:\begin{enumext},\begin{enumext*},\setenumext,\setenumextmeta,\setenumextmeta*,\printkeyans,\printkeyans*
 save-ans=%<store name%>
 save-key={%<key list%>}
 save-sep={%<text symbol%>}

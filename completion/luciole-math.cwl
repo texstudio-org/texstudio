@@ -1,10 +1,11 @@
 # luciole-math package
-# Matthew Bertucci 2025/03/29 for v0.40
+# Matthew Bertucci 2025/07/09 for v0.50
 
 #include:iftex
 #include:unicode-math
 
 #keyvals:\usepackage/luciole-math#c
+no-logos
 Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle,OldStyleOff,Proportional,ProportionalOff,Monospaced,MonospacedOff,SlashedZero,SlashedZeroOff,Arabic,ArabicOff,ResetAll
 math-style=#ISO,TeX,french,upright
 bold-style=#ISO,TeX,upright

@@ -2,7 +2,7 @@
 # commands for biblatex users
 # tbraun, 19.08.2009
 # dbitouze, 14.02.2012
-# Matthew Bertucci 03.23.2024 for v3.20
+# Matthew Bertucci 2025/07/10 for v3.21
 
 #include:pdftexcmds
 #include:etoolbox
@@ -67,6 +67,7 @@ backrefstyle=#none,three,two,two+,three+,all+
 backrefsetstyle=#setonly,memonly,setormem,setandmem,memandset,setplusmem
 backreffloats#true,false
 indexing=#true,false,cite,bib
+citepagerange=#normalized,2sq,3sqq,allsqq,compressed
 loadfiles#true,false
 refsection=#none,part,chapter,chapter+,section,section+,subsection,subsection+
 refsegment=#none,part,chapter,chapter+,section,section+,subsection,subsection+
@@ -1898,6 +1899,18 @@ override#true,false
 \mknormrange*{text}#*
 \mknormrange*[postpro]{text}#*
 \mknormrange*[postpro][itempostpro]{text}#*
+\mkseqrange{text}#*
+\mkseqrange[postpro]{text}#*
+\mkseqrange[postpro][itempostpro]{text}#*
+\mkseqrange*{text}#*
+\mkseqrange*[postpro]{text}#*
+\mkseqrange*[postpro][itempostpro]{text}#*
+\mkautorange{text}#*
+\mkautorange[postpro]{text}#*
+\mkautorange[postpro][itempostpro]{text}#*
+\mkautorange*{text}#*
+\mkautorange*[postpro]{text}#*
+\mkautorange*[postpro][itempostpro]{text}#*
 \mkfirstpage{text}#*
 \mkfirstpage[postpro]{text}#*
 \mkfirstpage[postpro][itempostpro]{text}#*

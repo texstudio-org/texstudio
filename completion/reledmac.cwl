@@ -1,5 +1,5 @@
 # reledmac package
-# Matthew Bertucci 2025/04/14 for v2.40.4
+# Matthew Bertucci 2025/07/07 for v2.41.0
 
 #include:xargs
 #include:etoolbox
@@ -443,6 +443,10 @@ C
 \notefontsizeX[series]{fontsize commands}
 \Xendnotefontsize{fontsize commands}
 \Xendnotefontsize[series]{fontsize commands}
+\Xwrapnumbers{command}
+\Xwrapnumbers[series]{command}
+\Xendwrapnumbers{command}
+\Xendwrapnumbers[series]{command}
 \Xwraplemma{command}
 \Xwraplemma[series]{command}
 \Xwrapendlemma{command}
