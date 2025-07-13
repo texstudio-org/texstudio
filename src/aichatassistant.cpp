@@ -198,7 +198,7 @@ void AIChatAssistant::slotSend()
         }
     }
     if(config->ai_streamResults){
-        dd["stream"] = "True";
+        dd["stream"] = true;
         m_timer=new QTimer();
         m_timer->setInterval(100);
         connect(m_timer,&QTimer::timeout,this,&AIChatAssistant::slotUpdateResults);
