@@ -683,10 +683,13 @@ void ConfigDialog::revertClicked()
  * \brief adapt model list depending on ai provider
  * \param[provider] 0: mistral
  * 1: openai
+ * 2: custom provider
  */
 void ConfigDialog::aiProviderChanged(int provider)
 {
     bool activateCustomURL=false;
+    ui.cbAIPreferredModel->setEditable(true);
+    
     switch(provider){
     case 0:
         ui.cbAIPreferredModel->clear();
@@ -695,6 +698,7 @@ void ConfigDialog::aiProviderChanged(int provider)
         ui.cbAIPreferredModel->addItem("mistral-small-latest");
         ui.cbAIPreferredModel->addItem("mistral-medium-latest");
         ui.cbAIPreferredModel->addItem("mistral-large-latest");
+        ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., open-mistral-7b)");
         break;
     case 1:
         ui.cbAIPreferredModel->clear();
@@ -702,9 +706,11 @@ void ConfigDialog::aiProviderChanged(int provider)
         ui.cbAIPreferredModel->addItem("gpt-3.5-turbo");
         ui.cbAIPreferredModel->addItem("gpt-4");
         ui.cbAIPreferredModel->addItem("gpt-4o");
+        ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., gpt-4o)");
         break;
     default:
         ui.cbAIPreferredModel->clear();
+        ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., llama-3.3-8B-Instruct)");
         activateCustomURL=true;
         break;
     }
@@ -721,6 +727,8 @@ void ConfigDialog::retrieveModels()
         QString provider=ui.cbAIProvider->currentText();
         QString key=ui.leAIAPIKey->text();
         QString url;
+        bool supportsModelListing = true;
+        
         switch(ui.cbAIProvider->currentIndex()){
         case 0:
             url="https://api.mistral.ai/v1/models";
@@ -763,9 +771,17 @@ void ConfigDialog::modelsRetrieved(QNetworkReply *reply)
             models.append(value.toObject()["id"].toString());
         }
 
-        ui.cbAIPreferredModel->clear();
-        ui.cbAIPreferredModel->addItems(models);
         if(!models.isEmpty()){
+            QString currentText = ui.cbAIPreferredModel->currentText();
+            ui.cbAIPreferredModel->clear();
+            ui.cbAIPreferredModel->addItems(models);
+            ui.cbAIPreferredModel->setEditable(true);
+            
+            // Restore previous selection if it was custom
+            if(!currentText.isEmpty() && !models.contains(currentText)) {
+                ui.cbAIPreferredModel->setCurrentText(currentText);
+            }
+            
             ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
             if (config){
                 config->ai_knownModels=models;
@@ -785,6 +801,7 @@ void ConfigDialog::aiFillInKnownModels()
     if(!config->ai_knownModels.isEmpty()){
         ui.cbAIPreferredModel->clear();
         ui.cbAIPreferredModel->addItems(config->ai_knownModels);
+        ui.cbAIPreferredModel->setEditable(true);
         ui.cbAIPreferredModel->setCurrentText(config->ai_preferredModel);
     }
 }
