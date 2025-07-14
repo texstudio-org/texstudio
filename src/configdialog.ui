@@ -3587,6 +3587,14 @@ them here.</string>
                  <layout class="QGridLayout" name="gl_AIChat" columnstretch="0,0,0,0,0">
                   <item row="3" column="3">
                    <widget class="QComboBox" name="cbAIPreferredModel">
+                    <property name="toolTip">
+                     <string>AI model to use for responses. You can type custom model names for any provider.
+Examples:
+• Perplexity: sonar, sonar-pro, sonar-deep-research  
+• Gemini: gemini-2.5-pro, gemini-2.5-flash
+• Claude: claude-opus-4-0, claude-sonnet-4-0	
+• Local: deepseek-r1, llama3.3</string>
+                    </property>
                     <item>
                      <property name="text">
                       <string>open-mistral-7b</string>
@@ -3649,7 +3657,7 @@ them here.</string>
                     </item>
                     <item>
                      <property name="text">
-                      <string>Local Model</string>
+                      <string>Custom Provider (Remote or Local)</string>
                      </property>
                     </item>
                    </widget>
@@ -3672,7 +3680,16 @@ them here.</string>
                    <widget class="QLineEdit" name="leAIAPIKey"/>
                   </item>
                   <item row="2" column="3">
-                   <widget class="QLineEdit" name="leAIAPIURL"/>
+                   <widget class="QLineEdit" name="leAIAPIURL">
+                    <property name="toolTip">
+                     <string>API endpoint URL for custom providers
+Examples:
+• Perplexity: https://api.perplexity.ai/chat/completions
+• Gemini: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
+• Claude: https://api.anthropic.com/v1/chat/completions
+• Local: http://localhost:8080/v1/chat/completions</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_91">
