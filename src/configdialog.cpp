@@ -727,7 +727,6 @@ void ConfigDialog::retrieveModels()
         QString provider=ui.cbAIProvider->currentText();
         QString key=ui.leAIAPIKey->text();
         QString url;
-        bool supportsModelListing = true;
         
         switch(ui.cbAIProvider->currentIndex()){
         case 0:
