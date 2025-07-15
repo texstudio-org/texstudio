@@ -1176,7 +1176,7 @@ select.encoding=#off
 \glossaryname#*
 #endif
 
-### esperanto.ldf v1.4t ###
+### esperanto.ldf v1.5a ###
 #ifOption:esperanto
 \captionsesperanto#*
 \dateesperanto#*
@@ -1197,6 +1197,7 @@ select.encoding=#off
 \esper{counter}
 \hodiau
 \hodiaun
+\esperantolowhhatadj#*
 #repl:^c ĉ
 #repl:^C Ĉ
 #repl:^g ĝ
