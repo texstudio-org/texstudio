@@ -1,9 +1,14 @@
 # ipsum package
-# Matthew Bertucci 2023/11/09 for v0.1.1
+# Matthew Bertucci 2025/07/15 for v0.1.3
 
+#include:kvoptions
 #include:xstring
 #include:xintexpr
 #include:simplekv
+
+#keyvals:\usepackage/ipsum#c
+lng=#all,{%<languages%>}
+#endkeyvals
 
 \ipsum
 \ipsum[range]
