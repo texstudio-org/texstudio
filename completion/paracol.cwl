@@ -1,6 +1,6 @@
 # mode: paracol.sty
 # denisbitouze, 27.10.2012
-# Matthew Bertucci updated 2024/10/25 for v1.36
+# Matthew Bertucci updated 2025/07/15 for v1.37
 
 \switchcolumn#/paracol
 \switchcolumn[column]#/paracol
@@ -65,8 +65,6 @@
 \columncolor[mode]{color}[column]#n
 \normalcolumncolor#n
 \normalcolumncolor[column]#n
-\coloredwordhyphenated#n
-\nocoloredwordhyphenated#n
 \colseprulecolor{color}#n
 \colseprulecolor{color}[column]#n
 \colseprulecolor[mode]{color}#n
@@ -85,3 +83,7 @@ lof
 lot
 #endkeyvals
 \flushpage#n
+
+# deprecated
+\coloredwordhyphenated#S
+\nocoloredwordhyphenated#S
