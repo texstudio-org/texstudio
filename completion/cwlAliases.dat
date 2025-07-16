@@ -1602,3 +1602,7 @@ scrjrnl:
 class-scrjrnl
 latex-document
 tex
+ltx-talk:
+class-ltx-talk
+latex-document
+tex

@@ -848,6 +848,7 @@
 <file>completion/class-ltxdockit.cwl</file>
 <file>completion/class-ltxguide.cwl</file>
 <file>completion/class-ltxguidex.cwl</file>
+<file>completion/class-ltx-talk.cwl</file>
 <file>completion/class-maabook.cwl</file>
 <file>completion/class-matapli.cwl</file>
 <file>completion/class-mcmthesis.cwl</file>
@@ -2310,6 +2311,7 @@
 <file>completion/luatexja-zhfonts.cwl</file>
 <file>completion/luatexko.cwl</file>
 <file>completion/luatextra.cwl</file>
+<file>completion/lua-tikz3dtools.cwl</file>
 <file>completion/luatikz.cwl</file>
 <file>completion/luatodonotes.cwl</file>
 <file>completion/luatruthtable.cwl</file>
@@ -2620,6 +2622,7 @@
 <file>completion/newverbs.cwl</file>
 <file>completion/nextpage.cwl</file>
 <file>completion/nexus-otf.cwl</file>
+<file>completion/nfssext-cfr.cwl</file>
 <file>completion/ngerman.cwl</file>
 <file>completion/nicefilelist.cwl</file>
 <file>completion/nicefrac.cwl</file>
