@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/07/07 for v15.4.0
+# Matthew Bertucci 2025/07/15 for v15.5.0
 
 #include:iftex
 
@@ -355,6 +355,7 @@ bitrise
 bittorrent
 bitwarden
 bitwig
+black
 blackberry
 blackmagicdesign
 blazemeter
@@ -456,6 +457,7 @@ canvas
 capacitor
 caprover
 cardano
+cardmarket
 carlsberggroup
 carrd
 carrefour
@@ -2124,6 +2126,7 @@ parsedotly
 passport
 pastebin
 patreon
+payback
 paychex
 payhip
 payloadcms
@@ -2476,6 +2479,7 @@ rockwellautomation
 rockylinux
 roku
 roll20
+rollbar
 rollsroyce
 rollupdotjs
 rook

@@ -36,8 +36,8 @@ usenames
 
 \textcolor{color}{text}
 \textcolor[model]{color}{text}
-\mathcolor{color}{math}
-\mathcolor[model]{color}{math}
+\mathcolor{color}{math}#m
+\mathcolor[model]{color}{math}#m
 \pagecolor{color}
 \nopagecolor
 \definecolor{name%specialDef}{model}{color-spec}#s#%color

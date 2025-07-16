@@ -1,5 +1,5 @@
 # isodoc class
-# Matthew Bertucci 11/12/2021 for v1.14
+# Matthew Bertucci 2025/07/15 for v1.16
 
 #include:class-memoir
 #include:xcolor
@@ -10,7 +10,6 @@
 #include:forarray
 #include:longtable
 #include:textpos
-#include:fancyhdr
 #include:hyperref
 #include:memhfixc
 
