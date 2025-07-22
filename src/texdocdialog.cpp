@@ -172,7 +172,7 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
                 langButton->setCheckable(true);
                 buttonGroup.addButton(langButton);
                 ui->languagesLayout->addWidget(langButton);
-                connect(langButton,&QPushButton::toggled,this,[=, this](){
+                connect(langButton,&QPushButton::toggled,this,[=](){
                     ui->packageDescriptions->setHtml(description.text);
                 });
                 langButton->setChecked(true);
