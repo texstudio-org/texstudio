@@ -111,7 +111,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>12</number>
+          <number>8</number>
          </property>
          <widget class="QWidget" name="pageGeneral">
           <layout class="QVBoxLayout">
@@ -143,8 +143,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>825</width>
-                <height>731</height>
+                <width>540</width>
+                <height>478</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout">
@@ -744,8 +744,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>872</width>
-                <height>629</height>
+                <width>571</width>
+                <height>524</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1590,8 +1590,8 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>953</width>
-                <height>568</height>
+                <width>626</width>
+                <height>383</height>
                </rect>
               </property>
               <layout class="QGridLayout">
@@ -2048,9 +2048,9 @@ Then you can select a new shortcut by one of the following ways:
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>1132</width>
-                <height>1853</height>
+                <y>-703</y>
+                <width>1077</width>
+                <height>1261</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2741,31 +2741,45 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                  <property name="title">
                   <string>Additional Search Paths</string>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout71">
-                  <property name="verticalSpacing">
-                   <number>2</number>
-                  </property>
+                 <layout class="QGridLayout" name="gridLayout">
                   <item row="0" column="0">
+                   <widget class="QLabel" name="label_92">
+                    <property name="text">
+                     <string>Input Files:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="lineEditPathInputs"/>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QPushButton" name="pushButtonPathInputs">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../images.qrc">
+                      <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
                    <widget class="QLabel" name="label_62">
                     <property name="text">
                      <string>Bib Files:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1">
+                  <item row="1" column="1">
                    <widget class="QLineEdit" name="lineEditPathBib"/>
                   </item>
-                  <item row="1" column="1">
-                   <widget class="QLineEdit" name="lineEditPathImages"/>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_63">
-                    <property name="text">
-                     <string>Image Files:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
+                  <item row="1" column="2">
                    <widget class="QPushButton" name="pushButtonPathBib">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -2782,7 +2796,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="2">
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_63">
+                    <property name="text">
+                     <string>Image Files:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="lineEditPathImages"/>
+                  </item>
+                  <item row="2" column="2">
                    <widget class="QPushButton" name="pushButtonPathImages">
                     <property name="text">
                      <string/>
@@ -2802,27 +2826,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                   <string>Bi-Di</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_8a">
-                  <item row="0" column="0" colspan="3">
-                   <widget class="QCheckBox" name="checkBoxAutoLRM">
-                    <property name="text">
-                     <string>Automatically insert LRM characters</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0" colspan="3">
-                   <widget class="QCheckBox" name="checkBoxVisualColumnMode">
-                    <property name="text">
-                     <string>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="labelSwitchKeyboardLayout">
-                    <property name="text">
-                     <string>Automatically switch keyboard layout: </string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="2" column="1">
                    <widget class="QCheckBox" name="checkBoxSwitchLanguagesDirection">
                     <property name="text">
@@ -2834,6 +2837,27 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                    <widget class="QCheckBox" name="checkBoxSwitchLanguagesMath">
                     <property name="text">
                      <string>depending on text/math mode</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0" colspan="3">
+                   <widget class="QCheckBox" name="checkBoxVisualColumnMode">
+                    <property name="text">
+                     <string>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0" colspan="3">
+                   <widget class="QCheckBox" name="checkBoxAutoLRM">
+                    <property name="text">
+                     <string>Automatically insert LRM characters</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="labelSwitchKeyboardLayout">
+                    <property name="text">
+                     <string>Automatically switch keyboard layout: </string>
                     </property>
                    </widget>
                   </item>
@@ -3329,8 +3353,8 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
-                <height>999</height>
+                <width>387</width>
+                <height>682</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3999,8 +4023,8 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1146</width>
-                <height>458</height>
+                <width>1094</width>
+                <height>418</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4275,8 +4299,8 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>556</width>
-                <height>645</height>
+                <width>361</width>
+                <height>446</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4778,8 +4802,8 @@ Note: Changing this setting will only affect documents that are opened afterward
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>413</width>
-                <height>204</height>
+                <width>271</width>
+                <height>137</height>
                </rect>
               </property>
               <layout class="QGridLayout">

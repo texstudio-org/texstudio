@@ -203,6 +203,7 @@ public:
     void updateUserMacroShortcuts();
 
 	QString additionalBibPaths;
+    QString additionalInputPaths;
 	QString additionalImagePaths;
 
 	//dictionaries

@@ -488,6 +488,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("Files/CacheStructure", &cacheDocuments, true, &pseudoDialog->checkBoxUseCache);
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	registerOption("Files/Bib Paths", &additionalBibPaths, env.value("BIBINPUTS", ""), &pseudoDialog->lineEditPathBib);
+    registerOption("Files/Input Paths", &additionalInputPaths, env.value("INPUTPATHS", ""), &pseudoDialog->lineEditPathInputs);
 	registerOption("Files/Image Paths", &additionalImagePaths, env.value("TEXINPUTS", ""), &pseudoDialog->lineEditPathImages);
 
 	registerOption("Session/StoreRelativePaths", &sessionStoreRelativePaths, true, &pseudoDialog->checkBoxSessionStoreRelativePaths);

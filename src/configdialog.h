@@ -119,6 +119,7 @@ private slots:
 	void updateDefaultDictSelection(const QString &dictPaths, const QString &newDefault = QString());
 	void browsePathLog();
 	void browsePathBib();
+    void browsePathInputs();
 	void browsePathImages();
 	void browsePathPdf();
 	void browsePathCommands();

@@ -2755,13 +2755,14 @@ int LatexDocument::lineToLineSnapshotLineNumber(const QDocumentLine &line)
 QString LatexDocument::findFileName(QString fname)
 {
 	QString curPath = ensureTrailingDirSeparator(getFileInfo().absolutePath());
+    QStringList additionalInputPaths = ConfigManagerInterface::getInstance()->getOption("Files/Input Paths").toString().split(getPathListSeparator());
 	QString result;
-	if (QFile(getAbsoluteFilePath(fname, ".tex")).exists())
-		result = QFileInfo(getAbsoluteFilePath(fname, ".tex")).absoluteFilePath();
-	if (result.isEmpty() && QFile(getAbsoluteFilePath(curPath + fname, ".tex")).exists())
-		result = QFileInfo(getAbsoluteFilePath(curPath + fname, ".tex")).absoluteFilePath();
-	if (result.isEmpty() && QFile(getAbsoluteFilePath(curPath + fname, "")).exists())
-		result = QFileInfo(getAbsoluteFilePath(curPath + fname, "")).absoluteFilePath();
+    if (QFile(getAbsoluteFilePath(fname, ".tex", additionalInputPaths)).exists())
+        result = QFileInfo(getAbsoluteFilePath(fname, ".tex", additionalInputPaths)).absoluteFilePath();
+    if (result.isEmpty() && QFile(getAbsoluteFilePath(curPath + fname, ".tex", additionalInputPaths)).exists())
+        result = QFileInfo(getAbsoluteFilePath(curPath + fname, ".tex", additionalInputPaths)).absoluteFilePath();
+    if (result.isEmpty() && QFile(getAbsoluteFilePath(curPath + fname, "", additionalInputPaths)).exists())
+        result = QFileInfo(getAbsoluteFilePath(curPath + fname, "", additionalInputPaths)).absoluteFilePath();
 	return result;
 }
 

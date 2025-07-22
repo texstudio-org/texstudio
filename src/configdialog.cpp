@@ -473,6 +473,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 
 	connect(ui.pushButtonPathLog, SIGNAL(clicked()), this, SLOT(browsePathLog()));
 	connect(ui.pushButtonPathBib, SIGNAL(clicked()), this, SLOT(browsePathBib()));
+    connect(ui.pushButtonPathInputs, SIGNAL(clicked()), this, SLOT(browsePathInputs()));
 	connect(ui.pushButtonPathImages, SIGNAL(clicked()), this, SLOT(browsePathImages()));
 	connect(ui.pushButtonPathPdf, SIGNAL(clicked()), this, SLOT(browsePathPdf()));
 	connect(ui.pushButtonPathCommands, SIGNAL(clicked()), this, SLOT(browsePathCommands()));
@@ -897,6 +898,11 @@ void ConfigDialog::browsePathLog()
 void ConfigDialog::browsePathBib()
 {
 	UtilsUi::browse(ui.lineEditPathBib, tr("Search Path .bib Files"), "/", QDir::currentPath(), true);
+}
+
+void ConfigDialog::browsePathInputs()
+{
+    UtilsUi::browse(ui.lineEditPathInputs, tr("Search Path .bib Files"), "/", QDir::currentPath(), true);
 }
 
 void ConfigDialog::browsePathImages()
