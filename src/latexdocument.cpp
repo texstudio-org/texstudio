@@ -3208,10 +3208,44 @@ LatexDocument *LatexDocuments::getRootDocumentForDoc(LatexDocument *doc,bool bre
     return const_cast<LatexDocument *>(current->getRootDocument(nullptr,breakAtSubfileRoot));
 }
 
+static QStringList getSearchPath(const QString &extension) {
+    static QMap<QString, QStringList> kpsePaths;
+    const auto handle_errors = [&](QProcess::ProcessError error, int lineno) {
+        static qint64 silent_until{0};
+        const auto now = QDateTime::currentSecsSinceEpoch();
+        if(now > silent_until) {
+            QString filename{QFileInfo(__FILE__).fileName()};
+            qCritical() << error << "in" << qPrintable(filename) << "at line" << lineno;
+            silent_until = now + 300;
+        }
+        kpsePaths.remove(extension);
+        return QStringList();
+    };
+
+    auto it = kpsePaths.find(extension);
+    if (it == kpsePaths.end()) {
+        it = kpsePaths.insert(extension, QStringList());
+        QProcess kpsewhich;
+        kpsewhich.start("kpsewhich", QStringList() << "-show-path="+extension, QProcess::ReadOnly);
+        if(!kpsewhich.waitForFinished())
+            return handle_errors(kpsewhich.error(), __LINE__);
+        QString path = QString(kpsewhich.readAllStandardOutput()).trimmed();
+        kpsewhich.start("kpsewhich", QStringList() << "-expand-path="+path, QProcess::ReadOnly);
+        if(!kpsewhich.waitForFinished())
+            return handle_errors(kpsewhich.error(), __LINE__);
+        path = QString(kpsewhich.readAllStandardOutput()).trimmed();
+#ifdef Q_OS_WIN
+        path.replace("/", "\\");
+#endif
+        it.value() = path.split(getPathListSeparator());
+    }
+    return it.value();
+}
+
 QString LatexDocument::getAbsoluteFilePath(const QString &relName, const QString &extension, const QStringList &additionalSearchPaths) const
 {
-	QStringList searchPaths;
-    const LatexDocument *rootDoc = getRootDocument(nullptr,true);
+	QStringList searchPaths = getSearchPath(extension);
+	const LatexDocument *rootDoc = getRootDocument(nullptr,true);
 	QString compileFileName = rootDoc->getFileName();
 	if (compileFileName.isEmpty()) compileFileName = rootDoc->getTemporaryFileName();
 	QString fallbackPath;
