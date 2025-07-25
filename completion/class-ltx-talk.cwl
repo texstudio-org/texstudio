@@ -1,5 +1,5 @@
 # ltx-talk class
-# Matthew Bertucci 2025/07/13 for v0.1.0
+# Matthew Bertucci 2025/07/25 for v0.1.4
 
 #include:pdfmanagement
 #include:relsize
@@ -95,10 +95,14 @@ mode=#handout,projector
 \frametitle{text}
 \includegraphics<overlay spec>[options%keyvals]{imagefile}#g
 \includegraphics<overlay spec>{imagefile}#g
+\institute[options%keyvals]{institute%text}#*
+\institute{institute%text}
 \invisible<overlay spec>{text}
 \invisible{text}
 \item<action spec>
 \item<action spec>[label%text]
+\label<overlay spec>{label}#l
+\maketitle[options%keyvals]
 \mathcolor<overlay spec>[model]{color}{math}
 \mathcolor<overlay spec>{color}{math}
 \only<overlay spec>{text}
@@ -107,6 +111,8 @@ mode=#handout,projector
 \onslide<overlay spec>
 \pause
 \pause[overlay spec]
+\subtitle[options%keyvals]{text}#*
+\subtitle{text}
 \temporal<overlay spec>{before slide text%text}{default text%text}{after slide text%text}
 \temporal{before slide text%text}{default text%text}{after slide text%text}
 \textbf<overlay spec>{text}
@@ -143,6 +149,13 @@ tag-slides=%<spec%>
 vertical-alignment=#bottom,center,stretch,top
 #endkeyvals
 
+#keyvals:\maketitle
+element-order=
+frame-style=
+horizontal-alignment=
+vertical-alignment=
+#endkeyvals
+
 # not documented
 \begin{block}{title%text}
 \begin{block}<action spec>{title%text}
@@ -152,14 +165,8 @@ vertical-alignment=#bottom,center,stretch,top
 \insertsection#*
 \insertsubsection#*
 \insertsubsubsection#*
-\institute[options%keyvals]{institute%text}
-\institute{institute%text}
-\label<overlay spec>{label}#l
-\maketitle[options%keyvals]
 \mode<mode spec>{text}
 \mode{text}
-\subtitle[options%keyvals]{text}
-\subtitle{text}
 \thepauses#*
 \theslide#*
 
