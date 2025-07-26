@@ -11423,7 +11423,47 @@ void Texstudio::closeEnvironment()
 			if (beginCol < 0) break;
 			beginCol = text.lastIndexOf(rxBegin, beginCol);
 		}
-	}
+    }
+    // handle closing of delimiter
+    QDocumentLineHandle *dlh = cursor.line().handle();
+    TokenStack ts=Parsing::getContext(dlh,cursor.columnNumber());
+    for(int i=ts.size()-1;i>=0;--i){
+        const Token &tk=ts.at(i);
+        const QList<Token::TokenType> openTypes{Token::openBrace,Token::openBracket,Token::openSquare};
+        if(openTypes.contains(tk.type) ){
+            // close brace
+            QDocumentCursor from, to;
+            QDocumentCursor c = cursor.clone(false);
+            if(dlh==tk.dlh){
+                c.setColumnNumber(tk.start);
+            }else{
+                //starting delimiter sits in a previous line
+                c.setColumnNumber(tk.start);
+                const int ln=edView->getDocument()->indexOf(tk.dlh,cursor.lineNumber()-1);
+                c.setLineNumber(ln);
+            }
+            c.getMatchingPair(from, to);
+            QString endText;
+            switch (tk.type) {
+            case Token::openBrace:
+                endText="}";
+                break;
+            case Token::openSquare:
+                endText="]";
+                break;
+            case Token::openBracket:
+                endText=")";
+                break;
+            default:
+                continue;
+                break;
+            }
+            if (!to.isValid() || to.selectedText() != endText) {
+                cursor.insertText(endText);
+                return;
+            }
+        }
+    }
 
 	// handle previous lines -- based on StackEnvironment / syntax checker
 	// This only works on a succeding line of the \begin{env} statement, not in the same line.
@@ -11435,7 +11475,7 @@ void Texstudio::closeEnvironment()
 	if (lineCount < 1)
 		return;
 	StackEnvironment env_end;
-	QDocumentLineHandle *dlh = edView->document->line(lineCount - 1).handle();
+    dlh = edView->document->line(lineCount - 1).handle();
     QVariant envVar = dlh->getCookieLocked(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
 	if (envVar.isValid())
 		env_end = envVar.value<StackEnvironment>();
