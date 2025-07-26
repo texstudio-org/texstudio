@@ -1,7 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.8.9
 
-- 
+- extend close env to close env or delimiter (alt+return)
 
 ## TeXstudio 4.8.8
 
