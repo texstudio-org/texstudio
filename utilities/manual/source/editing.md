@@ -679,6 +679,10 @@ appears, change `tabular` to `tabularx`.
 You can also double-click on the environment name to activate the mirror-cursor.
 ```
 
+### Close delimiter or environment
+
+With the shortcut Alt+Return, the last open delimiter (e.g. '{' ) or the last open environment will be closed by inserting the corresponding text at the cursor position (e.g '}' in case of an open brace or '\end{...}' in case of an open environment).
+
 ### Cut Buffer
 
 If you select something and then start to type in a command and complete

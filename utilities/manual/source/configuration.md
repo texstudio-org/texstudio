@@ -876,3 +876,19 @@ This is a more interactive approach than choosing SVN revisions directly
 via a menu command, see [here](advanced.md#gitsvn-support).
 
 ![Configure SVN](images/configure_svn.webp)
+
+## Set-up scenarios
+### Separate build folder
+Some users prefer not to clutter the source folder with build files (aux files etc.).
+TexLive,Miktex and TeXstudio support this sceanrio but TeXstudio needs to be configured manually for this.
+
+The following configuration assumes pdflatex as compiler and places all build files in a subfolder "build" which sits in the source folder.
+
+1. add `--output-directory=build` to the pdflatex command (options/commands)
+1. add "build" as additional search folder into log-paths (options/build/build options:log file)
+1. add "build" as additional search folder into pdf-paths (options/build/build options:pdf file)
+
+The resulting configuration should look similar to this:
+![Command configuration](images/conf_commands_outputDirectory.png)
+
+![Build configuration](images/conf_build_outputDirectory.png)
