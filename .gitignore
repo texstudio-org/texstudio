@@ -3,6 +3,7 @@ Makefile
 .obj
 .ui
 .vscode
+.cache
 qrc_*.cpp
 texstudio
 texstudio.pro.user
