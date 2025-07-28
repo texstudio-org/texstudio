@@ -11482,6 +11482,7 @@ void Texstudio::closeEnvironment()
                 break;
             }
             if (!to.isValid() || to.selectedText() != endText) {
+                dlh->document()->clearLanguageMatches();
                 cursor.insertText(endText);
                 return;
             }

@@ -2765,12 +2765,17 @@ Examples:
 • Gemini: gemini-2.5-pro, gemini-2.5-flash
 • Claude: claude-opus-4-0, claude-sonnet-4-0	
 • Local: deepseek-r1, llama3.3</source>
-        <translation type="unfinished"/>
+        <translation>Modelo de IA a usar para respostas. Pode escrever nomes de modelos personalizados para qualquer fornecedor.
+Exemplos:
+• Perplexity: sonar, sonar-pro, sonar-deep-research  
+• Gemini: gemini-2.5-pro, gemini-2.5-flash
+• Claude: claude-opus-4-0, claude-sonnet-4-0	
+• Local: deepseek-r1, llama3.3</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3660"/>
         <source>Custom Provider (Remote or Local)</source>
-        <translation type="unfinished"/>
+        <translation>Fornecedor personalizado (remoto ou local)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3685"/>
@@ -2780,7 +2785,12 @@ Examples:
 • Gemini: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
 • Claude: https://api.anthropic.com/v1/chat/completions
 • Local: http://localhost:8080/v1/chat/completions</source>
-        <translation type="unfinished"/>
+        <translation>URL do endpoint da API para fornecedores personalizados
+Exemplos:
+• Perplexity: https://api.perplexity.ai/chat/completions
+• Gemini: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
+• Claude: https://api.anthropic.com/v1/chat/completions
+• Local: http://localhost:8080/v1/chat/completions</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4036"/>
@@ -12467,7 +12477,7 @@ Você deseja continuar executando TeXstudio ? Isso pode ocasionar perda de dados
     <message>
         <location filename="../src/texstudio.cpp" line="1190"/>
         <source>Close latest open delimiter or environment</source>
-        <translation type="unfinished"/>
+        <translation>Fechar o último delimitador ou ambiente abertos</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12253"/>
