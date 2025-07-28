@@ -4,14 +4,7 @@
 #pragma once
 #ifndef Header_Debouncer
 #define Header_Debouncer
-
-#include <QObject>
-#include <QPointer>
-#include <QTimer>
-#include <QVariant>
-#include <cassert>
-#include <memory>
-#include <mutex>
+#include "mostQtHeaders.h"
 
 namespace detail {
     /*!
