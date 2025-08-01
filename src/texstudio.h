@@ -711,6 +711,8 @@ protected:
 
 	void restoreBookmarks(LatexEditorView *edView);
 
+    QSet<QString> collectPotentialCompletionWords(const QDocument *doc, const QString &word) const;
+
 	bool completerPreview;
     QPixmapCache previewCache;
 

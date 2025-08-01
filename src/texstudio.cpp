@@ -86,6 +86,7 @@
 #include "PDFDocument_config.h"
 #include <set>
 #include <QStyleHints>
+#include <QtConcurrentMap>
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
@@ -5159,82 +5160,21 @@ void Texstudio::insertTextCompletion()
 		;
 
     QString word = line.mid(col, c.columnNumber() - col);
-    QSet<QString> words;
 
-    QDocument *doc=currentEditor()->document();
-    // generate regexp for getting fuzzy results
-    // here the first letter must match, the rest can be fuzzy
-#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
-    QStringList chars=word.split("",Qt::SkipEmptyParts);
-#else
-    QStringList chars=word.split("",QString::SkipEmptyParts);
-#endif
-    QString regExpression=chars.join(".*");
-    QRegularExpression rx("^"+regExpression);
 
-    for(int i=0;i<doc->lineCount();i++){
-        QDocumentLineHandle *dlh=doc->line(i).handle();
-        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-        QString txt;
-        for(int k=0;k<tl.size();k++) {
-            Token tk=tl.at(k);
-            if(!txt.isEmpty() || (tk.type==Token::word && (tk.subtype==Token::none || tk.subtype==Token::text || tk.subtype==Token::generalArg || tk.subtype==Token::title || tk.subtype==Token::shorttitle || tk.subtype==Token::todo))){
-                txt+=tk.getText();
-                if(txt.startsWith(word)){
-                    if(word.length()<txt.length()){
-                        words<<txt;
-                    }
-                    // advance k if tk comprehends several sub-tokens (braces)
-                    while(k+1<tl.size() && tl.at(k+1).start<(tk.start+tk.length)){
-                        k++;
-                    }
-                    // add more variants for variable-name like constructions
-                    if(k+2<tl.size()){
-                        Token tk2=tl.at(k+1);
-                        Token tk3=tl.at(k+2);
-                        if(tk2.length==1 && tk2.start==tk.start+tk.length && tk2.type==Token::punctuation&&tk3.start==tk2.start+tk2.length){
-                            // next token is directly adjacent and of length 1
-                            QString txt2=tk2.getText();
-                            if(txt2=="_" || txt2=="-"){
-                                txt.append(txt2);
-                                k++;
-                                continue;
-                            }
-                            if(txt2=="'" && tk3.type==Token::word){ // e.g. don't but not abc''
-                                txt.append(txt2);
-                                k++;
-                                continue;
-                            }
-                        }
-                        // combine abc\_def
-                        if(tk2.length==2 && tk2.start==tk.start+tk.length && (tk2.type==Token::command||tk2.type==Token::commandUnknown)&&tk3.start==tk2.start+tk2.length){
-                            // next token is directly adjacent and of length 1
-                            QString txt2=tk2.getText();
-                            if(txt2=="\\_" ){
-                                txt.append(txt2);
-                                k++;
-                                continue;
-                            }
-                        }
-                        // previous was an already appended command, check if argument is present
-                        if(tk.type==Token::command){
-                            if(tk2.level==tk.level && tk2.subtype!=Token::none){
-                                txt.append(tk2.getText());
-                                words<<txt;
-                                k++;
-                            }
-                        }
-                    }
-                }else{
-                    if(rx.match(txt).hasMatch()){
-                        words<<txt;
-                    }
-                }
-            }
-            txt.clear();
-        }
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(currentEditor()->document());
+    // collect potential completion words from all open documents
+    // document must be open/hidden, can't be cached !!
+    QList<LatexDocument *> l = doc->getListOfDocs();
+    auto collect=[this,word](LatexDocument *d){ return this->collectPotentialCompletionWords(d,word);};
+    auto unite= [](QSet<QString> &a, const QSet<QString> &b) {
+        return a.unite(b);
+    };
+    QSet<QString> words=QtConcurrent::mappedReduced(l,collect,unite).result();
 
-    }
+
+    //QSet<QString> words=collectPotentialCompletionWords(doc,word);
+
 	completer->setAdditionalWords(words, CT_NORMALTEXT);
 	currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 }
@@ -10862,6 +10802,93 @@ void Texstudio::showDiff3(const QString file1, const QString file2)
 	// show changes (by calling LatexEditorView::documentContentChanged)
 	LatexEditorView *edView = currentEditorView();
 	edView->documentContentChanged(0, edView->document->lines());
+}
+
+/*!
+ * \brief collects complettion word in a document
+ * Searches for all words staring with word. Only text words !
+ * \param doc
+ * \param word
+ * \return List of potential completion words, unsorted
+ */
+QSet<QString> Texstudio::collectPotentialCompletionWords(const QDocument *doc,const QString &word) const
+{
+    QSet<QString> words;
+
+    // generate regexp for getting fuzzy results
+    // here the first letter must match, the rest can be fuzzy
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    QStringList chars=word.split("",Qt::SkipEmptyParts);
+#else
+    QStringList chars=word.split("",QString::SkipEmptyParts);
+#endif
+    QString regExpression=chars.join(".*");
+    QRegularExpression rx("^"+regExpression);
+
+    for(int i=0;i<doc->lineCount();i++){
+        QDocumentLineHandle *dlh=doc->line(i).handle();
+        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        QString txt;
+        for(int k=0;k<tl.size();k++) {
+            Token tk=tl.at(k);
+            if(!txt.isEmpty() || (tk.type==Token::word && (tk.subtype==Token::none || tk.subtype==Token::text || tk.subtype==Token::generalArg || tk.subtype==Token::title || tk.subtype==Token::shorttitle || tk.subtype==Token::todo))){
+                txt+=tk.getText();
+                if(txt.startsWith(word)){
+                    if(word.length()<txt.length()){
+                        words<<txt;
+                    }
+                    // advance k if tk comprehends several sub-tokens (braces)
+                    while(k+1<tl.size() && tl.at(k+1).start<(tk.start+tk.length)){
+                        k++;
+                    }
+                    // add more variants for variable-name like constructions
+                    if(k+2<tl.size()){
+                        Token tk2=tl.at(k+1);
+                        Token tk3=tl.at(k+2);
+                        if(tk2.length==1 && tk2.start==tk.start+tk.length && tk2.type==Token::punctuation&&tk3.start==tk2.start+tk2.length){
+                            // next token is directly adjacent and of length 1
+                            QString txt2=tk2.getText();
+                            if(txt2=="_" || txt2=="-"){
+                                txt.append(txt2);
+                                k++;
+                                continue;
+                            }
+                            if(txt2=="'" && tk3.type==Token::word){ // e.g. don't but not abc''
+                                txt.append(txt2);
+                                k++;
+                                continue;
+                            }
+                        }
+                        // combine abc\_def
+                        if(tk2.length==2 && tk2.start==tk.start+tk.length && (tk2.type==Token::command||tk2.type==Token::commandUnknown)&&tk3.start==tk2.start+tk2.length){
+                            // next token is directly adjacent and of length 1
+                            QString txt2=tk2.getText();
+                            if(txt2=="\\_" ){
+                                txt.append(txt2);
+                                k++;
+                                continue;
+                            }
+                        }
+                        // previous was an already appended command, check if argument is present
+                        if(tk.type==Token::command){
+                            if(tk2.level==tk.level && tk2.subtype!=Token::none){
+                                txt.append(tk2.getText());
+                                words<<txt;
+                                k++;
+                            }
+                        }
+                    }
+                }else{
+                    if(rx.match(txt).hasMatch()){
+                        words<<txt;
+                    }
+                }
+            }
+            txt.clear();
+        }
+
+    }
+    return words;
 }
 
 void Texstudio::declareConflictResolved()
