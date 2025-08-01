@@ -19,7 +19,7 @@ else()
     if(APPLE)
     set(CMAKE_CXX_STANDARD 20)
     else()
-    set(CMAKE_CXX_STANDARD 17)
+    set(CMAKE_CXX_STANDARD 20)
     endif()
 endif()
 

@@ -5168,7 +5168,7 @@ void Texstudio::insertTextCompletion()
     QList<LatexDocument *> l = doc->getListOfDocs();
     auto collect=[this,word](LatexDocument *d){ return this->collectPotentialCompletionWords(d,word);};
     auto unite= [](QSet<QString> &a, const QSet<QString> &b) {
-        return a.unite(b);
+        a.unite(b);
     };
     QSet<QString> words=QtConcurrent::mappedReduced(l,collect,unite).result();
 
