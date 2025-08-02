@@ -5170,7 +5170,17 @@ void Texstudio::insertTextCompletion()
     auto unite= [](QSet<QString> &a, const QSet<QString> &b) {
         a.unite(b);
     };
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    // not sure why qt5 fails to compile qtconcurrent::mappedReduced
+    // work-around with single-threaded code
+    QSet<QString> words;
+    for(LatexDocument *d: l){
+        QSet<QString> w=collect(d);
+        unite(words,w);
+    }
+#else
     QSet<QString> words=QtConcurrent::mappedReduced(l,collect,unite).result();
+#endif
 
 
     //QSet<QString> words=collectPotentialCompletionWords(doc,word);
