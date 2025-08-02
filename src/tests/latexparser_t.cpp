@@ -137,7 +137,8 @@ void LatexParserTest::nextToken_complex()
 		if (pos >= tokens.size()) {
 			QFAIL(QString("Found additional token: %1 at %2").arg(token).arg(startIndex).toLatin1().constData());
 		} else {
-			QVERIFY2(token == tokens[pos], QString("Invalid token: %1 at %2 expected %3").arg(token).arg(startIndex).arg(tokens[pos]).toLatin1().constData());
+            QString fnd=tokens[pos];
+            QVERIFY2(token == fnd, QString("Invalid token: %1 at %2 expected %3").arg(token).arg(startIndex).arg(tokens[pos]).toLatin1().constData());
 			QVERIFY2(startIndex == tokens[pos].position, QString("Invalid startIndex: %2 for %1").arg(token).arg(startIndex).toLatin1().constData());
 		}
 		pos++;
