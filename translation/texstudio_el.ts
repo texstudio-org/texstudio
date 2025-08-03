@@ -2768,12 +2768,17 @@ Examples:
 • Gemini: gemini-2.5-pro, gemini-2.5-flash
 • Claude: claude-opus-4-0, claude-sonnet-4-0	
 • Local: deepseek-r1, llama3.3</source>
-        <translation type="unfinished"/>
+        <translation>Το μοντέλο AI που θα χρησιμοποιηθεί για τις απαντήσεις. Μπορείτε να πληκτρολογήσετε συγκεκριμένα ονόματα μοντέλων για οποιονδήποτε πάρχο.
+Παραδείγματα:
+• Perplexity: sonar, sonar-pro, sonar-deep-research 
+• Gemini: gemini-2.5-pro, gemini-2.5-flash
+• Claude: claude-opus-4-0, claude-sonnet-4-0
+• Τοπικό μοντέλο: deepseek-r1, llama3.3</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3660"/>
         <source>Custom Provider (Remote or Local)</source>
-        <translation type="unfinished"/>
+        <translation>Προσαρμοσμένος πάροχος (απομακρυσμένος ή τοπικός)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3685"/>
@@ -2783,7 +2788,12 @@ Examples:
 • Gemini: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
 • Claude: https://api.anthropic.com/v1/chat/completions
 • Local: http://localhost:8080/v1/chat/completions</source>
-        <translation type="unfinished"/>
+        <translation>Η διεύθυνση URL του API endpoint για συγκεκριμένο πάροχο
+Παραδείγματα:
+• Perplexity: https://api.perplexity.ai/chat/completions
+• Gemini: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
+• Claude: https://api.anthropic.com/v1/chat/completions
+• Τοπικό μοντέλο: http://localhost:8080/v1/chat/completions</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4036"/>
@@ -12469,7 +12479,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1190"/>
         <source>Close latest open delimiter or environment</source>
-        <translation type="unfinished"/>
+        <translation>Κλείσιμο τελευταίου ανοιχτού οριοθέτη ή περιβάλλοντος</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12253"/>
