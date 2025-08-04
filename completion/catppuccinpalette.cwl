@@ -1,5 +1,5 @@
 # catppuccinpalette package
-# Matthew Bertucci 2024/05/20 for v1.1.0
+# Matthew Bertucci 2025/08/04 for v1.2.0
 
 #include:pgfopts
 #include:xcolor
@@ -14,6 +14,7 @@ frappe
 macchiato
 mocha
 textcolor#true,false
+hyperref#true,false
 pagecolor#true,false
 styleAll
 #endkeyvals

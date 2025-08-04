@@ -1,8 +1,7 @@
 # varsfromjobname package
-# Matthew Bertucci 12/16/2021 for v1.0
+# Matthew Bertucci 2025/08/04 for v1.1
 
 #include:currfile
-#include:ifthen
 
 \getfromjobname{param}
 \getonefromjobname#*

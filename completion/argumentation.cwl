@@ -1,10 +1,9 @@
 # argumentation package
-# Matthew Bertucci 2024/11/04 for v1.4
+# Matthew Bertucci 2025/08/04 for v1.6
 
 #include:amsbsy
 #include:amsmath
 #include:pgfopts
-#include:etoolbox
 #include:refcount
 #include:xspace
 #include:xcolor
@@ -19,7 +18,6 @@ attackstyle=#standard,large,modern
 supportstyle=#standard,dashed,double
 indexing=#none,numeric,alphabetic
 macros#true,false
-beamer#true,false
 #endkeyvals
 
 #ifOption:macros
@@ -59,6 +57,8 @@ beamer#true,false
 \setafstyle{style}
 \setargumentcolorscheme{outer color}{inner color}
 
+\newafenvironment{envname}{macro}#N
+
 \begin{af}#\pictureHightlight
 \begin{af}[options]#\pictureHightlight
 \end{af}
@@ -93,4 +93,4 @@ aigblue#B
 # not documented
 \theaf#S
 \ifmacros#S
-\ifbeamer#S
+

@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/07/15 for v15.5.0
+# Matthew Bertucci 2025/08/04 for v15.7.0
 
 #include:iftex
 
@@ -275,6 +275,7 @@ automattic
 autoprefixer
 autozone
 avajs
+avaloniaui
 avast
 avianca
 avira
@@ -1001,6 +1002,7 @@ flyway
 fmod
 fnac
 folium
+folo
 fonoma
 fontawesome
 fontbase
@@ -1088,6 +1090,7 @@ gin
 giphy
 git
 gitbook
+gitcode
 gitconnected
 gitea
 gitee
@@ -1834,6 +1837,7 @@ mobxstatetree
 mocha
 mockserviceworker
 modal
+modelcontextprotocol
 modin
 modrinth
 modx
@@ -2276,6 +2280,7 @@ privatedivision
 privateinternetaccess
 probot
 processingfoundation
+processon
 processwire
 producthunt
 progate
@@ -2380,6 +2385,7 @@ rapid
 rarible
 rasa
 raspberrypi
+ratatui
 ravelry
 ray
 raycast
@@ -2938,6 +2944,7 @@ tmux
 todoist
 toggl
 toggltrack
+tokio
 tokyometro
 toll
 toml
@@ -3354,3 +3361,4 @@ zyte
 \simpleiconsmaponeone#S
 \simpleiconsmaponetwo#S
 \simpleiconsmaponethree#S
+

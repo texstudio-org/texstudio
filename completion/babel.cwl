@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2025/06/10 for v25.10
+# tbraun 4.11.2008; Matthew Bertucci 2025/08/04 for v25.12
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -285,6 +285,7 @@ kashida.base
 #endkeyvals
 
 \ShowBabelTransforms{string}#*
+\SetTransformValue{locale}{variable}{value}#*
 \localeprehyphenation{string}#*
 
 \babelcharclass{locale}{name}{char-list}#*
@@ -433,7 +434,6 @@ select.encoding=#off
 \SetHyphenMap{to-lower-macros}#S
 \SetString{macro-name}{string}#S
 \SetStringLoop{macro-name}{string-list}#S
-\SetTransformValue{locale}{variable}{value}#S
 \StartBabelCommands*{language-list}{category}#S
 \StartBabelCommands*{language-list}{category}[selector]#S
 \StartBabelCommands{language-list}{category}#S
@@ -1280,7 +1280,7 @@ select.encoding=#off
 #repl:"> »
 #endif
 
-### french.ldf v4.0b (and associated acadian.ldf) ###
+### french.ldf v4.0d (and associated acadian.ldf) ###
 #ifOption:french
 \frenchsetup{options%keyvals}
 \frenchbsetup{options%keyvals}#S
@@ -1320,7 +1320,6 @@ LowercaseSuperscripts#true,false
 SuppressWarning#true,false
 TocPartFullName#true,false
 #endkeyvals
-\AddThinSpaceBeforeFootnotes#*
 \alsoname#*
 \at
 \bibname#*
@@ -1395,7 +1394,6 @@ TocPartFullName#true,false
 \fprimo)
 \frenchdate{day}{month}{year}
 \FrenchEnumerate{arg}#*
-\FrenchFootnotes#*
 \FrenchLabelItem#*
 \frenchpartfirst#*
 \frenchpartsecond#*
@@ -1481,7 +1479,6 @@ TocPartFullName#true,false
 \secundo
 \seename#*
 \sffamilyFB#*
-\StandardFootnotes#*
 \StandardMathComma
 \tertio
 \tild
@@ -1532,7 +1529,6 @@ TocPartFullName#true,false
 #endkeyvals
 \acadiandate{day}{month}{year}
 \acadiantoday
-\AddThinSpaceBeforeFootnotes#*
 \alsoname#*
 \at
 \bibname#*
@@ -1608,7 +1604,6 @@ TocPartFullName#true,false
 \fprimo)
 \frenchdate{day}{month}{year}#*
 \FrenchEnumerate{arg}#*
-\FrenchFootnotes#*
 \FrenchLabelItem#*
 \frenchpartfirst#*
 \frenchpartsecond#*
@@ -1695,7 +1690,6 @@ TocPartFullName#true,false
 \secundo
 \seename#*
 \sffamilyFB#*
-\StandardFootnotes#*
 \StandardMathComma
 \tertio
 \tild

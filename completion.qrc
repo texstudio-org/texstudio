@@ -464,6 +464,7 @@
 <file>completion/bredzenie.cwl</file>
 <file>completion/breqn.cwl</file>
 <file>completion/bropd.cwl</file>
+<file>completion/broydensolve.cwl</file>
 <file>completion/btxdockit.cwl</file>
 <file>completion/bubblesort.cwl</file>
 <file>completion/bullcntr.cwl</file>
@@ -563,6 +564,7 @@
 <file>completion/chapterbib.cwl</file>
 <file>completion/chapterfolder.cwl</file>
 <file>completion/CharisSIL.cwl</file>
+<file>completion/char2path.cwl</file>
 <file>completion/chbibref.cwl</file>
 <file>completion/checklistings.cwl</file>
 <file>completion/chemarr.cwl</file>
@@ -1980,6 +1982,7 @@
 <file>completion/inslrmaj.cwl</file>
 <file>completion/inslrmin.cwl</file>
 <file>completion/intcalc.cwl</file>
+<file>completion/intexgral.cwl</file>
 <file>completion/interactiveanimation.cwl</file>
 <file>completion/interactiveplot.cwl</file>
 <file>completion/inter.cwl</file>
@@ -2235,6 +2238,7 @@
 <file>completion/longmath.cwl</file>
 <file>completion/longnamefilelist.cwl</file>
 <file>completion/longtable.cwl</file>
+<file>completion/longtwocolumn.cwl</file>
 <file>completion/lowcycle.cwl</file>
 <file>completion/lpic.cwl</file>
 <file>completion/lplfitch.cwl</file>
@@ -2716,6 +2720,7 @@
 <file>completion/oplotsymbl.cwl</file>
 <file>completion/optex.cwl</file>
 <file>completion/optidef.cwl</file>
+<file>completion/optikz.cwl</file>
 <file>completion/optional.cwl</file>
 <file>completion/options.cwl</file>
 <file>completion/optparams.cwl</file>
@@ -3179,6 +3184,7 @@
 <file>completion/quran.cwl</file>
 <file>completion/quran-de.cwl</file>
 <file>completion/quran-ur.cwl</file>
+<file>completion/qworld.cwl</file>
 <file>completion/ragged2e.cwl</file>
 <file>completion/raleway.cwl</file>
 <file>completion/randbild.cwl</file>
@@ -4149,6 +4155,7 @@
 <file>completion/vietnam.cwl</file>
 <file>completion/viking.cwl</file>
 <file>completion/virginialake.cwl</file>
+<file>completion/visualtoks.cwl</file>
 <file>completion/vmargin.cwl</file>
 <file>completion/vntex.cwl</file>
 <file>completion/volumes.cwl</file>
