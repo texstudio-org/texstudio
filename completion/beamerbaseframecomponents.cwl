@@ -1,5 +1,5 @@
 # beamerbaseframecomponents package
-# Matthew Bertucci 1/30/2022 for v3.65
+# Matthew Bertucci 2025/08/04 for v3.75
 
 \setbeamersize{options%keyvals}
 
@@ -28,6 +28,7 @@ onlytextwidth#true,false
 t#true,false
 T#true,false
 totalwidth=##L
+height=##L
 #endkeyvals
 
 \begin{column}{column width%l}#/columns
@@ -43,6 +44,7 @@ t
 T
 c
 b
+height=##L
 #endkeyvals
 
 \insertfootnotetext#*
