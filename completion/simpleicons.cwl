@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/07/26 for v15.6.0
+# Matthew Bertucci 2025/08/04 for v15.7.0
 
 #include:iftex
 
@@ -275,6 +275,7 @@ automattic
 autoprefixer
 autozone
 avajs
+avaloniaui
 avast
 avianca
 avira
@@ -2279,6 +2280,7 @@ privatedivision
 privateinternetaccess
 probot
 processingfoundation
+processon
 processwire
 producthunt
 progate
@@ -3359,3 +3361,4 @@ zyte
 \simpleiconsmaponeone#S
 \simpleiconsmaponetwo#S
 \simpleiconsmaponethree#S
+
