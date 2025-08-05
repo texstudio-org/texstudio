@@ -1,11 +1,10 @@
 # algxpar package
-# Matthew Bertucci 2024/10/25 for v0.99.2
+# Matthew Bertucci 2025/08/04 for v0.99.2a
 
 #include:algorithmicx
 #include:algpseudocode
 #include:ragged2e
 #include:xcolor
-#include:fancyvrb
 #include:pgfopts
 #include:amssymb
 #include:pgfmath

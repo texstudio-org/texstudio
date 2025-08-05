@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2025/05/09 for v7.1c
+# Matthew Bertucci 2025/07/25 for v7.1e
 
 #include:amsmath
 #include:array
@@ -320,6 +320,7 @@ shorten-end=##L
 shorten=##L
 inter=##L
 line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed#c
+Vbrace
 #endkeyvals
 
 #keyvals:\Ddots,\Iddots
