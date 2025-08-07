@@ -1,5 +1,5 @@
 # citation-style-language package
-# Matthew Bertucci 2025/04/28 for v0.8.0
+# Matthew Bertucci 2025/08/07 for v0.8.1
 
 #include:filehook
 #include:url
@@ -16,6 +16,8 @@ backref=#true,page,section,false
 bib-font=%<font commands%>
 bib-entry-page-break#true,false
 bib-item-sep=%<<length> or <glue>%>
+bib-name-sep=##L
+bib-after-name-sep=##L
 bib-hang=##L
 bib-par-indent=##L
 prefix-separator=%<separator%>
