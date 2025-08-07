@@ -1,5 +1,5 @@
 # fourier-otf package
-# Matthew Bertucci 2025/02/16 for v0.67
+# Matthew Bertucci 2025/08/07 for v0.68
 
 #include:iftex
 #include:fourier-orns
@@ -8,6 +8,7 @@
 
 #keyvals:\usepackage/fourier-otf#c
 no-text
+no-logos
 fakedscripts
 tight
 loose
