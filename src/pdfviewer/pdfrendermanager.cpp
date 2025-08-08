@@ -187,13 +187,13 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 			if (loadStrategy == BufferedLoad || (loadStrategy == HybridLoad && queueAdministration->documentData.size() < 50000000)) {
 				if (queueAdministration->documentData.size() < 1024)
 					queueAdministration->documentData.append(QByteArray(1024 - queueAdministration->documentData.size(), (char) 0));
-#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+#if ((POPPLER_VERSION_MAJOR==21 && POPPLER_VERSION_MINOR>=6)||POPPLER_VERSION_MAJOR>21) && QT_VERSION_MAJOR>5
 				docPtr = Poppler::Document::loadFromData(queueAdministration->documentData, ownerPassword, userPassword);
 #else
                 docPtr = std::unique_ptr<Poppler::Document>(Poppler::Document::loadFromData(queueAdministration->documentData, ownerPassword, userPassword));
 #endif
 			} else {
-#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+#if ((POPPLER_VERSION_MAJOR==21 && POPPLER_VERSION_MINOR>=6)||POPPLER_VERSION_MAJOR>21) && QT_VERSION_MAJOR>5
 				docPtr = Poppler::Document::load(fileName, ownerPassword, userPassword);
 #else
                 docPtr = std::unique_ptr<Poppler::Document>(Poppler::Document::load(fileName, ownerPassword, userPassword));
