@@ -1,16 +1,21 @@
 # scripture package
-# Matthew Bertucci 2025/01/06 for v2.1
+# Matthew Bertucci 2025/08/09 for v2.2
 
+\added{words%text}
 \ch{chapter number}
 \ch[letter]{chapter number}
 \ch*{chapter number}
 \ch*[letter]{chapter number}
 \extraskip
-\heading{section heading%text}
-\added{words%text}
-\name{divine name}
-\LORD
 \GOD
+\heading{section heading%text}
+\LORD
+\name{divine name}
+\newch
+\newch[letter]
+\newch*
+\newch*[letter]
+\newvs
 \nofirstverse
 \nohang
 \nopilcrow
@@ -54,6 +59,8 @@ added/format=%<macro%>
 after=%<code%>
 befire=%<code%>
 belowskip=##L
+book=%<name%>
+chapter=%<integer%>
 chapter/align=#left,right
 chapter/colour=#%color
 chapter/color=#%color
@@ -126,6 +133,7 @@ selah/sep=##L
 selah/text=%<text%>
 style=#%scripturestyle
 textright/sep=##L
+verse=%<integer%>
 verse/colour=#%color
 verse/color=#%color
 verse/first#true,false
