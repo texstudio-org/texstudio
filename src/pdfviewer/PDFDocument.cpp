@@ -983,6 +983,16 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				painter.setBrush(UtilsUi::colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 				painter.drawPath(highlightPath);
 			}
+            if(currentTool== kSelectText && pageNr == m_selectStart.pageNr){
+                painter.setRenderHint(QPainter::Antialiasing);
+                painter.setCompositionMode(QPainter::CompositionMode_Multiply);
+                painter.scale(totalScaleFactor(), totalScaleFactor());
+                painter.setPen(QColor(0, 0, 0, 0));
+                painter.setBrush(UtilsUi::colorFromRGBAstr(globalConfig->selectColor, QColor(0, 0, 255, 63)));
+                for(const QRectF &r: m_selectedTextBoxes){
+                    painter.drawRect(r);
+                }
+            }
 			if (currentTool == kPresentation)
 				doc->renderManager->renderToImage(pageNr + 1, this, "", dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0, 0, newRect.width() * overScale, newRect.height()*overScale, true, true);
 		} else {
@@ -1043,6 +1053,16 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 						painter.restore();
 					}
 				}
+                if(currentTool== kSelectText && pageNr == m_selectStart.pageNr){
+                    painter.setRenderHint(QPainter::Antialiasing);
+                    painter.setCompositionMode(QPainter::CompositionMode_Multiply);
+                    painter.scale(totalScaleFactor(), totalScaleFactor());
+                    painter.setPen(QColor(0, 0, 0, 0));
+                    painter.setBrush(UtilsUi::colorFromRGBAstr(globalConfig->selectColor, QColor(0, 0, 255, 63)));
+                    for(const QRectF &r: m_selectedTextBoxes){
+                        painter.drawRect(r);
+                    }
+                }
 			}
             for (; curGrid < gridx * gridy; curGrid++){
 				painter.drawRect(gridPageRect(curGrid));
@@ -1151,6 +1171,18 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 	}
 
 	mouseDownModifiers = event->modifiers();
+    // handle text selection
+    if (currentTool == kSelectText) {
+        QPointF scaledPos;
+        int pageNr;
+        mapToScaledPosition(event->pos(), pageNr, scaledPos);
+        if (pageNr >= 0 && pageNr < realNumPages()) {
+            m_selectStart={pageNr,scaledPos};
+        }
+        usingTool= kSelectText;
+        event->accept();
+        return;
+    }
 	if ((mouseDownModifiers & Qt::ControlModifier) && !(mouseDownModifiers & Qt::ShiftModifier)) {
 		// ctrl key - this is a sync click, don't handle the mouseDown here
 	} else if ((mouseDownModifiers & Qt::ControlModifier) && (mouseDownModifiers & Qt::ShiftModifier)) {
@@ -1512,10 +1544,10 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 	}
 	event->accept();
 	break;
-	case kScroll: {
-		QPoint delta = event->globalPos() - scrollClickPos;
-		scrollClickPos = event->globalPos();
-		QAbstractScrollArea	*scrollArea = getScrollArea();
+    case kScroll: {
+        QPoint delta = event->globalPos() - scrollClickPos;
+        scrollClickPos = event->globalPos();
+        QAbstractScrollArea	*scrollArea = getScrollArea();
 		if (scrollArea) {
 			if (scaleOption != kFitTextWidth || !globalConfig->disableHorizontalScrollingForFitToTextWidth) {
 				int oldX = scrollArea->horizontalScrollBar()->value();
@@ -1527,6 +1559,26 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 	}
 	event->accept();
 	break;
+    case kSelectText: {
+        if(event->buttons() != Qt::LeftButton) {
+            // if not left button, do nothing
+            event->ignore();
+            return;
+        }
+        QPointF scaledPos;
+        int pageNr;
+        mapToScaledPosition(event->pos(), pageNr, scaledPos);
+        if (pageNr >= 0 && pageNr < realNumPages()) {
+            //highlight selected text on page
+            if(pageNr==m_selectStart.pageNr){
+                // same page as before
+                updateSelectedTextBoxes(pageNr,scaledPos);
+                update();
+            }
+        }
+        event->accept();
+        break;
+    }
 	default:
 		event->ignore();
 	}
@@ -2643,6 +2695,54 @@ void PDFWidget::doZoom(const QPointF &clickPos, int dir, qreal newScaleFactor) /
         QScrollBar *vs = scrollArea->verticalScrollBar();
         if (vs != nullptr)
             vs->setValue(vs->value() + pageToLocal.y() - localPos.y());
+    }
+}
+
+/*!
+ * \brief find all text boxes for a given
+ * Starting position is given in m_selectStart
+ * \param page end page nr
+ * \param pos end position
+ */
+void PDFWidget::updateSelectedTextBoxes(int page, const QPointF &pos)
+{
+    m_selectedTextBoxes.clear();
+    if(page!=m_selectStart.pageNr) return; // for now, only selection on one page
+    // get poppler page for start position
+    std::unique_ptr<Poppler::Page> popplerPage(document->page(m_selectStart.pageNr));
+    std::vector<std::unique_ptr<Poppler::TextBox>> textList = popplerPage->textList();
+    QRectF rect(m_selectStart.position,pos);
+    QSizeF sz=popplerPage->pageSizeF();
+    rect=QRectF(rect.left()*sz.width(),rect.top()*sz.height(),
+                rect.width()*sz.width(),rect.height()*sz.height());
+    bool firstElementFound=false;
+    for (std::vector<std::unique_ptr<Poppler::TextBox>>::iterator it = textList.begin() ; it != textList.end(); ++it){
+        Poppler::TextBox *textBox = it->get();
+        QRectF r = textBox->boundingBox();
+        if(firstElementFound){
+            if(rect.bottom()>= r.top()) {
+                if(r.bottom()>rect.bottom()){
+                    // last line
+                    if(rect.right()> r.left()){
+                        m_selectedTextBoxes.append(r);
+                    }else{
+                        break;
+                    }
+                }else{
+                    // we take complete lines, check y only
+                    m_selectedTextBoxes.append(r);
+                }
+            }else{
+                // all found
+                break;
+            }
+        }else{
+            if (rect.intersects(r)) {
+                // we found the first element
+                m_selectedTextBoxes.append(r);
+                firstElementFound=true;
+            }
+        }
     }
 }
 

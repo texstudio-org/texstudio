@@ -320,6 +320,8 @@ private:
 	void doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor = 1.0);
     void doZoom(const QPointF &clickPos, int dir, qreal newScaleFactor = 1.0);
 
+    void updateSelectedTextBoxes(int page, const QPointF &pos);
+
 	PDFScrollArea *getScrollArea() const;
 
 	QSharedPointer<Poppler::Document> document;
@@ -327,6 +329,13 @@ private:
 
 	QSharedPointer<Poppler::Link> clickedLink;
 	QSharedPointer<Poppler::Annotation> clickedAnnotation;
+
+    struct ClickedPosition {
+        int pageNr;
+        QPointF position;
+    };
+    ClickedPosition m_selectStart{-1,QPointF()}; // pageNr, position in page coordinates
+    QList<QRectF> m_selectedTextBoxes; // selected text boxes
 
 	int realPageIndex, oldRealPageIndex;
 	QList<int> pages;
