@@ -984,6 +984,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				painter.drawPath(highlightPath);
 			}
             if(currentTool== kSelectText && pageNr == m_selectStart.pageNr){
+                painter.save();
                 painter.setRenderHint(QPainter::Antialiasing);
                 painter.setCompositionMode(QPainter::CompositionMode_Multiply);
                 painter.scale(totalScaleFactor(), totalScaleFactor());
@@ -992,6 +993,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
                 for(const QRectF &r: m_selectedTextBoxes){
                     painter.drawRect(r);
                 }
+                painter.restore();
             }
 			if (currentTool == kPresentation)
 				doc->renderManager->renderToImage(pageNr + 1, this, "", dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0, 0, newRect.width() * overScale, newRect.height()*overScale, true, true);
@@ -1054,6 +1056,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 					}
 				}
                 if(currentTool== kSelectText && pageNr == m_selectStart.pageNr){
+                    painter.save();
                     painter.setRenderHint(QPainter::Antialiasing);
                     painter.setCompositionMode(QPainter::CompositionMode_Multiply);
                     painter.scale(totalScaleFactor(), totalScaleFactor());
@@ -1062,6 +1065,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
                     for(const QRectF &r: m_selectedTextBoxes){
                         painter.drawRect(r);
                     }
+                    painter.restore();
                 }
 			}
             for (; curGrid < gridx * gridy; curGrid++){
