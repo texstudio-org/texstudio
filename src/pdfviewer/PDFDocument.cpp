@@ -2744,15 +2744,27 @@ void PDFWidget::updateSelectedTextBoxes(int page, const QPointF &pos)
                 if(r.bottom()>rect.bottom()){
                     // last line
                     if(rect.right()> r.left()){
+                        QRectF &lastElement= m_selectedTextBoxes.last();
                         m_selectedTextBoxes.append(r);
-                        m_selectedText+=" "+textBox->text();
+                        // check if y overlap -> same line/new line
+                        if(lastElement.bottom() < r.top() || lastElement.top() > r.bottom()){
+                            m_selectedText+="\n"+textBox->text();
+                        }else{
+                            m_selectedText+=" "+textBox->text();
+                        }
                     }else{
                         break;
                     }
                 }else{
                     // we take complete lines, check y only
+                    QRectF &lastElement= m_selectedTextBoxes.last();
                     m_selectedTextBoxes.append(r);
-                    m_selectedText+=" "+textBox->text();
+                    // check if y overlap -> same line/new line
+                    if(lastElement.bottom() <= r.top() || lastElement.top() >= r.bottom()){
+                        m_selectedText+="\n"+textBox->text();
+                    }else{
+                        m_selectedText+=" "+textBox->text();
+                    }
                 }
             }else{
                 // all found
