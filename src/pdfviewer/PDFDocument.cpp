@@ -2734,14 +2734,23 @@ void PDFWidget::updateSelectedTextBoxes(int page, const QPointF &pos)
     if(page!=m_selectStart.pageNr) return; // for now, only selection on one page
     // get poppler page for start position
     std::unique_ptr<Poppler::Page> popplerPage(document->page(m_selectStart.pageNr));
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QList<Poppler::TextBox* > textList = popplerPage->textList();
+#else
     std::vector<std::unique_ptr<Poppler::TextBox>> textList = popplerPage->textList();
+#endif
     QRectF rect(m_selectStart.position,pos);
     QSizeF sz=popplerPage->pageSizeF();
     rect=QRectF(rect.left()*sz.width(),rect.top()*sz.height(),
                 rect.width()*sz.width(),rect.height()*sz.height());
     bool firstElementFound=false;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    for (QList<Poppler::TextBox* >::iterator it = textList.begin() ; it != textList.end(); ++it){
+        Poppler::TextBox *textBox = *it;
+#else
     for (std::vector<std::unique_ptr<Poppler::TextBox>>::iterator it = textList.begin() ; it != textList.end(); ++it){
         Poppler::TextBox *textBox = it->get();
+#endif
         QRectF r = textBox->boundingBox();
         if(firstElementFound){
             if(rect.bottom()>= r.top()) {
