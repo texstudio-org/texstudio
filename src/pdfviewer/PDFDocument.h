@@ -252,10 +252,8 @@ protected slots: //not private, so scripts have access
 	void zoomOut();
 	void jumpToSource();
 
-    void copyText();
-
 	void upOrPrev();
-	void leftOrPrev();
+    void leftOrPrev();
 	void pageUpOrPrev();
 
 	void downOrNext();
@@ -276,6 +274,7 @@ public slots:
 	void fixedScale(qreal scale = 1.0);
 	void setImage(QPixmap img, int pageNr);
     void delayedUpdate();
+    void copyText();
 
 signals:
 	void changedPage(int, bool);

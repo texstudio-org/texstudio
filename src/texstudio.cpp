@@ -3794,6 +3794,17 @@ void Texstudio::editCopy()
 		outputView->copy();
 		return;
 	}
+    // if pdfViewer has focus,copy
+#ifndef NO_POPPLER_PREVIEW
+    if (PDFDocument::documentList().size() > 0) {
+        PDFDocument *pdfDoc=PDFDocument::documentList().at(0);
+        PDFWidget *w= pdfDoc->widget();
+        if(w->hasFocus()){
+            w->copyText();
+            return;
+        }
+    }
+#endif
 	if (!currentEditorView()) return;
 	currentEditorView()->editor->copy();
 }
