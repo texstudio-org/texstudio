@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/08/04 for v15.7.0
+# Matthew Bertucci 2025/08/09 for v15.8.0
 
 #include:iftex
 
@@ -1218,6 +1218,7 @@ grocy
 groupme
 groupon
 grunt
+gsap
 gsk
 gsma
 gsmarenadotcom
@@ -1521,6 +1522,7 @@ keeper
 keeweb
 kenmei
 kentico
+keploy
 keras
 keybase
 keycdn
@@ -2595,6 +2597,7 @@ sensu
 sentry
 sepa
 sequelize
+servbay
 serverfault
 serverless
 session
@@ -3361,4 +3364,3 @@ zyte
 \simpleiconsmaponeone#S
 \simpleiconsmaponetwo#S
 \simpleiconsmaponethree#S
-
