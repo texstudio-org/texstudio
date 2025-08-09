@@ -1619,6 +1619,14 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 
 	QMenu	menu(this);
 
+    // add copy if selection present
+    if (currentTool == kSelectText && !m_selectedText.isEmpty()) {
+        QAction *act = new QAction(tr("Copy Selected Text"), &menu);
+        connect(act, SIGNAL(triggered()), this, SLOT(copyText()));
+        menu.addAction(act);
+        menu.addSeparator();
+    }
+
 	PDFDocument *pdfDoc = getPDFDocument();
 	if (pdfDoc && pdfDoc->hasSyncData()) {
 		QAction *act = new QAction(tr("Go to Source"), &menu);
@@ -1741,6 +1749,18 @@ void PDFWidget::jumpToSource()
 		emit syncClick(pageIndex, pagePos, true);
 		*/
 	}
+}
+/*!
+ * \brief in text selection mode, copy selected text to clipboard
+ */
+void PDFWidget::copyText()
+{
+    if (currentTool != kSelectText) return;
+
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    QString text=m_selectedText;
+
+    clipboard->setText(text);
 }
 
 void PDFWidget::wheelEvent(QWheelEvent *event)
@@ -2725,12 +2745,14 @@ void PDFWidget::updateSelectedTextBoxes(int page, const QPointF &pos)
                     // last line
                     if(rect.right()> r.left()){
                         m_selectedTextBoxes.append(r);
+                        m_selectedText+=" "+textBox->text();
                     }else{
                         break;
                     }
                 }else{
                     // we take complete lines, check y only
                     m_selectedTextBoxes.append(r);
+                    m_selectedText+=" "+textBox->text();
                 }
             }else{
                 // all found
@@ -2741,6 +2763,7 @@ void PDFWidget::updateSelectedTextBoxes(int page, const QPointF &pos)
                 // we found the first element
                 m_selectedTextBoxes.append(r);
                 firstElementFound=true;
+                m_selectedText = textBox->text();
             }
         }
     }
@@ -3242,6 +3265,7 @@ void PDFDocument::setupMenus(bool embedded)
     actionFocus_Editor=configManager->newManagedAction(menuroot,menuWindow, "focusEditor", tr("Focus Editor"), this, SIGNAL(focusEditor()), QList<QKeySequence>()<<QKeySequence(Qt::ControlModifier|Qt::AltModifier|Qt::Key_Left));
 	menuWindow->addSeparator();
     actionNew_Window=configManager->newManagedAction(menuroot,menuWindow, "newWindow", tr("New Window"), this, SIGNAL(triggeredClone()), QList<QKeySequence>());
+    actionCopy=configManager->newManagedAction(menuroot,menuEdit_2, "copy", tr("&Copy"), pdfWidget, SLOT(copyText()), QList<QKeySequence>()<< QKeySequence(Qt::ControlModifier | Qt::Key_C));
     actionFind=configManager->newManagedAction(menuroot,menuEdit_2, "find", tr("&Find"), this, SLOT(doFindDialog()), QList<QKeySequence>()<< QKeySequence(Qt::ControlModifier | Qt::Key_F));
     actionFind_Again=configManager->newManagedAction(menuroot,menuEdit_2, "findAgain", tr("Find &again"), this, SLOT(doFindAgain()), QList<QKeySequence>()<< QKeySequence(Qt::ControlModifier | Qt::Key_M)<< Qt::Key_F3);
     menuEdit_2->addSeparator();

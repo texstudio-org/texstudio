@@ -252,6 +252,8 @@ protected slots: //not private, so scripts have access
 	void zoomOut();
 	void jumpToSource();
 
+    void copyText();
+
 	void upOrPrev();
 	void leftOrPrev();
 	void pageUpOrPrev();
@@ -336,6 +338,7 @@ private:
     };
     ClickedPosition m_selectStart{-1,QPointF()}; // pageNr, position in page coordinates
     QList<QRectF> m_selectedTextBoxes; // selected text boxes
+    QString m_selectedText; // selected text
 
 	int realPageIndex, oldRealPageIndex;
 	QList<int> pages;
