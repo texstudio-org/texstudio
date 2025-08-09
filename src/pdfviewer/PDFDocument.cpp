@@ -2859,6 +2859,12 @@ void PDFWidget::scrollClicked()
 	updateCursor();
 }
 
+void PDFWidget::selectTextClicked()
+{
+    setTool(kSelectText);
+    updateCursor();
+}
+
 PDFScrollArea *PDFWidget::getScrollArea() const
 {
 	QWidget *parent = parentWidget();
@@ -2972,6 +2978,7 @@ void PDFDocument::setupToolBar(){
     toolBar->addSeparator();
     toolBar->addAction(actionMagnify);
     toolBar->addAction(actionScroll);
+    toolBar->addAction(actionSelect_Text);
     toolBar->addSeparator();
     toolBar->addAction(actionBack);
     toolBar->addAction(actionForward);
@@ -3057,6 +3064,9 @@ void PDFDocument::setupMenus(bool embedded)
     actionScroll=configManager->newManagedAction(menuroot,menuView, "scroll", tr("&Scroll"), pdfWidget, SLOT(scrollClicked()), QList<QKeySequence>(),"hand");
     actionScroll->setCheckable(true);
     toolGroup->addAction(actionScroll);
+    actionSelect_Text=configManager->newManagedAction(menuroot,menuView, "selectText", tr("&Select Text"), pdfWidget, SLOT(selectTextClicked()), QList<QKeySequence>(),"cursor");
+    actionSelect_Text->setCheckable(true);
+    toolGroup->addAction(actionSelect_Text);
 
     menuView->addSeparator();
     actionFirst_Page=configManager->newManagedAction(menuroot,menuView, "firstPage", tr("&First Page"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>()<<Qt::Key_Home<<QKeySequence(Qt::ControlModifier | Qt::Key_Home),"go-first");
@@ -3229,7 +3239,7 @@ void PDFDocument::init(bool embedded)
 	toolButtonGroup = new QButtonGroup(toolBar);
 	toolButtonGroup->addButton(qobject_cast<QAbstractButton *>(toolBar->widgetForAction(actionMagnify)), kMagnifier);
 	toolButtonGroup->addButton(qobject_cast<QAbstractButton *>(toolBar->widgetForAction(actionScroll)), kScroll);
-	//	toolButtonGroup->addButton(qobject_cast<QAbstractButton*>(toolBar->widgetForAction(actionSelect_Text)), kSelectText);
+    toolButtonGroup->addButton(qobject_cast<QAbstractButton*>(toolBar->widgetForAction(actionSelect_Text)), kSelectText);
 	//	toolButtonGroup->addButton(qobject_cast<QAbstractButton*>(toolBar->widgetForAction(actionSelect_Image)), kSelectImage);
 #if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
     connect(toolButtonGroup, SIGNAL(idClicked(int)), pdfWidget, SLOT(setTool(int)));
@@ -3940,6 +3950,7 @@ void PDFDocument::updateIcons()
 {
     actionMagnify->setIcon(getRealIcon("magnifier-button"));
     actionScroll->setIcon(getRealIcon("hand"));
+    actionSelect_Text->setIcon(getRealIcon("cursor"));
     actionFirst_Page->setIcon(getRealIcon("go-first"));
     actionBack->setIcon(getRealIcon("back"));
     actionPrevious_Page->setIcon(getRealIcon("go-previous"));

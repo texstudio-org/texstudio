@@ -244,6 +244,7 @@ protected slots: //not private, so scripts have access
 
 	void magnifierClicked();
 	void scrollClicked();
+    void selectTextClicked();
 
 	void fitWidth(bool checked = true);
 	void fitTextWidth(bool checked = true);
