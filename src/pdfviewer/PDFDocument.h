@@ -244,6 +244,7 @@ protected slots: //not private, so scripts have access
 
 	void magnifierClicked();
 	void scrollClicked();
+    void selectTextClicked();
 
 	void fitWidth(bool checked = true);
 	void fitTextWidth(bool checked = true);
@@ -252,7 +253,7 @@ protected slots: //not private, so scripts have access
 	void jumpToSource();
 
 	void upOrPrev();
-	void leftOrPrev();
+    void leftOrPrev();
 	void pageUpOrPrev();
 
 	void downOrNext();
@@ -273,6 +274,7 @@ public slots:
 	void fixedScale(qreal scale = 1.0);
 	void setImage(QPixmap img, int pageNr);
     void delayedUpdate();
+    void copyText();
 
 signals:
 	void changedPage(int, bool);
@@ -319,6 +321,8 @@ private:
 	void doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor = 1.0);
     void doZoom(const QPointF &clickPos, int dir, qreal newScaleFactor = 1.0);
 
+    void updateSelectedTextBoxes(int page, const QPointF &pos);
+
 	PDFScrollArea *getScrollArea() const;
 
 	QSharedPointer<Poppler::Document> document;
@@ -326,6 +330,14 @@ private:
 
 	QSharedPointer<Poppler::Link> clickedLink;
 	QSharedPointer<Poppler::Annotation> clickedAnnotation;
+
+    struct ClickedPosition {
+        int pageNr;
+        QPointF position;
+    };
+    ClickedPosition m_selectStart{-1,QPointF()}; // pageNr, position in page coordinates
+    QList<QRectF> m_selectedTextBoxes; // selected text boxes
+    QString m_selectedText; // selected text
 
 	int realPageIndex, oldRealPageIndex;
 	QList<int> pages;
