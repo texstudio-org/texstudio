@@ -313,7 +313,8 @@ bool Token::operator ==(const Token &v) const
 {
     return (this->dlh == v.dlh) && (this->length == v.length) &&
            (this->level == v.level) && (this->type == v.type) &&
-           (this->start == v.start)  && (this->subtype == v.subtype);
+           (this->start == v.start)  && (this->subtype == v.subtype) &&
+           (this->optionalCommandName == v.optionalCommandName);
 }
 
 /*!
