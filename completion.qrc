@@ -181,9 +181,9 @@
 <file>completion/asymptote.cwl</file>
 <file>completion/asypictureB.cwl</file>
 <file>completion/asyprocess.cwl</file>
+<file>completion/atableau.cwl</file>
 <file>completion/atbegshi.cwl</file>
 <file>completion/at.cwl</file>
-<file>completion/atableau.cwl</file>
 <file>completion/atendofenv.cwl</file>
 <file>completion/athnum.cwl</file>
 <file>completion/atkinson.cwl</file>
@@ -530,8 +530,8 @@
 <file>completion/cascadia-code.cwl</file>
 <file>completion/CascadiaCodePL.cwl</file>
 <file>completion/CascadiaMono.cwl</file>
-<file>completion/CascadiaMonoPL.cwl</file>
 <file>completion/cascadiamono-otf.cwl</file>
+<file>completion/CascadiaMonoPL.cwl</file>
 <file>completion/cas-common.cwl</file>
 <file>completion/cases.cwl</file>
 <file>completion/casiofont.cwl</file>
@@ -563,8 +563,8 @@
 <file>completion/chappg.cwl</file>
 <file>completion/chapterbib.cwl</file>
 <file>completion/chapterfolder.cwl</file>
-<file>completion/CharisSIL.cwl</file>
 <file>completion/char2path.cwl</file>
+<file>completion/CharisSIL.cwl</file>
 <file>completion/chbibref.cwl</file>
 <file>completion/checklistings.cwl</file>
 <file>completion/chemarr.cwl</file>
@@ -1463,8 +1463,8 @@
 <file>completion/etoolbox.cwl</file>
 <file>completion/etruscan.cwl</file>
 <file>completion/eucal.cwl</file>
-<file>completion/euclidean-lattice.cwl</file>
 <file>completion/euclideangeometry.cwl</file>
+<file>completion/euclidean-lattice.cwl</file>
 <file>completion/euflag.cwl</file>
 <file>completion/eufrak.cwl</file>
 <file>completion/eukdate.cwl</file>
@@ -1509,8 +1509,8 @@
 <file>completion/expkv-def.cwl</file>
 <file>completion/expkv-opt.cwl</file>
 <file>completion/expkv-pop.cwl</file>
-<file>completion/expl3.cwl</file>
 <file>completion/expl3-commands.cwl</file>
+<file>completion/expl3.cwl</file>
 <file>completion/export.cwl</file>
 <file>completion/exp-testopt.cwl</file>
 <file>completion/exsol.cwl</file>
@@ -1704,8 +1704,8 @@
 <file>completion/gastex.cwl</file>
 <file>completion/gates.cwl</file>
 <file>completion/gatherenum.cwl</file>
-<file>completion/gb4e-next.cwl</file>
 <file>completion/gb4e.cwl</file>
+<file>completion/gb4e-next.cwl</file>
 <file>completion/gbt7714.cwl</file>
 <file>completion/gchords.cwl</file>
 <file>completion/gckanbun.cwl</file>
@@ -1982,13 +1982,13 @@
 <file>completion/inslrmaj.cwl</file>
 <file>completion/inslrmin.cwl</file>
 <file>completion/intcalc.cwl</file>
-<file>completion/intexgral.cwl</file>
 <file>completion/interactiveanimation.cwl</file>
 <file>completion/interactiveplot.cwl</file>
 <file>completion/inter.cwl</file>
 <file>completion/interlinear.cwl</file>
 <file>completion/interpreter.cwl</file>
 <file>completion/interval.cwl</file>
+<file>completion/intexgral.cwl</file>
 <file>completion/intopdf.cwl</file>
 <file>completion/inversepath.cwl</file>
 <file>completion/invoice2.cwl</file>
@@ -2190,11 +2190,11 @@
 <file>completion/linguex.cwl</file>
 <file>completion/linguisticspro.cwl</file>
 <file>completion/linguistix-base.cwl</file>
+<file>completion/linguistix.cwl</file>
 <file>completion/linguistix-fonts.cwl</file>
 <file>completion/linguistix-ipa.cwl</file>
 <file>completion/linguistix-logos.cwl</file>
 <file>completion/linguistix-nfss.cwl</file>
-<file>completion/linguistix.cwl</file>
 <file>completion/linop.cwl</file>
 <file>completion/linsys.cwl</file>
 <file>completion/lips.cwl</file>
@@ -2210,6 +2210,7 @@
 <file>completion/listofsymbols.cwl</file>
 <file>completion/listparskip.cwl</file>
 <file>completion/listpen.cwl</file>
+<file>completion/liturgy-cw.cwl</file>
 <file>completion/llncsconf.cwl</file>
 <file>completion/lltjcore.cwl</file>
 <file>completion/lltjdefs.cwl</file>
@@ -2376,7 +2377,6 @@
 <file>completion/marginnote.cwl</file>
 <file>completion/markdown.cwl</file>
 <file>completion/marvosym.cwl</file>
-<file>completion/math-operator.cwl</file>
 <file>completion/mathabx.cwl</file>
 <file>completion/mathalfa.cwl</file>
 <file>completion/mathalpha.cwl</file>
@@ -2391,6 +2391,7 @@
 <file>completion/mathfixs.cwl</file>
 <file>completion/mathfont.cwl</file>
 <file>completion/mathgreeks.cwl</file>
+<file>completion/math-operator.cwl</file>
 <file>completion/mathpartir.cwl</file>
 <file>completion/mathpazo.cwl</file>
 <file>completion/mathpi.cwl</file>
@@ -3939,10 +3940,10 @@
 <file>completion/tikz-uml.cwl</file>
 <file>completion/tikzviolinplots.cwl</file>
 <file>completion/tile-graphic.cwl</file>
-<file>completion/time.cwl</file>
 <file>completion/timechart.cwl</file>
-<file>completion/timing-diagrams.cwl</file>
+<file>completion/time.cwl</file>
 <file>completion/timeop.cwl</file>
+<file>completion/timing-diagrams.cwl</file>
 <file>completion/tinos.cwl</file>
 <file>completion/tipa.cwl</file>
 <file>completion/tipauni.cwl</file>
