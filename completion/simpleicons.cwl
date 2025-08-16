@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/08/09 for v15.8.0
+# Matthew Bertucci 2025/08/16 for v15.9.0
 
 #include:iftex
 
@@ -1377,6 +1377,7 @@ imdb
 imessage
 imgur
 immer
+immersivetranslate
 immich
 imou
 improvmx
@@ -3341,6 +3342,7 @@ zingat
 zod
 zoho
 zoiper
+zola
 zomato
 zoom
 zorin
