@@ -651,7 +651,7 @@ void TemplateSelector::onRequestError()
     if (!reply) return;
 
     QTreeWidgetItem *rootItem=reply->request().attribute(tplAttributeItem).value<QTreeWidgetItem*>();
-    if (!rootItem) return;
+    if (!rootItem || !rootItem->childCount()) return;
     rootItem->child(0)->setText(0,tr("Repository not found. Network error:%1").arg("\n"+reply->errorString()));
 
     networkManager->deleteLater();

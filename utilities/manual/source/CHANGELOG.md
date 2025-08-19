@@ -2,6 +2,8 @@
 ## TeXstudio 4.8.9
 
 - extend close env to close env or delimiter (alt+return)
+- add text selection in pdf viewer (on single page only)
+- fix verbatim highlighting issue, see [#4136](https://github.com/texstudio-org/texstudio/issues/4136)
 
 ## TeXstudio 4.8.8
 

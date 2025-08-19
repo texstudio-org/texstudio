@@ -723,31 +723,32 @@ void ConfigDialog::aiProviderChanged(int provider)
  */
 void ConfigDialog::retrieveModels()
 {
-    if(!ui.leAIAPIKey->text().isEmpty()){
-        QString provider=ui.cbAIProvider->currentText();
-        QString key=ui.leAIAPIKey->text();
-        QString url;
-        
-        switch(ui.cbAIProvider->currentIndex()){
-        case 0:
-            url="https://api.mistral.ai/v1/models";
-            break;
-        case 1:
-            url="https://api.openai.com/v1/models";
-            break;
-        case 2:
-            url=ui.leAIAPIURL->text();
-            url=url.replace("chat/completions","models");
-            break;
-        default:
-            break;
-        }
-        QNetworkRequest request(url);
-        request.setRawHeader("Authorization",QString("Bearer "+key).toUtf8());
-        QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-        connect(manager,&QNetworkAccessManager::finished,this,&ConfigDialog::modelsRetrieved);
-        manager->get(request);
+
+    QString provider=ui.cbAIProvider->currentText();
+    QString key=ui.leAIAPIKey->text();
+    QString url;
+
+    switch(ui.cbAIProvider->currentIndex()){
+    case 0:
+        url="https://api.mistral.ai/v1/models";
+        break;
+    case 1:
+        url="https://api.openai.com/v1/models";
+        break;
+    case 2:
+        url=ui.leAIAPIURL->text();
+        url=url.replace("chat/completions","models");
+        break;
+    default:
+        break;
     }
+    QNetworkRequest request(url);
+    if(!key.isEmpty()){
+        request.setRawHeader("Authorization",QString("Bearer "+key).toUtf8());
+    }
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    connect(manager,&QNetworkAccessManager::finished,this,&ConfigDialog::modelsRetrieved);
+    manager->get(request);
 }
 /*!
  * \brief reset custom ai api url to default

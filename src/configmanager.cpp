@@ -644,6 +644,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 #else
 	registerOption("Grammar/Language Tool URL", &grammarCheckerConfig->languageToolURL, "http://localhost:8081/", &pseudoDialog->lineEditGrammarLTUrl);
 #endif
+	registerOption("Grammar/Language Tool URL Parameters", &grammarCheckerConfig->languageToolURLParams, "", &pseudoDialog->lineEditGrammarLTURLParams);
 	registerOption("Grammar/Language Tool Path", &grammarCheckerConfig->languageToolPath, "", &pseudoDialog->lineEditGrammarLTPath);
 	registerOption("Grammar/Language Tool Arguments", &grammarCheckerConfig->languageToolArguments, "org.languagetool.server.HTTPServer -p 8081", &pseudoDialog->lineEditGrammarLTArguments);
 	registerOption("Grammar/Language Tool Java Path", &grammarCheckerConfig->languageToolJavaPath, "java", &pseudoDialog->lineEditGrammarLTJava);
