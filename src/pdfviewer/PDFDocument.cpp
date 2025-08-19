@@ -1177,15 +1177,19 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 	mouseDownModifiers = event->modifiers();
     // handle text selection
     if (currentTool == kSelectText) {
-        QPointF scaledPos;
-        int pageNr;
-        mapToScaledPosition(event->pos(), pageNr, scaledPos);
-        if (pageNr >= 0 && pageNr < realNumPages()) {
-            m_selectStart={pageNr,scaledPos};
+        if ((mouseDownModifiers & Qt::ControlModifier) && !(mouseDownModifiers & Qt::ShiftModifier)) {
+            // ctrl+click
+        }else{
+            QPointF scaledPos;
+            int pageNr;
+            mapToScaledPosition(event->pos(), pageNr, scaledPos);
+            if (pageNr >= 0 && pageNr < realNumPages()) {
+                m_selectStart={pageNr,scaledPos};
+            }
+            usingTool= kSelectText;
+            event->accept();
+            return;
         }
-        usingTool= kSelectText;
-        event->accept();
-        return;
     }
 	if ((mouseDownModifiers & Qt::ControlModifier) && !(mouseDownModifiers & Qt::ShiftModifier)) {
 		// ctrl key - this is a sync click, don't handle the mouseDown here
