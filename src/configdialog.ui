@@ -3929,6 +3929,20 @@ Examples:
                     </property>
                    </widget>
                   </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_LTURLParams">
+                    <property name="text">
+                     <string>URL Parameters: </string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1" colspan="3">
+                   <widget class="QLineEdit" name="lineEditGrammarLTURLParams">
+                    <property name="toolTip">
+                     <string>Additional URL parameters to send with LanguageTool requests. For example: level=picky&amp;enabledRules=CUSTOM_RULE</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="8" column="1">
                    <widget class="QLineEdit" name="lineEditGrammarLTArguments">
                     <property name="toolTip">
@@ -5125,6 +5139,7 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>lineEditGrammarWordlists</tabstop>
   <tabstop>pushButtonGrammarWordlists</tabstop>
   <tabstop>lineEditGrammarLTUrl</tabstop>
+  <tabstop>lineEditGrammarLTURLParams</tabstop>
   <tabstop>lineEditGrammarLTIgnoredRules</tabstop>
   <tabstop>checkBoxGrammarLTAutorun</tabstop>
   <tabstop>lineEditGrammarLTPath</tabstop>

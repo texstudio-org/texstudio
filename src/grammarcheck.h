@@ -142,6 +142,7 @@ private:
     QPointer<QProcess> javaProcess;
 
     QString ltPath, javaPath, ltArguments;
+    QString ltURLParams;
     QSet<QString> ignoredRules;
     QList<QSet<QString> >  specialRules;
     uint startTime;
