@@ -486,6 +486,8 @@ void GrammarCheckLanguageToolJSON::init(const GrammarCheckerConfig &config)
     javaPath = config.languageToolJavaPath;
     javaPath.replace("[txs-settings-dir]", config.configDir);
     javaPath.replace("[txs-app-dir]", config.appDir);
+    
+    ltURLParams = config.languageToolURLParams.trimmed();
 
     ignoredRules.clear();
     foreach (const QString &r, config.languageToolIgnoredRules.split(","))
@@ -605,6 +607,15 @@ void GrammarCheckLanguageToolJSON::check(uint ticket, uint subticket, const QStr
     post.reserve(text.length() + 50);
     post.append("language=" + lang + "&text=");
     post.append(QUrl::toPercentEncoding(text, QByteArray(), QByteArray(" ")));
+    
+    // Add custom URL parameters if specified
+    if (!ltURLParams.isEmpty()) {
+        if (!ltURLParams.startsWith("&")) {
+            post.append("&");
+        }
+        post.append(ltURLParams);
+    }
+    
     post.append("\n");
 
     //qDebug() << text;
