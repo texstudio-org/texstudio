@@ -3067,6 +3067,10 @@ PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
         if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
         toolBar->setVisible(globalConfig->toolbarVisible);
         statusbar->setVisible(true);
+        QString title = TEXSTUDIO;
+        if (!ConfigManager::winttlExtension.isEmpty())
+            title += " " + ConfigManager::winttlExtension;
+        setWindowTitle(title);
     }
     if (embeddedMode && globalConfig->autoHideToolbars) {
         setAutoHideToolbars(true);
