@@ -1184,6 +1184,16 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
             int pageNr;
             mapToScaledPosition(event->pos(), pageNr, scaledPos);
             if (pageNr >= 0 && pageNr < realNumPages()) {
+                if (!(mouseDownModifiers & Qt::ControlModifier) && (mouseDownModifiers & Qt::ShiftModifier)) {
+                    // shift+click
+                    if(pageNr==m_selectStart.pageNr){
+                        // same page as before, extend selection
+                        updateSelectedTextBoxes(pageNr,scaledPos);
+                        update();
+                        event->accept();
+                        return;
+                    }
+                }
                 m_selectStart={pageNr,scaledPos};
             }
             usingTool= kSelectText;
