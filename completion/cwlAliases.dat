@@ -1606,3 +1606,7 @@ ltx-talk:
 class-ltx-talk
 latex-document
 tex
+leporello:
+class-leporello
+latex-document
+tex

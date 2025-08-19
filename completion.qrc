@@ -824,6 +824,7 @@
 <file>completion/class-leadsheet.cwl</file>
 <file>completion/class-leaflet.cwl</file>
 <file>completion/class-lebhart.cwl</file>
+<file>completion/class-leporello.cwl</file>
 <file>completion/class-letgut.cwl</file>
 <file>completion/class-letter.cwl</file>
 <file>completion/class-lettre.cwl</file>
@@ -1414,6 +1415,7 @@
 <file>completion/enumerate.cwl</file>
 <file>completion/enumext.cwl</file>
 <file>completion/enumitem.cwl</file>
+<file>completion/enumsub.cwl</file>
 <file>completion/enverb.cwl</file>
 <file>completion/environ.cwl</file>
 <file>completion/envlab.cwl</file>
