@@ -353,6 +353,7 @@ bool ManagedProperty::readFromObject(const QObject *w)
 const int ConfigManager::MAX_NUM_MACROS;
 QTextCodec *ConfigManager::newFileEncoding = nullptr;
 QString ConfigManager::configDirOverride;
+QString ConfigManager::winttlExtension="";
 bool ConfigManager::dontRestoreSession=false;
 int ConfigManager::RUNAWAYLIMIT=50;
 

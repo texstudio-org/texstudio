@@ -149,6 +149,8 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 			else if ((cmdArgument == "--debug-logfile") && (++i < args.count()))
 				debugLoggerStart(args[i]);
 #endif
+			else if ((cmdArgument == "--titleExt") && (++i < args.count()))
+				ConfigManager::winttlExtension = args[i];
 			else
 				cmdLine << cmdArgument;
         } else {
@@ -179,6 +181,7 @@ bool handleCommandLineOnly(const QStringList &cmdLine) {
                             << "  --no-session              do not load/save the session at startup/close\n"
                             << "  --texpath PATH            force resetting command defaults with PATH as first search path\n"
                             << "  --version                 show version number\n"
+                            << "  --titleExt TEXT           adds TEXT to the title of the TXS window\n"
 #ifdef DEBUG_LOGGER
 							<< "  --debug-logfile pathname  write debug messages to pathname\n"
 #endif

@@ -1879,6 +1879,8 @@ void Texstudio::updateCaption()
 		updateOpenDocumentMenu(true);
 		newDocumentLineEnding();
 	}
+	if (!ConfigManager::winttlExtension.isEmpty())
+		title += " " + ConfigManager::winttlExtension;
 	setWindowTitle(title);
 	updateUndoRedoStatus();
 	cursorPositionChanged();

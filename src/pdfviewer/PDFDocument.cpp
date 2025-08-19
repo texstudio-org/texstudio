@@ -4522,7 +4522,8 @@ void PDFDocument::setCurrentFile(const QString &fileName)
 	curFileUnnormalized = fileName;
 	curFile = QFileInfo(fileName).canonicalFilePath();
 	QString niceFile = QFileInfo(curFile).fileName();
-    setWindowTitle(tr("%1[*] - %2").arg(niceFile,tr(TEXSTUDIO)));
+	QString winttlExt = (ConfigManager::winttlExtension.isEmpty() ? "" : " " + ConfigManager::winttlExtension);
+    setWindowTitle(tr("%1[*] - %2").arg(niceFile,tr(TEXSTUDIO)) + winttlExt);
 }
 
 PDFDocument *PDFDocument::findDocument(const QString &fileName)

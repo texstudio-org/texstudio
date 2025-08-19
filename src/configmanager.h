@@ -265,6 +265,7 @@ public:
 	void triggerManagedAction(const QString &id);
 
 	static QString configDirOverride;
+	static QString winttlExtension;
     static bool dontRestoreSession;
     static int RUNAWAYLIMIT;
 private:
