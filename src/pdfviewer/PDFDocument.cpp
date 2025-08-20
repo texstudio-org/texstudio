@@ -1407,6 +1407,20 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			usingTool = kNone;
 			laserPointer->close();
 			break;
+        case kSelectText:
+            // check if start point is close to end point
+            // deselect if yes
+            {
+                int page;
+                QPointF scaledPos;
+                mapToScaledPosition(event->pos(), page, scaledPos);
+                if (m_selectStart.pageNr == -1 || m_selectStart.pageNr != page ||
+                    (m_selectStart.position - scaledPos).manhattanLength() < 0.01) {
+                    m_selectedTextBoxes.clear();
+                    update();
+                }
+            }
+            break;
 		}
 	}
 	clickedLink.clear();
