@@ -29,6 +29,7 @@
 #include "filedialog.h"
 
 #include <QJsonDocument>
+#include <QLineEdit>
 
 const QString ShortcutDelegate::addRowButton = "<internal: add row>";
 const QString ShortcutDelegate::deleteRowButton = "<internal: delete row>";
@@ -691,7 +692,8 @@ void ConfigDialog::aiProviderChanged(int provider)
 {
     bool activateCustomURL=false;
     ui.cbAIPreferredModel->setEditable(true);
-    
+    QLineEdit *modelLine = ui.cbAIPreferredModel->lineEdit();
+
     switch(provider){
     case 0:
         ui.cbAIPreferredModel->clear();
@@ -700,7 +702,7 @@ void ConfigDialog::aiProviderChanged(int provider)
         ui.cbAIPreferredModel->addItem("mistral-small-latest");
         ui.cbAIPreferredModel->addItem("mistral-medium-latest");
         ui.cbAIPreferredModel->addItem("mistral-large-latest");
-        ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., open-mistral-7b)");
+        modelLine->setPlaceholderText("Enter model name (e.g., open-mistral-7b)");
         break;
     case 1:
         ui.cbAIPreferredModel->clear();
@@ -708,11 +710,11 @@ void ConfigDialog::aiProviderChanged(int provider)
         ui.cbAIPreferredModel->addItem("gpt-3.5-turbo");
         ui.cbAIPreferredModel->addItem("gpt-4");
         ui.cbAIPreferredModel->addItem("gpt-4o");
-        ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., gpt-4o)");
+        modelLine->setPlaceholderText("Enter model name (e.g., gpt-4o)");
         break;
     default:
         ui.cbAIPreferredModel->clear();
-        ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., llama-3.3-8B-Instruct)");
+        modelLine->setPlaceholderText("Enter model name (e.g., llama-3.3-8B-Instruct)");
         activateCustomURL=true;
         break;
     }
