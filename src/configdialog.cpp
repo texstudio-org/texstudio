@@ -699,6 +699,7 @@ void ConfigDialog::aiProviderChanged(int provider)
         ui.cbAIPreferredModel->addItem("mistral-medium-latest");
         ui.cbAIPreferredModel->addItem("mistral-large-latest");
         ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., open-mistral-7b)");
+        ui.leAIAPIURL->setText("https://api.mistral.ai");
         break;
     case 1:
         ui.cbAIPreferredModel->clear();
@@ -707,6 +708,7 @@ void ConfigDialog::aiProviderChanged(int provider)
         ui.cbAIPreferredModel->addItem("gpt-4");
         ui.cbAIPreferredModel->addItem("gpt-4o");
         ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., gpt-4o)");
+        ui.leAIAPIURL->setText("https://api.openai.com");
         break;
     default:
         ui.cbAIPreferredModel->clear();
