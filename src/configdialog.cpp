@@ -713,6 +713,7 @@ void ConfigDialog::aiProviderChanged(int provider)
     default:
         ui.cbAIPreferredModel->clear();
         ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., llama-3.3-8B-Instruct)");
+        ui.leAIAPIURL->setText("http://localhost:8080/v1/chat/completions");
         activateCustomURL=true;
         break;
     }
