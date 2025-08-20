@@ -1,5 +1,5 @@
 # zref-clever package
-# Matthew Bertucci 2024/11/25 for v0.5.0
+# Matthew Bertucci 2025/08/11 for v0.5.1
 
 #include:zref-base
 #include:zref-user
@@ -73,6 +73,22 @@ rangesep={%<separator%>}
 refbounds={%<preref*,preref,postref,postref*%>}
 namefont=%<name%>
 reffont=%<name%>
+refbounds-first={%<preref*,preref,postref,postref*%>}
+refbounds-first-sg={%<preref*,preref,postref,postref*%>}
+refbounds-first-pb={%<preref*,preref,postref,postref*%>}
+refbounds-first-rb={%<preref*,preref,postref,postref*%>}
+refbounds-mid={%<preref*,preref,postref,postref*%>}
+refbounds-mid-rb={%<preref*,preref,postref,postref*%>}
+refbounds-mid-re={%<preref*,preref,postref,postref*%>}
+refbounds-last={%<preref*,preref,postref,postref*%>}
+refbounds-last-pe={%<preref*,preref,postref,postref*%>}
+refbounds-last-re={%<preref*,preref,postref,postref*%>}
++refbounds-first={%<preref*,preref,postref,postref*%>}
++refbounds-mid={%<preref*,preref,postref,postref*%>}
++refbounds-last={%<preref*,preref,postref,postref*%>}
++refbounds-rb={%<preref*,preref,postref,postref*%>}
++refbounds-re={%<preref*,preref,postref,postref*%>}
++refbounds={%<preref*,preref,postref,postref*%>}
 #endkeyvals
 
 #keyvals:\zcsetup
@@ -104,6 +120,22 @@ cap#true,false
 abbrev#true,false
 endrange=#ref,stripprefix,pagecomp,pagecomp2
 rangetopair#true,false
+refbounds-first={%<preref*,preref,postref,postref*%>}
+refbounds-first-sg={%<preref*,preref,postref,postref*%>}
+refbounds-first-pb={%<preref*,preref,postref,postref*%>}
+refbounds-first-rb={%<preref*,preref,postref,postref*%>}
+refbounds-mid={%<preref*,preref,postref,postref*%>}
+refbounds-mid-rb={%<preref*,preref,postref,postref*%>}
+refbounds-mid-re={%<preref*,preref,postref,postref*%>}
+refbounds-last={%<preref*,preref,postref,postref*%>}
+refbounds-last-pe={%<preref*,preref,postref,postref*%>}
+refbounds-last-re={%<preref*,preref,postref,postref*%>}
++refbounds-first={%<preref*,preref,postref,postref*%>}
++refbounds-mid={%<preref*,preref,postref,postref*%>}
++refbounds-last={%<preref*,preref,postref,postref*%>}
++refbounds-rb={%<preref*,preref,postref,postref*%>}
++refbounds-re={%<preref*,preref,postref,postref*%>}
++refbounds={%<preref*,preref,postref,postref*%>}
 #endkeyvals
 
 \zcDeclareLanguage{language}
@@ -144,8 +176,25 @@ cap#true,false
 abbrev#true,false
 endrange=#ref,stripprefix,pagecomp,pagecomp2
 rangetopair#true,false
+refbounds-first={%<preref*,preref,postref,postref*%>}
+refbounds-first-sg={%<preref*,preref,postref,postref*%>}
+refbounds-first-pb={%<preref*,preref,postref,postref*%>}
+refbounds-first-rb={%<preref*,preref,postref,postref*%>}
+refbounds-mid={%<preref*,preref,postref,postref*%>}
+refbounds-mid-rb={%<preref*,preref,postref,postref*%>}
+refbounds-mid-re={%<preref*,preref,postref,postref*%>}
+refbounds-last={%<preref*,preref,postref,postref*%>}
+refbounds-last-pe={%<preref*,preref,postref,postref*%>}
+refbounds-last-re={%<preref*,preref,postref,postref*%>}
++refbounds-first={%<preref*,preref,postref,postref*%>}
++refbounds-mid={%<preref*,preref,postref,postref*%>}
++refbounds-last={%<preref*,preref,postref,postref*%>}
++refbounds-rb={%<preref*,preref,postref,postref*%>}
++refbounds-re={%<preref*,preref,postref,postref*%>}
++refbounds={%<preref*,preref,postref,postref*%>}
 # language-specific keys
 type=%<type%>
 variant=#N,A,D,G
 gender={%<gender list%>}
 #endkeyvals
+

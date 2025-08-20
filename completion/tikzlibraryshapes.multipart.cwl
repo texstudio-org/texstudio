@@ -1,5 +1,5 @@
 # shapes.multipart tikzlibrary
-# 2022/11/20 for v3.1.9a
+# 2025/08/14 for v3.1.11
 
 # loads shapes.multipart pgflibrary
 
@@ -7,6 +7,7 @@
 circle split
 circle solidus
 ellipse split
+diamond split
 rectangle split
 #endkeyvals
 

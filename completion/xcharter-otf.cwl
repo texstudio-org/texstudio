@@ -1,5 +1,5 @@
 # xcharter-otf package
-# Matthew Bertucci 2025/02/16 for v0.67
+# Matthew Bertucci 2025/08/07 for v0.66
 
 #include:iftex
 #include:unicode-math
@@ -7,6 +7,7 @@
 
 #keyvals:\usepackage/xcharter-otf#c
 no-text
+no-logos
 fakedscripts
 tight
 loose
