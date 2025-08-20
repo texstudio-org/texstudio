@@ -608,7 +608,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
     // fill in the known models
     aiFillInKnownModels();
     // enable/disable custom URL depending on aiProvider
-    aiProviderChanged(ui.cbAIProvider->currentIndex());
+    aiProviderChanged(ui.cbAIProvider->currentIndex(),ui.cbAIPreferredModel->currentIndex());
 
 }
 
@@ -687,7 +687,7 @@ void ConfigDialog::revertClicked()
  * 1: openai
  * 2: custom provider
  */
-void ConfigDialog::aiProviderChanged(int provider)
+void ConfigDialog::aiProviderChanged(int provider, int modelIndex)
 {
     bool activateCustomURL=false;
     ui.cbAIPreferredModel->setEditable(true);
@@ -700,6 +700,7 @@ void ConfigDialog::aiProviderChanged(int provider)
         ui.cbAIPreferredModel->addItem("mistral-small-latest");
         ui.cbAIPreferredModel->addItem("mistral-medium-latest");
         ui.cbAIPreferredModel->addItem("mistral-large-latest");
+        ui.cbAIPreferredModel->setCurrentIndex(modelIndex);
         ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., open-mistral-7b)");
         break;
     case 1:
@@ -708,6 +709,7 @@ void ConfigDialog::aiProviderChanged(int provider)
         ui.cbAIPreferredModel->addItem("gpt-3.5-turbo");
         ui.cbAIPreferredModel->addItem("gpt-4");
         ui.cbAIPreferredModel->addItem("gpt-4o");
+        ui.cbAIPreferredModel->setCurrentIndex(modelIndex);
         ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., gpt-4o)");
         break;
     default:
