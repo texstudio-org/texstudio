@@ -3578,9 +3578,6 @@ them here.</string>
                </item>
                <item>
                 <widget class="QGroupBox" name="groupBox_AIChat">
-                 <property name="toolTip">
-                  <string>Store the conversation with AI provider on disk to allow later retrieval</string>
-                 </property>
                  <property name="title">
                   <string>AI chat assistant</string>
                  </property>
@@ -3664,6 +3661,9 @@ Examples:
                   </item>
                   <item row="4" column="0">
                    <widget class="QCheckBox" name="cbAIRecordConversation">
+                    <property name="toolTip">
+                     <string>Store the conversation with AI provider on disk to allow later retrieval</string>
+                    </property>
                     <property name="text">
                      <string>Record Conversation</string>
                     </property>
