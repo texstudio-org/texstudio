@@ -607,6 +607,8 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
     connect(ui.pbResetAIURL, &QPushButton::clicked, this, &ConfigDialog::resetAIURL);
     // fill in the known models
     aiFillInKnownModels();
+    // enable/disable custom URL depending on aiProvider
+    aiProviderChanged(ui.cbAIProvider->currentIndex());
 
 }
 
