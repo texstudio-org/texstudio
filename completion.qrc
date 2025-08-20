@@ -930,7 +930,6 @@
 <file>completion/class-schwalbe.cwl</file>
 <file>completion/class-sciposter.cwl</file>
 <file>completion/class-scrartcl.cwl</file>
-<file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
 <file>completion/class-scrbook.cwl</file>
 <file>completion/class-scrdoc.cwl</file>
 <file>completion/class-screenplay.cwl</file>

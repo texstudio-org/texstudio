@@ -1,10 +1,13 @@
 # tocbasic package
-# Matthew Bertucci 2024/10/15 for v3.42
+# Matthew Bertucci 2025/08/20 for v3.46
 
 #include:scrbase
 #include:scrlogo
 
 #keyvals:\usepackage/tocbasic#c
+captionposition=#top,bottom
+captionabove#true,false
+captionbelow#true,false
 enablepatch=%<list of patches%>
 disablepatch=%<list of patches%>
 #endkeyvals
@@ -118,6 +121,17 @@ type=%<entry type%>
 types=%<string%>
 unset={%<list of attributes%>}
 #endkeyvals
+
+\captionabove[entry]{title%text}
+\captionabove{title%text}
+\captionaboveof{float type}[entry]{title%text}
+\captionaboveof{float type}{title%text}
+\captionbelow[entry]{title%text}
+\captionbelow{title%text}
+\captionbelowof{float type}[entry]{title%text}
+\captionbelowof{float type}{title%text}
+\captionof{float type}[entry]{title%text}
+\captionof{float type}{title%text}
 
 \usetocbasicnumberline
 \usetocbasicnumberline[code]
