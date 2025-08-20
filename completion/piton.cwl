@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2025/07/09 for v4.7
+# Matthew Bertucci 2025/08/09 for v4.8
 
 #include:luacode
 #include:xcolor
@@ -29,9 +29,9 @@ beamer#true,false
 \begin{Piton}#V
 \begin{Piton}[options%keyvals]#V
 \end{Piton}
-# beamer only (breaks keyval completion so commented out)
-#\begin{Piton}<overlay spec>#*V
-#\begin{Piton}<overlay spec>[options%keyvals]#*V
+# beamer only
+\begin{Piton}<overlay spec>#*V
+\begin{Piton}<overlay spec>[options%keyvals]#*V
 
 \PitonInputFile{file}
 \PitonInputFile[options%keyvals]{file}
@@ -80,6 +80,7 @@ math-comments#true,false
 path={%<list of paths%>}
 raw-detected-commands={%<csname1,csname2,...%>}
 vertical-detected-commands={%<csname1,csname2,...%>}
+label-as-zlabel
 #endkeyvals
 
 # keys for \begin{Piton} only

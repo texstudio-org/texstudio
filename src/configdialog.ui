@@ -3578,9 +3578,6 @@ them here.</string>
                </item>
                <item>
                 <widget class="QGroupBox" name="groupBox_AIChat">
-                 <property name="toolTip">
-                  <string>Store the conversation with AI provider on disk to allow later retrieval</string>
-                 </property>
                  <property name="title">
                   <string>AI chat assistant</string>
                  </property>
@@ -3664,6 +3661,9 @@ Examples:
                   </item>
                   <item row="4" column="0">
                    <widget class="QCheckBox" name="cbAIRecordConversation">
+                    <property name="toolTip">
+                     <string>Store the conversation with AI provider on disk to allow later retrieval</string>
+                    </property>
                     <property name="text">
                      <string>Record Conversation</string>
                     </property>
@@ -3926,6 +3926,20 @@ Examples:
                    <widget class="QLineEdit" name="lineEditGrammarLTUrl">
                     <property name="toolTip">
                      <string>Url to connect to LanguageTool. </string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_LTURLParams">
+                    <property name="text">
+                     <string>URL Parameters: </string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1" colspan="3">
+                   <widget class="QLineEdit" name="lineEditGrammarLTURLParams">
+                    <property name="toolTip">
+                     <string>Additional URL parameters to send with LanguageTool requests. For example: level=picky&amp;enabledRules=CUSTOM_RULE</string>
                     </property>
                    </widget>
                   </item>
@@ -5125,6 +5139,7 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>lineEditGrammarWordlists</tabstop>
   <tabstop>pushButtonGrammarWordlists</tabstop>
   <tabstop>lineEditGrammarLTUrl</tabstop>
+  <tabstop>lineEditGrammarLTURLParams</tabstop>
   <tabstop>lineEditGrammarLTIgnoredRules</tabstop>
   <tabstop>checkBoxGrammarLTAutorun</tabstop>
   <tabstop>lineEditGrammarLTPath</tabstop>

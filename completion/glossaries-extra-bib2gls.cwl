@@ -1,5 +1,5 @@
 # glossaries-extra-bib2gls package
-# Matthew Bertucci 2025/02/09 for v1.56
+# Matthew Bertucci 2025/08/13 for v1.8
 
 \dgls{label}#r
 \dgls[options%keyvals]{label}#r
@@ -278,3 +278,6 @@ local#true,false
 \glsxtrgeneralpuncbracketIIIrules#*
 \glsxtrgeneralpuncbracketIVrules#*
 \glsxtrgeneralpuncIIIrules#*
+\predglshook{label}#*
+\predglslinkhook{label}#*
+\predglsfieldhook{label}#*

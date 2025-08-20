@@ -15,8 +15,11 @@ style=
 div=%<token%>
 #endkeyvals
 
-\polyhornerscheme{polynom%formula}
 \polyhornerscheme[options%keyvals]{polynom%formula}
+
+#keyvals:\polyhornerscheme#c
+%<variable%>=%<value%>
+#endkeyvals
 
 #keyvals:\polyset,\polyhornerscheme#c
 stage=%<number%>

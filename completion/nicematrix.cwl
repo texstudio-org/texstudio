@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2025/07/25 for v7.1e
+# Matthew Bertucci 2025/08/07 for v7.2
 
 #include:amsmath
 #include:array
@@ -232,6 +232,8 @@ sep-color=#%color
 tikz={%<TikZ keys%>}
 total-width=##L
 dotted
+start=%<integer%>
+end=%<integer%>
 #endkeyvals
 
 \diagbox{lower}{upper}#t
