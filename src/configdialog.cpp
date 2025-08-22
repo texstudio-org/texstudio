@@ -29,7 +29,6 @@
 #include "filedialog.h"
 
 #include <QJsonDocument>
-#include <QLineEdit>
 
 const QString ShortcutDelegate::addRowButton = "<internal: add row>";
 const QString ShortcutDelegate::deleteRowButton = "<internal: delete row>";
