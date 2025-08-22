@@ -608,7 +608,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
     // fill in the known models
     aiFillInKnownModels();
     // enable/disable custom URL depending on aiProvider
-    aiProviderChanged(ui.cbAIProvider->currentIndex(),ui.cbAIPreferredModel->currentIndex());
+    enableCustomURLEditor(ui.cbAIProvider->currentIndex());
 
 }
 
@@ -687,11 +687,9 @@ void ConfigDialog::revertClicked()
  * 1: openai
  * 2: custom provider
  */
-void ConfigDialog::aiProviderChanged(int provider, int modelIndex)
+void ConfigDialog::aiProviderChanged(int provider)
 {
-    bool activateCustomURL=false;
     ui.cbAIPreferredModel->setEditable(true);
-    
     switch(provider){
     case 0:
         ui.cbAIPreferredModel->clear();
@@ -700,7 +698,7 @@ void ConfigDialog::aiProviderChanged(int provider, int modelIndex)
         ui.cbAIPreferredModel->addItem("mistral-small-latest");
         ui.cbAIPreferredModel->addItem("mistral-medium-latest");
         ui.cbAIPreferredModel->addItem("mistral-large-latest");
-        ui.cbAIPreferredModel->setCurrentIndex(modelIndex);
+        ui.cbAIPreferredModel->setCurrentIndex(0);
         ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., open-mistral-7b)");
         break;
     case 1:
@@ -709,17 +707,25 @@ void ConfigDialog::aiProviderChanged(int provider, int modelIndex)
         ui.cbAIPreferredModel->addItem("gpt-3.5-turbo");
         ui.cbAIPreferredModel->addItem("gpt-4");
         ui.cbAIPreferredModel->addItem("gpt-4o");
-        ui.cbAIPreferredModel->setCurrentIndex(modelIndex);
+        ui.cbAIPreferredModel->setCurrentIndex(0);
         ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., gpt-4o)");
         break;
     default:
         ui.cbAIPreferredModel->clear();
         ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., llama-3.3-8B-Instruct)");
-        activateCustomURL=true;
         break;
     }
-    ui.leAIAPIURL->setEnabled(activateCustomURL);
-    ui.pbResetAIURL->setEnabled(activateCustomURL);
+    enableCustomURLEditor(provider);
+}
+/*!
+ * \brief enable ui elements when provider is custom
+ * disable otherwise
+ * \param provider
+ */
+void ConfigDialog::enableCustomURLEditor(int provider)
+{
+    ui.leAIAPIURL->setEnabled(provider==2);
+    ui.pbResetAIURL->setEnabled(provider==2);
 }
 /*!
  * \brief retieve the current list of available model from AI provider

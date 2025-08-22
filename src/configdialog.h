@@ -143,7 +143,8 @@ private slots:
 
 	void revertClicked();
 
-    void aiProviderChanged(int provider, int modelIndex=0);
+    void aiProviderChanged(int provider);
+    void enableCustomURLEditor(int provider);
     void retrieveModels();
     void resetAIURL();
     void modelsRetrieved(QNetworkReply *reply);
