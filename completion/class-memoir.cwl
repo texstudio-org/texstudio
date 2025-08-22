@@ -473,6 +473,7 @@ twoside
 \chapnumfont#*
 \chapter[toc-title%text][head-title%text]{title}#L1
 \chapter[toc-title%text]{title}#L1
+\chapter*[head-title%text]{title}#L1
 \chapterheadstart#*
 \chaptermark{code}#*
 \chaptername#*
