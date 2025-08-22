@@ -690,6 +690,7 @@ void ConfigDialog::revertClicked()
 void ConfigDialog::aiProviderChanged(int provider)
 {
     ui.cbAIPreferredModel->setEditable(true);
+    QLineEdit *modelLineEdit = ui.cbAIPreferredModel->lineEdit();
     switch(provider){
     case 0:
         ui.cbAIPreferredModel->clear();
@@ -699,7 +700,7 @@ void ConfigDialog::aiProviderChanged(int provider)
         ui.cbAIPreferredModel->addItem("mistral-medium-latest");
         ui.cbAIPreferredModel->addItem("mistral-large-latest");
         ui.cbAIPreferredModel->setCurrentIndex(0);
-        ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., open-mistral-7b)");
+        modelLineEdit->setPlaceholderText("Enter model name (e.g., open-mistral-7b)");
         break;
     case 1:
         ui.cbAIPreferredModel->clear();
@@ -708,11 +709,11 @@ void ConfigDialog::aiProviderChanged(int provider)
         ui.cbAIPreferredModel->addItem("gpt-4");
         ui.cbAIPreferredModel->addItem("gpt-4o");
         ui.cbAIPreferredModel->setCurrentIndex(0);
-        ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., gpt-4o)");
+        modelLineEdit->setPlaceholderText("Enter model name (e.g., gpt-4o)");
         break;
     default:
         ui.cbAIPreferredModel->clear();
-        ui.cbAIPreferredModel->setPlaceholderText("Enter model name (e.g., llama-3.3-8B-Instruct)");
+        modelLineEdit->setPlaceholderText("Enter model name (e.g., llama-3.3-8B-Instruct)");
         break;
     }
     enableCustomURLEditor(provider);
