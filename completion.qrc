@@ -2005,7 +2005,7 @@
 <file>completion/isonums.cwl</file>
 <file>completion/isopt.cwl</file>
 <file>completion/isorot.cwl</file>
-<file>completion/isosafety.cwl</file>
+<file>completion/isosigns.cwl</file>
 <file>completion/isotope.cwl</file>
 <file>completion/issuulinks.cwl</file>
 <file>completion/itnumpar.cwl</file>
