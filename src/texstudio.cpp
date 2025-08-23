@@ -6695,7 +6695,7 @@ void Texstudio::startCollabServer()
             QString buffer = collabServerProcess->readAllStandardOutput();
             outputView->insertMessageLine(buffer);
         });
-        connect(collabServerProcess, &QProcess::finished, this, [this](int exitCode, QProcess::ExitStatus exitStatus){
+        connect(collabServerProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, [this](int exitCode, QProcess::ExitStatus exitStatus){
             qDebug() << "Collaboration server finished with exit code" << exitCode << "and status" << exitStatus;
             collabServerProcess = nullptr;
         });
@@ -6755,7 +6755,7 @@ void Texstudio::connectCollabServer()
             collabClientProcess = new QProcess(this);
             collabClientProcess->setProcessChannelMode(QProcess::MergedChannels);
             connect(collabClientProcess, &QProcess::readyReadStandardOutput, this,&Texstudio::readyCollabClientStandardOutput);
-            connect(collabClientProcess, &QProcess::finished, this, [this](int exitCode, QProcess::ExitStatus exitStatus){
+            connect(collabClientProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, [this](int exitCode, QProcess::ExitStatus exitStatus){
                 qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
                 collabClientProcess = nullptr;
             });
