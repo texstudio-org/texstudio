@@ -612,6 +612,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
     // collaborative editing
     connect(ui.comboBoxCollaborativeTool, SIGNAL(currentIndexChanged(int)), this, SLOT(collaborativeEditingToolChanged(int)));
     connect(ui.pbSelectCollaborativeToolPath, SIGNAL(clicked()), this, SLOT(browseCollaborativeToolPath()));
+    connect(ui.pbSelectClientFolder, &QPushButton::clicked, this, &ConfigDialog::browseCollaborativeClientFolder);
 
 }
 
@@ -922,7 +923,14 @@ void ConfigDialog::browsePathCommands()
 
 void ConfigDialog::browseCollaborativeToolPath()
 {
-    UtilsUi::browse(ui.lineEditCollaborativeToolPath, tr("Search Path for Command"), "Executable (*)", QDir::rootPath(), true);
+    UtilsUi::browse(ui.lineEditCollaborativeToolPath, tr("Search Path for Command"), "Executable (*)", QDir::rootPath(), false);
+}
+/*!
+ * \brief browse Collaborative Client Folder
+ */
+void ConfigDialog::browseCollaborativeClientFolder()
+{
+    UtilsUi::browse(ui.lineEditCollaborativeClientFolder, tr("Search Folder for Collaborative Client"), "/", QDir::rootPath(), false);
 }
 
 void ConfigDialog::updateDefaultDictSelection(const QString &dictPaths, const QString &newDefault)

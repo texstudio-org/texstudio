@@ -123,6 +123,7 @@ private slots:
 	void browsePathPdf();
 	void browsePathCommands();
     void browseCollaborativeToolPath();
+    void browseCollaborativeClientFolder();
 	void advancedOptionsToggled(bool on);
 	void advancedOptionsClicked(bool on);
 	void metaFilterChanged(const QString &filter);
