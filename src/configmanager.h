@@ -225,6 +225,7 @@ public:
     // collaborative editing
     int ce_tool;
     QString ce_toolPath;
+    QString ce_clientPath; // folder where client data is located
 
 	//debug
 #ifndef QT_NO_DEBUG

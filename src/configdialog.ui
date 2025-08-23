@@ -137,7 +137,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
+                <width>823</width>
                 <height>725</height>
                </rect>
               </property>
@@ -3323,7 +3323,7 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
+                <width>596</width>
                 <height>995</height>
                </rect>
               </property>
@@ -3993,8 +3993,8 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1146</width>
-                <height>453</height>
+                <width>429</width>
+                <height>274</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4269,7 +4269,7 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
+                <width>555</width>
                 <height>641</height>
                </rect>
               </property>
@@ -4772,8 +4772,8 @@ Note: Changing this setting will only affect documents that are opened afterward
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1146</width>
-                <height>453</height>
+                <width>413</width>
+                <height>202</height>
                </rect>
               </property>
               <layout class="QGridLayout">
@@ -5010,20 +5010,13 @@ Note: Changing this setting will only affect documents that are opened afterward
               <string>Collaborative Editing</string>
              </property>
              <layout class="QGridLayout">
-              <item row="1" column="2">
+              <item row="1" column="3">
                <widget class="QPushButton" name="pbSelectCollaborativeToolPath">
                 <property name="text">
                  <string/>
                 </property>
                 <property name="icon">
                  <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_86">
-                <property name="text">
-                 <string>Tool:</string>
                 </property>
                </widget>
               </item>
@@ -5034,14 +5027,7 @@ Note: Changing this setting will only affect documents that are opened afterward
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEditCollaborativeToolPath">
-                <property name="editable" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
+              <item row="0" column="2">
                <widget class="QComboBox" name="comboBoxCollaborativeTool">
                 <property name="editable">
                  <bool>false</bool>
@@ -5051,6 +5037,40 @@ Note: Changing this setting will only affect documents that are opened afterward
                   <string>ethersync</string>
                  </property>
                 </item>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_92">
+                <property name="text">
+                 <string>Client folder:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLineEdit" name="lineEditCollaborativeToolPath">
+                <property name="editable" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_86">
+                <property name="text">
+                 <string>Tool:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLineEdit" name="lineEditCollaborativeClientFolder"/>
+              </item>
+              <item row="2" column="3">
+               <widget class="QPushButton" name="pbSelectClientFolder">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset theme="QIcon::ThemeIcon::FolderOpen"/>
+                </property>
                </widget>
               </item>
              </layout>

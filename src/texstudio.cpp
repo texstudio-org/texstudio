@@ -1261,6 +1261,9 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "analysetext", tr("A&nalyse Text..."), SLOT(analyseText()));
 	newManagedAction(menu, "generaterandomtext", tr("Generate &Random Text..."), SLOT(generateRandomText()));
 	menu->addSeparator();
+    newManagedAction(menu, "startCollabServer", tr("Start sharing folder"), SLOT(startCollabServer()));
+    newManagedAction(menu, "connectCollabServer", tr("Connect to other user for collaboration"), SLOT(connectCollabServer()));
+    menu->addSeparator();
     newManagedAction(menu, "spelling", tr("Check Spelling..."), SLOT(editSpell()), MAC_OR_DEFAULT(Qt::CTRL | Qt::SHIFT | Qt::Key_F7, Qt::CTRL | Qt::Key_Colon));
     newManagedAction(menu, "thesaurus", tr("Thesaurus..."), SLOT(editThesaurus()), Qt::CTRL | Qt::SHIFT | Qt::Key_F8);
 	newManagedAction(menu, "wordrepetions", tr("Find Word Repetitions..."), SLOT(findWordRepetions()));
@@ -6662,6 +6665,95 @@ void Texstudio::generateRandomText()
 	RandomTextGenerator generator(this, &documents);
 	generator.exec();
 }
+/*!
+ * \brief start collaboration server
+ * Shares root folder and all its documents with the collaboration server.
+ */
+void Texstudio::startCollabServer()
+{
+    if(collabServerProcess || collabClientProcess){
+        qDebug()<< "Collaboration already in use!";
+        return;
+    }
+    // ask for confirmation of sharing folder
+    if (!documents.getCurrentDocument()) return;
+    const LatexDocument *rootDoc = documents.getRootDocumentForDoc();
+    if (!rootDoc) return;
+    QFileInfo fi = rootDoc->getFileInfo();
+    QString folderName=fi.absolutePath();
+    if(folderName.isEmpty()) return;
+    if (!UtilsUi::txsConfirm(tr("Do you want to share the folder \"%1\" and ALL its content with collaborators?").arg(folderName))) {
+        return;
+    }
+    // start server
+    const QString binPath=configManager.ce_toolPath;
+    if(!binPath.isEmpty()){
+        // run binPath share folder
+        collabServerProcess = new QProcess(this);
+        collabServerProcess->setProcessChannelMode(QProcess::MergedChannels);
+        connect(collabServerProcess, &QProcess::readyReadStandardOutput, this, [this](){
+            QString buffer = collabServerProcess->readAllStandardOutput();
+            outputView->insertMessageLine(buffer);
+        });
+        connect(collabServerProcess, &QProcess::finished, this, [this](int exitCode, QProcess::ExitStatus exitStatus){
+            qDebug() << "Collaboration server finished with exit code" << exitCode << "and status" << exitStatus;
+            collabServerProcess = nullptr;
+        });
+        QStringList args{"share","--directory", folderName};
+        collabServerProcess->start(binPath,args);
+        if (!collabServerProcess->waitForStarted(1000)) {
+            UtilsUi::txsWarning(tr("Could not start collaboration server"));
+            collabServerProcess = nullptr;
+            return;
+        }
+    }
+}
+/*!
+ * \brief connect to collaboration server
+ */
+void Texstudio::connectCollabServer()
+{
+    if(collabServerProcess || collabClientProcess){
+        qDebug()<< "Collaboration already in use!";
+        return;
+    }
+    const QString binPath=configManager.ce_toolPath;
+    if(binPath.isEmpty()) return;
+    // ask for collab name and connect
+    bool ok{};
+    QString text = QInputDialog::getText(this, tr("Collaboration server name or address"),
+                                         tr("Name:"), QLineEdit::Normal,
+                                         QDir::home().dirName(), &ok);
+    if (ok && !text.isEmpty()){
+        // connect to server
+        // start server
+        const QString binPath=configManager.ce_toolPath;
+        QString folderName=configManager.ce_clientPath;
+        QDir dir(folderName);
+        dir.mkpath(".ethersync");
+        if(!binPath.isEmpty()){
+            // run binPath share folder
+            collabClientProcess = new QProcess(this);
+            collabClientProcess->setProcessChannelMode(QProcess::MergedChannels);
+            connect(collabClientProcess, &QProcess::readyReadStandardOutput, this, [this](){
+                QString buffer = collabClientProcess->readAllStandardOutput();
+                outputView->insertMessageLine(buffer);
+            });
+            connect(collabClientProcess, &QProcess::finished, this, [this](int exitCode, QProcess::ExitStatus exitStatus){
+                qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
+                collabClientProcess = nullptr;
+            });
+            QStringList args{"join", text, "--directory", folderName};
+            collabClientProcess->start(binPath,args);
+            if (!collabClientProcess->waitForStarted(1000)) {
+                UtilsUi::txsWarning(tr("Could not start collaboration client"));
+                collabClientProcess = nullptr;
+                return;
+            }
+        }
+    }
+
+}
 
 //////////////// MESSAGES - LOG FILE///////////////////////
 
@@ -7594,9 +7686,9 @@ void Texstudio::focusViewer()
 			}
 		}
 		// try: PDF for master file
-		LatexDocument *rootDoc = documents.getRootDocumentForDoc(nullptr);
-		if (rootDoc) {
-			QFileInfo masterFile = rootDoc->getFileInfo();
+        LatexDocument *rootDoc = documents.getRootDocumentForDoc(nullptr);
+        if (rootDoc) {
+            QFileInfo masterFile = rootDoc->getFileInfo();
 			foreach (PDFDocument *viewer, viewers) {
 				if (viewer->getMasterFile() == masterFile) {
 					viewer->focus();

@@ -711,6 +711,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     // collaborative editing
     registerOption("CollaborativeEditing/Tool",&ce_tool,0,&pseudoDialog->comboBoxCollaborativeTool);
     registerOption("CollaborativeEditing/ToolPath",&ce_toolPath,"ethersync",&pseudoDialog->lineEditCollaborativeToolPath);
+    registerOption("CollaborativeEditing/ClientFolder",&ce_clientPath,"",&pseudoDialog->lineEditCollaborativeClientFolder);
 
 	//interfaces
     int defaultStyle=0;

@@ -527,6 +527,9 @@ protected slots:
 	void analyseTextFormDestroyed();
 	void generateRandomText();
 
+    void startCollabServer();
+    void connectCollabServer();
+
 	bool loadLog();
 	void onCompileError();
 	void setLogMarksVisible(bool visible);
@@ -725,6 +728,9 @@ protected:
     StructureEntry *currentSection;
 
     bool mThesaurusWasStarted=false;
+
+    QProcess *collabServerProcess = nullptr;
+    QProcess *collabClientProcess = nullptr;
 
 public:
     Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText)
