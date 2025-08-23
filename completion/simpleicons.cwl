@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/08/16 for v15.9.0
+# Matthew Bertucci 2025/08/23 for v15.10.0
 
 #include:iftex
 
@@ -1679,6 +1679,8 @@ llvm
 lmms
 lobsters
 local
+localsend
+localxpose
 lodash
 logitech
 logitechg
@@ -2101,6 +2103,7 @@ overleaf
 ovh
 owasp
 owncloud
+oxc
 oxygen
 oyo
 p5dotjs
@@ -2489,6 +2492,7 @@ rockylinux
 roku
 roll20
 rollbar
+rolldown
 rollsroyce
 rollupdotjs
 rook
