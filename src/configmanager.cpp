@@ -708,6 +708,10 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("AIchat/RecordConversation",&ai_recordConversation,true,&pseudoDialog->cbAIRecordConversation);
     registerOption("AIchat/StreamResults",&ai_streamResults,false);
 
+    // collaborative editing
+    registerOption("CollaborativeEditing/Tool",&ce_tool,0,&pseudoDialog->comboBoxCollaborativeTool);
+    registerOption("CollaborativeEditing/ToolPath",&ce_toolPath,"ethersync",&pseudoDialog->lineEditCollaborativeToolPath);
+
 	//interfaces
     int defaultStyle=0;
 

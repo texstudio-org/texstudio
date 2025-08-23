@@ -222,6 +222,10 @@ public:
     bool ai_recordConversation;
     bool ai_streamResults;
 
+    // collaborative editing
+    int ce_tool;
+    QString ce_toolPath;
+
 	//debug
 #ifndef QT_NO_DEBUG
 	QDateTime debugLastFileModification;
