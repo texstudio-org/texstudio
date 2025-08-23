@@ -1,5 +1,5 @@
-# isosafety package
-# Matthew Bertucci 2024/08/22 for v1.2
+# isosigns package
+# Matthew Bertucci 2025/08/23 for v2
 
 #include:graphicx
 #include:xcolor
@@ -18,7 +18,8 @@ Rescue#B
 Backgrounds#B
 Symbol#B
 
-\Isosign{number}
+\Isosign{%<<letter><number>%>}
+\Isosignpi{%<<letter><number>%>}
 
 # not documented
-\isosafetypath#S
+\isosignspath#S
