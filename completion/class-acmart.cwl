@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2025/01/06 for v2.12
+# Matthew Bertucci 2025/08/23 for v2.15
 
 #include:xkeyval
 #include:xstring
@@ -144,6 +144,8 @@ twoside
 
 #keyvals:\acmJournal#c
 ACMJCSS
+ACMJDS
+AILET
 CIE
 CSUR
 DLT
@@ -170,6 +172,8 @@ POMACS
 TAAS
 TACCESS
 TACO
+TAIS
+TAISAP
 TALG
 TALLIP
 TAP
