@@ -6732,19 +6732,35 @@ void Texstudio::connectCollabServer()
         QDir dir(folderName);
         dir.mkpath(".ethersync");
         if(!binPath.isEmpty()){
+            /*
             // run binPath share folder
-            collabClientProcess = new QProcess(this);
-            collabClientProcess->setProcessChannelMode(QProcess::MergedChannels);
-            connect(collabClientProcess, &QProcess::readyReadStandardOutput, this, [this](){
-                QString buffer = collabClientProcess->readAllStandardOutput();
+            collabClientDaemonProcess = new QProcess(this);
+            collabClientDaemonProcess->setProcessChannelMode(QProcess::MergedChannels);
+            connect(collabClientDaemonProcess, &QProcess::readyReadStandardOutput, this, [this](){
+                QString buffer = collabClientDaemonProcess->readAllStandardOutput();
                 outputView->insertMessageLine(buffer);
             });
+            connect(collabClientDaemonProcess, &QProcess::finished, this, [this](int exitCode, QProcess::ExitStatus exitStatus){
+                qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
+                collabClientDaemonProcess = nullptr;
+            });
+            const QStringList args{"join", text, "--directory", folderName};
+            collabClientDaemonProcess->start(binPath,args);
+            if (!collabClientDaemonProcess->waitForStarted(1000)) {
+                UtilsUi::txsWarning(tr("Could not start collaboration client"));
+                collabClientDaemonProcess = nullptr;
+                return;
+            }*/
+            // start actual client for communication
+            collabClientProcess = new QProcess(this);
+            collabClientProcess->setProcessChannelMode(QProcess::MergedChannels);
+            connect(collabClientProcess, &QProcess::readyReadStandardOutput, this,&Texstudio::readyCollabClientStandardOutput);
             connect(collabClientProcess, &QProcess::finished, this, [this](int exitCode, QProcess::ExitStatus exitStatus){
                 qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
                 collabClientProcess = nullptr;
             });
-            QStringList args{"join", text, "--directory", folderName};
-            collabClientProcess->start(binPath,args);
+            const QStringList args2={"client", "--directory", folderName};
+            collabClientProcess->start(binPath,args2);
             if (!collabClientProcess->waitForStarted(1000)) {
                 UtilsUi::txsWarning(tr("Could not start collaboration client"));
                 collabClientProcess = nullptr;
@@ -6753,6 +6769,46 @@ void Texstudio::connectCollabServer()
         }
     }
 
+}
+/*!
+ * \brief receive colab information, basically cursor position
+ */
+void Texstudio::readyCollabClientStandardOutput()
+{
+    QString buffer = collabClientProcess->readAllStandardOutput();
+    // interpret message
+    QStringList lines= buffer.split("\r\n", Qt::SkipEmptyParts);
+    for(QString line : lines){
+        if(line.startsWith("{\"jsonrpc\":\"2.0\"")){
+            // cut potential Content-Length
+            int i=line.indexOf("Content-Length:");
+            if(i>0){
+                line=line.left(i);
+            }
+            // parse line
+            QJsonDocument jd=QJsonDocument::fromJson(line.toUtf8());
+            QJsonObject dd=jd.object();
+            QString method=dd["method"].toString();
+            if(method=="cursor"){
+                QJsonObject ja=dd["params"].toObject();
+                QJsonArray jranges=ja["ranges"].toArray();
+                if(jranges.size()>0){
+                    QJsonObject jcursor=jranges[0].toObject();
+                    QJsonObject jstart=jcursor["start"].toObject();
+                    QJsonObject jend=jcursor["end"].toObject();
+                    int col=jstart["character"].toInt(-1);
+                    int ln=jstart["line"].toInt(-1);
+                    if(ln>=0 && col>=0){
+                        qDebug()<<ln<<col;
+                        QDocumentCursor c = currentEditor()->cursor();
+                        c.moveTo(ln,col);
+                        currentEditor()->setCursor(c);
+                    }
+                }
+            }
+
+        }
+    }
 }
 
 //////////////// MESSAGES - LOG FILE///////////////////////

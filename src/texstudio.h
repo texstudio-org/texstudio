@@ -666,6 +666,8 @@ private slots:
 	void packageParserFinished();
 	void readinAllPackageNames();
     void packageListReadCompleted(std::set<QString> packages);
+
+    void readyCollabClientStandardOutput();
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
@@ -730,6 +732,7 @@ protected:
     bool mThesaurusWasStarted=false;
 
     QProcess *collabServerProcess = nullptr;
+    QProcess *collabClientDaemonProcess = nullptr;
     QProcess *collabClientProcess = nullptr;
 
 public:
