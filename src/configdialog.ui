@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Configure TeXstudio</string>
   </property>
-  <layout class="QGridLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_19">
    <property name="leftMargin">
     <number>9</number>
    </property>
@@ -26,13 +26,7 @@
    <property name="bottomMargin">
     <number>9</number>
    </property>
-   <property name="horizontalSpacing">
-    <number>12</number>
-   </property>
-   <property name="verticalSpacing">
-    <number>6</number>
-   </property>
-   <item row="0" column="0">
+   <item>
     <widget class="QSplitter" name="mainSplitter">
      <property name="orientation">
       <enum>Qt::Orientation::Horizontal</enum>
@@ -111,7 +105,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>12</number>
+          <number>16</number>
          </property>
          <widget class="QWidget" name="pageGeneral">
           <layout class="QVBoxLayout">
@@ -143,8 +137,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>825</width>
-                <height>731</height>
+                <width>1132</width>
+                <height>725</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout">
@@ -744,8 +738,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>872</width>
-                <height>629</height>
+                <width>870</width>
+                <height>626</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1590,8 +1584,8 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>953</width>
-                <height>568</height>
+                <width>951</width>
+                <height>559</height>
                </rect>
               </property>
               <layout class="QGridLayout">
@@ -2049,8 +2043,8 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
-                <height>1853</height>
+                <width>858</width>
+                <height>1823</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -3330,7 +3324,7 @@ them here.</string>
                 <x>0</x>
                 <y>0</y>
                 <width>1132</width>
-                <height>999</height>
+                <height>995</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -4000,7 +3994,7 @@ Examples:
                 <x>0</x>
                 <y>0</y>
                 <width>1146</width>
-                <height>458</height>
+                <height>453</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4275,8 +4269,8 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>556</width>
-                <height>645</height>
+                <width>1132</width>
+                <height>641</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4778,8 +4772,8 @@ Note: Changing this setting will only affect documents that are opened afterward
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>413</width>
-                <height>204</height>
+                <width>1146</width>
+                <height>453</height>
                </rect>
               </property>
               <layout class="QGridLayout">
@@ -4993,13 +4987,97 @@ Note: Changing this setting will only affect documents that are opened afterward
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="pageCollaborativeEdit">
+          <layout class="QGridLayout">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBox_4">
+             <property name="title">
+              <string>Collaborative Editing</string>
+             </property>
+             <layout class="QGridLayout">
+              <item row="1" column="2">
+               <widget class="QPushButton" name="pbSelectCollaborativeToolPath">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_86">
+                <property name="text">
+                 <string>Tool:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelFamily_2">
+                <property name="text">
+                 <string>Path:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="lineEditCollaborativeToolPath">
+                <property name="editable" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="comboBoxCollaborativeTool">
+                <property name="editable">
+                 <bool>false</bool>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>ethersync</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <spacer name="verticalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>
      </widget>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item>
     <layout class="QGridLayout">
      <item row="2" column="0" colspan="2">
       <layout class="QHBoxLayout">

@@ -558,7 +558,8 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 #else
 		CONTENTS_DISABLED
 #endif
-	);
+    );
+    createIcon(tr("Collaborative Editing"), getRealIcon("config_editor"));
     // tweak all comboboxes in adv. editor pane to not change on scroll wheel as it messes with scrolling through the pane (#2977)
     tweakFocusSettings(ui.scrollAreaWidgetContents_2->children());
 
@@ -607,6 +608,10 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
     connect(ui.pbResetAIURL, &QPushButton::clicked, this, &ConfigDialog::resetAIURL);
     // fill in the known models
     aiFillInKnownModels();
+
+    // collaborative editing
+    connect(ui.comboBoxCollaborativeTool, SIGNAL(currentIndexChanged(int)), this, SLOT(collaborativeEditingToolChanged(int)));
+    connect(ui.pbSelectCollaborativeToolPath, SIGNAL(clicked()), this, SLOT(browseCollaborativeToolPath()));
 
 }
 
@@ -913,6 +918,11 @@ void ConfigDialog::browsePathPdf()
 void ConfigDialog::browsePathCommands()
 {
 	UtilsUi::browse(ui.lineEditPathCommands, tr("Search Path for Commands"), "/", QDir::rootPath(), true);
+}
+
+void ConfigDialog::browseCollaborativeToolPath()
+{
+    UtilsUi::browse(ui.lineEditCollaborativeToolPath, tr("Search Path for Command"), "Executable (*)", QDir::rootPath(), true);
 }
 
 void ConfigDialog::updateDefaultDictSelection(const QString &dictPaths, const QString &newDefault)
