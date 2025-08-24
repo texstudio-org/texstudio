@@ -6766,6 +6766,20 @@ void Texstudio::connectCollabServer()
                 collabClientProcess = nullptr;
                 return;
             }
+            // open file, send json
+            QString fn=documents.getCurrentFileName();
+            QJsonObject jo;
+            jo["jsonrpc"]="2.0";
+            jo["method"]="open";
+            QJsonObject jparams;
+            jparams["uri"]="file://"+fn;
+            jparams["content"]="";
+            jo["params"]=jparams;
+            QJsonDocument jd(jo);
+            QString json=jd.toJson(QJsonDocument::Compact);
+            json.prepend("Content-Length: " + QString::number(json.length()) + "\r\n\r\n");
+            // send json
+            collabClientProcess->write(json.toUtf8());
         }
     }
 
@@ -6803,6 +6817,33 @@ void Texstudio::readyCollabClientStandardOutput()
                         QDocumentCursor c = currentEditor()->cursor();
                         c.moveTo(ln,col);
                         currentEditor()->setCursor(c);
+                    }
+                }
+            }
+            if(method=="edit"){
+                QJsonObject ja=dd["params"].toObject();
+                QJsonArray jdelta=ja["delta"].toArray();
+                if(jdelta.size()>0){
+                    QJsonObject jelem=jdelta[0].toObject();
+                    QJsonObject jcursor=jelem["range"].toObject();
+                    QJsonObject jstart=jcursor["start"].toObject();
+                    QJsonObject jend=jcursor["end"].toObject();
+                    QString replacement=jelem["replacement"].toString();
+                    int col=jstart["character"].toInt(-1);
+                    int ln=jstart["line"].toInt(-1);
+                    int col2=jend["character"].toInt(-1);
+                    int ln2=jend["line"].toInt(-1);
+                    if(ln>=0 && col>=0){
+                        QDocumentCursor c = currentEditor()->cursor();
+                        c.moveTo(ln,col);
+                        c.moveTo(ln2,col2,QDocumentCursor::KeepAnchor);
+                        currentEditor()->setCursor(c);
+                        if(replacement.isEmpty()){
+                            // delete
+                            c.removeSelectedText();
+                        }else{
+                            c.insertText(replacement);
+                        }
                     }
                 }
             }
