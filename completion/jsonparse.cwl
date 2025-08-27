@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2025/05/21 for v1.6.0
+# Matthew Bertucci 2025/08/27 for v1.6.6
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -69,7 +69,9 @@ global#true,false
 #endkeyvals
 
 # expl3 interface
+\c_jsonparse_json_cctab#/%expl3
 \g_jsonparse_entries_prop#/%expl3
+\g_jsonparse_json_tl#/%expl3
 \jsonparse_set_array_count:NN %<⟨tl var⟩ ⟨integer⟩%>#/%expl3
 \jsonparse_set_filter:Nn %<⟨tl var⟩%> {%<⟨key⟩%>}#/%expl3
 \jsonparse_gput_right_rescan:Nn %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
