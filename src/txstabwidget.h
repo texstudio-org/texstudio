@@ -25,6 +25,8 @@ public:
 	bool currentEditorViewIsFirst() const;
 	bool currentEditorViewIsLast() const;
 
+    void setInterfaceStyle(const QString style);
+
 signals:
 	void tabMoved(int from, int to);
 	void tabBarContextMenuRequested(QPoint point);
@@ -57,6 +59,7 @@ private slots:
 
 private:
 	bool m_active;
+    QString interfaceStyle;
 };
 Q_DECLARE_METATYPE(TxsTabWidget *)
 

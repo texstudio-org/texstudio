@@ -284,8 +284,10 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	TxsTabWidget *leftEditors = new TxsTabWidget(this);
 	leftEditors->setActive(true);
+    leftEditors->setInterfaceStyle(configManager.interfaceStyle);
 	editors->addTabWidget(leftEditors);
 	TxsTabWidget *rightEditors = new TxsTabWidget(this);
+    rightEditors->setInterfaceStyle(configManager.interfaceStyle);
 	editors->addTabWidget(rightEditors);
 
     connect(&documents, SIGNAL(docToHide(LatexEditorView*)), editors, SLOT(removeEditor(LatexEditorView*)));
