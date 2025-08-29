@@ -36,6 +36,7 @@ public:
 	void moveToTabGroup(LatexEditorView *edView, int groupIndex, int targetIndex);
     void moveAllToGroupZeroifEmpty();
     bool getSplitVertical();
+    void updatePalette();
 
 signals:
 	void currentEditorChanged();

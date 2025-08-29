@@ -20,6 +20,7 @@ public:
 	void setCurrentEditor(LatexEditorView *edView);
 	LatexEditorView *editorAt(QPoint p);
 	void setActive(bool active);
+    void updateStyle();
 
 	bool isEmpty() const;
 	bool currentEditorViewIsFirst() const;

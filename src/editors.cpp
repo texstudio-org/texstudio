@@ -549,6 +549,13 @@ bool Editors::getSplitVertical()
     return splitter->orientation() == Qt::Vertical;
 }
 
+void Editors::updatePalette()
+{
+    for(TxsTabWidget *tw:tabGroups){
+        tw->updateStyle();
+    }
+}
+
 /*!
  * Move the editor to the given tabWidget at position targetIndex (if < 0, append).
  */

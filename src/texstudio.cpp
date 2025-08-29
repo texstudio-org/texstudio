@@ -11788,6 +11788,8 @@ void Texstudio::paletteChanged(const QPalette &palette){
         updateStatusBarIcons();
         updateAllTOCs();
         updatePDFIcons();
+        editors->updatePalette();
+
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;
