@@ -1,9 +1,10 @@
 # piton package
-# Matthew Bertucci 2025/08/09 for v4.8
+# Matthew Bertucci 2025/08/30 for v4.8b
 
 #include:luacode
 #include:xcolor
 #include:amstext
+#include:transparent
 
 #keyvals:\usepackage/piton#c
 footnote
@@ -287,6 +288,7 @@ tag=%<<char1><char2>%>
 \SetPitonIdentifier{id1,id2,...}{code}
 \SetPitonIdentifier[language]{id1,id2,...}{code}
 
+\OptionalLocalPitonStyle{arg}#S
 \PitonDetectedCommands#S
 \PitonRawDetectedCommands#S
 \PitonBeamerCommands#S
