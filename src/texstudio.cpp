@@ -9352,9 +9352,13 @@ void Texstudio::cursorPositionChanged()
 {
 	LatexEditorView *view = currentEditorView();
 	if (!view) return;
-	int i = view->editor->cursor().lineNumber();
+    QDocumentCursor cursor = view->editor->cursor();
+    int i = cursor.lineNumber();
 
 	view->checkRTLLTRLanguageSwitching();
+
+    // update cursor position in collaboarting editor
+    collabManager->sendCursor(cursor);
 
 	// search line in structure
 	if (currentLine == i) return;

@@ -205,20 +205,19 @@ void CollaborationManager::sendCursor(QDocumentCursor cursor)
     QJsonObject jparams;
     QDocumentLineHandle *dlh=cursor.line().handle();
     LatexDocument *doc=dynamic_cast<LatexDocument*>(dlh->document());
-    jparams["uri"]="file://"+doc->getFileName();
     QJsonObject jrange;
     QJsonObject jstart;
     jstart["line"]=cursor.lineNumber();
     jstart["character"]=cursor.columnNumber();
     jrange["start"]=jstart;
     QJsonObject jend;
-    jstart["line"]=cursor.anchorLineNumber();
-    jstart["character"]=cursor.anchorColumnNumber();
+    jend["line"]=cursor.anchorLineNumber();
+    jend["character"]=cursor.anchorColumnNumber();
     jrange["end"]=jend;
     QJsonArray jranges;
     jranges.append(jrange);
     jparams["ranges"]=jranges;
-    jparams["user"]=m_conf->ce_userName;
+    jparams["uri"]="file://"+doc->getFileName();
     jo["params"]=jparams;
     sendToClient(jo);
 }
