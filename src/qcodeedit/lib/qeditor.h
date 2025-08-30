@@ -672,6 +672,7 @@ public slots:
 		
 		void init(bool actions = true,QDocument *doc=0);
 		void updateBindingsMenu();
+		void drawIndentGuides(QPainter *painter, const QDocument::PaintContext &ctx);
 			
 		QMenu *pMenu;
 		QHash<QString, QAction*> m_actions;

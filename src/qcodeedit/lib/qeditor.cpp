@@ -3214,6 +3214,8 @@ void QEditor::paintEvent(QPaintEvent */*e*/)
     p.fillRect(rect, bg);
 
 	p.save();
+	// Draw indent guides first so they appear behind text
+	drawIndentGuides(&p, ctx);
 	m_doc->draw(&p, ctx);
 	p.restore();
         //qDebug("drawn %d ms",tm.elapsed());
@@ -6471,6 +6473,66 @@ void QEditor::removeAllMarks(){
 void QEditor::addMarkRange(int start, int end, QColor color, QString type){
     MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
     scrlBar->addShade(start,end,color,type);
+}
+
+/*!
+	\brief Draw indent guides (vertical lines showing indentation levels)
+*/
+void QEditor::drawIndentGuides(QPainter *painter, const QDocument::PaintContext &ctx)
+{
+	if (!flag(ShowIndentGuides) || !m_doc) {
+		return;
+	}
+
+	const QFontMetrics fm = fontMetrics();
+	const int tabSize = m_doc->tabStop();
+	const int charWidth = fm.averageCharWidth();
+	
+	// Use a very subtle color for the guides
+	QColor guideColor = palette().color(QPalette::Text);
+	guideColor.setAlpha(50); // Make it very subtle
+	
+	painter->save();
+	painter->setPen(QPen(guideColor, 1, Qt::DotLine));
+	
+	const int firstLine = qMax(0, int((ctx.yoffset) / m_doc->getLineSpacing()));
+	const int lastLine = qMin(firstLine + int(ctx.height / m_doc->getLineSpacing()) + 2, m_doc->lines() - 1);
+	
+	// Only draw guides on lines that actually have indentation
+	for (int line = firstLine; line <= lastLine; ++line) {
+		QDocumentLine docLine = m_doc->line(line);
+		if (!docLine.isValid()) continue;
+		
+		QString text = docLine.text();
+		if (text.trimmed().isEmpty()) continue; // Skip empty lines
+		
+		// Calculate indentation level
+		int indentLevel = 0;
+		int i = 0;
+		while (i < text.length() && text[i].isSpace()) {
+			if (text[i] == '\t') {
+				indentLevel += tabSize - (indentLevel % tabSize); // Round up to next tab stop
+			} else {
+				indentLevel += 1;
+			}
+			i++;
+		}
+		
+		if (indentLevel == 0) continue; // Skip lines with no indentation
+		
+		// Draw vertical guides for this line's indentation levels
+		const qreal lineY = line * m_doc->getLineSpacing();
+		const qreal lineHeight = m_doc->getLineSpacing();
+		
+		for (int level = tabSize; level <= indentLevel; level += tabSize) {
+			qreal x = level * charWidth;
+			if (x < ctx.width && x > 0) {
+				painter->drawLine(QPointF(x, lineY), QPointF(x, lineY + lineHeight));
+			}
+		}
+	}
+	
+	painter->restore();
 }
 
 /*! @} */
