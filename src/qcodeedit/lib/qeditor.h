@@ -109,6 +109,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			AutoInsertLRM		= 0x01000000,
 			BidiVisualColumnMode= 0x02000000,
 
+			ShowIndentGuides	= 0x04000000,
+
 			ShowPlaceholders	= 0x10000000,
 			OverwriteOpeningBracketFollowedByPlaceholder = 0x20000000,
 			OverwriteClosingBracketFollowingPlaceholder = 0x40000000,
@@ -670,6 +672,7 @@ public slots:
 		
 		void init(bool actions = true,QDocument *doc=0);
 		void updateBindingsMenu();
+		void drawIndentGuides(QPainter *painter, const QDocument::PaintContext &ctx);
 			
 		QMenu *pMenu;
 		QHash<QString, QAction*> m_actions;
