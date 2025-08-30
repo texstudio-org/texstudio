@@ -15,8 +15,8 @@ magnetic tape
 #endkeyvals
 
 #keyvals:\begin{tikzpicture}#c,\tikz#c,\begin{scope}#c,\tikzset#c,\scoped#c,\node#c,\coordinate#c,\nodepart#c,\pic#c
-magnifying glass handle angle fill=%<degrees%>
-magnifying glass handle angle aspect=%<factor%>
+magnifying glass handle angle=%<degrees%>
+magnifying glass handle aspect=%<factor%>
 cloud puffs=%<integer%>
 cloud puff arc=%<degrees%>
 cloud ignores aspect#true,false
