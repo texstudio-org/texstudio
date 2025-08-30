@@ -1,5 +1,6 @@
 #include "collaborationmanager.h"
-#include <qjsonarray.h>
+#include <QJsonArray>
+#include <QJsonDocument>
 
 CollaborationManager::CollaborationManager(QObject *parent, ConfigManager *conf,LatexDocuments *docs)
 {
@@ -118,7 +119,7 @@ bool CollaborationManager::startGuestServer(const QString folder,const QString &
         collabGuestServerProcess = new QProcess(this);
         collabGuestServerProcess->setProcessChannelMode(QProcess::MergedChannels);
         connect(collabGuestServerProcess, &QProcess::readyReadStandardOutput, this, &CollaborationManager::readyCollabServerStandardOutput);
-        connect(collabGuestServerProcess, &QProcess::finished, this, [this](int exitCode, QProcess::ExitStatus exitStatus){
+        connect(collabGuestServerProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, [this](int exitCode, QProcess::ExitStatus exitStatus){
             qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
             collabGuestServerProcess = nullptr;
         });
