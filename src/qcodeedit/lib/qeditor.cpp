@@ -42,6 +42,7 @@
 
 #include "qreliablefilewatch.h"
 #include "smallUsefulFunctions.h"
+#include "utilsUI.h"
 #include "latexparser/latexparser.h"
 #include <QDrag>
 
@@ -6487,11 +6488,11 @@ void QEditor::drawIndentGuides(QPainter *painter, const QDocument::PaintContext 
 
 	const QFontMetrics fm = fontMetrics();
 	const int tabSize = flag(ReplaceIndentTabs) ? tabStop() : 4;
-	const int charWidth = fm.horizontalAdvance(' ');
+	const int charWidth = UtilsUi::getFmWidth(fm, ' ');
 	
 	// Use a very subtle color for the guides
 	QColor guideColor = palette().color(QPalette::Text);
-	guideColor.setAlpha(60); // Make it subtle
+	guideColor.setAlpha(50); // Make it very subtle
 	
 	painter->save();
 	painter->setPen(QPen(guideColor, 1, Qt::DotLine));
@@ -6499,12 +6500,16 @@ void QEditor::drawIndentGuides(QPainter *painter, const QDocument::PaintContext 
 	const int firstLine = qMax(0, int((ctx.yoffset) / m_doc->getLineSpacing()));
 	const int lastLine = qMin(firstLine + int(ctx.height / m_doc->getLineSpacing()) + 2, m_doc->lines() - 1);
 	
+	// Track maximum indentation across all visible lines
+	int maxIndent = 0;
+	QVector<int> indentLevels(lastLine - firstLine + 1, 0);
+	
+	// First pass: calculate indentation levels for all lines
 	for (int line = firstLine; line <= lastLine; ++line) {
 		QDocumentLine docLine = m_doc->line(line);
 		if (!docLine.isValid()) continue;
 		
 		QString text = docLine.text();
-		if (text.trimmed().isEmpty()) continue; // Skip empty lines
 		
 		// Calculate indentation level
 		int indentLevel = 0;
@@ -6518,17 +6523,22 @@ void QEditor::drawIndentGuides(QPainter *painter, const QDocument::PaintContext 
 			}
 		}
 		
-		int guides = indentLevel / tabSize; // Number of guide lines to draw
-		
-		const qreal lineY = line * m_doc->getLineSpacing();
-		const qreal lineHeight = m_doc->getLineSpacing();
-		
-		// Draw guides up to this line's indentation
-		for (int i = 1; i <= guides; ++i) {
-			qreal x = i * tabSize * charWidth;
-			if (x < ctx.width) {
-				painter->drawLine(QPointF(x, lineY), QPointF(x, lineY + lineHeight));
-			}
+		// Only consider non-empty lines for indentation
+		if (!text.trimmed().isEmpty()) {
+			indentLevels[line - firstLine] = indentLevel;
+			maxIndent = qMax(maxIndent, indentLevel);
+		}
+	}
+	
+	// Second pass: draw vertical guides
+	const int maxGuides = maxIndent / tabSize;
+	const qreal topY = firstLine * m_doc->getLineSpacing();
+	const qreal bottomY = (lastLine + 1) * m_doc->getLineSpacing();
+	
+	for (int i = 1; i <= maxGuides; ++i) {
+		qreal x = i * tabSize * charWidth;
+		if (x < ctx.width && x > 0) {
+			painter->drawLine(QPointF(x, topY), QPointF(x, bottomY));
 		}
 	}
 	
