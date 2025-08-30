@@ -226,6 +226,7 @@ public:
     int ce_tool;
     QString ce_toolPath;
     QString ce_clientPath; // folder where client data is located
+    QString ce_userName;
 
 	//debug
 #ifndef QT_NO_DEBUG

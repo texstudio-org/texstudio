@@ -5010,13 +5010,10 @@ Note: Changing this setting will only affect documents that are opened afterward
               <string>Collaborative Editing</string>
              </property>
              <layout class="QGridLayout">
-              <item row="1" column="3">
-               <widget class="QPushButton" name="pbSelectCollaborativeToolPath">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_86">
                 <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
+                 <string>Tool:</string>
                 </property>
                </widget>
               </item>
@@ -5024,6 +5021,13 @@ Note: Changing this setting will only affect documents that are opened afterward
                <widget class="QLabel" name="labelFamily_2">
                 <property name="text">
                  <string>Path:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_92">
+                <property name="text">
+                 <string>Client folder:</string>
                 </property>
                </widget>
               </item>
@@ -5039,10 +5043,26 @@ Note: Changing this setting will only affect documents that are opened afterward
                 </item>
                </widget>
               </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_92">
+              <item row="2" column="2">
+               <widget class="QLineEdit" name="lineEditCollaborativeClientFolder"/>
+              </item>
+              <item row="1" column="3">
+               <widget class="QPushButton" name="pbSelectCollaborativeToolPath">
                 <property name="text">
-                 <string>Client folder:</string>
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="3">
+               <widget class="QPushButton" name="pbSelectClientFolder">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset theme="QIcon::ThemeIcon::FolderOpen"/>
                 </property>
                </widget>
               </item>
@@ -5053,23 +5073,13 @@ Note: Changing this setting will only affect documents that are opened afterward
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_86">
-                <property name="text">
-                 <string>Tool:</string>
-                </property>
-               </widget>
+              <item row="3" column="2">
+               <widget class="QLineEdit" name="lineEditCollaborativeUserName"/>
               </item>
-              <item row="2" column="2">
-               <widget class="QLineEdit" name="lineEditCollaborativeClientFolder"/>
-              </item>
-              <item row="2" column="3">
-               <widget class="QPushButton" name="pbSelectClientFolder">
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_93">
                 <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FolderOpen"/>
+                 <string>User name:</string>
                 </property>
                </widget>
               </item>
