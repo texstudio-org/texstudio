@@ -1698,6 +1698,13 @@ Then you can select a new shortcut by one of the following ways:
                     </property>
                    </widget>
                   </item>
+                  <item row="13" column="0" colspan="4">
+                   <widget class="QCheckBox" name="checkBoxShowIndentGuides">
+                    <property name="text">
+                     <string>Show Indent Guides</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="7" column="3" colspan="2">
                    <widget class="QCheckBox" name="checkBoxReplaceIndentTabByWhitespace">
                     <property name="text">
@@ -5111,6 +5118,7 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>spinBoxSize</tabstop>
   <tabstop>comboBoxEncoding</tabstop>
   <tabstop>checkBoxFolding</tabstop>
+  <tabstop>checkBoxShowIndentGuides</tabstop>
   <tabstop>comboBoxAutoIndent</tabstop>
   <tabstop>comboBoxReplaceQuotes</tabstop>
   <tabstop>checkBoxRealTimeCheck</tabstop>
