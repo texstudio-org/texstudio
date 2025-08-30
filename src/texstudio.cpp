@@ -429,6 +429,10 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	}
 
 	*/
+    // init collaboration manager
+    collabManager=new CollaborationManager(this,&configManager,&documents);
+    connect(collabManager,&CollaborationManager::cursorMoved,this,&Texstudio::updateCollabCursors);
+    connect(collabManager,&CollaborationManager::changesReceived,this,&Texstudio::updateCollabChanges);
 
     connect(&svn, &SVN::statusMessage, this, &Texstudio::setStatusMessageProcess);
     connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
@@ -6671,7 +6675,7 @@ void Texstudio::generateRandomText()
  */
 void Texstudio::startCollabServer()
 {
-    if(collabServerProcess || collabClientProcess){
+    if(collabManager->isServerRunning()){
         qDebug()<< "Collaboration already in use!";
         return;
     }
@@ -6686,34 +6690,16 @@ void Texstudio::startCollabServer()
         return;
     }
     // start server
-    const QString binPath=configManager.ce_toolPath;
-    if(!binPath.isEmpty()){
-        // run binPath share folder
-        collabServerProcess = new QProcess(this);
-        collabServerProcess->setProcessChannelMode(QProcess::MergedChannels);
-        connect(collabServerProcess, &QProcess::readyReadStandardOutput, this, [this](){
-            QString buffer = collabServerProcess->readAllStandardOutput();
-            outputView->insertMessageLine(buffer);
-        });
-        connect(collabServerProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, [this](int exitCode, QProcess::ExitStatus exitStatus){
-            qDebug() << "Collaboration server finished with exit code" << exitCode << "and status" << exitStatus;
-            collabServerProcess = nullptr;
-        });
-        QStringList args{"share","--directory", folderName};
-        collabServerProcess->start(binPath,args);
-        if (!collabServerProcess->waitForStarted(1000)) {
-            UtilsUi::txsWarning(tr("Could not start collaboration server"));
-            collabServerProcess = nullptr;
-            return;
-        }
-    }
+    collabManager->startHostServer(folderName);
+    // start client
+    collabManager->startClient(folderName);
 }
 /*!
  * \brief connect to collaboration server
  */
 void Texstudio::connectCollabServer()
 {
-    if(collabServerProcess || collabClientProcess){
+    if(collabManager->isServerRunning()){
         qDebug()<< "Collaboration already in use!";
         return;
     }
@@ -6727,128 +6713,43 @@ void Texstudio::connectCollabServer()
     if (ok && !text.isEmpty()){
         // connect to server
         // start server
+
         const QString binPath=configManager.ce_toolPath;
         QString folderName=configManager.ce_clientPath;
-        QDir dir(folderName);
-        dir.mkpath(".ethersync");
-        if(!binPath.isEmpty()){
-            /*
-            // run binPath share folder
-            collabClientDaemonProcess = new QProcess(this);
-            collabClientDaemonProcess->setProcessChannelMode(QProcess::MergedChannels);
-            connect(collabClientDaemonProcess, &QProcess::readyReadStandardOutput, this, [this](){
-                QString buffer = collabClientDaemonProcess->readAllStandardOutput();
-                outputView->insertMessageLine(buffer);
-            });
-            connect(collabClientDaemonProcess, &QProcess::finished, this, [this](int exitCode, QProcess::ExitStatus exitStatus){
-                qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
-                collabClientDaemonProcess = nullptr;
-            });
-            const QStringList args{"join", text, "--directory", folderName};
-            collabClientDaemonProcess->start(binPath,args);
-            if (!collabClientDaemonProcess->waitForStarted(1000)) {
-                UtilsUi::txsWarning(tr("Could not start collaboration client"));
-                collabClientDaemonProcess = nullptr;
-                return;
-            }*/
-            // start actual client for communication
-            collabClientProcess = new QProcess(this);
-            collabClientProcess->setProcessChannelMode(QProcess::MergedChannels);
-            connect(collabClientProcess, &QProcess::readyReadStandardOutput, this,&Texstudio::readyCollabClientStandardOutput);
-            connect(collabClientProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, [this](int exitCode, QProcess::ExitStatus exitStatus){
-                qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
-                collabClientProcess = nullptr;
-            });
-            const QStringList args2={"client", "--directory", folderName};
-            collabClientProcess->start(binPath,args2);
-            if (!collabClientProcess->waitForStarted(1000)) {
-                UtilsUi::txsWarning(tr("Could not start collaboration client"));
-                collabClientProcess = nullptr;
-                return;
-            }
-            // open file, send json
-            QString fn=documents.getCurrentFileName();
-            QJsonObject jo;
-            jo["jsonrpc"]="2.0";
-            jo["method"]="open";
-            QJsonObject jparams;
-            jparams["uri"]="file://"+fn;
-            jparams["content"]="";
-            jo["params"]=jparams;
-            QJsonDocument jd(jo);
-            QString json=jd.toJson(QJsonDocument::Compact);
-            json.prepend("Content-Length: " + QString::number(json.length()) + "\r\n\r\n");
-            // send json
-            collabClientProcess->write(json.toUtf8());
-        }
+        //collabManager->startGuestServer(folderName,text);
+        // start client
+        collabManager->startClient(folderName);
+        // open all open files in folder
+        collabManager->fileOpened(documents.getCurrentFileName()); // TODO: do for all opened files in folder
     }
 
 }
 /*!
- * \brief receive colab information, basically cursor position
+ * \brief move cursor updated from collaboration server
+ * \param cur
+ * \param userName
  */
-void Texstudio::readyCollabClientStandardOutput()
+void Texstudio::updateCollabCursors(QDocumentCursor cur, QString userName)
 {
-    QString buffer = collabClientProcess->readAllStandardOutput();
-    // interpret message
-    QStringList lines= buffer.split("\r\n", Qt::SkipEmptyParts);
-    for(QString line : lines){
-        if(line.startsWith("{\"jsonrpc\":\"2.0\"")){
-            // cut potential Content-Length
-            int i=line.indexOf("Content-Length:");
-            if(i>0){
-                line=line.left(i);
-            }
-            // parse line
-            QJsonDocument jd=QJsonDocument::fromJson(line.toUtf8());
-            QJsonObject dd=jd.object();
-            QString method=dd["method"].toString();
-            if(method=="cursor"){
-                QJsonObject ja=dd["params"].toObject();
-                QJsonArray jranges=ja["ranges"].toArray();
-                if(jranges.size()>0){
-                    QJsonObject jcursor=jranges[0].toObject();
-                    QJsonObject jstart=jcursor["start"].toObject();
-                    QJsonObject jend=jcursor["end"].toObject();
-                    int col=jstart["character"].toInt(-1);
-                    int ln=jstart["line"].toInt(-1);
-                    if(ln>=0 && col>=0){
-                        qDebug()<<ln<<col;
-                        QDocumentCursor c = currentEditor()->cursor();
-                        c.moveTo(ln,col);
-                        currentEditor()->setCursor(c);
-                    }
-                }
-            }
-            if(method=="edit"){
-                QJsonObject ja=dd["params"].toObject();
-                QJsonArray jdelta=ja["delta"].toArray();
-                if(jdelta.size()>0){
-                    QJsonObject jelem=jdelta[0].toObject();
-                    QJsonObject jcursor=jelem["range"].toObject();
-                    QJsonObject jstart=jcursor["start"].toObject();
-                    QJsonObject jend=jcursor["end"].toObject();
-                    QString replacement=jelem["replacement"].toString();
-                    int col=jstart["character"].toInt(-1);
-                    int ln=jstart["line"].toInt(-1);
-                    int col2=jend["character"].toInt(-1);
-                    int ln2=jend["line"].toInt(-1);
-                    if(ln>=0 && col>=0){
-                        QDocumentCursor c = currentEditor()->cursor();
-                        c.moveTo(ln,col);
-                        c.moveTo(ln2,col2,QDocumentCursor::KeepAnchor);
-                        currentEditor()->setCursor(c);
-                        if(replacement.isEmpty()){
-                            // delete
-                            c.removeSelectedText();
-                        }else{
-                            c.insertText(replacement);
-                        }
-                    }
-                }
-            }
-
-        }
+    LatexDocument* doc=dynamic_cast<LatexDocument*>(cur.document());
+    if(doc==nullptr) return;
+    LatexEditorView *edView=doc->getEditorView();
+    if(edView==nullptr) return;
+    QEditor *ed=edView->editor;
+    ed->setCursor(cur);
+}
+/*!
+ * \brief insert updated from collaboration server
+ * \param cur
+ * \param changes
+ * \param userName
+ */
+void Texstudio::updateCollabChanges(QDocumentCursor cur, QString changes, QString userName)
+{
+    if(changes.isEmpty()){
+        cur.removeSelectedText();
+    }else{
+        cur.insertText(changes);
     }
 }
 

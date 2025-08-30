@@ -278,7 +278,7 @@ void CollaborationManager::readyCollabClientStandardOutput()
                     int col=jstart["character"].toInt(-1);
                     int ln=jstart["line"].toInt(-1);
                     if(ln>=0 && col>=0){
-                        QString userName=ja["user"].toString("extern");
+                        QString userName=ja["name"].toString("extern");
                         QDocumentCursor c(doc);
                         c.moveTo(ln,col);
                         emit cursorMoved(c,userName);
@@ -306,7 +306,7 @@ void CollaborationManager::readyCollabClientStandardOutput()
                     int col2=jend["character"].toInt(-1);
                     int ln2=jend["line"].toInt(-1);
                     if(ln>=0 && col>=0){
-                        QString userName=ja["user"].toString("extern");
+                        QString userName=ja["name"].toString("extern");
                         QDocumentCursor c(doc);
                         c.moveTo(ln,col);
                         c.moveTo(ln2,col2,QDocumentCursor::KeepAnchor);

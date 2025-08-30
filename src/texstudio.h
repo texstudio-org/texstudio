@@ -15,6 +15,7 @@
 #define Header_TexStudio
 
 #include "aichatassistant.h"
+#include "collaborationmanager.h"
 #include "mostQtHeaders.h"
 
 #include "bibtexparser.h"
@@ -529,6 +530,8 @@ protected slots:
 
     void startCollabServer();
     void connectCollabServer();
+    void updateCollabCursors(QDocumentCursor cur,QString userName);
+    void updateCollabChanges(QDocumentCursor cur,QString changes,QString userName);
 
 	bool loadLog();
 	void onCompileError();
@@ -667,7 +670,6 @@ private slots:
 	void readinAllPackageNames();
     void packageListReadCompleted(std::set<QString> packages);
 
-    void readyCollabClientStandardOutput();
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
@@ -731,9 +733,7 @@ protected:
 
     bool mThesaurusWasStarted=false;
 
-    QProcess *collabServerProcess = nullptr;
-    QProcess *collabClientDaemonProcess = nullptr;
-    QProcess *collabClientProcess = nullptr;
+    CollaborationManager *collabManager = nullptr;
 
 public:
     Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText)
