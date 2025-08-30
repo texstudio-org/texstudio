@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/08/23 for v15.10.0
+# Matthew Bertucci 2025/08/30 for v15.11.0
 
 #include:iftex
 
@@ -725,6 +725,7 @@ deepcool
 deepgram
 deepin
 deepl
+deepmind
 deepnote
 deliveroo
 dell
@@ -1042,6 +1043,7 @@ freenet
 freepik
 freetube
 fresh
+freshrss
 frigate
 fritz
 frontendmentor
@@ -1978,6 +1980,7 @@ nordvpn
 normalizedotcss
 norton
 norwegian
+note
 notebooklm
 notepadplusplus
 notion
@@ -2383,6 +2386,7 @@ radixui
 radstudio
 railway
 rainmeter
+rainyun
 rakuten
 rakutenkobo
 ram
@@ -2807,6 +2811,7 @@ subtitleedit
 subversion
 suckless
 sui
+suitest
 sumologic
 suno
 sunrise
@@ -3217,6 +3222,7 @@ welcometothejungle
 wellfound
 wellsfargo
 wemo
+weread
 westerndigital
 westernunion
 wetransfer
