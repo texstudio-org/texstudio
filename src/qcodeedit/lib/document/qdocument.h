@@ -408,6 +408,7 @@ class QCE_EXPORT QDocument : public QObject
 
 		void formatsChange (int line, int lines);
 		void contentsChange(int line, int lines);
+        void changedText(int startLine,int startCol,int endLine,int endCol,const QString &text);
 
 		void widthChanged(int width);
 		void heightChanged(int height);

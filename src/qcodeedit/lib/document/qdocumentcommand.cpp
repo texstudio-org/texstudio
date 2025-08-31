@@ -633,6 +633,10 @@ void QDocumentInsertCommand::redo()
 	m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
     m_doc->setProposedPosition(QDocumentCursor(m_doc,m_data.lineNumber+m_data.handles.size(),m_data.endOffset));
 
+    // emit text change for collaborative editing
+    m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber+m_data.handles.size(),m_data.endOffset,m_data.begin); // TODO: fix, also make conditional
+
+
 	markRedone(hl, m_first);
 
 	foreach ( QDocumentLineHandle *h, m_data.handles )

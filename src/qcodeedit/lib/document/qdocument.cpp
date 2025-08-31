@@ -8622,6 +8622,18 @@ void QDocumentPrivate::emitContentsChange(int line, int lines)
 	if ( n > lines )
 		emitFormatsChange(line + lines, n - lines);
 }
+/*!
+ * \brief emit changed text for collaboration support
+ * \param startLine
+ * \param startCol
+ * \param endLine
+ * \param endCol
+ * \param text
+ */
+void QDocumentPrivate::emitContentsChange(int startLine, int startCol, int endLine, int endCol, const QString &text)
+{
+    emit m_doc->changedText(startLine, startCol, endLine, endCol, text);
+}
 
 void QDocumentPrivate::markFormatCacheDirty(){
 	foreach(QDocumentLineHandle *dlh,m_lines){

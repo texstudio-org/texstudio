@@ -2097,6 +2097,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     edit->setSpeller("<default>");
     //patch Structure
     connect(edit->editor->document(), SIGNAL(contentsChange(int,int)), edit->document, SLOT(patchStructure(int,int)));
+    connect(edit->editor->document(), SIGNAL(changedText(int,int,int,int,const QString&)), this, SLOT(updateCollaborationEditors(int,int,int,int,const QString&)));
     connect(edit->editor->document(), SIGNAL(linesRemoved(QDocumentLineHandle*,int,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int,int)));
     connect(edit->document, &LatexDocument::updateCompleter, this, &Texstudio::completerNeedsUpdate);
     connect(edit->document, &LatexDocument::updateCompleterCommands, this, &Texstudio::completerCommandsNeedsUpdate);
@@ -6751,6 +6752,16 @@ void Texstudio::updateCollabChanges(QDocumentCursor cur, QString changes, QStrin
     }else{
         cur.insertText(changes);
     }
+}
+
+void Texstudio::updateCollaborationEditors(int startLine, int startCol, int endLine, int endCol, const QString &changes)
+{
+    if(!collabManager) return;
+    if(!collabManager->isClientRunning()) return;
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(sender());
+    if(!doc) return;
+    QString fname=doc->getFileName();
+    collabManager->sendChanges(fname,startLine,startCol,endLine,endCol,changes);
 }
 
 //////////////// MESSAGES - LOG FILE///////////////////////

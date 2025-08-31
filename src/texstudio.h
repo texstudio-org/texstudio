@@ -532,6 +532,7 @@ protected slots:
     void connectCollabServer();
     void updateCollabCursors(QDocumentCursor cur,QString userName);
     void updateCollabChanges(QDocumentCursor cur,QString changes,QString userName);
+    void updateCollaborationEditors(int startLine,int startCol,int endLine,int endCol,const QString& changes);
 
 	bool loadLog();
 	void onCompileError();

@@ -163,7 +163,24 @@ bool CollaborationManager::isServerRunning()
  */
 void CollaborationManager::sendChanges(QDocumentCursor cursor, const QString &changes)
 {
-    qDebug()<<"to be implemented: send changes to client";
+    if(!isClientRunning()){
+        return;
+    }
+    QDocumentLineHandle *dlh=cursor.line().handle();
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(dlh->document());
+    sendChanges(doc->getFileName(),cursor.lineNumber(),cursor.columnNumber(),cursor.anchorLineNumber(),cursor.anchorColumnNumber(),changes);
+}
+/*!
+ * \brief variant to send changes to connected editors
+ * \param fileName
+ * \param startLine
+ * \param startCol
+ * \param endLine
+ * \param endCol
+ * \param changes
+ */
+void CollaborationManager::sendChanges(QString fileName, int startLine, int startCol, int endLine, int endCol, const QString &changes)
+{
     if(!isClientRunning()){
         return;
     }
@@ -171,21 +188,26 @@ void CollaborationManager::sendChanges(QDocumentCursor cursor, const QString &ch
     jo["jsonrpc"]="2.0";
     jo["method"]="edit";
     QJsonObject jparams;
-    QDocumentLineHandle *dlh=cursor.line().handle();
-    LatexDocument *doc=dynamic_cast<LatexDocument*>(dlh->document());
-    jparams["uri"]="file://"+doc->getFileName();
+    jparams["uri"]="file://"+fileName;
+    jparams["revision"]=0; // for now
     QJsonObject jrange;
     QJsonObject jstart;
-    jstart["line"]=cursor.lineNumber();
-    jstart["character"]=cursor.columnNumber();
+    jstart["line"]=startLine;
+    jstart["character"]=startCol;
     jrange["start"]=jstart;
     QJsonObject jend;
-    jstart["line"]=cursor.anchorLineNumber();
-    jstart["character"]=cursor.anchorColumnNumber();
+    if(endCol<0 || endLine<0){
+        jend=jstart;
+    }else{
+        jend["line"]=endLine;
+        jend["character"]=endCol;
+    }
     jrange["end"]=jend;
-    jrange["replacement"]=changes;
     QJsonArray jdelta;
-    jdelta.append(jrange);
+    QJsonObject jdeltaelem;
+    jdeltaelem["range"]=jrange;
+    jdeltaelem["replacement"]=changes;
+    jdelta.append(jdeltaelem);
     jparams["delta"]=jdelta;
     jo["params"]=jparams;
     sendToClient(jo);
