@@ -1,14 +1,8 @@
 # isosigns package
-# Matthew Bertucci 2025/08/23 for v2
+# Matthew Bertucci 2025/08/31 for v2.1
 
 #include:graphicx
 #include:xcolor
-#include:ifthen
-#include:xkeyval
-
-#keyvals:\usepackage/isosafety#c
-fullpath=%<file path%>
-#endkeyvals
 
 Caution#B
 Warning#B
@@ -18,8 +12,5 @@ Rescue#B
 Backgrounds#B
 Symbol#B
 
-\Isosign{%<<letter><number>%>}
-\Isosignpi{%<<letter><number>%>}
-
-# not documented
-\isosignspath#S
+\Isosign{number}
+\Isosign[options%keyvals]{number}
