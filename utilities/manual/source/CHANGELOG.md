@@ -4,6 +4,9 @@
 - extend close env to close env or delimiter (alt+return)
 - add text selection in pdf viewer (on single page only)
 - fix verbatim highlighting issue, see [#4136](https://github.com/texstudio-org/texstudio/issues/4136)
+- fix invisible close button on tabs in OSX [#4000](https://github.com/texstudio-org/texstudio/issues/4000)
+- allow extra arguments for LanguaTool [#4147](https://github.com/texstudio-org/texstudio/pull/4147)
+- text completion also take other open documents as source [#4126](https://github.com/texstudio-org/texstudio/issues/4126)
 
 ## TeXstudio 4.8.8
 
