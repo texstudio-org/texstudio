@@ -6749,6 +6749,7 @@ void Texstudio::updateCollabCursors(QDocumentCursor cur, QString userId)
  */
 void Texstudio::updateCollabChanges(QDocumentCursor cur, QString changes, QString userName)
 {
+    cur.handle()->setFlag(QDocumentCursorHandle::ExternalCursor); // avoid loops
     if(changes.isEmpty()){
         cur.removeSelectedText();
     }else{

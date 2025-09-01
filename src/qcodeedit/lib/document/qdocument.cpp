@@ -5505,8 +5505,10 @@ void QDocumentCursorHandle::insertText(const QString& s, bool keepAnchor)
 										m_begLine,
 										m_begOffset,
 										s,
-										m_doc
-									);
+                                        m_doc,
+                                        nullptr,
+                                        hasFlag(ExternalCursor)
+                                    );
 
 	command->setKeepAnchor(keepAnchor);
 	command->setTargetCursor(this);

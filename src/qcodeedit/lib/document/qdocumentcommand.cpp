@@ -521,10 +521,11 @@ void QDocumentCommand::markUndone(QDocumentLineHandle *h)
 	\param doc host document
 	\param p parent command
 */
-QDocumentInsertCommand::QDocumentInsertCommand(	int l, int offset,
-												const QString& text,
-												QDocument *doc,
-												QDocumentCommand *p)
+QDocumentInsertCommand::QDocumentInsertCommand(int l, int offset,
+                                               const QString& text,
+                                               QDocument *doc,
+                                               QDocumentCommand *p,
+                                               bool externalChange)
  : QDocumentCommand(Insert, doc, p)
 {
     QStringList lines;
@@ -542,6 +543,8 @@ QDocumentInsertCommand::QDocumentInsertCommand(	int l, int offset,
 
 	if ( !m_doc || text.isEmpty() )
 		qFatal("Invalid insert command");
+
+    m_data.externalChange=externalChange;
 
 	m_data.lineNumber = l;
 	m_data.startOffset = offset;
@@ -634,7 +637,9 @@ void QDocumentInsertCommand::redo()
     m_doc->setProposedPosition(QDocumentCursor(m_doc,m_data.lineNumber+m_data.handles.size(),m_data.endOffset));
 
     // emit text change for collaborative editing
-    m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber+m_data.handles.size(),m_data.endOffset,m_data.begin); // TODO: fix, also make conditional
+    if(!m_data.externalChange){ // avoid loops
+        m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber+m_data.handles.size(),m_data.endOffset,m_data.begin); // TODO: fix, also make conditional
+    }
 
 
 	markRedone(hl, m_first);

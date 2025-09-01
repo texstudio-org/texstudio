@@ -1,6 +1,7 @@
 #include "collaborationmanager.h"
 #include <QJsonArray>
 #include <QJsonDocument>
+#include "qdocumentcursor_p.h"
 
 CollaborationManager::CollaborationManager(QObject *parent, ConfigManager *conf,LatexDocuments *docs)
 {
