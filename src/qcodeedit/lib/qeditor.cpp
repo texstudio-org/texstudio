@@ -6469,7 +6469,7 @@ void QEditor::removeExternalCursor(const QString &userId)
 {
     int i=m_externalCursorUsers.indexOf(userId);
     if(i>=0){
-        m_externalCursors.remove(i);
+        m_externalCursors.removeAt(i);
     }
 }
 
