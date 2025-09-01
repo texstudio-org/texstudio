@@ -53,7 +53,8 @@ class QCE_EXPORT QDocumentCursorHandle
 			AutoErasable		= 0x100,
 			AutoUpdated		= 0x200,
 			AutoUpdateKeepBegin	= 0x400,
-			AutoUpdateKeepEnd	= 0x800
+            AutoUpdateKeepEnd	= 0x800,
+            ExternalCursor    = 0x1000
 		};
 
 		QDocument* document() const;

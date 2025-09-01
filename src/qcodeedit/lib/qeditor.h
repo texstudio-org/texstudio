@@ -383,6 +383,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
         void removeAllMarks();
         void paintMarks();
 
+        void setExternalCursor(const QString& userId, QDocumentCursor& c);
+        void removeExternalCursor(const QString& userId);
+
 	public slots:
 		void undo();
 		void redo();
@@ -697,6 +700,9 @@ public slots:
 		int m_cursorMirrorBlockAnchor;
 		
 		QList<QDocumentCursor> m_mirrors;
+
+        QList<QDocumentCursor> m_externalCursors; /// other users' cursors in collaboration mode, extra list to avoid cursor destruction
+        QStringList m_externalCursorUsers; /// other users' ids in collaboration mode
 		
 		bool atPlaceholder();
         bool isMirrored();

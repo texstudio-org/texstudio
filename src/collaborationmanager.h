@@ -1,7 +1,7 @@
 #ifndef COLLABORATIONMANAGER_H
 #define COLLABORATIONMANAGER_H
 
-#include "mostQtHeaders.h"
+//#include "mostQtHeaders.h"
 #include "qdocumentcursor.h"
 #include "configmanager.h"
 #include "latexdocument.h"
@@ -29,7 +29,7 @@ public slots:
     void fileClosed(const QString fileName);
 signals:
     void changesReceived(QDocumentCursor cursor, const QString changes,const QString userName);
-    void cursorMoved(QDocumentCursor cursor,const QString userName);
+    void cursorMoved(QDocumentCursor cursor,const QString userId);
 
 private slots:
     void readyCollabClientStandardOutput();

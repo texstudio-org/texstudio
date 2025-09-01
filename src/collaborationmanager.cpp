@@ -156,6 +156,7 @@ bool CollaborationManager::isServerRunning()
 {
     return (collabHostServerProcess!=nullptr || collabGuestServerProcess!=nullptr);
 }
+
 /*!
  * \brief send updates to client
  * \param cursor
@@ -300,10 +301,10 @@ void CollaborationManager::readyCollabClientStandardOutput()
                     int col=jstart["character"].toInt(-1);
                     int ln=jstart["line"].toInt(-1);
                     if(ln>=0 && col>=0){
-                        QString userName=ja["name"].toString("extern");
+                        QString userId=ja["userId"].toString("extern");
                         QDocumentCursor c(doc);
                         c.moveTo(ln,col);
-                        emit cursorMoved(c,userName);
+                        emit cursorMoved(c,userId);
                     }
                 }
             }
@@ -405,3 +406,12 @@ LatexDocument *CollaborationManager::findDocumentFromName(const QString &fileNam
     }
     return m_docs->findDocumentFromName(fileName);
 }
+
+/* TODO
+ *
+ * - fully implementation on sending changes to remote editors
+ * - extra cursor with different color
+ * - host/guest set-up simpler (try join, start server when fail)
+ * - panel icon for status/connect
+ * - load/close in conjunction with collab
+ */

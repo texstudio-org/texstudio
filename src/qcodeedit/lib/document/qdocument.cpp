@@ -7081,6 +7081,9 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
                     if (m_drawCursorBold) {
                        pen.setWidthF(2.);
                     }
+                    if(cur.handle()->hasFlag(QDocumentCursorHandle::ExternalCursor)){
+                        pen.setColor(Qt::blue);
+                    }
                     p->setPen(pen);
                     p->drawLine(pt, pt + curHt);
                     /*if (m_drawCursorBold) {

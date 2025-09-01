@@ -80,6 +80,7 @@
 #include "qdocumentcursor.h"
 #include "qdocumentline.h"
 #include "qdocumentline_p.h"
+#include "qdocumentcursor_p.h"
 
 #include "qnfadefinition.h"
 
@@ -6730,14 +6731,15 @@ void Texstudio::connectCollabServer()
  * \param cur
  * \param userName
  */
-void Texstudio::updateCollabCursors(QDocumentCursor cur, QString userName)
+void Texstudio::updateCollabCursors(QDocumentCursor cur, QString userId)
 {
     LatexDocument* doc=dynamic_cast<LatexDocument*>(cur.document());
     if(doc==nullptr) return;
     LatexEditorView *edView=doc->getEditorView();
     if(edView==nullptr) return;
     QEditor *ed=edView->editor;
-    ed->setCursor(cur);
+    cur.handle()->setFlag(QDocumentCursorHandle::ExternalCursor);
+    ed->setExternalCursor(userId,cur);
 }
 /*!
  * \brief insert updated from collaboration server
