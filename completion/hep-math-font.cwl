@@ -1,9 +1,8 @@
 # hep-math-font package
-# Matthew Bertucci 2023/07/14 for v1.2
+# Matthew Bertucci 2025/09/02 for v1.4
 
 #include:kvoptions
-#include:ifluatex
-#include:ifxetex
+#include:iftex
 #include:pdftexcmds
 #include:xstring
 #include:amssymb
@@ -21,10 +20,6 @@ symbols=#ams,true,minion,false
 #ifOption:symbols=minion
 #include:MnSymbol
 #endif
-
-\ifxetexorluatex#*
-\xetexorluatextrue#*
-\xetexorluatexfalse#*
 
 \Alpha
 \Beta
