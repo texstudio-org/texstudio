@@ -908,6 +908,15 @@ void QDocumentEraseCommand::undo()
         }
 
 		m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
+        if(!m_data.externalChange){ // avoid loops
+            QString text=m_data.begin;
+            if(m_data.handles.size()){
+                for(int i=0;i<m_data.handles.size()-1;i++)
+                    text+='\n'+m_data.handles[i]->text();
+                text+='\n'+m_data.handles.last()->text().left(m_data.endOffset);
+            }
+            m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber,m_data.startOffset,text);
+        }
 	} else {
 
 		insertText(m_data.lineNumber, m_data.startOffset, m_data.begin);
