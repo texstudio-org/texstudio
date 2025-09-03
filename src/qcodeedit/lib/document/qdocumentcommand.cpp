@@ -682,6 +682,17 @@ void QDocumentInsertCommand::undo()
 	m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
     m_doc->setProposedPosition(QDocumentCursor(m_doc,m_data.lineNumber,m_data.startOffset));
 
+    // emit text change for collaborative editing
+    if(!m_data.externalChange){ // avoid loops
+        if ( m_data.handles.count() ){
+            // multiline remove
+            m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber+m_data.handles.size(),m_data.endOffset,m_data.end);
+        }else{
+            // in line remove
+            m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber,m_data.startOffset+m_data.begin.size(),"");
+        }
+    }
+
 	markUndone(hl);
 
 	foreach ( QDocumentLineHandle *h, m_data.handles )
