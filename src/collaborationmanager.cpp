@@ -411,8 +411,7 @@ LatexDocument *CollaborationManager::findDocumentFromName(const QString &fileNam
 /* TODO
  *
  * - fully implementation on sending changes to remote editors
- * - extra cursor with different color
+ * - extra cursor with different color -> refine?
  * - host/guest set-up simpler (try join, start server when fail)
  * - panel icon for status/connect
- * - load/close in conjunction with collab
  */

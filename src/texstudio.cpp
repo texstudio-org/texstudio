@@ -2442,6 +2442,10 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
 
 	emit infoLoadFile(f_real);
 
+    // notify collaboration manager
+    collabManager->fileOpened(doc->getFileName());
+
+
 	return edit;
 }
 
@@ -3245,6 +3249,9 @@ void Texstudio::fileClose()
             d->getEditorView()->editor->reload();
         }
     }
+    // notify collaboration manager
+    collabManager->fileClosed(currentEditorView()->document->getFileName());
+
     documents.deleteDocument(currentEditorView()->document);
 
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
