@@ -1268,6 +1268,7 @@ void Texstudio::setupMenus()
 	menu->addSeparator();
     newManagedAction(menu, "startCollabServer", tr("Start sharing folder"), SLOT(startCollabServer()));
     newManagedAction(menu, "connectCollabServer", tr("Connect to other user for collaboration"), SLOT(connectCollabServer()));
+    newManagedAction(menu, "disconnectCollabServer", tr("Disconnect from collaboration"), SLOT(disconnectCollabServer()));
     menu->addSeparator();
     newManagedAction(menu, "spelling", tr("Check Spelling..."), SLOT(editSpell()), MAC_OR_DEFAULT(Qt::CTRL | Qt::SHIFT | Qt::Key_F7, Qt::CTRL | Qt::Key_Colon));
     newManagedAction(menu, "thesaurus", tr("Thesaurus..."), SLOT(editThesaurus()), Qt::CTRL | Qt::SHIFT | Qt::Key_F8);
@@ -6725,6 +6726,16 @@ void Texstudio::connectCollabServer()
         collabManager->fileOpened(documents.getCurrentFileName()); // TODO: do for all opened files in folder
     }
 
+}
+
+void Texstudio::disconnectCollabServer()
+{
+    if(!collabManager->isClientRunning()){
+        qDebug()<< "Collaboration not in use!";
+        return;
+    }
+    collabManager->stopClient();
+    collabManager->stopServer();
 }
 /*!
  * \brief move cursor updated from collaboration server
