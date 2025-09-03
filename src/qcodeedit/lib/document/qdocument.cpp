@@ -5540,7 +5540,9 @@ void QDocumentCursorHandle::eraseLine()
 			0,
 			endLine + 1,
 			0,
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
     } else if (startLine > 0) {
 		// special handling to remove a selection including the last line
@@ -5552,7 +5554,9 @@ void QDocumentCursorHandle::eraseLine()
 			m_doc->line(startLine-1).length(),
 			endLine,
 			m_doc->line(endLine).length(),
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
 	} else {
         // very special case
@@ -5563,7 +5567,9 @@ void QDocumentCursorHandle::eraseLine()
             0,
             startLine,
             m_doc->line(startLine).length(),
-            m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
         );
 	}
 	command->setTargetCursor(this);
@@ -5619,7 +5625,9 @@ void QDocumentCursorHandle::deleteChar()
 			m_begOffset,
 			m_begLine,
 			m_begOffset + charCount,
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
 
 	} else {
@@ -5629,7 +5637,9 @@ void QDocumentCursorHandle::deleteChar()
 			m_begOffset,
 			m_begLine + 1,
 			0,
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
 
 	}
@@ -5662,7 +5672,9 @@ void QDocumentCursorHandle::deletePreviousChar()
 			m_begOffset - charCount,
 			m_begLine,
 			m_begOffset,
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
 
 	} else {
@@ -5674,7 +5686,9 @@ void QDocumentCursorHandle::deletePreviousChar()
 			prev.length(),
 			m_begLine,
 			m_begOffset,
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
 
 	}
@@ -6392,7 +6406,9 @@ void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 										m_begOffset,
 										m_endLine,
 										m_endOffset,
-										m_doc
+                                        m_doc,
+                                        nullptr,
+                                        hasFlag(ExternalCursor)
 									);
 
 	} else if ( m_begLine > m_endLine ) {
@@ -6401,7 +6417,9 @@ void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 										m_endOffset,
 										m_begLine,
 										m_begOffset,
-										m_doc
+                                        m_doc,
+                                        nullptr,
+                                        hasFlag(ExternalCursor)
 									);
 
 		//m_begLine = m_endLine;
@@ -6413,7 +6431,9 @@ void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 										qMin(m_begOffset, m_endOffset),
 										m_endLine,
 										qMax(m_begOffset, m_endOffset),
-										m_doc
+                                        m_doc,
+                                        nullptr,
+                                        hasFlag(ExternalCursor)
 									);
 
 		//m_begOffset = qMin(m_begOffset, m_endOffset);

@@ -708,10 +708,11 @@ void QDocumentInsertCommand::undo()
 	\param doc host document
 	\param p parent command
 */
-QDocumentEraseCommand::QDocumentEraseCommand(	int bl, int bo,
-												int el, int eo,
-												QDocument *doc,
-												QDocumentCommand *p)
+QDocumentEraseCommand::QDocumentEraseCommand(int bl, int bo,
+                                             int el, int eo,
+                                             QDocument *doc,
+                                             QDocumentCommand *p,
+                                             bool externalChange)
  : QDocumentCommand(Erase, doc, p)
 {
 	if (el>m_doc->lines()-1) {
@@ -722,6 +723,8 @@ QDocumentEraseCommand::QDocumentEraseCommand(	int bl, int bo,
 						*end = m_doc->impl()->at(el);
 
 	QDocumentConstIterator it = m_doc->impl()->begin() + bl; //index(start);
+
+    m_data.externalChange=externalChange;
 
 	m_data.lineNumber = bl;
 	m_data.startOffset = bo;
@@ -821,9 +824,9 @@ void QDocumentEraseCommand::redo()
 
 	if ( m_data.handles.isEmpty() )
 	{
-		removeText(m_data.lineNumber, m_data.startOffset, m_data.begin.count());
+        removeText(m_data.lineNumber, m_data.startOffset, m_data.begin.size());
 	} else {
-		removeText(m_data.lineNumber, m_data.startOffset, m_data.begin.count());
+        removeText(m_data.lineNumber, m_data.startOffset, m_data.begin.size());
 
         if ( m_data.endOffset != -1 ){
 			insertText(m_data.lineNumber, m_data.startOffset, m_data.end);
@@ -836,9 +839,20 @@ void QDocumentEraseCommand::redo()
 
 	updateTarget(m_data.lineNumber, m_data.startOffset + m_redoOffset);
 
-	updateCursorsOnDeletion(m_data.lineNumber, m_data.startOffset, m_data.begin.length(), m_data.handles.count(), m_data.endOffset);
+    updateCursorsOnDeletion(m_data.lineNumber, m_data.startOffset, m_data.begin.length(), m_data.handles.size(), m_data.endOffset);
 
-	m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
+    m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.size() + 1);
+
+    // emit text change for collaborative editing
+    if(!m_data.externalChange){ // avoid loops
+        if ( m_data.handles.isEmpty() ){
+            // in line remove
+            m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber,m_data.startOffset+m_data.begin.size(),"");
+        }else{
+            // multi line remove
+            m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber+m_data.handles.size(),m_data.endOffset,"");
+        }
+    }
 
 	markRedone(hl, m_first);
 

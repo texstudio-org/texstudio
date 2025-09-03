@@ -131,7 +131,9 @@ class QCE_EXPORT QDocumentEraseCommand : public QDocumentCommand
 		QDocumentEraseCommand(	int bl, int bo,
 								int el, int eo,
 								QDocument *doc,
-                                QDocumentCommand *p = nullptr);
+                                QDocumentCommand *p = nullptr,
+                                bool externalChange = false
+                              );
 		
 		virtual ~QDocumentEraseCommand();
 		
