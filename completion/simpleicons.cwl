@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/08/30 for v15.11.0
+# Matthew Bertucci 2025/09/05 for v15.12.0
 
 #include:iftex
 
@@ -3141,6 +3141,7 @@ virginmedia
 virtualbox
 virustotal
 visa
+visualparadigm
 visx
 vite
 vitepress
