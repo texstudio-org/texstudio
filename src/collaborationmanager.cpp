@@ -475,7 +475,7 @@ void CollaborationManager::closeFileInClient(const QString &fileName)
  * \param fileName
  * \return pointer to document or nullptr if not found
  */
-LatexDocument *CollaborationManager::findDocumentFromName(const QString &fileName)
+LatexDocument *CollaborationManager::findDocumentFromName(const QString &fileName) const
 {
     if(m_docs==nullptr){
        return nullptr;

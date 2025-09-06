@@ -51,7 +51,7 @@ protected:
     void openFileInClient(const QString &fileName);
     void closeFileInClient(const QString &fileName);
 
-    LatexDocument *findDocumentFromName(const QString &fileName);
+    LatexDocument *findDocumentFromName(const QString &fileName) const;
 
     ConfigManager *m_conf=nullptr;
     LatexDocuments *m_docs=nullptr;
