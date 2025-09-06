@@ -23,6 +23,7 @@ public:
     bool isFileLocatedInCollabFolder(const QString &filename);
     void resetCollabCommand();
     QString readErrorMessage();
+    QString collabClientFolder() const;
 
     void fileOpened(const QString fileName);
     void fileClosed(const QString fileName);

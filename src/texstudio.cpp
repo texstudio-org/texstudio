@@ -6834,6 +6834,7 @@ void Texstudio::collabClientFinished(int exitCode, QString m_errorMessage)
             qDebug()<<"for now do nothing";
         }
     }
+    updateCollabStatus();
 }
 /*!
  * \brief guest server started, now connect client
@@ -6866,11 +6867,13 @@ void Texstudio::updateCollabStatus()
 
     QSize iconSize = QSize(iconWidth, iconWidth);
     if(collabManager && collabManager->isClientRunning()){
-        QIcon icon = getRealIconCached("network_connected");
+        QIcon icon = getRealIconCached("network-connect");
         statusLabelCollab->setPixmap(icon.pixmap(iconSize));
+        statusLabelCollab->setToolTip(tr("Collaboration: Connected in folder %1").arg(collabManager->collabClientFolder()));
     }else{
-        QIcon icon = getRealIconCached("network_notconnected");
+        QIcon icon = getRealIconCached("network-notconnected");
         statusLabelCollab->setPixmap(icon.pixmap(iconSize));
+        statusLabelCollab->setToolTip(tr("Collaboration: Not connected"));
     }
 
 }

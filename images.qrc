@@ -1,702 +1,701 @@
 <RCC>
-<qresource prefix="/">
-<file>images-ng/acroread.svg</file>
-<file>images-ng/addCol.svg</file>
-<file>images-ng/addRow.svg</file>
-<file>images-ng/alignCols.svgz</file>
-<file>images-ng/all_dm.svg</file>
-<file>images-ng/all.svg</file>
-<file>images-ng/annotation_add.svg</file>
-<file>images-ng/annotation_caret.svg</file>
-<file>images-ng/annotation_del.svg</file>
-<file>images-ng/annotation_highlight.svg</file>
-<file>images-ng/annotation_replace.svg</file>
-<file>images-ng/annotation_text.svg</file>
-<file>images-ng/application-exit.svgz</file>
-<file>images-ng/asymptote_R90.svg</file>
-<file>images-ng/asymptote.svg</file>
-<file>images-ng/back.svg</file>
-<file>images-ng/badbox.svg</file>
-<file>images-ng/beamer_R90.svg</file>
-<file>images-ng/beamer.svg</file>
-<file>images-ng/bold.svg</file>
-<file>images-ng/bookmark1.svgz</file>
-<file>images-ng/bookmark2.svgz</file>
-<file>images-ng/bookmark3.svgz</file>
-<file>images-ng/bookmark-new.svg</file>
-<file>images-ng/bookmarks_R90.svg</file>
-<file>images-ng/bookmarks.svg</file>
-<file>images-ng/build.svgz</file>
-<file>images-ng/builtin.svg</file>
-<file>images-ng/case_dm.svg</file>
-<file>images-ng/case.svg</file>
-<file>images-ng/chapter.svg</file>
-<file>images-ng/cite_dm.svg</file>
-<file>images-ng/cite.svg</file>
-<file>images-ng/close-tab_dm.svg</file>
-<file>images-ng/close-tab-hover.svgz</file>
-<file>images-ng/close-tab.svgz</file>
-<file>images-ng/command_dm.svg</file>
-<file>images-ng/command.svg</file>
-<file>images-ng/comment_dm.svg</file>
-<file>images-ng/comment.svg</file>
-<file>images-ng/compile-latex.svgz</file>
-<file>images-ng/compile-lua.svgz</file>
-<file>images-ng/compile-pdf.svgz</file>
-<file>images-ng/compile.svgz</file>
-<file>images-ng/compile-xelatex.svgz</file>
-<file>images-ng/config_advancededitor.svg</file>
-<file>images-ng/config_commands.svg</file>
-<file>images-ng/config_completion.svg</file>
-<file>images-ng/config_editor.svg</file>
-<file>images-ng/config_general.svg</file>
-<file>images-ng/config_highlighting.svg</file>
-<file>images-ng/config_latexmenus.svg</file>
-<file>images-ng/config_preview.svg</file>
-<file>images-ng/config_quickbuild.svg</file>
-<file>images-ng/config_shortcut.svg</file>
-<file>images-ng/config_svn.svg</file>
-<file>images-ng/config_terminal.svg</file>
-<file>images-ng/config_toolbars.svg</file>
-<file>images-ng/configure.svgz</file>
-<file>images-ng/convert-dvipdf.svgz</file>
-<file>images-ng/convert-dvips.svgz</file>
-<file>images-ng/convert-pspdf.svgz</file>
-<file>images-ng/count_dm.svg</file>
-<file>images-ng/count.svg</file>
-<file>images-ng/cursor_dm.svg</file>
-<file>images-ng/cursor.svg</file>
-<file>images-ng/cutCol.svg</file>
-<file>images-ng/dialog-error.svg</file>
-<file>images-ng/document-close.svgz</file>
-<file>images-ng/document-locked.svg</file>
-<file>images-ng/document-new.svgz</file>
-<file>images-ng/document-open.svgz</file>
-<file>images-ng/document-save.svgz</file>
-<file>images-ng/document-send_dm.svg</file>
-<file>images-ng/document-send.svg</file>
-<file>images-ng/download_dm.svg</file>
-<file>images-ng/download.svg</file>
-<file>images-ng/down.svgz</file>
-<file>images-ng/edit-copy.svgz</file>
-<file>images-ng/edit-cut.svgz</file>
-<file>images-ng/edit-find_dm.svg</file>
-<file>images-ng/edit-find.svg</file>
-<file>images-ng/edit-paste.svgz</file>
-<file>images-ng/edit-redo.svg</file>
-<file>images-ng/edit-undo.svg</file>
-<file>images-ng/embedded-viewer.svg</file>
-<file>images-ng/enumerate.svgz</file>
-<file>images-ng/errornext.svg</file>
-<file>images-ng/errorprev.svg</file>
-<file>images-ng/error.svgz</file>
-<file>images-ng/escape_dm.svg</file>
-<file>images-ng/escape.svg</file>
-<file>images-ng/executeMacro_R90.svg</file>
-<file>images-ng/executeMacro.svg</file>
-<file>images-ng/extend_dm.svg</file>
-<file>images-ng/extend.svg</file>
-<file>images-ng/focusedhand.svg</file>
-<file>images-ng/folder-cloud.svg</file>
-<file>images-ng/folder_R90_dm.svg</file>
-<file>images-ng/folder_R90.svg</file>
-<file>images-ng/folder.svg</file>
-<file>images-ng/font_emph48.svg</file>
-<file>images-ng/font_textbf48.svg</file>
-<file>images-ng/font_textit48.svg</file>
-<file>images-ng/font_textsc48.svg</file>
-<file>images-ng/font_textsf48.svg</file>
-<file>images-ng/font_textsl48.svg</file>
-<file>images-ng/font_texttt48.svg</file>
-<file>images-ng/font_underline48.svg</file>
-<file>images-ng/format-fill-color.svg</file>
-<file>images-ng/format-justify-center.svg</file>
-<file>images-ng/format-justify-fill.svg</file>
-<file>images-ng/format-justify-left.svg</file>
-<file>images-ng/format-justify-right.svg</file>
-<file>images-ng/format-stroke-color.svg</file>
-<file>images-ng/format-text-bold.svg</file>
-<file>images-ng/format-text-color.svg</file>
-<file>images-ng/format-text-italic.svg</file>
-<file>images-ng/format-text-underline.svg</file>
-<file>images-ng/forward.svg</file>
-<file>images-ng/go-first.svg</file>
-<file>images-ng/go-last.svg</file>
-<file>images-ng/go-next-diff_dm.svg</file>
-<file>images-ng/go-next-diff.svg</file>
-<file>images-ng/go-next.svg</file>
-<file>images-ng/go-previous-diff_dm.svg</file>
-<file>images-ng/go-previous-diff.svg</file>
-<file>images-ng/go-previous.svg</file>
-<file>images-ng/goto.svg</file>
-<file>images-ng/help-contents.svgz</file>
-<file>images-ng/highlight.svg</file>
-<file>images-ng/home.svg</file>
-<file>images-ng/image.svg</file>
-<file>images-ng/italic.svg</file>
-<file>images-ng/itemize.svgz</file>
-<file>images-ng/item.svgz</file>
-<file>images-ng/label_dm.svg</file>
-<file>images-ng/label.svg</file>
-<file>images-ng/lbook0.svgz</file>
-<file>images-ng/lbook1.svgz</file>
-<file>images-ng/lbook2.svgz</file>
-<file>images-ng/lbook3.svgz</file>
-<file>images-ng/lbook4.svgz</file>
-<file>images-ng/lbook5.svgz</file>
-<file>images-ng/lbook6.svgz</file>
-<file>images-ng/lbook7.svgz</file>
-<file>images-ng/lbook8.svgz</file>
-<file>images-ng/lbook9.svgz</file>
-<file>images-ng/lbook.svgz</file>
-<file>images-ng/leftright_R90.svg</file>
-<file>images-ng/leftright.svg</file>
-<file>images-ng/left.svgz</file>
-<file>images-ng/list-add.svgz</file>
-<file>images-ng/list-remove.svgz</file>
-<file>images-ng/logmarkers.svgz</file>
-<file>images-ng/logpanel.svg</file>
-<file>images-ng/magnifier.svgz</file>
-<file>images-ng/math6.svg</file>
-<file>images-ng/math.svg</file>
-<file>images-ng/metapost_R90.svg</file>
-<file>images-ng/metapost.svg</file>
-<file>images-ng/modified.svgz</file>
-<file>images-ng/network-connect.svg</file>
-<file>images-ng/network-connect_dm.svg</file>
-<file>images-ng/network-disconnect.svg</file>
-<file>images-ng/network-disconnect_dm.svg</file>
-<file>images-ng/network-notconnected.svg</file>
-<file>images-ng/network-notconnected_dm.svg</file>
-<file>images-ng/non-comment_dm.svg</file>
-<file>images-ng/non-comment.svg</file>
-<file>images-ng/non-math.svg</file>
-<file>images-ng/normal-text_dm.svg</file>
-<file>images-ng/normal-text.svg</file>
-<file>images-ng/overline.svg</file>
-<file>images-ng/part.svg</file>
-<file>images-ng/pasteCol.svg</file>
-<file>images-ng/preferences-system.svg</file>
-<file>images-ng/prompt_dm.svg</file>
-<file>images-ng/prompt.svg</file>
-<file>images-ng/pstricks_R90.svg</file>
-<file>images-ng/pstricks.svg</file>
-<file>images-ng/regex_dm.svg</file>
-<file>images-ng/regex.svg</file>
-<file>images-ng/remCol.svg</file>
-<file>images-ng/remRow.svg</file>
-<file>images-ng/repeat-compile-off.svg</file>
-<file>images-ng/repeat-compile.svg</file>
-<file>images-ng/replaceall.svg</file>
-<file>images-ng/replacedown.svg</file>
-<file>images-ng/replaceup.svg</file>
-<file>images-ng/replaceup.svgz</file>
-<file>images-ng/right.svgz</file>
-<file>images-ng/section.svg</file>
-<file>images-ng/selection_dm.svg</file>
-<file>images-ng/selection.svg</file>
-<file>images-ng/shortcut_change.svg</file>
-<file>images-ng/shortcut_change_text.svg</file>
-<file>images-ng/sidebar.svg</file>
-<file>images-ng/stop.svgz</file>
-<file>images-ng/strikeout.svg</file>
-<file>images-ng/structure_R90.svg</file>
-<file>images-ng/structure.svg</file>
-<file>images-ng/subsection.svg</file>
-<file>images-ng/subsubsection.svg</file>
-<file>images-ng/symbols_R90.svg</file>
-<file>images-ng/symbols.svg</file>
-<file>images-ng/syncSource-off.svg</file>
-<file>images-ng/syncSource.svg</file>
-<file>images-ng/syncViewer-off.svg</file>
-<file>images-ng/syncViewer.svg</file>
-<file>images-ng/tikz_R90.svg</file>
-<file>images-ng/tikz.svg</file>
-<file>images-ng/toc_R90.svg</file>
-<file>images-ng/toc.svg</file>
-<file>images-ng/underline.svg</file>
-<file>images-ng/up.svgz</file>
-<file>images-ng/user.svgz</file>
-<file>images-ng/verbatim.svg</file>
-<file>images-ng/view-doc-dvi.svg</file>
-<file>images-ng/view-doc-pdf.svgz</file>
-<file>images-ng/view-doc-ps.svg</file>
-<file>images-ng/viewer.svgz</file>
-<file>images-ng/view-fullscreen.svg</file>
-<file>images-ng/viewlog.svgz</file>
-<file>images-ng/view-pages-overview.svg</file>
-<file>images-ng/view-pages-single.svgz</file>
-<file>images-ng/warning.svgz</file>
-<file>images-ng/waveUnderline.svg</file>
-<file>images-ng/word_dm.svg</file>
-<file>images-ng/word.svg</file>
-<file>images-ng/xy_R90.svg</file>
-<file>images-ng/xy.svg</file>
-<file>images-ng/zoom-fit-best.svg</file>
-<file>images-ng/zoom-fit-text-width.svgz</file>
-<file>images-ng/zoom-fit-width.svgz</file>
-<file>images-ng/zoom-original.svgz</file>
-<file>images-ng/classic/close_dm.svg</file>
-<file>images-ng/classic/close.svg</file>
-<file>images-ng/classic/dfrac_dm.svg</file>
-<file>images-ng/classic/dfrac.svg</file>
-<file>images-ng/classic/embedded-viewer.svg</file>
-<file>images-ng/classic/enlarge-viewer_dm.svg</file>
-<file>images-ng/classic/enlarge-viewer.svg</file>
-<file>images-ng/classic/hand.svgz</file>
-<file>images-ng/classic/hide-toolbars_dm.svg</file>
-<file>images-ng/classic/hide-toolbars.svg</file>
-<file>images-ng/classic/languagetool.svg</file>
-<file>images-ng/classic/magnifier-button_dm.svg</file>
-<file>images-ng/classic/magnifier-button.svg</file>
-<file>images-ng/classic/mathmode.svg</file>
-<file>images-ng/classic/newline_dm.svg</file>
-<file>images-ng/classic/newline.svg</file>
-<file>images-ng/classic/shrink-viewer_dm.svg</file>
-<file>images-ng/classic/shrink-viewer.svg</file>
-<file>images-ng/classic/smallfrac_dm.svg</file>
-<file>images-ng/classic/smallfrac.svg</file>
-<file>images-ng/classic/sqrt_dm.svg</file>
-<file>images-ng/classic/sqrt.svg</file>
-<file>images-ng/classic/subscript_dm.svg</file>
-<file>images-ng/classic/subscript.svg</file>
-<file>images-ng/classic/superscript_dm.svg</file>
-<file>images-ng/classic/superscript.svg</file>
-<file>images-ng/classic/windowed-viewer_dm.svg</file>
-<file>images-ng/classic/windowed-viewer.svg</file>
-<file>images-ng/classic/zoom-in-magnifier.svg</file>
-<file>images-ng/classic/zoom-in.svg</file>
-<file>images-ng/classic/zoom-out-magnifier.svg</file>
-<file>images-ng/classic/zoom-out.svg</file>
-<file>images-ng/modern/close.svg</file>
-<file>images-ng/modern/dfrac.svg</file>
-<file>images-ng/modern/embedded-viewer.svg</file>
-<file>images-ng/modern/enlarge-viewer.svg</file>
-<file>images-ng/modern/frac.svg</file>
-<file>images-ng/modern/hand.svgz</file>
-<file>images-ng/modern/hide-toolbars.svg</file>
-<file>images-ng/modern/languagetool.svg</file>
-<file>images-ng/modern/magnifier-button.svg</file>
-<file>images-ng/modern/magnifier.svg</file>
-<file>images-ng/modern/mathmode.svg</file>
-<file>images-ng/modern/newline.svg</file>
-<file>images-ng/modern/shrink-viewer.svg</file>
-<file>images-ng/modern/smallfrac.svg</file>
-<file>images-ng/modern/sqrt.svg</file>
-<file>images-ng/modern/subscript.svg</file>
-<file>images-ng/modern/superscript.svg</file>
-<file>images-ng/modern/windowed-viewer.svg</file>
-<file>images-ng/modern/zoom-in-magnifier.svg</file>
-<file>images-ng/modern/zoom-in.svg</file>
-<file>images-ng/modern/zoom-out-magnifier.svg</file>
-<file>images-ng/modern/zoom-out.svg</file>
-<file>images-ng/colibre/acroread_dm.svg</file>
-<file>images-ng/colibre/acroread.svg</file>
-<file>images-ng/colibre/addCol_dm.svg</file>
-<file>images-ng/colibre/addCol.svg</file>
-<file>images-ng/colibre/addRow_dm.svg</file>
-<file>images-ng/colibre/addRow.svg</file>
-<file>images-ng/colibre/alignCols_dm.svg</file>
-<file>images-ng/colibre/alignCols.svg</file>
-<file>images-ng/colibre/all_dm.svg</file>
-<file>images-ng/colibre/all.svg</file>
-<file>images-ng/colibre/annotation_add_dm.svg</file>
-<file>images-ng/colibre/annotation_add.svg</file>
-<file>images-ng/colibre/annotation_caret_dm.svg</file>
-<file>images-ng/colibre/annotation_caret.svg</file>
-<file>images-ng/colibre/annotation_del_dm.svg</file>
-<file>images-ng/colibre/annotation_del.svg</file>
-<file>images-ng/colibre/annotation_highlight_dm.svg</file>
-<file>images-ng/colibre/annotation_highlight.svg</file>
-<file>images-ng/colibre/annotation_replace_dm.svg</file>
-<file>images-ng/colibre/annotation_replace.svg</file>
-<file>images-ng/colibre/annotation_text_dm.svg</file>
-<file>images-ng/colibre/annotation_text.svg</file>
-<file>images-ng/colibre/application-exit_dm.svg</file>
-<file>images-ng/colibre/application-exit.svg</file>
-<file>images-ng/colibre/asymptote_dm.svg</file>
-<file>images-ng/colibre/asymptote_R90_dm.svg</file>
-<file>images-ng/colibre/asymptote_R90.svg</file>
-<file>images-ng/colibre/asymptote.svg</file>
-<file>images-ng/colibre/back_dm.svg</file>
-<file>images-ng/colibre/back.svg</file>
-<file>images-ng/colibre/badbox_dm.svg</file>
-<file>images-ng/colibre/badbox.svg</file>
-<file>images-ng/colibre/beamer_dm.svg</file>
-<file>images-ng/colibre/beamer_R90_dm.svg</file>
-<file>images-ng/colibre/beamer_R90.svg</file>
-<file>images-ng/colibre/beamer.svg</file>
-<file>images-ng/colibre/bold_dm.svg</file>
-<file>images-ng/colibre/bold.svg</file>
-<file>images-ng/colibre/bookmark1_dm.svg</file>
-<file>images-ng/colibre/bookmark1.svg</file>
-<file>images-ng/colibre/bookmark2_dm.svg</file>
-<file>images-ng/colibre/bookmark2.svg</file>
-<file>images-ng/colibre/bookmark3_dm.svg</file>
-<file>images-ng/colibre/bookmark3.svg</file>
-<file>images-ng/colibre/bookmark-new_dm.svg</file>
-<file>images-ng/colibre/bookmark-new.svg</file>
-<file>images-ng/colibre/bookmarks_dm.svg</file>
-<file>images-ng/colibre/bookmarks_R90_dm.svg</file>
-<file>images-ng/colibre/bookmarks_R90.svg</file>
-<file>images-ng/colibre/bookmarks.svg</file>
-<file>images-ng/colibre/build_dm.svg</file>
-<file>images-ng/colibre/build.svg</file>
-<file>images-ng/colibre/builtin.svg</file>
-<file>images-ng/colibre/case_dm.svg</file>
-<file>images-ng/colibre/case.svg</file>
-<file>images-ng/colibre/chapter_dm.svg</file>
-<file>images-ng/colibre/chapter.svg</file>
-<file>images-ng/colibre/cite_dm.svg</file>
-<file>images-ng/colibre/cite.svg</file>
-<file>images-ng/colibre/close_dm.svg</file>
-<file>images-ng/colibre/close.svg</file>
-<file>images-ng/colibre/command_dm.svg</file>
-<file>images-ng/colibre/command.svg</file>
-<file>images-ng/colibre/comment_dm.svg</file>
-<file>images-ng/colibre/comment.svg</file>
-<file>images-ng/colibre/compile_dm.svg</file>
-<file>images-ng/colibre/compile-latex_dm.svg</file>
-<file>images-ng/colibre/compile-latex.svg</file>
-<file>images-ng/colibre/compile-lua_dm.svg</file>
-<file>images-ng/colibre/compile-lua.svg</file>
-<file>images-ng/colibre/compile-pdf_dm.svg</file>
-<file>images-ng/colibre/compile-pdf.svg</file>
-<file>images-ng/colibre/compile.svg</file>
-<file>images-ng/colibre/compile-xelatex_dm.svg</file>
-<file>images-ng/colibre/compile-xelatex.svg</file>
-<file>images-ng/colibre/configure_dm.svg</file>
-<file>images-ng/colibre/configure.svg</file>
-<file>images-ng/colibre/convert-dvipdf_dm.svg</file>
-<file>images-ng/colibre/convert-dvipdf.svg</file>
-<file>images-ng/colibre/convert-dvips_dm.svg</file>
-<file>images-ng/colibre/convert-dvips.svg</file>
-<file>images-ng/colibre/convert-pspdf_dm.svg</file>
-<file>images-ng/colibre/convert-pspdf.svg</file>
-<file>images-ng/colibre/count_dm.svg</file>
-<file>images-ng/colibre/count.svg</file>
-<file>images-ng/colibre/cursor_dm.svg</file>
-<file>images-ng/colibre/cursor.svg</file>
-<file>images-ng/colibre/cutCol_dm.svg</file>
-<file>images-ng/colibre/cutCol.svg</file>
-<file>images-ng/colibre/dfrac_dm.svg</file>
-<file>images-ng/colibre/dfrac.svg</file>
-<file>images-ng/colibre/dialog-error_dm.svg</file>
-<file>images-ng/colibre/dialog-error.svg</file>
-<file>images-ng/colibre/doc_dm.svg</file>
-<file>images-ng/colibre/doc.svg</file>
-<file>images-ng/colibre/document-close_dm.svg</file>
-<file>images-ng/colibre/document-close.svg</file>
-<file>images-ng/colibre/document-locked_dm.svg</file>
-<file>images-ng/colibre/document-locked.svg</file>
-<file>images-ng/colibre/document-new_dm.svg</file>
-<file>images-ng/colibre/document-new.svg</file>
-<file>images-ng/colibre/document-open_dm.svg</file>
-<file>images-ng/colibre/document-open.svg</file>
-<file>images-ng/colibre/document-save_dm.svg</file>
-<file>images-ng/colibre/document-save.svg</file>
-<file>images-ng/colibre/down-arrow-circle-silver_dm.svg</file>
-<file>images-ng/colibre/down-arrow-circle-silver.svg</file>
-<file>images-ng/colibre/down_dm.svg</file>
-<file>images-ng/colibre/down.svg</file>
-<file>images-ng/colibre/edit-copy_dm.svg</file>
-<file>images-ng/colibre/edit-copy.svg</file>
-<file>images-ng/colibre/edit-cut_dm.svg</file>
-<file>images-ng/colibre/edit-cut.svg</file>
-<file>images-ng/colibre/edit-paste_dm.svg</file>
-<file>images-ng/colibre/edit-paste.svg</file>
-<file>images-ng/colibre/edit-redo_dm.svg</file>
-<file>images-ng/colibre/edit-redo.svg</file>
-<file>images-ng/colibre/edit-undo_dm.svg</file>
-<file>images-ng/colibre/edit-undo.svg</file>
-<file>images-ng/colibre/enlarge-viewer_dm.svg</file>
-<file>images-ng/colibre/enlarge-viewer.svg</file>
-<file>images-ng/colibre/enumerate_dm.svg</file>
-<file>images-ng/colibre/enumerate.svg</file>
-<file>images-ng/colibre/error_dm.svg</file>
-<file>images-ng/colibre/errornext_dm.svg</file>
-<file>images-ng/colibre/errornext.svg</file>
-<file>images-ng/colibre/errorprev_dm.svg</file>
-<file>images-ng/colibre/errorprev.svg</file>
-<file>images-ng/colibre/error.svg</file>
-<file>images-ng/colibre/escape_dm.svg</file>
-<file>images-ng/colibre/escape.svg</file>
-<file>images-ng/colibre/executeMacro_dm.svg</file>
-<file>images-ng/colibre/executeMacro_R90_dm.svg</file>
-<file>images-ng/colibre/executeMacro_R90.svg</file>
-<file>images-ng/colibre/executeMacro.svg</file>
-<file>images-ng/colibre/extend_dm.svg</file>
-<file>images-ng/colibre/extend.svg</file>
-<file>images-ng/colibre/focusedhand_dm.svg</file>
-<file>images-ng/colibre/focusedhand.svg</file>
-<file>images-ng/colibre/folder-cloud.svg</file>
-<file>images-ng/colibre/font_emph48_dm.svg</file>
-<file>images-ng/colibre/font_emph48.svg</file>
-<file>images-ng/colibre/font_textbf48_dm.svg</file>
-<file>images-ng/colibre/font_textbf48.svg</file>
-<file>images-ng/colibre/font_textit48_dm.svg</file>
-<file>images-ng/colibre/font_textit48.svg</file>
-<file>images-ng/colibre/font_textsc48_dm.svg</file>
-<file>images-ng/colibre/font_textsc48.svg</file>
-<file>images-ng/colibre/font_textsf48_dm.svg</file>
-<file>images-ng/colibre/font_textsf48.svg</file>
-<file>images-ng/colibre/font_textsl48_dm.svg</file>
-<file>images-ng/colibre/font_textsl48.svg</file>
-<file>images-ng/colibre/font_texttt48_dm.svg</file>
-<file>images-ng/colibre/font_texttt48.svg</file>
-<file>images-ng/colibre/font_underline48_dm.svg</file>
-<file>images-ng/colibre/font_underline48.svg</file>
-<file>images-ng/colibre/format-fill-color_dm.svg</file>
-<file>images-ng/colibre/format-fill-color.svg</file>
-<file>images-ng/colibre/format-justify-center_dm.svg</file>
-<file>images-ng/colibre/format-justify-center.svg</file>
-<file>images-ng/colibre/format-justify-fill_dm.svg</file>
-<file>images-ng/colibre/format-justify-fill.svg</file>
-<file>images-ng/colibre/format-justify-left_dm.svg</file>
-<file>images-ng/colibre/format-justify-left.svg</file>
-<file>images-ng/colibre/format-justify-right_dm.svg</file>
-<file>images-ng/colibre/format-justify-right.svg</file>
-<file>images-ng/colibre/format-stroke-color_dm.svg</file>
-<file>images-ng/colibre/format-stroke-color.svg</file>
-<file>images-ng/colibre/format-text-bold_dm.svg</file>
-<file>images-ng/colibre/format-text-bold.svg</file>
-<file>images-ng/colibre/format-text-color_dm.svg</file>
-<file>images-ng/colibre/format-text-color.svg</file>
-<file>images-ng/colibre/format-text-italic_dm.svg</file>
-<file>images-ng/colibre/format-text-italic.svg</file>
-<file>images-ng/colibre/format-text-underline_dm.svg</file>
-<file>images-ng/colibre/format-text-underline.svg</file>
-<file>images-ng/colibre/forward_dm.svg</file>
-<file>images-ng/colibre/forward.svg</file>
-<file>images-ng/colibre/go-first_dm.svg</file>
-<file>images-ng/colibre/go-first.svg</file>
-<file>images-ng/colibre/go-last_dm.svg</file>
-<file>images-ng/colibre/go-last.svg</file>
-<file>images-ng/colibre/go-next-diff_dm.svg</file>
-<file>images-ng/colibre/go-next-diff.svg</file>
-<file>images-ng/colibre/go-next_dm.svg</file>
-<file>images-ng/colibre/go-next.svg</file>
-<file>images-ng/colibre/go-previous-diff_dm.svg</file>
-<file>images-ng/colibre/go-previous-diff.svg</file>
-<file>images-ng/colibre/go-previous_dm.svg</file>
-<file>images-ng/colibre/go-previous.svg</file>
-<file>images-ng/colibre/goto_dm.svg</file>
-<file>images-ng/colibre/goto.svg</file>
-<file>images-ng/colibre/hand_dm.svg</file>
-<file>images-ng/colibre/hand.svg</file>
-<file>images-ng/colibre/help-contents_dm.svg</file>
-<file>images-ng/colibre/help-contents.svg</file>
-<file>images-ng/colibre/hide-toolbars_dm.svg</file>
-<file>images-ng/colibre/hide-toolbars.svg</file>
-<file>images-ng/colibre/highlight_dm.svg</file>
-<file>images-ng/colibre/highlight.svg</file>
-<file>images-ng/colibre/home_dm.svg</file>
-<file>images-ng/colibre/home.svg</file>
-<file>images-ng/colibre/image_dm.svg</file>
-<file>images-ng/colibre/image.svg</file>
-<file>images-ng/colibre/include_dm.svg</file>
-<file>images-ng/colibre/include.svg</file>
-<file>images-ng/colibre/italic_dm.svg</file>
-<file>images-ng/colibre/italic.svg</file>
-<file>images-ng/colibre/item_dm.svg</file>
-<file>images-ng/colibre/itemize_dm.svg</file>
-<file>images-ng/colibre/itemize.svg</file>
-<file>images-ng/colibre/item.svg</file>
-<file>images-ng/colibre/label_dm.svg</file>
-<file>images-ng/colibre/label.svg</file>
-<file>images-ng/colibre/languagetool_dm.svg</file>
-<file>images-ng/colibre/languagetool.svg</file>
-<file>images-ng/colibre/lbook0_dm.svg</file>
-<file>images-ng/colibre/lbook0.svg</file>
-<file>images-ng/colibre/lbook1_dm.svg</file>
-<file>images-ng/colibre/lbook1.svg</file>
-<file>images-ng/colibre/lbook2_dm.svg</file>
-<file>images-ng/colibre/lbook2.svg</file>
-<file>images-ng/colibre/lbook3_dm.svg</file>
-<file>images-ng/colibre/lbook3.svg</file>
-<file>images-ng/colibre/lbook4_dm.svg</file>
-<file>images-ng/colibre/lbook4.svg</file>
-<file>images-ng/colibre/lbook5_dm.svg</file>
-<file>images-ng/colibre/lbook5.svg</file>
-<file>images-ng/colibre/lbook6_dm.svg</file>
-<file>images-ng/colibre/lbook6.svg</file>
-<file>images-ng/colibre/lbook7_dm.svg</file>
-<file>images-ng/colibre/lbook7.svg</file>
-<file>images-ng/colibre/lbook8_dm.svg</file>
-<file>images-ng/colibre/lbook8.svg</file>
-<file>images-ng/colibre/lbook9_dm.svg</file>
-<file>images-ng/colibre/lbook9.svg</file>
-<file>images-ng/colibre/lbook_dm.svg</file>
-<file>images-ng/colibre/lbook.svg</file>
-<file>images-ng/colibre/left_dm.svg</file>
-<file>images-ng/colibre/leftright_dm.svg</file>
-<file>images-ng/colibre/leftright_R90_dm.svg</file>
-<file>images-ng/colibre/leftright_R90.svg</file>
-<file>images-ng/colibre/leftright.svg</file>
-<file>images-ng/colibre/left.svg</file>
-<file>images-ng/colibre/list-add_dm.svg</file>
-<file>images-ng/colibre/list-add.svg</file>
-<file>images-ng/colibre/list-remove_dm.svg</file>
-<file>images-ng/colibre/list-remove.svg</file>
-<file>images-ng/colibre/logmarkers_dm.svg</file>
-<file>images-ng/colibre/logmarkers.svg</file>
-<file>images-ng/colibre/logpanel_dm.svg</file>
-<file>images-ng/colibre/logpanel.svg</file>
-<file>images-ng/colibre/magnifier-button_dm.svg</file>
-<file>images-ng/colibre/magnifier-button.svg</file>
-<file>images-ng/colibre/magnifier_dm.svg</file>
-<file>images-ng/colibre/magnifier.svg</file>
-<file>images-ng/colibre/masterdoc_dm.svg</file>
-<file>images-ng/colibre/masterdoc.svg</file>
-<file>images-ng/colibre/math_dm.svg</file>
-<file>images-ng/colibre/mathmode_dm.svg</file>
-<file>images-ng/colibre/mathmode.svg</file>
-<file>images-ng/colibre/math.svg</file>
-<file>images-ng/colibre/metapost_dm.svg</file>
-<file>images-ng/colibre/metapost_R90_dm.svg</file>
-<file>images-ng/colibre/metapost_R90.svg</file>
-<file>images-ng/colibre/metapost.svg</file>
-<file>images-ng/colibre/modified_dm.svg</file>
-<file>images-ng/colibre/modified.svg</file>
-<file>images-ng/colibre/newline_dm.svg</file>
-<file>images-ng/colibre/newline.svg</file>
-<file>images-ng/colibre/non-comment_dm.svg</file>
-<file>images-ng/colibre/non-comment.svg</file>
-<file>images-ng/colibre/non-math_dm.svg</file>
-<file>images-ng/colibre/non-math.svg</file>
-<file>images-ng/colibre/normal-text_dm.svg</file>
-<file>images-ng/colibre/normal-text.svg</file>
-<file>images-ng/colibre/overline_dm.svg</file>
-<file>images-ng/colibre/overline.svg</file>
-<file>images-ng/colibre/part_dm.svg</file>
-<file>images-ng/colibre/part.svg</file>
-<file>images-ng/colibre/pasteCol_dm.svg</file>
-<file>images-ng/colibre/pasteCol.svg</file>
-<file>images-ng/colibre/preferences-system_dm.svg</file>
-<file>images-ng/colibre/preferences-system.svg</file>
-<file>images-ng/colibre/prompt_dm.svg</file>
-<file>images-ng/colibre/prompt.svg</file>
-<file>images-ng/colibre/pstricks_dm.svg</file>
-<file>images-ng/colibre/pstricks_R90_dm.svg</file>
-<file>images-ng/colibre/pstricks_R90.svg</file>
-<file>images-ng/colibre/pstricks.svg</file>
-<file>images-ng/colibre/regex_dm.svg</file>
-<file>images-ng/colibre/regex.svg</file>
-<file>images-ng/colibre/remCol_dm.svg</file>
-<file>images-ng/colibre/remCol.svg</file>
-<file>images-ng/colibre/remRow_dm.svg</file>
-<file>images-ng/colibre/remRow.svg</file>
-<file>images-ng/colibre/repeat-compile_dm.svg</file>
-<file>images-ng/colibre/repeat-compile-off_dm.svg</file>
-<file>images-ng/colibre/repeat-compile-off.svg</file>
-<file>images-ng/colibre/repeat-compile.svg</file>
-<file>images-ng/colibre/replaceall_dm.svg</file>
-<file>images-ng/colibre/replaceall.svg</file>
-<file>images-ng/colibre/replacedown_dm.svg</file>
-<file>images-ng/colibre/replacedown.svg</file>
-<file>images-ng/colibre/replaceup_dm.svg</file>
-<file>images-ng/colibre/replaceup.svg</file>
-<file>images-ng/colibre/right_dm.svg</file>
-<file>images-ng/colibre/right.svg</file>
-<file>images-ng/colibre/section_dm.svg</file>
-<file>images-ng/colibre/section.svg</file>
-<file>images-ng/colibre/selection_dm.svg</file>
-<file>images-ng/colibre/selection.svg</file>
-<file>images-ng/colibre/shrink-viewer_dm.svg</file>
-<file>images-ng/colibre/shrink-viewer.svg</file>
-<file>images-ng/colibre/sidebar_dm.svg</file>
-<file>images-ng/colibre/sidebar.svg</file>
-<file>images-ng/colibre/smallfrac_dm.svg</file>
-<file>images-ng/colibre/smallfrac.svg</file>
-<file>images-ng/colibre/sqrt_dm.svg</file>
-<file>images-ng/colibre/sqrt.svg</file>
-<file>images-ng/colibre/stop_dm.svg</file>
-<file>images-ng/colibre/stop.svg</file>
-<file>images-ng/colibre/strikeout_dm.svg</file>
-<file>images-ng/colibre/strikeout.svg</file>
-<file>images-ng/colibre/structure_dm.svg</file>
-<file>images-ng/colibre/structure_R90_dm.svg</file>
-<file>images-ng/colibre/structure_R90.svg</file>
-<file>images-ng/colibre/structure.svg</file>
-<file>images-ng/colibre/subscript_dm.svg</file>
-<file>images-ng/colibre/subscript.svg</file>
-<file>images-ng/colibre/subsection_dm.svg</file>
-<file>images-ng/colibre/subsection.svg</file>
-<file>images-ng/colibre/subsubsection_dm.svg</file>
-<file>images-ng/colibre/subsubsection.svg</file>
-<file>images-ng/colibre/superscript_dm.svg</file>
-<file>images-ng/colibre/superscript.svg</file>
-<file>images-ng/colibre/symbols_dm.svg</file>
-<file>images-ng/colibre/symbols_R90_dm.svg</file>
-<file>images-ng/colibre/symbols_R90.svg</file>
-<file>images-ng/colibre/symbols.svg</file>
-<file>images-ng/colibre/syncSource_dm.svg</file>
-<file>images-ng/colibre/syncSource-off_dm.svg</file>
-<file>images-ng/colibre/syncSource-off.svg</file>
-<file>images-ng/colibre/syncSource.svg</file>
-<file>images-ng/colibre/syncViewer_dm.svg</file>
-<file>images-ng/colibre/syncViewer-off_dm.svg</file>
-<file>images-ng/colibre/syncViewer-off.svg</file>
-<file>images-ng/colibre/syncViewer.svg</file>
-<file>images-ng/colibre/tikz_dm.svg</file>
-<file>images-ng/colibre/tikz_R90_dm.svg</file>
-<file>images-ng/colibre/tikz_R90.svg</file>
-<file>images-ng/colibre/tikz.svg</file>
-<file>images-ng/colibre/toc_dm.svg</file>
-<file>images-ng/colibre/toc_R90_dm.svg</file>
-<file>images-ng/colibre/toc_R90.svg</file>
-<file>images-ng/colibre/toc.svg</file>
-<file>images-ng/colibre/underline_dm.svg</file>
-<file>images-ng/colibre/underline.svg</file>
-<file>images-ng/colibre/up-arrow-circle-silver_dm.svg</file>
-<file>images-ng/colibre/up-arrow-circle-silver.svg</file>
-<file>images-ng/colibre/up_dm.svg</file>
-<file>images-ng/colibre/up.svg</file>
-<file>images-ng/colibre/user_dm.svg</file>
-<file>images-ng/colibre/user.svg</file>
-<file>images-ng/colibre/verbatim_dm.svg</file>
-<file>images-ng/colibre/verbatim.svg</file>
-<file>images-ng/colibre/view-doc-dvi_dm.svg</file>
-<file>images-ng/colibre/view-doc-dvi.svg</file>
-<file>images-ng/colibre/view-doc-pdf_dm.svg</file>
-<file>images-ng/colibre/view-doc-pdf.svg</file>
-<file>images-ng/colibre/view-doc-ps_dm.svg</file>
-<file>images-ng/colibre/view-doc-ps.svg</file>
-<file>images-ng/colibre/viewer_dm.svg</file>
-<file>images-ng/colibre/viewer.svg</file>
-<file>images-ng/colibre/view-fullscreen_dm.svg</file>
-<file>images-ng/colibre/view-fullscreen.svg</file>
-<file>images-ng/colibre/viewlog_dm.svg</file>
-<file>images-ng/colibre/viewlog.svg</file>
-<file>images-ng/colibre/view-pages-overview.svg</file>
-<file>images-ng/colibre/view-pages-single.svg</file>
-<file>images-ng/colibre/warning_dm.svg</file>
-<file>images-ng/colibre/warning.svg</file>
-<file>images-ng/colibre/waveUnderline_dm.svg</file>
-<file>images-ng/colibre/waveUnderline.svg</file>
-<file>images-ng/colibre/windowed-viewer_dm.svg</file>
-<file>images-ng/colibre/windowed-viewer.svg</file>
-<file>images-ng/colibre/word_dm.svg</file>
-<file>images-ng/colibre/word.svg</file>
-<file>images-ng/colibre/xy_dm.svg</file>
-<file>images-ng/colibre/xy_R90_dm.svg</file>
-<file>images-ng/colibre/xy_R90.svg</file>
-<file>images-ng/colibre/xy.svg</file>
-<file>images-ng/colibre/zoom-fit-best_dm.svg</file>
-<file>images-ng/colibre/zoom-fit-best.svg</file>
-<file>images-ng/colibre/zoom-fit-text-width_dm.svg</file>
-<file>images-ng/colibre/zoom-fit-text-width.svg</file>
-<file>images-ng/colibre/zoom-fit-width_dm.svg</file>
-<file>images-ng/colibre/zoom-fit-width.svg</file>
-<file>images-ng/colibre/zoom-in_dm.svg</file>
-<file>images-ng/colibre/zoom-in-magnifier_dm.svg</file>
-<file>images-ng/colibre/zoom-in-magnifier.svg</file>
-<file>images-ng/colibre/zoom-in.svg</file>
-<file>images-ng/colibre/zoom-original_dm.svg</file>
-<file>images-ng/colibre/zoom-original.svg</file>
-<file>images-ng/colibre/zoom-out_dm.svg</file>
-<file>images-ng/colibre/zoom-out-magnifier_dm.svg</file>
-<file>images-ng/colibre/zoom-out-magnifier.svg</file>
-<file>images-ng/colibre/zoom-out.svg</file>
-</qresource>
+    <qresource prefix="/">
+        <file>images-ng/acroread.svg</file>
+        <file>images-ng/addCol.svg</file>
+        <file>images-ng/addRow.svg</file>
+        <file>images-ng/alignCols.svgz</file>
+        <file>images-ng/all_dm.svg</file>
+        <file>images-ng/all.svg</file>
+        <file>images-ng/annotation_add.svg</file>
+        <file>images-ng/annotation_caret.svg</file>
+        <file>images-ng/annotation_del.svg</file>
+        <file>images-ng/annotation_highlight.svg</file>
+        <file>images-ng/annotation_replace.svg</file>
+        <file>images-ng/annotation_text.svg</file>
+        <file>images-ng/application-exit.svgz</file>
+        <file>images-ng/asymptote_R90.svg</file>
+        <file>images-ng/asymptote.svg</file>
+        <file>images-ng/back.svg</file>
+        <file>images-ng/badbox.svg</file>
+        <file>images-ng/beamer_R90.svg</file>
+        <file>images-ng/beamer.svg</file>
+        <file>images-ng/bold.svg</file>
+        <file>images-ng/bookmark1.svgz</file>
+        <file>images-ng/bookmark2.svgz</file>
+        <file>images-ng/bookmark3.svgz</file>
+        <file>images-ng/bookmark-new.svg</file>
+        <file>images-ng/bookmarks_R90.svg</file>
+        <file>images-ng/bookmarks.svg</file>
+        <file>images-ng/build.svgz</file>
+        <file>images-ng/builtin.svg</file>
+        <file>images-ng/case_dm.svg</file>
+        <file>images-ng/case.svg</file>
+        <file>images-ng/chapter.svg</file>
+        <file>images-ng/cite_dm.svg</file>
+        <file>images-ng/cite.svg</file>
+        <file>images-ng/close-tab_dm.svg</file>
+        <file>images-ng/close-tab-hover.svgz</file>
+        <file>images-ng/close-tab.svgz</file>
+        <file>images-ng/command_dm.svg</file>
+        <file>images-ng/command.svg</file>
+        <file>images-ng/comment_dm.svg</file>
+        <file>images-ng/comment.svg</file>
+        <file>images-ng/compile-latex.svgz</file>
+        <file>images-ng/compile-lua.svgz</file>
+        <file>images-ng/compile-pdf.svgz</file>
+        <file>images-ng/compile.svgz</file>
+        <file>images-ng/compile-xelatex.svgz</file>
+        <file>images-ng/config_advancededitor.svg</file>
+        <file>images-ng/config_commands.svg</file>
+        <file>images-ng/config_completion.svg</file>
+        <file>images-ng/config_editor.svg</file>
+        <file>images-ng/config_general.svg</file>
+        <file>images-ng/config_highlighting.svg</file>
+        <file>images-ng/config_latexmenus.svg</file>
+        <file>images-ng/config_preview.svg</file>
+        <file>images-ng/config_quickbuild.svg</file>
+        <file>images-ng/config_shortcut.svg</file>
+        <file>images-ng/config_svn.svg</file>
+        <file>images-ng/config_terminal.svg</file>
+        <file>images-ng/config_toolbars.svg</file>
+        <file>images-ng/configure.svgz</file>
+        <file>images-ng/convert-dvipdf.svgz</file>
+        <file>images-ng/convert-dvips.svgz</file>
+        <file>images-ng/convert-pspdf.svgz</file>
+        <file>images-ng/count_dm.svg</file>
+        <file>images-ng/count.svg</file>
+        <file>images-ng/cursor_dm.svg</file>
+        <file>images-ng/cursor.svg</file>
+        <file>images-ng/cutCol.svg</file>
+        <file>images-ng/dialog-error.svg</file>
+        <file>images-ng/document-close.svgz</file>
+        <file>images-ng/document-locked.svg</file>
+        <file>images-ng/document-new.svgz</file>
+        <file>images-ng/document-open.svgz</file>
+        <file>images-ng/document-save.svgz</file>
+        <file>images-ng/document-send_dm.svg</file>
+        <file>images-ng/document-send.svg</file>
+        <file>images-ng/download_dm.svg</file>
+        <file>images-ng/download.svg</file>
+        <file>images-ng/down.svgz</file>
+        <file>images-ng/edit-copy.svgz</file>
+        <file>images-ng/edit-cut.svgz</file>
+        <file>images-ng/edit-find_dm.svg</file>
+        <file>images-ng/edit-find.svg</file>
+        <file>images-ng/edit-paste.svgz</file>
+        <file>images-ng/edit-redo.svg</file>
+        <file>images-ng/edit-undo.svg</file>
+        <file>images-ng/embedded-viewer.svg</file>
+        <file>images-ng/enumerate.svgz</file>
+        <file>images-ng/errornext.svg</file>
+        <file>images-ng/errorprev.svg</file>
+        <file>images-ng/error.svgz</file>
+        <file>images-ng/escape_dm.svg</file>
+        <file>images-ng/escape.svg</file>
+        <file>images-ng/executeMacro_R90.svg</file>
+        <file>images-ng/executeMacro.svg</file>
+        <file>images-ng/extend_dm.svg</file>
+        <file>images-ng/extend.svg</file>
+        <file>images-ng/focusedhand.svg</file>
+        <file>images-ng/folder-cloud.svg</file>
+        <file>images-ng/folder_R90_dm.svg</file>
+        <file>images-ng/folder_R90.svg</file>
+        <file>images-ng/folder.svg</file>
+        <file>images-ng/font_emph48.svg</file>
+        <file>images-ng/font_textbf48.svg</file>
+        <file>images-ng/font_textit48.svg</file>
+        <file>images-ng/font_textsc48.svg</file>
+        <file>images-ng/font_textsf48.svg</file>
+        <file>images-ng/font_textsl48.svg</file>
+        <file>images-ng/font_texttt48.svg</file>
+        <file>images-ng/font_underline48.svg</file>
+        <file>images-ng/format-fill-color.svg</file>
+        <file>images-ng/format-justify-center.svg</file>
+        <file>images-ng/format-justify-fill.svg</file>
+        <file>images-ng/format-justify-left.svg</file>
+        <file>images-ng/format-justify-right.svg</file>
+        <file>images-ng/format-stroke-color.svg</file>
+        <file>images-ng/format-text-bold.svg</file>
+        <file>images-ng/format-text-color.svg</file>
+        <file>images-ng/format-text-italic.svg</file>
+        <file>images-ng/format-text-underline.svg</file>
+        <file>images-ng/forward.svg</file>
+        <file>images-ng/go-first.svg</file>
+        <file>images-ng/go-last.svg</file>
+        <file>images-ng/go-next-diff_dm.svg</file>
+        <file>images-ng/go-next-diff.svg</file>
+        <file>images-ng/go-next.svg</file>
+        <file>images-ng/go-previous-diff_dm.svg</file>
+        <file>images-ng/go-previous-diff.svg</file>
+        <file>images-ng/go-previous.svg</file>
+        <file>images-ng/goto.svg</file>
+        <file>images-ng/help-contents.svgz</file>
+        <file>images-ng/highlight.svg</file>
+        <file>images-ng/home.svg</file>
+        <file>images-ng/image.svg</file>
+        <file>images-ng/italic.svg</file>
+        <file>images-ng/itemize.svgz</file>
+        <file>images-ng/item.svgz</file>
+        <file>images-ng/label_dm.svg</file>
+        <file>images-ng/label.svg</file>
+        <file>images-ng/lbook0.svgz</file>
+        <file>images-ng/lbook1.svgz</file>
+        <file>images-ng/lbook2.svgz</file>
+        <file>images-ng/lbook3.svgz</file>
+        <file>images-ng/lbook4.svgz</file>
+        <file>images-ng/lbook5.svgz</file>
+        <file>images-ng/lbook6.svgz</file>
+        <file>images-ng/lbook7.svgz</file>
+        <file>images-ng/lbook8.svgz</file>
+        <file>images-ng/lbook9.svgz</file>
+        <file>images-ng/lbook.svgz</file>
+        <file>images-ng/leftright_R90.svg</file>
+        <file>images-ng/leftright.svg</file>
+        <file>images-ng/left.svgz</file>
+        <file>images-ng/list-add.svgz</file>
+        <file>images-ng/list-remove.svgz</file>
+        <file>images-ng/logmarkers.svgz</file>
+        <file>images-ng/logpanel.svg</file>
+        <file>images-ng/magnifier.svgz</file>
+        <file>images-ng/math6.svg</file>
+        <file>images-ng/math.svg</file>
+        <file>images-ng/metapost_R90.svg</file>
+        <file>images-ng/metapost.svg</file>
+        <file>images-ng/modified.svgz</file>
+        <file>images-ng/network-connect.svg</file>
+        <file>images-ng/network-disconnect.svg</file>
+        <file>images-ng/network-disconnect_dm.svg</file>
+        <file>images-ng/network-notconnected.svg</file>
+        <file>images-ng/network-notconnected_dm.svg</file>
+        <file>images-ng/non-comment_dm.svg</file>
+        <file>images-ng/non-comment.svg</file>
+        <file>images-ng/non-math.svg</file>
+        <file>images-ng/normal-text_dm.svg</file>
+        <file>images-ng/normal-text.svg</file>
+        <file>images-ng/overline.svg</file>
+        <file>images-ng/part.svg</file>
+        <file>images-ng/pasteCol.svg</file>
+        <file>images-ng/preferences-system.svg</file>
+        <file>images-ng/prompt_dm.svg</file>
+        <file>images-ng/prompt.svg</file>
+        <file>images-ng/pstricks_R90.svg</file>
+        <file>images-ng/pstricks.svg</file>
+        <file>images-ng/regex_dm.svg</file>
+        <file>images-ng/regex.svg</file>
+        <file>images-ng/remCol.svg</file>
+        <file>images-ng/remRow.svg</file>
+        <file>images-ng/repeat-compile-off.svg</file>
+        <file>images-ng/repeat-compile.svg</file>
+        <file>images-ng/replaceall.svg</file>
+        <file>images-ng/replacedown.svg</file>
+        <file>images-ng/replaceup.svg</file>
+        <file>images-ng/replaceup.svgz</file>
+        <file>images-ng/right.svgz</file>
+        <file>images-ng/section.svg</file>
+        <file>images-ng/selection_dm.svg</file>
+        <file>images-ng/selection.svg</file>
+        <file>images-ng/shortcut_change.svg</file>
+        <file>images-ng/shortcut_change_text.svg</file>
+        <file>images-ng/sidebar.svg</file>
+        <file>images-ng/stop.svgz</file>
+        <file>images-ng/strikeout.svg</file>
+        <file>images-ng/structure_R90.svg</file>
+        <file>images-ng/structure.svg</file>
+        <file>images-ng/subsection.svg</file>
+        <file>images-ng/subsubsection.svg</file>
+        <file>images-ng/symbols_R90.svg</file>
+        <file>images-ng/symbols.svg</file>
+        <file>images-ng/syncSource-off.svg</file>
+        <file>images-ng/syncSource.svg</file>
+        <file>images-ng/syncViewer-off.svg</file>
+        <file>images-ng/syncViewer.svg</file>
+        <file>images-ng/tikz_R90.svg</file>
+        <file>images-ng/tikz.svg</file>
+        <file>images-ng/toc_R90.svg</file>
+        <file>images-ng/toc.svg</file>
+        <file>images-ng/underline.svg</file>
+        <file>images-ng/up.svgz</file>
+        <file>images-ng/user.svgz</file>
+        <file>images-ng/verbatim.svg</file>
+        <file>images-ng/view-doc-dvi.svg</file>
+        <file>images-ng/view-doc-pdf.svgz</file>
+        <file>images-ng/view-doc-ps.svg</file>
+        <file>images-ng/viewer.svgz</file>
+        <file>images-ng/view-fullscreen.svg</file>
+        <file>images-ng/viewlog.svgz</file>
+        <file>images-ng/view-pages-overview.svg</file>
+        <file>images-ng/view-pages-single.svgz</file>
+        <file>images-ng/warning.svgz</file>
+        <file>images-ng/waveUnderline.svg</file>
+        <file>images-ng/word_dm.svg</file>
+        <file>images-ng/word.svg</file>
+        <file>images-ng/xy_R90.svg</file>
+        <file>images-ng/xy.svg</file>
+        <file>images-ng/zoom-fit-best.svg</file>
+        <file>images-ng/zoom-fit-text-width.svgz</file>
+        <file>images-ng/zoom-fit-width.svgz</file>
+        <file>images-ng/zoom-original.svgz</file>
+        <file>images-ng/classic/close_dm.svg</file>
+        <file>images-ng/classic/close.svg</file>
+        <file>images-ng/classic/dfrac_dm.svg</file>
+        <file>images-ng/classic/dfrac.svg</file>
+        <file>images-ng/classic/embedded-viewer.svg</file>
+        <file>images-ng/classic/enlarge-viewer_dm.svg</file>
+        <file>images-ng/classic/enlarge-viewer.svg</file>
+        <file>images-ng/classic/hand.svgz</file>
+        <file>images-ng/classic/hide-toolbars_dm.svg</file>
+        <file>images-ng/classic/hide-toolbars.svg</file>
+        <file>images-ng/classic/languagetool.svg</file>
+        <file>images-ng/classic/magnifier-button_dm.svg</file>
+        <file>images-ng/classic/magnifier-button.svg</file>
+        <file>images-ng/classic/mathmode.svg</file>
+        <file>images-ng/classic/newline_dm.svg</file>
+        <file>images-ng/classic/newline.svg</file>
+        <file>images-ng/classic/shrink-viewer_dm.svg</file>
+        <file>images-ng/classic/shrink-viewer.svg</file>
+        <file>images-ng/classic/smallfrac_dm.svg</file>
+        <file>images-ng/classic/smallfrac.svg</file>
+        <file>images-ng/classic/sqrt_dm.svg</file>
+        <file>images-ng/classic/sqrt.svg</file>
+        <file>images-ng/classic/subscript_dm.svg</file>
+        <file>images-ng/classic/subscript.svg</file>
+        <file>images-ng/classic/superscript_dm.svg</file>
+        <file>images-ng/classic/superscript.svg</file>
+        <file>images-ng/classic/windowed-viewer_dm.svg</file>
+        <file>images-ng/classic/windowed-viewer.svg</file>
+        <file>images-ng/classic/zoom-in-magnifier.svg</file>
+        <file>images-ng/classic/zoom-in.svg</file>
+        <file>images-ng/classic/zoom-out-magnifier.svg</file>
+        <file>images-ng/classic/zoom-out.svg</file>
+        <file>images-ng/modern/close.svg</file>
+        <file>images-ng/modern/dfrac.svg</file>
+        <file>images-ng/modern/embedded-viewer.svg</file>
+        <file>images-ng/modern/enlarge-viewer.svg</file>
+        <file>images-ng/modern/frac.svg</file>
+        <file>images-ng/modern/hand.svgz</file>
+        <file>images-ng/modern/hide-toolbars.svg</file>
+        <file>images-ng/modern/languagetool.svg</file>
+        <file>images-ng/modern/magnifier-button.svg</file>
+        <file>images-ng/modern/magnifier.svg</file>
+        <file>images-ng/modern/mathmode.svg</file>
+        <file>images-ng/modern/newline.svg</file>
+        <file>images-ng/modern/shrink-viewer.svg</file>
+        <file>images-ng/modern/smallfrac.svg</file>
+        <file>images-ng/modern/sqrt.svg</file>
+        <file>images-ng/modern/subscript.svg</file>
+        <file>images-ng/modern/superscript.svg</file>
+        <file>images-ng/modern/windowed-viewer.svg</file>
+        <file>images-ng/modern/zoom-in-magnifier.svg</file>
+        <file>images-ng/modern/zoom-in.svg</file>
+        <file>images-ng/modern/zoom-out-magnifier.svg</file>
+        <file>images-ng/modern/zoom-out.svg</file>
+        <file>images-ng/colibre/acroread_dm.svg</file>
+        <file>images-ng/colibre/acroread.svg</file>
+        <file>images-ng/colibre/addCol_dm.svg</file>
+        <file>images-ng/colibre/addCol.svg</file>
+        <file>images-ng/colibre/addRow_dm.svg</file>
+        <file>images-ng/colibre/addRow.svg</file>
+        <file>images-ng/colibre/alignCols_dm.svg</file>
+        <file>images-ng/colibre/alignCols.svg</file>
+        <file>images-ng/colibre/all_dm.svg</file>
+        <file>images-ng/colibre/all.svg</file>
+        <file>images-ng/colibre/annotation_add_dm.svg</file>
+        <file>images-ng/colibre/annotation_add.svg</file>
+        <file>images-ng/colibre/annotation_caret_dm.svg</file>
+        <file>images-ng/colibre/annotation_caret.svg</file>
+        <file>images-ng/colibre/annotation_del_dm.svg</file>
+        <file>images-ng/colibre/annotation_del.svg</file>
+        <file>images-ng/colibre/annotation_highlight_dm.svg</file>
+        <file>images-ng/colibre/annotation_highlight.svg</file>
+        <file>images-ng/colibre/annotation_replace_dm.svg</file>
+        <file>images-ng/colibre/annotation_replace.svg</file>
+        <file>images-ng/colibre/annotation_text_dm.svg</file>
+        <file>images-ng/colibre/annotation_text.svg</file>
+        <file>images-ng/colibre/application-exit_dm.svg</file>
+        <file>images-ng/colibre/application-exit.svg</file>
+        <file>images-ng/colibre/asymptote_dm.svg</file>
+        <file>images-ng/colibre/asymptote_R90_dm.svg</file>
+        <file>images-ng/colibre/asymptote_R90.svg</file>
+        <file>images-ng/colibre/asymptote.svg</file>
+        <file>images-ng/colibre/back_dm.svg</file>
+        <file>images-ng/colibre/back.svg</file>
+        <file>images-ng/colibre/badbox_dm.svg</file>
+        <file>images-ng/colibre/badbox.svg</file>
+        <file>images-ng/colibre/beamer_dm.svg</file>
+        <file>images-ng/colibre/beamer_R90_dm.svg</file>
+        <file>images-ng/colibre/beamer_R90.svg</file>
+        <file>images-ng/colibre/beamer.svg</file>
+        <file>images-ng/colibre/bold_dm.svg</file>
+        <file>images-ng/colibre/bold.svg</file>
+        <file>images-ng/colibre/bookmark1_dm.svg</file>
+        <file>images-ng/colibre/bookmark1.svg</file>
+        <file>images-ng/colibre/bookmark2_dm.svg</file>
+        <file>images-ng/colibre/bookmark2.svg</file>
+        <file>images-ng/colibre/bookmark3_dm.svg</file>
+        <file>images-ng/colibre/bookmark3.svg</file>
+        <file>images-ng/colibre/bookmark-new_dm.svg</file>
+        <file>images-ng/colibre/bookmark-new.svg</file>
+        <file>images-ng/colibre/bookmarks_dm.svg</file>
+        <file>images-ng/colibre/bookmarks_R90_dm.svg</file>
+        <file>images-ng/colibre/bookmarks_R90.svg</file>
+        <file>images-ng/colibre/bookmarks.svg</file>
+        <file>images-ng/colibre/build_dm.svg</file>
+        <file>images-ng/colibre/build.svg</file>
+        <file>images-ng/colibre/builtin.svg</file>
+        <file>images-ng/colibre/case_dm.svg</file>
+        <file>images-ng/colibre/case.svg</file>
+        <file>images-ng/colibre/chapter_dm.svg</file>
+        <file>images-ng/colibre/chapter.svg</file>
+        <file>images-ng/colibre/cite_dm.svg</file>
+        <file>images-ng/colibre/cite.svg</file>
+        <file>images-ng/colibre/close_dm.svg</file>
+        <file>images-ng/colibre/close.svg</file>
+        <file>images-ng/colibre/command_dm.svg</file>
+        <file>images-ng/colibre/command.svg</file>
+        <file>images-ng/colibre/comment_dm.svg</file>
+        <file>images-ng/colibre/comment.svg</file>
+        <file>images-ng/colibre/compile_dm.svg</file>
+        <file>images-ng/colibre/compile-latex_dm.svg</file>
+        <file>images-ng/colibre/compile-latex.svg</file>
+        <file>images-ng/colibre/compile-lua_dm.svg</file>
+        <file>images-ng/colibre/compile-lua.svg</file>
+        <file>images-ng/colibre/compile-pdf_dm.svg</file>
+        <file>images-ng/colibre/compile-pdf.svg</file>
+        <file>images-ng/colibre/compile.svg</file>
+        <file>images-ng/colibre/compile-xelatex_dm.svg</file>
+        <file>images-ng/colibre/compile-xelatex.svg</file>
+        <file>images-ng/colibre/configure_dm.svg</file>
+        <file>images-ng/colibre/configure.svg</file>
+        <file>images-ng/colibre/convert-dvipdf_dm.svg</file>
+        <file>images-ng/colibre/convert-dvipdf.svg</file>
+        <file>images-ng/colibre/convert-dvips_dm.svg</file>
+        <file>images-ng/colibre/convert-dvips.svg</file>
+        <file>images-ng/colibre/convert-pspdf_dm.svg</file>
+        <file>images-ng/colibre/convert-pspdf.svg</file>
+        <file>images-ng/colibre/count_dm.svg</file>
+        <file>images-ng/colibre/count.svg</file>
+        <file>images-ng/colibre/cursor_dm.svg</file>
+        <file>images-ng/colibre/cursor.svg</file>
+        <file>images-ng/colibre/cutCol_dm.svg</file>
+        <file>images-ng/colibre/cutCol.svg</file>
+        <file>images-ng/colibre/dfrac_dm.svg</file>
+        <file>images-ng/colibre/dfrac.svg</file>
+        <file>images-ng/colibre/dialog-error_dm.svg</file>
+        <file>images-ng/colibre/dialog-error.svg</file>
+        <file>images-ng/colibre/doc_dm.svg</file>
+        <file>images-ng/colibre/doc.svg</file>
+        <file>images-ng/colibre/document-close_dm.svg</file>
+        <file>images-ng/colibre/document-close.svg</file>
+        <file>images-ng/colibre/document-locked_dm.svg</file>
+        <file>images-ng/colibre/document-locked.svg</file>
+        <file>images-ng/colibre/document-new_dm.svg</file>
+        <file>images-ng/colibre/document-new.svg</file>
+        <file>images-ng/colibre/document-open_dm.svg</file>
+        <file>images-ng/colibre/document-open.svg</file>
+        <file>images-ng/colibre/document-save_dm.svg</file>
+        <file>images-ng/colibre/document-save.svg</file>
+        <file>images-ng/colibre/down-arrow-circle-silver_dm.svg</file>
+        <file>images-ng/colibre/down-arrow-circle-silver.svg</file>
+        <file>images-ng/colibre/down_dm.svg</file>
+        <file>images-ng/colibre/down.svg</file>
+        <file>images-ng/colibre/edit-copy_dm.svg</file>
+        <file>images-ng/colibre/edit-copy.svg</file>
+        <file>images-ng/colibre/edit-cut_dm.svg</file>
+        <file>images-ng/colibre/edit-cut.svg</file>
+        <file>images-ng/colibre/edit-paste_dm.svg</file>
+        <file>images-ng/colibre/edit-paste.svg</file>
+        <file>images-ng/colibre/edit-redo_dm.svg</file>
+        <file>images-ng/colibre/edit-redo.svg</file>
+        <file>images-ng/colibre/edit-undo_dm.svg</file>
+        <file>images-ng/colibre/edit-undo.svg</file>
+        <file>images-ng/colibre/enlarge-viewer_dm.svg</file>
+        <file>images-ng/colibre/enlarge-viewer.svg</file>
+        <file>images-ng/colibre/enumerate_dm.svg</file>
+        <file>images-ng/colibre/enumerate.svg</file>
+        <file>images-ng/colibre/error_dm.svg</file>
+        <file>images-ng/colibre/errornext_dm.svg</file>
+        <file>images-ng/colibre/errornext.svg</file>
+        <file>images-ng/colibre/errorprev_dm.svg</file>
+        <file>images-ng/colibre/errorprev.svg</file>
+        <file>images-ng/colibre/error.svg</file>
+        <file>images-ng/colibre/escape_dm.svg</file>
+        <file>images-ng/colibre/escape.svg</file>
+        <file>images-ng/colibre/executeMacro_dm.svg</file>
+        <file>images-ng/colibre/executeMacro_R90_dm.svg</file>
+        <file>images-ng/colibre/executeMacro_R90.svg</file>
+        <file>images-ng/colibre/executeMacro.svg</file>
+        <file>images-ng/colibre/extend_dm.svg</file>
+        <file>images-ng/colibre/extend.svg</file>
+        <file>images-ng/colibre/focusedhand_dm.svg</file>
+        <file>images-ng/colibre/focusedhand.svg</file>
+        <file>images-ng/colibre/folder-cloud.svg</file>
+        <file>images-ng/colibre/font_emph48_dm.svg</file>
+        <file>images-ng/colibre/font_emph48.svg</file>
+        <file>images-ng/colibre/font_textbf48_dm.svg</file>
+        <file>images-ng/colibre/font_textbf48.svg</file>
+        <file>images-ng/colibre/font_textit48_dm.svg</file>
+        <file>images-ng/colibre/font_textit48.svg</file>
+        <file>images-ng/colibre/font_textsc48_dm.svg</file>
+        <file>images-ng/colibre/font_textsc48.svg</file>
+        <file>images-ng/colibre/font_textsf48_dm.svg</file>
+        <file>images-ng/colibre/font_textsf48.svg</file>
+        <file>images-ng/colibre/font_textsl48_dm.svg</file>
+        <file>images-ng/colibre/font_textsl48.svg</file>
+        <file>images-ng/colibre/font_texttt48_dm.svg</file>
+        <file>images-ng/colibre/font_texttt48.svg</file>
+        <file>images-ng/colibre/font_underline48_dm.svg</file>
+        <file>images-ng/colibre/font_underline48.svg</file>
+        <file>images-ng/colibre/format-fill-color_dm.svg</file>
+        <file>images-ng/colibre/format-fill-color.svg</file>
+        <file>images-ng/colibre/format-justify-center_dm.svg</file>
+        <file>images-ng/colibre/format-justify-center.svg</file>
+        <file>images-ng/colibre/format-justify-fill_dm.svg</file>
+        <file>images-ng/colibre/format-justify-fill.svg</file>
+        <file>images-ng/colibre/format-justify-left_dm.svg</file>
+        <file>images-ng/colibre/format-justify-left.svg</file>
+        <file>images-ng/colibre/format-justify-right_dm.svg</file>
+        <file>images-ng/colibre/format-justify-right.svg</file>
+        <file>images-ng/colibre/format-stroke-color_dm.svg</file>
+        <file>images-ng/colibre/format-stroke-color.svg</file>
+        <file>images-ng/colibre/format-text-bold_dm.svg</file>
+        <file>images-ng/colibre/format-text-bold.svg</file>
+        <file>images-ng/colibre/format-text-color_dm.svg</file>
+        <file>images-ng/colibre/format-text-color.svg</file>
+        <file>images-ng/colibre/format-text-italic_dm.svg</file>
+        <file>images-ng/colibre/format-text-italic.svg</file>
+        <file>images-ng/colibre/format-text-underline_dm.svg</file>
+        <file>images-ng/colibre/format-text-underline.svg</file>
+        <file>images-ng/colibre/forward_dm.svg</file>
+        <file>images-ng/colibre/forward.svg</file>
+        <file>images-ng/colibre/go-first_dm.svg</file>
+        <file>images-ng/colibre/go-first.svg</file>
+        <file>images-ng/colibre/go-last_dm.svg</file>
+        <file>images-ng/colibre/go-last.svg</file>
+        <file>images-ng/colibre/go-next-diff_dm.svg</file>
+        <file>images-ng/colibre/go-next-diff.svg</file>
+        <file>images-ng/colibre/go-next_dm.svg</file>
+        <file>images-ng/colibre/go-next.svg</file>
+        <file>images-ng/colibre/go-previous-diff_dm.svg</file>
+        <file>images-ng/colibre/go-previous-diff.svg</file>
+        <file>images-ng/colibre/go-previous_dm.svg</file>
+        <file>images-ng/colibre/go-previous.svg</file>
+        <file>images-ng/colibre/goto_dm.svg</file>
+        <file>images-ng/colibre/goto.svg</file>
+        <file>images-ng/colibre/hand_dm.svg</file>
+        <file>images-ng/colibre/hand.svg</file>
+        <file>images-ng/colibre/help-contents_dm.svg</file>
+        <file>images-ng/colibre/help-contents.svg</file>
+        <file>images-ng/colibre/hide-toolbars_dm.svg</file>
+        <file>images-ng/colibre/hide-toolbars.svg</file>
+        <file>images-ng/colibre/highlight_dm.svg</file>
+        <file>images-ng/colibre/highlight.svg</file>
+        <file>images-ng/colibre/home_dm.svg</file>
+        <file>images-ng/colibre/home.svg</file>
+        <file>images-ng/colibre/image_dm.svg</file>
+        <file>images-ng/colibre/image.svg</file>
+        <file>images-ng/colibre/include_dm.svg</file>
+        <file>images-ng/colibre/include.svg</file>
+        <file>images-ng/colibre/italic_dm.svg</file>
+        <file>images-ng/colibre/italic.svg</file>
+        <file>images-ng/colibre/item_dm.svg</file>
+        <file>images-ng/colibre/itemize_dm.svg</file>
+        <file>images-ng/colibre/itemize.svg</file>
+        <file>images-ng/colibre/item.svg</file>
+        <file>images-ng/colibre/label_dm.svg</file>
+        <file>images-ng/colibre/label.svg</file>
+        <file>images-ng/colibre/languagetool_dm.svg</file>
+        <file>images-ng/colibre/languagetool.svg</file>
+        <file>images-ng/colibre/lbook0_dm.svg</file>
+        <file>images-ng/colibre/lbook0.svg</file>
+        <file>images-ng/colibre/lbook1_dm.svg</file>
+        <file>images-ng/colibre/lbook1.svg</file>
+        <file>images-ng/colibre/lbook2_dm.svg</file>
+        <file>images-ng/colibre/lbook2.svg</file>
+        <file>images-ng/colibre/lbook3_dm.svg</file>
+        <file>images-ng/colibre/lbook3.svg</file>
+        <file>images-ng/colibre/lbook4_dm.svg</file>
+        <file>images-ng/colibre/lbook4.svg</file>
+        <file>images-ng/colibre/lbook5_dm.svg</file>
+        <file>images-ng/colibre/lbook5.svg</file>
+        <file>images-ng/colibre/lbook6_dm.svg</file>
+        <file>images-ng/colibre/lbook6.svg</file>
+        <file>images-ng/colibre/lbook7_dm.svg</file>
+        <file>images-ng/colibre/lbook7.svg</file>
+        <file>images-ng/colibre/lbook8_dm.svg</file>
+        <file>images-ng/colibre/lbook8.svg</file>
+        <file>images-ng/colibre/lbook9_dm.svg</file>
+        <file>images-ng/colibre/lbook9.svg</file>
+        <file>images-ng/colibre/lbook_dm.svg</file>
+        <file>images-ng/colibre/lbook.svg</file>
+        <file>images-ng/colibre/left_dm.svg</file>
+        <file>images-ng/colibre/leftright_dm.svg</file>
+        <file>images-ng/colibre/leftright_R90_dm.svg</file>
+        <file>images-ng/colibre/leftright_R90.svg</file>
+        <file>images-ng/colibre/leftright.svg</file>
+        <file>images-ng/colibre/left.svg</file>
+        <file>images-ng/colibre/list-add_dm.svg</file>
+        <file>images-ng/colibre/list-add.svg</file>
+        <file>images-ng/colibre/list-remove_dm.svg</file>
+        <file>images-ng/colibre/list-remove.svg</file>
+        <file>images-ng/colibre/logmarkers_dm.svg</file>
+        <file>images-ng/colibre/logmarkers.svg</file>
+        <file>images-ng/colibre/logpanel_dm.svg</file>
+        <file>images-ng/colibre/logpanel.svg</file>
+        <file>images-ng/colibre/magnifier-button_dm.svg</file>
+        <file>images-ng/colibre/magnifier-button.svg</file>
+        <file>images-ng/colibre/magnifier_dm.svg</file>
+        <file>images-ng/colibre/magnifier.svg</file>
+        <file>images-ng/colibre/masterdoc_dm.svg</file>
+        <file>images-ng/colibre/masterdoc.svg</file>
+        <file>images-ng/colibre/math_dm.svg</file>
+        <file>images-ng/colibre/mathmode_dm.svg</file>
+        <file>images-ng/colibre/mathmode.svg</file>
+        <file>images-ng/colibre/math.svg</file>
+        <file>images-ng/colibre/metapost_dm.svg</file>
+        <file>images-ng/colibre/metapost_R90_dm.svg</file>
+        <file>images-ng/colibre/metapost_R90.svg</file>
+        <file>images-ng/colibre/metapost.svg</file>
+        <file>images-ng/colibre/modified_dm.svg</file>
+        <file>images-ng/colibre/modified.svg</file>
+        <file>images-ng/colibre/newline_dm.svg</file>
+        <file>images-ng/colibre/newline.svg</file>
+        <file>images-ng/colibre/non-comment_dm.svg</file>
+        <file>images-ng/colibre/non-comment.svg</file>
+        <file>images-ng/colibre/non-math_dm.svg</file>
+        <file>images-ng/colibre/non-math.svg</file>
+        <file>images-ng/colibre/normal-text_dm.svg</file>
+        <file>images-ng/colibre/normal-text.svg</file>
+        <file>images-ng/colibre/overline_dm.svg</file>
+        <file>images-ng/colibre/overline.svg</file>
+        <file>images-ng/colibre/part_dm.svg</file>
+        <file>images-ng/colibre/part.svg</file>
+        <file>images-ng/colibre/pasteCol_dm.svg</file>
+        <file>images-ng/colibre/pasteCol.svg</file>
+        <file>images-ng/colibre/preferences-system_dm.svg</file>
+        <file>images-ng/colibre/preferences-system.svg</file>
+        <file>images-ng/colibre/prompt_dm.svg</file>
+        <file>images-ng/colibre/prompt.svg</file>
+        <file>images-ng/colibre/pstricks_dm.svg</file>
+        <file>images-ng/colibre/pstricks_R90_dm.svg</file>
+        <file>images-ng/colibre/pstricks_R90.svg</file>
+        <file>images-ng/colibre/pstricks.svg</file>
+        <file>images-ng/colibre/regex_dm.svg</file>
+        <file>images-ng/colibre/regex.svg</file>
+        <file>images-ng/colibre/remCol_dm.svg</file>
+        <file>images-ng/colibre/remCol.svg</file>
+        <file>images-ng/colibre/remRow_dm.svg</file>
+        <file>images-ng/colibre/remRow.svg</file>
+        <file>images-ng/colibre/repeat-compile_dm.svg</file>
+        <file>images-ng/colibre/repeat-compile-off_dm.svg</file>
+        <file>images-ng/colibre/repeat-compile-off.svg</file>
+        <file>images-ng/colibre/repeat-compile.svg</file>
+        <file>images-ng/colibre/replaceall_dm.svg</file>
+        <file>images-ng/colibre/replaceall.svg</file>
+        <file>images-ng/colibre/replacedown_dm.svg</file>
+        <file>images-ng/colibre/replacedown.svg</file>
+        <file>images-ng/colibre/replaceup_dm.svg</file>
+        <file>images-ng/colibre/replaceup.svg</file>
+        <file>images-ng/colibre/right_dm.svg</file>
+        <file>images-ng/colibre/right.svg</file>
+        <file>images-ng/colibre/section_dm.svg</file>
+        <file>images-ng/colibre/section.svg</file>
+        <file>images-ng/colibre/selection_dm.svg</file>
+        <file>images-ng/colibre/selection.svg</file>
+        <file>images-ng/colibre/shrink-viewer_dm.svg</file>
+        <file>images-ng/colibre/shrink-viewer.svg</file>
+        <file>images-ng/colibre/sidebar_dm.svg</file>
+        <file>images-ng/colibre/sidebar.svg</file>
+        <file>images-ng/colibre/smallfrac_dm.svg</file>
+        <file>images-ng/colibre/smallfrac.svg</file>
+        <file>images-ng/colibre/sqrt_dm.svg</file>
+        <file>images-ng/colibre/sqrt.svg</file>
+        <file>images-ng/colibre/stop_dm.svg</file>
+        <file>images-ng/colibre/stop.svg</file>
+        <file>images-ng/colibre/strikeout_dm.svg</file>
+        <file>images-ng/colibre/strikeout.svg</file>
+        <file>images-ng/colibre/structure_dm.svg</file>
+        <file>images-ng/colibre/structure_R90_dm.svg</file>
+        <file>images-ng/colibre/structure_R90.svg</file>
+        <file>images-ng/colibre/structure.svg</file>
+        <file>images-ng/colibre/subscript_dm.svg</file>
+        <file>images-ng/colibre/subscript.svg</file>
+        <file>images-ng/colibre/subsection_dm.svg</file>
+        <file>images-ng/colibre/subsection.svg</file>
+        <file>images-ng/colibre/subsubsection_dm.svg</file>
+        <file>images-ng/colibre/subsubsection.svg</file>
+        <file>images-ng/colibre/superscript_dm.svg</file>
+        <file>images-ng/colibre/superscript.svg</file>
+        <file>images-ng/colibre/symbols_dm.svg</file>
+        <file>images-ng/colibre/symbols_R90_dm.svg</file>
+        <file>images-ng/colibre/symbols_R90.svg</file>
+        <file>images-ng/colibre/symbols.svg</file>
+        <file>images-ng/colibre/syncSource_dm.svg</file>
+        <file>images-ng/colibre/syncSource-off_dm.svg</file>
+        <file>images-ng/colibre/syncSource-off.svg</file>
+        <file>images-ng/colibre/syncSource.svg</file>
+        <file>images-ng/colibre/syncViewer_dm.svg</file>
+        <file>images-ng/colibre/syncViewer-off_dm.svg</file>
+        <file>images-ng/colibre/syncViewer-off.svg</file>
+        <file>images-ng/colibre/syncViewer.svg</file>
+        <file>images-ng/colibre/tikz_dm.svg</file>
+        <file>images-ng/colibre/tikz_R90_dm.svg</file>
+        <file>images-ng/colibre/tikz_R90.svg</file>
+        <file>images-ng/colibre/tikz.svg</file>
+        <file>images-ng/colibre/toc_dm.svg</file>
+        <file>images-ng/colibre/toc_R90_dm.svg</file>
+        <file>images-ng/colibre/toc_R90.svg</file>
+        <file>images-ng/colibre/toc.svg</file>
+        <file>images-ng/colibre/underline_dm.svg</file>
+        <file>images-ng/colibre/underline.svg</file>
+        <file>images-ng/colibre/up-arrow-circle-silver_dm.svg</file>
+        <file>images-ng/colibre/up-arrow-circle-silver.svg</file>
+        <file>images-ng/colibre/up_dm.svg</file>
+        <file>images-ng/colibre/up.svg</file>
+        <file>images-ng/colibre/user_dm.svg</file>
+        <file>images-ng/colibre/user.svg</file>
+        <file>images-ng/colibre/verbatim_dm.svg</file>
+        <file>images-ng/colibre/verbatim.svg</file>
+        <file>images-ng/colibre/view-doc-dvi_dm.svg</file>
+        <file>images-ng/colibre/view-doc-dvi.svg</file>
+        <file>images-ng/colibre/view-doc-pdf_dm.svg</file>
+        <file>images-ng/colibre/view-doc-pdf.svg</file>
+        <file>images-ng/colibre/view-doc-ps_dm.svg</file>
+        <file>images-ng/colibre/view-doc-ps.svg</file>
+        <file>images-ng/colibre/viewer_dm.svg</file>
+        <file>images-ng/colibre/viewer.svg</file>
+        <file>images-ng/colibre/view-fullscreen_dm.svg</file>
+        <file>images-ng/colibre/view-fullscreen.svg</file>
+        <file>images-ng/colibre/viewlog_dm.svg</file>
+        <file>images-ng/colibre/viewlog.svg</file>
+        <file>images-ng/colibre/view-pages-overview.svg</file>
+        <file>images-ng/colibre/view-pages-single.svg</file>
+        <file>images-ng/colibre/warning_dm.svg</file>
+        <file>images-ng/colibre/warning.svg</file>
+        <file>images-ng/colibre/waveUnderline_dm.svg</file>
+        <file>images-ng/colibre/waveUnderline.svg</file>
+        <file>images-ng/colibre/windowed-viewer_dm.svg</file>
+        <file>images-ng/colibre/windowed-viewer.svg</file>
+        <file>images-ng/colibre/word_dm.svg</file>
+        <file>images-ng/colibre/word.svg</file>
+        <file>images-ng/colibre/xy_dm.svg</file>
+        <file>images-ng/colibre/xy_R90_dm.svg</file>
+        <file>images-ng/colibre/xy_R90.svg</file>
+        <file>images-ng/colibre/xy.svg</file>
+        <file>images-ng/colibre/zoom-fit-best_dm.svg</file>
+        <file>images-ng/colibre/zoom-fit-best.svg</file>
+        <file>images-ng/colibre/zoom-fit-text-width_dm.svg</file>
+        <file>images-ng/colibre/zoom-fit-text-width.svg</file>
+        <file>images-ng/colibre/zoom-fit-width_dm.svg</file>
+        <file>images-ng/colibre/zoom-fit-width.svg</file>
+        <file>images-ng/colibre/zoom-in_dm.svg</file>
+        <file>images-ng/colibre/zoom-in-magnifier_dm.svg</file>
+        <file>images-ng/colibre/zoom-in-magnifier.svg</file>
+        <file>images-ng/colibre/zoom-in.svg</file>
+        <file>images-ng/colibre/zoom-original_dm.svg</file>
+        <file>images-ng/colibre/zoom-original.svg</file>
+        <file>images-ng/colibre/zoom-out_dm.svg</file>
+        <file>images-ng/colibre/zoom-out-magnifier_dm.svg</file>
+        <file>images-ng/colibre/zoom-out-magnifier.svg</file>
+        <file>images-ng/colibre/zoom-out.svg</file>
+    </qresource>
 </RCC>

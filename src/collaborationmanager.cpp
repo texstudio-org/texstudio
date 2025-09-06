@@ -42,6 +42,7 @@ bool CollaborationManager::startClient(const QString folder)
             return false;
         }
         m_collabClientFolder=folder;
+        emit clientSuccessfullyStarted();
         return true;
     }
     return false;
@@ -192,6 +193,14 @@ bool CollaborationManager::isFileLocatedInCollabFolder(const QString &filename)
 QString CollaborationManager::readErrorMessage()
 {
     return m_errorMessage;
+}
+/*!
+ * \brief return current collaboration folder which is used by client
+ * \return
+ */
+QString CollaborationManager::collabClientFolder() const
+{
+    return m_collabClientFolder;
 }
 
 /*!
