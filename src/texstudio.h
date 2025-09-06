@@ -198,7 +198,7 @@ private:
 	//toolbars
 	QAction *actSave, *actUndo, *actRedo;
 
-	QLabel *statusLabelMode, *statusLabelProcess, *statusLabelLanguageTool;
+    QLabel *statusLabelMode, *statusLabelProcess, *statusLabelLanguageTool, *statusLabelCollab;
 	QToolButton *statusTbLanguage;
 	QToolButton *statusTbEncoding;
 	QActionGroup *spellLanguageActions;
@@ -537,6 +537,7 @@ protected slots:
     void registerFileForCollab(const QString filename);
     void collabClientFinished(int exitCode, QString m_errorMessage);
     void guestServerSuccessfullyStarted();
+    void updateCollabStatus();
 
 	bool loadLog();
 	void onCompileError();

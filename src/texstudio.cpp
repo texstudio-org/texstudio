@@ -436,6 +436,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     connect(collabManager,&CollaborationManager::changesReceived,this,&Texstudio::updateCollabChanges);
     connect(collabManager,&CollaborationManager::collabClientFinished,this,&Texstudio::collabClientFinished);
     connect(collabManager,&CollaborationManager::guestServerSuccessfullyStarted,this,&Texstudio::guestServerSuccessfullyStarted);
+    connect(collabManager,&CollaborationManager::clientSuccessfullyStarted,this,&Texstudio::updateCollabStatus);
 
     connect(&svn, &SVN::statusMessage, this, &Texstudio::setStatusMessageProcess);
     connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
@@ -1798,6 +1799,11 @@ void Texstudio::createStatusBar()
 	QLabel *messageArea = new QLabel(status);
 	connect(status, SIGNAL(messageChanged(QString)), messageArea, SLOT(setText(QString)));
 	status->addPermanentWidget(messageArea, 1);
+
+    // collaborative editing
+    statusLabelCollab = new QLabel();
+    updateCollabStatus();
+    status->addPermanentWidget(statusLabelCollab);
 
 	// LanguageTool
 	connect(grammarCheck, SIGNAL(languageToolStatusChanged()), this, SLOT(updateLanguageToolStatus()));
@@ -6754,6 +6760,7 @@ void Texstudio::disconnectCollabServer()
         QEditor *ed=edView->editor;
         ed->removeExternalCursor("");
     }
+    updateCollabStatus();
 }
 /*!
  * \brief move cursor updated from collaboration server
@@ -6844,6 +6851,28 @@ void Texstudio::guestServerSuccessfullyStarted()
             collabManager->fileOpened(doc->getFileName());
         }
     }
+}
+/*!
+ * \brief update status in panel
+ * show running server per icon
+ */
+void Texstudio::updateCollabStatus()
+{
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+
+    int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
+
+    QSize iconSize = QSize(iconWidth, iconWidth);
+    if(collabManager && collabManager->isClientRunning()){
+        QIcon icon = getRealIconCached("network_connected");
+        statusLabelCollab->setPixmap(icon.pixmap(iconSize));
+    }else{
+        QIcon icon = getRealIconCached("network_notconnected");
+        statusLabelCollab->setPixmap(icon.pixmap(iconSize));
+    }
+
 }
 
 //////////////// MESSAGES - LOG FILE///////////////////////
