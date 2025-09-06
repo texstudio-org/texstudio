@@ -6738,8 +6738,22 @@ void Texstudio::disconnectCollabServer()
         qDebug()<< "Collaboration not in use!";
         return;
     }
+    // disconnect all editors
+    foreach(LatexDocument *doc,documents.documents){
+        if(collabManager->isFileLocatedInCollabFolder(doc->getFileName())){
+            collabManager->fileClosed(doc->getFileName());
+        }
+    }
+    // stop processes
     collabManager->stopClient();
     collabManager->stopServer();
+    // remove all external cursors
+    foreach(LatexDocument *doc,documents.documents){
+        LatexEditorView *edView=doc->getEditorView();
+        if(edView==nullptr) continue;
+        QEditor *ed=edView->editor;
+        ed->removeExternalCursor("");
+    }
 }
 /*!
  * \brief move cursor updated from collaboration server
