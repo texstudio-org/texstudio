@@ -2451,7 +2451,11 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
 	emit infoLoadFile(f_real);
 
     // notify collaboration manager
-    registerFileForCollab(doc->getFileName());
+    bool wasRegistered=registerFileForCollab(doc->getFileName());
+    if(wasRegistered) {
+        // disconnect file watcher
+        edit->editor->disconnectWatcher();
+    }
 
 	return edit;
 }
@@ -6806,8 +6810,9 @@ void Texstudio::updateCollaborationEditors(int startLine, int startCol, int endL
  * \brief register file for collaboration
  * Check if file is in a ethersync folder and try to start client if possible
  * \param filename
+ * \return operation successful
  */
-void Texstudio::registerFileForCollab(const QString filename)
+bool Texstudio::registerFileForCollab(const QString filename)
 {
     if(collabManager->isFileLocatedInCollabFolder(filename)){
         if(!collabManager->isClientRunning()){
@@ -6817,8 +6822,10 @@ void Texstudio::registerFileForCollab(const QString filename)
         }
         if(!collabManager->isClientRunning()){
             collabManager->fileOpened(filename);
+            return true;
         }
     }
+    return false;
 }
 /*!
  * \brief react on collaboration client finished
@@ -6850,6 +6857,11 @@ void Texstudio::guestServerSuccessfullyStarted()
     foreach(LatexDocument *doc,documents.documents){
         if(collabManager->isFileLocatedInCollabFolder(doc->getFileName())){
             collabManager->fileOpened(doc->getFileName());
+            LatexEditorView *edView=doc->getEditorView();
+            if(edView && edView->editor){
+                // disconnect file watcher
+                edView->editor->disconnectWatcher();
+            }
         }
     }
 }

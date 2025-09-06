@@ -534,7 +534,7 @@ protected slots:
     void updateCollabCursors(QDocumentCursor cur, QString userId);
     void updateCollabChanges(QDocumentCursor cur,QString changes,QString userName);
     void updateCollaborationEditors(int startLine,int startCol,int endLine,int endCol,const QString& changes);
-    void registerFileForCollab(const QString filename);
+    bool registerFileForCollab(const QString filename);
     void collabClientFinished(int exitCode, QString m_errorMessage);
     void guestServerSuccessfullyStarted();
     void updateCollabStatus();

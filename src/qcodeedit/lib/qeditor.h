@@ -548,6 +548,7 @@ public slots:
 	public slots:
 		void checkClipboard();
 		void reconnectWatcher();
+        void disconnectWatcher();
 		void fileChanged(const QString& f);
 		
 		void setContentClean(bool y);

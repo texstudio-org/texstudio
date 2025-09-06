@@ -1202,6 +1202,15 @@ void QEditor::reconnectWatcher()
 	watcher()->removeWatch(this);
 	watcher()->addWatch(fileName(), this);
 }
+/*!
+ * \brief disconnect watcher
+ * Needed for collaborative editing where changes are directly communicated and updated
+ * They are additionally written to disk, but we don't want to reload the file in this case
+ */
+ void QEditor::disconnectWatcher()
+{
+    watcher()->removeWatch(this);
+}
 
 /*!
 	\internal
