@@ -6825,7 +6825,11 @@ void Texstudio::guestServerSuccessfullyStarted()
     const QString folderName=configManager.ce_clientPath;
     collabManager->startClient(folderName);
     // open all open files in folder
-    collabManager->fileOpened(documents.getCurrentFileName()); // TODO: do for all opened files in folder
+    foreach(LatexDocument *doc,documents.documents){
+        if(collabManager->isFileLocatedInCollabFolder(doc->getFileName())){
+            collabManager->fileOpened(doc->getFileName());
+        }
+    }
 }
 
 //////////////// MESSAGES - LOG FILE///////////////////////
