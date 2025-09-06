@@ -162,6 +162,12 @@
 <file>images-ng/metapost_R90.svg</file>
 <file>images-ng/metapost.svg</file>
 <file>images-ng/modified.svgz</file>
+<file>images-ng/network-connect.svg</file>
+<file>images-ng/network-connect_dm.svg</file>
+<file>images-ng/network-disconnect.svg</file>
+<file>images-ng/network-disconnect_dm.svg</file>
+<file>images-ng/network-notconnected.svg</file>
+<file>images-ng/network-notconnected_dm.svg</file>
 <file>images-ng/non-comment_dm.svg</file>
 <file>images-ng/non-comment.svg</file>
 <file>images-ng/non-math.svg</file>
