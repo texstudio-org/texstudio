@@ -486,7 +486,6 @@ LatexDocument *CollaborationManager::findDocumentFromName(const QString &fileNam
 /* TODO
  *
  * - extra cursor with different color -> refine?
- * - host/guest set-up simpler (try join, start server when fail)
- * - panel icon for status/connect
+ * - check host set-up
  * - store connection infor in folder to allow autoconnect for different user on same folder (shared folder NFS or cloud)
  */
