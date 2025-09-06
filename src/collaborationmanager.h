@@ -36,6 +36,8 @@ signals:
     void changesReceived(QDocumentCursor cursor, const QString changes,const QString userName);
     void cursorMoved(QDocumentCursor cursor,const QString userId);
     void clientSuccessfullyStarted();
+    void guestServerSuccessfullyStarted();
+    void collabClientFinished(int exitCode,QString m_errorMessage);
 
 private slots:
     void readyCollabClientStandardOutput();
@@ -53,12 +55,12 @@ protected:
     ConfigManager *m_conf=nullptr;
     LatexDocuments *m_docs=nullptr;
 
-    QProcess *collabHostServerProcess = nullptr; /// for host server: ethersync share
-    QProcess *collabGuestServerProcess = nullptr; /// for guest server: ethersync join
+    QProcess *collabServerProcess = nullptr; /// for host server: ethersync share
     QProcess *collabClientProcess = nullptr; /// for client: ethersync client
 
     bool m_startingEthersyncFailed = false; /// if command start fails, all further attempts are moot
     QString m_errorMessage; /// last error message
+    QString m_collabClientFolder; /// folder for which collab client was started
 };
 
 #endif // COLLABORATIONMANAGER_H

@@ -27,15 +27,13 @@ bool CollaborationManager::startClient(const QString folder)
         return false;
     }
     const QString binPath=m_conf->ce_toolPath;
-    QString folderName=m_conf->ce_clientPath;
     if(!binPath.isEmpty()){
-        QDir dir(folderName);
-        dir.mkpath(".ethersync");
+        QDir dir(folder);
         collabClientProcess = new QProcess(this);
         collabClientProcess->setProcessChannelMode(QProcess::MergedChannels);
         connect(collabClientProcess, &QProcess::readyReadStandardOutput, this,&CollaborationManager::readyCollabClientStandardOutput);
         connect(collabClientProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, &CollaborationManager::clientFinished);
-        const QStringList args2={"client", "--directory", folderName};
+        const QStringList args2={"client", "--directory", folder};
         collabClientProcess->start(binPath,args2);
         if (!collabClientProcess->waitForStarted(1000)) {
             m_errorMessage=collabClientProcess->readAllStandardError();
@@ -43,6 +41,7 @@ bool CollaborationManager::startClient(const QString folder)
             collabClientProcess = nullptr;
             return false;
         }
+        m_collabClientFolder=folder;
         return true;
     }
     return false;
@@ -81,19 +80,19 @@ bool CollaborationManager::startHostServer(const QString folder)
     const QString binPath=m_conf->ce_toolPath;
     if(!binPath.isEmpty()){
         // run binPath share folder
-        collabHostServerProcess = new QProcess(this);
-        collabHostServerProcess->setProcessChannelMode(QProcess::MergedChannels);
-        connect(collabHostServerProcess, &QProcess::readyReadStandardOutput, this, &CollaborationManager::readyCollabServerStandardOutput);
-        connect(collabHostServerProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, [this](int exitCode, QProcess::ExitStatus exitStatus){
+        collabServerProcess = new QProcess(this);
+        collabServerProcess->setProcessChannelMode(QProcess::MergedChannels);
+        connect(collabServerProcess, &QProcess::readyReadStandardOutput, this, &CollaborationManager::readyCollabServerStandardOutput);
+        connect(collabServerProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, [this](int exitCode, QProcess::ExitStatus exitStatus){
             qDebug() << "Collaboration server finished with exit code" << exitCode << "and status" << exitStatus;
-            collabHostServerProcess = nullptr;
+            collabServerProcess = nullptr;
         });
         QStringList args{"share","--directory", folder};
-        collabHostServerProcess->start(binPath,args);
-        if (!collabHostServerProcess->waitForStarted(1000)) {
-            m_errorMessage=collabHostServerProcess->readAllStandardError();
+        collabServerProcess->start(binPath,args);
+        if (!collabServerProcess->waitForStarted(1000)) {
+            m_errorMessage=collabServerProcess->readAllStandardError();
             m_startingEthersyncFailed = true;
-            collabHostServerProcess = nullptr;
+            collabServerProcess = nullptr;
             return false;
         }
     }
@@ -118,19 +117,19 @@ bool CollaborationManager::startGuestServer(const QString folder,const QString &
     dir.mkpath(".ethersync");
     if(!binPath.isEmpty()){
         // run binPath share folder
-        collabGuestServerProcess = new QProcess(this);
-        collabGuestServerProcess->setProcessChannelMode(QProcess::MergedChannels);
-        connect(collabGuestServerProcess, &QProcess::readyReadStandardOutput, this, &CollaborationManager::readyCollabServerStandardOutput);
-        connect(collabGuestServerProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, [this](int exitCode, QProcess::ExitStatus exitStatus){
+        collabServerProcess = new QProcess(this);
+        collabServerProcess->setProcessChannelMode(QProcess::MergedChannels);
+        connect(collabServerProcess, &QProcess::readyReadStandardOutput, this, &CollaborationManager::readyCollabServerStandardOutput);
+        connect(collabServerProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, [this](int exitCode, QProcess::ExitStatus exitStatus){
             qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
-            collabGuestServerProcess = nullptr;
+            collabServerProcess = nullptr;
         });
         const QStringList args{"join", code, "--directory", folderName};
-        collabGuestServerProcess->start(binPath,args);
-        if (!collabGuestServerProcess->waitForStarted(1000)) {
-            m_errorMessage=collabGuestServerProcess->readAllStandardError();
+        collabServerProcess->start(binPath,args);
+        if (!collabServerProcess->waitForStarted(1000)) {
+            m_errorMessage=collabServerProcess->readAllStandardError();
             m_startingEthersyncFailed = true;
-            collabGuestServerProcess = nullptr;
+            collabServerProcess = nullptr;
             return false;
         }
         return true;
@@ -143,13 +142,9 @@ bool CollaborationManager::startGuestServer(const QString folder,const QString &
  */
 void CollaborationManager::stopServer()
 {
-    if(collabHostServerProcess){
-        collabHostServerProcess->kill();
-        collabHostServerProcess = nullptr;
-    }
-    if(collabGuestServerProcess){
-        collabGuestServerProcess->kill();
-        collabGuestServerProcess = nullptr;
+    if(collabServerProcess){
+        collabServerProcess->kill();
+        collabServerProcess = nullptr;
     }
 }
 /*!
@@ -158,7 +153,7 @@ void CollaborationManager::stopServer()
  */
 bool CollaborationManager::isServerRunning()
 {
-    return (collabHostServerProcess!=nullptr || collabGuestServerProcess!=nullptr);
+    return (collabServerProcess!=nullptr);
 }
 /*!
  * \brief check if file is in a folder with .ethersync subfolder
@@ -169,14 +164,15 @@ bool CollaborationManager::isServerRunning()
 bool CollaborationManager::isFileLocatedInCollabFolder(const QString &filename)
 {
     QFileInfo fi(filename);
+    if(isClientRunning()){
+        // in case of running client, only files in the client folder are relevant
+        return fi.absolutePath()==m_collabClientFolder;
+    }
     QDir dir=fi.absoluteDir();
     if(dir.exists(".ethersync")){
+        // client is not running, but server might be
         return true;
     }
-    /*dir.cdUp();
-    if(dir.exists(".ethersync")){
-        return true;
-    }*/
     return false;
 }
 /*!
@@ -294,7 +290,11 @@ void CollaborationManager::fileOpened(const QString fileName)
     if(!isClientRunning()){
         return;
     }
-    openFileInClient(fileName);
+    QFileInfo fi(fileName);
+    if(fi.absolutePath()==m_collabClientFolder){
+        // ignore files outside of client managed folder
+        openFileInClient(fileName);
+    }
 }
 /*!
  * \brief notify client that file was closed
@@ -379,6 +379,16 @@ void CollaborationManager::readyCollabClientStandardOutput()
                 }
             }
 
+        }else{
+            if(!line.startsWith("Content-Length:")){
+                // check for error
+                if(line.startsWith("Error:")){
+                    m_errorMessage=line;
+                }else{
+                    // dump everything else
+                    qDebug() << "Collab Client Output:" << line;
+                }
+            }
         }
     }
 }
@@ -386,7 +396,11 @@ void CollaborationManager::readyCollabClientStandardOutput()
 void CollaborationManager::readyCollabServerStandardOutput()
 {
     // for now, just dump output to debug
-    QString buffer = collabHostServerProcess->readAllStandardOutput();
+    QString buffer = collabServerProcess->readAllStandardOutput();
+    // look for connection message
+    if(buffer.contains("Connected to peer:")){
+        emit guestServerSuccessfullyStarted();
+    }
     qDebug() << "Collab Server Output:" << buffer;
 }
 /*!
@@ -397,8 +411,9 @@ void CollaborationManager::readyCollabServerStandardOutput()
 void CollaborationManager::clientFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
     qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
-    m_errorMessage=collabClientProcess->readAll();
+    qDebug() << m_errorMessage;
     collabClientProcess = nullptr;
+    emit collabClientFinished(exitCode,m_errorMessage);
 }
 
 /*!

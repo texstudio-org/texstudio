@@ -434,6 +434,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     collabManager=new CollaborationManager(this,&configManager,&documents);
     connect(collabManager,&CollaborationManager::cursorMoved,this,&Texstudio::updateCollabCursors);
     connect(collabManager,&CollaborationManager::changesReceived,this,&Texstudio::updateCollabChanges);
+    connect(collabManager,&CollaborationManager::collabClientFinished,this,&Texstudio::collabClientFinished);
+    connect(collabManager,&CollaborationManager::guestServerSuccessfullyStarted,this,&Texstudio::guestServerSuccessfullyStarted);
 
     connect(&svn, &SVN::statusMessage, this, &Texstudio::setStatusMessageProcess);
     connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
@@ -6720,16 +6722,12 @@ void Texstudio::connectCollabServer()
                                          tr("Name:"), QLineEdit::Normal,
                                          QDir::home().dirName(), &ok);
     if (ok && !text.isEmpty()){
-        // connect to server
+        // trim join code
+        text=text.trimmed();
+        if(text.startsWith("ethersync join ")) text=text.mid(15);
         // start server
-
-        const QString binPath=configManager.ce_toolPath;
-        QString folderName=configManager.ce_clientPath;
-        //collabManager->startGuestServer(folderName,text);
-        // start client
-        collabManager->startClient(folderName);
-        // open all open files in folder
-        collabManager->fileOpened(documents.getCurrentFileName()); // TODO: do for all opened files in folder
+        const QString folderName=configManager.ce_clientPath;
+        collabManager->startGuestServer(folderName,text);
     }
 
 }
@@ -6792,11 +6790,42 @@ void Texstudio::registerFileForCollab(const QString filename)
 {
     if(collabManager->isFileLocatedInCollabFolder(filename)){
         if(!collabManager->isClientRunning()){
-            collabManager->startClient(filename);
-        }else{
+            QFileInfo fi(filename);
+            const QString folder=fi.absolutePath();
+            collabManager->startClient(folder);
+        }
+        if(!collabManager->isClientRunning()){
             collabManager->fileOpened(filename);
         }
     }
+}
+/*!
+ * \brief react on collaboration client finished
+ * This may happen when client was started without running server
+ * \param exitCode
+ * \param m_errorMessage
+ */
+void Texstudio::collabClientFinished(int exitCode, QString m_errorMessage)
+{
+    if(exitCode==1){
+        if(m_errorMessage.startsWith("Error: JSON-RPC forwarder failed")){
+            //start guest server, assuming it was started before
+            qDebug()<<"for now do nothing";
+        }
+    }
+}
+/*!
+ * \brief guest server started, now connect client
+ */
+void Texstudio::guestServerSuccessfullyStarted()
+{
+    const QString binPath=configManager.ce_toolPath;
+    if(binPath.isEmpty()) return;
+    // start client
+    const QString folderName=configManager.ce_clientPath;
+    collabManager->startClient(folderName);
+    // open all open files in folder
+    collabManager->fileOpened(documents.getCurrentFileName()); // TODO: do for all opened files in folder
 }
 
 //////////////// MESSAGES - LOG FILE///////////////////////

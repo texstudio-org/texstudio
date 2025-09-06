@@ -610,7 +610,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
     aiFillInKnownModels();
 
     // collaborative editing
-    connect(ui.comboBoxCollaborativeTool, SIGNAL(currentIndexChanged(int)), this, SLOT(collaborativeEditingToolChanged(int)));
+    connect(ui.comboBoxCollaborativeTool, SIGNAL(currentIndexChanged(int)), this, SLOT(collaborativeEditingToolChanged(int))); // TODO: implement when needed
     connect(ui.pbSelectCollaborativeToolPath, SIGNAL(clicked()), this, SLOT(browseCollaborativeToolPath()));
     connect(ui.pbSelectClientFolder, &QPushButton::clicked, this, &ConfigDialog::browseCollaborativeClientFolder);
 
