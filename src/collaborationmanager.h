@@ -20,20 +20,28 @@ public:
     bool startGuestServer(const QString folder, const QString &code);
     void stopServer();
     bool isServerRunning();
+    bool isFileLocatedInCollabFolder(const QString &filename);
+    void resetCollabCommand();
+    QString readErrorMessage();
+
+    void fileOpened(const QString fileName);
+    void fileClosed(const QString fileName);
 
 public slots:
     void sendChanges(QDocumentCursor cursor, const QString &changes);
     void sendChanges(QString fileName,int startLine,int startCol,int endLine,int endCol, const QString &changes);
     void sendCursor(QDocumentCursor cursor);
-    void fileOpened(const QString fileName);
-    void fileClosed(const QString fileName);
+
 signals:
     void changesReceived(QDocumentCursor cursor, const QString changes,const QString userName);
     void cursorMoved(QDocumentCursor cursor,const QString userId);
+    void clientSuccessfullyStarted();
 
 private slots:
     void readyCollabClientStandardOutput();
     void readyCollabServerStandardOutput();
+
+    void clientFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
 protected:
     void sendToClient(const QJsonObject &jo);
@@ -48,6 +56,9 @@ protected:
     QProcess *collabHostServerProcess = nullptr; /// for host server: ethersync share
     QProcess *collabGuestServerProcess = nullptr; /// for guest server: ethersync join
     QProcess *collabClientProcess = nullptr; /// for client: ethersync client
+
+    bool m_startingEthersyncFailed = false; /// if command start fails, all further attempts are moot
+    QString m_errorMessage; /// last error message
 };
 
 #endif // COLLABORATIONMANAGER_H

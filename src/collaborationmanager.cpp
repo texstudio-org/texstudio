@@ -22,8 +22,8 @@ CollaborationManager::~CollaborationManager()
  */
 bool CollaborationManager::startClient(const QString folder)
 {
-    if(isClientRunning()){
-        // already running
+    if(m_startingEthersyncFailed || isClientRunning()){
+        // already running or start failed
         return false;
     }
     const QString binPath=m_conf->ce_toolPath;
@@ -34,13 +34,12 @@ bool CollaborationManager::startClient(const QString folder)
         collabClientProcess = new QProcess(this);
         collabClientProcess->setProcessChannelMode(QProcess::MergedChannels);
         connect(collabClientProcess, &QProcess::readyReadStandardOutput, this,&CollaborationManager::readyCollabClientStandardOutput);
-        connect(collabClientProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, [this](int exitCode, QProcess::ExitStatus exitStatus){
-            qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
-            collabClientProcess = nullptr;
-        });
+        connect(collabClientProcess, qOverload<int,QProcess::ExitStatus>(&QProcess::finished), this, &CollaborationManager::clientFinished);
         const QStringList args2={"client", "--directory", folderName};
         collabClientProcess->start(binPath,args2);
         if (!collabClientProcess->waitForStarted(1000)) {
+            m_errorMessage=collabClientProcess->readAllStandardError();
+            m_startingEthersyncFailed = true;
             collabClientProcess = nullptr;
             return false;
         }
@@ -74,7 +73,7 @@ bool CollaborationManager::isClientRunning()
  */
 bool CollaborationManager::startHostServer(const QString folder)
 {
-    if(isServerRunning() || isClientRunning()){
+    if(m_startingEthersyncFailed || isServerRunning() || isClientRunning()){
         // already running
         return false;
     }
@@ -92,6 +91,8 @@ bool CollaborationManager::startHostServer(const QString folder)
         QStringList args{"share","--directory", folder};
         collabHostServerProcess->start(binPath,args);
         if (!collabHostServerProcess->waitForStarted(1000)) {
+            m_errorMessage=collabHostServerProcess->readAllStandardError();
+            m_startingEthersyncFailed = true;
             collabHostServerProcess = nullptr;
             return false;
         }
@@ -107,7 +108,7 @@ bool CollaborationManager::startHostServer(const QString folder)
  */
 bool CollaborationManager::startGuestServer(const QString folder,const QString &code)
 {
-    if(isServerRunning() || isClientRunning()){
+    if(m_startingEthersyncFailed || isServerRunning() || isClientRunning()){
         // already running
         return false;
     }
@@ -127,6 +128,8 @@ bool CollaborationManager::startGuestServer(const QString folder,const QString &
         const QStringList args{"join", code, "--directory", folderName};
         collabGuestServerProcess->start(binPath,args);
         if (!collabGuestServerProcess->waitForStarted(1000)) {
+            m_errorMessage=collabGuestServerProcess->readAllStandardError();
+            m_startingEthersyncFailed = true;
             collabGuestServerProcess = nullptr;
             return false;
         }
@@ -156,6 +159,43 @@ void CollaborationManager::stopServer()
 bool CollaborationManager::isServerRunning()
 {
     return (collabHostServerProcess!=nullptr || collabGuestServerProcess!=nullptr);
+}
+/*!
+ * \brief check if file is in a folder with .ethersync subfolder
+ * This hints at a running server
+ * \param filename
+ * \return folder was already used with ethersync
+ */
+bool CollaborationManager::isFileLocatedInCollabFolder(const QString &filename)
+{
+    QFileInfo fi(filename);
+    QDir dir=fi.absoluteDir();
+    if(dir.exists(".ethersync")){
+        return true;
+    }
+    /*dir.cdUp();
+    if(dir.exists(".ethersync")){
+        return true;
+    }*/
+    return false;
+}
+/*!
+ * \brief reset starting check for ethersync
+ * If starting failed once, all further attempts are moot
+ * Here this check is reset, e.g. if user changed path in settings
+ */
+ void CollaborationManager::resetCollabCommand()
+{
+     m_startingEthersyncFailed = false;
+}
+
+/*!
+ * \brief read last error message
+ * \return error message
+ */
+QString CollaborationManager::readErrorMessage()
+{
+    return m_errorMessage;
 }
 
 /*!
@@ -349,6 +389,17 @@ void CollaborationManager::readyCollabServerStandardOutput()
     QString buffer = collabHostServerProcess->readAllStandardOutput();
     qDebug() << "Collab Server Output:" << buffer;
 }
+/*!
+ * \brief handle client process finished
+ * \param exitCode
+ * \param exitStatus
+ */
+void CollaborationManager::clientFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+    qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
+    m_errorMessage=collabClientProcess->readAll();
+    collabClientProcess = nullptr;
+}
 
 /*!
  * \brief send json data to client process
@@ -410,8 +461,8 @@ LatexDocument *CollaborationManager::findDocumentFromName(const QString &fileNam
 
 /* TODO
  *
- * - fully implementation on sending changes to remote editors
  * - extra cursor with different color -> refine?
  * - host/guest set-up simpler (try join, start server when fail)
  * - panel icon for status/connect
+ * - store connection infor in folder to allow autoconnect for different user on same folder (shared folder NFS or cloud)
  */

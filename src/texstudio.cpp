@@ -2443,8 +2443,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
 	emit infoLoadFile(f_real);
 
     // notify collaboration manager
-    collabManager->fileOpened(doc->getFileName());
-
+    registerFileForCollab(doc->getFileName());
 
 	return edit;
 }
@@ -6784,6 +6783,21 @@ void Texstudio::updateCollaborationEditors(int startLine, int startCol, int endL
     QString fname=doc->getFileName();
     collabManager->sendChanges(fname,startLine,startCol,endLine,endCol,changes);
 }
+/*!
+ * \brief register file for collaboration
+ * Check if file is in a ethersync folder and try to start client if possible
+ * \param filename
+ */
+void Texstudio::registerFileForCollab(const QString filename)
+{
+    if(collabManager->isFileLocatedInCollabFolder(filename)){
+        if(!collabManager->isClientRunning()){
+            collabManager->startClient(filename);
+        }else{
+            collabManager->fileOpened(filename);
+        }
+    }
+}
 
 //////////////// MESSAGES - LOG FILE///////////////////////
 
@@ -7239,6 +7253,10 @@ void Texstudio::generalOptions()
             setupDockWidgets();
         }
         updateUserToolMenu();
+
+        // reset collabManager in case command was changed
+        if(collabManager) collabManager->resetCollabCommand();
+
         QApplication::restoreOverrideCursor();
     }
     if (configManager.autosaveEveryMinutes > 0) {
