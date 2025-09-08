@@ -4,6 +4,7 @@ Makefile
 .ui
 .vscode
 .cache
+.DS_Store
 qrc_*.cpp
 texstudio
 texstudio.pro.user
