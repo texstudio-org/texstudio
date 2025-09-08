@@ -449,6 +449,7 @@
 <file>completion/BOONDOX-ds.cwl</file>
 <file>completion/BOONDOX-frak.cwl</file>
 <file>completion/BOONDOX-uprscr.cwl</file>
+<file>completion/bootstrapicons.cwl</file>
 <file>completion/bophook.cwl</file>
 <file>completion/boustr.cwl</file>
 <file>completion/boxdims.cwl</file>
@@ -1372,6 +1373,7 @@
 <file>completion/egplot.cwl</file>
 <file>completion/egypto.cwl</file>
 <file>completion/Eichenla.cwl</file>
+<file>completion/eigo.cwl</file>
 <file>completion/EileenBl.cwl</file>
 <file>completion/Eileen.cwl</file>
 <file>completion/ekdosis.cwl</file>
@@ -1415,6 +1417,7 @@
 <file>completion/enumext.cwl</file>
 <file>completion/enumitem.cwl</file>
 <file>completion/enumsub.cwl</file>
+<file>completion/envelope-letter.cwl</file>
 <file>completion/enverb.cwl</file>
 <file>completion/environ.cwl</file>
 <file>completion/envlab.cwl</file>
@@ -2660,6 +2663,7 @@
 <file>completion/non-decimal-units.cwl</file>
 <file>completion/nonfloat.cwl</file>
 <file>completion/normalcolor.cwl</file>
+<file>completion/notebeamer.cwl</file>
 <file>completion/notes2bib.cwl</file>
 <file>completion/notespages.cwl</file>
 <file>completion/notocondensed.cwl</file>
@@ -3587,6 +3591,7 @@
 <file>completion/tabstackengine.cwl</file>
 <file>completion/tabto.cwl</file>
 <file>completion/tabu.cwl</file>
+<file>completion/tabular2.cwl</file>
 <file>completion/tabularborder.cwl</file>
 <file>completion/tabularcalc.cwl</file>
 <file>completion/tabularew.cwl</file>
