@@ -20,6 +20,7 @@
 #include <QSysInfo>
 
 #include <QDomElement>
+#include <QStandardPaths>
 
 #if (QT_VERSION >= 0x060500)
 #include <QStyleHints>
@@ -711,7 +712,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     // collaborative editing
     registerOption("CollaborativeEditing/Tool",&ce_tool,0,&pseudoDialog->comboBoxCollaborativeTool);
     registerOption("CollaborativeEditing/ToolPath",&ce_toolPath,"ethersync",&pseudoDialog->lineEditCollaborativeToolPath);
-    registerOption("CollaborativeEditing/ClientFolder",&ce_clientPath,"",&pseudoDialog->lineEditCollaborativeClientFolder);
+    const QString pth=QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    registerOption("CollaborativeEditing/ClientFolder",&ce_clientPath,pth+QDir::separator()+tr("txsCollaborationFolder"),&pseudoDialog->lineEditCollaborativeClientFolder);
     registerOption("CollaborativeEditing/UserName",&ce_userName,"txs",&pseudoDialog->lineEditCollaborativeUserName);
 
 	//interfaces
