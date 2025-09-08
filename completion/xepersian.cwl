@@ -1,12 +1,12 @@
 # xepersian 23.7
 # hadi_sfr (info@hadisafari.ir)
-# updated 2023/08/30 for v25.0
+# updated 2025/09/08 for v25.09.03
 
 # Equivalent Persian Commands, documentclasses and some other commands are not included
 
 #include:fontspec
-#include:xepersian-persiancal
-#include:xepersian-mathdigitspec
+#include:unicode-persiancal
+#include:unicode-persianmath
 #include:bidi
 
 #keyvals:\usepackage/xepersian#c
