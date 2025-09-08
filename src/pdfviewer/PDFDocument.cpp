@@ -1059,6 +1059,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
                     painter.save();
                     painter.setRenderHint(QPainter::Antialiasing);
                     painter.setCompositionMode(QPainter::CompositionMode_Multiply);
+                    painter.translate(drawGrid.left(), drawGrid.top());
                     painter.scale(totalScaleFactor(), totalScaleFactor());
                     painter.setPen(QColor(0, 0, 0, 0));
                     painter.setBrush(UtilsUi::colorFromRGBAstr(globalConfig->selectColor, QColor(0, 0, 255, 63)));
