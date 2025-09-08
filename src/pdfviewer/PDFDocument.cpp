@@ -1197,8 +1197,6 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
                 m_selectStart={pageNr,scaledPos};
             }
             usingTool= kSelectText;
-            event->accept();
-            return;
         }
     }
 	if ((mouseDownModifiers & Qt::ControlModifier) && !(mouseDownModifiers & Qt::ShiftModifier)) {
