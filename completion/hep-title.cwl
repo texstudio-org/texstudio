@@ -1,5 +1,5 @@
 # hep-title package
-# Matthew Bertucci 2022/11/02 for v1.1
+# Matthew Bertucci 2025/09/02 for v1.5
 
 #include:varwidth
 #include:calc
@@ -8,6 +8,7 @@
 #include:titling
 #include:authblk
 #include:xpatch
+#include:etoolbox
 
 \series{series%text}
 \subtitle{subtitle%text}
@@ -26,10 +27,15 @@
 \affiliationfont{font commands}
 \preprint{number}
 \preprintfont{font commands}
+\reprint{number}
+\reprintfont{font commands}
 \online{URL}{text%plain}#U
 \keywords{keywords%text}
+\doi{DOI}
+\arxiv{arxiv ID}
 
 \placepreprint#*
+\placereprint#*
 \preseries{code}#*
 \postseries{code}#*
 \presubtitle{code}#*

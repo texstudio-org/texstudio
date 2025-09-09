@@ -1,5 +1,5 @@
 # hep-float package
-# Matthew Bertucci 2024/11/29 for v1.3
+# Matthew Bertucci 2025/09/02 for v1.5
 
 #include:kvoptions
 #include:subcaption
@@ -10,7 +10,7 @@
 #include:graphicx
 
 #keyvals:\usepackage/hep-float#c
-manualplacement#true,false
+local#true,false
 #endkeyvals
 
 \begin{figures}{width%plain}

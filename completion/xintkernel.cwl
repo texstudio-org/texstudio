@@ -1,5 +1,5 @@
 # xintkernel package
-# Matthew Bertucci 11/16/2021 for v1.4j
+# Matthew Bertucci 2025/09/06 for v1.4n
 
 \XINTrestorecatcodes#*
 \XINTrestorecatcodesendinput#*
@@ -50,6 +50,11 @@
 \ifxintglobaldefs#*
 \xintglobaldefstrue#*
 \xintglobaldefsfalse#*
+\xintstrcmp#*
+\xintresettimer#*
+\xintelapsedtime#*
+\xintstrippt#*
+\xinttheseconds#*
 
 # the following slightly improve the appearance of expl3 code
 \xint#S

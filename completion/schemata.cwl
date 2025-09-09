@@ -1,5 +1,5 @@
 # schemata package
-# Matthew Bertucci 10/27/2021 for v1.4
+# Matthew Bertucci 2025/08/29 for v1.5
 
 #keyvals:\usepackage/schemata#c
 braces
@@ -14,6 +14,7 @@ groups
 \DoParens
 \LCschema
 \NudgeSB
+\NudgeSB[left|right]
 \SBNudgeFactor#*
 \Schema[type]{adjust%l}{size%l}{left}{right}
 \schema[type]{left}{right}
@@ -21,6 +22,6 @@ groups
 \schema{left}{right}
 \schemabox[width]{text}
 \schemabox{text}
-\schemataLaTeX#*
+\schemataLaTeX#S
 \SwitchSB
 \UCschema

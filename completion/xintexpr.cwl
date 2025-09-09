@@ -1,10 +1,11 @@
 # xintexpr package
-# Matthew Bertucci 2022/06/12 for v1.4m
+# Matthew Bertucci 2025/09/06 for v1.4n
 
 #include:xintfrac
 #include:xinttools
 #include:xinttrig
 #include:xintlog
+#include:xintbinhex
 
 \xintexpr %<<expr>%> \relax
 \xintthe
@@ -36,6 +37,12 @@
 \xintieval{expr}
 \xintieval[digits]{expr}
 \xintiieval{expr}
+\xintiieval[type%keyvals]{expr}
+#keyvals:\xintiieval
+h
+o
+b
+#endkeyvals
 \xintfloateval{expr}
 \xintfloateval[digits]{expr}
 
@@ -114,6 +121,9 @@
 \xintexprPrintOne#S
 \xintiexprPrintOne#S
 \xintiiexprPrintOne#S
+\xintiiexprPrintOneHex#S
+\xintiiexprPrintOneOct#S
+\xintiiexprPrintOneBin#S
 \xintfloatexprPrintOne#S
 \xintboolexprPrintOne#S
 \xintexprEmptyItem#S

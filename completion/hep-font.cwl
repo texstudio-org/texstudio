@@ -1,9 +1,8 @@
 # hep-font package
-# Matthew Bertucci 2023/07/14 for v1.2
+# Matthew Bertucci 2025/09/02 for v1.4
 
 #include:kvoptions
-#include:ifluatex
-#include:ifxetex
+#include:iftex
 #include:fontenc
 #include:pdftexcmds
 #include:fix-cm
@@ -11,6 +10,8 @@
 #include:cfr-lm
 #include:slantsc
 #include:inputenc
+#include:etoolbox
+#include:silence
 #include:xpatch
 
 #keyvals:\usepackage/hep-font#c
@@ -29,10 +30,6 @@ lining
 #include:units
 #include:xpatch
 #endif
-
-\ifxetexorluatex#*
-\xetexorluatextrue#S
-\xetexorluatexfalse#S
 
 \textui{text}
 

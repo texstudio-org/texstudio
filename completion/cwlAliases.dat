@@ -49,7 +49,7 @@ latex-document
 latex-dev
 tex
 scrreport:
-class-scrartcl,scrreprt,scrbook
+class-scrreprt
 latex-document
 tex
 scrlttr2:
