@@ -1,6 +1,7 @@
 .moc
 Makefile
 .obj
+*.o
 .ui
 .vscode
 .cache
