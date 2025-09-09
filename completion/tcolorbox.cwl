@@ -2,7 +2,7 @@
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
 # muzimuzhi/30 Aug 2019 for tcolorbox v4.20
 #     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
-# Matthew Bertucci updated 2024/07/10 for v6.3.0
+# Matthew Bertucci updated 2025/09/09 for v6.8.0
 
 #include:environ
 #include:etoolbox
@@ -413,6 +413,8 @@ tabulars={%<preamble%>}
 tabulars*={%<code%>}{%<preamble%>}
 tabularx={%<preamble%>}
 tabularx*={%<code%>}{%<preamble%>}
+tabularray={%<inner specs%>}
+tabularray*={%<code%>}{%<inner specs%>}
 tikz upper
 tikz upper={%<TikZ options%>}
 tikz lower
