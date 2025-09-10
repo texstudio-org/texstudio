@@ -1,5 +1,5 @@
 # math-operator package
-# Matthew Bertucci 2025/08/25 for v1.3
+# Matthew Bertucci 2025/09/10 for v1.3a
 
 #keyvals:\usepackage/math-operator#c
 blackboard
@@ -52,6 +52,7 @@ no-trigonometry
 \O#m
 \P#m
 \E#m
+\F#m
 
 \Ab#m
 \Alg#m
