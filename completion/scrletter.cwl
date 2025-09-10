@@ -1,5 +1,5 @@
 # scrletter package
-# Matthew Bertucci 2025/06/03 for v3.44
+# Matthew Bertucci 2025/09/10 for v3.48
 
 #include:scrkbase
 #include:scrextend
@@ -26,6 +26,7 @@ numericaldate=#true,on,yes,false,off,no
 refline=#dateleft,dateright,narrow,nodate,wide
 subject=#afteropening,beforeopening,centered,left,right,titled,underlined,untitled
 enlargefirstpage=#true,on,yes,false,off,no
+shrinkfirstpage=#true,on,yes,false,off,no
 firstfoot=#true,on,yes,false,off,no
 pagenumber=#bot,foot,botcenter,botcentered,botmittle,footcenter,footcentered,footmiddle,botleft,footleft,botright,footright,center,centered,middle,false,no,off,head,top,headcenter,headcentered,headmiddle,topcenter,topcentered,topmiddle,headleft,topleft,headright,topright,left,right
 #endkeyvals
