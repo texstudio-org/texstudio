@@ -96,6 +96,7 @@ bool CollaborationManager::startHostServer(const QString folder)
             collabServerProcess = nullptr;
             return false;
         }
+        m_collabServerFolder=folder;
     }
     return false;
 }
@@ -201,6 +202,14 @@ QString CollaborationManager::readErrorMessage()
 QString CollaborationManager::collabClientFolder() const
 {
     return m_collabClientFolder;
+}
+/*!
+ * \brief return current collaboration folder which is used by server
+ * \return
+ */
+QString CollaborationManager::collabServerFolder() const
+{
+    return m_collabServerFolder;
 }
 
 /*!
@@ -316,6 +325,14 @@ void CollaborationManager::fileClosed(const QString fileName)
     }
     closeFileInClient(fileName);
 }
+/*!
+ * \brief return the current code for connecting new guest
+ * \return
+ */
+QString CollaborationManager::codeForConnectingGuest() const
+{
+    return m_code;
+}
 
 void CollaborationManager::readyCollabClientStandardOutput()
 {
@@ -409,6 +426,17 @@ void CollaborationManager::readyCollabServerStandardOutput()
     // look for connection message
     if(buffer.contains("Connected to peer:")){
         emit guestServerSuccessfullyStarted();
+    }
+    if(buffer.contains("\tethersync join")){
+        // extract code
+        QStringList lines= buffer.split("\n", Qt::SkipEmptyParts);
+        for(QString line : lines){
+            line=line.trimmed();
+            if(line.startsWith("ethersync join")){
+                m_code=line.mid(15);
+                emit hostServerSuccessfullyStarted();
+            }
+        }
     }
     qDebug() << "Collab Server Output:" << buffer;
 }

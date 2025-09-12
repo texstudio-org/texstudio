@@ -437,6 +437,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     connect(collabManager,&CollaborationManager::collabClientFinished,this,&Texstudio::collabClientFinished);
     connect(collabManager,&CollaborationManager::guestServerSuccessfullyStarted,this,&Texstudio::guestServerSuccessfullyStarted);
     connect(collabManager,&CollaborationManager::clientSuccessfullyStarted,this,&Texstudio::updateCollabStatus);
+    connect(collabManager,&CollaborationManager::hostServerSuccessfullyStarted,this,&Texstudio::hostServerSuccessfullyStarted);
 
     connect(&svn, &SVN::statusMessage, this, &Texstudio::setStatusMessageProcess);
     connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
@@ -6712,8 +6713,6 @@ void Texstudio::startCollabServer()
     }
     // start server
     collabManager->startHostServer(folderName);
-    // start client
-    collabManager->startClient(folderName);
 }
 /*!
  * \brief connect to collaboration server
@@ -6863,6 +6862,44 @@ void Texstudio::guestServerSuccessfullyStarted()
                 edView->editor->disconnectWatcher();
             }
         }
+    }
+}
+/*!
+ * \brief host server was started and gives connect code
+ */
+void Texstudio::hostServerSuccessfullyStarted()
+{
+    // now connect client
+    const QString binPath=configManager.ce_toolPath;
+    if(binPath.isEmpty()) return;
+    // start client
+    const QString folderName=collabManager->collabServerFolder();
+    collabManager->startClient(folderName);
+    // open all open files in folder
+    foreach(LatexDocument *doc,documents.documents){
+        if(collabManager->isFileLocatedInCollabFolder(doc->getFileName())){
+            collabManager->fileOpened(doc->getFileName());
+            LatexEditorView *edView=doc->getEditorView();
+            if(edView && edView->editor){
+                // disconnect file watcher
+                edView->editor->disconnectWatcher();
+            }
+        }
+    }
+    // show join code
+    const QString joinCode=collabManager->codeForConnectingGuest();
+    if(!joinCode.isEmpty()){
+        // update status in panel
+        // adapt icon size to dpi
+        double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+        double scale=dpi/96;
+
+        int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
+
+        QSize iconSize = QSize(iconWidth, iconWidth);
+        QIcon icon = getRealIconCached("network-connect");
+        statusLabelCollab->setPixmap(icon.pixmap(iconSize));
+        statusLabelCollab->setToolTip(tr("Collaboration: Connected in folder %1\nto join: ethersync join %2").arg(collabManager->collabClientFolder(), joinCode));
     }
 }
 /*!

@@ -24,9 +24,12 @@ public:
     void resetCollabCommand();
     QString readErrorMessage();
     QString collabClientFolder() const;
+    QString collabServerFolder() const;
 
     void fileOpened(const QString fileName);
     void fileClosed(const QString fileName);
+
+    QString codeForConnectingGuest() const;
 
 public slots:
     void sendChanges(QDocumentCursor cursor, const QString &changes);
@@ -38,6 +41,7 @@ signals:
     void cursorMoved(QDocumentCursor cursor,const QString userId);
     void clientSuccessfullyStarted();
     void guestServerSuccessfullyStarted();
+    void hostServerSuccessfullyStarted();
     void collabClientFinished(int exitCode,QString m_errorMessage);
 
 private slots:
@@ -62,6 +66,9 @@ protected:
     bool m_startingEthersyncFailed = false; /// if command start fails, all further attempts are moot
     QString m_errorMessage; /// last error message
     QString m_collabClientFolder; /// folder for which collab client was started
+
+    QString m_code; /// code for connecting guest server
+    QString m_collabServerFolder; /// folder for which collab server was started
 };
 
 #endif // COLLABORATIONMANAGER_H

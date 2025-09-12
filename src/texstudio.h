@@ -537,6 +537,7 @@ protected slots:
     bool registerFileForCollab(const QString filename);
     void collabClientFinished(int exitCode, QString m_errorMessage);
     void guestServerSuccessfullyStarted();
+    void hostServerSuccessfullyStarted();
     void updateCollabStatus();
 
 	bool loadLog();
