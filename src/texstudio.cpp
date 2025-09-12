@@ -8294,7 +8294,7 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
             // relevant for hidden master document
             bool unmodified=se->document->isClean();
             LatexEditorView *edView = openExternalFile(se->document->getFileName(),"tex",se->document);
-            if(unmodified)
+            if(unmodified && se && se->document)
                 se->document->setClean(); // work-around, unclear where that state is reset during load
             if (edView) {
                 int ln= jumpToCachedDocument ? se->getCachedLineNumber() : se->getRealLineNumber();
