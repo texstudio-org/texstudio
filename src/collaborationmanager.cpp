@@ -12,8 +12,14 @@ CollaborationManager::CollaborationManager(QObject *parent, ConfigManager *conf,
 CollaborationManager::~CollaborationManager()
 {
     // stop all processes
-    stopClient();
-    stopServer();
+    if(collabClientProcess){
+        collabClientProcess->kill();
+        collabClientProcess=nullptr;
+    }
+    if(collabServerProcess){
+        collabServerProcess->kill();
+        collabServerProcess=nullptr;
+    }
 }
 /*!
  * \brief start ethersync client process
@@ -53,6 +59,8 @@ bool CollaborationManager::startClient(const QString folder)
 void CollaborationManager::stopClient()
 {
     if(collabClientProcess){
+        collabClientProcess->write("^C");
+        QThread::msleep(100);
         collabClientProcess->kill();
         collabClientProcess = nullptr;
     }
@@ -145,6 +153,8 @@ bool CollaborationManager::startGuestServer(const QString folder,const QString &
 void CollaborationManager::stopServer()
 {
     if(collabServerProcess){
+        collabServerProcess->write("^C");
+        QThread::msleep(100);
         collabServerProcess->kill();
         collabServerProcess = nullptr;
     }
@@ -336,6 +346,9 @@ QString CollaborationManager::codeForConnectingGuest() const
 
 void CollaborationManager::readyCollabClientStandardOutput()
 {
+    if(!collabClientProcess){
+        return;
+    }
     QString buffer = collabClientProcess->readAllStandardOutput();
     // interpret message
     QStringList lines= buffer.split("\r\n", Qt::SkipEmptyParts);
@@ -421,6 +434,9 @@ void CollaborationManager::readyCollabClientStandardOutput()
 
 void CollaborationManager::readyCollabServerStandardOutput()
 {
+    if(!collabServerProcess){
+        return;
+    }
     // for now, just dump output to debug
     QString buffer = collabServerProcess->readAllStandardOutput();
     // look for connection message

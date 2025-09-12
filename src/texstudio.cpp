@@ -6755,6 +6755,7 @@ void Texstudio::disconnectCollabServer()
     }
     // stop processes
     collabManager->stopClient();
+    QThread::sleep(2); // give client some time to send close message
     collabManager->stopServer();
     // remove all external cursors
     foreach(LatexDocument *doc,documents.documents){
