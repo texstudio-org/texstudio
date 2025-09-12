@@ -11,13 +11,13 @@
 <meta name="description" content="About documents separated in several files: LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the dete..." />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="CHANGELOG" href="CHANGELOG.html" /><link rel="prev" title="Configuring TeXstudio" href="configuration.html" />
 
-    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>Background information - TeXstudio 4.8.9 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=9701f087" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=ad9e2e31" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=e61b947c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=4aa03575" />
     
     
 
@@ -76,7 +76,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -91,22 +91,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -119,6 +160,8 @@
 <label class="overlay toc-overlay" for="__toc">
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
 
 
@@ -137,7 +180,8 @@
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -191,11 +235,17 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/background.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
 <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
@@ -205,21 +255,21 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
+        <article role="main" id="furo-main-content">
           <section id="background-information">
-<h1>Background information<a class="headerlink" href="#background-information" title="Link to this heading">#</a></h1>
+<h1>Background information<a class="headerlink" href="#background-information" title="Link to this heading">¶</a></h1>
 <!--
 ini file / reset to default
 profile 
 -->
 <section id="about-documents-separated-in-several-files">
-<h2>About documents separated in several files<a class="headerlink" href="#about-documents-separated-in-several-files" title="Link to this heading">#</a></h2>
+<h2>About documents separated in several files<a class="headerlink" href="#about-documents-separated-in-several-files" title="Link to this heading">¶</a></h2>
 <p>LaTeX documents may be spread over multiple files. TeXstudio
 automatically understands parent/child relations of loaded documents.
 This includes the detection of the root document and knowledge on
 defined labels and commands.</p>
 <section id="root-document">
-<h3>Root Document<a class="headerlink" href="#root-document" title="Link to this heading">#</a></h3>
+<h3>Root Document<a class="headerlink" href="#root-document" title="Link to this heading">¶</a></h3>
 <p>The root document is the top-most file in a multi-file document. For a
 single-file document this is the file itself. By default, all calls to
 LaTeX will be performed on the root document except if a class <code class="docutils literal notranslate"><span class="pre">subfiles</span></code> is used. Then the next higher file with that document-class is compiled.</p>
@@ -238,7 +288,7 @@ completion in any open document.</p>
 misleadingly called <em>master document</em>.</p>
 </section>
 <section id="loaded-documents">
-<h3>Loaded Documents<a class="headerlink" href="#loaded-documents" title="Link to this heading">#</a></h3>
+<h3>Loaded Documents<a class="headerlink" href="#loaded-documents" title="Link to this heading">¶</a></h3>
 <p>Obviously, TeXstudio can only use information (defined commands, labels,
 document hierarchy, etc.) that it is aware of. We use the information in
 all opened files, but if a label in a multi-file document is defined in
@@ -259,7 +309,7 @@ In cached files, txs does not search, e.g. with find usages or find in project. 
 </section>
 </section>
 <section id="overview-of-texstudio-command-line-options">
-<h2>Overview of TeXstudio command-line options<a class="headerlink" href="#overview-of-texstudio-command-line-options" title="Link to this heading">#</a></h2>
+<h2>Overview of TeXstudio command-line options<a class="headerlink" href="#overview-of-texstudio-command-line-options" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">texstudio</span> <span class="pre">file</span> <span class="pre">[--config</span> <span class="pre">DIR]</span> <span class="pre">[--root]</span> <span class="pre">[--line</span> <span class="pre">xx[:cc]]</span> <span class="pre">[--insert-cite</span> <span class="pre">citation]</span> <span class="pre">[--start-always]</span> <span class="pre">[--pdf-viewer-only]</span> <span class="pre">[--page</span> <span class="pre">yy]</span> <span class="pre">[--no-session]</span></code></p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
@@ -334,7 +384,7 @@ to the executable (i.e. TXS has been compiled since the last run).
 Furthermore all tests are run once a week.</p>
 </section>
 <section id="description-of-the-cwl-format">
-<h2>Description of the cwl format<a class="headerlink" href="#description-of-the-cwl-format" title="Link to this heading">#</a></h2>
+<h2>Description of the cwl format<a class="headerlink" href="#description-of-the-cwl-format" title="Link to this heading">¶</a></h2>
 <p>cwl stands for completion word list and is a file format originally used
 in Kile to define the commands listed in the completer. TeXstudio uses
 an extended format of cwls to include additional semantic information
@@ -349,7 +399,7 @@ e.g. a \ref-like command will check for the existence of the
 referenced label</p></li>
 </ul>
 <section id="cwl-file-format">
-<h3>cwl file format<a class="headerlink" href="#cwl-file-format" title="Link to this heading">#</a></h3>
+<h3>cwl file format<a class="headerlink" href="#cwl-file-format" title="Link to this heading">¶</a></h3>
 <p>Each line of a cwl file defines a command. Comment lines are possible
 and start with <code class="docutils literal notranslate"><span class="pre">#</span></code>. The command syntax is</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;command&gt;[#classification]</span></code></p>
@@ -394,7 +444,7 @@ classification</p></li>
 <p>cwl files should be encoded as UTF-8.</p>
 </section>
 <section id="command-format">
-<h3>Command format<a class="headerlink" href="#command-format" title="Link to this heading">#</a></h3>
+<h3>Command format<a class="headerlink" href="#command-format" title="Link to this heading">¶</a></h3>
 <p>In its simplest form the command is just a valid LaTeX expression as you
 find it in the documentation, e.g. <code class="docutils literal notranslate"><span class="pre">\section{title}</span></code>. By default, every
 option is treated as a placeholder. Alternatively, you may either just
@@ -403,7 +453,7 @@ define a stop position for the cursor by <code class="docutils literal notransla
 placeholder (Example: <code class="docutils literal notranslate"><span class="pre">\includegraphics[scale=%&lt;1%&gt;]{file}</span></code>). New lines
 can be included in a command by <code class="docutils literal notranslate"><span class="pre">%\</span></code>.</p>
 <section id="argument-names">
-<h4>Argument Names<a class="headerlink" href="#argument-names" title="Link to this heading">#</a></h4>
+<h4>Argument Names<a class="headerlink" href="#argument-names" title="Link to this heading">¶</a></h4>
 <p>The argument names are visible in the completer window and after
 completion as placeholders in the editor. In general, you are free to
 name the arguments as you like. We encourage to provide meaningful names
@@ -475,7 +525,7 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 </section>
 </section>
 <section id="classification-format">
-<h3>Classification format<a class="headerlink" href="#classification-format" title="Link to this heading">#</a></h3>
+<h3>Classification format<a class="headerlink" href="#classification-format" title="Link to this heading">¶</a></h3>
 <p>The following classifications are known to TXS:</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
@@ -631,7 +681,7 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 </div>
 </section>
 <section id="cwl-guidelines">
-<h3>cwl guidelines<a class="headerlink" href="#cwl-guidelines" title="Link to this heading">#</a></h3>
+<h3>cwl guidelines<a class="headerlink" href="#cwl-guidelines" title="Link to this heading">¶</a></h3>
 <p>Though TeXstudio can automatically create cwls from packages, these
 autogenerated cwls do not contain meaningful argument names and no
 classification of commands. Therefore we ship hand-tuned cwls for many
@@ -657,7 +707,7 @@ overcrowding with rarely used commands.</p></li>
 </ul>
 </section>
 <section id="cwl-file-placement">
-<h3>cwl file placement<a class="headerlink" href="#cwl-file-placement" title="Link to this heading">#</a></h3>
+<h3>cwl file placement<a class="headerlink" href="#cwl-file-placement" title="Link to this heading">¶</a></h3>
 <p>cwl files can be provided from three locations. If present, the user
 provided cwl is taken, if not built-in versions are taken. As a last
 resort, txs automatically generates cwls from latex styles, though these
@@ -674,7 +724,7 @@ arguments are not available and no completion hints are given.</p>
 </section>
 </section>
 <section id="menu-definitions">
-<h2>Menu Definitions<a class="headerlink" href="#menu-definitions" title="Link to this heading">#</a></h2>
+<h2>Menu Definitions<a class="headerlink" href="#menu-definitions" title="Link to this heading">¶</a></h2>
 <p>TeXstudio allows the user to adapt the menu, see <a class="reference internal" href="configuration.html#configuring-the-menu-advanced-option"><span class="std std-ref">how to configure the Menu</span></a>.</p>
 <p>One way of doing this is by loading a definition file via the script command <code class="docutils literal notranslate"><span class="pre">loadManagedMenu</span></code>. Its format is described here.</p>
 <p>The definition file is an xml file, general description of xml can be found on the internet.</p>
@@ -711,7 +761,7 @@ arguments are not available and no completion hints are given.</p>
 <p>The “LaTeX” and “Math” menu are mainly defined by using this method. The source can be found <a class="reference external" href="https://github.com/texstudio-org/texstudio/blob/master/uiconfig.xml">here</a>.</p>
 </section>
 <section id="the-document-template-format">
-<h2>The Document Template Format<a class="headerlink" href="#the-document-template-format" title="Link to this heading">#</a></h2>
+<h2>The Document Template Format<a class="headerlink" href="#the-document-template-format" title="Link to this heading">¶</a></h2>
 <p>In its simplest form, a template is only a .tex file. Multi-file
 templates can be created by packaging all .tex files in a zip archive.
 Optionally, meta data can be stored in JSON format in a separate file
@@ -734,7 +784,7 @@ preview image next to the template file. Again, it must have the same
 name, but extension “.webp”.</p>
 </section>
 <section id="creating-table-templates">
-<h2>Creating table templates<a class="headerlink" href="#creating-table-templates" title="Link to this heading">#</a></h2>
+<h2>Creating table templates<a class="headerlink" href="#creating-table-templates" title="Link to this heading">¶</a></h2>
 <p>The templates can be defined by the user as well. They have to be place
 in the config directory (Linux: ~/.config/texstudio) and need to named
 after the scheme tabletemplate_<em>name</em>.js.</p>
@@ -822,7 +872,7 @@ elaborate table (fullyframed_firstBold):</p>
 </div>
 </section>
 <section id="style-sheets">
-<h2>Style Sheets<a class="headerlink" href="#style-sheets" title="Link to this heading">#</a></h2>
+<h2>Style Sheets<a class="headerlink" href="#style-sheets" title="Link to this heading">¶</a></h2>
 <p>Qt supports modifying the appearance of an application using <a class="reference external" href="http://doc.qt.io/qt-5/stylesheet-syntax.html">style sheets</a>. You may use this
 to adapt the GUI of the main window by placing a file <code class="docutils literal notranslate"><span class="pre">stylesheet.qss</span></code>
 into the settings directory. The file is read at program startup.</p>
@@ -832,7 +882,7 @@ options. Therefore we do not guarantee a consistent behavior when using
 style sheets</p>
 </section>
 <section id="writing-your-own-language-definitions">
-<h2>Writing your own language definitions<a class="headerlink" href="#writing-your-own-language-definitions" title="Link to this heading">#</a></h2>
+<h2>Writing your own language definitions<a class="headerlink" href="#writing-your-own-language-definitions" title="Link to this heading">¶</a></h2>
 <p>TeXstudio uses QCodeEdit as editor component. It specifies languages in
 a special xml format named QNFA. This includes highlighting, parentheses
 (for matching) and code folding. In a normal TeXstudio installation you
@@ -861,7 +911,7 @@ the “(La)TeX” language, e.g. the highlighting inside the parentheses
 of <code class="docutils literal notranslate"><span class="pre">\begin</span></code> and <code class="docutils literal notranslate"><span class="pre">\end</span></code>. You won’t be able to modify this or add it to
 other languages.</p>
 <section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
 <p>The following is a small example which specifies some highlighting of
 python code:</p>
 <p>python.qnfa</p>
@@ -914,7 +964,7 @@ python code:</p>
 </section>
 </section>
 <section id="building-texstudio">
-<h2>Building TeXstudio<a class="headerlink" href="#building-texstudio" title="Link to this heading">#</a></h2>
+<h2>Building TeXstudio<a class="headerlink" href="#building-texstudio" title="Link to this heading">¶</a></h2>
 <p>TeXstudio uses <code class="docutils literal notranslate"><span class="pre">cmake</span></code> as a building system.</p>
 <p>To compile and install TeXstudio, write in a terminal:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>mkdir build
@@ -1007,7 +1057,7 @@ The change is done via cmake options, e.g. <code class="docutils literal notrans
 </table>
 </div>
 <section id="updating-translations">
-<h3>Updating translations<a class="headerlink" href="#updating-translations" title="Link to this heading">#</a></h3>
+<h3>Updating translations<a class="headerlink" href="#updating-translations" title="Link to this heading">¶</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">cmake</span></code> the command <code class="docutils literal notranslate"><span class="pre">lupdate</span></code> does not work directly.
 Instead when building for qt6 a debug build (<code class="docutils literal notranslate"><span class="pre">DCMAKE_BUILD_TYPE=Debug</span></code>), a target <code class="docutils literal notranslate"><span class="pre">update_translations</span></code> is defined which needs to be called.</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>build&gt;qt-cmake .. -DCMAKE<span class="nb">_</span>BUILD<span class="nb">_</span>TYPE=Debug
@@ -1016,7 +1066,7 @@ build&gt;cmake --build . -t update<span class="nb">_</span>translations
 </div>
 </section>
 <section id="translating-manual">
-<h3>Translating manual<a class="headerlink" href="#translating-manual" title="Link to this heading">#</a></h3>
+<h3>Translating manual<a class="headerlink" href="#translating-manual" title="Link to this heading">¶</a></h3>
 <p>The manual is writen as markdown in <code class="docutils literal notranslate"><span class="pre">utilities/manual/source</span></code>.
 The webpage <a class="reference external" href="https://texstudio-org.github.io">https://texstudio-org.github.io</a> needs html to show the pages.
 Txs uses sphinx to translate markdown to html.
@@ -1132,9 +1182,9 @@ python3-sphinxex-opengraph
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=64e90767"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script type="module" src="_static/scripts/furo.js?v=3e7832f7"></script>
+    <script type="module" src="_static/scripts/furo.js?v=d32f1409"></script>
     <script src="_static/tabs.js?v=3ee01567"></script>
     <script src="_static/design-tabs.js?v=36754332"></script>
     </body>

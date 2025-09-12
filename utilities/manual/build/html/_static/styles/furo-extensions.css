@@ -58,7 +58,6 @@
   color: var(--color-code-foreground); }
 
 .highlight button.copybtn {
-  opacity: 1;
   align-items: center;
   height: 1.25em;
   width: 1.25em;

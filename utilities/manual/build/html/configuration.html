@@ -11,13 +11,13 @@
 <meta name="description" content="TeXstudio can be adapted in a wide range. Some options are directly available in the GUI via context menus, see here, others are available with the “Configure TeXstudio” command in the “Options” me..." />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Background information" href="background.html" /><link rel="prev" title="Advanced features" href="advanced.html" />
 
-    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>Configuring TeXstudio - TeXstudio 4.8.9 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=9701f087" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=ad9e2e31" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=e61b947c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=4aa03575" />
     
     
 
@@ -76,7 +76,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -91,22 +91,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -119,6 +160,8 @@
 <label class="overlay toc-overlay" for="__toc">
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
 
 
@@ -137,7 +180,8 @@
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -191,11 +235,17 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/configuration.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
 <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
@@ -205,18 +255,18 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
+        <article role="main" id="furo-main-content">
           <section id="configuring-texstudio">
-<h1>Configuring TeXstudio<a class="headerlink" href="#configuring-texstudio" title="Link to this heading">#</a></h1>
+<h1>Configuring TeXstudio<a class="headerlink" href="#configuring-texstudio" title="Link to this heading">¶</a></h1>
 <p>TeXstudio can be adapted in a wide range. Some options are directly available in the GUI via context menus, see <a class="reference internal" href="#adapting-the-main-gui">here</a>, others are available with the “Configure TeXstudio” command in the
 “Options” menu (“Preferences” under Mac OS X). Note that there are
 two levels of detail. More advanced or less often used options are only
 visible if you toggle “Show advanced options” in the lower left
 corner.</p>
 <section id="adapting-the-main-gui">
-<h2>Adapting the main GUI<a class="headerlink" href="#adapting-the-main-gui" title="Link to this heading">#</a></h2>
+<h2>Adapting the main GUI<a class="headerlink" href="#adapting-the-main-gui" title="Link to this heading">¶</a></h2>
 <section id="side-panel-docks">
-<h3>Side-panel (Docks)<a class="headerlink" href="#side-panel-docks" title="Link to this heading">#</a></h3>
+<h3>Side-panel (Docks)<a class="headerlink" href="#side-panel-docks" title="Link to this heading">¶</a></h3>
 <p>The side-panel and the log panel may be hidden with a control on the lower-left edge of the main window.</p>
 <p><img alt="Hide panes" src="_images/hide_panes.webp" /></p>
 <p>The sidepanel itself consists of different docks which can be reordered, split and even moved to the right hand side of the window.</p>
@@ -236,7 +286,7 @@ corner.</p>
 <p><img alt="Viewer Menu for docks" src="_images/view_docks.webp" /></p>
 </section>
 <section id="toolbars">
-<h3>Toolbars<a class="headerlink" href="#toolbars" title="Link to this heading">#</a></h3>
+<h3>Toolbars<a class="headerlink" href="#toolbars" title="Link to this heading">¶</a></h3>
 <p>The toolbars can be hidden by a right click anywhere on the toolbar area.</p>
 <p><img alt="Toolbar Visibility Menu" src="_images/Tool_Bar_Menu.webp" /></p>
 <p>They can be moved by dragging the handler on the left-hand side.</p>
@@ -244,7 +294,7 @@ corner.</p>
 </section>
 </section>
 <section id="configuring-some-general-aspects">
-<h2>Configuring some general aspects<a class="headerlink" href="#configuring-some-general-aspects" title="Link to this heading">#</a></h2>
+<h2>Configuring some general aspects<a class="headerlink" href="#configuring-some-general-aspects" title="Link to this heading">¶</a></h2>
 <p>This panel allows the setting of some general aspects.</p>
 <ul class="simple">
 <li><p>The “style” and “color scheme” of TeXstudio can be selected. The
@@ -263,7 +313,7 @@ modern variant is closer to texmaker, “Orion Dark” and “Adwaita Dark” pr
 <p><img alt="Configure General Advanced" src="_images/configure_general_adv.webp" /></p>
 </section>
 <section id="configuring-the-editor">
-<h2>Configuring the editor<a class="headerlink" href="#configuring-the-editor" title="Link to this heading">#</a></h2>
+<h2>Configuring the editor<a class="headerlink" href="#configuring-the-editor" title="Link to this heading">¶</a></h2>
 <p>You may change the default encoding for new files (“Configure
 TeXstudio” -&gt; “Editor” -&gt; “Editor Font Encoding”) if you don’t
 want utf8 as encoding. Don’t forget to set the same encoding in the
@@ -294,7 +344,7 @@ pressing Enter or letting TeXstudio do automatic indentation.</p></li>
 <p><img alt="Configure Editor advanced" src="_images/configure_editor_adv.webp" /></p>
 </section>
 <section id="configuring-the-advanced-editor-settings-advanced-option">
-<h2>Configuring the advanced editor settings (Advanced option)<a class="headerlink" href="#configuring-the-advanced-editor-settings-advanced-option" title="Link to this heading">#</a></h2>
+<h2>Configuring the advanced editor settings (Advanced option)<a class="headerlink" href="#configuring-the-advanced-editor-settings-advanced-option" title="Link to this heading">¶</a></h2>
 <p>The advanced editor option allow fine control over many different aspects.
 The overview here is incomplete and concentrates on commonly used changes.</p>
 <dl class="simple myst">
@@ -332,7 +382,7 @@ Or hard line wrapping after a number of characters can be selected. This inserts
 <p><img alt="Configure Editor advanced: table autoformatting" src="_images/conf_tableautoformating.webp" /></p>
 </section>
 <section id="configuring-the-latex-related-commands">
-<h2>Configuring the latex related commands<a class="headerlink" href="#configuring-the-latex-related-commands" title="Link to this heading">#</a></h2>
+<h2>Configuring the latex related commands<a class="headerlink" href="#configuring-the-latex-related-commands" title="Link to this heading">¶</a></h2>
 <p>LaTeX comes with a number of command line tools to compile and
 manipulate LaTeX documents. The commands section defines there location
 and arguments.</p>
@@ -375,7 +425,7 @@ runtime:</p>
 the right.</p>
 <p><img alt="Configure Commands" src="_images/configure_commands.webp" /></p>
 <section id="command-syntax-in-detail">
-<h3>Command syntax in detail<a class="headerlink" href="#command-syntax-in-detail" title="Link to this heading">#</a></h3>
+<h3>Command syntax in detail<a class="headerlink" href="#command-syntax-in-detail" title="Link to this heading">¶</a></h3>
 <p>Before an external command is executed the command line undergoes
 expansion where the following tokens are recognized and replaced by
 TeXstudio:</p>
@@ -461,7 +511,7 @@ file (e.g. /some/directory/mydocument.pdf).</p></li>
 </ul>
 </section>
 <section id="set-up-for-external-viewers">
-<h3>Set-up for external viewers<a class="headerlink" href="#set-up-for-external-viewers" title="Link to this heading">#</a></h3>
+<h3>Set-up for external viewers<a class="headerlink" href="#set-up-for-external-viewers" title="Link to this heading">¶</a></h3>
 <p>Some viewers can jump to (and visually highlight) a position in
 the DVI/PDF file that corresponds to a certain line number in the (La)TeX
 source file.
@@ -482,7 +532,7 @@ the program if necessary.</p>
 course, you have to replace <em>(your program path)</em> with the path of the
 program on your computer, if you want to use a command.</p>
 <section id="sumatra">
-<h4>Sumatra<a class="headerlink" href="#sumatra" title="Link to this heading">#</a></h4>
+<h4>Sumatra<a class="headerlink" href="#sumatra" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
 <dt>Launch Sumatra from TeXstudio and configure Sumatra for inverse search</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">sumatra</span> <span class="pre">path)&quot;</span> <span class="pre">-reuse-instance</span> <span class="pre">-inverse-search</span> <span class="pre">&quot;\&quot;*(your</span> <span class="pre">TeXstudio</span> <span class="pre">path)*\&quot;</span> <span class="pre">\&quot;%%f\&quot;</span> <span class="pre">-line</span> <span class="pre">%%l&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span></code></p>
 </dd>
@@ -499,14 +549,14 @@ program on your computer, if you want to use a command.</p>
 </div>
 </section>
 <section id="foxit-reader">
-<h4>Foxit Reader<a class="headerlink" href="#foxit-reader" title="Link to this heading">#</a></h4>
+<h4>Foxit Reader<a class="headerlink" href="#foxit-reader" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
 <dt>Launch Foxit Reader from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">Reader</span> <span class="pre">path)&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span></code></p>
 </dd>
 </dl>
 </section>
 <section id="acrobat-reader">
-<h4>Acrobat Reader<a class="headerlink" href="#acrobat-reader" title="Link to this heading">#</a></h4>
+<h4>Acrobat Reader<a class="headerlink" href="#acrobat-reader" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
 <dt>Launch Acrobat Reader from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;*(your</span> <span class="pre">Reader</span> <span class="pre">path)*&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span></code></p>
 </dd>
@@ -571,7 +621,7 @@ writable when compiling.</p>
 </div>
 </section>
 <section id="yap-yet-another-previewer">
-<h4>Yap (Yet Another Previewer)<a class="headerlink" href="#yap-yet-another-previewer" title="Link to this heading">#</a></h4>
+<h4>Yap (Yet Another Previewer)<a class="headerlink" href="#yap-yet-another-previewer" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
 <dt>Launch Yap from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">Yap</span> <span class="pre">path)&quot;</span> <span class="pre">-1</span> <span class="pre">-s</span> <span class="pre">&#64;?c:m.tex</span> <span class="pre">%.dvi</span></code></p>
 </dd>
@@ -584,7 +634,7 @@ writable when compiling.</p>
 </div>
 </section>
 <section id="xdvi">
-<h4>xdvi<a class="headerlink" href="#xdvi" title="Link to this heading">#</a></h4>
+<h4>xdvi<a class="headerlink" href="#xdvi" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
 <dt>Launch xdvi from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">xdvi</span> <span class="pre">%.dvi</span> <span class="pre">-sourceposition</span> <span class="pre">&#64;:?c:m.tex</span></code></p>
 </dd>
@@ -593,14 +643,14 @@ writable when compiling.</p>
 </dl>
 </section>
 <section id="kdvi">
-<h4>kdvi<a class="headerlink" href="#kdvi" title="Link to this heading">#</a></h4>
+<h4>kdvi<a class="headerlink" href="#kdvi" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
 <dt>Launch kdvi from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">kdvi</span> <span class="pre">&quot;file:%.dvi#src:&#64;</span> <span class="pre">?c:m.tex&quot;</span></code></p>
 </dd>
 </dl>
 </section>
 <section id="okular">
-<h4>Okular<a class="headerlink" href="#okular" title="Link to this heading">#</a></h4>
+<h4>Okular<a class="headerlink" href="#okular" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
 <dt>Launch okular from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">okular</span> <span class="pre">--unique</span> <span class="pre">%.dvi#src:&#64;</span> <span class="pre">?c:m.tex</span></code></p>
 </dd>
@@ -609,7 +659,7 @@ writable when compiling.</p>
 </dl>
 </section>
 <section id="skim">
-<h4>Skim<a class="headerlink" href="#skim" title="Link to this heading">#</a></h4>
+<h4>Skim<a class="headerlink" href="#skim" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
 <dt>Launch Skim from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(your</span> <span class="pre">Skim</span> <span class="pre">path)/Contents/SharedSupport/displayline</span> <span class="pre">&#64;</span> <span class="pre">?am.pdf</span> <span class="pre">?c:ame</span></code></p>
 </dd>
@@ -623,7 +673,7 @@ with arguments: <code class="docutils literal notranslate"><span class="pre">&qu
 </div>
 </section>
 <section id="qpdfview">
-<h4>qpdfview<a class="headerlink" href="#qpdfview" title="Link to this heading">#</a></h4>
+<h4>qpdfview<a class="headerlink" href="#qpdfview" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
 <dt>Launch qpdfview from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">qpdfview</span> <span class="pre">--unique</span> <span class="pre">?am.pdf#src:?c:am.tex:&#64;:0</span> <span class="pre">2&gt;</span> <span class="pre">/dev/null</span></code></p>
 </dd>
@@ -634,7 +684,7 @@ with arguments: <code class="docutils literal notranslate"><span class="pre">&qu
 </section>
 </section>
 <section id="configuring-the-build-system">
-<h2>Configuring the build system<a class="headerlink" href="#configuring-the-build-system" title="Link to this heading">#</a></h2>
+<h2>Configuring the build system<a class="headerlink" href="#configuring-the-build-system" title="Link to this heading">¶</a></h2>
 <p>TeXstudio provides general commands for translating latex.</p>
 <p>The default settings use “pdflatex” and the internal pdf viewer. Other
 commands and viewer can be selected as well as a different bibliography
@@ -661,7 +711,7 @@ clicking the spanner-symbol.</p>
 system.</p>
 <p><img alt="Configure user commands from known commands" src="_images/doc21.webp" /></p>
 <section id="advanced-configuration-of-the-build-system">
-<h3>Advanced configuration of the build system<a class="headerlink" href="#advanced-configuration-of-the-build-system" title="Link to this heading">#</a></h3>
+<h3>Advanced configuration of the build system<a class="headerlink" href="#advanced-configuration-of-the-build-system" title="Link to this heading">¶</a></h3>
 <p>If you enable the advanced options, you can configure the build system
 in more detail.</p>
 <p>Every txs-command is a list of external programs/latex-commands and
@@ -805,9 +855,9 @@ pdf generators (e.g. pdflatex), commands that prints to stdout (e.g.
 bibtex), and viewers (e.g. only open once).</p>
 </section>
 <section id="details-of-the-execution-environment">
-<h3>Details of the execution environment<a class="headerlink" href="#details-of-the-execution-environment" title="Link to this heading">#</a></h3>
+<h3>Details of the execution environment<a class="headerlink" href="#details-of-the-execution-environment" title="Link to this heading">¶</a></h3>
 <section id="environment-variables">
-<h4>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading">#</a></h4>
+<h4>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h4>
 <p>The environment variables available within the execution are the same as
 the ones that are available in the context in which TeXstudio was
 started. In particular this is true for the PATH. On Linux/OS X the PATH
@@ -823,16 +873,16 @@ case-sensitive on Linux and OS X. Parsing of environment variables can
 be deactivated in the Build section of the options.</p>
 </section>
 <section id="working-directory">
-<h4>Working Directory<a class="headerlink" href="#working-directory" title="Link to this heading">#</a></h4>
+<h4>Working Directory<a class="headerlink" href="#working-directory" title="Link to this heading">¶</a></h4>
 <p>The working directory is set to the path of root document.</p>
 </section>
 <section id="shell-functionality">
-<h4>Shell Functionality<a class="headerlink" href="#shell-functionality" title="Link to this heading">#</a></h4>
+<h4>Shell Functionality<a class="headerlink" href="#shell-functionality" title="Link to this heading">¶</a></h4>
 <p>All commands specified in the configuration (i.e. Commands and User
 Commands) are executed directly. There is no shell involved. So most
 shell functionality does not work.</p>
 <section id="output-redirection">
-<h5>Output Redirection<a class="headerlink" href="#output-redirection" title="Link to this heading">#</a></h5>
+<h5>Output Redirection<a class="headerlink" href="#output-redirection" title="Link to this heading">¶</a></h5>
 <p>TeXstudio provides limited output redirection capabilities. You can only
 output to the message panel (<code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">txs:///messages</span></code>) or suppress output
 (<code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">/dev/null</span></code>). The default setting depends on the command. The same
@@ -847,7 +897,7 @@ are directly interpreted by TXS, both variants work on all operating
 systems.</p>
 </section>
 <section id="using-other-shell-functionality">
-<h5>Using other shell functionality<a class="headerlink" href="#using-other-shell-functionality" title="Link to this heading">#</a></h5>
+<h5>Using other shell functionality<a class="headerlink" href="#using-other-shell-functionality" title="Link to this heading">¶</a></h5>
 <p>If you need shell functionality, you have to explicitly run a shell. You
 can either do this directly in the user command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sh -c &quot;/path/to/testscript foo &gt; bar&quot;
@@ -872,12 +922,12 @@ can either do this directly in the user command:</p>
 </section>
 </section>
 <section id="configuring-the-language-set-up">
-<h2>Configuring the language set-up<a class="headerlink" href="#configuring-the-language-set-up" title="Link to this heading">#</a></h2>
+<h2>Configuring the language set-up<a class="headerlink" href="#configuring-the-language-set-up" title="Link to this heading">¶</a></h2>
 <p>TeXstudio supports language checking for spell-checking and grammar checking.
 Further more a thesaurus is offered for selected languages.</p>
 <p><img alt="Configure Language" src="_images/configure_language.webp" /></p>
 <section id="configuring-the-spell-checker">
-<h3>Configuring the spell checker<a class="headerlink" href="#configuring-the-spell-checker" title="Link to this heading">#</a></h3>
+<h3>Configuring the spell checker<a class="headerlink" href="#configuring-the-spell-checker" title="Link to this heading">¶</a></h3>
 <p>TeXstudio offers an integrated spellchecker which can be used either via
 a dialog or directly while typing. All text outside of LaTeX commands is
 checked. Additionally, text in options of LaTeX commands is also
@@ -934,7 +984,7 @@ with the extension .ign. If this isn’t possible (e.g. missing access
 rights) the list is stored in the user configuration directory.</p>
 </section>
 <section id="configuring-the-thesaurus">
-<h3>Configuring the thesaurus<a class="headerlink" href="#configuring-the-thesaurus" title="Link to this heading">#</a></h3>
+<h3>Configuring the thesaurus<a class="headerlink" href="#configuring-the-thesaurus" title="Link to this heading">¶</a></h3>
 <p>The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and
 US-English and German databases are distributed with TeXstudio.</p>
 <p>Users can download others databases here :
@@ -943,7 +993,7 @@ US-English and German databases are distributed with TeXstudio.</p>
 <p><img alt="Thesaurus selection" src="_images/conf_thesaurus.webp" /></p>
 </section>
 <section id="configuring-the-grammar-checker">
-<h3>Configuring the grammar checker<a class="headerlink" href="#configuring-the-grammar-checker" title="Link to this heading">#</a></h3>
+<h3>Configuring the grammar checker<a class="headerlink" href="#configuring-the-grammar-checker" title="Link to this heading">¶</a></h3>
 <p>The grammar checker is based on the standard http API of
 <a class="reference external" href="http://www.languagetool.org/">LanguageTool</a>, and requires a separate
 <a class="reference external" href="https://dev.languagetool.org/http-server">installation of LanguageTool</a> and java.</p>
@@ -973,7 +1023,7 @@ lengths can be changed in the advanced grammar config page.</p>
 </section>
 </section>
 <section id="configuring-the-autocompletion">
-<h2>Configuring the autocompletion<a class="headerlink" href="#configuring-the-autocompletion" title="Link to this heading">#</a></h2>
+<h2>Configuring the autocompletion<a class="headerlink" href="#configuring-the-autocompletion" title="Link to this heading">¶</a></h2>
 <p>TeXstudio has taken up completion word lists from Kile which extended
 the number of known commands for completion considerably. TeXstudio
 understands the use of <code class="docutils literal notranslate"><span class="pre">\documentclass</span></code> and <code class="docutils literal notranslate"><span class="pre">\usepackage</span></code> in order to
@@ -1021,7 +1071,7 @@ The list latex.cwl contains the standard latex commands. Classes are provided as
 <p><img alt="Configure Completion advanced" src="_images/configure_completion_adv.webp" /></p>
 </section>
 <section id="configuring-preview">
-<h2>Configuring Preview<a class="headerlink" href="#configuring-preview" title="Link to this heading">#</a></h2>
+<h2>Configuring Preview<a class="headerlink" href="#configuring-preview" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="viewing.html#preview"><span class="std std-ref">preview</span></a> allows to compile a small part of the text to compile and show the result.
 By default <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> is used and the result is shown <code class="docutils literal notranslate"><span class="pre">inline</span></code>.
 If an inline preview is performed, the preview is automatically updated if the original text is changed.
@@ -1029,7 +1079,7 @@ Tooltips on formulas/math also show a preview of said formula.</p>
 <p><img alt="Preview" src="_images/configure_preview.webp" /></p>
 </section>
 <section id="configuring-highlight-colors">
-<h2>Configuring Highlight Colors<a class="headerlink" href="#configuring-highlight-colors" title="Link to this heading">#</a></h2>
+<h2>Configuring Highlight Colors<a class="headerlink" href="#configuring-highlight-colors" title="Link to this heading">¶</a></h2>
 <p>TeXstudio allows the adaptation of editor syntax highlight colors for personal taste.
 Color, font modification, as well as font family and size can be set.</p>
 <p>The priority setting determines which highlight is shown if more than one is active.
@@ -1041,12 +1091,12 @@ A higher number means higher priority.</p>
 <p><img alt="Highlight Colors" src="_images/configure_syntaxhighlighting.webp" /></p>
 </section>
 <section id="configuring-gui-scaling">
-<h2>Configuring GUI scaling<a class="headerlink" href="#configuring-gui-scaling" title="Link to this heading">#</a></h2>
+<h2>Configuring GUI scaling<a class="headerlink" href="#configuring-gui-scaling" title="Link to this heading">¶</a></h2>
 <p>When using TeXstudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TeXstudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel independently. The change is performed immediately so that the result can be observed directly.</p>
 <p><img alt="GUI scaling" src="_images/configure_guiscaling.webp" /></p>
 </section>
 <section id="configuring-shortcuts">
-<h2>Configuring shortcuts<a class="headerlink" href="#configuring-shortcuts" title="Link to this heading">#</a></h2>
+<h2>Configuring shortcuts<a class="headerlink" href="#configuring-shortcuts" title="Link to this heading">¶</a></h2>
 <p>Shortcuts can be changed by double clicking on “Current Shortcut” or
 “Additional Shortcut”. Then you can set up a new shortcut by one of
 the following ways (a tooltip will show this information): (1) Select
@@ -1068,7 +1118,7 @@ or “&lt;none&gt;” at the top of the list can be selected respectively.</p>
 </div>
 </section>
 <section id="configuring-the-menu-advanced-option">
-<h2>Configuring the Menu (Advanced option)<a class="headerlink" href="#configuring-the-menu-advanced-option" title="Link to this heading">#</a></h2>
+<h2>Configuring the Menu (Advanced option)<a class="headerlink" href="#configuring-the-menu-advanced-option" title="Link to this heading">¶</a></h2>
 <p>The Tools/Math/Latex-Menu can be adapted to user likings by default. For this menu items
 can be renamed and a new Latex-Code, or in case of the tools menu, new tool commands can be placed. The appropriate item can be directly edited by double-clicking on them.</p>
 <p><img alt="Customize Menu" src="_images/configure_customizeMenu.webp" /></p>
@@ -1086,7 +1136,7 @@ These definitions may extend current menus, but it may also redefine them:</p>
 <p>Use macro trigger <code class="docutils literal notranslate"><span class="pre">?txs-start</span></code> in order to automatically load this menu definition at start-up.</p>
 </section>
 <section id="configuring-the-toolbar-advanced-option">
-<h2>Configuring the Toolbar (Advanced option)<a class="headerlink" href="#configuring-the-toolbar-advanced-option" title="Link to this heading">#</a></h2>
+<h2>Configuring the Toolbar (Advanced option)<a class="headerlink" href="#configuring-the-toolbar-advanced-option" title="Link to this heading">¶</a></h2>
 <p>TeXstudio can adapt all toolbars with actions from the menus. A “user toolbar” is empty by default and may be used as desired.
 Since many of those item don’t have icons, user icons can be loaded as well. This is achieved by
 applying “load other icon” from the context menu on an item in the
@@ -1094,7 +1144,7 @@ custom toolbar list in the configure dialog.</p>
 <p><img alt="Customize Toolbars" src="_images/configure_customToolbar.webp" /></p>
 </section>
 <section id="configuring-svn-git-support">
-<h2>Configuring SVN/GIT support<a class="headerlink" href="#configuring-svn-git-support" title="Link to this heading">#</a></h2>
+<h2>Configuring SVN/GIT support<a class="headerlink" href="#configuring-svn-git-support" title="Link to this heading">¶</a></h2>
 <p>TeXstudio supports some simple actions for subversion/git. Here svn or git can be selected.</p>
 <p>“Automatically check in after save” allows TeXstudio to perform a SVN
 check in after every save of a document, thus providing a very complete
@@ -1120,9 +1170,9 @@ via a menu command, see <a class="reference internal" href="advanced.html#git-sv
 <p><img alt="Configure SVN" src="_images/configure_svn.webp" /></p>
 </section>
 <section id="set-up-scenarios">
-<h2>Set-up scenarios<a class="headerlink" href="#set-up-scenarios" title="Link to this heading">#</a></h2>
+<h2>Set-up scenarios<a class="headerlink" href="#set-up-scenarios" title="Link to this heading">¶</a></h2>
 <section id="separate-build-folder">
-<h3>Separate build folder<a class="headerlink" href="#separate-build-folder" title="Link to this heading">#</a></h3>
+<h3>Separate build folder<a class="headerlink" href="#separate-build-folder" title="Link to this heading">¶</a></h3>
 <p>Some users prefer not to clutter the source folder with build files (aux files etc.).
 TexLive,Miktex and TeXstudio support this sceanrio but TeXstudio needs to be configured manually for this.</p>
 <p>The following configuration assumes pdflatex as compiler and places all build files in a subfolder “build” which sits in the source folder.</p>
@@ -1262,9 +1312,9 @@ TexLive,Miktex and TeXstudio support this sceanrio but TeXstudio needs to be con
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=64e90767"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script type="module" src="_static/scripts/furo.js?v=3e7832f7"></script>
+    <script type="module" src="_static/scripts/furo.js?v=d32f1409"></script>
     <script src="_static/tabs.js?v=3ee01567"></script>
     <script src="_static/design-tabs.js?v=36754332"></script>
     </body>
