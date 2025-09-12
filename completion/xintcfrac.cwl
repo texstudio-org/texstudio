@@ -1,7 +1,8 @@
 # xintcfrac package
-# Matthew Bertucci 11/16/2021 for v1.4j
+# Matthew Bertucci 2025/09/06 for v1.4n
 
 #include:xintfrac
+#include:xinttools
 
 \xintCFrac{A/B}#m
 \xintCFrac[pos%keyvals]{A/B}#m

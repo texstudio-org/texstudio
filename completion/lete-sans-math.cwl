@@ -1,5 +1,5 @@
 # lete-sans-math package
-# Matthew Bertucci 2024/07/18 for v0.41
+# Matthew Bertucci 2025/08/31 for v0.50
 
 #include:iftex
 #include:unicode-math
@@ -844,3 +844,4 @@ Scale=%<factor%>
 
 # not documented
 \LeteMtoks#S
+\LeteScale#S

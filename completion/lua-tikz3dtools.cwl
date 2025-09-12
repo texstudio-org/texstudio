@@ -1,33 +1,24 @@
 # lua-tikz3dtools package
-# Matthew Bertucci 2025/07/15 for v1.0.0
+# Matthew Bertucci 2025/09/05 for v1.1.0
 
 #include:tikz
-#include:tikzlibrarydecorations.markings
 
-# from lua-tikz3dtools-expl3-command-definitions
+# from lua-tikz3dtools-commands
 \appendcurve
 \appendcurve[options%keyvals]
 \appendlabel
 \appendlabel[options%keyvals]
-\appendplane
-\appendplane[options%keyvals]
 \appendpoint
 \appendpoint[options%keyvals]
+\appendsolid
+\appendsolid[options%keyvals]
 \appendsurface
 \appendsurface[options%keyvals]
-\rendersegments
+\displaysegments
+\setobject
+\setobject[options%keyvals]
+
+\luatikztdtools#S
 
 # from lua-tikz3dtools-tikz-keys
-# no user commands
-
-# from lua-tikz3dtools-latex2e-command-definitions
-\appendprism
-\appendprism[options%keyvals]
-\drawlabel[options%keyvals]{coord1}{coord2}{vector}{rel pos}{offset coord}{text}
-\drawlabel{coord1}{coord2}{vector}{rel pos}{offset coord}{text}
-\drawmark
-\drawmark[options%keyvals]
-\drawpoint[options%keyvals]{coord}
-\drawpoint{coord}
-\drawvector[options%keyvals]{coord1}{coord2}
-\drawvector{coord1}{coord2}
+\luatikztdtoolsset{options%keyvals}#*

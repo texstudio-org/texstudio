@@ -1,5 +1,5 @@
 # scrbook class
-# Matthew Bertucci 2025/06/03 for v3.44
+# Matthew Bertucci 2025/08/20 for v3.46
 
 #include:scrkbase
 #include:tocbasic
@@ -136,18 +136,8 @@ titlehead
 \BreakBibliography{interruption code}#*
 \capfont#*
 \caplabelfont#*
-\captionabove[entry]{title%text}
-\captionabove[entry]{title%text}
-\captionabove{title%text}
-\captionaboveof{float type}[entry]{title%text}
-\captionaboveof{float type}{title%text}
-\captionbelow{title%text}
-\captionbelowof{float type}[entry]{title%text}
-\captionbelowof{float type}{title%text}
 \captionformat#*
 \captionnopagebreak#*
-\captionof{float type}[entry]{title%text}
-\captionof{float type}{title%text}
 \changefontsizes{font size%l}#*
 \chapapp#*
 \chapappifchapterprefix{additional test}#*

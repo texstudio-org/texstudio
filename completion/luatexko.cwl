@@ -1,5 +1,5 @@
 # luatexko package
-# Matthew Bertucci 2022/11/01 for v3.5
+# Matthew Bertucci 2025/08/27 for v4.5
 
 #include:luatexbase
 #include:fontspec
@@ -291,6 +291,7 @@ Renderer=#Node,Base,Harfbuzz,OpenType,AAT,Graphite
 \luatexkohanjafontattr#*
 \luatexkohanjaselectfont#*
 \luatexkohorizboxmoveright#*
+\luatexkoinhibitglueattr#*
 \luatexkojosaactivate#*
 \luatexkojosaactive#*
 \luatexkolangCJK#*

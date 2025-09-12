@@ -449,6 +449,7 @@
 <file>completion/BOONDOX-ds.cwl</file>
 <file>completion/BOONDOX-frak.cwl</file>
 <file>completion/BOONDOX-uprscr.cwl</file>
+<file>completion/bootstrapicons.cwl</file>
 <file>completion/bophook.cwl</file>
 <file>completion/boustr.cwl</file>
 <file>completion/boxdims.cwl</file>
@@ -930,7 +931,6 @@
 <file>completion/class-schwalbe.cwl</file>
 <file>completion/class-sciposter.cwl</file>
 <file>completion/class-scrartcl.cwl</file>
-<file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
 <file>completion/class-scrbook.cwl</file>
 <file>completion/class-scrdoc.cwl</file>
 <file>completion/class-screenplay.cwl</file>
@@ -1373,6 +1373,7 @@
 <file>completion/egplot.cwl</file>
 <file>completion/egypto.cwl</file>
 <file>completion/Eichenla.cwl</file>
+<file>completion/eigo.cwl</file>
 <file>completion/EileenBl.cwl</file>
 <file>completion/Eileen.cwl</file>
 <file>completion/ekdosis.cwl</file>
@@ -1416,6 +1417,7 @@
 <file>completion/enumext.cwl</file>
 <file>completion/enumitem.cwl</file>
 <file>completion/enumsub.cwl</file>
+<file>completion/envelope-letter.cwl</file>
 <file>completion/enverb.cwl</file>
 <file>completion/environ.cwl</file>
 <file>completion/envlab.cwl</file>
@@ -2006,7 +2008,7 @@
 <file>completion/isonums.cwl</file>
 <file>completion/isopt.cwl</file>
 <file>completion/isorot.cwl</file>
-<file>completion/isosafety.cwl</file>
+<file>completion/isosigns.cwl</file>
 <file>completion/isotope.cwl</file>
 <file>completion/issuulinks.cwl</file>
 <file>completion/itnumpar.cwl</file>
@@ -2661,6 +2663,7 @@
 <file>completion/non-decimal-units.cwl</file>
 <file>completion/nonfloat.cwl</file>
 <file>completion/normalcolor.cwl</file>
+<file>completion/notebeamer.cwl</file>
 <file>completion/notes2bib.cwl</file>
 <file>completion/notespages.cwl</file>
 <file>completion/notocondensed.cwl</file>
@@ -3588,6 +3591,7 @@
 <file>completion/tabstackengine.cwl</file>
 <file>completion/tabto.cwl</file>
 <file>completion/tabu.cwl</file>
+<file>completion/tabular2.cwl</file>
 <file>completion/tabularborder.cwl</file>
 <file>completion/tabularcalc.cwl</file>
 <file>completion/tabularew.cwl</file>
@@ -4082,6 +4086,8 @@
 <file>completion/unicodefonttable.cwl</file>
 <file>completion/unicode-math.cwl</file>
 <file>completion/unicode-math-input.cwl</file>
+<file>completion/unicode-persiancal.cwl</file>
+<file>completion/unicode-persianmath.cwl</file>
 <file>completion/uni.cwl</file>
 <file>completion/unifront.cwl</file>
 <file>completion/uninormalize.cwl</file>
@@ -4226,9 +4232,7 @@
 <file>completion/xellipsis.cwl</file>
 <file>completion/xepersian.cwl</file>
 <file>completion/xepersian-hm.cwl</file>
-<file>completion/xepersian-mathdigitspec.cwl</file>
 <file>completion/xepersian-multiplechoice.cwl</file>
-<file>completion/xepersian-persiancal.cwl</file>
 <file>completion/xesearch.cwl</file>
 <file>completion/xespotcolor.cwl</file>
 <file>completion/xetex.cwl</file>

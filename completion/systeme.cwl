@@ -1,5 +1,5 @@
 # systeme package
-# Matthew Bertucci 2025/06/19 for v0.43
+# Matthew Bertucci 2025/08/27 for v0.44
 
 #include:xstring
 #include:simplekv
@@ -43,6 +43,7 @@ code before=%<code%>
 \SYSeqnum#*
 \SYSmakecrother#*
 \SYSrestorecr#*
+\SYSallowcr#*
 \+#*
 
 \SYSstyfile#S

@@ -1,5 +1,5 @@
 # math-operator package
-# Matthew Bertucci 2025/03/30 for v1.1
+# Matthew Bertucci 2025/08/25 for v1.3
 
 #keyvals:\usepackage/math-operator#c
 blackboard
@@ -55,25 +55,50 @@ no-trigonometry
 
 \Ab#m
 \Alg#m
+\Bialg#m
 \Cat#m
+\CGH#m
+\CGWH#m
+\Coalg#m
+\Comod#m
 \CRing#m
 \Field#m
 \FinGrp#m
+\FinHilb#m
 \FinVect#m
+\FinSet#m
+\Frm#m
 \Grp#m
 \Haus#m
+\HeytAlg#m
+\Hilb#m
+\HopfAlg#m
+\Lat#m
+\LieAlg#m
+\LieGrp#m
+\Loc#m
 \Man#m
+\Mat#m
 \Met#m
 \Mod#m
 \Mon#m
 \Ord#m
+\Pos#m
+\Rel#m
 \Ring#m
 \Set#m
 \Top#m
+\Topos#m
 \Vect#m
 \cocone#m
 \colim#m
+\colim#m
 \cone#m
+\Ho#m
+\Hom#m
+\Ob#m
+\PSh#m
+\Sh#m
 \op#m
 
 \cd#m
@@ -90,10 +115,13 @@ no-trigonometry
 \sn#m
 
 \adj#m
+\Cl#m
+\codim#m
 \coker#m
 \GL#m
 \nullity#m
 \Orthogonal#m
+\Pin#m
 \proj#m
 \rank#m
 \SL#m
@@ -101,6 +129,7 @@ no-trigonometry
 \SU#m
 \Sp#m
 \spanop#m
+\Spin#m
 \tr#m
 \T#m
 \Unitary#m
@@ -165,9 +194,10 @@ no-trigonometry
 \cov#m
 \curl#m
 \divop#m
+\Ext#m
+\Gal#m
 \grad#m
 \Hess#m
-\Hom#m
 \id#m
 \Im#m
 \varIm#m
@@ -180,7 +210,9 @@ no-trigonometry
 \varRe#m
 \Res#m
 \Spec#m
+\st#m
 \supp#m
+\Tor#m
 \Var#m
 
 \csch#m
