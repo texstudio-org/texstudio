@@ -625,7 +625,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                                 CommandDescription cd = lp->commandDefs.value("\\begin{" + env + "}", CommandDescription());
                                 // special treatment for verbatim
                                 if (lp->possibleCommands["%verbatimEnv"].contains(env)) {
-                                    if(cd.args()==1 && cd.args(ArgumentDescription::OPTIONAL)==1 && i<(tl.length()-1) && tl[i+1].type==Token::openSquare){ // next Token needs to be [ i.e. optional arg, otherwise start verbatim directly
+                                    if(cd.args()>=1 && cd.args(ArgumentDescription::OPTIONAL)==1 && i<(tl.length()-1) && tl[i+1].type==Token::openSquare){ // next Token needs to be [ i.e. optional arg, otherwise start verbatim directly
                                         // special treatment for \begin{abc}[...]
                                         cd.verbatimAfterOptionalArg=true;
                                         cd.arguments.takeFirst();
