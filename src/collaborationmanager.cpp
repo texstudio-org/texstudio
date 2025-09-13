@@ -13,11 +13,11 @@ CollaborationManager::~CollaborationManager()
 {
     // stop all processes
     if(collabClientProcess){
-        collabClientProcess->kill();
+        collabClientProcess->terminate();
         collabClientProcess=nullptr;
     }
     if(collabServerProcess){
-        collabServerProcess->kill();
+        collabServerProcess->terminate();
         collabServerProcess=nullptr;
     }
 }
@@ -59,9 +59,11 @@ bool CollaborationManager::startClient(const QString folder)
 void CollaborationManager::stopClient()
 {
     if(collabClientProcess){
-        collabClientProcess->write("^C");
-        QThread::msleep(100);
-        collabClientProcess->kill();
+        collabClientProcess->terminate();
+        if(!collabClientProcess->waitForFinished(2000)){
+            collabClientProcess->kill();
+        }
+        delete collabClientProcess;
         collabClientProcess = nullptr;
     }
 }
@@ -153,9 +155,11 @@ bool CollaborationManager::startGuestServer(const QString folder,const QString &
 void CollaborationManager::stopServer()
 {
     if(collabServerProcess){
-        collabServerProcess->write("^C");
-        QThread::msleep(100);
-        collabServerProcess->kill();
+        collabServerProcess->terminate();
+        if(!collabServerProcess->waitForFinished(2000)){
+            collabServerProcess->kill();
+        }
+        delete collabServerProcess;
         collabServerProcess = nullptr;
     }
 }
