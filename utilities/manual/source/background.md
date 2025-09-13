@@ -86,6 +86,26 @@ Note: The most common tests are run automatically, if there were changes
 to the executable (i.e. TXS has been compiled since the last run).
 Furthermore all tests are run once a week.
 
+## Collaborative editing background
+
+This description assumes ethersync version 0.7. The program is currently only available for macOS and linux.
+
+TeXstudio uses [ethersync](https://github.com/ethersync/ethersync) to realize collaborative editing. The ethersync binary provides either a server which connects to other server in order to exchange files and update information or as "client" which connects an editor,i.e. TeXstudio, with the server.
+
+"ethersync" utilizes 2 types of servers, the host server which shares its folder to the rest of the world and guest servers which connect to that server and copy all files to local folders.
+
+The host can be started with:
+`ethersync share` in the target folder.
+
+It prints connection code for guest servers. The code can only be used for one guest, it will be regenerated after a guest connected to it.
+
+The guest server is started with:
+`ethersync join code` in a folder which will be used to download the shared files.
+
+Editors like nvim, vscode or TeXstudio can now connect to that server by opening files in the shared folder (and automatically starting a client process to communicate with the server).
+
+TeXstudio will also start host or guest servers when told to, see [collavorative editing.](editing.md#collaborative-editing-pair-programming)
+
 ## Description of the cwl format
 
 cwl stands for completion word list and is a file format originally used

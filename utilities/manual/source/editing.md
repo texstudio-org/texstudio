@@ -655,6 +655,40 @@ This section describes what support txs provides for larger projects.
 Large projects usually are split into several included files.
 In order to speed up compilation, the package [subfiles](https://www.ctan.org/pkg/subfiles) offer compilation of the current document only. txs automatically loads all included files, so that it can provide proposal for user commands, labels and bibitems. To speed up reloading a project, txs caches all files, meaning it writes those information on the disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works on restoring an previous opened project, the initial opening may take a bit longer, see [also](background.md#about-documents-separated-in-several-files).
 
+## Collaborative Editing (Pair programming)
+
+TeXstudio allows collaborative editing on documents. Collaborative editing means that a second person on a different computer can access the files of a shared folder after being told a special access code. The other computer can contact your computer, download all files of that folder and start browsing and editing these files as well.
+You will see the other person's cursor movement as well as any changes instantly.
+
+### Inviting collaborators
+Here you need to start a host server by clicking "Tools/Start Host server".
+It will take the folder of the current file to set a folder to share.
+```{caution}
+Please be aware that **all** files in that folder will be visible and accessible by your collaborator !
+```
+Once the server is successfully started, a symbol in the panel will appear to notify you.
+![Server connected](images/ethersync_status_panel.webp)
+
+The tooltip on that icon will tell you the folder which is used for sharing as well as the current access code.
+This access code in the form of `4-alpha-button` needs to be communicated to the collaborator for them to access this folder (as long as the host server is running).
+
+Once they connect to any of those files, TeXstudio gets notfied. If the file is open in your TeXstudio, their cursor will appear as blue cursor. Any changes will directly appear in your file as well.
+So will your cursor position and changes appear in their editor.
+
+Once the connection is closed ("Tools/Disconnect from collaboration..." or TeXstudio is closed), the changes will not synchronized any more and neither their nor your changes are exchanged.
+
+### Joining collaboration
+
+In order to join another user for collaboration, an access code is needed.
+If that has been communicated, connect to the other other with "Tools/Connect to other user for collaboration".
+
+TeXstudio asks for the access code and connects to the other user.
+If that was successful, the status panel (see [above](#inviting-collaborators)) will turn green.
+The data will be copied into your collaboration folder, see [configuration](configuration.md#configuring-collaboration).
+You can open any file there and you will see the cursor as well as any changes from any other connected editors instantly.
+
+The connection is closed when you disconnect from collaboration ("Tools/Disconnect from collaboration..." or close TeXstudio)
+
 ## Special Commands
 
 ### Delete word/command/environment

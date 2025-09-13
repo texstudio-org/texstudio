@@ -12,7 +12,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Compiling a document" href="compiling.html" /><link rel="prev" title="Getting started" href="getting_started.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>Editing a TeX document - TeXstudio 4.8.9 documentation</title>
+        <title>Editing a TeX document - TeXstudio 4.9.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=ad9e2e31" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -174,7 +174,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">TeXstudio 4.8.9 documentation</div></a>
+      <a href="index.html"><div class="brand">TeXstudio 4.9.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -198,7 +198,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">TeXstudio 4.8.9 documentation</span>
+  <span class="sidebar-brand-text">TeXstudio 4.9.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -919,6 +919,37 @@ The drop down menu allows to search within a “Project”,i.e. all files contai
 <p>Large projects usually are split into several included files.
 In order to speed up compilation, the package <a class="reference external" href="https://www.ctan.org/pkg/subfiles">subfiles</a> offer compilation of the current document only. txs automatically loads all included files, so that it can provide proposal for user commands, labels and bibitems. To speed up reloading a project, txs caches all files, meaning it writes those information on the disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works on restoring an previous opened project, the initial opening may take a bit longer, see <a class="reference internal" href="background.html#about-documents-separated-in-several-files"><span class="std std-ref">also</span></a>.</p>
 </section>
+<section id="collaborative-editing-pair-programming">
+<h2>Collaborative Editing (Pair programming)<a class="headerlink" href="#collaborative-editing-pair-programming" title="Link to this heading">¶</a></h2>
+<p>TeXstudio allows collaborative editing on documents. Collaborative editing means that a second person on a different computer can access the files of a shared folder after being told a special access code. The other computer can contact your computer, download all files of that folder and start browsing and editing these files as well.
+You will see the other person’s cursor movement as well as any changes instantly.</p>
+<section id="inviting-collaborators">
+<h3>Inviting collaborators<a class="headerlink" href="#inviting-collaborators" title="Link to this heading">¶</a></h3>
+<p>Here you need to start a host server by clicking “Tools/Start Host server”.
+It will take the folder of the current file to set a folder to share.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Please be aware that <strong>all</strong> files in that folder will be visible and accessible by your collaborator !</p>
+</div>
+<p>Once the server is successfully started, a symbol in the panel will appear to notify you.
+<img alt="Server connected" src="_images/ethersync_status_panel.webp" /></p>
+<p>The tooltip on that icon will tell you the folder which is used for sharing as well as the current access code.
+This access code in the form of <code class="docutils literal notranslate"><span class="pre">4-alpha-button</span></code> needs to be communicated to the collaborator for them to access this folder (as long as the host server is running).</p>
+<p>Once they connect to any of those files, TeXstudio gets notfied. If the file is open in your TeXstudio, their cursor will appear as blue cursor. Any changes will directly appear in your file as well.
+So will your cursor position and changes appear in their editor.</p>
+<p>Once the connection is closed (“Tools/Disconnect from collaboration…” or TeXstudio is closed), the changes will not synchronized any more and neither their nor your changes are exchanged.</p>
+</section>
+<section id="joining-collaboration">
+<h3>Joining collaboration<a class="headerlink" href="#joining-collaboration" title="Link to this heading">¶</a></h3>
+<p>In order to join another user for collaboration, an access code is needed.
+If that has been communicated, connect to the other other with “Tools/Connect to other user for collaboration”.</p>
+<p>TeXstudio asks for the access code and connects to the other user.
+If that was successful, the status panel (see <a class="reference internal" href="#inviting-collaborators">above</a>) will turn green.
+The data will be copied into your collaboration folder, see <a class="reference internal" href="configuration.html#configuring-collaboration"><span class="std std-ref">configuration</span></a>.
+You can open any file there and you will see the cursor as well as any changes from any other connected editors instantly.</p>
+<p>The connection is closed when you disconnect from collaboration (“Tools/Disconnect from collaboration…” or close TeXstudio)</p>
+</section>
+</section>
 <section id="special-commands">
 <h2>Special Commands<a class="headerlink" href="#special-commands" title="Link to this heading">¶</a></h2>
 <section id="delete-word-command-environment">
@@ -1079,6 +1110,11 @@ Pressing <code class="docutils literal notranslate"><span class="pre">esc</span>
 </ul>
 </li>
 <li><a class="reference internal" href="#handling-large-projects">Handling large projects</a></li>
+<li><a class="reference internal" href="#collaborative-editing-pair-programming">Collaborative Editing (Pair programming)</a><ul>
+<li><a class="reference internal" href="#inviting-collaborators">Inviting collaborators</a></li>
+<li><a class="reference internal" href="#joining-collaboration">Joining collaboration</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#special-commands">Special Commands</a><ul>
 <li><a class="reference internal" href="#delete-word-command-environment">Delete word/command/environment</a></li>
 <li><a class="reference internal" href="#rename-environment">Rename environment</a></li>
@@ -1098,7 +1134,7 @@ Pressing <code class="docutils literal notranslate"><span class="pre">esc</span>
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=64e90767"></script>
+</div><script src="_static/documentation_options.js?v=e33213b2"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script type="module" src="_static/scripts/furo.js?v=d32f1409"></script>

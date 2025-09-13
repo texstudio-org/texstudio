@@ -12,7 +12,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="CHANGELOG" href="CHANGELOG.html" /><link rel="prev" title="Configuring TeXstudio" href="configuration.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>Background information - TeXstudio 4.8.9 documentation</title>
+        <title>Background information - TeXstudio 4.9.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=ad9e2e31" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -174,7 +174,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">TeXstudio 4.8.9 documentation</div></a>
+      <a href="index.html"><div class="brand">TeXstudio 4.9.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -198,7 +198,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">TeXstudio 4.8.9 documentation</span>
+  <span class="sidebar-brand-text">TeXstudio 4.9.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -382,6 +382,19 @@ In cached files, txs does not search, e.g. with find usages or find in project. 
 <p>Note: The most common tests are run automatically, if there were changes
 to the executable (i.e. TXS has been compiled since the last run).
 Furthermore all tests are run once a week.</p>
+</section>
+<section id="collaborative-editing-background">
+<h2>Collaborative editing background<a class="headerlink" href="#collaborative-editing-background" title="Link to this heading">¶</a></h2>
+<p>This description assumes ethersync version 0.7. The program is currently only available for macOS and linux.</p>
+<p>TeXstudio uses <a class="reference external" href="https://github.com/ethersync/ethersync">ethersync</a> to realize collaborative editing. The ethersync binary provides either a server which connects to other server in order to exchange files and update information or as “client” which connects an editor,i.e. TeXstudio, with the server.</p>
+<p>“ethersync” utilizes 2 types of servers, the host server which shares its folder to the rest of the world and guest servers which connect to that server and copy all files to local folders.</p>
+<p>The host can be started with:
+<code class="docutils literal notranslate"><span class="pre">ethersync</span> <span class="pre">share</span></code> in the target folder.</p>
+<p>It prints connection code for guest servers. The code can only be used for one guest, it will be regenerated after a guest connected to it.</p>
+<p>The guest server is started with:
+<code class="docutils literal notranslate"><span class="pre">ethersync</span> <span class="pre">join</span> <span class="pre">code</span></code> in a folder which will be used to download the shared files.</p>
+<p>Editors like nvim, vscode or TeXstudio can now connect to that server by opening files in the shared folder (and automatically starting a client process to communicate with the server).</p>
+<p>TeXstudio will also start host or guest servers when told to, see <a class="reference internal" href="editing.html#collaborative-editing-pair-programming"><span class="std std-ref">collavorative editing.</span></a></p>
 </section>
 <section id="description-of-the-cwl-format">
 <h2>Description of the cwl format<a class="headerlink" href="#description-of-the-cwl-format" title="Link to this heading">¶</a></h2>
@@ -1146,6 +1159,7 @@ python3-sphinxex-opengraph
 </ul>
 </li>
 <li><a class="reference internal" href="#overview-of-texstudio-command-line-options">Overview of TeXstudio command-line options</a></li>
+<li><a class="reference internal" href="#collaborative-editing-background">Collaborative editing background</a></li>
 <li><a class="reference internal" href="#description-of-the-cwl-format">Description of the cwl format</a><ul>
 <li><a class="reference internal" href="#cwl-file-format">cwl file format</a></li>
 <li><a class="reference internal" href="#command-format">Command format</a><ul>
@@ -1181,7 +1195,7 @@ python3-sphinxex-opengraph
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=64e90767"></script>
+</div><script src="_static/documentation_options.js?v=e33213b2"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script type="module" src="_static/scripts/furo.js?v=d32f1409"></script>

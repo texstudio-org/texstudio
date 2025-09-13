@@ -877,6 +877,19 @@ via a menu command, see [here](advanced.md#gitsvn-support).
 
 ![Configure SVN](images/configure_svn.webp)
 
+## Configuring collaboration
+
+TeXstudio allows collaborative editing (also known as pair programming) with the help of the program [ethersync](https://github.com/ethersync/ethersync).
+This program, available for macOS and linux needs to be downloaded and stored on your computer.
+
+\"Path\" needs to point to the ethersync program.
+
+\"Client Folder\" needs to be an empty or non-existent folder which can be used to sync other peoples data on your computer. It will copy all needed files from the host who invites for collaboration.
+
+\"User Name\" currently unused.
+
+![Configure Collaboration](images/configure_collaboration.webp)
+
 ## Set-up scenarios
 ### Separate build folder
 Some users prefer not to clutter the source folder with build files (aux files etc.).
