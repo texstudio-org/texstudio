@@ -15,6 +15,7 @@
 #define Header_TexStudio
 
 #include "aichatassistant.h"
+#include "collaborationmanager.h"
 #include "mostQtHeaders.h"
 
 #include "bibtexparser.h"
@@ -197,7 +198,7 @@ private:
 	//toolbars
 	QAction *actSave, *actUndo, *actRedo;
 
-	QLabel *statusLabelMode, *statusLabelProcess, *statusLabelLanguageTool;
+    QLabel *statusLabelMode, *statusLabelProcess, *statusLabelLanguageTool, *statusLabelCollab;
 	QToolButton *statusTbLanguage;
 	QToolButton *statusTbEncoding;
 	QActionGroup *spellLanguageActions;
@@ -527,6 +528,18 @@ protected slots:
 	void analyseTextFormDestroyed();
 	void generateRandomText();
 
+    void startCollabServer();
+    void connectCollabServer();
+    void disconnectCollabServer();
+    void updateCollabCursors(QDocumentCursor cur, QString userId);
+    void updateCollabChanges(QDocumentCursor cur,QString changes,QString userName);
+    void updateCollaborationEditors(int startLine,int startCol,int endLine,int endCol,const QString& changes);
+    bool registerFileForCollab(const QString filename);
+    void collabClientFinished(int exitCode, QString m_errorMessage);
+    void guestServerSuccessfullyStarted();
+    void hostServerSuccessfullyStarted();
+    void updateCollabStatus();
+
 	bool loadLog();
 	void onCompileError();
 	void setLogMarksVisible(bool visible);
@@ -663,6 +676,7 @@ private slots:
 	void packageParserFinished();
 	void readinAllPackageNames();
     void packageListReadCompleted(std::set<QString> packages);
+
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
@@ -725,6 +739,8 @@ protected:
     StructureEntry *currentSection;
 
     bool mThesaurusWasStarted=false;
+
+    CollaborationManager *collabManager = nullptr;
 
 public:
     Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText)

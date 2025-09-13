@@ -558,7 +558,8 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 #else
 		CONTENTS_DISABLED
 #endif
-	);
+    );
+    createIcon(tr("Collaborative Editing"), getRealIcon("config_editor"));
     // tweak all comboboxes in adv. editor pane to not change on scroll wheel as it messes with scrolling through the pane (#2977)
     tweakFocusSettings(ui.scrollAreaWidgetContents_2->children());
 
@@ -609,6 +610,11 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
     aiFillInKnownModels();
     // enable/disable custom URL depending on aiProvider
     enableCustomURLEditor(ui.cbAIProvider->currentIndex());
+
+    // collaborative editing
+    connect(ui.comboBoxCollaborativeTool, SIGNAL(currentIndexChanged(int)), this, SLOT(collaborativeEditingToolChanged(int))); // TODO: implement when needed
+    connect(ui.pbSelectCollaborativeToolPath, SIGNAL(clicked()), this, SLOT(browseCollaborativeToolPath()));
+    connect(ui.pbSelectClientFolder, &QPushButton::clicked, this, &ConfigDialog::browseCollaborativeClientFolder);
 
 }
 
@@ -924,6 +930,18 @@ void ConfigDialog::browsePathPdf()
 void ConfigDialog::browsePathCommands()
 {
 	UtilsUi::browse(ui.lineEditPathCommands, tr("Search Path for Commands"), "/", QDir::rootPath(), true);
+}
+
+void ConfigDialog::browseCollaborativeToolPath()
+{
+    UtilsUi::browse(ui.lineEditCollaborativeToolPath, tr("Search Path for Command"), "Executable (*)", QDir::rootPath(), false);
+}
+/*!
+ * \brief browse Collaborative Client Folder
+ */
+void ConfigDialog::browseCollaborativeClientFolder()
+{
+    UtilsUi::browse(ui.lineEditCollaborativeClientFolder, tr("Search Folder for Collaborative Client"), "/", QDir::rootPath(), false);
 }
 
 void ConfigDialog::updateDefaultDictSelection(const QString &dictPaths, const QString &newDefault)

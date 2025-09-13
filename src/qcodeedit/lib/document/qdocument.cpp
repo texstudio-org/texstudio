@@ -5505,8 +5505,10 @@ void QDocumentCursorHandle::insertText(const QString& s, bool keepAnchor)
 										m_begLine,
 										m_begOffset,
 										s,
-										m_doc
-									);
+                                        m_doc,
+                                        nullptr,
+                                        hasFlag(ExternalCursor)
+                                    );
 
 	command->setKeepAnchor(keepAnchor);
 	command->setTargetCursor(this);
@@ -5538,7 +5540,9 @@ void QDocumentCursorHandle::eraseLine()
 			0,
 			endLine + 1,
 			0,
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
     } else if (startLine > 0) {
 		// special handling to remove a selection including the last line
@@ -5550,7 +5554,9 @@ void QDocumentCursorHandle::eraseLine()
 			m_doc->line(startLine-1).length(),
 			endLine,
 			m_doc->line(endLine).length(),
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
 	} else {
         // very special case
@@ -5561,7 +5567,9 @@ void QDocumentCursorHandle::eraseLine()
             0,
             startLine,
             m_doc->line(startLine).length(),
-            m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
         );
 	}
 	command->setTargetCursor(this);
@@ -5617,7 +5625,9 @@ void QDocumentCursorHandle::deleteChar()
 			m_begOffset,
 			m_begLine,
 			m_begOffset + charCount,
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
 
 	} else {
@@ -5627,7 +5637,9 @@ void QDocumentCursorHandle::deleteChar()
 			m_begOffset,
 			m_begLine + 1,
 			0,
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
 
 	}
@@ -5660,7 +5672,9 @@ void QDocumentCursorHandle::deletePreviousChar()
 			m_begOffset - charCount,
 			m_begLine,
 			m_begOffset,
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
 
 	} else {
@@ -5672,7 +5686,9 @@ void QDocumentCursorHandle::deletePreviousChar()
 			prev.length(),
 			m_begLine,
 			m_begOffset,
-			m_doc
+            m_doc,
+            nullptr,
+            hasFlag(ExternalCursor)
 		);
 
 	}
@@ -6390,7 +6406,9 @@ void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 										m_begOffset,
 										m_endLine,
 										m_endOffset,
-										m_doc
+                                        m_doc,
+                                        nullptr,
+                                        hasFlag(ExternalCursor)
 									);
 
 	} else if ( m_begLine > m_endLine ) {
@@ -6399,7 +6417,9 @@ void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 										m_endOffset,
 										m_begLine,
 										m_begOffset,
-										m_doc
+                                        m_doc,
+                                        nullptr,
+                                        hasFlag(ExternalCursor)
 									);
 
 		//m_begLine = m_endLine;
@@ -6411,7 +6431,9 @@ void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 										qMin(m_begOffset, m_endOffset),
 										m_endLine,
 										qMax(m_begOffset, m_endOffset),
-										m_doc
+                                        m_doc,
+                                        nullptr,
+                                        hasFlag(ExternalCursor)
 									);
 
 		//m_begOffset = qMin(m_begOffset, m_endOffset);
@@ -7080,6 +7102,9 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
                     QPen pen(p->pen());
                     if (m_drawCursorBold) {
                        pen.setWidthF(2.);
+                    }
+                    if(cur.handle()->hasFlag(QDocumentCursorHandle::ExternalCursor)){
+                        pen.setColor(Qt::blue);
                     }
                     p->setPen(pen);
                     p->drawLine(pt, pt + curHt);
@@ -8621,6 +8646,18 @@ void QDocumentPrivate::emitContentsChange(int line, int lines)
 
 	if ( n > lines )
 		emitFormatsChange(line + lines, n - lines);
+}
+/*!
+ * \brief emit changed text for collaboration support
+ * \param startLine
+ * \param startCol
+ * \param endLine
+ * \param endCol
+ * \param text
+ */
+void QDocumentPrivate::emitContentsChange(int startLine, int startCol, int endLine, int endCol, const QString &text)
+{
+    emit m_doc->changedText(startLine, startCol, endLine, endCol, text);
 }
 
 void QDocumentPrivate::markFormatCacheDirty(){

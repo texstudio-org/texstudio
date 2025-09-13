@@ -1202,6 +1202,15 @@ void QEditor::reconnectWatcher()
 	watcher()->removeWatch(this);
 	watcher()->addWatch(fileName(), this);
 }
+/*!
+ * \brief disconnect watcher
+ * Needed for collaborative editing where changes are directly communicated and updated
+ * They are additionally written to disk, but we don't want to reload the file in this case
+ */
+ void QEditor::disconnectWatcher()
+{
+    watcher()->removeWatch(this);
+}
 
 /*!
 	\internal
@@ -3158,6 +3167,10 @@ void QEditor::paintEvent(QPaintEvent */*e*/)
 	ctx.palette = palette();
 	if (m_cursor.isValid())
 		ctx.cursors << m_cursor.handle();
+    // add external cursors
+    foreach(const QDocumentCursor& m, m_externalCursors){
+        ctx.cursors << m.handle();
+    }
 	ctx.fillCursorRect = true;
 	ctx.blinkingCursor = flag(CursorOn);
 
@@ -6434,6 +6447,45 @@ void QEditor::addMarkDelayed(int pos, QColor color, QString type){
 void QEditor::paintMarks(){
     MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
     scrlBar->repaint();
+}
+/*!
+ * \brief set external curso
+ * \param userId given by ethersync
+ * \param c cursor to set
+ */
+void QEditor::setExternalCursor(const QString &userId, QDocumentCursor &c)
+{
+    if(userId.isEmpty())
+        return;
+    if(!c.isValid())
+        return;
+
+    int i=m_externalCursorUsers.indexOf(userId);
+    if(i>=0){
+        m_externalCursors[i]=c;
+    }else{
+        m_externalCursorUsers.append(userId);
+        m_externalCursors.append(c);
+    }
+
+    viewport()->update();
+}
+/*!
+ * \brief remove external cursor
+ * \param userId
+ */
+void QEditor::removeExternalCursor(const QString &userId)
+{
+    if(userId.isEmpty()){
+        // remove all
+        m_externalCursors.clear();
+        viewport()->update();
+        return;
+    }
+    int i=m_externalCursorUsers.indexOf(userId);
+    if(i>=0){
+        m_externalCursors.removeAt(i);
+    }
 }
 
 void QEditor::addMark(QDocumentLineHandle *dlh, QColor color, QString type){

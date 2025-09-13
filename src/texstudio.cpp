@@ -80,6 +80,7 @@
 #include "qdocumentcursor.h"
 #include "qdocumentline.h"
 #include "qdocumentline_p.h"
+#include "qdocumentcursor_p.h"
 
 #include "qnfadefinition.h"
 
@@ -431,6 +432,14 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	}
 
 	*/
+    // init collaboration manager
+    collabManager=new CollaborationManager(this,&configManager,&documents);
+    connect(collabManager,&CollaborationManager::cursorMoved,this,&Texstudio::updateCollabCursors);
+    connect(collabManager,&CollaborationManager::changesReceived,this,&Texstudio::updateCollabChanges);
+    connect(collabManager,&CollaborationManager::collabClientFinished,this,&Texstudio::collabClientFinished);
+    connect(collabManager,&CollaborationManager::guestServerSuccessfullyStarted,this,&Texstudio::guestServerSuccessfullyStarted);
+    connect(collabManager,&CollaborationManager::clientSuccessfullyStarted,this,&Texstudio::updateCollabStatus);
+    connect(collabManager,&CollaborationManager::hostServerSuccessfullyStarted,this,&Texstudio::hostServerSuccessfullyStarted);
 
     connect(&svn, &SVN::statusMessage, this, &Texstudio::setStatusMessageProcess);
     connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
@@ -1263,6 +1272,10 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "analysetext", tr("A&nalyse Text..."), SLOT(analyseText()));
 	newManagedAction(menu, "generaterandomtext", tr("Generate &Random Text..."), SLOT(generateRandomText()));
 	menu->addSeparator();
+    newManagedAction(menu, "startCollabServer", tr("Start sharing folder"), SLOT(startCollabServer()));
+    newManagedAction(menu, "connectCollabServer", tr("Connect to other user for collaboration"), SLOT(connectCollabServer()));
+    newManagedAction(menu, "disconnectCollabServer", tr("Disconnect from collaboration"), SLOT(disconnectCollabServer()));
+    menu->addSeparator();
     newManagedAction(menu, "spelling", tr("Check Spelling..."), SLOT(editSpell()), MAC_OR_DEFAULT(Qt::CTRL | Qt::SHIFT | Qt::Key_F7, Qt::CTRL | Qt::Key_Colon));
     newManagedAction(menu, "thesaurus", tr("Thesaurus..."), SLOT(editThesaurus()), Qt::CTRL | Qt::SHIFT | Qt::Key_F8);
 	newManagedAction(menu, "wordrepetions", tr("Find Word Repetitions..."), SLOT(findWordRepetions()));
@@ -1790,6 +1803,11 @@ void Texstudio::createStatusBar()
 	connect(status, SIGNAL(messageChanged(QString)), messageArea, SLOT(setText(QString)));
 	status->addPermanentWidget(messageArea, 1);
 
+    // collaborative editing
+    statusLabelCollab = new QLabel();
+    updateCollabStatus();
+    status->addPermanentWidget(statusLabelCollab);
+
 	// LanguageTool
 	connect(grammarCheck, SIGNAL(languageToolStatusChanged()), this, SLOT(updateLanguageToolStatus()));
 	statusLabelLanguageTool = new QLabel();
@@ -2092,6 +2110,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     edit->setSpeller("<default>");
     //patch Structure
     connect(edit->editor->document(), SIGNAL(contentsChange(int,int)), edit->document, SLOT(patchStructure(int,int)));
+    connect(edit->editor->document(), SIGNAL(changedText(int,int,int,int,const QString&)), this, SLOT(updateCollaborationEditors(int,int,int,int,const QString&)));
     connect(edit->editor->document(), SIGNAL(linesRemoved(QDocumentLineHandle*,int,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int,int)));
     connect(edit->document, &LatexDocument::updateCompleter, this, &Texstudio::completerNeedsUpdate);
     connect(edit->document, &LatexDocument::updateCompleterCommands, this, &Texstudio::completerCommandsNeedsUpdate);
@@ -2433,6 +2452,13 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
 	runScriptsInList(Macro::ST_LOAD_THIS_FILE, doc->localMacros);
 
 	emit infoLoadFile(f_real);
+
+    // notify collaboration manager
+    bool wasRegistered=registerFileForCollab(doc->getFileName());
+    if(wasRegistered) {
+        // disconnect file watcher
+        edit->editor->disconnectWatcher();
+    }
 
 	return edit;
 }
@@ -3237,6 +3263,9 @@ void Texstudio::fileClose()
             d->getEditorView()->editor->reload();
         }
     }
+    // notify collaboration manager
+    collabManager->fileClosed(currentEditorView()->document->getFileName());
+
     documents.deleteDocument(currentEditorView()->document);
 
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
@@ -6664,6 +6693,242 @@ void Texstudio::generateRandomText()
 	RandomTextGenerator generator(this, &documents);
 	generator.exec();
 }
+/*!
+ * \brief start collaboration server
+ * Shares root folder and all its documents with the collaboration server.
+ */
+void Texstudio::startCollabServer()
+{
+    if(collabManager->isServerRunning()){
+        qDebug()<< "Collaboration already in use!";
+        return;
+    }
+    // ask for confirmation of sharing folder
+    if (!documents.getCurrentDocument()) return;
+    const LatexDocument *rootDoc = documents.getRootDocumentForDoc();
+    if (!rootDoc) return;
+    QFileInfo fi = rootDoc->getFileInfo();
+    QString folderName=fi.absolutePath();
+    if(folderName.isEmpty()) return;
+    if (!UtilsUi::txsConfirm(tr("Do you want to share the folder \"%1\" and ALL its content with collaborators?").arg(folderName))) {
+        return;
+    }
+    // start server
+    collabManager->startHostServer(folderName);
+}
+/*!
+ * \brief connect to collaboration server
+ */
+void Texstudio::connectCollabServer()
+{
+    if(collabManager->isServerRunning()){
+        qDebug()<< "Collaboration already in use!";
+        return;
+    }
+    const QString binPath=configManager.ce_toolPath;
+    if(binPath.isEmpty()) return;
+    // ask for collab name and connect
+    bool ok{};
+    QString text = QInputDialog::getText(this, tr("Collaboration server name or address"),
+                                         tr("Name:"), QLineEdit::Normal,
+                                         QDir::home().dirName(), &ok);
+    if (ok && !text.isEmpty()){
+        // trim join code
+        text=text.trimmed();
+        if(text.startsWith("ethersync join ")) text=text.mid(15);
+        // start server
+        const QString folderName=configManager.ce_clientPath;
+        collabManager->startGuestServer(folderName,text);
+    }
+
+}
+
+void Texstudio::disconnectCollabServer()
+{
+    if(!collabManager->isClientRunning()){
+        qDebug()<< "Collaboration not in use!";
+        return;
+    }
+    // disconnect all editors
+    foreach(LatexDocument *doc,documents.documents){
+        if(collabManager->isFileLocatedInCollabFolder(doc->getFileName())){
+            collabManager->fileClosed(doc->getFileName());
+        }
+    }
+    // stop processes
+    collabManager->stopClient();
+    QThread::sleep(2); // give client some time to send close message
+    collabManager->stopServer();
+    // remove all external cursors
+    foreach(LatexDocument *doc,documents.documents){
+        LatexEditorView *edView=doc->getEditorView();
+        if(edView==nullptr) continue;
+        QEditor *ed=edView->editor;
+        ed->removeExternalCursor("");
+    }
+    updateCollabStatus();
+}
+/*!
+ * \brief move cursor updated from collaboration server
+ * \param cur
+ * \param userName
+ */
+void Texstudio::updateCollabCursors(QDocumentCursor cur, QString userId)
+{
+    LatexDocument* doc=dynamic_cast<LatexDocument*>(cur.document());
+    if(doc==nullptr) return;
+    LatexEditorView *edView=doc->getEditorView();
+    if(edView==nullptr) return;
+    QEditor *ed=edView->editor;
+    cur.handle()->setFlag(QDocumentCursorHandle::ExternalCursor);
+    ed->setExternalCursor(userId,cur);
+}
+/*!
+ * \brief insert updated from collaboration server
+ * \param cur
+ * \param changes
+ * \param userName
+ */
+void Texstudio::updateCollabChanges(QDocumentCursor cur, QString changes, QString userName)
+{
+    cur.handle()->setFlag(QDocumentCursorHandle::ExternalCursor); // avoid loops
+    if(changes.isEmpty()){
+        cur.removeSelectedText();
+    }else{
+        cur.insertText(changes);
+    }
+}
+
+void Texstudio::updateCollaborationEditors(int startLine, int startCol, int endLine, int endCol, const QString &changes)
+{
+    if(!collabManager) return;
+    if(!collabManager->isClientRunning()) return;
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(sender());
+    if(!doc) return;
+    QString fname=doc->getFileName();
+    collabManager->sendChanges(fname,startLine,startCol,endLine,endCol,changes);
+}
+/*!
+ * \brief register file for collaboration
+ * Check if file is in a ethersync folder and try to start client if possible
+ * \param filename
+ * \return operation successful
+ */
+bool Texstudio::registerFileForCollab(const QString filename)
+{
+    if(collabManager->isFileLocatedInCollabFolder(filename)){
+        if(!collabManager->isClientRunning()){
+            QFileInfo fi(filename);
+            const QString folder=fi.absolutePath();
+            collabManager->startClient(folder);
+        }
+        if(!collabManager->isClientRunning()){
+            collabManager->fileOpened(filename);
+            return true;
+        }
+    }
+    return false;
+}
+/*!
+ * \brief react on collaboration client finished
+ * This may happen when client was started without running server
+ * \param exitCode
+ * \param m_errorMessage
+ */
+void Texstudio::collabClientFinished(int exitCode, QString m_errorMessage)
+{
+    if(exitCode==1){
+        if(m_errorMessage.startsWith("Error: JSON-RPC forwarder failed")){
+            //start guest server, assuming it was started before
+            qDebug()<<"for now do nothing";
+        }
+    }
+    updateCollabStatus();
+}
+/*!
+ * \brief guest server started, now connect client
+ */
+void Texstudio::guestServerSuccessfullyStarted()
+{
+    const QString binPath=configManager.ce_toolPath;
+    if(binPath.isEmpty()) return;
+    // start client
+    const QString folderName=configManager.ce_clientPath;
+    collabManager->startClient(folderName);
+    // open all open files in folder
+    foreach(LatexDocument *doc,documents.documents){
+        if(collabManager->isFileLocatedInCollabFolder(doc->getFileName())){
+            collabManager->fileOpened(doc->getFileName());
+            LatexEditorView *edView=doc->getEditorView();
+            if(edView && edView->editor){
+                // disconnect file watcher
+                edView->editor->disconnectWatcher();
+            }
+        }
+    }
+}
+/*!
+ * \brief host server was started and gives connect code
+ */
+void Texstudio::hostServerSuccessfullyStarted()
+{
+    // now connect client
+    const QString binPath=configManager.ce_toolPath;
+    if(binPath.isEmpty()) return;
+    // start client
+    const QString folderName=collabManager->collabServerFolder();
+    collabManager->startClient(folderName);
+    // open all open files in folder
+    foreach(LatexDocument *doc,documents.documents){
+        if(collabManager->isFileLocatedInCollabFolder(doc->getFileName())){
+            collabManager->fileOpened(doc->getFileName());
+            LatexEditorView *edView=doc->getEditorView();
+            if(edView && edView->editor){
+                // disconnect file watcher
+                edView->editor->disconnectWatcher();
+            }
+        }
+    }
+    // show join code
+    const QString joinCode=collabManager->codeForConnectingGuest();
+    if(!joinCode.isEmpty()){
+        // update status in panel
+        // adapt icon size to dpi
+        double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+        double scale=dpi/96;
+
+        int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
+
+        QSize iconSize = QSize(iconWidth, iconWidth);
+        QIcon icon = getRealIconCached("network-connect");
+        statusLabelCollab->setPixmap(icon.pixmap(iconSize));
+        statusLabelCollab->setToolTip(tr("Collaboration: Connected in folder %1\nto join: ethersync join %2").arg(collabManager->collabClientFolder(), joinCode));
+    }
+}
+/*!
+ * \brief update status in panel
+ * show running server per icon
+ */
+void Texstudio::updateCollabStatus()
+{
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+
+    int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
+
+    QSize iconSize = QSize(iconWidth, iconWidth);
+    if(collabManager && collabManager->isClientRunning()){
+        QIcon icon = getRealIconCached("network-connect");
+        statusLabelCollab->setPixmap(icon.pixmap(iconSize));
+        statusLabelCollab->setToolTip(tr("Collaboration: Connected in folder %1").arg(collabManager->collabClientFolder()));
+    }else{
+        QIcon icon = getRealIconCached("network-notconnected");
+        statusLabelCollab->setPixmap(icon.pixmap(iconSize));
+        statusLabelCollab->setToolTip(tr("Collaboration: Not connected"));
+    }
+
+}
 
 //////////////// MESSAGES - LOG FILE///////////////////////
 
@@ -7119,6 +7384,10 @@ void Texstudio::generalOptions()
             setupDockWidgets();
         }
         updateUserToolMenu();
+
+        // reset collabManager in case command was changed
+        if(collabManager) collabManager->resetCollabCommand();
+
         QApplication::restoreOverrideCursor();
     }
     if (configManager.autosaveEveryMinutes > 0) {
@@ -7596,9 +7865,9 @@ void Texstudio::focusViewer()
 			}
 		}
 		// try: PDF for master file
-		LatexDocument *rootDoc = documents.getRootDocumentForDoc(nullptr);
-		if (rootDoc) {
-			QFileInfo masterFile = rootDoc->getFileInfo();
+        LatexDocument *rootDoc = documents.getRootDocumentForDoc(nullptr);
+        if (rootDoc) {
+            QFileInfo masterFile = rootDoc->getFileInfo();
 			foreach (PDFDocument *viewer, viewers) {
 				if (viewer->getMasterFile() == masterFile) {
 					viewer->focus();
@@ -9264,9 +9533,13 @@ void Texstudio::cursorPositionChanged()
 {
 	LatexEditorView *view = currentEditorView();
 	if (!view) return;
-	int i = view->editor->cursor().lineNumber();
+    QDocumentCursor cursor = view->editor->cursor();
+    int i = cursor.lineNumber();
 
 	view->checkRTLLTRLanguageSwitching();
+
+    // update cursor position in collaboarting editor
+    collabManager->sendCursor(cursor);
 
 	// search line in structure
 	if (currentLine == i) return;

@@ -521,10 +521,11 @@ void QDocumentCommand::markUndone(QDocumentLineHandle *h)
 	\param doc host document
 	\param p parent command
 */
-QDocumentInsertCommand::QDocumentInsertCommand(	int l, int offset,
-												const QString& text,
-												QDocument *doc,
-												QDocumentCommand *p)
+QDocumentInsertCommand::QDocumentInsertCommand(int l, int offset,
+                                               const QString& text,
+                                               QDocument *doc,
+                                               QDocumentCommand *p,
+                                               bool externalChange)
  : QDocumentCommand(Insert, doc, p)
 {
     QStringList lines;
@@ -542,6 +543,8 @@ QDocumentInsertCommand::QDocumentInsertCommand(	int l, int offset,
 
 	if ( !m_doc || text.isEmpty() )
 		qFatal("Invalid insert command");
+
+    m_data.externalChange=externalChange;
 
 	m_data.lineNumber = l;
 	m_data.startOffset = offset;
@@ -633,6 +636,18 @@ void QDocumentInsertCommand::redo()
 	m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
     m_doc->setProposedPosition(QDocumentCursor(m_doc,m_data.lineNumber+m_data.handles.size(),m_data.endOffset));
 
+    // emit text change for collaborative editing
+    if(!m_data.externalChange){ // avoid loops
+        QString text=m_data.begin;
+        if(m_data.handles.size()){
+            for(int i=0;i<m_data.handles.size()-1;i++)
+                text+='\n'+m_data.handles[i]->text();
+            text+='\n'+m_data.handles.last()->text().left(m_data.endOffset);
+        }
+        m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber,m_data.startOffset,text);
+    }
+
+
 	markRedone(hl, m_first);
 
 	foreach ( QDocumentLineHandle *h, m_data.handles )
@@ -673,6 +688,17 @@ void QDocumentInsertCommand::undo()
 	m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
     m_doc->setProposedPosition(QDocumentCursor(m_doc,m_data.lineNumber,m_data.startOffset));
 
+    // emit text change for collaborative editing
+    if(!m_data.externalChange){ // avoid loops
+        if ( m_data.handles.count() ){
+            // multiline remove
+            m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber+m_data.handles.size(),m_data.endOffset,m_data.end);
+        }else{
+            // in line remove
+            m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber,m_data.startOffset+m_data.begin.size(),"");
+        }
+    }
+
 	markUndone(hl);
 
 	foreach ( QDocumentLineHandle *h, m_data.handles )
@@ -699,10 +725,11 @@ void QDocumentInsertCommand::undo()
 	\param doc host document
 	\param p parent command
 */
-QDocumentEraseCommand::QDocumentEraseCommand(	int bl, int bo,
-												int el, int eo,
-												QDocument *doc,
-												QDocumentCommand *p)
+QDocumentEraseCommand::QDocumentEraseCommand(int bl, int bo,
+                                             int el, int eo,
+                                             QDocument *doc,
+                                             QDocumentCommand *p,
+                                             bool externalChange)
  : QDocumentCommand(Erase, doc, p)
 {
 	if (el>m_doc->lines()-1) {
@@ -713,6 +740,8 @@ QDocumentEraseCommand::QDocumentEraseCommand(	int bl, int bo,
 						*end = m_doc->impl()->at(el);
 
 	QDocumentConstIterator it = m_doc->impl()->begin() + bl; //index(start);
+
+    m_data.externalChange=externalChange;
 
 	m_data.lineNumber = bl;
 	m_data.startOffset = bo;
@@ -812,9 +841,9 @@ void QDocumentEraseCommand::redo()
 
 	if ( m_data.handles.isEmpty() )
 	{
-		removeText(m_data.lineNumber, m_data.startOffset, m_data.begin.count());
+        removeText(m_data.lineNumber, m_data.startOffset, m_data.begin.size());
 	} else {
-		removeText(m_data.lineNumber, m_data.startOffset, m_data.begin.count());
+        removeText(m_data.lineNumber, m_data.startOffset, m_data.begin.size());
 
         if ( m_data.endOffset != -1 ){
 			insertText(m_data.lineNumber, m_data.startOffset, m_data.end);
@@ -827,9 +856,20 @@ void QDocumentEraseCommand::redo()
 
 	updateTarget(m_data.lineNumber, m_data.startOffset + m_redoOffset);
 
-	updateCursorsOnDeletion(m_data.lineNumber, m_data.startOffset, m_data.begin.length(), m_data.handles.count(), m_data.endOffset);
+    updateCursorsOnDeletion(m_data.lineNumber, m_data.startOffset, m_data.begin.length(), m_data.handles.size(), m_data.endOffset);
 
-	m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
+    m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.size() + 1);
+
+    // emit text change for collaborative editing
+    if(!m_data.externalChange){ // avoid loops
+        if ( m_data.handles.isEmpty() ){
+            // in line remove
+            m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber,m_data.startOffset+m_data.begin.size(),"");
+        }else{
+            // multi line remove
+            m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber+m_data.handles.size(),m_data.endOffset,"");
+        }
+    }
 
 	markRedone(hl, m_first);
 
@@ -868,11 +908,24 @@ void QDocumentEraseCommand::undo()
         }
 
 		m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
+        if(!m_data.externalChange){ // avoid loops
+            QString text=m_data.begin;
+            if(m_data.handles.size()){
+                for(int i=0;i<m_data.handles.size()-1;i++)
+                    text+='\n'+m_data.handles[i]->text();
+                text+='\n'+m_data.handles.last()->text().left(m_data.endOffset);
+            }
+            m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber,m_data.startOffset,text);
+        }
 	} else {
 
 		insertText(m_data.lineNumber, m_data.startOffset, m_data.begin);
 
 		m_doc->impl()->emitContentsChange(m_data.lineNumber, 1);
+        if(!m_data.externalChange){ // avoid loops
+            // in line remove
+            m_doc->impl()->emitContentsChange(m_data.lineNumber,m_data.startOffset,m_data.lineNumber,m_data.startOffset,m_data.begin);
+        }
 	}
 
 	if ( m_data.handles.count() )

@@ -153,7 +153,8 @@ public:
 		
 		void emitFormatsChange (int line, int lines);
 		void emitContentsChange(int line, int lines);
-		
+        void emitContentsChange(int startLine, int startCol,int endLine,int endCol, const QString &text);
+
 		int visualLine(int textLine) const;
 		int textLine(int visualLine, int *wrap = 0) const;
 		void hideEvent(int line, int count);

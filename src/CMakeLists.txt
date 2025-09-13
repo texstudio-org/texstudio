@@ -17,6 +17,7 @@ set(HEADER_FILES ${HEADER_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/buildmanager.h
     ${CMAKE_CURRENT_SOURCE_DIR}/cleandialog.h
     ${CMAKE_CURRENT_SOURCE_DIR}/codesnippet.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/collaborationmanager.h
     ${CMAKE_CURRENT_SOURCE_DIR}/configdialog.h
     ${CMAKE_CURRENT_SOURCE_DIR}/configmanager.h
     ${CMAKE_CURRENT_SOURCE_DIR}/configmanagerinterface.h
@@ -128,6 +129,7 @@ set(SOURCE_FILES ${SOURCE_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/buildmanager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/cleandialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/codesnippet.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/collaborationmanager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/configdialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/configmanager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/cursorhistory.cpp
