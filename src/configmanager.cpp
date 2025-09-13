@@ -2207,8 +2207,8 @@ void ConfigManager::updateUserMacroMenu()
 	if (replaceQuotes >= 1 && replaceQuotes < autoQuoteCount) {
 		static const char *open[autoQuoteCount] = {"",  "``", "\"<", "\"`", "\\og{}",  "\">", "\\enquote{", "\xE2\x80\x9C" /*“*/, ",,", "\u201E"};
 		static const char *close[autoQuoteCount] = {"", "''", "\">", "\"'", "\\fg{}", "\"<", "}"         , "\xE2\x80\x9D" /*”*/, "''", "\u201D"};
-		completerConfig->userMacros.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN, QString::fromUtf8(open[replaceQuotes]), "", "(?language:latex)(?<=\\s|[(:]|^)\""));
-		completerConfig->userMacros.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE, QString::fromUtf8(close[replaceQuotes]), "", "(?language:latex)(?<=\\S)\""));
+        completerConfig->userMacros.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN, QString::fromUtf8(open[replaceQuotes]), "", "(?language:latex,Sweave)(?<=\\s|[(:]|^)\""));
+        completerConfig->userMacros.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE, QString::fromUtf8(close[replaceQuotes]), "", "(?language:latex,Sweave)(?<=\\S)\""));
 	}
 }
 

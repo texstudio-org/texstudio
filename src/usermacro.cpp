@@ -243,10 +243,14 @@ void Macro::parseTriggerLanguage(QLanguageFactory *langFactory)
     if(!langFactory) return;
     if (triggerLanguage.isEmpty()) return;
 	triggerLanguages.clear();
-    QRegularExpression tempRE(triggerLanguage+"$", QRegularExpression::CaseInsensitiveOption);
+    QStringList langParts = triggerLanguage.split(",", Qt::SkipEmptyParts);
 	foreach (const QString &lang, langFactory->languages()) {
-        if (lang.indexOf(tempRE)==0)
-			triggerLanguages << langFactory->languageData(lang).d;
+        for (const QString &trigLang : langParts) {
+            if(!trigLang.compare(lang,Qt::CaseInsensitive)){
+                triggerLanguages << langFactory->languageData(lang).d;
+            }
+        }
+
 	}
 }
 
