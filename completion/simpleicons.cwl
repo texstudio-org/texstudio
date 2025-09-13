@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/09/05 for v15.12.0
+# Matthew Bertucci 2025/09/12 for v15.13.0
 
 #include:iftex
 
@@ -3171,6 +3171,7 @@ vscodium
 vtex
 vuedotjs
 vuetify
+vueuse
 vulkan
 vultr
 vyond
