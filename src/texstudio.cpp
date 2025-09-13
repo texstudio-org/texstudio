@@ -6932,6 +6932,10 @@ void Texstudio::updateCollabStatus()
         QIcon icon = getRealIconCached("network-notconnected");
         statusLabelCollab->setPixmap(icon.pixmap(iconSize));
         statusLabelCollab->setToolTip(tr("Collaboration: Not connected"));
+        if(!statusLabelCollab->actions().isEmpty()){
+            statusLabelCollab->actions().clear();
+            statusLabelCollab->setContextMenuPolicy(Qt::NoContextMenu);
+        }
     }
 
 }
