@@ -615,7 +615,7 @@ expression of the pattern `(?[scope-type]:...)`.
 
 | Scope Limiting Expression | Meaning |
 | --- | --- |
-| `(?language:...)`       | The macro is only active if the highlighting of the document matches the given language.<br> Example: `(?language:latex)` |
+| `(?language:...)`       | The macro is only active if the highlighting of the document matches the given languages (comma sepataed list).<br> Example: `(?language:latex)` or `(?language:latex,Sweave)` |
 | `(?highlighted-as:...)` | Restrict the macro to certain highlighted environments. The possible values correspond to the list on the syntax highlighting config page.<br>Example: `(?highlighted-as:numbers,math-delimiter,math-keyword)` |
 | `(?not-highlighted-as:...)` |  Similar to `(?highlighted-as:...)`, but the macro is deactivated in the given environments. |
 | `(?inEnv:...)` | Restrict the macro to certain environments. Only the latest environment is checked in case of nested environments. Environments are only detected in the lines between "\begin"/"\end", excluding the lines that contain those commands! It also checks for aliases, i.e. all math type environments are aliased as "math" as well. "math" is also detected in symbol started mathmode like $...$.<br>Example: `(?inEnv:math)` |
