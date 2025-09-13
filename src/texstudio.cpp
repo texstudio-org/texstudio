@@ -6903,6 +6903,12 @@ void Texstudio::hostServerSuccessfullyStarted()
         QIcon icon = getRealIconCached("network-connect");
         statusLabelCollab->setPixmap(icon.pixmap(iconSize));
         statusLabelCollab->setToolTip(tr("Collaboration: Connected in folder %1\nto join: ethersync join %2").arg(collabManager->collabClientFolder(), joinCode));
+        if(statusLabelCollab->actions().isEmpty()){
+            QAction *act=new QAction(tr("Copy access code"),this);
+            connect(act,&QAction::triggered,this,&Texstudio::copyCollabLinkToClipboard);
+            statusLabelCollab->addAction(act);
+        }
+        statusLabelCollab->setContextMenuPolicy(Qt::ActionsContextMenu);
     }
 }
 /*!
@@ -6928,6 +6934,17 @@ void Texstudio::updateCollabStatus()
         statusLabelCollab->setToolTip(tr("Collaboration: Not connected"));
     }
 
+}
+/*!
+ * \brief copy collaboration link to clipboard
+ */
+void Texstudio::copyCollabLinkToClipboard()
+{
+    if(!collabManager || !collabManager->isServerRunning()) return;
+    const QString joinCode=collabManager->codeForConnectingGuest();
+    if(joinCode.isEmpty()) return;
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    clipboard->setText("ethersync join "+joinCode);
 }
 
 //////////////// MESSAGES - LOG FILE///////////////////////

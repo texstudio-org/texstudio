@@ -539,6 +539,7 @@ protected slots:
     void guestServerSuccessfullyStarted();
     void hostServerSuccessfullyStarted();
     void updateCollabStatus();
+    void copyCollabLinkToClipboard();
 
 	bool loadLog();
 	void onCompileError();
