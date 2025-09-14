@@ -1,7 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.9.0
 
-- 
+- implement peer-to-peer collaborative editing with ethersync, [see manual](https://texstudio-org.github.io/editing.html#collaborative-editing-pair-programming)
 
 ## TeXstudio 4.8.9
 
