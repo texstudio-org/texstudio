@@ -39,6 +39,7 @@ public slots:
 signals:
     void changesReceived(QDocumentCursor cursor, const QString changes,const QString userName);
     void cursorMoved(QDocumentCursor cursor,const QString userId);
+    void cursorRemoved(LatexDocument *doc,const QString userId);
     void clientSuccessfullyStarted();
     void guestServerSuccessfullyStarted();
     void hostServerSuccessfullyStarted();

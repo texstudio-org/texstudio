@@ -435,6 +435,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     // init collaboration manager
     collabManager=new CollaborationManager(this,&configManager,&documents);
     connect(collabManager,&CollaborationManager::cursorMoved,this,&Texstudio::updateCollabCursors);
+    connect(collabManager,&CollaborationManager::cursorRemoved,this,&Texstudio::removeCollabCursor);
     connect(collabManager,&CollaborationManager::changesReceived,this,&Texstudio::updateCollabChanges);
     connect(collabManager,&CollaborationManager::collabClientFinished,this,&Texstudio::collabClientFinished);
     connect(collabManager,&CollaborationManager::guestServerSuccessfullyStarted,this,&Texstudio::guestServerSuccessfullyStarted);
@@ -6762,12 +6763,8 @@ void Texstudio::disconnectCollabServer()
     QThread::sleep(2); // give client some time to send close message
     collabManager->stopServer();
     // remove all external cursors
-    foreach(LatexDocument *doc,documents.documents){
-        LatexEditorView *edView=doc->getEditorView();
-        if(edView==nullptr) continue;
-        QEditor *ed=edView->editor;
-        ed->removeExternalCursor("");
-    }
+    removeAllCollabCursor("");
+
     updateCollabStatus();
 }
 /*!
@@ -6784,6 +6781,39 @@ void Texstudio::updateCollabCursors(QDocumentCursor cur, QString userId)
     QEditor *ed=edView->editor;
     cur.handle()->setFlag(QDocumentCursorHandle::ExternalCursor);
     ed->setExternalCursor(userId,cur);
+}
+/*!
+ * \brief remove collaboration cursor
+ * If a user leaves the session
+ * \param doc
+ * \param userId
+ */
+void Texstudio::removeCollabCursor(LatexDocument *doc,QString userId)
+{
+    if(!doc){
+        // remove from all editors
+        removeAllCollabCursor(userId);
+        return;
+    }
+    LatexEditorView *edView=doc->getEditorView();
+    if(edView==nullptr) return;
+    QEditor *ed=edView->editor;
+    ed->removeExternalCursor(userId);
+}
+/*!
+ * \brief remove all collabcursor
+ * empty -> all users
+ * \param userId
+ */
+void Texstudio::removeAllCollabCursor(QString userId)
+{
+    // remove all external cursors
+    foreach(LatexDocument *doc,documents.documents){
+        LatexEditorView *edView=doc->getEditorView();
+        if(edView==nullptr) continue;
+        QEditor *ed=edView->editor;
+        ed->removeExternalCursor(userId);
+    }
 }
 /*!
  * \brief insert updated from collaboration server

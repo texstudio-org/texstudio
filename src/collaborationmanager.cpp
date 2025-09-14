@@ -385,11 +385,14 @@ void CollaborationManager::readyCollabClientStandardOutput()
                     int col=jstart["character"].toInt(-1);
                     int ln=jstart["line"].toInt(-1);
                     if(ln>=0 && col>=0){
-                        QString userId=ja["userId"].toString("extern");
+                        QString userId=ja["userid"].toString("extern");
                         QDocumentCursor c(doc);
                         c.moveTo(ln,col);
                         emit cursorMoved(c,userId);
                     }
+                }else{
+                    QString userId=ja["userid"].toString("extern");
+                    emit cursorRemoved(doc,userId);
                 }
             }
             if(method=="edit"){
