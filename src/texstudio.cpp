@@ -6824,7 +6824,7 @@ bool Texstudio::registerFileForCollab(const QString filename)
             const QString folder=fi.absolutePath();
             collabManager->startClient(folder);
         }
-        if(!collabManager->isClientRunning()){
+        if(collabManager->isClientRunning()){
             collabManager->fileOpened(filename);
             return true;
         }
