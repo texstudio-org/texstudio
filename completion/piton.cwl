@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2025/08/30 for v4.8b
+# Matthew Bertucci 2025/09/14 for v4.8c
 
 #include:luacode
 #include:xcolor
@@ -108,6 +108,7 @@ font-command=%<font commands%>
 gobble
 gobble=%<integer%>
 indent-broken-lines
+indentations-for-Fox#true,false
 join=%<file%>
 language=#Python,OCaml,C,SQL,minimal,verbatim,%newpitonlang
 left-margin=##L
