@@ -533,6 +533,5 @@ LatexDocument *CollaborationManager::findDocumentFromName(const QString &fileNam
 
 /* TODO
  * - extra cursor with different color -> refine?
- * - check host set-up
  * - store connection info in folder to allow autoconnect for different user on same folder (shared folder NFS or cloud)
  */

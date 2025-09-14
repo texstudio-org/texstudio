@@ -290,7 +290,7 @@ protected slots:
 	void fileNew(QString fileName = "");
 	void fileNewFromTemplate();
 	void fileMakeTemplate();
-	void fileOpen();
+    void fileOpen(QString currentDir="");
 	void fileRestoreSession(bool showProgress = true, bool warnMissing = true);
     void fileSave(const bool saveSilently = false,QEditor *editor=nullptr);
 	void fileSaveAll();

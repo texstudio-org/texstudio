@@ -2898,15 +2898,17 @@ void Texstudio::alignTableCols()
  * If the file is open as hidden, an editor is created and brought to front.
  * pdf files are handled as well and they are forwarded to the pdf viewer.
  */
-void Texstudio::fileOpen()
+void Texstudio::fileOpen(QString currentDir)
 {
-	QString currentDir = QDir::homePath();
-	if (!configManager.lastDocument.isEmpty()) {
-		QFileInfo fi(configManager.lastDocument);
-		if (fi.exists() && fi.isReadable()) {
-			currentDir = fi.absolutePath();
-		}
-	}
+    if(currentDir.isEmpty()){
+        currentDir = QDir::homePath();
+        if (!configManager.lastDocument.isEmpty()) {
+            QFileInfo fi(configManager.lastDocument);
+            if (fi.exists() && fi.isReadable()) {
+                currentDir = fi.absolutePath();
+            }
+        }
+    }
 	QStringList files = FileDialog::getOpenFileNames(this, tr("Open Files"), currentDir, fileFilters,  &selectedFileFilter);
 
     QList<LatexEditorView *>listViews;
@@ -6856,6 +6858,7 @@ void Texstudio::guestServerSuccessfullyStarted()
     const QString folderName=configManager.ce_clientPath;
     collabManager->startClient(folderName);
     // open all open files in folder
+    bool anyFileOpened=false;
     foreach(LatexDocument *doc,documents.documents){
         if(collabManager->isFileLocatedInCollabFolder(doc->getFileName())){
             collabManager->fileOpened(doc->getFileName());
@@ -6864,7 +6867,12 @@ void Texstudio::guestServerSuccessfullyStarted()
                 // disconnect file watcher
                 edView->editor->disconnectWatcher();
             }
+            anyFileOpened=true;
         }
+    }
+    if(!anyFileOpened){
+        // offer dialog to open shared file
+        fileOpen(folderName);
     }
 }
 /*!
