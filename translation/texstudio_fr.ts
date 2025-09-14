@@ -2798,12 +2798,12 @@ Exemples :
     <message>
         <location filename="../src/configdialog.ui" line="3929"/>
         <source>URL Parameters: </source>
-        <translation type="unfinished"/>
+        <translation>Paramètres de l&apos;URL :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3936"/>
         <source>Additional URL parameters to send with LanguageTool requests. For example: level=picky&amp;enabledRules=CUSTOM_RULE</source>
-        <translation type="unfinished"/>
+        <translation>Paramètres supplémentaires de l&apos;URL à envoyer avec les requêtes LanguageTool. Par exemple : level=picky&amp;enabledRules=CUSTOM_RULE</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4044"/>
@@ -3074,32 +3074,32 @@ Remarque : modifier ce paramètre n&apos;affectera que les documents ouverts ens
         <location filename="../src/configdialog.ui" line="5024"/>
         <location filename="../src/configdialog.cpp" line="562"/>
         <source>Collaborative Editing</source>
-        <translation type="unfinished"/>
+        <translation>Édition collaborative</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5030"/>
         <source>Tool:</source>
-        <translation type="unfinished"/>
+        <translation>Outil :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5037"/>
         <source>Path:</source>
-        <translation type="unfinished"/>
+        <translation>Chemin :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5044"/>
         <source>Client folder:</source>
-        <translation type="unfinished"/>
+        <translation>Dossier client :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5055"/>
         <source>ethersync</source>
-        <translation type="unfinished"/>
+        <translation>ethersync</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5096"/>
         <source>User name:</source>
-        <translation type="unfinished"/>
+        <translation>Nom d&apos;utilisateur :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5149"/>
@@ -3340,12 +3340,12 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="937"/>
         <source>Search Path for Command</source>
-        <translation type="unfinished"/>
+        <translation>Recherche du chemin pour la commande</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="944"/>
         <source>Search Folder for Collaborative Client</source>
-        <translation type="unfinished"/>
+        <translation>Recherche du dossier pour le client collaboratif</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="990"/>
@@ -4544,7 +4544,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="717"/>
         <source>txsCollaborationFolder</source>
-        <translation type="unfinished"/>
+        <translation>txsCollaborationFolder</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1110"/>
@@ -6229,7 +6229,7 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3242"/>
         <source>&amp;Select Text</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sélectionner le texte</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3247"/>
@@ -6823,7 +6823,7 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1655"/>
         <source>Copy Selected Text</source>
-        <translation type="unfinished"/>
+        <translation>Copier le texte sélectionné</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1663"/>
@@ -11070,17 +11070,17 @@ Veuillez ouvrir l&apos;emplacement du modèle et décompresser le modèle pour m
     <message>
         <location filename="../src/texstudio.cpp" line="1275"/>
         <source>Start sharing folder</source>
-        <translation type="unfinished"/>
+        <translation>Commencer à partager le dossier</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1276"/>
         <source>Connect to other user for collaboration</source>
-        <translation type="unfinished"/>
+        <translation>Se connecter à un autre utilisateur pour collaborer</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1277"/>
         <source>Disconnect from collaboration</source>
-        <translation type="unfinished"/>
+        <translation>Déconnecter de la collaboration</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1279"/>
@@ -12069,38 +12069,39 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location filename="../src/texstudio.cpp" line="6715"/>
         <source>Do you want to share the folder &quot;%1&quot; and ALL its content with collaborators?</source>
-        <translation type="unfinished"/>
+        <translation>Voulez-vous partager le dossier « %1 » et TOUT son contenu avec vos collaborateurs ?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6734"/>
         <source>Collaboration server name or address</source>
-        <translation type="unfinished"/>
+        <translation>Nom ou adresse du serveur de collaboration</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6735"/>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Nom :</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6913"/>
         <source>Collaboration: Connected in folder %1
 to join: ethersync join %2</source>
-        <translation type="unfinished"/>
+        <translation>Collaboration : connecté dans le dossier %1 ;
+pour rejoindre : ethersync join %2</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6915"/>
         <source>Copy access code</source>
-        <translation type="unfinished"/>
+        <translation>Copier le code d&apos;accès</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6938"/>
         <source>Collaboration: Connected in folder %1</source>
-        <translation type="unfinished"/>
+        <translation>Collaboration : connecté dans le dossier %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6942"/>
         <source>Collaboration: Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Collaboration : non connecté</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6993"/>
