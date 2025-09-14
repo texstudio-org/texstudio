@@ -669,8 +669,10 @@ Please be aware that **all** files in that folder will be visible and accessible
 Once the server is successfully started, a symbol in the panel will appear to notify you.
 ![Server connected](images/ethersync_status_panel.webp)
 
-The tooltip on that icon will tell you the folder which is used for sharing as well as the current access code.
+The tooltip on that icon will tell you the folder which is used for sharing as well as the current access code. The context menu (right-click) on the icon offers to copy the code into the clipboard.
 This access code in the form of `4-alpha-button` needs to be communicated to the collaborator for them to access this folder (as long as the host server is running).
+
+![Copy access code](images/ethersync_status_panel_copyCode.webp)
 
 Once they connect to any of those files, TeXstudio gets notfied. If the file is open in your TeXstudio, their cursor will appear as blue cursor. Any changes will directly appear in your file as well.
 So will your cursor position and changes appear in their editor.
