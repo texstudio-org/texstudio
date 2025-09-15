@@ -2798,12 +2798,12 @@ Examples:
     <message>
         <location filename="../src/configdialog.ui" line="3929"/>
         <source>URL Parameters: </source>
-        <translation type="unfinished"/>
+        <translation>Параметры URL:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3936"/>
         <source>Additional URL parameters to send with LanguageTool requests. For example: level=picky&amp;enabledRules=CUSTOM_RULE</source>
-        <translation type="unfinished"/>
+        <translation>Дополнительные параметры URL для передачи с запросами к LanguageTool. Например: level=picky&amp;enabledRules=CUSTOM_RULE</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4044"/>
@@ -3074,32 +3074,32 @@ Note: Changing this setting will only affect documents that are opened afterward
         <location filename="../src/configdialog.ui" line="5024"/>
         <location filename="../src/configdialog.cpp" line="562"/>
         <source>Collaborative Editing</source>
-        <translation type="unfinished"/>
+        <translation>Совместное редактирование</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5030"/>
         <source>Tool:</source>
-        <translation type="unfinished"/>
+        <translation>Программа:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5037"/>
         <source>Path:</source>
-        <translation type="unfinished"/>
+        <translation>Путь:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5044"/>
         <source>Client folder:</source>
-        <translation type="unfinished"/>
+        <translation>Папка клиента:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5055"/>
         <source>ethersync</source>
-        <translation type="unfinished"/>
+        <translation>ethersync</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5096"/>
         <source>User name:</source>
-        <translation type="unfinished"/>
+        <translation>Пользователь:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5149"/>
@@ -3342,12 +3342,12 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="937"/>
         <source>Search Path for Command</source>
-        <translation type="unfinished"/>
+        <translation>Путь поиска для команды</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="944"/>
         <source>Search Folder for Collaborative Client</source>
-        <translation type="unfinished"/>
+        <translation>Папка поиска для совместного клиента</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="990"/>
@@ -4546,7 +4546,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/configmanager.cpp" line="717"/>
         <source>txsCollaborationFolder</source>
-        <translation type="unfinished"/>
+        <translation>txsCollaborationFolder</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1110"/>
@@ -6236,7 +6236,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3242"/>
         <source>&amp;Select Text</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Выделить текст</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3247"/>
@@ -6830,7 +6830,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1655"/>
         <source>Copy Selected Text</source>
-        <translation type="unfinished"/>
+        <translation>Скопировать выделенный текст</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1663"/>
@@ -11077,17 +11077,17 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1275"/>
         <source>Start sharing folder</source>
-        <translation type="unfinished"/>
+        <translation>Начать делиться папкой</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1276"/>
         <source>Connect to other user for collaboration</source>
-        <translation type="unfinished"/>
+        <translation>Подключиться к другому пользователю для совместной работы</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1277"/>
         <source>Disconnect from collaboration</source>
-        <translation type="unfinished"/>
+        <translation>Отключиться от совместной работы</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1279"/>
@@ -12078,38 +12078,39 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="6715"/>
         <source>Do you want to share the folder &quot;%1&quot; and ALL its content with collaborators?</source>
-        <translation type="unfinished"/>
+        <translation>Вы хотите поделиться папкой «%1» и ВСЕМ её содержимым с участниками?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6734"/>
         <source>Collaboration server name or address</source>
-        <translation type="unfinished"/>
+        <translation>Имя или адрес совместного сервера</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6735"/>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Имя:</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6913"/>
         <source>Collaboration: Connected in folder %1
 to join: ethersync join %2</source>
-        <translation type="unfinished"/>
+        <translation>Совместное редактирование: подключено в папке %1
+для присоединения: ethersync join %2</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6915"/>
         <source>Copy access code</source>
-        <translation type="unfinished"/>
+        <translation>Скопировать код доступа</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6938"/>
         <source>Collaboration: Connected in folder %1</source>
-        <translation type="unfinished"/>
+        <translation>Совместное редактирование: подключено в папке %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6942"/>
         <source>Collaboration: Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Совместное редактирование: не подключено</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6993"/>
