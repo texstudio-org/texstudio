@@ -2798,12 +2798,12 @@ Examples:
     <message>
         <location filename="../src/configdialog.ui" line="3929"/>
         <source>URL Parameters: </source>
-        <translation type="unfinished"/>
+        <translation>Παράμετροι URL: </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3936"/>
         <source>Additional URL parameters to send with LanguageTool requests. For example: level=picky&amp;enabledRules=CUSTOM_RULE</source>
-        <translation type="unfinished"/>
+        <translation>Οι επιπλέον παράμετροι URL που θα αποστέλλονται μαζί με κάθε αίτημα προς τον διακομιστή του LanguageTool. Για παράδειγμα: level=picky&amp;enabledRules=CUSTOM_RULE</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4044"/>
@@ -3074,32 +3074,32 @@ Note: Changing this setting will only affect documents that are opened afterward
         <location filename="../src/configdialog.ui" line="5024"/>
         <location filename="../src/configdialog.cpp" line="562"/>
         <source>Collaborative Editing</source>
-        <translation type="unfinished"/>
+        <translation>Συνεργατική επεξεργασία</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5030"/>
         <source>Tool:</source>
-        <translation type="unfinished"/>
+        <translation>Εργαλείο:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5037"/>
         <source>Path:</source>
-        <translation type="unfinished"/>
+        <translation>Διαδρομή εκτελέσιμου αρχείου:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5044"/>
         <source>Client folder:</source>
-        <translation type="unfinished"/>
+        <translation>Φάκελος πελάτη (client):</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5055"/>
         <source>ethersync</source>
-        <translation type="unfinished"/>
+        <translation>ethersync</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5096"/>
         <source>User name:</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα χρήστη:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5149"/>
@@ -3307,7 +3307,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="894"/>
         <source>Select java</source>
-        <translation>Επιλογή java</translation>
+        <translation>Επιλογή εκτελέσιμου αρχείου Java</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="907"/>
@@ -3342,12 +3342,12 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="937"/>
         <source>Search Path for Command</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή διαδρομής εκτελέσιμου αρχείου</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="944"/>
         <source>Search Folder for Collaborative Client</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή φακέλου πελάτη (client folder)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="990"/>
@@ -4552,7 +4552,7 @@ text: το κείμενο του αντικειμένου</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="717"/>
         <source>txsCollaborationFolder</source>
-        <translation type="unfinished"/>
+        <translation>txsCollaborationFolder</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1110"/>
@@ -6244,7 +6244,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3242"/>
         <source>&amp;Select Text</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Επιλογή κειμένου</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3247"/>
@@ -6837,7 +6837,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1655"/>
         <source>Copy Selected Text</source>
-        <translation type="unfinished"/>
+        <translation>Αντιγραφή επιλεγμένου κειμένου</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1663"/>
@@ -11079,17 +11079,17 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1275"/>
         <source>Start sharing folder</source>
-        <translation type="unfinished"/>
+        <translation>Έναρξη κοινοποίησης φακέλου</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1276"/>
         <source>Connect to other user for collaboration</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση και συνεργασία με άλλον χρήστη</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1277"/>
         <source>Disconnect from collaboration</source>
-        <translation type="unfinished"/>
+        <translation>Αποσύνδεση από τον διακομιστή συνεργασίας</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1279"/>
@@ -12076,38 +12076,39 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="6715"/>
         <source>Do you want to share the folder &quot;%1&quot; and ALL its content with collaborators?</source>
-        <translation type="unfinished"/>
+        <translation>Θέλετε να κοινοποιήσετε τον φάκελο «%1» μαζί με το περιεχόμενό του στους συνεργάτες σας;</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6734"/>
         <source>Collaboration server name or address</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα ή διεύθυνση διακομιστή συνεργασίας</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6735"/>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα χρήστη:</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6913"/>
         <source>Collaboration: Connected in folder %1
 to join: ethersync join %2</source>
-        <translation type="unfinished"/>
+        <translation>Συνεργατική επεξεργασία: Έγινε σύνδεση στον φάκελο %1
+Για να συμμετάσχετε στη συνεργατική επεξεργασία, εκτελέστε την εντολή: ethersync join %2</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6915"/>
         <source>Copy access code</source>
-        <translation type="unfinished"/>
+        <translation>Αντιγραφή κωδικού πρόσβασης</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6938"/>
         <source>Collaboration: Connected in folder %1</source>
-        <translation type="unfinished"/>
+        <translation>Συνεργατική επεξεργασία: Έγινε σύνδεση στον φάκελο %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6942"/>
         <source>Collaboration: Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Συνεργατική επεξεργασία: Δεν έγινε σύνδεση</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6993"/>

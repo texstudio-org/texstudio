@@ -2791,12 +2791,12 @@ Például:
     <message>
         <location filename="../src/configdialog.ui" line="3929"/>
         <source>URL Parameters: </source>
-        <translation type="unfinished"/>
+        <translation>URL paraméterek: </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3936"/>
         <source>Additional URL parameters to send with LanguageTool requests. For example: level=picky&amp;enabledRules=CUSTOM_RULE</source>
-        <translation type="unfinished"/>
+        <translation>További URL-paraméterek, amelyeket a LanguageTool kérésekkel kell elküldeni. Például: level=picky&amp;enabledRules=CUSTOM_RULE</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4044"/>
@@ -3067,32 +3067,32 @@ Megjegyzés: a beállítás módosítása csak a jövőben megnyitott dokumentum
         <location filename="../src/configdialog.ui" line="5024"/>
         <location filename="../src/configdialog.cpp" line="562"/>
         <source>Collaborative Editing</source>
-        <translation type="unfinished"/>
+        <translation>Együttműködő szerkesztés</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5030"/>
         <source>Tool:</source>
-        <translation type="unfinished"/>
+        <translation>Eszköz:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5037"/>
         <source>Path:</source>
-        <translation type="unfinished"/>
+        <translation>Útvonal:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5044"/>
         <source>Client folder:</source>
-        <translation type="unfinished"/>
+        <translation>Ügyfél mappa:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5055"/>
         <source>ethersync</source>
-        <translation type="unfinished"/>
+        <translation>ethersync</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5096"/>
         <source>User name:</source>
-        <translation type="unfinished"/>
+        <translation>Felhasználónév:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5149"/>
@@ -3334,12 +3334,12 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="937"/>
         <source>Search Path for Command</source>
-        <translation type="unfinished"/>
+        <translation>Parancsok elérési útja</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="944"/>
         <source>Search Folder for Collaborative Client</source>
-        <translation type="unfinished"/>
+        <translation>Együttműködő kliens keresési mappája</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="990"/>
@@ -4535,7 +4535,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/configmanager.cpp" line="717"/>
         <source>txsCollaborationFolder</source>
-        <translation type="unfinished"/>
+        <translation>txsCollaborationFolder</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1110"/>
@@ -6222,7 +6222,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3242"/>
         <source>&amp;Select Text</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Szöveg kiválasztása</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3247"/>
@@ -6816,7 +6816,7 @@ Most megadhatja a jelszót:</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1655"/>
         <source>Copy Selected Text</source>
-        <translation type="unfinished"/>
+        <translation>Kiválasztott szöveg másolása</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1663"/>
@@ -11057,17 +11057,17 @@ sablon helyét, és csomagolja ki a sablont.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1275"/>
         <source>Start sharing folder</source>
-        <translation type="unfinished"/>
+        <translation>Mappa megosztásának indítása</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1276"/>
         <source>Connect to other user for collaboration</source>
-        <translation type="unfinished"/>
+        <translation>Csatlakozás más felhasználókhoz együttműködés céljából</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1277"/>
         <source>Disconnect from collaboration</source>
-        <translation type="unfinished"/>
+        <translation>Együttműködés megszakítása</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1279"/>
@@ -12055,38 +12055,39 @@ Beleegyezik a cserébe?
     <message>
         <location filename="../src/texstudio.cpp" line="6715"/>
         <source>Do you want to share the folder &quot;%1&quot; and ALL its content with collaborators?</source>
-        <translation type="unfinished"/>
+        <translation>Meg szeretné osztani a &quot;%1&quot; mappát és annak ÖSSZES tartalmát a közreműködőkkel?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6734"/>
         <source>Collaboration server name or address</source>
-        <translation type="unfinished"/>
+        <translation>Együttműködési szerver neve vagy címe</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6735"/>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Név:</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6913"/>
         <source>Collaboration: Connected in folder %1
 to join: ethersync join %2</source>
-        <translation type="unfinished"/>
+        <translation>Együttműködés: Csatlakozás a %1 mappához
+csatlakozás: ethersync join %2</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6915"/>
         <source>Copy access code</source>
-        <translation type="unfinished"/>
+        <translation>Hozzáférési kód másolása</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6938"/>
         <source>Collaboration: Connected in folder %1</source>
-        <translation type="unfinished"/>
+        <translation>Együttműködés: Csatlakoztatva a %1 mappához</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6942"/>
         <source>Collaboration: Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Együttműködés: Nincs csatlakoztatva</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6993"/>
