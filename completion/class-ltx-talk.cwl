@@ -1,5 +1,5 @@
 # ltx-talk class
-# Matthew Bertucci 2025/07/25 for v0.1.4
+# Matthew Bertucci 2025/09/16 for v0.2.0
 
 #include:pdfmanagement
 #include:relsize
@@ -46,6 +46,7 @@ mode=#handout,projector
 \begin{description}[options%keyvals]
 \begin{enumerate}[<%<default overlay spec%>>]
 \begin{enumerate}[options%keyvals]
+\begin{figure}<overlay spec>
 \begin{frame*}
 \begin{frame*}<overlay spec>
 \begin{frame*}<overlay spec>[options%keyvals]
@@ -69,6 +70,7 @@ mode=#handout,projector
 \begin{overprint}
 \begin{overprint}[width]
 \end{overprint}
+\begin{table}<overlay spec>
 \begin{uncoverenv}
 \begin{uncoverenv}<overlay spec>
 \end{uncoverenv}
