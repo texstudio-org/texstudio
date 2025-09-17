@@ -756,7 +756,7 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 	bool found = false, flush = false;
 	QString warning;
 
-    static const QRegularExpression reLaTeXWarning("^(((! )?(La|pdf|Lua)TeX[3]?)|Package|Class|Module) .*Warning[^\\:]*:(.*)", QRegularExpression::CaseInsensitiveOption);
+    static const QRegularExpression reLaTeXWarning("^(((! )?(La|pdf|Lua)TeX[3]?)|Package|Class|Module) .*Warning[^:]*:(.*)", QRegularExpression::CaseInsensitiveOption);
     static const QRegularExpression reLatex3Warning("^\\*\\s+(\\S.*)");
     static const QRegularExpression reLatex3WarningHeader("^\\*\\s*(.*warning:\\s*.*)", QRegularExpression::CaseInsensitiveOption);
     static const QRegularExpression reNoFile("^No file (.*)");
