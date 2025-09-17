@@ -1,5 +1,7 @@
 # academicons package
-# Matthew Bertucci 3/14/2022 for v1.9.1-2
+# Matthew Bertucci 2025/09/17 for v1.9.6
+
+#include:iftex
 
 \aiicon{icon name%keyvals}
 
@@ -26,6 +28,8 @@ ceur
 ceursquare
 ciencia-vitae
 ciencia-vitae-square
+clarivate
+clarivate-square
 conversation
 conversation-square
 coursera
@@ -70,6 +74,8 @@ inspire
 inspire-square
 isidore
 isidore-square
+isni
+isni-square
 jstor
 jstor-square
 lattes
@@ -138,6 +144,10 @@ ssrn
 ssrn-square
 stackoverflow
 stackoverflow-square
+viaf
+viaf-square
+wiley
+wiley-square
 zenodo
 zenodo-square
 zotero
@@ -166,6 +176,8 @@ zotero-square
 \aiCEURSquare
 \aiCIENCIAVITAE
 \aiCIENCIAVITAESquare
+\aiClarivate
+\aiClarivateSquare
 \aiConversation
 \aiConversationSquare
 \aiCoursera
@@ -210,6 +222,8 @@ zotero-square
 \aiInspireSquare
 \aiISIDORE
 \aiISIDORESquare
+\aiIsni
+\aiIsniSquare
 \aiJSTOR
 \aiJSTORSquare
 \aiLattes
@@ -278,9 +292,11 @@ zotero-square
 \aiSSRNSquare
 \aiStackOverflow
 \aiStackOverflowSquare
+\aiViaf
+\aiViafSquare
+\aiWiley
+\aiWileySquare
 \aiZenodo
 \aiZenodoSquare
 \aiZotero
 \aiZoteroSquare
-
-\AI#*
