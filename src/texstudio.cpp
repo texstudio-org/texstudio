@@ -3848,6 +3848,7 @@ void Texstudio::editPaste()
 	if (!currentEditorView()) return;
 
 	const QMimeData *d = QApplication::clipboard()->mimeData();
+    qDebug()<<d->formats();
     if ((d->hasFormat("application/x-openoffice-embed-source-xml;windows_formatname=\"Star Embed Source (XML)\"")||d->hasFormat("application/x-qt-windows-mime;value=\"Star Embed Source (XML)\"")) && d->hasFormat("text/plain")) {
 		// workaround for LibreOffice (im "application/x-qt-image" has a higher priority for them than "text/plain")
         QDocumentCursor cur = currentEditorView()->editor->cursor();
@@ -8147,6 +8148,16 @@ QObject *Texstudio::newPdfPreviewer(bool embedded)
         connect(doc, SIGNAL(syncView(QString,QFileInfo,int)), pdfviewerWindow, SLOT(syncFromView(QString,QFileInfo,int)));
         connect(pdfviewerWindow, SIGNAL(syncView(QString,QFileInfo,int)), doc, SLOT(syncFromView(QString,QFileInfo,int)));
 	}
+    // styling with external file
+    if(!embedded){
+        QFile styleSheetFile(configManager.configBaseDir + "stylesheet.qss");
+        if (styleSheetFile.exists()) {
+            if(styleSheetFile.open(QFile::ReadOnly)){
+                pdfviewerWindow->setStyleSheet(styleSheetFile.readAll());
+                styleSheetFile.close();
+            }
+        }
+    }
 	return pdfviewerWindow;
 }
 #endif
