@@ -683,7 +683,10 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString &definition)
 					int cnt = latexParserInstance->mapSpecialArgs.count();
 					latexParserInstance->mapSpecialArgs.insert(cnt, "%" + arg);
 					type = Token::TokenType(type + cnt);
-				}
+                }else{
+                    int index=latexParserInstance->mapSpecialArgs.values().indexOf("%" + arg);
+                    type=Token::TokenType(type+index);
+                }
 			}
 			return type;
 		}
