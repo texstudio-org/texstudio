@@ -620,7 +620,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             continue;
         }
         // specialArg definition
-        if(tk.type == Token::defSpecialArg){
+        if(tk.type >= Token::defSpecialArg){
             QString cmd=Parsing::getCommandFromToken(tk);
             data.completerNeedsUpdate = true;
             QString definition = lp->specialDefCommands.value(cmd);
