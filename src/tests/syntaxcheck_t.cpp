@@ -301,24 +301,24 @@ void SyntaxCheckTest::checkArguments_data(){
     QTest::addColumn<QString>("text");
     QTest::addColumn<bool>("error");
 
-     QTest::newRow("simple")
-             <<"\\_"<<false;
-     QTest::newRow("at")
-             <<"\\@as"<<false;
-     QTest::newRow("at2")
-             <<"\\sdf@as"<<false;
-     QTest::newRow("unknown command")
-         <<"\\sdfs"<<true;
-     QTest::newRow("newcommand")
-             <<"\\newcommand{\\test}{\\abcd}"<<false;
-     QTest::newRow("newcommand2")
-             <<"\\newcommand{\\test}{\\abcd\n \\abcd}"<<false;
-     QTest::newRow("newcommand3")
-             <<"\\newcommand{\\test}{\\abcd\n{\n \\abcd}\n}"<<false;
-     QTest::newRow("specialDef missing")
-         <<"\\DTLrowcount{tes}\n}"<<true;
-     QTest::newRow("specialDef present")
-         <<"\\DTLnewdb{tes}\n\\DTLrowcount{tes}\n}"<<false;
+    QTest::newRow("simple")
+        <<"\\_"<<false;
+    QTest::newRow("at")
+        <<"\\@as"<<false;
+    QTest::newRow("at2")
+        <<"\\sdf@as"<<false;
+    QTest::newRow("unknown command")
+        <<"\\sdfs"<<true;
+    QTest::newRow("newcommand")
+        <<"\\newcommand{\\test}{\\abcd}"<<false;
+    QTest::newRow("newcommand2")
+        <<"\\newcommand{\\test}{\\abcd\n \\abcd}"<<false;
+    QTest::newRow("newcommand3")
+        <<"\\newcommand{\\test}{\\abcd\n{\n \\abcd}\n}"<<false;
+    QTest::newRow("specialDef missing")
+        <<"\\DTLrowcount{tes}\n}"<<true;
+    QTest::newRow("specialDef present")
+        <<"\\DTLnewdb{tes}\n\\DTLrowcount{tes}\n}"<<false;
 }
 
 void SyntaxCheckTest::checkArguments(){
