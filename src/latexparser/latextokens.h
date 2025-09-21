@@ -31,8 +31,10 @@ public:
         beamertheme, packageoption, color, verbatimStart, verbatimStop,
         verbatim, symbol, punctuation, number, generalArg,
         defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList,
-        formula, specialArg, newTheorem, newBibItem, overlay,
-        overlayRegion, defXparseArg, defSpecialArg, _end = 255
+        formula, newTheorem, newBibItem, overlay,
+        overlayRegion, defXparseArg, defSpecialArg,
+        specialArg, // specialArg always needs to be last. new %special are added after specialArg and recognized by being >= specialArg
+        _end = 255
 	};
 };
 

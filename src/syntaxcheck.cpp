@@ -1298,7 +1298,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }
 			}
 		}
-		if (tk.type == Token::specialArg) {
+        if (tk.type >= Token::specialArg) {
 			QString value = line.mid(tk.start, tk.length);
 			QString special = ltxCommands->mapSpecialArgs.value(int(tk.type - Token::specialArg));
 			if (!ltxCommands->possibleCommands[special].contains(value)) {

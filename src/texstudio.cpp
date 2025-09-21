@@ -4947,12 +4947,13 @@ void Texstudio::normalCompletion()
 	if (tk.subtype != Token::none && type!=Token::command && type!=Token::commandUnknown){
 		type = tk.subtype;
 	}
-	if (type == Token::specialArg) {
+    if (type >= Token::specialArg) {
 		int df = int(type - Token::specialArg);
 		QString cmd = latexParser.mapSpecialArgs.value(df);
 		if (mCompleterNeedsUpdate) updateCompleter();
 		completer->setWorkPath(cmd);
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION);
+        return;
 	}
     if( type == Token::commandUnknown || type == Token::command || type== Token::word){
         // check if topEncv is %expl3 and actiavte expl3 completer
