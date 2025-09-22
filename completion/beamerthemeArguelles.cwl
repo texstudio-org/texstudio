@@ -1,7 +1,8 @@
 # Arguelles beamertheme
-# Matthew Bertucci 2024/06/11 for v2.4.2
+# Matthew Bertucci 2025/09/21 for v2.5.0
 
-#include:inputenc
+#include:ifluatex
+#include:ifxetex
 #include:fontenc
 # loads T1 option of fontenc
 #include:Alegreya
@@ -23,6 +24,7 @@
 sans
 frameno
 splitnav
+noalegre
 #endkeyvals
 
 #ifOption:splitnav
