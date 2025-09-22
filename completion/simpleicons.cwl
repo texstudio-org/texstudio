@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/09/12 for v15.13.0
+# Matthew Bertucci 2025/09/21 for v15.14.0
 
 #include:iftex
 
@@ -1214,6 +1214,7 @@ greasyfork
 greatlearning
 greenhouse
 greensock
+greptimedb
 griddotai
 gridsome
 grocy
