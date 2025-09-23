@@ -606,7 +606,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         j--;
                     bool forceContinue=false;
                     if (j >= 0 && lexed.at(j).start == tk1.start) {
-                        if (Token::tkSingleArg().contains(tk1.subtype) || tk1.subtype >= Token::specialArg) { // all special args are assumed single word arguments
+                        if (Token::tkSingleArg().contains(tk1.subtype) || (tk1.subtype >= Token::specialArg && lp->mapSpecialArgumentTypes.value(tk1.subtype-Token::specialArg)==LatexParser::singleArgument)) { // all special args are assumed single word arguments
                             // join all args for intended single word argument
                             // first remove all argument tokens
                             for (int k = j + 1; k < lexed.length();) {

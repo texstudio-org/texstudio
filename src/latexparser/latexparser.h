@@ -44,6 +44,8 @@ public:
 	QHash<QString, QSet<QString> > possibleCommands;
 	QHash<QString, QString> specialDefCommands; ///< define special elements, e.g. define color etc
 	QMap<int, QString> mapSpecialArgs;
+    enum ArgumentType { singleArgument, commaSeparated, multiElement };
+    QMap<int, ArgumentType> mapSpecialArgumentTypes; ///< map special argument numbers to argument types
 
 	CommandDescriptionHash commandDefs; ///< command definitions
 

@@ -1259,6 +1259,18 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             if (ltxCommands->possibleCommands["user"].contains(word))
 				continue;
 
+            if(tk.subtype >= Token::specialArg){
+                // from multi element special argument
+                QString value = line.mid(tk.start, tk.length);
+                QString special = ltxCommands->mapSpecialArgs.value(int(tk.subtype - Token::specialArg));
+                if (!ltxCommands->possibleCommands[special].contains(value)) {
+                    Error elem;
+                    elem.range = QPair<int, int>(tk.start, tk.length);
+                    elem.type = ERR_unrecognizedKey;
+                    newRanges.append(elem);
+                }
+                continue;
+            }
 			if (!checkCommand(word, activeEnv)) {
 				Error elem;
 				if (tkEnvName.type == Token::braces) {

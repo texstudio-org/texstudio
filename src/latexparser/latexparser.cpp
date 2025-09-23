@@ -55,6 +55,7 @@ LatexParser &LatexParser::operator=(const LatexParser &other)
     environmentAliases=other.environmentAliases;
     specialDefCommands=other.specialDefCommands;
     mapSpecialArgs=other.mapSpecialArgs;
+    mapSpecialArgumentTypes=other.mapSpecialArgumentTypes;
     return *this;
 }
 LatexParser &LatexParser::getInstance()
@@ -225,10 +226,12 @@ void LatexParser::append(const LatexParser &elem)
     specialDefCommands.insert(elem.specialDefCommands);
     commandDefs.unite(elem.commandDefs);
     mapSpecialArgs.insert(elem.mapSpecialArgs);
+    mapSpecialArgumentTypes.insert(elem.mapSpecialArgumentTypes);
 #else
 	specialDefCommands.unite(elem.specialDefCommands);
 	commandDefs.unite(elem.commandDefs);
 	mapSpecialArgs.unite(elem.mapSpecialArgs);
+    mapSpecialArgumentTypes.unite(elem.mapSpecialArgumentTypes);
 #endif
 }
 

@@ -417,6 +417,10 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 						}
 					}
 					valid.remove('s');
+                    if(valid.contains('g')){
+                        // multi element argument
+
+                    }
 				}
 				if (valid.contains('c')) { // cite command
                     // replace 'c' to 'C' to maintain cwl compatibility
@@ -674,14 +678,19 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString &definition)
         if (suffix == "%specialDef"){
             return Token::defSpecialArg;
         }
-		if (suffix == "%special") {
+        if (suffix == "%special" || suffix =="%specialMultiArg") {
 			Token::TokenType type = Token::specialArg;
-			arg.chop(8);
+            arg.chop(suffix.length());
 			LatexParser *latexParserInstance = LatexParser::getInstancePtr();
 			if (latexParserInstance) {
 				if (!latexParserInstance->mapSpecialArgs.values().contains("%" + arg)) {
 					int cnt = latexParserInstance->mapSpecialArgs.count();
 					latexParserInstance->mapSpecialArgs.insert(cnt, "%" + arg);
+                    if(suffix=="%special"){
+                        latexParserInstance->mapSpecialArgumentTypes.insert(cnt, LatexParser::singleArgument);
+                    }else{
+                        latexParserInstance->mapSpecialArgumentTypes.insert(cnt, LatexParser::multiElement);
+                    }
 					type = Token::TokenType(type + cnt);
                 }else{
                     int index=latexParserInstance->mapSpecialArgs.values().indexOf("%" + arg);
