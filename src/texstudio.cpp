@@ -4947,8 +4947,9 @@ void Texstudio::normalCompletion()
 	if (tk.subtype != Token::none && type!=Token::command && type!=Token::commandUnknown){
 		type = tk.subtype;
 	}
-    if (type >= Token::specialArg) {
+    if (type >= Token::specialArg || tk.subtype >= Token::specialArg) {
 		int df = int(type - Token::specialArg);
+        if(df<0) df=int(tk.subtype - Token::specialArg);
 		QString cmd = latexParser.mapSpecialArgs.value(df);
 		if (mCompleterNeedsUpdate) updateCompleter();
 		completer->setWorkPath(cmd);
