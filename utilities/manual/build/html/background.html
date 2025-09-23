@@ -531,6 +531,7 @@ N needs to be present!)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">formula</span></code> or ends with <code class="docutils literal notranslate"><span class="pre">%formula</span></code>: The argument is always treated as
 if in math-mode. See chemformula.cwl for an example.</p></li>
 <li><p>ends with <code class="docutils literal notranslate"><span class="pre">%special</span></code>: special argument which relates to data defined via special definition, see classifier ‘s’. The database is the text before <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p></li>
+<li><p>ends with <code class="docutils literal notranslate"><span class="pre">%specialMultiArg</span></code>: like <code class="docutils literal notranslate"><span class="pre">%special</span></code>, but the argument may contain more than one element, each of which is checked individually for syntax</p></li>
 <li><p>ends with <code class="docutils literal notranslate"><span class="pre">%specialDef</span></code>: special argument which defines data for a database, see classifier ‘s’.</p></li>
 </ul>
 <p>A %-suffix takes precedence over detection by name, i.e. an argument
