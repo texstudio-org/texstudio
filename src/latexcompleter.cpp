@@ -1987,6 +1987,11 @@ LatexCompleterConfig *LatexCompleter::getConfig() const
 	return config;
 }
 
+LatexParser &LatexCompleter::getLatexParser() const
+{
+    return const_cast<LatexParser &>(latexParser);
+}
+
 void LatexCompleter::setPackageList(std::set<QString> *lst)
 {
 	packageList = lst;

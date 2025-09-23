@@ -71,6 +71,7 @@ public:
 
 	void setConfig(LatexCompleterConfig *config);
 	LatexCompleterConfig *getConfig() const;
+    LatexParser& getLatexParser() const;
 
     void setPackageList(std::set<QString> *lst); ///< set a list with available latex package names
 

@@ -296,6 +296,13 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
             }
 
             LatexCompleter::CompletionFlags flags= ctx==EnumsTokenType::width ? LatexCompleter::CF_FORCE_LENGTH : LatexCompleter::CompletionFlag(0) ;
+            if(ctx>=Token::specialArg){
+                // handle specialArg completion
+                int df = int(ctx - Token::specialArg);
+                QString cmd = LatexEditorView::completer->getLatexParser().mapSpecialArgs.value(df);
+                LatexEditorView::completer->setWorkPath(cmd);
+                flags= LatexCompleter::CF_FORCE_SPECIALOPTION;
+            }
             LatexEditorView::completer->complete(editor, flags);
 		}
 		return true;
