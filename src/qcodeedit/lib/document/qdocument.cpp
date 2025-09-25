@@ -4032,9 +4032,9 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 							mergeText+=" ";
 						}
 
-                        if( showIndentGuide && leading && (column%tcol == 0)){
+                        if( showIndentGuide && leading && (column%QDocumentPrivate::m_defaultTabStop == 0)){
                             // draw indent guide (vertical line)
-                            qreal xoff = tcol * currentSpaceWidth;
+                            qreal xoff = QDocumentPrivate::m_defaultTabStop * currentSpaceWidth;
                             p->save();
                             p->setPen(Qt::lightGray);
                             p->drawLine(QPointF(xpos-xoff,0),QPointF(xpos-xoff,yEnd));
