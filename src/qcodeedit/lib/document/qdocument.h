@@ -162,7 +162,8 @@ class QCE_EXPORT QDocument : public QObject
 			ShowNone		= 0x00,
 			ShowTrailing	= 0x01,
 			ShowLeading		= 0x02,
-			ShowTabs		= 0x04
+            ShowTabs		= 0x04,
+            ShowIndentGuides= 0x08
 		};
 
 		Q_DECLARE_FLAGS(WhiteSpaceMode, WhiteSpaceFlag)

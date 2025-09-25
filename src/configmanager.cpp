@@ -534,6 +534,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Indent with Spaces", &editorConfig->replaceIndentTabs, false, &pseudoDialog->checkBoxReplaceIndentTabByWhitespace);
 	registerOption("Editor/ReplaceTextTabs", &editorConfig->replaceTextTabs, false, &pseudoDialog->checkBoxReplaceTextTabByWhitespace);
 	registerOption("Editor/RemoveTrailingWsOnSave", &editorConfig->removeTrailingWsOnSave, false, &pseudoDialog->checkboxRemoveTrailingWsOnSave);
+    registerOption("Editor/Show Indent Guides", &editorConfig->showIndentGuides, false, &pseudoDialog->checkBoxShowIndentGuides);
 	registerOption("Editor/Folding", &editorConfig->folding, true, &pseudoDialog->checkBoxFolding);
 	registerOption("Editor/Show Line State", &editorConfig->showlinestate, true, &pseudoDialog->checkBoxLineState);
 	registerOption("Editor/Show Cursor State", &editorConfig->showcursorstate, true, &pseudoDialog->checkBoxState);

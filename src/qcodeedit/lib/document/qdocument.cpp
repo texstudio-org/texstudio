@@ -3642,12 +3642,6 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 	if ( m_layout )
 	{
-		//if (!hasFlag(QDocumentLine::FormatsApplied))
-		//m_layout->setAdditionalFormats(decorations()); (this causes a crash on qt>5.3)
-
-		//if ( !hasFlag(QDocumentLine::FormatsApplied) )
-		//	applyOverlays();
-
         const qreal lineSpacing = QDocumentPrivate::m_lineSpacing;
 
 		QVector<QTextLayout::FormatRange> selections;
@@ -3772,6 +3766,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		const bool showTabs = QDocument::showSpaces() & QDocument::ShowTabs,
 				showLeading = QDocument::showSpaces() & QDocument::ShowLeading,
 				showTrailing = QDocument::showSpaces() & QDocument::ShowTrailing;
+        const bool showIndentGuide = QDocument::showSpaces() & QDocument::ShowIndentGuides;
 
 		//const int fns = nextNonSpaceChar(0);
         qreal indent = qMax(0., m_indent) + QDocumentPrivate::m_leftPadding;
@@ -3993,6 +3988,13 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
                             p->drawLine(QPointF(-headSize, headSize),QPointF(0,0));
 							p->restore();
 						}
+                        if( showIndentGuide && leading){
+                            // draw indent guide (vertical line)
+                            p->save();
+                            p->setPen(Qt::lightGray);
+                            p->drawLine(QPointF(xpos,0),QPointF(xpos,yEnd));
+                            p->restore();
+                        }
 
 						xpos += xoff;
 						if(mergeXpos>=0){
@@ -4029,6 +4031,16 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 						if(mergeXpos>=0){
 							mergeText+=" ";
 						}
+
+                        if( showIndentGuide && leading && (column%tcol == 0)){
+                            // draw indent guide (vertical line)
+                            qreal xoff = tcol * currentSpaceWidth;
+                            p->save();
+                            p->setPen(Qt::lightGray);
+                            p->drawLine(QPointF(xpos-xoff,0),QPointF(xpos-xoff,yEnd));
+                            p->restore();
+                        }
+
 					}
 				}
 
@@ -6776,10 +6788,6 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 	QBrush selectionBackground = cxt.palette.highlight();
 
 	QDocumentLineHandle *dlh = m_lines.at(lcxt.docLineNr);
-
-	// ugly workaround..., disabled 20.12.'09 because it slows down rendering speed on mac considerably and i don't see its function
-	//if( !m_fixedPitch && !h->hasFlag(QDocumentLine::Hidden))
-	//	adjustWidth(i);
 
 	const int wrap = dlh->m_frontiers.count();
 	const bool wrapped = wrap;
