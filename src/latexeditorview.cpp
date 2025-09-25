@@ -1893,7 +1893,11 @@ void LatexEditorView::updateSettings()
 	editor->setDisplayModifyTime(false);
 	searchReplacePanel->setUseLineForSearch(config->useLineForSearch);
 	searchReplacePanel->setSearchOnlyInSelection(config->searchOnlyInSelection);
-	QDocument::setShowSpaces(config->showWhitespace ? (QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs) : QDocument::ShowNone);
+    QDocument::WhiteSpaceMode wsMode=config->showWhitespace ? (QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs) : QDocument::ShowNone;
+    if(config->showIndentGuides){
+        wsMode = wsMode | QDocument::ShowIndentGuides;
+    }
+    QDocument::setShowSpaces(wsMode);
 	QDocument::setTabStop(config->tabStop);
 	QDocument::setLineSpacingFactor(config->lineSpacingPercent / 100.0);
 

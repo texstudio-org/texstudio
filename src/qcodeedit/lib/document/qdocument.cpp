@@ -3766,6 +3766,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		const bool showTabs = QDocument::showSpaces() & QDocument::ShowTabs,
 				showLeading = QDocument::showSpaces() & QDocument::ShowLeading,
 				showTrailing = QDocument::showSpaces() & QDocument::ShowTrailing;
+        const bool showIndentGuide = QDocument::showSpaces() & QDocument::ShowIndentGuides;
 
 		//const int fns = nextNonSpaceChar(0);
         qreal indent = qMax(0., m_indent) + QDocumentPrivate::m_leftPadding;
@@ -3987,6 +3988,13 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
                             p->drawLine(QPointF(-headSize, headSize),QPointF(0,0));
 							p->restore();
 						}
+                        if( showIndentGuide && leading){
+                            // draw indent guide (vertical line)
+                            p->save();
+                            p->setPen(Qt::lightGray);
+                            p->drawLine(QPointF(xpos,0),QPointF(xpos,yEnd));
+                            p->restore();
+                        }
 
 						xpos += xoff;
 						if(mergeXpos>=0){
@@ -4023,6 +4031,16 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 						if(mergeXpos>=0){
 							mergeText+=" ";
 						}
+
+                        if( showIndentGuide && leading && (column%tcol == 0)){
+                            // draw indent guide (vertical line)
+                            qreal xoff = tcol * currentSpaceWidth;
+                            p->save();
+                            p->setPen(Qt::lightGray);
+                            p->drawLine(QPointF(xpos-xoff,0),QPointF(xpos-xoff,yEnd));
+                            p->restore();
+                        }
+
 					}
 				}
 
