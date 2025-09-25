@@ -7302,7 +7302,7 @@ void Texstudio::generalOptions()
     connect(&configManager, &ConfigManager::iconSizeChanged, this, &Texstudio::changeIconSize);
     connect(&configManager, &ConfigManager::secondaryIconSizeChanged, this, &Texstudio::changeSecondaryIconSize);
     connect(&configManager, &ConfigManager::pdfIconSizeChanged , this, &Texstudio::changePDFIconSize);
-    connect(&configManager, &ConfigManager::symbolGridIconSizeChanged, this, [=](int size) { changeSymbolGridIconSize(size); });
+    connect(&configManager, &ConfigManager::symbolGridIconSizeChanged, this, [=,this](int size) { changeSymbolGridIconSize(size); });
 
     // The focus will return to the parent. Therefore we have to provide the correct caller (may be a viewer window).
     QWidget *parentWindow = UtilsUi::windowForObject(sender(), this);
