@@ -3642,12 +3642,6 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 	if ( m_layout )
 	{
-		//if (!hasFlag(QDocumentLine::FormatsApplied))
-		//m_layout->setAdditionalFormats(decorations()); (this causes a crash on qt>5.3)
-
-		//if ( !hasFlag(QDocumentLine::FormatsApplied) )
-		//	applyOverlays();
-
         const qreal lineSpacing = QDocumentPrivate::m_lineSpacing;
 
 		QVector<QTextLayout::FormatRange> selections;
