@@ -105,7 +105,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>16</number>
+          <number>8</number>
          </property>
          <widget class="QWidget" name="pageGeneral">
           <layout class="QVBoxLayout">
@@ -137,8 +137,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>823</width>
-                <height>725</height>
+                <width>808</width>
+                <height>696</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout">
@@ -738,8 +738,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>870</width>
-                <height>626</height>
+                <width>837</width>
+                <height>608</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1583,9 +1583,9 @@ Then you can select a new shortcut by one of the following ways:
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>951</width>
-                <height>559</height>
+                <y>-58</y>
+                <width>1128</width>
+                <height>526</height>
                </rect>
               </property>
               <layout class="QGridLayout">
@@ -2043,8 +2043,8 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>858</width>
-                <height>1823</height>
+                <width>1128</width>
+                <height>1643</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2065,6 +2065,13 @@ Then you can select a new shortcut by one of the following ways:
                  <layout class="QGridLayout" name="gridLayout_6">
                   <item row="2" column="0">
                    <layout class="QHBoxLayout" name="horizontalLayout_6">
+                    <item>
+                     <widget class="QCheckBox" name="checkBoxShowIndentGuides">
+                      <property name="text">
+                       <string>Show Indent Guides</string>
+                      </property>
+                     </widget>
+                    </item>
                     <item>
                      <spacer name="horizontalSpacer_6">
                       <property name="orientation">
@@ -3323,8 +3330,8 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>596</width>
-                <height>995</height>
+                <width>1128</width>
+                <height>1030</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -4007,8 +4014,8 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>429</width>
-                <height>274</height>
+                <width>1143</width>
+                <height>426</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4283,8 +4290,8 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>555</width>
-                <height>641</height>
+                <width>1128</width>
+                <height>629</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4786,8 +4793,8 @@ Note: Changing this setting will only affect documents that are opened afterward
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>413</width>
-                <height>202</height>
+                <width>1143</width>
+                <height>426</height>
                </rect>
               </property>
               <layout class="QGridLayout">
