@@ -667,3 +667,9 @@ python3-sphinx-inline-tabs
 python3-sphinx-designer
 python3-sphinxex-opengraph
 ``` 
+
+Alternatively sphinx can be directly installed as python packages (make sure that they are accessible via commandline):
+
+````
+pip install sphinx furo myst-parser sphinx-inline-tabs sphinx_designer sphinxext_opengraph
+```
