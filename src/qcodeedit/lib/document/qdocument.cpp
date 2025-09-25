@@ -6777,10 +6777,6 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 
 	QDocumentLineHandle *dlh = m_lines.at(lcxt.docLineNr);
 
-	// ugly workaround..., disabled 20.12.'09 because it slows down rendering speed on mac considerably and i don't see its function
-	//if( !m_fixedPitch && !h->hasFlag(QDocumentLine::Hidden))
-	//	adjustWidth(i);
-
 	const int wrap = dlh->m_frontiers.count();
 	const bool wrapped = wrap;
 
