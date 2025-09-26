@@ -1,5 +1,5 @@
 # codedescribe package
-# Matthew Bertucci 2025/06/07 for v1.10
+# Matthew Bertucci 2025/09/26 for v1.12
 
 #include:xcolor
 #include:pifont
@@ -8,6 +8,8 @@
 #keyvals:\usepackage/codedescribe#c
 nolisting
 base skip=##L
+strict
+color scheme=#black,default,brighter,darker
 #endkeyvals
 
 \defgroupfmt{format-group}{format-keys%keyvals}
