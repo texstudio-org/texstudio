@@ -1,5 +1,5 @@
 # rpgicons package
-# Matthew Bertucci 2025/06/25 for v1.8.9
+# Matthew Bertucci 2025/09/26 for v2.0.0
 
 #keyvals:\usepackage/rpgicons#c
 l3
@@ -86,8 +86,6 @@ line width=##L
 scale=%<factor%>
 scale inner=%<factor%>
 rotate=%<degrees%>
-accessible
-accessible=#basic,full,false
 every die={%<options%>}
 every ability={%<options%>}
 every saving={%<options%>}
