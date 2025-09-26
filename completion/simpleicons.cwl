@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/09/21 for v15.14.0
+# Matthew Bertucci 2025/09/26 for v15.16.0
 
 #include:iftex
 
@@ -144,6 +144,7 @@ androidstudio
 angular
 anilist
 animalplanet
+animedotjs
 ankermake
 anki
 ansible
@@ -1071,6 +1072,7 @@ gamemaker
 gandi
 gamescience
 garmin
+garudalinux
 gatling
 gatsby
 gcore
@@ -1677,6 +1679,7 @@ literal
 litiengine
 livechat
 livejournal
+livekit
 livewire
 llvm
 lmms
@@ -2087,6 +2090,7 @@ oppo
 opsgenie
 opslevel
 optimism
+optuna
 orange
 orcid
 oreilly
@@ -2198,6 +2202,7 @@ pinboard
 pinescript
 pinetwork
 pingdom
+pinia
 pino
 pinterest
 pioneerdj
@@ -2654,6 +2659,7 @@ sitecore
 sitepoint
 siyuan
 skaffold
+skeleton
 sketch
 sketchfab
 sketchup
@@ -2671,6 +2677,7 @@ slint
 smart
 smartthings
 smashingmagazine
+smoothcomp
 smrt
 smugmug
 snapchat
@@ -3078,6 +3085,7 @@ unpkg
 unraid
 unrealengine
 unsplash
+unstop
 untappd
 upcloud
 uphold
