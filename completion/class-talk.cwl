@@ -1,11 +1,11 @@
 # talk class
-# Matthew Bertucci 2/12/2022 for v1.1
+# Matthew Bertucci 2025/09/26 for v2.0
 
 #include:multido
-#include:amsmath
 #include:graphicx
 #include:pgf
-#include:hyperref
+#include:xstring
+#include:environ
 
 #keyvals:\documentclass/talk#c
 notes
@@ -49,7 +49,7 @@ openbib
 \begin{notes}
 \end{notes}
 
-\slidestyle{style%keyvals}
+\layout{style%keyvals}
 
 \begin{multislide}{sub-slides}{title%text}
 \begin{multislide}[style%keyvals]{sub-slides}{title%text}
@@ -62,11 +62,19 @@ openbib
 \onlyslide{slide number}{material%text}
 \onlyslide*{slide number}{material%text}
 
+\shiftbox{x}{y}{material%text}
+\shiftbox[anchor]{x}{y}{material%text}
+\twocolumn{valign}{left-material%text}{right-material%text}
+\twocolumn[fraction]{valign}{left-material%text}{right-material%text}
+
 \tableofcontents[%<<fromsec>.<fromsubsec>-<tosec>.<tosubsec>%>]
 
 \slidewidth#*
 \slideheight#*
 \theslide#*
 \thesubslide#*
+\theHsubslide#*
 \theslidelabel#*
+
 \slidesadjust{hadjust}{vadjust}#*
+\setparskip{glue}#*
