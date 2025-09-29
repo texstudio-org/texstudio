@@ -160,6 +160,7 @@
 \caption{text}
 \caption[short text%text]{text}
 \chapter{title}#L1
+\chapter[short title]{title}#L1
 \chapter*{title}#L1
 \cite{keylist}#c
 \cite[add. text]{keylist}
