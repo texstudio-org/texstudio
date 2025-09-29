@@ -1,5 +1,5 @@
 # bodeplot package
-# Matthew Bertucci 2024/01/13 for v1.1.5
+# Matthew Bertucci 2025/09/29 for v2.0
 
 #include:tikz
 #include:pdftexcmds
@@ -101,3 +101,5 @@ Hz
 \addNicholsZPKChart[%<plot-options%>]{%<z/{zeros},p/{poles},k/{gain},d/{delay}%>}
 \addNicholsTFChart{%<num/{coeffs},den/{coeffs},d/{delay}%>}
 \addNicholsTFChart[%<plot-options%>]{%<num/{coeffs},den/{coeffs},d/{delay}%>}
+\PoleZeroMapZPK{%<z/{zeros},p/{poles},k/{gain}%>}
+\PoleZeroMapZPK[%<plot/{opt},axes/{opt},scale/{log}%>]{%<z/{zeros},p/{poles},k/{gain}%>}
