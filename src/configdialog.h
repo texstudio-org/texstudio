@@ -124,6 +124,7 @@ private slots:
 	void browsePathCommands();
     void browseCollaborativeToolPath();
     void browseCollaborativeClientFolder();
+    void collaborativeEditingToolChanged(int index);
 	void advancedOptionsToggled(bool on);
 	void advancedOptionsClicked(bool on);
 	void metaFilterChanged(const QString &filter);

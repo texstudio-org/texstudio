@@ -944,6 +944,12 @@ void ConfigDialog::browseCollaborativeClientFolder()
     UtilsUi::browse(ui.lineEditCollaborativeClientFolder, tr("Search Folder for Collaborative Client"), "/", QDir::rootPath(), false);
 }
 
+void ConfigDialog::collaborativeEditingToolChanged(int index)
+{
+    // no used
+    qDebug()<<"not implemented";
+}
+
 void ConfigDialog::updateDefaultDictSelection(const QString &dictPaths, const QString &newDefault)
 {
 	QString lang = ui.comboBoxSpellcheckLang->currentText();
