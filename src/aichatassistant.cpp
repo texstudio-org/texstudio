@@ -489,7 +489,11 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
         if(m_response.contains("```javascript")||m_response.contains("```bash")){ // mistral ai sometimes declares txs macros as bash
             m_actInsert->setToolTip(tr("Execute as macro"));
         }else{
-            m_actInsert->setToolTip(tr("Insert into text"));
+            if(m_response.contains("```latex")){
+                m_actInsert->setToolTip(tr("Insert code into text"));
+            }else{
+                m_actInsert->setToolTip(tr("Insert into text"));
+            }
         }
     }else{
         // no query sent yet
