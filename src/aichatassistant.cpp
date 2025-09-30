@@ -574,13 +574,13 @@ QString AIChatAssistant::getConversationForBrowser()
         }else if(role=="assistant"){
             QString styleMacro=""; // style for macros
             if(darkMode){
-                styleMacro="<p style=\"background-color: cornflowerblue;margin-left: 20px\">\n";
+                styleMacro="background-color: cornflowerblue;margin-left: 20px";
             }else{
-                styleMacro="<p style=\"background-color: aliceblue;margin-left: 20px\">\n";
+                styleMacro="background-color: aliceblue;margin-left: 20px";
             }
-            result.append(styleMacro);
+            result.append(QString("<p style=\"%1\">\n").arg(styleMacro));
             static QRegularExpression re_marginLeft("margin-left:\\s*\\d+\\D*;");
-            cnt.replace(re_marginLeft,"margin-left: 20px;");
+            cnt.replace(re_marginLeft,styleMacro+";");
             result.append(cnt);
             result.append("\n</p>\n");
         }
