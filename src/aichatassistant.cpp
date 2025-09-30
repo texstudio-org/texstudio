@@ -553,7 +553,7 @@ QString AIChatAssistant::getConversationForBrowser()
         QJsonObject obj=it->toObject();
         QString role=obj["role"].toString();
 #if QT_VERSION>=QT_VERSION_CHECK(5,14,0)
-        const QString content=QString("%%%txs%%%")+(obj["content"].toString())+QString("%%%txs%%%");
+        const QString content=QString("%%%txs%%%\n")+(obj["content"].toString())+QString("%%%txs%%%");
         QTextDocument td;
         td.setMarkdown(content);
         const QString contentHTML=td.toHtml();
