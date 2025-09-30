@@ -559,7 +559,7 @@ QString AIChatAssistant::getConversationForBrowser()
         const QString contentHTML=td.toHtml();
         // strip html from surrounding default tags
         const auto parts=contentHTML.split("%%%txs%%%");
-        const QString cnt=parts.value(1);
+        QString cnt=parts.value(1);
 #else
         const QString cnt=obj["content"].toString();
 #endif
@@ -572,11 +572,15 @@ QString AIChatAssistant::getConversationForBrowser()
             result.append(cnt);
             result.append("\n</p>\n");
         }else if(role=="assistant"){
+            QString styleMacro=""; // style for macros
             if(darkMode){
-                result.append("<p style=\"background-color: cornflowerblue;margin-left: 20px\">\n");
+                styleMacro="<p style=\"background-color: cornflowerblue;margin-left: 20px\">\n";
             }else{
-                result.append("<p style=\"background-color: aliceblue;margin-left: 20px\">\n");
+                styleMacro="<p style=\"background-color: aliceblue;margin-left: 20px\">\n";
             }
+            result.append(styleMacro);
+            static QRegularExpression re_marginLeft("margin-left:\\s*\\d+\\D*;");
+            cnt.replace(re_marginLeft,"margin-left: 20px;");
             result.append(cnt);
             result.append("\n</p>\n");
         }
