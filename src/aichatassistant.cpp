@@ -149,7 +149,8 @@ void AIChatAssistant::slotSend()
     if(m_reply){
         // if reply is active, stop it
         m_reply->abort();
-        m_reply->deleteLater();
+        if(m_reply)
+            m_reply->deleteLater();
         m_reply=nullptr;
         m_actSend->setToolTip(tr("Send Query to AI provider"));
         m_actSend->setIcon(getRealIcon("document-send"));
