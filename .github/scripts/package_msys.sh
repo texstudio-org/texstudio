@@ -22,8 +22,8 @@ echo "copy dlls"
 #ldd texstudio.exe | awk '{print $3}'| grep ming | xargs -I{} cp -u {} .
 ldd texstudio.exe | awk '{print $3}'| grep ucrt64 | xargs -I{} cp -u {} .
 # force ssl/crypto copy
-#ldd texstudio.exe | awk '{print $3}'| grep libcrypto | xargs -I{} cp -u {} .
-#ldd texstudio.exe | awk '{print $3}'| grep libssl | xargs -I{} cp -u {} .
+ldd texstudio.exe | awk '{print $3}'| grep libcrypto | xargs -I{} cp -u {} .
+ldd texstudio.exe | awk '{print $3}'| grep libssl | xargs -I{} cp -u {} .
 # check copied dlls
 echo "check dlls"
 ldd texstudio.exe
