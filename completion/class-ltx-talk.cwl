@@ -1,5 +1,5 @@
 # ltx-talk class
-# Matthew Bertucci 2025/09/16 for v0.2.0
+# Matthew Bertucci 2025/09/30 for v0.2.2
 
 #include:pdfmanagement
 #include:relsize
@@ -13,6 +13,7 @@
 aspect-ratio=%<width:height%>
 frame-title-arg
 mode=#handout,projector
+handout
 #endkeyvals
 
 #ifOption:frame-title-arg
