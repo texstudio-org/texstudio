@@ -1,5 +1,5 @@
 # tikzviolinplots package
-# Matthew Bertucci 2025/04/22 for v0.9.0
+# Matthew Bertucci 2025/09/30 for v0.10.0
 
 #include:pgfplots
 #include:pgfplotstable
@@ -35,6 +35,7 @@ samples=%<integer%>
 relative position=%<integer%>
 color=#%color
 label={%<text%>}
+data label style={%<style keys%>}
 invert#true,false
 average mark=%<mark%>
 dataset mark=%<mark%>
