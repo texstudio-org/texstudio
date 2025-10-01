@@ -3299,7 +3299,14 @@ void QEditor::timerEvent(QTimerEvent *e)
 			                );
 			m_cursor.expandSelect(m_multiClickCursor.property("isTripleClick").toBool() ? QDocumentCursor::LineUnderCursor : m_doubleClickSelectionType);
 		} else {
-			m_cursor.setSelectionBoundary(newCursor);
+            // consider mousebuttons pressed
+            Qt::KeyboardModifiers modifiers=QApplication::keyboardModifiers();
+            if(modifiers == (Qt::ControlModifier | Qt::AltModifier)){
+                addCursorMirror(newCursor);
+                m_cursor=newCursor;
+            }else{
+                m_cursor.setSelectionBoundary(newCursor);
+            }
 		}
 
 		ensureCursorVisible();
