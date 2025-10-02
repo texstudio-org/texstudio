@@ -618,6 +618,9 @@ void AIChatAssistant::updateStreamedConversation(const QString &allData)
     ja_messages.append(ja_message);
     QString responseText=getConversationForBrowser();
     textBrowser->setHtml(responseText);
+    if(config->ai_streamResults){
+        textBrowser->verticalScrollBar()->setValue(textBrowser->verticalScrollBar()->maximum());
+    }
 }
 
 /*! TODO
