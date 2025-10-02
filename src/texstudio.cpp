@@ -2571,10 +2571,9 @@ void Texstudio::runScriptsInList(int trigger, const QList<Macro> &scripts)
 void Texstudio::fileNewInternal(QString fileName)
 {
 	LatexDocument *doc = new LatexDocument(this);
-	doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
-    if(configManager.editorConfig->inlineSyntaxChecking){
-        doc->startSyntaxChecker();
-    }
+    doc->startSyntaxChecker();
+    doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
+
 	LatexEditorView *edit = new LatexEditorView (nullptr, configManager.editorConfig, doc);
 	edit->setLatexPackageList(&latexPackageList);
     edit->setHelp(&help);
