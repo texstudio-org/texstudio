@@ -642,7 +642,7 @@ tcbox width=#auto,auto limited,forced center,forced left,forced right,minimum ce
 # commented.
 
 # # NOTE: this is not a valid syntax of #keyvals.
-# \newtcolorbox,\renewtcolorbox,\newtcbox,\renewtcbox,
+# #keyvals:\newtcolorbox,\renewtcolorbox,\newtcbox,\renewtcbox,
 # \newtcblisting,\renewtcblisting,\newtcbinputlisting,\renewtcbinputlisting,
 # \newtcbtheorem,\renewtcbtheorem,
 # \newtcboxfit,\renewtcboxfit,
@@ -654,22 +654,21 @@ tcbox width=#auto,auto limited,forced center,forced left,forced right,minimum ce
 # \DeclareTCBInputListing,\NewTCBInputListing,\RenewTCBInputListing,\ProvideTCBInputListing,
 # \DeclareTCBoxFit,\NewTCBoxFit,\RenewTCBoxFit,\ProvideTCBoxFit,
 # \DeclareTotalTCBoxFit,\NewTotalTCBoxFit,\RenewTotalTCBoxFit,\ProvideTotalTCBoxFit
-# #keyvals:
 # auto counter
-# auto counter
-# use counter from=
-# use counter=
-# use counter*=
+# use counter from=%<tcolorbox%>
+# use counter=%<counter%>
+# use counter*=%<counter%>
 # no counter
 # reset counter on overlays#true,false
-# number within=
-# number format=
-# number freestyle=
+# number within=%<counter%>
+# number within from=%<tcolorbox%>
+# number format=%<format macro%>
+# number freestyle=%<code%>
 # crefname={%<singular%>}{%<plural%>}
 # Crefname={%<singular%>}{%<plural%>}
 # blend into=#figures,tables,listings
 # blend before title=#colon,dash,colon hang,dash hang#c
-# blend before title code=
-# list inside=
-# list type=
+# blend before title code=%<code%>
+# list inside=%<name%>
+# list type=%<type%>
 # #endkeyvals
