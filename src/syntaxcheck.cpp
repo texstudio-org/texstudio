@@ -540,6 +540,8 @@ bool SyntaxCheck::equalEnvStack(StackEnvironment env1, StackEnvironment env2)
 */
 void SyntaxCheck::markUnclosedEnv(Environment env)
 {
+    if(!mSyntaxChecking) return; // skip when no syntax errors are to be shown
+
 	QDocumentLineHandle *dlh = env.dlh;
 	if (!dlh)
 		return;
