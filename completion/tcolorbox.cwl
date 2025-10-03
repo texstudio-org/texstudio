@@ -215,6 +215,8 @@ library/all
 # << Numbered Boxes >>
 \thetcbcounter
 \tcbcounter
+\thetcbcounterof{tcolorbox}
+\tcbcounterof{tcolorbox}
 
 # << Lists of tcolorboxes >>
 \tcblistof{name}{title}
