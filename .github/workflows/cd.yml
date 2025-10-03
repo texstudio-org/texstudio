@@ -420,7 +420,7 @@ jobs:
   macosx:
     name: Mac OS X
     if: true
-    runs-on: macos-13
+    runs-on: macos-15-intel
 
     steps:
     - name: Checkout
