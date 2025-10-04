@@ -1,5 +1,5 @@
 # bnumexpr package
-# Matthew Bertucci 2025/09/07 for v1.6
+# Matthew Bertucci 2025/09/14 for v1.7
 
 #include:xintkernel
 #include:xintbinhex
@@ -17,6 +17,13 @@ custombinhex
 \bnumexpr %<<expr>%> \relax#*
 \bnumexpr#S
 \bnumeval{integer-expr list}
+\bnumeval[type%keyvals]{integer-expr list}
+#keyvals:\bnumeval
+b
+o
+h
+ha
+#endkeyvals
 
 \bnumsetup{options%keyvals}
 
@@ -40,6 +47,7 @@ dectobin=%<macro%>
 
 \bnumprintone#*
 \bnumprintonehex#*
+\bnumprintonelowerhex#*
 \bnumprintoneoct#*
 \bnumprintonebin#*
 \bnumprintonesep#*

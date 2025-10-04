@@ -1,5 +1,5 @@
 # jslectureplanner package
-# Matthew Bertucci 2025/01/30 for v1.14
+# Matthew Bertucci 2025/10/03 for v1.15
 
 #include:etoolbox
 #include:datetime2
@@ -157,6 +157,8 @@ span=%<span%>
 \officehours
 \officenumber
 
+\IfSemesterTF{term}{true code}{false code}
+
 \begin{labeling}{widest pattern}
 \begin{labeling}[delimiter]{widest pattern}
 \end{labeling}
@@ -173,6 +175,7 @@ span=%<span%>
 title=%<title%>
 blocksonly#true,false
 uncover#true,false
+size=%<size command%>
 instructors#true,false
 options={%<frame options%>}
 overlayarg=%<overlay specification%>

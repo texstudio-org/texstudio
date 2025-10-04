@@ -1,4 +1,4 @@
-# updated 2025/03/06 for v3.8.3
+# updated 2025/10/03 for v3.8.4
 
 #include:iftex
 #include:array
@@ -6,7 +6,6 @@
 #include:delarray
 #include:tabularx
 #include:booktabs
-#include:textcase
 #include:etoolbox
 #include:xpatch
 #include:nameref
@@ -135,7 +134,6 @@ twoside
 \appendixpagename#*
 \appendixrefname#*
 \appendixtocname#*
-\Aref{key}#r
 \arraytostring{array name}{result%cmd}#*d
 \AtBeginClass{class}{code}#*
 \AtBeginFile{file}{code}#*
@@ -251,7 +249,6 @@ twoside
 \boxedverbatiminput{file}
 \boxedverbatiminput*{file}
 \boxverbflag#*
-\Bref{key}#r
 \bs#*
 \bvbox#*
 \bvboxsep#*
@@ -580,7 +577,6 @@ left
 both
 right
 #endkeyvals
-\Cref{key}#r
 \crtok#*
 \cs{csname}
 \ctableftskip#*
@@ -721,7 +717,6 @@ right
 \FrameRestore#*
 \FrameRule#*
 \FrameSep#*
-\fref{key}#r
 \frontmatter
 \frontmatter*
 \Ftrimpicbl#*
@@ -1353,8 +1348,6 @@ none
 \precistocformat#*
 \precistoctext{text}#*
 \predate{text}#*
-\pref{key}#r
-\Pref{key}#r
 \preglossaryhook#*
 \preindexhook#*
 \prenoteinnotes#*
@@ -1532,9 +1525,9 @@ none
 \setsubsubsechook{text}#*
 \setsubsubsecindent{length}#*
 \setthesection#*
+\settitlingpagenumbering{macro}#*
 \settocdepth{secname}#*
 \settocdepth*{secname}#*
-\settocpreprocessor{type}{code}#*
 \settrimmedsize{height}{width}{ratio}#*
 \settrims{top}{foredge}#*
 \settypeblocksize{height}{width}{ratio}#*
@@ -1607,7 +1600,6 @@ none
 \sourceflush#*
 \specialindex{file}{counter}{stuff}#*
 \spinemargin#*
-\Sref{key}#r
 \stanzaskip#*
 \startnoteentry#S
 \startnoteentrystart{arg1}{arg2}{arg3}{arg4}#S
@@ -1743,7 +1735,7 @@ none
 \tightsubcaptions#*
 \titleref{key}#r
 \titleref*{key}#r
-\titlingpageend#*
+\titlingpageend{twoside code}{oneside code}#*
 \tmarkbl#*
 \tmarkbm#*
 \tmarkbr#*
@@ -1762,7 +1754,6 @@ none
 \topsepii#*
 \topsepiii#*
 \traditionalparskip#*
-\tref{key}#r
 \trimedge#*
 \trimFrame#*
 \trimLmarks#*
@@ -1834,18 +1825,27 @@ titlingpage
 #endkeyvals
 
 # deprecated
-\addtodef{cmd}{prepend}{append}#S
+\Aref{key}#Sr
+\Bref{key}#Sr
+\Cref{key}#Sr
+\Pref{key}#Sr
+\Sref{key}#Sr
 \addtodef*{cmd}{prepend}{append}#S
-\addtoiargdef{cmd}{prepend}{append}#S
+\addtodef{cmd}{prepend}{append}#S
 \addtoiargdef*{cmd}{prepend}{append}#S
-\newloglike{cmd}{string}#Sd
+\addtoiargdef{cmd}{prepend}{append}#S
+\fref{key}#Sr
 \newloglike*{cmd}{string}#Sd
+\newloglike{cmd}{string}#Sd
 \patchcmdError{arg1}{arg2}#S
 \patchcommand{cmd}{start code}{end code}#S
+\pref{key}#Sr
 \provideloglike{cmd}{string}#Sd
+\settocpreprocessor{type}{code}#S
+\setverbatimbreak#S
 \tabsoff#S
 \tabson#S
-\setverbatimbreak#S
+\tref{key}#Sr
 \verbatimbreakchar#S
 \wrappingoff#S
 \wrappingon#S

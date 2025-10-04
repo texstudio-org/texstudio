@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2025/06/28 for v0.99s
+# Matthew Bertucci 2025/10/03 for v0.99s
 
 #include:pdfmanagement
 
@@ -45,15 +45,6 @@ math/tex/AF#true,false
 table/tagging=
 table/header-rows=%<comma list%>
 text/lang=%<lang%>
-#endkeyvals
-
-\tagtool{keyvals}
-
-#keyvals:\tagtool
-para/tagging#true,false
-para/maintag=%<tag%>
-para/tag=%<tag%>
-para/flattened#true,false
 #endkeyvals
 
 \tagmcbegin{keyvals}
@@ -154,4 +145,3 @@ debug/structures
 \tag_struct_parent_int:#/%expl3
 \tag_struct_use:n {%<⟨label⟩%>}#/%expl3
 \tag_struct_use_num:n {%<⟨struct number⟩%>}#/%expl3
-\tag_tool:n {%<⟨keyval⟩%>}#/%expl3

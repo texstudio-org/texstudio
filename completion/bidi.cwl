@@ -1,6 +1,6 @@
 # bidi package
 # hadi_sfr (info@hadisafari.ir)
-# updated 2023/01/17 for v39.7
+# updated 2025/09/14 for v25.09.13
 
 #include:xetex
 #include:iftex
@@ -37,22 +37,7 @@ perpagefootnote
 \eightcolumnfootnotes#*
 \ninecolumnfootnotes#*
 \tencolumnfootnotes#*
-\RTLcolumnfootnotes
-\LTRcolumnfootnotes
 \paragraphfootnotes
-\setLTRparagraphfootnotes
-\setRTLparagraphfootnotes
-\TwoColumnFootnotes
-\ThreeColumnFootnotes
-\FourColumnFootnotes
-\FiveColumnFootnotes#*
-\SixColumnFootnotes#*
-\SevenColumnFootnotes#*
-\EightColumnFootnotes#*
-\NineColumnFootnotes#*
-\TenColumnFootnotes#*
-\ParagraphFootnotes
-\NormalRTLParaLTRFootnotes#*
 # not documented
 \AddExtraParaSkip{arg}#*
 \extrafeetendmini#*
@@ -93,22 +78,7 @@ perpagefootnote
 \eightcolumnfootnotes#*
 \ninecolumnfootnotes#*
 \tencolumnfootnotes#*
-\RTLcolumnfootnotes
-\LTRcolumnfootnotes
 \paragraphfootnotes
-\setLTRparagraphfootnotes
-\setRTLparagraphfootnotes
-\TwoColumnFootnotes
-\ThreeColumnFootnotes
-\FourColumnFootnotes
-\FiveColumnFootnotes#*
-\SixColumnFootnotes#*
-\SevenColumnFootnotes#*
-\EightColumnFootnotes#*
-\NineColumnFootnotes#*
-\TenColumnFootnotes#*
-\ParagraphFootnotes
-\NormalRTLParaLTRFootnotes#*
 # not documented
 \AddExtraParaSkip{arg}#*
 \extrafeetendmini#*

@@ -220,6 +220,7 @@
 <file>completion/background.cwl</file>
 <file>completion/backnaur.cwl</file>
 <file>completion/backref.cwl</file>
+<file>completion/bahaistar.cwl</file>
 <file>completion/balance.cwl</file>
 <file>completion/bangla.cwl</file>
 <file>completion/bargraph-js.cwl</file>
@@ -1686,6 +1687,7 @@
 <file>completion/frege.cwl</file>
 <file>completion/frenchmath.cwl</file>
 <file>completion/fr-fancy.cwl</file>
+<file>completion/fretplot.cwl</file>
 <file>completion/frimurer.cwl</file>
 <file>completion/frontespizio.cwl</file>
 <file>completion/froufrou.cwl</file>
@@ -4271,6 +4273,7 @@
 <file>completion/xob-font.cwl</file>
 <file>completion/xparse.cwl</file>
 <file>completion/xpatch.cwl</file>
+<file>completion/xpeekahead.cwl</file>
 <file>completion/xpiano.cwl</file>
 <file>completion/xpicture.cwl</file>
 <file>completion/xpinyin.cwl</file>

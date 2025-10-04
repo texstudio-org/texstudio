@@ -1,7 +1,12 @@
 # intexgral package
-# Matthew Bertucci 2025/08/04 for v1.1.0
+# Matthew Bertucci 2025/09/10 for v2.0.0
 
-#keyvals:\usepackage/intexgral#c
+#include:amssymb
+#include:derivative
+
+\intexgralsetup{options%keyvals}
+
+#keyvals:\intexgralsetup,\usepackage/intexgral#c
 invert-limits#true,false
 invert-differentials#true,false
 hide-differentials#true,false
@@ -57,16 +62,15 @@ diff-symb=%<command%>
 diff-star#true,false
 diff-options={%<keyvals%>}
 diff-vec#true,false
-diff-vec-style=%<command%>
-#endkeyvals
+diff-vec-style=%<command%#endkeyvals
 
 \NewIntegralSymbol{csname}
 \NewLimitsKeyword{keyword}{limits}
 \RenewLimitsKeyword{keyword}{limits}
 \ProvideLimitsKeyword{keyword}{limits}
 \DeclareLimitsKeyword{keyword}{limits}
-\NewDifferentialKeyword{keyword}{differentials}
-\NewDifferentialKeyword{keyword}{differentials}[jacobian]
+\NewDifferentialKeyword{keyword}{}
+\NewDifferentialKeyword{keyword}{}[jacobian]
 \RenewDifferentialKeyword{keyword}{differentials}
 \RenewDifferentialKeyword{keyword}{differentials}[jacobian]
 \ProvideDifferentialKeyword{keyword}{differentials}
@@ -74,3 +78,6 @@ diff-vec-style=%<command%>
 \DeclareDifferentialKeyword{keyword}{differentials}
 \DeclareDifferentialKeyword{keyword}{differentials}[jacobian]
 \differentials
+\defaultdiff{list}
+\defaultvdiff{list}
+\vdiffstyle{command}

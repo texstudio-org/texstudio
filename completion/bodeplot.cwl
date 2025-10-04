@@ -1,5 +1,5 @@
 # bodeplot package
-# Matthew Bertucci 2024/01/13 for v1.1.5
+# Matthew Bertucci 2025/09/30 for v2.1
 
 #include:tikz
 #include:pdftexcmds
@@ -27,6 +27,8 @@ Hz
 \addBodeTFPlot[%<plot-options%>]{%<plot-type%>}{%<num/{coeffs},den/{coeffs},d/{delay}%>}
 \addBodeComponentPlot{plot-command}
 \addBodeComponentPlot[plot-options]{plot-command}
+\addBodePlot{system-type}{system-data}
+\addBodePlot[plot-options]{system-type}{system-data}
 \MagK{real-part}{imaginary-part}
 \MagKAsymp{real-part}{imaginary-part}
 \MagKLin{real-part}{imaginary-part}
@@ -101,3 +103,5 @@ Hz
 \addNicholsZPKChart[%<plot-options%>]{%<z/{zeros},p/{poles},k/{gain},d/{delay}%>}
 \addNicholsTFChart{%<num/{coeffs},den/{coeffs},d/{delay}%>}
 \addNicholsTFChart[%<plot-options%>]{%<num/{coeffs},den/{coeffs},d/{delay}%>}
+\PoleZeroMapZPK{%<z/{zeros},p/{poles},k/{gain}%>}
+\PoleZeroMapZPK[%<plot/{opt},axes/{opt},scale/{log}%>]{%<z/{zeros},p/{poles},k/{gain}%>}

@@ -2,7 +2,7 @@
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
 # muzimuzhi/30 Aug 2019 for tcolorbox v4.20
 #     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
-# Matthew Bertucci updated 2024/07/10 for v6.3.0
+# Matthew Bertucci updated 2025/09/09 for v6.8.0
 
 #include:environ
 #include:etoolbox
@@ -215,6 +215,8 @@ library/all
 # << Numbered Boxes >>
 \thetcbcounter
 \tcbcounter
+\thetcbcounterof{tcolorbox}
+\tcbcounterof{tcolorbox}
 
 # << Lists of tcolorboxes >>
 \tcblistof{name}{title}
@@ -413,6 +415,8 @@ tabulars={%<preamble%>}
 tabulars*={%<code%>}{%<preamble%>}
 tabularx={%<preamble%>}
 tabularx*={%<code%>}{%<preamble%>}
+tabularray={%<inner specs%>}
+tabularray*={%<code%>}{%<inner specs%>}
 tikz upper
 tikz upper={%<TikZ options%>}
 tikz lower
@@ -638,7 +642,7 @@ tcbox width=#auto,auto limited,forced center,forced left,forced right,minimum ce
 # commented.
 
 # # NOTE: this is not a valid syntax of #keyvals.
-# \newtcolorbox,\renewtcolorbox,\newtcbox,\renewtcbox,
+# #keyvals:\newtcolorbox,\renewtcolorbox,\newtcbox,\renewtcbox,
 # \newtcblisting,\renewtcblisting,\newtcbinputlisting,\renewtcbinputlisting,
 # \newtcbtheorem,\renewtcbtheorem,
 # \newtcboxfit,\renewtcboxfit,
@@ -650,22 +654,21 @@ tcbox width=#auto,auto limited,forced center,forced left,forced right,minimum ce
 # \DeclareTCBInputListing,\NewTCBInputListing,\RenewTCBInputListing,\ProvideTCBInputListing,
 # \DeclareTCBoxFit,\NewTCBoxFit,\RenewTCBoxFit,\ProvideTCBoxFit,
 # \DeclareTotalTCBoxFit,\NewTotalTCBoxFit,\RenewTotalTCBoxFit,\ProvideTotalTCBoxFit
-# #keyvals:
 # auto counter
-# auto counter
-# use counter from=
-# use counter=
-# use counter*=
+# use counter from=%<tcolorbox%>
+# use counter=%<counter%>
+# use counter*=%<counter%>
 # no counter
 # reset counter on overlays#true,false
-# number within=
-# number format=
-# number freestyle=
+# number within=%<counter%>
+# number within from=%<tcolorbox%>
+# number format=%<format macro%>
+# number freestyle=%<code%>
 # crefname={%<singular%>}{%<plural%>}
 # Crefname={%<singular%>}{%<plural%>}
 # blend into=#figures,tables,listings
 # blend before title=#colon,dash,colon hang,dash hang#c
-# blend before title code=
-# list inside=
-# list type=
+# blend before title code=%<code%>
+# list inside=%<name%>
+# list type=%<type%>
 # #endkeyvals

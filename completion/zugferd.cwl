@@ -1,5 +1,5 @@
 # zugferd package
-# Matthew Bertucci 2025/01/06 for v0.9d
+# Matthew Bertucci 2025/09/26 for v0.10
 
 #include:siunitx
 
@@ -22,11 +22,12 @@ unknown-value-warning#true,false
 \InsertZugferdData{data-selection}#S
 \InsertZugferdData[special mode option]{data-selection}#S
 
+\UseZUGFeRDElement{name}
+\UseZUGFeRDElement[scope]{name}
+\UseZUGFeRDAddressItem{trade party}{item}
+
 \begin{ZUGFeRD}#*
 \end{ZUGFeRD}#*
 \startWritingZUGFeRDxml#*
 \stopWritingZUGFeRDxml#*
 \setupZUGFeRDStrings{property}{settings}#*
-
-# not documented
-\UseZUGFeRDElement{arg}#S

@@ -1,5 +1,5 @@
 # musixtex package
-# Matthew Bertucci 2023/01/13 for v1.36
+# Matthew Bertucci 2025/09/09 for v1.39
 
 # from musixltx.tex
 \begin{music}
@@ -702,6 +702,7 @@
 \ust{pitch}
 \varaccid
 \varline{height}{length}{slope}
+\verytinynotesize
 \vnotes{num}
 \voltadot#*
 \wh{pitch}
@@ -913,6 +914,7 @@
 \musickeyfont#S
 \musicLargefont#S
 \musiclargefont#S
+\musicnine#S
 \musicnorfont#S
 \musicsixteen#S
 \musicsize#S
@@ -922,6 +924,7 @@
 \musictwenty#S
 \musictwentyfour#S
 \musictwentynine#S
+\musicverytinyfont#S
 \musixchar#S
 \musixfont#S
 \mxdate#S
