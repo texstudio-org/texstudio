@@ -461,6 +461,10 @@ void CollaborationManager::readyCollabServerStandardOutput()
             }
         }
     }
+    if(buffer.contains("Do you want to continue? (y/N):")){
+        // send y
+        collabServerProcess->write("y\n");
+    }
     qDebug() << "Collab Server Output:" << buffer;
 }
 /*!
@@ -494,13 +498,15 @@ void CollaborationManager::sendToClient(const QJsonObject &jo)
  */
 void CollaborationManager::openFileInClient(const QString &fileName)
 {
+    LatexDocument *doc=findDocumentFromName(fileName);
+    if(!doc) return; // document not open
     // open file, send json
     QJsonObject jo;
     jo["jsonrpc"]="2.0";
     jo["method"]="open";
     QJsonObject jparams;
     jparams["uri"]="file://"+fileName;
-    jparams["content"]="";
+    jparams["content"]=doc->text();
     jo["params"]=jparams;
     sendToClient(jo);
 }
