@@ -1946,12 +1946,16 @@ void Texstudio::currentEditorChanged()
     updateTOCs();
     // set dock file explorer to current file, root to root document folder
     LatexDocument *doc=edView->getDocument();
-    QFileInfo fi=doc->getFileInfo();
+    LatexDocument *rootDoc=doc->getRootDocument();
+    QFileInfo fi=rootDoc->getFileInfo();
     QString rootDir=fi.absoluteDir().path();
 	if (rootDir == "/tmp")
 		rootDir = "/";
-    fileExplorerModel->setRootPath(rootDir);
-    fileView->setRootIndex(fileExplorerModel->index(rootDir));
+    if(fileExplorerModel->rootPath()!=rootDir){
+        // only change when necessary
+        fileExplorerModel->setRootPath(rootDir);
+        fileView->setRootIndex(fileExplorerModel->index(rootDir));
+    }
 }
 
 /*!
