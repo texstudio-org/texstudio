@@ -883,6 +883,10 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
 			validValues = str.mid(j + 1);
 			str = str.left(j);
 			QStringList lst = validValues.split(",");
+			// Trim whitespace from each value to handle values with spaces correctly
+			for (int k = 0; k < lst.size(); ++k) {
+				lst[k] = lst[k].trimmed();
+			}
 			QString key = str;
 			if (key.endsWith("="))
 				key.chop(1);
@@ -925,6 +929,10 @@ void CompletionListModel::setContextWords(const QSet<QString> &newwords, const Q
 			validValues = str.mid(j + 1);
 			str = str.left(j);
 			QStringList lst = validValues.split(",");
+			// Trim whitespace from each value to handle values with spaces correctly
+			for (int k = 0; k < lst.size(); ++k) {
+				lst[k] = lst[k].trimmed();
+			}
 			QString key = str;
 			if (key.endsWith("="))
 				key.chop(1);
