@@ -436,6 +436,8 @@ which is only valid when the command \documentclass uses thesis as
 argument.<br />
 If #c is added, the keyvals are only used for completion, not for
 syntax checking<br />
+If #o<em>n</em> is added (<em>n</em>&gt;=1), the keyvals are valid for argument #<em>n</em>. This applies only if multiple keyval arguments are defined for one command. Only the keyval arguments are counted from right to left, starting with 0 which does not need the <code class="docutils literal notranslate"><span class="pre">\#o0</span></code> argument.
+(see tcolorbox.cwl)<br />
 If ##L is added to a key, a length is expected as argument.<br />
 If ##l is added to a key, the argument is defining a label. (see
 listings.cwl)<br />

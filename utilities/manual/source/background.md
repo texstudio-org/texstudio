@@ -149,6 +149,8 @@ position in a LaTeX document. The char `#` cannot be used inside a
     argument.\
     If \#c is added, the keyvals are only used for completion, not for
     syntax checking\
+    If \#o*n* is added (*n*>=1), the keyvals are valid for argument \#*n*. This applies only if multiple keyval arguments are defined for one command. Only the keyval arguments are counted from right to left, starting with 0 which does not need the `\#o0` argument.
+    (see tcolorbox.cwl)\
     If \#\#L is added to a key, a length is expected as argument.\
     If \#\#l is added to a key, the argument is defining a label. (see
     listings.cwl)\
