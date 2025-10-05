@@ -1468,7 +1468,41 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                         }
                     }else{
                         QStringList l = options.split(",");
-                        if (!l.contains(word)) {
+                        // Trim whitespace from each option to handle values with spaces correctly
+                        for (int j = 0; j < l.size(); ++j) {
+                            l[j] = l[j].trimmed();
+                        }
+                        
+                        bool isValid = l.contains(word);
+                        
+                        // If single word is not valid, check if combining with subsequent keyVal_val tokens forms a valid multi-word value
+                        if (!isValid) {
+                            QString combinedWord = word;
+                            int endTokenIndex = i;
+                            
+                            // Look ahead for consecutive keyVal_val tokens at the same level
+                            for (int k = i + 1; k < tl.length(); k++) {
+                                Token tk_next = tl.at(k);
+                                if (tk_next.level != tk.level) break;
+                                if (tk_next.subtype != Token::keyVal_val) break;
+                                
+                                QString nextWord = line.mid(tk_next.start, tk_next.length);
+                                combinedWord += " " + nextWord;
+                                
+                                if (l.contains(combinedWord)) {
+                                    isValid = true;
+                                    endTokenIndex = k;
+                                    break;
+                                }
+                            }
+                            
+                            // Skip the tokens that were part of the valid multi-word value
+                            if (isValid && endTokenIndex > i) {
+                                i = endTokenIndex;
+                            }
+                        }
+                        
+                        if (!isValid) {
                             Error elem;
                             elem.range = QPair<int, int>(tk.start, tk.length);
                             elem.type = ERR_unrecognizedKeyValues;
