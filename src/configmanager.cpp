@@ -2890,12 +2890,15 @@ void ConfigManager::setInterfaceStyle()
 #ifdef ADWAITA
     if(newStyle=="Adwaita (txs)"){
         QApplication::setStyle(new Adwaita::Style(false));
+        darkMode=false;
+        ignoreSystemPalette=true; // ignore palette changes from OS
         handled=true;
         return;
     }
     if(newStyle=="Adwaita Dark (txs)"){
         QApplication::setStyle(new Adwaita::Style(true));
         darkMode=true;
+        ignoreSystemPalette=true; // ignore palette changes from OS
         handled=true;
         return;
     }
@@ -2906,6 +2909,7 @@ void ConfigManager::setInterfaceStyle()
         QString styleSheet = QString::fromLatin1(file.readAll());
         qApp->setStyleSheet(styleSheet);
         darkMode=true;
+        ignoreSystemPalette=true; // ignore palette changes from OS
         handled=true;
         return;
     }
@@ -2923,6 +2927,9 @@ void ConfigManager::setInterfaceStyle()
     // dark mode is derived from system text color (very light => dark mode)
     // however if system colors are ignored, only style manhattan - dark results in dark mode
     // do the check after setting style, as the style can also activate a dark mode
+
+    ignoreSystemPalette=useTexmakerPalette; // use config setting
+
     if(useTexmakerPalette){
         darkMode=modernStyle>1;
     }else{

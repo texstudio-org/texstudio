@@ -263,6 +263,7 @@ QString quoteSpaces(const QString &s)
 int modernStyle;
 int iconTheme;
 bool darkMode;
+bool ignoreSystemPalette;
 bool useSystemTheme;
 
 /*!
@@ -325,7 +326,7 @@ QIcon getRealIcon(const QString &icon)
 {
 	if (icon.isEmpty()) return QIcon();
 	if (icon.startsWith(":/")) return QIcon(icon);
-	if (useSystemTheme && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon);
+    if (useSystemTheme && !ignoreSystemPalette && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon); // ignore system palette needs to use txs icons as the system icon are colored due to system palette
 	//return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
 	QString name = getRealIconFile(icon);
 	QIcon ic = QIcon(name);

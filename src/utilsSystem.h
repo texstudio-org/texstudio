@@ -60,6 +60,11 @@ extern int iconTheme;
  */
 extern bool darkMode;
 /*!
+ * \brief ignore changes in system palette
+ * Ignore changes in system dark/light mode
+ */
+extern bool ignoreSystemPalette;
+/*!
  * \brief use system icons if available
  */
 extern bool useSystemTheme;

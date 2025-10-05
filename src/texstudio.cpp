@@ -4559,7 +4559,7 @@ void Texstudio::readSettings(bool reread)
     tobefullscreen = config->value("MainWindow/FullScreen", false).toBool();
 
     //dark mode menu
-    if(darkMode && configManager.useTexmakerPalette){
+    if(darkMode && ignoreSystemPalette){
         QString ownStyle;
         ownStyle="QMenuBar {background: #404040 }";
         ownStyle+="QMenuBar::item { background: transparent;}";
@@ -12115,6 +12115,7 @@ void Texstudio::LTErrorMessage(QString message){
  * \param palette new palette
  */
 void Texstudio::paletteChanged(const QPalette &palette){
+    if(ignoreSystemPalette) return; // ignore palette changes from OS (dark/ligh mode switch)
     bool oldDarkMode=darkMode;
     bool newDarkMode=configManager.systemUsesDarkMode(palette);
     if(newDarkMode != oldDarkMode){
@@ -12157,6 +12158,7 @@ void Texstudio::paletteChanged(const QPalette &palette){
  */
 void Texstudio::colorSchemeChanged(Qt::ColorScheme colorScheme)
 {
+    if(ignoreSystemPalette) return; // ignore palette changes from OS (dark/ligh mode switch)
     // only style Fusion & Windows support autochange
     if(configManager.interfaceStyle!="Fusion" && configManager.interfaceStyle!="Windows") return;
     bool oldDarkMode=darkMode;
