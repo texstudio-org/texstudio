@@ -270,6 +270,12 @@ void SyntaxCheckTest::checkkeyval_data(){
              <<"\\usepackage{hyperref} \\hypersetup{pdfpagemode=FullScreen}"<<false;
      QTest::newRow("hypersetup, val in argument 2")
              <<"\\usepackage{hyperref} \\hypersetup{pdfpagemode=test}"<<true;
+     QTest::newRow("tcolorbox, different values in 2 args")
+         <<"\\usepackage{tcolorbox} \\newtcbox[auto counter]{cmd}{after skip balanced=glue}"<<false;
+     QTest::newRow("tcolorbox, different values in 2 args, error in 2nd")
+         <<"\\usepackage{tcolorbox} \\newtcbox[auto counter]{cmd}{after kip balanced=glue}"<<true;
+     QTest::newRow("tcolorbox, different values in 2 args, error in 1st")
+         <<"\\usepackage{tcolorbox} \\newtcbox[aut counter]{cmd}{after skip balanced=glue}"<<true;
 
 }
 
