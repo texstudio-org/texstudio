@@ -277,11 +277,11 @@ void SyntaxCheckTest::checkkeyval_data(){
      QTest::newRow("tcolorbox, different values in 2 args, error in 1st")
          <<"\\usepackage{tcolorbox} \\newtcbox[aut counter]{cmd}{after skip balanced=glue}"<<true;
      QTest::newRow("keyval value with space, valid")
-         <<"\\usepackage{thmtools} \\declaretheorem[numbered=unless unique]{test}"<<false;
+         <<"\\usepackage{ProfLycee} \\begin{CodePiton}[Alignement=flush left]\\end{CodePiton}"<<false;
      QTest::newRow("keyval value with space, invalid")
-         <<"\\usepackage{thmtools} \\declaretheorem[numbered=unless uniquex]{test}"<<true;
+         <<"\\usepackage{ProfLycee} \\begin{CodePiton}[Alignement=flush leftx]\\end{CodePiton}"<<true;
      QTest::newRow("keyval value with space, first word only")
-         <<"\\usepackage{thmtools} \\declaretheorem[numbered=unless]{test}"<<true;
+         <<"\\usepackage{ProfLycee} \\begin{CodePiton}[Alignement=flush]\\end{CodePiton}"<<true;
 
 }
 
