@@ -31,6 +31,7 @@ QString getCommandFromToken(Token tk); ///< get command name from Token \a tk wh
 Token getCommandTokenFromToken(TokenList tl, Token tk);
 Token::TokenType getCompleterContext(QDocumentLineHandle *dlh, int column);
 
+int determineKeyValIndex(const CommandDescription &cd);
 }
 
 #endif // LATEXPARSING_H

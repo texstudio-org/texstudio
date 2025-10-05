@@ -421,6 +421,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     if (!cd.arguments.isEmpty() && cd.arguments.first().type == ArgumentDescription::MANDATORY) {
                         ArgumentDescription ad= cd.arguments.takeFirst();
                         tk.subtype = ad.tokenType;
+                        // special treatment for keyval
+                        if(tk.subtype==Token::keyValArg){
+                            int indexOfKeyValArg=determineKeyValIndex(cd);
+                            if(indexOfKeyValArg>0){
+                                tk.optionalCommandName=cd.optionalCommandName+QString("#o%1").arg(indexOfKeyValArg);
+                            }
+                        }
                     } else {
                         // handle as independet braces, like commandless brace below
                         // e.g. \hline {... (\hline accepts optional arguments, but no braces)
@@ -469,6 +476,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         ArgumentDescription ad= cd.arguments.takeFirst();
                         tk.subtype = ad.tokenType;
                         handled=true;
+                        // special treatment for keyval
+                        if(tk.subtype==Token::keyValArg){
+                            int indexOfKeyValArg=determineKeyValIndex(cd);
+                            if(indexOfKeyValArg>0){
+                                tk.optionalCommandName=cd.optionalCommandName+QString("#o%1").arg(indexOfKeyValArg);
+                            }
+                        }
                     }
                     if(!handled){
                         // unexpected optional argument
@@ -486,6 +500,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     if (!cd.arguments.isEmpty() && cd.arguments.first().type == ArgumentDescription::BRACKET) {
                         ArgumentDescription ad= cd.arguments.takeFirst();
                         tk.subtype = ad.tokenType;
+                        // special treatment for keyval
+                        if(tk.subtype==Token::keyValArg){
+                            int indexOfKeyValArg=determineKeyValIndex(cd);
+                            if(indexOfKeyValArg>0){
+                                tk.optionalCommandName=cd.optionalCommandName+QString("#o%1").arg(indexOfKeyValArg);
+                            }
+                        }
                     } else {
                         lexed << tk;
                         continue;
@@ -759,7 +780,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 tk.type = Token::keyVal_key;
                 if(!commandStack.isEmpty()){
                     const CommandDescription &cd = commandStack.top();
-                    tk.optionalCommandName=cd.optionalCommandName;
+                    int indexOfKeyValArg=determineKeyValIndex(cd);
+                    if(indexOfKeyValArg>0){
+                        tk.optionalCommandName=cd.optionalCommandName+QString("#o%1").arg(indexOfKeyValArg);
+                    }else{
+                        tk.optionalCommandName=cd.optionalCommandName;
+                    }
                 }
                 keyName = line.mid(tk.start, tk.length);
                 lexed << tk;
@@ -1579,6 +1605,22 @@ TokenList findRestArgTL(QDocumentLineHandle *dlh, Token::TokenType type, int hin
         }
     }
     return tl + findRestArgTL(dlh, type, index+1, count - 1);
+}
+/*!
+ * \brief determine the number of available keyval arguments
+ * In case more than 1 is defined
+ * \param cd
+ * \return number of keyval arguments
+ */
+int determineKeyValIndex(const CommandDescription &cd)
+{
+    int cnt=0;
+    for(int i=0;i<cd.arguments.length();++i){
+        if(cd.arguments.at(i).tokenType==Token::keyValArg){
+            ++cnt;
+        }
+    }
+    return cnt;
 }
 
 
