@@ -276,6 +276,12 @@ void SyntaxCheckTest::checkkeyval_data(){
          <<"\\usepackage{tcolorbox} \\newtcbox[auto counter]{cmd}{after kip balanced=glue}"<<true;
      QTest::newRow("tcolorbox, different values in 2 args, error in 1st")
          <<"\\usepackage{tcolorbox} \\newtcbox[aut counter]{cmd}{after skip balanced=glue}"<<true;
+     QTest::newRow("thmtools,multi word keyval")
+         <<"\\usepackage{thm-kv} \\declaretheorem[numbered=unless unique]{test}"<<false;
+     QTest::newRow("thmtools,multi word keyval,fault in first")
+         <<"\\usepackage{thm-kv} \\declaretheorem[numbered=unles unique]{test}"<<true;
+     QTest::newRow("thmtools,multi word keyval,fault in second")
+         <<"\\usepackage{thm-kv} \\declaretheorem[numbered=unless unque]{test}"<<true;
 
 }
 
