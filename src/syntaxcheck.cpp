@@ -1467,10 +1467,27 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                             newRanges.append(elem);
                         }
                     }else{
+                        if(options.contains(" ")){
+                            // special treatment for values with spaces, i.e. multi word values
+                            for (int k = i + 1; k < tl.length(); ++k) {
+                                Token tk_elem = tl.at(k);
+                                if(tk_elem.subtype!=Token::keyVal_val){
+                                    tk_elem=tl.at(k-1);
+                                    word=line.mid(tk.start,tk_elem.start+tk_elem.length-tk.start); // combine multiple keyVal_val tokens if present
+                                    i=k-1; // skip over those tokens
+                                    break;
+                                }
+                                if(k==tl.length()-1){
+                                    // last token
+                                    word=line.mid(tk.start,tk_elem.start+tk_elem.length-tk.start); // combine multiple keyVal_val tokens if present
+                                    i=k; // skip over those tokens
+                                }
+                            }
+                        }
                         QStringList l = options.split(",");
                         if (!l.contains(word)) {
                             Error elem;
-                            elem.range = QPair<int, int>(tk.start, tk.length);
+                            elem.range = QPair<int, int>(tk.start, word.length());
                             elem.type = ERR_unrecognizedKeyValues;
                             newRanges.append(elem);
                         }
