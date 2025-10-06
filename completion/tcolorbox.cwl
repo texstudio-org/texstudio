@@ -304,13 +304,13 @@ coltitle=#%color
 fontupper=%<text%>
 fontlower=%<text%>
 fonttitle=%<text%>
-halign=#justify,left,flush left,right,flush right,center,flush center#c
-halign upper=#justify,left,flush left,right,flush right,center,flush center#c
+halign=#justify,left,flush left,right,flush right,center,flush center
+halign upper=#justify,left,flush left,right,flush right,center,flush center
 halign code={%<code%>}
 halign upper code={%<code%>}
-halign lower=#justify,left,flush left,right,flush right,center,flush center#c
+halign lower=#justify,left,flush left,right,flush right,center,flush center
 halign lower code={%<code%>}
-halign title=#justify,left,flush left,right,flush right,center,flush center#c
+halign title=#justify,left,flush left,right,flush right,center,flush center
 halign title code={%<code%>}
 flushleft upper
 center upper
@@ -656,7 +656,7 @@ number freestyle=%<code%>
 crefname={%<singular%>}{%<plural%>}
 Crefname={%<singular%>}{%<plural%>}
 blend into=#figures,tables,listings
-blend before title=#colon,dash,colon hang,dash hang#c
+blend before title=#colon,dash,colon hang,dash hang
 blend before title code=%<code%>
 list inside=%<name%>
 list type=%<type%>
