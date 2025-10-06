@@ -1454,7 +1454,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                     }
                     if(options.startsWith("%")){
                         if (!ltxCommands->possibleCommands[options].contains(word)) {
-                            // special treatement for %color (mix)
+                            // special treatment for %color (mix)
                             if(options=="%color"){
                                 if(word=="!") continue;
                                 bool ok;
