@@ -1416,6 +1416,12 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 		previous->lockForRead();
 		stack = previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
 		previous->unlock();
+        // adapt level for open braces
+        for(int i=0;i<stack.size();++i){
+            if(Token::tkOpen().contains(stack[i].type)){
+                ++stack[i].level;
+            }
+        }
 	}
 	// find innermost token at pos
 	TokenStack ts;
