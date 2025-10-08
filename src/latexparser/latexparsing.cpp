@@ -161,19 +161,27 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 	QString line = dlh->text();
 	bool verbatimMode = false;
 	int level = 0;
+    int lastComma = -1;
+    int lastEqual = -1e6;
+    int commentStart=-1;
+    QString keyVal_keyString;
     if (!stack.isEmpty()) {
         if (stack.top().type == Token::verbatim) {
             verbatimMode = true;
         } else {
             level = stack.top().level + 1;
         }
+        if (stack.top().type == Token::keyVal_val && stack.top().length==0) {
+            // hand over lastEqual
+            lastEqual=stack.top().level;
+            lastComma=1e6;
+            keyVal_keyString=stack.top().optionalCommandName;
+            stack.pop();
+        }
     }
-	TokenList lexed;
 
+	TokenList lexed;
 	QString verbatimSymbol;
-	int lastComma = -1;
-	int lastEqual = -1e6;
-    int commentStart=-1;
 	QString keyName;
     // extra stack for storing lastComma/lastEqual in case of new argument is introduced
     // this works single line only (for now)
@@ -829,9 +837,14 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         continue;
                     }
                     // add cmd/key as optionalCommandName
-                    QString cmd=lexed[lastComma].optionalCommandName;
-                    QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
-                    tk.optionalCommandName=cmd+"/"+key;
+                    if(lastComma>=1e6){
+                        // continued from earlier line
+                        tk.optionalCommandName=keyVal_keyString;
+                    }else{
+                        QString cmd=lexed[lastComma].optionalCommandName;
+                        QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
+                        tk.optionalCommandName=cmd+"/"+key;
+                    }
                     // special treatment for word if is adjacent to "-"
                     if (tk.type == Token::word) {
                         if(lastComma==(lexed.length()-2)){
@@ -979,6 +992,24 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             stack.remove(i);
             i--;
         }
+    }
+    // simply add lastEqual to stack
+    if(lastEqual>-1e6 && stack.size() && stack.top().subtype==Token::keyValArg){
+        Token tk;
+        tk.dlh=dlh;
+        tk.type=EnumsTokenType::keyVal_val;
+        tk.subtype=EnumsTokenType::keyVal_val;
+        tk.start=0;
+        tk.length=0;
+        tk.level=lastEqual;
+        if(lastComma>=1e6){
+            tk.optionalCommandName=keyVal_keyString;
+        }else{
+            QString cmd=lexed[lastComma].optionalCommandName;
+            QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
+            tk.optionalCommandName=cmd+"/"+key;
+        }
+        stack.push(tk);
     }
     dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE, QVariant::fromValue<TokenStack>(stack));
     dlh->setCookie(QDocumentLine::LEXER_COMMANDSTACK_COOKIE, QVariant::fromValue<CommandStack>(commandStack));
