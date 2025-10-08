@@ -5047,10 +5047,10 @@ void Texstudio::normalCompletion()
         if (mCompleterNeedsUpdate) updateCompleter();
 		QString word = c.line().text();
 		int col = c.columnNumber();
-        command = Parsing::getCommandFromToken(tk);
+        Token tkCmd = Parsing::getCommandTokenFromToken(tk);
+        QString command=tkCmd.getText();
         if(command=="\\begin"){ // special treatment for begin as it is only meaningful with the env-name
-            TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-            Token tkCmd=Parsing::getCommandTokenFromToken(tl,tk);
+            TokenList tl = tkCmd.dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
             int k = tl.indexOf(tkCmd) + 1;
             Token tk2=tl.value(k);
             QString subcommand=tk2.getText();

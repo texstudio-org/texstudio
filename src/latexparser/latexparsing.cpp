@@ -1524,6 +1524,41 @@ QString getCommandFromToken(Token tk)
 	return cmd;
 }
 
+/*!
+ * tk is an argument token (inner content)
+ * it assumes that the command is at level--
+ * \return command token
+ */
+Token getCommandTokenFromToken(Token tk)
+{
+    Token cmd;
+    QDocumentLineHandle *dlh = tk.dlh;
+    if (dlh) {
+        TokenList tl;
+        QDocument *doc = dlh->document();
+        if(doc){ // doc is NULL if line was deleted in the meantime
+            int lineNr = doc->indexOf(dlh);
+            if (lineNr > 0) {
+                QDocumentLineHandle *previous = doc->line(lineNr - 1).handle();
+                TokenStack stack=previous->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+                if(!stack.isEmpty()){
+                    Token tk_group=stack.top();
+                    if(tk_group.dlh){
+                        tl<< tk_group.dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+                    }
+                }
+            }
+            tl<< dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+
+            Token result = getCommandTokenFromToken(tl, tk);
+            if (result.type == Token::command) {
+                cmd = result;
+            }
+        }
+    }
+    return cmd;
+}
+
 
 /*!
  * \brief get token which represents the command of which \a tk is a argument
