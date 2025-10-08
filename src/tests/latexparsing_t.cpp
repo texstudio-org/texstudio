@@ -307,6 +307,13 @@ void LatexParsingTest::test_latexLexing_data() {
         << (Starts() << 0  << 18 << 19 << 25 << 26 << 39 << 0 << 1 << 3)
         << (Length() << 18 <<  7 <<  5 << 20 << 12 <<  6 << 1 << 1 << 4)
         << (Levels() << 0  <<  1 <<  1 <<  1 <<  1 <<  3 << 3 << 2 << 0);
+    QTest::newRow("keyval argument multi line, no brace")
+        << "\\mycommand{note=\nabc\nsd\n} \n test"
+        << (TTypes() << T::command << T::openBrace << T::keyVal_key   << T::word       << T::word       << T::closeBrace << T::word)
+        << (STypes() << T::none    << T::keyValArg << T::none         << T::keyVal_val << T::keyVal_val << T::keyValArg  << T::none)
+        << (Starts() << 0  << 10 << 11 << 0 << 0 << 0 << 1)
+        << (Length() << 10 <<  6 <<  4 << 3 << 2 << 1 << 4)
+        << (Levels() << 0  <<  1 <<  1 << 2 << 2 << 1 << 0);
     QTest::newRow("include command") << "\\include{text dsf}"
                                      << (TTypes() << T::command << T::braces << T::file)
                                      << (STypes() << T::none << T::file << T::none)
