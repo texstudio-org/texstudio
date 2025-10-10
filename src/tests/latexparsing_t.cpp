@@ -722,9 +722,9 @@ void LatexParsingTest::test_getArg2_data() {
                                             << (QStringList() <<"hyperref");
     // issue 2843
     QTest::newRow("text command, multi-line with keyval") << "\\documentclass[xcolor={table,\nsvgnames}]{beamer}"
-                                                                                     << (ATypes() <<ArgumentList::Mandatory)
-                                                                                     << (QList<int>()<<0)
-                                                                                     << (QStringList() <<"beamer");
+                                             << (ATypes() <<ArgumentList::Mandatory)
+                                             << (QList<int>()<<0)
+                                             << (QStringList() <<"beamer");
 
 }
 
