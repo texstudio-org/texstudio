@@ -1002,6 +1002,9 @@ void LatexParsingTest::test_getCommandFromToken_data() {
     QTest::newRow("multi-line") << "bummerang  \\section{abc\n cde}"
                             << 0 << 1
                             << "\\section";
+    QTest::newRow("multi-line, brace in new line") << "bummerang  \\section\n{abc cde}"
+                                << 0 << 1
+                                << "\\section";
 
 
 }

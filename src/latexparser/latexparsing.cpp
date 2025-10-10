@@ -1606,6 +1606,29 @@ Token getCommandTokenFromToken(TokenList tl, Token tk)
 		if (elem.level < level)
 			break;
 	}
+    // handle special case that open is not in the same line as the command token (e.g. issue #4030)
+    if(result.dlh==nullptr){
+        // search for command in previous lines
+        QDocumentLineHandle *dlh=tl.first().dlh;
+        if(dlh){
+            QDocument *doc = dlh->document();
+            int lineNr = doc->indexOf(dlh);
+            while(lineNr>0){
+                QDocumentLineHandle *previous = doc->line(lineNr - 1).handle();
+                TokenList tl= previous->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+                for(int i=tl.length()-1;i>=0;--i){
+                    Token elem = tl.at(i);
+                    if (elem.level == level && (elem.type == Token::command || elem.type == Token::commandUnknown) ) {
+                        result = elem;
+                        return result;
+                    }
+                    if (elem.level < level)
+                        break;
+                }
+                --lineNr;
+            }
+        }
+    }
 	return result;
 }
 
