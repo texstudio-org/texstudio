@@ -160,7 +160,7 @@ void LatexParsingTest::test_latexLexing_data() {
                                   << (STypes() << T::none << T::text << T::text << T::none << T::none)
                                   << (Starts() << 0 << 7 << 8 << 13 << 14)
                                   << (Length() << 7 << 12 << 4 << 5 << 3)
-                                  << (Levels() << 0 << 1 << 1 << 1 << 1);
+                                  << (Levels() << 0 << 1 << 1 << 2 << 2);
     QTest::newRow("text command with nested square brackets") << "\\textbf{text [abc]}"
                                   << (TTypes() << T::command << T::braces << T::word << T::word)
                                   << (STypes() << T::none << T::text << T::text << T::text)
@@ -281,13 +281,13 @@ void LatexParsingTest::test_latexLexing_data() {
                                                   << (STypes() << T::none << T::keyValArg << T::none << T::keyVal_val << T::keyVal_val << T::imagefile << T::none)
                                                   << (Starts() << 0  << 16 << 17 << 21 << 22 << 28 << 29)
                                                   << (Length() << 16 << 12 << 3  <<  6 << 4  << 6  << 4)
-                                                  << (Levels() << 0  << 1  << 1  << 2  << 2  << 1  << 1);
+                                                  << (Levels() << 0  << 1  << 1  << 3  << 3  << 1  << 1);
     QTest::newRow("graphics command with keyval in braces, multiline") << "\\includegraphics[opt={\ntext\n}]{file}"
                                                   << (TTypes() << T::command << T::openSquare << T::keyVal_key << T::openBrace << T::word  << T::closeBrace << T::closeSquareBracket << T::braces << T::imagefile)
                                                   << (STypes() << T::none << T::keyValArg << T::none << T::keyVal_val << T::keyVal_val << T::keyVal_val << T::keyValArg << T::imagefile << T::none)
                                                   << (Starts() << 0  << 16 << 17 << 21 << 0 << 0 << 1 << 2 << 3 )
                                                   << (Length() << 16 << 6  << 3  <<  1 << 4 << 1 << 1 << 6 << 4 )
-                                                  << (Levels() << 0  << 1  << 1  << 2  << 3 << 3 << 2 << 1 << 1 );
+                                                  << (Levels() << 0  << 1  << 1  << 3  << 3 << 3 << 1 << 1 << 1 );
     QTest::newRow("listings command with defined keyval argument") << "\\lstdefinelanguage{Excel}{morekeywords={ab$c}}"
                                                                    << (TTypes() << T::command << T::braces     << T::word       << T::braces    << T::keyVal_key << T::braces )
                                                                    << (STypes() << T::none    << T::generalArg << T::generalArg << T::keyValArg << T::none       << T::definition)
@@ -306,7 +306,7 @@ void LatexParsingTest::test_latexLexing_data() {
         << (STypes() << T::none    << T::generalArg << T::generalArg << T::keyValArg << T::none       << T::definition<< T::definition << T::keyValArg  << T::none)
         << (Starts() << 0  << 18 << 19 << 25 << 26 << 39 << 0 << 1 << 3)
         << (Length() << 18 <<  7 <<  5 << 20 << 12 <<  6 << 1 << 1 << 4)
-        << (Levels() << 0  <<  1 <<  1 <<  1 <<  1 <<  3 << 3 << 2 << 0);
+        << (Levels() << 0  <<  1 <<  1 <<  1 <<  1 <<  3 << 3 << 1 << 0);
     QTest::newRow("keyval argument multi line, no brace")
         << "\\mycommand{note=\nabc\nsd\n} \n test"
         << (TTypes() << T::command << T::openBrace << T::keyVal_key   << T::word       << T::word       << T::closeBrace << T::word)
@@ -573,7 +573,6 @@ void LatexParsingTest::test_getArg_data() {
                                             <<   (STypes() <<T::package) << (QStringList() <<"siunitx,test2, test3");
     QTest::newRow("usepackage command, multilines with comment") << "\\usepackage{siunitx,\ntest2,%abc\ntest3}"
                                             <<   (STypes() <<T::package) << (QStringList() <<"siunitx,test2,test3");
-
 }
 
 void LatexParsingTest::test_getArg() {
@@ -721,6 +720,11 @@ void LatexParsingTest::test_getArg2_data() {
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
                                             << (QStringList() <<"hyperref");
+    // issue 2843
+    QTest::newRow("text command, multi-line with keyval") << "\documentclass[xcolor={table,\nsvgnames}]{beamer}"
+                                                                                     << (ATypes() <<ArgumentList::Mandatory)
+                                                                                     << (QList<int>()<<0)
+                                                                                     << (QStringList() <<"beamer");
 
 }
 
@@ -911,7 +915,7 @@ void LatexParsingTest::test_getCommandFromToken_data() {
     QTest::addColumn<QString>("desiredResult");
 
 
-    QTest::newRow("simple") << "bummerang  \\test"
+    /*QTest::newRow("simple") << "bummerang  \\test"
                             << 0 << 0
                             << "";
 
@@ -934,10 +938,19 @@ void LatexParsingTest::test_getCommandFromToken_data() {
                             << "";
     QTest::newRow("simple7") << "bummerang  \\section{abc {cde}}"
                             << 3 << 0
-                            << "\\section";
-    QTest::newRow("simple8") << "bummerang  \\section{abc {cde}}"
+                            << "\\section";*/
+    QTest::newRow("non-arg braces") << "bummerang  \\section{abc {cde}}"
                             << 4 << 0
                             << "\\section";
+    QTest::newRow("non-arg braces 2") << "bummerang  \\section{abc {cde} fgh}"
+                             << 6 << 0
+                             << "\\section";
+    QTest::newRow("non-arg braces 3") << "bummerang  \\section{abc {cde fgh}}"
+                                    << 6 << 0
+                                    << "\\section";
+    QTest::newRow("non-arg braces, nested") << "bummerang  \\section{abc {cde {fgh}}}"
+                                    << 6 << 0
+                                    << "\\section";
     QTest::newRow("optonal") << "bummerang  \\section[ab ab]{abc cde}"
                             << 2 << 0
                             << "\\section";

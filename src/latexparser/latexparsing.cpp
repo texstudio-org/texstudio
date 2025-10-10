@@ -549,8 +549,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 lastEqual = -1e6;
             }else{
                 if(tk.type==Token::openBrace){ // check braces within arguments, not brackets/squareBrackets
-                    //level++; // not an argument
                     tk.level = level;
+                    level++; // not an argument
                     tk.argLevel = ConfigManager::RUNAWAYLIMIT; // run-away prevention, needs to be >0 as otherwise closing barces are misinterpreted
                     if (!stack.isEmpty()) {
                         tk.subtype = stack.top().subtype;
@@ -568,16 +568,19 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             }else{
                                 tk.subtype=Token::keyVal_key; // not sure if that is a real scenario
                             }
+                        }else{
+                            tk.optionalCommandName="NA"; // mark as non-argument brace
                         }
                     }
                     stack.push(tk);
+                    ++tk.level;
                     lexed << tk;
                 }
             }
             continue;
         }
 	    if (Token::tkClose().contains(tk.type)) {
-		// special treament for brackets as they don't have any syntactic meaning except with some commands
+            // special treament for brackets as they don't have any syntactic meaning except with some commands
             if (tk.type == Token::closeBracket || tk.type == Token::greater ) {
                 if (stack.isEmpty())
                     continue;
@@ -699,9 +702,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     }
                 } else {
                     // closing brace in later line ...
-                    tk.level = level;
-                    tk.subtype=tk1.subtype;
                     level=tk1.level; // restore original level
+                    tk.level = level+1; // force level+1 (maybe +2 in case of keyval_val
+                    tk.subtype=tk1.subtype;
                     lexed.append(tk);
                     // clean up command stack (unrealized arguments)
                     while (!commandStack.isEmpty() && commandStack.top().level > level) {
@@ -1369,6 +1372,15 @@ TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention
 			finished = true;
 			break; // end reached
 		}
+        if (tk.level == level) {
+            // check non-argument braces
+            if(
+                (tk.type==Token::braces && tk.subtype==Token::none) ||
+                (tk.type==Token::openBrace && tk.subtype==Token::none)){
+                finished = true;
+                break; // end reached
+            }
+        }
 		if (tk.level == level) {
 			result.append(tk);
 		}
@@ -1493,7 +1505,7 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 QString getCommandFromToken(Token tk)
 {
     // don't use outside of main thread as "previous" may be invalid
-    if(!tk.optionalCommandName.isEmpty()){
+    if(!tk.optionalCommandName.isEmpty() && tk.optionalCommandName.startsWith("\\")){
         QString cmd=tk.optionalCommandName;
         int i=cmd.indexOf('/');
         if(i>-1){
@@ -1580,8 +1592,13 @@ Token getCommandTokenFromToken(TokenList tl, Token tk)
 	if (tk.subtype == Token::keyVal_val) {
 		level = tk.level - 2; // command is 2 levels up
 	}
-	for (int i = tkPos - 1; i >= 0; i--) {
+    for (int i = tkPos; i >= 0; i--) {
 		Token elem = tl.at(i);
+        if(elem.level==level && (elem.type==Token::braces||elem.type==Token::openBrace) && tk.optionalCommandName=="NA"){
+            // non-argument braces
+            // reduce level
+            --level;
+        }
 		if (elem.level == level && (elem.type == Token::command || elem.type == Token::commandUnknown) ) {
 			result = elem;
 			break;
