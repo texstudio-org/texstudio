@@ -247,6 +247,8 @@ Examples:
     document (identical to **%**).
 -   **?me** expands to the filename of the root document (e.g.
     example.tex).
+-   **?c:me** expands to the filename of the current document (e.g.
+    example.tex).
 -   **?p{pdf}:ame** expands to the absolute pathname of the output PDF
     file (e.g. /some/directory/mydocument.pdf).
 -   ?\*.aux expands once for each .aux file in the current directory.

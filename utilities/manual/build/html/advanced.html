@@ -8,16 +8,21 @@
 <meta property="og:url" content="advanced.html" />
 <meta property="og:site_name" content="TeXstudio" />
 <meta property="og:description" content="AI chat assistant: set-up: TeXstudio offers an interface for AI chat assistant. It supports Mistral AI, ChatGPT or local language models as AI provider. The communication to those servers is done u..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="_images/social_previews/summary_advanced_c0b2a988.png" />
+<meta property="og:image:alt" content="AI chat assistant: set-up: TeXstudio offers an interface for AI chat assistant. It supports Mistral AI, ChatGPT or local language models as AI provider. The communication to those servers is done u..." />
 <meta name="description" content="AI chat assistant: set-up: TeXstudio offers an interface for AI chat assistant. It supports Mistral AI, ChatGPT or local language models as AI provider. The communication to those servers is done u..." />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Configuring TeXstudio" href="configuration.html" /><link rel="prev" title="Viewing a document (pdf)" href="viewing.html" />
 
-    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 7.4.7 and Furo 2025.07.19 -->
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
         <title>Advanced features - TeXstudio 4.9.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=25af2a20" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=ad9e2e31" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=4aa03575" />
     
     
 
@@ -196,6 +201,7 @@
     <div class="sidebar-container">
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
   
   <span class="sidebar-brand-text">TeXstudio 4.9.0 documentation</span>
   
@@ -620,7 +626,7 @@ menus</p></li>
 <td><p>Reads the entire file name (requires read privileges)</p></td>
 </tr>
 <tr class="row-odd"><td><p>system(cmd, workingDirectory=””)</p></td>
-<td><p>Calls an external command <strong>cmd</strong>, which includes the program name and its arguments.<br><strong>cmd</strong> may undergo command-line expansion as follows:<br>If <strong>cmd</strong> contains the string <strong>txs:///</strong> or if it does <strong>not</strong> contain any pipe (|) characters, then <strong>cmd</strong> undergoes standard command-line expansion like any other <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-ref">external command</span></a>. When expanding any tokens the current file is assumed to be the empty string, so any tokens that use the current file (e.g. <strong>%</strong> or <strong>?</strong>) will expand to the empty string too.<br>If <strong>cmd</strong> does not contain the string <strong>txs:///</strong> and it contains at least one pipe character, then it is executed without any string expansion or replacement.<br>If <strong>workingDirectory</strong> is not set, the working directory will be inherited from the TeXstudio executable. This command returns a ProcessX object which has the following methods: <br>-   waitForFinished: Wait until the process is finished<br>-   readAllStandardOutputStr: Returns the stdout<br>-   readAllStandardErrorStr: Returns the stderr<br>-   exitCode: The exit code<br>-   exitStatus: The qt exit status<br>-   terminate or kill: Stops the process<br>If the script does is not granted permission to run the external command, then <strong>system()</strong> returns <strong>null</strong>.<br><br>Examples<br><br>List all the files in the Subversion repository /usr/local/svnrepository<br>The command contains the string <strong>txs:///</strong>, so it undergoes the expansion as an <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-ref">external command</span></a>.<br>%SCRIPT<br>cmd = system(“txs:///svn ls /usr/local/svnrepository”)<br>  cmd.waitForFinished()<br>output = cmd.readAllStandardOutputStr()<br>alert (output)<br><br>Download the web page from <strong>http://www.my-website.com??arg1=abc&amp;arg2=def</strong> and save it as the local file <strong>/home/john/page.html</strong>.<br>The command does not contain any pipe characters (|), so it undergoes the expansion as an <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-ref">external command</span></a>. Note that we have doubled the character <strong>?</strong> in the URL, otherwise it would be expanded to current file which in our case would be the empty string.<br><br>%SCRIPT<br>cmd = system (“wget -O /home/john/page.html http://www.my-website.com??arg1=abc&amp;arg2=def”)<br>cmd.waitForFinished()</p></td>
+<td><p>Calls an external command <strong>cmd</strong>, which includes the program name and its arguments.<br><strong>cmd</strong> may undergo command-line expansion as follows:<br>If <strong>cmd</strong> contains the string <strong>txs:///</strong> or if it does <strong>not</strong> contain any pipe (|) characters, then <strong>cmd</strong> undergoes standard command-line expansion like any other <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-ref">external command</span></a>. When expanding any tokens the current file is assumed to be the empty string, so any tokens that use the current file (e.g. <strong>%</strong> or <strong>?</strong>) will expand to the empty string too.<br>If <strong>cmd</strong> does not contain the string <strong>txs:///</strong> and it contains at least one pipe character, then it is executed without any string expansion or replacement.<br>If <strong>workingDirectory</strong> is not set, the working directory will be inherited from the TeXstudio executable. This command returns a ProcessX object which has the following methods: <br>-   waitForFinished: Wait until the process is finished<br>-   getStdout: Returns the stdout<br>-   readAllStandardErrorStr: Returns the stderr<br>-   exitCode: The exit code<br>-   exitStatus: The qt exit status<br>-   terminate or kill: Stops the process<br>If the script does is not granted permission to run the external command, then <strong>system()</strong> returns <strong>null</strong>.<br><br>Examples<br><br>List all the files in the Subversion repository /usr/local/svnrepository<br>The command contains the string <strong>txs:///</strong>, so it undergoes the expansion as an <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-ref">external command</span></a>.<br>%SCRIPT<br>cmd = system(“txs:///svn ls /usr/local/svnrepository”)<br>  cmd.waitForFinished()<br>output = cmd.getStdout()<br>alert (output)<br><br>Download the web page from <strong>http://www.my-website.com??arg1=abc&amp;arg2=def</strong> and save it as the local file <strong>/home/john/page.html</strong>.<br>The command does not contain any pipe characters (|), so it undergoes the expansion as an <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-ref">external command</span></a>. Note that we have doubled the character <strong>?</strong> in the URL, otherwise it would be expanded to current file which in our case would be the empty string.<br><br>%SCRIPT<br>cmd = system (“wget -O /home/john/page.html http://www.my-website.com??arg1=abc&amp;arg2=def”)<br>cmd.waitForFinished()</p></td>
 </tr>
 <tr class="row-even"><td><p><s>setGlobal(name, value)</s></p></td>
 <td><p>Unsuppoted since txs 4.x. Sets a temporary, global variable</p></td>
@@ -1328,9 +1334,9 @@ to html” tool.</p>
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=e33213b2"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script type="module" src="_static/scripts/furo.js?v=d32f1409"></script>
     <script src="_static/tabs.js?v=3ee01567"></script>
     <script src="_static/design-tabs.js?v=36754332"></script>
     </body>

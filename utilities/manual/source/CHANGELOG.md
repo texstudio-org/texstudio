@@ -9,6 +9,7 @@
 - handle units in siunitx special to reduce completion offer and syntax check
 - add indent guides (optional), see [#4129](https://github.com/texstudio-org/texstudio/issues/4129)
 - extend cwl to allow multiple keyval arguments for one command
+- fixes around keyval syntax detection
 
 ## TeXstudio 4.8.9
 
