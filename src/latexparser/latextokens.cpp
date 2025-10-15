@@ -244,6 +244,7 @@ QSet<Token::TokenType> Token::tkSingleArg()
 	result.insert(beamertheme);
 	result.insert(def);
 	result.insert(overlay);
+    result.insert(newTheorem);
     result.insert(defSpecialArg);
 	return result;
 }

@@ -286,6 +286,10 @@ void SyntaxCheckTest::checkkeyval_data(){
          <<"\\usepackage{thm-kv} \\declaretheorem[numbered=unles unique]{test}"<<true;
      QTest::newRow("thmtools,multi word keyval,fault in second")
          <<"\\usepackage{thm-kv} \\declaretheorem[numbered=unless unque]{test}"<<true;
+     QTest::newRow("newtheorem, flagged")
+         <<"\\newtheorem{test}{abc}\\begin{tet}\\end{tet}"<<true;
+     QTest::newRow("newtheorem, correct")
+         <<"\\newtheorem{test}{abc}\\begin{test}\\end{test}"<<false;
 
 }
 
