@@ -1,5 +1,5 @@
 # pmdraw package
-# Matthew Bertucci 2025/10/08 for v2.0
+# Matthew Bertucci 2025/10/15 for v2.1
 
 #include:xkeyval
 #include:tikz
@@ -108,6 +108,9 @@ edges upper={%<\draw options%>}
 edges lower={%<\draw options%>}
 edges transversal={%<\draw options%>}
 edges first
+edges first=#0,1
+edges last
+edges last=#0,1
 transversals first
 edges phantom
 edges uncover={%<overlay spec%>}
