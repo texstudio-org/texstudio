@@ -451,9 +451,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                                 if(lastComma>0){
                                     // -> val
                                     tk.subtype=Token::keyVal_val;
-                                    QString cmd=lexed[lastComma].optionalCommandName;
-                                    QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
-                                    tk.optionalCommandName=cmd+"/"+key;
+                                    if(lastComma>=1e6){
+                                        tk.optionalCommandName=keyVal_keyString;
+                                    }else{
+                                        QString cmd=lexed[lastComma].optionalCommandName;
+                                        QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
+                                        tk.optionalCommandName=cmd+"/"+key;
+                                    }
                                 }else{
                                     tk.subtype=Token::keyVal_key; // not sure if that is a real scenario
                                 }
@@ -562,9 +566,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             if(lastComma>0){
                                 // -> val
                                 tk.subtype=Token::keyVal_val;
-                                QString cmd=lexed[lastComma].optionalCommandName;
-                                QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
-                                tk.optionalCommandName=cmd+"/"+key;
+                                if(lastComma>=1e6){
+                                    tk.optionalCommandName=keyVal_keyString;
+                                }else{
+                                    QString cmd=lexed[lastComma].optionalCommandName;
+                                    QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
+                                    tk.optionalCommandName=cmd+"/"+key;
+                                }
                             }else{
                                 tk.subtype=Token::keyVal_key; // not sure if that is a real scenario
                             }
@@ -744,7 +752,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 lexed << tk;
                 lastComma = lexed.length() - 1;
             } else {
-                lexed[lastComma].length = tk.start + tk.length - lexed[lastComma].start;
+                if(lastComma<1e6){
+                    lexed[lastComma].length = tk.start + tk.length - lexed[lastComma].start;
+                }
             }
             continue;
         }
@@ -803,8 +813,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 lastComma = lexed.length() - 1;
             } else {
                 if (lastEqual <= -1e6) {
-                    lexed[lastComma].length = tk.start + tk.length - lexed[lastComma].start;
-                    keyName= line.mid(tk.start, lexed[lastComma].length);
+                    if(lastComma<1e6){
+                        lexed[lastComma].length = tk.start + tk.length - lexed[lastComma].start;
+                        keyName= line.mid(tk.start, lexed[lastComma].length);
+                    }
                 } else {
                     tk.level = level;
                     tk.subtype = Token::keyVal_val;
