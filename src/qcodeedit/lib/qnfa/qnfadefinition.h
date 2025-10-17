@@ -136,7 +136,7 @@ private:
 
 	struct PMatch
 	{
-		PMatch() : type(Invalid)
+		PMatch() : type(Invalid), depth(0)
 		{
 			line[0] = -1;
 			line[1] = -1;
@@ -158,6 +158,7 @@ private:
 		};
 
 		char type;
+		int depth;  // Nesting depth for rainbow brackets
 
 		int line[2];
 		int column[2];
@@ -168,6 +169,7 @@ private:
 
 	void matchOpen(QDocument *d, PMatch& m) const;
 	void matchClose(QDocument *d, PMatch& m) const;
+	int calculateNestingDepth(QDocument *d, int line, int column) const;  // Helper for rainbow brackets
 
 	static void flushEmbedRequests(const QString& lang);
 
