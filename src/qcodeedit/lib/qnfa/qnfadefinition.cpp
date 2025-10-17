@@ -541,7 +541,11 @@ void QNFADefinition::getPMatches(const QDocumentCursor& c, QList<QNFADefinition:
 			continue;
 
 		// Calculate nesting depth once for this position (rainbow brackets)
+		// For closing brackets, the depth is one less than the count at that position
 		int depth = calculateNestingDepth(d, c.lineNumber(), p.offset);
+		if (p.role & QParenthesis::Close) {
+			depth = qMax(0, depth - 1);
+		}
 
 		PMatch m;
 		m.line[0] = c.lineNumber();
