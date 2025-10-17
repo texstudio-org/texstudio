@@ -460,9 +460,15 @@ void QNFADefinition::match(QDocumentCursor& c)
 				QColor c = baseFmt.background;
 				int h, s_hsv, v;
 				c.getHsv(&h, &s_hsv, &v);
-				c.setHsv((h + hueOffset) % 360, s_hsv, v);
-				fmt.background = c;
-				s->setFormat(name, fmt);
+				// Only apply hue rotation if the color is chromatic (h != -1)
+				if (h >= 0) {
+					c.setHsv((h + hueOffset) % 360, s_hsv, v);
+					fmt.background = c;
+					s->setFormat(name, fmt);
+				} else {
+					// For achromatic colors (grayscale), just use the base format
+					s->setFormat(name, fmt);
+				}
 			}
 		};
 		
@@ -534,13 +540,15 @@ void QNFADefinition::getPMatches(const QDocumentCursor& c, QList<QNFADefinition:
 		if ( !(p.role & QParenthesis::Match) )
 			continue;
 
+		// Calculate nesting depth once for this position (rainbow brackets)
+		int depth = calculateNestingDepth(d, c.lineNumber(), p.offset);
+
 		PMatch m;
 		m.line[0] = c.lineNumber();
 		m.column[0] = p.offset;
 		m.length[0] = p.length;
 		m.weight[0] = parenthesisWeight(p.id);
-		// Calculate nesting depth for rainbow brackets
-		m.depth = calculateNestingDepth(d, c.lineNumber(), p.offset);
+		m.depth = depth;
 
 		if ( (p.role & QParenthesis::Open) && (p.role & QParenthesis::Close) )
 		{
@@ -553,8 +561,7 @@ void QNFADefinition::getPMatches(const QDocumentCursor& c, QList<QNFADefinition:
 			m.column[0] = p.offset;
 			m.length[0] = p.length;
 			m.weight[0] = parenthesisWeight(p.id);
-			// Recalculate depth
-			m.depth = calculateNestingDepth(d, c.lineNumber(), p.offset);
+			m.depth = depth;  // Reuse cached depth
 
 			matchClose(d, m);
 
