@@ -452,33 +452,24 @@ void QNFADefinition::match(QDocumentCursor& c)
 	
 	// Initialize default colors for rainbow brackets if they don't have colors set
 	QFormat baseFmt = s->format(matchFID[0]);
-	if (matchFID[1] != 0 && !s->format(matchFID[1]).background.isValid() && baseFmt.background.isValid()) {
-		QFormat fmt1 = baseFmt;
-		// Adjust hue for rainbow effect - rotate by 30 degrees in HSV space
-		QColor c = baseFmt.background;
-		int h, s_hsv, v;
-		c.getHsv(&h, &s_hsv, &v);
-		c.setHsv((h + 30) % 360, s_hsv, v);
-		fmt1.background = c;
-		s->setFormat("braceMatch1", fmt1);
-	}
-	if (matchFID[2] != 0 && !s->format(matchFID[2]).background.isValid() && baseFmt.background.isValid()) {
-		QFormat fmt2 = baseFmt;
-		QColor c = baseFmt.background;
-		int h, s_hsv, v;
-		c.getHsv(&h, &s_hsv, &v);
-		c.setHsv((h + 60) % 360, s_hsv, v);
-		fmt2.background = c;
-		s->setFormat("braceMatch2", fmt2);
-	}
-	if (matchFID[3] != 0 && !s->format(matchFID[3]).background.isValid() && baseFmt.background.isValid()) {
-		QFormat fmt3 = baseFmt;
-		QColor c = baseFmt.background;
-		int h, s_hsv, v;
-		c.getHsv(&h, &s_hsv, &v);
-		c.setHsv((h + 90) % 360, s_hsv, v);
-		fmt3.background = c;
-		s->setFormat("braceMatch3", fmt3);
+	if (baseFmt.background.isValid()) {
+		// Helper lambda to create rainbow color variations
+		auto createRainbowFormat = [&](int formatId, const QString& name, int hueOffset) {
+			if (formatId != 0 && !s->format(formatId).background.isValid()) {
+				QFormat fmt = baseFmt;
+				QColor c = baseFmt.background;
+				int h, s_hsv, v;
+				c.getHsv(&h, &s_hsv, &v);
+				c.setHsv((h + hueOffset) % 360, s_hsv, v);
+				fmt.background = c;
+				s->setFormat(name, fmt);
+			}
+		};
+		
+		// Create rainbow variations with different hue offsets
+		createRainbowFormat(matchFID[1], "braceMatch1", 30);
+		createRainbowFormat(matchFID[2], "braceMatch2", 60);
+		createRainbowFormat(matchFID[3], "braceMatch3", 90);
 	}
 	
 	// Fall back to original braceMatch if rainbow formats don't exist
@@ -895,6 +886,14 @@ void QNFADefinition::matchClose(QDocument *d, PMatch& m) const
 	
 	This function counts the number of opening brackets before the given position
 	minus the number of closing brackets to determine the nesting depth.
+	
+	\note Performance consideration: This function scans from the document start,
+	which is O(n) where n is the number of lines. Since bracket matching only occurs
+	when the cursor is on a bracket, this is acceptable for typical LaTeX documents.
+	For very large documents, this could be optimized by:
+	- Caching depth information per line
+	- Using incremental updates when document changes
+	- Limiting the scan range to a reasonable distance
 */
 int QNFADefinition::calculateNestingDepth(QDocument *d, int line, int column) const
 {
