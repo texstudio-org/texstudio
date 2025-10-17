@@ -450,6 +450,37 @@ void QNFADefinition::match(QDocumentCursor& c)
 	matchFID[2] = s->id("braceMatch2");
 	matchFID[3] = s->id("braceMatch3");
 	
+	// Initialize default colors for rainbow brackets if they don't have colors set
+	QFormat baseFmt = s->format(matchFID[0]);
+	if (matchFID[1] != 0 && !s->format(matchFID[1]).background.isValid() && baseFmt.background.isValid()) {
+		QFormat fmt1 = baseFmt;
+		// Adjust hue for rainbow effect - rotate by 30 degrees in HSV space
+		QColor c = baseFmt.background;
+		int h, s_hsv, v;
+		c.getHsv(&h, &s_hsv, &v);
+		c.setHsv((h + 30) % 360, s_hsv, v);
+		fmt1.background = c;
+		s->setFormat("braceMatch1", fmt1);
+	}
+	if (matchFID[2] != 0 && !s->format(matchFID[2]).background.isValid() && baseFmt.background.isValid()) {
+		QFormat fmt2 = baseFmt;
+		QColor c = baseFmt.background;
+		int h, s_hsv, v;
+		c.getHsv(&h, &s_hsv, &v);
+		c.setHsv((h + 60) % 360, s_hsv, v);
+		fmt2.background = c;
+		s->setFormat("braceMatch2", fmt2);
+	}
+	if (matchFID[3] != 0 && !s->format(matchFID[3]).background.isValid() && baseFmt.background.isValid()) {
+		QFormat fmt3 = baseFmt;
+		QColor c = baseFmt.background;
+		int h, s_hsv, v;
+		c.getHsv(&h, &s_hsv, &v);
+		c.setHsv((h + 90) % 360, s_hsv, v);
+		fmt3.background = c;
+		s->setFormat("braceMatch3", fmt3);
+	}
+	
 	// Fall back to original braceMatch if rainbow formats don't exist
 	for (int i = 1; i < 4; i++) {
 		if (matchFID[i] == 0)
@@ -869,20 +900,20 @@ int QNFADefinition::calculateNestingDepth(QDocument *d, int line, int column) co
 {
 	int depth = 0;
 	
-	// Scan backwards from the current position to count bracket depth
-	for (int l = line; l >= 0; --l) {
+	// Scan forward from the beginning to the cursor position
+	for (int l = 0; l <= line; ++l) {
 		QDocumentLine b = d->line(l);
 		if (!b.isValid())
 			break;
 			
 		const QVector<QParenthesis>& parens = b.parentheses();
 		
-		for (int i = parens.size() - 1; i >= 0; --i) {
+		for (int i = 0; i < parens.size(); ++i) {
 			const QParenthesis& p = parens[i];
 			
 			// Only consider parentheses before the cursor position on the current line
 			if (l == line && p.offset >= column)
-				continue;
+				break;
 			
 			// Skip parentheses that don't participate in matching
 			if (!(p.role & QParenthesis::Match))
