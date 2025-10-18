@@ -1,12 +1,12 @@
 # diffcoeff package
-# Matthew Bertucci 2023/11/14 for v5.4
+# Matthew Bertucci 2025/10/18 for v5.5
 
-#include:xtemplate
 #include:mleftright
 
 #keyvals:\usepackage/diffcoeff#c
 spaced=#1,0,-1
 mleftright
+dif**={%<id1,id2,...%>}
 def-file=%<filename%>
 DIF={%<keyvals%>}
 #endkeyvals
@@ -240,21 +240,28 @@ DIF={%<keyvals%>}
 \onemu#*m
 \twomu#*m
 
+\spacedone#*
+\spacednil#*
+\spacedneg#*
+
 \difoverride{order}
 
 \difdef{id-list}{variant-name}{keyvals}
 
 #keyvals:\difdef
-style=#frac,tfrac,dfrac,/,auto,big,Big,bigg,Bigg,_,dl,d^
+style=#frac,tfrac,dfrac,/,sfrac,auto,big,Big,bigg,Bigg,_,dl,d^,cc
 slash-tok=%<token(s)%>
 slash-sep=##L
+sfrac-scaling=%<factor%>
 derivand-sep=##L
 op-symbol=%<symbol%>
 op-symbol-alt=%<symbol%>
 op-order-nudge=##L
+op-sub-nudge=##L
 var-sup-nudge=##L
 multi-term-sep=##L
 term-sep-adjust=##L
+dots=%<code%>
 long-var-wrap=#dv,d(v),(dv)
 lvwrap-Ldelim=%<delimiter%>
 lvwrap-Rdelim=%<delimiter%>
@@ -263,10 +270,11 @@ outer-Ldelim=%<delimiter%>
 outer-Rdelim=%<delimiter%>
 elbowroom=##L
 sub-nudge=##L
-op-sub-nudge=##L
+difcc-var-ord=%<code%>
 *derivand-sep=##L
 *op-set-left#true,false
 *italic-nudge=##L
+*slash-sep=##L
 *inner-wrap#true,false
 *inner-Ldelim=%<delimiter%>
 *inner-Rdelim=%<delimiter%>
