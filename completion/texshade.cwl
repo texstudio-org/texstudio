@@ -1,5 +1,5 @@
 # texshade package
-# Matthew Bertucci 2024/01/10 for v1.28
+# Matthew Bertucci 2025/10/17 for v1.29
 
 #include:color
 #include:graphics
@@ -43,6 +43,7 @@ usenames
 \end{texshade}
 
 \alignment{position%keyvals}
+\alignrightlabels
 \allmatchspecial
 \allmatchspecial[percentage]
 \allowzero
@@ -53,6 +54,7 @@ usenames
 \backtranslabel{style%keyvals}
 \backtranstext[size]{style%keyvals}
 \backtranstext{style%keyvals}
+\bargraphstretch[position]{factor}
 \bargraphstretch{factor}
 \bbbbottomspace{length}
 \bbbottomspace{length}
@@ -70,6 +72,7 @@ usenames
 \clearlogocolors
 \clearlogocolors[color]
 \codon{amino-acid}{triplet1,triplet2,...}
+\colorscalestretch[position]{factor}
 \colorscalestretch{factor}
 \constoallseqs
 \constosingleseq{seqref}
@@ -89,7 +92,6 @@ usenames
 \englishlanguage
 \exportconsensus[pymol/chimera]{seqref}{filename%file}
 \exportconsensus{seqref}{filename%file}
-\feature{position%keyvals}{seqref}{selection}{labelstyle}{text}
 \featurenamecolor{ttttop...bbbbottom}{color}
 \featurenamesbf
 \featurenamescolor{color}
@@ -171,6 +173,7 @@ usenames
 \featurestylestt
 \featurestylesup
 \featuresup
+\feature{position%keyvals}{seqref}{selection}{labelstyle}{text}
 \fingerprint{res. per line}
 \firstcolumnDSSP
 \fixblockspace
@@ -184,18 +187,18 @@ usenames
 \germanlanguage
 \hideallmatchpositions
 \hideconsensus
-\hidefeaturename{ttttop...bbbbottom}
 \hidefeaturenames
-\hidefeaturestylename{ttttop...bbbbottom}
+\hidefeaturename{ttttop...bbbbottom}
 \hidefeaturestylenames
+\hidefeaturestylename{ttttop...bbbbottom}
 \hideleadinggaps
 \hidelegend
 \hidelogoscale
-\hidename{seq1,seq2,...}
 \hidenames
+\hidename{seq1,seq2,...}
 \hidenegatives
-\hidenumber{seq1,seq2,...}
 \hidenumbering
+\hidenumber{seq1,seq2,...}
 \hideonDSSP{structures}
 \hideonHMMTOP{structures}
 \hideonPHDsec{structures}
@@ -205,9 +208,9 @@ usenames
 \hideresidues
 \hideruler
 \hideruler[top/bottom]
-\hideseq{seq1,seq2,...}
 \hideseqs
 \hidesequencelogo
+\hideseq{seq1,seq2,...}
 \hidesubfamilylogo
 \includeDSSP[make new]{seqref}{file}
 \includeDSSP{seqref}{file}
@@ -220,6 +223,7 @@ usenames
 \includeSTRIDE[make new]{seqref}{file}
 \includeSTRIDE{seqref}{file}
 \includeTCoffee{file}
+\keepsingleseqgaps
 \killseq{seq1,seq2,...}
 \legendbf
 \legendcolor{color}
@@ -260,16 +264,16 @@ usenames
 \movelegend{x-offset}{y-offset}
 \namecolor{seq1,seq2,...}{color}
 \nameconsensus{name}
-\nameruler{name}
 \nameruler[top/bottom]{name}
-\namerulerpos{%<number%>}{%<text%>[%<color%>]}
 \namerulerpos[%<top/bottom%>]{%<number%>}{%<text%>[%<color%>]}
-\namerulerpos{number}{text}
 \namerulerpos[top/bottom]{number}{text}
+\namerulerpos{%<number%>}{%<text%>[%<color%>]}
+\namerulerpos{number}{text}
+\nameruler{name}
 \namesbf
 \namescolor{color}
-\nameseq{seqref}{name}
 \namesequencelogo{name}
+\nameseq{seqref}{name}
 \namesfootnotesize
 \nameshuge
 \namesHuge
@@ -296,8 +300,8 @@ usenames
 \numberingbf
 \numberingcolor{color}
 \numberingfootnotesize
-\numberinghuge
 \numberingHuge
+\numberinghuge
 \numberingit
 \numberinglarge
 \numberingLarge
@@ -347,22 +351,22 @@ usenames
 \Romancount
 \rotateruler
 \rotateruler[top/bottom]
-\rulercolor{color}
 \rulercolor[top/bottom]{color}
+\rulercolor{color}
 \rulerfootnotesize
 \rulerhuge
 \rulerHuge
 \rulerlarge
-\rulerLarge
 \rulerLARGE
-\rulernamecolor{color}
+\rulerLarge
 \rulernamecolor[top/bottom]{color}
+\rulernamecolor{color}
 \rulernamefootnotesize
 \rulernamehuge
 \rulernameHuge
-\rulernamelarge
-\rulernameLarge
 \rulernameLARGE
+\rulernameLarge
+\rulernamelarge
 \rulernamenormalsize
 \rulernamerm
 \rulernamescriptsize
@@ -375,10 +379,10 @@ usenames
 \rulerscriptsize
 \rulersf
 \rulersmall
-\rulerspace{length}
 \rulerspace[top/bottom]{length}
-\rulersteps{number}
+\rulerspace{length}
 \rulersteps[top/bottom]{number}
+\rulersteps{number}
 \rulertiny
 \rulertt
 \secondcolumnDSSP
@@ -400,6 +404,8 @@ usenames
 \shadingcolors{scheme%keyvals}
 \shadingmode[option]{mode%keyvals}
 \shadingmode{mode%keyvals}
+\shiftsingleseq
+\shiftsingleseq[number]
 \shortcaption{text}
 \showcaption[position]{text}
 \showcaption{text}
@@ -451,6 +457,7 @@ usenames
 \ttopspace{length}
 \tttopspace{length}
 \ttttopspace{length}
+\unalignrightlabels
 \undofrequencycorrection
 \unrotateruler
 \unrotateruler[top/bottom]
@@ -1046,6 +1053,49 @@ LightLightLightTC6#B
 LightLightLightTC7#B
 LightLightLightTC8#B
 LightLightLightTC99#B
+BlackWhite100#B
+BlackWhite95#B
+BlackWhite90#B
+BlackWhite85#B
+BlackWhite80#B
+BlackWhite75#B
+BlackWhite70#B
+BlackWhite65#B
+BlackWhite60#B
+BlackWhite55#B
+BlackWhite50#B
+BlackWhite45#B
+BlackWhite40#B
+BlackWhite35#B
+BlackWhite30#B
+BlackWhite25#B
+BlackWhite20#B
+BlackWhite15#B
+BlackWhite10#B
+BlackWhite5#B
+BlackWhite0#B
+WhiteBlack0#B
+WhiteBlack5#B
+WhiteBlack10#B
+WhiteBlack15#B
+WhiteBlack20#B
+WhiteBlack25#B
+WhiteBlack30#B
+WhiteBlack35#B
+WhiteBlack40#B
+WhiteBlack45#B
+WhiteBlack50#B
+WhiteBlack55#B
+WhiteBlack60#B
+WhiteBlack65#B
+WhiteBlack70#B
+WhiteBlack75#B
+WhiteBlack80#B
+WhiteBlack85#B
+WhiteBlack90#B
+WhiteBlack95#B
+WhiteBlack100#B
+BlueRed0#B
 BlueRed5#B
 BlueRed10#B
 BlueRed15#B
@@ -1086,6 +1136,7 @@ RedBlue20#B
 RedBlue15#B
 RedBlue10#B
 RedBlue5#B
+RedBlue0#B
 GreenRed5#B
 GreenRed10#B
 GreenRed15#B
@@ -1126,6 +1177,8 @@ RedGreen20#B
 RedGreen15#B
 RedGreen10#B
 RedGreen5#B
+RedGreen0#B
+ColdHot0#B
 ColdHot5#B
 ColdHot10#B
 ColdHot15#B
@@ -1166,6 +1219,7 @@ HotCold20#B
 HotCold15#B
 HotCold10#B
 HotCold5#B
+HotCold0#B
 
 # not documented
 \alignfile#S

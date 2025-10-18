@@ -1,5 +1,5 @@
 # pmdraw package
-# Matthew Bertucci 2025/01/24 for v1.5
+# Matthew Bertucci 2025/10/15 for v2.1
 
 #include:xkeyval
 #include:tikz
@@ -38,7 +38,27 @@ no vertex top 6=%<integer%>
 no vertex top 7=%<integer%>
 no vertex top 8=%<integer%>
 no vertex top 9=%<integer%>
+ghost vertex bottom 1=%<integer%>
+ghost vertex bottom 2=%<integer%>
+ghost vertex bottom 3=%<integer%>
+ghost vertex bottom 4=%<integer%>
+ghost vertex bottom 5=%<integer%>
+ghost vertex bottom 6=%<integer%>
+ghost vertex bottom 7=%<integer%>
+ghost vertex bottom 8=%<integer%>
+ghost vertex bottom 9=%<integer%>
+ghost vertex top 1=%<integer%>
+ghost vertex top 2=%<integer%>
+ghost vertex top 3=%<integer%>
+ghost vertex top 4=%<integer%>
+ghost vertex top 5=%<integer%>
+ghost vertex top 6=%<integer%>
+ghost vertex top 7=%<integer%>
+ghost vertex top 8=%<integer%>
+ghost vertex top 9=%<integer%>
+ghosts={%<\draw options%>}
 vertices options={%<code%>}
+ghosts options={%<code%>}
 labels
 labels top
 labels bottom
@@ -88,12 +108,18 @@ edges upper={%<\draw options%>}
 edges lower={%<\draw options%>}
 edges transversal={%<\draw options%>}
 edges first
+edges first=#0,1
+edges last
+edges last=#0,1
 transversals first
 edges phantom
 edges uncover={%<overlay spec%>}
 brace={%<options%>}
 brace draw={%<\draw options%>}
 brace node={%<\node options%>}
+bracket={%<options%>}
+bracket draw={%<\node options%>}
+bracket node={%<\node options%>}
 decorate before={%<code%>}
 decorate after={%<code%>}
 #endkeyvals
@@ -104,8 +130,10 @@ decorate after={%<code%>}
 \pmdProduct[options%keyvals]{A-edges}{T-bricks}{B-bricks}
 \pmdProductTriple{ATedges}{ABedges}{Tbricks}}{Mbricks}{Bbricks}
 \pmdProductTriple[options%keyvals]{ATedges}{ABedges}{Tbricks}}{Mbricks}{Bbricks}
+\pmdEquiv{E bricks}
+\pmdEquiv[options%keyvals]{E bricks}
 
-#keyvals:\pmdDiagram#c,\pmdProduct#c,\pmdProductTriple#c
+#keyvals:\pmdDiagram#c,\pmdProduct#c,\pmdProductTriple#c,\pmdEquiv#c
 row sep=%<integer%>
 tikz={%<TikZ options%>}
 dots options={%<code%>}
@@ -114,7 +142,7 @@ decorate before={%<code%>}
 decorate after={%<code%>}
 #endkeyvals
 
-#keyvals:\pmdProduct#c,\pmdProductTriple#c
+#keyvals:\pmdProduct#c,\pmdProductTriple#c,\pmdEquiv#c
 diagram sep=%<number%>
 vertex sep=%<number%>
 edges added={%<\draw options%>}

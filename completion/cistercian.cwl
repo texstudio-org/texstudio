@@ -1,8 +1,9 @@
 # cistercian package
-# Matthew Bertucci 2025/04/15 for v0.3
+# Matthew Bertucci 2025/10/08 for v0.6
 
 #include:tikz
 #include:etoolbox
+#include:BusyPanda
 
 \cistercianset{options%keyvals}
 \cistercianreset
