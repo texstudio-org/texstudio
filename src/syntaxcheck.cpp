@@ -1047,6 +1047,10 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 						option="ll"; // is always 2 columns
 					}else{
                         option = Parsing::getArg(tl.mid(i+1),Token::colDef);
+                        if(option.isEmpty()){
+                            // check if multiline arg
+                            option = Parsing::getArg(tl.mid(i+1),dlh,0,ArgumentList::Mandatory);
+                        }
 					}
 				}
                 if(option.contains("colspec")){

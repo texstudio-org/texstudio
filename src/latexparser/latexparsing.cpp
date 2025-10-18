@@ -1110,7 +1110,18 @@ QString getArg(const TokenList &tl, Token::TokenType type)
     return QString();
 }
 
-
+/*!
+ * \brief get complete argument, possibly spanning multiple lines
+ * Can be limited to mandatory/optional arguments
+ * \param tl of the arguments
+ * \param dlh
+ * \param argNumber, 0 based
+ * Only the relevant argument types are counted, e.g \abc[opt]{mand} -> mand is argument 0 in case that only mandatory arguments are requested
+ * \param type
+ * \param enableMultiLineSearch
+ * \param hint which is the linenumber in the document for faster searching
+ * \return
+ */
 QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type,bool enableMultiLineSearch,int hint)
 {
 	// argNumber 0 -> first argument
