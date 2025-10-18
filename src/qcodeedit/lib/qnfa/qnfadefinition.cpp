@@ -443,7 +443,48 @@ void QNFADefinition::match(QDocumentCursor& c)
 		return;
 	}
 
-	int matchFID = s->id("braceMatch"), mismatchFID = s->id("braceMismatch");
+	// Get format IDs for rainbow brackets (cycle through 4 colors)
+	int matchFID[4];
+	matchFID[0] = s->id("braceMatch");
+	matchFID[1] = s->id("braceMatch1");
+	matchFID[2] = s->id("braceMatch2");
+	matchFID[3] = s->id("braceMatch3");
+	
+	// Initialize default colors for rainbow brackets if they don't have colors set
+	QFormat baseFmt = s->format(matchFID[0]);
+	if (baseFmt.background.isValid()) {
+		// Helper lambda to create rainbow color variations
+		auto createRainbowFormat = [&](int formatId, const QString& name, int hueOffset) {
+			if (formatId != 0 && !s->format(formatId).background.isValid()) {
+				QFormat fmt = baseFmt;
+				QColor c = baseFmt.background;
+				int h, s_hsv, v;
+				c.getHsv(&h, &s_hsv, &v);
+				// Only apply hue rotation if the color is chromatic (h != -1)
+				if (h >= 0) {
+					c.setHsv((h + hueOffset) % 360, s_hsv, v);
+					fmt.background = c;
+					s->setFormat(name, fmt);
+				} else {
+					// For achromatic colors (grayscale), just use the base format
+					s->setFormat(name, fmt);
+				}
+			}
+		};
+		
+		// Create rainbow variations with different hue offsets
+		createRainbowFormat(matchFID[1], "braceMatch1", 30);
+		createRainbowFormat(matchFID[2], "braceMatch2", 60);
+		createRainbowFormat(matchFID[3], "braceMatch3", 90);
+	}
+	
+	// Fall back to original braceMatch if rainbow formats don't exist
+	for (int i = 1; i < 4; i++) {
+		if (matchFID[i] == 0)
+			matchFID[i] = matchFID[0];
+	}
+	
+	int mismatchFID = s->id("braceMismatch");
 
 
 	QList<PMatch> matches;
@@ -459,7 +500,9 @@ void QNFADefinition::match(QDocumentCursor& c)
 
 
 	foreach (const PMatch&  m, matches) {
-		int mfid = m.type == PMatch::Match ? matchFID : mismatchFID;
+		// Select format based on depth for rainbow brackets
+		int depthIndex = m.depth % 4;  // Cycle through 4 colors
+		int mfid = m.type == PMatch::Match ? matchFID[depthIndex] : mismatchFID;
 		d->addMatch(gid, m.line[0], m.column[0], m.length[0], mfid);
 		d->addMatch(gid, m.line[1], m.column[1], m.length[1], mfid);
 	}
@@ -497,11 +540,22 @@ void QNFADefinition::getPMatches(const QDocumentCursor& c, QList<QNFADefinition:
 		if ( !(p.role & QParenthesis::Match) )
 			continue;
 
+		// Calculate nesting depth once for this position (rainbow brackets)
+		// calculateNestingDepth returns the number of open brackets at a position
+		// For opening brackets, this is the depth they're entering
+		// For closing brackets, we subtract 1 to get the depth they're exiting
+		// Example: In "{ { } }", the closing brackets need depth-1 to match their opening brackets
+		int depth = calculateNestingDepth(d, c.lineNumber(), p.offset);
+		if (p.role & QParenthesis::Close) {
+			depth = qMax(0, depth - 1);
+		}
+
 		PMatch m;
 		m.line[0] = c.lineNumber();
 		m.column[0] = p.offset;
 		m.length[0] = p.length;
 		m.weight[0] = parenthesisWeight(p.id);
+		m.depth = depth;
 
 		if ( (p.role & QParenthesis::Open) && (p.role & QParenthesis::Close) )
 		{
@@ -514,6 +568,7 @@ void QNFADefinition::getPMatches(const QDocumentCursor& c, QList<QNFADefinition:
 			m.column[0] = p.offset;
 			m.length[0] = p.length;
 			m.weight[0] = parenthesisWeight(p.id);
+			m.depth = depth;  // Reuse cached depth
 
 			matchClose(d, m);
 
@@ -838,6 +893,56 @@ void QNFADefinition::matchClose(QDocument *d, PMatch& m) const
 	m.column[1] = par.offset;
 	m.length[1] = par.length;
 	//m.weight[1] = parenthesisWeight(.value(par.id, -1); would be more consistent, but weight[1] won't be used
+}
+
+/*!
+	\brief Calculate the nesting depth at a given position for rainbow brackets
+	
+	This function counts the number of opening brackets before the given position
+	minus the number of closing brackets to determine the nesting depth.
+	
+	\note Performance consideration: This function scans from the document start,
+	which is O(n) where n is the number of lines. Since bracket matching only occurs
+	when the cursor is on a bracket, this is acceptable for typical LaTeX documents.
+	For very large documents, this could be optimized by:
+	- Caching depth information per line
+	- Using incremental updates when document changes
+	- Limiting the scan range to a reasonable distance
+*/
+int QNFADefinition::calculateNestingDepth(QDocument *d, int line, int column) const
+{
+	int depth = 0;
+	
+	// Scan forward from the beginning to the cursor position
+	for (int l = 0; l <= line; ++l) {
+		QDocumentLine b = d->line(l);
+		if (!b.isValid())
+			break;
+			
+		const QVector<QParenthesis>& parens = b.parentheses();
+		
+		for (int i = 0; i < parens.size(); ++i) {
+			const QParenthesis& p = parens[i];
+			
+			// Only consider parentheses before the cursor position on the current line
+			if (l == line && p.offset >= column)
+				break;
+			
+			// Skip parentheses that don't participate in matching
+			if (!(p.role & QParenthesis::Match))
+				continue;
+			
+			// Count opening brackets as +1, closing brackets as -1
+			if (p.role & QParenthesis::Open) {
+				depth++;
+			} else if (p.role & QParenthesis::Close) {
+				depth--;
+			}
+		}
+	}
+	
+	// Ensure depth is non-negative
+	return qMax(0, depth);
 }
 
 /*!
