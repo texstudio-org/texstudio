@@ -656,6 +656,20 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
             edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitFindSpecialUsagesFromAction()));
             contextMenu->addAction(act);
         }
+        if (tk.type == Token::defSpecialArg) {
+            LatexDocument *doc=edView->document;
+            QString def=doc->getCmdfromSpecialArgToken(tk);
+            QStringList vals=doc->lp->mapSpecialArgs.values();
+            int k=vals.indexOf(def);
+            if(k>-1){
+                QAction *act = new QAction(LatexEditorView::tr("Find Usages"), contextMenu);
+                act->setData(tk.getText());
+                act->setProperty("doc", QVariant::fromValue<LatexDocument *>(edView->document));
+                act->setProperty("type", Token::specialArg+k);
+                edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitFindSpecialUsagesFromAction()));
+                contextMenu->addAction(act);
+            }
+        }
 		if (tk.type == Token::word) {
 			QAction *act = new QAction(LatexEditorView::tr("Thesaurus..."), contextMenu);
 			act->setData(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber()));
