@@ -102,7 +102,7 @@ class SpecialDefSearchQuery : public SearchQuery {
 
 public:
     SpecialDefSearchQuery(QString label,int type);
-    virtual void run(LatexDocument *doc);
+    virtual void run(LatexDocument *currentDoc);
     virtual void replaceAll();
 protected:
     int mTokenType;

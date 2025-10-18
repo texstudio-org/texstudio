@@ -333,36 +333,41 @@ SpecialDefSearchQuery::SpecialDefSearchQuery(QString label,int type) :
     mTokenType=type;
 }
 
-void SpecialDefSearchQuery::run(LatexDocument *doc)
+void SpecialDefSearchQuery::run(LatexDocument *currentDoc)
 {
     mModel->removeAllSearches();
     QString labelText = searchExpression();
-    QList<QDocumentLineHandle *> dlhs;
-    for(int i=0;i<doc->lines();++i) {
-        QDocumentLineHandle *dlh = doc->line(i).handle();
-        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
-        for(const Token &tk:tl){
-            if(tk.type==mTokenType && tk.getInnerText()==labelText){
-                dlhs.append(dlh);
-                break; // one entry per line sufficient
-            }
-            if(tk.type==Token::defSpecialArg){
-                // check if new definition of specialArg
-                QString def=doc->getCmdfromSpecialArgToken(tk);
-                QStringList vals=doc->lp->mapSpecialArgs.values();
-                int k=vals.indexOf(def);
-                if(k>-1 && Token::specialArg+k==mTokenType){
-                    QString defArgText=tk.getInnerText();
-                    if(defArgText==labelText){
-                        dlhs.append(dlh);
-                        break; // one entry per line sufficient
+    QList<LatexDocument *> docs = currentDoc->getListOfDocs();
+    foreach (LatexDocument *doc, docs) {
+        if (!doc) continue;
+        QList<QDocumentLineHandle *> dlhs;
+        for(int i=0;i<doc->lines();++i) {
+            QDocumentLineHandle *dlh = doc->line(i).handle();
+            TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+            for(const Token &tk:tl){
+                if(tk.type==mTokenType && tk.getInnerText()==labelText){
+                    dlhs.append(dlh);
+                    break; // one entry per line sufficient
+                }
+                if(tk.type==Token::defSpecialArg){
+                    // check if new definition of specialArg
+                    QString def=doc->getCmdfromSpecialArgToken(tk);
+                    QStringList vals=doc->lp->mapSpecialArgs.values();
+                    int k=vals.indexOf(def);
+                    if(k>-1 && Token::specialArg+k==mTokenType){
+                        QString defArgText=tk.getInnerText();
+                        if(defArgText==labelText){
+                            dlhs.append(dlh);
+                            break; // one entry per line sufficient
+                        }
                     }
                 }
             }
         }
+        if(dlhs.size()>0){
+            addDocSearchResult(doc, dlhs);
+        }
     }
-
-    addDocSearchResult(doc, dlhs);
 
     emit runCompleted();
 }
