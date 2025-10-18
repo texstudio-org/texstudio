@@ -1,5 +1,5 @@
 # glossary-longextra package
-# Matthew Bertucci 2022/11/09 for v1.50
+# Matthew Bertucci 2025/10/17 for v1.8
 
 #include:glossary-longbooktabs
 
@@ -8,20 +8,20 @@
 \ifGlsLongExtraUseTabular#*
 \glslongextraTabularVAlign#*
 \glslongextraHeaderFmt{text}#*
-\glslongextraNameFmt{label}#*
-\glslongextraSubNameFmt{level}{label}#*
+\glslongextraNameFmt{gls-label}#*
+\glslongextraSubNameFmt{level}{gls-label}#*
 \glslongextraNameAlign#*
-\glslongextraDescFmt{label}#*
-\glslongextraSubDescFmt{level}{label}#*
+\glslongextraDescFmt{gls-label}#*
+\glslongextraSubDescFmt{level}{gls-label}#*
 \glslongextraDescAlign#*
 \glslongextraSetWidest{widest-name}#*
 \glslongextraUpdateWidest{name}#*
 \glslongextraUpdateWidestChild{level}{name}#*
-\glslongextraLocationFmt{label}{location-list}#*
-\glslongextraSubLocationFmt{level}{label}{location-list}#*
+\glslongextraLocationFmt{gls-label}{location-list}#*
+\glslongextraSubLocationFmt{level}{gls-label}{location-list}#*
 \glslongextraLocationAlign#*
-\glslongextraSymbolFmt{label}#*
-\glslongextraSubSymbolFmt{level}{label}#*
+\glslongextraSymbolFmt{gls-label}#*
+\glslongextraSubSymbolFmt{level}{gls-label}#*
 \glslongextraSymbolAlign#*
 \glslongextraGroupHeading{num-cols}{group-label}#*
 \glslongextraSubGroupHeading{num-cols}{prev-group-level}{group-level}{parent-label}{group-label}#*
@@ -66,10 +66,10 @@
 \glslongextraLocationDescSymNameTabularFooter#*
 \glslongextraLocationDescSymNameHeader#*
 \glslongextraSymbolNameAlign#*
-\glslongextraSymbolTargetFmt{label}#*
-\glslongextraSubSymbolTargetFmt{level}{label}#*
-\glslongextraSymbolOrName{label}#*
-\glslongextraSubSymbolOrName{level}{label}#*
+\glslongextraSymbolTargetFmt{gls-label}#*
+\glslongextraSubSymbolTargetFmt{level}{gls-label}#*
+\glslongextraSymbolOrName{gls-label}#*
+\glslongextraSubSymbolOrName{level}{gls-label}#*
 \glslongextraSymNoNameSetDescWidth#*
 \glslongextraSymDescTabularHeader#*
 \glslongextraSymDescTabularFooter#*
@@ -79,10 +79,10 @@
 \glslongextraDescSymHeader#*
 \glslongextraShortHeader#*
 \glslongextraLongHeader#*
-\glslongextraShortTargetFmt{label}#*
-\glslongextraLongFmt{label}#*
-\glslongextraSubShortTargetFmt{level}{label}#*
-\glslongextraSubLongFmt{level}{label}#*
+\glslongextraShortTargetFmt{gls-label}#*
+\glslongextraLongFmt{gls-label}#*
+\glslongextraSubShortTargetFmt{level}{gls-label}#*
+\glslongextraSubLongFmt{level}{gls-label}#*
 \glslongextraShortNoNameSetDescWidth#*
 \glslongextraShortLongTabularHeader#*
 \glslongextraShortLongTabularFooter#*
@@ -96,12 +96,12 @@
 \glslongextraCustomIHeader#*
 \glslongextraCustomIIHeader#*
 \glslongextraCustomIIIHeader#*
-\glslongextraCustomIFmt{label}#*
-\glslongextraSubCustomIFmt{level}{label}#*
-\glslongextraCustomIIFmt{label}#*
-\glslongextraSubCustomIIFmt{level}{label}#*
-\glslongextraCustomIIIFmt{label}#*
-\glslongextraSubCustomIIIFmt{level}{label}#*
+\glslongextraCustomIFmt{gls-label}#*
+\glslongextraSubCustomIFmt{level}{gls-label}#*
+\glslongextraCustomIIFmt{gls-label}#*
+\glslongextraSubCustomIIFmt{level}{gls-label}#*
+\glslongextraCustomIIIFmt{gls-label}#*
+\glslongextraSubCustomIIIFmt{level}{gls-label}#*
 \glslongextraCustomIAlign#*
 \glslongextraCustomIIAlign#*
 \glslongextraCustomIIIAlign#*
