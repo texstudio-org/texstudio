@@ -2073,6 +2073,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
     connect(edit, SIGNAL(showPreview(QDocumentCursor)), this, SLOT(showPreview(QDocumentCursor)));
     connect(edit, SIGNAL(showFullPreview()), this, SLOT(recompileForPreview()));
     connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)), this, SLOT(editGotoDefinition(QDocumentCursor)));
+    connect(edit, SIGNAL(gotoSpecialDefinition(LatexDocument*,QString,int)), this, SLOT(editGotoSpecialDefinition(LatexDocument*,QString,int)));
     connect(edit, SIGNAL(findLabelUsages(LatexDocument*,QString)), this, SLOT(findLabelUsages(LatexDocument*,QString)));
     connect(edit, SIGNAL(findSpecialUsages(LatexDocument*,QString,int)), this, SLOT(findSpecialUsages(LatexDocument*,QString,int)));
     connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
@@ -4271,6 +4272,20 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 	}
 	default:;
 	}
+    if(tk.type>=Token::specialArg){
+        QString def=doc->lp->mapSpecialArgs.value(tk.type-Token::specialArg);
+        QDocumentLineHandle *target = doc->findCommandDefinition(def+"%"+tk.getText());
+        if (target) {
+            // command is user-defined, jump to definition
+            LatexEditorView *edView = getEditorViewFromHandle(target);
+            if (edView) {
+                if (edView != currentEditorView()) {
+                    editors->setCurrentEditor(edView);
+                }
+                edView->gotoLineHandleAndSearchString(target, tk.getText());
+            }
+        }
+    }
 }
 
 void Texstudio::editHardLineBreak()

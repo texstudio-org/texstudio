@@ -1682,6 +1682,10 @@ QDocumentLineHandle *LatexDocument::findCommandDefinition(const QString &name)
 			if (it.value().name == name && elem->indexOf(it.key()) >= 0) {
 				return it.key();
 			}
+            // also handle specialDefs (name is empty, search by word)
+            if (it.value().name.isEmpty() && it.value().snippet.word == name && elem->indexOf(it.key()) >= 0) {
+                return it.key();
+            }
 		}
 	}
 	return nullptr;

@@ -635,7 +635,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				contextMenu->addAction(act);
 			}
 		}
-		if (/* tk.type==Tokens::bibRef || TODO: bibliography references not yet handled by token system */ tk.type == Token::labelRef) {
+        if (/* tk.type==Tokens::bibRef || TODO: bibliography references not yet handled by token system */tk.type >= Token::specialArg || tk.type == Token::labelRef) {
 			QAction *act = new QAction(LatexEditorView::tr("Go to Definition"), contextMenu);
 			act->setData(QVariant().fromValue<QDocumentCursor>(cursor));
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitGotoDefinitionFromAction()));
@@ -649,6 +649,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 		}
         if (tk.type >= Token::specialArg) {
+            // finnd usage
             QAction *act = new QAction(LatexEditorView::tr("Find Usages"), contextMenu);
             act->setData(tk.getText());
             act->setProperty("doc", QVariant::fromValue<LatexDocument *>(edView->document));
@@ -2073,6 +2074,16 @@ void LatexEditorView::emitGotoDefinitionFromAction()
 		c = act->data().value<QDocumentCursor>();
 	}
 	emit gotoDefinition(c);
+}
+
+void LatexEditorView::emitGotoSpecialDefinitionFromAction()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    QString labelText = action->data().toString();
+    LatexDocument *doc = action->property("doc").value<LatexDocument *>();
+    int type= action->property("type").toInt();
+    emit gotoSpecialDefinition(doc, labelText,type);
 }
 
 void LatexEditorView::emitFindLabelUsagesFromAction()
