@@ -44,6 +44,8 @@ void TableManipulationTest::handleColSpec_data(){
     QTest::newRow("colspec with nested brace") << "colspec={a{bc}}" << "a{bc}";
     QTest::newRow("colspec with brace and spaces") << "colspec = {abc}" << "abc";
     QTest::newRow("colspec with brace in serveral options") << "colspec={abc},test={dhe}" << "abc";
+    QTest::newRow("colspec, no brace") << "colspec= abc,hlines" << "abc";
+    QTest::newRow("colspec, no brace, but later") << "colspec= abc,hlines {avs}" << "abc";
 }
 
 void TableManipulationTest::handleColSpec(){
