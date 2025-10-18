@@ -2073,7 +2073,6 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
     connect(edit, SIGNAL(showPreview(QDocumentCursor)), this, SLOT(showPreview(QDocumentCursor)));
     connect(edit, SIGNAL(showFullPreview()), this, SLOT(recompileForPreview()));
     connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)), this, SLOT(editGotoDefinition(QDocumentCursor)));
-    connect(edit, SIGNAL(gotoSpecialDefinition(LatexDocument*,QString,int)), this, SLOT(editGotoSpecialDefinition(LatexDocument*,QString,int)));
     connect(edit, SIGNAL(findLabelUsages(LatexDocument*,QString)), this, SLOT(findLabelUsages(LatexDocument*,QString)));
     connect(edit, SIGNAL(findSpecialUsages(LatexDocument*,QString,int)), this, SLOT(findSpecialUsages(LatexDocument*,QString,int)));
     connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
