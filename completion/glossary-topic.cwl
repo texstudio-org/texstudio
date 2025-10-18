@@ -1,5 +1,5 @@
 # glossary-topic package
-# Matthew Bertucci 2022/10/19 for v1.49
+# Matthew Bertucci 2025/10/17 for v1.8
 
 #include:multicol
 
@@ -11,22 +11,22 @@
 \glstopicInit#*
 \glstopicGroupHeading{group-label}#*
 \glstopicSubGroupHeading{prev-group-level}{group-level}{parent-entry}{group-label}#*
-\glstopicItem{label}{location-list}#*r
+\glstopicItem{gls-label%special}{location-list}#*
 \glstopicPreSkip#*
-\glstopicMarker{label}#*r
-\glstopicTitle{label}#*r
+\glstopicMarker{gls-label%special}#*
+\glstopicTitle{gls-label%special}#*
 \glstopicTitleFont{text}#*
 \glstopicMidSkip#*
-\glstopicDesc{label}#*r
+\glstopicDesc{gls-label%special}#*
 \glstopicPostSkip#*
-\glstopicLoc{label}{location-list}#*r
+\glstopicLoc{gls-label%special}{location-list}#*
 \glstopicAssignSubIndent{level}#*
 \glstopicAssignWidest#*
-\glstopicSubItem{level}{label}{location}#*r
+\glstopicSubItem{level}{gls-label%special}{location}#*
 \glstopicSubNameFont{text}#*
 \glstopicSubItemSep#*
 \glstopicSubItemBox{level}{text}#*
 \glstopicSubPreLocSep#*
-\glstopicSubLoc{label}{location}#*r
+\glstopicSubLoc{gls-label%special}{location}#*
 \glstopicsubitemhangindent#*
 \glstopicwidest#*

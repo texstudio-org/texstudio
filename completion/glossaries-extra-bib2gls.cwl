@@ -1,44 +1,44 @@
 # glossaries-extra-bib2gls package
-# Matthew Bertucci 2025/08/13 for v1.8
+# Matthew Bertucci 2025/10/17 for v1.8
 
-\dgls{label}#r
-\dgls[options%keyvals]{label}#r
-\dgls{label}[insert]#*r
-\dgls[options%keyvals]{label}[insert]#*r
-\dGls{label}#r
-\dGls[options%keyvals]{label}#r
-\dGls{label}[insert]#*r
-\dGls[options%keyvals]{label}[insert]#*r
-\dGLS{label}#r
-\dGLS[options%keyvals]{label}#r
-\dGLS{label}[insert]#*r
-\dGLS[options%keyvals]{label}[insert]#*r
-\dglspl{label}#r
-\dglspl[options%keyvals]{label}#r
-\dglspl{label}[insert]#*r
-\dglspl[options%keyvals]{label}[insert]#*r
-\dGlspl{label}#r
-\dGlspl[options%keyvals]{label}#r
-\dGlspl{label}[insert]#*r
-\dGlspl[options%keyvals]{label}[insert]#*r
-\dGLSpl{label}#r
-\dGLSpl[options%keyvals]{label}#r
-\dGLSpl{label}[insert]#*r
-\dGLSpl[options%keyvals]{label}[insert]#*r
-\dglslink{label}{link text}#r
-\dglslink[options%keyvals]{label}{link text}#r
-\dGlslink{label}{link text}#r
-\dGlslink[options%keyvals]{label}{link text}#r
-\dglsdisp{label}{link text}#r
-\dglsdisp[options%keyvals]{label}{link text}#r
-\dGlsdisp{label}{link text}#r
-\dGlsdisp[options%keyvals]{label}{link text}#r
-\dglsfield{label}{field-label}{text}#r
-\dglsfield[options%keyvals]{label}{field-label}{text}#r
-\dGlsfield{label}{field-label}{text}#r
-\dGlsfield[options%keyvals]{label}{field-label}{text}#r
-\dGLSfield{label}{field-label}{text}#r
-\dGLSfield[options%keyvals]{label}{field-label}{text}#r
+\dgls{gls-label%special}
+\dgls[options%keyvals]{gls-label%special}
+\dgls{gls-label%special}[insert]#*
+\dgls[options%keyvals]{gls-label%special}[insert]#*
+\dGls{gls-label%special}
+\dGls[options%keyvals]{gls-label%special}
+\dGls{gls-label%special}[insert]#*
+\dGls[options%keyvals]{gls-label%special}[insert]#*
+\dGLS{gls-label%special}
+\dGLS[options%keyvals]{gls-label%special}
+\dGLS{gls-label%special}[insert]#*
+\dGLS[options%keyvals]{gls-label%special}[insert]#*
+\dglspl{gls-label%special}
+\dglspl[options%keyvals]{gls-label%special}
+\dglspl{gls-label%special}[insert]#*
+\dglspl[options%keyvals]{gls-label%special}[insert]#*
+\dGlspl{gls-label%special}
+\dGlspl[options%keyvals]{gls-label%special}
+\dGlspl{gls-label%special}[insert]#*
+\dGlspl[options%keyvals]{gls-label%special}[insert]#*
+\dGLSpl{gls-label%special}
+\dGLSpl[options%keyvals]{gls-label%special}
+\dGLSpl{gls-label%special}[insert]#*
+\dGLSpl[options%keyvals]{gls-label%special}[insert]#*
+\dglslink{gls-label%special}{link text}
+\dglslink[options%keyvals]{gls-label%special}{link text}
+\dGlslink{gls-label%special}{link text}
+\dGlslink[options%keyvals]{gls-label%special}{link text}
+\dglsdisp{gls-label%special}{link text}
+\dglsdisp[options%keyvals]{gls-label%special}{link text}
+\dGlsdisp{gls-label%special}{link text}
+\dGlsdisp[options%keyvals]{gls-label%special}{link text}
+\dglsfield{gls-label%special}{field-label}{text}
+\dglsfield[options%keyvals]{gls-label%special}{field-label}{text}
+\dGlsfield{gls-label%special}{field-label}{text}
+\dGlsfield[options%keyvals]{gls-label%special}{field-label}{text}
+\dGLSfield{gls-label%special}{field-label}{text}
+\dGLSfield[options%keyvals]{gls-label%special}{field-label}{text}
 
 \newdglsfield{field}{cs%cmd}#d
 \newdglsfield[default-options%keyvals]{field}{cs%cmd}#d
@@ -66,10 +66,10 @@ counter=%<counter%>
 local#true,false
 #endkeyvals
 
-\glsxtrmultientryadjustedname{sublist1}{name}{sublist2}{label}#*r
-\Glsxtrmultientryadjustedname{sublist1}{name}{sublist2}{label}#*r
-\GlsXtrmultientryadjustedname{sublist1}{name}{sublist2}{label}#*r
-\GLSxtrmultientryadjustedname{sublist1}{name}{sublist2}{label}#*r
+\glsxtrmultientryadjustedname{sublist1}{name}{sublist2}{gls-label%special}#*
+\Glsxtrmultientryadjustedname{sublist1}{name}{sublist2}{gls-label%special}#*
+\GlsXtrmultientryadjustedname{sublist1}{name}{sublist2}{gls-label%special}#*
+\GLSxtrmultientryadjustedname{sublist1}{name}{sublist2}{gls-label%special}#*
 \glsxtrmultientryadjustednamesep{pre label}{post label}#*
 \glsxtrmultientryadjustednamepresep{pre label}{post label}#*
 \glsxtrmultientryadjustednamepostsep{pre label}{post label}#*
@@ -77,18 +77,18 @@ local#true,false
 \Glsxtrmultientryadjustednamefmt{text}#*
 \GlsXtrmultientryadjustednamefmt{text}#*
 \GLSxtrmultientryadjustednamefmt{text}#*
-\glsxtrmultientryadjustednameother{label}#*r
-\Glsxtrmultientryadjustednameother{label}#*r
-\GlsXtrmultientryadjustednameother{label}#*r
-\GLSxtrmultientryadjustednameother{label}#*r
+\glsxtrmultientryadjustednameother{gls-label%special}#*
+\Glsxtrmultientryadjustednameother{gls-label%special}#*
+\GlsXtrmultientryadjustednameother{gls-label%special}#*
+\GLSxtrmultientryadjustednameother{gls-label%special}#*
 \glsxtrprovidecommand{cmd}{definition}#*d
 \glsxtrprovidecommand{cmd}[args]{definition}#*d
 \glsxtrprovidecommand{cmd}[args][default]{definition}#*d
 \glsrenewcommand{cmd}{definition}#*
 \glsrenewcommand{cmd}[args]{definition}#*
 \glsrenewcommand{cmd}[args][default]{definition}#*
-\GlsXtrIndexCounterLink{text}{label}#*
-\GlsXtrDualBackLink{text}{label}#*r
+\GlsXtrIndexCounterLink{text}{gls-label%special}#*
+\GlsXtrDualBackLink{text}{gls-label%special}#*
 \GlsXtrDualField#*
 \glsxtrSetWidest{type}{level}{text}#*
 \glsxtrSetWidestFallback{max depth}{list}#*
@@ -102,7 +102,7 @@ local#true,false
 \glshex#*
 \glscapturedgroup#*
 \GlsXtrResourceInitEscSequences#*
-\GlsXtrIfHasNonZeroChildCount{label}{true}{false}#*r
+\GlsXtrIfHasNonZeroChildCount{gls-label%special}{true}{false}#*
 \GlsXtrBibTeXEntryAliases#*
 \GlsXtrProvideBibTeXFields#*
 \glsxtrcontrolrules#*
@@ -278,6 +278,6 @@ local#true,false
 \glsxtrgeneralpuncbracketIIIrules#*
 \glsxtrgeneralpuncbracketIVrules#*
 \glsxtrgeneralpuncIIIrules#*
-\predglshook{label}#*
-\predglslinkhook{label}#*
-\predglsfieldhook{label}#*
+\predglshook{gls-label}#*
+\predglslinkhook{gls-label}#*
+\predglsfieldhook{gls-label}#*

@@ -1,5 +1,5 @@
 # glossaries-extra-stylemods package
-# Matthew Bertucci 2022/11/09 for v1.50
+# Matthew Bertucci 2025/10/17 for v1.8
 
 #keyvals:\usepackage/glossaries-extra-stylemods#c
 all
@@ -76,9 +76,9 @@ table
 \glsxtrprelocation#*
 \glslistprelocation#*
 \glslistchildprelocation#*
-\glslistdesc{label}#*
-\glslistitem{label}#*
-\glsaltlistitem{label}#*
+\glslistdesc{gls-label}#*
+\glslistitem{gls-label}#*
+\glsaltlistitem{gls-label}#*
 \glslistgroupheaderitem{group-label}{header code}#*
 \glslistgroupafterheader#*
 \glslistchildpostlocation#*
@@ -86,22 +86,22 @@ table
 \glstreedefaultnamefmt{text}#*
 \glstreegroupskip#*
 \glstreegroupheaderskip#*
-\glstreePreHeader{label}{title%text}#*
+\glstreePreHeader{gls-label}{title%text}#*
 \glsalttreepredesc#*
 \glsalttreechildpredesc#*
 \glstreeprelocation#*
 \glstreechildprelocation#*
-\glstreenonamedesc{label}#*
-\glstreenonamesymbol{label}#*
-\glstreenonamechilddesc{label}#*
-\glstreedesc{label}#*
-\glstreesymbol{label}#*
-\glstreechilddesc{label}#*
-\glstreenonameDescLoc{label}{location}#*
-\glstreenonameChildDescLoc{label}{location}#*
-\glstreechildsymbol{label}#*
-\glstreeDescLoc{label}{location}#*
-\glstreeChildDescLoc{label}{location}#*
+\glstreenonamedesc{gls-label}#*
+\glstreenonamesymbol{gls-label}#*
+\glstreenonamechilddesc{gls-label}#*
+\glstreedesc{gls-label}#*
+\glstreesymbol{gls-label}#*
+\glstreechilddesc{gls-label}#*
+\glstreenonameDescLoc{gls-label}{location}#*
+\glstreenonameChildDescLoc{gls-label}{location}#*
+\glstreechildsymbol{gls-label}#*
+\glstreeDescLoc{gls-label}{location}#*
+\glstreeChildDescLoc{gls-label}{location}#*
 \glstreeNoDescSymbolPreLocation#*
 \glstreesubgroupitem{prev-group-level}{level}{parent-label}{group-label}{group-title}#*
 \gglssetwidest{name}#*
@@ -144,15 +144,15 @@ table
 \glsFindWidestUsedAnyNameLocation[glossary list]{register%cmd}#*d
 \glsFindWidestAnyNameLocation{register%cmd}#*d
 \glsFindWidestAnyNameLocation[glossary list]{register%cmd}#*d
-\glsxtralttreeSymbolDescLocation{label}{number list}#*
-\glsxtralttreeSubSymbolDescLocation{label}{number list}#*
+\glsxtralttreeSymbolDescLocation{gls-label}{number list}#*
+\glsxtralttreeSubSymbolDescLocation{gls-label}{number list}#*
 \glsxtralttreeInit#*
 \glsxtrAltTreeIndent#*
 \glsxtrAltTreePar#*
 \glsxtrAltTreeSetHangIndent#*
 \glsxtrAltTreeSetSubHangIndent#*
-\glsxtrComputeTreeIndent{label}#*
-\glsxtrComputeTreeSubIndent{level}{label}{register%cmd}#*d
+\glsxtrComputeTreeIndent{gls-label}#*
+\glsxtrComputeTreeSubIndent{level}{gls-label}{register%cmd}#*d
 \glsxtrtreechildpredesc#*
 \glsxtrtreepredesc#*
 \glsxtrtreetopindent#*

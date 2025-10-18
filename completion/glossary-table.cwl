@@ -1,5 +1,5 @@
 # glossary-table package
-# Matthew Bertucci 2022/11/09 for v1.50
+# Matthew Bertucci 2025/10/17 for v1.8
 
 #include:longtable
 #include:array
@@ -39,9 +39,9 @@ block-style=#name,name-desc,desc-name,name-symbol,symbol-name,name-other,other-n
 clearpage
 #endkeyvals
 
-\glstableiffilter{label}{true}{false}#*
-\glstableChildEntries{label}#*
-\glstableiffilterchild{label}{true}{false}#*
+\glstableiffilter{gls-label%special}{true}{false}#*
+\glstableChildEntries{gls-label%special}#*
+\glstableiffilterchild{gls-label%special}{true}{false}#*
 \glstablePreChildren#*
 \begin{glstablesubentries}#*\tabular
 \end{glstablesubentries}#*
@@ -100,9 +100,9 @@ desc-other-symbol-name
 \glstableSubDescFmt{text}#*
 \glstableotherfield#*
 \glstableOtherFmt{text}#*
-\glstableOther{label}#*
-\glstableSubOtherNoDesc{label}#*
-\glstableifhasotherfield{label}{true}{false}#*
+\glstableOther{gls-label%special}#*
+\glstableSubOtherNoDesc{gls-label%special}#*
+\glstableifhasotherfield{gls-label%special}{true}{false}#*
 \glstableHeaderFmt{text}#*
 
 # not documented

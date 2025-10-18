@@ -1,11 +1,11 @@
 # glossary-tree package
-# Matthew Bertucci 2025/04/14 for v4.58
+# Matthew Bertucci 2025/10/17 for v4.8
 
 \GlsTreeSetup{keyvals}
-\GlsTreeUpdateWidestNameOrSymbol{label}#*
-\GlsTreeUpdateWidestNameOrSymbol[level]{label}#*
-\GlsTreeUpdateWidestNameAndSymbol{label}#*
-\GlsTreeUpdateWidestNameAndSymbol[level]{label}#*
+\GlsTreeUpdateWidestNameOrSymbol{gls-label}#*
+\GlsTreeUpdateWidestNameOrSymbol[level]{gls-label}#*
+\GlsTreeUpdateWidestNameAndSymbol{gls-label}#*
+\GlsTreeUpdateWidestNameAndSymbol[level]{gls-label}#*
 \GlsTreeStarBox{text}#*
 \GlsTreeStarOuterBox{text}#*
 \GlsTreeStarNameBox{text}#*

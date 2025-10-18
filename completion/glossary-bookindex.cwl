@@ -1,5 +1,5 @@
 # glossary-bookindex package
-# Matthew Bertucci 2025/01/06 for v1.54
+# Matthew Bertucci 2025/10/17 for v1.8
 
 #include:multicol
 #include:glossary-tree
@@ -7,30 +7,30 @@
 \glsxtrbookindexcols#*
 \glsxtrbookindexcolspread#*
 \glsxtrbookindexmulticolsenv#*
-\glsxtrbookindextarget{label}{text}#*r
-\glsxtrbookindexsubtarget{label}{text}#*r
-\glsxtrbookindexname{label}#*r
-\glsxtrbookindexsubname{label}#*r
-\glsxtrbookindexprelocation{label}#*r
-\glsxtrbookindexsubprelocation{label}#*r
-\glsxtrbookindexlocation{label}{location list}#*r
-\glsxtrbookindexsublocation{label}{location list}#*r
+\glsxtrbookindextarget{gls-label%special}{text}#*
+\glsxtrbookindexsubtarget{gls-label%special}{text}#*
+\glsxtrbookindexname{gls-label%special}#*
+\glsxtrbookindexsubname{gls-label%special}#*
+\glsxtrbookindexprelocation{gls-label%special}#*
+\glsxtrbookindexsubprelocation{gls-label%special}#*
+\glsxtrbookindexlocation{gls-label%special}{location list}#*
+\glsxtrbookindexsublocation{gls-label%special}{location list}#*
 \glsxtrbookindexparentchildsep#*
 \glsxtrbookindexparentsubchildsep#*
-\glsxtrbookindexbetween{label1%ref}{label2%ref}#*r
-\glsxtrbookindexsubbetween{label1%ref}{label2%ref}#*r
-\glsxtrbookindexsubsubbetween{label1%ref}{label2%ref}#*r
+\glsxtrbookindexbetween{gls-label%special}{gls-label%special}#*
+\glsxtrbookindexsubbetween{gls-label%special}{gls-label%special}#*
+\glsxtrbookindexsubsubbetween{gls-label%special}{gls-label%special}#*
 \glsxtrbookindexsubsubatendgroup{sub-sub-label}#*
 \glsxtrbookindexsubatendgroup{sub-label}#*
-\glsxtrbookindexatendgroup{label}#*r
+\glsxtrbookindexatendgroup{gls-label%special}#*
 \glsxtrbookindexsubsubitem{level}#*
 \glsxtrbookindexbookmark{group title}{name}#*
 \glsxtrbookindexformatheader{group title}
-\glsxtrbookindexmarkentry{label}#*r
+\glsxtrbookindexmarkentry{gls-label%special}#*
 \glsxtrbookindexfirstmark#*
 \glsxtrbookindexlastmark#*
-\glsxtrbookindexfirstmarkfmt{label}#*r
-\glsxtrbookindexlastmarkfmt{label}#*r
+\glsxtrbookindexfirstmarkfmt{gls-label%special}#*
+\glsxtrbookindexlastmarkfmt{gls-label%special}#*
 \glsxtrbookindexbookmarkprefix#*
 \glsxtrbookindexgroupskip#*
 \glsxtrbookindexthepage#*
