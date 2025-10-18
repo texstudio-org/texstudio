@@ -97,5 +97,16 @@ public:
 	virtual void replaceAll();
 };
 
+class SpecialDefSearchQuery : public SearchQuery {
+    Q_OBJECT
+
+public:
+    SpecialDefSearchQuery(QString label,int type);
+    virtual void run(LatexDocument *doc);
+    virtual void replaceAll();
+protected:
+    int mTokenType;
+};
+
 
 #endif // SEARCHQUERY_H

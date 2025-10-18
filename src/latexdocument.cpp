@@ -620,7 +620,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             continue;
         }
         // specialArg definition
-        if(tk.type >= Token::defSpecialArg){
+        if(tk.type == Token::defSpecialArg){
             QString cmd=Parsing::getCommandFromToken(tk);
             data.completerNeedsUpdate = true;
             QString definition = lp->specialDefCommands.value(cmd);
@@ -3526,6 +3526,16 @@ bool LatexDocument::isEnvClosed(const Environment &env)
         }
     }
     return true;
+}
+
+QString LatexDocument::getCmdfromSpecialArgToken(const Token &tk) const
+{
+    QString cmd=Parsing::getCommandFromToken(tk);
+    QString definition = lp->specialDefCommands.value(cmd);
+    if(definition.isEmpty()){
+        definition = ltxCommands.specialDefCommands.value(cmd);
+    }
+    return definition;
 }
 
 void LatexDocument::enableSyntaxCheck(bool enable)

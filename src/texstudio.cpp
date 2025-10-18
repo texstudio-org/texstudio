@@ -2074,6 +2074,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
     connect(edit, SIGNAL(showFullPreview()), this, SLOT(recompileForPreview()));
     connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)), this, SLOT(editGotoDefinition(QDocumentCursor)));
     connect(edit, SIGNAL(findLabelUsages(LatexDocument*,QString)), this, SLOT(findLabelUsages(LatexDocument*,QString)));
+    connect(edit, SIGNAL(findSpecialUsages(LatexDocument*,QString,int)), this, SLOT(findSpecialUsages(LatexDocument*,QString,int)));
     connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
     connect(edit, SIGNAL(openFile(QString)), this, SLOT(openExternalFile(QString)));
     connect(edit, SIGNAL(openFile(QString,QString)), this, SLOT(openExternalFile(QString,QString)));
@@ -9586,6 +9587,21 @@ void Texstudio::findLabelUsages(LatexDocument *contextDoc, const QString &labelT
 	LabelSearchQuery *query = new LabelSearchQuery(labelText);
 	searchResultWidget()->setQuery(query);
 	query->run(contextDoc);
+    outputView->showPage(outputView->SEARCH_RESULT_PAGE);
+}
+/*!
+ * \brief find usage and definition of special arguments
+ * They may be defined in cwl files
+ * \param doc
+ * \param text
+ * \param type
+ */
+void Texstudio::findSpecialUsages(LatexDocument *doc, const QString &text, int type)
+{
+    if (!doc) return;
+    SpecialDefSearchQuery *query = new SpecialDefSearchQuery(text,type);
+    searchResultWidget()->setQuery(query);
+    query->run(doc);
     outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 }
 

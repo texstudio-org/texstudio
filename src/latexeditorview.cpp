@@ -648,6 +648,14 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitFindLabelUsagesFromAction()));
 			contextMenu->addAction(act);
 		}
+        if (tk.type >= Token::specialArg) {
+            QAction *act = new QAction(LatexEditorView::tr("Find Usages"), contextMenu);
+            act->setData(tk.getText());
+            act->setProperty("doc", QVariant::fromValue<LatexDocument *>(edView->document));
+            act->setProperty("type", tk.type);
+            edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitFindSpecialUsagesFromAction()));
+            contextMenu->addAction(act);
+        }
 		if (tk.type == Token::word) {
 			QAction *act = new QAction(LatexEditorView::tr("Thesaurus..."), contextMenu);
 			act->setData(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber()));
@@ -2060,6 +2068,16 @@ void LatexEditorView::emitFindLabelUsagesFromAction()
 	QString labelText = action->data().toString();
 	LatexDocument *doc = action->property("doc").value<LatexDocument *>();
 	emit findLabelUsages(doc, labelText);
+}
+
+void LatexEditorView::emitFindSpecialUsagesFromAction()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    QString labelText = action->data().toString();
+    LatexDocument *doc = action->property("doc").value<LatexDocument *>();
+    int type= action->property("type").toInt();
+    emit findSpecialUsages(doc, labelText,type);
 }
 
 void LatexEditorView::emitSyncPDFFromAction()

@@ -237,6 +237,7 @@ private slots:
 	void emitChangeDiff();
 	void emitGotoDefinitionFromAction();
 	void emitFindLabelUsagesFromAction();
+    void emitFindSpecialUsagesFromAction();
 	void emitSyncPDFFromAction();
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
@@ -344,6 +345,7 @@ signals:
 	void spellerChanged(const QString &name);
 	void gotoDefinition(QDocumentCursor c);
 	void findLabelUsages(LatexDocument *contextDoc, const QString &labelText);
+    void findSpecialUsages(LatexDocument *doc, const QString &labelText, int type);
 	void syncPDFRequested(QDocumentCursor c);
 	void bookmarkRemoved(QDocumentLineHandle *dlh);
 	void bookmarkAdded(QDocumentLineHandle *dlh, int nr);
