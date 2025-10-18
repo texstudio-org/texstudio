@@ -491,3 +491,45 @@ QList<SearchMatch> LabelSearchResultModel::getSearchMatches(const QDocumentLine 
 	}
 	return matches;
 }
+
+SpecialDefSearchResultModel::SpecialDefSearchResultModel(QObject *parent,int tokenType) : SearchResultModel(parent)
+{
+    mTokenType=tokenType;
+}
+/*!
+ * \brief give search results
+ * Only line is given, needs to be researched for token info
+ * \param docline
+ * \return
+ */
+QList<SearchMatch> SpecialDefSearchResultModel::getSearchMatches(const QDocumentLine &docline) const
+{
+    QList<SearchMatch> matches = SearchResultModel::getSearchMatches(docline);
+    const QString &text = docline.text();
+    QDocumentLineHandle *dlh=docline.handle();
+    TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+
+    for (int i = matches.count() - 1; i >= 0; i--) {
+        const SearchMatch &match = matches.at(i);
+        int k=0;
+        while(k<tl.length() && tl[k].start<match.pos) ++k;
+        if(k<tl.length() && tl[k].start==match.pos && tl[k].length==match.length){
+            Token &tk=tl[k];
+            if(tk.type==mTokenType){
+                continue;
+            }
+            if(tk.type==Token::defSpecialArg){
+                // check if new definition of specialArg
+                LatexDocument *doc=dynamic_cast<LatexDocument*>(dlh->document());
+                QString def=doc->getCmdfromSpecialArgToken(tk);
+                QStringList vals=doc->lp->mapSpecialArgs.values();
+                int k=vals.indexOf(def);
+                if(k>-1 && Token::specialArg+k==mTokenType){
+                    continue;
+                }
+            }
+        }
+        matches.removeAt(i);
+    }
+    return matches;
+}

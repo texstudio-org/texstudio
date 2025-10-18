@@ -94,4 +94,17 @@ public:
 	QList<SearchMatch> getSearchMatches(const QDocumentLine &docline) const;
 };
 
+class SpecialDefSearchResultModel : public SearchResultModel
+{
+    Q_OBJECT
+
+public:
+    SpecialDefSearchResultModel(QObject *parent = 0,int tokenType = 0);
+
+    QList<SearchMatch> getSearchMatches(const QDocumentLine &docline) const;
+
+protected:
+    int mTokenType;
+};
+
 #endif // SEARCHRESULTMODEL_H

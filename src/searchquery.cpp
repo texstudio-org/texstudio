@@ -323,7 +323,7 @@ void LabelSearchQuery::replaceAll()
 SpecialDefSearchQuery::SpecialDefSearchQuery(QString label,int type) :
     SearchQuery(label, label, IsWord | IsCaseSensitive | SearchAgainAllowed | ReplaceAllowed)
 {
-    mModel = new LabelSearchResultModel(this);
+    mModel = new SpecialDefSearchResultModel(this,type);
     mModel->setSearchExpression(label, label, flag(IsCaseSensitive), flag(IsWord), flag(IsRegExp));
 
     mScope = ProjectScope;
