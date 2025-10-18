@@ -156,6 +156,7 @@
 <file>completion/arrayjobx.cwl</file>
 <file>completion/arraysort.cwl</file>
 <file>completion/arsclassica.cwl</file>
+<file>completion/arsenal-math.cwl</file>
 <file>completion/arsenal.cwl</file>
 <file>completion/ArtNouvc.cwl</file>
 <file>completion/ArtNouv.cwl</file>
@@ -4317,6 +4318,7 @@
 <file>completion/Zallman.cwl</file>
 <file>completion/zb-basics.cwl</file>
 <file>completion/zebra-goodies.cwl</file>
+<file>completion/zeckendorf.cwl</file>
 <file>completion/zennote.cwl</file>
 <file>completion/zhlineskip.cwl</file>
 <file>completion/zhlipsum.cwl</file>
