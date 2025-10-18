@@ -13,6 +13,8 @@ class TableManipulationTest: public QObject{
 	private slots:
 		void splitColDef_data();
 		void splitColDef();
+        void handleColSpec_data();
+        void handleColSpec();
 		void simplifyColDef_data();
 		void simplifyColDef();
 		void addCol_data();
