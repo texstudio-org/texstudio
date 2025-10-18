@@ -236,7 +236,6 @@ private slots:
 	void openPackageDocumentation(QString package = QString());
 	void emitChangeDiff();
 	void emitGotoDefinitionFromAction();
-    void emitGotoSpecialDefinitionFromAction();
 	void emitFindLabelUsagesFromAction();
     void emitFindSpecialUsagesFromAction();
 	void emitSyncPDFFromAction();
@@ -345,7 +344,6 @@ signals:
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
 	void gotoDefinition(QDocumentCursor c);
-    void gotoSpecialDefinition(LatexDocument *doc, const QString &labelText, int type);
 	void findLabelUsages(LatexDocument *contextDoc, const QString &labelText);
     void findSpecialUsages(LatexDocument *doc, const QString &labelText, int type);
 	void syncPDFRequested(QDocumentCursor c);

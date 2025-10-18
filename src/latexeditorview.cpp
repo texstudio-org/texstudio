@@ -2076,16 +2076,6 @@ void LatexEditorView::emitGotoDefinitionFromAction()
 	emit gotoDefinition(c);
 }
 
-void LatexEditorView::emitGotoSpecialDefinitionFromAction()
-{
-    QAction *action = qobject_cast<QAction *>(sender());
-    if (!action) return;
-    QString labelText = action->data().toString();
-    LatexDocument *doc = action->property("doc").value<LatexDocument *>();
-    int type= action->property("type").toInt();
-    emit gotoSpecialDefinition(doc, labelText,type);
-}
-
 void LatexEditorView::emitFindLabelUsagesFromAction()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
