@@ -5060,16 +5060,21 @@ void Texstudio::normalCompletion()
 	case Token::keyVal_key:
 	case Token::keyVal_val: {
         if (mCompleterNeedsUpdate) updateCompleter();
-		QString word = c.line().text();
-		int col = c.columnNumber();
-        Token tkCmd = Parsing::getCommandTokenFromToken(tk);
-        QString command=tkCmd.getText();
-        if(command=="\\begin"){ // special treatment for begin as it is only meaningful with the env-name
-            TokenList tl = tkCmd.dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-            int k = tl.indexOf(tkCmd) + 1;
-            Token tk2=tl.value(k);
-            QString subcommand=tk2.getText();
-            command+=subcommand;
+        QString command;
+        QString word = c.line().text();
+        int col = c.columnNumber();
+        if(tk.optionalCommandName.isEmpty()){
+            Token tkCmd = Parsing::getCommandTokenFromToken(tk);
+            command=tkCmd.getText();
+            if(command=="\\begin"){ // special treatment for begin as it is only meaningful with the env-name
+                TokenList tl = tkCmd.dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+                int k = tl.indexOf(tkCmd) + 1;
+                Token tk2=tl.value(k);
+                QString subcommand=tk2.getText();
+                command+=subcommand;
+            }
+        }else{
+            command=tk.optionalCommandName;
         }
 
 		completer->setWorkPath(command);
