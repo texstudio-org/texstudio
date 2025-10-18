@@ -36,9 +36,9 @@ void TableManipulationTest::splitColDef(){
 
 void TableManipulationTest::handleColSpec_data(){
     QTest::addColumn<QString>("def");
-    QTest::addColumn<QString>("splittedDef"); // for simplicity use a single string instead of a QStringList and '-' as separator
+    QTest::addColumn<QString>("detectedDef"); // for simplicity use a single string instead of a QStringList and '-' as separator
 
-    QTest::newRow("no colspec") << "l" << "";
+    QTest::newRow("no colspec") << "l" << "l";
     QTest::newRow("colspec with brace") << "colspec={abc}" << "abc";
     QTest::newRow("colspec with brace and other options") << "colspec={a|b|c},hlines" << "a|b|c";
     QTest::newRow("colspec with nested brace") << "colspec={a{bc}}" << "a{bc}";
