@@ -64,6 +64,7 @@ public:
 	QString replacementText() { return mReplacementText; }
 
 	void setAllowPartialSelection(bool b) { mAllowPartialSelection = b; }
+    bool partialSelectionAllowed() const { return mAllowPartialSelection; }
 
 	virtual QList<SearchMatch> getSearchMatches(const QDocumentLine &docline) const;
     virtual QList<SearchMatch> getSearchMatches(const QString &line) const;

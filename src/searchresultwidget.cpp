@@ -211,6 +211,12 @@ void SearchResultWidget::clickedSearchResult(const QModelIndex &index)
     const auto scope=searchScope();
     if(scope<SearchQuery::FilesScope){
         query->replaceAll();
+        if(!query->model()->partialSelectionAllowed()){
+            // everything replaced, update to new search word (replacement text)
+            // this is used for findUsage
+            searchTextLabel->setText(query->replacementText());
+            updateSearch();
+        }
     }else{
         // search in files
         QString folder=QFileDialog::getExistingDirectory(this, tr("Select folder where to search"),query->searchFolder());
