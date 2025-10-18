@@ -10,6 +10,9 @@
 - add indent guides (optional), see [#4129](https://github.com/texstudio-org/texstudio/issues/4129)
 - extend cwl to allow multiple keyval arguments for one command
 - fixes around keyval syntax detection
+- change glossary to use special arguments, independent of label/ref [#4212](https://github.com/texstudio-org/texstudio/pull/4212)
+- extend find usage/goto definition for special arguments (e.g. glossary)
+- fix tabular column definition detection to handle split lines
 
 ## TeXstudio 4.8.9
 
