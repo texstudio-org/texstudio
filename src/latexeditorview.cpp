@@ -2958,6 +2958,23 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			m_point = editor->mapToGlobal(editor->mapFromFrame(pos));
 			emit showImgPreview(fname);
 		}
+        if(tk.type>=Token::specialArg){
+            QString mText;
+            LatexDocument *doc = qobject_cast<LatexDocument *> (editor->document());
+            QString def=doc->lp->mapSpecialArgs.value(tk.type-Token::specialArg);
+            QDocumentLineHandle *target = doc->findCommandDefinition(def+"%"+tk.getText());
+            if (target) {
+                int l = target->document()->indexOf(target);
+                if (target->document() != editor->document()) {
+                    doc = document->parent->findDocument(target->document());
+                    if (doc) mText = tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+                }
+                if (doc)
+                    mText += doc->exportAsHtml(doc->cursor(qMax(0, l - 2), 0, l + 2), true, true, 60);
+                QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
+                handled=true;
+            }
+        }
 
 	}//if tk
 	if (handled)
