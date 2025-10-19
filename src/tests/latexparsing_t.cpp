@@ -1087,8 +1087,8 @@ void LatexParsingTest::test_getContext_data() {
                             << (STypes() << T::none << T::keyValArg<<T::none);
     QTest::newRow("command with keyval2") << "\\includegraphics[width=4cm]{abc}"
                             << 23
-                            << (TTypes() << T::command << T::squareBracket)
-                            << (STypes() << T::none << T::keyValArg);
+                            << (TTypes() << T::command << T::squareBracket << T::keyVal_key)
+                            << (STypes() << T::none    << T::keyValArg     << T::none);
                             //<< (TTypes() << T::command << T::squareBracket<<T::keyVal_key<<T::width) // this may be the desired outcome
                             //<< (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val);
     QTest::newRow("command with keyval3") << "\\includegraphics[width=4cm]{abc}"
@@ -1103,6 +1103,10 @@ void LatexParsingTest::test_getContext_data() {
                             << 23
                             << (TTypes() << T::command << T::squareBracket<<T::keyVal_key<<T::keyVal_val)
                             << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val);
+    QTest::newRow("command with empty keyval and space") << "\\includegraphics[width= ]{abc}"  // #4218
+                                               << 23
+                                               << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
+                                               << (STypes() << T::none << T::keyValArg<<T::none);
     QTest::newRow("command with keyval as defined argument") << "\\lstdefinelanguage{Excel}{morekeywords={ab$c}}"
                                           << 41
                                                              << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::braces)

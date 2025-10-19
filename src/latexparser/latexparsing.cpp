@@ -1508,14 +1508,15 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 
 		}
 	} //for
-	while (!ts.isEmpty()) {
+    /* fixes #4218, probably not necessary ?
+    while (!ts.isEmpty()) {
 		// check that pos is within stack
 		if (ts.top().start + ts.top().length > pos)
 			break;
 		if (ts.top().start + ts.top().length == pos && !Token::tkBraces().contains(ts.top().type)) // equal is accceptable for other than braces
 			break;
 		ts.pop();
-	}
+    }*/
 	stack << ts;
 	return stack;
 }
