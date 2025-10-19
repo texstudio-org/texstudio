@@ -218,4 +218,5 @@ podcomment#true,false
 \mycommand{keyvals}
 #keyvals:\mycommand
 note=%<text%>
+width=##L
 #endkeyvals

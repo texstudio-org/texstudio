@@ -392,6 +392,12 @@ void LatexParsingTest::test_latexLexing_data() {
                                   << (Starts() << 0 << 11 << 12 << 18 <<19)
                                   << (Length() << 11 << 13 << 5 << 5 << 3 )
                                   << (Levels() << 0 << 1 << 1 << 3 << 3);
+    QTest::newRow("keyval length") << "\\mycommand{width=\\textwidth}"
+                                  << (TTypes() << T::command << T::braces << T::keyVal_key<< T::command)
+                                  << (STypes() << T::none << T::keyValArg << T::none<< T::width)
+                                  << (Starts() << 0 << 10 << 11 << 17)
+                                  << (Length() << 10 << 18 << 5 << 10)
+                                  << (Levels() << 0 << 1 << 1 << 2 );
 
 }
 
