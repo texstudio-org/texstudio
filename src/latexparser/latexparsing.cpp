@@ -787,7 +787,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     // handle keyval values with normal commandStack mechanism (mandatory argument only!!)
                     // allows argument classification
                     CommandDescription cd = lp->commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
-                    if(cd.arguments[0].tokenType!=Token::definition){
+                    cd.optionalCommandName=commandStack.top().optionalCommandName;
+                    if(cd.arguments[0].tokenType==Token::width){
                         // special treatment for length for now
                         continue;
                     }

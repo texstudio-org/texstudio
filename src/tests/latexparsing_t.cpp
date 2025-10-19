@@ -380,6 +380,18 @@ void LatexParsingTest::test_latexLexing_data() {
                                      << (Starts() << 0 << 11 << 12)
                                      << (Length() << 11 << 6 << 4)
                                      << (Levels() << 0 << 1 << 1 );
+    QTest::newRow("keyval label") << "\\againframe[label=abc]"
+                                  << (TTypes() << T::command << T::squareBracket << T::keyVal_key<< T::label)
+                                  << (STypes() << T::none << T::keyValArg << T::none<< T::keyVal_val)
+                                  << (Starts() << 0 << 11 << 12 << 18)
+                                  << (Length() << 11 << 11 << 5 << 3)
+                                  << (Levels() << 0 << 1 << 1 << 2 );
+    QTest::newRow("keyval label in braces") << "\\againframe[label={abc}]"
+                                  << (TTypes() << T::command << T::squareBracket << T::keyVal_key<< T::braces << T::label)
+                                  << (STypes() << T::none << T::keyValArg << T::none<< T::label << T::none)
+                                  << (Starts() << 0 << 11 << 12 << 18 <<19)
+                                  << (Length() << 11 << 13 << 5 << 5 << 3 )
+                                  << (Levels() << 0 << 1 << 1 << 3 << 3);
 
 }
 
