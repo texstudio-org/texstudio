@@ -4,17 +4,17 @@
 #include:amsmath
 
 \NewTcbTheorem{envname}{display name}{options%keyvals}{prefix}#N
-\NewTcbTheorem[init options]{envname}{display name}{options%keyvals}{prefix}#N
+\NewTcbTheorem[init options%keyvals]{envname}{display name}{options%keyvals}{prefix}#N
 \newtcbtheorem{envname}{display name}{options%keyvals}{prefix}#N
-\newtcbtheorem[init options]{envname}{display name}{options%keyvals}{prefix}#N
+\newtcbtheorem[init options%keyvals]{envname}{display name}{options%keyvals}{prefix}#N
 \RenewTcbTheorem{envname}{display name}{options%keyvals}{prefix}
-\RenewTcbTheorem[init options]{envname}{display name}{options%keyvals}{prefix}
+\RenewTcbTheorem[init options%keyvals]{envname}{display name}{options%keyvals}{prefix}
 \renewtcbtheorem{envname}{display name}{options%keyvals}{prefix}
-\renewtcbtheorem[init options]{envname}{display name}{options%keyvals}{prefix}
+\renewtcbtheorem[init options%keyvals]{envname}{display name}{options%keyvals}{prefix}
 \ProvideTcbTheorem{envname}{display name}{options%keyvals}{prefix}#N
-\ProvideTcbTheorem[init options]{envname}{display name}{options%keyvals}{prefix}#N
+\ProvideTcbTheorem[init options%keyvals]{envname}{display name}{options%keyvals}{prefix}#N
 \DeclareTcbTheorem{envname}{display name}{options%keyvals}{prefix}#N
-\DeclareTcbTheorem[init options]{envname}{display name}{options%keyvals}{prefix}#N
+\DeclareTcbTheorem[init options%keyvals]{envname}{display name}{options%keyvals}{prefix}#N
 \tcboxmath{mathematical box content%formula}
 \tcboxmath[options%keyvals]{mathematical box content%formula}
 \tcbhighmath{mathematical box content%formula}
