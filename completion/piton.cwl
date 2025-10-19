@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2025/09/14 for v4.8c
+# Matthew Bertucci 2025/10/06 for v4.9
 
 #include:luacode
 #include:xcolor
@@ -91,6 +91,7 @@ line-numbers/start
 
 # keys for both \PitonOptions and \begin{Piton}
 #keyvals:\PitonOptions,\begin{Piton}
+annotation#true,false
 auto-gobble
 background-color=#%color
 box=#c,t,b,m
@@ -120,6 +121,10 @@ line-numbers/sep=##L
 line-numbers/skip-empty-lines#true,false
 line-numbers={%<options%>}
 max-width=##L
+no-join
+no-write
+paperclip
+paperclip=%<file%>
 path-write=%<path%>
 print#true,false
 prompt-background-color=#%color

@@ -1,7 +1,12 @@
 # bootstrapicons package
-# Matthew Bertucci 2025/09/02 for v1
+# Matthew Bertucci 2025/10/06 for v1.1
 
-#include:graphicx
+#include:tikz
 
-\Bicon{number}
-\Bicon[options%keyvals]{number}
+\bicon{name}
+\bicon[options%keyvals]{name}
+\textbicon{name}
+
+# not documented
+\BiconDefaultHeight#S
+\defineBicon{arg1}{arg2}#S

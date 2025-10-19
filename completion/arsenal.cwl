@@ -1,23 +1,15 @@
 # arsenal package
-# Matthew Bertucci 2023/09/06 for v0.2
+# Matthew Bertucci 2025/10/15 for v1.0
 
-#include:fontspec
+#include:unicode-math
 #include:iwonamath
 
 #keyvals:\usepackage/arsenal#c
 default
 sfdefault
-math=#none,arsenal+kpsans,kpsans,iwona
+math#true,false
 scale=%<factor%>
 #endkeyvals
-
-#ifOption:math=arsenal+kpsans
-#include:kpfonts-otf
-#endif
-
-#ifOption:math=kpsans
-#include:kpfonts-otf
-#endif
 
 \arsenalfamily
 \textarsenal{text}

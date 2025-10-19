@@ -156,6 +156,7 @@
 <file>completion/arrayjobx.cwl</file>
 <file>completion/arraysort.cwl</file>
 <file>completion/arsclassica.cwl</file>
+<file>completion/arsenal-math.cwl</file>
 <file>completion/arsenal.cwl</file>
 <file>completion/ArtNouvc.cwl</file>
 <file>completion/ArtNouv.cwl</file>
@@ -473,6 +474,7 @@
 <file>completion/bullenum.cwl</file>
 <file>completion/bussproofs.cwl</file>
 <file>completion/bussproofs-extra.cwl</file>
+<file>completion/BusyPanda.cwl</file>
 <file>completion/bxbase.cwl</file>
 <file>completion/bxcalc.cwl</file>
 <file>completion/bxcalcux.cwl</file>
@@ -1035,6 +1037,7 @@
 <file>completion/cleveref.cwl</file>
 <file>completion/cleveref-forward.cwl</file>
 <file>completion/cleveref-usedon.cwl</file>
+<file>completion/CleverPanda.cwl</file>
 <file>completion/clicks.cwl</file>
 <file>completion/clipboard.cwl</file>
 <file>completion/clock.cwl</file>
@@ -2762,6 +2765,7 @@
 <file>completion/pagerange.cwl</file>
 <file>completion/pagesel.cwl</file>
 <file>completion/pageslts.cwl</file>
+<file>completion/panda.cwl</file>
 <file>completion/pandora.cwl</file>
 <file>completion/pangram.cwl</file>
 <file>completion/PanneauxRoute.cwl</file>
@@ -4317,6 +4321,7 @@
 <file>completion/Zallman.cwl</file>
 <file>completion/zb-basics.cwl</file>
 <file>completion/zebra-goodies.cwl</file>
+<file>completion/zeckendorf.cwl</file>
 <file>completion/zennote.cwl</file>
 <file>completion/zhlineskip.cwl</file>
 <file>completion/zhlipsum.cwl</file>

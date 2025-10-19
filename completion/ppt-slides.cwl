@@ -1,5 +1,5 @@
 # ppt-slides package
-# Matthew Bertucci 2025/04/17 for v0.5.0
+# Matthew Bertucci 2025/10/13 for v0.6.0
 
 #include:pgfopts
 #include:xcolor
@@ -7,6 +7,7 @@
 #include:href-ul
 #include:pagecolor
 #include:varwidth
+#include:csquotes
 #include:qrcode
 #include:tikz
 #include:tikzlibrarycalc
