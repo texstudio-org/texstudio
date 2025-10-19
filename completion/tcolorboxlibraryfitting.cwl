@@ -6,31 +6,31 @@
 \newtcboxfit{cmd}{options%keyvals}#d1
 \newtcboxfit{cmd}[args]{options%keyvals}#d1
 \newtcboxfit{cmd}[args][default]{options%keyvals}#d1
-\newtcboxfit[init options]{cmd}{options%keyvals}#d1
-\newtcboxfit[init options]{cmd}[args]{options%keyvals}#*d1
-\newtcboxfit[init options]{cmd}[args][default]{options%keyvals}#*d1
+\newtcboxfit[init options%keyvals]{cmd}{options%keyvals}#d1
+\newtcboxfit[init options%keyvals]{cmd}[args]{options%keyvals}#*d1
+\newtcboxfit[init options%keyvals]{cmd}[args][default]{options%keyvals}#*d1
 \renewtcboxfit{cmd}{options%keyvals}
 \renewtcboxfit{cmd}[args]{options%keyvals}
 \renewtcboxfit{cmd}[args][default]{options%keyvals}
-\renewtcboxfit[init options]{cmd}{options%keyvals}
-\renewtcboxfit[init options]{cmd}[args]{options%keyvals}#*
-\renewtcboxfit[init options]{cmd}[args][default]{options%keyvals}#*
+\renewtcboxfit[init options%keyvals]{cmd}{options%keyvals}
+\renewtcboxfit[init options%keyvals]{cmd}[args]{options%keyvals}#*
+\renewtcboxfit[init options%keyvals]{cmd}[args][default]{options%keyvals}#*
 \DeclareTCBoxFit{cmd}{xargs}{options%keyvals}#d1
-\DeclareTCBoxFit[init options]{cmd}{xargs}{options%keyvals}#d1
+\DeclareTCBoxFit[init options%keyvals]{cmd}{xargs}{options%keyvals}#d1
 \NewTCBoxFit{cmd}{xargs}{options%keyvals}#d1
-\NewTCBoxFit[init options]{cmd}{xargs}{options%keyvals}#d1
+\NewTCBoxFit[init options%keyvals]{cmd}{xargs}{options%keyvals}#d1
 \RenewTCBoxFit{cmd}{xargs}{options%keyvals}
-\RenewTCBoxFit[init options]{cmd}{xargs}{options%keyvals}
+\RenewTCBoxFit[init options%keyvals]{cmd}{xargs}{options%keyvals}
 \ProvideTCBoxFit{cmd}{xargs}{options%keyvals}#d1
-\ProvideTCBoxFit[init options]{cmd}{xargs}{options%keyvals}#d1
+\ProvideTCBoxFit[init options%keyvals]{cmd}{xargs}{options%keyvals}#d1
 \DeclareTotalTCBoxFit{cmd}{xargs}{options%keyvals}{content%text}#d
-\DeclareTotalTCBoxFit[init options]{cmd}{xargs}{options%keyvals}{content%text}#d
+\DeclareTotalTCBoxFit[init options%keyvals]{cmd}{xargs}{options%keyvals}{content%text}#d
 \NewTotalTCBoxFit{cmd}{xargs}{options%keyvals}{content%text}#d
-\NewTotalTCBoxFit[init options]{cmd}{xargs}{options%keyvals}{content%text}#d
+\NewTotalTCBoxFit[init options%keyvals]{cmd}{xargs}{options%keyvals}{content%text}#d
 \RenewTotalTCBoxFit{cmd}{xargs}{options%keyvals}{content%text}
-\RenewTotalTCBoxFit[init options]{cmd}{xargs}{options%keyvals}{content%text}
+\RenewTotalTCBoxFit[init options%keyvals]{cmd}{xargs}{options%keyvals}{content%text}
 \ProvideTotalTCBoxFit{cmd}{xargs}{options%keyvals}{content%text}#d
-\ProvideTotalTCBoxFit[init options]{cmd}{xargs}{options%keyvals}{content%text}#d
+\ProvideTotalTCBoxFit[init options%keyvals]{cmd}{xargs}{options%keyvals}{content%text}#d
 \tcbfitdim#L
 \tcbfontsize{factor}
 \tcbfitsteps

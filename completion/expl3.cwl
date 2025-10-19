@@ -1,9 +1,10 @@
 # expl3 package
-# Matthew Bertucci 2023/06/07 for v2023-06-05
+# Matthew Bertucci 2025/10/18
 
-# note: latex3 syntax checking is not supported as of yet
-# no commands listed here since available in format; all in latex-dev.cwl
-# only use of expl3 loaded explicitly is for package options
+# No commands listed here since expl3 is available in format;
+# expl3.sty should not be loaded explicitly any more.
+# All expl3 commands are in expl3-commands.cwl.
+# Only use of expl3 loaded explicitly is for package options.
 
 #keyvals:\usepackage/expl3#c
 check-declarations

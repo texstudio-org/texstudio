@@ -633,16 +633,7 @@ tcbox width=#auto,auto limited,forced center,forced left,forced right,minimum ce
 \tcbpkgprefix#S
 
 # << init options >>
-
-# NOTE: Init options, documented in Sec. 5 of package doc, always come with 
-# another more powerful and mandatory option list argument. For example,
-#     \newtcolorbox[init options]{envname}{options%keyvals}#N
-# Since currently texstudio doesn't support to mark a second keyvals field in 
-# one command, the following (relatively short) init option list is temporarily 
-# commented.
-
-# # NOTE: this is not a valid syntax of #keyvals.
-#keyvals:\newtcolorbox#o1,\renewtcolorbox#o1,\newtcbox#o1,\renewtcbox#o1,\newtcblisting#o1,\renewtcblisting#o1,\newtcbinputlisting#o1,\renewtcbinputlisting#o1,\newtcbtheorem#o1,\renewtcbtheorem#o1,\newtcboxfit#o1,\renewtcboxfit#o1,\DeclareTColorBox#o1,\NewTColorBox#o1,\RenewTColorBox#o1,\ProvideTColorBox#o1,\DeclareTotalTColorBox#o1,\NewTotalTColorBox#o1,\RenewTotalTColorBox#o1,\ProvideTotalTColorBox#o1,\DeclareTCBox#o1,\NewTCBox#o1,\RenewTCBox#o1,\ProvideTCBox#o1,\DeclareTotalTCBox#o1,\NewTotalTCBox#o1,\RenewTotalTCBox#o1,\ProvideTotalTCBox#o1,\DeclareTCBListing#o1,\NewTCBListing#o1,\RenewTCBListing#o1,\ProvideTCBListing#o1,\DeclareTCBInputListing#o1,\NewTCBInputListing#o1,\RenewTCBInputListing#o1,\ProvideTCBInputListing#o1,\DeclareTCBoxFit#o1,\NewTCBoxFit#o1,\RenewTCBoxFit#o1,\ProvideTCBoxFit#o1,\DeclareTotalTCBoxFit#o1,\NewTotalTCBoxFit#o1,\RenewTotalTCBoxFit#o1,\ProvideTotalTCBoxFit#o1
+#keyvals:\newtcolorbox#o1,\renewtcolorbox#o1,\newtcbox#o1,\renewtcbox#o1,\newtcblisting#o1,\renewtcblisting#o1,\newtcbinputlisting#o1,\renewtcbinputlisting#o1,\NewTcbTheorem#o1,\newtcbtheorem#o1,\RenewTcbTheorem#o1,\renewtcbtheorem#o1,\ProvideTcbTheorem#o1,\DeclareTcbTheorem#o1,\newtcboxfit#o1,\renewtcboxfit#o1,\DeclareTColorBox#o1,\NewTColorBox#o1,\RenewTColorBox#o1,\ProvideTColorBox#o1,\DeclareTotalTColorBox#o1,\NewTotalTColorBox#o1,\RenewTotalTColorBox#o1,\ProvideTotalTColorBox#o1,\DeclareTCBox#o1,\NewTCBox#o1,\RenewTCBox#o1,\ProvideTCBox#o1,\DeclareTotalTCBox#o1,\NewTotalTCBox#o1,\RenewTotalTCBox#o1,\ProvideTotalTCBox#o1,\DeclareTCBListing#o1,\NewTCBListing#o1,\RenewTCBListing#o1,\ProvideTCBListing#o1,\DeclareTCBInputListing#o1,\NewTCBInputListing#o1,\RenewTCBInputListing#o1,\ProvideTCBInputListing#o1,\DeclareTCBoxFit#o1,\NewTCBoxFit#o1,\RenewTCBoxFit#o1,\ProvideTCBoxFit#o1,\DeclareTotalTCBoxFit#o1,\NewTotalTCBoxFit#o1,\RenewTotalTCBoxFit#o1,\ProvideTotalTCBoxFit#o1
 auto counter
 use counter from=%<tcolorbox%>
 use counter=%<counter%>
