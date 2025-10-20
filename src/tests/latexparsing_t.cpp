@@ -1069,10 +1069,22 @@ void LatexParsingTest::test_getContext_data() {
                             << 2
                             << (TTypes() << T::word)
                             << (STypes() << T::none);
+    QTest::newRow("none") << "abc   abc"
+                            << 4
+                            << (TTypes() )
+                            << (STypes());
     QTest::newRow("command") << "\\section{abc}"
                             << 10
                             << (TTypes() << T::command <<T::braces<<T::word)
                             << (STypes() << T::none << T::title<<T::title);
+    QTest::newRow("after command") << "\\section{abc}  "
+                             << 14
+                             << (TTypes())
+                             << (STypes());
+    QTest::newRow("after command on word") << "\\section{abc} abc"
+                           << 16
+                           << (TTypes() << T::word)
+                           << (STypes() << T::none);
     QTest::newRow("command without braces") << "\\section abc"
                             << 10
                             << (TTypes() << T::command << T::word)
@@ -1081,6 +1093,10 @@ void LatexParsingTest::test_getContext_data() {
                             << 10
                             << (TTypes() << T::command << T::squareBracket<<T::word)
                             << (STypes() << T::none << T::shorttitle<<T::shorttitle);
+    QTest::newRow("command with optional arg 2") << "\\section[fds]{abc}"
+                             << 15
+                             << (TTypes() << T::command <<T::braces<<T::word)
+                             << (STypes() << T::none << T::title<<T::title);
     QTest::newRow("command with keyval") << "\\includegraphics[width=4cm]{abc}"
                             << 18
                             << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
@@ -1099,22 +1115,26 @@ void LatexParsingTest::test_getContext_data() {
                             << 28
                             << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
                             << (STypes() << T::none << T::keyValArg<<T::none);
+    QTest::newRow("command with keyval5") << "\\includegraphics[width as=4cm]{abc}"
+                          << 24
+                          << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
+                          << (STypes() << T::none << T::keyValArg<<T::none);
     QTest::newRow("command with empty keyval") << "\\includegraphics[width=]{abc}"  // #4017
                             << 23
                             << (TTypes() << T::command << T::squareBracket<<T::keyVal_key<<T::keyVal_val)
                             << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val);
     QTest::newRow("command with empty keyval and space") << "\\includegraphics[width= ]{abc}"  // #4218
-                                               << 23
-                                               << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
-                                               << (STypes() << T::none << T::keyValArg<<T::none);
+                           << 23
+                           << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
+                           << (STypes() << T::none << T::keyValArg<<T::none);
     QTest::newRow("command with keyval as defined argument") << "\\lstdefinelanguage{Excel}{morekeywords={ab$c}}"
-                                          << 41
-                                                             << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::braces)
-                                                             << (STypes() << T::none << T::keyValArg<<T::none<<T::definition);
+                            << 41
+                             << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::braces)
+                             << (STypes() << T::none << T::keyValArg<<T::none<<T::definition);
     QTest::newRow("command with keyval as label") << "\\lstdefinelanguage{Excel}{label=test}"
-                                                             << 35
-                                                             << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::label)
-                                                             << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val);
+                             << 35
+                             << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::label)
+                             << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val);
     QTest::newRow("following command") << "bummerang\\text" // command after word, #3967
                             << 9
                             << (TTypes() << T::word)
