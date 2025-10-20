@@ -1199,6 +1199,105 @@ void LatexParsingTest::test_getContext() {
     delete doc;
 }
 
+void LatexParsingTest::test_getContextMultiLine_data() {
+    QTest::addColumn<QString>("lines");
+    QTest::addColumn<int >("nr");
+    QTest::addColumn<int >("ln");
+    QTest::addColumn<TTypes>("desiredResults");
+    QTest::addColumn<STypes>("types");
+
+    QTest::newRow("simple") << "bummerang\nbummerang"
+                            << 2 << 1
+                            << (TTypes() << T::word)
+                            << (STypes() << T::none);
+    QTest::newRow("command") << "\\section{\nabc}"
+                             << 1 << 1
+                             << (TTypes() <<T::openBrace<<T::word)
+                             << (STypes() << T::title<<T::title);
+    QTest::newRow("command, unclosed brace") << "\\section{abc\nabc\n}"
+                             << 2 << 1
+                             << (TTypes() << T::openBrace<<T::word)
+                             << (STypes() << T::title<<T::title);
+    QTest::newRow("command, unclosed brace with spaces") << "\\section{abc\n   "
+                             << 1 << 1
+                             << (TTypes() << T::openBrace)
+                             << (STypes() << T::title);
+    QTest::newRow("after command") << "\\section{abc}\n  "
+                           << 1 << 1
+                           << (TTypes())
+                           << (STypes());
+    QTest::newRow("after command on word") << "\\section{abc}\n abc"
+                               << 2 << 1
+                               << (TTypes() << T::word)
+                               << (STypes() << T::none);
+    QTest::newRow("command with keyval") << "\\includegraphics[\nwidth=4cm]{abc}"
+                             << 1 << 1
+                             << (TTypes() << T::openSquare<<T::keyVal_key)
+                             << (STypes() << T::keyValArg<<T::none);
+    QTest::newRow("command with keyval2") << "\\includegraphics[\nwidth=4cm]{abc}"
+                              << 7 << 1
+                              << (TTypes() << T::openSquare << T::keyVal_key << T::width)
+                              << (STypes() << T::keyValArg     << T::none << T::keyVal_val);
+    QTest::newRow("command with keyval3") << "\\includegraphics\n[\nwidth=4cm]{abc}"
+                                         << 1 << 2
+                                         << (TTypes() << T::openSquare<<T::keyVal_key)
+                                         << (STypes() << T::keyValArg<<T::none);
+    QTest::newRow("command with keyval4") << "\\includegraphics\n[\nwidth=4cm]{abc}"
+                                  << 7 << 2
+                                  << (TTypes() << T::openSquare << T::keyVal_key << T::width)
+                                  << (STypes() << T::keyValArg     << T::none << T::keyVal_val);
+    QTest::newRow("command with keyval5") << "\\includegraphics\n[\nwidth=      ]{abc}"
+                                          << 7 << 2
+                                          << (TTypes() << T::openSquare<<T::keyVal_key)
+                                          << (STypes() << T::keyValArg<<T::none);
+}
+
+void LatexParsingTest::test_getContextMultiLine() {
+    QSharedPointer<LatexParser> lp = QSharedPointer<LatexParser>::create();
+    *lp=LatexParser::getInstance();
+    LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
+    lp->commandDefs.unite(pkg_graphics.commandDescriptions);
+    LatexPackage pkg_listings = loadCwlFile("txs-test.cwl");
+    lp->commandDefs.unite(pkg_listings.commandDescriptions);
+    QFETCH(QString,lines);
+    QFETCH(int, nr);
+    QFETCH(int, ln);
+    QFETCH(TTypes, desiredResults);
+    QFETCH(STypes, types);
+
+    QDocument *doc = new QDocument();
+    doc->setText(lines, false);
+    for(int i=0; i<doc->lines(); i++){
+        QDocumentLineHandle *dlh = doc->line(i).handle();
+        Parsing::simpleLexLatexLine(dlh);
+    }
+    TokenStack stack;
+    CommandStack commandStack;
+    for(int i=0; i<doc->lines(); i++){
+        QDocumentLineHandle *dlh = doc->line(i).handle();
+        Parsing::latexDetermineContexts2(dlh, stack, commandStack, lp);
+    }
+    if(doc->lineCount()>ln){
+        QDocumentLineHandle *dlh = doc->line(ln).handle();
+        //TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+
+        TokenStack result = Parsing::getContext(dlh,nr);
+
+        for(int k=0;k<result.size();k++){
+            if(k>=desiredResults.size()){
+                continue;
+            }
+            QVERIFY2(result.at(k).type==desiredResults.at(k), QString("incorrect type at index %1:%2").arg(k).arg(lines).toLatin1());
+            QVERIFY2(result.at(k).subtype==types.at(k), QString("incorrect subtype at index %1:%2").arg(k).arg(lines).toLatin1());
+        }
+        QVERIFY2(result.size()==desiredResults.size(), QString("incorrect stacksize: %1:%2").arg(result.size()).arg(desiredResults.size()).toLatin1());
+    }else{
+        qDebug()<<"test case lines !";
+    }
+
+    delete doc;
+}
+
 void LatexParsingTest::test_getCompleterContext_data() {
     QTest::addColumn<QString>("lines");
     QTest::addColumn<int >("nr");

@@ -1525,6 +1525,10 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 
 		}
 	} //for
+    if(!inBrace && std::any_of(stack.constBegin(),stack.constEnd(),[](const Token &tk){return Token::tkOpen().contains(tk.type);})){
+        // handle open braces in stack
+        inBrace=true;
+    }
     if(!inBrace && !ts.isEmpty() && ts.top().start+ts.top().length<pos){
         // position is not touching token nor part of an encompassing brace
         ts.clear();

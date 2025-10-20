@@ -31,6 +31,8 @@ private slots:
 	void test_getCommandFromToken();
 	void test_getContext_data();
 	void test_getContext();
+    void test_getContextMultiLine_data();
+    void test_getContextMultiLine();
 	void test_getCompleterContext_data();
 	void test_getCompleterContext();
 };
