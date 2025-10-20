@@ -1077,6 +1077,14 @@ void LatexParsingTest::test_getContext_data() {
                             << 10
                             << (TTypes() << T::command <<T::braces<<T::word)
                             << (STypes() << T::none << T::title<<T::title);
+    QTest::newRow("command, unclosed brace") << "\\section{abc"
+                             << 10
+                             << (TTypes() << T::command <<T::openBrace<<T::word)
+                             << (STypes() << T::none << T::title<<T::title);
+    QTest::newRow("command, unclosed brace with spaces") << "\\section{abc   "
+                             << 13
+                             << (TTypes() << T::command <<T::openBrace<<T::word)
+                             << (STypes() << T::none << T::title<< T::title);
     QTest::newRow("after command") << "\\section{abc}  "
                              << 14
                              << (TTypes())

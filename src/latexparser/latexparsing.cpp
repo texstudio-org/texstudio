@@ -1461,6 +1461,8 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 	}
 	// find innermost token at pos
 	TokenStack ts;
+    bool inBrace=false;
+    int skipAhead=-1; // skip tokens which are part of a brace,etc. when pos is outside that brace, e.g  {abc} |
 	for (int i = 0; i < tl.length(); i++) {
 		Token tk = tl.at(i);
         if (tk.start > pos) {
@@ -1470,6 +1472,21 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
             // break if token is right of cursor, fix #3967
             // also fix #4017
             break;
+        }
+        if(tk.start<skipAhead){
+            continue;
+        }
+        if(Token::tkBraces().contains(tk.type)){
+            if(tk.start+tk.length<pos){
+                skipAhead=tk.start+tk.length;
+                continue;
+            }else{
+                inBrace=true;
+            }
+        }
+        if(Token::tkOpen().contains(tk.type) && tk.start+tk.length>=pos){
+            // not completed brace contains position, e.g. {abc  |  \n
+            inBrace=true;
         }
         if (Token::tkClose().contains(tk.type) && !stack.isEmpty() ) {
             if (stack.top().type == Token::opposite(tk.type) && (tk.start<pos)) {
@@ -1508,15 +1525,10 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 
 		}
 	} //for
-    /* fixes #4218, probably not necessary ?
-    while (!ts.isEmpty()) {
-		// check that pos is within stack
-		if (ts.top().start + ts.top().length > pos)
-			break;
-		if (ts.top().start + ts.top().length == pos && !Token::tkBraces().contains(ts.top().type)) // equal is accceptable for other than braces
-			break;
-		ts.pop();
-    }*/
+    if(!inBrace && !ts.isEmpty() && ts.top().start+ts.top().length<pos){
+        // position is not touching token nor part of an encompassing brace
+        ts.clear();
+    }
 	stack << ts;
 	return stack;
 }
