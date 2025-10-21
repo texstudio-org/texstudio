@@ -416,6 +416,12 @@ void LatexParsingTest::test_latexLexing_data() {
                                    << (Starts() << 0 << 10 << 11 << 17 << 18)
                                    << (Length() << 10 << 13 << 5 << 5 << 3)
                                    << (Levels() << 0 << 1 << 1 << 3 << 3);
+    QTest::newRow("keyval text followed by second key/val") << "\\mycommand{title=abc,note={abc}}"
+                                                           << (TTypes() << T::command << T::braces << T::keyVal_key<< T::word<< T::keyVal_key<< T::braces << T::word)
+                                                           << (STypes() << T::none << T::keyValArg << T::none<< T::text<< T::none << T::keyVal_val << T::keyVal_val)
+                                                           << (Starts() << 0 << 10 << 11 << 17<< 21<<26<<27)
+                                                           << (Length() << 10 << 22 << 5 << 3 << 4<<5 <<3)
+                                                           << (Levels() << 0 << 1 << 1 << 2  <<1 << 3 << 3);
 
 }
 
