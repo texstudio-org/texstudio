@@ -1250,6 +1250,10 @@ void LatexParsingTest::test_getContextMultiLine_data() {
                                           << 7 << 2
                                           << (TTypes() << T::openSquare<<T::keyVal_key)
                                           << (STypes() << T::keyValArg<<T::none);
+    QTest::newRow("after command, open brace") << "\\section{\nabc}  "
+                                   << 5 << 1
+                                   << (TTypes())
+                                   << (STypes());
 }
 
 void LatexParsingTest::test_getContextMultiLine() {
