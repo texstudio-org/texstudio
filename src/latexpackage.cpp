@@ -849,8 +849,14 @@ CommandDescription extractCommandDefKeyVal(QString line, QString &key)
 {
 	CommandDescription cd;
 	int i = line.indexOf("#");
-	if (i < 0)
+    if (i < 0){
+        // look for fixed arguments only
+        if(line.endsWith("=%<text%>")){
+            cd.arguments={ArgumentDescription{ArgumentDescription::MANDATORY, Token::text}};
+            key=line.left(line.length()-9);
+        }
 		return cd;
+    }
 	key = line.left(i);
     int j= key.indexOf("=");
     if(i>=0){
