@@ -15,3 +15,5 @@ Requirements :
 * Poppler for the internal pdf preview 
   (is automatically disabled if poppler is not found)
 
+For details, see https://github.com/texstudio-org/texstudio/wiki/Compiling
+
