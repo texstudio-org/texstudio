@@ -774,6 +774,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         tk0.level = level;
                         lexed << tk0;
                     }
+                    // remove potential command from stack as keyval argument is closed
+                    if(!commandStack.isEmpty() && commandStack.top().level == level) {
+                        commandStack.pop();
+                    }
                     level = lastEqual;
                 }
                 lastEqual = -1e6;
@@ -875,10 +879,16 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     if (!commandStack.isEmpty() && lp->commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)) {
                         CommandDescription cd = lp->commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
                         auto ad=cd.arguments.value(0, ArgumentDescription{ArgumentDescription::MANDATORY,Token::keyVal_val});
-                        tk.type = ad.tokenType; // only types can be set in key_val as they need to be recognized later
-                        if(!lexed.isEmpty() && lexed.last().type==tk.type && lexed.last().subtype==tk.subtype){
-                            lexed.last().length=tk.start+tk.length-lexed.last().start;
-                            continue;
+                        if(ad.tokenType==Token::text){
+                            // for now special treatment of text, but basically all multi-token types should be handled here
+                            // don't merge with previous token
+                            tk.subtype=ad.tokenType;
+                        }else{
+                            tk.type = ad.tokenType; // only types can be set in key_val as they need to be recognized later
+                            if(!lexed.isEmpty() && lexed.last().type==tk.type && lexed.last().subtype==tk.subtype){
+                                lexed.last().length=tk.start+tk.length-lexed.last().start;
+                                continue;
+                            }
                         }
                     }
                     lexed << tk;

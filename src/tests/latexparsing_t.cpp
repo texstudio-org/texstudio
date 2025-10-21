@@ -398,6 +398,24 @@ void LatexParsingTest::test_latexLexing_data() {
                                   << (Starts() << 0 << 10 << 11 << 17)
                                   << (Length() << 10 << 18 << 5 << 10)
                                   << (Levels() << 0 << 1 << 1 << 2 );
+    QTest::newRow("keyval text") << "\\mycommand{title=abc}"
+                                           << (TTypes() << T::command << T::braces << T::keyVal_key<< T::word)
+                                           << (STypes() << T::none << T::keyValArg << T::none<< T::text)
+                                           << (Starts() << 0 << 10 << 11 << 17)
+                                           << (Length() << 10 << 11 << 5 << 3)
+                                           << (Levels() << 0 << 1 << 1 << 2);
+    QTest::newRow("keyval text, multiple words, no brace") << "\\mycommand{title=abc def}"
+                                 << (TTypes() << T::command << T::braces << T::keyVal_key<< T::word<< T::word)
+                                 << (STypes() << T::none << T::keyValArg << T::none<< T::text<< T::text)
+                                 << (Starts() << 0 << 10 << 11 << 17<< 21)
+                                 << (Length() << 10 << 15 << 5 << 3 << 3)
+                                 << (Levels() << 0 << 1 << 1 << 2 << 2);
+    QTest::newRow("keyval text in braces") << "\\mycommand{title={abc}}"
+                                   << (TTypes() << T::command << T::braces << T::keyVal_key<< T::braces << T::word)
+                                   << (STypes() << T::none << T::keyValArg << T::none<< T::text << T::text)
+                                   << (Starts() << 0 << 10 << 11 << 17 << 18)
+                                   << (Length() << 10 << 13 << 5 << 5 << 3)
+                                   << (Levels() << 0 << 1 << 1 << 3 << 3);
 
 }
 
@@ -1153,9 +1171,6 @@ void LatexParsingTest::test_getContext_data() {
         << 23
         << (TTypes() << T::command << T::braces<<T::keyVal_key<<T::command<<T::braces<<T::bibItem)
         << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val<<T::bibItem<<T::none);
-
-
-
 }
 
 void LatexParsingTest::test_getContext() {
