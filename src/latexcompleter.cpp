@@ -881,12 +881,15 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
 		if (str.contains("#") && !str.startsWith("#")) {
 			int j = str.indexOf("#");
 			validValues = str.mid(j + 1);
-			str = str.left(j);
+            str = str.left(j);
 			QStringList lst = validValues.split(",");
 			QString key = str;
 			if (key.endsWith("="))
 				key.chop(1);
             setKeyValWords(name + "/" + key, convertStringListtoSet(lst));
+            if(validValues=="#L"){
+                str+="%<dimension%>"; // add dimension placeholder
+            }
 		}
 		CompletionWord cw(str, false);
 		cw.index = 0;
