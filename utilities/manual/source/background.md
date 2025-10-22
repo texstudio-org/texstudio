@@ -154,7 +154,7 @@ position in a LaTeX document. The char `#` cannot be used inside a
     If \#\#L is added to a key, a length is expected as argument.\
     If \#\#l is added to a key, the argument is defining a label. (see
     listings.cwl)\
-    If \#\#d is added to a key, the argument is treated same like command definition,i.e. no syntax check. (see
+    If \#\#d is added to a key, the argument is treated same like command definition, i.e. no syntax check. (see
     listings.cwl)\
     If `=%<text%>` is added to a key, the argument is treated as text, i.e. it is spell-checked.
 -   `#endkeyvals` (at start of line): end definition of keyvals, see
