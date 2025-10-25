@@ -1,5 +1,5 @@
 # bodeplot package
-# Matthew Bertucci 2025/09/30 for v2.1
+# Matthew Bertucci 2025/10/24 for v3.0
 
 #include:tikz
 #include:pdftexcmds

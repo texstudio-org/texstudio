@@ -1,5 +1,5 @@
 # rpgicons package
-# Matthew Bertucci 2025/09/26 for v2.0.0
+# Matthew Bertucci 2025/10/24 for v2.0.4
 
 #keyvals:\usepackage/rpgicons#c
 l3
@@ -95,6 +95,15 @@ every damage={%<options%>}
 every attack={%<options%>}
 every condition={%<options%>}
 every %<shape%>={%<options%>}
+every die add={%<options%>}
+every ability add={%<options%>}
+every saving add={%<options%>}
+every spell add={%<options%>}
+every spellschool add={%<options%>}
+every damage add={%<options%>}
+every attack add={%<options%>}
+every condition add={%<options%>}
+every %<shape%> add={%<options%>}
 before sep=##L
 after sep=##L
 baseline=##L

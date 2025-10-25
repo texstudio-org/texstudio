@@ -1,9 +1,10 @@
 # piton package
-# Matthew Bertucci 2025/10/06 for v4.9
+# Matthew Bertucci 2025/10/24 for v4.9a
 
 #include:luacode
 #include:xcolor
 #include:amstext
+#include:marginalia
 #include:transparent
 
 #keyvals:\usepackage/piton#c
@@ -111,6 +112,7 @@ gobble=%<integer%>
 indent-broken-lines
 indentations-for-Fox#true,false
 join=%<file%>
+join-separation=
 language=#Python,OCaml,C,SQL,minimal,verbatim,%newpitonlang
 left-margin=##L
 line-numbers
