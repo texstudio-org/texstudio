@@ -548,6 +548,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Check In Non TeX Files", &editorConfig->inlineCheckNonTeXFiles, true, &pseudoDialog->checkBoxInlineCheckNonTeXFiles);
 	registerOption("Editor/Hide Spelling Errors in Non Text", &editorConfig->hideNonTextSpellingErrors, true, &pseudoDialog->checkBoxHideSpellingErrorsInNonText);
 	registerOption("Editor/Hide Grammar Errors in Non Text", &editorConfig->hideNonTextGrammarErrors, true, &pseudoDialog->checkBoxHideGrammarErrorsInNonText);
+    registerOption("Editor/Enable Rainbow Delimiters", &editorConfig->enableRainbowDelimiters, false, &pseudoDialog->checkBoxEnableRainbowDelimiters);
 	registerOption("Editor/Show Whitespace", &editorConfig->showWhitespace, false, &pseudoDialog->checkBoxShowWhitespace);
 	registerOption("Editor/TabStop", &editorConfig->tabStop, 4 , &pseudoDialog->sbTabSpace);
 	registerOption("Editor/ToolTip Help", &editorConfig->toolTipHelp, true, &pseudoDialog->checkBoxToolTipHelp2);

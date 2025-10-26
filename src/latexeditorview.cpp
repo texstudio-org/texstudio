@@ -1937,6 +1937,7 @@ void LatexEditorView::updateSettings()
     if (document){
         document->setHideNonTextGrammarErrors(config->hideNonTextGrammarErrors);
         document->setGrammarFormats(grammarFormats);
+        document->enableRainbowDelimiters(config->enableRainbowDelimiters);
         document->setDelimiterFormats(delimiterFormats);
 		document->updateSettings();
         document->setCenterDocumentInEditor(config->centerDocumentInEditor);

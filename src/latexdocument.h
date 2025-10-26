@@ -239,6 +239,7 @@ public:
     void setHideNonTextGrammarErrors(bool hide);
     void setGrammarFormats(const QList<int> &formats);
 
+    void enableRainbowDelimiters(bool enable);
     void setDelimiterFormats(const QList<int> &formats);
 
 private:
@@ -292,6 +293,7 @@ private:
     bool m_cachedDataOnly=false;
 
     bool m_hideNonTextGrammarErrors=true;
+    bool m_enableRainbowDelimiters=true;
     QList<int> m_grammarFormats,m_rainbowFormats;
 
 #ifndef QT_NO_DEBUG
