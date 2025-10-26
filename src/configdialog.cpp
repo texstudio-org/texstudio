@@ -503,6 +503,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 	fmConfig->addCategory(tr("LaTeX checking")) << "braceMatch" << "braceMismatch" << "latexSyntaxMistake" << "referencePresent" << "referenceMissing" << "referenceMultiple" << "citationPresent" << "citationMissing" << "packagePresent" << "packageMissing" << "temporaryCodeCompletion";
 	fmConfig->addCategory(tr("Language checking")) << "spellingMistake" << "wordRepetition" << "wordRepetitionLongRange" << "badWord" << "grammarMistake" << "grammarMistakeSpecial1" << "grammarMistakeSpecial2" << "grammarMistakeSpecial3" << "grammarMistakeSpecial4";
 	fmConfig->addCategory(tr("Line highlighting"))     << "line:error" << "line:warning" << "line:badbox" << "line:bookmark" << "line:bookmark0" << "line:bookmark1" << "line:bookmark2" << "line:bookmark3" << "line:bookmark4" << "line:bookmark5" << "line:bookmark6"  << "line:bookmark7" << "line:bookmark8" << "line:bookmark9" << "current";
+    fmConfig->addCategory(tr("Delimiter highlighting")) << "braceLevel0"  << "braceLevel1"  << "braceLevel2"  << "braceLevel3"  << "braceLevel4"  << "braceLevel5" << "braceLevel6" << "braceLevel7";
 	fmConfig->addCategory(tr("Search")) << "search" << "replacement" << "selection";
 	fmConfig->addCategory(tr("Diff")) << "diffDelete" << "diffAdd" << "diffReplace";
 	fmConfig->addCategory(tr("Preview")) << "previewSelection";

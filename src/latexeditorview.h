@@ -201,6 +201,7 @@ private:
 	       numbersFormat, verbatimFormat, commentFormat, pictureFormat, pweaveDelimiterFormat, pweaveBlockFormat, sweaveDelimiterFormat, sweaveBlockFormat, math_DelimiterFormat, math_KeywordFormat,
 	       asymptoteBlockFormat;
 	static QList<int> grammarFormats;
+    static QList<int> delimiterFormats;
 	static QVector<bool> grammarFormatsDisabled;
 	static QList<int> formatsList;
 

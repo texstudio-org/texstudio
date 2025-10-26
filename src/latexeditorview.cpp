@@ -1863,6 +1863,7 @@ int LatexEditorView::syntaxErrorFormat, LatexEditorView::preEditFormat;
 int LatexEditorView::deleteFormat, LatexEditorView::insertFormat, LatexEditorView::replaceFormat;
 
 QList<int> LatexEditorView::grammarFormats;
+QList<int> LatexEditorView::delimiterFormats;
 QVector<bool> LatexEditorView::grammarFormatsDisabled;
 QList<int> LatexEditorView::formatsList;
 
@@ -1936,6 +1937,8 @@ void LatexEditorView::updateSettings()
     if (document){
         document->setHideNonTextGrammarErrors(config->hideNonTextGrammarErrors);
         document->setGrammarFormats(grammarFormats);
+        document->enableRainbowDelimiters(config->enableRainbowDelimiters);
+        document->setDelimiterFormats(delimiterFormats);
 		document->updateSettings();
         document->setCenterDocumentInEditor(config->centerDocumentInEditor);
     }
@@ -2002,6 +2005,8 @@ void LatexEditorView::updateFormatSettings()
 		formatsList << referenceMultipleFormat << citationMissingFormat << packageMissingFormat << packagePresentFormat << packageUndefinedFormat << environmentFormat;
 		formatsList << wordRepetitionFormat << structureFormat << todoFormat << insertFormat << deleteFormat << replaceFormat;
 		LatexDocument::syntaxErrorFormat = syntaxErrorFormat;
+        // delimiter colors
+        delimiterFormats << QDocument::defaultFormatScheme()->id("braceLevel0") << QDocument::defaultFormatScheme()->id("braceLevel1") << QDocument::defaultFormatScheme()->id("braceLevel2") << QDocument::defaultFormatScheme()->id("braceLevel3") << QDocument::defaultFormatScheme()->id("braceLevel4") << QDocument::defaultFormatScheme()->id("braceLevel5") << QDocument::defaultFormatScheme()->id("braceLevel6") << QDocument::defaultFormatScheme()->id("braceLevel7");
 	}
 }
 

@@ -25,7 +25,7 @@ public:
 	bool folding, showlinestate, showcursorstate, realtimeChecking;
 	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking, inlineGrammarChecking, inlinePackageChecking;
 	bool inlineCheckNonTeXFiles;
-	bool hideNonTextSpellingErrors, hideNonTextGrammarErrors;
+    bool hideNonTextSpellingErrors, hideNonTextGrammarErrors, enableRainbowDelimiters;
 	QString fontFamily;
 	int fontSize;
 	int lineSpacingPercent;

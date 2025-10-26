@@ -451,6 +451,30 @@
   <format id="qtscript:txs-function" >
     <italic>true</italic>
   </format>
+  <format id="braceLevel0" >
+        <foreground>#FF7F50</foreground>
+    </format>
+    <format id="braceLevel1" >
+        <foreground>#FFBF00</foreground>
+    </format>
+    <format id="braceLevel2" >
+        <foreground>#00f900</foreground>
+    </format>
+    <format id="braceLevel3" >
+        <foreground>#0096ff</foreground>
+    </format>
+    <format id="braceLevel4" >
+        <foreground>#ff85ff</foreground>
+    </format>
+    <format id="braceLevel5" >
+        <foreground>#73fdff</foreground>
+    </format>
+    <format id="braceLevel6" >
+        <foreground>#fffb00</foreground>
+    </format>
+    <format id="braceLevel7" >
+        <foreground>#d4fb79</foreground>
+    </format>
   <!-- Preedit -->
   <format id="preedit" >
     <bold>false</bold>

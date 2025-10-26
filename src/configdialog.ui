@@ -1583,7 +1583,7 @@ Then you can select a new shortcut by one of the following ways:
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-58</y>
+                <y>0</y>
                 <width>1128</width>
                 <height>526</height>
                </rect>
@@ -2044,7 +2044,7 @@ Then you can select a new shortcut by one of the following ways:
                 <x>0</x>
                 <y>0</y>
                 <width>1128</width>
-                <height>1643</height>
+                <height>1641</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2220,38 +2220,7 @@ Then you can select a new shortcut by one of the following ways:
                  <property name="checkable">
                   <bool>false</bool>
                  </property>
-                 <layout class="QGridLayout" columnstretch="0,1,1,1">
-                  <item row="16" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxUseQSaveWrite">
-                    <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>Safe writing of files</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="2" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxToolTipPreview">
-                    <property name="text">
-                     <string>Show preview as tooltip on formulas in editor</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="2" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxImageToolTip">
-                    <property name="text">
-                     <string>Show image tooltip on image files</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxSmoothScrolling">
-                    <property name="text">
-                     <string>Smooth Scrolling</string>
-                    </property>
-                   </widget>
-                  </item>
+                 <layout class="QGridLayout" columnstretch="0,0,0,0">
                   <item row="21" column="0">
                    <widget class="QCheckBox" name="checkBoxShowLogMarkersWhenClickingLogEntry">
                     <property name="text">
@@ -2259,10 +2228,38 @@ Then you can select a new shortcut by one of the following ways:
                     </property>
                    </widget>
                   </item>
+                  <item row="17" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxMonitorFilesForExternalChanges">
+                    <property name="text">
+                     <string>Monitor open files for external changes</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QCheckBox" name="checkBoxAutoCompleteParens">
+                    <property name="text">
+                     <string>Auto Complete Parentheses</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="4" column="0">
                    <widget class="QCheckBox" name="checkOverwriteOpeningBracketFollowedByPlaceholder">
                     <property name="text">
                      <string>Overwrite Opening Bracket Followed by a Placeholder</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="24" column="0">
+                   <widget class="QLabel" name="label_70">
+                    <property name="text">
+                     <string>Spellchecking via context menu:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="11" column="0">
+                   <widget class="QLabel" name="label_82">
+                    <property name="text">
+                     <string>Triple-Click Selection:</string>
                     </property>
                    </widget>
                   </item>
@@ -2280,20 +2277,41 @@ Then you can select a new shortcut by one of the following ways:
                     </item>
                    </layout>
                   </item>
-                  <item row="17" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxMonitorFilesForExternalChanges">
+                  <item row="13" column="2">
+                   <widget class="QCheckBox" name="checkBoxCenterDocumentInEditor">
+                    <property name="toolTip">
+                     <string>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</string>
+                    </property>
                     <property name="text">
-                     <string>Monitor open files for external changes</string>
+                     <string>Center Document in Editor</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="25" column="0">
-                   <widget class="QLabel" name="label_85">
+                  <item row="12" column="0">
+                   <widget class="QLabel" name="label_41">
+                    <property name="text">
+                     <string>Line Wrapping:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="23" column="1" colspan="2">
+                   <widget class="QComboBox" name="comboBoxLogFileEncoding"/>
+                  </item>
+                  <item row="20" column="0">
+                   <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
                     <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:'monospace';&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     <string>When using unicode characters in the source code, LaTeX still has
+to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</string>
                     </property>
                     <property name="text">
-                     <string>Latex Command for pushed citations:</string>
+                     <string>Insert Symbol as Unicode</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxAllowDragAndDrop">
+                    <property name="text">
+                     <string>Allow Drag and Drop</string>
                     </property>
                    </widget>
                   </item>
@@ -2309,6 +2327,51 @@ Then you can select a new shortcut by one of the following ways:
                       <string>Create Dedicated Submenu</string>
                      </property>
                     </item>
+                   </widget>
+                  </item>
+                  <item row="4" column="2" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxImageToolTip">
+                    <property name="text">
+                     <string>Show image tooltip on image files</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="12" column="1" colspan="2">
+                   <widget class="QComboBox" name="comboBoxLineWrap">
+                    <item>
+                     <property name="text">
+                      <string>No Line Wrap</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Soft Line Wrap at Window Edge</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Soft Line Wrap after max. Characters</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Hard Line Wrap after max. Characters</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="10" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxDoubleClickSelectionIncludeLeadingBackslash">
+                    <property name="text">
+                     <string>Double-Click Selection: Include Leading Backslash</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="2" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxTexDocInternal">
+                    <property name="text">
+                     <string>Show help on commands in internal pdf viewer (texdoc)</string>
+                    </property>
                    </widget>
                   </item>
                   <item row="15" column="1">
@@ -2350,65 +2413,30 @@ Then you can select a new shortcut by one of the following ways:
                     </item>
                    </widget>
                   </item>
-                  <item row="20" column="0">
-                   <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
+                  <item row="13" column="1">
+                   <widget class="QSpinBox" name="spinBoxWrapLineWidth">
+                    <property name="minimum">
+                     <number>20</number>
+                    </property>
+                    <property name="maximum">
+                     <number>999</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="21" column="2">
+                   <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
+                    <property name="text">
+                     <string>Go to error when displaying log</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="16" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxUseQSaveWrite">
                     <property name="toolTip">
-                     <string>When using unicode characters in the source code, LaTeX still has
-to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="text">
-                     <string>Insert Symbol as Unicode</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="12" column="0">
-                   <widget class="QLabel" name="label_41">
-                    <property name="text">
-                     <string>Line Wrapping:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxMouseWheelZoom">
-                    <property name="text">
-                     <string>Mouse Wheel Zoom</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="13" column="2">
-                   <widget class="QCheckBox" name="checkBoxCenterDocumentInEditor">
-                    <property name="toolTip">
-                     <string>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</string>
-                    </property>
-                    <property name="text">
-                     <string>Center Document in Editor</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="25" column="1" colspan="2">
-                   <widget class="QLineEdit" name="lineEditCiteCommand"/>
-                  </item>
-                  <item row="11" column="0">
-                   <widget class="QLabel" name="label_82">
-                    <property name="text">
-                     <string>Triple-Click Selection:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="23" column="1" colspan="2">
-                   <widget class="QComboBox" name="comboBoxLogFileEncoding"/>
-                  </item>
-                  <item row="6" column="2" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxTexDocInternal">
-                    <property name="text">
-                     <string>Show help on commands in internal pdf viewer (texdoc)</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxVerticalOverScroll">
-                    <property name="text">
-                     <string>Vertical Overscroll (Scroll below end of file)</string>
+                     <string>Safe writing of files</string>
                     </property>
                    </widget>
                   </item>
@@ -2441,20 +2469,10 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                     </item>
                    </widget>
                   </item>
-                  <item row="13" column="0">
-                   <widget class="QLabel" name="label_23">
+                  <item row="6" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxVerticalOverScroll">
                     <property name="text">
-                     <string>Maximal Characters:</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QCheckBox" name="checkOverwriteClosingBracketFollowingPlaceholder">
-                    <property name="text">
-                     <string>Overwrite Closing Bracket Following a Placeholder</string>
+                     <string>Vertical Overscroll (Scroll below end of file)</string>
                     </property>
                    </widget>
                   </item>
@@ -2462,6 +2480,20 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                    <widget class="QLabel" name="label_80">
                     <property name="text">
                      <string>Default Log Encoding</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxSmoothScrolling">
+                    <property name="text">
+                     <string>Smooth Scrolling</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="2" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxToolTipHelp2">
+                    <property name="text">
+                     <string>Show help as tooltip on text in editor</string>
                     </property>
                    </widget>
                   </item>
@@ -2475,79 +2507,54 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                     </property>
                    </widget>
                   </item>
-                  <item row="13" column="1">
-                   <widget class="QSpinBox" name="spinBoxWrapLineWidth">
-                    <property name="minimum">
-                     <number>20</number>
+                  <item row="25" column="0">
+                   <widget class="QLabel" name="label_85">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:'monospace';&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
-                    <property name="maximum">
-                     <number>999</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="12" column="1" colspan="2">
-                   <widget class="QComboBox" name="comboBoxLineWrap">
-                    <item>
-                     <property name="text">
-                      <string>No Line Wrap</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Soft Line Wrap at Window Edge</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Soft Line Wrap after max. Characters</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Hard Line Wrap after max. Characters</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="5" column="2" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxToolTipHelp2">
                     <property name="text">
-                     <string>Show help as tooltip on text in editor</string>
+                     <string>Latex Command for pushed citations:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="21" column="2">
-                   <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
+                  <item row="8" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxMouseWheelZoom">
                     <property name="text">
-                     <string>Go to error when displaying log</string>
+                     <string>Mouse Wheel Zoom</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="24" column="0">
-                   <widget class="QLabel" name="label_70">
+                  <item row="25" column="1" colspan="2">
+                   <widget class="QLineEdit" name="lineEditCiteCommand"/>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QCheckBox" name="checkOverwriteClosingBracketFollowingPlaceholder">
                     <property name="text">
-                     <string>Spellchecking via context menu:</string>
+                     <string>Overwrite Closing Bracket Following a Placeholder</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
-                   <widget class="QCheckBox" name="checkBoxAutoCompleteParens">
+                  <item row="3" column="2" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxToolTipPreview">
                     <property name="text">
-                     <string>Auto Complete Parentheses</string>
+                     <string>Show preview as tooltip on formulas in editor</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="9" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxAllowDragAndDrop">
+                  <item row="13" column="0">
+                   <widget class="QLabel" name="label_23">
                     <property name="text">
-                     <string>Allow Drag and Drop</string>
+                     <string>Maximal Characters:</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                     </property>
                    </widget>
                   </item>
-                  <item row="10" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxDoubleClickSelectionIncludeLeadingBackslash">
+                  <item row="7" column="2" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxEnableRainbowDelimiters">
                     <property name="text">
-                     <string>Double-Click Selection: Include Leading Backslash</string>
+                     <string>Use Rainbow colored braces</string>
                     </property>
                    </widget>
                   </item>
@@ -3330,7 +3337,7 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1128</width>
+                <width>622</width>
                 <height>1030</height>
                </rect>
               </property>
@@ -4014,8 +4021,8 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1143</width>
-                <height>426</height>
+                <width>449</width>
+                <height>280</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4290,7 +4297,7 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1128</width>
+                <width>546</width>
                 <height>629</height>
                </rect>
               </property>
@@ -4793,8 +4800,8 @@ Note: Changing this setting will only affect documents that are opened afterward
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1143</width>
-                <height>426</height>
+                <width>430</width>
+                <height>203</height>
                </rect>
               </property>
               <layout class="QGridLayout">

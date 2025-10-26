@@ -114,6 +114,7 @@ void SyntaxCheck::run()
                 mReplacementList=newReplacementList;
                 mFormatList=newFormatList;
                 m_nonTextGrammarFormats=m_newNonTextGrammarFormats;
+                m_RainbowFormats=m_newRainbowFormats;
 			}
 			mLtxCommandLock.unlock();
 		}
@@ -332,6 +333,27 @@ void SyntaxCheck::setNonTextGrammarFormats(const QList<int> formats)
     mLtxCommandLock.lock();
     newLtxCommandsAvailable = true;
     m_newNonTextGrammarFormats=formats;
+    mLtxCommandLock.unlock();
+}
+/*!
+ * \brief enable/disable rainbow delimiters
+ * \param enable
+ */
+void SyntaxCheck::enableRainbowDelimiter(bool enable)
+{
+    mShowRainbowDelimiter=enable;
+}
+/*!
+ * \brief set colors for rainbow delimiters
+ * \param formats
+ */
+void SyntaxCheck::setDelimiterFormats(const QList<int> formats)
+{
+
+    if (stopped) return;
+    mLtxCommandLock.lock();
+    newLtxCommandsAvailable = true;
+    m_newRainbowFormats=formats;
     mLtxCommandLock.unlock();
 }
 /*!
@@ -732,6 +754,36 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				newRanges.append(elem);
 			}
 		}
+        // rainbow delimiter
+        if(mShowRainbowDelimiter && tk.type==Token::braces){
+            Error elem;
+            elem.range = QPair<int, int>(tk.start, 1);
+            elem.type = ERR_highlight;
+            int lvl=tk.level % 8;
+            if(lvl<0) lvl=0;
+            elem.format=m_RainbowFormats[lvl];
+            newRanges.append(elem);
+            elem.range = QPair<int, int>(tk.start+tk.length-1, 1);
+            newRanges.append(elem);
+        }
+        if(mShowRainbowDelimiter && tk.type==Token::openBrace){
+            Error elem;
+            elem.range = QPair<int, int>(tk.start, 1);
+            elem.type = ERR_highlight;
+            int lvl=tk.level % 8;
+            if(lvl<0) lvl=0;
+            elem.format=m_RainbowFormats[lvl];
+            newRanges.append(elem);
+        }
+        if(mShowRainbowDelimiter && tk.type==Token::closeBrace){
+            Error elem;
+            elem.range = QPair<int, int>(tk.start, 1);
+            elem.type = ERR_highlight;
+            int lvl=tk.level % 8;
+            if(lvl<0) lvl=0;
+            elem.format=m_RainbowFormats[lvl];
+            newRanges.append(elem);
+        }
         // math highlighting of formula
         if(tk.subtype==Token::formula){
             // highlight
