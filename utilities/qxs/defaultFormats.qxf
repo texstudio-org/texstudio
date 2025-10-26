@@ -460,28 +460,28 @@
         <!--<foreground>#800080</foreground>-->
     </format>
     <format id="braceLevel0" >
-        <foreground>#FF6B6B</foreground>
+        <foreground>#f11105</foreground>
     </format>
     <format id="braceLevel1" >
-        <foreground>#FFA500</foreground>
+        <foreground>#f59400</foreground>
     </format>
     <format id="braceLevel2" >
-        <foreground>#FFD700</foreground>
+        <foreground>#1fa201</foreground>
     </format>
     <format id="braceLevel3" >
-        <foreground>#9ACD32</foreground>
+        <foreground>#024ee5</foreground>
     </format>
     <format id="braceLevel4" >
-        <foreground>#87CEEB</foreground>
+        <foreground>#d001f0</foreground>
     </format>
     <format id="braceLevel5" >
-        <foreground>#E6E6FA</foreground>
+        <foreground>#0eccd1</foreground>
     </format>
     <format id="braceLevel6" >
-        <foreground>#FFC0CB</foreground>
+        <foreground>#fb100c</foreground>
     </format>
     <format id="braceLevel7" >
-        <foreground>#98FF98</foreground>
+        <foreground>#942192</foreground>
     </format>
 <!-- Preedit -->
     <format id="preedit" >
