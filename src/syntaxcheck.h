@@ -121,6 +121,9 @@ public:
     void setHideNonTextGrammarErrors(const bool hide);
     void setNonTextGrammarFormats(const QList<int> formats);
 
+    void enableRainbowDelimiter(bool enable);
+    void setDelimiterFormats(const QList<int> formats);
+
 	void markUnclosedEnv(Environment env);
     void setRUNAWAYLIMIT(const int limit){
         mRUNAWAYLIMIT=limit;
@@ -156,6 +159,8 @@ private:
     QMap<QString,int> newFormatList,mFormatList;
 
     int mRUNAWAYLIMIT=30;
+    bool mShowRainbowDelimiter=true;
+    QList<int> m_RainbowFormats,m_newRainbowFormats;
 
 };
 

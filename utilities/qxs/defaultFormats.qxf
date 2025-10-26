@@ -459,6 +459,30 @@
 		<italic>true</italic>
         <!--<foreground>#800080</foreground>-->
     </format>
+    <format id="braceLevel0" >
+        <foreground>#FF6B6B</foreground>
+    </format>
+    <format id="braceLevel1" >
+        <foreground>#FFA500</foreground>
+    </format>
+    <format id="braceLevel2" >
+        <foreground>#FFD700</foreground>
+    </format>
+    <format id="braceLevel3" >
+        <foreground>#9ACD32</foreground>
+    </format>
+    <format id="braceLevel4" >
+        <foreground>#87CEEB</foreground>
+    </format>
+    <format id="braceLevel5" >
+        <foreground>#E6E6FA</foreground>
+    </format>
+    <format id="braceLevel6" >
+        <foreground>#FFC0CB</foreground>
+    </format>
+    <format id="braceLevel7" >
+        <foreground>#98FF98</foreground>
+    </format>
 <!-- Preedit -->
     <format id="preedit" >
         <bold>false</bold>

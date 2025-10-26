@@ -239,6 +239,8 @@ public:
     void setHideNonTextGrammarErrors(bool hide);
     void setGrammarFormats(const QList<int> &formats);
 
+    void setDelimiterFormats(const QList<int> &formats);
+
 private:
 	QString fileName; //absolute
 	QString temporaryFileName; //absolute, temporary
@@ -290,7 +292,7 @@ private:
     bool m_cachedDataOnly=false;
 
     bool m_hideNonTextGrammarErrors=true;
-    QList<int> m_grammarFormats;
+    QList<int> m_grammarFormats,m_rainbowFormats;
 
 #ifndef QT_NO_DEBUG
 public:

@@ -3066,6 +3066,14 @@ void LatexDocument::setGrammarFormats(const QList<int> &formats)
 {
     m_grammarFormats = formats;
 }
+/*!
+ * \brief colors for rainbow delimiters
+ * \param formats
+ */
+void LatexDocument::setDelimiterFormats(const QList<int> &formats)
+{
+    m_rainbowFormats=formats;
+}
 
 QString LatexDocument::getMagicComment(const QString &name) const
 {
@@ -3358,6 +3366,7 @@ void LatexDocument::updateSettings()
     synChecker.setFormats(fmtList);
     synChecker.setHideNonTextGrammarErrors(m_hideNonTextGrammarErrors);
     synChecker.setNonTextGrammarFormats(m_grammarFormats);
+    synChecker.setDelimiterFormats(m_rainbowFormats);
 }
 
 void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket, int hint)
