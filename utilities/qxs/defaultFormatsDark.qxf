@@ -458,22 +458,22 @@
         <foreground>#FFBF00</foreground>
     </format>
     <format id="braceLevel2" >
-        <foreground>#2E8B57</foreground>
+        <foreground>#00f900</foreground>
     </format>
     <format id="braceLevel3" >
-        <foreground>#1E90FF</foreground>
+        <foreground>#0096ff</foreground>
     </format>
     <format id="braceLevel4" >
-        <foreground>#9370DB</foreground>
+        <foreground>#ff85ff</foreground>
     </format>
     <format id="braceLevel5" >
-        <foreground>#FA8072</foreground>
+        <foreground>#73fdff</foreground>
     </format>
     <format id="braceLevel6" >
-        <foreground>#00FFFF</foreground>
+        <foreground>#fffb00</foreground>
     </format>
     <format id="braceLevel7" >
-        <foreground>#00FF7F</foreground>
+        <foreground>#d4fb79</foreground>
     </format>
   <!-- Preedit -->
   <format id="preedit" >
