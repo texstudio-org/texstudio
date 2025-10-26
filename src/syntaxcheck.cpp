@@ -1562,6 +1562,14 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
         // merge original parenthesis vector with new additions
         // skip duplicates
         QVector<QParenthesis> original_parens=dlh->parenthesis();
+        // remove id 61 as it was added by syntaxcheck earlier
+        for(int i=0;i<original_parens.size();++i){
+            if(original_parens[i].id==61){
+                // remove
+                original_parens.remove(i);
+                --i;
+            }
+        }
         QVector<QParenthesis> result;
         int i=0;
         for(int j=0;j<m_parens.length();++j){
