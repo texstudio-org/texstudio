@@ -116,6 +116,14 @@ Line Wrapping
     They can also be wrapped after a defined number of characters which is not always the same horizontal width if the characters are not monospaced.
     Or hard line wrapping after a number of characters can be selected. This inserts a new line when the number of characters exceeds a defined values. This insertion is done when saving a document and only for changed lines.
 
+Show Indent Guides
+:   Shows indentation by drawing a line on the start column of indented lines.
+    These guides are common in programming editors and can be activated in txs as well. (default: on)
+
+Use Rainbow colored braces
+:   Txs color each level of brace with a different color, so that is easier to discern which opening and closing brace match.
+    Only braces are colored. (default: off)
+
 Auto save all files
 :   txs allows to automatically save all files every few minutes
 
