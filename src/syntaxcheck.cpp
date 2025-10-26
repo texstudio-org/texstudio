@@ -1043,6 +1043,12 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                                         if(newRanges.last().range==QPair<int,int>(tk.start,tk.length)){
                                             // yes, remove !
                                             newRanges.removeLast();
+                                        }else{
+                                            // check the one before as well (as rainbow braces may have been added)
+                                            if(mShowRainbowDelimiter && newRanges.size()>2 && newRanges.value(newRanges.size()-3).range==QPair<int,int>(tk.start,tk.length)){
+                                                // yes, remove !
+                                                newRanges.removeAt(newRanges.size()-3);
+                                            }
                                         }
                                     }
                                 }
