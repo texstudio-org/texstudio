@@ -7302,6 +7302,7 @@ void Texstudio::generalOptions()
     bool inlineCitationChecking = configManager.editorConfig->inlineCitationChecking;
     bool inlineReferenceChecking = configManager.editorConfig->inlineReferenceChecking;
     bool inlineSyntaxChecking = configManager.editorConfig->inlineSyntaxChecking;
+    bool enableRainbowDelimiters = configManager.editorConfig->enableRainbowDelimiters;
     QString additionalBibPaths = configManager.additionalBibPaths;
     QStringList loadFiles = configManager.completerConfig->getLoadedFiles();
 
@@ -7369,8 +7370,12 @@ void Texstudio::generalOptions()
         updateHighlighting |= (inlineSyntaxChecking != configManager.editorConfig->inlineSyntaxChecking);
         updateHighlighting |= (realtimeChecking != configManager.editorConfig->realtimeChecking);
         updateHighlighting |= (additionalBibPaths != configManager.additionalBibPaths);
+        updateHighlighting |= (enableRainbowDelimiters != configManager.editorConfig->enableRainbowDelimiters);
         // recheck syntax when spellchecking and/or syntaxchecking has been effectively turned on
-        bool recheckSyntax=(configManager.editorConfig->realtimeChecking &&(configManager.editorConfig->inlineSyntaxChecking || configManager.editorConfig->inlineSpellChecking)) || ((configManager.editorConfig->inlineSyntaxChecking && !inlineSyntaxChecking)||(configManager.editorConfig->inlineSpellChecking && !inlineSpellChecking));
+        bool recheckSyntax=(configManager.editorConfig->realtimeChecking &&(configManager.editorConfig->inlineSyntaxChecking ||
+                configManager.editorConfig->inlineSpellChecking)) ||
+                (enableRainbowDelimiters != configManager.editorConfig->enableRainbowDelimiters) ||
+                ((configManager.editorConfig->inlineSyntaxChecking && !inlineSyntaxChecking)||(configManager.editorConfig->inlineSpellChecking && !inlineSpellChecking));
 
         // activate/deactivate speller ...
         SpellerUtility::inlineSpellChecking= configManager.editorConfig->inlineSpellChecking && configManager.editorConfig->realtimeChecking;

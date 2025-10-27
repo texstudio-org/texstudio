@@ -147,6 +147,7 @@ void SyntaxCheck::run()
         if (newLine.clearOverlay){
             QList<int> fmtList={syntaxErrorFormat,SpellerUtility::spellcheckErrorFormat};
             fmtList.append(mFormatList.values());
+            fmtList.append(m_RainbowFormats);
             newLine.dlh->clearOverlays(fmtList);
         }
 		//if(newRanges.isEmpty()) continue;
