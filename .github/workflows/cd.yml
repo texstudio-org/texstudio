@@ -58,7 +58,7 @@ jobs:
       - name: upload binary
         id: upload-binary
         if: github.event_name == 'push'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: texstudio-exe
           path: build/texstudio.exe
@@ -125,7 +125,7 @@ jobs:
 
       - name: Upload zip to GitHub Artifacts
         if: github.event_name == 'push'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: texstudio-win-qt6-zip
           path: ./build/package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
@@ -133,7 +133,7 @@ jobs:
       - name: Upload to GitHub Artifacts
         id: upload-artifact
         if: github.event_name == 'push'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: texstudio-win-qt6-exe
           path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
@@ -165,13 +165,13 @@ jobs:
       - name: Upload signed installer to GitHub Artifacts
         id: upload-artifact-signed
         if: env.IF_CODESIGN == 'true' && github.event_name == 'push'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: texstudio-win-qt6-signed-exe
           path: signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
       
       - name: Upload release file(s)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: startsWith(github.ref, 'refs/tags/')
         with:
           name: release-win
@@ -230,7 +230,7 @@ jobs:
       - name: upload binary
         id: upload-binary
         if: github.event_name == 'push'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: texstudio-arm-exe
           path: build/texstudio.exe
@@ -297,7 +297,7 @@ jobs:
 
       - name: Upload zip to GitHub Artifacts
         if: github.event_name == 'push'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: texstudio-win-arm-qt6-zip
           path: ./build/package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
@@ -305,7 +305,7 @@ jobs:
       - name: Upload to GitHub Artifacts
         id: upload-artifact
         if: github.event_name == 'push'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: texstudio-win-arm-qt6-exe
           path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
@@ -337,13 +337,13 @@ jobs:
       - name: Upload signed installer to GitHub Artifacts
         id: upload-artifact-signed
         if: env.IF_CODESIGN == 'true' && github.event_name == 'push'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: texstudio-win-arm-qt6-signed-exe
           path: signed-artifacts/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
       
       - name: Upload release file(s)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: startsWith(github.ref, 'refs/tags/')
         with:
           name: release-win-arm
@@ -402,13 +402,13 @@ jobs:
         
     - name: Upload to Github Artifacts
       if: github.event_name == 'push'
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: texstudio-linux
         path: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
 
     - name: Upload release file(s)
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       if: startsWith(github.ref, 'refs/tags/')
       with:
         name: release-linux
@@ -505,14 +505,14 @@ jobs:
         
     - name: Upload to Github artifacts
       if: github.event_name == 'push'
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: texstudio-osx
         path: app
         # path: texstudio-osx-m1-${{ steps.package.outputs.VERSION_NAME }}.zip
     
     - name: Upload release file(s)
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       if: startsWith(github.ref, 'refs/tags/')
       with:
         name: release-osx
@@ -606,14 +606,14 @@ jobs:
         
     - name: Upload to Github artifacts
       if: github.event_name == 'push'
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: texstudio-osx-m1
         path: app
         # path: texstudio-osx-m1-${{ steps.package.outputs.VERSION_NAME }}.zip
 
     - name: Upload release file(s)
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       if: startsWith(github.ref, 'refs/tags/')
       with:
         name: release-osx-m1
