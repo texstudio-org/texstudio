@@ -1,5 +1,5 @@
 # eqnlines package
-# Matthew Bertucci 2025/06/01 for v0.10
+# Matthew Bertucci 2025/10/27 for v0.11
 
 #include:keyval
 
@@ -101,6 +101,7 @@ punctcol=%<punct%>
 punct*=%<punct%>
 punctline*=%<punct%>
 punctcol*=%<punct%>
+punctall=
 shape=%<mode%>
 padding=##L
 pad=##L
