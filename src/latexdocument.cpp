@@ -1041,7 +1041,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             continue;
         }
         /// auto user command for \symbol_...
-        if(j+2<tl.length()){
+        if(j+2<tl.length() && tk.type==Token::command){
             Token tk2=tl.at(j+1);
             if(tk2.getText()=="_"){
                 QString txt=cmd+"_";
