@@ -1,5 +1,5 @@
 # euler-math package
-# Matthew Bertucci 2025/02/16 for v0.62
+# Matthew Bertucci 2025/10/29 for v0.70
 
 #include:iftex
 #include:unicode-math
@@ -154,6 +154,65 @@ Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle
 \Box#m
 \Diamond#m
 
-\fileversion#S
-\filedate#S
+# sans greek
+\msansAlpha#*m
+\msansBeta#*m
+\msansGamma#*m
+\msansDelta#*m
+\msansEpsilon#*m
+\msansZeta#*m
+\msansEta#*m
+\msansTheta#*m
+\msansIota#*m
+\msansKappa#*m
+\msansLambda#*m
+\msansMu#*m
+\msansNu#*m
+\msansXi#*m
+\msansOmicron#*m
+\msansPi#*m
+\msansRho#*m
+\msansvarTheta#*m
+\msansSigma#*m
+\msansTau#*m
+\msansUpsilon#*m
+\msansPhi#*m
+\msansChi#*m
+\msansPsi#*m
+\msansOmega#*m
+\msansnabla#*m
+\msansalpha#*m
+\msansbeta #*m
+\msansgamma#*m
+\msansdelta#*m
+\msansvarepsilon#*m
+\msanszeta#*m
+\msanseta#*m
+\msanstheta#*m
+\msansiota#*m
+\msanskappa#*m
+\msanslambda#*m
+\msansmu#*m
+\msansnu#*m
+\msansxi#*m
+\msansomicron#*m
+\msanspi#*m
+\msansrho#*m
+\msansvarsigma#*m
+\msanssigma#*m
+\msanstau#*m
+\msansupsilon#*m
+\msansphi#*m
+\msanschi#*m
+\msanspsi#*m
+\msansomega#*m
+\msanspartial#*m
+\msansepsilon#*m
+\msansvartheta#*m
+\msansvarkappa#*m
+\msansvarphi#*m
+\msansvarrho#*m
+\msansvarpi#*m
+
+# not documented
 \NEUtoks#S

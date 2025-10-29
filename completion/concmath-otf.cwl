@@ -1,5 +1,5 @@
 # concmath-otf package
-# Matthew Bertucci 2024/10/28 for v0.64
+# Matthew Bertucci 2025/10/29 for v0.70
 
 #include:iftex
 #include:unicode-math
@@ -14,7 +14,7 @@ nabla=#italic,upright,literal
 partial=#italic,upright,literal
 CharacterVariant=%<number%>
 CharacterVariant={%<glyph num list%>:%<variety num%>}
-StylisticSet=#4,5,6
+StylisticSet=#3,4,5,6
 Style=#leqslant,smaller,subsetneq,upint
 #endkeyvals
 
@@ -155,6 +155,123 @@ Style=#leqslant,smaller,subsetneq,upint
 \widearc{arg}#m
 \Zbar#m
 
+# sans greek
+\msansAlpha#*m
+\msansBeta#*m
+\msansGamma#*m
+\msansDelta#*m
+\msansEpsilon#*m
+\msansZeta#*m
+\msansEta#*m
+\msansTheta#*m
+\msansIota#*m
+\msansKappa#*m
+\msansLambda#*m
+\msansMu#*m
+\msansNu#*m
+\msansXi#*m
+\msansOmicron#*m
+\msansPi#*m
+\msansRho#*m
+\msansvarTheta#*m
+\msansSigma#*m
+\msansTau#*m
+\msansUpsilon#*m
+\msansPhi#*m
+\msansChi#*m
+\msansPsi#*m
+\msansOmega#*m
+\msansnabla#*m
+\msansalpha#*m
+\msansbeta #*m
+\msansgamma#*m
+\msansdelta#*m
+\msansvarepsilon#*m
+\msanszeta#*m
+\msanseta#*m
+\msanstheta#*m
+\msansiota#*m
+\msanskappa#*m
+\msanslambda#*m
+\msansmu#*m
+\msansnu#*m
+\msansxi#*m
+\msansomicron#*m
+\msanspi#*m
+\msansrho#*m
+\msansvarsigma#*m
+\msanssigma#*m
+\msanstau#*m
+\msansupsilon#*m
+\msansphi#*m
+\msanschi#*m
+\msanspsi#*m
+\msansomega#*m
+\msanspartial#*m
+\msansepsilon#*m
+\msansvartheta#*m
+\msansvarkappa#*m
+\msansvarphi#*m
+\msansvarrho#*m
+\msansvarpi#*m
+\mitsansAlpha#*m
+\mitsansBeta#*m
+\mitsansGamma#*m
+\mitsansDelta#*m
+\mitsansEpsilon#*m
+\mitsansZeta#*m
+\mitsansEta#*m
+\mitsansTheta#*m
+\mitsansIota#*m
+\mitsansKappa#*m
+\mitsansLambda#*m
+\mitsansMu#*m
+\mitsansNu#*m
+\mitsansXi#*m
+\mitsansOmicron#*m
+\mitsansPi#*m
+\mitsansRho#*m
+\mitsansvarTheta#*m
+\mitsansSigma#*m
+\mitsansTau#*m
+\mitsansUpsilon#*m
+\mitsansPhi#*m
+\mitsansChi#*m
+\mitsansPsi#*m
+\mitsansOmega#*m
+\mitsansnabla#*m
+\mitsansalpha#*m
+\mitsansbeta #*m
+\mitsansgamma#*m
+\mitsansdelta#*m
+\mitsansvarepsilon#*m
+\mitsanszeta#*m
+\mitsanseta#*m
+\mitsanstheta#*m
+\mitsansiota#*m
+\mitsanskappa#*m
+\mitsanslambda#*m
+\mitsansmu#*m
+\mitsansnu#*m
+\mitsansxi#*m
+\mitsansomicron#*m
+\mitsanspi#*m
+\mitsansrho#*m
+\mitsansvarsigma#*m
+\mitsanssigma#*m
+\mitsanstau#*m
+\mitsansupsilon#*m
+\mitsansphi#*m
+\mitsanschi#*m
+\mitsanspsi#*m
+\mitsansomega#*m
+\mitsanspartial#*m
+\mitsansepsilon#*m
+\mitsansvartheta#*m
+\mitsansvarkappa#*m
+\mitsansvarphi#*m
+\mitsansvarrho#*m
+\mitsansvarpi#*m
+
+# not documented
 \CCMtoks#*
-\fileversion#S
-\filedate#S

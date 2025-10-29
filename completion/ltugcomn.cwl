@@ -1,5 +1,5 @@
 # ltugcomn package
-# Matthew Bertucci 2024/10/28 for v2.33
+# Matthew Bertucci 2025/10/29 for v2.35
 
 #include:mflogo
 
@@ -18,6 +18,8 @@
 \AW
 \basezero
 \begin{reviewitem}#*
+\bfBib#*
+\bfBibLaTeX#*
 \bfBibTeX#*
 \Bib
 \BibLaTeX
@@ -172,6 +174,7 @@
 \pdflatex#*
 \pdfTeX
 \pdftex#*
+\PDFUA
 \PGF
 \PHP
 \PiC
