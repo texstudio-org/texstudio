@@ -714,7 +714,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
     // collaborative editing
     registerOption("CollaborativeEditing/Tool",&ce_tool,0,&pseudoDialog->comboBoxCollaborativeTool);
-    registerOption("CollaborativeEditing/ToolPath",&ce_toolPath,"ethersync",&pseudoDialog->lineEditCollaborativeToolPath);
+    registerOption("CollaborativeEditing/ToolPath",&ce_toolPath,"teamtype",&pseudoDialog->lineEditCollaborativeToolPath);
     const QString pth=QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     registerOption("CollaborativeEditing/ClientFolder",&ce_clientPath,pth+QDir::separator()+tr("txsCollaborationFolder"),&pseudoDialog->lineEditCollaborativeClientFolder);
     registerOption("CollaborativeEditing/UserName",&ce_userName,"txs",&pseudoDialog->lineEditCollaborativeUserName);

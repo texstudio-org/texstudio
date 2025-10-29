@@ -6764,7 +6764,7 @@ void Texstudio::connectCollabServer()
     if (ok && !text.isEmpty()){
         // trim join code
         text=text.trimmed();
-        if(text.startsWith("ethersync join ")) text=text.mid(15);
+        if(text.startsWith("teamtype join ")) text=text.mid(15);
         // start server
         const QString folderName=configManager.ce_clientPath;
         collabManager->startGuestServer(folderName,text);
@@ -6868,7 +6868,7 @@ void Texstudio::updateCollaborationEditors(int startLine, int startCol, int endL
 }
 /*!
  * \brief register file for collaboration
- * Check if file is in a ethersync folder and try to start client if possible
+ * Check if file is in a teamtype folder and try to start client if possible
  * \param filename
  * \return operation successful
  */
@@ -6966,7 +6966,7 @@ void Texstudio::hostServerSuccessfullyStarted()
         QSize iconSize = QSize(iconWidth, iconWidth);
         QIcon icon = getRealIconCached("network-connect");
         statusLabelCollab->setPixmap(icon.pixmap(iconSize));
-        statusLabelCollab->setToolTip(tr("Collaboration: Connected in folder %1\nto join: ethersync join %2").arg(collabManager->collabClientFolder(), joinCode));
+        statusLabelCollab->setToolTip(tr("Collaboration: Connected in folder %1\nto join: teamtype join %2").arg(collabManager->collabClientFolder(), joinCode));
         if(statusLabelCollab->actions().isEmpty()){
             QAction *act=new QAction(tr("Copy access code"),this);
             connect(act,&QAction::triggered,this,&Texstudio::copyCollabLinkToClipboard);
@@ -7012,7 +7012,7 @@ void Texstudio::copyCollabLinkToClipboard()
     const QString joinCode=collabManager->codeForConnectingGuest();
     if(joinCode.isEmpty()) return;
     QClipboard *clipboard = QGuiApplication::clipboard();
-    clipboard->setText("ethersync join "+joinCode);
+    clipboard->setText("teamtype join "+joinCode);
 }
 
 //////////////// MESSAGES - LOG FILE///////////////////////

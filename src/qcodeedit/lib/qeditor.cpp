@@ -6457,7 +6457,7 @@ void QEditor::paintMarks(){
 }
 /*!
  * \brief set external curso
- * \param userId given by ethersync
+ * \param userId given by teamtype
  * \param c cursor to set
  */
 void QEditor::setExternalCursor(const QString &userId, QDocumentCursor &c)
