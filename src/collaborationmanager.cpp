@@ -22,7 +22,7 @@ CollaborationManager::~CollaborationManager()
     }
 }
 /*!
- * \brief start ethersync client process
+ * \brief start teamtype client process
  * \param folder directory in which to start
  * \return successful start
  */
@@ -77,7 +77,7 @@ bool CollaborationManager::isClientRunning()
 }
 /*!
  * \brief start host server
- * ethersync share --directory <folder>
+ * teamtype share --directory <folder>
  * \param folder directory which is synced
  * \return successful start
  */
@@ -112,7 +112,7 @@ bool CollaborationManager::startHostServer(const QString folder)
 }
 /*!
  * \brief start guest server
- * ethersync join <code> --directory <folder>
+ * teamtype join <code> --directory <folder>
  * \param folder directory which is synced, should be empty and will be filled by the host
  * \param code the code provided by the host
  * \return successful start
@@ -126,7 +126,7 @@ bool CollaborationManager::startGuestServer(const QString folder,const QString &
     const QString binPath=m_conf->ce_toolPath;
     QString folderName=m_conf->ce_clientPath;
     QDir dir(folderName);
-    dir.mkpath(".ethersync");
+    dir.mkpath(".teamtype");
     if(!binPath.isEmpty()){
         // run binPath share folder
         collabServerProcess = new QProcess(this);
@@ -172,10 +172,10 @@ bool CollaborationManager::isServerRunning()
     return (collabServerProcess!=nullptr);
 }
 /*!
- * \brief check if file is in a folder with .ethersync subfolder
+ * \brief check if file is in a folder with .teamtype subfolder
  * This hints at a running server
  * \param filename
- * \return folder was already used with ethersync
+ * \return folder was already used with teamtype
  */
 bool CollaborationManager::isFileLocatedInCollabFolder(const QString &filename)
 {
@@ -185,14 +185,14 @@ bool CollaborationManager::isFileLocatedInCollabFolder(const QString &filename)
         return fi.absolutePath()==m_collabClientFolder;
     }
     QDir dir=fi.absoluteDir();
-    if(dir.exists(".ethersync")){
+    if(dir.exists(".ethersync")||dir.exists(".teamtype")){
         // client is not running, but server might be
         return true;
     }
     return false;
 }
 /*!
- * \brief reset starting check for ethersync
+ * \brief reset starting check for teamtype
  * If starting failed once, all further attempts are moot
  * Here this check is reset, e.g. if user changed path in settings
  */
@@ -450,12 +450,12 @@ void CollaborationManager::readyCollabServerStandardOutput()
     if(buffer.contains("Connected to peer:")){
         emit guestServerSuccessfullyStarted();
     }
-    if(buffer.contains("\tethersync join")){
+    if(buffer.contains("\tteamtype join")){
         // extract code
         QStringList lines= buffer.split("\n", Qt::SkipEmptyParts);
         for(QString line : lines){
             line=line.trimmed();
-            if(line.startsWith("ethersync join")){
+            if(line.startsWith("teamtype join")){
                 m_code=line.mid(15);
                 emit hostServerSuccessfullyStarted();
             }

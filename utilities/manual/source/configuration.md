@@ -889,10 +889,10 @@ via a menu command, see [here](advanced.md#gitsvn-support).
 
 ## Configuring collaboration
 
-TeXstudio allows collaborative editing (also known as pair programming) with the help of the program [ethersync](https://github.com/ethersync/ethersync).
+TeXstudio allows collaborative editing (also known as pair programming) with the help of the program [teamtype](https://github.com/teamtype/teamtype).
 This program, available for macOS and linux needs to be downloaded and stored on your computer.
 
-\"Path\" needs to point to the ethersync program.
+\"Path\" needs to point to the teamtype program.
 
 \"Client Folder\" needs to be an empty or non-existent folder which can be used to sync other peoples data on your computer. It will copy all needed files from the host who invites for collaboration.
 

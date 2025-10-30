@@ -61,8 +61,8 @@ protected:
     ConfigManager *m_conf=nullptr;
     LatexDocuments *m_docs=nullptr;
 
-    QProcess *collabServerProcess = nullptr; /// for host server: ethersync share
-    QProcess *collabClientProcess = nullptr; /// for client: ethersync client
+    QProcess *collabServerProcess = nullptr; /// for host server: teamtype share
+    QProcess *collabClientProcess = nullptr; /// for client: teamtype client
 
     bool m_startingEthersyncFailed = false; /// if command start fails, all further attempts are moot
     QString m_errorMessage; /// last error message

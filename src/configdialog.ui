@@ -105,7 +105,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>8</number>
+          <number>16</number>
          </property>
          <widget class="QWidget" name="pageGeneral">
           <layout class="QVBoxLayout">
@@ -137,8 +137,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>808</width>
-                <height>696</height>
+                <width>550</width>
+                <height>520</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout">
@@ -738,8 +738,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>837</width>
-                <height>608</height>
+                <width>568</width>
+                <height>542</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1584,8 +1584,8 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1128</width>
-                <height>526</height>
+                <width>637</width>
+                <height>414</height>
                </rect>
               </property>
               <layout class="QGridLayout">
@@ -2043,8 +2043,8 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1128</width>
-                <height>1641</height>
+                <width>1086</width>
+                <height>1329</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -3337,8 +3337,8 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>622</width>
-                <height>1030</height>
+                <width>1086</width>
+                <height>783</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -4021,8 +4021,8 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>449</width>
-                <height>280</height>
+                <width>1096</width>
+                <height>419</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4297,8 +4297,8 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>546</width>
-                <height>629</height>
+                <width>1086</width>
+                <height>486</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4800,8 +4800,8 @@ Note: Changing this setting will only affect documents that are opened afterward
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>430</width>
-                <height>203</height>
+                <width>1096</width>
+                <height>419</height>
                </rect>
               </property>
               <layout class="QGridLayout">
@@ -5066,7 +5066,7 @@ Note: Changing this setting will only affect documents that are opened afterward
                 </property>
                 <item>
                  <property name="text">
-                  <string>ethersync</string>
+                  <string>teamtype</string>
                  </property>
                 </item>
                </widget>
