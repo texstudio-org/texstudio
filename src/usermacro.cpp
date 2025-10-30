@@ -97,7 +97,7 @@ void Macro::init(const QString &nname, Macro::Type ntype, const QString &ntag, c
 				}
 			}
 			triggerLanguage = realtrigger.mid(langlen, i - langlen - 1);
-			triggerLanguage.replace("latex", "\\(La\\)TeX");
+            triggerLanguage.replace("latex", "(La)TeX");
 			realtrigger.remove(0, i);
 		}
 
