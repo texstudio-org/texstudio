@@ -18,9 +18,9 @@
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="49"/>
-        <location filename="../src/aichatassistant.cpp" line="154"/>
-        <location filename="../src/aichatassistant.cpp" line="414"/>
-        <location filename="../src/aichatassistant.cpp" line="460"/>
+        <location filename="../src/aichatassistant.cpp" line="155"/>
+        <location filename="../src/aichatassistant.cpp" line="415"/>
+        <location filename="../src/aichatassistant.cpp" line="461"/>
         <source>Send Query to AI provider</source>
         <translation>Kérdés küldése az AI szolgáltatónak</translation>
     </message>
@@ -40,54 +40,59 @@
         <translation>AI chat asszisztens</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="242"/>
+        <location filename="../src/aichatassistant.cpp" line="243"/>
         <source>Stop current query !</source>
         <translation>Az aktuális lekérdezés leállítása!</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="329"/>
+        <location filename="../src/aichatassistant.cpp" line="330"/>
         <source>System prompt can&apos;t be altered mid-conversation</source>
         <translation>A rendszer prompt nem módosítható beszélgetés közben</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="333"/>
+        <location filename="../src/aichatassistant.cpp" line="334"/>
         <source>System prompt</source>
         <translation>Rendszer prompt</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="348"/>
+        <location filename="../src/aichatassistant.cpp" line="349"/>
         <source>-</source>
         <translation>-</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="349"/>
+        <location filename="../src/aichatassistant.cpp" line="350"/>
         <source>Temperature not supported for local models</source>
         <translation>A hőmérséklet nem támogatott a helyi modellekben</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="353"/>
+        <location filename="../src/aichatassistant.cpp" line="354"/>
         <source>Values between 0 and %1</source>
         <translation>0 és %1 közötti értékek</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="361"/>
+        <location filename="../src/aichatassistant.cpp" line="362"/>
         <source>Stream results</source>
         <translation>Stream eredmények</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="452"/>
-        <location filename="../src/aichatassistant.cpp" line="489"/>
+        <location filename="../src/aichatassistant.cpp" line="453"/>
+        <location filename="../src/aichatassistant.cpp" line="490"/>
         <source>Execute as macro</source>
         <translation>Végrehajtás makróként</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="454"/>
-        <location filename="../src/aichatassistant.cpp" line="491"/>
+        <location filename="../src/aichatassistant.cpp" line="455"/>
+        <location filename="../src/aichatassistant.cpp" line="495"/>
         <source>Insert into text</source>
         <translation>Beszúrás a szövegbe</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="356"/>
+        <location filename="../src/aichatassistant.cpp" line="493"/>
+        <source>Insert code into text</source>
+        <translation>Kód beillesztése szövegbe</translation>
+    </message>
+    <message>
+        <location filename="../src/aichatassistant.cpp" line="357"/>
         <source>Temperature</source>
         <translation>Hőfok</translation>
     </message>
@@ -903,7 +908,7 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="176"/>
-        <location filename="../src/configdialog.ui" line="4941"/>
+        <location filename="../src/configdialog.ui" line="4948"/>
         <source>Color Scheme:</source>
         <translation>Színséma:</translation>
     </message>
@@ -914,7 +919,7 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="232"/>
-        <location filename="../src/configdialog.ui" line="3850"/>
+        <location filename="../src/configdialog.ui" line="3857"/>
         <source>Language:</source>
         <translation>Nyelv:</translation>
     </message>
@@ -941,7 +946,7 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
     <message>
         <location filename="../src/configdialog.ui" line="277"/>
         <location filename="../src/configdialog.ui" line="1802"/>
-        <location filename="../src/configdialog.ui" line="4969"/>
+        <location filename="../src/configdialog.ui" line="4976"/>
         <source>Font Size:</source>
         <translation>Betűméret:</translation>
     </message>
@@ -1159,8 +1164,8 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="866"/>
-        <location filename="../src/configdialog.ui" line="2318"/>
-        <location filename="../src/configdialog.ui" line="4182"/>
+        <location filename="../src/configdialog.ui" line="2381"/>
+        <location filename="../src/configdialog.ui" line="4189"/>
         <source>Never</source>
         <translation>Soha</translation>
     </message>
@@ -1245,7 +1250,7 @@ A változókat $MYVAR-ként kell megadni. Kis-nagybetű érzékeny.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1067"/>
-        <location filename="../src/configdialog.cpp" line="541"/>
+        <location filename="../src/configdialog.cpp" line="542"/>
         <source>Shortcuts</source>
         <translation>Billentyűparancsok</translation>
     </message>
@@ -1314,7 +1319,7 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1170"/>
-        <location filename="../src/configdialog.cpp" line="542"/>
+        <location filename="../src/configdialog.cpp" line="543"/>
         <source>Menus</source>
         <translation>Menük</translation>
     </message>
@@ -1330,7 +1335,7 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1195"/>
-        <location filename="../src/configdialog.cpp" line="530"/>
+        <location filename="../src/configdialog.cpp" line="531"/>
         <source>Command</source>
         <translation>Parancs</translation>
     </message>
@@ -1439,8 +1444,8 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1623"/>
-        <location filename="../src/configdialog.cpp" line="545"/>
-        <location filename="../src/configmanager.cpp" line="1550"/>
+        <location filename="../src/configdialog.cpp" line="546"/>
+        <location filename="../src/configmanager.cpp" line="1551"/>
         <source>Editor</source>
         <translation>Szerkesztő</translation>
     </message>
@@ -1491,7 +1496,7 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1705"/>
-        <location filename="../src/configdialog.ui" line="4955"/>
+        <location filename="../src/configdialog.ui" line="4962"/>
         <source>Font Family:</source>
         <translation>Betűcsalád:</translation>
     </message>
@@ -1532,8 +1537,8 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1783"/>
-        <location filename="../src/configdialog.ui" line="4155"/>
-        <location filename="../src/configdialog.ui" line="4328"/>
+        <location filename="../src/configdialog.ui" line="4162"/>
+        <location filename="../src/configdialog.ui" line="4335"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -1733,480 +1738,480 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Különleges beállítások</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2227"/>
+        <location filename="../src/configdialog.ui" line="2436"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ez a QSaveFile-t használja, hogy megelőzze a létező adat elvesztését ha az írási művelet sikertelen. Ennek hátránya, hogy a jelenlegi felhasználó lesz a fájl tulajdonosa és a bővített fájl attribútumok elvesznek. Továbbá, úgy tűnik, hogy problémák vannak ezzel a módszerrel dropbox mappák esetén.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2230"/>
+        <location filename="../src/configdialog.ui" line="2439"/>
         <source>Safe writing of files</source>
         <translation>Fájlok biztonságos írása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2237"/>
+        <location filename="../src/configdialog.ui" line="2540"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Előnézet megjelenítése buboréksúgóként a szerkesztőben lévő képleteken</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2244"/>
+        <location filename="../src/configdialog.ui" line="2335"/>
         <source>Show image tooltip on image files</source>
         <translation>Kép buboréksúgó megjelenítése képfájlokon</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2251"/>
+        <location filename="../src/configdialog.ui" line="2489"/>
         <source>Smooth Scrolling</source>
         <translation>Finom görgetés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2258"/>
+        <location filename="../src/configdialog.ui" line="2227"/>
         <source>Show log markers when clicking log entry</source>
         <translation>Megmutatja a naplójelzőket ha a naplójelzőre kattintunk</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2265"/>
+        <location filename="../src/configdialog.ui" line="2248"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation>Helykitöltő előtti nyitó zárójel átírása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2277"/>
+        <location filename="../src/configdialog.ui" line="2274"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
         <translation>Külső változtatás esetén a mentett fájlt figyelmeztetés nélkül visszatölti (a Vissza/Újra változások elvesznek)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2286"/>
+        <location filename="../src/configdialog.ui" line="2234"/>
         <source>Monitor open files for external changes</source>
         <translation>Nyitott fájlok külső változtatásainak figyelése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2293"/>
+        <location filename="../src/configdialog.ui" line="2513"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A külső programok (mint a Zotero) tudnak idézeteket beszúrni a texstudióba a következő parancsokkal: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;idézet&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Ha a kurzor még nincs idézet parancson belül, akkor az itt megadott &amp;quot;parancs&amp;quot; \cite-parancsként lesz használva.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2296"/>
+        <location filename="../src/configdialog.ui" line="2516"/>
         <source>Latex Command for pushed citations:</source>
         <translation>LaTeX parancs a beszúrt idézetekhez:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2304"/>
+        <location filename="../src/configdialog.ui" line="2322"/>
         <source>Add Entries Directly To Context  Menu</source>
         <translation>Elemek közvetlen hozzáadása a párbeszéd menühöz</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2309"/>
+        <location filename="../src/configdialog.ui" line="2327"/>
         <source>Create Dedicated Submenu</source>
         <translation>Külön almenü létrehozása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2323"/>
+        <location filename="../src/configdialog.ui" line="2386"/>
         <source>1 minute</source>
         <translation>1 perc</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2328"/>
+        <location filename="../src/configdialog.ui" line="2391"/>
         <source>2 minutes</source>
         <translation>2 perc</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2333"/>
+        <location filename="../src/configdialog.ui" line="2396"/>
         <source>5 minutes</source>
         <translation>5 percenként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2338"/>
+        <location filename="../src/configdialog.ui" line="2401"/>
         <source>10 minutes</source>
         <translation>10 percenként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2343"/>
+        <location filename="../src/configdialog.ui" line="2406"/>
         <source>20 minutes</source>
         <translation>20 percenként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2348"/>
+        <location filename="../src/configdialog.ui" line="2411"/>
         <source>60 minutes</source>
         <translation>Óránként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2356"/>
+        <location filename="../src/configdialog.ui" line="2303"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
         <translation>Amikor unicode karaktereket használ a forráskódban, akkor a LaTeX-nek
 meg kell jelenítenie a karaktereket. Mivel a LaTeX nem támogatja natívan az unicode-ot, ezért a megfelelő csomagokat kell használni a dokumentumban található unicode karakterekhez.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2360"/>
+        <location filename="../src/configdialog.ui" line="2307"/>
         <source>Insert Symbol as Unicode</source>
         <translation>Szimbólum beszúrása Unicode karakterként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2367"/>
+        <location filename="../src/configdialog.ui" line="2293"/>
         <source>Line Wrapping:</source>
         <translation>Sortörés:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2374"/>
+        <location filename="../src/configdialog.ui" line="2523"/>
         <source>Mouse Wheel Zoom</source>
         <translation>Nagyítás az egérgörgővel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2381"/>
+        <location filename="../src/configdialog.ui" line="2283"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
         <translation>Csak akkor van hatása, ha a dokumentum szélességet sortörés korlátozza.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2384"/>
+        <location filename="../src/configdialog.ui" line="2286"/>
         <source>Center Document in Editor</source>
         <translation>Dokumentum középre helyezése a szerkesztőben</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2394"/>
+        <location filename="../src/configdialog.ui" line="2262"/>
         <source>Triple-Click Selection:</source>
         <translation>Tripla kattintásos kiválasztás:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2404"/>
+        <location filename="../src/configdialog.ui" line="2373"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>Parancsok súgójának mutatása a belső pdf-megjelenítőben (texdoc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2411"/>
+        <location filename="../src/configdialog.ui" line="2475"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
         <translation>Függőleges túlgörgetés (Görgetés a fájl vége alá)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2419"/>
+        <location filename="../src/configdialog.ui" line="2447"/>
         <source>Select Word</source>
         <translation>Szó kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2424"/>
+        <location filename="../src/configdialog.ui" line="2452"/>
         <source>Select Word or Command</source>
         <translation>Szó vagy parancs kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2429"/>
+        <location filename="../src/configdialog.ui" line="2457"/>
         <source>Select Parentheses Content</source>
         <translation>Zárójelezett rész kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2434"/>
+        <location filename="../src/configdialog.ui" line="2462"/>
         <source>Select Parentheses</source>
         <translation>Zárójelpárok kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2439"/>
+        <location filename="../src/configdialog.ui" line="2467"/>
         <source>Select Line</source>
         <translation>Sor kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2447"/>
+        <location filename="../src/configdialog.ui" line="2547"/>
         <source>Maximal Characters:</source>
         <translation>Karakterek maximális száma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2457"/>
+        <location filename="../src/configdialog.ui" line="2533"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
         <translation>Helykitöltő utáni bezáró zárójel átírása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2464"/>
+        <location filename="../src/configdialog.ui" line="2482"/>
         <source>Default Log Encoding</source>
         <translation>Alapértelmezett naplókódolás</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2471"/>
+        <location filename="../src/configdialog.ui" line="2503"/>
         <source>Auto Save All Files:</source>
         <translation>Minden fájl automatikus mentése:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2492"/>
+        <location filename="../src/configdialog.ui" line="2343"/>
         <source>No Line Wrap</source>
         <translation>Nincs sortörés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2497"/>
+        <location filename="../src/configdialog.ui" line="2348"/>
         <source>Soft Line Wrap at Window Edge</source>
         <translation>Puha sortörés ablak szélén</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2502"/>
+        <location filename="../src/configdialog.ui" line="2353"/>
         <source>Soft Line Wrap after max. Characters</source>
         <translation>Puha sortörés a max. karakterszám után</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2507"/>
+        <location filename="../src/configdialog.ui" line="2358"/>
         <source>Hard Line Wrap after max. Characters</source>
         <translation>Kemény sortörés a max. karakterszám után</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2515"/>
+        <location filename="../src/configdialog.ui" line="2496"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>Szöveg buboréksúgójának megjelenítése a szerkesztőben</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2522"/>
+        <location filename="../src/configdialog.ui" line="2429"/>
         <source>Go to error when displaying log</source>
         <translation>Napló megjelenésekor a hibára ugrik</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2529"/>
+        <location filename="../src/configdialog.ui" line="2255"/>
         <source>Spellchecking via context menu:</source>
         <translation>Helyesírás-ellenőrzés a párbeszéd menün keresztül:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2536"/>
+        <location filename="../src/configdialog.ui" line="2241"/>
         <source>Auto Complete Parentheses</source>
         <translation>Zárójelpárok automatikus bezárása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2543"/>
+        <location filename="../src/configdialog.ui" line="2314"/>
         <source>Allow Drag and Drop</source>
         <translation>Fogd és vidd engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2550"/>
+        <location filename="../src/configdialog.ui" line="2366"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
         <translation>Dupla kattintásos kiválasztás: a vezető fordított ferde vonal belevétele</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2560"/>
+        <location filename="../src/configdialog.ui" line="2567"/>
         <source>Structure Panel</source>
         <translation>Struktúra panel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2566"/>
+        <location filename="../src/configdialog.ui" line="2573"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>A globális tartalomjegyzék különböző árnyalatú háttérszínt használ a különböző fájlok megkülönböztetésére. A színséma itt módosítható. </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2570"/>
+        <location filename="../src/configdialog.ui" line="2577"/>
         <source>No Color Background</source>
         <translation>Nincs háttérszín</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2575"/>
+        <location filename="../src/configdialog.ui" line="2582"/>
         <source>Green Background</source>
         <translation>Zöld háttér</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2580"/>
+        <location filename="../src/configdialog.ui" line="2587"/>
         <source>Blue Background</source>
         <translation>Kék háttér</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2588"/>
+        <location filename="../src/configdialog.ui" line="2595"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Az olyan elemek, mint a  &amp;quot;\section&amp;quot; más háttérszínnel vannak kiemelve, jelezve, hogy ezek &lt;span style=&quot; font-weight:600;&quot;&gt;nem&lt;/span&gt; fognak megjelenni a dokumentumban.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2591"/>
+        <location filename="../src/configdialog.ui" line="2598"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation>A \end{document}-en túli lévő szerkezeti elemek megjelölése</translation>
+        <translation>A \end{document} utáni szerkezeti elemek megjelölése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2598"/>
+        <location filename="../src/configdialog.ui" line="2605"/>
         <source>Reference commands in context menu:</source>
         <translation>Hivatkozási parancsok a párbeszéd menüben:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2611"/>
+        <location filename="../src/configdialog.ui" line="2618"/>
         <source>Regular expression for TODO comment: </source>
         <translation>Reguláris kifejezés a TODO megjegyzéshez:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2618"/>
+        <location filename="../src/configdialog.ui" line="2625"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Behúzás megtartása a struktúra fában</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2625"/>
+        <location filename="../src/configdialog.ui" line="2632"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A kurzor aktuális pozíciója ki van emelve a struktúra nézetben.&lt;/p&gt;&lt;p&gt;Ha ez az opció aktív, a bejegyzés kibontásra kerül és görgetve láthatóvá válik.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2628"/>
+        <location filename="../src/configdialog.ui" line="2635"/>
         <source>Scroll to current cursor position</source>
         <translation>Görgessen a kurzor aktuális pozíciójához</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2635"/>
+        <location filename="../src/configdialog.ui" line="2642"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Az olyan elemek, mint a &amp;quot;\section&amp;quot; más háttérszínnel vannak kiemelve, jelezve, hogy ezek függelékként fognak megjelenni.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2638"/>
+        <location filename="../src/configdialog.ui" line="2645"/>
         <source>Mark structure elements in appendix</source>
         <translation>A függelékben lévő szerkezeti elemek megjelölése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2645"/>
+        <location filename="../src/configdialog.ui" line="2652"/>
         <source>Use color in global TOC:</source>
         <translation>Szín használata a globális tartalomjegyzékben:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2665"/>
+        <location filename="../src/configdialog.ui" line="2672"/>
         <source>Bibliography</source>
         <translation>Bibliográfia</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2671"/>
+        <location filename="../src/configdialog.ui" line="2678"/>
         <source>bib File Encoding:</source>
         <translation>bib Tex fájl kódolása:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2678"/>
+        <location filename="../src/configdialog.ui" line="2685"/>
         <source>Parse BibTeX</source>
         <translation>BibTeX feldolgozása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2691"/>
+        <location filename="../src/configdialog.ui" line="2698"/>
         <source>Table Autoformating</source>
         <translation>Táblázat automatikus formázása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2697"/>
+        <location filename="../src/configdialog.ui" line="2704"/>
         <source>One Line Per Cell</source>
         <translation>Cellánként egy sor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2705"/>
+        <location filename="../src/configdialog.ui" line="2712"/>
         <source>Behind Line Break</source>
         <translation>Sortörés mögött</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2710"/>
+        <location filename="../src/configdialog.ui" line="2717"/>
         <source>Separate Line (No Indent)</source>
         <translation>Elválasztó vonal (behúzás nélkül)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2715"/>
+        <location filename="../src/configdialog.ui" line="2722"/>
         <source>Separate Line (Indented to First Column)</source>
         <translation>Elválasztó vonal (az első oszlopba beszúrva)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2723"/>
+        <location filename="../src/configdialog.ui" line="2730"/>
         <source>Special Commands Position:</source>
         <translation>Különleges parancsok elhelyezkedése:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2733"/>
+        <location filename="../src/configdialog.ui" line="2740"/>
         <source>Special Commands:</source>
         <translation>Különleges parancsok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2743"/>
+        <location filename="../src/configdialog.ui" line="2750"/>
         <source>Additional Search Paths</source>
         <translation>További elérési út</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2752"/>
+        <location filename="../src/configdialog.ui" line="2759"/>
         <source>Bib Files:</source>
         <translation>Bib Fájlok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2765"/>
+        <location filename="../src/configdialog.ui" line="2772"/>
         <source>Image Files:</source>
         <translation>Képfájlok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2803"/>
+        <location filename="../src/configdialog.ui" line="2810"/>
         <source>Bi-Di</source>
         <translation>Bi-Di</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2809"/>
+        <location filename="../src/configdialog.ui" line="2816"/>
         <source>Automatically insert LRM characters</source>
         <translation>LRM karakterek automatikus beszúrása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2816"/>
+        <location filename="../src/configdialog.ui" line="2823"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
         <translation>Vizuális oszlop kurzor mód (vagyis az rtl szövegben a kurzort a nyílbillentyűk mozgatják)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2823"/>
+        <location filename="../src/configdialog.ui" line="2830"/>
         <source>Automatically switch keyboard layout: </source>
         <translation>Billentyűzetkiosztás automatikus átváltása:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2830"/>
+        <location filename="../src/configdialog.ui" line="2837"/>
         <source>depending on character direction</source>
         <translation>karakteriránytól függően</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2837"/>
+        <location filename="../src/configdialog.ui" line="2844"/>
         <source>depending on text/math mode</source>
         <translation>szöveges/matematikai módtól függően</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2847"/>
+        <location filename="../src/configdialog.ui" line="2854"/>
         <source>Hacks/Workarounds</source>
         <translation>Buherálás/Kerülő megoldások</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2853"/>
+        <location filename="../src/configdialog.ui" line="2860"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Kerülő megoldás kiiktatása ékezetek gépelésekor (csak Mac OS X esetén)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2860"/>
+        <location filename="../src/configdialog.ui" line="2867"/>
         <source>Try to automatically choose best display options</source>
         <translation>Automatikusan megpróbálja a legjobb megjelenítési beállításokat választani</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2897"/>
+        <location filename="../src/configdialog.ui" line="2904"/>
         <source>Render Mode:</source>
         <translation>Renderelési mód:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2873"/>
+        <location filename="../src/configdialog.ui" line="2880"/>
         <source>QCE (recommended)</source>
         <translation>QCE (ajánlott)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2878"/>
+        <location filename="../src/configdialog.ui" line="2885"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2883"/>
+        <location filename="../src/configdialog.ui" line="2890"/>
         <source>Single Letter</source>
         <translation>egyszerű levél</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2918"/>
+        <location filename="../src/configdialog.ui" line="2925"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>Ha a renderelt sorok gyorsítótára be van kapcsolva, akkor azokat nem kell újrarenderelni. Ez sebességnövekedést eredményez (különösen Macen), nagyobb memóriahasználat árán.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2921"/>
+        <location filename="../src/configdialog.ui" line="2928"/>
         <source>Disable cache of rendered lines</source>
         <translation>A renderelt sorok gyorsítótárának kikapcsolása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2904"/>
+        <location filename="../src/configdialog.ui" line="2911"/>
         <source>Disable fixed pitch mode</source>
         <translation>Rögzített szélességű mód kiiktatása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2911"/>
+        <location filename="../src/configdialog.ui" line="2918"/>
         <source>Disable cache of character width</source>
         <translation>Karakterszélesség tárolójának kiiktatása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2984"/>
+        <location filename="../src/configdialog.ui" line="2991"/>
         <source>Formats</source>
         <translation>Formátumok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3013"/>
-        <location filename="../src/configdialog.cpp" line="548"/>
+        <location filename="../src/configdialog.ui" line="3020"/>
+        <location filename="../src/configdialog.cpp" line="549"/>
         <source>Completion</source>
         <translation>Kiegészítés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3019"/>
+        <location filename="../src/configdialog.ui" line="3026"/>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
@@ -2225,118 +2230,118 @@ meg kell jelenítenie a karaktereket. Mivel a LaTeX nem támogatja natívan az u
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3029"/>
+        <location filename="../src/configdialog.ui" line="3036"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>LaTeX parancsok automatikus cseréje</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3036"/>
+        <location filename="../src/configdialog.ui" line="3043"/>
         <source>Insert Arguments</source>
         <translation>Argumentumok beszúrása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3046"/>
+        <location filename="../src/configdialog.ui" line="3053"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation>Buboréksúgót jelenít meg a címkék/bibliográfia elemek, előnézet színek vagy képek célszövegéhez</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3049"/>
+        <location filename="../src/configdialog.ui" line="3056"/>
         <source>ToolTip-Preview</source>
         <translation>Buboréksúgó-előnézet</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3056"/>
+        <location filename="../src/configdialog.ui" line="3063"/>
         <source>Arguments as Placeholders</source>
         <translation>Argumentumok helykitöltőként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3066"/>
+        <location filename="../src/configdialog.ui" line="3073"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
         <translation>A kiválasztott kiegészítendő parancsra leírást mutat előnézetként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3069"/>
+        <location filename="../src/configdialog.ui" line="3076"/>
         <source>ToolTip-Help</source>
         <translation>Buboréksúgó</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3079"/>
+        <location filename="../src/configdialog.ui" line="3086"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>A kiegészítő egy \ jelet begépelése után elindul. Egyébként kézzel, a Ctrl+Space lenyomásával is indítható.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3082"/>
+        <location filename="../src/configdialog.ui" line="3089"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>A kiegészítő automatikusan működésbe lép LaTeX parancsok begépelésekor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3091"/>
+        <location filename="../src/configdialog.ui" line="3098"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>A lapsor mérete a kiegészítő alján vagy tetején</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3094"/>
+        <location filename="../src/configdialog.ui" line="3101"/>
         <source>Tab Bar Size</source>
         <translation>A lapsor mérete</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3104"/>
+        <location filename="../src/configdialog.ui" line="3111"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
         <translation>A parancskészlet fülek mérete a kiegészítő alján vagy tetején</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3138"/>
+        <location filename="../src/configdialog.ui" line="3145"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>A kiválasztott szöveg kiegészítése nem-szó karakter lenyomására</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3148"/>
+        <location filename="../src/configdialog.ui" line="3155"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation>Ha minden javaslatban közös az összes további karakter, a &lt;Tab&gt; automatikusan beszúrja a szövegbe.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3151"/>
+        <location filename="../src/configdialog.ui" line="3158"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Gyakori prefixek automatikus kiegészítése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3163"/>
+        <location filename="../src/configdialog.ui" line="3170"/>
         <source>Preferred Commands Set:</source>
         <translation>Beállított parancskészlet:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3171"/>
+        <location filename="../src/configdialog.ui" line="3178"/>
         <source>Typical</source>
         <translation>Tipikus</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3176"/>
+        <location filename="../src/configdialog.ui" line="3183"/>
         <source>Most Used</source>
         <translation>Leggyakrabban használt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3181"/>
+        <location filename="../src/configdialog.ui" line="3188"/>
         <source>Fuzzy</source>
         <translation>Fuzzy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3186"/>
+        <location filename="../src/configdialog.ui" line="3193"/>
         <source>All</source>
         <translation>Mind</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3209"/>
+        <location filename="../src/configdialog.ui" line="3216"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
         <translation>Ha egy matematikai parancs kiegészítéssel kerül beszúrásra matematikai környezeten kívül, akkor a $$ automatikusan megjelenik.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3212"/>
+        <location filename="../src/configdialog.ui" line="3219"/>
         <source>Auto Insert Math Delimiters where needed</source>
         <translation>Matematikai határolójelek automatikus beszúrása ahol szükséges</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3224"/>
-        <location filename="../src/configdialog.ui" line="3262"/>
+        <location filename="../src/configdialog.ui" line="3231"/>
+        <location filename="../src/configdialog.ui" line="3269"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2347,419 +2352,424 @@ them here.</source>
 További csomagok keresése általában nem szükséges, bár ha felismerésük nem sikerült, esetleg különleges, felhasználók által készített fájlokat akarunk használni, megpróbálhatjuk ennek a funkciónak a használatát.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3232"/>
+        <location filename="../src/configdialog.ui" line="3239"/>
         <source>Permanently active completion files:</source>
         <translation>Állandóan aktív kiegészítésfájlok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3242"/>
+        <location filename="../src/configdialog.ui" line="3249"/>
         <source>Filter list below</source>
         <translation>Alábbi szűrőlista</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3353"/>
+        <location filename="../src/configdialog.ui" line="3360"/>
         <source>Spell Check</source>
         <translation>Helyesírás-ellenőrzés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3359"/>
+        <location filename="../src/configdialog.ui" line="3366"/>
         <source>Default Language:</source>
         <translation>Alapértelmezett nyelv:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3386"/>
+        <location filename="../src/configdialog.ui" line="3393"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Szótár könyvtár:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3393"/>
+        <location filename="../src/configdialog.ui" line="3400"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
         <translation>A Hunspell szótárakat tartalmazó mappák pontosvesszőkkel vannak elválasztva. A [txs-settings-dir] és a [txs-app-dir] speciális kulcsszavak a megfelelő könyvtáraikhoz képest lesznek feloldva.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3403"/>
+        <location filename="../src/configdialog.ui" line="3410"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3410"/>
+        <location filename="../src/configdialog.ui" line="3417"/>
         <source>Thesaurus Database:</source>
         <translation>Tezaurusz adatbázis:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3440"/>
+        <location filename="../src/configdialog.ui" line="3447"/>
         <source>TextLabel</source>
         <translation>Szövegcímke</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3453"/>
+        <location filename="../src/configdialog.ui" line="3460"/>
         <source>Import Dictionary...</source>
         <translation>Szótár importálása…</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3463"/>
+        <location filename="../src/configdialog.ui" line="3470"/>
         <source>Internal Grammar Check</source>
         <translation>Belső nyelvtani ellenőrzés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3469"/>
+        <location filename="../src/configdialog.ui" line="3476"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation>Egy bekezdésen belüli ismétlődő szavak ki lesznek emelve.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3472"/>
+        <location filename="../src/configdialog.ui" line="3479"/>
         <source>Check for Word Repetitions</source>
         <translation>Szóismétlés ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3479"/>
+        <location filename="../src/configdialog.ui" line="3486"/>
         <source>Words Between Repetitions:</source>
         <translation>Szavak az ismételtek között:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3489"/>
+        <location filename="../src/configdialog.ui" line="3496"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation>Azonos szavak ismételtként lesznek megjelölve, ha ennél a számnál nincs több szó köztük.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3499"/>
+        <location filename="../src/configdialog.ui" line="3506"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation>Azonos távoli szavak távoli ismételtként lesznek megjelölve, ha ennél a számnál nincs több szó köztük.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3509"/>
+        <location filename="../src/configdialog.ui" line="3516"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation>A legalább ilyen hosszú szavak lesznek távoli ismételtként megjelölve.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3519"/>
+        <location filename="../src/configdialog.ui" line="3526"/>
         <source>Long Range Repetitions:</source>
         <translation>Távoli szóismétlések:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3529"/>
+        <location filename="../src/configdialog.ui" line="3536"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation>Távoli ismétlődő szavak minimális hossza:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3539"/>
+        <location filename="../src/configdialog.ui" line="3546"/>
         <source>Wordlist Directory:</source>
         <translation>Szószedet könyvtár:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3546"/>
+        <location filename="../src/configdialog.ui" line="3553"/>
         <source>Certain informal or weak words will be highlighted.</source>
         <translation>Bizonyos informális szavak ki lesznek emelve.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3549"/>
+        <location filename="../src/configdialog.ui" line="3556"/>
         <source>Check for Bad Words</source>
         <translation>Rossz szavak keresése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3556"/>
+        <location filename="../src/configdialog.ui" line="3563"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation>Könyvtár, mely tartalmazza a &quot;rossz&quot;, vagy ismételt szavak listáját.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3666"/>
+        <location filename="../src/configdialog.ui" line="3673"/>
         <source>Store the conversation with AI provider on disk to allow later retrieval</source>
         <translation>Tárolja az AI szolgáltatóval folytatott beszélgetést lemezen a későbbi visszakeresés érdekében</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3583"/>
+        <location filename="../src/configdialog.ui" line="3590"/>
         <source>AI chat assistant</source>
         <translation>AI chat asszisztens</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3598"/>
+        <location filename="../src/configdialog.ui" line="3605"/>
         <source>open-mistral-7b</source>
         <translation>open-mistral-7b</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3603"/>
+        <location filename="../src/configdialog.ui" line="3610"/>
         <source>open-mixtral-8x7b</source>
         <translation>open-mixtral-8x7b</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3608"/>
+        <location filename="../src/configdialog.ui" line="3615"/>
         <source>mistral-small-latest</source>
         <translation>mistral-small-latest</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3613"/>
+        <location filename="../src/configdialog.ui" line="3620"/>
         <source>mistral-medium-latest</source>
         <translation>mistral-medium-latest</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3618"/>
+        <location filename="../src/configdialog.ui" line="3625"/>
         <source>mistral-large-latest</source>
         <translation>mistral-large-latest</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3648"/>
+        <location filename="../src/configdialog.ui" line="3655"/>
         <source>Mistral AI</source>
         <translation>Mistral AI</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3653"/>
+        <location filename="../src/configdialog.ui" line="3660"/>
         <source>OpenAI</source>
         <translation>OpenAI</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3626"/>
+        <location filename="../src/configdialog.ui" line="3633"/>
         <source>AI provider:</source>
         <translation>AI szolgáltató:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3676"/>
+        <location filename="../src/configdialog.ui" line="3683"/>
         <source>Preferred model:</source>
         <translation>Preferált modell:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3640"/>
+        <location filename="../src/configdialog.ui" line="3647"/>
         <source>API key:</source>
         <translation>API kulcs:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3669"/>
+        <location filename="../src/configdialog.ui" line="3676"/>
         <source>Record Conversation</source>
         <translation>Beszélgetés rögzítése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3633"/>
+        <location filename="../src/configdialog.ui" line="3640"/>
         <source>Retrieve list of models</source>
         <translation>A modellek listájának lekérése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3698"/>
+        <location filename="../src/configdialog.ui" line="3705"/>
         <source>API URL:</source>
         <translation>API URL:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3705"/>
+        <location filename="../src/configdialog.ui" line="3712"/>
         <source>Default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3715"/>
+        <location filename="../src/configdialog.ui" line="3722"/>
         <source>LanguageTool</source>
         <translation>LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3721"/>
+        <location filename="../src/configdialog.ui" line="3728"/>
         <source>Path containing the LanguageTool java archive.</source>
         <translation>LanguageTool java tároló útvonala.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3728"/>
+        <location filename="../src/configdialog.ui" line="3735"/>
         <source>LT Path:</source>
         <translation>LT útvonal:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3735"/>
+        <location filename="../src/configdialog.ui" line="3742"/>
         <source>Start LanguageTool if not running</source>
         <translation>LanguageTool indítása, ha nem fut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3742"/>
+        <location filename="../src/configdialog.ui" line="3749"/>
         <source>Server URL: </source>
         <translation>Kiszolgáló URL címe:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3749"/>
+        <location filename="../src/configdialog.ui" line="3756"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
         <translation>Vesszővel elválasztott LanguageTool szabályok, melyek nem lesznek hibaként kiemelve.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3773"/>
+        <location filename="../src/configdialog.ui" line="3780"/>
         <source>Ignored Rules:</source>
         <translation>Mellőzött szabályok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3780"/>
-        <location filename="../src/configdialog.ui" line="3790"/>
-        <location filename="../src/configdialog.ui" line="3800"/>
-        <location filename="../src/configdialog.ui" line="3830"/>
+        <location filename="../src/configdialog.ui" line="3787"/>
+        <location filename="../src/configdialog.ui" line="3797"/>
+        <location filename="../src/configdialog.ui" line="3807"/>
+        <location filename="../src/configdialog.ui" line="3837"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
         <translation>Vesszővel elválasztott LanguageTool szabályok, melyek különleges formátumban lesznek kiemelve.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3810"/>
+        <location filename="../src/configdialog.ui" line="3817"/>
         <source>Special Rules 3:</source>
         <translation>Különleges szabályok 3:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3820"/>
+        <location filename="../src/configdialog.ui" line="3827"/>
         <source>Special Rules 2:</source>
         <translation>Különleges szabályok 2:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3840"/>
+        <location filename="../src/configdialog.ui" line="3847"/>
         <source>Special Rules 1:</source>
         <translation>Különleges szabályok 1:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3857"/>
+        <location filename="../src/configdialog.ui" line="3864"/>
         <source>Special Rules 4:</source>
         <translation>Különleges szabályok 4:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3867"/>
+        <location filename="../src/configdialog.ui" line="3874"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
         <translation>A dokumentumban használt helyesírás-ellenőrző nyelvéből lesz kitalálva.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3874"/>
+        <location filename="../src/configdialog.ui" line="3881"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
         <translation>A LanguageTool indítására használt Java program, ha az nem fut.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3881"/>
+        <location filename="../src/configdialog.ui" line="3888"/>
         <source>Java:</source>
         <translation>Java:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3888"/>
-        <location filename="../src/configdialog.ui" line="3950"/>
+        <location filename="../src/configdialog.ui" line="3895"/>
+        <location filename="../src/configdialog.ui" line="3957"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
         <translation>A LanguageTool indításakor átadott argumentumok. Ennek a beállításnak csak akkor van hatása, ha a LanguageTool a TeXstudióból kerül indításra (tehát egy már futó kiszolgáló esetén nem).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3891"/>
+        <location filename="../src/configdialog.ui" line="3898"/>
         <source>LT Arguments:</source>
         <translation>LT argumentumok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3915"/>
-        <location filename="../src/configdialog.ui" line="3957"/>
+        <location filename="../src/configdialog.ui" line="3922"/>
+        <location filename="../src/configdialog.ui" line="3964"/>
         <source>Restore Default</source>
         <translation>Alapértelmezés visszaállítása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3929"/>
+        <location filename="../src/configdialog.ui" line="3936"/>
         <source>Url to connect to LanguageTool. </source>
         <translation>URL a LanguageTool-hoz való csatlakozáshoz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4040"/>
+        <location filename="../src/configdialog.ui" line="4047"/>
         <source>Command:</source>
         <translation>Parancs:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4056"/>
+        <location filename="../src/configdialog.ui" line="4063"/>
         <source>Preview with dvipng</source>
         <translation>Előnézet dvipng segítségével</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4061"/>
+        <location filename="../src/configdialog.ui" line="4068"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>Előnézet dvipng --follow segítségével (párhuzamosan)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4066"/>
+        <location filename="../src/configdialog.ui" line="4073"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>Előnézet dvips/ghostscript segítségével</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4071"/>
+        <location filename="../src/configdialog.ui" line="4078"/>
         <source>Preview with pdflatex</source>
         <translation>Előnézet pdflatex segítségével</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4076"/>
+        <location filename="../src/configdialog.ui" line="4083"/>
         <source>Preview with lualatex</source>
         <translation>Előnézet lualatex segítségével</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4081"/>
+        <location filename="../src/configdialog.ui" line="4088"/>
         <source>Preview with xelatex</source>
         <translation>Előnézet xelatex segítségével</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4089"/>
+        <location filename="../src/configdialog.ui" line="4096"/>
         <source>Display Mode:</source>
         <translation>Megjelenítési mód:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4099"/>
+        <location filename="../src/configdialog.ui" line="4106"/>
         <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
         <translation>Ha a mód megváltozik, akkor a képletek előnézete annak megfelelően fog megjelenni (de a soron belüliek esetén továbbra is buboréksúgó marad).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4106"/>
+        <location filename="../src/configdialog.ui" line="4113"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Előnézet megjelenítése buboréksúgóként, ha a panel rejtve van</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4111"/>
+        <location filename="../src/configdialog.ui" line="4118"/>
         <source>Always show preview in preview panel</source>
         <translation>Mindig mutasson előnézetet az előnézet panelen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4116"/>
+        <location filename="../src/configdialog.ui" line="4123"/>
         <source>Always show preview as tool tip</source>
         <translation>Mindig mutasson előnézetet tippként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4121"/>
+        <location filename="../src/configdialog.ui" line="4128"/>
         <source>Always show both</source>
         <translation>Mindig mutassa mindkettőt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4126"/>
+        <location filename="../src/configdialog.ui" line="4133"/>
         <source>Inline</source>
         <translation>Sorban</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4131"/>
+        <location filename="../src/configdialog.ui" line="4138"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>Beágyazott megjelenítő</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4171"/>
+        <location filename="../src/configdialog.ui" line="4178"/>
         <source>Update the preview on text change</source>
         <translation>Előnézet frissítése a szöveg változásakor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4174"/>
+        <location filename="../src/configdialog.ui" line="4181"/>
         <source>Auto Update:</source>
         <translation>Automatikus frissítés:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4187"/>
+        <location filename="../src/configdialog.ui" line="4194"/>
         <source>Previously previewed text</source>
         <translation>Szöveg korábbi előnézete</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4195"/>
+        <location filename="../src/configdialog.ui" line="4202"/>
         <source>Auto Update Delay:</source>
         <translation>Késleltetett automatikus frissítés:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4205"/>
+        <location filename="../src/configdialog.ui" line="4212"/>
         <source> ms</source>
         <translation>ms</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4221"/>
+        <location filename="../src/configdialog.ui" line="4228"/>
         <source>Replace beamer class by article</source>
         <translation>A beamer osztályt article osztállyal helyettesítí</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4234"/>
+        <location filename="../src/configdialog.ui" line="4241"/>
         <source>Precompile Preamble</source>
         <translation>Preambulum előfordítása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4142"/>
-        <location filename="../src/configdialog.ui" line="4341"/>
+        <location filename="../src/configdialog.ui" line="4149"/>
+        <location filename="../src/configdialog.ui" line="4348"/>
         <source>Scaling:</source>
         <translation>Méret:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3589"/>
+        <location filename="../src/configdialog.ui" line="2557"/>
+        <source>Use Rainbow colored braces</source>
+        <translation>Használj Rainbow színezésű kapcsos zárójeleket</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="3596"/>
         <source>AI model to use for responses. You can type custom model names for any provider.
 Examples:
 • Perplexity: sonar, sonar-pro, sonar-deep-research  
@@ -2774,12 +2784,12 @@ Például:
 • Local: deepseek-r1, llama3.3</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3658"/>
+        <location filename="../src/configdialog.ui" line="3665"/>
         <source>Custom Provider (Remote or Local)</source>
         <translation>Egyéni szolgáltató (távoli vagy helyi)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3686"/>
+        <location filename="../src/configdialog.ui" line="3693"/>
         <source>API endpoint URL for custom providers
 Examples:
 • Perplexity: https://api.perplexity.ai/chat/completions
@@ -2794,165 +2804,165 @@ Például:
 • Local: http://localhost:8080/v1/chat/completions</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3936"/>
+        <location filename="../src/configdialog.ui" line="3943"/>
         <source>URL Parameters: </source>
         <translation>URL paraméterek: </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3943"/>
+        <location filename="../src/configdialog.ui" line="3950"/>
         <source>Additional URL parameters to send with LanguageTool requests. For example: level=picky&amp;enabledRules=CUSTOM_RULE</source>
         <translation>További URL-paraméterek, amelyeket a LanguageTool kérésekkel kell elküldeni. Például: level=picky&amp;enabledRules=CUSTOM_RULE</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4051"/>
+        <location filename="../src/configdialog.ui" line="4058"/>
         <source>Preview with default compiler</source>
         <translation>Előnézet alapértelmezett fordítóval</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4313"/>
-        <location filename="../src/configdialog.cpp" line="551"/>
+        <location filename="../src/configdialog.ui" line="4320"/>
+        <location filename="../src/configdialog.cpp" line="552"/>
         <source>Internal PDF Viewer</source>
         <translation>Belső PDF-megjelenítő</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4348"/>
+        <location filename="../src/configdialog.ui" line="4355"/>
         <source>Load Strategy:</source>
         <translation>Betöltési stratégia:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4358"/>
+        <location filename="../src/configdialog.ui" line="4365"/>
         <source>Auto-recompile document on changes</source>
         <translation>A dokumentum automatikus újrafordítása változáskor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4365"/>
+        <location filename="../src/configdialog.ui" line="4372"/>
         <source>Cache Size:</source>
         <translation>Gyorsítótár méret:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4375"/>
-        <location filename="../src/configdialog.ui" line="4740"/>
+        <location filename="../src/configdialog.ui" line="4382"/>
+        <location filename="../src/configdialog.ui" line="4747"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4397"/>
+        <location filename="../src/configdialog.ui" line="4404"/>
         <source>Infinite</source>
         <translation>Végtelen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4416"/>
+        <location filename="../src/configdialog.ui" line="4423"/>
         <source> dpi</source>
         <translation> dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4426"/>
+        <location filename="../src/configdialog.ui" line="4433"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PDF fájlok betöltésének meghatározása:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Tárolt:&lt;/b&gt; Betölti a fájlt egy tárolóba és ellenőrzi a teljességét, ezután adja át a popplernek. Elsődlegesen sebességnövelés céljára vezették be régi poppler verziókhoz (&amp;lt;0.24) melyek nem voltak szálbiztosak. Nagy fájlok esetén ez összeomlást okozhat. Így ez az opció elavult.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Közvetlen:&lt;/b&gt; A fájl közvetlenül a popplerhez kerül. Így a leggyorsabb, de a fájlok teljessége ily módon nincs ellenőrizve.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Vegyes (ajánlott):&lt;/b&gt; Kis dokumentumok (&amp;lt; 50MB) esetén először betölti a fájlt egy tárolóba és ellenőrzi a teljességét), a nagy fájlok közvetlenül a popplerhez kerülnek. Ez a módszer kombinálja a problémák megelőzésére végzett fájlellenőrzést a nagy PDF fájlok optimális kezelésével.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4436"/>
+        <location filename="../src/configdialog.ui" line="4443"/>
         <source>Buffered</source>
         <translation>Tárolt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4441"/>
+        <location filename="../src/configdialog.ui" line="4448"/>
         <source>Direct</source>
         <translation>Közvetlen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4446"/>
+        <location filename="../src/configdialog.ui" line="4453"/>
         <source>Hybrid</source>
         <translation>Vegyes</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4454"/>
+        <location filename="../src/configdialog.ui" line="4461"/>
         <source>Highlight Duration</source>
         <translation>Időtartam kiemelés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4464"/>
+        <location filename="../src/configdialog.ui" line="4471"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>RGBA érték hexadecimális megadása. Megjegyzés: az átlátszóság elvárt, mivel technikai korlátozások miatt a kiemelés a szöveg tetején jelenik meg.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4467"/>
+        <location filename="../src/configdialog.ui" line="4474"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4481"/>
+        <location filename="../src/configdialog.ui" line="4488"/>
         <source>Rectangle</source>
         <translation>Téglalap</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4486"/>
+        <location filename="../src/configdialog.ui" line="4493"/>
         <source>Circle</source>
         <translation>Kör</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4507"/>
+        <location filename="../src/configdialog.ui" line="4514"/>
         <source>Highlight Color</source>
         <translation>Színkiemelés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4517"/>
+        <location filename="../src/configdialog.ui" line="4524"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation>Alapértelmezett háttérszín. Hexadecimális RGB értékként adja meg. Figyelem: Ez csak a beállítás megváltoztatása után betöltött PDF-eket befolyásolja. A már megnyitott PDF-ek papírszíne nem módosul.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4542"/>
+        <location filename="../src/configdialog.ui" line="4549"/>
         <source>Border</source>
         <translation>Szegély</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4549"/>
+        <location filename="../src/configdialog.ui" line="4556"/>
         <source>Shadow</source>
         <translation>Árnyék</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4572"/>
+        <location filename="../src/configdialog.ui" line="4579"/>
         <source>Original Size</source>
         <translation>Eredeti méret</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4577"/>
+        <location filename="../src/configdialog.ui" line="4584"/>
         <source>Fit to Window Width</source>
         <translation>Igazítás az ablak széléhez</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4582"/>
+        <location filename="../src/configdialog.ui" line="4589"/>
         <source>Fit to Window Size</source>
         <translation>Igazítás az ablak méretéhez</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4587"/>
+        <location filename="../src/configdialog.ui" line="4594"/>
         <source>Scaled Size</source>
         <translation>Egyéni méret</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4592"/>
+        <location filename="../src/configdialog.ui" line="4599"/>
         <source>Fit to Text Width</source>
         <translation>Teljes szélesség</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4600"/>
+        <location filename="../src/configdialog.ui" line="4607"/>
         <source> MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4622"/>
+        <location filename="../src/configdialog.ui" line="4629"/>
         <source>Synchronized Files Types:</source>
         <translation>Szinkronizált fájltípusok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4632"/>
+        <location filename="../src/configdialog.ui" line="4639"/>
         <source>Paper Color</source>
         <translation>Papír színe</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4642"/>
-        <location filename="../src/configdialog.ui" line="4696"/>
+        <location filename="../src/configdialog.ui" line="4649"/>
+        <location filename="../src/configdialog.ui" line="4703"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2963,154 +2973,154 @@ Ha renderelési problémák vannak, akkor kipróbálhatja az alternatív „Arth
 Megjegyzés: a beállítás módosítása csak a jövőben megnyitott dokumentumokra érvényes.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4648"/>
+        <location filename="../src/configdialog.ui" line="4655"/>
         <source>Render Backend:</source>
         <translation>Renderelési háttérrendszer:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4658"/>
+        <location filename="../src/configdialog.ui" line="4665"/>
         <source>Presentation Laser Pointer Size:</source>
         <translation>Bemutató lézermutató mérete:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4665"/>
+        <location filename="../src/configdialog.ui" line="4672"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>Megjegyzés: az ablakos/beágyazott mód az Fordítás -&gt; PDF-megjelenítő lapon állítható be</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4672"/>
+        <location filename="../src/configdialog.ui" line="4679"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>Vízszintes görgetés letiltása „Teljes szélesség” esetén</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4682"/>
+        <location filename="../src/configdialog.ui" line="4689"/>
         <source>Scale Option:</source>
         <translation>Méret tulajdonságok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4689"/>
+        <location filename="../src/configdialog.ui" line="4696"/>
         <source>Magnifier Shape:</source>
         <translation>Nagyító alakja:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4719"/>
+        <location filename="../src/configdialog.ui" line="4726"/>
         <source>Magnifier Size:</source>
         <translation>Nagyító mérete:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4726"/>
+        <location filename="../src/configdialog.ui" line="4733"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Beágyazott módban elrejti az eszköztárat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4733"/>
+        <location filename="../src/configdialog.ui" line="4740"/>
         <source>Presentation Laser Pointer Color:</source>
         <translation>Bemutató lézermutató színe:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4823"/>
+        <location filename="../src/configdialog.ui" line="4830"/>
         <source>Use SVN</source>
         <translation>Használjon SVN-t</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4828"/>
+        <location filename="../src/configdialog.ui" line="4835"/>
         <source>Use GIT</source>
         <translation>Használjon GIT-et</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4836"/>
+        <location filename="../src/configdialog.ui" line="4843"/>
         <source>Select how txs checks in saved files</source>
         <translation>Válassza ki hogy csekkolja be a txs a mentett fájlokat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4840"/>
+        <location filename="../src/configdialog.ui" line="4847"/>
         <source>No automatic check-in after save</source>
         <translation>Nincs automatikus bejelentkezés mentés után</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4845"/>
+        <location filename="../src/configdialog.ui" line="4852"/>
         <source>Check-in after File/Save only</source>
         <translation>Bejelentkezés csak Fájl/Mentés után</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4850"/>
+        <location filename="../src/configdialog.ui" line="4857"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>Bejelentkezés minden mentés művelet után, tehát fordítás előtt is.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4858"/>
+        <location filename="../src/configdialog.ui" line="4865"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation>Használja az SVN / GIT verziókat az utolsó mentett verzió előtti visszavonáshoz</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4865"/>
+        <location filename="../src/configdialog.ui" line="4872"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>Az svn add futtatásakor végrehajtódik az svn propset svn:keyword &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4868"/>
+        <location filename="../src/configdialog.ui" line="4875"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>Kulcsszavak helyettesítése Tulajdonságokkal (svn add esetén)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4877"/>
+        <location filename="../src/configdialog.ui" line="4884"/>
         <source>SVN Directory Search Depth: </source>
         <translation>SVN könyvtár keresési mélység:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4935"/>
-        <location filename="../src/configdialog.cpp" line="554"/>
+        <location filename="../src/configdialog.ui" line="4942"/>
+        <location filename="../src/configdialog.cpp" line="555"/>
         <source>Internal Terminal</source>
         <translation>Belső terminál</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4986"/>
+        <location filename="../src/configdialog.ui" line="4993"/>
         <source>Shell:</source>
         <translation>Parancsértelmező:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5031"/>
-        <location filename="../src/configdialog.cpp" line="562"/>
+        <location filename="../src/configdialog.ui" line="5038"/>
+        <location filename="../src/configdialog.cpp" line="563"/>
         <source>Collaborative Editing</source>
         <translation>Együttműködő szerkesztés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5037"/>
+        <location filename="../src/configdialog.ui" line="5044"/>
         <source>Tool:</source>
         <translation>Eszköz:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5044"/>
+        <location filename="../src/configdialog.ui" line="5051"/>
         <source>Path:</source>
         <translation>Útvonal:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5051"/>
+        <location filename="../src/configdialog.ui" line="5058"/>
         <source>Client folder:</source>
         <translation>Ügyfél mappa:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5062"/>
+        <location filename="../src/configdialog.ui" line="5069"/>
         <source>ethersync</source>
         <translation>ethersync</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5103"/>
+        <location filename="../src/configdialog.ui" line="5110"/>
         <source>User name:</source>
         <translation>Felhasználónév:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5156"/>
+        <location filename="../src/configdialog.ui" line="5163"/>
         <source>Show Advanced Options</source>
         <translation>Speciális beállítások megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5182"/>
+        <location filename="../src/configdialog.ui" line="5189"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="5192"/>
+        <location filename="../src/configdialog.ui" line="5199"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
@@ -3179,215 +3189,220 @@ Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="506"/>
+        <source>Delimiter highlighting</source>
+        <translation>Határoló kiemelése</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.cpp" line="507"/>
         <source>Search</source>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="507"/>
+        <location filename="../src/configdialog.cpp" line="508"/>
         <source>Diff</source>
         <translation>Különbség</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4034"/>
-        <location filename="../src/configdialog.cpp" line="508"/>
-        <location filename="../src/configdialog.cpp" line="550"/>
+        <location filename="../src/configdialog.ui" line="4041"/>
+        <location filename="../src/configdialog.cpp" line="509"/>
+        <location filename="../src/configdialog.cpp" line="551"/>
         <source>Preview</source>
         <translation>Előnézet</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="509"/>
+        <location filename="../src/configdialog.cpp" line="510"/>
         <source>DTX files</source>
         <translation>DTX fájlok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="510"/>
+        <location filename="../src/configdialog.cpp" line="511"/>
         <source>Sweave / Pweave</source>
         <translation>Sweave / Pweave</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="511"/>
+        <location filename="../src/configdialog.cpp" line="512"/>
         <source>Asymptote</source>
         <translation>Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="512"/>
+        <location filename="../src/configdialog.cpp" line="513"/>
         <source>Lua</source>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="513"/>
+        <location filename="../src/configdialog.cpp" line="514"/>
         <source>QtScript</source>
         <translation>QtScript</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="530"/>
+        <location filename="../src/configdialog.cpp" line="531"/>
         <source>Default Shortcut</source>
         <translation>Alapértelmezett billentyűparancs</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="530"/>
+        <location filename="../src/configdialog.cpp" line="531"/>
         <source>Current Shortcut</source>
         <translation>Jelenlegi billentyűparancs</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="530"/>
+        <location filename="../src/configdialog.cpp" line="531"/>
         <source>Additional Shortcut</source>
         <translation>További billentyűparancs</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="538"/>
+        <location filename="../src/configdialog.cpp" line="539"/>
         <source>General</source>
         <translation>Általános</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="539"/>
+        <location filename="../src/configdialog.cpp" line="540"/>
         <source>Commands</source>
         <translation>Parancsok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="540"/>
+        <location filename="../src/configdialog.cpp" line="541"/>
         <source>Build</source>
         <translation>Fordítás</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="543"/>
+        <location filename="../src/configdialog.cpp" line="544"/>
         <source>Toolbars</source>
         <translation>Eszköztár</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1364"/>
-        <location filename="../src/configdialog.cpp" line="544"/>
+        <location filename="../src/configdialog.cpp" line="545"/>
         <source>GUI Scaling</source>
         <translation>A GUI méretezése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="546"/>
+        <location filename="../src/configdialog.cpp" line="547"/>
         <source>Adv. Editor</source>
         <translation>Haladó szerkesztő</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="547"/>
+        <location filename="../src/configdialog.cpp" line="548"/>
         <source>Syntax Highlighting</source>
         <translation>Kiemelések</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="549"/>
+        <location filename="../src/configdialog.cpp" line="550"/>
         <source>Language Checking</source>
         <translation>Nyelvi ellenőrzés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4816"/>
-        <location filename="../src/configdialog.cpp" line="552"/>
+        <location filename="../src/configdialog.ui" line="4823"/>
+        <location filename="../src/configdialog.cpp" line="553"/>
         <source>SVN/GIT</source>
         <translation>SVN/GIT</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="593"/>
+        <location filename="../src/configdialog.cpp" line="594"/>
         <source>(option filter)</source>
         <translation>(szűrő)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="879"/>
+        <location filename="../src/configdialog.cpp" line="880"/>
         <source>Select thesaurus database</source>
         <translation>Tezaurusz adatbázis kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="884"/>
+        <location filename="../src/configdialog.cpp" line="885"/>
         <source>Select the grammar word lists dir</source>
         <translation>A nyelvtani szószedet könyvtárának kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="889"/>
+        <location filename="../src/configdialog.cpp" line="890"/>
         <source>Select the LanguageTool jar</source>
         <translation>LanguageTool jar kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="894"/>
+        <location filename="../src/configdialog.cpp" line="895"/>
         <source>Select java</source>
         <translation>Java kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="907"/>
+        <location filename="../src/configdialog.cpp" line="908"/>
         <source>Select dictionary directory</source>
         <translation>Szótár könyvtár választása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="912"/>
+        <location filename="../src/configdialog.cpp" line="913"/>
         <source>Search Path for Logs</source>
         <translation>Naplófájlok elérési útja</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="917"/>
+        <location filename="../src/configdialog.cpp" line="918"/>
         <source>Search Path .bib Files</source>
         <translation>Bib fájlok elérési útja</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="922"/>
+        <location filename="../src/configdialog.cpp" line="923"/>
         <source>Search Path for Images</source>
         <translation>Képfájlok elérési útja</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="927"/>
+        <location filename="../src/configdialog.cpp" line="928"/>
         <source>Search Path for PDFs</source>
         <translation>PDF fájlok elérési útja</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="932"/>
+        <location filename="../src/configdialog.cpp" line="933"/>
         <source>Search Path for Commands</source>
         <translation>Parancsok elérési útja</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="937"/>
+        <location filename="../src/configdialog.cpp" line="938"/>
         <source>Search Path for Command</source>
         <translation>Parancsok elérési útja</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="944"/>
+        <location filename="../src/configdialog.cpp" line="945"/>
         <source>Search Folder for Collaborative Client</source>
         <translation>Együttműködő kliens keresési mappája</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="990"/>
+        <location filename="../src/configdialog.cpp" line="997"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;ismeretlen&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1270"/>
+        <location filename="../src/configdialog.cpp" line="1277"/>
         <source>Load Other Icon</source>
         <translation>Másik ikon betöltése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1271"/>
+        <location filename="../src/configdialog.cpp" line="1278"/>
         <source>Insert Separator</source>
         <translation>Elválasztójel beszúrása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1279"/>
+        <location filename="../src/configdialog.cpp" line="1286"/>
         <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
         <translation>Hozzá kell adnia egy eseményt az eszköztárhoz (a jobb oldali eseménylistából) mielőtt egy ikont hozzárendelne.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1282"/>
+        <location filename="../src/configdialog.cpp" line="1289"/>
         <source>Select a File</source>
         <translation>Fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1282"/>
+        <location filename="../src/configdialog.cpp" line="1289"/>
         <source>Images</source>
         <translation>Képek</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1340"/>
+        <location filename="../src/configdialog.cpp" line="1347"/>
         <source>Import Dictionary</source>
         <translation>Szótár importálása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1340"/>
+        <location filename="../src/configdialog.cpp" line="1347"/>
         <source>OpenOffice Dictionary</source>
         <translation>OpenOffice szótár</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1351"/>
+        <location filename="../src/configdialog.cpp" line="1358"/>
         <source>The dictionary files have been imported to
 %1.
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
@@ -3395,14 +3410,14 @@ However this path is not contained in the dictionary path list. Do you want to a
 bár ez az elérési út nincs a szótárak elérési útvonalai közt. Hozzá akarja adni?</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1449"/>
+        <location filename="../src/configdialog.cpp" line="1456"/>
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
         <translation>A speciális beállításokat választotta, így nagy részletességgel konfigurálhatja a TeXstudiót. A speciális beállítások kikapcsolásával csak a leggyakoribb beállításokhoz fér hozzá. </translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1551"/>
+        <location filename="../src/configmanager.cpp" line="1552"/>
         <source>Basic Key Mapping</source>
         <translation>Alapvető billentyűparancsok</translation>
     </message>
@@ -4538,169 +4553,169 @@ options again to only view the most common settings.</source>
         <translation>Oldalhivatkozás</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="718"/>
+        <location filename="../src/configmanager.cpp" line="719"/>
         <source>txsCollaborationFolder</source>
         <translation>txsCollaborationFolder</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1111"/>
-        <location filename="../src/configmanager.cpp" line="1117"/>
-        <location filename="../src/configmanager.cpp" line="1133"/>
-        <location filename="../src/configmanager.cpp" line="1138"/>
+        <location filename="../src/configmanager.cpp" line="1112"/>
+        <location filename="../src/configmanager.cpp" line="1118"/>
+        <location filename="../src/configmanager.cpp" line="1134"/>
+        <location filename="../src/configmanager.cpp" line="1139"/>
         <source>Key replacement: %1 %2</source>
         <translation>Kulcscsere: %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1111"/>
-        <location filename="../src/configmanager.cpp" line="1133"/>
+        <location filename="../src/configmanager.cpp" line="1112"/>
+        <location filename="../src/configmanager.cpp" line="1134"/>
         <source>before word</source>
         <translation>szó előtt</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1117"/>
-        <location filename="../src/configmanager.cpp" line="1138"/>
+        <location filename="../src/configmanager.cpp" line="1118"/>
+        <location filename="../src/configmanager.cpp" line="1139"/>
         <source>after word</source>
         <translation>szó után</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1459"/>
         <location filename="../src/configmanager.cpp" line="1460"/>
-        <location filename="../src/configmanager.cpp" line="1655"/>
-        <location filename="../src/configmanager.cpp" line="1944"/>
-        <location filename="../src/configmanager.cpp" line="1954"/>
+        <location filename="../src/configmanager.cpp" line="1461"/>
+        <location filename="../src/configmanager.cpp" line="1656"/>
+        <location filename="../src/configmanager.cpp" line="1945"/>
+        <location filename="../src/configmanager.cpp" line="1955"/>
         <source>default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1528"/>
+        <location filename="../src/configmanager.cpp" line="1529"/>
         <source>Menus</source>
         <translation>Menük</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1536"/>
+        <location filename="../src/configmanager.cpp" line="1537"/>
         <source>Menus PDF-Viewer</source>
         <translation>Menük PDF-Megjelenítő</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1572"/>
-        <location filename="../src/configmanager.cpp" line="2831"/>
+        <location filename="../src/configmanager.cpp" line="1573"/>
+        <location filename="../src/configmanager.cpp" line="2832"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nincs&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1618"/>
+        <location filename="../src/configmanager.cpp" line="1619"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Új menüelem beszúrása (elé)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1621"/>
+        <location filename="../src/configmanager.cpp" line="1622"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Új almenü beszúrása (elé)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1624"/>
+        <location filename="../src/configmanager.cpp" line="1625"/>
         <source>Revert/Remove User Menu Item</source>
         <translation>Felhasználói menüpont visszaállítása / eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1642"/>
+        <location filename="../src/configmanager.cpp" line="1643"/>
         <source>Latex/Math menus</source>
         <translation>LaTeX/Matematika menük</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1643"/>
+        <location filename="../src/configmanager.cpp" line="1644"/>
         <source>All menus</source>
         <translation>Minden menü</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1644"/>
+        <location filename="../src/configmanager.cpp" line="1645"/>
         <source>Special Tags</source>
         <translation>Speciális elemek</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1739"/>
+        <location filename="../src/configmanager.cpp" line="1740"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Engedélyezte az automatikus cserét, bár előfordulnak makrók triggerekkel, mint például (?language:latex)(?&lt;=\s|^) vagy (?language:latex)(?&lt;=\S), melyek ilyenkor megváltozhatnak.
 Szeretné azokat eltávolítani?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2029"/>
+        <location filename="../src/configmanager.cpp" line="2030"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>A belső pdf-megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TeXstudio Ön helyett?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2044"/>
+        <location filename="../src/configmanager.cpp" line="2045"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Legutóbbi &apos;Mesterdokumentum&apos;: %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2047"/>
+        <location filename="../src/configmanager.cpp" line="2048"/>
         <source>Recent File %1</source>
         <translation>Legutóbbi fájl %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2048"/>
+        <location filename="../src/configmanager.cpp" line="2049"/>
         <source>Clear file list</source>
         <translation>Fájllista törlése</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2049"/>
+        <location filename="../src/configmanager.cpp" line="2050"/>
         <source>File list</source>
         <translation>Fájllista</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2050"/>
+        <location filename="../src/configmanager.cpp" line="2051"/>
         <source>Open first non-open file</source>
         <translation>Megnyitja az első nem nyitott fájlt</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2051"/>
+        <location filename="../src/configmanager.cpp" line="2052"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Minden fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2061"/>
+        <location filename="../src/configmanager.cpp" line="2062"/>
         <source>Root Document: </source>
         <translation>Gyökérdokumentum:</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2832"/>
+        <location filename="../src/configmanager.cpp" line="2833"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;alapértelmezett&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3091"/>
+        <location filename="../src/configmanager.cpp" line="3099"/>
         <source>Configure</source>
         <translation>Beállítás</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3098"/>
+        <location filename="../src/configmanager.cpp" line="3106"/>
         <source>Select Program</source>
         <translation>Programválasztás</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3105"/>
+        <location filename="../src/configmanager.cpp" line="3113"/>
         <source>Restore Default</source>
         <translation>Alapértelmezés visszaállítása</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3152"/>
+        <location filename="../src/configmanager.cpp" line="3160"/>
         <source>Repeat contained compilation commands</source>
         <translation>A tartalmazott fordítási parancsok ismétlése</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3200"/>
+        <location filename="../src/configmanager.cpp" line="3208"/>
         <source>Add</source>
         <translation>Hozzáadás</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3283"/>
+        <location filename="../src/configmanager.cpp" line="3291"/>
         <source>Browse program</source>
         <translation>Program megadása</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3622"/>
+        <location filename="../src/configmanager.cpp" line="3630"/>
         <source>text is restored after restart</source>
         <translation>szöveg helyreállítva újraindítás után</translation>
     </message>
@@ -5260,52 +5275,52 @@ A varázsló nem támogatja a parancsot</translation>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1501"/>
-        <location filename="../src/latexcompleter.cpp" line="1511"/>
+        <location filename="../src/latexcompleter.cpp" line="1504"/>
+        <location filename="../src/latexcompleter.cpp" line="1514"/>
         <source>typical</source>
         <translation>tipikus</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1502"/>
-        <location filename="../src/latexcompleter.cpp" line="1512"/>
+        <location filename="../src/latexcompleter.cpp" line="1505"/>
+        <location filename="../src/latexcompleter.cpp" line="1515"/>
         <source>most used</source>
         <translation>leggyakrabban használt</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1503"/>
-        <location filename="../src/latexcompleter.cpp" line="1513"/>
+        <location filename="../src/latexcompleter.cpp" line="1506"/>
+        <location filename="../src/latexcompleter.cpp" line="1516"/>
         <source>fuzzy</source>
         <translation>fuzzy</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1504"/>
-        <location filename="../src/latexcompleter.cpp" line="1514"/>
+        <location filename="../src/latexcompleter.cpp" line="1507"/>
+        <location filename="../src/latexcompleter.cpp" line="1517"/>
         <source>all</source>
         <translation>mind</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1505"/>
-        <location filename="../src/latexcompleter.cpp" line="1515"/>
+        <location filename="../src/latexcompleter.cpp" line="1508"/>
+        <location filename="../src/latexcompleter.cpp" line="1518"/>
         <source>press shift+space to change view</source>
         <translation>Nézetmód váltáshoz nyomja meg a shift+space billentyűket</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1716"/>
+        <location filename="../src/latexcompleter.cpp" line="1719"/>
         <source> (Usertag)</source>
         <translation> (Usertag)</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2112"/>
+        <location filename="../src/latexcompleter.cpp" line="2115"/>
         <source>label missing!</source>
         <translation>A címke hiányzik!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2114"/>
+        <location filename="../src/latexcompleter.cpp" line="2117"/>
         <source>label defined multiple times!</source>
         <translation>A címke többszörösen definiált!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2124"/>
+        <location filename="../src/latexcompleter.cpp" line="2127"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
@@ -5320,22 +5335,22 @@ A varázsló nem támogatja a parancsot</translation>
         <translation>Ismeretlen hiba. Újra kellene indítani a TeXstudiót</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2659"/>
+        <location filename="../src/latexdocument.cpp" line="2663"/>
         <source>Root file not found</source>
         <translation>A gyökérfájl nem található</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2664"/>
+        <location filename="../src/latexdocument.cpp" line="2668"/>
         <source>Invalid codec</source>
         <translation>Nem létező kodek</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2678"/>
+        <location filename="../src/latexdocument.cpp" line="2682"/>
         <source>Missing value for -job-name</source>
         <translation>A job-name értéke hiányzik</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2681"/>
+        <location filename="../src/latexdocument.cpp" line="2685"/>
         <source>Unknown magic comment</source>
         <translation>Ismeretlen mágikus megjegyzés</translation>
     </message>
@@ -5396,155 +5411,158 @@ A varázsló nem támogatja a parancsot</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="645"/>
+        <location filename="../src/latexeditorview.cpp" line="653"/>
+        <location filename="../src/latexeditorview.cpp" line="666"/>
         <source>Find Usages</source>
         <translation>Használatok keresése</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="652"/>
+        <location filename="../src/latexeditorview.cpp" line="675"/>
         <source>Thesaurus...</source>
         <translation>Tezaurusz…</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="679"/>
+        <location filename="../src/latexeditorview.cpp" line="702"/>
         <source>use yours</source>
         <translation>saját használata</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="683"/>
+        <location filename="../src/latexeditorview.cpp" line="706"/>
         <source>use other&apos;s</source>
         <translation>másét használni</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="703"/>
+        <location filename="../src/latexeditorview.cpp" line="726"/>
         <source>Go to PDF</source>
         <translation>Ugrás a PDF-re</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="1310"/>
+        <location filename="../src/latexeditorview.cpp" line="1333"/>
         <source>untitled</source>
         <translation>névtelen</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2504"/>
+        <location filename="../src/latexeditorview.cpp" line="2542"/>
         <source>Delete</source>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2537"/>
+        <location filename="../src/latexeditorview.cpp" line="2575"/>
         <source>Add to Dictionary</source>
         <translation>Hozzáadás a szótárhoz</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2539"/>
+        <location filename="../src/latexeditorview.cpp" line="2577"/>
         <source>Ignore all</source>
         <translation>Mindent figyelmen kívül hagy</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2804"/>
+        <location filename="../src/latexeditorview.cpp" line="2842"/>
         <source>label missing!</source>
         <translation>A címke hiányzik!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2806"/>
-        <location filename="../src/latexeditorview.cpp" line="2826"/>
+        <location filename="../src/latexeditorview.cpp" line="2844"/>
+        <location filename="../src/latexeditorview.cpp" line="2864"/>
         <source>label defined multiple times!</source>
         <translation>A címke többszörösen definiált!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2815"/>
-        <location filename="../src/latexeditorview.cpp" line="2892"/>
+        <location filename="../src/latexeditorview.cpp" line="2853"/>
+        <location filename="../src/latexeditorview.cpp" line="2930"/>
+        <location filename="../src/latexeditorview.cpp" line="2975"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/latexeditorview.cpp" line="2829"/>
+        <location filename="../src/latexeditorview.cpp" line="2867"/>
         <source>%n reference(s) to this label</source>
         <translation><numerusform>%n hivatkozás ehhez a címkéhez</numerusform><numerusform>%n hivatkozás erre a címkére</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2834"/>
+        <location filename="../src/latexeditorview.cpp" line="2872"/>
         <source>Class</source>
         <translation>Osztály</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2834"/>
+        <location filename="../src/latexeditorview.cpp" line="2872"/>
         <source>Package</source>
         <translation>Csomag</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2838"/>
+        <location filename="../src/latexeditorview.cpp" line="2876"/>
         <source>Beamer Theme</source>
         <translation>Beamer téma</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2850"/>
+        <location filename="../src/latexeditorview.cpp" line="2888"/>
         <source>not found</source>
         <translation>Nem található</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2867"/>
+        <location filename="../src/latexeditorview.cpp" line="2905"/>
         <source>Citation correct (reading ...)</source>
         <translation>Forrásmegjelölés helyes (olvasás …)</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2873"/>
+        <location filename="../src/latexeditorview.cpp" line="2911"/>
         <source>Citation missing</source>
         <translation>Forrásmegjelölés hiányzik</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2876"/>
+        <location filename="../src/latexeditorview.cpp" line="2914"/>
         <source>Warning:</source>
         <translation>Figyelmeztetés:</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2876"/>
+        <location filename="../src/latexeditorview.cpp" line="2914"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>A BibTeX ID szóközre végződik. Ezeket a BibTeX nem hagyja figyelmen kívül.</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3281"/>
+        <location filename="../src/latexeditorview.cpp" line="3336"/>
         <source>Save Preview Image</source>
         <translation>Előnézet mentése</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3281"/>
+        <location filename="../src/latexeditorview.cpp" line="3336"/>
         <source>Images</source>
         <translation>Képek</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3415"/>
+        <location filename="../src/latexeditorview.cpp" line="3470"/>
         <source>Remove Bookmark</source>
         <translation>Könyvjelző eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3423"/>
+        <location filename="../src/latexeditorview.cpp" line="3478"/>
         <source>Unnamed Bookmark</source>
         <translation>Névtelen könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3429"/>
+        <location filename="../src/latexeditorview.cpp" line="3484"/>
         <source>Bookmark</source>
         <translation>Könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3456"/>
+        <location filename="../src/latexeditorview.cpp" line="3511"/>
         <source>Collapse All</source>
         <translation>Mind összecsukása</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3460"/>
+        <location filename="../src/latexeditorview.cpp" line="3515"/>
         <source>Collapse Level %1</source>
         <translation>Összecsukási szint: %1</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3465"/>
+        <location filename="../src/latexeditorview.cpp" line="3520"/>
         <source>Expand All</source>
         <translation>Mind szétnyitása</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3469"/>
+        <location filename="../src/latexeditorview.cpp" line="3524"/>
         <source>Expand Level %1</source>
         <translation>Szétnyitási szint: %1</translation>
     </message>
@@ -7341,319 +7359,319 @@ Megjegyzések:
         <translation>Unix</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4773"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
         <source>None</source>
         <translation>Nincs</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4774"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4781"/>
         <source>Invalid</source>
         <translation>Érvénytelen</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4776"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4796"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4816"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4783"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4803"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4823"/>
         <source>Internal</source>
         <translation>Belső</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4778"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
         <source>Move cursor up</source>
         <translation>Kurzor fel</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
         <source>Move cursor down</source>
         <translation>Kurzor le</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4787"/>
         <source>Move cursor left (1 character)</source>
         <translation>Kurzor balra (egy karakterrel)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4781"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
         <source>Move cursor right (1 character)</source>
         <translation>Kurzor jobbra (egy karakterrel)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4782"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4789"/>
         <source>Move cursor left (1 word)</source>
         <translation>Kurzor balra (egy szóval)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4783"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4790"/>
         <source>Move cursor right (1 word)</source>
         <translation>Kurzor jobbra (egy szóval)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4791"/>
         <source>Move cursor to line start</source>
         <translation>Kurzor a sor elejére</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4792"/>
         <source>Move cursor to first character in line</source>
         <translation>Mozgassa a kurzort a sor első karakteréhez</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4793"/>
         <source>Move cursor to line end</source>
         <translation>Kurzor a sor végére</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4787"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4794"/>
         <source>Move cursor to document start</source>
         <translation>Kurzor a dokumentum elejére</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4795"/>
         <source>Move cursor to document end</source>
         <translation>Kurzor a dokumentum végére</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4790"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4797"/>
         <source>Move cursor one page up</source>
         <translation>Kurzor fel (egy oldallal)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4791"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4798"/>
         <source>Move cursor one page down</source>
         <translation>Kurzor le (egy oldallal)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4793"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
         <source>Move cursor to next block</source>
         <translation>Mozgassa a kurzort a következő blokkra</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4794"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4801"/>
         <source>Move cursor to previous block</source>
         <translation>Mozgassa a kurzort az előző blokkra</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4798"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4805"/>
         <source>Select up</source>
         <translation>Kiválasztás felfelé</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4799"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4806"/>
         <source>Select down</source>
         <translation>Kiválasztás lefelé</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4807"/>
         <source>Select left (1 character)</source>
         <translation>Balra lévő karakter kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4801"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4808"/>
         <source>Select right (1 character)</source>
         <translation>Jobbra lévő karakter kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4802"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4809"/>
         <source>Select left (1 word)</source>
         <translation>Balra lévő szó kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4803"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4810"/>
         <source>Select right (1 word)</source>
         <translation>Jobbra lévő szó kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4804"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4811"/>
         <source>Select to line start</source>
         <translation>Kijelölés a sor elejéig</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4805"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4812"/>
         <source>Select to first character in line</source>
         <translation>Kijelölés a sor első karakteréig</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4806"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4813"/>
         <source>Select to line end</source>
         <translation>Kijelölés a sor végéig</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4807"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4814"/>
         <source>Select to document start</source>
         <translation>Kijelölés a dokumentum elejéig</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4808"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4815"/>
         <source>Select to document end</source>
         <translation>Kijelölés a dokumentum végéig</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4810"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4817"/>
         <source>Select page up</source>
         <translation>Előző oldal kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4811"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4818"/>
         <source>Select page down</source>
         <translation>Következő oldal kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4813"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4820"/>
         <source>Select to next block</source>
         <translation>Válassza ki a következő blokkhoz</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4814"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4821"/>
         <source>Select to previous block</source>
         <translation>Válassza ki az előző blokkhoz</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4818"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4825"/>
         <source>Delete left character</source>
         <translation>Bal karakter törlése</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4819"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4826"/>
         <source>Delete right character</source>
         <translation>Jobb karakter törlése</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4820"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4827"/>
         <source>Delete left word</source>
         <translation>Bal oldali szó törlése</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4821"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4828"/>
         <source>Delete right word</source>
         <translation>Jobb oldali szó törlése</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4822"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4829"/>
         <source>New line</source>
         <translation>Új sor</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4824"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4831"/>
         <source>Change overwrite mode</source>
         <translation>Felülírás mód megváltoztatása</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4825"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4832"/>
         <source>Undo</source>
         <translation>Vissza</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4826"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4833"/>
         <source>Redo</source>
         <translation>Újra</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4827"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4834"/>
         <source>Copy</source>
         <translation>Másolás</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4828"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4835"/>
         <source>Paste</source>
         <translation>Beillesztés</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4829"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4836"/>
         <source>Cut</source>
         <translation>Kivágás</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4830"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4837"/>
         <source>Print</source>
         <translation>Nyomtatás</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4831"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4838"/>
         <source>Select all</source>
         <translation>Összes kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4832"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4839"/>
         <source>Find</source>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4833"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4840"/>
         <source>Find next</source>
         <translation>Következő keresés</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4834"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4841"/>
         <source>Find previous</source>
         <translation>Előző keresése</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4835"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4842"/>
         <source>Replace</source>
         <translation>Csere</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4837"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4844"/>
         <source>Create cursor mirror up</source>
         <translation>Előző hiba/figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4838"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4845"/>
         <source>Create cursor mirror down</source>
         <translation>Következő hiba/figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4839"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4846"/>
         <source>Next placeholder</source>
         <translation>Következő helykitöltő</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4840"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4847"/>
         <source>Previous placeholder</source>
         <translation>Előző helykitöltő</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4841"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4848"/>
         <source>Next placeholder or one word right</source>
         <translation>Következő helykitöltő vagy egy szó jobbra</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4842"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4849"/>
         <source>Previous placeholder or one word left</source>
         <translation>Előző helykitöltő vagy egy szó balra</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4843"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4850"/>
         <source>Next placeholder or character</source>
         <translation>Következő helykitöltő vagy karakter</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4844"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4851"/>
         <source>Previous placeholder or character</source>
         <translation>Előző helykitöltő vagy karakter</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4845"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4852"/>
         <source>Tab or Indent selection</source>
         <translation>Tabulátor vagy behúzás kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4846"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4853"/>
         <source>Insert tab</source>
         <translation>Tabulátor beszúrása</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4847"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4854"/>
         <source>Indent selection</source>
         <translation>Behúzás kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4848"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4855"/>
         <source>Unindent selection</source>
         <translation>Behúzás megszüntetésének kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4851"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4858"/>
         <source>Unknown</source>
         <translation>Ismeretlen</translation>
     </message>
@@ -8950,7 +8968,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
         <translation>Keresés ebben:</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="216"/>
+        <location filename="../src/searchresultwidget.cpp" line="222"/>
         <source>Select folder where to search</source>
         <translation>Válassza ki a mappát, ahol keresni szeretne</translation>
     </message>
@@ -8994,6 +9012,14 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
         <location filename="../src/configdialog.cpp" line="290"/>
         <source>add row</source>
         <translation>sor hozzáadása</translation>
+    </message>
+</context>
+<context>
+    <name>SpecialDefSearchQuery</name>
+    <message>
+        <location filename="../src/searchquery.cpp" line="330"/>
+        <source>Special Definition Search</source>
+        <translation>Speciális definíciók keresése</translation>
     </message>
 </context>
 <context>
@@ -9266,92 +9292,92 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="261"/>
+        <location filename="../src/syntaxcheck.cpp" line="263"/>
         <source>no error</source>
         <translation>Nincs hiba</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="262"/>
+        <location filename="../src/syntaxcheck.cpp" line="264"/>
         <source>unrecognized environment</source>
         <translation>ismeretlen környezet</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="263"/>
+        <location filename="../src/syntaxcheck.cpp" line="265"/>
         <source>unrecognized command</source>
         <translation>Ismeretlen parancs</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="264"/>
+        <location filename="../src/syntaxcheck.cpp" line="266"/>
         <source>unrecognized math command</source>
         <translation>Ismeretlen matematikai parancs</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="265"/>
+        <location filename="../src/syntaxcheck.cpp" line="267"/>
         <source>unrecognized tabular command</source>
         <translation>Ismeretlen tabulátor parancs</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="266"/>
+        <location filename="../src/syntaxcheck.cpp" line="268"/>
         <source>tabular command outside tabular env</source>
         <translation>Tabulátor parancs a tabulátor környezeten kívül</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="267"/>
+        <location filename="../src/syntaxcheck.cpp" line="269"/>
         <source>math command outside math env</source>
         <translation>Matematikai parancs a matematikai környezeten kívül</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="268"/>
+        <location filename="../src/syntaxcheck.cpp" line="270"/>
         <source>tabbing command outside tabbing env</source>
         <translation>Tagolás parancs a tagolt környezeten kívül</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="269"/>
+        <location filename="../src/syntaxcheck.cpp" line="271"/>
         <source>more cols in tabular than specified</source>
         <translation>A megadottól több oszlop a tabulátor környezetben</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="270"/>
+        <location filename="../src/syntaxcheck.cpp" line="272"/>
         <source>cols in tabular missing</source>
         <translation>A megadottól kevesebb oszlop a tabulátor környezetben</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="271"/>
+        <location filename="../src/syntaxcheck.cpp" line="273"/>
         <source>\\ missing</source>
         <translation>Hiányzó \\</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="272"/>
+        <location filename="../src/syntaxcheck.cpp" line="274"/>
         <source>closing environment which has not been opened</source>
         <translation>Meg nem nyitott környezet bezárása</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="273"/>
+        <location filename="../src/syntaxcheck.cpp" line="275"/>
         <source>environment not closed</source>
         <translation>A környezet nincs bezárva</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="274"/>
+        <location filename="../src/syntaxcheck.cpp" line="276"/>
         <source>unrecognized key in key option</source>
         <translation>Ismeretlen kulcs a kulcsopciók között</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="275"/>
+        <location filename="../src/syntaxcheck.cpp" line="277"/>
         <source>unrecognized value in key option</source>
         <translation>Ismeretlen érték a kulcsopciók között</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="276"/>
+        <location filename="../src/syntaxcheck.cpp" line="278"/>
         <source>command outside suitable env</source>
         <translation>Parancs a megfelelő környezeten kívül</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="277"/>
+        <location filename="../src/syntaxcheck.cpp" line="279"/>
         <source>spelling</source>
         <translation>betűzés</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="280"/>
+        <location filename="../src/syntaxcheck.cpp" line="282"/>
         <source>unknown</source>
         <translation>Ismeretlen</translation>
     </message>
@@ -9977,13 +10003,13 @@ sablon helyét, és csomagolja ki a sablont.</translation>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2205"/>
+        <location filename="../src/configmanager.cpp" line="2206"/>
         <source>Edit &amp;Macros...</source>
         <translation>Makrók &amp;szerkesztése...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="378"/>
-        <location filename="../src/texstudio.cpp" line="6518"/>
+        <location filename="../src/texstudio.cpp" line="6541"/>
         <source>Ready</source>
         <translation>Kész</translation>
     </message>
@@ -10024,8 +10050,8 @@ sablon helyét, és csomagolja ki a sablont.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="468"/>
-        <location filename="../src/texstudio.cpp" line="10376"/>
-        <location filename="../src/texstudio.cpp" line="10383"/>
+        <location filename="../src/texstudio.cpp" line="10419"/>
+        <location filename="../src/texstudio.cpp" line="10426"/>
         <source>All files</source>
         <translation>Minden fájl</translation>
     </message>
@@ -10271,7 +10297,7 @@ sablon helyét, és csomagolja ki a sablont.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="965"/>
-        <location filename="../src/texstudio.cpp" line="10627"/>
+        <location filename="../src/texstudio.cpp" line="10670"/>
         <source>&amp;Close</source>
         <translation>&amp;Bezárás</translation>
     </message>
@@ -10518,9 +10544,9 @@ sablon helyét, és csomagolja ki a sablont.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1035"/>
-        <location filename="../src/texstudio.cpp" line="8290"/>
-        <location filename="../src/texstudio.cpp" line="8315"/>
-        <location filename="../src/texstudio.cpp" line="8335"/>
+        <location filename="../src/texstudio.cpp" line="8318"/>
+        <location filename="../src/texstudio.cpp" line="8343"/>
+        <location filename="../src/texstudio.cpp" line="8363"/>
         <source>Line</source>
         <translation>Sor</translation>
     </message>
@@ -11534,7 +11560,7 @@ sablon helyét, és csomagolja ki a sablont.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1698"/>
-        <location filename="../src/texstudio.cpp" line="6028"/>
+        <location filename="../src/texstudio.cpp" line="6051"/>
         <source>show more entries ...</source>
         <translation>mutassa a többit ...</translation>
     </message>
@@ -11571,9 +11597,9 @@ sablon helyét, és csomagolja ki a sablont.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1832"/>
         <location filename="../src/texstudio.cpp" line="1833"/>
-        <location filename="../src/texstudio.cpp" line="6058"/>
-        <location filename="../src/texstudio.cpp" line="6061"/>
-        <location filename="../src/texstudio.cpp" line="6062"/>
+        <location filename="../src/texstudio.cpp" line="6081"/>
+        <location filename="../src/texstudio.cpp" line="6084"/>
+        <location filename="../src/texstudio.cpp" line="6085"/>
         <source>Encoding</source>
         <translation>Kódolás</translation>
     </message>
@@ -11621,43 +11647,43 @@ sablon helyét, és csomagolja ki a sablont.</translation>
 %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2239"/>
+        <location filename="../src/texstudio.cpp" line="2244"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>Hibát akar keresni egy SyncTeX fájlban?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2338"/>
-        <location filename="../src/texstudio.cpp" line="4313"/>
-        <location filename="../src/texstudio.cpp" line="6112"/>
-        <location filename="../src/texstudio.cpp" line="6166"/>
-        <location filename="../src/texstudio.cpp" line="7026"/>
-        <location filename="../src/texstudio.cpp" line="7207"/>
-        <location filename="../src/texstudio.cpp" line="7209"/>
-        <location filename="../src/texstudio.cpp" line="7219"/>
-        <location filename="../src/texstudio.cpp" line="7221"/>
-        <location filename="../src/texstudio.cpp" line="11106"/>
+        <location filename="../src/texstudio.cpp" line="2343"/>
+        <location filename="../src/texstudio.cpp" line="4331"/>
+        <location filename="../src/texstudio.cpp" line="6135"/>
+        <location filename="../src/texstudio.cpp" line="6189"/>
+        <location filename="../src/texstudio.cpp" line="7049"/>
+        <location filename="../src/texstudio.cpp" line="7230"/>
+        <location filename="../src/texstudio.cpp" line="7232"/>
+        <location filename="../src/texstudio.cpp" line="7242"/>
+        <location filename="../src/texstudio.cpp" line="7244"/>
+        <location filename="../src/texstudio.cpp" line="11149"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2338"/>
+        <location filename="../src/texstudio.cpp" line="2343"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>Nincs jogosultsága olvasni a(z) %1 fájlt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2390"/>
+        <location filename="../src/texstudio.cpp" line="2395"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>Úgy tűnik, a(z) &quot;%1&quot; fájl a(z) &quot;%2&quot; fájl helyreállított változata.
 Kicseréljük vele?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2396"/>
+        <location filename="../src/texstudio.cpp" line="2401"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>A(z) &quot;%1&quot; helyreállított fájl betöltése meghiúsult.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2553"/>
+        <location filename="../src/texstudio.cpp" line="2558"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -11666,46 +11692,46 @@ Kérem, telepítse a megfelelő lib fájlokat (pl. dll vagy .so fájlokat)
 Ellenkező esetben hibákat vagy a program összeomlását tapasztalhatja.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2643"/>
+        <location filename="../src/texstudio.cpp" line="2647"/>
         <source>Could not write template data:</source>
         <translation>Nem írhatóak a sablonadatok:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2675"/>
+        <location filename="../src/texstudio.cpp" line="2679"/>
         <source>Could not write template meta data:</source>
         <translation>A sablon meta adata nem írható:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2726"/>
-        <location filename="../src/texstudio.cpp" line="2790"/>
+        <location filename="../src/texstudio.cpp" line="2730"/>
+        <location filename="../src/texstudio.cpp" line="2794"/>
         <source>File not found:</source>
         <translation>A fájl nem található:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2730"/>
-        <location filename="../src/texstudio.cpp" line="2794"/>
+        <location filename="../src/texstudio.cpp" line="2734"/>
+        <location filename="../src/texstudio.cpp" line="2798"/>
         <source>You do not have read permission to this file:</source>
         <translation>Nincs jogosultsága olvasni az alábbi fájlt:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2913"/>
-        <location filename="../src/texstudio.cpp" line="10935"/>
+        <location filename="../src/texstudio.cpp" line="2917"/>
+        <location filename="../src/texstudio.cpp" line="10978"/>
         <source>Open Files</source>
         <translation>Fájlok megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2931"/>
-        <location filename="../src/texstudio.cpp" line="2938"/>
+        <location filename="../src/texstudio.cpp" line="2935"/>
+        <location filename="../src/texstudio.cpp" line="2942"/>
         <source>Loading of last session failed.</source>
         <translation>Utolsó munkamenet betöltése meghiúsult.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3004"/>
+        <location filename="../src/texstudio.cpp" line="3008"/>
         <source>Save As</source>
         <translation>Mentés másként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3022"/>
+        <location filename="../src/texstudio.cpp" line="3026"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -11718,183 +11744,183 @@ módosult változata már meg van nyitva a TeXStudióban.
 El kellene menteni vagy be kellene zárni a másik fájlt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3040"/>
+        <location filename="../src/texstudio.cpp" line="3044"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>Ezt a pdf fájlt nem lehet többé szinkronizálni a tex forrásával, mert az át lett nevezve egy &quot;Mentés másként&quot; művelet során. Az átnevezett tex fájlt fordítsa le és annak eretményét nézze.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3147"/>
+        <location filename="../src/texstudio.cpp" line="3151"/>
         <source>Rename/Move</source>
         <translation>Átnevezés/áthelyezés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3147"/>
-        <location filename="../src/texstudio.cpp" line="12695"/>
+        <location filename="../src/texstudio.cpp" line="3151"/>
+        <location filename="../src/texstudio.cpp" line="12740"/>
         <source>Copy</source>
         <translation>Másolás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3162"/>
+        <location filename="../src/texstudio.cpp" line="3166"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>Biztosan törölni akarja a(z) &quot;%1&quot; fájlt?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3171"/>
+        <location filename="../src/texstudio.cpp" line="3175"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>Biztosan helyre akarja állítanit a(z) &quot;%1&quot; fájlt?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3198"/>
+        <location filename="../src/texstudio.cpp" line="3202"/>
         <source>Numeric permissions</source>
         <translation>Numerikus jogosultságok</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3199"/>
+        <location filename="../src/texstudio.cpp" line="3203"/>
         <source>Verbose permissions</source>
         <translation>Jogosultságok részletezése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3335"/>
+        <location filename="../src/texstudio.cpp" line="3339"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>A(z) &quot;%1&quot; dokumentum mentetlen munkát tartalmaz. Szeretné menteni bezárás előtt?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3468"/>
-        <location filename="../src/texstudio.cpp" line="3527"/>
-        <location filename="../src/texstudio.cpp" line="3607"/>
+        <location filename="../src/texstudio.cpp" line="3472"/>
+        <location filename="../src/texstudio.cpp" line="3531"/>
+        <location filename="../src/texstudio.cpp" line="3611"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>A(z) &quot;%1&quot; fájl nem létezik. Törölni akarja a nevét az aktuális fájlok listájából?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3620"/>
+        <location filename="../src/texstudio.cpp" line="3624"/>
         <source>Loading of session failed.</source>
         <translation>Munkamenet betöltése meghiúsult.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3637"/>
+        <location filename="../src/texstudio.cpp" line="3641"/>
         <source>Load Session</source>
         <translation>Munkamenet betöltése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3637"/>
-        <location filename="../src/texstudio.cpp" line="3655"/>
+        <location filename="../src/texstudio.cpp" line="3641"/>
+        <location filename="../src/texstudio.cpp" line="3659"/>
         <source>TeXstudio Session</source>
         <translation>TeXstudio munkafolyamat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3655"/>
+        <location filename="../src/texstudio.cpp" line="3659"/>
         <source>Save Session</source>
         <translation>Munkamenet mentése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3661"/>
+        <location filename="../src/texstudio.cpp" line="3665"/>
         <source>Saving of session failed.</source>
         <translation>Munkamenet mentése meghiúsult.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3737"/>
+        <location filename="../src/texstudio.cpp" line="3741"/>
         <source>The following files could not be loaded:</source>
         <translation>Az alábbi fájlokat nem lehetett beolvasni:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3914"/>
+        <location filename="../src/texstudio.cpp" line="3918"/>
         <source>Image Formats (%1)</source>
         <translation>Képformátumok (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3916"/>
+        <location filename="../src/texstudio.cpp" line="3920"/>
         <source>Save Image</source>
         <translation>Kép mentése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3921"/>
+        <location filename="../src/texstudio.cpp" line="3925"/>
         <source>Could not save the image file.</source>
         <translation>A képfájl nem menthető.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4009"/>
+        <location filename="../src/texstudio.cpp" line="4013"/>
         <source>Ascending</source>
         <translation>Növekvő</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4009"/>
+        <location filename="../src/texstudio.cpp" line="4013"/>
         <source>Descending</source>
         <translation>Csökkenő</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4009"/>
+        <location filename="../src/texstudio.cpp" line="4013"/>
         <source>No Sorting</source>
         <translation>Nincs rendezés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4009"/>
+        <location filename="../src/texstudio.cpp" line="4013"/>
         <source>Random (Shuffle)</source>
         <translation>Véletlenszerű (keverés)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4015"/>
+        <location filename="../src/texstudio.cpp" line="4019"/>
         <source>Sorting</source>
         <translation>Rendezés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4016"/>
+        <location filename="../src/texstudio.cpp" line="4020"/>
         <source>Complete Lines</source>
         <translation>Teljes sorok</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4017"/>
+        <location filename="../src/texstudio.cpp" line="4021"/>
         <source>Case Sensitive</source>
         <translation>Kis/nagybetű érzékeny</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4018"/>
+        <location filename="../src/texstudio.cpp" line="4022"/>
         <source>Remove Duplicates</source>
         <translation>Azonos sorok eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4276"/>
+        <location filename="../src/texstudio.cpp" line="4294"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Sortörés ennyi karakter után:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4277"/>
+        <location filename="../src/texstudio.cpp" line="4295"/>
         <source>Smart scope selecting</source>
         <translation>Hatékony hatókör-kiválasztás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4278"/>
+        <location filename="../src/texstudio.cpp" line="4296"/>
         <source>Join lines before wrapping</source>
         <translation>Sorok összefűzése törés előtt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4292"/>
-        <location filename="../src/texstudio.cpp" line="6611"/>
-        <location filename="../src/texstudio.cpp" line="6668"/>
+        <location filename="../src/texstudio.cpp" line="4310"/>
+        <location filename="../src/texstudio.cpp" line="6634"/>
+        <location filename="../src/texstudio.cpp" line="6691"/>
         <source>No document open</source>
         <translation>Nincs dokumentum megnyitva</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4298"/>
+        <location filename="../src/texstudio.cpp" line="4316"/>
         <source>No dictionary available.</source>
         <translation>Nincs elérhető szótár.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4313"/>
+        <location filename="../src/texstudio.cpp" line="4331"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Tezaurusz betöltése nem lehetséges</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4726"/>
+        <location filename="../src/texstudio.cpp" line="4744"/>
         <source>Storing session failed</source>
         <translation>A munkamenet tárolása nem sikerült</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4726"/>
+        <location filename="../src/texstudio.cpp" line="4744"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation>Munkamenet információinak tárolása nem sikerült ide: %1. A fájl létezik, de nem írható. </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4812"/>
+        <location filename="../src/texstudio.cpp" line="4830"/>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
@@ -11903,100 +11929,100 @@ Do you want to continue?</source>
 Akarod folytatni?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4822"/>
+        <location filename="../src/texstudio.cpp" line="4840"/>
         <source>Unable to write to settings file %1</source>
         <translation>A(z) %1 beállításfájl nem írható</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4875"/>
+        <location filename="../src/texstudio.cpp" line="4893"/>
         <source>Settings file does not exist</source>
         <translation>A beállítási fájl nem létezik</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5630"/>
+        <location filename="../src/texstudio.cpp" line="5653"/>
         <source>AI Chat</source>
         <translation>AI Chat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5630"/>
+        <location filename="../src/texstudio.cpp" line="5653"/>
         <source>Please set the API key in the settings.</source>
         <translation>Kérjük, állítsa be az API kulcsot a beállításokban.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5725"/>
+        <location filename="../src/texstudio.cpp" line="5748"/>
         <source>Quick Start</source>
         <translation>Gyors kezdés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5747"/>
+        <location filename="../src/texstudio.cpp" line="5770"/>
         <source>Quick Beamer Presentation</source>
         <translation>Gyors beamer prezentáció</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5784"/>
+        <location filename="../src/texstudio.cpp" line="5807"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Jelenlegi fájl&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5816"/>
+        <location filename="../src/texstudio.cpp" line="5839"/>
         <source>Type: %1</source>
         <translation>Típus: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5861"/>
+        <location filename="../src/texstudio.cpp" line="5884"/>
         <source>Edit User &amp;Tags</source>
         <translation>&amp;Felhasználói elemek szerkesztése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5923"/>
+        <location filename="../src/texstudio.cpp" line="5946"/>
         <source>empty</source>
         <translation>üres</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5927"/>
+        <location filename="../src/texstudio.cpp" line="5950"/>
         <source>Labels:</source>
         <translation>Címkék:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6015"/>
+        <location filename="../src/texstudio.cpp" line="6038"/>
         <source>show less entries ...</source>
         <translation>mutasson kevesebbet ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6056"/>
+        <location filename="../src/texstudio.cpp" line="6079"/>
         <source>Encoding Aliases: </source>
         <translation>Aliasok kódolása:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6112"/>
+        <location filename="../src/texstudio.cpp" line="6135"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>A fájlnév nem állapítható meg.
 El kell mentenie a dokumentumot fordítás előtt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6120"/>
+        <location filename="../src/texstudio.cpp" line="6143"/>
         <source>Can&apos;t detect the file name</source>
         <translation>A fájlnév nem állapítható meg</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6160"/>
+        <location filename="../src/texstudio.cpp" line="6183"/>
         <source>  Running this command: </source>
         <translation>A következő parancs futtatása: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6166"/>
+        <location filename="../src/texstudio.cpp" line="6189"/>
         <source>could not start the command</source>
         <translation>A parancs nem hajtható végre</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6289"/>
+        <location filename="../src/texstudio.cpp" line="6312"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Belső pdf-megjelenítőt szeretett volna használni, de az Ön által használt TeXstudio változat anélkül lett fordítva.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6309"/>
+        <location filename="../src/texstudio.cpp" line="6332"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -12013,258 +12039,258 @@ Beleegyezik a cserébe?
 (c) Nem, nem akarom használni a(z) &quot;%3&quot; parancsot az alapértelmezett &quot;%2&quot; parancs helyett.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6393"/>
+        <location filename="../src/texstudio.cpp" line="6416"/>
         <source>Unknown internal command: %1</source>
         <translation>Ismeretlen parancs: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6428"/>
+        <location filename="../src/texstudio.cpp" line="6451"/>
         <source>%!TeX program used: %1</source>
         <translation>Használt %!TeX program: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6431"/>
+        <location filename="../src/texstudio.cpp" line="6454"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>Nem felismert %!TeX program! (%1). Alapértelmezett használata.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6493"/>
+        <location filename="../src/texstudio.cpp" line="6516"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>A dokumentum nem fordítható írásvédett könyvtárban.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6495"/>
+        <location filename="../src/texstudio.cpp" line="6518"/>
         <source>Could not start %1.</source>
         <translation>%1 nem indítható el.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6525"/>
+        <location filename="../src/texstudio.cpp" line="6548"/>
         <source>Error:</source>
         <translation>Hiba:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6601"/>
+        <location filename="../src/texstudio.cpp" line="6624"/>
         <source>No open project or tex file to clean.</source>
         <translation>Nincs tisztítandó nyitott projekt vagy tex fájl.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6672"/>
+        <location filename="../src/texstudio.cpp" line="6695"/>
         <source>Text Analysis</source>
         <translation>Szövegelemzés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6696"/>
+        <location filename="../src/texstudio.cpp" line="6719"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>A véletlen szöveg-generátor új szövegeket hoz létre létező szavakból, úgyhogy meg kell nyitni néhány szövegfájlt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6719"/>
+        <location filename="../src/texstudio.cpp" line="6742"/>
         <source>Do you want to share the folder &quot;%1&quot; and ALL its content with collaborators?</source>
         <translation>Meg szeretné osztani a &quot;%1&quot; mappát és annak ÖSSZES tartalmát a közreműködőkkel?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6738"/>
+        <location filename="../src/texstudio.cpp" line="6761"/>
         <source>Collaboration server name or address</source>
         <translation>Együttműködési szerver neve vagy címe</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6739"/>
+        <location filename="../src/texstudio.cpp" line="6762"/>
         <source>Name:</source>
         <translation>Név:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6946"/>
+        <location filename="../src/texstudio.cpp" line="6969"/>
         <source>Collaboration: Connected in folder %1
 to join: ethersync join %2</source>
         <translation>Együttműködés: Csatlakozás a %1 mappához
 csatlakozás: ethersync join %2</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6948"/>
+        <location filename="../src/texstudio.cpp" line="6971"/>
         <source>Copy access code</source>
         <translation>Hozzáférési kód másolása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6971"/>
+        <location filename="../src/texstudio.cpp" line="6994"/>
         <source>Collaboration: Connected in folder %1</source>
         <translation>Együttműködés: Csatlakoztatva a %1 mappához</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6975"/>
+        <location filename="../src/texstudio.cpp" line="6998"/>
         <source>Collaboration: Not connected</source>
         <translation>Együttműködés: Nincs csatlakoztatva</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7026"/>
+        <location filename="../src/texstudio.cpp" line="7049"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>A fájlt menteni és fordítani kell a napló megtekintése előtt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7207"/>
-        <location filename="../src/texstudio.cpp" line="7219"/>
+        <location filename="../src/texstudio.cpp" line="7230"/>
+        <location filename="../src/texstudio.cpp" line="7242"/>
         <source>File not found</source>
         <translation>A fájl nem található</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7209"/>
-        <location filename="../src/texstudio.cpp" line="7221"/>
+        <location filename="../src/texstudio.cpp" line="7232"/>
+        <location filename="../src/texstudio.cpp" line="7244"/>
         <source>Could not open browser</source>
         <translation>A böngésző nem futtatható</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7541"/>
+        <location filename="../src/texstudio.cpp" line="7569"/>
         <source>%1 is an invalid TeX project directory.</source>
         <translation>%1 érvénytelen TeX projektkönyvtár</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7827"/>
+        <location filename="../src/texstudio.cpp" line="7855"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Mentenie kell a fájlt, mielőtt beállíthatja gyökérdokumentumnak.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8293"/>
+        <location filename="../src/texstudio.cpp" line="8321"/>
         <source>Label</source>
         <translation>Címke</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8295"/>
-        <location filename="../src/texstudio.cpp" line="8317"/>
+        <location filename="../src/texstudio.cpp" line="8323"/>
+        <location filename="../src/texstudio.cpp" line="8345"/>
         <source>Beyond end of document.</source>
         <translation>A dokumentum vége után.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8298"/>
-        <location filename="../src/texstudio.cpp" line="8319"/>
+        <location filename="../src/texstudio.cpp" line="8326"/>
+        <location filename="../src/texstudio.cpp" line="8347"/>
         <source>In Appendix.</source>
         <translation>A függelékben.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8337"/>
+        <location filename="../src/texstudio.cpp" line="8365"/>
         <source>File not found.</source>
         <translation>A fájl nem található.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8352"/>
+        <location filename="../src/texstudio.cpp" line="8380"/>
         <source> (Line %1)</source>
         <translation> (%1. sor)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9672"/>
+        <location filename="../src/texstudio.cpp" line="9715"/>
         <source>commit comment:</source>
         <translation>Megjegyzés bevitele:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9676"/>
+        <location filename="../src/texstudio.cpp" line="9719"/>
         <source>check in whole directory ?</source>
         <translation>Az egész könyvtárban legyen az ellenőrzés?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9678"/>
+        <location filename="../src/texstudio.cpp" line="9721"/>
         <source>Push to repository ?</source>
         <translation>Küldés tárhelyre?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10036"/>
+        <location filename="../src/texstudio.cpp" line="10079"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Figyelem! A párbeszédablak automatikusan bezáródik, ha a szöveget kézzel szerkeszti!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10337"/>
+        <location filename="../src/texstudio.cpp" line="10380"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>A(z) &quot;%1&quot; fájl megnyitása sikertelen.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10339"/>
+        <location filename="../src/texstudio.cpp" line="10382"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>A(z) &quot;%1&quot; fájl nem létezik. Létre szeretné hozni?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10376"/>
+        <location filename="../src/texstudio.cpp" line="10419"/>
         <source>Save Profile</source>
         <translation>Profil mentése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10376"/>
-        <location filename="../src/texstudio.cpp" line="10383"/>
+        <location filename="../src/texstudio.cpp" line="10419"/>
+        <location filename="../src/texstudio.cpp" line="10426"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>TXL profil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10383"/>
+        <location filename="../src/texstudio.cpp" line="10426"/>
         <source>Load Profile</source>
         <translation>Profil betöltése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10436"/>
+        <location filename="../src/texstudio.cpp" line="10479"/>
         <source>Failed to read profile file %1.</source>
         <translation>A(z) %1 profil fájl beolvasása meghiúsult.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10609"/>
+        <location filename="../src/texstudio.cpp" line="10652"/>
         <source>Problem</source>
         <translation>Probléma</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10609"/>
+        <location filename="../src/texstudio.cpp" line="10652"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>Szóismétlés keresése csak aktivált azonnali helyesírás-ellenőrzéssel működik!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10614"/>
+        <location filename="../src/texstudio.cpp" line="10657"/>
         <source>Find Word Repetitions</source>
         <translation>Szóismétlés keresése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10623"/>
+        <location filename="../src/texstudio.cpp" line="10666"/>
         <source>&amp;Find Next</source>
         <translation>&amp;Következő</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10625"/>
+        <location filename="../src/texstudio.cpp" line="10668"/>
         <source>&amp;Find Previous</source>
         <translation>&amp;Előző</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10676"/>
+        <location filename="../src/texstudio.cpp" line="10719"/>
         <source>Reached beginning of text.</source>
         <translation>Elértem a szöveg elejét.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10676"/>
+        <location filename="../src/texstudio.cpp" line="10719"/>
         <source>Reached end of text.</source>
         <translation>Elértem a szöveg végét.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10935"/>
-        <location filename="../src/texstudio.cpp" line="11146"/>
-        <location filename="../src/texstudio.cpp" line="11149"/>
+        <location filename="../src/texstudio.cpp" line="10978"/>
+        <location filename="../src/texstudio.cpp" line="11189"/>
+        <location filename="../src/texstudio.cpp" line="11192"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeX fájlok (*.tex);;Minden fájl (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11106"/>
+        <location filename="../src/texstudio.cpp" line="11149"/>
         <source>You do not have read permission to this file.</source>
         <translation>Nincs olvasási jogosultsága a fájlra.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11146"/>
+        <location filename="../src/texstudio.cpp" line="11189"/>
         <source>Open Compare File</source>
         <translation>Ellenőrző fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11149"/>
+        <location filename="../src/texstudio.cpp" line="11192"/>
         <source>Open Base File</source>
         <translation>Alapfájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11317"/>
+        <location filename="../src/texstudio.cpp" line="11360"/>
         <source>SVN Conflict!</source>
         <translation>SVN ütközés!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11318"/>
+        <location filename="../src/texstudio.cpp" line="11361"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -12275,14 +12301,14 @@ Egyébként nyomja meg a „Mégse” gombot.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11415"/>
-        <location filename="../src/texstudio.cpp" line="11506"/>
-        <location filename="../src/texstudio.cpp" line="11512"/>
+        <location filename="../src/texstudio.cpp" line="11458"/>
+        <location filename="../src/texstudio.cpp" line="11549"/>
+        <location filename="../src/texstudio.cpp" line="11555"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio vészhelyzet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11419"/>
+        <location filename="../src/texstudio.cpp" line="11462"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -12295,7 +12321,7 @@ Kérjük adja meg ezt a fájlt, ha hibajelentést küld.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11422"/>
+        <location filename="../src/texstudio.cpp" line="11465"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -12304,18 +12330,18 @@ Kérjük adja meg ezt a fájlt, ha hibajelentést küld.
 %2Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11423"/>
+        <location filename="../src/texstudio.cpp" line="11466"/>
         <source>Yes, try to recover</source>
         <translation>Igen, megkíséreltem a helyreállítást</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11424"/>
-        <location filename="../src/texstudio.cpp" line="11429"/>
+        <location filename="../src/texstudio.cpp" line="11467"/>
+        <location filename="../src/texstudio.cpp" line="11472"/>
         <source>No, kill the program</source>
         <translation>Nem, megszakítom a program futását</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11426"/>
+        <location filename="../src/texstudio.cpp" line="11469"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -12324,17 +12350,17 @@ Kérjük adja meg ezt a fájlt, ha hibajelentést küld.
 %1 Biztosan folytatni akarja a program futtatását? Adatok veszhetnek el.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11427"/>
+        <location filename="../src/texstudio.cpp" line="11470"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Igen, megszakítom a ciklust és megkísérelem a helyreállítást</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11428"/>
+        <location filename="../src/texstudio.cpp" line="11471"/>
         <source>Yes, continue the loop</source>
         <translation>Igen, folytatom a ciklust</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11507"/>
+        <location filename="../src/texstudio.cpp" line="11550"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -12343,50 +12369,50 @@ A szál leállt.
 Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11512"/>
+        <location filename="../src/texstudio.cpp" line="11555"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Megkíséreltem megszakítani a program futását, de semmi nem történt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11544"/>
+        <location filename="../src/texstudio.cpp" line="11587"/>
         <source>System Report</source>
         <translation>Rendszerüzenet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11682"/>
+        <location filename="../src/texstudio.cpp" line="11725"/>
         <source>LT Report</source>
         <translation>LT jelentés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11708"/>
+        <location filename="../src/texstudio.cpp" line="11751"/>
         <source>process failed to start
 </source>
         <translation>a folyamat nem tudott elindulni
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11711"/>
+        <location filename="../src/texstudio.cpp" line="11754"/>
         <source>process crashed
 </source>
         <translation>a folyamat összeomlott
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11721"/>
+        <location filename="../src/texstudio.cpp" line="11764"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>Valós idejű ellenőrzés engedélyezett.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11723"/>
+        <location filename="../src/texstudio.cpp" line="11766"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>Valós idejű ellenőrzés kikapcsolva!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11726"/>
+        <location filename="../src/texstudio.cpp" line="11769"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -12395,7 +12421,7 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11728"/>
+        <location filename="../src/texstudio.cpp" line="11771"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -12404,7 +12430,7 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11731"/>
+        <location filename="../src/texstudio.cpp" line="11774"/>
         <source>Tries to start automatically.
 
 </source>
@@ -12413,7 +12439,7 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11733"/>
+        <location filename="../src/texstudio.cpp" line="11776"/>
         <source>Autostart disabled.
 
 </source>
@@ -12422,161 +12448,161 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11738"/>
+        <location filename="../src/texstudio.cpp" line="11781"/>
         <source>LT current status: </source>
         <translation>LT jelenlegi állapota:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11741"/>
+        <location filename="../src/texstudio.cpp" line="11784"/>
         <source>working</source>
         <translation>működik</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11744"/>
+        <location filename="../src/texstudio.cpp" line="11787"/>
         <source>error</source>
         <translation>hiba</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11748"/>
+        <location filename="../src/texstudio.cpp" line="11791"/>
         <source>unknown</source>
         <translation>Ismeretlen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11751"/>
+        <location filename="../src/texstudio.cpp" line="11794"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12106"/>
+        <location filename="../src/texstudio.cpp" line="12149"/>
         <source>Error when communicating with LT: %1</source>
         <translation>Hiba az LT kommunikációban: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12399"/>
-        <location filename="../src/texstudio.cpp" line="13192"/>
+        <location filename="../src/texstudio.cpp" line="12444"/>
+        <location filename="../src/texstudio.cpp" line="13237"/>
         <source>untitled</source>
         <translation>névtelen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12409"/>
-        <location filename="../src/texstudio.cpp" line="13235"/>
+        <location filename="../src/texstudio.cpp" line="12454"/>
+        <location filename="../src/texstudio.cpp" line="13280"/>
         <source>TODO</source>
         <translation>TODO</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12542"/>
-        <location filename="../src/texstudio.cpp" line="12550"/>
-        <location filename="../src/texstudio.cpp" line="12581"/>
+        <location filename="../src/texstudio.cpp" line="12587"/>
+        <location filename="../src/texstudio.cpp" line="12595"/>
+        <location filename="../src/texstudio.cpp" line="12626"/>
         <source>Document: </source>
         <translation>Dokumentum:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12634"/>
+        <location filename="../src/texstudio.cpp" line="12679"/>
         <source>Close document</source>
         <translation>Dokumentum bezárása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12635"/>
+        <location filename="../src/texstudio.cpp" line="12680"/>
         <source>Set as explicit root document</source>
         <translation>Beállítás explicit gyökérdokumentumként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12636"/>
+        <location filename="../src/texstudio.cpp" line="12681"/>
         <source>Open all related documents</source>
         <translation>Minden kapcsolódó dokumentum megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12637"/>
+        <location filename="../src/texstudio.cpp" line="12682"/>
         <source>Close all related documents</source>
         <translation>Minden kapcsolódó dokumentum bezárása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12639"/>
+        <location filename="../src/texstudio.cpp" line="12684"/>
         <source>Remove explicit root document role</source>
         <translation>Explicit gyökérdokumentum szerep elvétele</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12641"/>
+        <location filename="../src/texstudio.cpp" line="12686"/>
         <source>Show all open documents in this tree</source>
         <translation>Megmutat minden megnyitott dokumentumot ebből a fából</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12643"/>
+        <location filename="../src/texstudio.cpp" line="12688"/>
         <source>Show only current document in this tree</source>
         <translation>Csak az aktuális dokumentumot mutatja ebből a fából</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12656"/>
+        <location filename="../src/texstudio.cpp" line="12701"/>
         <source>Copy filename</source>
         <translation>Fájlnév másolása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12657"/>
+        <location filename="../src/texstudio.cpp" line="12702"/>
         <source>Copy file path</source>
         <translation>Fájlelérési út másolása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12666"/>
+        <location filename="../src/texstudio.cpp" line="12711"/>
         <source>Insert</source>
         <translation>Beillesztés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12667"/>
-        <location filename="../src/texstudio.cpp" line="12668"/>
+        <location filename="../src/texstudio.cpp" line="12712"/>
+        <location filename="../src/texstudio.cpp" line="12713"/>
         <source>Insert as %1</source>
         <translation>Beillesztés %1-ként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12670"/>
+        <location filename="../src/texstudio.cpp" line="12715"/>
         <source>Find Usages</source>
         <translation>Használatok keresése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12681"/>
+        <location filename="../src/texstudio.cpp" line="12726"/>
         <source>Insert Label</source>
         <translation>Címke beszúrása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12685"/>
+        <location filename="../src/texstudio.cpp" line="12730"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation>%1 beszúrása címkére</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12689"/>
+        <location filename="../src/texstudio.cpp" line="12734"/>
         <source>Create Label</source>
         <translation>Címke készítése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12693"/>
+        <location filename="../src/texstudio.cpp" line="12738"/>
         <source>Cut</source>
         <translation>Kivágás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12697"/>
+        <location filename="../src/texstudio.cpp" line="12742"/>
         <source>Paste Before</source>
         <translation>Beillesztés elé</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12699"/>
+        <location filename="../src/texstudio.cpp" line="12744"/>
         <source>Paste After</source>
         <translation>Beillesztés utána</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12702"/>
+        <location filename="../src/texstudio.cpp" line="12747"/>
         <source>Indent Section</source>
         <translation>Fejezet behúzása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12704"/>
+        <location filename="../src/texstudio.cpp" line="12749"/>
         <source>Unindent Section</source>
         <translation>Fejezet behúzásának megszüntetése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12650"/>
-        <location filename="../src/texstudio.cpp" line="12708"/>
+        <location filename="../src/texstudio.cpp" line="12695"/>
+        <location filename="../src/texstudio.cpp" line="12753"/>
         <source>Expand Subitems</source>
         <translation>Almenük kinyitása</translation>
     </message>
@@ -12591,64 +12617,64 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
         <translation>Utoljára megnyitott határoló vagy környezet bezárása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12651"/>
-        <location filename="../src/texstudio.cpp" line="12710"/>
+        <location filename="../src/texstudio.cpp" line="12696"/>
+        <location filename="../src/texstudio.cpp" line="12755"/>
         <source>Collapse Subitems</source>
         <translation>Almenük összecsukása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12723"/>
+        <location filename="../src/texstudio.cpp" line="12768"/>
         <source>Open Document</source>
         <translation>Dokumentum megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12724"/>
-        <location filename="../src/texstudio.cpp" line="12731"/>
+        <location filename="../src/texstudio.cpp" line="12769"/>
+        <location filename="../src/texstudio.cpp" line="12776"/>
         <source>Go to Definition</source>
         <translation>Ugrás a definícióra</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13219"/>
+        <location filename="../src/texstudio.cpp" line="13264"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRÁFIA</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13227"/>
+        <location filename="../src/texstudio.cpp" line="13272"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MÁGIKUS_MEGJEGYZÉSEK</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13243"/>
+        <location filename="../src/texstudio.cpp" line="13288"/>
         <source>BLOCK</source>
         <translation>TÖMB</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13251"/>
+        <location filename="../src/texstudio.cpp" line="13296"/>
         <source>LABELS</source>
         <translation>CÍMKÉK</translation>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="661"/>
+        <location filename="../src/utilsSystem.cpp" line="663"/>
         <source>Launching Windows Explorer Failed</source>
         <translation>A Windows Fájlkezelő indítása meghiúsult</translation>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="663"/>
+        <location filename="../src/utilsSystem.cpp" line="665"/>
         <source>Could not find explorer.exe in path to launch Windows Explorer.</source>
         <translation>Az explorer.exe nem található az útvonalon a Windows Fájlkezelő indításához.</translation>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="713"/>
+        <location filename="../src/utilsSystem.cpp" line="715"/>
         <source>Show in Explorer</source>
         <translation>Megjelenítés a Fájlkezelőben</translation>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="715"/>
+        <location filename="../src/utilsSystem.cpp" line="717"/>
         <source>Show in Finder</source>
         <translation>Megjelenítés a Finderben</translation>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="717"/>
+        <location filename="../src/utilsSystem.cpp" line="719"/>
         <source>Show Containing Folder</source>
         <translation>Tartalmazó mappa megjelenítése</translation>
     </message>
