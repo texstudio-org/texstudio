@@ -1,5 +1,5 @@
 # ltugboat class
-# Matthew Bertucci 2024/10/28 for v2.33
+# Matthew Bertucci 2025/10/29 for v2.35
 
 #include:mflogo
 #include:gettitlestring
@@ -65,6 +65,8 @@ runningoff
 \begin{reviewitem}#*
 \begin{SafeSection}#*
 \begin{verbatim}[before code]
+\bfBib#*
+\bfBibLaTeX#*
 \bfBibTeX#*
 \Bib
 \BibJustification#*
@@ -266,6 +268,7 @@ runningoff
 \pdflatex#*
 \pdfTeX
 \pdftex#*
+\PDFUA
 \personalURL{URL}#U
 \PGF
 \phone#*
@@ -340,6 +343,7 @@ runningoff
 \TB
 \tbcode{text%plain}
 \tbcodebreak{text%plain}
+\tbdebug{text}#*
 \TBdriver#*
 \TBecircacute#*
 \TBEnableRemarks#*
@@ -348,6 +352,7 @@ runningoff
 \tbhurl{URL}#U
 \tbhurlfootnote{URL}#U
 \TBInfo{text}#*
+\tbloggingall#*
 \tbotregister#*
 \tbppkernfoot#*
 \TBremark{text}#*

@@ -1,5 +1,5 @@
 # letgut class
-# Matthew Bertucci 2024/10/08 for v0.10
+# Matthew Bertucci 2025/10/27 for v0.9.13
 
 #include:luatex
 #include:fontspec
@@ -11,6 +11,7 @@
 #include:biolinum
 #include:array
 #include:etoc
+#include:typicons
 #include:enumitem
 #include:titlesec
 #include:xcolor
@@ -116,6 +117,7 @@ watermark scale=%<factor%>
 \Assogut
 \lettres
 \lettresgut
+\listegut
 \cahier
 \cahiers
 \Cahier#S
@@ -128,6 +130,7 @@ watermark scale=%<factor%>
 \lamport
 \tl
 \tugboat
+\dtk
 \linux
 \macos
 \windows

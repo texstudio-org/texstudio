@@ -1,5 +1,5 @@
 # overarrows package
-# Matthew Bertucci 2024/07/11 for v1.2
+# Matthew Bertucci 2025/10/24 for v1.5
 
 #include:amsmath
 #include:etoolbox
@@ -304,6 +304,8 @@ fill macro={%<definition%>}
 \xjoinrel
 \xjoinrel[number]
 \smallermathstyle
+\arrowmathstyle
+\baselinebar
 \overarrowlength#L
 \overarrowthickness#L
 \overarrowsmallerthickness#L

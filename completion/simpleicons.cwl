@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/09/26 for v15.16.0
+# Matthew Bertucci 2025/10/24 for v15.17.0
 
 #include:iftex
 
@@ -1712,6 +1712,7 @@ ludwig
 lufthansa
 lumen
 lunacy
+luogu
 lutris
 lvgl
 lydia

@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2025/08/04 for v25.12
+# tbraun 4.11.2008; Matthew Bertucci 2025/10/24 for v25.14
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -20,9 +20,9 @@ silent
 hyphenmap=#off,first,select,other,other*
 bidi=#default,basic,basic-r,bidi-l,bidi-r
 layout=#sectioning,counters,counters*,lists,contents,footnotes,captions,columns,graphics,extras,pars,nopars
-provide=*
-provide+=*
-provide*=*
+provide=#*,!
+provide+=#*,!
+provide*=#*,!
 base
 ensureinfo=off
 #endkeyvals
@@ -400,6 +400,7 @@ select.encoding=#off
 \addto{cmd}{code}#S
 \AfterBabelCommands{code}#S
 \allowhyphens#S
+\BabelBeforeIni{arg1}{arg2}#S
 \BabelCJKGlue#S
 \BabelCJKSpace#S
 \BabelDated{arg}#S

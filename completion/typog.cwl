@@ -1,5 +1,5 @@
 # typog package
-# Matthew Bertucci 2024/07/09 for v0.4
+# Matthew Bertucci 2025/10/27 for v0.5
 
 #include:etoolbox
 #include:everyhook
@@ -12,20 +12,24 @@
 breakpenalty=%<penalty%>
 debug
 nodebug
+emdashspace=%<glue%>
+endashspace=%<glue%>
 ligaturekern=##L
 lowercaselabelitemadjustments={%<dim1,dim2,dim3,dim4%>}
-mathitalicscorrection=##L
+lowerslash=##L
+mathitaliccorrection=##L
 raise*=##L
 raisecapitaldash=##L
 raisecapitalhyphen=##L
 raisecapitaltimes=##L
 raisecapitalguillemets=##L
 raiseguillemets=##L
+raiseinvertedmarks={%<dim1,dim2,dim3%>}
 raisefiguredash=##L
 shrinklimits={%<lim1,lim2,lim3%>}
 stretchlimits={%<lim1,lim2,lim3%>}
 slashkern=##L
-textitalicscorrection=##L
+textitaliccorrection=##L
 trackingttspacing=%<outer-spacing%>
 uppercaselabelitemadjustments={%<dim1,dim2,dim3,dim4%>}
 #endkeyvals
@@ -34,19 +38,23 @@ uppercaselabelitemadjustments={%<dim1,dim2,dim3,dim4%>}
 
 #keyvals:\typogget
 breakpenalty
+emdashspace
+endashspace
 ligaturekern
-mathitalicscorrection
+lowerslash
+mathitaliccorrection
 raise*
 raisecapitaldash
 raisecapitalhyphen
 raisecapitaltimes
 raisecapitalguillemets
 raiseguillemets
+raiseinvertedmarks
 raisefiguredash
 shrinklimits
 stretchlimits
 slashkern
-textitalicscorrection
+textitaliccorrection
 trackingttspacing
 #endkeyvals
 
@@ -54,6 +62,7 @@ trackingttspacing
 
 #keyvals:\typoggetnth
 lowercaselabelitemadjustments
+raiseinvertedmarks
 shrinklimits
 stretchlimits
 trackingttspacing
@@ -103,6 +112,61 @@ tracingboxes=%<size%>
 \rightkernedhyphen[raise]{right-kern}
 \rightkernedhyphen*{right-kern}
 \rightkernedhyphen*[raise]{right-kern}
+\leftspacedendash
+\leftspacedendash[raise]
+\leftspacedendash*
+\leftspacedendash*[raise]
+\leftspaceddash#*
+\leftspaceddash[raise]#*
+\leftspaceddash*#*
+\leftspaceddash*[raise]#*
+\rightspacedendash
+\rightspacedendash[raise]
+\rightspacedendash*
+\rightspacedendash*[raise]
+\rightspaceddash#*
+\rightspaceddash[raise]#*
+\rightspaceddash*#*
+\rightspaceddash*[raise]#*
+\spacedendash#*
+\spacedendash[raise]#*
+\spacedendash*#*
+\spacedendash*[raise]#*
+\spaceddash#*
+\spaceddash[raise]#*
+\spaceddash*#*
+\spaceddash*[raise]#*
+\swapendashskip{punctuation}
+\leftspacedemdash
+\leftspacedemdash[raise]
+\leftspacedemdash*
+\leftspacedemdash*[raise]
+\rightspacedemdash
+\rightspacedemdash[raise]
+\rightspacedemdash*
+\rightspacedemdash*[raise]
+\spacedemdash#*
+\spacedemdash[raise]#*
+\spacedemdash*#*
+\spacedemdash*[raise]#*
+\leftspacedcapitalendash
+\leftspacedcapitalendash*
+\leftspacedcapitaldash#*
+\leftspacedcapitaldash*#*
+\rightspacedcapitalendash
+\rightspacedcapitalendash*
+\rightspacedcapitaldash#*
+\rightspacedcapitaldash*#*
+\spacedcapitalendash#*
+\spacedcapitalendash*#*
+\spacedcapitaldash#*
+\spacedcapitaldash*#*
+\leftspacedcapitalemdash
+\leftspacedcapitalemdash*
+\rightspacedcapitalendash
+\rightspacedcapitalendash*
+\spacedcapitalemdash#*
+\spacedcapitalemdash*#*
 \capitalhyphen
 \capitalhyphen*
 \capitalendash
@@ -122,10 +186,21 @@ tracingboxes=%<size%>
 \Singleguillemetright
 \Doubleguillemetleft
 \Doubleguillemetright
+\capitalinvertedexclamationmark{number}
+\capitalinvertedquestionmark{number}
 
 \uppercaseadjustlabelitems{levels-to-adjust}
 \lowercaseadjustlabelitems{levels-to-adjust}
 \noadjustlabelitems{levels-to-adjust}
+
+\Adjustedlabelitemi
+\adjustedlabelitemi
+\Adjustedlabelitemii
+\adjustedlabelitemii
+\Adjustedlabelitemiii
+\adjustedlabelitemiii
+\Adjustedlabelitemiv
+\adjustedlabelitemiv
 
 \typogadjuststairs{step-size}{number-of-steps}{sample}
 \typogadjuststairs[scale]{step-size}{number-of-steps}{sample}
@@ -150,6 +225,9 @@ tracingboxes=%<size%>
 \begin{openlastlinepar}
 \begin{openlastlinepar}[dim]
 \end{openlastlinepar}
+\begin{lastlinefitpar}
+\begin{lastlinefitpar}[value]
+\end{lastlinefitpar}
 \begin{loosespacing}
 \begin{loosespacing}[level]
 \end{loosespacing}

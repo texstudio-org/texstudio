@@ -1,5 +1,5 @@
 # chemfig package
-# Matthew Bertucci 2023/06/30 for v1.6e
+# Matthew Bertucci 2025/10/27 for v1.7
 
 #include:simplekv
 #include:tikz
@@ -24,7 +24,7 @@ double bond sep=##L
 angle increment=%<degrees%>
 node style={%<TikZ keys%>}
 bond style={%<TikZ keys%>}
-cycle radius coeff=
+cycle radius coeff=%<coefficient%>
 stack sep=##L
 show cntcycle#true,false
 autoreset cntcycle#true,false
@@ -35,7 +35,7 @@ arrow angle=%<degrees%>
 arrow coeff=%<decimal%>
 arrow style={%<TikZ keys%>}
 arrow double sep=##L
-arrow double coeff=
+arrow double coeff=%<coefficient%>
 arrow double harpoon#true,false
 arrow label sep=##L
 arrow head=
@@ -74,7 +74,7 @@ scheme debug#true,false
 
 #keyvals:\setcharge
 debug#true,false
-macro atom=%<cmd%>
+macro atom=%<command%>
 circle#true,false
 macro charge=%<cmd%>
 extra sep=##L
@@ -153,6 +153,29 @@ indice=%<integer%>
 \merge{%<dir%>}(%<n1.a1%>)%<(n2.a2)...(ni.ai)%>--(%<n.a[s]%>)
 \merge{%<dir%>}(%<n1.a1%>)%<(n2.a2)...(ni.ai)%>--(%<n.a[s]%>)[%<c1,c2,c,style%>]
 \merge{%<dir%>}[%<labelup%>][%<labeldown%>](%<n1.a1%>)%<(n2.a2)...(ni.ai)%>--(%<n.a[s]%>)[%<c1,c2,c,style%>]
+
+\hreac
+\hreac[options%keyvals]
+\endhreac
+
+#keyvals:\hreac,\setchemfig
+harrow minwidth=##L
+label xsep=##L
+label align=#c,r,l
+name sep=##L
+hreac anchor=%<anchor%>
+hreac sep=##L
+hreac debug#true,false
+#endkeyvals
+
+#keyvals:\hreac
+arrow label sep=##L
+arrow style={%<TikZ keys%>}
+arrow double sep=##L
+arrow double coeff=%<coefficient%>
+arrow double harpoon#true,false
+arrow head=
+#endkeyvals
 
 \CFver#S
 \CFname#S
