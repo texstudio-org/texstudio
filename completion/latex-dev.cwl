@@ -1,7 +1,7 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
-# Matthew Bertucci 2025/06/01 release
+# Matthew Bertucci 2025/11/01 release
 
 #include:expl3-commands
 
@@ -17,6 +17,7 @@
 \AfterEndEnvironment[label]{environment}{code}#*
 \AfterEndEnvironment{environment}{code}#*
 \AssignSocketPlug{socket}{socket plug}#*
+\AssignStructureRole{structure}{role}#*
 \AssignTaggingSocketPlug{socket}{socket plug}#*
 \AssignTemplateKeys#*
 \AtBeginDocument[label]{code}#*
@@ -94,12 +95,14 @@
 \DeclareInstanceCopy{type}{instance2}{instance1}#*
 \DeclareKeys[family]{declarations}#*
 \DeclareKeys{declarations}#*
+\DeclareLowercaseExclusions{word1,word2,...}#*
 \DeclareLowercaseMapping[locale]{codepoint}{output}#*
 \DeclareLowercaseMapping{codepoint}{output}#*
 \DeclareMathAccent{cmd}{type}{sym-font}{slot}#*d
 \DeclareMathAlphabet{math-alph%cmd}{encoding}{family}{series}{shape}#*d
 \DeclareMathDelimiter{cmd}{type}{sym-font-1}{slot-1}{sym-font-2}{slot-2}#*d
 \DeclareMathRadical{cmd}{sym-font-1}{slot-1}{sym-font-2}{slot-2}#*d
+\DeclareMathScriptfontMapping{t-enc}{t-family}{s-enc}{s-family}{ss-enc}{ss-family}#*
 \DeclareMathSizes*{t-size}{mt-size}{s-size}{ss-size}#*
 \DeclareMathSizes{t-size}{mt-size}{s-size}{ss-size}#*
 \DeclareMathSymbol{cmd}{type}{sym-font}{slot}#*d
@@ -132,11 +135,13 @@
 \DeclareTextFontCommand{cmd}{font-switches%definition}#*d
 \DeclareTextSymbol{cmd}{encoding}{slot}#*d
 \DeclareTextSymbolDefault{cmd}{encoding}#*
+\DeclareTitlecaseExclusions{word1,word2,...}#*
 \DeclareTitlecaseMapping[locale]{codepoint}{output}#*
 \DeclareTitlecaseMapping{codepoint}{output}#*
 \DeclareUnicodeCharacter{hexadecimal}{definition}#*
 \DeclareUnknownKeyHandler[family]{code}#*
 \DeclareUnknownKeyHandler{code}#*
+\DeclareUppercaseExclusions{word1,word2,...}#*
 \DeclareUppercaseMapping[locale]{codepoint}{output}#*
 \DeclareUppercaseMapping{codepoint}{output}#*
 \DisableGenericHook{hook}#*
@@ -261,6 +266,8 @@
 \MakeRobust{cmd}#*
 \MathCollectTrue#*
 \MathCollectFalse#*
+\MathMLarg{arg}{code}#*
+\MathMLintent{intent}{code}#*
 \MessageBreak#*
 \NeedsTeXFormat{format}#*
 \NeedsTeXFormat{format}[release]#*
@@ -280,6 +287,7 @@
 \NewReversedHookWithArguments{hook}{number}#*
 \NewSocket{socket}{number of inputs}#*
 \NewSocketPlug{socket}{socket plug}{code}#*
+\NewStructureName{structure}#*
 \NewTaggingSocket{socket}{number of inputs}#*
 \NewTaggingSocketPlug{socket}{socket plug}{code}#*
 \NewTemplateType{template type}{no. of args}#*
@@ -298,7 +306,7 @@
 \PreviousTotalPages#*
 \ProcessedArgument#*
 \ProcessKeyOptions#*
-\ProcessKeyOptions[family]#*
+\ProcessKeyOptions[families]#*
 \ProcessList{list}{cmd}#*
 \ProcessOptions#*
 \ProcessOptions*#*
@@ -385,7 +393,8 @@
 \UseOneTimeHook{hook}#*
 \UseOneTimeHookWithArguments{%<hook%>}{%<number%>}{%<arg1%>}%<{arg2}...%>#*
 \UseRawInputEncoding#*
-\UseSocket{socket name}#*
+\UseSocket{socket}#*
+\UseStructureName{structure}#*
 \UseTaggingSocket{socket}#*
 \UseTemplate{type}{template}{settings}#*
 \UseTextAccent{encoding}{cmd}{text}#*
@@ -430,6 +439,7 @@ tagging-setup={%<options%>}
 \IfDocumentMetadataF{false code}#*
 \IfDocumentMetadataT{true code}#*
 \IfDocumentMetadataTF{true code}{false code}#*
+\NeedsDocumentMetadata#*
 
 # counter, lengths and dimens
 \setcounter{counter}{value}#*

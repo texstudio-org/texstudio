@@ -4497,6 +4497,10 @@
 ## #endkeyvals
 
 ### expl3 LaTeX interfaces ###
+## ltcmd ##
+\cmd_arg_spec:N %<⟨command⟩%>#/%expl3
+\cmd_arg_spec:c {%<⟨csname⟩%>}#/%expl3
+
 ## lthooks ##
 \hook_activate_generic:n {%<⟨hook⟩%>}#/%expl3
 \hook_debug_off:#/%expl3
