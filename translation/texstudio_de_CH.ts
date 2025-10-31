@@ -2770,7 +2770,7 @@ hier erzwungen werden.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="2557"/>
         <source>Use Rainbow colored braces</source>
-        <translation type="unfinished"/>
+        <translation>Benutze bunte geschweifte Klammern</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3596"/>
