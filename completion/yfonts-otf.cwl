@@ -1,12 +1,13 @@
 # yfonts-otf package
-# Matthew Bertucci 2022/11/16 for v0.43
+# Matthew Bertucci 2025/11/03 for v0.60
 
 #include:iftex
 #include:fontspec
 
-#keyvals:\usepackage/oldgerm-otf#c
+#keyvals:\usepackage/yfonts-otf#c
 oldumlaut
 varumlaut
+modernumlaut
 gothvarlongs
 #endkeyvals
 
@@ -22,6 +23,3 @@ gothvarlongs
 \shorts
 \ZWNJ
 \ZWS
-
-\fileversion#S
-\filedate#S

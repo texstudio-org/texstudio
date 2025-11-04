@@ -1,5 +1,5 @@
 # kpfonts-otf package
-# Matthew Bertucci 2025/10/29 for v0.70
+# Matthew Bertucci 2025/11/03 for v0.71
 
 #include:iftex
 #include:unicode-math
@@ -107,7 +107,6 @@ symbols
 \Coloneq#m
 \colonsim#m
 \Colonsim#m
-\D{arg}#m
 \dashColon#m
 \dashleftarrow#m
 \dashrightarrow#m
@@ -132,6 +131,7 @@ symbols
 \doublecup#m
 \downdasharrow#m
 \dualmap#m
+\D{arg}#m
 \eqqColon#m
 \fint#m
 \Finv#m
@@ -139,7 +139,10 @@ symbols
 \geqqslant#m
 \gggtr#m
 \gtreqqslantless#m
+\gtreqqslantless#m
 \gtreqslantless#m
+\gtreqslantless#m
+\gtrsimslant#m
 \gvertneqq#m
 \harrowextender#*m
 \IM#m
@@ -156,7 +159,10 @@ symbols
 \leftwavearrow#m
 \leqqslant#m
 \lesseqqslantgtr#m
+\lesseqqslantgtr#m
 \lesseqslantgtr#m
+\lesseqslantgtr#m
+\lesssimslant#m
 \lgblkcircle#m
 \lgblksquare#m
 \lgwhtsquare#m
@@ -199,8 +205,8 @@ symbols
 \mitsanswp#*m
 \Mmapsfrom#m
 \mmapsfrom#m
-\Mmapsto#m
 \mmapsto#m
+\Mmapsto#m
 \msanspartial#*m
 \multimapbothvert#m
 \multimapdot#m
@@ -312,9 +318,9 @@ symbols
 \vysmblksquare#m
 \vysmwhtsquare#m
 \wedgebar#m
+\widearcarrow{arg}#m
+\widearcarrow{arg}#m
 \widearc{arg}#m
-\widearcarrow{arg}#m
-\widearcarrow{arg}#m
 \Wr#m
 \Zbar#m
 
