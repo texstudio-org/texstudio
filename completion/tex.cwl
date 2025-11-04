@@ -310,6 +310,7 @@
 \showboxdepth#*
 \showlists#*
 \showthe#*
+\showthe{definition}#S
 \skewchar#*
 \skip#*
 \skipdef#*
