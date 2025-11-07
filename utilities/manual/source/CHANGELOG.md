@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.9.1
+
+- 
+
 ## TeXstudio 4.9.0
 
 - implement peer-to-peer collaborative editing with teamtype, [see manual](https://texstudio-org.github.io/editing.html#collaborative-editing-pair-programming)
