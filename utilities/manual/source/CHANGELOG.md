@@ -14,7 +14,7 @@
 - extend find usage/goto definition for special arguments (e.g. glossary)
 - fix tabular column definition detection to handle split lines
 - add rainbow colored braces (default:off) [#4224](https://github.com/texstudio-org/texstudio/pull/4224)
-- don't add expl3 as user commands (#3919)[https://github.com/texstudio-org/texstudio/issues/3919]
+- don't add expl3 as user commands [#3919](https://github.com/texstudio-org/texstudio/issues/3919)
 
 ## TeXstudio 4.8.9
 
