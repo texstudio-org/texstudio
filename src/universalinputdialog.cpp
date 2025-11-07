@@ -133,3 +133,15 @@ void UniversalInputDialog::showEvent(QShowEvent *event)
     gridLayout->addWidget(box, gridLayout->rowCount(), 0, 1, 2 );
 	setLayout(gridLayout);
 }
+
+void UniversalInputDialog::keyPressEvent(QKeyEvent *event)
+{
+	// Handle Ctrl+Enter or Ctrl+Return to accept the dialog
+	if ((event->modifiers() & Qt::ControlModifier) && 
+	    (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter)) {
+		myAccept();
+		event->accept();
+	} else {
+		QDialog::keyPressEvent(event);
+	}
+}
