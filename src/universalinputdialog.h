@@ -35,6 +35,7 @@ public:
 	QTextEdit *addTextEdit(QString *var, const QString &description = "");
 	QDoubleSpinBox *addVariable(float *var, const QString &description = "");
 	virtual void showEvent(QShowEvent *event);
+	virtual void keyPressEvent(QKeyEvent *event);
 };
 
 //seems to be not necessary in qt4.5, but I'm not sure about older versions
