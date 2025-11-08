@@ -44,9 +44,13 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
 
     leEntry=new QTextEdit();
     leEntry->setPlaceholderText(tr("Enter your query here"));
+    QAction *actAccept=new QAction(leEntry);
+    connect(actAccept, &QAction::triggered,this,&AIChatAssistant::slotSend);
+    actAccept->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
+    leEntry->addAction(actAccept);
     m_actSend=new QAction();
     m_actSend->setIcon(getRealIcon("document-send"));
-    m_actSend->setToolTip(tr("Send Query to AI provider"));
+    m_actSend->setToolTip(tr("Send Query to AI provider (ctrl+enter)"));
     connect(m_actSend,&QAction::triggered,this,&AIChatAssistant::slotSend);
     m_btSend=new QToolButton();
     m_btSend->setDefaultAction(m_actSend);
