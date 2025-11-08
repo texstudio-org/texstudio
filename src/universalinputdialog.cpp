@@ -128,8 +128,20 @@ void UniversalInputDialog::showEvent(QShowEvent *event)
 	if (event->spontaneous()) return;
 	QDialogButtonBox *box = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
 	box->button(QDialogButtonBox::Ok)->setDefault(true);
+    box->button(QDialogButtonBox::Ok)->setToolTip(tr("Accept (ctrl+enter)"));
 	connect(box, SIGNAL(accepted()), this, SLOT(myAccept()));
 	connect(box, SIGNAL(rejected()), this, SLOT(reject()));
     gridLayout->addWidget(box, gridLayout->rowCount(), 0, 1, 2 );
 	setLayout(gridLayout);
+}
+
+void UniversalInputDialog::keyPressEvent(QKeyEvent *event)
+{
+	// Handle Ctrl+Enter or Ctrl+Return to accept the dialog
+	if ((event->modifiers() & Qt::ControlModifier) &&
+	    (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter)) {
+		myAccept();
+		return;
+	}
+	QDialog::keyPressEvent(event);
 }
