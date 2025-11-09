@@ -7738,7 +7738,7 @@ void Texstudio::generateAddtionalTranslations()
     QRegularExpression rxCommandOnly("^\\\\['`^\"~=.^]?[a-zA-Z]*(\\{\\})* *$"); //latex command
 	//copy menu item text
 	QFile xmlFile(":/uiconfig.xml");
-	xmlFile.open(QIODevice::ReadOnly);
+	bool rc = xmlFile.open(QIODevice::ReadOnly);
 	QDomDocument xml;
 	xml.setContent(&xmlFile);
 
@@ -7768,7 +7768,7 @@ void Texstudio::generateAddtionalTranslations()
 	}
         // default formats
 	QFile xmlFile2(":/qxs/defaultFormats.qxf");
-	xmlFile2.open(QIODevice::ReadOnly);
+	rc = xmlFile2.open(QIODevice::ReadOnly);
 	xml.setContent(&xmlFile2);
 	QDomNodeList formats = xml.documentElement().elementsByTagName("format");
 	for (int i = 0; i < formats.size(); i++)
@@ -7782,7 +7782,7 @@ void Texstudio::generateAddtionalTranslations()
         QStringList l_fn=dir.entryList({"*.xml"});
         for(const QString &fn: l_fn){
             QFile xmlFile3("tags/"+fn);
-            xmlFile3.open(QIODevice::ReadOnly);
+            rc = xmlFile3.open(QIODevice::ReadOnly);
             xml.setContent(&xmlFile3);
 
             QStringList tagNames = QStringList() << "section" << "item";

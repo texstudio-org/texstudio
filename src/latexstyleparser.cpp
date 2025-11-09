@@ -821,7 +821,7 @@ QStringList LatexStyleParser::readPackageTracing(QString fn) const
 	QString tempPath = QDir::tempPath() + QDir::separator() + "." + QDir::separator();
 	QTemporaryFile *tf = new QTemporaryFile(tempPath + "XXXXXX.tex");
 	if (!tf) return QStringList();
-	tf->open();
+	bool rc = tf->open();
 
 	QTextStream out(tf);
 	out << "\\documentclass{article}\n";

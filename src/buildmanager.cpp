@@ -1742,7 +1742,7 @@ void BuildManager::killCurrentProcess()
 QString BuildManager::createTemporaryFileName()
 {
 	QTemporaryFile *temp = new QTemporaryFile(QDir::tempPath () + "/texstudio_XXXXXX.tex");
-	temp->open();
+	bool rc = temp->open();
 	temp->setAutoRemove(false);
 	QString tempName = temp->fileName();
 	delete temp;
@@ -1848,7 +1848,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				//write preamble
 				QTemporaryFile *tf = new QTemporaryFile(tempPath + "hXXXXXX.tex");
 				REQUIRE(tf);
-				tf->open();
+				bool rc = tf->open();
 				QTextStream out(tf);
                 if (outputCodec) {
                     out << outputCodec->fromUnicode(preamble_mod);
@@ -1904,7 +1904,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	// (place /./ after the temporary directory because it fails otherwise with qt4.3 on win and the tempdir "t:")
 	QTemporaryFile *tf = new QTemporaryFile(tempPath + "XXXXXX.tex");
 	if (!tf) return;
-	tf->open();
+	bool rc = tf->open();
 
 	QTextStream out(tf);
     if (outputCodec) {
