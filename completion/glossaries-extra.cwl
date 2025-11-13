@@ -1,5 +1,5 @@
 # glossaries-extra package
-# Matthew Bertucci 2025/10/17 for v1.8
+# Matthew Bertucci 2025/11/12 for v1.9
 
 #include:glossaries
 
@@ -1875,6 +1875,7 @@ theHvalue=%<<prefix><location>%>
 \glsxtrseelist{xr-list}#*
 \glsxtrtaggedlist{sing-tag}{plural-tag}{prefix}{xr-list}#*
 \glsxtrtaggedlistsep#*
+\glsxtrseeitemformat{gls-label%special}#*
 \glsseefirstitem{gls-label%special}#*
 \glsseelastoxfordsep#*
 \glsxtrforcsvfield{gls-label%special}{field}{handler}#*

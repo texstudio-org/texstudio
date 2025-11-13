@@ -1,5 +1,5 @@
 # simplebnf package
-# Matthew Bertucci 2023/11/24 for v1.0.0
+# Matthew Bertucci 2025/11/12 for v1.0.1
 
 #include:tabularray
 #include:mathtools
@@ -17,6 +17,7 @@
 prod-delim={%<characters%>}
 new-line-delim={%<characters%>}
 single-line-delim={%<characters%>}
+line-break-delim={%<characters%>}
 comment={%<characters%>}
 relation={%<characters%>}
 relation-sym-map={%<specification%>}
@@ -24,6 +25,8 @@ or-sym=%<symbol%>
 prod-sep=##L
 row-sep=##L
 #endkeyvals
+
+\bnfcomment{text}
 
 # deprecated
 \SimpleBNFDefEq#S

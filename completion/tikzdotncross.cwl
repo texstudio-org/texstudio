@@ -1,5 +1,5 @@
 # tikzdotncross package
-# Matthew Bertucci 2025/01/27 for v1.2c
+# Matthew Bertucci 2025/11/12 for v1.3b
 
 #include:tikzlibrarymath
 #include:tikzlibraryintersections
@@ -17,6 +17,8 @@ coordcolor=#%color
 
 \showcoordstrue
 \showcoordsfalse
+
+\showcoords{on|off}
 
 \ncoord(coord)
 \pincoord(coord)

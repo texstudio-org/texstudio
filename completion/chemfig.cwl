@@ -1,5 +1,5 @@
 # chemfig package
-# Matthew Bertucci 2025/10/27 for v1.7
+# Matthew Bertucci 2025/11/12 for v1.71
 
 #include:simplekv
 #include:tikz
@@ -46,6 +46,7 @@ gchemname#true,false
 schemestart code=%<code%>
 schemestop code=%<code%>
 baseline=##L
+init anchor=%<anchor%>
 #endkeyvals
 
 #keyvals:\setchemfig

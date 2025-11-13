@@ -1,5 +1,5 @@
 # reledmac package
-# Matthew Bertucci 2025/07/25 for v2.42.0
+# Matthew Bertucci 2025/07/25 for v2.43.0
 
 #include:xargs
 #include:etoolbox
@@ -362,6 +362,8 @@ normal
 \Xendbeforenumber[series]{length}
 \Xendafternumber{length}
 \Xendafternumber[series]{length}
+\afternumberX{length}
+\afternumberX[series]{length}
 \Xnonbreakableafternumber
 \Xnonbreakableafternumber[series]
 \Xbeforesymlinenum{length}

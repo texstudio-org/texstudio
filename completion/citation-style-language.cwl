@@ -15,6 +15,7 @@ ref-section=#none,part,chapter,chapter+,section,section+,subsection,subsection+
 backref=#true,page,section,false
 bib-font=%<font commands%>
 bib-entry-page-break#true,false
+bib-label-sep=##L
 bib-item-sep=%<<length> or <glue>%>
 bib-name-sep=##L
 bib-after-name-sep=##L
