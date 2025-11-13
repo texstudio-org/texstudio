@@ -1,5 +1,5 @@
 # gckanbun package
-# Matthew Bertucci 2022/04/29 for v1.2
+# Matthew Bertucci 2025/11/12 for v2.0.0
 
 #include:ifluatex
 #include:ifuptex
@@ -10,8 +10,17 @@ prefix=%<prefix%>
 #endkeyvals
 
 \gckanbunruby{text1}{text2}
+\振り{text1}{text2}
 \gckanbunokurigana{text}
+\送り{text}
 \gckanbunkaeriten{text}
+\返り{text}
+
+\IchiRe
+\JyouRe
+\KouRe
+\TenRe
+\KanHyphen
 
 #ifOption:prefix=
 \ruby{text1}{text2}
