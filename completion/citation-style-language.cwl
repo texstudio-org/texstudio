@@ -1,5 +1,5 @@
 # citation-style-language package
-# Matthew Bertucci 2025/08/07 for v0.8.1
+# Matthew Bertucci 2025/11/12 for v0.9.0
 
 #include:filehook
 #include:url

@@ -1,5 +1,5 @@
 # luatexko package
-# Matthew Bertucci 2025/08/27 for v4.5
+# Matthew Bertucci 2025/11/12 for v5.1
 
 #include:luatexbase
 #include:fontspec
