@@ -1,5 +1,5 @@
 # hologo package
-# Matthew Bertucci 1/10/2022 for v1.15
+# Matthew Bertucci 2025/11/13 for v1.16
 
 #include:ltxcmds
 #include:infwarerr
@@ -14,16 +14,15 @@
 
 #keyvals:\hologo#c,\Hologo#c
 (La)TeX
+ApLaTeX
+ApTeX
 AmSLaTeX
 AmSTeX
 biber
 BibTeX
-BibTeX
-BibTeX
 BibTeX8
 ConTeXt
-ConTeXt
-ConTeXt
+DVIPDFMx
 emTeX
 eTeX
 ExTeX
@@ -56,22 +55,17 @@ pdfLaTeX
 PiC
 PiCTeX
 plainTeX
-plainTeX
-plainTeX
-plainTeX
+pLaTeX
+pTeX
 SageTeX
 SLiTeX
-SLiTeX
-SLiTeX
-SLiTeX
-SliTeX
-SliTeX
-SliTeX
-SliTeX
 teTeX
 TeX
 TeX4ht
+TeXLive
 TTH
+upLaTeX
+upTeX
 virTeX
 VTeX
 Xe
@@ -113,15 +107,21 @@ driverfallback=%<driver%>
 
 #keyvals:\hologoFontSetup,\hologoLogoFontSetup
 general=%<font commands%>
-bibsf
-rm
-sc
-sf
-sy
-logo
+bibsf=%<font commands%>
+rm=%<font commands%>
+sc=%<font commands%>
+sf=%<font commands%>
+sy=%<font commands%>
+logo=%<font commands%>
 #endkeyvals
 
 \hologoVariant{name}{variant}#*
 \HologoVariant{name}{variant}#*
 \hologoList#*
 \hologoEntry{logo}{variant}{since}#*
+
+# not documented
+\HologoRobust{arg}#S
+\hologoRobust{arg}#S
+\HologoVariantRobust{arg1}{arg2}#S
+\hologoVariantRobust{arg1}{arg2}#S
