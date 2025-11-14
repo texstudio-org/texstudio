@@ -17,82 +17,86 @@
         <translation>Εισάγετε την ερώτησή σας εδώ</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="49"/>
-        <location filename="../src/aichatassistant.cpp" line="155"/>
-        <location filename="../src/aichatassistant.cpp" line="415"/>
-        <location filename="../src/aichatassistant.cpp" line="461"/>
+        <location filename="../src/aichatassistant.cpp" line="159"/>
+        <location filename="../src/aichatassistant.cpp" line="419"/>
+        <location filename="../src/aichatassistant.cpp" line="465"/>
         <source>Send Query to AI provider</source>
         <translation>Αποστολή ερώτησης στον πάροχο AI</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="56"/>
+        <location filename="../src/aichatassistant.cpp" line="60"/>
         <source>Insert response</source>
         <translation>Εισαγωγή απόκρισης</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="62"/>
+        <location filename="../src/aichatassistant.cpp" line="53"/>
+        <source>Send Query to AI provider (ctrl+enter)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/aichatassistant.cpp" line="66"/>
         <source>Options</source>
         <translation>Επιλογές</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="89"/>
+        <location filename="../src/aichatassistant.cpp" line="93"/>
         <source>AI chat assistant</source>
         <translation>Βοηθός AI</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="243"/>
+        <location filename="../src/aichatassistant.cpp" line="247"/>
         <source>Stop current query !</source>
         <translation>Διακοπή</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="330"/>
+        <location filename="../src/aichatassistant.cpp" line="334"/>
         <source>System prompt can&apos;t be altered mid-conversation</source>
         <translation>Δεν είναι δυνατή η επεξεργασία του system prompt κατά τη διάρκεια της συζήτησης</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="334"/>
+        <location filename="../src/aichatassistant.cpp" line="338"/>
         <source>System prompt</source>
         <translation>System prompt</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="349"/>
+        <location filename="../src/aichatassistant.cpp" line="353"/>
         <source>-</source>
         <translation>-</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="350"/>
+        <location filename="../src/aichatassistant.cpp" line="354"/>
         <source>Temperature not supported for local models</source>
         <translation>Η παράμετρος temperature δεν υποστηρίζεται από τα τοπικά μοντέλα</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="354"/>
+        <location filename="../src/aichatassistant.cpp" line="358"/>
         <source>Values between 0 and %1</source>
         <translation>Τιμές από 0 μέχρι %1</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="362"/>
+        <location filename="../src/aichatassistant.cpp" line="366"/>
         <source>Stream results</source>
         <translation>Μετάδοση αποτελεσμάτων</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="453"/>
-        <location filename="../src/aichatassistant.cpp" line="490"/>
+        <location filename="../src/aichatassistant.cpp" line="457"/>
+        <location filename="../src/aichatassistant.cpp" line="494"/>
         <source>Execute as macro</source>
         <translation>Εκτέλεση ως μακροεντολή</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="455"/>
-        <location filename="../src/aichatassistant.cpp" line="495"/>
+        <location filename="../src/aichatassistant.cpp" line="459"/>
+        <location filename="../src/aichatassistant.cpp" line="499"/>
         <source>Insert into text</source>
         <translation>Εισαγωγή ως κείμενο</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="493"/>
+        <location filename="../src/aichatassistant.cpp" line="497"/>
         <source>Insert code into text</source>
         <translation>Εισαγωγή κώδικα στο κείμενο</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="357"/>
+        <location filename="../src/aichatassistant.cpp" line="361"/>
         <source>Temperature</source>
         <translation>Θερμοκρασία</translation>
     </message>
@@ -1754,6 +1758,11 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Εμφάνιση προεπισκόπησης των μαθηματικών τύπων σε tooltip στον επεξεργαστή κειμένου</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="5069"/>
+        <source>teamtype</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/configdialog.ui" line="2335"/>
         <source>Show image tooltip on image files</source>
         <translation>Προεπισκόπηση εικόνας με την κίνηση του δρομέα στον κώδικα εισαγωγής της</translation>
@@ -3105,11 +3114,6 @@ Note: Changing this setting will only affect documents that are opened afterward
         <location filename="../src/configdialog.ui" line="5058"/>
         <source>Client folder:</source>
         <translation>Φάκελος πελάτη (client):</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="5069"/>
-        <source>ethersync</source>
-        <translation>ethersync</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5110"/>
@@ -12120,13 +12124,6 @@ Do you want to allow and run the new, overriding command?
         <translation>Όνομα χρήστη:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6969"/>
-        <source>Collaboration: Connected in folder %1
-to join: ethersync join %2</source>
-        <translation>Συνεργατική επεξεργασία: Έγινε σύνδεση στον φάκελο %1
-Για να συμμετάσχετε στη συνεργατική επεξεργασία, εκτελέστε την εντολή: ethersync join %2</translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="6971"/>
         <source>Copy access code</source>
         <translation>Αντιγραφή κωδικού πρόσβασης</translation>
@@ -12636,6 +12633,12 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Κλείσιμο τελευταίου ανοιχτού οριοθέτη ή περιβάλλοντος</translation>
     </message>
     <message>
+        <location filename="../src/texstudio.cpp" line="6969"/>
+        <source>Collaboration: Connected in folder %1
+to join: teamtype join %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/texstudio.cpp" line="12696"/>
         <location filename="../src/texstudio.cpp" line="12755"/>
         <source>Collapse Subitems</source>
@@ -13068,6 +13071,14 @@ If not, end characters are ignored.</source>
 included document in %1</source>
         <translation>
 περιλαμβάνεται στο αρχείο %1</translation>
+    </message>
+</context>
+<context>
+    <name>UniversalInputDialog</name>
+    <message>
+        <location filename="../src/universalinputdialog.cpp" line="131"/>
+        <source>Accept (ctrl+enter)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

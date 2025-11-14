@@ -17,82 +17,86 @@
         <translation>Saisissez votre requête ici</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="49"/>
-        <location filename="../src/aichatassistant.cpp" line="155"/>
-        <location filename="../src/aichatassistant.cpp" line="415"/>
-        <location filename="../src/aichatassistant.cpp" line="461"/>
+        <location filename="../src/aichatassistant.cpp" line="159"/>
+        <location filename="../src/aichatassistant.cpp" line="419"/>
+        <location filename="../src/aichatassistant.cpp" line="465"/>
         <source>Send Query to AI provider</source>
         <translation>Envoyer une requête au fournisseur d&apos;IA</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="56"/>
+        <location filename="../src/aichatassistant.cpp" line="60"/>
         <source>Insert response</source>
         <translation>Insérer une réponse</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="62"/>
+        <location filename="../src/aichatassistant.cpp" line="53"/>
+        <source>Send Query to AI provider (ctrl+enter)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/aichatassistant.cpp" line="66"/>
         <source>Options</source>
         <translation>Options</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="89"/>
+        <location filename="../src/aichatassistant.cpp" line="93"/>
         <source>AI chat assistant</source>
         <translation>Assistant de conversation IA</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="243"/>
+        <location filename="../src/aichatassistant.cpp" line="247"/>
         <source>Stop current query !</source>
         <translation>Arrêter la requête en cours !</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="330"/>
+        <location filename="../src/aichatassistant.cpp" line="334"/>
         <source>System prompt can&apos;t be altered mid-conversation</source>
         <translation>L&apos;invite du système ne peut pas être modifiée en cours de conversation</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="334"/>
+        <location filename="../src/aichatassistant.cpp" line="338"/>
         <source>System prompt</source>
         <translation>Invite système</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="349"/>
+        <location filename="../src/aichatassistant.cpp" line="353"/>
         <source>-</source>
         <translation>-</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="350"/>
+        <location filename="../src/aichatassistant.cpp" line="354"/>
         <source>Temperature not supported for local models</source>
         <translation>La température n&apos;est pas prise en charge par les modèles locaux.</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="354"/>
+        <location filename="../src/aichatassistant.cpp" line="358"/>
         <source>Values between 0 and %1</source>
         <translation>Valeurs comprises entre 0 et %1</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="362"/>
+        <location filename="../src/aichatassistant.cpp" line="366"/>
         <source>Stream results</source>
         <translation>Résultats du flux</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="453"/>
-        <location filename="../src/aichatassistant.cpp" line="490"/>
+        <location filename="../src/aichatassistant.cpp" line="457"/>
+        <location filename="../src/aichatassistant.cpp" line="494"/>
         <source>Execute as macro</source>
         <translation>Exécuter en tant que macro</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="455"/>
-        <location filename="../src/aichatassistant.cpp" line="495"/>
+        <location filename="../src/aichatassistant.cpp" line="459"/>
+        <location filename="../src/aichatassistant.cpp" line="499"/>
         <source>Insert into text</source>
         <translation>Insérer dans le texte</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="493"/>
+        <location filename="../src/aichatassistant.cpp" line="497"/>
         <source>Insert code into text</source>
         <translation>Insérer le code dans le texte</translation>
     </message>
     <message>
-        <location filename="../src/aichatassistant.cpp" line="357"/>
+        <location filename="../src/aichatassistant.cpp" line="361"/>
         <source>Temperature</source>
         <translation>Température</translation>
     </message>
@@ -1756,6 +1760,11 @@ Vous pouvez ensuite sélectionner un nouveau raccourci de l&apos;une des manièr
         <translation>Afficher la prévisualisation en info-bulle pour les formules dans l&apos;éditeur</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="5069"/>
+        <source>teamtype</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/configdialog.ui" line="2335"/>
         <source>Show image tooltip on image files</source>
         <translation>Afficher l&apos;image en info-bulle sur les fichiers images</translation>
@@ -3105,11 +3114,6 @@ Remarque : modifier ce paramètre n&apos;affectera que les documents ouverts ens
         <location filename="../src/configdialog.ui" line="5058"/>
         <source>Client folder:</source>
         <translation>Dossier client :</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="5069"/>
-        <source>ethersync</source>
-        <translation>ethersync</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5110"/>
@@ -12113,13 +12117,6 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>Nom :</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6969"/>
-        <source>Collaboration: Connected in folder %1
-to join: ethersync join %2</source>
-        <translation>Collaboration : connecté dans le dossier %1 ;
-pour rejoindre : ethersync join %2</translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="6971"/>
         <source>Copy access code</source>
         <translation>Copier le code d&apos;accès</translation>
@@ -12629,6 +12626,12 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <translation>Fermer le dernier délimiteur ouvert ou environnement</translation>
     </message>
     <message>
+        <location filename="../src/texstudio.cpp" line="6969"/>
+        <source>Collaboration: Connected in folder %1
+to join: teamtype join %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/texstudio.cpp" line="12696"/>
         <location filename="../src/texstudio.cpp" line="12755"/>
         <source>Collapse Subitems</source>
@@ -13064,6 +13067,14 @@ Sinon la ponctuation est ignorée.</translation>
 included document in %1</source>
         <translation>
 document inclus dans %1</translation>
+    </message>
+</context>
+<context>
+    <name>UniversalInputDialog</name>
+    <message>
+        <location filename="../src/universalinputdialog.cpp" line="131"/>
+        <source>Accept (ctrl+enter)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
