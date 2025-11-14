@@ -1590,12 +1590,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1860"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation>Lengyel iédőjelek: ,, &apos;&apos;</translation>
+        <translation>Magyar idézőjelek: ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1865"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation>Lengyel idézőjelek (Unicode): „ ”</translation>
+        <translation>Magyar idézőjelek (Unicode): „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1873"/>
