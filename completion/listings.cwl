@@ -1,5 +1,5 @@
 # mode: listings.sty
-# dani/2006-02-18; Matthew Bertucci 2024-03-13 for v1.10a
+# dani/2006-02-18; Matthew Bertucci 2025-11-12 for v1.11
 
 #include:keyval
 
@@ -37,6 +37,7 @@ Algol
 Ant
 Assembler
 [Motorola68k]Assembler
+[riscv]Assembler
 [x86masm]Assembler
 Awk
 [gnu]Awk
@@ -60,6 +61,7 @@ Caml
 [Objective]Caml
 CIL
 Clean
+CMake
 Cobol
 [1974]Cobol
 [1985]Cobol

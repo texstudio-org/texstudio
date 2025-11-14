@@ -1,5 +1,5 @@
 # newpx package
-# Matthew Bertucci 2024/01/12 for v1.535
+# Matthew Bertucci 2025/11/12 for v1.551
 
 #include:fontenc
 #include:fontaxes
@@ -37,6 +37,7 @@ amsthm
 noOT1
 fracspacing
 curlybraces
+boldermath
 # passed to newpxtext
 no-math#true,false
 lining#true,false

@@ -1,5 +1,5 @@
 # mitthesis class
-# Matthew Bertucci 2025/05/07 for v1.20
+# Matthew Bertucci 2025/11/12 for v1.21
 
 #include:class-report
 #include:etoolbox
@@ -19,26 +19,30 @@ mydesign
 twoside
 #endkeyvals
 
-\Author{full name}{department}
-\Author{%<full name%>}{%<department%>}[%<degree1%>]%<[degree2]...%>
-\Degree{degree name}{department}
-\DegreeYear
-\DegreeMonth
-\CopyrightAuthor
-\Supervisor{name}{department}
-\Acceptor{name}{title%text}{thesis-related position}
-\DegreeDate{month}{year}
-\ThesisDate{date}
-\Tighten
-\SignatureBlockSize{fontsize cmd}
+\Acceptor{name}{title%text}{thesis-related position%text}
 \AuthorNameSize{fontsize cmd}
-\Squash
+\Author{full name}{department%text}
+\Author{%<full name%>}{%<department%>}[%<degree1%>]%<[degree2]...%>
 \CClicense{license type}{URL}#U
+\CMPShortenTop
+\CopyrightAuthor
+\DegreeDate{month}{year}
+\DegreeMonth
+\DegreeYear
+\Degree{degree name}{department%text}
 \Institution{institution}
+\Reader{name}{title%text}{department%text}
+\SignatureBlockSize{fontsize cmd}
+\Squash
 \SupervisorDesignation{title%text}
-\PDFRightsText#*
-\SuppressMonthError#*
+\Supervisor{name}{title%text}
+\Supervisor{name}{title%text}[department%text]
 \SuppressAcceptorError#*
+\SuppressMonthError#*
+\ThesisCommitteeName{text}
+\ThesisDate{date}
+\ThesisReaderName{text}
+\Tighten
 
 \begin{nomenclature}
 \begin{nomenclature}[space]
@@ -60,7 +64,6 @@ twoside
 
 # not documented
 \ClassName#S
-\MIT#S
 \nomenwidth#S
 \nomname#S
 \savitemsep#S

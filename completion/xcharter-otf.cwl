@@ -1,5 +1,5 @@
 # xcharter-otf package
-# Matthew Bertucci 2025/10/29 for v0.70
+# Matthew Bertucci 2025/11/03 for v0.71
 
 #include:iftex
 #include:unicode-math
@@ -63,6 +63,7 @@ Scale=%<factor%>
 \gggtr#m
 \gtreqqslantless#m
 \gtreqslantless#m
+\gtrsimslant#m
 \gvertneqq#m
 \harrowextender#*m
 \intextender#*m
@@ -74,6 +75,7 @@ Scale=%<factor%>
 \leqqslant#m
 \lesseqqslantgtr#m
 \lesseqslantgtr#m
+\lesssimslant#m
 \lgblkcircle#m
 \lgblksquare#m
 \lgwhtsquare#m

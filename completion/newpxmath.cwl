@@ -1,5 +1,5 @@
 # newpxmath package
-# Matthew Bertucci 2025/01/24 for v1.539
+# Matthew Bertucci 2025/11/12 for v1.551
 
 #include:amsmath
 #include:etoolbox
@@ -29,6 +29,7 @@ noOT1
 amsthm
 fracspacing
 curlybraces
+boldermath
 #endkeyvals
 
 #ifOption:amsthm
@@ -59,6 +60,8 @@ curlybraces
 \bartilde{arg}#m
 \barwedge#m
 \Bbbk#m
+\bbdotlessi#m
+\bbdotlessj#m
 \because#m
 \betait#*m
 \betaup#*m
@@ -235,6 +238,8 @@ curlybraces
 \fintupop#*m
 \Finv#m
 \forallAlt#m
+\frakdotlessi#m
+\frakdotlessj#m
 \Game#m
 \Gammait#*m
 \gammait#*m

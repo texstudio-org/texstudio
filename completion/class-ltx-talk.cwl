@@ -1,9 +1,10 @@
 # ltx-talk class
-# Matthew Bertucci 2025/09/30 for v0.2.2
+# Matthew Bertucci 2025/11/12 for v0.3.0
 
 #include:pdfmanagement
 #include:relsize
 #include:geometry
+#include:mathtools
 #include:unicode-math
 #include:hyperref
 #include:xcolor
@@ -85,8 +86,10 @@ handout
 \alert{text}
 \alt<overlay spec>{default text%text}{alternative text%text}
 \alt{default text%text}{alternative text%text}
+\author[options%keyvals]{names}
 \color<overlay spec>[model]{color}
 \color<overlay spec>{color}
+\date[options%keyvals]{date}
 \emph<overlay spec>{text}
 \framesubtitle<overlay spec>[options%keyvals]{text}#*
 \framesubtitle<overlay spec>{text}
@@ -98,7 +101,7 @@ handout
 \frametitle{text}
 \includegraphics<overlay spec>[options%keyvals]{imagefile}#g
 \includegraphics<overlay spec>{imagefile}#g
-\institute[options%keyvals]{institute%text}#*
+\institute[options%keyvals]{institute%text}
 \institute{institute%text}
 \invisible<overlay spec>{text}
 \invisible{text}
@@ -114,7 +117,7 @@ handout
 \onslide<overlay spec>
 \pause
 \pause[overlay spec]
-\subtitle[options%keyvals]{text}#*
+\subtitle[options%keyvals]{text}
 \subtitle{text}
 \temporal<overlay spec>{before slide text%text}{default text%text}{after slide text%text}
 \temporal{before slide text%text}{default text%text}{after slide text%text}
@@ -130,6 +133,7 @@ handout
 \textsl<overlay spec>{text}
 \texttt<overlay spec>{text}
 \textup<overlay spec>{text}
+\title[options%keyvals]{text}
 \uncover<overlay spec>{text}
 \uncover{text}
 \visible<overlay spec>{text}
@@ -152,11 +156,31 @@ tag-slides=%<spec%>
 vertical-alignment=#bottom,center,stretch,top
 #endkeyvals
 
+#keyvals:\author#c
+short-author=%<names%>
+#endkeyvals
+
+#keyvals:\date#c
+short-date=%<date%>
+#endkeyvals
+
+#keyvals:\institute#c
+short-institute=%<name%>
+#endkeyvals
+
 #keyvals:\maketitle
 element-order=
 frame-style=
 horizontal-alignment=
 vertical-alignment=
+#endkeyvals
+
+#keyvals:\subtitle#c
+short-subtitle=%<text%>
+#endkeyvals
+
+#keyvals:\title#c
+short-title=%<text%>
 #endkeyvals
 
 # not documented

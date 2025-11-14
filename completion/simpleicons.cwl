@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/10/24 for v15.17.0
+# Matthew Bertucci 2025/11/12 for v15.19.0
 
 #include:iftex
 
@@ -162,6 +162,7 @@ anytype
 apache
 apacheairflow
 apacheant
+apacheavro
 apachecassandra
 apachecloudstack
 apachecordova
@@ -629,6 +630,7 @@ conventionalcommits
 convertio
 cookiecutter
 coolermaster
+coolify
 coop
 cobalt
 copaairlines
@@ -977,6 +979,7 @@ firefoxbrowser
 fireship
 firewalla
 first
+fishaudio
 fishshell
 fitbit
 fivem
@@ -1590,6 +1593,7 @@ kununu
 kuula
 kx
 kyocera
+labex
 labview
 lada
 lamborghini
@@ -1672,6 +1676,7 @@ linuxprofessionalinstitute
 linuxserver
 lionair
 liquibase
+listenhub
 listmonk
 lit
 litecoin

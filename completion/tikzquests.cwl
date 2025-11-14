@@ -1,13 +1,19 @@
 # tikzquests package
-# Matthew Bertucci 2025/10/06 for v2.0a
+# Matthew Bertucci 2025/11/12 for v2.2a
 
 #keyvals:\usepackage/tikzquests#c
-no alias
+keys={%<keyvals%>}
+source keys={%<keyvals%>}
 xtrakeys={%<keyvals%>}
+idx
 xtraidx={%<keyvals%>}
-undef color=#%color
-in review
 no defs
+old settings
+local defs
+no alias
+in review
+undef color=#%color
+keys info
 #endkeyvals
 
 \defRepository{repository}

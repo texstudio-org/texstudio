@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2025/10/24 for v25.14
+# tbraun 4.11.2008; Matthew Bertucci 2025/11/12 for v25.15
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -68,9 +68,13 @@ fontenc=%<encoding%>
 \textormath{text code}{math code%formula}#*
 
 \babelfont{font_family}{font_name}
-\babelfont{font_family}[font_options%keyvals]{font_name}
+\babelfont{font_family}[font_options%keyvals]{font_name}#*
+\babelfont{font_family}{font_name}[font_options%keyvals]
+\babelfont{font_family}[font_options%keyvals]{font_name}[font_options%keyvals]#S
 \babelfont[lang1,lang2,...]{font_family}{font_name}
-\babelfont[lang1,lang2,...]{font_family}[font_options%keyvals]{font_name}
+\babelfont[lang1,lang2,...]{font_family}[font_options%keyvals]{font_name}#*
+\babelfont[lang1,lang2,...]{font_family}{font_name}[font_options%keyvals]
+\babelfont[lang1,lang2,...]{font_family}[font_options%keyvals]{font_name}[font_options%keyvals]#S
 
 #keyvals:\babelfont#c
 Alternate=%<feature%>
