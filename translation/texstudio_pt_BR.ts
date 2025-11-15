@@ -31,7 +31,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="53"/>
         <source>Send Query to AI provider (ctrl+enter)</source>
-        <translation type="unfinished"/>
+        <translation>Enviar consulta ao fornecedor de IA (Ctrl+Enter)</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="66"/>
@@ -93,7 +93,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="497"/>
         <source>Insert code into text</source>
-        <translation type="unfinished"/>
+        <translation>Inserir código no texto</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="361"/>
@@ -1760,7 +1760,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location filename="../src/configdialog.ui" line="5069"/>
         <source>teamtype</source>
-        <translation type="unfinished"/>
+        <translation>teamtype</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2335"/>
@@ -2779,7 +2779,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="2557"/>
         <source>Use Rainbow colored braces</source>
-        <translation type="unfinished"/>
+        <translation>Usar chavetas em arco-íris</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3596"/>
@@ -3198,7 +3198,7 @@ Você não mais conseguirá digitar este caractere. Deseja realmente manter este
     <message>
         <location filename="../src/configdialog.cpp" line="506"/>
         <source>Delimiter highlighting</source>
-        <translation type="unfinished"/>
+        <translation>Realce dos delimitadores</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="507"/>
@@ -9038,7 +9038,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="../src/searchquery.cpp" line="330"/>
         <source>Special Definition Search</source>
-        <translation type="unfinished"/>
+        <translation>Procura de definição especial</translation>
     </message>
 </context>
 <context>
@@ -12634,7 +12634,8 @@ Você deseja continuar executando TeXstudio ? Isso pode ocasionar perda de dados
         <location filename="../src/texstudio.cpp" line="6969"/>
         <source>Collaboration: Connected in folder %1
 to join: teamtype join %2</source>
-        <translation type="unfinished"/>
+        <translation>Colaboração: ligado na pasta %1
+a juntar: teamtype join %2</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12696"/>
@@ -13074,7 +13075,7 @@ documento incluído em %1</translation>
     <message>
         <location filename="../src/universalinputdialog.cpp" line="131"/>
         <source>Accept (ctrl+enter)</source>
-        <translation type="unfinished"/>
+        <translation>Aceitar (Ctrl+Enter)</translation>
     </message>
 </context>
 <context>
