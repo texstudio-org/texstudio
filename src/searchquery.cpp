@@ -113,7 +113,7 @@ QString SearchQuery::searchFolder() const
 
 SearchInfo SearchQuery::searchInFile(QString file, const QRegularExpression &regex){
     QFile f(file);
-    f.open(QIODevice::ReadOnly);
+    bool rc = f.open(QIODevice::ReadOnly);
     QTextStream textStream(&f);
     SearchInfo result;
     int lineNr=0;
