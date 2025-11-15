@@ -31,7 +31,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="53"/>
         <source>Send Query to AI provider (ctrl+enter)</source>
-        <translation type="unfinished"/>
+        <translation>Envoyer une requête au fournisseur d&apos;IA (Ctrl+Entrée)</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="66"/>
@@ -1762,7 +1762,7 @@ Vous pouvez ensuite sélectionner un nouveau raccourci de l&apos;une des manièr
     <message>
         <location filename="../src/configdialog.ui" line="5069"/>
         <source>teamtype</source>
-        <translation type="unfinished"/>
+        <translation>type d&apos;équipe</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2335"/>
@@ -12629,7 +12629,8 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <location filename="../src/texstudio.cpp" line="6969"/>
         <source>Collaboration: Connected in folder %1
 to join: teamtype join %2</source>
-        <translation type="unfinished"/>
+        <translation>Collaboration : connecté dans le dossier %1
+Pour rejoindre : rejoindre le type d&apos;équipe %2</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12696"/>
@@ -13074,7 +13075,7 @@ document inclus dans %1</translation>
     <message>
         <location filename="../src/universalinputdialog.cpp" line="131"/>
         <source>Accept (ctrl+enter)</source>
-        <translation type="unfinished"/>
+        <translation>Accepter (Ctrl+Entrée)</translation>
     </message>
 </context>
 <context>
