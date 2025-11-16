@@ -1,5 +1,5 @@
 # texvc package
-# Matthew Bertucci 1/22/2022 for v1.1
+# Matthew Bertucci 2025/11/16 for v1.3
 
 #include:amsfonts
 #include:amsmath
@@ -7,6 +7,10 @@
 #include:babel
 # loads greek and english options of babel
 #include:cancel
+#include:bbold
+#include:mhchem
+#include:stix
+#include:arcs
 #include:color
 #include:eurosym
 #include:teubner
