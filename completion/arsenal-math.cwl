@@ -1,7 +1,11 @@
 # arsenal-math package
-# Matthew Bertucci 2025/10/16 for v0.9.1
+# Matthew Bertucci 2025/11/17 for v0.9.2
 
 #include:unicode-math
+
+#keyvals:\usepackage/arsenal-math#c
+Scale=%<factor%>
+#endkeyvals
 
 # additional symbols available with the font
 \barV#m
