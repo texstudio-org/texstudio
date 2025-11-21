@@ -64,7 +64,7 @@ QString TestManager::performTest(QObject* obj){
 QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit* codeedit, QEditor* editor, BuildManager* buildManager){
 	QTemporaryFile tf;
 	tf.setAutoRemove(false);
-	tf.open();
+    if(!tf.open()) return QString();
 	QByteArray tfn = QFile::encodeName(tf.fileName());
 	tf.close();
 	tempResult = tfn.data();

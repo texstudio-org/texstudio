@@ -86,7 +86,7 @@ void QEditorTest::loadSave(){
 	QString testTextWithLineEndings=testText;
 	testTextWithLineEndings.replace("\n",outLineEnding);
 	QTemporaryFile tf;//uncomment if you need to look at the files &tf=*(new QTemporaryFile);
-	tf.open();
+    if(!tf.open()) return; // file creation failed
 	QString tfn=tf.fileName();
 	tf.write(outCodec->fromUnicode(testTextWithLineEndings));
 	tf.close();
