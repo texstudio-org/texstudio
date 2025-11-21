@@ -2348,7 +2348,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL)
 	}
 	HCONV hConv = DdeConnect(pidInst, hszService, hszTopic, NULL);
 	if (!hConv && !serviceEXEPath.isEmpty()) {
-		if (!serviceEXEPath.contains('"') && serviceEXEPath.contains(' ') && QFileInfo(serviceEXEPath).exists())
+        if (!serviceEXEPath.contains('"') && serviceEXEPath.contains(' ') && QFileInfo::exists(serviceEXEPath))
 			serviceEXEPath = "\"" + serviceEXEPath + "\"";
 		//connecting failed; start the service if necessary
 		QProcess *p = new QProcess(QCoreApplication::instance()); //application is parent, to close the service if txs is closed
