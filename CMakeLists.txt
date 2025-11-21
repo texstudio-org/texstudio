@@ -23,8 +23,9 @@ else()
     endif()
 endif()
 
-
-
+if(MINGW)
+  add_compile_options(-Wa,-mbig-obj)
+endif()
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
