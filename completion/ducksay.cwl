@@ -1,5 +1,5 @@
 # ducksay package
-# Matthew Bertucci 2024/03/30 for v2.7
+# Matthew Bertucci 2025/11/22 for v2.8
 
 #include:array
 #include:grabbox
@@ -26,19 +26,14 @@
 \duckthink[options%keyvals]{message}
 
 #keyvals:\DucksayOptions#c,\AnimalOptions#c,\AnimalOptions*#c,\ducksay#c,\duckthink#c
-ligatures=%<tokenlist%>
+ligatures=%<token list%>
 no-tail
 random#true,false
 say
 schroedinger
-tail-1=%<tokenlist%>
-tail-2=%<tokenlist%>
+tail-1=%<token list%>
+tail-2=%<token list%>
 think
-#endkeyvals
-
-#keyvals:\AnimalOptions#c,\AnimalOptions*#c
-tail-count=
-tail-symbol=
 #endkeyvals
 
 #keyvals:\DucksayOptions#c,\ducksay#c,\duckthink#c
@@ -55,15 +50,15 @@ body-y=##L
 bubble=%<font%>
 bubble*=%<font%>
 bubble-bot-kern=##L
-bubble-delim-left-1=%<tokenlist%>
-bubble-delim-left-2=%<tokenlist%>
-bubble-delim-left-3=%<tokenlist%>
-bubble-delim-left-4=%<tokenlist%>
-bubble-delim-right-1=%<tokenlist%>
-bubble-delim-right-2=%<tokenlist%>
-bubble-delim-right-3=%<tokenlist%>
-bubble-delim-right-4=%<tokenlist%>
-bubble-delim-top=%<tokenlist%>
+bubble-delim-left-1=%<token list%>
+bubble-delim-left-2=%<token list%>
+bubble-delim-left-3=%<token list%>
+bubble-delim-left-4=%<token list%>
+bubble-delim-right-1=%<token list%>
+bubble-delim-right-2=%<token list%>
+bubble-delim-right-3=%<token list%>
+bubble-delim-right-4=%<token list%>
+bubble-delim-top=%<token list%>
 bubble-side-kern=##L
 bubble-top-kern=##L
 c
@@ -76,10 +71,10 @@ msg*=%<font%>
 MSG=%<font%>
 MSG*=%<font%>
 msg-align=#l,c,r,j
-msg-align-c=%<tokenlist%>
-msg-align-l=%<tokenlist%>
-msg-align-r=%<tokenlist%>
-msg-align-j=%<tokenlist%>
+msg-align-c=%<token list%>
+msg-align-l=%<token list%>
+msg-align-r=%<token list%>
+msg-align-j=%<token list%>
 msg-to-body=
 no-bubble#true,false
 none#true,false
@@ -96,7 +91,7 @@ wd-eq-body#true,false
 #endkeyvals
 
 #keyvals:\DefaultAnimal#c,\ducksay#c,\duckthink#c
-animal=
+animal=%<animal%>
 duck
 small-duck
 duck-family
