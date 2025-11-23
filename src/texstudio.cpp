@@ -6760,7 +6760,7 @@ void Texstudio::connectCollabServer()
     bool ok{};
     QString text = QInputDialog::getText(this, tr("Collaboration server name or address"),
                                          tr("Name:"), QLineEdit::Normal,
-                                         QDir::home().dirName(), &ok);
+                                         "", &ok);
     if (ok && !text.isEmpty()){
         // trim join code
         text=text.trimmed();
