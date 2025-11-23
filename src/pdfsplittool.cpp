@@ -327,7 +327,7 @@ QString joinEscape(const QStringList &sl)
 QString MultiProcessX::createTemporaryFileName(const QString &extension)
 {
 	QTemporaryFile *temp = new QTemporaryFile(QDir::tempPath () + "/texstudio_XXXXXX" + extension);
-	temp->open();
+    if(!temp->open()) return QString();
 	temp->setAutoRemove(false);
 	QString tempName = temp->fileName();
 	delete temp;

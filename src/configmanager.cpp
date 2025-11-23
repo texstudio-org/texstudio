@@ -2906,7 +2906,7 @@ void ConfigManager::setInterfaceStyle()
 #endif
     if(newStyle=="Orion Dark"){
         QFile file(":/utilities/stylesheet_francesco.qss");
-        file.open(QFile::ReadOnly);
+        if(!file.open(QFile::ReadOnly)) return;
         QString styleSheet = QString::fromLatin1(file.readAll());
         qApp->setStyleSheet(styleSheet);
         darkMode=true;

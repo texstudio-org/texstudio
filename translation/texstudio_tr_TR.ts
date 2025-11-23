@@ -31,7 +31,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="53"/>
         <source>Send Query to AI provider (ctrl+enter)</source>
-        <translation type="unfinished"/>
+        <translation>Sorguyu YZ hizmeti sağlayıcısına gönder (Ctrl+Enter)</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="66"/>
@@ -1760,7 +1760,7 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     <message>
         <location filename="../src/configdialog.ui" line="5069"/>
         <source>teamtype</source>
-        <translation type="unfinished"/>
+        <translation>teamtype</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2335"/>
@@ -12625,7 +12625,8 @@ TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden 
         <location filename="../src/texstudio.cpp" line="6969"/>
         <source>Collaboration: Connected in folder %1
 to join: teamtype join %2</source>
-        <translation type="unfinished"/>
+        <translation>İş birliği: %1 klasörüne bağlı
+Katılmak için: teamtype join %2</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12696"/>
@@ -13066,7 +13067,7 @@ included document in %1</source>
     <message>
         <location filename="../src/universalinputdialog.cpp" line="131"/>
         <source>Accept (ctrl+enter)</source>
-        <translation type="unfinished"/>
+        <translation>Onayla (Ctrl+Enter)</translation>
     </message>
 </context>
 <context>

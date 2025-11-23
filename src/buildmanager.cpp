@@ -834,7 +834,7 @@ QString getTeXLiveWinBinPathInternal()
 	int p = pdftex.indexOf("\\bin\\", 0, Qt::CaseInsensitive);
 	if (p <= 0) return "";
 	QString path = pdftex.left(p);
-	if (!QFileInfo(path + "\\release-texlive.txt").exists()) return "";
+    if (!QFileInfo::exists(path + "\\release-texlive.txt")) return "";
 	return path + "\\bin\\win32\\";
 }
 
@@ -914,11 +914,11 @@ QString searchBaseCommand(const QString &cmd, QString options, QString texPath)
 #ifdef Q_OS_WIN32
         //Windows MikTex
         QString mikPath = getMiKTeXBinPath();
-        if (!mikPath.isEmpty() && QFileInfo(mikPath + fileName).exists())
+        if (!mikPath.isEmpty() && QFileInfo::exists(mikPath + fileName))
             return "\"" + mikPath + fileName + "\" " + options; //found
         //Windows TeX Live
         QString livePath = getTeXLiveWinBinPath();
-        if (!livePath.isEmpty() && QFileInfo(livePath + fileName).exists())
+        if (!livePath.isEmpty() && QFileInfo::exists(livePath + fileName))
             return "\"" + livePath + fileName + "\" " + options; //found
 #endif
 #ifdef Q_OS_MAC
@@ -1213,7 +1213,7 @@ QString getCommandLineViewDvi()
 	def = searchBaseCommand("dviout", "%.dvi"); //texlive
 	if (!def.isEmpty()) return def;
 
-	if (QFileInfo("C:/texmf/miktex/bin/yap.exe").exists())
+    if (QFileInfo::exists("C:/texmf/miktex/bin/yap.exe"))
 		return "C:/texmf/miktex/bin/yap.exe " + yapOptions;
 
 	return "";
@@ -1227,7 +1227,7 @@ QString getCommandLineViewPs()
 
 	QString livePath = getTeXLiveWinBinPath();
 	if (!livePath.isEmpty())
-		if (QFileInfo(livePath + "psv.exe").exists())
+        if (QFileInfo::exists(livePath + "psv.exe"))
 			return "\"" + livePath + "psv.exe\"  \"?am.ps\"";
 
 
@@ -1235,9 +1235,9 @@ QString getCommandLineViewPs()
 	int pos;
 	while ((pos = gsDll.lastIndexOf("\\")) > -1) {
 		gsDll = gsDll.mid(0, pos + 1);
-		if (QFileInfo(gsDll + "gsview32.exe").exists())
+        if (QFileInfo::exists(gsDll + "gsview32.exe"))
 			return "\"" + gsDll + "gsview32.exe\" -e \"?am.ps\"";
-		if (QFileInfo(gsDll + "gsview.exe").exists())
+        if (QFileInfo::exists(gsDll + "gsview.exe"))
 			return "\"" + gsDll + "gsview.exe\" -e \"?am.ps\"";
 		gsDll = gsDll.mid(0, pos);
 	}
@@ -1267,18 +1267,18 @@ QString getCommandLineGhostscript()
 	const QString gsArgs = " \"?am.ps\"";
 	QString livePath = getTeXLiveWinBinPath();
 	if (!livePath.isEmpty()) {
-		if (QFileInfo(livePath + "rungs.exe").exists())
+        if (QFileInfo::exists(livePath + "rungs.exe"))
 			return "\"" + livePath + "rungs.exe\"" + gsArgs;
-		if (QFileInfo(livePath + "rungs.bat").exists()) //tl 2008 (?)
+        if (QFileInfo::exists(livePath + "rungs.bat")) //tl 2008 (?)
 			return "\"" + livePath + "rungs.bat\"" + gsArgs;
 	}
 	QString dll = findGhostscriptDLL().replace("gsdll32.dll", "gswin32c.exe", Qt::CaseInsensitive);
 	if (dll.endsWith("gswin32c.exe")) return "\"" + dll + "\"" + gsArgs;
-	else if (QFileInfo("C:/Program Files/gs/gs8.64/bin/gswin32c.exe").exists())  //old behaviour
+    else if (QFileInfo::exists("C:/Program Files/gs/gs8.64/bin/gswin32c.exe"))  //old behaviour
 		return "\"C:/Program Files/gs/gs8.64/bin/gswin32c.exe\"" + gsArgs;
-	else if (QFileInfo("C:/Program Files/gs/gs8.63/bin/gswin32c.exe").exists())  //old behaviour
+    else if (QFileInfo::exists("C:/Program Files/gs/gs8.63/bin/gswin32c.exe"))  //old behaviour
 		return "\"C:/Program Files/gs/gs8.63/bin/gswin32c.exe\"" + gsArgs;
-	else if (QFileInfo("C:/Program Files/gs/gs8.61/bin/gswin32c.exe").exists())
+    else if (QFileInfo::exists("C:/Program Files/gs/gs8.61/bin/gswin32c.exe"))
 		return "\"C:/Program Files/gs/gs8.61/bin/gswin32c.exe\"" + gsArgs;
 	return "";
 }
@@ -1742,7 +1742,7 @@ void BuildManager::killCurrentProcess()
 QString BuildManager::createTemporaryFileName()
 {
 	QTemporaryFile *temp = new QTemporaryFile(QDir::tempPath () + "/texstudio_XXXXXX.tex");
-	temp->open();
+    if(!temp->open()) return QString();
 	temp->setAutoRemove(false);
 	QString tempName = temp->fileName();
 	delete temp;
@@ -1848,7 +1848,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				//write preamble
 				QTemporaryFile *tf = new QTemporaryFile(tempPath + "hXXXXXX.tex");
 				REQUIRE(tf);
-				tf->open();
+                if(!tf->open()) return; // opening file failed
 				QTextStream out(tf);
                 if (outputCodec) {
                     out << outputCodec->fromUnicode(preamble_mod);
@@ -1904,7 +1904,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	// (place /./ after the temporary directory because it fails otherwise with qt4.3 on win and the tempdir "t:")
 	QTemporaryFile *tf = new QTemporaryFile(tempPath + "XXXXXX.tex");
 	if (!tf) return;
-	tf->open();
+    if(!tf->open()) return;
 
 	QTextStream out(tf);
     if (outputCodec) {
@@ -2348,7 +2348,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL)
 	}
 	HCONV hConv = DdeConnect(pidInst, hszService, hszTopic, NULL);
 	if (!hConv && !serviceEXEPath.isEmpty()) {
-		if (!serviceEXEPath.contains('"') && serviceEXEPath.contains(' ') && QFileInfo(serviceEXEPath).exists())
+        if (!serviceEXEPath.contains('"') && serviceEXEPath.contains(' ') && QFileInfo::exists(serviceEXEPath))
 			serviceEXEPath = "\"" + serviceEXEPath + "\"";
 		//connecting failed; start the service if necessary
 		QProcess *p = new QProcess(QCoreApplication::instance()); //application is parent, to close the service if txs is closed

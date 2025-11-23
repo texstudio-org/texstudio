@@ -146,7 +146,7 @@ void LatexStyleParser::run()
         QStringList included = results.filter(QRegularExpression("#include:.+"));
 		foreach (QString elem, included) {
 			elem = elem.mid(9);
-			if (!QFileInfo("cwl:" + elem + ".cwl").exists()) {
+            if (!QFileInfo::exists("cwl:" + elem + ".cwl")) {
 				QString hlp = kpsewhich(elem + ".sty");
 				if (!hlp.isEmpty()) {
                     if (!topPackage.isEmpty()){
@@ -820,8 +820,7 @@ QStringList LatexStyleParser::readPackageTracing(QString fn) const
 
 	QString tempPath = QDir::tempPath() + QDir::separator() + "." + QDir::separator();
 	QTemporaryFile *tf = new QTemporaryFile(tempPath + "XXXXXX.tex");
-	if (!tf) return QStringList();
-	tf->open();
+    if (!tf || !tf->open()) return QStringList();
 
 	QTextStream out(tf);
 	out << "\\documentclass{article}\n";
