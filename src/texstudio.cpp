@@ -6764,7 +6764,7 @@ void Texstudio::connectCollabServer()
     if (ok && !text.isEmpty()){
         // trim join code
         text=text.trimmed();
-        if(text.startsWith("teamtype join ")) text=text.mid(15);
+        if(text.startsWith("teamtype join ")) text=text.mid(14);
         // start server
         const QString folderName=configManager.ce_clientPath;
         collabManager->startGuestServer(folderName,text);

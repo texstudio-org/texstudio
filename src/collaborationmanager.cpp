@@ -125,8 +125,7 @@ bool CollaborationManager::startGuestServer(const QString folder,const QString &
     }
     const QString binPath=m_conf->ce_toolPath;
     QString folderName=m_conf->ce_clientPath;
-    QDir dir(folderName);
-    dir.mkpath(".teamtype");
+
     if(!binPath.isEmpty()){
         // run binPath share folder
         collabServerProcess = new QProcess(this);
@@ -456,12 +455,16 @@ void CollaborationManager::readyCollabServerStandardOutput()
         for(QString line : lines){
             line=line.trimmed();
             if(line.startsWith("teamtype join")){
-                m_code=line.mid(15);
+                m_code=line.mid(14);
                 emit hostServerSuccessfullyStarted();
             }
         }
     }
     if(buffer.contains("Do you want to continue? (y/N):")){
+        // send y
+        collabServerProcess->write("y\n");
+    }
+    if(buffer.contains("Do you want to enable live collaboration here?") && buffer.contains("(y/N):")){
         // send y
         collabServerProcess->write("y\n");
     }
