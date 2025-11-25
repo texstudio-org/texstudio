@@ -1,5 +1,5 @@
 # circuitikz package
-# updated 2023/06/24 for v1.6.3
+# updated 2025/11/24 for v1.8.3
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -140,6 +140,7 @@ example
 \tunablewidth#S
 \pgfcircdeclaresolderjumper{name}{0|1}#*
 \pgfcircdeclaredoublesolderjumper{name}{0|1}{0|1}#*
+\pgfcircdeclareIGCT{name}{0|1}{-1|1}#*
 
 # from pgfcirctripoles.tex
 \pgfcircdeclarelogicport{name}{number}{code}#*
