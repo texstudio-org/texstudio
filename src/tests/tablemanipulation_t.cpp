@@ -167,10 +167,18 @@ void TableManipulationTest::addCol_data(){
         << "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tabular}\n"
         << 1 << 1
         << "\\begin{tabular}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\n\\end{tabular}\n";
+    QTest::newRow("add last col, last \\\\ missing")
+        << "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tabular}\n\n"
+        << 2 << 3
+        << "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& \\\\\ne&f& \n\\end{tabular}\n\n";
     QTest::newRow("add third col, last \\\\ missing")
         << "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tabular}\n"
         << 1 << 2
         << "\\begin{tabular}{xyl}\na&b& \\\\\nc&d& \\\\\ne&f& \n\\end{tabular}\n";
+    QTest::newRow("add last col, crash, last \\\\ missing")
+        << "\\begin{tabular}{lllll}\n   AEM13920 &  & & & \\\\\n  NEH7100  &  & & & \n\\end{tabular}\n"
+        << 1 << 21
+        << "\\begin{tabular}{llllll}\n   AEM13920 &  & & & & \\\\\n  NEH7100  &  & & & & \n\\end{tabular}\n";
     QTest::newRow("add 2nd col, single col, last \\\\ missing")
         << "\\begin{tabular}{x}\na\\\\\nc\\\\\ne\n\\end{tabular}\n"
         << 1 << 1
