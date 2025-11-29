@@ -137,7 +137,7 @@ LoadFandol#true,false
 \xeCJKResetCharClass#*
 \xeCJKResetPunctClass#*
 
-\normalspacechars{char list}#*
+\normalspacedchars{char list}#*
 
 ## 3.5
 \xeCJKsetwidth{punct list}{length}#*
