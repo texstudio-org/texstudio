@@ -6864,7 +6864,10 @@ void Texstudio::updateCollaborationEditors(int startLine, int startCol, int endL
     LatexDocument *doc=dynamic_cast<LatexDocument*>(sender());
     if(!doc) return;
     QString fname=doc->getFileName();
-    collabManager->sendChanges(fname,startLine,startCol,endLine,endCol,changes);
+    bool ok;
+    qint64 rev=doc->property("revision").toLongLong(&ok);
+    if(!ok) rev=0;
+    collabManager->sendChanges(fname,startLine,startCol,endLine,endCol,changes,rev);
 }
 /*!
  * \brief register file for collaboration

@@ -33,7 +33,7 @@ public:
 
 public slots:
     void sendChanges(QDocumentCursor cursor, const QString &changes);
-    void sendChanges(QString fileName,int startLine,int startCol,int endLine,int endCol, const QString &changes);
+    void sendChanges(QString fileName, int startLine, int startCol, int endLine, int endCol, const QString &changes, qint64 rev);
     void sendCursor(QDocumentCursor cursor);
 
 signals:

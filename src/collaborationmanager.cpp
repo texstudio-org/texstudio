@@ -237,7 +237,10 @@ void CollaborationManager::sendChanges(QDocumentCursor cursor, const QString &ch
     }
     QDocumentLineHandle *dlh=cursor.line().handle();
     LatexDocument *doc=dynamic_cast<LatexDocument*>(dlh->document());
-    sendChanges(doc->getFileName(),cursor.lineNumber(),cursor.columnNumber(),cursor.anchorLineNumber(),cursor.anchorColumnNumber(),changes);
+    bool ok;
+    qint64 rev=doc->property("revision").toLongLong(&ok);
+    if(!ok) rev=0;
+    sendChanges(doc->getFileName(),cursor.lineNumber(),cursor.columnNumber(),cursor.anchorLineNumber(),cursor.anchorColumnNumber(),changes,rev);
 }
 /*!
  * \brief variant to send changes to connected editors
@@ -248,17 +251,18 @@ void CollaborationManager::sendChanges(QDocumentCursor cursor, const QString &ch
  * \param endCol
  * \param changes
  */
-void CollaborationManager::sendChanges(QString fileName, int startLine, int startCol, int endLine, int endCol, const QString &changes)
+void CollaborationManager::sendChanges(QString fileName, int startLine, int startCol, int endLine, int endCol, const QString &changes,qint64 rev)
 {
     if(!isClientRunning()){
         return;
     }
+    qDebug()<<"send rev: "<<rev;
     QJsonObject jo;
     jo["jsonrpc"]="2.0";
     jo["method"]="edit";
     QJsonObject jparams;
     jparams["uri"]="file://"+fileName;
-    jparams["revision"]=0; // for now
+    jparams["revision"]=rev; // for now
     QJsonObject jrange;
     QJsonObject jstart;
     jstart["line"]=startLine;
@@ -397,12 +401,20 @@ void CollaborationManager::readyCollabClientStandardOutput()
             if(method=="edit"){
                 QJsonObject ja=dd["params"].toObject();
                 QString uri=ja["uri"].toString();
+                qint64 rev_received=ja["revision"].toInteger();
                 // find doc from uri
                 if(!uri.startsWith("file://")){
                     return;
                 }
                 QString fileName=uri.mid(7);
                 LatexDocument *doc=findDocumentFromName(fileName);
+                // update revision number
+                // apparently +1 per received changed request
+                bool ok;
+                qint64 rev=doc->property("revision").toLongLong(&ok);
+                if(!ok) rev=0;
+                doc->setProperty("revision",rev+1);
+                qDebug()<<"new rev:" <<rev+1;
                 QJsonArray jdelta=ja["delta"].toArray();
                 if(jdelta.size()>0){
                     QJsonObject jelem=jdelta[0].toObject();
