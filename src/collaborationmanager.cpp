@@ -401,7 +401,11 @@ void CollaborationManager::readyCollabClientStandardOutput()
             if(method=="edit"){
                 QJsonObject ja=dd["params"].toObject();
                 QString uri=ja["uri"].toString();
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
                 qint64 rev_received=ja["revision"].toInteger();
+#else
+                qint64 rev_received=ja["revision"].toInt();
+#endif
                 // find doc from uri
                 if(!uri.startsWith("file://")){
                     return;
