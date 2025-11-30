@@ -256,7 +256,6 @@ void CollaborationManager::sendChanges(QString fileName, int startLine, int star
     if(!isClientRunning()){
         return;
     }
-    qDebug()<<"send rev: "<<rev;
     QJsonObject jo;
     jo["jsonrpc"]="2.0";
     jo["method"]="edit";
@@ -418,7 +417,6 @@ void CollaborationManager::readyCollabClientStandardOutput()
                 qint64 rev=doc->property("revision").toLongLong(&ok);
                 if(!ok) rev=0;
                 doc->setProperty("revision",rev+1);
-                qDebug()<<"new rev:" <<rev+1;
                 QJsonArray jdelta=ja["delta"].toArray();
                 if(jdelta.size()>0){
                     QJsonObject jelem=jdelta[0].toObject();
@@ -519,6 +517,8 @@ void CollaborationManager::openFileInClient(const QString &fileName)
 {
     LatexDocument *doc=findDocumentFromName(fileName);
     if(!doc) return; // document not open
+    // reset revision
+    doc->setProperty("revision",0);
     // open file, send json
     QJsonObject jo;
     jo["jsonrpc"]="2.0";

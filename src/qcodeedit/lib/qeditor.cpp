@@ -6486,6 +6486,7 @@ void QEditor::removeExternalCursor(const QString &userId)
     if(userId.isEmpty()){
         // remove all
         m_externalCursors.clear();
+        m_externalCursorUsers.clear();
         viewport()->update();
         return;
     }
