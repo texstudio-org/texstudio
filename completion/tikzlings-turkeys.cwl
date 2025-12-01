@@ -1,21 +1,21 @@
-# tikzlings-dogs package
+# tikzlings-turkeys package
 # Matthew Bertucci 2025/12/01 for v2.4
 
 #include:tikz
 #include:tikzlings-addons
 
-\dog
-\dog[options%keyvals]
+\turkey
+\turkey[options%keyvals]
 
-#keyvals:\dog#c
+#keyvals:\turkey#c
 body=#%color
-eyes=#%color
-nose=#%color
 head=#%color
-ears=#%color
-paws=#%color
+wattle=#%color
+eyes=#%color
+bill=#%color
+feet=#%color
+wings=#%color
 tail=#%color
-tailpos=#left,right
 back
 3D
 contour
@@ -153,10 +153,10 @@ yshift=##L
 #endkeyvals
 
 # deprecated
-\doghookbackground#S
-\doghookbelly#S
-\doghookbody#S
-\doghookforeground#S
+\turkeyhookbackground#S
+\turkeyhookbelly#S
+\turkeyhookbody#S
+\turkeyhookforeground#S
 \tikzlinghookbackground#S
 \tikzlinghookbelly#S
 \tikzlinghookbody#S

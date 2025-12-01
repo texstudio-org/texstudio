@@ -1640,6 +1640,7 @@
 <file>completion/fonetika.cwl</file>
 <file>completion/fontawesome5.cwl</file>
 <file>completion/fontawesome6.cwl</file>
+<file>completion/fontawesome7.cwl</file>
 <file>completion/fontawesome.cwl</file>
 <file>completion/fontaxes.cwl</file>
 <file>completion/fontbook.cwl</file>
@@ -1687,6 +1688,7 @@
 <file>completion/framed.cwl</file>
 <file>completion/frcursive.cwl</file>
 <file>completion/freealign.cwl</file>
+<file>completion/freemath.cwl</file>
 <file>completion/frege.cwl</file>
 <file>completion/frenchmath.cwl</file>
 <file>completion/fr-fancy.cwl</file>
@@ -3927,6 +3929,7 @@
 <file>completion/tikzlings-sloths.cwl</file>
 <file>completion/tikzlings-snowmen.cwl</file>
 <file>completion/tikzlings-squirrels.cwl</file>
+<file>completion/tikzlings-turkeys.cwl</file>
 <file>completion/tikzlings-wolves.cwl</file>
 <file>completion/tikzmarmots.cwl</file>
 <file>completion/tikz-mirror-lens.cwl</file>

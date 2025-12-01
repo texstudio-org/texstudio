@@ -1,5 +1,5 @@
 # zeckendorf package
-# Matthew Bertucci 2025/10/18 for v0.9c
+# Matthew Bertucci 2025/11/18 for v0.9d
 
 #include:xintexpr
 #include:xintbinhex
@@ -30,6 +30,10 @@
 \ZeckTheFSeq{integer1}{integer2}
 \ZeckWord{integer}
 \ZeckZeck{integer}
+\ZeckHexWord{integer}
+\ZeckNfromHexWord{integer}
+\PhiBaseHexPhi{integer}
+\PhiXfromBaseHexPhi{Bergman representation}
 
 # not in main documentation
 \PhiAbs{arg}#S
@@ -46,7 +50,7 @@
 \PhiSub{integer1}{integer2}#S
 \ZECKrestorecatcodes#S
 \ZECKrestorecatcodesendinput#S
-\ZeckBListnum{integer}#S
+\ZeckBListNum{integer}#S
 \ZeckBList{integer}#S
 \ZeckB{arg}#S
 \ZeckMaxK{integer}#S
@@ -81,6 +85,12 @@
 \zecknfromindices{integer1,integer2,...}#S
 \zecknfromword{binary string}#S
 \zeckprintindexedsum{integer1,integer2,...}#S
-\zeckthebareiievalo#S
 \zeckundefinfix{arg}#S
 \zeckword{integer}#S
+\zeckhexword{integer}#S
+\zecknfromhexword{integer}#S
+\phibasehexphi{integer}#S
+\phixfrombasehexphi{arg}#S
+\phiexponentsfromhexrep{arg}#S
+\ZeckKMulNum{integer1}{integer2}#S
+\ZeckAMulNum{integer1}{integer2}#S

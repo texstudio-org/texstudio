@@ -1,334 +1,558 @@
 # flowfram package
-# Matthew Bertucci 3/31/2022 for v1.17
+# Matthew Bertucci 2025/11/24 for v2.0
 
-#include:ifthen
-#include:xkeyval
+#include:rerunfilecheck
 #include:graphics
 #include:afterpage
-#include:xfor
 #include:etoolbox
 #include:color
 
-#keyvals:\usepackage/flowfram#c
-pages=#relative,absolute
-draft
-final
+\flowframsetup{options%keyvals}
+
+#keyvals:\usepackage/flowfram#c,\flowframsetup
+adjust-toc=#header,notheader,off
+backmatter-sections=#no-change,no-number
+toc-thumbtabs=#aligned,unaligned,true,false
+unstarred-thumbtabs#true,false
+matter-thumbtabs=#main-only,all,not-front,not-back
+thumbtab-links=#toc-only,all,none
+thumbtab-text=#rotate,rotate-right,rotate-left,stack,normal
 thumbtabs=#title,number,both,none
+sections-extra-option=#thumbtab-only,original-and-thumbtab,as-original
+dynamic-page-style=#adjust,noadjust
+dynamic-header-case=#uc,no-change
+dynamic-subheader-case=#uc,no-change
+dynamic-page-style-header-font=%<code%>
+dynamic-page-style-subheader-font=%<code%>
+dynamic-empty-page-style=#empty,plain,headings,myheadings,ignore,hide,show
 LR
 RL
-rotate#true,false
-color#true,false
+column-changes=#ignore,clearpage,switch
+pages=#relative,absolute
+adjust-pre-chapter#true,false
 verbose#true,false
+draft
+final
+prohibit-frame-rotation#true,false
+norotate
+rotate#true,false
+ttbtitle
+ttbnotitle
+ttbnum
+ttbnonum
+color#true,false
+nocolor
 #endkeyvals
 
+\begin{dynamiccontents}{IDN}
+\begin{dynamiccontents}[options%keyvals]{IDN}
+\end{dynamiccontents}
+\begin{dynamiccontents*}{IDL}
+\begin{dynamiccontents*}[options%keyvals]{IDL}
+\end{dynamiccontents*}
+\begin{staticcontents}{IDN}
+\begin{staticcontents}[options%keyvals]{IDN}
+\end{staticcontents}
+\begin{staticcontents*}{IDL}
+\begin{staticcontents*}[options%keyvals]{IDL}
+\end{staticcontents*}
 \begin{staticfigure}
 \end{staticfigure}
 \begin{statictable}
 \end{statictable}
 
-\ifshowtypeblock#*
-\showtypeblocktrue
-\showtypeblockfalse
-\ifshowmargins#*
-\showmarginstrue
-\showmarginsfalse
-\ifshowframebbox#*
-\showframebboxtrue
-\showframebboxfalse
-\flowframeshowlayout
-
-\chapterfirstpagestyle#*
-\ffprechapterhook#*
-
-\newflowframe{width}{height}{x}{y}
-\newflowframe{width}{height}{x}{y}[label]
-\newflowframe[page list]{width}{height}{x}{y}
-\newflowframe[page list]{width}{height}{x}{y}[label]
-\newflowframe*{width}{height}{x}{y}
-\newflowframe*{width}{height}{x}{y}[label]
-\newflowframe*[page list]{width}{height}{x}{y}
-\newflowframe*[page list]{width}{height}{x}{y}[label]
-\getflowlabel{IDN}
-\getflowid{cmd}{IDL}#d
-
-\framebreak
-\fftolerance#*
-
-\newstaticframe{width}{height}{x}{y}
-\newstaticframe{width}{height}{x}{y}[label]
-\newstaticframe[page list]{width}{height}{x}{y}
-\newstaticframe[page list]{width}{height}{x}{y}[label]
-\newstaticframe*{width}{height}{x}{y}
-\newstaticframe*{width}{height}{x}{y}[label]
-\newstaticframe*[page list]{width}{height}{x}{y}
-\newstaticframe*[page list]{width}{height}{x}{y}[label]
-\getstaticlabel{IDN}
-\getstaticid{cmd}{IDL}#d
-\setstaticcontents{IDN}{contents%text}
-\setstaticcontents*{IDL}{contents%text}
-\begin{staticcontents}{IDN}
-\end{staticcontents}
-\begin{staticcontents*}{IDL}
-\end{staticcontents*}
-
-\newdynamicframe{width}{height}{x}{y}
-\newdynamicframe{width}{height}{x}{y}[label]
-\newdynamicframe[page list]{width}{height}{x}{y}
-\newdynamicframe[page list]{width}{height}{x}{y}[label]
-\newdynamicframe*{width}{height}{x}{y}
-\newdynamicframe*{width}{height}{x}{y}[label]
-\newdynamicframe*[page list]{width}{height}{x}{y}
-\newdynamicframe*[page list]{width}{height}{x}{y}[label]
-\getdynamiclabel{IDN}
-\getdynamicid{cmd}{IDL}#d
-\setdynamiccontents{IDN}{contents%text}
-\setdynamiccontents*{IDL}{contents%text}
-\begin{dynamiccontents}{IDN}
-\end{dynamiccontents}
-\begin{dynamiccontents*}{IDL}
-\end{dynamiccontents*}
-\appenddynamiccontents{IDN}{contents%text}
+\adjustcolsep#*
+\afterminitocskip#*
+\appenddfminitoc*{IDL}
+\appenddfminitoc{IDN}
+\appenddynamiccontents*[options%keyvals]{IDL}{contents%text}
 \appenddynamiccontents*{IDL}{contents%text}
-
-\dfchaphead{IDN}
-\dfchaphead*{IDL}
-\DFchapterstyle{text}#*
-\DFschapterstyle{text}#*
-
-\makedfheaderfooter
-
-\continueonframe{ID}
-\continueonframe[continuation text%text]{ID}
-\ffcontinuedtextlayout{text}#*
-\ffcontinuedtextfont{text}#*
-
-\setflowframe{IDN list}{keyvals}
-\setflowframe*{IDL list}{keyvals}
-\setallflowframes{keyvals}
-\setstaticframe{IDN list}{keyvals}
-\setstaticframe*{IDL list}{keyvals}
-\setallstaticframes{keyvals}
-\setdynamicframe{IDN list}{keyvals}
-\setdynamicframe*{IDL list}{keyvals}
-\setalldynamicframes{keyvals}
-
-\ffswapoddeven{IDN}
-\sfswapoddeven{IDN}
-\dfswapoddeven{IDN}
-
-\flowsetpagelist{IDN}{pages}
-\dynamicsetpagelist{IDN}{pages}
-\staticsetpagelist{IDN}{pages}
-\flowsetexclusion{IDN}{pages}
-\dynamicsetexclusion{IDN}{pages}
-\staticsetexclusion{IDN}{pages}
-\flowaddexclusion{IDN}{pages}
-\dynamicaddexclusion{IDN}{pages}
-\staticaddexclusion{IDN}{pages}
-
-\simpar#*
-
-\flowswitchonnext{IDN list}
-\flowswitchonnext*{IDL list}
-\flowswitchoffnext{IDN list}
-\flowswitchoffnext*{IDL list}
-\flowswitchonnextodd{IDN list}
-\flowswitchonnextodd*{IDL list}
-\flowswitchoffnextodd{IDN list}
-\flowswitchoffnextodd*{IDL list}
-\flowswitchonnextonly{IDN list}
-\flowswitchonnextonly*{IDL list}
-\flowswitchoffnextonly{IDN list}
-\flowswitchoffnextonly*{IDL list}
-\flowswitchonnextoddonly{IDN list}
-\flowswitchonnextoddonly*{IDL list}
-\flowswitchoffnextoddonly{IDN list}
-\flowswitchoffnextoddonly*{IDL list}
-\dynamicswitchonnext{IDN list}
-\dynamicswitchonnext*{IDL list}
-\dynamicswitchoffnext{IDN list}
-\dynamicswitchoffnext*{IDL list}
-\dynamicswitchonnextodd{IDN list}
-\dynamicswitchonnextodd*{IDL list}
-\dynamicswitchoffnextodd{IDN list}
-\dynamicswitchoffnextodd*{IDL list}
-\dynamicswitchonnextonly{IDN list}
-\dynamicswitchonnextonly*{IDL list}
-\dynamicswitchoffnextonly{IDN list}
-\dynamicswitchoffnextonly*{IDL list}
-\dynamicswitchonnextoddonly{IDN list}
-\dynamicswitchonnextoddonly*{IDL list}
-\dynamicswitchoffnextoddonly{IDN list}
-\dynamicswitchoffnextoddonly*{IDL list}
-\staticswitchonnext{IDN list}
-\staticswitchonnext*{IDL list}
-\staticswitchoffnext{IDN list}
-\staticswitchoffnext*{IDL list}
-\staticswitchonnextodd{IDN list}
-\staticswitchonnextodd*{IDL list}
-\staticswitchoffnextodd{IDN list}
-\staticswitchoffnextodd*{IDL list}
-\staticswitchonnextonly{IDN list}
-\staticswitchonnextonly*{IDL list}
-\staticswitchoffnextonly{IDN list}
-\staticswitchoffnextonly*{IDL list}
-\staticswitchonnextoddonly{IDN list}
-\staticswitchonnextoddonly*{IDL list}
-\staticswitchoffnextoddonly{IDN list}
-\staticswitchoffnextoddonly*{IDL list}
-
-\computeleftedgeodd{length}
-\computeleftedgeeven{length}
-\computetopedge{length}
+\appenddynamiccontents[options%keyvals]{IDN}{contents%text}
+\appenddynamiccontents{IDN}{contents%text}
+\beforeminitocskip#*
+\chapterfirstpagestyle#*
+\ChapterInDynamic{ID}
+\cleartoevenpage
 \computebottomedge{length}
-\computerightedgeodd{length}
-\computerightedgeeven{length}
-\computeflowframearea{IDN list}
 \computeflowframearea*{IDL list}
-
-\getstaticbounds{IDN}
-\getstaticbounds*{IDL}
-\getflowbounds{IDN}
-\getflowbounds*{IDL}
-\getdynamicbounds{IDN}
-\getdynamicbounds*{IDL}
-\ffareawidth
-\ffareaheight
-\ffareax
-\ffareay
-
-\relativeframelocation{type1%keyvals}{IDN1}{type2}{IDN2}
-\relativeframelocation*{type1%keyvals}{IDL1}{type2}{IDL2}
+\computeflowframearea{IDN list}
+\computeleftedgeeven{length}
+\computeleftedgeodd{length}
+\computerightedgeeven{length}
+\computerightedgeodd{length}
+\computetopedge{length}
+\continueonframe[text]{ID}
+\continueonframe{ID}
+\defaultthumbtabtype#*
+\dfchapterclearpage#*
+\dfEvenFooterStyle{text}#*
+\dfEvenHeaderStyle{text}#*
+\dfOddFooterStyle{text}#*
+\dfOddHeaderStyle{text}#*
+\dfswapoddeven{IDN}
+\disablethumbtabs
+\dynamicaddexclusion{IDN}{page list}
+\dynamicframeevenx{IDN}
+\dynamicframeeveny{IDN}
+\dynamicframeheight{IDN}
+\dynamicframewidth{IDN}
+\dynamicframex{IDN}
+\dynamicframey{IDN}
+\dynamicsetexclusion{IDN}{page list}
+\dynamicsetpagelist{IDN}{page list}
+\dynamicswitchoffnext*{IDL list}
+\dynamicswitchoffnextodd*{IDL list}
+\dynamicswitchoffnextoddonly*{IDL list}
+\dynamicswitchoffnextoddonly{IDN list}
+\dynamicswitchoffnextodd{IDN list}
+\dynamicswitchoffnextonly*{IDL list}
+\dynamicswitchoffnextonly{IDN list}
+\dynamicswitchoffnext{IDN list}
+\dynamicswitchonnext*{IDL list}
+\dynamicswitchonnextodd*{IDL list}
+\dynamicswitchonnextoddonly*{IDL list}
+\dynamicswitchonnextoddonly{IDN list}
+\dynamicswitchonnextodd{IDN list}
+\dynamicswitchonnextonly*{IDL list}
+\dynamicswitchonnextonly{IDN list}
+\dynamicswitchonnext{IDN list}
+\enableminitoc
+\enableminitoc[section type]
+\enablethumbtabs
+\FFabove#*
 \FFaboveleft#*
 \FFaboveright#*
+\ffareaheight#*
+\ffareawidth#*
+\ffareax#*
+\ffareay#*
+\FFbelow#*
 \FFbelowleft#*
 \FFbelowright#*
+\ffchapterdefaultfont#*
+\ffchapterheadstyle#*
+\ffchapternamenumfont{text}#*
+\ffchapternamenum{name}{number}#*
+\ffchapterpostheadskip#*
+\ffchapterpostnamenum#*
+\ffchapterpreheadskip#*
+\ffchaptertitlefont{text}#*
+\ffcolumnseprule#*
+\ffcontinuedtextfont{text}#*
+\ffcontinuedtextlayout{text}#*
+\ffdefaultcontinuetext#*
+\ffdefaultdynamiccontinuetext{IDN1}{IDN2}#*
+\ffdefaultpostcontinued#*
+\ffdefaultstaticcontinuetext{IDN1}{IDN2}#*
+\ffdynamicpostcontinued{IDN1}{IDN2}#*
+\ffhrule{offset}{width}{height}#*
+\fflabelfont#*
+\fflabelsep#*
 \FFleft#*
-\FFright#*
-\FFabove#*
-\FFbelow#*
 \FFoverlap#*
-
-\reldynamicloc{IDN1}{IDN2}
-\reldynamicloc*{IDN1}{IDN2}
-\relstaticloc{IDN1}{IDN2}
-\relstaticloc*{IDN1}{IDN2}
-\relflowloc{IDN1}{IDN2}
-\relflowloc*{IDN1}{IDN2}
-
-\ifffvadjust#*
-\ffvadjusttrue
+\ffprechapterhook#*
+\FFright#*
+\ffruledeclarations#*
+\ffstaticpostcontinued{IDN1}{IDN2}#*
+\ffswapoddeven{IDN}
+\fftolerance#*
 \ffvadjustfalse
-\onecolumn[pages]
-\twocolumn[pages]
-\Ncolumn{n}
-\Ncolumn[pages]{n}
-\onecolumninarea{width}{height}{x}{y}
-\onecolumninarea[pages]{width}{height}{x}{y}
-\twocolumninarea{width}{height}{x}{y}
-\twocolumninarea[pages]{width}{height}{x}{y}
-\Ncolumninarea{n}{width}{height}{x}{y}
-\Ncolumninarea[pages]{n}{width}{height}{x}{y}
-
-\onecolumntopinarea{type%keyvals}{H}{width}{height}{x}{y}
-\onecolumntopinarea[pages]{type%keyvals}{H}{width}{height}{x}{y}
-\twocolumntopinarea{type%keyvals}{H}{width}{height}{x}{y}
-\twocolumntopinarea[pages]{type%keyvals}{H}{width}{height}{x}{y}
-\Ncolumntopinarea{type%keyvals}{n}{H}{width}{height}{x}{y}
-\Ncolumntopinarea[pages]{type%keyvals}{n}{H}{width}{height}{x}{y}
-\onecolumnbottominarea{type%keyvals}{H}{width}{height}{x}{y}
-\onecolumnbottominarea[pages]{type%keyvals}{H}{width}{height}{x}{y}
-\twocolumnbottominarea{type%keyvals}{H}{width}{height}{x}{y}
-\twocolumnbottominarea[pages]{type%keyvals}{H}{width}{height}{x}{y}
-\Ncolumnbottominarea{type%keyvals}{n}{H}{width}{height}{x}{y}
-\Ncolumnbottominarea[pages]{type%keyvals}{n}{H}{width}{height}{x}{y}
-\onecolumnStopinarea{H}{width}{height}{x}{y}
-\onecolumnStopinarea[pages]{H}{width}{height}{x}{y}
-\onecolumnDtopinarea{H}{width}{height}{x}{y}
-\onecolumnDtopinarea[pages]{H}{width}{height}{x}{y}
-\onecolumntop{type%keyvals}{H}
-\onecolumntop[pages]{type%keyvals}{H}
-\onecolumnStop{H}
-\onecolumnStop[pages]{H}
-\onecolumnDtop{H}
-\onecolumnDtop[pages]{H}
-\twocolumnStopinarea{H}{width}{height}{x}{y}
-\twocolumnStopinarea[pages]{H}{width}{height}{x}{y}
-\twocolumnDtopinarea{H}{width}{height}{x}{y}
-\twocolumnDtopinarea[pages]{H}{width}{height}{x}{y}
-\twocolumntop{type%keyvals}{H}
-\twocolumntop[pages]{type%keyvals}{H}
-\twocolumnStop{H}
-\twocolumnStop[pages]{H}
-\twocolumnDtop{H}
-\twocolumnDtop[pages]{H}
-\NcolumnStopinarea{n}{H}{width}{height}{x}{y}
-\NcolumnStopinarea[pages]{n}{H}{width}{height}{x}{y}
-\NcolumnDtopinarea{n}{H}{width}{height}{x}{y}
-\NcolumnDtopinarea[pages]{n}{H}{width}{height}{x}{y}
-\Ncolumntop{type%keyvals}{n}{H}
-\Ncolumntop[pages]{type%keyvals}{n}{H}
-\NcolumnStop{n}{H}
-\NcolumnStop[pages]{n}{H}
-\NcolumnDtop{n}{H}
-\NcolumnDtop[pages]{n}{H}
-\onecolumnSbottominarea{H}{width}{height}{x}{y}
-\onecolumnSbottominarea[pages]{H}{width}{height}{x}{y}
-\onecolumnDbottominarea{H}{width}{height}{x}{y}
-\onecolumnDbottominarea[pages]{H}{width}{height}{x}{y}
-\onecolumnbottom{type%keyvals}{H}
-\onecolumnbottom[pages]{type%keyvals}{H}
-\onecolumnSbottom{H}
-\onecolumnSbottom[pages]{H}
-\onecolumnDbottom{H}
-\onecolumnDbottom[pages]{H}
-\twocolumnSbottominarea{H}{width}{height}{x}{y}
-\twocolumnSbottominarea[pages]{H}{width}{height}{x}{y}
-\twocolumnDbottominarea{H}{width}{height}{x}{y}
-\twocolumnDbottominarea[pages]{H}{width}{height}{x}{y}
-\twocolumnbottom{type%keyvals}{H}
-\twocolumnbottom[pages]{type%keyvals}{H}
-\twocolumnSbottom{H}
-\twocolumnSbottom[pages]{H}
-\twocolumnDbottom{H}
-\twocolumnDbottom[pages]{H}
-\NcolumnSbottominarea{n}{H}{width}{height}{x}{y}
-\NcolumnSbottominarea[pages]{n}{H}{width}{height}{x}{y}
-\NcolumnDbottominarea{n}{H}{width}{height}{x}{y}
-\NcolumnDbottominarea[pages]{n}{H}{width}{height}{x}{y}
-\Ncolumnbottom{type%keyvals}{n}{H}
-\Ncolumnbottom[pages]{type%keyvals}{n}{H}
-\NcolumnSbottom{n}{H}
-\NcolumnSbottom[pages]{n}{H}
-\NcolumnDbottom{n}{H}
-\NcolumnDbottom[pages]{n}{H}
-
-\iflefttorightcolumns#*
-\lefttorightcolumnstrue
+\ffvadjusttrue
+\ffvrule{offset}{width}{height}#*
+\finishthispage
+\flowaddexclusion{IDN}{page list}
+\flowframchapterheader{text}#*
+\flowframeevenx{IDN}
+\flowframeeveny{IDN}
+\flowframeheight{IDN}
+\flowframerule#*
+\flowframesep#*
+\flowframeshowlayout
+\flowframewidth{IDN}
+\flowframex{IDN}
+\flowframey{IDN}
+\flowframheaderchapprefix#*
+\flowframheadersep#*
+\FlowFramRestoreOR
+\flowframsectionheader{text}#*
+\FlowFramUnrestoreOR
+\flowsetexclusion{IDN}{page list}
+\flowsetpagelist{IDN}{page list}
+\flowswitchoffnext*{IDL list}
+\flowswitchoffnextodd*{IDL list}
+\flowswitchoffnextoddonly*{IDL list}
+\flowswitchoffnextoddonly{IDN list}
+\flowswitchoffnextodd{IDN list}
+\flowswitchoffnextonly*{IDL list}
+\flowswitchoffnextonly{IDN list}
+\flowswitchoffnext{IDN list}
+\flowswitchonnext*{IDL list}
+\flowswitchonnextodd*{IDL list}
+\flowswitchonnextoddonly*{IDL list}
+\flowswitchonnextoddonly{IDN list}
+\flowswitchonnextodd{IDN list}
+\flowswitchonnextonly*{IDL list}
+\flowswitchonnextonly{IDN list}
+\flowswitchonnext{IDN list}
+\framebreak
+\framebreak[n]
+\getdynamicbounds*{IDL}
+\getdynamicbounds{IDN}
+\getdynamicid{cmd}{IDL}#d
+\getdynamiclabel{IDN}
+\getflowbounds*{IDL}
+\getflowbounds{IDN}
+\getflowid{cmd}{IDL}#d
+\getflowlabel{IDN}
+\getstaticbounds*{IDL}
+\getstaticbounds{IDN}
+\getstaticid{cmd}{IDL}#d
+\getstaticlabel{IDN}
+\ifffvadjust
+\iflefttorightcolumns
+\IfSavedRelativeLocationAbove{label}{true code}{false code}
+\IfSavedRelativeLocationBelow{label}{true code}{false code}
+\IfSavedRelativeLocationEq{label}{command}{true code}{false code}
+\IfSavedRelativeLocationLeft{label}{true code}{false code}
+\IfSavedRelativeLocationRight{label}{true code}{false code}
+\ifshowframebbox
+\ifshowmargins
+\ifshowtypeblock
+\inserthrule[xleft][xright]{type1%keyvals}{IDN1}{type2}{IDN2}
+\inserthrule[xleft]{type1%keyvals}{IDN1}{type2}{IDN2}
+\inserthrule{type1%keyvals}{IDN1}{type2}{IDN2}
+\insertvrule[ytop][ybottom]{type1%keyvals}{IDN1}{type2}{IDN2}
+\insertvrule[ytop]{type1%keyvals}{IDN1}{type2}{IDN2}
+\insertvrule{type1%keyvals}{IDN1}{type2}{IDN2}
+\labelflowidn{label}#l
+\labelflow{label}#l
 \lefttorightcolumnsfalse
+\lefttorightcolumnstrue
+\makebackgroundframe[page list]{IDL}
+\makebackgroundframe{IDL}
+\makedfheaderfooter
+\makethumbtabs[yoffset]{height}
+\makethumbtabs[yoffset]{height}[section type]
+\makethumbtabs{height}
+\makethumbtabs{height}[section type]
+\minitocstyle{contents%text}#*
+\Ncolumn[page list]{n}
+\Ncolumn[page list]{n}[label]
+\Ncolumnbottom[page list]{type%keyvals}{n}{top height}
+\Ncolumnbottom[page list]{type%keyvals}{n}{top height}[label]
+\Ncolumnbottominarea[page list]{type%keyvals}{n}{top height}{width}{height}{x}{y}
+\Ncolumnbottominarea[page list]{type%keyvals}{n}{top height}{width}{height}{x}{y}[label]
+\Ncolumnbottominarea{type%keyvals}{n}{top height}{width}{height}{x}{y}
+\Ncolumnbottominarea{type%keyvals}{n}{top height}{width}{height}{x}{y}[label]
+\Ncolumnbottom{type%keyvals}{n}{top height}
+\Ncolumnbottom{type%keyvals}{n}{top height}[label]
+\NcolumnDbottom[page list]{n}{top height}
+\NcolumnDbottom[page list]{n}{top height}[label]
+\NcolumnDbottominarea[page list]{n}{top height}{width}{height}{x}{y}
+\NcolumnDbottominarea[page list]{n}{top height}{width}{height}{x}{y}[label]
+\NcolumnDbottominarea{n}{top height}{width}{height}{x}{y}
+\NcolumnDbottominarea{n}{top height}{width}{height}{x}{y}[label]
+\NcolumnDbottom{n}{top height}
+\NcolumnDbottom{n}{top height}[label]
+\NcolumnDtop[page list]{n}{top height}
+\NcolumnDtop[page list]{n}{top height}[label]
+\NcolumnDtopinarea[page list]{n}{top height}{width}{height}{x}{y}
+\NcolumnDtopinarea[page list]{n}{top height}{width}{height}{x}{y}[label]
+\NcolumnDtopinarea{n}{top height}{width}{height}{x}{y}
+\NcolumnDtopinarea{n}{top height}{width}{height}{x}{y}[label]
+\NcolumnDtop{n}{top height}
+\NcolumnDtop{n}{top height}[label]
+\Ncolumninarea[page list]{n}{width}{height}{x}{y}
+\Ncolumninarea[page list]{n}{width}{height}{x}{y}[label]
+\Ncolumninarea{n}{width}{height}{x}{y}
+\Ncolumninarea{n}{width}{height}{x}{y}[label]
+\NcolumnSbottom[page list]{n}{top height}
+\NcolumnSbottom[page list]{n}{top height}[label]
+\NcolumnSbottominarea[page list]{n}{top height}{width}{height}{x}{y}
+\NcolumnSbottominarea[page list]{n}{top height}{width}{height}{x}{y}[label]
+\NcolumnSbottominarea{n}{top height}{width}{height}{x}{y}
+\NcolumnSbottominarea{n}{top height}{width}{height}{x}{y}[label]
+\NcolumnSbottom{n}{top height}
+\NcolumnSbottom{n}{top height}[label]
+\NcolumnStop[page list]{n}{top height}
+\NcolumnStop[page list]{n}{top height}[label]
+\NcolumnStopinarea[page list]{n}{top height}{width}{height}{x}{y}
+\NcolumnStopinarea[page list]{n}{top height}{width}{height}{x}{y}[label]
+\NcolumnStopinarea{n}{top height}{width}{height}{x}{y}
+\NcolumnStopinarea{n}{top height}{width}{height}{x}{y}[label]
+\NcolumnStop{n}{top height}
+\NcolumnStop{n}{top height}[label]
+\Ncolumntop[page list]{type%keyvals}{n}{top height}
+\Ncolumntop[page list]{type%keyvals}{n}{top height}[label]
+\Ncolumntopinarea[page list]{type%keyvals}{n}{top height}{width}{height}{x}{y}
+\Ncolumntopinarea[page list]{type%keyvals}{n}{top height}{width}{height}{x}{y}[label]
+\Ncolumntopinarea{type%keyvals}{n}{top height}{width}{height}{x}{y}
+\Ncolumntopinarea{type%keyvals}{n}{top height}{width}{height}{x}{y}[label]
+\Ncolumntop{type%keyvals}{n}{top height}
+\Ncolumntop{type%keyvals}{n}{top height}[label]
+\Ncolumn{n}
+\Ncolumn{n}[label]
+\newdynamicframe*[page list]{width}{height}{x}{y}
+\newdynamicframe*[page list]{width}{height}{x}{y}[label]
+\newdynamicframe*{width}{height}{x}{y}
+\newdynamicframe*{width}{height}{x}{y}[label]
+\newdynamicframe[page list]{width}{height}{x}{y}
+\newdynamicframe[page list]{width}{height}{x}{y}[label]
+\newdynamicframe{width}{height}{x}{y}
+\newdynamicframe{width}{height}{x}{y}[label]
+\newflowframe*[page list]{width}{height}{x}{y}
+\newflowframe*[page list]{width}{height}{x}{y}[label]
+\newflowframe*{width}{height}{x}{y}
+\newflowframe*{width}{height}{x}{y}[label]
+\newflowframe[page list]{width}{height}{x}{y}
+\newflowframe[page list]{width}{height}{x}{y}[label]
+\newflowframe{width}{height}{x}{y}
+\newflowframe{width}{height}{x}{y}[label]
+\newframe*[page list]{type}{width}{height}{x}{y}
+\newframe*[page list]{type}{width}{height}{x}{y}[label]
+\newframe*{type}{width}{height}{x}{y}
+\newframe*{type}{width}{height}{x}{y}[label]
+\newframe[page list]{type}{width}{height}{x}{y}
+\newframe[page list]{type}{width}{height}{x}{y}[label]
+\newframe{type}{width}{height}{x}{y}
+\newframe{type}{width}{height}{x}{y}[label]
+\newstaticframe*[page list]{width}{height}{x}{y}
+\newstaticframe*[page list]{width}{height}{x}{y}[label]
+\newstaticframe*{width}{height}{x}{y}
+\newstaticframe*{width}{height}{x}{y}[label]
+\newstaticframe[page list]{width}{height}{x}{y}
+\newstaticframe[page list]{width}{height}{x}{y}[label]
+\newstaticframe{width}{height}{x}{y}
+\newstaticframe{width}{height}{x}{y}[label]
+\onecolumn[page list]
+\onecolumn[page list][label]
+\onecolumnbottom[page list]{type%keyvals}{top height}
+\onecolumnbottom[page list]{type%keyvals}{top height}[label]
+\onecolumnbottominarea[page list]{type%keyvals}{top height}{width}{height}{x}{y}
+\onecolumnbottominarea[page list]{type%keyvals}{top height}{width}{height}{x}{y}[label]
+\onecolumnbottominarea{type%keyvals}{top height}{width}{height}{x}{y}
+\onecolumnbottominarea{type%keyvals}{top height}{width}{height}{x}{y}[label]
+\onecolumnbottom{type%keyvals}{top height}
+\onecolumnbottom{type%keyvals}{top height}[label]
+\onecolumnDbottom[page list]{top height}
+\onecolumnDbottom[page list]{top height}[label]
+\onecolumnDbottominarea[page list]{top height}{width}{height}{x}{y}
+\onecolumnDbottominarea[page list]{top height}{width}{height}{x}{y}[label]
+\onecolumnDbottominarea{top height}{width}{height}{x}{y}
+\onecolumnDbottominarea{top height}{width}{height}{x}{y}[label]
+\onecolumnDbottom{top height}
+\onecolumnDbottom{top height}[label]
+\onecolumnDtop[page list]{top height}
+\onecolumnDtop[page list]{top height}[label]
+\onecolumnDtopinarea[page list]{top height}{width}{height}{x}{y}
+\onecolumnDtopinarea[page list]{top height}{width}{height}{x}{y}[label]
+\onecolumnDtopinarea{top height}{width}{height}{x}{y}
+\onecolumnDtopinarea{top height}{width}{height}{x}{y}[label]
+\onecolumnDtop{top height}
+\onecolumnDtop{top height}[label]
+\onecolumninarea[page list]{width}{height}{x}{y}
+\onecolumninarea[page list]{width}{height}{x}{y}[label]
+\onecolumninarea{width}{height}{x}{y}
+\onecolumninarea{width}{height}{x}{y}[label]
+\onecolumnSbottom[page list]{top height}
+\onecolumnSbottom[page list]{top height}[label]
+\onecolumnSbottominarea[page list]{top height}{width}{height}{x}{y}
+\onecolumnSbottominarea[page list]{top height}{width}{height}{x}{y}[label]
+\onecolumnSbottominarea{top height}{width}{height}{x}{y}
+\onecolumnSbottominarea{top height}{width}{height}{x}{y}[label]
+\onecolumnSbottom{top height}
+\onecolumnSbottom{top height}[label]
+\onecolumnStop[page list]{top height}
+\onecolumnStop[page list]{top height}[label]
+\onecolumnStopinarea[page list]{top height}{width}{height}{x}{y}
+\onecolumnStopinarea[page list]{top height}{width}{height}{x}{y}[label]
+\onecolumnStopinarea{top height}{width}{height}{x}{y}
+\onecolumnStopinarea{top height}{width}{height}{x}{y}[label]
+\onecolumnStop{top height}
+\onecolumnStop{top height}[label]
+\onecolumntop[page list]{type%keyvals}{top height}
+\onecolumntop[page list]{type%keyvals}{top height}[label]
+\onecolumntopinarea[page list]{type%keyvals}{top height}{width}{height}{x}{y}
+\onecolumntopinarea[page list]{type%keyvals}{top height}{width}{height}{x}{y}[label]
+\onecolumntopinarea{type%keyvals}{top height}{width}{height}{x}{y}
+\onecolumntopinarea{type%keyvals}{top height}{width}{height}{x}{y}[label]
+\onecolumntop{type%keyvals}{top height}
+\onecolumntop{type%keyvals}{top height}[label]
+\RefSavedRelativeLocation{label}
+\relativeframelocation*{type1%keyvals}{IDL1}{type2}{IDL2}
+\relativeframelocation{type1%keyvals}{IDN1}{type2}{IDN2}
+\reldynamicloc*{IDN1}{IDN2}
+\reldynamicloc{IDN1}{IDN2}
+\relflowloc*{IDN1}{IDN2}
+\relflowloc{IDN1}{IDN2}
+\relstaticloc*{IDN1}{IDN2}
+\relstaticloc{IDN1}{IDN2}
+\SaveRelativeFrameLocation*{label}{type1}{IDL1}{type2}{IDL2}
+\SaveRelativeFrameLocation{label}{type1}{IDN1}{type2}{IDN2}
+\sdfparindent#*
+\setalldynamicframes{keyvals}
+\setallflowframes{keyvals}
+\setallstaticframes{keyvals}
+\setdynamiccontents*[options%keyvals]{IDN}{contents%text}
+\setdynamiccontents*{IDL}{contents%text}
+\setdynamiccontents[options%keyvals]{IDN}{contents%text}
+\setdynamiccontents{IDN}{contents%text}
+\setdynamicframe*{IDL list}{keyvals}
+\setdynamicframe{IDN list}{keyvals}
+\setffdraftcolor#*
+\setffdrafttypeblockcolor#*
+\setflowframe*{IDL list}{keyvals}
+\setflowframe{IDN list}{keyvals}
+\SetOneColumnFrame*{ID}
+\SetOneColumnFrame{ID}
+\setstaticcontents*[options%keyvals]{IDL}{contents%text}
+\setstaticcontents*{IDL}{contents%text}
+\setstaticcontents[options%keyvals]{IDN}{contents%text}
+\setstaticcontents{IDN}{contents%text}
+\setstaticframe*{IDL list}{keyvals}
+\setstaticframe{IDN list}{keyvals}
+\setthumbtabindex{n}{keyvals}
+\setthumbtab{n}{keyvals}
+\SetTwoColumnFrames[header type][header id]{col1}[header col1]{col2}
+\SetTwoColumnFrames[header type][header id]{col1}[header col1]{col2}[header col2]
+\SetTwoColumnFrames[header type][header id]{col1}{col2}
+\SetTwoColumnFrames[header type]{col1}[header col1]{col2}
+\SetTwoColumnFrames[header type]{col1}[header col1]{col2}[header col2]
+\SetTwoColumnFrames[header type]{col1}{col2}
+\SetTwoColumnFrames[header type]{col1}{col2}[header col2]
+\SetTwoColumnFrames[header type]{col1}{col2}[header col2]
+\SetTwoColumnFrames{col1}[header col1]{col2}
+\SetTwoColumnFrames{col1}[header col1]{col2}[header col2]
+\SetTwoColumnFrames{col1}{col2}
+\SetTwoColumnFrames{col1}{col2}[header col2]
+\sfswapoddeven{IDN}
+\showframebboxfalse
+\showframebboxtrue
+\showmarginsfalse
+\showmarginstrue
+\showtypeblockfalse
+\showtypeblocktrue
+\staticaddexclusion{IDN}{page list}
+\staticframeevenx{IDN}
+\staticframeeveny{IDN}
+\staticframeheight{IDN}
+\staticframewidth{IDN}
+\staticframex{IDN}
+\staticframey{IDN}
+\staticsetexclusion{IDN}{page list}
+\staticsetpagelist{IDN}{page list}
+\staticswitchoffnext*{IDL list}
+\staticswitchoffnextodd*{IDL list}
+\staticswitchoffnextoddonly*{IDL list}
+\staticswitchoffnextoddonly{IDN list}
+\staticswitchoffnextodd{IDN list}
+\staticswitchoffnextonly*{IDL list}
+\staticswitchoffnextonly{IDN list}
+\staticswitchoffnext{IDN list}
+\staticswitchonnext*{IDL list}
+\staticswitchonnextodd*{IDL list}
+\staticswitchonnextoddonly*{IDL list}
+\staticswitchonnextoddonly{IDN list}
+\staticswitchonnextodd{IDN list}
+\staticswitchonnextonly*{IDL list}
+\staticswitchonnextonly{IDN list}
+\staticswitchonnext{IDN list}
+\theabsolutepage#*
+\thedisplayedframe#*
+\themaxdynamic#*
+\themaxflow#*
+\themaxstatic#*
+\themaxthumbtabs#*
+\thethisframe#*
+\thumbtabformat{text}{height}#*
+\thumbtabhyperlinkformat{anchor}{text}{height}#*
+\thumbtabindex
+\thumbtabindex[page list]
+\thumbtabindexformat{anchor}{text}{height}#*
+\thumbtabregularformat{anchor}{text}{height}#*
+\thumbtabwidth#*
+\twocolumn[page list]
+\twocolumn[page list][label]
+\twocolumnbottom[page list]{type%keyvals}{top height}
+\twocolumnbottom[page list]{type%keyvals}{top height}[label]
+\twocolumnbottominarea[page list]{type%keyvals}{top height}{width}{height}{x}{y}
+\twocolumnbottominarea[page list]{type%keyvals}{top height}{width}{height}{x}{y}[label]
+\twocolumnbottominarea{type%keyvals}{top height}{width}{height}{x}{y}
+\twocolumnbottominarea{type%keyvals}{top height}{width}{height}{x}{y}[label]
+\twocolumnbottom{type%keyvals}{top height}
+\twocolumnbottom{type%keyvals}{top height}[label]
+\twocolumnDbottom[page list]{top height}
+\twocolumnDbottom[page list]{top height}[label]
+\twocolumnDbottominarea[page list]{top height}{width}{height}{x}{y}
+\twocolumnDbottominarea[page list]{top height}{width}{height}{x}{y}[label]
+\twocolumnDbottominarea{top height}{width}{height}{x}{y}
+\twocolumnDbottominarea{top height}{width}{height}{x}{y}[label]
+\twocolumnDbottom{top height}
+\twocolumnDbottom{top height}[label]
+\twocolumnDtop[page list]{top height}
+\twocolumnDtop[page list]{top height}[label]
+\twocolumnDtopinarea[page list]{top height}{width}{height}{x}{y}
+\twocolumnDtopinarea[page list]{top height}{width}{height}{x}{y}[label]
+\twocolumnDtopinarea{top height}{width}{height}{x}{y}
+\twocolumnDtopinarea{top height}{width}{height}{x}{y}[label]
+\twocolumnDtop{top height}
+\twocolumnDtop{top height}[label]
+\twocolumninarea[page list]{width}{height}{x}{y}
+\twocolumninarea[page list]{width}{height}{x}{y}[label]
+\twocolumninarea{width}{height}{x}{y}
+\twocolumninarea{width}{height}{x}{y}[label]
+\twocolumnSbottom[page list]{top height}
+\twocolumnSbottom[page list]{top height}[label]
+\twocolumnSbottominarea[page list]{top height}{width}{height}{x}{y}
+\twocolumnSbottominarea[page list]{top height}{width}{height}{x}{y}[label]
+\twocolumnSbottominarea{top height}{width}{height}{x}{y}
+\twocolumnSbottominarea{top height}{width}{height}{x}{y}[label]
+\twocolumnSbottom{top height}
+\twocolumnSbottom{top height}[label]
+\twocolumnStop[page list]{top height}
+\twocolumnStop[page list]{top height}[label]
+\twocolumnStopinarea[page list]{top height}{width}{height}{x}{y}
+\twocolumnStopinarea[page list]{top height}{width}{height}{x}{y}[label]
+\twocolumnStopinarea{top height}{width}{height}{x}{y}
+\twocolumnStopinarea{top height}{width}{height}{x}{y}[label]
+\twocolumnStop{top height}
+\twocolumnStop{top height}[label]
+\twocolumntop[page list]{type%keyvals}{top height}
+\twocolumntop[page list]{type%keyvals}{top height}[label]
+\twocolumntopinarea[page list]{type%keyvals}{top height}{width}{height}{x}{y}
+\twocolumntopinarea[page list]{type%keyvals}{top height}{width}{height}{x}{y}[label]
+\twocolumntopinarea{type%keyvals}{top height}{width}{height}{x}{y}
+\twocolumntopinarea{type%keyvals}{top height}{width}{height}{x}{y}[label]
+\twocolumntop{type%keyvals}{top height}
+\twocolumntop{type%keyvals}{top height}[label]
+\typeblockheight#L
+\typeblockoffsety#L
+\typeblockwidth#L
+\vcolumnsep#*
+
 
 # commands below doubled with #S to get color completion
 \vtwotone{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\vtwotone[pages]{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\vtwotone[pages][xoffset]{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\vtwotone[page list]{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\vtwotone[page list][xoffset]{width1}{color1}{IDL1}{width2}{color2}{IDL2}
 \vtwotone{width1}{color}{IDL1}{width2}{color}{IDL2}#S
-\vtwotone[pages]{width1}{color}{IDL1}{width2}{color}{IDL2}#S
-\vtwotone[pages][xoffset]{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\vtwotone[page list]{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\vtwotone[page list][xoffset]{width1}{color}{IDL1}{width2}{color}{IDL2}#S
 \vNtone{%<N%>}{%<width1%>}{%<color1%>}{%<IDL1%>}%<...{widthN}{colorN}{IDLN}%>
 \vNtone[%<pages%>]{%<N%>}{%<width1%>}{%<color1%>}{%<IDL1%>}%<...{widthN}{colorN}{IDLN}%>
 \vNtone[%<pages%>][%<xoffset%>]{%<N%>}{%<width1%>}{%<color1%>}{%<IDL1%>}%<...{widthN}{colorN}{IDLN}%>
-\vtwotonebottom{H}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\vtwotonebottom[pages]{H}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\vtwotonebottom[pages][xoffset]{H}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\vtwotonebottom{H}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
-\vtwotonebottom[pages]{H}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
-\vtwotonebottom[pages][xoffset]{H}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
-\vtwotonetop{H}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\vtwotonetop[pages]{H}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\vtwotonetop[pages][xoffset]{H}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\vtwotonetop{H}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
-\vtwotonetop[pages]{H}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
-\vtwotonetop[pages][xoffset]{H}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\vtwotonebottom{top height}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\vtwotonebottom[page list]{top height}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\vtwotonebottom[page list][xoffset]{top height}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\vtwotonebottom{top height}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\vtwotonebottom[page list]{top height}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\vtwotonebottom[page list][xoffset]{top height}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\vtwotonetop{top height}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\vtwotonetop[page list]{top height}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\vtwotonetop[page list][xoffset]{top height}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\vtwotonetop{top height}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\vtwotonetop[page list]{top height}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\vtwotonetop[page list][xoffset]{top height}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
 \vNtonebottom{%<H%>}{%<N%>}{%<width1%>}{%<color1%>}{%<IDL1%>}%<...{widthN}{colorN}{IDLN}%>
 \vNtonebottom[%<pages%>]{%<H%>}{%<N%>}{%<width1%>}{%<color1%>}{%<IDL1%>}%<...{widthN}{colorN}{IDLN}%>
 \vNtonebottom[%<pages%>][%<xoffset%>]{%<H%>}{%<N%>}{%<width1%>}{%<color1%>}{%<IDL1%>}%<...{widthN}{colorN}{IDLN}%>
@@ -336,26 +560,26 @@ verbose#true,false
 \vNtonetop[%<pages%>]{%<H%>}{%<N%>}{%<width1%>}{%<color1%>}{%<IDL1%>}%<...{widthN}{colorN}{IDLN}%>
 \vNtonetop[%<pages%>][%<xoffset%>]{%<H%>}{%<N%>}{%<width1%>}{%<color1%>}{%<IDL1%>}%<...{widthN}{colorN}{IDLN}%>
 \htwotone{height1}{color1}{IDL1}{height2}{color2}{IDL2}
-\htwotone[pages]{height1}{color1}{IDL1}{height2}{color2}{IDL2}
-\htwotone[pages][yoffset]{height1}{color1}{IDL1}{height2}{color2}{IDL2}
+\htwotone[page list]{height1}{color1}{IDL1}{height2}{color2}{IDL2}
+\htwotone[page list][yoffset]{height1}{color1}{IDL1}{height2}{color2}{IDL2}
 \htwotone{height1}{color}{IDL1}{height2}{color}{IDL2}#S
-\htwotone[pages]{height1}{color}{IDL1}{height2}{color}{IDL2}#S
-\htwotone[pages][yoffset]{height1}{color}{IDL1}{height2}{color}{IDL2}#S
+\htwotone[page list]{height1}{color}{IDL1}{height2}{color}{IDL2}#S
+\htwotone[page list][yoffset]{height1}{color}{IDL1}{height2}{color}{IDL2}#S
 \hNtone{%<N%>}{%<height1%>}{%<color1%>}{%<IDL1%>}%<...{heightN}{colorN}{IDLN}%>
 \hNtone[%<pages%>]{%<N%>}{%<height1%>}{%<color1%>}{%<IDL1%>}%<...{heightN}{colorN}{IDLN}%>
 \hNtone[%<pages%>][%<yoffset%>]{%<N%>}{%<height1%>}{%<color1%>}{%<IDL1%>}%<...{heightN}{colorN}{IDLN}%>
 \htwotoneleft{W}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\htwotoneleft[pages]{W}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\htwotoneleft[pages][xoffset]{W}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\htwotoneleft[page list]{W}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\htwotoneleft[page list][xoffset]{W}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
 \htwotoneleft{W}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
-\htwotoneleft[pages]{W}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
-\htwotoneleft[pages][xoffset]{W}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\htwotoneleft[page list]{W}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\htwotoneleft[page list][xoffset]{W}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
 \htwotoneright{W}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\htwotoneright[pages]{W}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
-\htwotoneright[pages][xoffset]{W}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\htwotoneright[page list]{W}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
+\htwotoneright[page list][xoffset]{W}{width1}{color1}{IDL1}{width2}{color2}{IDL2}
 \htwotoneright{W}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
-\htwotoneright[pages]{W}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
-\htwotoneright[pages][xoffset]{W}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\htwotoneright[page list]{W}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
+\htwotoneright[page list][xoffset]{W}{width1}{color}{IDL1}{width2}{color}{IDL2}#S
 \hNtoneleft{%<W%>}{%<N%>}{%<height1%>}{%<color1%>}{%<IDL1%>}%<...{heightN}{colorN}{IDLN}%>
 \hNtoneleft[%<pages%>]{%<W%>}{%<N%>}{%<height1%>}{%<color1%>}{%<IDL1%>}%<...{heightN}{colorN}{IDLN}%>
 \hNtoneleft[%<pages%>][%<yoffset%>]{%<W%>}{%<N%>}{%<height1%>}{%<color1%>}{%<IDL1%>}%<...{heightN}{colorN}{IDLN}%>
@@ -363,66 +587,19 @@ verbose#true,false
 \hNtoneright[%<pages%>]{%<W%>}{%<N%>}{%<height1%>}{%<color1%>}{%<IDL1%>}%<...{heightN}{colorN}{IDLN}%>
 \hNtoneright[%<pages%>][%<yoffset%>]{%<W%>}{%<N%>}{%<height1%>}{%<color1%>}{%<IDL1%>}%<...{heightN}{colorN}{IDLN}%>
 
-\makebackgroundframe{IDL}
-\makebackgroundframe[pages]{IDL}
-
-\insertvrule{type1%keyvals}{IDN1}{type2}{IDN2}
-\insertvrule[ytop]{type1%keyvals}{IDN1}{type2}{IDN2}
-\insertvrule[ytop][ybottom]{type1%keyvals}{IDN1}{type2}{IDN2}
-\ffcolumnseprule#*
-\ffvrule{offset}{width}{height}#*
-\inserthrule{type1%keyvals}{IDN1}{type2}{IDN2}
-\inserthrule[xleft]{type1%keyvals}{IDN1}{type2}{IDN2}
-\inserthrule[xleft][xright]{type1%keyvals}{IDN1}{type2}{IDN2}
-\ffhrule{offset}{width}{height}#*
-\ffruledeclarations#*
-
-\makethumbtabs{height}
-\makethumbtabs{height}[section type]
-\makethumbtabs[yoffset]{height}
-\makethumbtabs[yoffset]{height}[section type]
-\thumbtabwidth#*
-\thumbtabindex
-\enablethumbtabs
-\disablethumbtabs
-\tocandthumbtabindex
-\thumbtabindexformat{arg1}{arg2}{arg3}#*
-\thumbtabformat{arg1}{arg2}#*
-\setthumbtab{n}{keyvals}
-\setthumbtabindex{n}{keyvals}
-\themaxthumbtabs#*
-
-\enableminitoc
-\enableminitoc[section type]
-\appenddfminitoc{IDN}
-\appenddfminitoc*{IDL}
-\minitocstyle{contents%text}#*
-\beforeminitocskip#*
-\afterminitocskip#*
-
-\setffdraftcolor#*
-\setffdrafttypeblockcolor#*
-\fflabelfont#*
-
-\fflabelsep#*
-\flowframesep#*
-\flowframerule#*
-\sdfparindent#*
-\vcolumnsep#*
-
-\labelflowidn{label}#l
-\labelflow{label}#l
-
-\themaxflow#*
-\thethisframe#*
-\thedisplayedframe#*
-\themaxstatic#*
-\themaxdynamic#*
-\theabsolutepage#*
-
-\adjustheight{height}
-
 #keyvals:\setflowframe,\setflowframe*,\setallflowframes,\setstaticframe,\setstaticframe*,\setallstaticframes,\setdynamicframe,\setdynamicframe*,\setalldynamicframes,\setthumbtab,\setthumbtabindex
+label=%<IDL%>
+pages={%<page list%>}
+excludepages={%<page list%>}
+hide#true,false
+hidethis#true,false
+clear#true,false
+parindent=##L
+style=%<style csname%>
+shape=%<shape command%>
+valign=#c,t,b
+margin=#left,right,inner,outer
+offset=##L
 width=##L
 height=##L
 x=##L
@@ -431,22 +608,12 @@ evenx=##L
 eveny=##L
 oddx=##L
 oddy=##L
-valign=#c,t,b
-label=%<text%>
-border=%<frame csname%>
-offset=##L
-bordercolor=#%color
-textcolor=#%color
-backcolor=#%color
-pages={%<page list%>}
-excludepages={%<page list%>}
-hide#true,false
-hidethis#true,false
-margin=#left,right,inner,outer
-clear#true,false
-style=%<style csname%>
 angle=%<degrees%>
-shape=%<shape command%>
+border=%<frame csname%>
+bordercolor=#%color
+backcolor=#%color
+textcolor=#%color
+html={%<keyvals%>}
 #endkeyvals
 
 #keyvals:\relativeframelocation,\relativeframelocation*,\onecolumntopinarea,\twocolumntopinarea,\Ncolumntopinarea,\onecolumnbottominarea,\twocolumnbottominarea,\Ncolumnbottominarea,\onecolumntop,\twocolumntop,\Ncolumntop,\onecolumnbottom,\twocolumnbottom,\Ncolumnbottom,\insertvrule,\inserthrule
@@ -456,7 +623,7 @@ dynamic
 #endkeyvals
 
 ## not documented in user guide
-\adjustcolsep#*
+\adjustheight{height}#*
 \aligntocfalse#*
 \aligntoctrue#*
 \checkifframeabove*{type1}{IDL1}{type2}{IDL2}#*
@@ -467,14 +634,9 @@ dynamic
 \checkifframeleft{type1}{IDN1}{type2}{IDN2}#*
 \checkifframeright*{type1}{IDL1}{type2}{IDL2}#*
 \checkifframeright{type1}{IDN1}{type2}{IDN2}#*
-\defaultthumbtabtype#*
 \dfcontinuedfalse#*
 \dfcontinuedtrue#*
 \dominitoc{IDN}#*
-\dynamicframeevenx{IDN}#*
-\dynamicframeeveny{IDN}#*
-\dynamicframex{IDN}#*
-\dynamicframey{IDN}#*
 \emulateonecolumn#S
 \emulatetwocolumn#S
 \evencheckifframeabove*{type1}{IDL1}{type2}{IDL2}#*
@@ -487,7 +649,6 @@ dynamic
 \evencheckifframeright{type1}{IDN1}{type2}{IDN2}#*
 \ffaddtoadjustframeshook{code}#*
 \ffpshpar#*
-\finishthispage#*
 \FLFabovefalse#*
 \FLFabovetrue#*
 \FLFbelowfalse#*
@@ -498,13 +659,7 @@ dynamic
 \FLFrightfalse#*
 \FLFrighttrue#*
 \flowframecol#*
-\flowframeevenx{IDN}#*
-\flowframeeveny{IDN}#*
-\flowframeheight{IDN}#*
 \flowframetextcol#*
-\flowframewidth{IDN}#*
-\flowframex{IDN}#*
-\flowframey{IDN}#*
 \footnotecolor#*
 \getdynamicevenbounds*{IDN}#*
 \getdynamicevenbounds{IDN}#*
@@ -521,8 +676,6 @@ dynamic
 \ifFLFleft#*
 \ifFLFright#*
 \ifusedframebreak#*
-\newframe[pages]{type}{width}{height}{x}{y}#*
-\newframe{type}{width}{height}{x}{y}#*
 \oddcheckifframeabove*{type1}{IDL1}{type2}{IDL2}#*
 \oddcheckifframeabove{type1}{IDN1}{type2}{IDN2}#*
 \oddcheckifframebelow*{type1}{IDL1}{type2}{IDL2}#*
@@ -544,6 +697,6 @@ dynamic
 \theHthisframe#S
 \theminitoc#*
 \thumbtab{arg1}{arg2}{arg3}{arg4}#S
-\tocandhumbtabindex#*
+\tocandthumbtabindex#*
 \usedframebreakfalse#*
 \usedframebreaktrue#*

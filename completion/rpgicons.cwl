@@ -1,5 +1,5 @@
 # rpgicons package
-# Matthew Bertucci 2025/11/12 for v2.2.1
+# Matthew Bertucci 2025/11/18 for v2.3.0
 
 #keyvals:\usepackage/rpgicons#c
 l3
@@ -140,6 +140,9 @@ baseline=##L
 
 #keyvals:\rpgiconsset#c
 roll syntax={%<syntax%>}
+style set={%<style definitions%>}
+style append={%<style definitions%>}
+actualtext={%<settings%>}
 #endkeyvals
 
 # specific to pgf option

@@ -1,5 +1,5 @@
 # scrbook class
-# Matthew Bertucci 2025/08/20 for v3.46
+# Matthew Bertucci 2025/12/01 for v3.49
 
 #include:scrkbase
 #include:tocbasic
@@ -122,6 +122,9 @@ titlehead
 \AtEndBibliography{code}#*
 \autodot#*
 \backmatter
+\backmatter[numbering style]
+\backmatter*
+\backmatter*[numbering style]
 \begin{addmargin*}[inner indent%l]{indent%l}
 \begin{addmargin*}{indent%l}
 \begin{addmargin}[left indent%l]{indent%l}
@@ -206,6 +209,9 @@ titlehead
 \footfont#*
 \frontispiece{frontispiece%text}
 \frontmatter
+\frontmatter[numbering style]
+\frontmatter*
+\frontmatter*[numbering style]
 \headfont#*
 \IfChapterUsesPrefixLine{then code}{else code}#*
 \Ifnumbered{section level}{then code}{else code}#*
@@ -223,6 +229,9 @@ titlehead
 \listoftocname#*
 \lowertitleback{titlebackfoot%text}
 \mainmatter
+\mainmatter[numbering style]
+\mainmatter*
+\mainmatter*[numbering style]
 \maketitle[page number]
 \MakeCaptionLabelCase{text}#*
 \MakeCaptionTextCase{text}#*

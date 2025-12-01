@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/11/12 for v15.19.0
+# Matthew Bertucci 2025/11/15 for v15.20.0
 
 #include:iftex
 
@@ -680,6 +680,7 @@ cucumber
 cultura
 curl
 curseforge
+cursor
 customink
 cyberdefenders
 cycling74

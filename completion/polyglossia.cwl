@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 2025/06/30 for v2.6
+# Matthew Bertucci 2025/12/01 for v2.9
 
 #include:etoolbox
 #include:fontspec
@@ -627,6 +627,8 @@ koppa=#modern,archaic
 \greeknumber{number}#S
 \atticnumeral#*
 \atticnum#S
+\greektoday#*
+\Greektoday#*
 
 #keyvals:\setdefaultlanguage/hebrew#c,\setmainlanguage/hebrew#c,\setotherlanguage/hebrew#c,\textlang/hebrew#c,\texthebrew#c,\begin{lang}/hebrew#c,\begin{hebrew}#c,\selectlanguage/hebrew#c,\foreignlanguage/hebrew#c,\begin{otherlanguage}/hebrew#c,\begin{otherlanguage*}/hebrew#c,\resetdefaultlanguage/hebrew#c,\setlanguagealias/hebrew#c,\setlanguagealias*/hebrew#c,\pghyphenation/hebrew#c,\setlanghyphenmins/hebrew#c
 fullyear#true,false
@@ -660,6 +662,21 @@ variant=#plain,classic,modern
 captions=#hangul,hanja
 swapstrings=#all,headers,headings,none
 #endkeyvals
+
+\은#S
+\는#S
+\이#S
+\가#S
+\을#S
+\를#S
+\와#S
+\과#S
+\으#S
+\로#S
+\라#S
+\jung#*
+\jong#*
+\rieul#*
 
 #keyvals:\setdefaultlanguage/kurdish#c,\setmainlanguage/kurdish#c,\setotherlanguage/kurdish#c,\textlang/kurdish#c,\textkurdish#c,\begin{lang}/kurdish#c,\begin{kurdish}#c,\selectlanguage/kurdish#c,\foreignlanguage/kurdish#c,\begin{otherlanguage}/kurdish#c,\begin{otherlanguage*}/kurdish#c,\resetdefaultlanguage/kurdish#c,\setlanguagealias/kurdish#c,\setlanguagealias*/kurdish#c,\pghyphenation/kurdish#c,\setlanghyphenmins/kurdish#c
 variant=#kurmanji,sorani
@@ -1131,8 +1148,6 @@ lang=#local,main,%<language%>
 \datemonogreek#S
 \polygreekcaptions#S
 \datepolygreek#S
-\greektoday#S
-\Greektoday#S
 \ancientgreekcaptions#S
 \dateancientgreek#S
 

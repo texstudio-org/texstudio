@@ -1,5 +1,5 @@
 # citation-style-language package
-# Matthew Bertucci 2025/11/12 for v0.9.0
+# Matthew Bertucci 2025/12/01 for v0.9.1
 
 #include:filehook
 #include:url
@@ -11,6 +11,7 @@ regression-test#true,false
 style=#american-chemical-society,american-medical-association,american-political-science-association,american-sociological-association,apa,chicago-author-date,chicago-fullnote-bibliography,chicago-note-bibliography,elsevier-harvard,harvard-cite-them-right,ieee,modern-humanities-research-association,modern-language-association,nature,vancouver
 bib-resource=%<resource%>
 locale=%<language code%>
+use-bbl#true,false
 ref-section=#none,part,chapter,chapter+,section,section+,subsection,subsection+
 backref=#true,page,section,false
 bib-font=%<font commands%>

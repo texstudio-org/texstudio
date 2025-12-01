@@ -1,5 +1,5 @@
 # ltx-talk class
-# Matthew Bertucci 2025/11/12 for v0.3.0
+# Matthew Bertucci 2025/12/01 for v0.3.4
 
 #include:pdfmanagement
 #include:relsize
@@ -115,6 +115,7 @@ handout
 \only{text}
 \onslide
 \onslide<overlay spec>
+\pagecolor<overlay spec>{color}
 \pause
 \pause[overlay spec]
 \subtitle[options%keyvals]{text}
