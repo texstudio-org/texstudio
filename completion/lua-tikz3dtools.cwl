@@ -1,9 +1,9 @@
 # lua-tikz3dtools package
-# Matthew Bertucci 2025/09/05 for v1.1.0
+# Matthew Bertucci 2025/12/01 for v2.2.0
 
 #include:tikz
+#include:luatex
 
-# from lua-tikz3dtools-commands
 \appendcurve
 \appendcurve[options%keyvals]
 \appendlabel
@@ -18,7 +18,6 @@
 \setobject
 \setobject[options%keyvals]
 
+# not documented
 \luatikztdtools#S
-
-# from lua-tikz3dtools-tikz-keys
-\luatikztdtoolsset{options%keyvals}#*
+\luatikztdtoolsset{options%keyvals}#S

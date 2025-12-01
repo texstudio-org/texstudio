@@ -1,5 +1,5 @@
 # lettrine package
-# Matthew Bertucci 2025/02/03 for v2.80
+# Matthew Bertucci 2025/12/01 for v2.81
 
 #keyvals:\usepackage/lettrine#c
 optionsfile=%<filename%>
@@ -18,6 +18,7 @@ findent=##L
 nindent=##L
 slope=##L
 image#true,false
+actualtext=%<text%>
 grid#true,false
 nextpage#true,false
 novskip=##L

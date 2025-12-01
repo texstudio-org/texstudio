@@ -1,5 +1,5 @@
 # tikzlings package
-# Matthew Bertucci 2025/03/25 for v2.3
+# Matthew Bertucci 2025/12/01 for v2.4
 
 #include:tikz
 #include:tikzlings-anteaters
@@ -28,6 +28,7 @@
 #include:tikzlings-sloths
 #include:tikzlings-snowmen
 #include:tikzlings-squirrels
+#include:tikzlings-turkeys
 #include:tikzlings-wolves
 #include:tikzlings-addons
 
