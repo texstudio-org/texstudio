@@ -1,5 +1,5 @@
 # documentation tcolorboxlibrary
-# 2025/06/04 for v6.6.0
+# 2025/12/01 for v6.9.0
 
 #include:tcolorboxlibrarylistings
 #include:tcolorboxlibraryskins
@@ -114,6 +114,8 @@
 \tcbdocmarginnote[options%keyvals]{text}
 \tcbdocnew{date}
 \tcbdocupdated{date}
+\docKeyChoices{choice1,choice2,...}
+\docKeyChoices*{choice1,choice2,...}
 
 Option#B
 Definition#B
@@ -147,6 +149,11 @@ doc raster={%<options%>}
 doc head={%<options%>}
 before doc body={%<code%>}
 after doc body={%<code%>}
+doc key choices={%<choice1,choice2,...%>}
+doc key choices*={%<choice1,choice2,...%>}
+doc key choices separator=%<separator%>
+doc head left width=##L
+doc head left ratio=%<number%>
 #endkeyvals
 
 #keyvals:\begin{docCommand},\begin{docCommand*},\begin{docCommands},\tcbset
