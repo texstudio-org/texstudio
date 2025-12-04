@@ -245,6 +245,7 @@ QSet<Token::TokenType> Token::tkSingleArg()
 	result.insert(def);
 	result.insert(overlay);
     result.insert(newTheorem);
+    result.insert(newBibItem);
     result.insert(defSpecialArg);
 	return result;
 }
