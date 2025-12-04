@@ -422,6 +422,12 @@ void LatexParsingTest::test_latexLexing_data() {
                                                            << (Starts() << 0 << 10 << 11 << 17<< 21<<26<<27)
                                                            << (Length() << 10 << 22 << 5 << 3 << 4<<5 <<3)
                                                            << (Levels() << 0 << 1 << 1 << 2  <<1 << 3 << 3);
+    QTest::newRow("bibitem") << "\\bibitem{abc}"
+                                 << (TTypes() << T::command << T::braces << T::newBibItem)
+                                 << (STypes() << T::none << T::newBibItem << T::none)
+                                 << (Starts() << 0 << 8 << 9)
+                                 << (Length() << 8 << 5 << 3)
+                                 << (Levels() << 0 << 1 << 1);
 
 }
 
