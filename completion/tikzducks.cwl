@@ -1,5 +1,5 @@
 # tikzducks package
-# Matthew Bertucci 2025/01/31 for v2.0
+# Matthew Bertucci 2025/12/05 for v2.1
 
 #include:tikz
 #include:tikzlibrarypatterns.meta
@@ -226,6 +226,8 @@ handbag=#%color
 overleaf
 megaphone
 megaphone=#%color
+towel
+towel=#%color
 name=%<name%>
 stripes
 stripes={%<code%>}
@@ -265,6 +267,7 @@ yshift=##L
 \duckpathkingcrown#*
 \duckpathdarthvader#*
 \duckpathhorsetail#*
+\duckpathtowel#*
 
 \stripes
 \stripes[options%keyvals]
