@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2025/08/27 for v1.6.6
+# Matthew Bertucci 2025/12/05 for v1.6.9
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -44,6 +44,7 @@ zero-based#true,false
 keyword/true=%<string%>
 keyword/false=%<string%>
 keyword/null=%<string%>
+preparse=%<string%>
 #endkeyvals
 
 #keyvals:\JSONParseSet,\JSONParseValue,\JSONParseArrayUse,\JSONParseArrayMapFunction
