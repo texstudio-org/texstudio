@@ -5,6 +5,7 @@
 - fix teamtype server start [#4251](https://github.com/texstudio-org/texstudio/issues/4251)
 - fix hang with addColumn (table manipulation) when last row does not end with `\\` [#4254](https://github.com/texstudio-org/texstudio/issues/4254)
 - fix detection \bibitem [#4265](https://github.com/texstudio-org/texstudio/issues/4265)
+- fix symbols favorites/most used [#4267](https://github.com/texstudio-org/texstudio/issues/4267)
 
 ## TeXstudio 4.9.0
 
