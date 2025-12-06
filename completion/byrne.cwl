@@ -1,5 +1,5 @@
 # byrne package
-# Matthew Bertucci 2022/07/06 for v0.2.2
+# Matthew Bertucci 2025/12/05 for v0.2.5
 
 #include:ifmtarg
 #include:luamplib
@@ -7,6 +7,9 @@
 \defineNewPicture{MetaPost code}
 \defineNewPicture[offspring scale]{MetaPost code}
 \defineNewPicture[offspring scale][main scale]{MetaPost code}
+\defineNewPictureBasedOnOld{MetaPost code}
+\defineNewPictureBasedOnOld[offspring scale]{MetaPost code}
+\defineNewPictureBasedOnOld[offspring scale][main scale]{MetaPost code}
 \drawCurrentPicture
 \defineFromCurrentPicture{vertical align}{picture name}{MetaPost code}
 \drawFromCurrentPicture{MetaPost code}
@@ -35,6 +38,9 @@
 \drawLine{line name}
 \drawLine[vertical align]{line name}
 \drawLine[vertical align][new name]{line name}
+\drawLineByPoints{point names}
+\drawLineByPoints[vertical align]{point names}
+\drawLineByPoints[vertical align][new name]{point names}
 \drawPointM{point name}
 \drawPointL{point name}
 \drawPointL[vertical align]{point name}
@@ -44,37 +50,43 @@
 \drawPoint[vertical align][lines to omit]{point name}
 
 # not documented
-\addToUndefineList{picture name}#*
-\CreateNewInstanceForPicturefalse#*
-\CreateNewInstanceForPicturetrue#*
-\currentInlinePicturePlacement#*
-\currentInstance#*
-\drawDefinedPicture{picture name}{align}#*
-\drawImageFromCurrentInstance{picture name}#*
-\drawMagnitude[vertical align][opt]{name}#*
-\drawMagnitude[vertical align]{name}#*
-\drawMagnitude{name}#*
-\drawProportionalIndLine{name}#*
-\drawProportionalRay{name}#*
-\drawSizedRay[opt]{name}#*
-\drawSizedRay{name}#*
-\drawUnitIndLine[opt]{name}#*
-\drawUnitIndLine{name}#*
-\formatImageName{picture name}#*
-\ifCreateNewInstanceForPicture#*
-\lastPict#*
-\middp#*
-\midht#*
-\mpInst#*
-\mpPost#*
-\mpPre#*
-\offsetPicture{top}{bottom}{arg}#*
-\pictOffsetBottom#*
-\pictOffsetTop#*
+\CreateNewInstanceForPicturefalse#S
+\CreateNewInstanceForPicturetrue#S
+\currentInlinePicturePlacement#S
+\currentInstance#S
+\drawDefinedPicture{picture name}{align}#S
+\drawImageFromCurrentInstance{picture name}#S
+\drawMagnitude[vertical align][opt]{name}#S
+\drawMagnitude[vertical align]{name}#S
+\drawMagnitude{name}#S
+\drawProportionalIndLine{name}#S
+\drawProportionalRay{name}#S
+\drawSizedRay[opt]{name}#S
+\drawSizedRay{name}#S
+\drawUnitIndLine[opt]{name}#S
+\drawUnitIndLine{name}#S
+\formatImageName{picture name}#S
+\ifCreateNewInstanceForPicture#S
+\lastPict#S
+\middp#S
+\midht#S
+\mpInst#S
+\mpPost#S
+\mpPre#S
+\offsetPicture{top}{bottom}{arg}#S
+\pictOffsetBottom#S
+\pictOffsetTop#S
 \plal#S
 \sfA#S
 \sfB#S
 \tmpalignment#S
 \tmpmiddle#S
-\undefineList#*
-\unmarkPictAsReady{picture name}#*
+\mpLastInst#S
+\pointlabel{arg}#S
+\UseNextPicture#S
+\UsePreviousPicture#S
+\UseLastPicture#S
+\pictVMargins#S
+\ifRemoveMarginsFromSmallerPics#S
+\RemoveMarginsFromSmallerPicstrue#S
+\RemoveMarginsFromSmallerPicsfalse#S
