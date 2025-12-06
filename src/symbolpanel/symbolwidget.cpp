@@ -75,6 +75,7 @@ void SymbolWidget::setupData(SymbolListModel *model)
 	mostUsedProxyModel = new MostUsedProxyModel;
 	mostUsedProxyModel->setSourceModel(symbolListModel);
 	mostUsedProxyModel->setSortRole(SymbolListModel::UsageCountRole);
+    mostUsedProxyModel->sort(0, Qt::DescendingOrder);
 
 	categoryFilterProxyModel = new QSortFilterProxyModel;
 	categoryFilterProxyModel->setSourceModel(symbolListModel);
@@ -241,7 +242,7 @@ void SymbolWidget::symbolClicked(const QModelIndex &index)
 		symbolListModel->incrementUsage(id);
 	}
 	emit insertSymbol(command);
-	mostUsedProxyModel->invalidate();
-	mostUsedProxyModel->sort(0, Qt::DescendingOrder);
+    //mostUsedProxyModel->invalidate();
+    mostUsedProxyModel->sort(0, Qt::DescendingOrder);
 }
 
