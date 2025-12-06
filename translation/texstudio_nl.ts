@@ -4,17 +4,17 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="16"/>
         <source>Search in previous conversations</source>
-        <translation type="unfinished"/>
+        <translation>Zoeken in vorige conversaties</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="20"/>
         <source>Search in conversations</source>
-        <translation type="unfinished"/>
+        <translation>Zoeken in conversaties</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="46"/>
         <source>Enter your query here</source>
-        <translation type="unfinished"/>
+        <translation>Vul uw vraag hier in</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="49"/>
@@ -22,12 +22,12 @@
         <location filename="../src/aichatassistant.cpp" line="414"/>
         <location filename="../src/aichatassistant.cpp" line="460"/>
         <source>Send Query to AI provider</source>
-        <translation type="unfinished"/>
+        <translation>Vraag verzenden naar AI-provider</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="56"/>
         <source>Insert response</source>
-        <translation type="unfinished"/>
+        <translation>Antwoord invoegen</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="62"/>
@@ -37,22 +37,22 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="89"/>
         <source>AI chat assistant</source>
-        <translation type="unfinished"/>
+        <translation>AI-chatassistent</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="242"/>
         <source>Stop current query !</source>
-        <translation type="unfinished"/>
+        <translation>Stop huidige vraag!</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="329"/>
         <source>System prompt can&apos;t be altered mid-conversation</source>
-        <translation type="unfinished"/>
+        <translation>Systeemprompt kan niet gewijzigd worden tijdens een conversatie</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="333"/>
         <source>System prompt</source>
-        <translation type="unfinished"/>
+        <translation>Systeemprompt</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="348"/>
@@ -62,12 +62,12 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="349"/>
         <source>Temperature not supported for local models</source>
-        <translation type="unfinished"/>
+        <translation>Temperatuur wordt niet ondersteund voor lokale modellen</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="353"/>
         <source>Values between 0 and %1</source>
-        <translation type="unfinished"/>
+        <translation>Waarden tussen 0 en %1</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="361"/>
@@ -78,18 +78,18 @@
         <location filename="../src/aichatassistant.cpp" line="452"/>
         <location filename="../src/aichatassistant.cpp" line="489"/>
         <source>Execute as macro</source>
-        <translation type="unfinished"/>
+        <translation>Uitvoeren als macro</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="454"/>
         <location filename="../src/aichatassistant.cpp" line="491"/>
         <source>Insert into text</source>
-        <translation type="unfinished"/>
+        <translation>In tekst invoegen</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="356"/>
         <source>Temperature</source>
-        <translation type="unfinished"/>
+        <translation>Temperatuur</translation>
     </message>
 </context>
 <context>
@@ -99,22 +99,22 @@
         <location filename="../src/aiquerystoragemodel.cpp" line="143"/>
         <location filename="../src/aiquerystoragemodel.cpp" line="185"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Vandaag</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="185"/>
         <source>Last Week</source>
-        <translation type="unfinished"/>
+        <translation>Vorige Week</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="185"/>
         <source>Last Month</source>
-        <translation type="unfinished"/>
+        <translation>Vorige Maand</translation>
     </message>
     <message>
         <location filename="../src/aiquerystoragemodel.cpp" line="204"/>
         <source>Older</source>
-        <translation type="unfinished"/>
+        <translation>Ouder</translation>
     </message>
 </context>
 <context>
@@ -127,7 +127,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="61"/>
         <source>Latest stable version: %1</source>
-        <translation type="unfinished"/>
+        <translation>Laatste stabiele versie: %1</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="62"/>
@@ -137,7 +137,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="67"/>
         <source>html conversion: </source>
-        <translation>html conversie:</translation>
+        <translation>html-conversie:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="69"/>
         <source>TeXstudio uses the PDF viewer of TeXworks.</source>
-        <translation>TeXstudio gebruikt de PDFviewer van TeXworks.</translation>
+        <translation>TeXstudio gebruikt de PDF-viewer van TeXworks.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="70"/>
@@ -202,7 +202,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="56"/>
         <source>couldn&apos;t retrieve data</source>
-        <translation type="unfinished"/>
+        <translation>Data kon niet gevonden worden</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="80"/>
@@ -246,7 +246,8 @@
         <location filename="../src/arraydialog.ui" line="75"/>
         <source>In case of an array environment sets the alignment for the column of the currently selected cell.
 For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
-        <translation type="unfinished"/>
+        <translation>In geval van een array-omgeving, stelt de uitlijning van de kolom van de huidig geslecteerde cel in.
+Voor matrix* en dergelijken (mathtools-package), stelt de uitlijning van alle kolommen tegelijk in.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="86"/>
@@ -954,7 +955,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="324"/>
         <source>Icon Theme:</source>
-        <translation type="unfinished"/>
+        <translation>Icoonthema</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="332"/>
@@ -984,7 +985,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="375"/>
         <source>Remember selected file filter in open/save dialog </source>
-        <translation>Onthoud geselecteerd bestandsfilter in open/opslaan dialoogvenster</translation>
+        <translation>Onthoud geselecteerde bestandsfilter in open/opslaan dialoogvenster</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="404"/>
@@ -999,7 +1000,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="431"/>
         <source>Always Show Structure of Root Document</source>
-        <translation type="unfinished"/>
+        <translation>Altijd structuur van bronbestand tonen</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="441"/>
@@ -1042,7 +1043,10 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Stelt het type update-meldingen in die u zal ontvangen:
+- Stabiele versies: kies dit als stabiliteit het belangrijkst voor u is.
+- Beta-versies: lijken op toekomstige versies qua functionaliteit en stabiliteit. Kies dit om voorproefjes van toekomstige versies te krijgen en help ons door deze versie te testen voordat deze gepubliceerd is als een officiële versie. (Ook stabiele versies worden gemeld)
+- Ontwikkelaarsversies: bevatten de nieuwste functies, maar kunnen onstabiel zijn. (Stabiele en kandidaadversie worden ook gemeld)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="518"/>
@@ -1072,7 +1076,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="583"/>
         <source> days</source>
-        <translation>dagen</translation>
+        <translation> dagen</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="596"/>
@@ -1102,7 +1106,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="682"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Bestandskiezer (Optioneel. Indien aanwezig, incluseer de afsluitende dubbelpunt):&lt;/i&gt; Indien geen selector, dan selecteer bronbestand &lt;b&gt;c:&lt;/b&gt; selecteer huidig bestand, &lt;b&gt;p{ext}:&lt;/b&gt; Vind een bestand met dezelfde basisnaam en bestandsextensie &lt;b&gt;ext&lt;/b&gt;. Zoeken wordt uitgevoerd in de bronbestand en -map en bijkomende PDF-mappen.&lt;br /&gt;&lt;i&gt;Bestandspaddelen:&lt;/i&gt; een combinatie van&lt;b&gt;a&lt;/b&gt;: absoluut pad, &lt;b&gt;m&lt;/b&gt;: basisbestandsnaam zonder extensie,&lt;b&gt;e&lt;/b&gt;: extensie, &lt;b&gt;r&lt;/b&gt;: relatief pad vanaf bron, &lt;b&gt;*&lt;/b&gt;: alle bestanden die aan het volgende patroon voldoen&lt;br/&gt;&lt;i&gt;Afsluitende tekens:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: eindselector. De volgende tekens beëindigen de selector en hebben bijkomde betekenis&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: omsluit in dubbele aanhalingstekens, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="698"/>
