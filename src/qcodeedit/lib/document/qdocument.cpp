@@ -6954,7 +6954,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		&&  (m_LineCache.contains(dlh) || m_LineCacheAlternative.contains(dlh))
 	) {
 		// cache is activated, available, and up-to-date: simply draw the cached object
-        p->drawPixmap(QPointF(m_lineCacheXOffset, 0), *m_LineCache.object(dlh));
+        p->drawPixmap(QPointF(0, 0), *m_LineCache.object(dlh));
 	} else {
         qreal ht = m_lineSpacing*(wrap+1 - pseudoWrap);
 		QImage *image = nullptr;
@@ -7004,7 +7004,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
         dlh->draw(lcxt.docLineNr, pr, cxt.xoffset, m_lineCacheWidth, selectionBoundaries, cxt.palette, fullSelection,y,ht);
 
 		if (useLineCache) {
-            p->drawPixmap(QPointF(cxt.xoffset, 0), *pixmap);
+            p->drawPixmap(QPointF(0, 0), *pixmap);
             delete pr;
             m_LineCache.insert(dlh, pixmap);
 		} else {
