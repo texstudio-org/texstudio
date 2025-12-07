@@ -36,6 +36,7 @@ public:
 	QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
 
 	void incrementUsage(const QString &id);
+    QModelIndex indexFromCommand(const QString &cmd) const;
 
 	QVariantMap usageCountAsQVariantMap() const;
 	QStringList favorites() const;

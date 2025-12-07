@@ -238,6 +238,19 @@ void SymbolListModel::incrementUsage(const QString &id)
 		}
     }
 }
+
+QModelIndex SymbolListModel::indexFromCommand(const QString &cmd) const
+{
+    for (int i=0; i<symbols.count(); i++) {
+        if (symbols[i].command == cmd) {
+            return index(i,0);
+        }
+        if (symbols[i].unicode == cmd) {
+            return index(i,0);
+        }
+    }
+    return QModelIndex();
+}
 /*!
  * \brief activate dark mode
  * This mode basically inverts icon colors (black to white)

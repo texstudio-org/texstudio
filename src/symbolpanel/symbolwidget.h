@@ -24,6 +24,7 @@ signals:
 	void insertSymbol(const QString &text);
 
 public slots:
+    void insertSymbolFromContext(const QString &cmd);
 
 protected:
 	void setupData(SymbolListModel *model);
@@ -36,7 +37,8 @@ protected:
 protected slots:
 	void addHLine(QVBoxLayout *vLayout);
 	void setCategoryFilterFromAction();
-	void symbolClicked(const QModelIndex &index);
+    void symbolClicked(const QModelIndex &index, QString command="");
+
 
 private:
 	bool &insertUnicode;
