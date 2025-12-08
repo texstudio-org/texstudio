@@ -1,5 +1,5 @@
 # marginalia package
-# Matthew Bertucci 2025/02/18 for v0.80.1
+# Matthew Bertucci 2025/02/18 for v0.83.17
 
 #include:luatex
 
@@ -25,7 +25,7 @@ xsep verso outer=##L
 xsep verso inner=##L
 xsep right between=##L
 xsep left between=##L
-valign=#t,b
+valign=#t,b,c,m
 yshift=##L
 ysep=##L
 ysep above=##L
@@ -49,4 +49,11 @@ style verso outer=%<code%>
 style verso inner=%<code%>
 style right between=%<code%>
 style left between=%<code%>
+mark=%<code%>
+mark recto outer=%<code%>
+mark recto inner=%<code%>
+mark verso outer=%<code%>
+mark verso inner=%<code%>
+mark right between=%<code%>
+mark left between=%<code%>
 #endkeyvals
