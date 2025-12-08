@@ -2524,6 +2524,7 @@
 <file>completion/modular.cwl</file>
 <file>completion/modulus.cwl</file>
 <file>completion/mol2chemfig.cwl</file>
+<file>completion/monaspace-otf.cwl</file>
 <file>completion/monofill.cwl</file>
 <file>completion/montserrat.cwl</file>
 <file>completion/moodle.cwl</file>
@@ -2825,6 +2826,7 @@
 <file>completion/pegmatch.cwl</file>
 <file>completion/penlight.cwl</file>
 <file>completion/penlightplus.cwl</file>
+<file>completion/pennstander-otf.cwl</file>
 <file>completion/perfectcut.cwl</file>
 <file>completion/perltex.cwl</file>
 <file>completion/permute.cwl</file>

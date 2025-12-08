@@ -1,5 +1,5 @@
 # marginalia package
-# Matthew Bertucci 2025/02/18 for v0.83.17
+# Matthew Bertucci 2025/12/08 for v0.83.17
 
 #include:luatex
 
