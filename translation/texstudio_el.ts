@@ -206,7 +206,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="80"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 3 as published by the Free Software Foundation.</source>
-        <translation type="unfinished"/>
+        <translation>Το πρόγραμμα αυτό διατίθεται σε εσάς υπό τους όρους της άδειας χρήσης GNU General Public License Version 3, όπως αυτή δημοσιεύτηκε από το Free Software Foundation.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="60"/>
