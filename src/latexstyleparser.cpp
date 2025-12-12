@@ -443,6 +443,7 @@ bool LatexStyleParser::parseLineNewCounter(QStringList &results, const QString &
 	if (name.contains("@")) {
 		return true;
 	}
+	name.append("#S");
 	if (!results.contains(name)) {
 		results << name;
 	}
