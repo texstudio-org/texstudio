@@ -4071,18 +4071,54 @@ void Texstudio::editEraseWordCmdEnv()
     bool handled=false;
 
     if(!handled){
-        // remove matching brackets
+        // remove matching brackets and trailing spaces, move cursor to either start or end of the content within
         QDocumentCursor orig, to;
         currentEditor()->cursor().getMatchingPair(orig, to, false);
         if (orig.isValid() && to.isValid()){
-            if(to<orig){
-                qSwap(orig,to);
-            }
-            currentEditorView()->editor->document()->beginMacro();
-            to.removeSelectedText();
-            orig.removeSelectedText();
-            currentEditorView()->editor->document()->endMacro();
-            handled=true;
+			bool curInOrig = true;;
+			if(to<orig){
+				qSwap(orig,to);
+				curInOrig = false;
+			}
+			if(orig.lineNumber() == to.lineNumber()){
+				int brakLen = orig.selectionEnd().columnNumber()-orig.selectionStart().columnNumber();
+				currentEditorView()->editor->document()->beginMacro();
+				to.removeSelectedText();
+				while(to.previousChar().isSpace()){
+					to.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+				}
+				to.removeSelectedText();
+				to.movePosition(brakLen, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+				cursor.moveTo(to);
+				orig.removeSelectedText();
+				while(orig.nextChar().isSpace() && to > orig){
+					orig.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+					cursor.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+				}
+				orig.removeSelectedText();
+				if(curInOrig){
+					cursor.moveTo(orig);
+				}
+			}else{
+				currentEditorView()->editor->document()->beginMacro();
+				to.removeSelectedText();
+				while(to.previousChar().isSpace() && to.previousChar() != QChar('\t') && !to.atLineStart()){
+					to.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+				}
+				to.removeSelectedText();
+				orig.removeSelectedText();
+				while(orig.nextChar().isSpace() && !orig.atLineEnd()){
+					orig.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+				}
+				orig.removeSelectedText();
+				if(curInOrig){
+					cursor.moveTo(orig);
+				}else{
+					cursor.moveTo(to);
+				}
+			}
+			currentEditorView()->editor->document()->endMacro();
+			handled=true;
         }
     }
     if(!handled){
