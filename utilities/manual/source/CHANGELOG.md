@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.9.2
+
+- 
+
 ## TeXstudio 4.9.1
 
 - add ctrl+enter shortcut (accept dialog) for universal dialog, checkin, ai wizard
