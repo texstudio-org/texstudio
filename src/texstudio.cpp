@@ -4081,14 +4081,14 @@ void Texstudio::editEraseWordCmdEnv()
 				curInOrig = false;
 			}
 			if(orig.lineNumber() == to.lineNumber()){
-				int brakLen = orig.selectionEnd().columnNumber()-orig.selectionStart().columnNumber();
+				int bracketLength = orig.selectionEnd().columnNumber()-orig.selectionStart().columnNumber();
 				currentEditorView()->editor->document()->beginMacro();
 				to.removeSelectedText();
 				while(to.previousChar().isSpace()){
 					to.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 				}
 				to.removeSelectedText();
-				to.movePosition(brakLen, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+				to.movePosition(bracketLength, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 				cursor.moveTo(to);
 				orig.removeSelectedText();
 				while(orig.nextChar().isSpace() && to > orig){
