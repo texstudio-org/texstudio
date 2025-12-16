@@ -4080,15 +4080,15 @@ void Texstudio::editEraseWordCmdEnv()
 				qSwap(orig,to);
 				curInOrig = false;
 			}
+			int bracketLength = orig.selectionEnd().columnNumber()-orig.selectionStart().columnNumber();
+			currentEditorView()->editor->document()->beginMacro();
 			if(orig.lineNumber() == to.lineNumber()){
-				int bracketLength = orig.selectionEnd().columnNumber()-orig.selectionStart().columnNumber();
-				currentEditorView()->editor->document()->beginMacro();
 				to.removeSelectedText();
 				while(to.previousChar().isSpace()){
 					to.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 				}
 				to.removeSelectedText();
-				to.movePosition(bracketLength, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+				to.movePosition(bracketLength, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
 				cursor.moveTo(to);
 				orig.removeSelectedText();
 				while(orig.nextChar().isSpace() && to > orig){
@@ -4100,7 +4100,6 @@ void Texstudio::editEraseWordCmdEnv()
 					cursor.moveTo(orig);
 				}
 			}else{
-				currentEditorView()->editor->document()->beginMacro();
 				to.removeSelectedText();
 				QChar prevChar = to.previousChar();
 				while(prevChar.isSpace() && prevChar != QChar('\t') && !to.atLineStart()){
