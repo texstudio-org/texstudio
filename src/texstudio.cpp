@@ -4075,7 +4075,7 @@ void Texstudio::editEraseWordCmdEnv()
         QDocumentCursor orig, to;
         currentEditor()->cursor().getMatchingPair(orig, to, false);
         if (orig.isValid() && to.isValid()){
-			bool curInOrig = true;;
+			bool curInOrig = true;
 			if(to<orig){
 				qSwap(orig,to);
 				curInOrig = false;
