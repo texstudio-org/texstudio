@@ -4102,8 +4102,10 @@ void Texstudio::editEraseWordCmdEnv()
 			}else{
 				currentEditorView()->editor->document()->beginMacro();
 				to.removeSelectedText();
-				while(to.previousChar().isSpace() && to.previousChar() != QChar('\t') && !to.atLineStart()){
+				QChar prevChar = to.previousChar();
+				while(prevChar.isSpace() && prevChar != QChar('\t') && !to.atLineStart()){
 					to.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+					prevChar = to.previousChar();
 				}
 				to.removeSelectedText();
 				orig.removeSelectedText();
