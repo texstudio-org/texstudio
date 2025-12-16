@@ -4072,6 +4072,8 @@ void Texstudio::editEraseWordCmdEnv()
 
     if(!handled){
         // remove matching brackets and trailing spaces, move cursor to either start or end of the content within
+        // in case of within one line, remove spaces and tabs from both sides
+        // in case of separate lines, do not remove tabs on to side (indentation)
         QDocumentCursor orig, to;
         currentEditor()->cursor().getMatchingPair(orig, to, false);
         if (orig.isValid() && to.isValid()){
@@ -4080,44 +4082,32 @@ void Texstudio::editEraseWordCmdEnv()
 				qSwap(orig,to);
 				curInOrig = false;
 			}
-			int bracketLength = orig.selectionEnd().columnNumber()-orig.selectionStart().columnNumber();
 			currentEditorView()->editor->document()->beginMacro();
-			if(orig.lineNumber() == to.lineNumber()){
-				to.removeSelectedText();
-				while(to.previousChar().isSpace()){
-					to.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-				}
-				to.removeSelectedText();
-				to.movePosition(bracketLength, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
-				cursor.moveTo(to);
-				orig.removeSelectedText();
-				while(orig.nextChar().isSpace() && to > orig){
-					orig.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-					cursor.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
-				}
-				orig.removeSelectedText();
-				if(curInOrig){
-					cursor.moveTo(orig);
-				}
-			}else{
-				to.removeSelectedText();
-				QChar prevChar = to.previousChar();
-				while(prevChar.isSpace() && prevChar != QChar('\t') && !to.atLineStart()){
-					to.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-					prevChar = to.previousChar();
-				}
-				to.removeSelectedText();
-				orig.removeSelectedText();
-				while(orig.nextChar().isSpace() && !orig.atLineEnd()){
-					orig.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-				}
-				orig.removeSelectedText();
-				if(curInOrig){
-					cursor.moveTo(orig);
-				}else{
-					cursor.moveTo(to);
-				}
-			}
+            bool inSameLine=(orig.lineNumber() == to.lineNumber());
+
+            to.removeSelectedText();
+            while(to.previousChar().isSpace() && !to.atLineStart()){
+                if(!inSameLine && to.previousChar()== QChar('\t')) break;
+                to.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+            }
+            to.removeSelectedText();
+            if(inSameLine && !curInOrig){
+                // adjust cursor position for removed bracket length, when needed for cursor placement
+                int bracketLength = orig.selectionEnd().columnNumber()-orig.selectionStart().columnNumber();
+                to.movePosition(bracketLength, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+            }
+
+            orig.removeSelectedText();
+            while(orig.nextChar().isSpace() && to > orig && !orig.atLineEnd()){
+                orig.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+            }
+            orig.removeSelectedText();
+
+            if(curInOrig){
+                cursor.moveTo(orig);
+            }else{
+                cursor.moveTo(to);
+            }
 			currentEditorView()->editor->document()->endMacro();
 			handled=true;
         }
