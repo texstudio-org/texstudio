@@ -12015,7 +12015,7 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 	if (oldPDFs.isEmpty())
 		return;
 	PDFDocument *viewer = oldPDFs.first();
-	if (!viewer->embeddedMode)
+    if (!viewer || !viewer->embeddedMode)
 		return;
 	if(enlargedViewer){
 		PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
