@@ -4071,18 +4071,45 @@ void Texstudio::editEraseWordCmdEnv()
     bool handled=false;
 
     if(!handled){
-        // remove matching brackets
+        // remove matching brackets and trailing spaces, move cursor to either start or end of the content within
+        // in case of within one line, remove spaces and tabs from both sides
+        // in case of separate lines, do not remove tabs on to side (indentation)
         QDocumentCursor orig, to;
         currentEditor()->cursor().getMatchingPair(orig, to, false);
         if (orig.isValid() && to.isValid()){
-            if(to<orig){
-                qSwap(orig,to);
-            }
-            currentEditorView()->editor->document()->beginMacro();
+			bool curInOrig = true;
+			if(to<orig){
+				qSwap(orig,to);
+				curInOrig = false;
+			}
+			currentEditorView()->editor->document()->beginMacro();
+            bool inSameLine=(orig.lineNumber() == to.lineNumber());
+
             to.removeSelectedText();
+            while(to.previousChar().isSpace() && !to.atLineStart()){
+                if(!inSameLine && to.previousChar()== QChar('\t')) break;
+                to.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+            }
+            to.removeSelectedText();
+            if(inSameLine && !curInOrig){
+                // adjust cursor position for removed bracket length, when needed for cursor placement
+                int bracketLength = orig.selectionEnd().columnNumber()-orig.selectionStart().columnNumber();
+                to.movePosition(bracketLength, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+            }
+
             orig.removeSelectedText();
-            currentEditorView()->editor->document()->endMacro();
-            handled=true;
+            while(orig.nextChar().isSpace() && to > orig && !orig.atLineEnd()){
+                orig.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+            }
+            orig.removeSelectedText();
+
+            if(curInOrig){
+                cursor.moveTo(orig);
+            }else{
+                cursor.moveTo(to);
+            }
+			currentEditorView()->editor->document()->endMacro();
+			handled=true;
         }
     }
     if(!handled){
