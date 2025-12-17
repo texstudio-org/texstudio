@@ -343,7 +343,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
          </size>
         </property>
         <property name="toolTip">
-         <string>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
+         <string>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
 If not, end characters are ignored.</string>
         </property>
         <property name="text">
