@@ -1,7 +1,7 @@
 # arsenal package
-# Matthew Bertucci 2025/10/15 for v1.0
+# Matthew Bertucci 2025/12/17 for v1.1
 
-#include:unicode-math
+#include:arsenal-math
 #include:iwonamath
 
 #keyvals:\usepackage/arsenal#c

@@ -3077,6 +3077,7 @@
 <file>completion/pst-func.cwl</file>
 <file>completion/pst-fun.cwl</file>
 <file>completion/pst-gantt.cwl</file>
+<file>completion/pst-gears.cwl</file>
 <file>completion/pst-geo.cwl</file>
 <file>completion/pst-geometrictools.cwl</file>
 <file>completion/pst-gr3d.cwl</file>

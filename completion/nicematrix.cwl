@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2025/08/07 for v7.2
+# Matthew Bertucci 2025/12/17 for v7.5
 
 #include:amsmath
 #include:array
@@ -346,6 +346,7 @@ horizontal-labels
 shorten=##L
 shorten-start=##L
 shorten-end=##L
+brace-shift=##L
 #endkeyvals
 
 \CodeAfter#t

@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/11/15 for v15.20.0
+# Matthew Bertucci 2025/12/17 for v16.1.0
 
 #include:iftex
 
@@ -36,6 +36,7 @@ accusoft
 accuweather
 acer
 acm
+acode
 actigraph
 activeloop
 activision
@@ -58,17 +59,10 @@ adroll
 adventofcode
 adyen
 aegisauthenticator
-aerlingus
 aeroflot
 aeromexico
-aerospike
-aew
 afdian
 affine
-affinity
-affinitydesigner
-affinityphoto
-affinitypublisher
 aframe
 afterpay
 aftership
@@ -105,7 +99,6 @@ alby
 alchemy
 aldinord
 aldisud
-alfaromeo
 alfred
 algolia
 algorand
@@ -117,16 +110,12 @@ alipay
 alist
 allegro
 alliedmodders
-allocine
 alltrails
 almalinux
 alpinedotjs
 alpinelinux
 alternativeto
-alteryx
-altiumdesigner
 alwaysdata
-alx
 amd
 ameba
 americanairlines
@@ -201,6 +190,7 @@ apollographql
 apostrophe
 appgallery
 appian
+appimage
 appium
 apple
 applearcade
@@ -209,6 +199,7 @@ applenews
 applepay
 applepodcasts
 appletv
+appmanager
 appsignal
 appsmith
 appstore
@@ -262,10 +253,10 @@ audioboom
 audiomack
 audiotechnica
 aurelia
+autentique
 auth0
 authelia
 authentik
-authy
 autocad
 autocannon
 autodesk
@@ -304,6 +295,7 @@ bambulab
 bandcamp
 bandlab
 bandrautomation
+b4x
 bandsintown
 bankofamerica
 barclays
@@ -455,7 +447,6 @@ calibreweb
 campaignmonitor
 camunda
 canonical
-canva
 canvas
 capacitor
 caprover
@@ -580,7 +571,6 @@ codemagic
 codementor
 codemirror
 codenewbie
-codepen
 codeproject
 coder
 coderabbit
@@ -596,7 +586,6 @@ codingninjas
 codio
 coffeescript
 coggle
-cognizant
 coinbase
 coinmarketcap
 collaboraonline
@@ -699,6 +688,7 @@ dart
 darty
 daserste
 dash
+dash0
 dashlane
 dask
 dassaultsystemes
@@ -718,7 +708,6 @@ dazhongdianping
 dazn
 dbeaver
 dblp
-dbt
 dcentertainment
 debian
 debridlink
@@ -786,6 +775,7 @@ docsdotrs
 docsify
 doctrine
 docusaurus
+dodopayments
 dogecoin
 doi
 dolby
@@ -870,6 +860,7 @@ elevenlabs
 eleventy
 elgato
 elixir
+elk
 elm
 elsevier
 embarcadero
@@ -994,7 +985,6 @@ flatpak
 flickr
 flightaware
 flipboard
-flipkart
 floatplane
 flood
 floorp
@@ -1093,6 +1083,7 @@ gerrit
 getx
 ghost
 ghostery
+ghostty
 gimp
 gin
 giphy
@@ -1116,6 +1107,7 @@ gitlfs
 gitpod
 gitter
 gldotinet
+glance
 glassdoor
 gleam
 glide
@@ -1174,7 +1166,6 @@ googledocs
 googledrive
 googleearth
 googleearthengine
-googlefit
 googlefonts
 googleforms
 googlegemini
@@ -1262,6 +1253,7 @@ handshakeprotocol
 happycow
 harbor
 harmonyos
+hashcat
 hashicorp
 hashnode
 haskell
@@ -1293,7 +1285,6 @@ hepsiemlak
 here
 hermes
 heroicgameslauncher
-heroku
 heroui
 hetzner
 hevy
@@ -1401,7 +1392,6 @@ infinityfree
 influxdb
 infomaniak
 infoq
-informatica
 infosys
 infracost
 ingress
@@ -1430,7 +1420,6 @@ internetcomputer
 intigriti
 intuit
 invidious
-invision
 invoiceninja
 iobroker
 ionic
@@ -1451,7 +1440,6 @@ itvx
 iveco
 jabber
 jaeger
-jaguar
 jameson
 jamstack
 japanairlines
@@ -1513,6 +1501,7 @@ kakao
 kakaotalk
 kalilinux
 kamailio
+kando
 kaniko
 karlsruherverkehrsverbund
 kasasmart
@@ -1598,7 +1587,6 @@ labex
 labview
 lada
 lamborghini
-landrover
 langchain
 langflow
 langgraph
@@ -1694,8 +1682,6 @@ local
 localsend
 localxpose
 lodash
-logitech
-logitechg
 logmein
 logseq
 logstash
@@ -1709,6 +1695,7 @@ lotpolishairlines
 lottiefiles
 ltspice
 lua
+luanti
 luau
 lubuntu
 lucia
@@ -1732,7 +1719,7 @@ magasinsu
 magic
 magisk
 mahindra
-mailboxdotorg
+mailbox
 mailchimp
 maildotcom
 maildotru
@@ -1748,6 +1735,7 @@ mambaui
 mamp
 man
 manageiq
+mangacollec
 mangaupdates
 manjaro
 mantine
@@ -1783,6 +1771,7 @@ maze
 mcafee
 mcdonalds
 mclaren
+mdblist
 mdbook
 mdnwebdocs
 mdx
@@ -1834,9 +1823,9 @@ mikrotik
 milanote
 milvus
 minds
-minetest
 mingww64
 mini
+minimax
 minio
 mintlify
 minutemailer
@@ -1892,14 +1881,12 @@ mta
 mtr
 mubi
 mui
-mulesoft
 muller
 mullvad
 multisim
 mumble
 muo
 mural
-musescore
 musicbrainz
 mxlinux
 myanimelist
@@ -1950,6 +1937,7 @@ netto
 neutralinojs
 newbalance
 newegg
+newgrounds
 newpipe
 newjapanprowrestling
 newrelic
@@ -1960,10 +1948,8 @@ nextcloud
 nextdns
 nextdoor
 nextdotjs
-nodebb
 nextflow
 nextra
-nexusmods
 nfcore
 nfc
 nginx
@@ -1980,7 +1966,9 @@ nim
 nissan
 nixos
 nobaralinux
+nodebb
 nodedotjs
+nodegui
 nodemon
 nodered
 nokia
@@ -2051,7 +2039,6 @@ onnx
 onstar
 opel
 openaccess
-openai
 openaigym
 openapiinitiative
 openbadges
@@ -2072,6 +2059,7 @@ openmediavault
 openmined
 opennebula
 openproject
+openrouter
 openscad
 opensea
 opensearch
@@ -2148,6 +2136,7 @@ paramountplus
 paritysubstrate
 parrotsecurity
 parsedotly
+passbolt
 passport
 pastebin
 patreon
@@ -2249,7 +2238,6 @@ pluralsight
 plurk
 pm2
 pnpm
-pocket
 pocketbase
 pocketcasts
 podcastaddict
@@ -2275,6 +2263,7 @@ posit
 postcss
 postgresql
 posthog
+postiz
 postman
 postmates
 powers
@@ -2361,6 +2350,7 @@ qiita
 qiskit
 qiwi
 qlik
+qlty
 qmk
 qnap
 qodo
@@ -2381,7 +2371,6 @@ quickbooks
 quicklook
 quicktime
 quicktype
-quip
 quizlet
 quora
 qwant
@@ -2450,6 +2439,7 @@ redwoodjs
 reebok
 refine
 refinedgithub
+rekaui
 relay
 relianceindustrieslimited
 remark
@@ -2471,6 +2461,7 @@ resend
 resharper
 resurrectionremixos
 retool
+retroachievements
 retroarch
 retropie
 revanced
@@ -2514,6 +2505,7 @@ rollsroyce
 rollupdotjs
 rook
 roon
+root
 rootme
 roots
 rootsbedrock
@@ -2556,7 +2548,6 @@ sagemath
 sahibinden
 sailfishos
 sailsdotjs
-salesforce
 salla
 saltproject
 samsclub
@@ -2588,7 +2579,6 @@ scrapbox
 scrapy
 scratch
 screencastify
-scribd
 scrimba
 scrollreveal
 scrumalliance
@@ -2613,7 +2603,6 @@ semaphoreci
 semrush
 semver
 sencha
-sendgrid
 sennheiser
 sensu
 sentry
@@ -2625,6 +2614,7 @@ serverless
 session
 sessionize
 setapp
+setuptools
 sfml
 shadcnui
 shadow
@@ -2644,7 +2634,6 @@ shortcut
 showpad
 showtime
 showwcase
-shutterstock
 sidekiq
 sidequest
 siemens
@@ -2674,7 +2663,6 @@ skillshare
 skoda
 sky
 skypack
-slack
 slackware
 slashdot
 slickpic
@@ -2877,6 +2865,7 @@ talenthouse
 talos
 tamiya
 tampermonkey
+tanstack
 taobao
 tapas
 target
@@ -2916,6 +2905,7 @@ testinglibrary
 testrail
 tether
 textpattern
+textual
 tga
 thangs
 thanos
@@ -3033,7 +3023,6 @@ tsnode
 tubi
 tui
 tumblr
-tunein
 turbo
 turborepo
 turbosquid
@@ -3044,7 +3033,6 @@ tuxedocomputers
 tv4play
 twenty
 tvtime
-twilio
 twinkly
 twinmotion
 twitch
@@ -3200,10 +3188,8 @@ wakatime
 walkman
 wallabag
 walletconnect
-walmart
 wantedly
 wappalyzer
-warnerbros
 warp
 wasabi
 wasmcloud
@@ -3241,7 +3227,6 @@ wellfound
 wellsfargo
 wemo
 weread
-westerndigital
 westernunion
 wetransfer
 wezterm

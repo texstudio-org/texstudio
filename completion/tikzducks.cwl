@@ -1,5 +1,5 @@
 # tikzducks package
-# Matthew Bertucci 2025/12/05 for v2.1
+# Matthew Bertucci 2025/12/17 for v2.2
 
 #include:tikz
 #include:tikzlibrarypatterns.meta
@@ -228,6 +228,11 @@ megaphone
 megaphone=#%color
 towel
 towel=#%color
+present
+present=#%color
+present top=#%color
+present bottom=#%color
+present ribbon=#%color
 name=%<name%>
 stripes
 stripes={%<code%>}
