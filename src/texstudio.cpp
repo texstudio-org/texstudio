@@ -3372,8 +3372,8 @@ void Texstudio::closeAllFiles()
 	while (currentEditorView())
 		documents.deleteDocument(currentEditorView()->document);
 #ifndef NO_POPPLER_PREVIEW
-	foreach (PDFDocument *viewer, PDFDocument::documentList())
-		viewer->close();
+    foreach (PDFDocument *viewer, PDFDocument::documentList())
+        viewer->close();
 #endif
 	documents.setMasterDocument(nullptr);
 	updateCaption();
@@ -3390,7 +3390,7 @@ bool Texstudio::canCloseNow(bool saveSettings)
 #endif
 	if (saveSettings)
 		this->saveSettings();
-	closeAllFiles();
+    //closeAllFiles();
 	delete userMacroDialog;
 	spellerManager.unloadAll();  //this saves the ignore list
 	programStopped = true;
