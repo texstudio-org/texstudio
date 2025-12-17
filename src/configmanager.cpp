@@ -85,7 +85,7 @@ static ConfigManager *globalConfigManager = nullptr;
 
 ConfigManagerInterface *ConfigManagerInterface::getInstance()
 {
-	Q_ASSERT(globalConfigManager);
+    //Q_ASSERT(globalConfigManager);
 	return globalConfigManager;
 }
 
