@@ -2799,8 +2799,8 @@ Examples:
 • Local: deepseek-r1, llama3.3</source>
         <translation>Modello AI da utilizzare per le risposte. È possibile digitare nomi di modelli personalizzati per qualsiasi provider. 
 Esempi: 
-• Perplessità: sonar, sonar-pro, sonar-deep-research 
-• Gemelli: gemini-2.5-pro, gemini-2.5-flash 
+• Perplexity: sonar, sonar-pro, sonar-deep-research 
+• Gemini: gemini-2.5-pro, gemini-2.5-flash 
 • Claude: claude-opus-4-0, claude-sonetto-4-0 
 • Locale: deepseek-r1, lama3.3</translation>
     </message>
@@ -2819,8 +2819,8 @@ Examples:
 • Local: http://localhost:8080/v1/chat/completions</source>
         <translation>URL dell&apos;endpoint API per provider personalizzati 
 Esempi: 
-• Perplessità: https://api.perplexity.ai/chat/completions 
-• Gemelli: https://generativelingual.googleapis.com/v1beta/openai/chat/completions 
+• Perplexity: https://api.perplexity.ai/chat/completions 
+• Gemini: https://generativelingual.googleapis.com/v1beta/openai/chat/completions 
 • Claude: https://api.anthropic.com/v1/chat/completions 
 • Locale: http://localhost:8080/v1/chat/completions</translation>
     </message>
