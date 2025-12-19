@@ -105,7 +105,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>16</number>
+          <number>11</number>
          </property>
          <widget class="QWidget" name="pageGeneral">
           <layout class="QVBoxLayout">
@@ -137,8 +137,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>550</width>
-                <height>520</height>
+                <width>1132</width>
+                <height>725</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout">
@@ -738,8 +738,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>568</width>
-                <height>542</height>
+                <width>1132</width>
+                <height>626</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1584,8 +1584,8 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>637</width>
-                <height>414</height>
+                <width>1132</width>
+                <height>559</height>
                </rect>
               </property>
               <layout class="QGridLayout">
@@ -2043,8 +2043,8 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1086</width>
-                <height>1329</height>
+                <width>1132</width>
+                <height>1825</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -3336,9 +3336,9 @@ them here.</string>
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>1086</width>
-                <height>783</height>
+                <y>-260</y>
+                <width>1132</width>
+                <height>1027</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3602,27 +3602,27 @@ Examples:
                     </property>
                     <item>
                      <property name="text">
-                      <string>open-mistral-7b</string>
+                      <string notr="true">open-mistral-7b</string>
                      </property>
                     </item>
                     <item>
                      <property name="text">
-                      <string>open-mixtral-8x7b</string>
+                      <string notr="true">open-mixtral-8x7b</string>
                      </property>
                     </item>
                     <item>
                      <property name="text">
-                      <string>mistral-small-latest</string>
+                      <string notr="true">mistral-small-latest</string>
                      </property>
                     </item>
                     <item>
                      <property name="text">
-                      <string>mistral-medium-latest</string>
+                      <string notr="true">mistral-medium-latest</string>
                      </property>
                     </item>
                     <item>
                      <property name="text">
-                      <string>mistral-large-latest</string>
+                      <string notr="true">mistral-large-latest</string>
                      </property>
                     </item>
                    </widget>
@@ -4021,8 +4021,8 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1096</width>
-                <height>419</height>
+                <width>429</width>
+                <height>274</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4297,8 +4297,8 @@ Examples:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1086</width>
-                <height>486</height>
+                <width>555</width>
+                <height>641</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4800,8 +4800,8 @@ Note: Changing this setting will only affect documents that are opened afterward
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1096</width>
-                <height>419</height>
+                <width>413</width>
+                <height>202</height>
                </rect>
               </property>
               <layout class="QGridLayout">
