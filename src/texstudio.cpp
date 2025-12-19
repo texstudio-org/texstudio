@@ -2281,6 +2281,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
     if (existingView) {
         if (asProject) documents.setMasterDocument(existingView->document);
         if (existingView->document->isHidden()) {
+            doc=existingView->document;
             doc->startSyntaxChecker();
             existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
             documents.deleteDocument(existingView->document, true);
