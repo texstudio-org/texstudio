@@ -2790,12 +2790,12 @@ Examples:
 • Gemini: gemini-2.5-pro, gemini-2.5-flash
 • Claude: claude-opus-4-0, claude-sonnet-4-0	
 • Local: deepseek-r1, llama3.3</source>
-        <translation type="unfinished"/>
+        <translation>Modelo de IA para las respuestas. Puede escribir nombres de modelo personalizados para cualquier proveedor. Ejemplos: Perplexity: sonar, sonar-pro, sonar-deep-research Gemini: gemini-2.5-pro, gemini-2.5-flash Claude: claude-opus-4-0, claude-sonnet-4-0 Local: deepseek-r1, llama3.3</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3665"/>
         <source>Custom Provider (Remote or Local)</source>
-        <translation type="unfinished"/>
+        <translation>Proveedor personalizado (remoto o local)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3693"/>
@@ -2805,7 +2805,7 @@ Examples:
 • Gemini: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
 • Claude: https://api.anthropic.com/v1/chat/completions
 • Local: http://localhost:8080/v1/chat/completions</source>
-        <translation type="unfinished"/>
+        <translation>URL del punto final de la API para proveedores personalizadosEjemplos:• Perplexity: https://api.perplexity.ai/chat/completions• Gemini: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions• Claude: https://api.anthropic.com/v1/chat/completions• Local: http://localhost:8080/v1/chat/completions</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3943"/>
@@ -2815,7 +2815,7 @@ Examples:
     <message>
         <location filename="../src/configdialog.ui" line="3950"/>
         <source>Additional URL parameters to send with LanguageTool requests. For example: level=picky&amp;enabledRules=CUSTOM_RULE</source>
-        <translation type="unfinished"/>
+        <translation>Parámetros de URL adicionales para enviar con las solicitudes de LanguageTool. Por ejemplo: level=picky&amp;enabledRules=CUSTOM_RULE</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4058"/>
@@ -3359,7 +3359,7 @@ la clave de todos modos?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="945"/>
         <source>Search Folder for Collaborative Client</source>
-        <translation type="unfinished"/>
+        <translation>Carpeta de búsqueda para cliente colaborativo</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="997"/>
@@ -6843,7 +6843,7 @@ Por favor ingrese la contraseña:</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1655"/>
         <source>Copy Selected Text</source>
-        <translation type="unfinished"/>
+        <translation>Copiar texto seleccionado</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1663"/>
@@ -11096,12 +11096,12 @@ Abra la ubicación de la plantilla y descomprima la plantilla para editar archiv
     <message>
         <location filename="../src/texstudio.cpp" line="1276"/>
         <source>Start sharing folder</source>
-        <translation type="unfinished"/>
+        <translation>Empezar a compartir carpeta</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1277"/>
         <source>Connect to other user for collaboration</source>
-        <translation type="unfinished"/>
+        <translation>Conectarse con otros usuarios para colaborar</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1278"/>
@@ -12098,12 +12098,12 @@ confía en este documento)
     <message>
         <location filename="../src/texstudio.cpp" line="6769"/>
         <source>Do you want to share the folder &quot;%1&quot; and ALL its content with collaborators?</source>
-        <translation type="unfinished"/>
+        <translation>¿Quieres compartir la carpeta &quot;%1&quot; y TODO su contenido con colaboradores?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6788"/>
         <source>Collaboration server name or address</source>
-        <translation type="unfinished"/>
+        <translation>Nombre o dirección del servidor de colaboración</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6789"/>
@@ -12118,12 +12118,12 @@ confía en este documento)
     <message>
         <location filename="../src/texstudio.cpp" line="7024"/>
         <source>Collaboration: Connected in folder %1</source>
-        <translation type="unfinished"/>
+        <translation>Colaboración: Conectado en la carpeta %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="7028"/>
         <source>Collaboration: Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Colaboración: No conectado</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="7079"/>
@@ -12627,7 +12627,7 @@ El mensaje ha sido detenido.
         <location filename="../src/texstudio.cpp" line="6999"/>
         <source>Collaboration: Connected in folder %1
 to join: teamtype join %2</source>
-        <translation type="unfinished"/>
+        <translation>Colaboración: Conectado en la carpeta %1para unirse: teamtype join %2</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="12726"/>
@@ -13062,7 +13062,7 @@ documento incluido en %1</translation>
     <message>
         <location filename="../src/universalinputdialog.cpp" line="131"/>
         <source>Accept (ctrl+enter)</source>
-        <translation type="unfinished"/>
+        <translation>Aceptar (ctrl+enter)</translation>
     </message>
 </context>
 <context>
