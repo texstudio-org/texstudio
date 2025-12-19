@@ -66,7 +66,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="354"/>
         <source>Temperature not supported for local models</source>
-        <translation type="unfinished"/>
+        <translation>Temperatura no soportada para modelos locales</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="358"/>
@@ -3086,7 +3086,7 @@ Nota: Este cambio no afectará a los archivos abiertos acualmente.</translation>
         <location filename="../src/configdialog.ui" line="5038"/>
         <location filename="../src/configdialog.cpp" line="563"/>
         <source>Collaborative Editing</source>
-        <translation type="unfinished"/>
+        <translation>Edición colaborativa</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5044"/>
@@ -3101,12 +3101,12 @@ Nota: Este cambio no afectará a los archivos abiertos acualmente.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="5058"/>
         <source>Client folder:</source>
-        <translation type="unfinished"/>
+        <translation>Carpeta de cliente:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5110"/>
         <source>User name:</source>
-        <translation type="unfinished"/>
+        <translation>Nombre de usuario:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5163"/>
@@ -3190,7 +3190,7 @@ la clave de todos modos?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="506"/>
         <source>Delimiter highlighting</source>
-        <translation type="unfinished"/>
+        <translation>Resaltado de delimitadores</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="507"/>
@@ -11106,7 +11106,7 @@ Abra la ubicación de la plantilla y descomprima la plantilla para editar archiv
     <message>
         <location filename="../src/texstudio.cpp" line="1278"/>
         <source>Disconnect from collaboration</source>
-        <translation type="unfinished"/>
+        <translation>Desconectarse de la colaboración</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1280"/>
@@ -12621,7 +12621,7 @@ El mensaje ha sido detenido.
     <message>
         <location filename="../src/texstudio.cpp" line="1203"/>
         <source>Close latest open delimiter or environment</source>
-        <translation type="unfinished"/>
+        <translation>Cerrar el último delimitador o entorno abierto</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6999"/>
