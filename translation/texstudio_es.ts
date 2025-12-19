@@ -31,7 +31,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="53"/>
         <source>Send Query to AI provider (ctrl+enter)</source>
-        <translation type="unfinished"/>
+        <translation>Enviar consulta al proveedor de IA (ctrl+enter)</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="66"/>
@@ -51,7 +51,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="334"/>
         <source>System prompt can&apos;t be altered mid-conversation</source>
-        <translation type="unfinished"/>
+        <translation>La prompuesta del sistema no puede ser modificada en el medio de la conversación</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="338"/>
@@ -206,7 +206,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="80"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 3 as published by the Free Software Foundation.</source>
-        <translation type="unfinished"/>
+        <translation>Este programa está licenciado bajo los términos de la Licencia Pública General de GNU versión 3, publicada por la Free Software Foundation.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="60"/>
@@ -1760,7 +1760,7 @@ Esto cambia la escala de las barras de herramientas verticales (para pantallas d
     <message>
         <location filename="../src/configdialog.ui" line="5069"/>
         <source>teamtype</source>
-        <translation type="unfinished"/>
+        <translation>teamtype</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2335"/>
@@ -3096,7 +3096,7 @@ Nota: Este cambio no afectará a los archivos abiertos acualmente.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="5051"/>
         <source>Path:</source>
-        <translation type="unfinished"/>
+        <translation>Ruta de acceso:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5058"/>
@@ -3354,7 +3354,7 @@ la clave de todos modos?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="938"/>
         <source>Search Path for Command</source>
-        <translation type="unfinished"/>
+        <translation>Ruta de búsqueda de órden</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="945"/>
@@ -4559,7 +4559,7 @@ comunes.</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="719"/>
         <source>txsCollaborationFolder</source>
-        <translation type="unfinished"/>
+        <translation>Carpeta de colaboración</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1112"/>
@@ -6249,7 +6249,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3229"/>
         <source>&amp;Select Text</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Seleccionar texto</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3234"/>
@@ -9027,7 +9027,7 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
     <message>
         <location filename="../src/searchquery.cpp" line="330"/>
         <source>Special Definition Search</source>
-        <translation type="unfinished"/>
+        <translation>Búsqueda de Definiciones Especiales</translation>
     </message>
 </context>
 <context>

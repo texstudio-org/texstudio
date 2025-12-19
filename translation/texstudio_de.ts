@@ -206,7 +206,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="80"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 3 as published by the Free Software Foundation.</source>
-        <translation>Dieses Programm ist lizensiert unter den Bedingungen der GNU General Public License Version 3 wie sie von der Free Software Foundation veröffentlicht wurde.</translation>
+        <translation>Dieses Programm ist lizensiert unter den Bedingungen der GNU General Public License Version 3, wie sie von der Free Software Foundation veröffentlicht wurden.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="60"/>
@@ -3361,7 +3361,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="938"/>
         <source>Search Path for Command</source>
-        <translation>Suche Pfad für Befehl</translation>
+        <translation>Suchpfad für Befehl</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="945"/>
@@ -9032,7 +9032,7 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     <message>
         <location filename="../src/searchquery.cpp" line="330"/>
         <source>Special Definition Search</source>
-        <translation>Suche nach Spezialdefintionen</translation>
+        <translation>Suche nach Spezialdefinitionen</translation>
     </message>
 </context>
 <context>
