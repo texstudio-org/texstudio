@@ -1711,7 +1711,7 @@ bool LatexEditorView::setSpeller(const QString &name, bool updateComment)
     }
 
 	// force new highlighting
-    if(!dontRecheck){
+    if(!dontRecheck && document){
         document->reCheckSyntax(0, document->lineCount());
     }
 
