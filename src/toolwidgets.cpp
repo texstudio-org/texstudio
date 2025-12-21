@@ -189,7 +189,7 @@ TerminalWidget::TerminalWidget(QWidget *parent, InternalTerminalConfig *terminal
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     layout->setMargin(0);
 #else
-    layout->setContentMargins(0,0,0,0);
+    layout->setContentsMargins(0,0,0,0);
 #endif
 	setLayout(layout);
 	installEventFilter(this);

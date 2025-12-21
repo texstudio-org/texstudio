@@ -12,7 +12,7 @@ endif()
 
 
 find_package(PkgConfig)
-pkg_check_modules(QTERMWIDGET_PKG QUIET qtermwidget5)
+pkg_check_modules(QTERMWIDGET_PKG QUIET qtermwidget${QT_VERSION_MAJOR})
 
 
 find_path(QTERMWIDGET_INCLUDE_DIR NAMES qtermwidget.h
@@ -24,10 +24,10 @@ find_path(QTERMWIDGET_INCLUDE_DIR NAMES qtermwidget.h
 	HINTS
 		${QTERMWIDGET_PKG_INCLUDE_DIRS}
 	PATH_SUFFIXES
-		qtermwidget5
+	        qtermwidget${QT_VERSION_MAJOR}
 )
 
-find_library(QTERMWIDGET_LIBRARIES NAMES qtermwidget5 ${QTERMWIDGET_PKG_LIBRARIES}
+find_library(QTERMWIDGET_LIBRARIES NAMES qtermwidget${QT_VERSION_MAJOR} ${QTERMWIDGET_PKG_LIBRARIES}
 	PATHS
 		/usr/local
 		/usr

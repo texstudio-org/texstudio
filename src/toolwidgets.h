@@ -7,7 +7,11 @@
 #include "mostQtHeaders.h"
 
 #ifdef INTERNAL_TERMINAL
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+#include <qtermwidget6/qtermwidget.h>
+#else
 #include <qtermwidget5/qtermwidget.h>
+#endif
 #endif
 
 #include "titledpanel.h"

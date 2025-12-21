@@ -11,7 +11,11 @@
 
 #include "qjsonarray.h"
 #ifdef INTERNAL_TERMINAL
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+#include <qtermwidget6/qtermwidget.h>
+#else
 #include <qtermwidget5/qtermwidget.h>
+#endif
 #endif
 
 #include "configdialog.h"
@@ -1447,7 +1451,7 @@ void ConfigDialog::populateTerminalComboBoxFont(bool onlyMonospaced)
 
 void ConfigDialog::populateTerminalColorSchemes()
 {
-	ui.comboBoxTerminalColorScheme->addItems( QTermWidget::availableColorSchemes() );
+    ui.comboBoxTerminalColorScheme->addItems( QTermWidget::availableColorSchemes() );
 }
 #endif
 

@@ -182,12 +182,10 @@ add_subdirectory(src/latexparser)
 add_subdirectory(src/symbolpanel)
 
 #qtermwidget
-if(${QT_VERSION_MAJOR} LESS_EQUAL 5)
-    find_package(QTermWidget QUIET)
-    if(QTermWidget_FOUND)
-        message(STATUS "Using QTermWidget5")
-        set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DINTERNAL_TERMINAL)
-    endif()
+find_package(QTermWidget QUIET)
+if(QTermWidget_FOUND)
+	message(STATUS "Using QTermWidget")
+	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DINTERNAL_TERMINAL)
 endif()
 
 # QuaZIP
@@ -454,8 +452,8 @@ if(UNIX AND NOT APPLE AND NOT HAIKU)
 endif()
 
 #qtermwidget
-if(QTERMWIDGET_FOUND AND ${QT_VERSION_MAJOR} LESS_EQUAL 5 )
-   target_link_libraries(texstudio PUBLIC qtermwidget5)
+if(QTERMWIDGET_FOUND)
+   target_link_libraries(texstudio PUBLIC qtermwidget${QT_VERSION_MAJOR})
 endif()
 
 #mediaplayer
