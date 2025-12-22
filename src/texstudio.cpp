@@ -10695,15 +10695,15 @@ void Texstudio::findWordRepetions()
 		<< QStringList( {tr("Word Repetition"), "wordRepetition"} )
 		<< QStringList( {tr("Long-range Word Repetition"), "wordRepetitionLongRange"} )
 		<< QStringList( {tr("Bad words"), "badWord"} )
-		<< QStringList( {tr("Grammar Mistake"), "grammarMistake"} )
-		<< QStringList( {tr("Grammar Mistake Special 1"), "grammarMistakeSpecial1"} )
-		<< QStringList( {tr("Grammar Mistake Special 2"), "grammarMistakeSpecial2"} )
-		<< QStringList( {tr("Grammar Mistake Special 3"), "grammarMistakeSpecial3"} )
-		<< QStringList( {tr("Grammar Mistake Special 4"), "grammarMistakeSpecial4"} );
+		<< QStringList( {tr("Grammar Mistake"), "grammarMistake"} );
 	for (int i=0; i<types.size(); i++) {
 		QStringList type = types.at(i);
 		cb->addItem(type.at(0));
 		cb->setItemData(i, QVariant(type.at(1)));
+	}
+	for (int i=1; i<5; i++) {
+		cb->addItem(tr("Grammar Mistake Special %1").arg(i));
+		cb->setItemData(i, QVariant(tr("grammarMistakeSpecial%1").arg(i)));
 	}
 
 	cb->setCurrentIndex(1);
