@@ -3098,6 +3098,7 @@
 <file>completion/pst-mirror.cwl</file>
 <file>completion/pst-moire.cwl</file>
 <file>completion/pst-node.cwl</file>
+<file>completion/pst-nutation.cwl</file>
 <file>completion/pst-ob3d.cwl</file>
 <file>completion/pst-ode.cwl</file>
 <file>completion/pstool.cwl</file>
