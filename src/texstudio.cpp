@@ -10690,7 +10690,22 @@ void Texstudio::findWordRepetions()
 	layout->setColumnStretch(1, 1);
 	layout->setColumnStretch(0, 1);
 	QComboBox *cb = new QComboBox(dlg);
-	cb->addItems(QStringList() << "spellingMistake" << "wordRepetition" << "wordRepetitionLongRange" << "badWord" << "grammarMistake" << "grammarMistakeSpecial1" << "grammarMistakeSpecial2" << "grammarMistakeSpecial3" << "grammarMistakeSpecial4");
+	QList<QStringList> types = QList<QStringList>()
+		<< QStringList( {tr("Spelling Mistake"), "spellingMistake"} )
+		<< QStringList( {tr("Word Repetition"), "wordRepetition"} )
+		<< QStringList( {tr("Word Repetition Long Range"), "wordRepetitionLongRange"} )
+		<< QStringList( {tr("Bad Word"), "badWord"} )
+		<< QStringList( {tr("Grammar Mistake"), "grammarMistake"} )
+		<< QStringList( {tr("Grammar Mistake Special 1"), "grammarMistakeSpecial1"} )
+		<< QStringList( {tr("Grammar Mistake Special 2"), "grammarMistakeSpecial2"} )
+		<< QStringList( {tr("Grammar Mistake Special 3"), "grammarMistakeSpecial3"} )
+		<< QStringList( {tr("Grammar Mistake Special 4"), "grammarMistakeSpecial4"} );
+	for (int i=0; i<types.size(); i++) {
+		QStringList type = types.at(i);
+		cb->addItem(type.at(0));
+		cb->setItemData(i, QVariant(type.at(1)));
+	}
+
 	cb->setCurrentIndex(1);
 	cb->setObjectName("kind");
 	cb->setEditable(true); //so people can search for other things as well
@@ -10722,7 +10737,7 @@ void Texstudio::findNextWordRepetion()
 	typedef QFormatRange (QDocumentLine::*OverlaySearch) (int, int, int) const;
 	OverlaySearch overlaySearch = backward ? &QDocumentLine::getLastOverlay : &QDocumentLine::getFirstOverlay;
 	QComboBox *kind = mButton->parent()->findChild<QComboBox *>("kind");
-	int overlayType = currentEditorView()->document->getFormatId(kind ? kind->currentText() : "wordRepetition");
+	int overlayType = currentEditorView()->document->getFormatId(kind ? kind->currentData().value<QString>() : "wordRepetition");
 	QDocumentCursor cur = currentEditor()->cursor();
 	if (cur.hasSelection()) {
 		if (backward) cur = cur.selectionStart();
