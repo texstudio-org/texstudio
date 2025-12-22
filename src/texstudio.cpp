@@ -11369,7 +11369,7 @@ void Texstudio::fileInConflictShowDiff()
 {
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());
 	REQUIRE(mEditor);
-	if (!QFileInfo(mEditor->fileName()).exists())  //create new qfileinfo to avoid caching
+    if (!QFileInfo::exists(mEditor->fileName()))  //create new qfileinfo to avoid caching
 		return;
 	removeDiffMarkers();
 
