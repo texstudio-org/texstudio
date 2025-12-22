@@ -11397,11 +11397,13 @@ Abra la ubicación de la plantilla y descomprima la plantilla para editar archiv
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1445"/>
+        <location filename="../src/texstudio.cpp" line="10696"/>
         <source>Long-range Word Repetition</source>
         <translation>Palabras Repetidas en un gran Intervalo</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1446"/>
+        <location filename="../src/texstudio.cpp" line="10697"/>
         <source>Bad words</source>
         <translation>Palabras inadecuadas</translation>
     </message>
@@ -11413,6 +11415,7 @@ Abra la ubicación de la plantilla y descomprima la plantilla para editar archiv
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1449"/>
+        <location filename="../src/texstudio.cpp" line="10705"/>
         <source>Grammar Mistake Special %1</source>
         <translation>Error especial de Gramática %1</translation>
     </message>
@@ -12229,36 +12232,6 @@ Do you want to create it?</source>
         <location filename="../src/texstudio.cpp" line="10694"/>
         <source>Spelling Mistake</source>
         <translation>Error ortografía</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10696"/>
-        <source>Word Repetition Long Range</source>
-        <translation>Palabras Repetidas en un gran Intervalo</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10697"/>
-        <source>Bad Word</source>
-        <translation>Lenguaje soez</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10699"/>
-        <source>Grammar Mistake Special 1</source>
-        <translation>Error especial de Gramática 1</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10700"/>
-        <source>Grammar Mistake Special 2</source>
-        <translation>Error especial de Gramática 2</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10701"/>
-        <source>Grammar Mistake Special 3</source>
-        <translation>Error especial de Gramática 3</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10702"/>
-        <source>Grammar Mistake Special 4</source>
-        <translation>Error especial de Gramática 4</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10712"/>

@@ -11433,11 +11433,13 @@ modello per modificare singoli file.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1445"/>
+        <location filename="../src/texstudio.cpp" line="10696"/>
         <source>Long-range Word Repetition</source>
         <translation>Ripetizioni a grande distanza</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1446"/>
+        <location filename="../src/texstudio.cpp" line="10697"/>
         <source>Bad words</source>
         <translation>Errori ortografici</translation>
     </message>
@@ -11449,6 +11451,7 @@ modello per modificare singoli file.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1449"/>
+        <location filename="../src/texstudio.cpp" line="10705"/>
         <source>Grammar Mistake Special %1</source>
         <translation>Errori grammaticali speciali %1</translation>
     </message>
@@ -12264,36 +12267,6 @@ Desideri crearlo?</translation>
         <location filename="../src/texstudio.cpp" line="10694"/>
         <source>Spelling Mistake</source>
         <translation>Errore di ortografia</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10696"/>
-        <source>Word Repetition Long Range</source>
-        <translation>Ripetizione di parole a lungo raggio</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10697"/>
-        <source>Bad Word</source>
-        <translation>Brutta parola</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10699"/>
-        <source>Grammar Mistake Special 1</source>
-        <translation>Speciale sugli errori grammaticali 1</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10700"/>
-        <source>Grammar Mistake Special 2</source>
-        <translation>Speciale sugli errori grammaticali 2</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10701"/>
-        <source>Grammar Mistake Special 3</source>
-        <translation>Speciale sugli errori grammaticali 3</translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10702"/>
-        <source>Grammar Mistake Special 4</source>
-        <translation>Speciale sugli errori grammaticali 4</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10712"/>
