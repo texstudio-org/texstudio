@@ -10703,7 +10703,7 @@ void Texstudio::findWordRepetions()
 	}
 	for (int i=1; i<5; i++) {
 		cb->addItem(tr("Grammar Mistake Special %1").arg(i));
-		cb->setItemData(i, QVariant(tr("grammarMistakeSpecial%1").arg(i)));
+        cb->setItemData(i, QVariant(QString("grammarMistakeSpecial%1").arg(i)));
 	}
 
 	cb->setCurrentIndex(1);
