@@ -2052,7 +2052,7 @@ i duhet të formojë shenjat. Ngaqë Unikod s’mbulohet së brendshmi nga LaTeX
     <message>
         <location filename="../src/configdialog.ui" line="2645"/>
         <source>Mark structure elements in appendix</source>
-        <translation type="unfinished"/>
+        <translation>Trego elementë strukture te pasthënie</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2652"/>
@@ -11398,11 +11398,13 @@ kartela individuale për përpunim.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1445"/>
+        <location filename="../src/texstudio.cpp" line="10696"/>
         <source>Long-range Word Repetition</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1446"/>
+        <location filename="../src/texstudio.cpp" line="10697"/>
         <source>Bad words</source>
         <translation>Fjalë të këqija</translation>
     </message>
@@ -11414,6 +11416,7 @@ kartela individuale për përpunim.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1449"/>
+        <location filename="../src/texstudio.cpp" line="10705"/>
         <source>Grammar Mistake Special %1</source>
         <translation type="unfinished"/>
     </message>
@@ -12226,36 +12229,6 @@ Doni të krijohet?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="10694"/>
         <source>Spelling Mistake</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10696"/>
-        <source>Word Repetition Long Range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10697"/>
-        <source>Bad Word</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10699"/>
-        <source>Grammar Mistake Special 1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10700"/>
-        <source>Grammar Mistake Special 2</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10701"/>
-        <source>Grammar Mistake Special 3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10702"/>
-        <source>Grammar Mistake Special 4</source>
         <translation type="unfinished"/>
     </message>
     <message>

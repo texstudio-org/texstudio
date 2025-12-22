@@ -9115,7 +9115,7 @@ r*: εύρεση χαρακτήρων r (ανεξαρτήτως του πλήθ�
     <message>
         <location filename="../src/spellerdialog.ui" line="184"/>
         <source>Ig&amp;nore All</source>
-        <translation>Πα&amp;ράλειψη όλων</translation>
+        <translation>Πα&amp;ράβλεψη όλων</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="191"/>
@@ -11415,11 +11415,13 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1445"/>
+        <location filename="../src/texstudio.cpp" line="10696"/>
         <source>Long-range Word Repetition</source>
-        <translation>Επαναλήψεις μεγαλύτερων λέξεων</translation>
+        <translation>Επανάληψη μεγάλων λέξεων</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1446"/>
+        <location filename="../src/texstudio.cpp" line="10697"/>
         <source>Bad words</source>
         <translation>Αργκό/ανεπίσημες λέξεις</translation>
     </message>
@@ -11431,6 +11433,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1449"/>
+        <location filename="../src/texstudio.cpp" line="10705"/>
         <source>Grammar Mistake Special %1</source>
         <translation>Ειδικό γραμματικό λάθος %1</translation>
     </message>
@@ -11575,7 +11578,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1740"/>
         <source>Connected to LanguageTool at %1</source>
-        <translation>Συνδέθηκε με το LanguageTool στον διακομιστή %1</translation>
+        <translation>Έγινε σύνδεση με το LanguageTool στον διακομιστή %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1744"/>
@@ -12241,37 +12244,7 @@ Do you want to create it?</source>
     <message>
         <location filename="../src/texstudio.cpp" line="10694"/>
         <source>Spelling Mistake</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10696"/>
-        <source>Word Repetition Long Range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10697"/>
-        <source>Bad Word</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10699"/>
-        <source>Grammar Mistake Special 1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10700"/>
-        <source>Grammar Mistake Special 2</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10701"/>
-        <source>Grammar Mistake Special 3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10702"/>
-        <source>Grammar Mistake Special 4</source>
-        <translation type="unfinished"/>
+        <translation>Ορθογραφικό λάθος</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10712"/>
