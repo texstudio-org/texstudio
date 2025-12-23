@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/12/17 for v16.1.0
+# Matthew Bertucci 2025/12/23 for v16.2.0
 
 #include:iftex
 
@@ -336,6 +336,7 @@ billboard
 bim
 binance
 biolink
+bioconductor
 biome
 bisecthosting
 bit
@@ -2212,6 +2213,7 @@ pixelfed
 pixiv
 pixlr
 pkgsrc
+plane
 planet
 planetscale
 plangrid

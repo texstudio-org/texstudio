@@ -3072,6 +3072,7 @@
 <file>completion/pst-fit.cwl</file>
 <file>completion/pst-flags-colors-html.cwl</file>
 <file>completion/pst-flags.cwl</file>
+<file>completion/pst-fourbarlinkage.cwl</file>
 <file>completion/pst-fr3d.cwl</file>
 <file>completion/pst-fractal.cwl</file>
 <file>completion/pst-func.cwl</file>
@@ -3094,6 +3095,7 @@
 <file>completion/pst-lsystem.cwl</file>
 <file>completion/pst-magneticfield.cwl</file>
 <file>completion/pst-marble.cwl</file>
+<file>completion/pst-massspring.cwl</file>
 <file>completion/pst-math.cwl</file>
 <file>completion/pst-mirror.cwl</file>
 <file>completion/pst-moire.cwl</file>
@@ -4280,6 +4282,7 @@
 <file>completion/xlop.cwl</file>
 <file>completion/xltabular.cwl</file>
 <file>completion/xltxtra.cwl</file>
+<file>completion/xmeaning.cwl</file>
 <file>completion/xmpincl.cwl</file>
 <file>completion/xmpmulti.cwl</file>
 <file>completion/xob-dotemph.cwl</file>
