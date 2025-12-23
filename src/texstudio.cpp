@@ -3063,11 +3063,7 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 	}
 
 	updateCaption();
-    //updateTOCs();
-    // allow updating all documents in case master/child relations changed
-    updateTOC();
-    bool mode = !configManager.structureShowSingleDoc;
-    updateStructureLocally(mode);
+    updateTOCs();
 }
 /*!
  * \brief save all files
@@ -10425,6 +10421,10 @@ LatexEditorView* Texstudio::openExternalFile(QString name, const QString &defaul
                 QDocumentLineHandle *dlh=doc->line(lineNr).handle();
                 dlh->setFlag(QDocumentLine::argumentsParsed,false); // force reinterpretation of line
 				doc->patchStructure(lineNr, 1);
+                // update TOC
+                updateTOC();
+                bool mode = configManager.structureShowSingleDoc;
+                if(!mode) updateStructureLocally(!mode);
 			}
 		}
     }
