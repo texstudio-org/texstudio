@@ -11409,11 +11409,13 @@ o modelo para editar ficheiros individuais.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1445"/>
+        <location filename="../src/texstudio.cpp" line="10696"/>
         <source>Long-range Word Repetition</source>
         <translation>Repetição de Palavras Distantes</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1446"/>
+        <location filename="../src/texstudio.cpp" line="10697"/>
         <source>Bad words</source>
         <translation>Palavras Inadequadas</translation>
     </message>
@@ -11425,6 +11427,7 @@ o modelo para editar ficheiros individuais.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1449"/>
+        <location filename="../src/texstudio.cpp" line="10705"/>
         <source>Grammar Mistake Special %1</source>
         <translation>Erro Gramatical Especial %1</translation>
     </message>
@@ -12237,37 +12240,7 @@ Deseja criá-lo?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="10694"/>
         <source>Spelling Mistake</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10696"/>
-        <source>Word Repetition Long Range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10697"/>
-        <source>Bad Word</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10699"/>
-        <source>Grammar Mistake Special 1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10700"/>
-        <source>Grammar Mistake Special 2</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10701"/>
-        <source>Grammar Mistake Special 3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="10702"/>
-        <source>Grammar Mistake Special 4</source>
-        <translation type="unfinished"/>
+        <translation>Erro ortográfico</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10712"/>
