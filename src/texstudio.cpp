@@ -3063,7 +3063,11 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 	}
 
 	updateCaption();
-    updateTOCs();
+    //updateTOCs();
+    // allow updating all documents in case master/child relations changed
+    updateTOC();
+    bool mode = !configManager.structureShowSingleDoc;
+    updateStructureLocally(mode);
 }
 /*!
  * \brief save all files

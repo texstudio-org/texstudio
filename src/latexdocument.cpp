@@ -960,6 +960,18 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             QString name=fn;
             name.replace("\\string~",QDir::homePath());
             QString fname = findFileName(name);
+            bool fileOnDisk=true;
+            if(fname.isEmpty()){
+                // file does not exist yet
+                // add .tex if not present
+                // add currPath if not present
+                fileOnDisk=false;
+                QFileInfo fi(fileInfo.absoluteDir(),name);
+                fname=fi.absoluteFilePath();
+                if(fi.suffix().isEmpty()){
+                    fname=fname+".tex";
+                }
+            }
             bool includeWasNotPresent = (data.removedIncludes.removeAll(fname) == 0); // don't update syntax if include was removed and reinstated
             data.updateSyntaxCheck |= includeWasNotPresent;
             mIncludedFilesList.insert(line(currentLineNr).handle(), fname);
@@ -971,11 +983,11 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                     data.addedIncludes << dc;
                 }
             } else {
-                if(!fname.isEmpty()){
+                if(fileOnDisk){
                     data.lstFilesToLoad << fname;
                 }
             }
-            newInclude->valid = !fname.isEmpty();
+            newInclude->valid = fileOnDisk;
             newInclude->setLine(line(currentLineNr).handle(), currentLineNr);
             newInclude->columnNumber = cmdStart;
             replaceOrAdd(docStructureIter,dlh,newInclude);
@@ -1169,6 +1181,17 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
             parent->removeDocs(changedCommands.removedIncludes);
             if(!changedCommands.addedIncludes.isEmpty()){
                 recheckRefsLabels();
+                // check if new packages were added in included files
+                foreach(LatexDocument* doc,changedCommands.addedIncludes){
+                    if(!changedCommands.addedUsepackages.isEmpty()) break;
+                    QList<LatexDocument*> listOfDocs = doc->getListOfDocs(nullptr,true);
+                    foreach(const LatexDocument* childDoc, listOfDocs){
+                        if(childDoc->mUsepackageList.size()>0){
+                            changedCommands.addedUsepackages<<"dummy"; // force handling newly included packages
+                            break;
+                        }
+                    }
+                }
                 changedCommands.addedIncludes.clear();
             }
             updateLtxCommands(true);
