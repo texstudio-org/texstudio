@@ -1,5 +1,5 @@
 # lucida-otf package
-# Matthew Bertucci 2024/12/15 for v0.10
+# Matthew Bertucci 2025/12/17 for v0.11
 
 #include:ifxetex
 #include:ifluatex
@@ -22,6 +22,7 @@ DefaultFeatures={%<fontspec options%>}
 useKerning#true,false
 #endkeyvals
 
+\Lss{digit1}{digit2}{formula}
 \LucidaBlackletter
 \LucidaCalligraphy
 \LucidaHandwriting

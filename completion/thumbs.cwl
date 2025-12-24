@@ -1,17 +1,13 @@
 # thumbs package
 # Matthew Bertucci 11/29/2021 for v1.0q
 
-#include:kvoptions
-#include:atbegshi
 #include:xcolor
 #include:picture
 #include:alphalph
-#include:pageslts
-#include:pagecolor
 #include:rerunfilecheck
-#include:infwarerr
-#include:ltxcmds
-#include:atveryend
+#include:pagecolor
+#include:undolabl
+#include:kvoptions
 
 #keyvals:\usepackage/thumbs#c
 linefill=#line,dots
@@ -26,13 +22,18 @@ oddtxtexdent=##L
 evenmarkindent=##L
 oddmarkexdent=##L
 evenprintvoffset=##L
+leftindexruleplus=##L
+frame=##L
+frameinnercolor=#%color
 thumblink=#none,title,page,titleandpage,line,rule
 nophantomsection#true,false
+plainthumbsoverview#true,false
 ignorehoffset#true,false
 ignorevoffset#true,false
 verbose#true,false
 draft#true,false
 hidethumbs#true,false
+righttoleft#true,false
 #endkeyvals
 
 #ifOption:verbose
@@ -61,3 +62,4 @@ hidethumbs#true,false
 \thumbsorigindex#S
 \thumbsoriglabel#S
 \thumbsoverviewprint#S
+\theThumbsPage#S

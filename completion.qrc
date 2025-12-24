@@ -2524,6 +2524,7 @@
 <file>completion/modular.cwl</file>
 <file>completion/modulus.cwl</file>
 <file>completion/mol2chemfig.cwl</file>
+<file>completion/monaspace-otf.cwl</file>
 <file>completion/monofill.cwl</file>
 <file>completion/montserrat.cwl</file>
 <file>completion/moodle.cwl</file>
@@ -2825,6 +2826,7 @@
 <file>completion/pegmatch.cwl</file>
 <file>completion/penlight.cwl</file>
 <file>completion/penlightplus.cwl</file>
+<file>completion/pennstander-otf.cwl</file>
 <file>completion/perfectcut.cwl</file>
 <file>completion/perltex.cwl</file>
 <file>completion/permute.cwl</file>
@@ -3070,11 +3072,13 @@
 <file>completion/pst-fit.cwl</file>
 <file>completion/pst-flags-colors-html.cwl</file>
 <file>completion/pst-flags.cwl</file>
+<file>completion/pst-fourbarlinkage.cwl</file>
 <file>completion/pst-fr3d.cwl</file>
 <file>completion/pst-fractal.cwl</file>
 <file>completion/pst-func.cwl</file>
 <file>completion/pst-fun.cwl</file>
 <file>completion/pst-gantt.cwl</file>
+<file>completion/pst-gears.cwl</file>
 <file>completion/pst-geo.cwl</file>
 <file>completion/pst-geometrictools.cwl</file>
 <file>completion/pst-gr3d.cwl</file>
@@ -3091,10 +3095,12 @@
 <file>completion/pst-lsystem.cwl</file>
 <file>completion/pst-magneticfield.cwl</file>
 <file>completion/pst-marble.cwl</file>
+<file>completion/pst-massspring.cwl</file>
 <file>completion/pst-math.cwl</file>
 <file>completion/pst-mirror.cwl</file>
 <file>completion/pst-moire.cwl</file>
 <file>completion/pst-node.cwl</file>
+<file>completion/pst-nutation.cwl</file>
 <file>completion/pst-ob3d.cwl</file>
 <file>completion/pst-ode.cwl</file>
 <file>completion/pstool.cwl</file>
@@ -3482,6 +3488,7 @@
 <file>completion/spelatex.cwl</file>
 <file>completion/spelling.cwl</file>
 <file>completion/splentinex.cwl</file>
+<file>completion/splitbib.cwl</file>
 <file>completion/splitidx.cwl</file>
 <file>completion/spotcolor.cwl</file>
 <file>completion/spot.cwl</file>
@@ -4275,6 +4282,7 @@
 <file>completion/xlop.cwl</file>
 <file>completion/xltabular.cwl</file>
 <file>completion/xltxtra.cwl</file>
+<file>completion/xmeaning.cwl</file>
 <file>completion/xmpincl.cwl</file>
 <file>completion/xmpmulti.cwl</file>
 <file>completion/xob-dotemph.cwl</file>

@@ -1,5 +1,5 @@
 # eolang package
-# Matthew Bertucci 2025/11/12 for v0.20.0
+# Matthew Bertucci 2025/12/17 for v0.22.0
 
 #include:stmaryrd
 #include:amsmath
@@ -47,7 +47,7 @@ noshell
 \xmir
 
 \phiSlot{arg}#m
-\phiConst#m
+\phiTerminal{arg}
 \phiWave#m
 \phiDotted#m
 \phiOset{over}{arg}#m
