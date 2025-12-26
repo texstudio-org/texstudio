@@ -1,5 +1,5 @@
 # authorarchive package
-# Matthew Bertucci 2023/02/10 for v1.3.0
+# Matthew Bertucci 2025/12/26 for v1.3.1
 
 #include:ifthen
 #include:enumitem
@@ -13,6 +13,7 @@
 #include:qrcode
 #include:etoolbox
 #include:lastpage
+#include:hologo
 
 \authorsetup{option%keyvals}
 
@@ -43,7 +44,6 @@ orcidicon#true,false
 \authorcrfont#*
 \authorat{text}#*
 \authorwidth{width}#*
-\BibTeX
 
 # from inline option of enumitem
 \begin{enumerate*}
