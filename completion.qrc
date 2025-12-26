@@ -3131,6 +3131,7 @@
 <file>completion/pst-solides3d.cwl</file>
 <file>completion/pst-soroban.cwl</file>
 <file>completion/pst-spectra.cwl</file>
+<file>completion/pst-sphericaltrochoid.cwl</file>
 <file>completion/pst-spinner.cwl</file>
 <file>completion/pst-stru.cwl</file>
 <file>completion/pst-text.cwl</file>
