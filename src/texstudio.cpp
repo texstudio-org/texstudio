@@ -799,6 +799,7 @@ void Texstudio::setupDockWidgets()
         connect(outputView->getSearchResultWidget(), &SearchResultWidget::jumpToSearchResult, this, &Texstudio::jumpToSearchResult);
         connect(outputView->getSearchResultWidget(), &SearchResultWidget::jumpToFileSearchResult, this, &Texstudio::jumpToFileSearchResult);
         connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery*)), this, SLOT(runSearch(SearchQuery*)));
+        connect(outputView->getSearchResultWidget(), &SearchResultWidget::signalUpdateSearch, this, &Texstudio::showExtendedSearch);
 
         connect(&buildManager, SIGNAL(previewAvailable(const QString&,const PreviewSource&)), this, SLOT(previewAvailable(const QString&,const PreviewSource&)));
         connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));

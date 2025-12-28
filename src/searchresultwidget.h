@@ -24,6 +24,7 @@ signals:
     void jumpToSearchResult(LatexDocument *doc, int lineNumber, const SearchQuery *query);
     void jumpToFileSearchResult(QString fn, int lineNumber, const SearchQuery *query);
 	void runSearch(SearchQuery *query);
+    void signalUpdateSearch();
 
 public slots:
 	void clearSearch();

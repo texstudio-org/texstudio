@@ -114,8 +114,9 @@ void SearchResultWidget::setQuery(SearchQuery *sq)
 
 void SearchResultWidget::updateSearch()
 {
-	if (query) query->setScope(searchScope());
-	emit runSearch(query);
+    /*if (query) query->setScope(searchScope());
+    emit runSearch(query);*/
+    emit signalUpdateSearch();
 }
 /*!
  * \brief change UI and update search when mode is changed
