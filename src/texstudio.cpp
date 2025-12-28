@@ -382,6 +382,13 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 		restoreState(stateFullScreen, 1);
 		fullscreenModeAction->setChecked(true);
 	} else if (tobemaximized) {
+#ifdef Q_OS_WIN
+		// Workaround a Qt/Windows bug which prevents too small windows from maximizing
+		// For more details see:
+		// https://stackoverflow.com/questions/27157312/qt-showmaximized-not-working-in-windows
+		// https://bugreports.qt.io/browse/QTBUG-77077
+		resize(800, 600);
+#endif
 		showMaximized();
 	} else {
 		show();
