@@ -3086,6 +3086,7 @@
 <file>completion/pst-infixplot.cwl</file>
 <file>completion/pst-intersect.cwl</file>
 <file>completion/pst-jtree.cwl</file>
+<file>completion/pst-kepler.cwl</file>
 <file>completion/pst-key.cwl</file>
 <file>completion/pst-knot.cwl</file>
 <file>completion/pst-labo.cwl</file>
