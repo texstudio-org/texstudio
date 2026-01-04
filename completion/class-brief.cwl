@@ -1,5 +1,5 @@
 # brief class
-# Matthew Bertucci 3/29/2022 for v2.0s
+# Matthew Bertucci 2026/01/04 for v2.0t
 
 #keyvals:\documentclass/brief#c
 a4paper
@@ -29,6 +29,7 @@ french
 
 \address{address}
 \afsluiting{text}
+\afsluiting[width]{text}
 \antwoordadres{return address}
 \begin{brief}{name}
 \end{brief}
