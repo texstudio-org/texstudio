@@ -1,5 +1,5 @@
 # gckanbun package
-# Matthew Bertucci 2025/11/13 for v2.1.0
+# Matthew Bertucci 2026/01/05 for v2.2.0
 
 #include:ifluatex
 #include:ifuptex
@@ -48,6 +48,9 @@ intrusion=#post,both
 \kanbunokurigana{text}
 \kanbunkaeriten{text}
 #endif
+
+\GCKTateOn
+\GCKTateOff
 
 \zw#S
 \zh#S
