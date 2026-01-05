@@ -38,18 +38,45 @@ SizeFeatures={%<features%>}
 StylisticSet=%<set number%>
 #endkeyvals
 
-\mathbb{text%plain}#m
-\mathcalbf{text%plain}#m
-\mathfrakbf{text%plain}#m
-\mathfrak{text%plain}#m
-\symbfsf{text%plain}#m
-\symrm{text%plain}#m
-\symsf{text%plain}#m
+\symnormal{text}#*m
+\symliteral{text}#*m
+\symup{text}#m
+\symrm{text}#m
+\symit{text}#m
+\symbf{text}#m
+\symsf{text}#m
+\symtt{text}#m
+\symbb{text}#m
+\symcal{text}#m
+\symfrak{text}#m
+\symsfup{text}#m
+\symsfit{text}#m
+\symbfsf{text}#m
+\symbfup{text}#m
+\symbfit{text}#m
+\symbfcal{text}#m
+\symbffrak{text}#m
+\symbfsfup{text}#m
+\symbfsfit{text}#m
+\mathtextrm{text}#*m
+\mathtextbf{text}#*m
+\mathtextit{text}#*m
+\mathtextsf{text}#*m
+\mathtexttt{text}#*m
+\mathup{text}#m
+\mathbb{text}#m
+\mathsfup{text}#m
+\mathsfit{text}#m
+\mathbfup{text}#m
+\mathbfit{text}#m
+\mathbfcal{text}#m
+\mathbffrak{text}#m
+\mathbfsfup{text}#m
+\mathbfsfit{text}#m
+\mathfrak{text}#m
 
 \intoplimits#S
 \mathfamattr#S
-\mathtextrm{text%plain}#Sm
-\mathtextsf{text%plain}#Sm
 
 ## Symbols (copied from unicode-math.cwl)
 # commands defined by default font (latin modern) for both math and text
