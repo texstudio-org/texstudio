@@ -1,5 +1,5 @@
 # moloch beamertheme
-# Matthew Bertucci 2025/12/05 for v2.0.0
+# Matthew Bertucci 2026/01/05 for v2.1.0
 
 #include:etoolbox
 #include:pgfopts
@@ -12,6 +12,7 @@ titleformat plain=#regular,smallcaps,allsmallcaps,allcaps
 sectionpage=#none,simple,progressbar
 subsectionpage=#none,simple,progressbar
 standoutnumbering=#none,hide,show
+titlepage=#moloch,plain,split
 progressbar=#none,head,frametitle,foot
 progressbar linewidth=##L
 block=#transparent,fill
@@ -24,7 +25,6 @@ colortheme=#default,highcontrast,tomorrow,paper,catppuccin
 #endkeyvals
 
 \molochset{options%keyvals}
-\mreducelistspacing#S
 
 mNormaltextFg#B
 mNormaltextBg#B

@@ -1,5 +1,5 @@
 # linguistix-ipa package
-# Matthew Bertucci 2025/05/21 for v0.1b
+# Matthew Bertucci 2026/01/05 for v0.6a
 
 #include:unicode-math
 #include:linguistix-base
@@ -18,6 +18,7 @@ ipa bold swash features={%<font features%>}
 ipa bold swash=%<font name%>
 ipa bold upright features={%<font features%>}
 ipa bold upright=%<font name%>
+ipa extra features={%<font features%>}
 ipa italic features={%<font features%>}
 ipa italic=%<font name%>
 ipa mono bold italic features={%<font features%>}
@@ -28,6 +29,7 @@ ipa mono bold swash features={%<font features%>}
 ipa mono bold swash=%<font name%>
 ipa mono bold upright features={%<font features%>}
 ipa mono bold upright=%<font name%>
+ipa mono extra features={%<font features%>}
 ipa mono italic features={%<font features%>}
 ipa mono italic=%<font name%>
 ipa mono slanted features={%<font features%>}
@@ -52,6 +54,7 @@ ipa sans bold swash features={%<font features%>}
 ipa sans bold swash=%<font name%>
 ipa sans bold upright features={%<font features%>}
 ipa sans bold upright=%<font name%>
+ipa sans extra features={%<font features%>}
 ipa sans italic features={%<font features%>}
 ipa sans italic=%<font name%>
 ipa sans slanted features={%<font features%>}

@@ -2470,6 +2470,8 @@ shortswhid#true,false
 swlabels#true,false
 vcs#true,false
 license#true,false
+addendum#true,false
+crossrefexpansion=#verbose,conditional
 #endkeyvals
 # from acmauthoryear.cbx
 #include:xpatch
@@ -2501,6 +2503,8 @@ shortswhid#true,false
 swlabels#true,false
 vcs#true,false
 license#true,false
+addendum#true,false
+crossrefexpansion=#verbose,conditional
 #endkeyvals
 #endif
 
@@ -8492,7 +8496,7 @@ introcite=#false,plain,label
 \pubdatedelim#*
 #endif
 
-### biblatex-software v1.2-4 ###
+### biblatex-software v1.2-8 ###
 #ifOption:bibstyle=software
 # from software.bbx
 #include:xurl
@@ -8503,6 +8507,8 @@ shortswhid#true,false
 swlabels#true,false
 vcs#true,false
 license#true,false
+addendum#true,false
+crossrefexpansion=#verbose,conditional
 #endkeyvals
 #endif
 

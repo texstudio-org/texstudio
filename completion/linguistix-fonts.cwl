@@ -1,5 +1,5 @@
 # linguistix-fonts package
-# Matthew Bertucci 2025/05/21 for v0.1b
+# Matthew Bertucci 2026/01/05 for v0.6a
 
 #include:linguistix-base
 #include:unicode-math
@@ -26,6 +26,7 @@ text bold swash features={%<font features%>}
 text bold swash=%<font name%>
 text bold upright features={%<font features%>}
 text bold upright=%<font name%>
+text extra features={%<font features%>}
 text italic features={%<font features%>}
 text italic=%<font name%>
 text mono bold italic features={%<font features%>}
@@ -36,6 +37,7 @@ text mono bold swash features={%<font features%>}
 text mono bold swash=%<font name%>
 text mono bold upright features={%<font features%>}
 text mono bold upright=%<font name%>
+text mono extra features={%<font features%>}
 text mono italic features={%<font features%>}
 text mono italic=%<font name%>
 text mono slanted features={%<font features%>}
@@ -54,6 +56,7 @@ text sans bold swash features={%<font features%>}
 text sans bold swash=%<font name%>
 text sans bold upright features={%<font features%>}
 text sans bold upright=%<font name%>
+text sans extra features={%<font features%>}
 text sans italic features={%<font features%>}
 text sans italic=%<font name%>
 text sans slanted features={%<font features%>}

@@ -233,6 +233,11 @@ present=#%color
 present top=#%color
 present bottom=#%color
 present ribbon=#%color
+present
+present=#%color
+present top=#%color
+present bottom=#%color
+present ribbon=#%color
 name=%<name%>
 stripes
 stripes={%<code%>}

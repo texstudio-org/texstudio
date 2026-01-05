@@ -148,6 +148,11 @@ leaf
 leaf=#%color
 towel
 towel=#%color
+present
+present=#%color
+present top=#%color
+present bottom=#%color
+present ribbon=#%color
 ## << common tikz options >> ##
 rotate=%<degrees%>
 scale=%<factor%>
