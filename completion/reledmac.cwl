@@ -1,5 +1,5 @@
 # reledmac package
-# Matthew Bertucci 2025/07/25 for v2.43.0
+# Matthew Bertucci 2026/01/05 for v2.44.0
 
 #include:xargs
 #include:etoolbox
@@ -505,6 +505,10 @@ C
 \hsizetwocolX[series]{length}
 \hsizethreecolX{length}
 \hsizethreecolX[series]{length}
+\Xcolseparator{code}
+\Xcolseparator[series]{code}
+\colseparatorX{code}
+\colseparatorX[series]{code}
 \Xafternote{length}
 \Xafternote[series]{length}
 \afternoteX{length}
