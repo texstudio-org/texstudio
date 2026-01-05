@@ -238,6 +238,7 @@
 <file>completion/bboldx.cwl</file>
 <file>completion/bchart.cwl</file>
 <file>completion/bclogo.cwl</file>
+<file>completion/beamer-reveal.cwl</file>
 <file>completion/beamerappendixnote.cwl</file>
 <file>completion/beamerarticle.cwl</file>
 <file>completion/beameraudience.cwl</file>
