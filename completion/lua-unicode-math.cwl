@@ -1,32 +1,15 @@
-# unicode-math package
-# rend3r, 6 Sep 2020
-# muzimuzhi, 7 Sep 2020
-# Matthew Bertucci 13 Aug 2023 for v0.8r
+# lua-unicode-math package
+# Matthew Bertucci 2026/01/05 for v0.4
 
-# The 2946 math symbol commands listed in
-#     https://github.com/wspr/unicode-math/blob/master/unicode-math-table.tex
-# and documented in `texdoc unimath-symbols` are not recorded. Perhaps those
-# commonly used and not yet recorded in latex-document.cwl and amssymb.cwl can 
-# be added.
+#include:luatex
 
-#include:l3keys2e
-#include:fontspec
-#include:amsmath
-
-\unimathsetup{options%keyvals}
 \setmathfont{font}
 \setmathfont{font}[font features%keyvals]
-\setmathfont[font features%keyvals]{font}#*
-\setmathfont[font features%keyvals]{font}[font features%keyvals]#*
-\setmathfontface{command}{font}#d
-\setmathfontface{command}{font}[font features%keyvals]#d
-\setmathfontface{command}[font features%keyvals]{font}#*d
-\setmathfontface{command}[font features%keyvals]{font}[font features%keyvals]#*d
-\setoperatorfont{command}
-\NewNegationCommand{symbol or command%cmd}{definition}#*d
-\RenewNegationCommand{symbol or command%cmd}{definition}#*
+\setmathfont[font features%keyvals]{font}#S
+\setmathfont[font features%keyvals]{font}[font features%keyvals]#S
 
-#keyvals:\unimathsetup#c,\setmathfont#c,\setmathfontface#c,\usepackage/unicode-math#c
+#keyvals:\setmathfont#c
+# copied from unicode-math.cwl
 normal-style=#ISO,TeX,french,upright,literal
 math-style=#ISO,TeX,french,upright,literal
 bold-style=#ISO,TeX,upright,literal
@@ -42,14 +25,6 @@ mathit=#text,sym
 mathsf=#text,sym
 mathbf=#text,sym
 mathtt=#text,sym
-#endkeyvals
-
-#keyvals:\unimathsetup#c,\usepackage/unicode-math#c
-trace=#on,debug,off
-warnings-off={%<warning list%>}
-#endkeyvals
-
-#keyvals:\setmathfont#c,\setmathfontface#c
 range=%<unicode range%>
 script-font=%<font name%>
 sscript-font=%<font name%>
@@ -63,68 +38,20 @@ SizeFeatures={%<features%>}
 StylisticSet=%<set number%>
 #endkeyvals
 
-\symnormal{text%plain}#*m
-\symliteral{text%plain}#*m
-\symup{text%plain}#*m
-\symrm{text%plain}#*m
-\symit{text%plain}#*m
-\symbf{text%plain}#*m
-\symsf{text%plain}#*m
-\symtt{text%plain}#*m
-\symbb{text%plain}#*m
-\symbbit{text%plain}#*m
-\symcal{text%plain}#*m
-\symscr{text%plain}#*m
-\symfrak{text%plain}#*m
-\symsfup{text%plain}#*m
-\symsfit{text%plain}#*m
-\symbfsf{text%plain}#*m
-\symbfup{text%plain}#*m
-\symbfit{text%plain}#*m
-\symbfcal{text%plain}#*m
-\symbfscr{text%plain}#*m
-\symbffrak{text%plain}#*m
-\symbfsfup{text%plain}#*m
-\symbfsfit{text%plain}#*m
-\mathtextrm{text%plain}#*m
-\mathtextbf{text%plain}#*m
-\mathtextit{text%plain}#*m
-\mathtextsf{text%plain}#*m
-\mathtexttt{text%plain}#*m
-\mathup{text%plain}#*m
 \mathbb{text%plain}#m
-\mathbbit{text%plain}#*m
-\mathscr{text%plain}#m
-\mathsfup{text%plain}#*m
-\mathsfit{text%plain}#*m
-\mathbfsf{text%plain}#*m
-\mathbfup{text%plain}#*m
-\mathbfit{text%plain}#*m
-\mathbfcal{text%plain}#*m
-\mathbfscr{text%plain}#*m
-\mathbffrak{text%plain}#*m
-\mathbfsfup{text%plain}#*m
-\mathbfsfit{text%plain}#*m
+\mathcalbf{text%plain}#m
+\mathfrakbf{text%plain}#m
 \mathfrak{text%plain}#m
+\symbfsf{text%plain}#m
+\symrm{text%plain}#m
+\symsf{text%plain}#m
 
-# Commands not in the main documentation
-\addnolimits{math commands%formula}#*
-\crampeddisplaystyle#*
-\crampedscriptscriptstyle#*
-\crampedscriptstyle#*
-\crampedtextstyle#*
-\mathaccentoverlay#S
-\mathaccentwide#S
-\mathbacktick#S
-\mathbotaccent#S
-\mathbotaccentwide#S
-\mathfence#S
-\mathover#S
-\mathstraightquote#S
-\mathunder#S
-\removenolimits{math commands%formula}#*
-\UnicodeMathSymbol{code point}{command}{math class}{unicode name}#*d
+\intoplimits#S
+\mathfamattr#S
+\mathtextrm{text%plain}#Sm
+\mathtextsf{text%plain}#Sm
 
+## Symbols (copied from unicode-math.cwl)
 # commands defined by default font (latin modern) for both math and text
 \Angstrom
 \ast

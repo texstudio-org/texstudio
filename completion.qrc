@@ -2335,6 +2335,7 @@
 <file>completion/luatruthtable.cwl</file>
 <file>completion/lua-typo.cwl</file>
 <file>completion/lua-ul.cwl</file>
+<file>completion/lua-unicode-math.cwl</file>
 <file>completion/lua-visual-debug.cwl</file>
 <file>completion/luavlna.cwl</file>
 <file>completion/lua-widow-control.cwl</file>
