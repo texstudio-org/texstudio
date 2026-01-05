@@ -1,5 +1,5 @@
 # covington package
-# Matthew Bertucci 2023/12/11 for v2.14
+# Matthew Bertucci 2025/01/05 for v2.16
 
 #include:iftex
 #include:varwidth
@@ -90,6 +90,7 @@ fssubpreamble={%<font settings%>}
 fssubpostamble={%<font settings%>}
 addsubnumbersep=##L
 subnumberformat={%<template%>}
+subnumberrefsep=%<text or command%>
 subjudge={%<text%>}
 subpreamble={%<text%>}
 subpostamble={%<text%>}
@@ -192,6 +193,7 @@ fscomments={%<font settings%>}
 \begin{covsubexs}#S
 \end{covsubexs}#S
 \bx#S
+\covsubrefsep#S
 \donewords#S
 \eachwordone#S
 \eachwordthree#S
