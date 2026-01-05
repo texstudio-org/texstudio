@@ -2204,6 +2204,7 @@
 <file>completion/linguistix.cwl</file>
 <file>completion/linguistix-fonts.cwl</file>
 <file>completion/linguistix-ipa.cwl</file>
+<file>completion/linguistix-languages.cwl</file>
 <file>completion/linguistix-logos.cwl</file>
 <file>completion/linguistix-nfss.cwl</file>
 <file>completion/linop.cwl</file>
