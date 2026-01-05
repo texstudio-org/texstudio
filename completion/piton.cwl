@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2025/10/24 for v4.9a
+# Matthew Bertucci 2026/01/03 for v4.10
 
 #include:luacode
 #include:xcolor
@@ -121,6 +121,7 @@ line-numbers/label-empty-lines#true,false
 line-numbers/resume
 line-numbers/sep=##L
 line-numbers/skip-empty-lines#true,false
+line-numbers/step=%<integer%>
 line-numbers={%<options%>}
 max-width=##L
 no-join

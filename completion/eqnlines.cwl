@@ -1,5 +1,5 @@
 # eqnlines package
-# Matthew Bertucci 2025/10/27 for v0.11
+# Matthew Bertucci 2026/01/05 for v0.12.1
 
 #include:keyval
 
@@ -62,12 +62,24 @@
 \eqnaddopt{options%keyvals}
 \eqnalt{text}
 \eqnalt[line|cell]{text}
+\eqnbreak
+\eqnbreak[skip]
+\eqnbreak*
+\eqnbreak*[skip]
 \eqncontrol{options%keyvals}
+\eqnjoin{conjunction}
+\eqnjoin[skip]{conjunction}
+\eqnjoin*{conjunction}
+\eqnjoin*[skip]{conjunction}
 \eqnlinesprovide{features%keyvals}
 \eqnlinesset{options%keyvals}
 \eqnpunct{punct}
 \eqnpunctapply
 \eqref{label}#r
+\eqnsep
+\eqnsep[skip]
+\eqnsep*
+\eqnsep*[skip]
 \framecell
 \framecell[cmd]
 \intertext[options%keyvals]{text}
@@ -145,6 +157,8 @@ maxleftmargin=##L
 marginbadness=%<integer%>
 maxbadness=%<integer%>
 fulllength=#on,off
+linesep=##L
+linesep*=##L
 mincolsep=##L
 maxcolsep=##L
 margins#true,false
@@ -213,7 +227,7 @@ autolabel#true,false
 autotag#true,false
 defaults=#classic,eqnlines
 ampproof#true,false
-crerror#true,false
+equationcr#true,false
 strutdepth=##L
 modifierwarning#true,false
 marksymbol=%<symbol%>
@@ -290,6 +304,7 @@ postpenalty=
 interpenalty=
 linewidth=##L
 colsep=##L
+colsep*=##L
 #endkeyvals
 
 #keyvals:\eqncontrol

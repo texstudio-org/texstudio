@@ -1,15 +1,15 @@
 # intexgral package
-# Matthew Bertucci 2025/09/10 for v2.0.0
+# Matthew Bertucci 2025/12/26 for v3.0.0
 
-#include:amssymb
+#include:amsfonts
 #include:derivative
 
 \intexgralsetup{options%keyvals}
 
 #keyvals:\intexgralsetup,\usepackage/intexgral#c
 invert-limits#true,false
-invert-differentials#true,false
-hide-differentials#true,false
+invert-diff#true,false
+limits-mode=#limits,nolimits
 italic#true,false
 upright#true,false
 #endkeyvals
@@ -17,67 +17,64 @@ upright#true,false
 \integral{integrand}#m
 \integral[keyvals]{integrand}#m
 
-#keyvals:\integral
+#keyvals:\integral#c
 limits=%<list%>
 limits*=%<list%>
-int-split#true,false
-limits-mode=#limits,nolimits
-int-symb=%<command%>
+mode=#default,nested,product
+symbol=%<command%>
 nint=%<integer%>
-lower-lim=%<lower limit%>
-upper-lim=%<upper limit%>
+llimit=%<lower limit%>
+ulimit=%<upper limit%>
 single
 single=%<limit%>
-single*
-single*=%<limit%>
 double
 double=%<limit%>
-double*
-double*=%<limit%>
 triple
 triple=%<limit%>
-triple*
-triple*=%<limit%>
 quadruple
 quadruple=%<limit%>
-quadruple*
-quadruple*=%<limit%>
 contour
 contour=%<limit%>
-contour*
-contour*=%<limit%>
 surface
 surface=%<limit%>
-surface*
-surface*=%<limit%>
-volume*
-volume*=%<limit%>
 volume
 volume=%<limit%>
 domain={%<*-list%>}
+domain*={%<*-list%>}
 boundary=%<lower limit%>
-variable=%<list%>
+variables=%<list%>
 jacobian#true,false
 diff-symb=%<command%>
 diff-star#true,false
 diff-options={%<keyvals%>}
 diff-vec#true,false
-diff-vec-style=%<command%#endkeyvals
+#endkeyvals
 
-\NewIntegralSymbol{csname}
-\NewLimitsKeyword{keyword}{limits}
-\RenewLimitsKeyword{keyword}{limits}
-\ProvideLimitsKeyword{keyword}{limits}
-\DeclareLimitsKeyword{keyword}{limits}
-\NewDifferentialKeyword{keyword}{}
-\NewDifferentialKeyword{keyword}{}[jacobian]
-\RenewDifferentialKeyword{keyword}{differentials}
-\RenewDifferentialKeyword{keyword}{differentials}[jacobian]
-\ProvideDifferentialKeyword{keyword}{differentials}
-\ProvideDifferentialKeyword{keyword}{differentials}[jacobian]
-\DeclareDifferentialKeyword{keyword}{differentials}
-\DeclareDifferentialKeyword{keyword}{differentials}[jacobian]
+\IntegralSetup{keyvals}
+
+#keyvals:\IntegralSetup
+defaultvar=%<variables%>
+defaultvar*=%<variables%>
+vectorstyle=%<command%>
+domainstyle=%<command%>
+symbolskip=%<mu expr%>
+hide-diff#true,false
+#endkeyvals
+
+\NewLimitsKeyword{keyword}{limits%formula}
+\RenewLimitsKeyword{keyword}{limits%formula}
+\ProvideLimitsKeyword{keyword}{limits%formula}
+\DeclareLimitsKeyword{keyword}{limits%formula}
+\NewVariableKeyword{keyword}{variables%formula}
+\NewVariableKeyword{keyword}{variables%formula}[jacobian%formula]
+\RenewVariableKeyword{keyword}{variables%formula}
+\RenewVariableKeyword{keyword}{variables%formula}[jacobian%formula]
+\ProvideVariableKeyword{keyword}{variables%formula}
+\ProvideVariableKeyword{keyword}{variables%formula}[jacobian%formula]
+\DeclareVariableKeyword{keyword}{variables%formula}
+\DeclareVariableKeyword{keyword}{variables%formula}[jacobian%formula]
+\NewSymbolKeyword{keyword}{symbol%formula}
+\RenewSymbolKeyword{keyword}{symbol%formula}
+\ProvideSymbolKeyword{keyword}{symbol%formula}
+\DeclareSymbolKeyword{keyword}{symbol%formula}
 \differentials
-\defaultdiff{list}
-\defaultvdiff{list}
-\vdiffstyle{command}

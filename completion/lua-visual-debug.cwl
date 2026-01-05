@@ -1,9 +1,7 @@
 # lua-visual-debug package
-# Matthew Bertucci 2023/01/04 for v0.8
+# Matthew Bertucci 2025/01/05 for v1.0
 
 #include:luatex
 #include:ifluatex
-#include:atbegshi
 
-\lvdebugpkgdate#S
-\lvdebugpkgversion#S
+\lvdset{keyvals%plain}

@@ -238,6 +238,7 @@
 <file>completion/bboldx.cwl</file>
 <file>completion/bchart.cwl</file>
 <file>completion/bclogo.cwl</file>
+<file>completion/beamer-reveal.cwl</file>
 <file>completion/beamerappendixnote.cwl</file>
 <file>completion/beamerarticle.cwl</file>
 <file>completion/beameraudience.cwl</file>
@@ -2204,6 +2205,7 @@
 <file>completion/linguistix.cwl</file>
 <file>completion/linguistix-fonts.cwl</file>
 <file>completion/linguistix-ipa.cwl</file>
+<file>completion/linguistix-languages.cwl</file>
 <file>completion/linguistix-logos.cwl</file>
 <file>completion/linguistix-nfss.cwl</file>
 <file>completion/linop.cwl</file>
@@ -2333,6 +2335,7 @@
 <file>completion/luatruthtable.cwl</file>
 <file>completion/lua-typo.cwl</file>
 <file>completion/lua-ul.cwl</file>
+<file>completion/lua-unicode-math.cwl</file>
 <file>completion/lua-visual-debug.cwl</file>
 <file>completion/luavlna.cwl</file>
 <file>completion/lua-widow-control.cwl</file>
@@ -3086,6 +3089,7 @@
 <file>completion/pst-infixplot.cwl</file>
 <file>completion/pst-intersect.cwl</file>
 <file>completion/pst-jtree.cwl</file>
+<file>completion/pst-kepler.cwl</file>
 <file>completion/pst-key.cwl</file>
 <file>completion/pst-knot.cwl</file>
 <file>completion/pst-labo.cwl</file>
@@ -3131,6 +3135,7 @@
 <file>completion/pst-solides3d.cwl</file>
 <file>completion/pst-soroban.cwl</file>
 <file>completion/pst-spectra.cwl</file>
+<file>completion/pst-sphericaltrochoid.cwl</file>
 <file>completion/pst-spinner.cwl</file>
 <file>completion/pst-stru.cwl</file>
 <file>completion/pst-text.cwl</file>

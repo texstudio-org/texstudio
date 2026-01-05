@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2025/01/28 for v3.10.0
+# Matthew Bertucci 2026/01/04 for v3.13.0
 
 #include:paralist
 #include:amsmath
@@ -56,6 +56,7 @@ blankBeforeBlockquote#true,false
 blankBeforeCodeFence#true,false
 blankBeforeDivFence#true,false
 blankBeforeHeading#true,false
+blankBeforeHtmlBlock#true,false
 bracketedSpans#true,false
 breakableBlockquotes#true,false
 citations#true,false
@@ -76,6 +77,7 @@ fencedDivs#true,false
 hashEnumerators#true,false
 headerAttributes#true,false
 html#true,false
+htmlOverLinks#true,false
 inlineCodeAttributes#true,false
 inlineNotes#true,false
 jekyllData#true,false
@@ -460,3 +462,4 @@ jekyllDataRenderers={%<keyvals%>}
 \yamlBegin#*
 \yamlEnd#*
 \markdownThemeVersion#S
+\mmdcCommand#*

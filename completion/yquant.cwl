@@ -1,5 +1,5 @@
 # yquant package
-# Matthew Bertucci 2025/07/01 for v0.8.0
+# Matthew Bertucci 2026/01/05 for v0.9.0
 
 #include:etoolbox
 #include:tikz
@@ -7,6 +7,7 @@
 #include:xkeyval
 #include:tikzlibrarydecorations.pathreplacing
 #include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarybackgrounds
 
 #keyvals:\usepackage/yquant#c
 compat=#newest,0.3,0.4,0.6,0.8
@@ -91,6 +92,13 @@ qasm
 \yquantimport[options%keyvals]{file}#i
 \yquantimport*{file}#i
 \yquantimport*[options%keyvals]{file}#i
+\encloseall{content}
+\encloseall[options%keyvals]{content}
+\enclose{content}
+\enclose[options%keyvals]{content}
+\startenclose{name}
+\startenclose[options%keyvals]{name}
+\stopenclose{name}
 
 # from yquant-langhelper.tex
 \cmd#S
@@ -167,6 +175,53 @@ qasm
 
 ## << keyvals >> ##
 #keyvals:\begin{yquant}#c,\begin{yquant*}#c,\yquantset#c,\yquantimport#c,\yquantimport*#c,\begin{yquantgroup}#c,\begin{yquantgroup*}#c
+# Highlighting parts of a circuit #
+enclose/name=%<name%>
+enclose/shape=#rectangle,polygon
+enclose/spacing=#gate,register
+enclose/every enclose={%<TikZ keys%>}
+enclose/style={%<TikZ keys%>}
+enclose/layer=%<layer%>
+enclose/label layer=%<layer%>
+enclose/brace above
+enclose/brace left
+enclose/brace below
+enclose/brace right
+enclose/every brace={%<TikZ keys%>}
+enclose/brace style={%<TikZ keys%>}
+enclose/every brace above or left={%<TikZ keys%>}
+enclose/brace above or left style={%<TikZ keys%>}
+enclose/every brace below or right={%<TikZ keys%>}
+enclose/brace below or right style={%<TikZ keys%>}
+enclose/every brace above={%<TikZ keys%>}
+enclose/brace above style={%<TikZ keys%>}
+enclose/every brace left={%<TikZ keys%>}
+enclose/brace left style={%<TikZ keys%>}
+enclose/every brace below={%<TikZ keys%>}
+enclose/brace below style={%<TikZ keys%>}
+enclose/every brace right={%<TikZ keys%>}
+enclose/brace right style={%<TikZ keys%>}
+enclose/every brace label={%<TikZ keys%>}
+enclose/brace label style={%<TikZ keys%>}
+enclose/every brace label above or left={%<TikZ keys%>}
+enclose/brace label above or left style={%<TikZ keys%>}
+enclose/every brace label below or right={%<TikZ keys%>}
+enclose/brace label below or right style={%<TikZ keys%>}
+enclose/every brace label above={%<TikZ keys%>}
+enclose/brace label above style={%<TikZ keys%>}
+enclose/every brace label left={%<TikZ keys%>}
+enclose/brace label left style={%<TikZ keys%>}
+enclose/every brace label below={%<TikZ keys%>}
+enclose/brace label below style={%<TikZ keys%>}
+enclose/every brace label right={%<TikZ keys%>}
+enclose/brace label right style={%<TikZ keys%>}
+enclose/bracing style={%<TikZ keys%>}
+enclose/bracing style above or left={%<TikZ keys%>}
+enclose/bracing style below or right={%<TikZ keys%>}
+enclose/bracing style above={%<TikZ keys%>}
+enclose/bracing style left={%<TikZ keys%>}
+enclose/bracing style below={%<TikZ keys%>}
+enclose/bracing style right={%<TikZ keys%>}
 #  Circuit layout #
 register/minimum height=##L
 register/minimum depth=##L

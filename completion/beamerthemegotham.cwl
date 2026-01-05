@@ -1,9 +1,9 @@
 # gotham beamertheme
-# Matthew Bertucci 2025/02/16 for v1.2.1.c
+# Matthew Bertucci 2026/01/05 for v1.2.4.a
 
 \gothamset{options%keyvals}
 
-\gothamreset{arg}#*
+\gothamreset{arg}#S
 \mreducelistspacing#S
 
 # from color theme
@@ -69,6 +69,9 @@ colorTitlepage#B
 \partTocOptions#*
 \sectionTocOptions#*
 \subsectionTocOptions#*
+\gothamDividedPicTop#*
+\gothamDividedPicBottomIncr#*
+\gothamDividedPicTextWidth#*
 
 # from outer theme
 \gothamInstituteLogoCircle#*

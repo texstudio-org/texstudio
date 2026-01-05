@@ -1,5 +1,5 @@
 # mpostinl package
-# Matthew Bertucci 2025/04/26 for v1.5.2
+# Matthew Bertucci 2026/01/05 for v1.5.3
 
 #include:graphicx
 #include:keyval
@@ -34,6 +34,8 @@ nowall#true,false
 nowkeep#true,false
 globaldef#true,false
 template=%<template%>
+figurepath=%<path%>
+figureprefix=%<prefix%>
 extension=%<ext%>
 numberwithin=%<counter%>
 beamer#true,false

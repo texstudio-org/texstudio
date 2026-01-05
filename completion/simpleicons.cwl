@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2025/12/23 for v16.2.0
+# Matthew Bertucci 2026/01/05 for v16.3.0
 
 #include:iftex
 
@@ -962,6 +962,7 @@ filedotio
 filen
 files
 filezilla
+fillout
 fineco
 fing
 firebase
@@ -1171,6 +1172,7 @@ googlefonts
 googleforms
 googlegemini
 googlehome
+googlejules
 googlekeep
 googlelens
 googlemaps
@@ -1243,6 +1245,7 @@ hackerearth
 hackernoon
 hackerone
 hackerrank
+hackmd
 hackster
 hackthebox
 hal
@@ -1490,6 +1493,7 @@ julia
 junipernetworks
 junit5
 jupyter
+just
 justeat
 justgiving
 k3s
@@ -2044,6 +2048,7 @@ openaigym
 openapiinitiative
 openbadges
 openbsd
+opencage
 opencritic
 openbugbounty
 opencollective
@@ -2254,6 +2259,7 @@ poly
 polygon
 polymerproject
 polywork
+pomerium
 pond5
 popos
 porkbun
