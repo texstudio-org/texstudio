@@ -448,7 +448,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             }
                             if(stack.top().subtype==Token::keyValArg){
                                 // still the generic argument, needs to be broken down to key or val
-                                if(lastComma>0){
+                                if(lastComma>=0){
                                     // -> val
                                     tk.subtype=Token::keyVal_val;
                                     if(lastComma>=1e6){
@@ -563,7 +563,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         }
                         if(stack.top().subtype==Token::keyValArg){
                             // still the generic argument, needs to be broken down to key or val
-                            if(lastComma>0){
+                            if(lastComma>=0){
                                 // -> val
                                 tk.subtype=Token::keyVal_val;
                                 if(lastComma>=1e6){
