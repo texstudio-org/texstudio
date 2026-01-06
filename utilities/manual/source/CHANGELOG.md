@@ -2,6 +2,9 @@
 ## TeXstudio 4.9.2
 
 - swicth focus along with enlarge/shrink pdf viewer [#4290](https://github.com/texstudio-org/texstudio/issues/4290)
+- fix crash [#4291](https://github.com/texstudio-org/texstudio/issues/4291)
+- fix usepackage detection ijn included files 
+- fix crash on terminating txs on OSX
 
 ## TeXstudio 4.9.1
 
