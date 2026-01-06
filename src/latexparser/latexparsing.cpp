@@ -1031,9 +1031,11 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
         if(lastComma>=1e6){
             tk.optionalCommandName=keyVal_keyString;
         }else{
-            QString cmd=lexed[lastComma].optionalCommandName;
-            QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
-            tk.optionalCommandName=cmd+"/"+key;
+            if(lastComma>=0){
+                QString cmd=lexed[lastComma].optionalCommandName;
+                QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
+                tk.optionalCommandName=cmd+"/"+key;
+            }
         }
         stack.push(tk);
     }
