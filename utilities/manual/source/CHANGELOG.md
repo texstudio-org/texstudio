@@ -1,7 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.9.2
 
-- 
+- swicth focus along with enlarge/shrink pdf viewer [#4290](https://github.com/texstudio-org/texstudio/issues/4290)
 
 ## TeXstudio 4.9.1
 
