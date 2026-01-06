@@ -3,8 +3,9 @@
 
 - swicth focus along with enlarge/shrink pdf viewer [#4290](https://github.com/texstudio-org/texstudio/issues/4290)
 - fix crash [#4291](https://github.com/texstudio-org/texstudio/issues/4291)
-- fix usepackage detection ijn included files 
+- fix usepackage detection in included files 
 - fix crash on terminating txs on OSX
+- cleanup Packages Help (TeXdoc) dialog when filtered list gets empty [#4294](https://github.com/texstudio-org/texstudio/pull/4294)
 
 ## TeXstudio 4.9.1
 
