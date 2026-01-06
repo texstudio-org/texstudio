@@ -12012,6 +12012,7 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 	enlargedViewer=true;
 	pdfConfig->followFromScroll=false;
 	viewer->setStateEnlarged(true);
+    viewer->focus();
 	setEnabledMenusEnlargeShrink(false, true);
 #endif
 }
@@ -12038,6 +12039,7 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 	}
 	viewer->setStateEnlarged(false);
 	setEnabledMenusEnlargeShrink(true, false);
+    focusEditor();
 #else
 	Q_UNUSED(preserveConfig)
 #endif
