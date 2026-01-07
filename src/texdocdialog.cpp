@@ -133,6 +133,18 @@ void TexdocDialog::tableSearchTermChanged(QString term) {
         ui->lbInfo->setText("");
         ui->lbWarnIcon->setVisible(false);
         openButton->setEnabled(false);
+		while(buttonGroup.buttons().count()>0){
+			QAbstractButton * bt = buttonGroup.buttons().first();
+			ui->languagesLayout->removeWidget(bt);
+			buttonGroup.removeButton(bt);
+			delete bt;
+		}
+#if QT_VERSION>=QT_VERSION_CHECK(5,14,0)
+        ui->packageInfoBrowser->setMarkdown(QString());
+#else
+        ui->packageInfoBrowser->setText(QString()); // no markdown interpretation, just keep old qt version running
+#endif
+        ui->packageDescriptions->setPlainText(QString());
     }
 }
 
