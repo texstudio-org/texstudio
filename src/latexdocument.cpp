@@ -2889,7 +2889,7 @@ const LatexDocument *LatexDocument::getRootDocument(QSet<const LatexDocument *> 
 	visitedDocs->insert(this);
 	if (masterDocument && !visitedDocs->contains(masterDocument))
 		result = masterDocument->getRootDocument(visitedDocs);
-    if (result->getFileName().endsWith("bib")){
+    if (result && result->getFileName().endsWith("bib")){
         for(const LatexDocument *d : parent->documents) {
 			QMultiHash<QDocumentLineHandle *, FileNamePair>::const_iterator it = d->mentionedBibTeXFiles().constBegin();
 			QMultiHash<QDocumentLineHandle *, FileNamePair>::const_iterator itend = d->mentionedBibTeXFiles().constEnd();
