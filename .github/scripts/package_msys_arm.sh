@@ -17,7 +17,7 @@ cp texstudio.exe package-zip/
 cd package-zip
 #cp /mingw64/bin/libicudt68.dll /mingw64/bin/icudt68.dll
 # copy of translations apparently broken currently
-windeployqt-qt6  --no-qml --qmlcore --no-translations texstudio.exe
+windeployqt6  --no-qml --qmlcore --no-translations texstudio.exe
 echo "copy dlls"
 #ldd texstudio.exe | awk '{print $3}'| grep ming | xargs -I{} cp -u {} .
 ldd texstudio.exe | awk '{print $3}'| grep clang | xargs -I{} cp -u {} .
