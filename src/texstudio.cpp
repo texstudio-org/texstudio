@@ -2397,6 +2397,14 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
         }
     }
 
+    // add child docs for loading incomplete doc
+    if(docToDelete){
+        foreach(LatexDocument *childDoc, docToDelete->getListOfDocs(nullptr,true)){
+            doc->addChild(childDoc);
+            childDoc->setMasterDocument(doc,false);
+        }
+    }
+
     if(!configManager.autoLoadChildren){
         // explicitely set root/child relation
         documents.updateMasterSlaveRelations(doc,false);
