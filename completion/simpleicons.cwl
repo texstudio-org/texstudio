@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/01/05 for v16.3.0
+# Matthew Bertucci 2026/01/11 for v16.4.0
 
 #include:iftex
 
@@ -348,6 +348,7 @@ bitcomet
 bitdefender
 bitly
 bitrise
+bitsy
 bittorrent
 bitwarden
 bitwig
@@ -1206,6 +1207,7 @@ grammarly
 grandfrais
 grapheneos
 graphite
+graphiteeditor
 graphql
 grav
 gravatar
@@ -1375,6 +1377,7 @@ iheartradio
 ikea
 iledefrancemobilites
 ilovepdf
+imagetoolbox
 imagedotsc
 imagej
 imdb
@@ -1850,6 +1853,7 @@ mocha
 mockserviceworker
 modal
 modelcontextprotocol
+modelscope
 modin
 modrinth
 modx
@@ -3209,6 +3213,7 @@ waze
 wazirx
 wearos
 weasyl
+webawesome
 web3dotjs
 webassembly
 webauthn
