@@ -746,6 +746,8 @@ protected:
 
     CollaborationManager *collabManager = nullptr;
 
+    QString mOverloadProgram=QString();
+
 public:
     Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText)
 	Q_INVOKABLE QString clipboardText(const QClipboard::Mode &mode = QClipboard::Clipboard) const;

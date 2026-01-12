@@ -6463,6 +6463,10 @@ void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool
 	}
 	QString program = rootDoc->getMagicComment("program");
 	if (program.isEmpty()) program = rootDoc->getMagicComment("TS-program");
+    // overload with tools program if executed from tool/commands
+    if(!mOverloadProgram.isEmpty()){
+        program=mOverloadProgram;
+    }
 	if (program.isEmpty()) return;
 
 	if (cmdId == "quick") {
@@ -6639,7 +6643,15 @@ void Texstudio::commandFromAction()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (!act) return;
+    mOverloadProgram=act->data().toString();
+    const QStringList lstOfCompileCommands={BuildManager::CMD_LATEX,BuildManager::CMD_PDFLATEX,BuildManager::CMD_XELATEX,BuildManager::CMD_LUALATEX};
+    if(lstOfCompileCommands.contains(mOverloadProgram)){
+        mOverloadProgram=mOverloadProgram.mid(7); // cut txs:///
+    } else {
+        mOverloadProgram.clear();
+    }
 	runCommand(act->data().toString());
+    mOverloadProgram.clear();
 }
 /*!
  * \brief clean auxilliary files
