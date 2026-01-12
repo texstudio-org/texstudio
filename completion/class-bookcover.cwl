@@ -1,12 +1,10 @@
 # bookcover class
-# Matthew Bertucci 2025/03/30 for v3.8
+# Matthew Bertucci 2026/01/12 for v3.9
 
 #include:kvoptions
 #include:geometry
-#include:graphicx
 #include:calc
 #include:tikz
-#include:etoolbox
 #include:fgruler
 
 #keyvals:\documentclass/bookcover#c

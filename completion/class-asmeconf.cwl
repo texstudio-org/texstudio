@@ -1,5 +1,5 @@
 # asmeconf class
-# Matthew Bertucci 2025/04/22 for v1.43
+# Matthew Bertucci 2026/01/12 for v1.46
 
 #include:etoolbox
 #include:geometry
@@ -22,8 +22,6 @@
 #include:newtxmath
 #include:bm
 #include:fancyhdr
-#include:footmisc
-#include:fnpos
 #include:titlesec
 #include:hyperref
 #include:doi
