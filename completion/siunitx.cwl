@@ -45,8 +45,8 @@
 \DeclareSIPower{symbol-before%cmd}{symbol-after%cmd}{power}#d
 \DeclareSIPrefix{prefix macro%cmd}{symbol}{power of 10}#d
 \DeclareSIQualifier{qualifier%cmd}{symbol}#d
-\DeclareSIUnit[options%keyvals]{unit%specialMultiArgDef}{definition}#s#%unit
-\DeclareSIUnit{unit%specialMultiArgDef}{definition}#s#%unit
+\DeclareSIUnit[options%keyvals]{unit%specialDef}{definition}#s#%unit
+\DeclareSIUnit{unit%specialDef}{definition}#s#%unit
 \degreeCelsius#/%unit
 \degree#/%unit
 \deka#/%unit
