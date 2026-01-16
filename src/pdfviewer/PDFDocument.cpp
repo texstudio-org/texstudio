@@ -769,7 +769,7 @@ PDFWidget::PDFWidget(bool embedded)
 	dpi = globalConfig->dpi;
 	if (dpi <= 0) dpi = 72; //it crashes if dpi=0
 
-	setBackgroundRole(QPalette::Base);
+    setBackgroundRole(QPalette::Dark);
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	setFocusPolicy(embedded ? Qt::NoFocus : Qt::StrongFocus);
 	setScaledContents(true);
@@ -3517,9 +3517,7 @@ void PDFDocument::init(bool embedded)
 	scrollArea->setBackgroundRole(QPalette::Dark);
 	//scrollArea->setAlignment(Qt::AlignCenter);
 	scrollArea->setPDFWidget(pdfWidget);
-	if (embedded) {
-		scrollArea->setFrameStyle(QFrame::NoFrame);
-	}
+    scrollArea->setFrameStyle(QFrame::NoFrame);
 
 	QWidget *container = new QWidget;
 	QVBoxLayout *layout = new QVBoxLayout;
