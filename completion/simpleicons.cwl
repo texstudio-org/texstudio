@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/01/11 for v16.4.0
+# Matthew Bertucci 2026/01/16 for v16.5.0
 
 #include:iftex
 
@@ -131,6 +131,7 @@ android
 androidauto
 androidstudio
 angular
+anichart
 anilist
 animalplanet
 animedotjs
@@ -176,6 +177,7 @@ apachenetbeanside
 apachenifi
 apacheopenoffice
 apacheparquet
+apachepdfbox
 apachepulsar
 apacherocketmq
 apachesolr
@@ -841,6 +843,7 @@ editorconfig
 edotleclerc
 educative
 edx
+effect
 egghead
 egnyte
 eight
@@ -991,6 +994,7 @@ flipboard
 floatplane
 flood
 floorp
+flower
 fluentbit
 fluentd
 fluke
@@ -1972,6 +1976,7 @@ niconico
 nike
 nikon
 nim
+niri
 nissan
 nixos
 nobaralinux
@@ -2030,6 +2035,7 @@ octobercms
 octoprint
 octopusdeploy
 oculus
+odido
 odin
 odnoklassniki
 odoo
@@ -2040,6 +2046,7 @@ okta
 okx
 ollama
 omadacloud
+omarchy
 oneplus
 onestream
 onlyfans
@@ -2212,6 +2219,7 @@ pinia
 pino
 pinterest
 pioneerdj
+pipecat
 piped
 pipx
 pivotaltracker
@@ -2451,6 +2459,7 @@ redwoodjs
 reebok
 refine
 refinedgithub
+reflex
 rekaui
 relay
 relianceindustrieslimited
@@ -2580,6 +2589,7 @@ saudia
 scala
 scalar
 scaleway
+scan
 scania
 schneiderelectric
 scikitlearn
