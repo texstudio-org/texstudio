@@ -566,7 +566,7 @@
 \land#m
 \langle#m
 \lbrace#m
-\lbrack#m
+\lbrack
 \lceil#m
 \ldotp#*m
 \le#m
@@ -716,7 +716,7 @@
 \raggedright
 \rangle#m
 \rbrace#m
-\rbrack#m
+\rbrack
 \rceil#m
 \Re#m
 \repeat#*

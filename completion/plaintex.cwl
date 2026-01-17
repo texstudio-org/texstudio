@@ -381,7 +381,7 @@
 \lastpenalty
 \lastskip
 \lbrace#m
-\lbrack#m
+\lbrack
 \lccode%<⟨char code⟩%>
 \lceil#m
 \ldotp#m
@@ -652,7 +652,7 @@
 \raise%<⟨dimen⟩%>
 \rangle#m
 \rbrace#m
-\rbrack#m
+\rbrack
 \rceil#m
 \Re#m
 \read%<⟨number⟩%> to %<⟨control sequence⟩%>
