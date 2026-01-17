@@ -569,7 +569,6 @@
 \lbrack#m
 \lceil#m
 \ldotp#*m
-\ldots#m
 \le#m
 \leftarrow#m
 \Leftarrow#m
