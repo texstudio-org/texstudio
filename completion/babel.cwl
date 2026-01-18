@@ -2847,7 +2847,7 @@ TocPartFullName#true,false
 \glossaryname#*
 #endif
 
-### italian.ldf v1.4.04 ###
+### italian.ldf v1.5.02 ###
 #ifOption:italian
 \captionsitalian#*
 \dateitalian#*
@@ -2878,6 +2878,8 @@ TocPartFullName#true,false
 \virgoladecimale
 \LtxSymbCaporali#*
 \CaporaliFrom{encoding}{family}{open guill slot}{close guill slot}#*
+\Numbertoday
+\ISOtoday
 #endif
 
 ### japanese.ldf v3.1 ###

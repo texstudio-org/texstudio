@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2025/10/18 for v3.8.6
+# Matthew Bertucci 2026/01/12 for v3.8.7
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -12,7 +12,6 @@
 #include:setspace
 #include:graphicx
 #include:fancyhdr
-#include:pdfpages
 #include:setspace
 #include:booktabs
 #include:multirow
