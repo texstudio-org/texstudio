@@ -285,15 +285,15 @@ Below you can find a list of commands for some common viewers. Of
 course, you have to replace *(your program path)* with the path of the
 program on your computer, if you want to use a command.
 
-#### Sumatra
+#### Sumatra (Windows only)
 
 Launch Sumatra from TeXstudio and configure Sumatra for inverse search
-: `"(your sumatra path)" -reuse-instance -inverse-search "\"*(your TeXstudio path)*\" \"%%f\" -line %%l" "?am.pdf"`
+: `"(your sumatra path)" -reuse-instance -forward-search "?c:am.tex" @ -inverse-search "\\"(your texstudio path)>\\" \\"%%f\\" -line %%l" "?am.pdf"`
 
-Jump to a line in a running Sumatra (Windows only):
+Jump to a line in a running Sumatra:
 : `dde:///SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]`
 
-Launch Sumatra if it is not running and jump to a line in it (Windows only)
+Launch Sumatra if it is not running and jump to a line in it
 : `dde:///(your sumatra path):SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]`
 
 Launch TeXstudio from Sumatra
