@@ -1,5 +1,5 @@
 # rpgicons package
-# Matthew Bertucci 2025/11/18 for v2.3.0
+# Matthew Bertucci 2026/01/20 for v2.4.1
 
 #keyvals:\usepackage/rpgicons#c
 l3
@@ -133,6 +133,10 @@ every %<shape%> add={%<options%>}
 before sep=##L
 after sep=##L
 baseline=##L
+#endkeyvals
+
+#keyvals:\die#c,\ability#c,\saving#c,\spell#c,\spellschool#c,\damage#c,\attack#c,\condition#c,\class#c,\alignment#c,\currency#c,\RPGIconsUseIcon#c,\RPGIconsUseIcon*#c,\RPGIconsDie#c,\RPGIconsAbility#c,\RPGIconsSaving#c,\RPGIconsSpell#c,\RPGIconsSpellschool#c,\RPGIconsDamage#c,\RPGIconsAttack#c,\RPGIconsCondition#c,\RPGIconsAlignment#c,\RPGIconsCurrency#c
+variant=%<integer%>
 #endkeyvals
 
 \roll{roll syntax}

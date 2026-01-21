@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2025/12/05 for v1.6.9
+# Matthew Bertucci 2026/01/20 for v1.6.12
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -67,6 +67,10 @@ code after=%<code%>
 #keyvals:\JSONParseKeys,\JSONParseValue,\JSONParseArrayCount,\JSONParseArrayMapInline
 store in=%<token variable%>
 global#true,false
+#endkeyvals
+
+#keyvals:\JSONParseSet,\JSONParse,\JSONParseFromFile,\JSONParseArrayUse,\JSONParseArrayMapFunction,\JSONParseArrayMapInline
+zero-based#true,false
 #endkeyvals
 
 # expl3 interface
