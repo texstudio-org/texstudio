@@ -40,18 +40,18 @@ which is activated with a right mouse button click.
 
 Furthermore it is possible to enable \"Scrolling follows Cursor\" in
 pdf-viewer/configure. This will keep the pdf-viewer position synchronous
-to your cursor opposition in the editor. Likewise \"Cursor follows
-Scrolling\" keeps the editor position synchronous to pdf-viewer
+to your cursor position in the editor. Likewise \"Cursor follows
+Scrolling\" keeps the editor position synchronous to the pdf-viewer
 position.
 
 ### Modes and mouse actions
 
 You can choose main mode *Magnify* or *Scroll* from the toolbar. The
-mouse cursor used is a magnifier glass, or an open hand. 
+mouse cursor used is a magnifier glass or an open hand. 
 
 ![Mouse mode](images/tb_pdf_magnifyPan.webp)
 
-These offer following actions:
+These offer the following actions:
 
 Magnify mode only
 
@@ -66,13 +66,13 @@ Scroll mode only
     around, or follows a link
 -   double left mouse button click opens magnifier showing enlarged part
     of the text
--   Shift + left mouse button click sets grid page offset (s. [Special features](#changing-the-grid-page-offset))
+-   Shift + left mouse button click sets grid page offset (see [Special features](#changing-the-grid-page-offset))
 
 Magnify and Scroll mode
 
 -   Ctrl + left mouse button click jumps to the source (inverse search)
 -   Ctrl + Shift + left mouse button click copies coordinates to
-    clipboard (s. [Special features](#copy-page-coordinates-to-the-clipboard))
+    clipboard (see [Special features](#copy-page-coordinates-to-the-clipboard))
 
 ```{note}
 -   When you set option Presentation (menu View, or key F5), the
@@ -89,7 +89,7 @@ Magnify and Scroll mode
 ### Changing the grid page offset
 
 The windowed pdf viewer arranges the pages in a customizable grid of
-columns and rows (s. menu View/Grid) in which the pages are placed. The
+columns and rows (see menu View/Grid) in which the pages are placed. The
 first page may be placed on the left in the first row (i.e. a grid page
 offset of 0) and the following pages fill the row and so on:
 
@@ -98,7 +98,7 @@ offset of 0) and the following pages fill the row and so on:
 A grid page offset of 0 may not be suitable in all cases. For example,
 if you are working on a book, since books have odd pages on the right.
 The first page of the document shown in the previous image should be
-positioned in the second or forth column (i.e. a grid page offset of 1
+positioned in the second or fourth column (i.e. a grid page offset of 1
 or 3). Thus each grid row starts with an even (left) page and ends with
 an odd (right) page (if appropriate):
 
@@ -133,6 +133,7 @@ This becomes particularly useful when adjusting margins or working with
 TikZ.
 
 ## Preview
+
 When optimizing small structures visually like tables or formulas, various compilation runs may be necessary to reach a final state. Compiling a large document may take longer, so that is inconvenient for these tasks.
 
 TeXstudio offers a preview for this circumstance.
@@ -141,7 +142,7 @@ The selection is done in the [configuration](configuration.md#configuring-previe
 
 ### Inline Preview
 
-The inline preview is started with selecting the interesting text and then pressing `Alt+p` or using the context menu on the selection. An inline preview can be closed with context menu (right-click) on the preview.
+The inline preview is started by selecting the interesting text and then pressing `Alt+p` or using the context menu on the selection. An inline preview can be closed with the context menu (right-click) on the preview.
 
 ```{tab} Preview context menu
 ![Preview context menu](images/preview_context.webp)
@@ -156,6 +157,7 @@ The inline preview is started with selecting the interesting text and then press
 ```
 
 ### Tooltip preview
+
 A tooltip is created when hovering over the delimiters like `$` of a formula.
 It takes a moment until the preview can be presented as it is compiled when the preview is started.
 
