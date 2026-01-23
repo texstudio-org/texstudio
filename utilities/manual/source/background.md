@@ -599,7 +599,7 @@ python.qxf
 
 The results is the following highlighting:
 
-![](images/format_example.webp)
+![format_example](images/format_example.webp)
 
 ## Building TeXstudio
 TeXstudio uses `cmake` as a building system.
