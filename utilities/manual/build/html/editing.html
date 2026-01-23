@@ -8,16 +8,21 @@
 <meta property="og:url" content="editing.html" />
 <meta property="og:site_name" content="TeXstudio" />
 <meta property="og:description" content="Creating a new document: There are two different ways to create a new document that are described in the following subsections: Setting the preamble of a TeX document: To define the preamble of you..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="_images/social_previews/summary_editing_b125b00c.png" />
+<meta property="og:image:alt" content="Creating a new document: There are two different ways to create a new document that are described in the following subsections: Setting the preamble of a TeX document: To define the preamble of you..." />
 <meta name="description" content="Creating a new document: There are two different ways to create a new document that are described in the following subsections: Setting the preamble of a TeX document: To define the preamble of you..." />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Compiling a document" href="compiling.html" /><link rel="prev" title="Getting started" href="getting_started.html" />
 
-    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 7.4.7 and Furo 2025.07.19 -->
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
         <title>Editing a TeX document - TeXstudio 4.9.2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=25af2a20" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=ad9e2e31" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=4aa03575" />
     
     
 
@@ -197,6 +202,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
+  
   <span class="sidebar-brand-text">TeXstudio 4.9.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
@@ -268,28 +274,28 @@ wizard (“Wizard” menu).</p>
 <p><img alt="Quick Start" src="_images/quickstartwizard.webp" /></p>
 <p>This dialog allows you to set the main features of your document (class,
 paper size, encoding…).
-Note : You can add other options by clicking the “+” buttons. All your
+Note: You can add other options by clicking the “+” buttons. All your
 settings are recorded.</p>
-<p>You can also type your own preamble model in the editor : with the
+<p>You can also type your own preamble model in the editor: with the
 “Copy/paste” or “Save As” commands, you can use it for a new
 document.</p>
 </section>
 <section id="using-templates-to-start-a-new-document">
 <h3>Using Templates to start a new document<a class="headerlink" href="#using-templates-to-start-a-new-document" title="Link to this heading">¶</a></h3>
 <p>For new documents, templates can be used by using the command “File/New
-from template”. A dialogue gives a selection of templates.</p>
+from template”. A dialog gives a selection of templates.</p>
 <p><img alt="Templates" src="_images/template.webp" /></p>
 <p>You can either create a new editor document from the template or create
 it as file(s) on disk and open these in the editor. The former option is
 not available for multi-file templates.</p>
 <p>New templates can be created by using the command “File/Make Template”
-on an opened document which you like to have has a template. Note that
+on an opened document which you like to have as a template. Note that
 this dialog currently does not support the full capabilities of the
 template system. In particular you cannot supply a preview image or
 create a multi-file template with it. You’ll have to do this manually
-(s. <a class="reference internal" href="background.html#the-document-template-format"><span class="std std-ref">The template format</span></a> below).</p>
+(see <a class="reference internal" href="background.html#the-document-template-format"><span class="std std-ref">The template format</span></a> below).</p>
 <p>User added templates can be edited or deleted by using the context menu
-in the template selection dialogue. Built-in templates can not be
+in the template selection dialog. Built-in templates cannot be
 changed.</p>
 <p>User templates are saved in the <code class="docutils literal notranslate"><span class="pre">/templates/user/</span></code> subdirectory of the
 config directory.</p>
@@ -309,8 +315,8 @@ the main toolbar:</p>
 <p>The “Structure View” (left panel) lets you quickly reach any part of
 your document. All you need to do is to click on any item (label,
 section…) and you will be taken to the beginning of the corresponding
-area in the editor. The mechanism for jumping to a line does not anymore
-only consider line numbers but really remembers text lines. Thus adding
+area in the editor. The mechanism for jumping to a line no longer
+only considers line numbers but really remembers text lines. Thus adding
 and removing lines will not lead to jumps to wrong locations.</p>
 <p>A light-blue background shows the present cursor position in the text in the
 structure view as well. A greenish background denotes sections which are
@@ -319,18 +325,18 @@ in the appendix.</p>
 <p>The “Structure View” is automatically updated as you type. You can
 also use the “Refresh Structure” (menu “Idefix”) command at any
 moment.</p>
-<p>The structure view shows labels, sections, includes and beamer blocks
+<p>The structure view shows labels, sections, includes, beamer blocks
 and todos.</p>
-<p>There are two kind of todos that will be listed a) todos from a
-todo-like command, e.g. \todo{} from the package todonotes. b)
-todo-comments: This is a comment with a “% TODO” or “%todo”. You can
+<p>There are two kinds of todos that will be listed:
+a) todos from a todo-like command, e.g. \todo{} from the package todonotes.
+b) todo-comments: This is a comment with a “% TODO” or “%todo”. You can
 adapt the regular expression for other comments to be marked as
 todo-comment in <em>options/advanced editor/Regular Expression for TODO
 comment</em>, e.g “%\s?[A-Z][A-Z_-]+” for any comment starting
-with at least two capital letter only comment.</p>
+with at least two capital letters.</p>
 <p>The structure view also offers a context menu which allows one to
 copy/cut all text which belongs to a section (including subsection) and
-paste it before or after a section. Section can be indented/unindented
+paste it before or after a section. Sections can be indented/unindented,
 which means that the hierarchy level is changed by one, i.e. \section
 is changed to \subsection, and all subsections are treated accordingly</p>
 </section>
@@ -338,24 +344,24 @@ is changed to \subsection, and all subsections are treated accordingly</p>
 <h3>The TOC View<a class="headerlink" href="#the-toc-view" title="Link to this heading">¶</a></h3>
 <p>The side panel on the left offers a TOC view. The TOC shows the structure of your
 whole document by means of section commands (part, section, subsection,
-…). A mouse over shows you, in which file the section actually is.</p>
+…). A mouse over shows you in which file the section actually is.</p>
 <p><img alt="TOC View" src="_images/TOC_standard.webp" /></p>
-<p>The image shows this: A root file named document.tex that includes the
-file named file1.tex. The root file contains the section „Main text”,
-while file1.tex contains the subsection „External”. By placing the mouse
+<p>The image shows this: A root file named <code class="docutils literal notranslate"><span class="pre">document.tex</span></code> that includes the
+file named <code class="docutils literal notranslate"><span class="pre">file1.tex</span></code>. The root file contains the section “Main text”,
+while <code class="docutils literal notranslate"><span class="pre">file1.tex</span></code> contains the subsection “External”. By placing the mouse
 pointer over this subsection in the TOC view, you find the file name
-file1.tex in the mouse over. This works even if the file is not open
-(but the document must be loaded by TeXstudio, s. Automatically load
+<code class="docutils literal notranslate"><span class="pre">file1.tex</span></code> in the mouse over. This works even if the file is not open
+(but the document must be loaded by TeXstudio, see Automatically load
 included files in editor settings). In this case a mouse click on the
 subsection in the TOC will open the file for you. Notice the different
 shades of color that indicate the sections are in different files. It
-can happen, that an included file doesn’t contain any sections. Then the
+can happen that an included file doesn’t contain any sections. Then the
 file name itself appears in the TOC (without file extension):</p>
 <p><img alt="TOC View with file" src="_images/TOC_file.webp" /></p>
 <p>The mouse over now would show the name of the file that includes
-file1.tex (namely document.tex). The indentation shows that the text of
-file1.tex is part of the section “Main text”. You may like to choose a
-different color in the configuration dialog (s. option Use color in
+<code class="docutils literal notranslate"><span class="pre">file1.tex</span></code> (namely <code class="docutils literal notranslate"><span class="pre">document.tex</span></code>). The indentation shows that the text of
+<code class="docutils literal notranslate"><span class="pre">file1.tex</span></code> is part of the section “Main text”. You may like to choose a
+different color in the configuration dialog (see option Use color in
 global TOC in <a class="reference internal" href="configuration.html#configuring-the-advanced-editor-settings-advanced-option"><span class="std std-ref">advanced editor settings</span></a>).</p>
 </section>
 <section id="using-bookmarks">
@@ -363,35 +369,35 @@ global TOC in <a class="reference internal" href="configuration.html#configuring
 <p>You can use bookmarks in the editor of TeXstudio. This can help keep
 text lines in mind and speed up navigation between them. To the left of
 the editor’s text area is a bookmark column that displays the bookmark
-icons. Here you can open a context menu (s. image below) and select the
+icons. Here you can open a context menu (see image below) and select the
 bookmark you want to set for a text line. Each of the ten numbered
 bookmarks can be used only once (when you set it a second time in the
 same editor, then the first one is removed), while the unnamed bookmark
 can be used many times. Also you can remove bookmarks with the first
-entry in the menu. A faster way setting bookmarks is clicking with the
+entry in the menu. A faster way of setting bookmarks is clicking with the
 left mouse button in the bookmark column and TeXstudio will choose a
 bookmark or remove an existing one.</p>
 <p><img alt="Bookmarks in TeXstudio" src="_images/bookmark1.webp" /></p>
 <p>You may choose the Bookmarks view of the left side panel, which shows
 the text for each line with a bookmark of all editors. With the ease of
 a mouse click you can jump to the text line in the editor. A tooltip
-shows the surrounding context of the line (s. left image below). The
+shows the surrounding context of the line (see left image below). The
 lines are ordered in the order you created the bookmarks. A context menu
-allows you to change the order of lines or remove bookmarks (s. right
+allows you to change the order of lines or remove bookmarks (see right
 image below).</p>
 <p><img alt="Tooltip in view Bookmarks" src="_images/bookmark2.webp" />  <img alt="Context menu in view Bookmarks" src="_images/bookmark3.webp" /></p>
 <p>You probably noticed the three buttons (placed in the status line) on
 the lower right side of the TeXstudio window, which look like bookmarks
-1, 2, and 3 (s. image Bookmarks above). With a click you can jump to the
+1, 2, and 3 (see image Bookmarks above). With a click you can jump to the
 corresponding bookmark in the current editor. In fact this is a subset
 of the actions you can find in the menu Edit/Goto Bookmark shown in the
 following image in the middle. This menu also shows you the shortcuts
 you can use (you may miss Ctrl+0 at the end of the list, but this
 shortcut resets the zoom level of the editor). From the Edit/Go to menu
-you can choose entry Line to jump to a line with a given line number.
+you can choose the entry <code class="docutils literal notranslate"><span class="pre">Line</span></code> to jump to a line with a given line number.
 You may want to use Previous mark or Next mark to find unnamed
-bookmarks. For the sake of completeness it should be said that bookmark
-is one of several types of markers (s. <a class="reference internal" href="compiling.html#the-log-files"><span class="std std-ref">The log files</span></a>).
+bookmarks. For the sake of completeness it should be said that a bookmark
+is one of several types of markers (see <a class="reference internal" href="compiling.html#the-log-files"><span class="std std-ref">The log files</span></a>).
 You can toggle the bookmark of the line with the text cursor using the
 actions from the menu Edit/Toggle Bookmark, which can be seen in the
 following image on the right.</p>
@@ -407,7 +413,7 @@ More options are available in the “LaTeX” menu. Commonly used formatting com
 <p class="admonition-title">Note</p>
 <p>A selected text can be directly framed by certain
 environments. Example: while clicking on the button “Bold” or pressing <code class="docutils literal notranslate"><span class="pre">CTRL+B</span></code> after
-having selected the word “Hello” , you will obtain the code:
+having selected the word “Hello”, you will obtain the code:
 <code class="docutils literal notranslate"><span class="pre">\textbf{Hello}</span></code>.</p>
 </div>
 <section id="capitalisation">
@@ -430,7 +436,7 @@ require a fixed capitalization (e.g. “TeXstudio”).</p>
 <p>If you have text containing reserved TeX characters and want the text to
 appear literally in your document, you have to escape the reserved
 characters to prevent LaTeX from interpreting them. The following
-functions take care of that (Menu: Idefix or context menu on the editor)</p>
+functions take care of that (Menu: Idefix or context menu on the editor):</p>
 <ul class="simple">
 <li><p>Paste to LaTeX: Takes the text from the clipboard and escapes
 reserved characters prior to pasting into the editor.</p></li>
@@ -444,7 +450,7 @@ the meaning of \$PATH.”</p>
 </section>
 <section id="inserting-a-list">
 <h2>Inserting a list<a class="headerlink" href="#inserting-a-list" title="Link to this heading">¶</a></h2>
-<p>The usual list environments code can be insert quickly via the
+<p>The usual list environments code can be inserted quickly via the
 “LaTeX-List” menu. Alternatively you can use the <a class="reference internal" href="#environment-completion">environment completion</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -456,15 +462,15 @@ the meaning of \$PATH.”</p>
 <p>With the “Tabular” wizard (“Wizard” menu), the LaTeX code for a
 tabular environment can be quickly generated.</p>
 <p>The cells can be filled manually. Copy and paste from a spreadsheet program works as well.
-The wizard allows some tabular manipulation for border, cell merge and column alignment.
-Once the code is generated, it can not be changed again with the wizard.</p>
+The wizard allows some tabular manipulation for borders, cell merge and column alignment.
+Once the code is generated, it cannot be changed again with the wizard.</p>
 <p><img alt="Tabular Wizard" src="_images/wizard_tabular.webp" /></p>
 <section id="manipulating-tables">
 <h3>Manipulating tables<a class="headerlink" href="#manipulating-tables" title="Link to this heading">¶</a></h3>
 <p>TeXstudio provides some commands to ease handling of tables. The
 commands are located at LaTeX → Manipulate Table and in the Table
-toolbar. Please be aware that some unexpected results may arise, if the
-table constructing commands get too complex. Following commands are
+toolbar. Please be aware that some unexpected results may arise if the
+table constructing commands get too complex. The following commands are
 offered:</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
@@ -475,16 +481,16 @@ offered:</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><img alt="" src="_images/addRow.svg" /></p></td>
-<td><p>Add Row after the current row</p></td>
+<td><p>Add row after the current row</p></td>
 </tr>
 <tr class="row-odd"><td><p><img alt="" src="_images/remRow.svg" /></p></td>
-<td><p>removes the table row in which the cursor</p></td>
+<td><p>removes the table row in which the cursor is</p></td>
 </tr>
 <tr class="row-even"><td><p><img alt="" src="_images/addCol.svg" /></p></td>
-<td><p>add a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column,the column is added as new first column.</p></td>
+<td><p>add a column in the complete table after the current cursor position. If the cursor is positioned at start of line, first column, the column is added as new first column.</p></td>
 </tr>
 <tr class="row-odd"><td><p><img alt="" src="_images/pasteCol.svg" /></p></td>
-<td><p>paste a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column,the column is added as new first column.</p></td>
+<td><p>paste a column in the complete table after the current cursor position. If the cursor is positioned at start of line, first column, the column is added as new first column.</p></td>
 </tr>
 <tr class="row-even"><td><p><img alt="" src="_images/remCol.svg" /></p></td>
 <td><p>remove current column</p></td>
@@ -498,32 +504,32 @@ offered:</p>
 </tbody>
 </table>
 </div>
-<p>The following functions are only accessible via the “Latex/Table Manipulation” menu.</p>
+<p>The following functions are only accessible via the “LaTeX/Manipulate Tables” menu:</p>
 <ul class="simple">
 <li><p>Add/Remove \hline: add/remove <code class="docutils literal notranslate"><span class="pre">\hline</span></code> in all rows following the
-current row. If already a command <code class="docutils literal notranslate"><span class="pre">\hline</span></code> is present, no second
+current row. If a command <code class="docutils literal notranslate"><span class="pre">\hline</span></code> is already present, no second
 command is placed.</p></li>
-<li><p>Remodel the table after a template,see <a class="reference internal" href="#using-table-templates">below</a>.</p></li>
+<li><p>Remodel the table after a template, see <a class="reference internal" href="#using-table-templates">below</a>.</p></li>
 </ul>
 <p>TeXstudio also allows block cursors. Press <code class="docutils literal notranslate"><span class="pre">Ctrl+Alt</span></code>
 and drag the cursor with the mouse. The <a class="reference internal" href="#block-cursor">block cursor</a> works like a set of
 normal cursors. You can copy and paste text as usual. Also you can type
 in new text, which will be added in every row.
-Pressing <code class="docutils literal notranslate"><span class="pre">esc</span></code> or clicking somewhere into the text leaves this mode.</p>
+Pressing <code class="docutils literal notranslate"><span class="pre">Esc</span></code> or clicking somewhere into the text leaves this mode.</p>
 <p><img alt="Block Selection" src="_images/block_selection.webp" /></p>
 </section>
 <section id="using-table-templates">
 <h3>Using table templates<a class="headerlink" href="#using-table-templates" title="Link to this heading">¶</a></h3>
-<p>TeXstudio offers the possibility to reformat an existing latex table
+<p>TeXstudio offers the possibility to reformat an existing LaTeX table
 after a table template.</p>
-<p>For example, you have entered following table into txs:</p>
+<p>For example, you have entered the following table into txs:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>ll<span class="nb">}</span>
 a<span class="nb">&amp;</span>b<span class="k">\\</span>
 c<span class="nb">&amp;</span>d<span class="k">\\</span>
 <span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
 </pre></div>
 </div>
-<p>Place the cursor inside the table and select the menu “Latex/Manipulate
+<p>Place the cursor inside the table and select the menu “LaTeX/Manipulate
 Tables/Remodel Table Using Template”.</p>
 <p>Now you can select a template which defines the formatting of the table.
 A number of templates are predefined by txs:</p>
@@ -542,7 +548,7 @@ c<span class="nb">&amp;</span>d<span class="k">\\</span> <span class="k">\hline<
 <span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
 </pre></div>
 </div>
-<p>These templates give the opportunity to easily reformat tables after a
+<p>These templates give the opportunity to easily reformat tables in a
 predefined fashion, thus achieving a uniform table style in a document,
 even if the tables are entered in a very simple style.</p>
 <p>The definition of new templates is described <a class="reference internal" href="background.html#creating-table-templates"><span class="std std-ref">here</span></a>.</p>
@@ -550,17 +556,17 @@ even if the tables are entered in a very simple style.</p>
 </section>
 <section id="inserting-a-tabbing-environment">
 <h2>Inserting a “tabbing” environment<a class="headerlink" href="#inserting-a-tabbing-environment" title="Link to this heading">¶</a></h2>
-<p>To help you to insert a “tabbing” code, you can use the “Tabbing”
-wizard (“Wizard” menu) :</p>
+<p>To help you insert a “tabbing” code, you can use the “Tabbing”
+wizard (“Wizard” menu):</p>
 <p><img alt="Tabbing Wizard" src="_images/wizard_tabbing.webp" /></p>
 </section>
 <section id="inserting-a-picture">
 <h2>Inserting a picture<a class="headerlink" href="#inserting-a-picture" title="Link to this heading">¶</a></h2>
-<p>TeXstudio offers various ways to insert picture into the LaTeX code.</p>
+<p>TeXstudio offers various ways to insert pictures into the LaTeX code.</p>
 <section id="inserting-picture-via-menu">
 <h3>Inserting picture via menu<a class="headerlink" href="#inserting-picture-via-menu" title="Link to this heading">¶</a></h3>
 <p>To insert a picture in your document, just use the
-command in the “LaTeX/include/\includegraphics{file}” menu. Then, click on the “browser” button in
+command in the “LaTeX” -&gt; “Input/Include Files” -&gt; “\includegraphics{file}” menu. Then click on the “browser” button in
 the dialog to select the graphic file.</p>
 <p><img alt="Figure Environment" src="_images/insertImage_menu.webp" /></p>
 <div class="admonition note">
@@ -572,15 +578,15 @@ Environments” menu) before inserting the picture.</p>
 <section id="inserting-a-picture-using-a-wizard">
 <h3>Inserting a picture using a “wizard”<a class="headerlink" href="#inserting-a-picture-using-a-wizard" title="Link to this heading">¶</a></h3>
 <p>TeXstudio offers a wizard for handling graphics insertion code in your document. “Graphics
-options” defines the optional parameter of
+Options” defines the optional parameters of
 <code class="docutils literal notranslate"><span class="pre">\includegraphics[options]{file}</span></code>. While the most used width/height
 attributes can be easily set, alternatively you have full control with
-the user defined setting.</p>
+the user-defined setting.</p>
 <p>The code is placed inside a <code class="docutils literal notranslate"><span class="pre">figure</span></code> environment with the given position suggestions.</p>
 <p>By pressing the “Save as default” button the current settings (except
 file, caption and label) are stored and will hence be used as default
 when you open the wizard.</p>
-<p>The wizard also comes into play when you drag drop an image file to your
+<p>The wizard also comes into play when you drag and drop an image file to your
 document or use copy in explorer and paste in TeXstudio. Together with
 the adjustable default parameters this makes insertion of new pictures
 very fast. Furthermore, if you start the wizard while the cursor is on
@@ -594,16 +600,16 @@ settings.</p>
 <p>This toolbox in the toolbar allows you to insert quickly the label,
 cite, ref, footnote… code.</p>
 <p><img alt="Structure View Labels" src="_images/tb_reference.webp" /></p>
-<p>Selecting “reference” open a dialog which let’s you select a reference and inserts the complete code.
+<p>Selecting “ref” from the toolbox (or the menu “LaTeX/Cross References”) opens a dialog which lets you select a reference and inserts the complete code.
 All other commands will be inserted with empty arguments.</p>
 <p><img alt="Inserting reference" src="_images/insert_ref.webp" /></p>
 <p>The labels used in your documents are displayed in the “Structure View”.
-A right click on a label there allows you to insert it as reference or with a reference command at the current cursor position.</p>
+A right click on a label there allows you to insert it as a reference or with a reference command at the current cursor position.</p>
 <p><img alt="Inserting reference from structure view" src="_images/insert_ref_fromStructure.webp" /></p>
 <p>Another option is to use the <a class="reference internal" href="#reference-bibid-completion">auto completer</a>.</p>
 <section id="finding-reference-use">
 <h3>Finding reference use<a class="headerlink" href="#finding-reference-use" title="Link to this heading">¶</a></h3>
-<p>The context menu on labels in the structure view (see above) offers to “find usage”.
+<p>The context menu on labels in the structure view (see above) offers “find usage”.
 This searches in all source files of the document (see <a class="reference internal" href="background.html#about-documents-separated-in-several-files"><span class="std std-ref">root file</span></a>) and finds the occurrence of that particular reference.
 Here all the references may be changed by changing “Replace by” and clicking “Replace All”.</p>
 <p><img alt="Find reference usage" src="_images/findUsage.webp" /></p>
@@ -615,23 +621,23 @@ Here all the references may be changed by changing “Replace by” and clicking
 </section>
 <section id="inserting-math-formula">
 <h2>Inserting math formula<a class="headerlink" href="#inserting-math-formula" title="Link to this heading">¶</a></h2>
+<p>The math part of the “Central” toolbar allows you to insert the most common mathematical
+forms (frac, sqrt…), the “Math” toolbar allows entering delimiter tags like \left and \right.</p>
+<p><img alt="Math part of Central Toolbar" src="_images/tb_central_math.webp" />  <img alt="Math Delimiter Toolbar" src="_images/tb_math.webp" /></p>
 <p>You can toggle “in-line math” environment with the “$..$”
-button in the toolbar (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+M</span></code>) or with the “Math” menu.
-The shortcut for the “display math” environment is <code class="docutils literal notranslate"><span class="pre">Alt+Shift+M</span></code>.</p>
-<p>The math part of the “Central” toolbar allows you to insert the most current mathematical
-forms (frac, sqrt…) , the “Math” toolbar allows entering delimiter tags like \left and \right.</p>
-<p><img alt="Math part of Central Toolbar" src="_images/tb_central_math.webp" />  <img alt="Math DElimiter Toolbar" src="_images/tb_math.webp" /></p>
+button in the “Central” toolbar (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+M</span></code>) or in the “Math” menu.
+The “display math - […]” environment is only available in the menu (or via shortcut <code class="docutils literal notranslate"><span class="pre">Alt+Shift+M</span></code>).</p>
 <p>The “symbols panel” in the side panel offers the insertion of hundreds of mathematical symbols and special characters.
-The list can be sorted by categories like “all”,”greek”,”operators”, etc.
+The list can be sorted by categories like “all”, “greek”, “operators”, etc.
 You can also directly search for parts of the command.
-A right click on the symbol allows to declare it as favorite, insert the command or if available, insert the unicode character into the text.
-TeXstudio keeps track which symbols have been used here, so the most used will be listed as well.</p>
+A right click on the symbol allows you to declare it as favorite, insert the command or, if available, insert the unicode character into the text.
+TeXstudio keeps track of which symbols have been used here, so the most used will be listed as well.</p>
 <p><img alt="Symbol Panel" src="_images/symbol_panel.webp" /></p>
 <p>You can also define the format of your mathematical text via the
 “Math” menu.</p>
 <p>For the “array” environments, a wizard (like the “Tabular” wizard)
 is available in the “Wizard” menu. With this wizard, you can select
-the environment : array, matrix, pmatrix….</p>
+the environment: array, matrix, pmatrix….</p>
 <p>The cells can be edited directly.</p>
 <p><img alt="Array Wizard" src="_images/wizard_array.webp" /></p>
 </section>
@@ -661,10 +667,10 @@ below the command list. You can switch to the next mode by pressing <code class=
 <li><p>Typical: list only typical commands and filter out rather unusual
 commands.</p></li>
 <li><p>Most used: list only commands which have already been used in the
-completer by the user. This Is empty if txs has not been used before.</p></li>
+completer by the user. This is empty if txs has not been used before.</p></li>
 <li><p>Fuzzy: search the command in a fuzzy way. The command needs to
 contain all given letters in the same order though with an arbitrary
-of letters between them. E.g. <code class="docutils literal notranslate"><span class="pre">\bf</span></code> lists, among others,
+number of letters between them. E.g. <code class="docutils literal notranslate"><span class="pre">\bf</span></code> lists, among others,
 \<strong>b</strong>egin{<strong>f</strong>igure}</p></li>
 <li><p>All: list all known commands.</p></li>
 </ul>
@@ -694,8 +700,8 @@ adequate environments which are inserted completely with
 <section id="reference-bibid-completion">
 <h3>Reference/BibID completion<a class="headerlink" href="#reference-bibid-completion" title="Link to this heading">¶</a></h3>
 <p>When entering reference commands, the completer offers those commands prefilled with potential references.</p>
-<p>If a reference is changed or the command offers to enter several references, the completer can suggest  available references.</p>
-<p>It works the same for <em>bibIDs</em></p>
+<p>If a reference is changed or the command offers to enter several references, the completer can suggest available references.</p>
+<p>It works the same for <em>bibIDs</em>.</p>
 <div class="tab-set docutils">
 <input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Reference command completion</label><div class="tab-content docutils">
 <p><img alt="completing reference command" src="_images/completer_ref.webp" /></p>
@@ -709,7 +715,7 @@ adequate environments which are inserted completely with
 <h3>KeyVal completion<a class="headerlink" href="#keyval-completion" title="Link to this heading">¶</a></h3>
 <p>TeXstudio knows the possible keys and values for a number of commands.
 The completer opens automatically when entering keys or pressing <code class="docutils literal notranslate"><span class="pre">,</span></code> to start the next key.
-It also treats length specifically to offer only these when appropriate.</p>
+It also treats lengths specifically to offer only these when appropriate.</p>
 <div class="tab-set docutils">
 <input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">Complete key</label><div class="tab-content docutils">
 <p><img alt="KeyVal completion" src="_images/completer_keys.webp" /></p>
@@ -762,31 +768,31 @@ you can also add the word to the ignore list.</p>
 <p>If your dictionary is very
 large (&gt; 5MB), opening the context menu and showing possible
 suggestions can take some seconds. If you don’t need the suggestion,
-you can press shift while right clicking and don’t have to wait.</p>
+you can press Shift while right-clicking and don’t have to wait.</p>
 </div>
 <p>The active language is shown at the bottom of the main window.
 You can directly select a different language by clicking on the language code, see <a class="reference internal" href="configuration.html#configuring-the-spell-checker"><span class="std std-ref">also</span></a>.</p>
 <p><img alt="active language" src="_images/active_language.webp" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>More languages may be available in the configuration dialog, as txs filters the available language here to a predefined set plus all previously used languages.</p>
+<p>More languages may be available in the configuration dialog, as txs filters the available languages here to a predefined set plus all previously used languages.</p>
 </div>
-<p>The spell checking dialog, which can be open from the menu <em>tools/check spelling..</em> or with <code class="docutils literal notranslate"><span class="pre">CTRL+:</span></code>,
+<p>The spell checking dialog, which can be opened from the menu <em>Tools/Check Spelling..</em> or with <code class="docutils literal notranslate"><span class="pre">CTRL+:</span></code>,
 allows searching for these underlined spelling mistakes starting from the current cursor position.</p>
-<p>Scrolls and selects the next misspelled word and offers suggestions to correct it. You may choose one of the suggestions, type something on your own in the <code class="docutils literal notranslate"><span class="pre">replace</span> <span class="pre">with</span> <span class="pre">field</span></code> or choose to ignore it.
-<code class="docutils literal notranslate"><span class="pre">Adding</span></code> means to permanently add the found word as correct in the spell checker. The <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">User</span> <span class="pre">Words</span></code> button allows to check that list and also to remove mistakenly added words.</p>
+<p>It scrolls and selects the next misspelled word and offers suggestions to correct it. You may choose one of the suggestions, type something on your own in the <code class="docutils literal notranslate"><span class="pre">replace</span> <span class="pre">with</span></code> field or choose to ignore it.
+<code class="docutils literal notranslate"><span class="pre">Adding</span></code> means to permanently add the found word as correct in the spell checker. The <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">User</span> <span class="pre">Words</span></code> button allows checking that list and also removing mistakenly added words.</p>
 <p><img alt="Spell checking dialog" src="_images/speller_dialog.webp" /></p>
 </section>
 <section id="syntax-check">
 <h2>Syntax check<a class="headerlink" href="#syntax-check" title="Link to this heading">¶</a></h2>
 <p>TeXstudio tries to determine if a command is correct by an internal list of valid commands.
-It also tries to understand command context to some degree, so to see that math commands outside a math environment are not correct.</p>
+It also tries to understand command context to some degree, so it can see that math commands outside a math environment are not correct.</p>
 <p><img alt="Syntax error" src="_images/syntax_error.webp" /></p>
-<p>A tool tip on the error marking states the reason, why txs thinks that there is an error.</p>
+<p>A tooltip on the error marking states the reason why txs thinks that there is an error.</p>
 <p>The supported error types are:</p>
 <ul class="simple">
 <li><p>Unrecognized commands</p></li>
-<li><p>Commands outside the proper environment, especially math-commands</p></li>
+<li><p>Commands outside the proper environment, especially math commands</p></li>
 <li><p>Missing <code class="docutils literal notranslate"><span class="pre">\begin</span></code>/<code class="docutils literal notranslate"><span class="pre">\end</span></code> commands</p></li>
 <li><p>Unrecognized key/value in some key/value options, e.g. <code class="docutils literal notranslate"><span class="pre">\includegraphics[*keyval</span> <span class="pre">option*]...</span></code></p></li>
 <li><p>Mismatch in defined/realized column number in tabular-like environments</p></li>
@@ -795,8 +801,8 @@ It also tries to understand command context to some degree, so to see that math 
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>LaTeX commands and especially LaTeX syntax are too complex to successfully check them completely.
-Marked errors are probably real errors except in special environments, but that does <strong>not</strong> guarantee an error free document.
-However the syntax marking may help to find issue significantly, especially in tabular environments.</p>
+Marked errors are probably real errors except in special environments, but that does <strong>not</strong> guarantee an error-free document.
+However, the syntax marking may help to find issues significantly, especially in tabular environments.</p>
 </div>
 </section>
 <section id="thesaurus">
@@ -804,15 +810,15 @@ However the syntax marking may help to find issue significantly, especially in t
 <p>TeXstudio has integrated a simple thesaurus. OpenOffice 2.x databases
 are used for this. By placing the cursor on a word and activating the
 thesaurus (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+F8</span></code> or Edit/Thesaurus), it tries to find synonyms
-for this word. Please be patient if you start the thesaurus at first
+for this word. Please be patient if you start the thesaurus for the first
 time since loading the database just occurs then and can take a few
 moments.</p>
 <p><img alt="Thesaurus" src="_images/thesaurus.webp" /></p>
-<p>The first line to the left contains the word, for which a synonym is
-searched for. The list below gives a list of word classes. The can be
+<p>The first line to the left contains the word for which a synonym is
+searched. The list below gives a list of word classes. These can be
 chosen to reduce the number of suggestions. The column to the right
 contains the list of suggested synonyms. A selected word from this list
-appears in the first line to the right as proposition for replacement of
+appears in the first line to the right as a proposition for replacement of
 the text. This word can be changed manually. It is also used to do
 further investigations for words and their synonyms which “start with”
 or “contain” that word. With “lookup” it can be directly used to
@@ -824,7 +830,7 @@ look for a synonym for that word.</p>
 <p>As any editor, TeXstudio offers to search (and replace) text within an open file.</p>
 <section id="searching-text">
 <h3>Searching text<a class="headerlink" href="#searching-text" title="Link to this heading">¶</a></h3>
-<p>The search is performed in a search panel below the actual text, activated either with <code class="docutils literal notranslate"><span class="pre">Ctrl+F</span></code> or edit/searching/find. Options can be chosen by enabling/disabling the option next to the search text box.</p>
+<p>The search is performed in a search panel below the actual text, activated either with <code class="docutils literal notranslate"><span class="pre">Ctrl+F</span></code> or Edit/Searching/Find. Options can be chosen by enabling/disabling the option next to the search text box.</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
@@ -858,10 +864,10 @@ look for a synonym for that word.</p>
 <td><p>start search from cursor/start of document</p></td>
 </tr>
 <tr class="row-even"><td><p><img alt="" src="_images/selection.svg" /></p></td>
-<td><p>limit search on previous selected text</p></td>
+<td><p>limit search to previously selected text</p></td>
 </tr>
 <tr class="row-odd"><td><p><img alt="" src="_images/all.svg" /></p></td>
-<td><p>filter search results like ‘all’,’math”,’non-math’,etc.</p></td>
+<td><p>filter search results like ‘all’, ‘math’, ‘non-math’, etc.</p></td>
 </tr>
 <tr class="row-even"><td><p><img alt="" src="_images/extend.svg" /></p></td>
 <td><p>extended search, see <a class="reference internal" href="#extended-search">here</a></p></td>
@@ -869,11 +875,11 @@ look for a synonym for that word.</p>
 </tbody>
 </table>
 </div>
-<p>Regular expression follows perl regex syntax, see also <a class="reference external" href="http://perldoc.perl.org/perlre.html">Perl’s regular expression documentation</a> and <a class="reference external" href="http://perldoc.perl.org/perlretut.html">Perl’s regular expression tutorial</a>.</p>
+<p>Regular expressions follow Perl regex syntax, see also <a class="reference external" href="http://perldoc.perl.org/perlre.html">Perl’s regular expression documentation</a> and <a class="reference external" href="http://perldoc.perl.org/perlretut.html">Perl’s regular expression tutorial</a>.</p>
 </section>
 <section id="replacing-text">
 <h3>Replacing text<a class="headerlink" href="#replacing-text" title="Link to this heading">¶</a></h3>
-<p>The search-panel extends to offer a replacement when pressing <code class="docutils literal notranslate"><span class="pre">Ctrl+R</span></code> or edit/Searching/replace.</p>
+<p>The search panel extends to offer a replacement when pressing <code class="docutils literal notranslate"><span class="pre">Ctrl+R</span></code> or Edit/Searching/Replace.</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
@@ -895,7 +901,7 @@ look for a synonym for that word.</p>
 <td><p>ask every time before replacing</p></td>
 </tr>
 <tr class="row-even"><td><p><img alt="" src="_images/escape.svg" /></p></td>
-<td><p>use escaped number to insert found groups, see perl regex above</p></td>
+<td><p>use escaped number to insert found groups, see Perl regex above</p></td>
 </tr>
 </tbody>
 </table>
@@ -905,9 +911,9 @@ look for a synonym for that word.</p>
 <section id="extended-search">
 <h3>Extended search<a class="headerlink" href="#extended-search" title="Link to this heading">¶</a></h3>
 <p>The extended search feature allows you to search within all files associated with a document.
-The search word is updated when pressing “+” again on the search panel. “Update search” search with the given search word again through all specified files.
-The drop down menu allows to search within a “Project”,i.e. all files containing to one document, “All doc”, i.e. all open documents in TeXstudio or a single “Current Document”.</p>
-<p>The option “Files on disk” searches all the text in tex-files in the same folder like the current document. The folder and the file filter can be changed.</p>
+The search word is updated when pressing “+” again on the search panel. “Update search” searches with the given search word again through all specified files.
+The drop-down menu allows searching within a “Project”, i.e. all files belonging to one document, “All Docs”, i.e. all open documents in TeXstudio, or a single “Current Doc”.</p>
+<p>The option “Files on disk” searches all the text in tex-files in the same folder as the current document. The folder and the file filter can be changed.</p>
 <p>In the list of search results, a double-click on a match jumps to the location in the file. The matches can be selected/deselected to limit the results which are replaced by the replacement text by pressing “Replace all”.</p>
 <p><img alt="extended search pane" src="_images/extendedSearch.webp" /></p>
 </section>
@@ -916,7 +922,7 @@ The drop down menu allows to search within a “Project”,i.e. all files contai
 <h2>Handling large projects<a class="headerlink" href="#handling-large-projects" title="Link to this heading">¶</a></h2>
 <p>This section describes what support txs provides for larger projects.</p>
 <p>Large projects usually are split into several included files.
-In order to speed up compilation, the package <a class="reference external" href="https://www.ctan.org/pkg/subfiles">subfiles</a> offer compilation of the current document only. txs automatically loads all included files, so that it can provide proposal for user commands, labels and bibitems. To speed up reloading a project, txs caches all files, meaning it writes those information on the disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works on restoring an previous opened project, the initial opening may take a bit longer, see <a class="reference internal" href="background.html#about-documents-separated-in-several-files"><span class="std std-ref">also</span></a>.</p>
+In order to speed up compilation, the package <a class="reference external" href="https://www.ctan.org/pkg/subfiles">subfiles</a> offers compilation of the current document only. txs automatically loads all included files, so that it can provide proposals for user commands, labels and bibitems. To speed up reloading a project, txs caches all files, meaning it writes this information on the disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works when restoring a previously opened project; the initial opening may take a bit longer, see <a class="reference internal" href="background.html#about-documents-separated-in-several-files"><span class="std std-ref">also</span></a>.</p>
 </section>
 <section id="collaborative-editing-pair-programming">
 <h2>Collaborative Editing (Pair programming)<a class="headerlink" href="#collaborative-editing-pair-programming" title="Link to this heading">¶</a></h2>
@@ -924,30 +930,30 @@ In order to speed up compilation, the package <a class="reference external" href
 You will see the other person’s cursor movement as well as any changes instantly.</p>
 <section id="inviting-collaborators">
 <h3>Inviting collaborators<a class="headerlink" href="#inviting-collaborators" title="Link to this heading">¶</a></h3>
-<p>Here you need to start a host server by clicking “Tools/Start Host server”.
+<p>Here you need to start a host server by clicking “Tools/Start sharing folders”.
 It will take the folder of the current file to set a folder to share.</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>Please be aware that <strong>all</strong> files in that folder will be visible and accessible by your collaborator !</p>
+<p>Please be aware that <strong>all</strong> files in that folder will be visible and accessible by your collaborator!</p>
 </div>
-<p>Once the server is successfully started, a symbol in the panel will appear to notify you.
-<img alt="Server connected" src="_images/ethersync_status_panel.webp" /></p>
+<p>Once the server is successfully started, a symbol in the panel will appear to notify you.</p>
+<p><img alt="Server connected" src="_images/ethersync_status_panel.webp" /></p>
 <p>The tooltip on that icon will tell you the folder which is used for sharing as well as the current access code. The context menu (right-click) on the icon offers to copy the code into the clipboard.
 This access code in the form of <code class="docutils literal notranslate"><span class="pre">4-alpha-button</span></code> needs to be communicated to the collaborator for them to access this folder (as long as the host server is running).</p>
 <p><img alt="Copy access code" src="_images/ethersync_status_panel_copyCode.webp" /></p>
-<p>Once they connect to any of those files, TeXstudio gets notfied. If the file is open in your TeXstudio, their cursor will appear as blue cursor. Any changes will directly appear in your file as well.
+<p>Once they connect to any of those files, TeXstudio gets notified. If the file is open in your TeXstudio, their cursor will appear as a blue cursor. Any changes will directly appear in your file as well.
 So will your cursor position and changes appear in their editor.</p>
-<p>Once the connection is closed (“Tools/Disconnect from collaboration…” or TeXstudio is closed), the changes will not synchronized any more and neither their nor your changes are exchanged.</p>
+<p>Once the connection is closed (“Tools/Disconnect from collaboration” or TeXstudio is closed), the changes will not be synchronized any more and neither their nor your changes are exchanged.</p>
 </section>
 <section id="joining-collaboration">
 <h3>Joining collaboration<a class="headerlink" href="#joining-collaboration" title="Link to this heading">¶</a></h3>
 <p>In order to join another user for collaboration, an access code is needed.
-If that has been communicated, connect to the other other with “Tools/Connect to other user for collaboration”.</p>
+If that has been communicated, connect to the other user with “Tools/Connect to other user for collaboration”.</p>
 <p>TeXstudio asks for the access code and connects to the other user.
 If that was successful, the status panel (see <a class="reference internal" href="#inviting-collaborators">above</a>) will turn green.
 The data will be copied into your collaboration folder, see <a class="reference internal" href="configuration.html#configuring-collaboration"><span class="std std-ref">configuration</span></a>.
 You can open any file there and you will see the cursor as well as any changes from any other connected editors instantly.</p>
-<p>The connection is closed when you disconnect from collaboration (“Tools/Disconnect from collaboration…” or close TeXstudio)</p>
+<p>The connection is closed when you disconnect from collaboration (“Tools/Disconnect from collaboration” or close TeXstudio).</p>
 </section>
 </section>
 <section id="special-commands">
@@ -956,9 +962,9 @@ You can open any file there and you will see the cursor as well as any changes f
 <h3>Delete word/command/environment<a class="headerlink" href="#delete-word-command-environment" title="Link to this heading">¶</a></h3>
 <p>With the shortcut Alt+Del, the word under the cursor is deleted. If it
 is a command, the command is deleted including opening and closing
-braces. E.g. <code class="docutils literal notranslate"><span class="pre">\textbf{text}</span></code> leave <code class="docutils literal notranslate"><span class="pre">text</span></code>. If it is an environment,
+braces. E.g. <code class="docutils literal notranslate"><span class="pre">\textbf{text}</span></code> leaves <code class="docutils literal notranslate"><span class="pre">text</span></code>. If it is an environment,
 the enclosing <code class="docutils literal notranslate"><span class="pre">\begin</span></code>/<code class="docutils literal notranslate"><span class="pre">\end</span></code> are removed.
-In case that matching delimiters are highlighted like <code class="docutils literal notranslate"><span class="pre">()</span></code>, both are removed.</p>
+In case matching delimiters are highlighted like <code class="docutils literal notranslate"><span class="pre">()</span></code>, both are removed.</p>
 </section>
 <section id="rename-environment">
 <h3>Rename environment<a class="headerlink" href="#rename-environment" title="Link to this heading">¶</a></h3>
@@ -977,22 +983,22 @@ appears, change <code class="docutils literal notranslate"><span class="pre">tab
 </section>
 <section id="close-delimiter-or-environment">
 <h3>Close delimiter or environment<a class="headerlink" href="#close-delimiter-or-environment" title="Link to this heading">¶</a></h3>
-<p>With the shortcut Alt+Return, the last open delimiter (e.g. ‘{’ ) or the last open environment will be closed by inserting the corresponding text at the cursor position (e.g ‘}’ in case of an open brace or ‘\end{…}’ in case of an open environment).</p>
+<p>With the shortcut Alt+Return, the last open delimiter (e.g. <code class="docutils literal notranslate"><span class="pre">{</span></code>) or the last open environment will be closed by inserting the corresponding text at the cursor position (e.g. <code class="docutils literal notranslate"><span class="pre">}</span></code> in case of an open brace or <code class="docutils literal notranslate"><span class="pre">\end{...}</span></code> in case of an open environment).</p>
 </section>
 <section id="cut-buffer">
 <h3>Cut Buffer<a class="headerlink" href="#cut-buffer" title="Link to this heading">¶</a></h3>
 <p>If you select something and then start to type in a command and complete
-it, the selection is put in as first argument. E.g. you have a <code class="docutils literal notranslate"><span class="pre">text</span></code>,
-select it and start typing <code class="docutils literal notranslate"><span class="pre">\textbf</span></code>, command which is completed. The
+it, the selection is put in as the first argument. E.g. you have a <code class="docutils literal notranslate"><span class="pre">text</span></code>,
+select it and start typing <code class="docutils literal notranslate"><span class="pre">\textbf</span></code>, a command which is completed. The
 resulting text is <code class="docutils literal notranslate"><span class="pre">\textbf{text}</span></code>.</p>
 </section>
 <section id="block-cursor">
 <h3>Block cursor<a class="headerlink" href="#block-cursor" title="Link to this heading">¶</a></h3>
 <p>TeXstudio supports block cursors (or multiple cursors).
 Cursors can be added by <code class="docutils literal notranslate"><span class="pre">Ctrl+Alt</span></code>+left click.
-Alternatively pressing <code class="docutils literal notranslate"><span class="pre">Ctrl+alt+Up/down</span></code> also add block cursors.
+Alternatively pressing <code class="docutils literal notranslate"><span class="pre">Ctrl+Alt+Up/Down</span></code> also add block cursors.
 The cursors can jointly move, add and remove text and select characters.
-Pressing <code class="docutils literal notranslate"><span class="pre">esc</span></code> or clicking into the text ends the block cursor mode.</p>
+Pressing <code class="docutils literal notranslate"><span class="pre">Esc</span></code> or clicking into the text ends the block cursor mode.</p>
 <p><img alt="block cursor" src="_images/blockCursor.webp" /></p>
 <p>By clicking <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift</span></code>+left click a block from the current cursor to the mouse position is selected.</p>
 <p><img alt="block cursor with selection" src="_images/blockCursor_selection.webp" /></p>
@@ -1135,9 +1141,9 @@ Pressing <code class="docutils literal notranslate"><span class="pre">esc</span>
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=6ac3fd3f"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script type="module" src="_static/scripts/furo.js?v=d32f1409"></script>
     <script src="_static/tabs.js?v=3ee01567"></script>
     <script src="_static/design-tabs.js?v=36754332"></script>
     </body>
