@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/01/16 for v16.5.0
+# Matthew Bertucci 2026/01/23 for v16.6.0
 
 #include:iftex
 
@@ -500,6 +500,7 @@ chessdotcom
 chevrolet
 chianetwork
 chinaeasternairlines
+chinarailway
 chinasouthernairlines
 chocolatey
 chromatic
@@ -629,6 +630,7 @@ cobalt
 copaairlines
 coppel
 cora
+coreboot
 coreldraw
 coronaengine
 coronarenderer
@@ -743,6 +745,7 @@ deutschetelekom
 deutschewelle
 devdotto
 devbox
+developmentcontainers
 devexpress
 deviantart
 devpost
@@ -2291,6 +2294,7 @@ prdotco
 preact
 precommit
 prefect
+prek
 premid
 premierleague
 prepbytes
@@ -2950,6 +2954,7 @@ thestorygraph
 thewashingtonpost
 theweatherchannel
 thingiverse
+things
 thinkpad
 thirdweb
 threadless
