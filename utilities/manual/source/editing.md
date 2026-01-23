@@ -395,7 +395,7 @@ forms (frac, sqrt\...), the \"Math\" toolbar allows entering delimiter tags like
 
 You can toggle \"in-line math\" environment with the \"\$..\$\"
 button in the \"Central\" toolbar (`Ctrl+Shift+M`) or in the \"Math\" menu.
-The \"display math - \"\[\...\]\" environment is only available in the menu (or via shortcut `Alt+Shift+M`).
+The \"display math - \[\...\]\" environment is only available in the menu (or via shortcut `Alt+Shift+M`).
 
 The \"symbols panel\" in the side panel offers the insertion of hundreds of mathematical symbols and special characters.
 The list can be sorted by categories like "all", "greek", "operators", etc.
