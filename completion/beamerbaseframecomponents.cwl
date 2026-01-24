@@ -1,5 +1,5 @@
 # beamerbaseframecomponents package
-# Matthew Bertucci 2025/08/04 for v3.75
+# Matthew Bertucci 2026/01/22 for v3.77
 
 \setbeamersize{options%keyvals}
 
@@ -57,4 +57,5 @@ height=##L
 #keyvals:\footnote#c
 %<number%>
 frame
+noframe
 #endkeyvals

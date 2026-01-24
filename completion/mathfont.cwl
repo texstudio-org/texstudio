@@ -1,5 +1,5 @@
 # mathfont package
-# Matthew Bertucci 2025/04/04 for v2.4
+# Matthew Bertucci 2026/01/23 for v3.0
 
 #keyvals:\usepackage/mathfont#c
 easter-egg
@@ -18,38 +18,49 @@ no-adjust
 #include:fontspec
 #endif
 
+\documentfont{font name}
+\documentfont[family%keyvals]{font name}
+\mainfont{font name}
+\mainfont[family%keyvals]{font name}
+
+#keyvals:\documentfont,\mainfont
+rm
+sf
+tt
+#endkeyvals
+
 \mathfont{font name}
 \mathfont[keywords%keyvals]{font name}
 
 #keyvals:\mathfont
 upper
-upper=#upright,italic
+upper=#upright,upright*,italic,italic*
 lower
-lower=#upright,italic
+lower=#upright,upright*,italic,italic*
 diacritics
-diacritics=#upright,italic
+diacritics=#upright,upright*,italic,italic*
 greekupper
-greekupper=#upright,italic
+greekupper=#upright,upright*,italic,italic*
 greeklower
-greeklower=#upright,italic
+greeklower=#upright,upright*,italic,italic*
 digits
-digits=#upright,italic
+digits=#upright,upright*,italic,italic*
 operator
-operator=#upright,italic
+operator=#upright,upright*,italic,italic*
 delimiters
 radical
 symbols
 bigops
 agreekupper
-agreekupper=#upright,italic
+agreekupper=#upright,upright*,italic,italic*
 agreeklower
-agreeklower=#upright,italic
+agreeklower=#upright,upright*,italic,italic*
 cyrillicupper
-cyrillicupper=#upright,italic
+cyrillicupper=#upright,upright*,italic,italic*
 cyrilliclower
-cyrilliclower=#upright,italic
+cyrilliclower=#upright,upright*,italic,italic*
 hebrew
-hebrew=#upright,italic
+hebrew=#upright,upright*,italic,italic*
 extsymbols
 arrows
 extbigops
@@ -59,8 +70,6 @@ frak
 bcal
 bfrak
 #endkeyvals
-
-\setfont{font name}
 
 \mathbb{text%plain}#m
 \mathfrak{text%plain}#m
@@ -80,19 +89,44 @@ bfrak
 \newmathscit{control sequence%cmd}{font name}#d
 \newmathbfsc{control sequence%cmd}{font name}#d
 \newmathbfscit{control sequence%cmd}{font name}#d
+
+\mathfontcommands{font name}
+
 \newmathfontcommand{control sequence%cmd}{font name}{series}{shape}#d
 
 \mathconstantsfont{font name}
-\mathconstantsfont[shape%keyvals]{font name}
+\mathconstantsfont[shape identifier%keyvals]{font name}
 
 #keyvals:\mathconstantsfont
 upright
 italic
 #endkeyvals
 
-\CharmLine{integer list}
-\CharmFile{filename%file}
+\mathfontshapes{font name}
+\mathfontshapes[shape identifiers%keyvals]{font name}
 
+#keyvals:\mathfontshapes
+upright
+upright*
+italic
+italic*
+#endkeyvals
+
+\charmline{charm information}
+\CharmLine{charm information}#S
+\charmfile{file name%file}
+\CharmFile{file name%file}#S
+\charminfo%<<integer>%>
+\charmtype%<<integer>%>
+\CharmInfo{integer}
+\CharmType{integer}
+
+\hsurdfactor#*
+\vsurdvactor#*
+\rulethicknessfactor#*
+
+\SurdHorizontalFactor{integer}
+\SurdVerticalFactor{integer}
 \RuleThicknessFactor{integer}
 \IntegralItalicFactor{integer}
 \SurdVerticalFactor{integer}
@@ -455,8 +489,31 @@ italic
 \zigzagarrow#m
 
 \ng
-\mathng#*m
-\textng#*
-\surdbox#*
-\radicandoffset#*
-\setmathfontcommands{font name}#*
+\mathng#Sm
+\textng#S
+\surdbox#S
+\radicandoffset#S
+\upperdefault#S
+\lowerdefault#S
+\diacriticsdefault#S
+\greekupperdefault#S
+\greeklowerdefault#S
+\agreekupperdefault#S
+\agreeklowerdefault#S
+\cyrillicupperdefault#S
+\cyrilliclowerdefault#S
+\hebrewdefault#S
+\digitsdefault#S
+\operatordefault#S
+\delimitersdefault#S
+\radicaldefault#S
+\bigopsdefault#S
+\extbigopsdefault#S
+\symbolsdefault#S
+\extsymbolsdefault#S
+\arrowsdefault#S
+\bbdefault#S
+\caldefault#S
+\frakdefault#S
+\bcaldefault#S
+\bfrakdefault#S

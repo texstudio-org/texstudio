@@ -1,5 +1,5 @@
 # jsonparse package
-# Matthew Bertucci 2025/12/05 for v1.6.9
+# Matthew Bertucci 2026/01/22 for v1.7.0
 
 \JSONParse{token variable%cmd}{JSON string}#d
 \JSONParse[options%keyvals]{token variable%cmd}{JSON string}#d
@@ -69,6 +69,10 @@ store in=%<token variable%>
 global#true,false
 #endkeyvals
 
+#keyvals:\JSONParseSet,\JSONParse,\JSONParseFromFile,\JSONParseArrayUse,\JSONParseArrayMapFunction,\JSONParseArrayMapInline
+zero-based#true,false
+#endkeyvals
+
 # expl3 interface
 \c_jsonparse_json_cctab#/%expl3
 \g_jsonparse_entries_prop#/%expl3
@@ -77,6 +81,8 @@ global#true,false
 \jsonparse_set_filter:Nn %<⟨tl var⟩%> {%<⟨key⟩%>}#/%expl3
 \jsonparse_gput_right_rescan:Nn %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_gput_right_rescan:Ne %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
+\jsonparse_gset_rescan:cn {%<⟨tl var name⟩%>} {%<⟨JSON value⟩%>}#/%expl3
+\jsonparse_gset_rescan:ce {%<⟨tl var name⟩%>} {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_gset_rescan:Nn %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_gset_rescan:Ne %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_if_num:nF {%<⟨string⟩%>} {%<⟨false code⟩%>}#/%expl3
@@ -101,6 +107,8 @@ global#true,false
 \jsonparse_put_right_rescan:Ne %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_rescan:n {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_rescan:e {%<⟨JSON value⟩%>}#/%expl3
+\jsonparse_set_rescan:cn {%<⟨tl var name⟩%>} {%<⟨JSON value⟩%>}#/%expl3
+\jsonparse_set_rescan:ce {%<⟨tl var name⟩%>} {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_set_rescan:Nn %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_set_rescan:Ne %<⟨tl var⟩%> {%<⟨JSON value⟩%>}#/%expl3
 \jsonparse_unicode_convert_surrogate_pair:ee {%<⟨codepoint⟩%>} {%<⟨codepoint⟩%>}#/%expl3

@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2025/12/17 for v7.5
+# Matthew Bertucci 2026/01/05 for v7.5a
 
 #include:amsmath
 #include:array
@@ -373,6 +373,7 @@ xdots/shorten-end=##L
 xdots/shorten=##L
 xdots/inter=##L
 xdots/line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed#c
+xdots/nullify
 #endkeyvals
 
 \SubMatrix{delim1}{i-j}{k-l}{delim2}#t

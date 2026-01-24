@@ -1,5 +1,5 @@
 # linguistix-fonts package
-# Matthew Bertucci 2026/01/05 for v0.6a
+# Matthew Bertucci 2026/01/22 for v0.7
 
 #include:linguistix-base
 #include:unicode-math
@@ -76,3 +76,5 @@ text swash=%<font name%>
 text upright features={%<font features%>}
 text upright=%<font name%>
 #endkeyvals
+
+\ogLaTeX#*

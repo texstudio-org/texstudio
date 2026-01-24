@@ -1,11 +1,11 @@
 # ltx-talk class
-# Matthew Bertucci 2025/12/01 for v0.3.4
+# Matthew Bertucci 2026/01/16 for v0.3.8
 
 #include:pdfmanagement
 #include:relsize
 #include:geometry
 #include:mathtools
-#include:unicode-math
+#include:lua-unicode-math
 #include:hyperref
 #include:xcolor
 #include:graphicx

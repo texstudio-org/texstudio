@@ -1,5 +1,5 @@
 # eqnlines package
-# Matthew Bertucci 2026/01/05 for v0.12.1
+# Matthew Bertucci 2026/01/16 for v0.13
 
 #include:keyval
 
@@ -132,6 +132,7 @@ margin=##L
 marginleft=##L
 marginright=##L
 scanpar#true,false
+verbose#true,false
 #endkeyvals
 
 #keyvals:\usepackage/eqnlines#c,\eqnlinesset,\begin{equation},\eqnaddopt
@@ -362,13 +363,20 @@ medskip=#above,below,both
 
 #keyvals:\eqnlinesprovide
 equation
+equation*
 displaymath
 gather
+gather*
 multline
+multline*
 align
+align*
 flalign
+flalign*
 alignat
+alignat*
 xalignat
+xalignat*
 xxalignat
 aligned
 alignedat
