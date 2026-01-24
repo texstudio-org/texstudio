@@ -1,5 +1,5 @@
 # thumbs package
-# Matthew Bertucci 11/29/2021 for v1.0q
+# Matthew Bertucci 2025/01/18 for v1.1d
 
 #include:xcolor
 #include:picture
@@ -7,7 +7,6 @@
 #include:rerunfilecheck
 #include:pagecolor
 #include:undolabl
-#include:kvoptions
 
 #keyvals:\usepackage/thumbs#c
 linefill=#line,dots
@@ -63,3 +62,6 @@ righttoleft#true,false
 \thumbsoriglabel#S
 \thumbsoverviewprint#S
 \theThumbsPage#S
+\begin{thumbspicture}#S
+\begin{thumbspicture}[opt]#S
+\end{thumbspicture}#S

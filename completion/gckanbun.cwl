@@ -1,5 +1,5 @@
 # gckanbun package
-# Matthew Bertucci 2026/01/05 for v2.2.0
+# Matthew Bertucci 2026/01/11 for v2.2.7
 
 #include:ifluatex
 #include:ifuptex
@@ -51,6 +51,12 @@ intrusion=#post,both
 
 \GCKTateOn
 \GCKTateOff
+
+\begin{GCKEnv}{baselineskip}
+\begin{GCKEnv}{baselineskip}[kanjiskip]
+\end{GCKEnv}
+
+\GCKanshiBox{arg1}{arg2}
 
 \zw#S
 \zh#S

@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2026/01/03 for v4.10
+# Matthew Bertucci 2026/01/11 for v4.11
 
 #include:luacode
 #include:xcolor
@@ -118,6 +118,7 @@ left-margin=##L
 line-numbers
 line-numbers/format=%<font commands%>
 line-numbers/label-empty-lines#true,false
+line-numbers/position=#left,right
 line-numbers/resume
 line-numbers/sep=##L
 line-numbers/skip-empty-lines#true,false
@@ -131,6 +132,7 @@ paperclip=%<file%>
 path-write=%<path%>
 print#true,false
 prompt-background-color=#%color
+right-margin=##L
 rounded-corners
 rounded-corners=##L
 show-spaces

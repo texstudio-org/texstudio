@@ -1,5 +1,5 @@
 # lua-unicode-math package
-# Matthew Bertucci 2026/01/05 for v0.4
+# Matthew Bertucci 2026/01/16 for v0.6
 
 #include:luatex
 
@@ -39,7 +39,6 @@ StylisticSet=%<set number%>
 #endkeyvals
 
 \symnormal{text}#*m
-\symliteral{text}#*m
 \symup{text}#m
 \symrm{text}#m
 \symit{text}#m
@@ -71,6 +70,7 @@ StylisticSet=%<set number%>
 \mathbfit{text}#m
 \mathbfcal{text}#m
 \mathbffrak{text}#m
+\mathbfsf{text}#m
 \mathbfsfup{text}#m
 \mathbfsfit{text}#m
 \mathfrak{text}#m

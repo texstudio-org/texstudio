@@ -2043,6 +2043,7 @@
 <file>completion/jslogo.cwl</file>
 <file>completion/jsmembertable.cwl</file>
 <file>completion/jsonparse.cwl</file>
+<file>completion/jsonresume.cwl</file>
 <file>completion/jsverb.cwl</file>
 <file>completion/juliamono.cwl</file>
 <file>completion/jumplines.cwl</file>
@@ -2206,6 +2207,7 @@
 <file>completion/linguistix-fonts.cwl</file>
 <file>completion/linguistix-ipa.cwl</file>
 <file>completion/linguistix-languages.cwl</file>
+<file>completion/linguistix-leipzig.cwl</file>
 <file>completion/linguistix-logos.cwl</file>
 <file>completion/linguistix-nfss.cwl</file>
 <file>completion/linop.cwl</file>

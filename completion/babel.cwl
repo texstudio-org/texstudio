@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2025/11/12 for v25.15
+# tbraun 4.11.2008; Matthew Bertucci 2026/01/18 for v26.1
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -28,8 +28,15 @@ ensureinfo=off
 #endkeyvals
 
 \selectlanguage{language}
+\selectlanguage[options%keyvals]{language}
 \begin{selectlanguage}{language}#*
+\begin{selectlanguage}[options%keyvals]{language}#*
 \end{selectlanguage}#*
+
+#keyvals:\selectlanguage,\begin{selectlanguage}
+nofiles
+#endkeyvals
+
 \foreignlanguage{language}{text}
 \foreignlanguage[options%keyvals]{language}{text}
 \begin{otherlanguage}{language}
@@ -37,8 +44,10 @@ ensureinfo=off
 \begin{otherlanguage*}{language}
 \begin{otherlanguage*}[options%keyvals]{language}
 \end{otherlanguage*}
+\otherlanguage*{language}
+\otherlanguage*[options%keyvals]{language}
 
-#keyvals:\foreignlanguage,\begin{otherlanguage*}
+#keyvals:\foreignlanguage,\begin{otherlanguage*},\otherlanguage*
 date
 captions
 #endkeyvals
@@ -2838,7 +2847,7 @@ TocPartFullName#true,false
 \glossaryname#*
 #endif
 
-### italian.ldf v1.4.04 ###
+### italian.ldf v1.5.02 ###
 #ifOption:italian
 \captionsitalian#*
 \dateitalian#*
@@ -2869,6 +2878,8 @@ TocPartFullName#true,false
 \virgoladecimale
 \LtxSymbCaporali#*
 \CaporaliFrom{encoding}{family}{open guill slot}{close guill slot}#*
+\Numbertoday
+\ISOtoday
 #endif
 
 ### japanese.ldf v3.1 ###

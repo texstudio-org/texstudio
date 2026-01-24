@@ -1,5 +1,5 @@
 # ysabeau package
-# Matthew Bertucci 2024/11/05 for v1.4
+# Matthew Bertucci 2026/01/16 for v2.006
 
 #include:fontenc
 # loads T1 option of fontenc
@@ -46,6 +46,7 @@ aftsolidus=
 \extralightfont
 \hairline{text}
 \hairlinefont
+\inferior#*
 \inffigures
 \infigures#*
 \infstyle#*
@@ -65,6 +66,7 @@ aftsolidus=
 \semiboldfont
 \subscript#*
 \sufigures#*
+\superior#*
 \supfigures
 \supscript#*
 \supstyle#*

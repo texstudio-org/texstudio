@@ -7,7 +7,7 @@
 # 2017-01-13: Dependencies to packages added.
 #
 # Matthew Bertucci 2022-01-30, cwls modified/added to reflect subpackage dependencies
-# updated 2023/05/15 for v3.70
+# updated 2026/01/22 for v3.77
 
 # Dependency Tree:
 # beamer.cls
@@ -106,6 +106,7 @@ ucs
 utf8x
 utf8
 aspectratio=#2013,1610,169,149,141,54,43,32,%<xxxx%>
+framefootnotes
 #endkeyvals
 
 #ifOption:ucs
