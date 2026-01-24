@@ -31,3 +31,5 @@ utilities/manual/build/doctrees
 symbols-ng/gesymb-ng
 symbols-ng/gesymb-ng.o
 CMakeLists.txt.user
+# personal files
+js_*
