@@ -63,6 +63,7 @@ html_theme = 'furo'
 #
 html_theme_options = {
     "navigation_with_keys": True,
+    "top_of_page_buttons": [],
 }
 
 # html_static_path = ['_static']
