@@ -1,5 +1,5 @@
 # pdfmanagement package
-# Matthew Bertucci 2025/07/01 for v0.96t
+# Matthew Bertucci 2026/01/25 for v0.96y
 
 #include:tagpdf
 
@@ -97,6 +97,7 @@
 
 ## l3pdfmeta
 \pdfmeta_set_regression_data:#/%expl3
+\pdfmeta_standard_family:nn {%<⟨family⟩%>} {%<⟨code⟩%>}#/%expl3
 \pdfmeta_standard_get:nN {%<⟨requirement⟩%>} %<⟨tl var⟩%>#/%expl3
 \pdfmeta_standard_item:n {%<⟨requirement⟩%>}#/%expl3
 \pdfmeta_standard_verify:nF {%<⟨requirement⟩%>} {%<⟨false code⟩%>}#/%expl3
@@ -219,6 +220,8 @@ pdfcontactphone=%<phone number%>
 pdfcontactemail=%<email%>
 pdfcontacturl=%<URL%>
 pdfdate=%<date%>
+pdftdmreservation=#0,1
+pdftdmpolicy=%<URL%>
 link#true,false
 url#true,false
 file#true,false
