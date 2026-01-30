@@ -34,9 +34,12 @@ topics_dict = {topic['key']: topic for topic in data["topics"]}
 license_dict = {license['key']: license for license in data["licenses"]}
 
 # Process the packages data
+fileName = f"packageDatabase.json"
 packages = data["packages"]
 package_content = []
+c = 0
 for package in packages:
+    c += 1
     package_key = package['key']
     package_url = f"https://www.ctan.org/json/2.0/pkg/{package_key}"
     package_data = fetch_json(package_url)
@@ -63,6 +66,7 @@ for package in packages:
     package_content.append(package_data)
 
 # Save the processed data to a JSON file
-with open("packageDatabase.json", "w") as file:
+print(f"writing {c} packages to file {fileName}...")
+with open(fileName, "w") as file:
     json.dump(package_content, file, indent=2)
 
