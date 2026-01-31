@@ -2,14 +2,19 @@
 # For version 1.3.2 of mathpartir
 
 #include:keyval
+
 \begin{mathpar}#\math
 \end{mathpar}
+\begin{mathparpagebreakable}#*\math
+\end{mathparpagebreakable}#*
+
 \inferrule{premises}{conclusions}#m
 \inferrule[label%text]{premises}{conclusions}#m
 \inferrule*[options%keyvals]{premises}{conclusions}#m
-\infer{premises}{conclusions}#*m
-\infer[label%text]{premises}{conclusions}#*m
-\infer*[options%keyvals]{premises}{conclusions}#*m
+\infer{premises}{conclusions}#m
+\infer[label%text]{premises}{conclusions}#m
+\infer*[options%keyvals]{premises}{conclusions}#m
+
 #keyvals:\inferrule*,\infer*
 width=##L
 narrower=%<scale%>
@@ -28,8 +33,10 @@ rightskip=##L
 vdots=##L
 after=%<tex%>
 #endkeyvals
+
 \mprset{keyvals}
-#keyvals:mprset
+
+#keyvals:\mprset,\inferrule*,\infer*
 sep=##L
 flushleft
 center
@@ -41,6 +48,15 @@ myfraction=%<tex%>
 vskip=##L
 vcenter
 #endkeyvals
+
+\DefTirNameStyle#*
+\LabTirNameStyle#*
+\LeftTirNameStyle#*
+\RightTirNameStyle#*
+\DefTirName#*
+\LabTirName#*
+\LeftTirName#*
+\RightTirName#*
 \MathparLineskip#*
 \MathparNormalpar#*
 \MathparBindings#*
