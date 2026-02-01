@@ -1,5 +1,5 @@
 # tikz-kalender class
-# Matthew Bertucci 4/14/2022 for v0.4f
+# Matthew Bertucci 2026/01/31 for v0.6a
 
 #include:ifluatex
 #include:ifxetex
@@ -45,6 +45,7 @@ workdayColor=#%color
 saturdayColor=#%color
 sundayColor=#%color
 xcoloroptions={%<xcolor options%>}
+onePageOnly#true,false
 #endkeyvals
 
 \makeKalender

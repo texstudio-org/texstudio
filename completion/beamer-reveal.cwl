@@ -1,8 +1,9 @@
 # beamer-reveal package
-# Matthew Bertucci 2026/01/23 for v1.05
+# Matthew Bertucci 2026/01/31 for v1.07
 
 #include:tikz
 #include:tikzlibrarycalc
+#include:currfile
 
 #keyvals:\usepackage/beamer-reveal#c
 width=%<pixels%>

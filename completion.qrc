@@ -2782,6 +2782,7 @@
 <file>completion/paracol.cwl</file>
 <file>completion/paralist.cwl</file>
 <file>completion/parallel.cwl</file>
+<file>completion/paramcalc.cwl</file>
 <file>completion/paravesp.cwl</file>
 <file>completion/parcolumns.cwl</file>
 <file>completion/paresse.cwl</file>

@@ -1,5 +1,5 @@
 # denisbitouze, 02.03.2013
-# Matthew Bertucci updated 2024/07/10 for v2.4.0
+# Matthew Bertucci updated 2026/01/31 for v2.5.1
 
 #include:etoolbox
 #include:ifthen
@@ -88,6 +88,8 @@ playstation
 battlenet
 arxiv
 inspire
+simplex
+threema
 #endkeyvals
 \extrainfo{extra info%text}
 \listitemsymbol#*
@@ -128,6 +130,8 @@ inspire
 \battlenetsocialsymbol#*
 \arxivsocialsymbol#*
 \inspiresocialsymbol#*
+\simplexsocialsymbol#*
+\threemasocialsymbol#*
 
 \enclname#*
 \makefooter
