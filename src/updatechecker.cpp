@@ -65,8 +65,19 @@ void UpdateChecker::onRequestError(QNetworkReply::NetworkError )
 {
 	QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
 	if (!reply) return;
-
-	UtilsUi::txsCritical(tr("Update check failed with error:\n") + reply->errorString());
+	QString errorMessage = reply->errorString();
+#if QT_VERSION_MAJOR>5
+	QByteArray data = reply->readAll();
+	QJsonParseError err;
+	QJsonDocument doc = QJsonDocument::fromJson(data, &err);
+	if (err.error == QJsonParseError::NoError && doc.isObject()) {
+		QJsonObject obj = doc.object();
+		if (obj.contains("message")) {
+			errorMessage += "\n" + obj.value("message").toString();
+		}
+	}
+#endif
+	UtilsUi::txsCritical(tr("Update check failed with error:\n") + errorMessage);
 
     networkManager->deleteLater();
     networkManager=nullptr;
