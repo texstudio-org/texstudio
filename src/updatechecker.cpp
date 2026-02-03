@@ -4,6 +4,11 @@
 #include "configmanager.h"
 #include <QNetworkProxyFactory>
 #include <QMutex>
+#if QT_VERSION_MAJOR>5
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonParseError>
+#endif
 
 UpdateChecker *UpdateChecker::m_Instance = nullptr;
 int comboBoxUpdateLevel;
