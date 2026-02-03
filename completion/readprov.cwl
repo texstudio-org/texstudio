@@ -1,7 +1,10 @@
 # readprov package
-# Matthew Bertucci 11/17/2021 for v0.5
+# Matthew Bertucci 2026/02/03 for v0.5
 
 \GetFileInfo{file}
+\filedate
+\fileversion
+\fileinfo
 \UseDateOf{file}
 \UseVersionOf{file}
 \ReadPackageInfos{package list}
