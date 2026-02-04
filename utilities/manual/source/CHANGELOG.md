@@ -7,6 +7,7 @@
 - fix usepackage detection in included files 
 - fix crash on terminating txs on OSX
 - cleanup Packages Help (TeXdoc) dialog when filtered list gets empty [#4294](https://github.com/texstudio-org/texstudio/pull/4294)
+- fix sometimes invisible lines [#4319](https://github.com/texstudio-org/texstudio/issues/4319)
 
 ## TeXstudio 4.9.1
 
