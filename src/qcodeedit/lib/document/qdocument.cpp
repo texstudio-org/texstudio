@@ -3834,7 +3834,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
                     p->restore();
 				}
 			}
-			if ( ypos < yStart ) continue;
+            if ( ypos-yStart < -1e-3 ) continue; // skip not visible lines, add tolerance for floating point precision (#4319)
 
 			if ( leading && !(r.format & FORMAT_SPACE) )
 			{
