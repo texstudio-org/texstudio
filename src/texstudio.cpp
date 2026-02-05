@@ -9426,15 +9426,17 @@ void Texstudio::showPreview(const QString &text)
 	QStringList header;
 	for (int l = 0; l < m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
+	QString atBeginDocument = "\n";
+	QString atEndDocument = "\n";
 	BuildManager::Dvi2PngMode dvi2pngModeDerived = buildManager.guessDvi2PngMode();
     if (dvi2pngModeDerived>=BuildManager::DPM_EMBEDDED_PDF) {
 		header << "\\usepackage[active,tightpage]{preview}"
-		       << "\\usepackage{varwidth}"
-		       << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
-		       << "\\AtEndDocument{\\end{varwidth}\\end{preview}}";
+		       << "\\usepackage{varwidth}";
+		atBeginDocument = "\n\\begin{preview}\\begin{varwidth}{\\linewidth}\n";
+		atEndDocument = "\n\\end{varwidth}\\end{preview}\n";
 	}
 	header << "\\pagestyle{empty}";
-	buildManager.preview(header.join("\n"), PreviewSource(text, -1, -1, true), documents.getCompileFileName(), edView->editor->document()->codec());
+	buildManager.preview(header.join("\n"), PreviewSource(text, -1, -1, true), documents.getCompileFileName(), edView->editor->document()->codec(), atBeginDocument, atEndDocument);
 }
 
 void Texstudio::showPreview(const QDocumentCursor &previewc)
@@ -9466,8 +9468,18 @@ void Texstudio::showPreview(const QDocumentCursor &previewc, bool addToList)
 	if (!rootDoc) return;
 	QStringList header = makePreviewHeader(rootDoc);
 	if (header.isEmpty()) return;
+	QString atBeginDocument = "\n";
+	QString atEndDocument = "\n";
+	BuildManager::Dvi2PngMode dvi2pngModeDerived = buildManager.guessDvi2PngMode();
+	if (dvi2pngModeDerived>=BuildManager::DPM_EMBEDDED_PDF && configManager.previewMode != ConfigManager::PM_EMBEDDED) {
+		header << "\\usepackage[active,tightpage]{preview}"
+			<< "\\usepackage{varwidth}";
+		atBeginDocument = "\n\\begin{preview}\\begin{varwidth}{\\linewidth}\n";
+		atEndDocument = "\n\\end{varwidth}\\end{preview}\n";
+	}
+	header << "\\pagestyle{empty}";
 	PreviewSource ps(originalText, previewc.selectionStart().lineNumber(), previewc.selectionEnd().lineNumber(), false);
-	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), rootDoc->codec());
+	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), rootDoc->codec(), atBeginDocument, atEndDocument);
 
 	if (!addToList)
 		return;
@@ -9527,14 +9539,6 @@ QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
 			header << newLine;
 		}
 	}
-	BuildManager::Dvi2PngMode dvi2pngModeDerived = buildManager.guessDvi2PngMode();
-    if (dvi2pngModeDerived>=BuildManager::DPM_EMBEDDED_PDF && configManager.previewMode != ConfigManager::PM_EMBEDDED) {
-		header << "\\usepackage[active,tightpage]{preview}"
-			<< "\\usepackage{varwidth}"
-			<< "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
-			<< "\\AtEndDocument{\\end{varwidth}\\end{preview}}";
-	}
-	header << "\\pagestyle{empty}";
 	return header;
 }
 
