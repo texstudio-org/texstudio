@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.9.3
+
+- 
+
 ## TeXstudio 4.9.2
 
 - fix background in windowed pdf viewer with win11 style
