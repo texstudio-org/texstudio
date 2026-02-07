@@ -8,6 +8,7 @@
 - fix crash on terminating txs on OSX
 - cleanup Packages Help (TeXdoc) dialog when filtered list gets empty [#4294](https://github.com/texstudio-org/texstudio/pull/4294)
 - fix sometimes invisible lines [#4319](https://github.com/texstudio-org/texstudio/issues/4319)
+- fix rare crash in pdf viewer [poppler fix](https://gitlab.freedesktop.org/poppler/poppler/-/merge_requests/2021), [#4023](https://github.com/texstudio-org/texstudio/issues/4023)
 
 ## TeXstudio 4.9.1
 
