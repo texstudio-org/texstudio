@@ -161,7 +161,7 @@ public:
 
 	static QString createTemporaryFileName(); //don't forget to remove the file!
 
-    void preview(const QString &preamble, const PreviewSource &source, const QString &masterFile, QTextCodec *outputCodec = nullptr);
+    void preview(const QString &preamble, const PreviewSource &source, const QString &masterFile, QTextCodec *outputCodec = nullptr, const QString &atBeginDocument = QString(), const QString &atEndDocument = QString());
 	void clearPreviewPreambleCache();
 
 	Q_INVOKABLE bool isCommandDirectlyDefined(const QString &id) const;

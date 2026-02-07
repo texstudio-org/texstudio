@@ -1806,23 +1806,23 @@ BuildManager::Dvi2PngMode BuildManager::guessDvi2PngMode() {
 //2. latex is called and dvipng --follow is called at the same time, and will manage the wait time on its own
 //3. latex is called => dvips converts .dvi to .ps => ghostscript is called and created final png
 //Then ghostscript to convert it to
-void BuildManager::preview(const QString &preamble, const PreviewSource &source, const QString &masterFile, QTextCodec *outputCodec)
+void BuildManager::preview(const QString &preamble, const PreviewSource &source, const QString &masterFile, QTextCodec *outputCodec, const QString &atBeginDocument, const QString &atEndDocument)
 {
 	QString tempPath = QDir::tempPath() + QDir::separator() + "." + QDir::separator();
 	Dvi2PngMode dvi2pngModeDerived = guessDvi2PngMode();
 
 	//process preamble
 	QString preamble_mod = preamble;
-    static const QRegularExpression beamerClass("^(\\s*%[^\\n]*\\n)*\\s*\\\\documentclass(\\[[^\\]]*\\])?\\{beamer\\}"); //detect the usage of the beamer class
+	static const QRegularExpression beamerClass("^(\\s*%[^\\n]*\\n)*\\s*\\\\documentclass(\\[[^\\]]*\\])?\\{beamer\\}"); //detect the usage of the beamer class
 	if (previewRemoveBeamer && preamble_mod.contains(beamerClass)) {
 		//dvipng is very slow (>14s) and ghostscript is slow (1.4s) when handling beamer documents,
 		//after setting the class to article dvipng runs in 77ms
 		preamble_mod.remove(beamerClass);
 		preamble_mod.insert(0, "\\documentclass{article}\n\\usepackage{beamerarticle}");
-        // remove \mode... as well (#1125)
-        QRegularExpression beamerMode("\\\\mode.*\n");
-        //beamerMode.setMinimal(true);
-        preamble_mod.remove(beamerMode);
+		// remove \mode... as well (#1125)
+		QRegularExpression beamerMode("\\\\mode.*\n");
+		//beamerMode.setMinimal(true);
+		preamble_mod.remove(beamerMode);
 	}
 
 	QString masterDir = QFileInfo(masterFile).dir().absolutePath();
@@ -1910,11 +1910,11 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
     if (outputCodec) {
         if (preambleFormatFile.isEmpty()) out << outputCodec->fromUnicode(preamble_mod);
         else out << outputCodec->fromUnicode("%&" + preambleFormatFile + "\n");
-        out << outputCodec->fromUnicode("\n\\begin{document}\n" + source.text + "\n\\end{document}\n");
+        out << outputCodec->fromUnicode("\n\\begin{document}" + atBeginDocument + source.text + atEndDocument + "\\end{document}\n");
     }else{
         if (preambleFormatFile.isEmpty()) out << preamble_mod;
         else out << "%&" << preambleFormatFile << "\n";
-        out << "\n\\begin{document}\n" << source.text << "\n\\end{document}\n";
+        out << "\n\\begin{document}" << atBeginDocument << source.text << atEndDocument << "\\end{document}\n";
     }
 	// prepare commands/filenames
 	QFileInfo fi(*tf);
