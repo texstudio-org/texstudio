@@ -38,7 +38,7 @@ jobs:
         run: |
           wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/6.10.2/mingw-w64-ucrt-x86_64-poppler-26.02.0-1-any.pkg.tar.zst
           wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/6.10.2/mingw-w64-ucrt-x86_64-poppler-qt6-26.02.0-1-any.pkg.tar.zst
-          pacman -U *.pkg.tar.zst
+          pacman -U --noconfirm *.pkg.tar.zst
 
       - name: Fetch tag annotations
         run: git fetch --tags --force
