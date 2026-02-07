@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/01/23 for v16.6.0
+# Matthew Bertucci 2026/02/07 for v16.7.0
 
 #include:iftex
 
@@ -622,6 +622,7 @@ continente
 contributorcovenant
 conventionalcommits
 convertio
+convex 
 cookiecutter
 coolermaster
 coolify
@@ -750,6 +751,7 @@ devexpress
 deviantart
 devpost
 devrant
+devuan
 dgraph
 dhl
 diagramsdotnet
@@ -1408,6 +1410,7 @@ infomaniak
 infoq
 infosys
 infracost
+infuse
 ingress
 inkdrop
 inkscape
@@ -1572,6 +1575,7 @@ koa
 koc
 kodak
 kodi
+kodular
 koenigsegg
 kofax
 kofi
@@ -2112,6 +2116,7 @@ oreilly
 org
 organicmaps
 origin
+ory
 osano
 osf
 osgeo
