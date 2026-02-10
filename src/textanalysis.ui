@@ -210,11 +210,11 @@
         <property name="toolTip">
          <string>Possible Options:
 &quot;Show all&quot;: All phrases are shown.
-&quot;Minimum phrase length&quot;: A phrase is only shown, if it has at least this many characters. (e.g. &quot;a test&quot; has 6 characters)
-&quot;Minimum word length (one)&quot;: A phrase is only shown, if it contains a word with at least this many characters. (e.g. &quot;a test&quot; has 4 characters)
-&quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
+&quot;Minimum phrase length&quot;: A phrase is only shown if it has at least this many characters. (e.g. &quot;a test&quot; has 6 characters)
+&quot;Minimum word length (one)&quot;: A phrase is only shown if it contains a word with at least this many characters. (e.g. &quot;a test&quot; has 4 characters)
+&quot;Minimum word length (all)&quot;: A phrase is only shown if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
-(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</string>
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equivalent to &quot;this test&quot;, while the other options would separate it into &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if none of these phrases would be shown.)</string>
         </property>
         <property name="currentIndex">
          <number>0</number>
@@ -261,7 +261,7 @@
          </size>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignore.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equally to &amp;quot;this test&amp;quot;, while the other options would separate it in &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of this phrases would be shown)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if one of its words has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all of its words have at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignored.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equivalent to &amp;quot;this test&amp;quot;, while the other options would separate it into &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of these phrases would be shown.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="value">
          <number>4</number>
@@ -290,7 +290,7 @@
          </size>
         </property>
         <property name="toolTip">
-         <string>Only phrase are shown which appears at least so many times in the document.</string>
+         <string>Only phrases are shown which appear at least this many times in the document.</string>
         </property>
        </widget>
       </item>
@@ -309,9 +309,9 @@
          </size>
         </property>
         <property name="toolTip">
-         <string>The controls in this row determine how many consecuting words are treated as a single phrase.
-If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
-If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</string>
+         <string>The controls in this row determine how many consecutive words are treated as a single phrase.
+If minimum and maximum are selected, exactly this many words are taken. (e.g. with 2, in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
+If only maximum is selected, words at the beginning are also taken. (e.g. &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</string>
         </property>
         <property name="minimum">
          <number>1</number>
@@ -365,9 +365,9 @@ If not, end characters are ignored.</string>
       <item row="5" column="0" colspan="2">
        <widget class="QComboBox" name="wordsPerPhraseMeaning">
         <property name="toolTip">
-         <string>The controls in this row determine how many consecuting words are treated as a single phrase.
-If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
-If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</string>
+         <string>The controls in this row determine how many consecutive words are treated as a single phrase.
+If minimum and maximum are selected, exactly this many words are taken. (e.g. with 2, in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
+If only maximum is selected, words at the beginning are also taken. (e.g. &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</string>
         </property>
         <item>
          <property name="text">
@@ -422,7 +422,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
          </sizepolicy>
         </property>
         <property name="toolTip">
-         <string>Determines if the whole document, only the selection, or only a certain chapter are analysed.</string>
+         <string>Determines whether the whole document, only the selection, or only a certain chapter is analysed.</string>
         </property>
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
