@@ -510,7 +510,7 @@
                     <property name="toolTip">
                      <string>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notified as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</string>
                     </property>
                     <item>
@@ -1007,7 +1007,7 @@
                   <item row="0" column="1">
                    <widget class="QCheckBox" name="checkBoxReplaceEnvironmentVariables">
                     <property name="toolTip">
-                     <string>Replaces environment variables in commands.The behavior is OS-specific.
+                     <string>Replaces environment variables in commands. The behavior is OS-specific.
 
 Windows:
 Variables are written as: %MYVAR%. They are case-insensitive.
@@ -1031,7 +1031,7 @@ Variables are written as: $MYVAR. They are case-sensitive.
                   <item row="2" column="1">
                    <widget class="QCheckBox" name="checkBoxInterpetCommandDefinitionInMagicComment">
                     <property name="toolTip">
-                     <string>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</string>
+                     <string>This allows redefining commands using comments of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</string>
                     </property>
                     <property name="text">
                      <string>Interpret command definition in magic comments</string>
@@ -1500,7 +1500,7 @@ Then you can select a new shortcut by one of the following ways:
               <item row="6" column="1" colspan="2">
                <widget class="QSlider" name="horizontalSliderPDF">
                 <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embedded PDF viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="minimum">
                  <number>8</number>
@@ -2280,7 +2280,7 @@ Then you can select a new shortcut by one of the following ways:
                   <item row="13" column="2">
                    <widget class="QCheckBox" name="checkBoxCenterDocumentInEditor">
                     <property name="toolTip">
-                     <string>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</string>
+                     <string>This only has an effect if the width of the document is limited by soft or hard line wrapping.</string>
                     </property>
                     <property name="text">
                      <string>Center Document in Editor</string>
@@ -2300,8 +2300,8 @@ Then you can select a new shortcut by one of the following ways:
                   <item row="20" column="0">
                    <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
                     <property name="toolTip">
-                     <string>When using unicode characters in the source code, LaTeX still has
-to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</string>
+                     <string>When using Unicode characters in the source code, LaTeX still has
+to render the characters. Since Unicode is not natively supported by LaTeX, you have to include appropriate packages for Unicode characters in your document.</string>
                     </property>
                     <property name="text">
                      <string>Insert Symbol as Unicode</string>
@@ -2433,7 +2433,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                   <item row="16" column="0" colspan="2">
                    <widget class="QCheckBox" name="checkBoxUseQSaveWrite">
                     <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems with this method in Dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="text">
                      <string>Safe writing of files</string>
@@ -2510,7 +2510,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                   <item row="25" column="0">
                    <widget class="QLabel" name="label_85">
                     <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:'monospace';&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into TeXstudio by calling: &lt;span style=&quot; font-family:'monospace';&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within a citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="text">
                      <string>Latex Command for pushed citations:</string>
@@ -3231,8 +3231,8 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 <string>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
-necessary. However if automatic detection fails or you want to include
-specfic user completion files, you can enforce their usage by activating
+necessary. However, if automatic detection fails or you want to include
+specific user completion files, you can enforce their usage by activating
 them here.</string>
                </property>
                <property name="text">
@@ -3269,8 +3269,8 @@ them here.</string>
                 <string>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
-necessary. However if automatic detection fails or you want to include
-specfic user completion files, you can enforce their usage by activating
+necessary. However, if automatic detection fails or you want to include
+specific user completion files, you can enforce their usage by activating
 them here.</string>
                </property>
                <property name="flow">
@@ -3784,7 +3784,7 @@ Examples:
                   <item row="9" column="1" colspan="3">
                    <widget class="QLineEdit" name="lineEditGrammarSpecialRules1">
                     <property name="toolTip">
-                     <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+                     <string>Comma separated list of LanguageTool rules which will be highlighted in a special format.</string>
                     </property>
                     <property name="advancedOption" stdset="0">
                      <bool>true</bool>
@@ -3794,7 +3794,7 @@ Examples:
                   <item row="10" column="1" colspan="3">
                    <widget class="QLineEdit" name="lineEditGrammarSpecialRules2">
                     <property name="toolTip">
-                     <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+                     <string>Comma separated list of LanguageTool rules which will be highlighted in a special format.</string>
                     </property>
                     <property name="advancedOption" stdset="0">
                      <bool>true</bool>
@@ -3804,7 +3804,7 @@ Examples:
                   <item row="12" column="1" colspan="3">
                    <widget class="QLineEdit" name="lineEditGrammarSpecialRules4">
                     <property name="toolTip">
-                     <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+                     <string>Comma separated list of LanguageTool rules which will be highlighted in a special format.</string>
                     </property>
                     <property name="advancedOption" stdset="0">
                      <bool>true</bool>
@@ -3834,7 +3834,7 @@ Examples:
                   <item row="11" column="1" colspan="3">
                    <widget class="QLineEdit" name="lineEditGrammarSpecialRules3">
                     <property name="toolTip">
-                     <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+                     <string>Comma separated list of LanguageTool rules which will be highlighted in a special format.</string>
                     </property>
                     <property name="advancedOption" stdset="0">
                      <bool>true</bool>
@@ -3892,7 +3892,7 @@ Examples:
                   <item row="8" column="0">
                    <widget class="QLabel" name="label_81">
                     <property name="toolTip">
-                     <string>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</string>
+                     <string>Arguments passed when starting LanguageTool. This option only has an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</string>
                     </property>
                     <property name="text">
                      <string>LT Arguments:</string>
@@ -3954,7 +3954,7 @@ Examples:
                   <item row="8" column="1">
                    <widget class="QLineEdit" name="lineEditGrammarLTArguments">
                     <property name="toolTip">
-                     <string>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</string>
+                     <string>Arguments passed when starting LanguageTool. This option only has an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</string>
                     </property>
                    </widget>
                   </item>
