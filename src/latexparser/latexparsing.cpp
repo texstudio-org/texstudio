@@ -715,7 +715,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     tk.subtype=tk1.subtype;
                     lexed.append(tk);
                     // clean up command stack (unrealized arguments)
-                    while (!commandStack.isEmpty() && commandStack.top().level >= level) {
+                    while (!commandStack.isEmpty() && commandStack.top().level > level) {
                         commandStack.pop();
                     }
                 }
