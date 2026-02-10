@@ -3858,7 +3858,7 @@ void Texstudio::editPaste()
 
     if ((d->hasFormat("application/x-openoffice-embed-source-xml;windows_formatname=\"Star Embed Source (XML)\"")||d->hasFormat("application/x-qt-windows-mime;value=\"Star Embed Source (XML)\""))
             && d->hasFormat("text/plain")
-            && d->hasFormat("image/bmp") // work-around issue #4306
+            && (d->hasFormat("image/bmp")||d->hasFormat("application/x-qt-windows-mime;value=\"Windows Bitmap\"")) // work-around issue #4306/#4328
         ) {
 		// workaround for LibreOffice (im "application/x-qt-image" has a higher priority for them than "text/plain")
         QDocumentCursor cur = currentEditorView()->editor->cursor();
