@@ -815,7 +815,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                     activeEnv.push(env);
             }
             if(tk.type==Token::closeBrace){
-                if(activeEnv.top().name=="math"){
+                if(!activeEnv.isEmpty() && activeEnv.top().name=="math" && activeEnv.top().level==tk.level){
                     activeEnv.pop();
                 }
             }
@@ -845,7 +845,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                     activeEnv.push(env);
             }
             if(tk.type==Token::closeBrace){
-                if(activeEnv.top().name=="text"){
+                if(!activeEnv.isEmpty() && activeEnv.top().name=="text" && activeEnv.top().level==tk.level){
                     activeEnv.pop();
                 }
             }
