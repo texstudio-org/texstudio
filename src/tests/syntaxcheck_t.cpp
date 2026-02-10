@@ -547,5 +547,47 @@ void SyntaxCheckTest::checkExplHighlight(){
     edView->getConfig()->realtimeChecking = realtimeChecking;
 }
 
+void SyntaxCheckTest::checkMultilineFormula_data(){
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<bool>("error");
+
+     QTest::newRow("boxed single line")
+             <<"\\usepackage{amsmath}\n\\[\n  \\boxed{x}\n\\]"<<false;
+     QTest::newRow("boxed multiline")
+             <<"\\usepackage{amsmath}\n\\[\n  \\boxed{\n  }\n\\]"<<false;
+     QTest::newRow("boxed multiline with content")
+             <<"\\usepackage{amsmath}\n\\[\n  \\boxed{\n    x\n  }\n\\]"<<false;
+     QTest::newRow("boxed multiline in $")
+             <<"\\usepackage{amsmath}\n$\n  \\boxed{\n  }\n$"<<false;
+     QTest::newRow("boxed multiline with \\end{document}")
+             <<"\\usepackage{amsmath}\n$\n  \\boxed{\n  }\n$\n\\end{document}"<<false;
+}
+
+void SyntaxCheckTest::checkMultilineFormula(){
+    QFETCH(QString, text);
+    QFETCH(bool, error);
+
+    bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
+    bool realtimeChecking = edView->getConfig()->realtimeChecking;
+
+    edView->getConfig()->inlineSyntaxChecking = true;
+    edView->getConfig()->realtimeChecking = true;
+
+    edView->editor->setText(text, false);
+    LatexDocument *doc=edView->getDocument();
+    doc->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+
+    bool errorFlag=false;
+    for(int i=0;i<doc->lines();++i){
+        QDocumentLineHandle *dlh=doc->line(i).handle();
+        QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);
+        errorFlag|=!formats.isEmpty();
+    }
+    QEQUAL(errorFlag,error);
+
+    edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
+    edView->getConfig()->realtimeChecking = realtimeChecking;
+}
+
 #endif
 

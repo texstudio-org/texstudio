@@ -23,6 +23,8 @@ class SyntaxCheckTest: public QObject{
         void checkAllowedMath();
         void checkExplHighlight_data();
         void checkExplHighlight();
+        void checkMultilineFormula_data();
+        void checkMultilineFormula();
         //void checkIncludes_data();
         //void checkIncludes();
 };
