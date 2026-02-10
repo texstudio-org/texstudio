@@ -643,7 +643,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
         Token &tk = tl[i];
         // remove top env if column exceeds columnlimit
         // used for formula -> brace -> {....}
-        if(!activeEnv.isEmpty() && activeEnv.top().endingColumn>=0 && tk.start>activeEnv.top().endingColumn){
+        while(!activeEnv.isEmpty() && activeEnv.top().endingColumn>=0 && tk.start>activeEnv.top().endingColumn){
             Environment env=activeEnv.pop();
         }
         // handle single command env stop e.g. \ExplSyntaxOff
@@ -809,10 +809,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 if(tk.type==Token::openBrace){
                     env.endingColumn=-1;
                 }
-                // avoid stacking same env (e.g. braces in braces, see #2411 )
                 Environment topEnv=activeEnv.top();
-                if(topEnv.name!=env.name)
-                    activeEnv.push(env);
+                activeEnv.push(env);
             }
             if(tk.type==Token::closeBrace){
                 if(activeEnv.top().name=="math"){
