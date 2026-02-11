@@ -2667,7 +2667,10 @@ Then you can select a new shortcut by one of the following ways:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notified as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Определяет виды уведомлений об обновлениях, которые вы будете получать:
+— Стабильные релизы: выберите эту опцию, если для вас наиболее важна стабильность.
+— Релиз-кандидаты: версии близки к будущему релизу с точки зрения функций и стабильности; выберите эту опцию, чтобы получать предварительные версии будущих релизов и помогать нам, тестируя предрелизную версию до публикации официального релиза. (Уведомления о стабильных релизах также будут показываться.)
+— Версии разработки: содержат самые новые функции, но могут быть нестабильными. (Уведомления о стабильных релизах и релиз-кандидатах также будут показываться).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1010"/>
@@ -2679,38 +2682,48 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation>Заменяет переменные среды/окружения в командах. Поведение зависит от ОС.
+
+Windows:
+Переменные записываются как %MYVAR%. Они нечувствительны к регистру.
+
+Linux, OS X:
+Переменные записываются как $MYVAR. Они чувствительны к регистру.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1034"/>
         <source>This allows redefining commands using comments of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Это позволяет переопределить команды с помощью комментариев следующего вида:
+&lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; и
+&lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;.
+Подробности см. в руководстве пользователя.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1503"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embedded PDF viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Меняет масштаб панели инструментов встроенного просмотрщика PDF (для дисплеев с высоким разрешением).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2283"/>
         <source>This only has an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Имеет силу только в случае, если ширина документа ограничена мягким или жёстким переносом строк.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2303"/>
         <source>When using Unicode characters in the source code, LaTeX still has
 to render the characters. Since Unicode is not natively supported by LaTeX, you have to include appropriate packages for Unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>При использовании в исходном коде символов Unicode LaTeX
+должен их отрисовывать. Поскольку LaTeX по умолчанию не поддерживает Unicode, вам следует включить в документ пакеты, позволяющие использовать Unicode.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems with this method in Dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Для предотвращения потери существующих данных используется QSaveFile, если не увенчается успехом процедура записи. Побочный эффект: текущий пользователь становится владельцем файла, а расширенные атрибуты файла теряются. Кроме того, возникают проблемы при работе с содержимым папок Dropbox’а.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2513"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into TeXstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within a citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Внешние программы (такие как Zotero) могут вставлять ссылки на литературу в TeXstudio через вызов: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Если курсор не находится внутри команды ссылки на литературу, то указанная здесь &amp;quot;команда&amp;quot; используется как команда \cite.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2557"/>
@@ -2726,7 +2739,12 @@ are not shown here. Checking additional packages here is usually not
 necessary. However, if automatic detection fails or you want to include
 specific user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"/>
+        <translation>TXS пытается автоматически загрузить файлы завершения для пакетов, если
+найдена команда \usepackage{} . Эти автоматически включаемые файлы
+здесь не показаны. Отмечать здесь дополнительные пакеты, как правило, не 
+требуется. Однако если автоматическое определение не срабатывает или 
+вы хотите включить специальные пользовательские файлы завершения, то
+вы можете принудительно их использовать, отметив их здесь.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3596"/>
@@ -2768,13 +2786,13 @@ Examples:
         <location filename="../src/configdialog.ui" line="3807"/>
         <location filename="../src/configdialog.ui" line="3837"/>
         <source>Comma separated list of LanguageTool rules which will be highlighted in a special format.</source>
-        <translation type="unfinished"/>
+        <translation>Список разделённых запятыми правил LanguageTool, которые определяют выделения в специальном формате.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3895"/>
         <location filename="../src/configdialog.ui" line="3957"/>
         <source>Arguments passed when starting LanguageTool. This option only has an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Аргументы, передаваемые при запуске LanguageTool. Эта настройка влияет только на запуск LanguageTool из TeXstudio (т. е. не на уже работающий сервер).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3943"/>
@@ -9802,12 +9820,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/toolwidgets.cpp" line="260"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Копировать</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="263"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Вставить</translation>
     </message>
 </context>
 <context>
@@ -12799,7 +12817,7 @@ to join: teamtype join %2</source>
     <message>
         <location filename="../src/textanalysis.ui" line="425"/>
         <source>Determines whether the whole document, only the selection, or only a certain chapter is analysed.</source>
-        <translation type="unfinished"/>
+        <translation>Определяет, анализировать ли весь документ, выделение или отдельную главу.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
@@ -12858,17 +12876,23 @@ If not, end characters are ignored.</source>
 &quot;Minimum word length (all)&quot;: A phrase is only shown if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equivalent to &quot;this test&quot;, while the other options would separate it into &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if none of these phrases would be shown.)</source>
-        <translation type="unfinished"/>
+        <translation>Возможные значения:
+«Показать все» — будут показаны все фразы.
+«Минимальная длина фразы» — фраза показывается, только если она имеет не меньше указанного числа символов (напр., «a test» содержит 6 символов)
+«Минимальная длина слова (одного)» — фраза показывается, только если она содержит слово с длиной не меньше указанного числа символов (напр., «a test» содержит 4 символа)
+«Минимальная длина слов (всех)» — фраза показывается, только если все слова в ней имеют длину не меньше указанного числа символов (напр., «a test» содержит 1 символ)
+«Полностью игнорировать» — более короткие слова полностью игнорируются
+(напр., если задать длину 3, предложение «this is a test» совпадает с «this test», в то время как противоположная опция выделяла бы «this is», «is a», и «a test», даже если ни одна из этих фраз не была бы показана)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if one of its words has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all of its words have at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignored.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equivalent to &amp;quot;this test&amp;quot;, while the other options would separate it into &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of these phrases would be shown.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если выбрано &amp;quot;показать всё&amp;quot;, показываются все фразы.&lt;/p&gt;&lt;p&gt;Если выбрано &amp;quot;минимальная длина фразы&amp;quot;, то показываются только фразы с длиной, не меньшей указанного числа символов (напр. &amp;quot;я тест&amp;quot; содержит 6 символов)&lt;/p&gt;&lt;p&gt;Если выбрано &amp;quot;минимальная длина слова (одного)&amp;quot;, то показываются только фразы, в которых хотя бы одно слово имеет длину, не меньшую указанного числа символов (напр. &amp;quot;мой тест&amp;quot; содержит 4 символа)&lt;/p&gt;&lt;p&gt;Если выбрано &amp;quot;минимальная длина слов (всех)&amp;quot;, то показываются только фразы, все слова которых имеют длину, не меньшую указанного числа символов (напр. &amp;quot;я тест&amp;quot; содержит 1 символ)&lt;/p&gt;&lt;p&gt;Если выбрать &amp;quot;полностью игнорировать&amp;quot;, то более короткие слова полностью игнорируются.&lt;/p&gt;&lt;p&gt;(напр. с длиной 3 предложение &amp;quot;это не мой тест&amp;quot; эквивалентно &amp;quot;это мой тест&amp;quot;, в то время как при других параметрах оно бы разделилось на &amp;quot;это не&amp;quot;, &amp;quot;не мой&amp;quot;, &amp;quot;мой тест&amp;quot;, даже если ни одна из этих фраз не была бы отображена)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="293"/>
         <source>Only phrases are shown which appear at least this many times in the document.</source>
-        <translation type="unfinished"/>
+        <translation>Показываются только фразы, которые встречаются в документе не меньше указанного числа раз.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="312"/>
@@ -12876,7 +12900,9 @@ If not, end characters are ignored.</source>
         <source>The controls in this row determine how many consecutive words are treated as a single phrase.
 If minimum and maximum are selected, exactly this many words are taken. (e.g. with 2, in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g. &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation type="unfinished"/>
+        <translation>Параметры в этой строке определяют, сколько последующих слов будут трактоваться как одна фраза.
+Если указаны минимум и максимум, будет браться ровно столько слов (т.е. при цифре 2 в предыдущем предложении получится: «Параметры в», «в этой», ...).
+Если указать только максимум, слова в начале тоже берутся (т.е.  «Параметры», «параметры в», «в этой», ...).</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="361"/>

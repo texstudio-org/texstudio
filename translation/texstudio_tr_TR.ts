@@ -2666,7 +2666,10 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notified as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Almak istediğiniz güncelleme bildirimlerini belirleyin:
+- Kararlı sürümler: Sizin için en önemlisi kararlılık ise bunu seçin.
+- Yayın adayları: Kararlılık açısından yayınlanacak bir sürüme yakındır. Yayınlanacak sürümlerin ön izlemelerine bakmak ve kararlı sürümün yayınlanmadan önce denenmesinde bize yardımcı olmak için bunu seçin. (Kararlı sürümler de bildirilir)
+- Geliştirime sürümleri: En son özellikleri içerir, ancak kararsız olabilir. (Kararlı sürümler ve yayın adayı sürümler de bildirilir).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1010"/>
@@ -2678,38 +2681,46 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation>Komutlardaki ortam değişkenlerini değiştirir. Davranış işletim sistemine özgüdür.
+
+Windows:
+Değişkenler %MYVAR% şeklinde yazılır. BÜYÜK/küçük harfe duyarlı değildir.
+
+Linux, OS X:
+Değişkenler $MYVAR şeklinde yazılır. BÜYÜK/küçük harfe duyarlıdır.
+</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1034"/>
         <source>This allows redefining commands using comments of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Bu seçenek&lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;uygulaması&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-uygulaması&lt;/code&gt; ve &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-uygulaması&lt;/code&gt; açıklama biçemlerini kullanarak komutları yeniden tanımlamanızı sağlar. Ayrıntılı bilgi almak için belgelere bakabilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1503"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embedded PDF viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu seçenek gömülü PDF görüntüleyici araç çubuğunun ölçeğini değiştirir (yüksek çözünürlüklü ekranlar için).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2283"/>
         <source>This only has an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Bu seçenek, yalnızca belge genişliği değişken ya da sabit satır kaydırma ile sınırlandırılmış ise etkili olur.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2303"/>
         <source>When using Unicode characters in the source code, LaTeX still has
 to render the characters. Since Unicode is not natively supported by LaTeX, you have to include appropriate packages for Unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>Kaynak kodunda Unikod karakterler kullanıldığında, karakterlerin hala
+LaTeX tarafından oluşturması gerekir. Unikod, LaTeX tarafından doğal olarak desteklenmediğinden, Unikod karakterler için belgenize ilgili paketleri katmanız gerekir.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems with this method in Dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu seçenek ile, yazma işlemi tamamlanamaz ise var olan verilerin kaybolmasını engellemek için QSaveFile kullanılır. Bir sakıncası geçerli kullanıcının dosya sahibi olarak atanması ve genişletilmiş dosya özniteliklerinin kaybolmasıdır. Ayrıca, bu yöntemin Dropbox klasörleri ile sorunları var gibi görünüyor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2513"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into TeXstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within a citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dış uygulamalar (Zotero gibi) TeXstudio içine alıntıları şu komut ile gönderebilir: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;İmleç zaten bir alıntı komutu içinde değil ise \cite-command olarak burada belirtilen &amp;quot;komut&amp;quot; kullanılır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2557"/>
@@ -2725,7 +2736,12 @@ are not shown here. Checking additional packages here is usually not
 necessary. However, if automatic detection fails or you want to include
 specific user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"/>
+        <translation>Bir \usepackage {} komutu bulunursa, TXS paketler için tamamlama 
+dosyalarını otomatik olarak yüklemeye çalışır. Otomatik olarak katılan
+bu dosyalar burada görüntülenmez. Genellikle buradaki ek paketlerin
+işaretlenmesi gerekmez. Bununla birlikte otomatik algılama yapılamazsa
+ya da belirli kullanıcı tamamlama dosyaları eklemek isterseniz, onları
+buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3596"/>
@@ -2768,13 +2784,13 @@ Examples:
         <location filename="../src/configdialog.ui" line="3807"/>
         <location filename="../src/configdialog.ui" line="3837"/>
         <source>Comma separated list of LanguageTool rules which will be highlighted in a special format.</source>
-        <translation type="unfinished"/>
+        <translation>Özel bir biçimde vurgulanacak LanguageTool kurallarının virgül ile ayrılmış listesi.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3895"/>
         <location filename="../src/configdialog.ui" line="3957"/>
         <source>Arguments passed when starting LanguageTool. This option only has an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool başlatılırken aktarılacak bağımsız değişkenler. Bu seçenek yalnızca LanguageTool TeXstudio içinden başlatıldığında (yani zaten çalışmakta olan bir sunucuda olmadığında) etkili olur.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3943"/>
@@ -9800,12 +9816,12 @@ ve kalıbı ayıklayın.</translation>
     <message>
         <location filename="../src/toolwidgets.cpp" line="260"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Kopyala</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="263"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Yapıştır</translation>
     </message>
 </context>
 <context>
@@ -12785,7 +12801,7 @@ Katılmak için: teamtype join %2</translation>
     <message>
         <location filename="../src/textanalysis.ui" line="425"/>
         <source>Determines whether the whole document, only the selection, or only a certain chapter is analysed.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm belgenin, yalnızca seçimin ya da yalnızca belirli bir bölümün incelenmesini sağlar.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
@@ -12844,17 +12860,23 @@ If not, end characters are ignored.</source>
 &quot;Minimum word length (all)&quot;: A phrase is only shown if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equivalent to &quot;this test&quot;, while the other options would separate it into &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if none of these phrases would be shown.)</source>
-        <translation type="unfinished"/>
+        <translation>Kullanılabilecek seçenekler:
+&quot;Tümü görüntülensin&quot;: Tüm ifadeler görüntülenir.
+&quot;En kısa ifade uzunluğu&quot;: En az bu uzunluktaki ifadeler görüntülenir. (Örnek: &quot;o bir&quot; ifadesi için 4 karakter)
+&quot;En kısa sözcük uzunluğu (bir)&quot;: Bir sözcüğü en az bu uzunlukta olan ifadeler görüntülenir. (Örnek: &quot;o bir&quot; ifadesi için 3 karakter)
+&quot;En kısa sözcük uzunluğu (tümü)&quot;: Tüm sözcükleri en az bu uzunlukta olan ifadeler görüntülenir. (Örnek &quot;o bir&quot; ifadesi için 1 karakter)
+&quot;Tümüyle yok sayılsın&quot;: Daha kısa sözcükler tümüyle yok sayılır.
+(Örnek: 3 karakter için, &quot;o bir deneme ise&quot; cümlesi &quot;bir deneme ise&quot; ifadesine eşit olur. Diğer seçenekler bu ifadelerin hiç biri görüntülenmese de &quot;o bir&quot;, &quot;bir deneme&quot;, &quot;deneme ise&quot; şeklinde olur.)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if one of its words has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all of its words have at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignored.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equivalent to &amp;quot;this test&amp;quot;, while the other options would separate it into &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of these phrases would be shown.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;quot;Tümünü görüntüle&amp;quot; olarak seçildiğinde, tüm ifadeler görüntülenir.&lt;/p&gt;&lt;p&gt;&amp;quot;En kısa ifade uzunluğu&amp;quot; olarak seçildiğinde, yalnızca en az belirtilen sayıda karaktere sahip olan ifadeler görüntülenir. (&amp;quot;bir deneme&amp;quot; 10 karakter uzunluğundadır)&lt;/p&gt;&lt;p&gt;&amp;quot;En az sözcük uzunluğu (bir)&amp;quot; olarak seçildiğinde, içindeki bir sözcüğün uzunluğu yalnızca en az belirtilen sayıda karaktere sahip olan ifadeler görüntülenir. (&amp;quot;bir deneme&amp;quot; için 6 karakter olabilir)&lt;/p&gt;&lt;p&gt;&amp;quot;En az sözcük uzunluğu (tümü)&amp;quot; olarak seçildiğinde, yalnızca içindeki tüm sözcükler en az belirtilen sayıda karaktere sahip olan ifadeler görüntülenir. (&amp;quot;bir deneme&amp;quot; için 3 karakter olabilir)&lt;/p&gt;&lt;p&gt;&amp;quot;Tümüyle yok sayılsın&amp;quot; olarak seçildiğinde, daha kısa sözcükler tümüyle yok sayılır.&lt;/p&gt;&lt;p&gt; (uzunluk 3 olduğunda, &quot;bu bir denemedir&quot; cümlesi &quot;bu deneme&quot; ile aynı derecededir. Diğer seçenekler onu bu ifadelerden hiçbiri görüntülenmese bile &quot;bu&quot;, &quot;bir&quot;, &quot;denemedir&quot; şeklinde ayırırdı, )&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="293"/>
         <source>Only phrases are shown which appear at least this many times in the document.</source>
-        <translation type="unfinished"/>
+        <translation>İfade belgede en az bu kadar kez yineleniyorsa görüntülenir.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="312"/>
@@ -12862,7 +12884,9 @@ If not, end characters are ignored.</source>
         <source>The controls in this row determine how many consecutive words are treated as a single phrase.
 If minimum and maximum are selected, exactly this many words are taken. (e.g. with 2, in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g. &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation type="unfinished"/>
+        <translation>Bu satırdaki denetimler arka arkaya gelen kaç sözcüğün tek bir ifade olarak değerlendirileceğini belirler.
+En kısa ve en uzun olarak seçilirse tam olarak belirtilen sözcük sayısı alınır (Örnek: 2 ise yukarıdaki cümlede &quot;bu satırdaki&quot;, &quot;satırdaki denetimler&quot;, ...).
+Yalnızca en uzun seçilirse, başlangıçtaki sözcükler de alınır (Örnek: &quot;bu&quot;, &quot;bu satırdaki&quot;, &quot;satırdaki denetimler&quot;,...).</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="361"/>

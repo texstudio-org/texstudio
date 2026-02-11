@@ -2666,7 +2666,10 @@ Pode depois escolher um novo atalho de uma das seguintes formas:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notified as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Define os tipos de notificação recebidos:
+- Versões estáveis: escolha estas se a estabilidade é importante para si.
+- Candidatos a versão: próximos de uma versão futura em termos de funcionalidade e estabilidade. Escolha estes para obter antevisoes de futuras versões e ajude-nos testando a versão antes de ser oficialmente publicada (as versões estáveis também serão notificadas).
+- Versões em desenvolvimento: contêm as últimas funcionalidades, mas podem ser instáveis (as versões estáveis e os candidatos a versões também serão notificadas).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1010"/>
@@ -2678,38 +2681,46 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation>Substitui varáveis de ambiente em comandos. O comportamento é específico do SO.
+
+Windows:
+As variáveis são escritas como: %MYVAR%. Ignoram maiúsculas.
+
+Linux, OS X:
+As variáveis são escritas como: $MYVAR. Reconhecem maiúsculas.
+</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1034"/>
         <source>This allows redefining commands using comments of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Permite redefinir comandos usando comentários de estilo &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; e &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. Para detalhes, veja o manual.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1503"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embedded PDF viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Altera a escala da barra de ferramentas do visualizador PDF interno (para monitores de alta resolução).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2283"/>
         <source>This only has an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Só tem efeito se a largura do documento for limitada por quebras de linha suaves ou rígidas.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2303"/>
         <source>When using Unicode characters in the source code, LaTeX still has
 to render the characters. Since Unicode is not natively supported by LaTeX, you have to include appropriate packages for Unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>Quando usar caracteres Unicode no código fonte, o LaTeX ainda tem
+de os desenhar. Uma vez que o Unicode não é suportado nativamente pelo LaTeX, terá de incluir os pacotes apropriadospara carfacteres Unicode no seu documento.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems with this method in Dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Usa QSaveFile para impedir a perda de dados existentes, se a operação de escrita falhar. Como contrapartida, o utilizador actual torna-se dono do ficheiro e os atributos estendidos do ficheiro perdem-se. E, parce haver problemas com este método em pastas do Dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2513"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into TeXstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within a citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Programas externos (tal como o Zotero) podem forçar citações no TeXstudio chamando: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Se o cursor não estiver dentro de um comando de citação, o &amp;quot;comando&amp;quot; dado aqui é usado como \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2557"/>
@@ -2725,7 +2736,12 @@ are not shown here. Checking additional packages here is usually not
 necessary. However, if automatic detection fails or you want to include
 specific user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"/>
+        <translation>O TXS tenta carregar automaticamente ficheiros de conclusão para pacotes se
+encontrar um comando \usepackage{}. Estes ficheiro incluídos automaticamente
+não são mostrados aqui. Habitualmente, não é necessaŕia aqui a verificação adicional
+de pacotes. Contudo, se a detecção automática falhar ou desejar incluir
+ficheiros de conclusão específicos, pode forção o seu uso activando-os
+aqui.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3596"/>
@@ -2768,13 +2784,13 @@ Exemplos:
         <location filename="../src/configdialog.ui" line="3807"/>
         <location filename="../src/configdialog.ui" line="3837"/>
         <source>Comma separated list of LanguageTool rules which will be highlighted in a special format.</source>
-        <translation type="unfinished"/>
+        <translation>Lista separada por vírgulas de regras LanguageTool que serão realçadas num formato especial.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3895"/>
         <location filename="../src/configdialog.ui" line="3957"/>
         <source>Arguments passed when starting LanguageTool. This option only has an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Argumentos passados ao iniciar o LanguageTool. Esta opção só tem efeito se o LanguageTool for iniciado a partir do TeXstudio (i.e. não para um servidor já existente).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3943"/>
@@ -9800,12 +9816,12 @@ o modelo para editar ficheiros individuais.</translation>
     <message>
         <location filename="../src/toolwidgets.cpp" line="260"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Copiar</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="263"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Colar</translation>
     </message>
 </context>
 <context>
@@ -12794,7 +12810,7 @@ a juntar: teamtype join %2</translation>
     <message>
         <location filename="../src/textanalysis.ui" line="425"/>
         <source>Determines whether the whole document, only the selection, or only a certain chapter is analysed.</source>
-        <translation type="unfinished"/>
+        <translation>Determina se a análise inclui todo o documento, só a selecção, ou só um dado capítulo.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
@@ -12852,17 +12868,23 @@ If not, end characters are ignored.</source>
 &quot;Minimum word length (all)&quot;: A phrase is only shown if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equivalent to &quot;this test&quot;, while the other options would separate it into &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if none of these phrases would be shown.)</source>
-        <translation type="unfinished"/>
+        <translation>Opções possíveis:
+&quot;Mostrar tudo&quot;: todas as frases serão mostradas.
+&quot;Tamanho mínimo da frase&quot;: as frases só serão mostradasse tiverem pelo menos este número de caracteres (e.g. &quot;um teste&quot; tem 6 caracteres).
+&quot;Tamanho mínimo da palavra (um)&quot;: as frases só serão mostradas se contiverem uma palavra com pelo menos este número de caracteres (e.g. &quot;um teste&quot; tem 4 caracteres)
+&quot;Tamanho mínimo da palavra (tudo)&quot;: as frases só serão mostradas se todas as suas palavras tiverem pelo menos este número de caracteres (e.g. &quot;um teste&quot; tem 1 carácter)
+&quot;Ignorar completamente&quot;: palavras mais curtas serão completamente ignoradas.
+(e.g. com tamanho 3, a frase &quot;isto é um teste&quot; é equivalente a &quot;isto não testa&quot;, enquanto as outras opções separá-la-iam em &quot;isto é&quot;, &quot;é um&quot;, &quot;um teste&quot;, mesmo que nenhuma destas frases fosse mostrada).</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if one of its words has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all of its words have at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignored.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equivalent to &amp;quot;this test&amp;quot;, while the other options would separate it into &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of these phrases would be shown.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Se &amp;quot;Mostrar tudo&amp;quot; estiver seleccionada, todas as frases serão mostradas.&lt;/p&gt;&lt;p&gt;Se &amp;quot;Tamanho mínimo da frase&amp;quot; estiver seleccionada, a frase só é mostrada se tiver pelo menos esse número de caracteres (e.g. &amp;quot;um teste&amp;quot; tem 6 caracteres).&lt;/p&gt;&lt;p&gt;Se &amp;quot;Tamanho mínimo da palavra (um)&amp;quot; estiver seleccionada, a frase só é mostrada se uma das suas palavras tiver pelo menos esse número de caracteres (e.g. &amp;quot;um teste&amp;quot; tem 4 caracteres).Se &amp;quot;Tamanho mínimo da palavra (tudo)&amp;quot; estiver seleccionada, a frase só é mostrada se todas as suas palavras tiverem pelo menos esse número de caracteres (e.g. &amp;quot;um teste&amp;quot; has 1 carácter)&lt;/p&gt;&lt;p&gt;Se &amp;quot;Ignorar completamente&amp;quot; estiver seleccionada, palavras mais curtas são completamente ignoradas.&lt;/p&gt;&lt;p&gt;(e.g. com tamanho 3, a frase &amp;quot;isto é um teste&amp;quot; é equivalente a &amp;quot;este teste&amp;quot;, enquanto as outras opções separá-la-iam em &amp;quot;isto é&amp;quot;, &amp;quot;é um&amp;quot;, &amp;quot;um teste&amp;quot;, mesmo que nenhuma das frases fosse mostrada.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="293"/>
         <source>Only phrases are shown which appear at least this many times in the document.</source>
-        <translation type="unfinished"/>
+        <translation>Só são mostradas frases que apareçam pelo menos este número de vezes no documento.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="312"/>
@@ -12870,7 +12892,9 @@ If not, end characters are ignored.</source>
         <source>The controls in this row determine how many consecutive words are treated as a single phrase.
 If minimum and maximum are selected, exactly this many words are taken. (e.g. with 2, in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g. &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation type="unfinished"/>
+        <translation>Os controlos nesta linha determinam quantas palavras consecutivas são consideradas uma frase.
+Se tiver seleccionado um mínimo e um máximo, são tomadas exactamente esse mesmo nímero. (e.g.com 2, na frase acima: &quot;Os controlos&quot;, &quot;controlos nesta&quot;,...)
+Se só tiver seleccionado o máximo, palavras no início também são tomadas. (e.g. &quot;Os&quot;, &quot;Os controlos&quot;, &quot;controlos nesta&quot;,...)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="361"/>

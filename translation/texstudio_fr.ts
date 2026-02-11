@@ -2666,7 +2666,10 @@ Vous pouvez ensuite sélectionner un nouveau raccourci de l&apos;une des manièr
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notified as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Définit les types de notifications de mise à jour que vous recevrez :
+- Versions stables : choisissez cette option si la stabilité est votre priorité.
+- Versions candidates : elles sont proches d&apos;une future version en termes de fonctionnalités et de stabilité. Choisissez cette option pour obtenir des aperçus des versions futures et nous aider en les testant avant leur publication officielle. (Les versions stables sont également notifiées.)
+- Versions de développement : contiennent les dernières fonctionnalités, mais peuvent être instables. (Les versions stables et les versions candidates sont également notifiées.)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1010"/>
@@ -2678,38 +2681,45 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation>Remplace les variables d&apos;environnement dans les commandes. Le comportement dépend du système d&apos;exploitation. 
+
+Windows :
+Les variables sont écrites comme suit : %MYVAR%. Elles ne sont pas sensibles à la casse.
+
+Linux, OS X :
+Les variables sont écrites comme suit : $MYVAR. Elles sont sensibles à la casse.
+</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1034"/>
         <source>This allows redefining commands using comments of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Cela permet de redéfinir les commandes à l&apos;aide de commentaires tels que &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; et &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. Pour plus de détails, consultez le manuel.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1503"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embedded PDF viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cela modifie la mise à l&apos;échelle de la barre d&apos;outils de la visionneuse PDF intégrée (pour les écrans haute résolution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2283"/>
         <source>This only has an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Cela n&apos;a d&apos;effet que si la largeur du document est limitée par un retour à la ligne automatique ou forcé.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2303"/>
         <source>When using Unicode characters in the source code, LaTeX still has
 to render the characters. Since Unicode is not natively supported by LaTeX, you have to include appropriate packages for Unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>Lorsque vous utilisez des caractères Unicode dans le code source, LaTeX doit toujours les afficher. Étant donné qu&apos;il ne prend pas en charge Unicode de manière native, vous devez inclure les paquets appropriés pour les caractères Unicode dans votre document.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems with this method in Dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cette méthode utilise QSaveFile pour éviter la perte des données existantes en cas d&apos;échec de l&apos;opération d&apos;écriture. L&apos;inconvénient est que l&apos;utilisateur actuel devient le propriétaire du fichier et que les attributs étendus du fichier sont perdus. De plus, cette méthode semble poser des problèmes dans les dossiers Dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2513"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into TeXstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within a citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Les programmes externes (tels que Zotero) peuvent envoyer des citations vers TeXstudio en appelant : &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Si le curseur ne se trouve pas déjà dans une commande de citation, la « commande » indiquée ici est utilisée comme commande \cite.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2557"/>
@@ -2725,7 +2735,7 @@ are not shown here. Checking additional packages here is usually not
 necessary. However, if automatic detection fails or you want to include
 specific user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"/>
+        <translation>TXS tente de charger automatiquement les fichiers de complétion pour les packages si une commande \usepackage{} est détectée. Ces fichiers automatiquement inclus ne sont pas affichés ici. Il n&apos;est généralement pas nécessaire de vérifier les packages supplémentaires ici. Cependant, si la détection automatique échoue ou si vous souhaitez inclure des fichiers de complétion utilisateur spécifiques, vous pouvez forcer leur utilisation en les activant ici.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3596"/>
@@ -2768,13 +2778,13 @@ Exemples :
         <location filename="../src/configdialog.ui" line="3807"/>
         <location filename="../src/configdialog.ui" line="3837"/>
         <source>Comma separated list of LanguageTool rules which will be highlighted in a special format.</source>
-        <translation type="unfinished"/>
+        <translation>Liste séparée par des virgules des règles LanguageTool qui seront mises en évidence dans un format spécial.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3895"/>
         <location filename="../src/configdialog.ui" line="3957"/>
         <source>Arguments passed when starting LanguageTool. This option only has an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Arguments transmis lors du démarrage de LanguageTool. Cette option n&apos;a d&apos;effet que si LanguageTool est lancé à partir de TeXstudio (c&apos;est-à-dire pas pour un serveur déjà en cours d&apos;exécution).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3943"/>
@@ -9795,12 +9805,12 @@ Veuillez ouvrir l&apos;emplacement du modèle et décompresser le modèle pour m
     <message>
         <location filename="../src/toolwidgets.cpp" line="260"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Copier</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="263"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Coller</translation>
     </message>
 </context>
 <context>
@@ -12787,7 +12797,7 @@ Pour rejoindre : rejoindre le type d&apos;équipe %2</translation>
     <message>
         <location filename="../src/textanalysis.ui" line="425"/>
         <source>Determines whether the whole document, only the selection, or only a certain chapter is analysed.</source>
-        <translation type="unfinished"/>
+        <translation>Détermine si l&apos;ensemble du document, uniquement la sélection ou uniquement un chapitre spécifique est analysé.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
@@ -12846,17 +12856,23 @@ Sinon la ponctuation est ignorée.</translation>
 &quot;Minimum word length (all)&quot;: A phrase is only shown if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equivalent to &quot;this test&quot;, while the other options would separate it into &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if none of these phrases would be shown.)</source>
-        <translation type="unfinished"/>
+        <translation>Options possibles :
+« Tout afficher » : toutes les phrases sont affichées.
+« Longueur minimale de la phrase » : une phrase n&apos;est affichée que si elle comporte au moins ce nombre de caractères. (Par exemple, « a test » comporte 6 caractères.)
+« Longueur minimale du mot (un) » : une phrase n&apos;est affichée que si elle contient un mot comportant au moins ce nombre de caractères. (par exemple, « a test » comporte 4 caractères)
+« Longueur minimale du mot (tous) » : une phrase n&apos;est affichée que si tous ses mots comportent au moins ce nombre de caractères. (par exemple, « a test » comporte 1 caractère)
+« Ignorer complètement » : les mots plus courts sont complètement ignorés. 
+(par exemple, avec une longueur de 3, la phrase « this is a test » équivaut à « this test », tandis que les autres options la sépareraient en « this is », « is a », « a test », même si aucune de ces phrases ne serait affichée.)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if one of its words has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all of its words have at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignored.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equivalent to &amp;quot;this test&amp;quot;, while the other options would separate it into &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of these phrases would be shown.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si « Tout afficher » est sélectionné, toutes les phrases sont affichées.&lt;/p&gt;&lt;p&gt;Si « longueur minimale de la phrase » est sélectionné, une phrase n&apos;est affichée que si elle comporte au moins ce nombre de caractères. (Par exemple, « a test » comporte 6 caractères.)&lt;/p&gt;&lt;p&gt;Si « longueur minimale des mots (un) » est sélectionné, une phrase n&apos;est affichée que si l&apos;un de ses mots comporte au moins ce nombre de caractères. (Par exemple, « a test » comporte 4 caractères.)&lt;/p&gt;&lt;p&gt;Si « longueur minimale des mots (tous) » est sélectionné, une phrase n&apos;est affichée que si tous ses mots comportent au moins ce nombre de caractères. (Par exemple, « a test » comporte 1 caractère.)&lt;/p&gt;&lt;p&gt;Si l&apos;option « Ignorer complètement » est sélectionnée, les mots courts sont complètement ignorés.&lt;/p&gt;&lt;p&gt;(Par exemple, avec une longueur de 3, la phrase « this is a test » équivaut à « this test », tandis que les autres options la sépareraient en « this is », « is a » et « a test », même si aucune de ces expressions n&apos;apparaîtrait.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="293"/>
         <source>Only phrases are shown which appear at least this many times in the document.</source>
-        <translation type="unfinished"/>
+        <translation>Seules les expressions apparaissant au moins autant de fois dans le document sont affichées.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="312"/>
@@ -12864,7 +12880,9 @@ Sinon la ponctuation est ignorée.</translation>
         <source>The controls in this row determine how many consecutive words are treated as a single phrase.
 If minimum and maximum are selected, exactly this many words are taken. (e.g. with 2, in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g. &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation type="unfinished"/>
+        <translation>Les commandes de cette ligne déterminent combien de mots consécutifs sont traités comme une seule phrase.
+Si les options minimum et maximum sont sélectionnées, exactement ce nombre de mots est pris en compte. (Par exemple, avec 2, dans la phrase ci-dessus : « les commandes », « commandes dans »,...)
+Si seule l&apos;option maximum est sélectionnée, les mots au début sont également pris en compte. (par exemple « les », « les commandes », « commandes dans »,...)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="361"/>

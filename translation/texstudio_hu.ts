@@ -2665,7 +2665,10 @@ Then you can select a new shortcut by one of the following ways:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notified as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Meghatározza, hogy milyen típusú frissítési értesítéseket fog kapni:
+- Stabil kiadások: Válassza ezt, ha a stabilitás a legfontosabb Önnek.
+- Kiadásra jelöltek: Funkciók és stabilitás tekintetében közel állnak egy jövőbeli kiadáshoz. Válassza ezt, ha előnézetet szeretne kapni a jövőbeli kiadásokról, és segíteni szeretne nekünk a verzió tesztelésével, mielőtt az hivatalos kiadásként megjelenne. (A stabil kiadásokról is értesítést kap.)
+- Fejlesztői verziók: A legújabb funkciókat tartalmazzák, de instabilak lehetnek. (A stabil kiadásokról és a kiadásra jelöltekről is értesítést kap.)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1010"/>
@@ -2677,38 +2680,44 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation>Helyettesíti a parancsokban szereplő környezeti változókat. A viselkedés operációs rendszertől függ.
+
+Windows:
+A változók így íródnak: %MYVAR%. Nem különböztetik meg a kis- és nagybetűket.
+Linux, OS X:
+A változók így íródnak: $MYVAR. Megkülönböztetik a kis- és nagybetűket.
+</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1034"/>
         <source>This allows redefining commands using comments of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Ez lehetővé teszi a parancsok újradefiniálását a következő stílusú megjegyzésekkel &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. A részleteket lásd a kézikönyvben.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1503"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embedded PDF viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ez megváltoztatja a beágyazott PDF-megjelenítő eszköztárának méretezését (nagy felbontású kijelzők esetén).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2283"/>
         <source>This only has an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Ennek csak akkor van hatása, ha a dokumentum szélességét lágy vagy kemény sortörés korlátozza.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2303"/>
         <source>When using Unicode characters in the source code, LaTeX still has
 to render the characters. Since Unicode is not natively supported by LaTeX, you have to include appropriate packages for Unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>Unicode karakterek használata esetén a LaTeX-nek továbbra is meg kell jelenítenie a karaktereket. Mivel a LaTeX natívan nem támogatja az Unicode-ot, a dokumentumban megfelelő csomagokat kell elhelyezni az Unicode karakterekhez.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems with this method in Dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ez a QSaveFile metódust használja a meglévő adatok elvesztésének megakadályozására, ha az írási művelet sikertelen. Hátrányként az aktuális felhasználó lesz a fájl tulajdonosa, és a kiterjesztett fájlattribútumok elvesznek. Úgy tűnik, hogy problémák vannak ezzel a módszerrel a Dropbox mappákban is.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2513"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into TeXstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within a citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Külső programok (mint például a Zotero) a következő meghívásával tudnak hivatkozásokat beilleszteni a TeXstudioba: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Ha a kurzor még nem található idézetparancsban, akkor az itt megadott &amp;quot;command&amp;quot; \cite parancsként kerül felhasználásra.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2557"/>
@@ -2724,7 +2733,7 @@ are not shown here. Checking additional packages here is usually not
 necessary. However, if automatic detection fails or you want to include
 specific user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"/>
+        <translation>A TXS megpróbálja automatikusan betölteni a csomagok kiegészítési fájljait, ha \usepackage{} parancsot talál. Ezek az automatikusan beillesztett fájlok itt nem jelennek meg. További csomagok ellenőrzése itt általában nem szükséges. Ha azonban az automatikus észlelés sikertelen, vagy bizonyos felhasználói kiegészítési fájlokat szeretne belefoglalni, akkor a használatukat itt aktiválva kényszerítheti ki.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3596"/>
@@ -2767,13 +2776,13 @@ Például:
         <location filename="../src/configdialog.ui" line="3807"/>
         <location filename="../src/configdialog.ui" line="3837"/>
         <source>Comma separated list of LanguageTool rules which will be highlighted in a special format.</source>
-        <translation type="unfinished"/>
+        <translation>Vesszővel elválasztott lista a LanguageTool szabályokról, amelyek speciális formátumban lesznek kiemelve.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3895"/>
         <location filename="../src/configdialog.ui" line="3957"/>
         <source>Arguments passed when starting LanguageTool. This option only has an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>A LanguageTool indításakor átadott argumentumok. Ennek az opciónak csak akkor van hatása, ha a LanguageTool a TeXstudioból indult el (azaz nem egy már futó szerveren).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3943"/>
@@ -9788,12 +9797,12 @@ sablon helyét, és csomagolja ki a sablont.</translation>
     <message>
         <location filename="../src/toolwidgets.cpp" line="260"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Másolás</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="263"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Beillesztés</translation>
     </message>
 </context>
 <context>
@@ -12781,7 +12790,7 @@ csatlakozás: csapat típus csatlakozás %2</translation>
     <message>
         <location filename="../src/textanalysis.ui" line="425"/>
         <source>Determines whether the whole document, only the selection, or only a certain chapter is analysed.</source>
-        <translation type="unfinished"/>
+        <translation>Meghatározza, hogy a teljes dokumentumot, csak a kiválasztott részeket vagy csak egy adott fejezetet elemezze-e.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
@@ -12840,17 +12849,23 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
 &quot;Minimum word length (all)&quot;: A phrase is only shown if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equivalent to &quot;this test&quot;, while the other options would separate it into &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if none of these phrases would be shown.)</source>
-        <translation type="unfinished"/>
+        <translation>Lehetséges beállítások:
+„Összes megjelenítése”: Minden kifejezés megjelenik.
+„Minimális kifejezéshossz”: Egy kifejezés csak akkor jelenik meg, ha legalább ennyi karakterből áll. (pl. „a test” 6 karakterből áll.)
+„Minimális szóhossz (egy)”: Egy kifejezés csak akkor jelenik meg, ha legalább ennyi karakterből álló szót tartalmaz. (pl. „a test” 4 karakterből áll.)
+„Minimális szóhossz (összes)”: Egy kifejezés csak akkor jelenik meg, ha minden szavában legalább ennyi karakterből áll. (pl. „a test” 1 karakterből áll.)
+„Teljesen figyelmen kívül hagyja”: A rövidebb szavakat teljesen figyelmen kívül hagyja.
+(pl. 3-as hosszúság esetén a „this is a test” mondat egyenértékű a „this test” mondattal, míg a többi lehetőség „this is”, „is a”, „a test” kifejezésekre választaná szét, még akkor is, ha ezek közül a kifejezések közül egyik sem jelenne meg.)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if one of its words has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all of its words have at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignored.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equivalent to &amp;quot;this test&amp;quot;, while the other options would separate it into &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of these phrases would be shown.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ha az &amp;quot;Összes megjelenítése&amp;quot; van kiválasztva, akkor az összes kifejezés megjelenik.&lt;/p&gt;&lt;p&gt;Ha a &amp;quot;minimális kifejezéshossz&amp;quot; van kiválasztva, akkor egy kifejezés csak akkor jelenik meg, ha legalább ennyi karaktert tartalmaz.  (pl. &amp;quot;a test&amp;quot; 6 karaktert tartalmaz)&lt;/p&gt;&lt;p&gt;Ha a &amp;quot;minimális szóhossz (egy)&amp;quot; van kiválasztva, akkor egy kifejezés csak akkor jelenik meg, ha az egyik szavának legalább ennyi karaktere van. (pl.. &amp;quot;a test&amp;quot; 4 karaktert tartalmaz)&lt;/p&gt;&lt;p&gt;Ha a &amp;quot;minimális szóhossz (összes)&amp;quot; van kiválasztva, akkor egy kifejezés csak akkor jelenik meg, ha az összes szavának legalább ennyi karaktere van. (pl. &amp;quot;a test&amp;quot; 1 karaktert tartalmaz)&lt;/p&gt;&lt;p&gt;Ha a &amp;quot;teljesen figyelmen kívül hagyja&amp;quot; van kiválasztva, a rövidebb szavakat teljesen figyelmen kívül hagyja a rendszer.&lt;/p&gt;&lt;p&gt;(pl. 3-as hosszúság esetén az &amp;quot;this is a test&amp;quot; mondat egyenértékű az &amp;quot;this test&amp;quot;, mondattal, míg a többi lehetőség &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, mondatokra bontaná szét, még akkor is, ha ezek közül a kifejezések egyike sem jelenne meg.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="293"/>
         <source>Only phrases are shown which appear at least this many times in the document.</source>
-        <translation type="unfinished"/>
+        <translation>Csak azok a kifejezések jelennek meg, amelyek legalább ennyiszer szerepelnek a dokumentumban.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="312"/>
@@ -12858,7 +12873,9 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <source>The controls in this row determine how many consecutive words are treated as a single phrase.
 If minimum and maximum are selected, exactly this many words are taken. (e.g. with 2, in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g. &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation type="unfinished"/>
+        <translation>Az ebben a sorban található vezérlőelemek határozzák meg, hogy hány egymást követő szót kezel a rendszer egyetlen kifejezésként.
+Ha a minimum és a maximum opciót választjuk, akkor pontosan ennyi szót veszünk figyelembe. (pl. 2-vel az előző mondatban: &quot;az ebben&quot;, &quot;ebben a&quot;,...)
+Ha csak a maximum opciót választjuk ki, akkor az elején lévő szavakat is figyelembe vesszük. (e.g. &quot;az&quot;, &quot;az ebben&quot;, &quot;ebben a&quot;,...)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="361"/>
