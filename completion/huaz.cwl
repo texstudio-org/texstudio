@@ -1,5 +1,5 @@
 # huaz package
-# Matthew Bertucci 2024/04/30 for v2.0
+# Matthew Bertucci 2026/02/11 for v3.0
 
 #include:xstring
 #include:refcount
@@ -60,3 +60,14 @@
 \huazrefcmd{parancs}
 \huazpagerefcmd{parancs}
 \huazdefcmd{átdefiniáló kód}
+
+\Ahusuffix[szám]{toldalék}
+\Ahusuffix{toldalék}
+\ahusuffix[szám]{toldalék}
+\ahusuffix{toldalék}
+\huazlike[kiírt szöveg]{figyelembe vett szöveg}
+\huazlike{figyelembe vett szöveg}
+\huazsilent{kód}
+\husuffix[szám]{toldalék}
+\husuffixsaved
+\husuffix{toldalék}

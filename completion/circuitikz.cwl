@@ -1,5 +1,5 @@
 # circuitikz package
-# updated 2025/11/24 for v1.8.3
+# updated 2026/02/11 for v1.8.5
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -105,6 +105,7 @@ example
 \comnpatname#S
 \compattikzset{options}#S
 \drawpoles#*
+\ctikzprocessvif#*
 
 # from pgfcircshapes.tex
 # no user commands
@@ -247,9 +248,11 @@ example
 \labeldist#S
 \partheightf#S
 \whichtypeshift#S
+\ctikzactivatevoltagedirections{arg}#*
 
 # from pgfcirccurrent.tex
-# no user commands
+\ctikzactivatecurrentdirections{arg}#*
 
 # from pgfcircflow.tex
+\ctikzactivateflowdirections{arg}#*
 \absfshift#S

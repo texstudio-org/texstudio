@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2025/10/03 for v0.99s
+# Matthew Bertucci 2026/01/31 for v0.99y
 
 #include:pdfmanagement
 
@@ -9,7 +9,7 @@
 activate=%<tag%>
 activate/all#true,false
 activate/mc#true,false
-activate/softhyphen#true,false
+activate/softhyphen=#false,off,char,artifact,true,on
 activate/spaces#true,false
 activate/struct#true,false
 activate/struct-dest#true,false

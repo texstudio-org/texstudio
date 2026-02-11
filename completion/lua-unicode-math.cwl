@@ -1,5 +1,5 @@
 # lua-unicode-math package
-# Matthew Bertucci 2026/01/16 for v0.6
+# Matthew Bertucci 2026/02/11 for v0.7
 
 #include:luatex
 
@@ -38,42 +38,45 @@ SizeFeatures={%<features%>}
 StylisticSet=%<set number%>
 #endkeyvals
 
-\symnormal{text}#*m
-\symup{text}#m
-\symrm{text}#m
-\symit{text}#m
-\symbf{text}#m
-\symsf{text}#m
-\symtt{text}#m
-\symbb{text}#m
-\symcal{text}#m
-\symfrak{text}#m
-\symsfup{text}#m
-\symsfit{text}#m
-\symbfsf{text}#m
-\symbfup{text}#m
-\symbfit{text}#m
-\symbfcal{text}#m
-\symbffrak{text}#m
-\symbfsfup{text}#m
-\symbfsfit{text}#m
-\mathtextrm{text}#*m
-\mathtextbf{text}#*m
-\mathtextit{text}#*m
-\mathtextsf{text}#*m
-\mathtexttt{text}#*m
-\mathup{text}#m
-\mathbb{text}#m
-\mathsfup{text}#m
-\mathsfit{text}#m
-\mathbfup{text}#m
-\mathbfit{text}#m
-\mathbfcal{text}#m
-\mathbffrak{text}#m
-\mathbfsf{text}#m
-\mathbfsfup{text}#m
-\mathbfsfit{text}#m
-\mathfrak{text}#m
+\mathbb{text%plain}#m
+\mathbfcal{text%plain}#m
+\mathbffrak{text%plain}#m
+\mathbfit{text%plain}#m
+\mathbfscr{text%plain}#m
+\mathbfsfit{text%plain}#m
+\mathbfsfup{text%plain}#m
+\mathbfsf{text%plain}#m
+\mathbfup{text%plain}#m
+\mathfrak{text%plain}#m
+\mathscr{text%plain}#m
+\mathsfit{text%plain}#m
+\mathsfup{text%plain}#m
+\mathtextbf{text%plain}#*m
+\mathtextit{text%plain}#*m
+\mathtextrm{text%plain}#*m
+\mathtextsf{text%plain}#*m
+\mathtexttt{text%plain}#*m
+\mathtextup{text%plain}#*m
+\mathup{text%plain}#m
+\symbb{text%plain}#m
+\symbfcal{text%plain}#m
+\symbffrak{text%plain}#m
+\symbfit{text%plain}#m
+\symbfsfit{text%plain}#m
+\symbfsfup{text%plain}#m
+\symbfsf{text%plain}#m
+\symbfup{text%plain}#m
+\symbf{text%plain}#m
+\symcal{text%plain}#m
+\symfrak{text%plain}#m
+\symit{text%plain}#m
+\symnormal{text%plain}#*m
+\symrm{text%plain}#m
+\symsfit{text%plain}#m
+\symsfup{text%plain}#m
+\symsf{text%plain}#m
+\symtt{text%plain}#m
+\symup{text%plain}#m
 
 \intoplimits#S
 \mathfamattr#S

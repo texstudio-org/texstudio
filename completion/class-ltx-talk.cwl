@@ -1,5 +1,5 @@
 # ltx-talk class
-# Matthew Bertucci 2026/01/16 for v0.3.8
+# Matthew Bertucci 2026/01/31 for v0.4.0
 
 #include:pdfmanagement
 #include:relsize
@@ -91,6 +91,8 @@ handout
 \color<overlay spec>{color}
 \date[options%keyvals]{date}
 \emph<overlay spec>{text}
+\footnote<overlay spec>{text}
+\footnote<overlay spec>[number]{text}
 \framesubtitle<overlay spec>[options%keyvals]{text}#*
 \framesubtitle<overlay spec>{text}
 \framesubtitle[options%keyvals]{text}#*

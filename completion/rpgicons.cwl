@@ -1,5 +1,5 @@
 # rpgicons package
-# Matthew Bertucci 2026/01/20 for v2.4.1
+# Matthew Bertucci 2026/02/11 for v2.5.1
 
 #keyvals:\usepackage/rpgicons#c
 l3
@@ -145,8 +145,9 @@ variant=%<integer%>
 #keyvals:\rpgiconsset#c
 roll syntax={%<syntax%>}
 style set={%<style definitions%>}
-style append={%<style definitions%>}
+style add={%<style definitions%>}
 actualtext={%<settings%>}
+alias={%<string%>}{%<string%>}
 #endkeyvals
 
 # specific to pgf option

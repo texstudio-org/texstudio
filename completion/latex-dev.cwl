@@ -435,6 +435,7 @@ testphase=#phase-I,phase-II,phase-III,latest
 debug={%<options%>}
 tagging=#on,off,draft
 tagging-setup={%<options%>}
+check-tagging-status
 #endkeyvals
 \IfDocumentMetadataF{false code}#*
 \IfDocumentMetadataT{true code}#*

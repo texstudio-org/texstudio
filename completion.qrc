@@ -474,6 +474,7 @@
 <file>completion/bullcntr.cwl</file>
 <file>completion/bullenum.cwl</file>
 <file>completion/bussproofs.cwl</file>
+<file>completion/bussproofs-colorful.cwl</file>
 <file>completion/bussproofs-extra.cwl</file>
 <file>completion/BusyPanda.cwl</file>
 <file>completion/bxbase.cwl</file>
@@ -2205,6 +2206,7 @@
 <file>completion/linguistix-base.cwl</file>
 <file>completion/linguistix.cwl</file>
 <file>completion/linguistix-fonts.cwl</file>
+<file>completion/linguistix-glossing.cwl</file>
 <file>completion/linguistix-ipa.cwl</file>
 <file>completion/linguistix-languages.cwl</file>
 <file>completion/linguistix-leipzig.cwl</file>
@@ -2372,6 +2374,7 @@
 <file>completion/makecell.cwl</file>
 <file>completion/makecmds.cwl</file>
 <file>completion/makeglos.cwl</file>
+<file>completion/makegobbler.cwl</file>
 <file>completion/makeidx.cwl</file>
 <file>completion/makematch.cwl</file>
 <file>completion/makeplot.cwl</file>
@@ -2782,6 +2785,7 @@
 <file>completion/paracol.cwl</file>
 <file>completion/paralist.cwl</file>
 <file>completion/parallel.cwl</file>
+<file>completion/paramcalc.cwl</file>
 <file>completion/paravesp.cwl</file>
 <file>completion/parcolumns.cwl</file>
 <file>completion/paresse.cwl</file>
@@ -3392,6 +3396,7 @@
 <file>completion/semtrans.cwl</file>
 <file>completion/sepfootnotes.cwl</file>
 <file>completion/sepnum.cwl</file>
+<file>completion/seqcalc.cwl</file>
 <file>completion/seqsplit.cwl</file>
 <file>completion/serbian-lig.cwl</file>
 <file>completion/serto.cwl</file>

@@ -1,5 +1,5 @@
 # luatexko package
-# Matthew Bertucci 2025/11/12 for v5.1
+# Matthew Bertucci 2026/01/31 for v5.5
 
 #include:luatexbase
 #include:fontspec
@@ -181,6 +181,7 @@ Expansion
 Protrusion=
 InterCharacter=##L
 InterCharStretch=##L
+InterCharPenalty=%<number%>
 #endkeyvals
 
 #keyvals:\setmainhangulfont,\setmainhanjafont,\setmainfallbackfont,\setsanshangulfont,\setsanshanjafont,\setsansfallbackfont,\setmonohangulfont,\setmonohanjafont,\setmonofallbackfont,\newhangulfontfamily,\newhanjafontfamily,\newfallbackfontfamily,\newhangulfontface,\newhanjafontface,\newfallbackfontface,\addhangulfontfeature,\addhangulfontfeatures,\addhanjafontfeature,\addhanjafontfeatures,\addfallbackfontfeature,\addfallbackfontfeatures,\hangulfontspec,\adhochangulfont,\hanjafontspec,\adhochanjafont,\fallbackfontspec,\adhocfallbackfont,\setmathhangulfont

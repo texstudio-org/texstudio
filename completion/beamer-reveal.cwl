@@ -1,12 +1,16 @@
 # beamer-reveal package
-# Matthew Bertucci 2026/01/23 for v1.05
+# Matthew Bertucci 2026/02/11 for v1.09
 
 #include:tikz
 #include:tikzlibrarycalc
+#include:currfile
 
 #keyvals:\usepackage/beamer-reveal#c
 width=%<pixels%>
 height=%<pixels%>
+embed
+loop
+autoslide=%<integer%>
 #endkeyvals
 
 \video \at (%<x,y%>) {%<filename%>}
@@ -29,6 +33,10 @@ height=%<pixels%>
 \animation[%<options%>] \at (%<x,y%>) {%<content%>}
 \animation<%<overlay spec%>> \at (%<x,y%>) {%<content%>}
 \animation<%<overlay spec%>>[%<options%>] \at (%<x,y%>) {%<content%>}
+\still \at (%<x,y%>) {%<content%>}
+\still[%<options%>] \at (%<x,y%>) {%<content%>}
+\still<%<overlay spec%>> \at (%<x,y%>) {%<content%>}
+\still<%<overlay spec%>>[%<options%>] \at (%<x,y%>) {%<content%>}
 \at#S
 
 # not documented
