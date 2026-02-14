@@ -3485,7 +3485,7 @@ void PDFDocument::init(bool embedded)
 	}
 	scaleButton->addActions(scaleActions->actions());
 
-	QToolButton *buttonZoomOut = new QToolButton(statusBar());
+	buttonZoomOut = new QToolButton(statusBar());
 	buttonZoomOut->setIcon(getRealIcon("zoom-out"));
 	buttonZoomOut->setToolTip(tr("Zoom Out"));
 	statusBar()->addPermanentWidget(buttonZoomOut);
@@ -3504,7 +3504,7 @@ void PDFDocument::init(bool embedded)
 
 	connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(zoomSliderChange(int)));
 
-	QToolButton *buttonZoomIn = new QToolButton(statusBar());
+	buttonZoomIn = new QToolButton(statusBar());
 	buttonZoomIn->setIcon(getRealIcon("zoom-in"));
 	buttonZoomIn->setToolTip(tr("Zoom In"));
 	statusBar()->addPermanentWidget(buttonZoomIn);
@@ -4684,8 +4684,12 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 
 void PDFDocument::enableZoomActions(qreal scaleFactor)
 {
-	actionZoom_In->setEnabled(scaleFactor < kMaxScaleFactor);
-	actionZoom_Out->setEnabled(scaleFactor > kMinScaleFactor);
+	bool enableIn = scaleFactor < kMaxScaleFactor;
+	bool enableOut = scaleFactor > kMinScaleFactor;
+	actionZoom_In->setEnabled(enableIn);
+	actionZoom_Out->setEnabled(enableOut);
+	buttonZoomIn->setEnabled(enableIn);
+	buttonZoomOut->setEnabled(enableOut);
 }
 
 void PDFDocument::adjustScaleActions(autoScaleOption scaleOption)
