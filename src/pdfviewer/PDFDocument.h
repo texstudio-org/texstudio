@@ -705,6 +705,8 @@ private:
 	QLabel *pageCountSeparator;
 	QLabel *pageCountLabel;
 	QIntValidator *leCurrentPageValidator;
+	QToolButton *buttonZoomOut;
+	QToolButton *buttonZoomIn;
 
 	QLabel *pageLabel;
 	QToolButton *scaleButton;
