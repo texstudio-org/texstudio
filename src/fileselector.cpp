@@ -1,8 +1,8 @@
 #include "fileselector.h"
 #include "utilsUI.h"
 
-FileSelector::FileSelector(QWidget *parent, bool multiselect) :
-	QWidget(parent), multiselect(multiselect)
+FileSelector::FileSelector(QWidget *parent, bool multiselect, bool menuAvailable) :
+	QWidget(parent), multiselect(multiselect), menuAvailable(menuAvailable)
 {
 	setWindowFlags(Qt::Popup | Qt::FramelessWindowHint);
 	QVBoxLayout *vlayout = new QVBoxLayout();
@@ -12,6 +12,8 @@ FileSelector::FileSelector(QWidget *parent, bool multiselect) :
 
 	list = new QListWidget(this);
 	vlayout->addWidget(list);
+	list->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(list, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 	filter = new QLineEdit(this);
 	vlayout->addWidget(filter);
 	connect(filter, SIGNAL(textChanged(QString)), SLOT(filterChanged(QString)));
@@ -34,7 +36,7 @@ void FileSelector::init(const QStringList &files, int current)
 	filter->setFocus();
 	rawFiles = files;
 	filterChanged(filter->text());
-	if (current >= 0 && current < rawFiles.count()) {
+	if (current >= 0 && current < rawFiles.count() && list->count() > 0) {
 		int r = 0;
 		for (int i = 0; i < current; i++)
 			if (list->item(i)->text() == rawFiles[i]) r++;
@@ -168,6 +170,28 @@ void FileSelector::emitChoosen()
 	foreach (const QPairStringInt &p, currentFiles())
 		emit fileChoosen(p.first, p.second, line, col);
 	close();
+}
+
+void FileSelector::showContextMenu(const QPoint &pos)
+{
+	if (!menuAvailable) return;
+	QListWidgetItem *item = list->itemAt(pos);
+	QMenu menu(this);
+
+	if (item) {
+		menu.addAction(tr("Remove selected items"), this, [this]() { removeSelectedItems(); });
+		menu.exec(list->viewport()->mapToGlobal(pos));
+	}
+}
+
+void FileSelector::removeSelectedItems()
+{
+	foreach (const QPairStringInt &p, currentFiles()) {
+		QString fn = p.first;
+		emit file2Remove(fn);
+		rawFiles.removeAll(fn);
+	}
+	init(rawFiles,0);
 }
 
 QList<QPair<QString, int> > FileSelector::currentFiles()
