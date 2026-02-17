@@ -3501,7 +3501,7 @@ void Texstudio::fileRecentList()
 	fileSelector.data()->init(QStringList() << configManager.recentProjectList << configManager.recentFilesList, 0);
 
     connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(fileDocumentOpenFromChoosen(QString,int,int,int)));
-    connect(fileSelector.data(), SIGNAL(file2Remove(QString)), SLOT(fileRemoveFromRecentList(QString)));
+    connect(fileSelector.data(), SIGNAL(fileToRemove(QString)), SLOT(fileRemoveFromRecentList(QString)));
     fileSelector.data()->setVisible(true);
 }
 

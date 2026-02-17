@@ -1,8 +1,8 @@
 #include "fileselector.h"
 #include "utilsUI.h"
 
-FileSelector::FileSelector(QWidget *parent, bool multiselect, bool menuAvailable) :
-	QWidget(parent), multiselect(multiselect), menuAvailable(menuAvailable)
+FileSelector::FileSelector(QWidget *parent, bool multiselect, bool enableContextMenu) :
+	QWidget(parent), multiselect(multiselect), enableContextMenu(enableContextMenu)
 {
 	setWindowFlags(Qt::Popup | Qt::FramelessWindowHint);
 	QVBoxLayout *vlayout = new QVBoxLayout();
@@ -174,7 +174,7 @@ void FileSelector::emitChoosen()
 
 void FileSelector::showContextMenu(const QPoint &pos)
 {
-	if (!menuAvailable) return;
+	if (!enableContextMenu) return;
 	QListWidgetItem *item = list->itemAt(pos);
 	QMenu menu(this);
 
@@ -188,7 +188,7 @@ void FileSelector::removeSelectedItems()
 {
 	foreach (const QPairStringInt &p, currentFiles()) {
 		QString fn = p.first;
-		emit file2Remove(fn);
+		emit fileToRemove(fn);
 		rawFiles.removeAll(fn);
 	}
 	init(rawFiles,0);
