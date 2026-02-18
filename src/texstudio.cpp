@@ -3496,13 +3496,15 @@ QRect appendToBottom(QRect r, const QRect &s)
 void Texstudio::fileRecentList()
 {
 	if (fileSelector) fileSelector.data()->deleteLater();
-	fileSelector = new FileSelector(editors, true);
+	fileSelector = new FileSelector(editors, true, true);
 
 	fileSelector.data()->init(QStringList() << configManager.recentProjectList << configManager.recentFilesList, 0);
 
     connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(fileDocumentOpenFromChoosen(QString,int,int,int)));
+    connect(fileSelector.data(), SIGNAL(fileToRemove(QString)), SLOT(fileRemoveFromRecentList(QString)));
     fileSelector.data()->setVisible(true);
 }
+
 /*!
  * \brief clear recent file list
  */
@@ -3510,6 +3512,15 @@ void Texstudio::fileClearRecentList()
 {
     configManager.recentFilesList.clear();
     configManager.recentProjectList.clear();
+    configManager.updateRecentFiles();
+}
+
+/*!
+ * \brief remove file from recent file list
+ */
+void Texstudio::fileRemoveFromRecentList(const QString &fn)
+{
+    configManager.recentFilesList.removeAll(fn);
     configManager.updateRecentFiles();
 }
 
@@ -8040,7 +8051,7 @@ void Texstudio::viewCloseElement()
     }
 
 #ifndef NO_POPPLER_PREVIEW
-	// close element in focussed viewer
+	// close element in focused viewer
 	QWidget *w = QApplication::focusWidget();
 	while (w && !qobject_cast<PDFDocument *>(w))
 		w = w->parentWidget();

@@ -2,6 +2,7 @@
 ## TeXstudio 4.9.3
 
 - Preview updated to handle special document classes [#4322](https://github.com/texstudio-org/texstudio/pull/4322)
+- Added functionality to remove entries from the recent files list [#4338](https://github.com/texstudio-org/texstudio/pull/4338)
 
 ## TeXstudio 4.9.2
 

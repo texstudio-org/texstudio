@@ -8,14 +8,16 @@ class FileSelector : public QWidget
 	Q_OBJECT
 
 public:
-	explicit FileSelector(QWidget *parent = 0, bool multiselect = false);
+	explicit FileSelector(QWidget *parent = 0, bool multiselect = false, bool enableContextMenu = false);
 	void init(const QStringList &files, int current);
 	void setCentered();
 
 signals:
 	void fileChoosen(const QString &name, int duplicate, int lineNr, int column);
+	void fileToRemove(const QString &name);
 
 private slots:
+	void showContextMenu(const QPoint &pos);
 	void filterChanged(const QString &newFilter);
 
 protected:
@@ -24,6 +26,7 @@ protected:
 
 protected slots:
 	void emitChoosen();
+	void removeSelectedItems();
 
 private:
 	QListWidget *list;
@@ -31,6 +34,7 @@ private:
 	QStringList rawFiles;
 	QList<QPair<QString, int> > currentFiles();
 	bool multiselect;
+	bool enableContextMenu;
 };
 
 #endif // FILESELECTOR_H
