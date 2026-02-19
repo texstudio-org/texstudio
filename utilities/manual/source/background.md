@@ -3,18 +3,18 @@
 ini file / reset to default
 profile 
 -->
-## About documents separated in several files
+## About documents separated into several files
 
 LaTeX documents may be spread over multiple files. TeXstudio
 automatically understands parent/child relations of loaded documents.
-This includes the detection of the root document and knowledge on
+This includes the detection of the root document and knowledge of
 defined labels and commands.
 
 ### Root Document
 
-The root document is the top-most file in a multi-file document. For a
-single-file document this is the file itself. By default, all calls to
-LaTeX will be performed on the root document except if a class `subfiles` is used. Then the next higher file with that document-class is compiled. 
+The root document is the topmost file in a multi-file document. For a
+single-file document, this is the file itself. By default, all calls to
+LaTeX will be performed on the root document, except if a class `subfiles` is used. Then the next higher file with that document class is compiled. 
 
 TeXstudio automatically detects the root document. If that does not
 work, you can place a magic comment `% !TeX root = root-filename` at the
@@ -26,7 +26,7 @@ This setting takes absolute precedence. All the commands of the
 \"Tools\" menu will be called on this document (to be more precise, the
 build system will expand the placeholder `%` to the root document), no
 matter which document is active in the editor. Additionally, labels and
-user-commands which are defined in any open document, can be used for
+user commands which are defined in any open document, can be used for
 completion in any open document.
 
 In earlier versions, the *explicit root document* was somewhat
@@ -37,22 +37,22 @@ misleadingly called *master document*.
 Obviously, TeXstudio can only use information (defined commands, labels,
 document hierarchy, etc.) that it is aware of. We use the information in
 all opened files, but if a label in a multi-file document is defined in
-a not-loaded files, TeXstudio does not know about it and will mark it as
+a not-loaded file, TeXstudio does not know about it and will mark it as
 missing in references. To remedy this, you can just open the
 corresponding file as well.
 
 TeXstudio has an advanced option
 `Editor -> Automatically load included files`.
 TeXstudio will automatically load and parse all files of
-multi-file-documents as soon as one of the files is opened. You may have
+multi-file documents as soon as one of the files is opened. You may have
 to set the magic comment `% !TeX root = root-filename` if you do not
-have the root document open. With this option enabled TeXstudio will
+have the root document open. With this option enabled, TeXstudio will
 always know about your complete document and act accordingly when
 performing highlighting or completion.
 
-The option `Editor -> Cache documents for faster reopening` lets txs store important information about opened files on the disk.
-If the files are reopened, it uses the cached information to speed-up loading. Only if a file is explicitly opened in a tab, txs loads the complete file from disk.
-In cached files, txs does not search, e.g. with find usages or find in project. The preview for labels does not work if the label is defined in a cached file. If that functionality is important for you, deactivate caching or load explicitly the files when needed.
+The option `Editor -> Cache documents for faster reopening` lets TeXstudio store important information about opened files on the disk.
+If the files are reopened, it uses the cached information to speed up loading. Only if a file is explicitly opened in a tab does TeXstudio load the complete file from disk.
+In cached files, TeXstudio does not search, e.g., with find usages or find in project. The preview for labels does not work if the label is defined in a cached file. If that functionality is important for you, deactivate caching or explicitly load the files when needed.
 
 ## Overview of TeXstudio command-line options
 
@@ -88,23 +88,23 @@ Furthermore all tests are run once a week.
 
 ## Collaborative editing background
 
-This description assumes teamtype version 0.9. The program is currently only available for macOS and linux.
+This description assumes teamtype version 0.9. The program is currently only available for macOS and Linux.
 
-TeXstudio uses [teamtype](https://github.com/teamtype/teamtype) to realize collaborative editing. The teamtype binary provides either a server which connects to other server in order to exchange files and update information or as "client" which connects an editor,i.e. TeXstudio, with the server.
+TeXstudio uses [teamtype](https://github.com/teamtype/teamtype) to realize collaborative editing. The teamtype binary provides either a server which connects to other servers in order to exchange files and update information, or a "client" which connects an editor, i.e. TeXstudio, with the server.
 
-"teamtype" utilizes 2 types of servers, the host server which shares its folder to the rest of the world and guest servers which connect to that server and copy all files to local folders.
+"teamtype" utilizes two types of servers: the host server, which shares its folder with the rest of the world, and guest servers, which connect to that server and copy all files to local folders.
 
 The host can be started with:
 `teamtype share` in the target folder.
 
-It prints connection code for guest servers. The code can only be used for one guest, it will be regenerated after a guest connected to it.
+It prints a connection code for guest servers. The code can only be used for one guest; it will be regenerated after a guest has connected to it.
 
 The guest server is started with:
 `teamtype join code` in a folder which will be used to download the shared files.
 
 Editors like nvim, vscode or TeXstudio can now connect to that server by opening files in the shared folder (and automatically starting a client process to communicate with the server).
 
-TeXstudio will also start host or guest servers when told to, see [collavorative editing.](editing.md#collaborative-editing-pair-programming)
+TeXstudio will also start host or guest servers when told to; see [collaborative editing.](editing.md#collaborative-editing-pair-programming)
 
 ## Description of the cwl format
 
@@ -115,9 +115,11 @@ and allow for cursor and placeholder placement. It uses them for the
 following purposes:
 
 -   Populating the autocompletion
--   Knowledge on the valid commands in the current document (depending
+
+-   Knowledge of the valid commands in the current document (depending
     on \\usepackage statements)
--   Semantic information that provide additional context in the editor;
+
+-   Semantic information that provides additional context in the editor;
     e.g. a \\ref-like command will check for the existence of the
     referenced label
 
@@ -173,19 +175,19 @@ cwl files should be encoded as UTF-8.
 
 ### Command format
 
-In its simplest form the command is just a valid LaTeX expression as you
+In its simplest form, the command is just a valid LaTeX expression as you
 find it in the documentation, e.g. `\section{title}`. By default, every
-option is treated as a placeholder. Alternatively, you may either just
+option is treated as a placeholder. Alternatively, you may either
 define a stop position for the cursor by `%|` (Example:
-`\left(%|\right)`) or use `%< %>` to mark only part of an option as
+`\left(%|\right)`) or use `%< %>` to mark only part of an option as a
 placeholder (Example: `\includegraphics[scale=%<1%>]{file}`). New lines
 can be included in a command by `%\`.
 
 #### Argument Names
 
-The argument names are visible in the completer window and after
-completion as placeholders in the editor. In general, you are free to
-name the arguments as you like. We encourage to provide meaningful names
+The argument names are visible in the completer window and, after
+completion, as placeholders in the editor. In general, you are free to
+name the arguments as you like. We encourage you to provide meaningful names
 e.g. `\parbox[position]{width}{text}` instead of
 `\parbox[arg1]{arg2}{arg3}`.
 
