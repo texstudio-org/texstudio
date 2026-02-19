@@ -8960,8 +8960,8 @@ QList<int> Texstudio::findOccurencesApproximate(QString line, const QString &gue
 
 void Texstudio::syncFromViewer(const QString &fileName, int line, bool activate, const QString &guessedWord)
 {
+    QWidget *w = focusWidget();
 	if (!activateEditorForFile(fileName, true, activate)) {
-		QWidget *w = focusWidget();
 		bool success = load(fileName);
 		if (!activate)
 			w->setFocus();  // restore focus
@@ -9010,8 +9010,9 @@ void Texstudio::syncFromViewer(const QString &fileName, int line, bool activate,
 		show();
 		activateWindow();
 		if (isMinimized()) showNormal();
-	}
-
+    }else{
+        w->setFocus();  // restore focus
+    }
 }
 
 void Texstudio::goBack()
