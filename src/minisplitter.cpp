@@ -34,7 +34,7 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QSplitterHandle>
-
+#include <QDateTime>
 
 namespace Internal {
 
@@ -51,6 +51,9 @@ public:
 protected:
     void resizeEvent(QResizeEvent *event);
     void paintEvent(QPaintEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event) override;
+private:
+    qint64 m_lastReleaseTime = 0;
 };
 
 } // namespace Internal
@@ -79,6 +82,23 @@ void MiniSplitterHandle::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     painter.fillRect(event->rect(), StyleHelper::borderColor());
+}
+
+void MiniSplitterHandle::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        qint64 now = QDateTime::currentMSecsSinceEpoch();
+        if (now - m_lastReleaseTime < QApplication::doubleClickInterval()) {
+            auto *sp = static_cast<MiniSplitter*>(splitter());
+            if (sp && sp->property("editorSplitter").toBool()) {
+                sp->setSizes(QList<int>() << 1 << 1);
+            }
+            m_lastReleaseTime = 0;
+            return;
+        }
+        m_lastReleaseTime = now;
+    }
+    QSplitterHandle::mouseReleaseEvent(event);
 }
 
 QSplitterHandle *MiniSplitter::createHandle()
