@@ -90,8 +90,9 @@ void MiniSplitterHandle::mouseReleaseEvent(QMouseEvent *event)
         qint64 now = QDateTime::currentMSecsSinceEpoch();
         if (now - m_lastReleaseTime < QApplication::doubleClickInterval()) {
             auto *sp = static_cast<MiniSplitter*>(splitter());
-            if (sp && sp->property("editorSplitter").toBool()) {
-                sp->setSizes(QList<int>() << 1 << 1);
+            if (sp && sp->doubleClickResizeEnabled()) {
+                QList<int> sizes(sp->count(), 1);
+                sp->setSizes(sizes);
             }
             m_lastReleaseTime = 0;
             return;
