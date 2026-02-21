@@ -376,7 +376,7 @@ Another option is to use the [auto completer](#referencebibid-completion).
 ### Finding reference use
 
 The context menu on labels in the structure view (see above) offers "find usage".
-This searches in all source files of the document (see [root file](background.md#about-documents-separated-in-several-files)) and finds the occurrence of that particular reference.
+This searches in all source files of the document (see [root file](background.md#about-documents-separated-into-several-files)) and finds the occurrence of that particular reference.
 Here all the references may be changed by changing "Replace by" and clicking "Replace All".
 
 ![Find reference usage](images/findUsage.webp)
@@ -668,7 +668,7 @@ In the list of search results, a double-click on a match jumps to the location i
 This section describes what support txs provides for larger projects.
 
 Large projects usually are split into several included files.
-In order to speed up compilation, the package [subfiles](https://www.ctan.org/pkg/subfiles) offers compilation of the current document only. txs automatically loads all included files, so that it can provide proposals for user commands, labels and bibitems. To speed up reloading a project, txs caches all files, meaning it writes this information on the disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works when restoring a previously opened project; the initial opening may take a bit longer, see [also](background.md#about-documents-separated-in-several-files).
+In order to speed up compilation, the package [subfiles](https://www.ctan.org/pkg/subfiles) offers compilation of the current document only. txs automatically loads all included files, so that it can provide proposals for user commands, labels and bibitems. To speed up reloading a project, txs caches all files, meaning it writes this information on the disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works when restoring a previously opened project; the initial opening may take a bit longer, see [also](background.md#about-documents-separated-into-several-files).
 
 ## Collaborative Editing (Pair programming)
 
