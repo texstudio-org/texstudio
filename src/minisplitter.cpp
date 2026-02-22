@@ -35,7 +35,6 @@
 #include <QPainter>
 #include <QSplitterHandle>
 
-
 namespace Internal {
 
 class MiniSplitterHandle : public QSplitterHandle
@@ -51,6 +50,7 @@ public:
 protected:
     void resizeEvent(QResizeEvent *event);
     void paintEvent(QPaintEvent *event);
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
 };
 
 } // namespace Internal
@@ -79,6 +79,21 @@ void MiniSplitterHandle::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     painter.fillRect(event->rect(), StyleHelper::borderColor());
+}
+
+void MiniSplitterHandle::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        auto *sp = static_cast<MiniSplitter*>(splitter());
+        if (sp && sp->doubleClickResizeEnabled()) {
+            QList<int> sizes;
+            for (int i = 0; i < sp->count(); ++i) {
+                sizes.append(1);
+            }
+            sp->setSizes(sizes);
+        }
+    }
+    QSplitterHandle::mouseDoubleClickEvent(event);
 }
 
 QSplitterHandle *MiniSplitter::createHandle()

@@ -33,6 +33,7 @@ Editors::Editors(QWidget *parent) :
     QWidget(parent), splitter(nullptr), currentGroupIndex(-1)
 {
 	splitter = new MiniSplitter(Qt::Horizontal);
+	splitter->setDoubleClickResizeEnabled(true);
 	splitter->setChildrenCollapsible(false);
 
 	QVBoxLayout *layout = new QVBoxLayout(this);
