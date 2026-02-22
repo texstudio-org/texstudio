@@ -1,6 +1,7 @@
 #ifndef Header_Editors
 #define Header_Editors
 
+#include "minisplitter.h"
 #include "mostQtHeaders.h"
 
 class TxsTabWidget;
@@ -71,7 +72,7 @@ protected:
 	TxsTabWidget *tabWidgetFromEditor(LatexEditorView *edView) const;
 
 private:
-	QSplitter *splitter;
+	MiniSplitter *splitter;
 	QList<TxsTabWidget *> tabGroups;
 	int currentGroupIndex;
 

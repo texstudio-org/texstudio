@@ -38,7 +38,6 @@ QT_BEGIN_NAMESPACE
 class QSplitterHandle;
 QT_END_NAMESPACE
 
-
 /*! This is a simple helper-class to obtain mac-style 1-pixel wide splitters */
 class MiniSplitter : public QSplitter
 {
@@ -46,8 +45,14 @@ public:
     MiniSplitter(QWidget *parent = nullptr);
     MiniSplitter(Qt::Orientation orientation, QWidget *parent = nullptr);
 
+    void setDoubleClickResizeEnabled(bool on) { m_doubleClickResizeEnabled = on; }
+    bool doubleClickResizeEnabled() const { return m_doubleClickResizeEnabled; }
+
 protected:
     QSplitterHandle *createHandle();
+
+private:
+    bool m_doubleClickResizeEnabled = false;
 };
 
 
