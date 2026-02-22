@@ -87,8 +87,9 @@ void MiniSplitterHandle::mouseDoubleClickEvent(QMouseEvent *event)
         auto *sp = static_cast<MiniSplitter*>(splitter());
         if (sp && sp->doubleClickResizeEnabled()) {
             QList<int> sizes;
-            for (int i = 0; i < sp->count(); ++i)
+            for (int i = 0; i < sp->count(); ++i) {
                 sizes.append(1);
+            }
             sp->setSizes(sizes);
         }
     }
