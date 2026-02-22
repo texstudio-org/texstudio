@@ -34,7 +34,6 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QSplitterHandle>
-#include <QDateTime>
 
 namespace Internal {
 
@@ -51,9 +50,7 @@ public:
 protected:
     void resizeEvent(QResizeEvent *event);
     void paintEvent(QPaintEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event) override;
-private:
-    qint64 m_lastReleaseTime = 0;
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
 };
 
 } // namespace Internal
@@ -84,24 +81,18 @@ void MiniSplitterHandle::paintEvent(QPaintEvent *event)
     painter.fillRect(event->rect(), StyleHelper::borderColor());
 }
 
-void MiniSplitterHandle::mouseReleaseEvent(QMouseEvent *event)
+void MiniSplitterHandle::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        qint64 now = QDateTime::currentMSecsSinceEpoch();
-        if (now - m_lastReleaseTime < QApplication::doubleClickInterval()) {
-            auto *sp = static_cast<MiniSplitter*>(splitter());
-            if (sp && sp->doubleClickResizeEnabled()) {
-                QList<int> sizes;
-                for (int i = 0; i < sp->count(); ++i)
-                    sizes.append(1);
-                sp->setSizes(sizes);
-            }
-            m_lastReleaseTime = 0;
-            return;
+        auto *sp = static_cast<MiniSplitter*>(splitter());
+        if (sp && sp->doubleClickResizeEnabled()) {
+            QList<int> sizes;
+            for (int i = 0; i < sp->count(); ++i)
+                sizes.append(1);
+            sp->setSizes(sizes);
         }
-        m_lastReleaseTime = now;
     }
-    QSplitterHandle::mouseReleaseEvent(event);
+    QSplitterHandle::mouseDoubleClickEvent(event);
 }
 
 QSplitterHandle *MiniSplitter::createHandle()
