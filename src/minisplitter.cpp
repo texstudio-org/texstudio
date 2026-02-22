@@ -91,7 +91,8 @@ void MiniSplitterHandle::mouseReleaseEvent(QMouseEvent *event)
         if (now - m_lastReleaseTime < QApplication::doubleClickInterval()) {
             auto *sp = static_cast<MiniSplitter*>(splitter());
             if (sp && sp->doubleClickResizeEnabled()) {
-                QList<int> sizes(sp->count(), 1);
+                QList<int> sizes(sp->count());
+                sizes.fill(1);
                 sp->setSizes(sizes);
             }
             m_lastReleaseTime = 0;
