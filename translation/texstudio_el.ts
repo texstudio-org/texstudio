@@ -1705,7 +1705,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2439"/>
         <source>Safe writing of files</source>
-        <translation>Ασφαλής αποθήκευση των αρχείων</translation>
+        <translation>Ασφαλής αποθήκευση αρχείων</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2540"/>
@@ -2668,7 +2668,11 @@ Then you can select a new shortcut by one of the following ways:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notified as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Καθορίζει το είδος των ειδοποιήσεων ενημέρωσης που θα λαμβάνετε:
+- Σταθερές εκδόσεις: επιλέξτε αυτή τη ρύθμιση εάν σας ενδιαφέρει περισσότερο η σταθερότητα.
+- Επερχόμενες εκδόσεις: κυκλοφορούν πριν από τις σταθερές εκδόσεις και είναι πιο κοντά σε αυτές όσον αφορά τα χαρακτηριστικά και τη σταθερότητα. Επιλέξτε αυτή τη ρύθμιση αν θέλετε να πάρετε μια γεύση από τις μελλοντικές εκδόσεις του texstudio,
+ή αν επιθυμείτε να βοηθήσετε στην ανάπτυξη του προγράμματος δοκιμάζοντας την έκδοση και αναφέροντας τυχόν προβλήματα που αντιμετωπίζετε, προτού αυτή κυκλοφορήσει επίσημα. (Επιλέγοντας αυτή τη ρύθμιση, θα λαμβάνετε ειδοποιήσεις και για τις σταθερές εκδόσεις).
+- Εκδόσεις υπό ανάπτυξη: περιέχουν τα πιο πρόσφατα χαρακτηριστικά, αλλά ενδέχεται να είναι ασταθείς. (Επιλέγοντας αυτή τη ρύθμιση, θα λαμβάνετε ειδοποιήσεις και για τις σταθερές και για τις επερχόμενες εκδόσεις).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1010"/>
@@ -2680,38 +2684,46 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation>Αντικατάσταση μεταβλητών περιβάλλοντων στις εντολές μεταγλώττισης. Η συμπεριφορά της ρύθμισης εξαρτάται από το λειτουργικό σύστημα που χρησιμοποιείτε.
+
+Windows:
+Οι μεταβλητές γράφονται: %MYVAR%. Δε γίνεται διάκριση πεζών-κεφαλαίων.
+
+Linux, OS X:
+Οι μεταβλητές γράφονται: %MYVAR%. Γίνεται διάκριση πεζών-κεφαλαίων.
+</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1034"/>
         <source>This allows redefining commands using comments of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Η ενεργοποίηση αυτής της επιλογής επιτρέπει τη χρήση σχολίων της μορφής &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; και &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;, τα οποία λειτουργούν ως εντολές και υπερισχύουν των ρυθμίσεων του TeXstudio για το έγγραφο στο οποίο βρίσκονται και μόνο. Για περισσότερες πληροφορίες δείτε το εγχειρίδιο χρήσης.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1503"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embedded PDF viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Με αυτήν τη ρύθμιση, μπορείτε να μεγεθύνετε ή να σμικρύνετε τα αντικείμενα της γραμμής εργαλείων του ενσωματωμένου προγράμματος προβολής αρχείων PDF (για οθόνες υψηλής ανάλυσης).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2283"/>
         <source>This only has an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Η ρύθμιση αυτή έχει νόημα μόνο αν γίνεται αναδίπλωση γραμμών (είτε soft είτε hard).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2303"/>
         <source>When using Unicode characters in the source code, LaTeX still has
 to render the characters. Since Unicode is not natively supported by LaTeX, you have to include appropriate packages for Unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>Επειδή η επεξεργασία χαρακτήρων Unicode δεν υποστηρίζεται εγγενώς από το LaTeX, για τη σωστή
+εμφάνισή τους πρέπει να συμπεριλάβετε τα αντίστοιχα πακέτα για τους χαρακτήρες που επιθυμείτε.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems with this method in Dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Η ρύθμιση αυτή χρησιμοποιεί την κλάση QSaveFile για την αποτροπή απώλειας δεδομένων στην περίπτωση που η διαδικασία εγγραφής στον δίσκο αποτύχει. Το μειονέκτημα της μεθόδου αυτής είναι πως ο χρήστης αποκτά την κυριότητα του αρχείου (γίνεται owner), ενώ τυχόν εκτεταμένα χαρακτηριστικά (extended attributes) του αρχείου διαγράφονται. Ακόμη, έχουν παρατηρηθεί προβλήματα κατά τη χρήση αυτής της ρύθμισης με φακέλους Dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2513"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into TeXstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within a citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Εξωτερικά προγράμματα (όπως π.χ. το Zotero) έχουν τη δυνατότητα να προσθέσουν παραπομπές στο TeXstudio εκτελώντας την εντολή: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Εάν τη στιγμή εκτέλεσης της εντολής ο κέρσορας δε βρίσκεται εντός μιας μακροεντολής παραπομπής, η «εντολή» που θα ορίσετε εδώ θα χρησιμοποιηθεί ως μακροεντολή παραπομπής.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2557"/>
@@ -2727,7 +2739,12 @@ are not shown here. Checking additional packages here is usually not
 necessary. However, if automatic detection fails or you want to include
 specific user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"/>
+        <translation>Το TeXstudio προσπαθεί να φορτώνει αυτόματα τα αρχεία αυτόματης συμπλήρωσης των πακέτων
+κάθε φορά που εντοπίζει μια εντολή \usepackage{}. Αυτά τα αρχεία
+δεν εμφανίζονται σε αυτή τη λίστα, και για τον λόγο αυτό η επιλογή επιπλέον πακέτων συνήθως δεν είναι απαραίτητη.
+Αν, ωστόσο, ο αυτόματος εντοπισμός δε λειτουργεί σωστά, ή αν επιθυμείτε
+να χρησιμοποιήσετε προσαρμοσμένα αρχεία αυτόματης συμπλήρωσης, μπορείτε να
+επιβάλετε τη χρήση συγκεκριμένων αρχείων ενεργοποιώντας τα από εδώ.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3596"/>
@@ -2770,13 +2787,13 @@ Examples:
         <location filename="../src/configdialog.ui" line="3807"/>
         <location filename="../src/configdialog.ui" line="3837"/>
         <source>Comma separated list of LanguageTool rules which will be highlighted in a special format.</source>
-        <translation type="unfinished"/>
+        <translation>Λίστα διαχωρισμένων με κόμμα κανόνων του LanguageTool, οι αντιστοιχίες των οποίων θα επισημαίνονται με ειδικό, προσαρμόσιμο τρόπο.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3895"/>
         <location filename="../src/configdialog.ui" line="3957"/>
         <source>Arguments passed when starting LanguageTool. This option only has an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Οι παράμετροι που δίνονται κατά την εκκίνηση του LanguageTool, εφόσον αυτή έχει γίνει από το TeXstudio και όχι από κάποιον ήδη σε λειτουργία διακομιστή.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3943"/>
@@ -9806,12 +9823,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/toolwidgets.cpp" line="260"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Αντιγραφή</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="263"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Επικόλληση</translation>
     </message>
 </context>
 <context>
@@ -12796,7 +12813,7 @@ to join: teamtype join %2</source>
     <message>
         <location filename="../src/textanalysis.ui" line="425"/>
         <source>Determines whether the whole document, only the selection, or only a certain chapter is analysed.</source>
-        <translation type="unfinished"/>
+        <translation>Η επιλογή αυτή καθορίζει αν θα αναλυθεί το κείμενο όλου του εγγράφου, μόνο το επιλεγμένο ή μόνο ένα συγκεκριμένο κεφάλαιο.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
@@ -12855,17 +12872,23 @@ If not, end characters are ignored.</source>
 &quot;Minimum word length (all)&quot;: A phrase is only shown if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equivalent to &quot;this test&quot;, while the other options would separate it into &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if none of these phrases would be shown.)</source>
-        <translation type="unfinished"/>
+        <translation>Πιθανές επιλογές:
+«Εμφάνιση όλων των φράσεων»: όλες οι φράσεις αναλύονται και εμφανίζονται
+«Ελάχιστο πλήθος χαρακτήρων φράσης»: μια φράση αναλύεται μόνο αν το πλήθος χαρακτήρων της δεν ξεπερνάει το δοθέν όριο. (π.χ. η φράση «a test» έχει 6 χαρακτήρες)
+«Ελάχιστο πλήθος γραμμάτων λέξης (ένα)»: μια φράση εμφανίζεται μόνο αν το πλήθος γραμμάτων κάποιας λέξης της δεν ξεπερνάει το δοθέν όριο. (π.χ. στη φράση «a test» η μεγαλύτερη λέξη «test» έχει 4 γράμματα)
+«Ελάχιστο πλήθος γραμμάτων λέξης (όλα)»: μια φράση εμφανίζεται μόνο αν το πλήθος γραμμάτων κάθε λέξης της δεν ξεπερνάει το δοθέν όριο. (π.χ. στη φράση «a test» η μικρότερη λέξη «a» έχει 1 γράμμα)
+«Αγνόηση μικρότερων λέξεων»: οι μικρότερες λέξεις δεν αναλύονται καθόλου.
+(π.χ. Αν το όρισμα της τελευταίας επιλογής είναι 3, η πρόταση «this is a test» ισοδυναμεί με την «this test», η οποία και αναλύεται αντί της αρχικής. Η εφαρμογή διαφορετικής επιλογής θα είχε ως αποτέλεσμα η πρόταση αυτή να χωριστεί στις φράσεις «this is», «is a», «a test», ακόμα και αν καμία από αυτές δε θα εμφανίζονταν/αναλύονταν τελικά)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if one of its words has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all of its words have at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignored.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equivalent to &amp;quot;this test&amp;quot;, while the other options would separate it into &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of these phrases would be shown.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;«Εμφάνιση όλων των φράσεων»: όλες οι φράσεις αναλύονται και εμφανίζονται.&lt;/p&gt;&lt;p&gt;«Ελάχιστο πλήθος χαρακτήρων φράσης»: μια φράση αναλύεται μόνο αν το πλήθος χαρακτήρων της δεν ξεπερνάει το δοθέν όριο. (π.χ. η φράση «a test» έχει 6 χαρακτήρες)&lt;/p&gt;&lt;p&gt;«Ελάχιστο πλήθος γραμμάτων λέξης (ένα)»: μια φράση εμφανίζεται μόνο αν το πλήθος γραμμάτων κάποιας λέξης της δεν ξεπερνάει το δοθέν όριο. (π.χ. στη φράση «a test» η μεγαλύτερη λέξη «test» έχει 4 γράμματα)&lt;/p&gt;&lt;p&gt;«Ελάχιστο πλήθος γραμμάτων λέξης (όλα)»: μια φράση εμφανίζεται μόνο αν το πλήθος γραμμάτων κάθε λέξης της δεν ξεπερνάει το δοθέν όριο. (π.χ. στη φράση «a test» η μικρότερη λέξη «a» έχει 1 γράμμα)&lt;/p&gt;&lt;p&gt;«Αγνόηση μικρότερων λέξεων»: οι μικρότερες λέξεις δεν αναλύονται καθόλου.&lt;/p&gt;&lt;p&gt;(π.χ. Αν το όρισμα της τελευταίας επιλογής είναι 3, η πρόταση «this is a test» ισοδυναμεί με την «this test», η οποία και αναλύεται αντί της αρχικής. Η εφαρμογή διαφορετικής επιλογής θα είχε ως αποτέλεσμα η πρόταση αυτή να χωριστεί στις φράσεις «this is», «is a», «a test», ακόμα και αν καμία από αυτές δε θα εμφανίζονταν/αναλύονταν τελικά).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="293"/>
         <source>Only phrases are shown which appear at least this many times in the document.</source>
-        <translation type="unfinished"/>
+        <translation>Αναλύονται μόνο οι φράσεις που εμφανίζονται τόσες φορές μέσα στο έγγραφο.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="312"/>
@@ -12873,7 +12896,10 @@ If not, end characters are ignored.</source>
         <source>The controls in this row determine how many consecutive words are treated as a single phrase.
 If minimum and maximum are selected, exactly this many words are taken. (e.g. with 2, in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g. &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation type="unfinished"/>
+        <translation>Η επιλογή αυτή καθορίζει το πλήθος των λέξεων που θεωρούνται ως μία φράση.
+«Ελάχιστο &amp;amp; μέγιστο πλήθος λέξεων σε κάθε φράση»: το ακριβές πλήθος λέξεων κάθε φράσης θα είναι το όρισμα αυτής της επιλογής
+(π.χ. αν το όρισμα αυτής της επιλογής είναι 2, στην πρώτη πρόταση οι φράσεις είναι οι εξής: «Η επιλογή», «επιλογή αυτή», κλπ.)
+«Μέγιστο πλήθος λέξεων σε κάθε φράση»: αναλύονται και οι λέξεις στην αρχή κάθε πρότασης (π.χ. «Η», «η επιλογή», «επιλογή αυτή», κλπ.)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="361"/>
