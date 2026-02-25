@@ -1609,6 +1609,7 @@
 <file>completion/fixltxhyph.cwl</file>
 <file>completion/fixmath.cwl</file>
 <file>completion/fixme.cwl</file>
+<file>completion/fixtounicode.cwl</file>
 <file>completion/fjodor.cwl</file>
 <file>completion/flabels.cwl</file>
 <file>completion/flagderiv.cwl</file>

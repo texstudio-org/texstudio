@@ -1,7 +1,8 @@
 # adfbullets package
-# Matthew Bertucci 2024/10/05 for v1.3
+# Matthew Bertucci 2026/02/25 for v1.5
 
 #include:svn-prov
+#include:fixtounicode
 
 #keyvals:\usepackage/adfbullets#c
 scale=%<factor%>

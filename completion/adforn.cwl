@@ -1,8 +1,9 @@
 # adforn package
-# Matthew Bertucci 2024/09/30 for v1.2
+# Matthew Bertucci 2026/02/25 for v1.4
 
 #include:svn-prov
 #include:pifont
+#include:fixtounicode
 
 #keyvals:\usepackage/adforn#c
 scale=%<factor%>
@@ -10,7 +11,7 @@ scale=%<factor%>
 
 \adforn{number}#n
 \adfast{number}#n
-\adfbullet#n
+\adftextbullet#n
 \adfclosedflourishleft#n
 \adfclosedflourishright#n
 \adfdiamond#n
