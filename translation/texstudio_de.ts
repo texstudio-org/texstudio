@@ -884,14 +884,14 @@ Die Konfiguration sollte geändert werden und Befehllisten sollten nur in &apos;
 <context>
     <name>CodeSnippet_PlaceHolder</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="162"/>
-        <location filename="../src/additionaltranslations.cpp" line="166"/>
+        <location filename="../src/additionaltranslations.cpp" line="160"/>
+        <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>num</source>
         <translation>Zähler</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="163"/>
-        <location filename="../src/additionaltranslations.cpp" line="167"/>
+        <location filename="../src/additionaltranslations.cpp" line="161"/>
+        <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>den</source>
         <translation>Nenner</translation>
     </message>
@@ -3458,6 +3458,11 @@ options again to only view the most common settings.</source>
         <translation>&amp;Akzente</translation>
     </message>
     <message>
+        <location filename="../src/additionaltranslations.cpp" line="22"/>
+        <source>Review remarks (changes)</source>
+        <translation>Review-Anmerkungen (changes)</translation>
+    </message>
+    <message>
         <location filename="../src/additionaltranslations.cpp" line="23"/>
         <source>Cross References</source>
         <translation>Querverweise</translation>
@@ -3506,11 +3511,6 @@ options again to only view the most common settings.</source>
         <location filename="../src/additionaltranslations.cpp" line="18"/>
         <source>&amp;Horizontal Spacing</source>
         <translation>&amp;Horizontaler Abstand</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="22"/>
-        <source>Review remarks (easyReview)</source>
-        <translation>Review-Anmerkungen (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
@@ -3929,7 +3929,7 @@ options again to only view the most common settings.</source>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
-        <location filename="../src/additionaltranslations.cpp" line="240"/>
+        <location filename="../src/additionaltranslations.cpp" line="238"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
         <translation>Der \quad Befehl fügt einen horizontalen Abstand von 1em ein (1em ist die Weite des Buchstaben M).</translation>
     </message>
@@ -4029,102 +4029,127 @@ options again to only view the most common settings.</source>
         <translation>\includegraphics{Datei}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="153"/>
+        <location filename="../src/additionaltranslations.cpp" line="137"/>
+        <source>\highlight{text} (changes)</source>
+        <translation>\highlight{Text} (changes)</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="138"/>
+        <source>\comment{comment} (changes)</source>
+        <translation>\comment{Kommentar} (changes)</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="139"/>
+        <source>\added{text} (changes)</source>
+        <translation>\added{Text} (changes)</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="140"/>
+        <source>\deleted{text} (changes)</source>
+        <translation>\deleted{Text} (changes)</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="141"/>
+        <source>\replaced{text}{replacement} (changes)</source>
+        <translation>\replaced{Text}{Ersatz} (changes)</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>Inline math - $...$</source>
         <translation>Mathematikmodus im Text $ ... $</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="154"/>
+        <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>Math (in text style) within a paragraph of text</source>
         <translation>Mathematikmodus (im &quot;text style&quot;) innerhalb eines Textparagraphen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="155"/>
+        <location filename="../src/additionaltranslations.cpp" line="153"/>
         <source>Inline math - \(...\)</source>
         <translation>Mathematikmodus im Text \( ... \)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="156"/>
+        <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>Same as $...$ and the math environment</source>
         <translation>Wie $...$ und die math-Umgebung</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="157"/>
+        <location filename="../src/additionaltranslations.cpp" line="155"/>
         <source>Display math - \[...\]</source>
         <translation>Abgesetzter Mathematikmodus \[ ... \]</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="158"/>
+        <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>Math (in display style) apart from paragraph of text</source>
         <translation>Mathematikmodus (im &quot;display style&quot;) innerhalb eines Textparagraphen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="165"/>
+        <location filename="../src/additionaltranslations.cpp" line="163"/>
         <source>\dfrac (amsmath) always uses display style for the fraction</source>
         <translation>\dfrac (amsmath) nutzt &quot;display style&quot; für Brüche</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="169"/>
+        <location filename="../src/additionaltranslations.cpp" line="167"/>
         <source>Autosize opening delimiter</source>
         <translation>Öffnendes Trennzeichen mit angepasster Größe</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="170"/>
+        <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>Autosize closing delimiter</source>
         <translation>Schließendes Trennzeichen mit angepasster Größe</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="171"/>
+        <location filename="../src/additionaltranslations.cpp" line="169"/>
         <source>\begin{array}...\end{array}</source>
         <translation>\begin{array}...\end{array}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="172"/>
+        <location filename="../src/additionaltranslations.cpp" line="170"/>
         <source>Tabular for math (used inside one of the other math environments)</source>
         <translation>Tabelle im Mathemodus (innerhalb einer Matheumgebung nutzbar)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="174"/>
+        <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>Single equation centered in a row</source>
         <translation>Einzelne Gleichung in Zeile zentriert</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="176"/>
+        <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>Multiple equations aligned within columns</source>
         <translation>Mehrere Gleichungen ausgerichtet an Spalten</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="178"/>
+        <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>Multiple equations aligned within columns with customizable column spacing</source>
         <translation>Mehrere Gleichungen ausgerichtet an Spalten mit anpassbaren Abstand</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="180"/>
+        <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>Multiple equations aligned within columns having column spacing to fill full line</source>
         <translation>Mehrere Gleichungen ausgerichtet an Spalten mit Abstand, so dass die Zeile gefüllt wird</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="182"/>
+        <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>Multiple equations centered in rows</source>
         <translation>Mehrere Gleichungen zentriert in mehreren Zeilen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="184"/>
+        <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>Single equation split into multiple lines</source>
         <translation>Einzelne Gleichung über mehrere Zeilen geteilt</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="194"/>
+        <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>The gather* environment is an unnumbered gather environment.</source>
         <translation>Die gather* Umgebung ist eine unnummerierte gather Umgebung.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="198"/>
+        <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>Distinction of cases (within other math env)</source>
         <translation>Fallunterscheidung (in Matheumgebung)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="200"/>
+        <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>Single equation split into multiple aligned lines (within other math env)</source>
         <translation>Einzelne Gleichung über mehrere ausgerichteten Zeilen geteilt (in Matheumgebung)</translation>
     </message>
@@ -4139,107 +4164,107 @@ options again to only view the most common settings.</source>
         <translation>\input{Datei}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="144"/>
+        <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>label</source>
         <translation>label</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="146"/>
+        <location filename="../src/additionaltranslations.cpp" line="144"/>
         <source>index</source>
         <translation>index</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="147"/>
+        <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>cite</source>
         <translation>cite</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="149"/>
+        <location filename="../src/additionaltranslations.cpp" line="147"/>
         <source>footnote</source>
         <translation>footnote</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="159"/>
+        <location filename="../src/additionaltranslations.cpp" line="157"/>
         <source>Subscript - _{}</source>
         <translation>Tiefgestellt - _{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="160"/>
+        <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>Superscript - ^{}</source>
         <translation>Hochgestellt - ^{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="173"/>
+        <location filename="../src/additionaltranslations.cpp" line="171"/>
         <source>env equation</source>
         <translation>Umgebung &quot;equation&quot;</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="185"/>
+        <location filename="../src/additionaltranslations.cpp" line="183"/>
         <source>env equation* (amsmath)</source>
         <translation>Umgebung &quot;equation*&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="175"/>
+        <location filename="../src/additionaltranslations.cpp" line="173"/>
         <source>env align (amsmath)</source>
         <translation>Umgebung &quot;align&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="186"/>
+        <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>The equation* environment is an unnumbered equation environment.</source>
         <translation>Die equation* Umgebung ist eine unnummerierte equation Umgebung.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="187"/>
+        <location filename="../src/additionaltranslations.cpp" line="185"/>
         <source>env align* (amsmath)</source>
         <translation>Umgebung &quot;align*&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="177"/>
+        <location filename="../src/additionaltranslations.cpp" line="175"/>
         <source>env alignat (amsmath)</source>
         <translation>Umgebung &quot;alignat&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="188"/>
+        <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>The align* environment is an unnumbered align environment.</source>
         <translation>Die align* Umgebung ist eine unnummerierte align Umgebung.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="189"/>
+        <location filename="../src/additionaltranslations.cpp" line="187"/>
         <source>env alignat* (amsmath)</source>
         <translation>Umgebung &quot;alignat*&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="179"/>
+        <location filename="../src/additionaltranslations.cpp" line="177"/>
         <source>env flalign (amsmath)</source>
         <translation>Umgebung &quot;flalign&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="190"/>
+        <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>The alignat* environment is an unnumbered alignat environment.</source>
         <translation>Die alignat* Umgebung ist eine unnummerierte alignat Umgebung.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="191"/>
+        <location filename="../src/additionaltranslations.cpp" line="189"/>
         <source>env flalign* (amsmath)</source>
         <translation>Umgebung &quot;flalign*&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="181"/>
+        <location filename="../src/additionaltranslations.cpp" line="179"/>
         <source>env gather (amsmath)</source>
         <translation>Umgebung &quot;gather&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="192"/>
+        <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>The flalign* environment is an unnumbered flalign environment.</source>
         <translation>Die flalign* Umgebung ist eine unnummerierte flalign Umgebung.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="193"/>
+        <location filename="../src/additionaltranslations.cpp" line="191"/>
         <source>env gather* (amsmath)</source>
         <translation>Umgebung &quot;gather*&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="183"/>
+        <location filename="../src/additionaltranslations.cpp" line="181"/>
         <source>env multline (amsmath)</source>
         <translation>Umgebung &quot;multiline&quot; (amsmath)</translation>
     </message>
@@ -4249,106 +4274,72 @@ options again to only view the most common settings.</source>
         <translation>Die description Umgebung produziert eine Beschreibungsliste.%nJedes Element der Liste beginnt mit dem Befehl \item[Bezeichnung]. </translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="137"/>
-        <source>\alert{text} (easyReview)</source>
-        <translation>\alert{Text} (easyReview)</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="138"/>
-        <source>\comment{text}{comment} (easyReview)</source>
-        <translation>\comment{Text}{Kommentar} (easyReview)</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="139"/>
-        <source>\add{text} (easyReview)</source>
-        <translation>\add{Text} (easyReview)</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="140"/>
-        <source>\remove{text} (easyReview)</source>
-        <translation>\remove{Text} (easyReview)</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="141"/>
-        <source>\replace{text}{replacement} (easyReview)</source>
-        <translation>\replace{Text}{Ersatz} (easyReview)</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="142"/>
-        <source>Turn on review comments in pdf</source>
-        <translation>Reviewkommentare im PDF anschalten</translation>
-    </message>
-    <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
-        <source>Turn off review comments in pdf</source>
-        <translation>Reviewkommentare im PDF ausschalten</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>\label{key}</source>
         <translation>\label{key}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="148"/>
+        <location filename="../src/additionaltranslations.cpp" line="146"/>
         <source>This command generates an in-text citation to the reference associated with the ref entry in the bib file</source>
         <translation>Dieser Befehl generiert ein Zitat zu einer Referenz, die mit dem ref-Eintrag in der bib-Datei verbunden ist.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="150"/>
+        <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page.</source>
         <translation>\footnote[Anzahl]{Text}%nDer \footnote Befehl setzt eine nummerierte Fußnote im unteren Rand der aktuellen Seite.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="151"/>
+        <location filename="../src/additionaltranslations.cpp" line="149"/>
         <source>The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look</source>
         <translation>Das Argument des Befehls \bibliographystyle bezieht auf eine Datei Stil.bst, die definiert wie Zitate dargestellt werden.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="152"/>
+        <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. &apos;\addbibresource{mybibliography.bib}&apos;). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands.</source>
         <translation>\addbibresource{bib-Datei} fügt den Ort einer Datenbank-Datei für biblatex wie eine .bib-Datei. Der Dateiname sollte die Dateierweiterung enthalten (z.B. &apos;\addbibresource{mybibliography.bib}&apos;). Man kann nur eine Datei pro \addbibresource{} Befehl setzen (komma-separierte Listen sind nicht erlaubt), aber es können mehrere Befehle verwendet werden.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="161"/>
+        <location filename="../src/additionaltranslations.cpp" line="159"/>
         <source>Fraction - \frac{}{}</source>
         <translation>Bruch - \frac{}{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="164"/>
+        <location filename="../src/additionaltranslations.cpp" line="162"/>
         <source>Fraction - \dfrac{}{}</source>
         <translation>Bruch - \dfrac{}{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="168"/>
+        <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>Square Root - \sqrt{}</source>
         <translation>Quadratwurzel - \sqrt{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="195"/>
+        <location filename="../src/additionaltranslations.cpp" line="193"/>
         <source>env multline* (amsmath)</source>
         <translation>Umgebung &quot;multiline*&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="196"/>
+        <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>The multline* environment is an unnumbered multline environment.</source>
         <translation>Die multiline* Umgebung ist eine unnummerierte multiline Umgebung.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="197"/>
+        <location filename="../src/additionaltranslations.cpp" line="195"/>
         <source>env cases (amsmath)</source>
         <translation>Umgebung &quot;cases&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="199"/>
+        <location filename="../src/additionaltranslations.cpp" line="197"/>
         <source>env split (amsmath)</source>
         <translation>Umgebung &quot;split&quot; (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="201"/>
+        <location filename="../src/additionaltranslations.cpp" line="199"/>
         <source>env Corollary (ntheorem)</source>
         <translation>Umgebung &quot;Corollary&quot; (ntheorem)</translation>
     </message>
     <message>
+        <location filename="../src/additionaltranslations.cpp" line="200"/>
         <location filename="../src/additionaltranslations.cpp" line="202"/>
         <location filename="../src/additionaltranslations.cpp" line="204"/>
         <location filename="../src/additionaltranslations.cpp" line="206"/>
@@ -4356,182 +4347,181 @@ options again to only view the most common settings.</source>
         <location filename="../src/additionaltranslations.cpp" line="210"/>
         <location filename="../src/additionaltranslations.cpp" line="212"/>
         <location filename="../src/additionaltranslations.cpp" line="214"/>
-        <location filename="../src/additionaltranslations.cpp" line="216"/>
         <source>Needs \usepackage[standard]{ntheorem}</source>
         <translation>Benötigt \usepackage[standard]{ntheorem}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="203"/>
+        <location filename="../src/additionaltranslations.cpp" line="201"/>
         <source>env Definition (ntheorem)</source>
         <translation>Umgebung &quot;Definition&quot; (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="205"/>
+        <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>env Example (ntheorem)</source>
         <translation>Umgebung &quot;Example&quot; (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="207"/>
+        <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>env Lemma (ntheorem)</source>
         <translation>Umgebung &quot;Lemma&quot; (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="209"/>
+        <location filename="../src/additionaltranslations.cpp" line="207"/>
         <source>env Proof (ntheorem)</source>
         <translation>Umgebung &quot;Proof&quot; (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="211"/>
+        <location filename="../src/additionaltranslations.cpp" line="209"/>
         <source>env Proposition (ntheorem)</source>
         <translation>Umgebung &quot;Proposition&quot; (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="213"/>
+        <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>env Remark (ntheorem)</source>
         <translation>Umgebung &quot;Remark&quot; (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="215"/>
+        <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>env Theorem (ntheorem)</source>
         <translation>Umgebung &quot;Theorem&quot; (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="217"/>
+        <location filename="../src/additionaltranslations.cpp" line="215"/>
         <source>Roman - \mathrm{}</source>
         <translation>Roman - \mathrm{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="218"/>
+        <location filename="../src/additionaltranslations.cpp" line="216"/>
         <source>Italic - \mathit{}</source>
         <translation>Kursiv - \mathit</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="219"/>
+        <location filename="../src/additionaltranslations.cpp" line="217"/>
         <source>Bold - \mathbf{}</source>
         <translation>Fett - \mathbf{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="220"/>
+        <location filename="../src/additionaltranslations.cpp" line="218"/>
         <source>Sans Serif - \mathsf{}</source>
         <translation>Serifenlos - \mathsf</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="221"/>
+        <location filename="../src/additionaltranslations.cpp" line="219"/>
         <source>Typewriter - \mathtt{}</source>
         <translation>Schreibmaschine - \mathtt{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="222"/>
+        <location filename="../src/additionaltranslations.cpp" line="220"/>
         <source>Calligraphic - \mathcal{}</source>
         <translation>Kalligraphisch - \mathcal{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="223"/>
+        <location filename="../src/additionaltranslations.cpp" line="221"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
         <translation>Blackboard Bold - \mathbb{} (amssymb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="224"/>
+        <location filename="../src/additionaltranslations.cpp" line="222"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
         <translation>Fraktur - \mathfrak{} (amssymb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="225"/>
+        <location filename="../src/additionaltranslations.cpp" line="223"/>
         <source>\overset (amsmath)</source>
         <translation>\overset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="226"/>
+        <location filename="../src/additionaltranslations.cpp" line="224"/>
         <source>\underset (amsmath)</source>
         <translation>\underset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="227"/>
+        <location filename="../src/additionaltranslations.cpp" line="225"/>
         <source>\sideset (amsmath)</source>
         <translation>\sideset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="228"/>
+        <location filename="../src/additionaltranslations.cpp" line="226"/>
         <source>\prescript (mathtools)</source>
         <translation>\prescript (mathtools)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="229"/>
+        <location filename="../src/additionaltranslations.cpp" line="227"/>
         <source>Negative - \!</source>
         <translation>Negativ - \!</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="230"/>
+        <location filename="../src/additionaltranslations.cpp" line="228"/>
         <source>Negative thin space</source>
         <translation>Negativer &apos;dünner&apos; Abstand</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="231"/>
+        <location filename="../src/additionaltranslations.cpp" line="229"/>
         <source>Thin - \,</source>
         <translation>Dünn - \,</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="232"/>
+        <location filename="../src/additionaltranslations.cpp" line="230"/>
         <source>3/18 of a \quad</source>
         <translation>3/18 von einem \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="233"/>
+        <location filename="../src/additionaltranslations.cpp" line="231"/>
         <source>Medium - \:</source>
         <translation>Mittel - \:</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="234"/>
+        <location filename="../src/additionaltranslations.cpp" line="232"/>
         <source>4/18 of a \quad</source>
         <translation>4/18 von einem \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="235"/>
+        <location filename="../src/additionaltranslations.cpp" line="233"/>
         <source>Thick - \;</source>
         <translation>Breit - \;</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="236"/>
+        <location filename="../src/additionaltranslations.cpp" line="234"/>
         <source>5/18 of a \quad</source>
         <translation>5/18 von einem \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="237"/>
+        <location filename="../src/additionaltranslations.cpp" line="235"/>
         <source>Interword - \ </source>
         <translation>Wortzwischenraum - \ </translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="238"/>
+        <location filename="../src/additionaltranslations.cpp" line="236"/>
         <source>regular whitespace</source>
         <translation>normales Leerzeichen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="239"/>
+        <location filename="../src/additionaltranslations.cpp" line="237"/>
         <source>One quad - \quad</source>
         <translation>Quad - \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="241"/>
+        <location filename="../src/additionaltranslations.cpp" line="239"/>
         <source>Two quads - \qquad</source>
         <translation>Zwei Quads - \qquad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="242"/>
+        <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>Twice the size of a \quad</source>
         <translation>Doppelte Weite eines \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="243"/>
+        <location filename="../src/additionaltranslations.cpp" line="241"/>
         <source>ref</source>
         <translation>ref</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="244"/>
+        <location filename="../src/additionaltranslations.cpp" line="242"/>
         <source>eqref</source>
         <translation>eqref</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="245"/>
+        <location filename="../src/additionaltranslations.cpp" line="243"/>
         <source>pageref</source>
         <translation>pageref</translation>
     </message>
@@ -7680,462 +7670,502 @@ Achtung:
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="246"/>
+        <location filename="../src/additionaltranslations.cpp" line="244"/>
         <source>background</source>
         <translation>Hintergrundfarbe</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="247"/>
+        <location filename="../src/additionaltranslations.cpp" line="245"/>
         <source>line:error</source>
         <translation>Zeile:Fehler</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="248"/>
+        <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>line:warning</source>
         <translation>Zeile:Warnung</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="249"/>
+        <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>line:badbox</source>
         <translation>Zeile:Bad Box</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="250"/>
+        <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>line:bookmark</source>
         <translation>Zeile:Lesezeichen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="251"/>
+        <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>line:bookmark0</source>
         <translation>Zeile:Lesezeichen0</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="252"/>
+        <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>line:bookmark1</source>
         <translation>Zeile:Lesezeichen1</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="253"/>
+        <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>line:bookmark2</source>
         <translation>Zeile:Lesezeichen2</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="254"/>
+        <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>line:bookmark3</source>
         <translation>Zeile:Lesezeichen3</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="255"/>
+        <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>line:bookmark4</source>
         <translation>Zeile:Lesezeichen4</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="256"/>
+        <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>line:bookmark5</source>
         <translation>Zeile:Lesezeichen5</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="257"/>
+        <location filename="../src/additionaltranslations.cpp" line="255"/>
         <source>line:bookmark6</source>
         <translation>Zeile:Lesezeichen6</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="258"/>
+        <location filename="../src/additionaltranslations.cpp" line="256"/>
         <source>line:bookmark7</source>
         <translation>Zeile:Lesezeichen7</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="259"/>
+        <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>line:bookmark8</source>
         <translation>Zeile:Lesezeichen8</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="260"/>
+        <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>line:bookmark9</source>
         <translation>Zeile:Lesezeichen9</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="261"/>
+        <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>magicComment</source>
         <translation>magicComment</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="262"/>
+        <location filename="../src/additionaltranslations.cpp" line="260"/>
         <source>commentTodo</source>
         <translation>Todo-Kommentar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="263"/>
+        <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>comment</source>
         <translation>Kommentar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="264"/>
+        <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>keyword</source>
         <translation>Schlüsselwort</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="265"/>
+        <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>extra-keyword</source>
         <translation>Wichtiges Schlüsselwort</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="266"/>
+        <location filename="../src/additionaltranslations.cpp" line="264"/>
         <source>math-keyword</source>
         <translation>Mathematisches Schlüsselwort</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="267"/>
+        <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>link</source>
         <translation>Link</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="268"/>
+        <location filename="../src/additionaltranslations.cpp" line="266"/>
         <source>align-ampersand</source>
         <translation>Ausrichtungstrennzeichen (&amp;&amp;)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="269"/>
+        <location filename="../src/additionaltranslations.cpp" line="267"/>
         <source>verbatim</source>
         <translation>verbatim</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="270"/>
+        <location filename="../src/additionaltranslations.cpp" line="268"/>
         <source>sweave-block</source>
         <translation>sweave-Block</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="271"/>
+        <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>sweave-delimiter</source>
         <translation>sweave-Begrenzer</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="272"/>
+        <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>pweave-block</source>
         <translation>pweave-Block</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="273"/>
+        <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>pweave-delimiter</source>
         <translation>pweave-Begrenzer</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="274"/>
+        <location filename="../src/additionaltranslations.cpp" line="272"/>
         <source>picture</source>
         <translation>picture</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="275"/>
+        <location filename="../src/additionaltranslations.cpp" line="273"/>
         <source>picture-keyword</source>
         <translation>Bild-Schlüsselwort</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="276"/>
+        <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>braceMatch</source>
         <translation>Klammermarkierung</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="277"/>
+        <location filename="../src/additionaltranslations.cpp" line="275"/>
         <source>braceMismatch</source>
         <translation>Klammerfehler</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="278"/>
+        <location filename="../src/additionaltranslations.cpp" line="276"/>
         <source>search</source>
         <translation>Suchtextmarkierung</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="279"/>
+        <location filename="../src/additionaltranslations.cpp" line="277"/>
         <source>numbers</source>
         <translation>Mathematisch</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="280"/>
+        <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>math-delimiter</source>
         <translation>math-delimiter</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="281"/>
+        <location filename="../src/additionaltranslations.cpp" line="279"/>
         <source>math-text</source>
         <translation>math-text</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="282"/>
+        <location filename="../src/additionaltranslations.cpp" line="280"/>
         <source>text</source>
         <translation>Textstring</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="283"/>
+        <location filename="../src/additionaltranslations.cpp" line="281"/>
         <source>escapeseq</source>
         <translation>Escape-Sequenz (Skript)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="284"/>
+        <location filename="../src/additionaltranslations.cpp" line="282"/>
         <source>spellingMistake</source>
         <translation>Rechtschreibfehler</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="285"/>
+        <location filename="../src/additionaltranslations.cpp" line="283"/>
         <source>wordRepetition</source>
         <translation>Wortwiederholung</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="286"/>
+        <location filename="../src/additionaltranslations.cpp" line="284"/>
         <source>wordRepetitionLongRange</source>
         <translation>WortwiederholungLangerAbstand</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="287"/>
+        <location filename="../src/additionaltranslations.cpp" line="285"/>
         <source>badWord</source>
         <translation>SchlechtesWort</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="288"/>
+        <location filename="../src/additionaltranslations.cpp" line="286"/>
         <source>grammarMistake</source>
         <translation>Grammatikfehler</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="289"/>
+        <location filename="../src/additionaltranslations.cpp" line="287"/>
         <source>grammarMistakeSpecial1</source>
         <translation>GrammatikfehlerSpezial1</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="290"/>
+        <location filename="../src/additionaltranslations.cpp" line="288"/>
         <source>grammarMistakeSpecial2</source>
         <translation>GrammatikfehlerSpezial2</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="291"/>
+        <location filename="../src/additionaltranslations.cpp" line="289"/>
         <source>grammarMistakeSpecial3</source>
         <translation>GrammatikfehlerSpezial3</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="292"/>
+        <location filename="../src/additionaltranslations.cpp" line="290"/>
         <source>grammarMistakeSpecial4</source>
         <translation>GrammatikfehlerSpezial4</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="293"/>
+        <location filename="../src/additionaltranslations.cpp" line="291"/>
         <source>latexSyntaxMistake</source>
         <translation>LaTeX Syntaxfehler</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="294"/>
+        <location filename="../src/additionaltranslations.cpp" line="292"/>
         <source>temporaryCodeCompletion</source>
         <translation>(veraltet)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="295"/>
+        <location filename="../src/additionaltranslations.cpp" line="293"/>
         <source>environment</source>
         <translation>Umgebung</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="296"/>
+        <location filename="../src/additionaltranslations.cpp" line="294"/>
         <source>referencePresent</source>
         <translation>Korrekte Referenz</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="297"/>
+        <location filename="../src/additionaltranslations.cpp" line="295"/>
         <source>referenceMissing</source>
         <translation>Fehlende Referenz</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="298"/>
+        <location filename="../src/additionaltranslations.cpp" line="296"/>
         <source>referenceMultiple</source>
         <translation>Mehrfaches Label</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="299"/>
+        <location filename="../src/additionaltranslations.cpp" line="297"/>
         <source>citationPresent</source>
         <translation>Korrekte Zitat-ID</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="300"/>
+        <location filename="../src/additionaltranslations.cpp" line="298"/>
         <source>citationMissing</source>
         <translation>Ungültige Zitat-ID</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="301"/>
+        <location filename="../src/additionaltranslations.cpp" line="299"/>
         <source>packagePresent</source>
         <translation>Paket vorhanden</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="302"/>
+        <location filename="../src/additionaltranslations.cpp" line="300"/>
         <source>packageMissing</source>
         <translation>Paket fehlt</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="303"/>
+        <location filename="../src/additionaltranslations.cpp" line="301"/>
         <source>structure</source>
         <translation>Strukturbefehl</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="304"/>
+        <location filename="../src/additionaltranslations.cpp" line="302"/>
         <source>current</source>
         <translation>Aktuelle Zeile</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="305"/>
+        <location filename="../src/additionaltranslations.cpp" line="303"/>
         <source>selection</source>
         <translation>Suchbereich</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="306"/>
+        <location filename="../src/additionaltranslations.cpp" line="304"/>
         <source>replacement</source>
         <translation>Ersetzung</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="307"/>
+        <location filename="../src/additionaltranslations.cpp" line="305"/>
         <source>diffDelete</source>
         <translation>diff (Löschen)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="308"/>
+        <location filename="../src/additionaltranslations.cpp" line="306"/>
         <source>diffAdd</source>
         <translation>diff (Hinzufügen)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="309"/>
+        <location filename="../src/additionaltranslations.cpp" line="307"/>
         <source>diffReplace</source>
         <translation>diff (Ersetzen)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="310"/>
+        <location filename="../src/additionaltranslations.cpp" line="308"/>
         <source>previewSelection</source>
         <translation>vorschauAuswahl</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="311"/>
+        <location filename="../src/additionaltranslations.cpp" line="309"/>
         <source>txs-test</source>
         <translation>txs-test</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="312"/>
+        <location filename="../src/additionaltranslations.cpp" line="310"/>
         <source>txs-test-summary</source>
         <translation>txs-test-zusammenfassung</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="313"/>
+        <location filename="../src/additionaltranslations.cpp" line="311"/>
         <source>txs-test-pass</source>
         <translation>txs-test-pass</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="314"/>
+        <location filename="../src/additionaltranslations.cpp" line="312"/>
         <source>txs-test-fail</source>
         <translation>txs-test-fail</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="315"/>
+        <location filename="../src/additionaltranslations.cpp" line="313"/>
         <source>txs-test-warn</source>
         <translation>txs-test-warn</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="316"/>
+        <location filename="../src/additionaltranslations.cpp" line="314"/>
         <source>txs-test-qdebug</source>
         <translation>txs-test-qdebug</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="317"/>
+        <location filename="../src/additionaltranslations.cpp" line="315"/>
         <source>dtx:guard</source>
         <translation>dtx:guard</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="318"/>
+        <location filename="../src/additionaltranslations.cpp" line="316"/>
         <source>dtx:macro</source>
         <translation>dtx:macro</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="319"/>
+        <location filename="../src/additionaltranslations.cpp" line="317"/>
         <source>dtx:verbatim</source>
         <translation>dtx:verbatim</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="320"/>
+        <location filename="../src/additionaltranslations.cpp" line="318"/>
         <source>dtx:specialchar</source>
         <translation>dtx:specialchar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="321"/>
+        <location filename="../src/additionaltranslations.cpp" line="319"/>
         <source>dtx:commands</source>
         <translation>dtx:commands</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="322"/>
+        <location filename="../src/additionaltranslations.cpp" line="320"/>
         <source>lua:keyword</source>
         <translation>Lua-Schlüsselwort</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="323"/>
+        <location filename="../src/additionaltranslations.cpp" line="321"/>
         <source>lua:comment</source>
         <translation>Lua-Kommentar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="324"/>
+        <location filename="../src/additionaltranslations.cpp" line="322"/>
         <source>asymptote:block</source>
         <translation>asymptote:block</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="325"/>
+        <location filename="../src/additionaltranslations.cpp" line="323"/>
         <source>asymptote:keyword</source>
         <translation>asymptote:keyword</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="326"/>
+        <location filename="../src/additionaltranslations.cpp" line="324"/>
         <source>asymptote:type</source>
         <translation>asymptote:type</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="327"/>
+        <location filename="../src/additionaltranslations.cpp" line="325"/>
         <source>asymptote:numbers</source>
         <translation>asymptote:zahlen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="328"/>
+        <location filename="../src/additionaltranslations.cpp" line="326"/>
         <source>asymptote:string</source>
         <translation>asymptote:string</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="329"/>
+        <location filename="../src/additionaltranslations.cpp" line="327"/>
         <source>asymptote:comment</source>
         <translation>asymptote:kommentar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="330"/>
+        <location filename="../src/additionaltranslations.cpp" line="328"/>
         <source>qtscript:comment</source>
         <translation>qtscript:kommentar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="331"/>
+        <location filename="../src/additionaltranslations.cpp" line="329"/>
         <source>qtscript:string</source>
         <translation>qtscript:string</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="332"/>
+        <location filename="../src/additionaltranslations.cpp" line="330"/>
         <source>qtscript:number</source>
         <translation>qtscript:zahl</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="333"/>
+        <location filename="../src/additionaltranslations.cpp" line="331"/>
         <source>qtscript:keyword</source>
         <translation>qtscript:schlüsselwort</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="334"/>
+        <location filename="../src/additionaltranslations.cpp" line="332"/>
         <source>qtscript:txs-variable</source>
         <translation>qtscript:txs-variable</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="335"/>
+        <location filename="../src/additionaltranslations.cpp" line="333"/>
         <source>qtscript:txs-function</source>
         <translation>qtscript:txs-funktion</translation>
     </message>
     <message>
+        <location filename="../src/additionaltranslations.cpp" line="334"/>
+        <source>braceLevel0</source>
+        <translation>braceLevel0</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="335"/>
+        <source>braceLevel1</source>
+        <translation>braceLevel1</translation>
+    </message>
+    <message>
         <location filename="../src/additionaltranslations.cpp" line="336"/>
+        <source>braceLevel2</source>
+        <translation>braceLevel2</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="337"/>
+        <source>braceLevel3</source>
+        <translation>braceLevel3</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="338"/>
+        <source>braceLevel4</source>
+        <translation>braceLevel4</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="339"/>
+        <source>braceLevel5</source>
+        <translation>braceLevel5</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="340"/>
+        <source>braceLevel6</source>
+        <translation>braceLevel6</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="341"/>
+        <source>braceLevel7</source>
+        <translation>braceLevel7</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="342"/>
         <source>preedit</source>
         <translation>preedit</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="337"/>
+        <location filename="../src/additionaltranslations.cpp" line="343"/>
         <source>normal</source>
         <translation>Normal</translation>
     </message>
@@ -9859,136 +9889,136 @@ Bitte öffnen Sie das Verzeichnis der Vorlage und entpacken die Zip-Datei, um ei
 <context>
     <name>Texstudio</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="338"/>
+        <location filename="../src/additionaltranslations.cpp" line="344"/>
         <source>Custom</source>
         <translation>Benutzer-Symbolleiste</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="339"/>
+        <location filename="../src/additionaltranslations.cpp" line="345"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="340"/>
+        <location filename="../src/additionaltranslations.cpp" line="346"/>
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="341"/>
+        <location filename="../src/additionaltranslations.cpp" line="347"/>
         <source>Tools</source>
         <translation>Werkzeuge</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="342"/>
+        <location filename="../src/additionaltranslations.cpp" line="348"/>
         <source>Math</source>
         <translation>Mathe</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="343"/>
+        <location filename="../src/additionaltranslations.cpp" line="349"/>
         <source>Format</source>
         <translation>Format</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="344"/>
+        <location filename="../src/additionaltranslations.cpp" line="350"/>
         <source>Table</source>
         <translation>Tabellen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="345"/>
+        <location filename="../src/additionaltranslations.cpp" line="351"/>
         <source>Diff</source>
         <translation>Diff</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="346"/>
+        <location filename="../src/additionaltranslations.cpp" line="352"/>
         <source>Review</source>
         <translation>Review</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="347"/>
+        <location filename="../src/additionaltranslations.cpp" line="353"/>
         <location filename="../src/texstudio.cpp" line="276"/>
         <source>Central</source>
         <translation>Zentral</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="348"/>
+        <location filename="../src/additionaltranslations.cpp" line="354"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
         <translation>Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="349"/>
+        <location filename="../src/additionaltranslations.cpp" line="355"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="350"/>
+        <location filename="../src/additionaltranslations.cpp" line="356"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
         <translation>Binär</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="351"/>
+        <location filename="../src/additionaltranslations.cpp" line="357"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
         <translation>TeX dtx Datei</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="352"/>
+        <location filename="../src/additionaltranslations.cpp" line="358"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
         <translation>Homespring</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="353"/>
+        <location filename="../src/additionaltranslations.cpp" line="359"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="354"/>
+        <location filename="../src/additionaltranslations.cpp" line="360"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
         <translation>Pweave</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="355"/>
+        <location filename="../src/additionaltranslations.cpp" line="361"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
         <translation>QtScript</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="356"/>
+        <location filename="../src/additionaltranslations.cpp" line="362"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
         <translation>Sweave</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="357"/>
+        <location filename="../src/additionaltranslations.cpp" line="363"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="358"/>
+        <location filename="../src/additionaltranslations.cpp" line="364"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX Makro</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="359"/>
+        <location filename="../src/additionaltranslations.cpp" line="365"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
         <translation>TXS-Testergebnisse</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="360"/>
+        <location filename="../src/additionaltranslations.cpp" line="366"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
         <translation>Einfacher Text</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="361"/>
+        <location filename="../src/additionaltranslations.cpp" line="367"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
         <translation>XML</translation>

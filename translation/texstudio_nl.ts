@@ -884,14 +884,14 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
 <context>
     <name>CodeSnippet_PlaceHolder</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="162"/>
-        <location filename="../src/additionaltranslations.cpp" line="166"/>
+        <location filename="../src/additionaltranslations.cpp" line="160"/>
+        <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>num</source>
         <translation>num</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="163"/>
-        <location filename="../src/additionaltranslations.cpp" line="167"/>
+        <location filename="../src/additionaltranslations.cpp" line="161"/>
+        <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>den</source>
         <translation>den</translation>
     </message>
@@ -3468,6 +3468,11 @@ opties opnieuw om alleen de meest voorkomende instellingen te bekijken.</transla
         <translation>Internationale &amp;Accenten</translation>
     </message>
     <message>
+        <location filename="../src/additionaltranslations.cpp" line="22"/>
+        <source>Review remarks (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/additionaltranslations.cpp" line="23"/>
         <source>Cross References</source>
         <translation>Kruisverwijzingen</translation>
@@ -3516,11 +3521,6 @@ opties opnieuw om alleen de meest voorkomende instellingen te bekijken.</transla
         <location filename="../src/additionaltranslations.cpp" line="18"/>
         <source>&amp;Horizontal Spacing</source>
         <translation>&amp;Horizontale afstand</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="22"/>
-        <source>Review remarks (easyReview)</source>
-        <translation>Recensieopmerkingen (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
@@ -3939,7 +3939,7 @@ opties opnieuw om alleen de meest voorkomende instellingen te bekijken.</transla
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
-        <location filename="../src/additionaltranslations.cpp" line="240"/>
+        <location filename="../src/additionaltranslations.cpp" line="238"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
         <translation>Het commando \quad voegt een horizontale spatie van 1em in (1em is de breedte van M).</translation>
     </message>
@@ -4039,102 +4039,127 @@ opties opnieuw om alleen de meest voorkomende instellingen te bekijken.</transla
         <translation>\includegraphics{file}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="153"/>
+        <location filename="../src/additionaltranslations.cpp" line="137"/>
+        <source>\highlight{text} (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="138"/>
+        <source>\comment{comment} (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="139"/>
+        <source>\added{text} (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="140"/>
+        <source>\deleted{text} (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="141"/>
+        <source>\replaced{text}{replacement} (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>Inline math - $...$</source>
         <translation>Inline wiskunde - $...$</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="154"/>
+        <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>Math (in text style) within a paragraph of text</source>
         <translation>Wiskunde (in tekststijl) binnen een alinea tekst</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="155"/>
+        <location filename="../src/additionaltranslations.cpp" line="153"/>
         <source>Inline math - \(...\)</source>
         <translation>Inline wiskunde - \(...\)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="156"/>
+        <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>Same as $...$ and the math environment</source>
         <translation>Hetzelfde als $...$ en de wiskundige omgeving</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="157"/>
+        <location filename="../src/additionaltranslations.cpp" line="155"/>
         <source>Display math - \[...\]</source>
         <translation>Wiskunde weergeven - \[...\]</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="158"/>
+        <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>Math (in display style) apart from paragraph of text</source>
         <translation>Wiskunde (in weergavestijl), behalve alinea tekst</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="165"/>
+        <location filename="../src/additionaltranslations.cpp" line="163"/>
         <source>\dfrac (amsmath) always uses display style for the fraction</source>
         <translation>\dfrac (amsmath) gebruikt altijd de weergavestijl voor de breuk</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="169"/>
+        <location filename="../src/additionaltranslations.cpp" line="167"/>
         <source>Autosize opening delimiter</source>
         <translation>Openingsscheidingsteken automatisch formaat</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="170"/>
+        <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>Autosize closing delimiter</source>
         <translation>Sluitscheidingsteken automatisch formaat</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="171"/>
+        <location filename="../src/additionaltranslations.cpp" line="169"/>
         <source>\begin{array}...\end{array}</source>
         <translation>\begin{matrix}...\end{matrix}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="172"/>
+        <location filename="../src/additionaltranslations.cpp" line="170"/>
         <source>Tabular for math (used inside one of the other math environments)</source>
         <translation>Tabellarisch voor wiskunde (gebruikt in een van de andere wiskundeomgevingen)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="174"/>
+        <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>Single equation centered in a row</source>
         <translation>Enkele vergelijking gecentreerd in een rij</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="176"/>
+        <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>Multiple equations aligned within columns</source>
         <translation>Meerdere vergelijkingen uitgelijnd binnen kolommen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="178"/>
+        <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>Multiple equations aligned within columns with customizable column spacing</source>
         <translation>Meerdere vergelijkingen uitgelijnd binnen kolommen met aanpasbare kolomafstand</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="180"/>
+        <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>Multiple equations aligned within columns having column spacing to fill full line</source>
         <translation>Meerdere vergelijkingen uitgelijnd binnen kolommen met kolomafstand om de volledige regel te vullen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="182"/>
+        <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>Multiple equations centered in rows</source>
         <translation>Meerdere vergelijkingen gecentreerd in rijen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="184"/>
+        <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>Single equation split into multiple lines</source>
         <translation>Eén vergelijking opgesplitst in meerdere regels</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="194"/>
+        <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>The gather* environment is an unnumbered gather environment.</source>
         <translation>De verzamelomgeving* is een ongenummerde verzamelomgeving.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="198"/>
+        <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>Distinction of cases (within other math env)</source>
         <translation>Onderscheid tussen gevallen (binnen andere wiskundige omgevingen)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="200"/>
+        <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>Single equation split into multiple aligned lines (within other math env)</source>
         <translation>Enkele vergelijking opgesplitst in meerdere uitgelijnde lijnen (binnen andere wiskundige omgevingen)</translation>
     </message>
@@ -4149,107 +4174,107 @@ opties opnieuw om alleen de meest voorkomende instellingen te bekijken.</transla
         <translation>\input{bestand}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="144"/>
+        <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>label</source>
         <translation>etiket</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="146"/>
+        <location filename="../src/additionaltranslations.cpp" line="144"/>
         <source>index</source>
         <translation>index</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="147"/>
+        <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>cite</source>
         <translation>cite</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="149"/>
+        <location filename="../src/additionaltranslations.cpp" line="147"/>
         <source>footnote</source>
         <translation>voetnoot</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="159"/>
+        <location filename="../src/additionaltranslations.cpp" line="157"/>
         <source>Subscript - _{}</source>
         <translation>Abonnement - _{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="160"/>
+        <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>Superscript - ^{}</source>
         <translation>Superscript - ^{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="173"/>
+        <location filename="../src/additionaltranslations.cpp" line="171"/>
         <source>env equation</source>
         <translation>env-vergelijking</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="185"/>
+        <location filename="../src/additionaltranslations.cpp" line="183"/>
         <source>env equation* (amsmath)</source>
         <translation>env-vergelijking* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="175"/>
+        <location filename="../src/additionaltranslations.cpp" line="173"/>
         <source>env align (amsmath)</source>
         <translation>env uitlijnen (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="186"/>
+        <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>The equation* environment is an unnumbered equation environment.</source>
         <translation>De vergelijkingsomgeving* is een ongenummerde vergelijkingsomgeving.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="187"/>
+        <location filename="../src/additionaltranslations.cpp" line="185"/>
         <source>env align* (amsmath)</source>
         <translation>env uitlijnen* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="177"/>
+        <location filename="../src/additionaltranslations.cpp" line="175"/>
         <source>env alignat (amsmath)</source>
         <translation>env uitlijnen (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="188"/>
+        <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>The align* environment is an unnumbered align environment.</source>
         <translation>De align*-omgeving is een ongenummerde align-omgeving.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="189"/>
+        <location filename="../src/additionaltranslations.cpp" line="187"/>
         <source>env alignat* (amsmath)</source>
         <translation>env uitlijnen* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="179"/>
+        <location filename="../src/additionaltranslations.cpp" line="177"/>
         <source>env flalign (amsmath)</source>
         <translation>env flalign (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="190"/>
+        <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>The alignat* environment is an unnumbered alignat environment.</source>
         <translation>De alignat*-omgeving is een ongenummerde alignat-omgeving.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="191"/>
+        <location filename="../src/additionaltranslations.cpp" line="189"/>
         <source>env flalign* (amsmath)</source>
         <translation>env flalign* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="181"/>
+        <location filename="../src/additionaltranslations.cpp" line="179"/>
         <source>env gather (amsmath)</source>
         <translation>env verzamelen (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="192"/>
+        <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>The flalign* environment is an unnumbered flalign environment.</source>
         <translation>De flalign*-omgeving is een ongenummerde flalign-omgeving.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="193"/>
+        <location filename="../src/additionaltranslations.cpp" line="191"/>
         <source>env gather* (amsmath)</source>
         <translation>env verzamelen* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="183"/>
+        <location filename="../src/additionaltranslations.cpp" line="181"/>
         <source>env multline (amsmath)</source>
         <translation>env meerlijns (amsmath)</translation>
     </message>
@@ -4259,106 +4284,72 @@ opties opnieuw om alleen de meest voorkomende instellingen te bekijken.</transla
         <translation>De beschrijvingsomgeving produceert een gelabelde lijst.%nElk item van de lijst begint met een \item[label] commando.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="137"/>
-        <source>\alert{text} (easyReview)</source>
-        <translation>\alert{tekst} (easyReview)</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="138"/>
-        <source>\comment{text}{comment} (easyReview)</source>
-        <translation>\comment{text}{commentaar} (easyReview)</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="139"/>
-        <source>\add{text} (easyReview)</source>
-        <translation>\add{tekst} (easyReview)</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="140"/>
-        <source>\remove{text} (easyReview)</source>
-        <translation>\verwijder{tekst} (easyReview)</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="141"/>
-        <source>\replace{text}{replacement} (easyReview)</source>
-        <translation>\replace{text}{vervanging} (easyReview)</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="142"/>
-        <source>Turn on review comments in pdf</source>
-        <translation>Schakel recensieopmerkingen in pdf in</translation>
-    </message>
-    <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
-        <source>Turn off review comments in pdf</source>
-        <translation>Schakel revisieopmerkingen in pdf uit</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>\label{key}</source>
         <translation>\label{sleutel}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="148"/>
+        <location filename="../src/additionaltranslations.cpp" line="146"/>
         <source>This command generates an in-text citation to the reference associated with the ref entry in the bib file</source>
         <translation>Deze opdracht genereert een verwijzing in de tekst naar de referentie die is gekoppeld aan de ref-invoer in het bib-bestand</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="150"/>
+        <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page.</source>
         <translation>\footnote[nummer]{text}%nHet commando \footnote plaatst de genummerde voetnoottekst onderaan de huidige pagina.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="151"/>
+        <location filename="../src/additionaltranslations.cpp" line="149"/>
         <source>The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look</source>
         <translation>Het argument voor \bibliographystyle verwijst naar een bestand style.bst, dat definieert hoe uw citaten eruit zullen zien</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="152"/>
+        <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. &apos;\addbibresource{mybibliography.bib}&apos;). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands.</source>
         <translation>\addbibresource{bibfile} specificeert de locatie van een bronbestand voor biblatex, zoals een .bib-bestand. De bestandsnaam moet de extensie bevatten (bijvoorbeeld &apos;\addbibresource{mijnbibliografie.bib}&apos;). U kunt slechts één bestand per \addbibresource{}-opdracht toevoegen (geen door komma&apos;s gescheiden lijsten toegestaan). Maar u kunt meerdere opdrachten gebruiken.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="161"/>
+        <location filename="../src/additionaltranslations.cpp" line="159"/>
         <source>Fraction - \frac{}{}</source>
         <translation>Breuk - \frac{}{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="164"/>
+        <location filename="../src/additionaltranslations.cpp" line="162"/>
         <source>Fraction - \dfrac{}{}</source>
         <translation>Breuk - \dfrac{}{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="168"/>
+        <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>Square Root - \sqrt{}</source>
         <translation>Vierkantswortel - \sqrt{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="195"/>
+        <location filename="../src/additionaltranslations.cpp" line="193"/>
         <source>env multline* (amsmath)</source>
         <translation>env meerlijns* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="196"/>
+        <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>The multline* environment is an unnumbered multline environment.</source>
         <translation>De multiline*-omgeving is een ongenummerde multiline-omgeving.</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="197"/>
+        <location filename="../src/additionaltranslations.cpp" line="195"/>
         <source>env cases (amsmath)</source>
         <translation>env-gevallen (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="199"/>
+        <location filename="../src/additionaltranslations.cpp" line="197"/>
         <source>env split (amsmath)</source>
         <translation>env splitsen (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="201"/>
+        <location filename="../src/additionaltranslations.cpp" line="199"/>
         <source>env Corollary (ntheorem)</source>
         <translation>env Gevolg (nstelling)</translation>
     </message>
     <message>
+        <location filename="../src/additionaltranslations.cpp" line="200"/>
         <location filename="../src/additionaltranslations.cpp" line="202"/>
         <location filename="../src/additionaltranslations.cpp" line="204"/>
         <location filename="../src/additionaltranslations.cpp" line="206"/>
@@ -4366,182 +4357,181 @@ opties opnieuw om alleen de meest voorkomende instellingen te bekijken.</transla
         <location filename="../src/additionaltranslations.cpp" line="210"/>
         <location filename="../src/additionaltranslations.cpp" line="212"/>
         <location filename="../src/additionaltranslations.cpp" line="214"/>
-        <location filename="../src/additionaltranslations.cpp" line="216"/>
         <source>Needs \usepackage[standard]{ntheorem}</source>
         <translation>Heeft \usepackage[standaard]{nstelling} nodig</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="203"/>
+        <location filename="../src/additionaltranslations.cpp" line="201"/>
         <source>env Definition (ntheorem)</source>
         <translation>env-definitie (nstelling)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="205"/>
+        <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>env Example (ntheorem)</source>
         <translation>env Voorbeeld (nstelling)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="207"/>
+        <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>env Lemma (ntheorem)</source>
         <translation>env Lemma (nstelling)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="209"/>
+        <location filename="../src/additionaltranslations.cpp" line="207"/>
         <source>env Proof (ntheorem)</source>
         <translation>env Bewijs (nstelling)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="211"/>
+        <location filename="../src/additionaltranslations.cpp" line="209"/>
         <source>env Proposition (ntheorem)</source>
         <translation>env Propositie (nstelling)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="213"/>
+        <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>env Remark (ntheorem)</source>
         <translation>env Opmerking (nstelling)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="215"/>
+        <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>env Theorem (ntheorem)</source>
         <translation>env-stelling (nstelling)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="217"/>
+        <location filename="../src/additionaltranslations.cpp" line="215"/>
         <source>Roman - \mathrm{}</source>
         <translation>Romeins - \mathrm{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="218"/>
+        <location filename="../src/additionaltranslations.cpp" line="216"/>
         <source>Italic - \mathit{}</source>
         <translation>Cursief - \mathit{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="219"/>
+        <location filename="../src/additionaltranslations.cpp" line="217"/>
         <source>Bold - \mathbf{}</source>
         <translation>Vet - \mathbf{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="220"/>
+        <location filename="../src/additionaltranslations.cpp" line="218"/>
         <source>Sans Serif - \mathsf{}</source>
         <translation>Schreefloos - \mathsf{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="221"/>
+        <location filename="../src/additionaltranslations.cpp" line="219"/>
         <source>Typewriter - \mathtt{}</source>
         <translation>Typemachine - \mattt{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="222"/>
+        <location filename="../src/additionaltranslations.cpp" line="220"/>
         <source>Calligraphic - \mathcal{}</source>
         <translation>Kalligrafisch - \mathcal{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="223"/>
+        <location filename="../src/additionaltranslations.cpp" line="221"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
         <translation>Blackboard Vet - \mathbb{} (amsymmb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="224"/>
+        <location filename="../src/additionaltranslations.cpp" line="222"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
         <translation>Fraktur - \mathfrak{} (amsymmb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="225"/>
+        <location filename="../src/additionaltranslations.cpp" line="223"/>
         <source>\overset (amsmath)</source>
         <translation>\overset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="226"/>
+        <location filename="../src/additionaltranslations.cpp" line="224"/>
         <source>\underset (amsmath)</source>
         <translation>\underset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="227"/>
+        <location filename="../src/additionaltranslations.cpp" line="225"/>
         <source>\sideset (amsmath)</source>
         <translation>\zijset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="228"/>
+        <location filename="../src/additionaltranslations.cpp" line="226"/>
         <source>\prescript (mathtools)</source>
         <translation>\prescript (wiskundetools)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="229"/>
+        <location filename="../src/additionaltranslations.cpp" line="227"/>
         <source>Negative - \!</source>
         <translation>Negatief - \!</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="230"/>
+        <location filename="../src/additionaltranslations.cpp" line="228"/>
         <source>Negative thin space</source>
         <translation>Negatieve dunne ruimte</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="231"/>
+        <location filename="../src/additionaltranslations.cpp" line="229"/>
         <source>Thin - \,</source>
         <translation>Dun - \,</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="232"/>
+        <location filename="../src/additionaltranslations.cpp" line="230"/>
         <source>3/18 of a \quad</source>
         <translation>3/18 van een \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="233"/>
+        <location filename="../src/additionaltranslations.cpp" line="231"/>
         <source>Medium - \:</source>
         <translation>Gemiddeld - \:</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="234"/>
+        <location filename="../src/additionaltranslations.cpp" line="232"/>
         <source>4/18 of a \quad</source>
         <translation>4/18 van een \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="235"/>
+        <location filename="../src/additionaltranslations.cpp" line="233"/>
         <source>Thick - \;</source>
         <translation>Dik - \;</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="236"/>
+        <location filename="../src/additionaltranslations.cpp" line="234"/>
         <source>5/18 of a \quad</source>
         <translation>5/18 van een \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="237"/>
+        <location filename="../src/additionaltranslations.cpp" line="235"/>
         <source>Interword - \ </source>
         <translation>Tussenwoord - \</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="238"/>
+        <location filename="../src/additionaltranslations.cpp" line="236"/>
         <source>regular whitespace</source>
         <translation>reguliere witruimte</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="239"/>
+        <location filename="../src/additionaltranslations.cpp" line="237"/>
         <source>One quad - \quad</source>
         <translation>Eén quad - \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="241"/>
+        <location filename="../src/additionaltranslations.cpp" line="239"/>
         <source>Two quads - \qquad</source>
         <translation>Twee quads - \qquad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="242"/>
+        <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>Twice the size of a \quad</source>
         <translation>Tweemaal zo groot als een \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="243"/>
+        <location filename="../src/additionaltranslations.cpp" line="241"/>
         <source>ref</source>
         <translation>ref</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="244"/>
+        <location filename="../src/additionaltranslations.cpp" line="242"/>
         <source>eqref</source>
         <translation>eqref</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="245"/>
+        <location filename="../src/additionaltranslations.cpp" line="243"/>
         <source>pageref</source>
         <translation>pageref</translation>
     </message>
@@ -4804,52 +4794,52 @@ Wil je ze verwijderen?</translation>
 <context>
     <name>Editors</name>
     <message>
-        <location filename="../src/editors.cpp" line="389"/>
+        <location filename="../src/editors.cpp" line="390"/>
         <source>Move to other view</source>
         <translation>Ga naar een andere weergave</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="394"/>
+        <location filename="../src/editors.cpp" line="395"/>
         <source>Move all others to other view</source>
         <translation>Verplaats alle anderen naar een andere weergave</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="399"/>
+        <location filename="../src/editors.cpp" line="400"/>
         <source>Move all to other view</source>
         <translation>Verplaats alles naar een andere weergave</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="405"/>
+        <location filename="../src/editors.cpp" line="406"/>
         <source>Split Vertically</source>
         <translation>Verticaal Splitsen</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="405"/>
+        <location filename="../src/editors.cpp" line="406"/>
         <source>Split Horizontally</source>
         <translation>Horizontaal Splitsen</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="410"/>
+        <location filename="../src/editors.cpp" line="411"/>
         <source>Copy file path</source>
         <translation>Bestandspad kopiëren</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="418"/>
+        <location filename="../src/editors.cpp" line="419"/>
         <source>Set Read-Only</source>
         <translation>Stel Alleen-lezen in</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="420"/>
+        <location filename="../src/editors.cpp" line="421"/>
         <source>Unset Read-Only</source>
         <translation>Schakel Alleen-lezen uit</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="425"/>
+        <location filename="../src/editors.cpp" line="426"/>
         <source>Close</source>
         <translation>Sluiten</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="428"/>
+        <location filename="../src/editors.cpp" line="429"/>
         <source>Close All Other Documents</source>
         <translation>Sluit alle andere documenten</translation>
     </message>
@@ -4946,6 +4936,14 @@ U moet er zelf voor zorgen dat de bestandscodering en de waarde die aan het inpu
         <location filename="../src/filechooser.ui" line="137"/>
         <source>Cancel</source>
         <translation>Annuleer</translation>
+    </message>
+</context>
+<context>
+    <name>FileSelector</name>
+    <message>
+        <location filename="../src/fileselector.cpp" line="182"/>
+        <source>Remove selected items</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -6469,7 +6467,7 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3891"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5109"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5113"/>
         <source>Close</source>
         <translation>Sluiten</translation>
     </message>
@@ -6553,12 +6551,12 @@ Voer paswoord in: </translation>
         <translation>Open PDF</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4931"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4935"/>
         <source>Print</source>
         <translation>Print</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5110"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5114"/>
         <source>Close Message</source>
         <translation>Sluit Boodschap</translation>
     </message>
@@ -7674,462 +7672,502 @@ Opmerkingen:
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="246"/>
+        <location filename="../src/additionaltranslations.cpp" line="244"/>
         <source>background</source>
         <translation>achtergrond</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="247"/>
+        <location filename="../src/additionaltranslations.cpp" line="245"/>
         <source>line:error</source>
         <translation>lijn: fout</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="248"/>
+        <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>line:warning</source>
         <translation>regel: waarschuwing</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="249"/>
+        <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>line:badbox</source>
         <translation>regel:badbox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="250"/>
+        <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>line:bookmark</source>
         <translation>lijn-bladwijzer</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="251"/>
+        <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>line:bookmark0</source>
         <translation>lijn-bladwijzer0</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="252"/>
+        <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>line:bookmark1</source>
         <translation>lijn-bladwijzer1</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="253"/>
+        <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>line:bookmark2</source>
         <translation>lijn-bladwijzer2</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="254"/>
+        <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>line:bookmark3</source>
         <translation>lijn-bladwijzer3</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="255"/>
+        <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>line:bookmark4</source>
         <translation>lijn-bladwijzer4</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="256"/>
+        <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>line:bookmark5</source>
         <translation>lijn-bladwijzer5</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="257"/>
+        <location filename="../src/additionaltranslations.cpp" line="255"/>
         <source>line:bookmark6</source>
         <translation>lijn-bladwijzer6</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="258"/>
+        <location filename="../src/additionaltranslations.cpp" line="256"/>
         <source>line:bookmark7</source>
         <translation>lijn-bladwijzer7</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="259"/>
+        <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>line:bookmark8</source>
         <translation>lijn-bladwijzer8</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="260"/>
+        <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>line:bookmark9</source>
         <translation>lijn-bladwijzer9</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="261"/>
+        <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>magicComment</source>
         <translation>magischCommentaar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="262"/>
+        <location filename="../src/additionaltranslations.cpp" line="260"/>
         <source>commentTodo</source>
         <translation>Commentaat ToDo</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="263"/>
+        <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>comment</source>
         <translation>Commentaar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="264"/>
+        <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>keyword</source>
         <translation>trefwoord</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="265"/>
+        <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>extra-keyword</source>
         <translation>extra-trefwoord</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="266"/>
+        <location filename="../src/additionaltranslations.cpp" line="264"/>
         <source>math-keyword</source>
         <translation>match-trefwoord</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="267"/>
+        <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>link</source>
         <translation>verwijzing</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="268"/>
+        <location filename="../src/additionaltranslations.cpp" line="266"/>
         <source>align-ampersand</source>
         <translation>ampserand-aligneren</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="269"/>
+        <location filename="../src/additionaltranslations.cpp" line="267"/>
         <source>verbatim</source>
         <translation>verbatim</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="270"/>
+        <location filename="../src/additionaltranslations.cpp" line="268"/>
         <source>sweave-block</source>
         <translation>sweave-blok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="271"/>
+        <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>sweave-delimiter</source>
         <translation>sweave-scheidingsteken</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="272"/>
+        <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>pweave-block</source>
         <translation>pweave-blok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="273"/>
+        <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>pweave-delimiter</source>
         <translation>pweave-scheidingsteken</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="274"/>
+        <location filename="../src/additionaltranslations.cpp" line="272"/>
         <source>picture</source>
         <translation>afbeelding</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="275"/>
+        <location filename="../src/additionaltranslations.cpp" line="273"/>
         <source>picture-keyword</source>
         <translation>afbeelding-trefwoord</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="276"/>
+        <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>braceMatch</source>
         <translation>accolade-correct</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="277"/>
+        <location filename="../src/additionaltranslations.cpp" line="275"/>
         <source>braceMismatch</source>
         <translation>accoladeverkeerd</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="278"/>
+        <location filename="../src/additionaltranslations.cpp" line="276"/>
         <source>search</source>
         <translation>zoek</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="279"/>
+        <location filename="../src/additionaltranslations.cpp" line="277"/>
         <source>numbers</source>
         <translation>nummers</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="280"/>
+        <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>math-delimiter</source>
         <translation>math-scheidingsteken</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="281"/>
+        <location filename="../src/additionaltranslations.cpp" line="279"/>
         <source>math-text</source>
         <translation>wiskunde-tekst</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="282"/>
+        <location filename="../src/additionaltranslations.cpp" line="280"/>
         <source>text</source>
         <translation>tekst</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="283"/>
+        <location filename="../src/additionaltranslations.cpp" line="281"/>
         <source>escapeseq</source>
         <translation>escapeseq</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="284"/>
+        <location filename="../src/additionaltranslations.cpp" line="282"/>
         <source>spellingMistake</source>
         <translation>SpelFout</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="285"/>
+        <location filename="../src/additionaltranslations.cpp" line="283"/>
         <source>wordRepetition</source>
         <translation>WoordHerhaling</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="286"/>
+        <location filename="../src/additionaltranslations.cpp" line="284"/>
         <source>wordRepetitionLongRange</source>
         <translation>WoordHerhalingGrootBereik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="287"/>
+        <location filename="../src/additionaltranslations.cpp" line="285"/>
         <source>badWord</source>
         <translation>foutWoord</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="288"/>
+        <location filename="../src/additionaltranslations.cpp" line="286"/>
         <source>grammarMistake</source>
         <translation>grammaticaFout</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="289"/>
+        <location filename="../src/additionaltranslations.cpp" line="287"/>
         <source>grammarMistakeSpecial1</source>
         <translation>grammaticaFoutSpecial1</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="290"/>
+        <location filename="../src/additionaltranslations.cpp" line="288"/>
         <source>grammarMistakeSpecial2</source>
         <translation>grammaticaFoutSpecial2</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="291"/>
+        <location filename="../src/additionaltranslations.cpp" line="289"/>
         <source>grammarMistakeSpecial3</source>
         <translation>grammaticaFoutSpecial3</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="292"/>
+        <location filename="../src/additionaltranslations.cpp" line="290"/>
         <source>grammarMistakeSpecial4</source>
         <translation>grammaticaFoutSpecial4</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="293"/>
+        <location filename="../src/additionaltranslations.cpp" line="291"/>
         <source>latexSyntaxMistake</source>
         <translation>latexSyntaxisFout</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="294"/>
+        <location filename="../src/additionaltranslations.cpp" line="292"/>
         <source>temporaryCodeCompletion</source>
         <translation>tijdelijkeCodeCompletion</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="295"/>
+        <location filename="../src/additionaltranslations.cpp" line="293"/>
         <source>environment</source>
         <translation>omgeving</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="296"/>
+        <location filename="../src/additionaltranslations.cpp" line="294"/>
         <source>referencePresent</source>
         <translation>referentieAanwezig</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="297"/>
+        <location filename="../src/additionaltranslations.cpp" line="295"/>
         <source>referenceMissing</source>
         <translation>referentieOntbreekt</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="298"/>
+        <location filename="../src/additionaltranslations.cpp" line="296"/>
         <source>referenceMultiple</source>
         <translation>referentieMeerdere</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="299"/>
+        <location filename="../src/additionaltranslations.cpp" line="297"/>
         <source>citationPresent</source>
         <translation>citaatAanwezig</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="300"/>
+        <location filename="../src/additionaltranslations.cpp" line="298"/>
         <source>citationMissing</source>
         <translation>citaatOntbrekend</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="301"/>
+        <location filename="../src/additionaltranslations.cpp" line="299"/>
         <source>packagePresent</source>
         <translation>pakketAanwezig</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="302"/>
+        <location filename="../src/additionaltranslations.cpp" line="300"/>
         <source>packageMissing</source>
         <translation>pakketOntbreekt</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="303"/>
+        <location filename="../src/additionaltranslations.cpp" line="301"/>
         <source>structure</source>
         <translation>structuur</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="304"/>
+        <location filename="../src/additionaltranslations.cpp" line="302"/>
         <source>current</source>
         <translation>huidige</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="305"/>
+        <location filename="../src/additionaltranslations.cpp" line="303"/>
         <source>selection</source>
         <translation>selectie</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="306"/>
+        <location filename="../src/additionaltranslations.cpp" line="304"/>
         <source>replacement</source>
         <translation>vervanging</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="307"/>
+        <location filename="../src/additionaltranslations.cpp" line="305"/>
         <source>diffDelete</source>
         <translation>diffVerwijder</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="308"/>
+        <location filename="../src/additionaltranslations.cpp" line="306"/>
         <source>diffAdd</source>
         <translation>diffToevoegen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="309"/>
+        <location filename="../src/additionaltranslations.cpp" line="307"/>
         <source>diffReplace</source>
         <translation>diffVervang</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="310"/>
+        <location filename="../src/additionaltranslations.cpp" line="308"/>
         <source>previewSelection</source>
         <translation>previewSelectie</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="311"/>
+        <location filename="../src/additionaltranslations.cpp" line="309"/>
         <source>txs-test</source>
         <translation>txs-test</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="312"/>
+        <location filename="../src/additionaltranslations.cpp" line="310"/>
         <source>txs-test-summary</source>
         <translation>txs-test-overzicht</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="313"/>
+        <location filename="../src/additionaltranslations.cpp" line="311"/>
         <source>txs-test-pass</source>
         <translation>txs-test-pass</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="314"/>
+        <location filename="../src/additionaltranslations.cpp" line="312"/>
         <source>txs-test-fail</source>
         <translation>txs-test-fail</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="315"/>
+        <location filename="../src/additionaltranslations.cpp" line="313"/>
         <source>txs-test-warn</source>
         <translation>txs-test-waarschuwing</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="316"/>
+        <location filename="../src/additionaltranslations.cpp" line="314"/>
         <source>txs-test-qdebug</source>
         <translation>txs-test-qdebug</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="317"/>
+        <location filename="../src/additionaltranslations.cpp" line="315"/>
         <source>dtx:guard</source>
         <translation>dtx:bescherm</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="318"/>
+        <location filename="../src/additionaltranslations.cpp" line="316"/>
         <source>dtx:macro</source>
         <translation>dtx:macro</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="319"/>
+        <location filename="../src/additionaltranslations.cpp" line="317"/>
         <source>dtx:verbatim</source>
         <translation>dtx:verbatim</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="320"/>
+        <location filename="../src/additionaltranslations.cpp" line="318"/>
         <source>dtx:specialchar</source>
         <translation>dtx:speciaalkarakter</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="321"/>
+        <location filename="../src/additionaltranslations.cpp" line="319"/>
         <source>dtx:commands</source>
         <translation>dtx:commandos</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="322"/>
+        <location filename="../src/additionaltranslations.cpp" line="320"/>
         <source>lua:keyword</source>
         <translation>lua:trefwoord</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="323"/>
+        <location filename="../src/additionaltranslations.cpp" line="321"/>
         <source>lua:comment</source>
         <translation>lua:commentaar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="324"/>
+        <location filename="../src/additionaltranslations.cpp" line="322"/>
         <source>asymptote:block</source>
         <translation>asymptote:blok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="325"/>
+        <location filename="../src/additionaltranslations.cpp" line="323"/>
         <source>asymptote:keyword</source>
         <translation>asymptote:trefwoord</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="326"/>
+        <location filename="../src/additionaltranslations.cpp" line="324"/>
         <source>asymptote:type</source>
         <translation>asymptote:type</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="327"/>
+        <location filename="../src/additionaltranslations.cpp" line="325"/>
         <source>asymptote:numbers</source>
         <translation>asymptote:getallen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="328"/>
+        <location filename="../src/additionaltranslations.cpp" line="326"/>
         <source>asymptote:string</source>
         <translation>asymptote:snaar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="329"/>
+        <location filename="../src/additionaltranslations.cpp" line="327"/>
         <source>asymptote:comment</source>
         <translation>asymptote:commentaar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="330"/>
+        <location filename="../src/additionaltranslations.cpp" line="328"/>
         <source>qtscript:comment</source>
         <translation>qtscript:commentaar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="331"/>
+        <location filename="../src/additionaltranslations.cpp" line="329"/>
         <source>qtscript:string</source>
         <translation>qtscript:snaar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="332"/>
+        <location filename="../src/additionaltranslations.cpp" line="330"/>
         <source>qtscript:number</source>
         <translation>qtscript:getal</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="333"/>
+        <location filename="../src/additionaltranslations.cpp" line="331"/>
         <source>qtscript:keyword</source>
         <translation>qtscript:trefwoord</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="334"/>
+        <location filename="../src/additionaltranslations.cpp" line="332"/>
         <source>qtscript:txs-variable</source>
         <translation>qtscript:txs-variabele</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="335"/>
+        <location filename="../src/additionaltranslations.cpp" line="333"/>
         <source>qtscript:txs-function</source>
         <translation>qtscript:txs-functie</translation>
     </message>
     <message>
+        <location filename="../src/additionaltranslations.cpp" line="334"/>
+        <source>braceLevel0</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="335"/>
+        <source>braceLevel1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/additionaltranslations.cpp" line="336"/>
+        <source>braceLevel2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="337"/>
+        <source>braceLevel3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="338"/>
+        <source>braceLevel4</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="339"/>
+        <source>braceLevel5</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="340"/>
+        <source>braceLevel6</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="341"/>
+        <source>braceLevel7</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="342"/>
         <source>preedit</source>
         <translation>pre-bewerk</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="337"/>
+        <location filename="../src/additionaltranslations.cpp" line="343"/>
         <source>normal</source>
         <translation>normaal</translation>
     </message>
@@ -9861,136 +9899,136 @@ sjabloon om individuele bestanden te bewerken.</translation>
 <context>
     <name>Texstudio</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="338"/>
+        <location filename="../src/additionaltranslations.cpp" line="344"/>
         <source>Custom</source>
         <translation>Aangepast</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="339"/>
+        <location filename="../src/additionaltranslations.cpp" line="345"/>
         <source>File</source>
         <translation>Bestand</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="340"/>
+        <location filename="../src/additionaltranslations.cpp" line="346"/>
         <source>Edit</source>
         <translation>Bewerk</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="341"/>
+        <location filename="../src/additionaltranslations.cpp" line="347"/>
         <source>Tools</source>
         <translation>Hulpmiddelen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="342"/>
+        <location filename="../src/additionaltranslations.cpp" line="348"/>
         <source>Math</source>
         <translation>Wiskunde</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="343"/>
+        <location filename="../src/additionaltranslations.cpp" line="349"/>
         <source>Format</source>
         <translation>Formaat</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="344"/>
+        <location filename="../src/additionaltranslations.cpp" line="350"/>
         <source>Table</source>
         <translation>Tafel</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="345"/>
+        <location filename="../src/additionaltranslations.cpp" line="351"/>
         <source>Diff</source>
         <translation>Diff</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="346"/>
+        <location filename="../src/additionaltranslations.cpp" line="352"/>
         <source>Review</source>
         <translation>Beoordeling</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="347"/>
+        <location filename="../src/additionaltranslations.cpp" line="353"/>
         <location filename="../src/texstudio.cpp" line="276"/>
         <source>Central</source>
         <translation>Centraal</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="348"/>
+        <location filename="../src/additionaltranslations.cpp" line="354"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
         <translation>Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="349"/>
+        <location filename="../src/additionaltranslations.cpp" line="355"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="350"/>
+        <location filename="../src/additionaltranslations.cpp" line="356"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
         <translation>Binair</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="351"/>
+        <location filename="../src/additionaltranslations.cpp" line="357"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
         <translation>TeX dtx-bestand</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="352"/>
+        <location filename="../src/additionaltranslations.cpp" line="358"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
         <translation>Thuisbron</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="353"/>
+        <location filename="../src/additionaltranslations.cpp" line="359"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="354"/>
+        <location filename="../src/additionaltranslations.cpp" line="360"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
         <translation>Pweven</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="355"/>
+        <location filename="../src/additionaltranslations.cpp" line="361"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
         <translation>QtScript</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="356"/>
+        <location filename="../src/additionaltranslations.cpp" line="362"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
         <translation>Zweven</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="357"/>
+        <location filename="../src/additionaltranslations.cpp" line="363"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
         <translation>(Latex</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="358"/>
+        <location filename="../src/additionaltranslations.cpp" line="364"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
         <translation>(Latexmacro</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="359"/>
+        <location filename="../src/additionaltranslations.cpp" line="365"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
         <translation>TXS-testresultaten</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="360"/>
+        <location filename="../src/additionaltranslations.cpp" line="366"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
         <translation>Platte tekst</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="361"/>
+        <location filename="../src/additionaltranslations.cpp" line="367"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
         <translation>XML</translation>
@@ -10002,7 +10040,7 @@ sjabloon om individuele bestanden te bewerken.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="378"/>
-        <location filename="../src/texstudio.cpp" line="6578"/>
+        <location filename="../src/texstudio.cpp" line="6589"/>
         <source>Ready</source>
         <translation>Klaar</translation>
     </message>
@@ -10043,8 +10081,8 @@ sjabloon om individuele bestanden te bewerken.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="461"/>
-        <location filename="../src/texstudio.cpp" line="10475"/>
-        <location filename="../src/texstudio.cpp" line="10482"/>
+        <location filename="../src/texstudio.cpp" line="10487"/>
+        <location filename="../src/texstudio.cpp" line="10494"/>
         <source>All files</source>
         <translation>Alle Bestanden</translation>
     </message>
@@ -10290,7 +10328,7 @@ sjabloon om individuele bestanden te bewerken.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="959"/>
-        <location filename="../src/texstudio.cpp" line="10741"/>
+        <location filename="../src/texstudio.cpp" line="10753"/>
         <source>&amp;Close</source>
         <translation>&amp;Sluit</translation>
     </message>
@@ -10537,9 +10575,9 @@ sjabloon om individuele bestanden te bewerken.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1029"/>
-        <location filename="../src/texstudio.cpp" line="8366"/>
-        <location filename="../src/texstudio.cpp" line="8391"/>
-        <location filename="../src/texstudio.cpp" line="8411"/>
+        <location filename="../src/texstudio.cpp" line="8377"/>
+        <location filename="../src/texstudio.cpp" line="8402"/>
+        <location filename="../src/texstudio.cpp" line="8422"/>
         <source>Line</source>
         <translation>Lijn</translation>
     </message>
@@ -11401,31 +11439,31 @@ sjabloon om individuele bestanden te bewerken.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1438"/>
-        <location filename="../src/texstudio.cpp" line="10720"/>
+        <location filename="../src/texstudio.cpp" line="10732"/>
         <source>Word Repetition</source>
         <translation>Woordherhaling</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1439"/>
-        <location filename="../src/texstudio.cpp" line="10721"/>
+        <location filename="../src/texstudio.cpp" line="10733"/>
         <source>Long-range Word Repetition</source>
         <translation>Woordherhaling op lange afstand</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1440"/>
-        <location filename="../src/texstudio.cpp" line="10722"/>
+        <location filename="../src/texstudio.cpp" line="10734"/>
         <source>Bad words</source>
         <translation>Slechte woorden</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1441"/>
-        <location filename="../src/texstudio.cpp" line="10723"/>
+        <location filename="../src/texstudio.cpp" line="10735"/>
         <source>Grammar Mistake</source>
         <translation>Grammatica fout</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1443"/>
-        <location filename="../src/texstudio.cpp" line="10730"/>
+        <location filename="../src/texstudio.cpp" line="10742"/>
         <source>Grammar Mistake Special %1</source>
         <translation>Grammaticafout speciaal %1</translation>
     </message>
@@ -11558,7 +11596,7 @@ sjabloon om individuele bestanden te bewerken.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1692"/>
-        <location filename="../src/texstudio.cpp" line="6084"/>
+        <location filename="../src/texstudio.cpp" line="6095"/>
         <source>show more entries ...</source>
         <translation>toon meer inzendingen...</translation>
     </message>
@@ -11595,9 +11633,9 @@ sjabloon om individuele bestanden te bewerken.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1826"/>
         <location filename="../src/texstudio.cpp" line="1827"/>
-        <location filename="../src/texstudio.cpp" line="6114"/>
-        <location filename="../src/texstudio.cpp" line="6117"/>
-        <location filename="../src/texstudio.cpp" line="6118"/>
+        <location filename="../src/texstudio.cpp" line="6125"/>
+        <location filename="../src/texstudio.cpp" line="6128"/>
+        <location filename="../src/texstudio.cpp" line="6129"/>
         <source>Encoding</source>
         <translation>Encodering</translation>
     </message>
@@ -11651,15 +11689,15 @@ sjabloon om individuele bestanden te bewerken.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2338"/>
-        <location filename="../src/texstudio.cpp" line="4364"/>
-        <location filename="../src/texstudio.cpp" line="6168"/>
-        <location filename="../src/texstudio.cpp" line="6222"/>
-        <location filename="../src/texstudio.cpp" line="7097"/>
-        <location filename="../src/texstudio.cpp" line="7278"/>
-        <location filename="../src/texstudio.cpp" line="7280"/>
-        <location filename="../src/texstudio.cpp" line="7290"/>
-        <location filename="../src/texstudio.cpp" line="7292"/>
-        <location filename="../src/texstudio.cpp" line="11220"/>
+        <location filename="../src/texstudio.cpp" line="4375"/>
+        <location filename="../src/texstudio.cpp" line="6179"/>
+        <location filename="../src/texstudio.cpp" line="6233"/>
+        <location filename="../src/texstudio.cpp" line="7108"/>
+        <location filename="../src/texstudio.cpp" line="7289"/>
+        <location filename="../src/texstudio.cpp" line="7291"/>
+        <location filename="../src/texstudio.cpp" line="7301"/>
+        <location filename="../src/texstudio.cpp" line="7303"/>
+        <location filename="../src/texstudio.cpp" line="11232"/>
         <source>Error</source>
         <translation>Fout</translation>
     </message>
@@ -11713,7 +11751,7 @@ Anders kunnen er willekeurige fouten en crashes optreden.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2920"/>
-        <location filename="../src/texstudio.cpp" line="11049"/>
+        <location filename="../src/texstudio.cpp" line="11061"/>
         <source>Open Files</source>
         <translation>Open Bestanden</translation>
     </message>
@@ -11753,7 +11791,7 @@ dit andere bestand voordat u het kunt overschrijven.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3154"/>
-        <location filename="../src/texstudio.cpp" line="12813"/>
+        <location filename="../src/texstudio.cpp" line="12825"/>
         <source>Copy</source>
         <translation>Kopieer</translation>
     </message>
@@ -11784,141 +11822,141 @@ dit andere bestand voordat u het kunt overschrijven.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3475"/>
-        <location filename="../src/texstudio.cpp" line="3534"/>
-        <location filename="../src/texstudio.cpp" line="3614"/>
+        <location filename="../src/texstudio.cpp" line="3545"/>
+        <location filename="../src/texstudio.cpp" line="3625"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>Het bestand &quot;%1&quot; bestaat niet meer. Wilt u het verwijderen uit de lijst met recente bestanden?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3627"/>
+        <location filename="../src/texstudio.cpp" line="3638"/>
         <source>Loading of session failed.</source>
         <translation>Laden van sessie mislukt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3644"/>
+        <location filename="../src/texstudio.cpp" line="3655"/>
         <source>Load Session</source>
         <translation>Sessie laden</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3644"/>
-        <location filename="../src/texstudio.cpp" line="3662"/>
+        <location filename="../src/texstudio.cpp" line="3655"/>
+        <location filename="../src/texstudio.cpp" line="3673"/>
         <source>TeXstudio Session</source>
         <translation>TeXstudio-sessie</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3662"/>
+        <location filename="../src/texstudio.cpp" line="3673"/>
         <source>Save Session</source>
         <translation>Sessie Opslaan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3668"/>
+        <location filename="../src/texstudio.cpp" line="3679"/>
         <source>Saving of session failed.</source>
         <translation>Opslaan van sessie mislukt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3744"/>
+        <location filename="../src/texstudio.cpp" line="3755"/>
         <source>The following files could not be loaded:</source>
         <translation>De volgende bestanden konden niet worden geladen:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3924"/>
+        <location filename="../src/texstudio.cpp" line="3935"/>
         <source>Image Formats (%1)</source>
         <translation>Afbeeldingsformaten (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3926"/>
+        <location filename="../src/texstudio.cpp" line="3937"/>
         <source>Save Image</source>
         <translation>Afbeelding Opslaan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3931"/>
+        <location filename="../src/texstudio.cpp" line="3942"/>
         <source>Could not save the image file.</source>
         <translation>Kan de afbeelding niet opslaan.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4019"/>
+        <location filename="../src/texstudio.cpp" line="4030"/>
         <source>Ascending</source>
         <translation>Oplopend</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4019"/>
+        <location filename="../src/texstudio.cpp" line="4030"/>
         <source>Descending</source>
         <translation>Aflopend</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4019"/>
+        <location filename="../src/texstudio.cpp" line="4030"/>
         <source>No Sorting</source>
         <translation>Geen sortering</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4019"/>
+        <location filename="../src/texstudio.cpp" line="4030"/>
         <source>Random (Shuffle)</source>
         <translation>Willekeurig (shuffle)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4025"/>
+        <location filename="../src/texstudio.cpp" line="4036"/>
         <source>Sorting</source>
         <translation>Sorteren</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4026"/>
+        <location filename="../src/texstudio.cpp" line="4037"/>
         <source>Complete Lines</source>
         <translation>Volledige lijnen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4027"/>
+        <location filename="../src/texstudio.cpp" line="4038"/>
         <source>Case Sensitive</source>
         <translation>Hoofdlettergevoelig</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4028"/>
+        <location filename="../src/texstudio.cpp" line="4039"/>
         <source>Remove Duplicates</source>
         <translation>Duplicaten verwijderen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4327"/>
+        <location filename="../src/texstudio.cpp" line="4338"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Voeg harde regeleinden in na zoveel tekens:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4328"/>
+        <location filename="../src/texstudio.cpp" line="4339"/>
         <source>Smart scope selecting</source>
         <translation>Slimme scopeselectie</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4329"/>
+        <location filename="../src/texstudio.cpp" line="4340"/>
         <source>Join lines before wrapping</source>
         <translation>Sluit de lijnen aan voordat u ze inpakt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4343"/>
-        <location filename="../src/texstudio.cpp" line="6679"/>
-        <location filename="../src/texstudio.cpp" line="6736"/>
+        <location filename="../src/texstudio.cpp" line="4354"/>
+        <location filename="../src/texstudio.cpp" line="6690"/>
+        <location filename="../src/texstudio.cpp" line="6747"/>
         <source>No document open</source>
         <translation>Geen open document</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4349"/>
+        <location filename="../src/texstudio.cpp" line="4360"/>
         <source>No dictionary available.</source>
         <translation>Geen woordenboek beschikbaar.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4364"/>
+        <location filename="../src/texstudio.cpp" line="4375"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Kan thesaurusdatabase niet laden</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4777"/>
+        <location filename="../src/texstudio.cpp" line="4788"/>
         <source>Storing session failed</source>
         <translation>Het opslaan van de sessie is mislukt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4777"/>
+        <location filename="../src/texstudio.cpp" line="4788"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation>Het opslaan van sessie-informatie in %1 is mislukt. Bestand bestaat, maar kan niet worden beschreven.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4863"/>
+        <location filename="../src/texstudio.cpp" line="4874"/>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
@@ -11927,101 +11965,101 @@ Do you want to continue?</source>
 Wil je doorgaan?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4873"/>
+        <location filename="../src/texstudio.cpp" line="4884"/>
         <source>Unable to write to settings file %1</source>
         <translation>Kan niet schrijven naar instellingenbestand %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4926"/>
+        <location filename="../src/texstudio.cpp" line="4937"/>
         <source>Settings file does not exist</source>
         <translation>Instellingenbestand bestaat niet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5686"/>
+        <location filename="../src/texstudio.cpp" line="5697"/>
         <source>AI Chat</source>
         <translation>AI-chat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5686"/>
+        <location filename="../src/texstudio.cpp" line="5697"/>
         <source>Please set the API key in the settings.</source>
         <translation>Stel de API-sleutel in de instellingen in.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5781"/>
+        <location filename="../src/texstudio.cpp" line="5792"/>
         <source>Quick Start</source>
         <translation>Snelstart</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5803"/>
+        <location filename="../src/texstudio.cpp" line="5814"/>
         <source>Quick Beamer Presentation</source>
         <translation>Snelstart Beamerpresentatie</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5840"/>
+        <location filename="../src/texstudio.cpp" line="5851"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Huidig ​​bestand&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5872"/>
+        <location filename="../src/texstudio.cpp" line="5883"/>
         <source>Type: %1</source>
         <translation>Type: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5917"/>
+        <location filename="../src/texstudio.cpp" line="5928"/>
         <source>Edit User &amp;Tags</source>
         <translation>Gebruiker en tags bewerken</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5979"/>
+        <location filename="../src/texstudio.cpp" line="5990"/>
         <source>empty</source>
         <translation>leeg</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5983"/>
+        <location filename="../src/texstudio.cpp" line="5994"/>
         <source>Labels:</source>
         <translation>Etiketten:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6071"/>
+        <location filename="../src/texstudio.cpp" line="6082"/>
         <source>show less entries ...</source>
         <translation>toon minder vermeldingen ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6112"/>
+        <location filename="../src/texstudio.cpp" line="6123"/>
         <source>Encoding Aliases: </source>
         <translation>Coderingsaliassen:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6168"/>
+        <location filename="../src/texstudio.cpp" line="6179"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Kan de bestandsnaam niet detecteren. 
 U moet een document opslaan voordat u het kunt compileren.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6176"/>
+        <location filename="../src/texstudio.cpp" line="6187"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Kan de bestandsnaam niet detecteren</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6216"/>
+        <location filename="../src/texstudio.cpp" line="6227"/>
         <source>  Running this command: </source>
         <translation>Commando wordt uitgevoerd:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6222"/>
+        <location filename="../src/texstudio.cpp" line="6233"/>
         <source>could not start the command</source>
         <translation>Het commando kan niet worden opgestart. </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6345"/>
+        <location filename="../src/texstudio.cpp" line="6356"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>U hebt de opdracht aangeroepen om de interne pdf-viewer te openen. 
 U gebruikt echter een versie van TeXstudio die is samengesteld zonder de interne pdf-viewer.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6365"/>
+        <location filename="../src/texstudio.cpp" line="6376"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -12038,257 +12076,257 @@ Wilt u de nieuwe, overheersende opdracht toestaan ​​en uitvoeren?
 (c) Nee, gebruik niet de opdracht &quot;%3&quot; en voer de standaardopdracht &quot;%2&quot; uit</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6449"/>
+        <location filename="../src/texstudio.cpp" line="6460"/>
         <source>Unknown internal command: %1</source>
         <translation>Onbekend intern commando: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6488"/>
+        <location filename="../src/texstudio.cpp" line="6499"/>
         <source>%!TeX program used: %1</source>
         <translation>%!TeX gebruikt programma: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6491"/>
+        <location filename="../src/texstudio.cpp" line="6502"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>%!TeX-programma niet herkend! (%1). Standaard gebruiken.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6553"/>
+        <location filename="../src/texstudio.cpp" line="6564"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>U kunt het document niet compileren in een niet-schrijfbare map.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6555"/>
+        <location filename="../src/texstudio.cpp" line="6566"/>
         <source>Could not start %1.</source>
         <translation>Kon %1 niet starten.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6585"/>
+        <location filename="../src/texstudio.cpp" line="6596"/>
         <source>Error:</source>
         <translation>Fout:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6669"/>
+        <location filename="../src/texstudio.cpp" line="6680"/>
         <source>No open project or tex file to clean.</source>
         <translation>Geen open project of tex-bestand om op te schonen.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6740"/>
+        <location filename="../src/texstudio.cpp" line="6751"/>
         <source>Text Analysis</source>
         <translation>Tekstanalyse</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6764"/>
+        <location filename="../src/texstudio.cpp" line="6775"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>De willekeurige tekstgenerator construeert nieuwe teksten uit bestaande woorden, dus je moet enkele tekstbestanden openen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6787"/>
+        <location filename="../src/texstudio.cpp" line="6798"/>
         <source>Do you want to share the folder &quot;%1&quot; and ALL its content with collaborators?</source>
         <translation>Wilt u de map &quot;%1&quot; en ALLE inhoud ervan delen met bijdragers?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6806"/>
+        <location filename="../src/texstudio.cpp" line="6817"/>
         <source>Collaboration server name or address</source>
         <translation>Naam of adres van samenwerkingsserver</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6807"/>
+        <location filename="../src/texstudio.cpp" line="6818"/>
         <source>Name:</source>
         <translation>Naam:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7019"/>
+        <location filename="../src/texstudio.cpp" line="7030"/>
         <source>Copy access code</source>
         <translation>Kopieer toegangscode</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7042"/>
+        <location filename="../src/texstudio.cpp" line="7053"/>
         <source>Collaboration: Connected in folder %1</source>
         <translation>Samenwerking: verbonden in map %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7046"/>
+        <location filename="../src/texstudio.cpp" line="7057"/>
         <source>Collaboration: Not connected</source>
         <translation>Samenwerking: Niet verbonden</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7097"/>
+        <location filename="../src/texstudio.cpp" line="7108"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>Het bestand moet worden opgeslagen en gecompileerd voordat u het logboek kunt bekijken</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7278"/>
-        <location filename="../src/texstudio.cpp" line="7290"/>
+        <location filename="../src/texstudio.cpp" line="7289"/>
+        <location filename="../src/texstudio.cpp" line="7301"/>
         <source>File not found</source>
         <translation>Bestand niet gevonden</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7280"/>
-        <location filename="../src/texstudio.cpp" line="7292"/>
+        <location filename="../src/texstudio.cpp" line="7291"/>
+        <location filename="../src/texstudio.cpp" line="7303"/>
         <source>Could not open browser</source>
         <translation>Kan browser niet openen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7617"/>
+        <location filename="../src/texstudio.cpp" line="7628"/>
         <source>%1 is an invalid TeX project directory.</source>
         <translation>%1 is een ongeldige TeX-projectmap.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7903"/>
+        <location filename="../src/texstudio.cpp" line="7914"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>U moet het bestand opslaan voordat het als hoofddocument kan worden gedefinieerd.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8369"/>
+        <location filename="../src/texstudio.cpp" line="8380"/>
         <source>Label</source>
         <translation>Label</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8371"/>
-        <location filename="../src/texstudio.cpp" line="8393"/>
+        <location filename="../src/texstudio.cpp" line="8382"/>
+        <location filename="../src/texstudio.cpp" line="8404"/>
         <source>Beyond end of document.</source>
         <translation>Na het einde van het document.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8374"/>
-        <location filename="../src/texstudio.cpp" line="8395"/>
+        <location filename="../src/texstudio.cpp" line="8385"/>
+        <location filename="../src/texstudio.cpp" line="8406"/>
         <source>In Appendix.</source>
         <translation>In bijlage.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8413"/>
+        <location filename="../src/texstudio.cpp" line="8424"/>
         <source>File not found.</source>
         <translation>Bestand niet gevonden.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8428"/>
+        <location filename="../src/texstudio.cpp" line="8439"/>
         <source> (Line %1)</source>
         <translation>(Lijn %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9767"/>
+        <location filename="../src/texstudio.cpp" line="9779"/>
         <source>commit comment:</source>
         <translation>opmerking vastleggen:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9771"/>
+        <location filename="../src/texstudio.cpp" line="9783"/>
         <source>check in whole directory ?</source>
         <translation>hele map inchecken?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9773"/>
+        <location filename="../src/texstudio.cpp" line="9785"/>
         <source>Push to repository ?</source>
         <translation>Naar repository pushen?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10131"/>
+        <location filename="../src/texstudio.cpp" line="10143"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Opgelet: dialoog wordt automatisch gesloten als de tekst manueel bewerkt wordt!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10432"/>
+        <location filename="../src/texstudio.cpp" line="10444"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>Kan bestand &quot;%1&quot; niet openen.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10434"/>
+        <location filename="../src/texstudio.cpp" line="10446"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>Het bestand &quot;%1&quot; bestaat niet. 
 Wil je het creëren?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10475"/>
+        <location filename="../src/texstudio.cpp" line="10487"/>
         <source>Save Profile</source>
         <translation>Sla Profiel op</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10475"/>
-        <location filename="../src/texstudio.cpp" line="10482"/>
+        <location filename="../src/texstudio.cpp" line="10487"/>
+        <location filename="../src/texstudio.cpp" line="10494"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>TXS Profiel</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10482"/>
+        <location filename="../src/texstudio.cpp" line="10494"/>
         <source>Load Profile</source>
         <translation>Laad Profiel</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10535"/>
+        <location filename="../src/texstudio.cpp" line="10547"/>
         <source>Failed to read profile file %1.</source>
         <translation>Kan profielbestand %1 niet lezen.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10708"/>
+        <location filename="../src/texstudio.cpp" line="10720"/>
         <source>Problem</source>
         <translation>Probleem</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10708"/>
+        <location filename="../src/texstudio.cpp" line="10720"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>Het vinden van woordherhalingen werkt alleen met geactiveerde online spellingcontrole!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10713"/>
+        <location filename="../src/texstudio.cpp" line="10725"/>
         <source>Find Word Repetitions</source>
         <translation>Zoek woordherhalingen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10719"/>
+        <location filename="../src/texstudio.cpp" line="10731"/>
         <source>Spelling Mistake</source>
         <translation>Spelfout</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10737"/>
+        <location filename="../src/texstudio.cpp" line="10749"/>
         <source>&amp;Find Next</source>
         <translation>&amp;Zoek volgende</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10739"/>
+        <location filename="../src/texstudio.cpp" line="10751"/>
         <source>&amp;Find Previous</source>
         <translation>&amp;Zoek Vorige</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10790"/>
+        <location filename="../src/texstudio.cpp" line="10802"/>
         <source>Reached beginning of text.</source>
         <translation>Begin van tekst bereikt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10790"/>
+        <location filename="../src/texstudio.cpp" line="10802"/>
         <source>Reached end of text.</source>
         <translation>Einde van de tekst bereikt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11049"/>
-        <location filename="../src/texstudio.cpp" line="11260"/>
-        <location filename="../src/texstudio.cpp" line="11263"/>
+        <location filename="../src/texstudio.cpp" line="11061"/>
+        <location filename="../src/texstudio.cpp" line="11272"/>
+        <location filename="../src/texstudio.cpp" line="11275"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeX-bestanden (*.tex);;Alle bestanden (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11220"/>
+        <location filename="../src/texstudio.cpp" line="11232"/>
         <source>You do not have read permission to this file.</source>
         <translation>U heeft geen leesrechten voor dit bestand.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11260"/>
+        <location filename="../src/texstudio.cpp" line="11272"/>
         <source>Open Compare File</source>
         <translation>Open het vergelijkingsbestand</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11263"/>
+        <location filename="../src/texstudio.cpp" line="11275"/>
         <source>Open Base File</source>
         <translation>Basisbestand openen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11431"/>
+        <location filename="../src/texstudio.cpp" line="11443"/>
         <source>SVN Conflict!</source>
         <translation>SVN-conflict!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11432"/>
+        <location filename="../src/texstudio.cpp" line="11444"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -12298,14 +12336,14 @@ Druk op &quot;OK&quot; om verschillen weer te geven in plaats van de gegenereerd
 Druk op &quot;Annuleren&quot; om niets te doen.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11529"/>
-        <location filename="../src/texstudio.cpp" line="11620"/>
-        <location filename="../src/texstudio.cpp" line="11626"/>
+        <location filename="../src/texstudio.cpp" line="11541"/>
+        <location filename="../src/texstudio.cpp" line="11632"/>
+        <location filename="../src/texstudio.cpp" line="11638"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio-noodgeval</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11533"/>
+        <location filename="../src/texstudio.cpp" line="11545"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -12316,7 +12354,7 @@ Please provide this file if you send a bug report.
 Geef dit bestand op als u een bugrapport verzendt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11536"/>
+        <location filename="../src/texstudio.cpp" line="11548"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -12325,18 +12363,18 @@ Geef dit bestand op als u een bugrapport verzendt.</translation>
 %2Wilt u TeXstudio actief houden? Dit kan gegevensbeschadiging veroorzaken.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11537"/>
+        <location filename="../src/texstudio.cpp" line="11549"/>
         <source>Yes, try to recover</source>
         <translation>Ja, probeer te herstellen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11538"/>
-        <location filename="../src/texstudio.cpp" line="11543"/>
+        <location filename="../src/texstudio.cpp" line="11550"/>
+        <location filename="../src/texstudio.cpp" line="11555"/>
         <source>No, kill the program</source>
         <translation>Nee, sluit het programma af</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11540"/>
+        <location filename="../src/texstudio.cpp" line="11552"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -12345,17 +12383,17 @@ Geef dit bestand op als u een bugrapport verzendt.</translation>
 %1Wilt u het programma actief houden? Dit kan gegevensbeschadiging veroorzaken.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11541"/>
+        <location filename="../src/texstudio.cpp" line="11553"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Ja, stop de lus en probeer te herstellen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11542"/>
+        <location filename="../src/texstudio.cpp" line="11554"/>
         <source>Yes, continue the loop</source>
         <translation>Ja, vervolg de lus</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11621"/>
+        <location filename="../src/texstudio.cpp" line="11633"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -12364,227 +12402,227 @@ De draad is gestopt.
 Wil je TeXstudio draaiende houden? Dit kan gegevensbeschadiging veroorzaken.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11626"/>
+        <location filename="../src/texstudio.cpp" line="11638"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Ik probeerde te sterven, maar er gebeurde niets.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11658"/>
+        <location filename="../src/texstudio.cpp" line="11670"/>
         <source>System Report</source>
         <translation>Systeemrapport</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11796"/>
+        <location filename="../src/texstudio.cpp" line="11808"/>
         <source>LT Report</source>
         <translation>LT-rapport</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11822"/>
+        <location filename="../src/texstudio.cpp" line="11834"/>
         <source>process failed to start
 </source>
         <translation>proces kan niet worden gestart</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11825"/>
+        <location filename="../src/texstudio.cpp" line="11837"/>
         <source>process crashed
 </source>
         <translation>proces is gecrasht</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11835"/>
+        <location filename="../src/texstudio.cpp" line="11847"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>Real-time controle is ingeschakeld.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11837"/>
+        <location filename="../src/texstudio.cpp" line="11849"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>Realtime controle is uitgeschakeld!!!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11840"/>
+        <location filename="../src/texstudio.cpp" line="11852"/>
         <source>Grammar checking is enabled.
 
 </source>
         <translation>Grammaticacontrole is ingeschakeld.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11842"/>
+        <location filename="../src/texstudio.cpp" line="11854"/>
         <source>Grammar checking is disabled!!!
 
 </source>
         <translation>Grammaticacontrole is uitgeschakeld!!!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11845"/>
+        <location filename="../src/texstudio.cpp" line="11857"/>
         <source>Tries to start automatically.
 
 </source>
         <translation>Probeert automatisch te starten.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11847"/>
+        <location filename="../src/texstudio.cpp" line="11859"/>
         <source>Autostart disabled.
 
 </source>
         <translation>Automatisch starten uitgeschakeld.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11852"/>
+        <location filename="../src/texstudio.cpp" line="11864"/>
         <source>LT current status: </source>
         <translation>LT huidige status:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11855"/>
+        <location filename="../src/texstudio.cpp" line="11867"/>
         <source>working</source>
         <translation>werken</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11858"/>
+        <location filename="../src/texstudio.cpp" line="11870"/>
         <source>error</source>
         <translation>error</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11862"/>
+        <location filename="../src/texstudio.cpp" line="11874"/>
         <source>unknown</source>
         <translation>onbekend</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11865"/>
+        <location filename="../src/texstudio.cpp" line="11877"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12222"/>
+        <location filename="../src/texstudio.cpp" line="12234"/>
         <source>Error when communicating with LT: %1</source>
         <translation>Fout bij communicatie met LT: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12517"/>
-        <location filename="../src/texstudio.cpp" line="13310"/>
+        <location filename="../src/texstudio.cpp" line="12529"/>
+        <location filename="../src/texstudio.cpp" line="13322"/>
         <source>untitled</source>
         <translation>naamloos</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12527"/>
-        <location filename="../src/texstudio.cpp" line="13353"/>
+        <location filename="../src/texstudio.cpp" line="12539"/>
+        <location filename="../src/texstudio.cpp" line="13365"/>
         <source>TODO</source>
         <translation>TE DOEN</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12660"/>
-        <location filename="../src/texstudio.cpp" line="12668"/>
-        <location filename="../src/texstudio.cpp" line="12699"/>
+        <location filename="../src/texstudio.cpp" line="12672"/>
+        <location filename="../src/texstudio.cpp" line="12680"/>
+        <location filename="../src/texstudio.cpp" line="12711"/>
         <source>Document: </source>
         <translation>Document:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12752"/>
+        <location filename="../src/texstudio.cpp" line="12764"/>
         <source>Close document</source>
         <translation>Sluit document</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12753"/>
+        <location filename="../src/texstudio.cpp" line="12765"/>
         <source>Set as explicit root document</source>
         <translation>Instellen als expliciet hoofddocument</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12754"/>
+        <location filename="../src/texstudio.cpp" line="12766"/>
         <source>Open all related documents</source>
         <translation>Open alle verwante documenten</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12755"/>
+        <location filename="../src/texstudio.cpp" line="12767"/>
         <source>Close all related documents</source>
         <translation>Sluit alle verwante documenten</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12757"/>
+        <location filename="../src/texstudio.cpp" line="12769"/>
         <source>Remove explicit root document role</source>
         <translation>Verwijder de expliciete hoofddocumentrol</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12759"/>
+        <location filename="../src/texstudio.cpp" line="12771"/>
         <source>Show all open documents in this tree</source>
         <translation>Toon alle open documenten in deze tak</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12761"/>
+        <location filename="../src/texstudio.cpp" line="12773"/>
         <source>Show only current document in this tree</source>
         <translation>Toon alleen het huidige document in deze boomstructuur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12774"/>
+        <location filename="../src/texstudio.cpp" line="12786"/>
         <source>Copy filename</source>
         <translation>Kopieer bestandsnaam</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12775"/>
+        <location filename="../src/texstudio.cpp" line="12787"/>
         <source>Copy file path</source>
         <translation>Bestandspad kopiëren</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12784"/>
+        <location filename="../src/texstudio.cpp" line="12796"/>
         <source>Insert</source>
         <translation>Voeg in</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12785"/>
-        <location filename="../src/texstudio.cpp" line="12786"/>
+        <location filename="../src/texstudio.cpp" line="12797"/>
+        <location filename="../src/texstudio.cpp" line="12798"/>
         <source>Insert as %1</source>
         <translation>Voeg in als %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12788"/>
+        <location filename="../src/texstudio.cpp" line="12800"/>
         <source>Find Usages</source>
         <translation>Zoek toepassingen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12799"/>
+        <location filename="../src/texstudio.cpp" line="12811"/>
         <source>Insert Label</source>
         <translation>Voeg Label in</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12803"/>
+        <location filename="../src/texstudio.cpp" line="12815"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation>Voeg %1 in bij Label</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12807"/>
+        <location filename="../src/texstudio.cpp" line="12819"/>
         <source>Create Label</source>
         <translation>Maak Label</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12811"/>
+        <location filename="../src/texstudio.cpp" line="12823"/>
         <source>Cut</source>
         <translation>Knip</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12815"/>
+        <location filename="../src/texstudio.cpp" line="12827"/>
         <source>Paste Before</source>
         <translation>Plak voor</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12817"/>
+        <location filename="../src/texstudio.cpp" line="12829"/>
         <source>Paste After</source>
         <translation>Plak na</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12820"/>
+        <location filename="../src/texstudio.cpp" line="12832"/>
         <source>Indent Section</source>
         <translation>Inspringen sectie</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12822"/>
+        <location filename="../src/texstudio.cpp" line="12834"/>
         <source>Unindent Section</source>
         <translation>Niet-inspringende sectie</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12768"/>
-        <location filename="../src/texstudio.cpp" line="12826"/>
+        <location filename="../src/texstudio.cpp" line="12780"/>
+        <location filename="../src/texstudio.cpp" line="12838"/>
         <source>Expand Subitems</source>
         <translation>Vouw subitems uit</translation>
     </message>
@@ -12599,46 +12637,46 @@ Wil je TeXstudio draaiende houden? Dit kan gegevensbeschadiging veroorzaken.</tr
         <translation>Sluit het laatst geopende scheidingsteken of de omgeving</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7017"/>
+        <location filename="../src/texstudio.cpp" line="7028"/>
         <source>Collaboration: Connected in folder %1
 to join: teamtype join %2</source>
         <translation>Samenwerking: verbonden in map %1 
 om mee te doen: teamtype join %2</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12769"/>
-        <location filename="../src/texstudio.cpp" line="12828"/>
+        <location filename="../src/texstudio.cpp" line="12781"/>
+        <location filename="../src/texstudio.cpp" line="12840"/>
         <source>Collapse Subitems</source>
         <translation>Subitems samenvouwen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12841"/>
+        <location filename="../src/texstudio.cpp" line="12853"/>
         <source>Open Document</source>
         <translation>Document openen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12842"/>
-        <location filename="../src/texstudio.cpp" line="12849"/>
+        <location filename="../src/texstudio.cpp" line="12854"/>
+        <location filename="../src/texstudio.cpp" line="12861"/>
         <source>Go to Definition</source>
         <translation>Ga naar Definitie</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13337"/>
+        <location filename="../src/texstudio.cpp" line="13349"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAFIE</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13345"/>
+        <location filename="../src/texstudio.cpp" line="13357"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MAGIC_COMMENTS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13361"/>
+        <location filename="../src/texstudio.cpp" line="13373"/>
         <source>BLOCK</source>
         <translation>BLOK</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13369"/>
+        <location filename="../src/texstudio.cpp" line="13381"/>
         <source>LABELS</source>
         <translation>ETIKETTEN</translation>
     </message>

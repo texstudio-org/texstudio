@@ -881,14 +881,14 @@ Please change your configuration and define command lists only at &apos;Options 
 <context>
     <name>CodeSnippet_PlaceHolder</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="162"/>
-        <location filename="../src/additionaltranslations.cpp" line="166"/>
+        <location filename="../src/additionaltranslations.cpp" line="160"/>
+        <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>num</source>
         <translation>අංකය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="163"/>
-        <location filename="../src/additionaltranslations.cpp" line="167"/>
+        <location filename="../src/additionaltranslations.cpp" line="161"/>
+        <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>den</source>
         <translation>ගුහාව</translation>
     </message>
@@ -3434,6 +3434,11 @@ options again to only view the most common settings.</source>
         <translation>ජාත්‍යන්තර සහ උච්චාරණ</translation>
     </message>
     <message>
+        <location filename="../src/additionaltranslations.cpp" line="22"/>
+        <source>Review remarks (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/additionaltranslations.cpp" line="23"/>
         <source>Cross References</source>
         <translation>හරස් යොමු කිරීම්</translation>
@@ -3482,11 +3487,6 @@ options again to only view the most common settings.</source>
         <location filename="../src/additionaltranslations.cpp" line="18"/>
         <source>&amp;Horizontal Spacing</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="22"/>
-        <source>Review remarks (easyReview)</source>
-        <translation>සමාලෝචන ප්‍රකාශ (පහසු සමාලෝචනය)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
@@ -3905,7 +3905,7 @@ options again to only view the most common settings.</source>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
-        <location filename="../src/additionaltranslations.cpp" line="240"/>
+        <location filename="../src/additionaltranslations.cpp" line="238"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
         <translation type="unfinished"/>
     </message>
@@ -4005,102 +4005,127 @@ options again to only view the most common settings.</source>
         <translation>\nincludegraphics{file}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="153"/>
+        <location filename="../src/additionaltranslations.cpp" line="137"/>
+        <source>\highlight{text} (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="138"/>
+        <source>\comment{comment} (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="139"/>
+        <source>\added{text} (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="140"/>
+        <source>\deleted{text} (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="141"/>
+        <source>\replaced{text}{replacement} (changes)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>Inline math - $...$</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="154"/>
+        <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>Math (in text style) within a paragraph of text</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="155"/>
+        <location filename="../src/additionaltranslations.cpp" line="153"/>
         <source>Inline math - \(...\)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="156"/>
+        <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>Same as $...$ and the math environment</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="157"/>
+        <location filename="../src/additionaltranslations.cpp" line="155"/>
         <source>Display math - \[...\]</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="158"/>
+        <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>Math (in display style) apart from paragraph of text</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="165"/>
+        <location filename="../src/additionaltranslations.cpp" line="163"/>
         <source>\dfrac (amsmath) always uses display style for the fraction</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="169"/>
+        <location filename="../src/additionaltranslations.cpp" line="167"/>
         <source>Autosize opening delimiter</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="170"/>
+        <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>Autosize closing delimiter</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="171"/>
+        <location filename="../src/additionaltranslations.cpp" line="169"/>
         <source>\begin{array}...\end{array}</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="172"/>
+        <location filename="../src/additionaltranslations.cpp" line="170"/>
         <source>Tabular for math (used inside one of the other math environments)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="174"/>
+        <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>Single equation centered in a row</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="176"/>
+        <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>Multiple equations aligned within columns</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="178"/>
+        <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>Multiple equations aligned within columns with customizable column spacing</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="180"/>
+        <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>Multiple equations aligned within columns having column spacing to fill full line</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="182"/>
+        <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>Multiple equations centered in rows</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="184"/>
+        <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>Single equation split into multiple lines</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="194"/>
+        <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>The gather* environment is an unnumbered gather environment.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="198"/>
+        <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>Distinction of cases (within other math env)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="200"/>
+        <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>Single equation split into multiple aligned lines (within other math env)</source>
         <translation type="unfinished"/>
     </message>
@@ -4115,107 +4140,107 @@ options again to only view the most common settings.</source>
         <translation>\input{file}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="144"/>
+        <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>label</source>
         <translation>ලේබලය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="146"/>
+        <location filename="../src/additionaltranslations.cpp" line="144"/>
         <source>index</source>
         <translation>දර්ශකය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="147"/>
+        <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>cite</source>
         <translation>උපුටා දක්වයි</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="149"/>
+        <location filename="../src/additionaltranslations.cpp" line="147"/>
         <source>footnote</source>
         <translation>පාද සටහන</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="159"/>
+        <location filename="../src/additionaltranslations.cpp" line="157"/>
         <source>Subscript - _{}</source>
         <translation>දායකත්වය - _{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="160"/>
+        <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>Superscript - ^{}</source>
         <translation>උපසිරැසි - ^{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="173"/>
+        <location filename="../src/additionaltranslations.cpp" line="171"/>
         <source>env equation</source>
         <translation>env සමීකරණය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="185"/>
+        <location filename="../src/additionaltranslations.cpp" line="183"/>
         <source>env equation* (amsmath)</source>
         <translation>env සමීකරණය* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="175"/>
+        <location filename="../src/additionaltranslations.cpp" line="173"/>
         <source>env align (amsmath)</source>
         <translation>env align (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="186"/>
+        <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>The equation* environment is an unnumbered equation environment.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="187"/>
+        <location filename="../src/additionaltranslations.cpp" line="185"/>
         <source>env align* (amsmath)</source>
         <translation>env align* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="177"/>
+        <location filename="../src/additionaltranslations.cpp" line="175"/>
         <source>env alignat (amsmath)</source>
         <translation>env alignat (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="188"/>
+        <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>The align* environment is an unnumbered align environment.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="189"/>
+        <location filename="../src/additionaltranslations.cpp" line="187"/>
         <source>env alignat* (amsmath)</source>
         <translation>env alignat* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="179"/>
+        <location filename="../src/additionaltranslations.cpp" line="177"/>
         <source>env flalign (amsmath)</source>
         <translation>env flalign (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="190"/>
+        <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>The alignat* environment is an unnumbered alignat environment.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="191"/>
+        <location filename="../src/additionaltranslations.cpp" line="189"/>
         <source>env flalign* (amsmath)</source>
         <translation>env flalign* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="181"/>
+        <location filename="../src/additionaltranslations.cpp" line="179"/>
         <source>env gather (amsmath)</source>
         <translation>env gather (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="192"/>
+        <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>The flalign* environment is an unnumbered flalign environment.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="193"/>
+        <location filename="../src/additionaltranslations.cpp" line="191"/>
         <source>env gather* (amsmath)</source>
         <translation>env gather* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="183"/>
+        <location filename="../src/additionaltranslations.cpp" line="181"/>
         <source>env multline (amsmath)</source>
         <translation>env multline (amsmath)</translation>
     </message>
@@ -4225,106 +4250,72 @@ options again to only view the most common settings.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="137"/>
-        <source>\alert{text} (easyReview)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="138"/>
-        <source>\comment{text}{comment} (easyReview)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="139"/>
-        <source>\add{text} (easyReview)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="140"/>
-        <source>\remove{text} (easyReview)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="141"/>
-        <source>\replace{text}{replacement} (easyReview)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="142"/>
-        <source>Turn on review comments in pdf</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
-        <source>Turn off review comments in pdf</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>\label{key}</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="148"/>
+        <location filename="../src/additionaltranslations.cpp" line="146"/>
         <source>This command generates an in-text citation to the reference associated with the ref entry in the bib file</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="150"/>
+        <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="151"/>
+        <location filename="../src/additionaltranslations.cpp" line="149"/>
         <source>The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="152"/>
+        <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. &apos;\addbibresource{mybibliography.bib}&apos;). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="161"/>
+        <location filename="../src/additionaltranslations.cpp" line="159"/>
         <source>Fraction - \frac{}{}</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="164"/>
+        <location filename="../src/additionaltranslations.cpp" line="162"/>
         <source>Fraction - \dfrac{}{}</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="168"/>
+        <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>Square Root - \sqrt{}</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="195"/>
+        <location filename="../src/additionaltranslations.cpp" line="193"/>
         <source>env multline* (amsmath)</source>
         <translation>env multline* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="196"/>
+        <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>The multline* environment is an unnumbered multline environment.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="197"/>
+        <location filename="../src/additionaltranslations.cpp" line="195"/>
         <source>env cases (amsmath)</source>
         <translation>env නඩු (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="199"/>
+        <location filename="../src/additionaltranslations.cpp" line="197"/>
         <source>env split (amsmath)</source>
         <translation>env බෙදීම (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="201"/>
+        <location filename="../src/additionaltranslations.cpp" line="199"/>
         <source>env Corollary (ntheorem)</source>
         <translation>env නිගමනය (ntheorem)</translation>
     </message>
     <message>
+        <location filename="../src/additionaltranslations.cpp" line="200"/>
         <location filename="../src/additionaltranslations.cpp" line="202"/>
         <location filename="../src/additionaltranslations.cpp" line="204"/>
         <location filename="../src/additionaltranslations.cpp" line="206"/>
@@ -4332,182 +4323,181 @@ options again to only view the most common settings.</source>
         <location filename="../src/additionaltranslations.cpp" line="210"/>
         <location filename="../src/additionaltranslations.cpp" line="212"/>
         <location filename="../src/additionaltranslations.cpp" line="214"/>
-        <location filename="../src/additionaltranslations.cpp" line="216"/>
         <source>Needs \usepackage[standard]{ntheorem}</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="203"/>
+        <location filename="../src/additionaltranslations.cpp" line="201"/>
         <source>env Definition (ntheorem)</source>
         <translation>env අර්ථ දැක්වීම (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="205"/>
+        <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>env Example (ntheorem)</source>
         <translation>env උදාහරණය (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="207"/>
+        <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>env Lemma (ntheorem)</source>
         <translation>env Lemma (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="209"/>
+        <location filename="../src/additionaltranslations.cpp" line="207"/>
         <source>env Proof (ntheorem)</source>
         <translation>env සාධනය (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="211"/>
+        <location filename="../src/additionaltranslations.cpp" line="209"/>
         <source>env Proposition (ntheorem)</source>
         <translation>env යෝජනාව (ප්‍රමේයය)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="213"/>
+        <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>env Remark (ntheorem)</source>
         <translation>env Remark (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="215"/>
+        <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>env Theorem (ntheorem)</source>
         <translation>env ප්‍රමේයය (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="217"/>
+        <location filename="../src/additionaltranslations.cpp" line="215"/>
         <source>Roman - \mathrm{}</source>
         <translation>රෝමන් - \mathrm{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="218"/>
+        <location filename="../src/additionaltranslations.cpp" line="216"/>
         <source>Italic - \mathit{}</source>
         <translation>ඇල අකුරු - \mathit{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="219"/>
+        <location filename="../src/additionaltranslations.cpp" line="217"/>
         <source>Bold - \mathbf{}</source>
         <translation>තද - \mathbf{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="220"/>
+        <location filename="../src/additionaltranslations.cpp" line="218"/>
         <source>Sans Serif - \mathsf{}</source>
         <translation>Sans Serif - \mathsf{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="221"/>
+        <location filename="../src/additionaltranslations.cpp" line="219"/>
         <source>Typewriter - \mathtt{}</source>
         <translation>යතුරු ලියනය - \mattt{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="222"/>
+        <location filename="../src/additionaltranslations.cpp" line="220"/>
         <source>Calligraphic - \mathcal{}</source>
         <translation>අක්ෂර වින්‍යාසය - \mathcal{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="223"/>
+        <location filename="../src/additionaltranslations.cpp" line="221"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
         <translation>කළු පුවරුව තද - \mathbb{} (amssymb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="224"/>
+        <location filename="../src/additionaltranslations.cpp" line="222"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
         <translation>Fraktur - \mathfrak{} (amssymb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="225"/>
+        <location filename="../src/additionaltranslations.cpp" line="223"/>
         <source>\overset (amsmath)</source>
         <translation>\overset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="226"/>
+        <location filename="../src/additionaltranslations.cpp" line="224"/>
         <source>\underset (amsmath)</source>
         <translation>\underset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="227"/>
+        <location filename="../src/additionaltranslations.cpp" line="225"/>
         <source>\sideset (amsmath)</source>
         <translation>\sideset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="228"/>
+        <location filename="../src/additionaltranslations.cpp" line="226"/>
         <source>\prescript (mathtools)</source>
         <translation>\ prescript (mattools)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="229"/>
+        <location filename="../src/additionaltranslations.cpp" line="227"/>
         <source>Negative - \!</source>
         <translation>සෘණ - \!</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="230"/>
+        <location filename="../src/additionaltranslations.cpp" line="228"/>
         <source>Negative thin space</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="231"/>
+        <location filename="../src/additionaltranslations.cpp" line="229"/>
         <source>Thin - \,</source>
         <translation>සිහින් - \,</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="232"/>
+        <location filename="../src/additionaltranslations.cpp" line="230"/>
         <source>3/18 of a \quad</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="233"/>
+        <location filename="../src/additionaltranslations.cpp" line="231"/>
         <source>Medium - \:</source>
         <translation>මධ්යම - \:</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="234"/>
+        <location filename="../src/additionaltranslations.cpp" line="232"/>
         <source>4/18 of a \quad</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="235"/>
+        <location filename="../src/additionaltranslations.cpp" line="233"/>
         <source>Thick - \;</source>
         <translation>ඝන - \;</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="236"/>
+        <location filename="../src/additionaltranslations.cpp" line="234"/>
         <source>5/18 of a \quad</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="237"/>
+        <location filename="../src/additionaltranslations.cpp" line="235"/>
         <source>Interword - \ </source>
         <translation>අතුරු වචනය - \ </translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="238"/>
+        <location filename="../src/additionaltranslations.cpp" line="236"/>
         <source>regular whitespace</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="239"/>
+        <location filename="../src/additionaltranslations.cpp" line="237"/>
         <source>One quad - \quad</source>
         <translation>එක් quad - \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="241"/>
+        <location filename="../src/additionaltranslations.cpp" line="239"/>
         <source>Two quads - \qquad</source>
         <translation>හතරැස් දෙකක් - \qquad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="242"/>
+        <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>Twice the size of a \quad</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="243"/>
+        <location filename="../src/additionaltranslations.cpp" line="241"/>
         <source>ref</source>
         <translation>ref</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="244"/>
+        <location filename="../src/additionaltranslations.cpp" line="242"/>
         <source>eqref</source>
         <translation>eqref</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="245"/>
+        <location filename="../src/additionaltranslations.cpp" line="243"/>
         <source>pageref</source>
         <translation>pageref</translation>
     </message>
@@ -4770,52 +4760,52 @@ Do you want to remove them?</source>
 <context>
     <name>Editors</name>
     <message>
-        <location filename="../src/editors.cpp" line="389"/>
+        <location filename="../src/editors.cpp" line="390"/>
         <source>Move to other view</source>
         <translation>වෙනත් දර්ශනයකට යන්න</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="394"/>
+        <location filename="../src/editors.cpp" line="395"/>
         <source>Move all others to other view</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="399"/>
+        <location filename="../src/editors.cpp" line="400"/>
         <source>Move all to other view</source>
         <translation>සියල්ල වෙනත් දර්ශනයකට ගෙන යන්න</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="405"/>
+        <location filename="../src/editors.cpp" line="406"/>
         <source>Split Vertically</source>
         <translation>සිරස් අතට බෙදන්න</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="405"/>
+        <location filename="../src/editors.cpp" line="406"/>
         <source>Split Horizontally</source>
         <translation>තිරස් අතට බෙදන්න</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="410"/>
+        <location filename="../src/editors.cpp" line="411"/>
         <source>Copy file path</source>
         <translation>ගොනු මාර්ගය පිටපත් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="418"/>
+        <location filename="../src/editors.cpp" line="419"/>
         <source>Set Read-Only</source>
         <translation>කියවීමට පමණක් සකසන්න</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="420"/>
+        <location filename="../src/editors.cpp" line="421"/>
         <source>Unset Read-Only</source>
         <translation>කියවීමට පමණක් සැකසීම ඉවත් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="425"/>
+        <location filename="../src/editors.cpp" line="426"/>
         <source>Close</source>
         <translation>වසන්න</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="428"/>
+        <location filename="../src/editors.cpp" line="429"/>
         <source>Close All Other Documents</source>
         <translation>අනෙකුත් සියලුම ලේඛන වසන්න</translation>
     </message>
@@ -4912,6 +4902,14 @@ You have to make sure yourself that the file encoding and the value passed to th
         <location filename="../src/filechooser.ui" line="137"/>
         <source>Cancel</source>
         <translation>අවලංගු කරන්න</translation>
+    </message>
+</context>
+<context>
+    <name>FileSelector</name>
+    <message>
+        <location filename="../src/fileselector.cpp" line="182"/>
+        <source>Remove selected items</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -6438,7 +6436,7 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3891"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5109"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5113"/>
         <source>Close</source>
         <translation>වසන්න</translation>
     </message>
@@ -6522,12 +6520,12 @@ You can now enter the password:</source>
         <translation>PDF විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4931"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4935"/>
         <source>Print</source>
         <translation>මුද්‍රණය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5110"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5114"/>
         <source>Close Message</source>
         <translation>පණිවිඩය වසන්න</translation>
     </message>
@@ -7646,462 +7644,502 @@ TeXstudio වලින් පිටත වෙනස් කරන ලදී. ත�
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="246"/>
+        <location filename="../src/additionaltranslations.cpp" line="244"/>
         <source>background</source>
         <translation>පසුබිම</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="247"/>
+        <location filename="../src/additionaltranslations.cpp" line="245"/>
         <source>line:error</source>
         <translation>රේඛාව: දෝෂය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="248"/>
+        <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>line:warning</source>
         <translation>රේඛාව: අනතුරු ඇඟවීම</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="249"/>
+        <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>line:badbox</source>
         <translation>රේඛාව: නරක පෙට්ටිය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="250"/>
+        <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>line:bookmark</source>
         <translation>රේඛාව: පිටු සලකුණ</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="251"/>
+        <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>line:bookmark0</source>
         <translation>රේඛාව: Bookmark0</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="252"/>
+        <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>line:bookmark1</source>
         <translation>රේඛාව: Bookmark1</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="253"/>
+        <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>line:bookmark2</source>
         <translation>රේඛාව: Bookmark2</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="254"/>
+        <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>line:bookmark3</source>
         <translation>රේඛාව: Bookmark3</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="255"/>
+        <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>line:bookmark4</source>
         <translation>රේඛාව: Bookmark4</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="256"/>
+        <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>line:bookmark5</source>
         <translation>රේඛාව: Bookmark5</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="257"/>
+        <location filename="../src/additionaltranslations.cpp" line="255"/>
         <source>line:bookmark6</source>
         <translation>රේඛාව: Bookmark6</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="258"/>
+        <location filename="../src/additionaltranslations.cpp" line="256"/>
         <source>line:bookmark7</source>
         <translation>රේඛාව: Bookmark7</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="259"/>
+        <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>line:bookmark8</source>
         <translation>රේඛාව: Bookmark8</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="260"/>
+        <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>line:bookmark9</source>
         <translation>රේඛාව: Bookmark9</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="261"/>
+        <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>magicComment</source>
         <translation>මැජික් අදහස් දැක්වීම</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="262"/>
+        <location filename="../src/additionaltranslations.cpp" line="260"/>
         <source>commentTodo</source>
         <translation>commentTodo</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="263"/>
+        <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>comment</source>
         <translation>අදහස් දක්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="264"/>
+        <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>keyword</source>
         <translation>මූල පදය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="265"/>
+        <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>extra-keyword</source>
         <translation>අමතර මූල පදය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="266"/>
+        <location filename="../src/additionaltranslations.cpp" line="264"/>
         <source>math-keyword</source>
         <translation>ගණිත මූල පදය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="267"/>
+        <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>link</source>
         <translation>සබැඳිය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="268"/>
+        <location filename="../src/additionaltranslations.cpp" line="266"/>
         <source>align-ampersand</source>
         <translation>align-ampersand</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="269"/>
+        <location filename="../src/additionaltranslations.cpp" line="267"/>
         <source>verbatim</source>
         <translation>වචනාර්ථයෙන්</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="270"/>
+        <location filename="../src/additionaltranslations.cpp" line="268"/>
         <source>sweave-block</source>
         <translation>ස්වීව්-බ්ලොක්</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="271"/>
+        <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>sweave-delimiter</source>
         <translation>sweave-delimiter</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="272"/>
+        <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>pweave-block</source>
         <translation>pweave-block</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="273"/>
+        <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>pweave-delimiter</source>
         <translation>pweave-delimiter</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="274"/>
+        <location filename="../src/additionaltranslations.cpp" line="272"/>
         <source>picture</source>
         <translation>පින්තූරය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="275"/>
+        <location filename="../src/additionaltranslations.cpp" line="273"/>
         <source>picture-keyword</source>
         <translation>පින්තුර-මූල පදය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="276"/>
+        <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>braceMatch</source>
         <translation>braceMatch</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="277"/>
+        <location filename="../src/additionaltranslations.cpp" line="275"/>
         <source>braceMismatch</source>
         <translation>වරහන් නොගැලපීම</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="278"/>
+        <location filename="../src/additionaltranslations.cpp" line="276"/>
         <source>search</source>
         <translation>සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="279"/>
+        <location filename="../src/additionaltranslations.cpp" line="277"/>
         <source>numbers</source>
         <translation>අංක</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="280"/>
+        <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>math-delimiter</source>
         <translation>math-delimiter</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="281"/>
+        <location filename="../src/additionaltranslations.cpp" line="279"/>
         <source>math-text</source>
         <translation>ගණිත පෙළ</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="282"/>
+        <location filename="../src/additionaltranslations.cpp" line="280"/>
         <source>text</source>
         <translation>පෙළ</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="283"/>
+        <location filename="../src/additionaltranslations.cpp" line="281"/>
         <source>escapeseq</source>
         <translation>පලායාම</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="284"/>
+        <location filename="../src/additionaltranslations.cpp" line="282"/>
         <source>spellingMistake</source>
         <translation>අක්ෂර වින්යාස දෝශයක්</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="285"/>
+        <location filename="../src/additionaltranslations.cpp" line="283"/>
         <source>wordRepetition</source>
         <translation>වචන පුනරාවර්තනය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="286"/>
+        <location filename="../src/additionaltranslations.cpp" line="284"/>
         <source>wordRepetitionLongRange</source>
         <translation>wordRepetitionLongRange</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="287"/>
+        <location filename="../src/additionaltranslations.cpp" line="285"/>
         <source>badWord</source>
         <translation>නරක වචනය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="288"/>
+        <location filename="../src/additionaltranslations.cpp" line="286"/>
         <source>grammarMistake</source>
         <translation>grammarMistake</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="289"/>
+        <location filename="../src/additionaltranslations.cpp" line="287"/>
         <source>grammarMistakeSpecial1</source>
         <translation>grammarMistakeSpecial1</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="290"/>
+        <location filename="../src/additionaltranslations.cpp" line="288"/>
         <source>grammarMistakeSpecial2</source>
         <translation>grammarMistakeSpecial2</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="291"/>
+        <location filename="../src/additionaltranslations.cpp" line="289"/>
         <source>grammarMistakeSpecial3</source>
         <translation>grammarMistakeSpecial3</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="292"/>
+        <location filename="../src/additionaltranslations.cpp" line="290"/>
         <source>grammarMistakeSpecial4</source>
         <translation>grammarMistakeSpecial4</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="293"/>
+        <location filename="../src/additionaltranslations.cpp" line="291"/>
         <source>latexSyntaxMistake</source>
         <translation>latexSyntaxMistake</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="294"/>
+        <location filename="../src/additionaltranslations.cpp" line="292"/>
         <source>temporaryCodeCompletion</source>
         <translation>තාවකාලික කේත සම්පූර්ණ කිරීම</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="295"/>
+        <location filename="../src/additionaltranslations.cpp" line="293"/>
         <source>environment</source>
         <translation>පරිසරය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="296"/>
+        <location filename="../src/additionaltranslations.cpp" line="294"/>
         <source>referencePresent</source>
         <translation>referencePresent</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="297"/>
+        <location filename="../src/additionaltranslations.cpp" line="295"/>
         <source>referenceMissing</source>
         <translation>යොමුව අතුරුදහන්</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="298"/>
+        <location filename="../src/additionaltranslations.cpp" line="296"/>
         <source>referenceMultiple</source>
         <translation>යොමු බහු</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="299"/>
+        <location filename="../src/additionaltranslations.cpp" line="297"/>
         <source>citationPresent</source>
         <translation>උපුටා දැක්වීම</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="300"/>
+        <location filename="../src/additionaltranslations.cpp" line="298"/>
         <source>citationMissing</source>
         <translation>උපුටා ගැනීම අතුරුදහන්</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="301"/>
+        <location filename="../src/additionaltranslations.cpp" line="299"/>
         <source>packagePresent</source>
         <translation>පැකේජය වර්තමානය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="302"/>
+        <location filename="../src/additionaltranslations.cpp" line="300"/>
         <source>packageMissing</source>
         <translation>පැකේජය අතුරුදහන්</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="303"/>
+        <location filename="../src/additionaltranslations.cpp" line="301"/>
         <source>structure</source>
         <translation>ව්යුහය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="304"/>
+        <location filename="../src/additionaltranslations.cpp" line="302"/>
         <source>current</source>
         <translation>වර්තමාන</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="305"/>
+        <location filename="../src/additionaltranslations.cpp" line="303"/>
         <source>selection</source>
         <translation>තෝරා ගැනීම</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="306"/>
+        <location filename="../src/additionaltranslations.cpp" line="304"/>
         <source>replacement</source>
         <translation>ආදේශ කිරීම</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="307"/>
+        <location filename="../src/additionaltranslations.cpp" line="305"/>
         <source>diffDelete</source>
         <translation>diffDelete</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="308"/>
+        <location filename="../src/additionaltranslations.cpp" line="306"/>
         <source>diffAdd</source>
         <translation>වෙනස් එකතු කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="309"/>
+        <location filename="../src/additionaltranslations.cpp" line="307"/>
         <source>diffReplace</source>
         <translation>වෙනස ප්රතිස්ථාපනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="310"/>
+        <location filename="../src/additionaltranslations.cpp" line="308"/>
         <source>previewSelection</source>
         <translation>පෙරදසුන් තේරීම</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="311"/>
+        <location filename="../src/additionaltranslations.cpp" line="309"/>
         <source>txs-test</source>
         <translation>txs-පරීක්ෂණය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="312"/>
+        <location filename="../src/additionaltranslations.cpp" line="310"/>
         <source>txs-test-summary</source>
         <translation>txs-පරීක්ෂණ සාරාංශය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="313"/>
+        <location filename="../src/additionaltranslations.cpp" line="311"/>
         <source>txs-test-pass</source>
         <translation>txs-test-pass</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="314"/>
+        <location filename="../src/additionaltranslations.cpp" line="312"/>
         <source>txs-test-fail</source>
         <translation>txs-test-fail</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="315"/>
+        <location filename="../src/additionaltranslations.cpp" line="313"/>
         <source>txs-test-warn</source>
         <translation>txs-test-අවවාදයයි</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="316"/>
+        <location filename="../src/additionaltranslations.cpp" line="314"/>
         <source>txs-test-qdebug</source>
         <translation>txs-test-qdebug</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="317"/>
+        <location filename="../src/additionaltranslations.cpp" line="315"/>
         <source>dtx:guard</source>
         <translation>dtx:guard</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="318"/>
+        <location filename="../src/additionaltranslations.cpp" line="316"/>
         <source>dtx:macro</source>
         <translation>dtx:macro</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="319"/>
+        <location filename="../src/additionaltranslations.cpp" line="317"/>
         <source>dtx:verbatim</source>
         <translation>dtx: වාචික</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="320"/>
+        <location filename="../src/additionaltranslations.cpp" line="318"/>
         <source>dtx:specialchar</source>
         <translation>dtx:specialchar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="321"/>
+        <location filename="../src/additionaltranslations.cpp" line="319"/>
         <source>dtx:commands</source>
         <translation>dtx: විධාන</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="322"/>
+        <location filename="../src/additionaltranslations.cpp" line="320"/>
         <source>lua:keyword</source>
         <translation>lua: මූල පදය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="323"/>
+        <location filename="../src/additionaltranslations.cpp" line="321"/>
         <source>lua:comment</source>
         <translation>lua:comment</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="324"/>
+        <location filename="../src/additionaltranslations.cpp" line="322"/>
         <source>asymptote:block</source>
         <translation>asymptote:block</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="325"/>
+        <location filename="../src/additionaltranslations.cpp" line="323"/>
         <source>asymptote:keyword</source>
         <translation>asymptote:මූල පදය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="326"/>
+        <location filename="../src/additionaltranslations.cpp" line="324"/>
         <source>asymptote:type</source>
         <translation>රෝග ලක්ෂණ: වර්ගය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="327"/>
+        <location filename="../src/additionaltranslations.cpp" line="325"/>
         <source>asymptote:numbers</source>
         <translation>asymptote:සංඛ්‍යා</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="328"/>
+        <location filename="../src/additionaltranslations.cpp" line="326"/>
         <source>asymptote:string</source>
         <translation>asymptote:string</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="329"/>
+        <location filename="../src/additionaltranslations.cpp" line="327"/>
         <source>asymptote:comment</source>
         <translation>රෝග ලක්ෂණය:අදහස</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="330"/>
+        <location filename="../src/additionaltranslations.cpp" line="328"/>
         <source>qtscript:comment</source>
         <translation>qtscript:comment</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="331"/>
+        <location filename="../src/additionaltranslations.cpp" line="329"/>
         <source>qtscript:string</source>
         <translation>qtscript:string</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="332"/>
+        <location filename="../src/additionaltranslations.cpp" line="330"/>
         <source>qtscript:number</source>
         <translation>qtscript:අංකය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="333"/>
+        <location filename="../src/additionaltranslations.cpp" line="331"/>
         <source>qtscript:keyword</source>
         <translation>qtscript:මූල පදය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="334"/>
+        <location filename="../src/additionaltranslations.cpp" line="332"/>
         <source>qtscript:txs-variable</source>
         <translation>qtscript:txs-variable</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="335"/>
+        <location filename="../src/additionaltranslations.cpp" line="333"/>
         <source>qtscript:txs-function</source>
         <translation>qtscript:txs-function</translation>
     </message>
     <message>
+        <location filename="../src/additionaltranslations.cpp" line="334"/>
+        <source>braceLevel0</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="335"/>
+        <source>braceLevel1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/additionaltranslations.cpp" line="336"/>
+        <source>braceLevel2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="337"/>
+        <source>braceLevel3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="338"/>
+        <source>braceLevel4</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="339"/>
+        <source>braceLevel5</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="340"/>
+        <source>braceLevel6</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="341"/>
+        <source>braceLevel7</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="342"/>
         <source>preedit</source>
         <translation>පෙරනිමිති</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="337"/>
+        <location filename="../src/additionaltranslations.cpp" line="343"/>
         <source>normal</source>
         <translation>සාමාන්ය</translation>
     </message>
@@ -9831,136 +9869,136 @@ template to edit individual files.</source>
 <context>
     <name>Texstudio</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="338"/>
+        <location filename="../src/additionaltranslations.cpp" line="344"/>
         <source>Custom</source>
         <translation>අභිරුචි</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="339"/>
+        <location filename="../src/additionaltranslations.cpp" line="345"/>
         <source>File</source>
         <translation>ගොනුව</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="340"/>
+        <location filename="../src/additionaltranslations.cpp" line="346"/>
         <source>Edit</source>
         <translation>සංස්කරණය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="341"/>
+        <location filename="../src/additionaltranslations.cpp" line="347"/>
         <source>Tools</source>
         <translation>මෙවලම්</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="342"/>
+        <location filename="../src/additionaltranslations.cpp" line="348"/>
         <source>Math</source>
         <translation>ගණිතය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="343"/>
+        <location filename="../src/additionaltranslations.cpp" line="349"/>
         <source>Format</source>
         <translation>ආකෘතිය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="344"/>
+        <location filename="../src/additionaltranslations.cpp" line="350"/>
         <source>Table</source>
         <translation>වගුව</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="345"/>
+        <location filename="../src/additionaltranslations.cpp" line="351"/>
         <source>Diff</source>
         <translation>වෙනස</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="346"/>
+        <location filename="../src/additionaltranslations.cpp" line="352"/>
         <source>Review</source>
         <translation>සමාලෝචනය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="347"/>
+        <location filename="../src/additionaltranslations.cpp" line="353"/>
         <location filename="../src/texstudio.cpp" line="276"/>
         <source>Central</source>
         <translation>මධ්යම</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="348"/>
+        <location filename="../src/additionaltranslations.cpp" line="354"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
         <translation>අසමමිතිය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="349"/>
+        <location filename="../src/additionaltranslations.cpp" line="355"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="350"/>
+        <location filename="../src/additionaltranslations.cpp" line="356"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
         <translation>ද්විමය</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="351"/>
+        <location filename="../src/additionaltranslations.cpp" line="357"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
         <translation>TeX dtx ගොනුව</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="352"/>
+        <location filename="../src/additionaltranslations.cpp" line="358"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
         <translation>Homespring</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="353"/>
+        <location filename="../src/additionaltranslations.cpp" line="359"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation>ලුවා</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="354"/>
+        <location filename="../src/additionaltranslations.cpp" line="360"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
         <translation>Pweave</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="355"/>
+        <location filename="../src/additionaltranslations.cpp" line="361"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
         <translation>QtScript</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="356"/>
+        <location filename="../src/additionaltranslations.cpp" line="362"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
         <translation>ස්වීව් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="357"/>
+        <location filename="../src/additionaltranslations.cpp" line="363"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
         <translation>(ල) ටෙක්ස්</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="358"/>
+        <location filename="../src/additionaltranslations.cpp" line="364"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX මැක්රෝ</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="359"/>
+        <location filename="../src/additionaltranslations.cpp" line="365"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
         <translation>TXS පරීක්ෂණ ප්රතිඵල</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="360"/>
+        <location filename="../src/additionaltranslations.cpp" line="366"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
         <translation>සරල පෙළ</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="361"/>
+        <location filename="../src/additionaltranslations.cpp" line="367"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
         <translation>XML</translation>
@@ -9972,7 +10010,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="378"/>
-        <location filename="../src/texstudio.cpp" line="6578"/>
+        <location filename="../src/texstudio.cpp" line="6589"/>
         <source>Ready</source>
         <translation>සූදානම්</translation>
     </message>
@@ -10013,8 +10051,8 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="461"/>
-        <location filename="../src/texstudio.cpp" line="10475"/>
-        <location filename="../src/texstudio.cpp" line="10482"/>
+        <location filename="../src/texstudio.cpp" line="10487"/>
+        <location filename="../src/texstudio.cpp" line="10494"/>
         <source>All files</source>
         <translation>සියලුම ගොනු</translation>
     </message>
@@ -10260,7 +10298,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="959"/>
-        <location filename="../src/texstudio.cpp" line="10741"/>
+        <location filename="../src/texstudio.cpp" line="10753"/>
         <source>&amp;Close</source>
         <translation>&amp;වසන්න</translation>
     </message>
@@ -10507,9 +10545,9 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1029"/>
-        <location filename="../src/texstudio.cpp" line="8366"/>
-        <location filename="../src/texstudio.cpp" line="8391"/>
-        <location filename="../src/texstudio.cpp" line="8411"/>
+        <location filename="../src/texstudio.cpp" line="8377"/>
+        <location filename="../src/texstudio.cpp" line="8402"/>
+        <location filename="../src/texstudio.cpp" line="8422"/>
         <source>Line</source>
         <translation>රේඛාව</translation>
     </message>
@@ -11371,31 +11409,31 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1438"/>
-        <location filename="../src/texstudio.cpp" line="10720"/>
+        <location filename="../src/texstudio.cpp" line="10732"/>
         <source>Word Repetition</source>
         <translation>වචන පුනරාවර්තනය</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1439"/>
-        <location filename="../src/texstudio.cpp" line="10721"/>
+        <location filename="../src/texstudio.cpp" line="10733"/>
         <source>Long-range Word Repetition</source>
         <translation>දිගු පරාසයක වචන පුනරාවර්තනය</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1440"/>
-        <location filename="../src/texstudio.cpp" line="10722"/>
+        <location filename="../src/texstudio.cpp" line="10734"/>
         <source>Bad words</source>
         <translation>නරක වචන</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1441"/>
-        <location filename="../src/texstudio.cpp" line="10723"/>
+        <location filename="../src/texstudio.cpp" line="10735"/>
         <source>Grammar Mistake</source>
         <translation>ව්‍යාකරණ දෝෂය</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1443"/>
-        <location filename="../src/texstudio.cpp" line="10730"/>
+        <location filename="../src/texstudio.cpp" line="10742"/>
         <source>Grammar Mistake Special %1</source>
         <translation>ව්‍යාකරණ දෝෂ විශේෂ %1</translation>
     </message>
@@ -11528,7 +11566,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1692"/>
-        <location filename="../src/texstudio.cpp" line="6084"/>
+        <location filename="../src/texstudio.cpp" line="6095"/>
         <source>show more entries ...</source>
         <translation>තවත් ඇතුළත් කිරීම් පෙන්වන්න...</translation>
     </message>
@@ -11565,9 +11603,9 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1826"/>
         <location filename="../src/texstudio.cpp" line="1827"/>
-        <location filename="../src/texstudio.cpp" line="6114"/>
-        <location filename="../src/texstudio.cpp" line="6117"/>
-        <location filename="../src/texstudio.cpp" line="6118"/>
+        <location filename="../src/texstudio.cpp" line="6125"/>
+        <location filename="../src/texstudio.cpp" line="6128"/>
+        <location filename="../src/texstudio.cpp" line="6129"/>
         <source>Encoding</source>
         <translation>කේතනය කිරීම</translation>
     </message>
@@ -11621,15 +11659,15 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2338"/>
-        <location filename="../src/texstudio.cpp" line="4364"/>
-        <location filename="../src/texstudio.cpp" line="6168"/>
-        <location filename="../src/texstudio.cpp" line="6222"/>
-        <location filename="../src/texstudio.cpp" line="7097"/>
-        <location filename="../src/texstudio.cpp" line="7278"/>
-        <location filename="../src/texstudio.cpp" line="7280"/>
-        <location filename="../src/texstudio.cpp" line="7290"/>
-        <location filename="../src/texstudio.cpp" line="7292"/>
-        <location filename="../src/texstudio.cpp" line="11220"/>
+        <location filename="../src/texstudio.cpp" line="4375"/>
+        <location filename="../src/texstudio.cpp" line="6179"/>
+        <location filename="../src/texstudio.cpp" line="6233"/>
+        <location filename="../src/texstudio.cpp" line="7108"/>
+        <location filename="../src/texstudio.cpp" line="7289"/>
+        <location filename="../src/texstudio.cpp" line="7291"/>
+        <location filename="../src/texstudio.cpp" line="7301"/>
+        <location filename="../src/texstudio.cpp" line="7303"/>
+        <location filename="../src/texstudio.cpp" line="11232"/>
         <source>Error</source>
         <translation>දෝෂයකි</translation>
     </message>
@@ -11683,7 +11721,7 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2920"/>
-        <location filename="../src/texstudio.cpp" line="11049"/>
+        <location filename="../src/texstudio.cpp" line="11061"/>
         <source>Open Files</source>
         <translation>ගොනු විවෘත කරන්න</translation>
     </message>
@@ -11723,7 +11761,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3154"/>
-        <location filename="../src/texstudio.cpp" line="12813"/>
+        <location filename="../src/texstudio.cpp" line="12825"/>
         <source>Copy</source>
         <translation>පිටපත් කරන්න</translation>
     </message>
@@ -11754,242 +11792,242 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3475"/>
-        <location filename="../src/texstudio.cpp" line="3534"/>
-        <location filename="../src/texstudio.cpp" line="3614"/>
+        <location filename="../src/texstudio.cpp" line="3545"/>
+        <location filename="../src/texstudio.cpp" line="3625"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>&quot;%1&quot; ගොනුව තවදුරටත් නොපවතී. ඔබට එය මෑත කාලීන ගොනු ලැයිස්තුවෙන් ඉවත් කිරීමට අවශ්‍යද?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3627"/>
+        <location filename="../src/texstudio.cpp" line="3638"/>
         <source>Loading of session failed.</source>
         <translation>සැසිය පූරණය කිරීම අසාර්ථක විය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3644"/>
+        <location filename="../src/texstudio.cpp" line="3655"/>
         <source>Load Session</source>
         <translation>පැටවීමේ සැසිය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3644"/>
-        <location filename="../src/texstudio.cpp" line="3662"/>
+        <location filename="../src/texstudio.cpp" line="3655"/>
+        <location filename="../src/texstudio.cpp" line="3673"/>
         <source>TeXstudio Session</source>
         <translation>TeXstudio සැසිය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3662"/>
+        <location filename="../src/texstudio.cpp" line="3673"/>
         <source>Save Session</source>
         <translation>සැසිය සුරකින්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3668"/>
+        <location filename="../src/texstudio.cpp" line="3679"/>
         <source>Saving of session failed.</source>
         <translation>සැසිය සුරැකීම අසාර්ථක විය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3744"/>
+        <location filename="../src/texstudio.cpp" line="3755"/>
         <source>The following files could not be loaded:</source>
         <translation>පහත ගොනු පූරණය කළ නොහැක:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3924"/>
+        <location filename="../src/texstudio.cpp" line="3935"/>
         <source>Image Formats (%1)</source>
         <translation>රූප ආකෘති (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3926"/>
+        <location filename="../src/texstudio.cpp" line="3937"/>
         <source>Save Image</source>
         <translation>රූපය සුරකින්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3931"/>
+        <location filename="../src/texstudio.cpp" line="3942"/>
         <source>Could not save the image file.</source>
         <translation>රූප ගොනුව සුරැකීමට නොහැකි විය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4019"/>
+        <location filename="../src/texstudio.cpp" line="4030"/>
         <source>Ascending</source>
         <translation>නැගීම</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4019"/>
+        <location filename="../src/texstudio.cpp" line="4030"/>
         <source>Descending</source>
         <translation>බැස යනවා</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4019"/>
+        <location filename="../src/texstudio.cpp" line="4030"/>
         <source>No Sorting</source>
         <translation>වර්ග කිරීම නැත</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4019"/>
+        <location filename="../src/texstudio.cpp" line="4030"/>
         <source>Random (Shuffle)</source>
         <translation>අහඹු (Shuffle)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4025"/>
+        <location filename="../src/texstudio.cpp" line="4036"/>
         <source>Sorting</source>
         <translation>වර්ග කිරීම</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4026"/>
+        <location filename="../src/texstudio.cpp" line="4037"/>
         <source>Complete Lines</source>
         <translation>සම්පූර්ණ රේඛා</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4027"/>
+        <location filename="../src/texstudio.cpp" line="4038"/>
         <source>Case Sensitive</source>
         <translation>විෂය සංවේදී</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4028"/>
+        <location filename="../src/texstudio.cpp" line="4039"/>
         <source>Remove Duplicates</source>
         <translation>අනුපිටපත් ඉවත් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4327"/>
+        <location filename="../src/texstudio.cpp" line="4338"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>අක්ෂර ගණනාවකට පසුව දෘඪ රේඛා බිඳීම් ඇතුළු කරන්න:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4328"/>
+        <location filename="../src/texstudio.cpp" line="4339"/>
         <source>Smart scope selecting</source>
         <translation>ස්මාර්ට් විෂය පථය තේරීම</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4329"/>
+        <location filename="../src/texstudio.cpp" line="4340"/>
         <source>Join lines before wrapping</source>
         <translation>එතීමට පෙර පේළි සම්බන්ධ කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4343"/>
-        <location filename="../src/texstudio.cpp" line="6679"/>
-        <location filename="../src/texstudio.cpp" line="6736"/>
+        <location filename="../src/texstudio.cpp" line="4354"/>
+        <location filename="../src/texstudio.cpp" line="6690"/>
+        <location filename="../src/texstudio.cpp" line="6747"/>
         <source>No document open</source>
         <translation>ලේඛනයක් විවෘත නැත</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4349"/>
+        <location filename="../src/texstudio.cpp" line="4360"/>
         <source>No dictionary available.</source>
         <translation>ශබ්ද කෝෂයක් නොමැත.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4364"/>
+        <location filename="../src/texstudio.cpp" line="4375"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Thesaurus Database එක&apos;t load කරන්න පුලුවන්</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4777"/>
+        <location filename="../src/texstudio.cpp" line="4788"/>
         <source>Storing session failed</source>
         <translation>ගබඩා කිරීමේ සැසිය අසාර්ථක විය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4777"/>
+        <location filename="../src/texstudio.cpp" line="4788"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation>සැසි තොරතුරු %1 ගබඩා කිරීම අසාර්ථක විය. ගොනුව පවතින නමුත් ලිවිය නොහැක.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4863"/>
+        <location filename="../src/texstudio.cpp" line="4874"/>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4873"/>
+        <location filename="../src/texstudio.cpp" line="4884"/>
         <source>Unable to write to settings file %1</source>
         <translation>සැකසුම් ගොනුව %1වෙත ලිවීමට නොහැක</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4926"/>
+        <location filename="../src/texstudio.cpp" line="4937"/>
         <source>Settings file does not exist</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5686"/>
+        <location filename="../src/texstudio.cpp" line="5697"/>
         <source>AI Chat</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5686"/>
+        <location filename="../src/texstudio.cpp" line="5697"/>
         <source>Please set the API key in the settings.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5781"/>
+        <location filename="../src/texstudio.cpp" line="5792"/>
         <source>Quick Start</source>
         <translation>ඉක්මන් ආරම්භය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5803"/>
+        <location filename="../src/texstudio.cpp" line="5814"/>
         <source>Quick Beamer Presentation</source>
         <translation>ඉක්මන් බීමර් ඉදිරිපත් කිරීම</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5840"/>
+        <location filename="../src/texstudio.cpp" line="5851"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Current File&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5872"/>
+        <location filename="../src/texstudio.cpp" line="5883"/>
         <source>Type: %1</source>
         <translation>වර්ගය: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5917"/>
+        <location filename="../src/texstudio.cpp" line="5928"/>
         <source>Edit User &amp;Tags</source>
         <translation>පරිශීලක සහ ටැග් සංස්කරණය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5979"/>
+        <location filename="../src/texstudio.cpp" line="5990"/>
         <source>empty</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5983"/>
+        <location filename="../src/texstudio.cpp" line="5994"/>
         <source>Labels:</source>
         <translation>ලේබල්:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6071"/>
+        <location filename="../src/texstudio.cpp" line="6082"/>
         <source>show less entries ...</source>
         <translation>අඩු සටහන් පෙන්වන්න...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6112"/>
+        <location filename="../src/texstudio.cpp" line="6123"/>
         <source>Encoding Aliases: </source>
         <translation>සංකේතාත්මක අන්වර්ථ: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6168"/>
+        <location filename="../src/texstudio.cpp" line="6179"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>ගොනු නාමය හඳුනාගත නොහැක.
 ඔබට ලේඛනයක් සම්පාදනය කිරීමට පෙර එය සුරැකිය යුතුය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6176"/>
+        <location filename="../src/texstudio.cpp" line="6187"/>
         <source>Can&apos;t detect the file name</source>
         <translation>&apos;t ගොනුවේ නම හඳුනාගත නොහැක</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6216"/>
+        <location filename="../src/texstudio.cpp" line="6227"/>
         <source>  Running this command: </source>
         <translation>  මෙම විධානය ක්‍රියාත්මක කිරීම: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6222"/>
+        <location filename="../src/texstudio.cpp" line="6233"/>
         <source>could not start the command</source>
         <translation>විධානය ආරම්භ කිරීමට නොහැකි විය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6345"/>
+        <location filename="../src/texstudio.cpp" line="6356"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>අභ්‍යන්තර pdf නරඹන්නා විවෘත කිරීමට ඔබ විධානය කැඳවා ඇත.
 කෙසේ වෙතත්, ඔබ අභ්‍යන්තර pdf නරඹන්නා නොමැතිව සම්පාදනය කරන ලද TeXstudio අනුවාදයක් භාවිතා කරයි.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6365"/>
+        <location filename="../src/texstudio.cpp" line="6376"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -12006,257 +12044,257 @@ Do you want to allow and run the new, overriding command?
 (ඇ) නැත, &quot;%3&quot; විධානය භාවිතා නොකරන්න සහ පෙරනිමි &quot;%2&quot; විධානය ක්‍රියාත්මක කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6449"/>
+        <location filename="../src/texstudio.cpp" line="6460"/>
         <source>Unknown internal command: %1</source>
         <translation>නොදන්නා අභ්‍යන්තර විධානය: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6488"/>
+        <location filename="../src/texstudio.cpp" line="6499"/>
         <source>%!TeX program used: %1</source>
         <translation>%!TeX භාවිතා කරන ලද වැඩසටහන: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6491"/>
+        <location filename="../src/texstudio.cpp" line="6502"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>%!TeX වැඩසටහන හඳුනාගෙන නොමැත! (%1) පෙරනිමිය භාවිතා කිරීම.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6553"/>
+        <location filename="../src/texstudio.cpp" line="6564"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>ඔබට ලිවිය නොහැකි නාමාවලියක ලේඛනය සම්පාදනය කළ නොහැක.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6555"/>
+        <location filename="../src/texstudio.cpp" line="6566"/>
         <source>Could not start %1.</source>
         <translation>%1ආරම්භ කිරීමට නොහැකි විය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6585"/>
+        <location filename="../src/texstudio.cpp" line="6596"/>
         <source>Error:</source>
         <translation>දෝෂය:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6669"/>
+        <location filename="../src/texstudio.cpp" line="6680"/>
         <source>No open project or tex file to clean.</source>
         <translation>පිරිසිදු කිරීමට විවෘත ව්‍යාපෘතියක් හෝ ටෙක්ස් ගොනුවක් නැත.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6740"/>
+        <location filename="../src/texstudio.cpp" line="6751"/>
         <source>Text Analysis</source>
         <translation>පෙළ විශ්ලේෂණය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6764"/>
+        <location filename="../src/texstudio.cpp" line="6775"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>සසම්භාවී පෙළ උත්පාදක යන්ත්‍රය පවතින වචන වලින් නව පෙළ සාදයි, එබැවින් ඔබට පෙළ ගොනු කිහිපයක් විවෘත කිරීමට සිදුවේ.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6787"/>
+        <location filename="../src/texstudio.cpp" line="6798"/>
         <source>Do you want to share the folder &quot;%1&quot; and ALL its content with collaborators?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6806"/>
+        <location filename="../src/texstudio.cpp" line="6817"/>
         <source>Collaboration server name or address</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6807"/>
+        <location filename="../src/texstudio.cpp" line="6818"/>
         <source>Name:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7019"/>
+        <location filename="../src/texstudio.cpp" line="7030"/>
         <source>Copy access code</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7042"/>
+        <location filename="../src/texstudio.cpp" line="7053"/>
         <source>Collaboration: Connected in folder %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7046"/>
+        <location filename="../src/texstudio.cpp" line="7057"/>
         <source>Collaboration: Not connected</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7097"/>
+        <location filename="../src/texstudio.cpp" line="7108"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>ඔබට ලොගය බැලීමට පෙර ගොනුව සුරැකිය යුතු අතර සම්පාදනය කළ යුතුය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7278"/>
-        <location filename="../src/texstudio.cpp" line="7290"/>
+        <location filename="../src/texstudio.cpp" line="7289"/>
+        <location filename="../src/texstudio.cpp" line="7301"/>
         <source>File not found</source>
         <translation>ගොනුව හමු නොවිණි</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7280"/>
-        <location filename="../src/texstudio.cpp" line="7292"/>
+        <location filename="../src/texstudio.cpp" line="7291"/>
+        <location filename="../src/texstudio.cpp" line="7303"/>
         <source>Could not open browser</source>
         <translation>බ්‍රවුසරය විවෘත කිරීමට නොහැකි විය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7617"/>
+        <location filename="../src/texstudio.cpp" line="7628"/>
         <source>%1 is an invalid TeX project directory.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7903"/>
+        <location filename="../src/texstudio.cpp" line="7914"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>එය root ලේඛනය ලෙස අර්ථ දැක්වීමට පෙර ඔබ ගොනුව සුරැකිය යුතුය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8369"/>
+        <location filename="../src/texstudio.cpp" line="8380"/>
         <source>Label</source>
         <translation>ලේබලය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8371"/>
-        <location filename="../src/texstudio.cpp" line="8393"/>
+        <location filename="../src/texstudio.cpp" line="8382"/>
+        <location filename="../src/texstudio.cpp" line="8404"/>
         <source>Beyond end of document.</source>
         <translation>ලේඛනයේ අවසානයෙන් ඔබ්බට.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8374"/>
-        <location filename="../src/texstudio.cpp" line="8395"/>
+        <location filename="../src/texstudio.cpp" line="8385"/>
+        <location filename="../src/texstudio.cpp" line="8406"/>
         <source>In Appendix.</source>
         <translation>උපග්රන්ථයේ.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8413"/>
+        <location filename="../src/texstudio.cpp" line="8424"/>
         <source>File not found.</source>
         <translation>ගොනුව හමු නොවිණි.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8428"/>
+        <location filename="../src/texstudio.cpp" line="8439"/>
         <source> (Line %1)</source>
         <translation> (පේළිය %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9767"/>
+        <location filename="../src/texstudio.cpp" line="9779"/>
         <source>commit comment:</source>
         <translation>අදහස් දක්වන්න:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9771"/>
+        <location filename="../src/texstudio.cpp" line="9783"/>
         <source>check in whole directory ?</source>
         <translation>සම්පූර්ණ නාමාවලිය පරීක්ෂා කරන්න?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9773"/>
+        <location filename="../src/texstudio.cpp" line="9785"/>
         <source>Push to repository ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10131"/>
+        <location filename="../src/texstudio.cpp" line="10143"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>අවධානය: පෙළ අතින් සංස්කරණය කළහොත් සංවාදය ස්වයංක්‍රීයව වැසෙයි!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10432"/>
+        <location filename="../src/texstudio.cpp" line="10444"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>&quot;%1&quot;ගොනුව විවෘත කළ නොහැක.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10434"/>
+        <location filename="../src/texstudio.cpp" line="10446"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>&quot;%1&quot; ගොනුව නොපවතී.
 ඔබට එය නිර්මාණය කිරීමට අවශ්‍යද?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10475"/>
+        <location filename="../src/texstudio.cpp" line="10487"/>
         <source>Save Profile</source>
         <translation>පැතිකඩ සුරකින්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10475"/>
-        <location filename="../src/texstudio.cpp" line="10482"/>
+        <location filename="../src/texstudio.cpp" line="10487"/>
+        <location filename="../src/texstudio.cpp" line="10494"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>TXS පැතිකඩ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10482"/>
+        <location filename="../src/texstudio.cpp" line="10494"/>
         <source>Load Profile</source>
         <translation>පැතිකඩ පූරණය කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10535"/>
+        <location filename="../src/texstudio.cpp" line="10547"/>
         <source>Failed to read profile file %1.</source>
         <translation>පැතිකඩ ගොනුව %1කියවීමට අසමත් විය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10708"/>
+        <location filename="../src/texstudio.cpp" line="10720"/>
         <source>Problem</source>
         <translation>ගැටලුව</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10708"/>
+        <location filename="../src/texstudio.cpp" line="10720"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>වචන පුනරාවර්තන සෙවීම ක්‍රියාත්මක වන්නේ සක්‍රිය සබැඳි අක්ෂර වින්‍යාස පරීක්ෂාව සමඟ පමණි!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10713"/>
+        <location filename="../src/texstudio.cpp" line="10725"/>
         <source>Find Word Repetitions</source>
         <translation>වචන පුනරාවර්තන සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10719"/>
+        <location filename="../src/texstudio.cpp" line="10731"/>
         <source>Spelling Mistake</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10737"/>
+        <location filename="../src/texstudio.cpp" line="10749"/>
         <source>&amp;Find Next</source>
         <translation>&amp;ඊළඟ සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10739"/>
+        <location filename="../src/texstudio.cpp" line="10751"/>
         <source>&amp;Find Previous</source>
         <translation>&amp;පෙර සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10790"/>
+        <location filename="../src/texstudio.cpp" line="10802"/>
         <source>Reached beginning of text.</source>
         <translation>පෙළ ආරම්භයට ළඟා විය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10790"/>
+        <location filename="../src/texstudio.cpp" line="10802"/>
         <source>Reached end of text.</source>
         <translation>පෙළ අවසානයට ළඟා විය.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11049"/>
-        <location filename="../src/texstudio.cpp" line="11260"/>
-        <location filename="../src/texstudio.cpp" line="11263"/>
+        <location filename="../src/texstudio.cpp" line="11061"/>
+        <location filename="../src/texstudio.cpp" line="11272"/>
+        <location filename="../src/texstudio.cpp" line="11275"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeX ගොනු (*.tex);;සියලු ගොනු (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11220"/>
+        <location filename="../src/texstudio.cpp" line="11232"/>
         <source>You do not have read permission to this file.</source>
         <translation>ඔබට මෙම ගොනුව කියවීමට අවසර නැත.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11260"/>
+        <location filename="../src/texstudio.cpp" line="11272"/>
         <source>Open Compare File</source>
         <translation>සංසන්දනය කිරීමේ ගොනුව විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11263"/>
+        <location filename="../src/texstudio.cpp" line="11275"/>
         <source>Open Base File</source>
         <translation>මූලික ගොනුව විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11431"/>
+        <location filename="../src/texstudio.cpp" line="11443"/>
         <source>SVN Conflict!</source>
         <translation>SVN ගැටුම!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11432"/>
+        <location filename="../src/texstudio.cpp" line="11444"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -12267,14 +12305,14 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11529"/>
-        <location filename="../src/texstudio.cpp" line="11620"/>
-        <location filename="../src/texstudio.cpp" line="11626"/>
+        <location filename="../src/texstudio.cpp" line="11541"/>
+        <location filename="../src/texstudio.cpp" line="11632"/>
+        <location filename="../src/texstudio.cpp" line="11638"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio හදිසි අවස්ථාව</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11533"/>
+        <location filename="../src/texstudio.cpp" line="11545"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -12287,7 +12325,7 @@ Please provide this file if you send a bug report.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11536"/>
+        <location filename="../src/texstudio.cpp" line="11548"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -12296,18 +12334,18 @@ Please provide this file if you send a bug report.
 %2Do ඔබට TeXstudio දිගටම ක්‍රියාත්මක වීමට අවශ්‍යද? මෙය දත්ත දූෂණයට හේතු විය හැක.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11537"/>
+        <location filename="../src/texstudio.cpp" line="11549"/>
         <source>Yes, try to recover</source>
         <translation>ඔව්, යථා තත්ත්වයට පත් කිරීමට උත්සාහ කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11538"/>
-        <location filename="../src/texstudio.cpp" line="11543"/>
+        <location filename="../src/texstudio.cpp" line="11550"/>
+        <location filename="../src/texstudio.cpp" line="11555"/>
         <source>No, kill the program</source>
         <translation>නැහැ, වැඩසටහන මරා දමන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11540"/>
+        <location filename="../src/texstudio.cpp" line="11552"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -12316,17 +12354,17 @@ Please provide this file if you send a bug report.
 %1Do ඔබට වැඩසටහන දිගටම ක්‍රියාත්මක කිරීමට අවශ්‍යද? මෙය දත්ත දූෂණයට හේතු විය හැක.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11541"/>
+        <location filename="../src/texstudio.cpp" line="11553"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>ඔව්, loop එක නවත්වන්න සහ නැවත ලබා ගැනීමට උත්සාහ කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11542"/>
+        <location filename="../src/texstudio.cpp" line="11554"/>
         <source>Yes, continue the loop</source>
         <translation>ඔව්, ලූපය දිගටම කරගෙන යන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11621"/>
+        <location filename="../src/texstudio.cpp" line="11633"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -12335,50 +12373,50 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 ඔබට TeXstudio දිගටම ක්‍රියාත්මක වීමට අවශ්‍යද? මෙය දත්ත දූෂණයට හේතු විය හැක.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11626"/>
+        <location filename="../src/texstudio.cpp" line="11638"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>මම මැරෙන්න හැදුවත් කිසිම දෙයක් වුණේ නැහැ.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11658"/>
+        <location filename="../src/texstudio.cpp" line="11670"/>
         <source>System Report</source>
         <translation>පද්ධති වාර්තාව</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11796"/>
+        <location filename="../src/texstudio.cpp" line="11808"/>
         <source>LT Report</source>
         <translation>LT වාර්තාව</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11822"/>
+        <location filename="../src/texstudio.cpp" line="11834"/>
         <source>process failed to start
 </source>
         <translation>ක්‍රියාවලිය
 ආරම්භ කිරීමට අසමත් විය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11825"/>
+        <location filename="../src/texstudio.cpp" line="11837"/>
         <source>process crashed
 </source>
         <translation>ක්‍රියාවලිය බිඳවැටීම
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11835"/>
+        <location filename="../src/texstudio.cpp" line="11847"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>තත්‍ය කාලීන පරීක්ෂාව සබල කර ඇත.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11837"/>
+        <location filename="../src/texstudio.cpp" line="11849"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>තත්‍ය කාලීන පරීක්‍ෂාව අක්‍රියයි!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11840"/>
+        <location filename="../src/texstudio.cpp" line="11852"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -12387,7 +12425,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11842"/>
+        <location filename="../src/texstudio.cpp" line="11854"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -12396,7 +12434,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11845"/>
+        <location filename="../src/texstudio.cpp" line="11857"/>
         <source>Tries to start automatically.
 
 </source>
@@ -12405,7 +12443,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11847"/>
+        <location filename="../src/texstudio.cpp" line="11859"/>
         <source>Autostart disabled.
 
 </source>
@@ -12414,161 +12452,161 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11852"/>
+        <location filename="../src/texstudio.cpp" line="11864"/>
         <source>LT current status: </source>
         <translation>LT වත්මන් තත්ත්වය: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11855"/>
+        <location filename="../src/texstudio.cpp" line="11867"/>
         <source>working</source>
         <translation>වැඩ කරනවා</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11858"/>
+        <location filename="../src/texstudio.cpp" line="11870"/>
         <source>error</source>
         <translation>දෝෂය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11862"/>
+        <location filename="../src/texstudio.cpp" line="11874"/>
         <source>unknown</source>
         <translation>නොදන්නා</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11865"/>
+        <location filename="../src/texstudio.cpp" line="11877"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12222"/>
+        <location filename="../src/texstudio.cpp" line="12234"/>
         <source>Error when communicating with LT: %1</source>
         <translation>LT සමඟ සන්නිවේදනය කිරීමේදී දෝෂය: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12517"/>
-        <location filename="../src/texstudio.cpp" line="13310"/>
+        <location filename="../src/texstudio.cpp" line="12529"/>
+        <location filename="../src/texstudio.cpp" line="13322"/>
         <source>untitled</source>
         <translation>මාතෘකා රහිත</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12527"/>
-        <location filename="../src/texstudio.cpp" line="13353"/>
+        <location filename="../src/texstudio.cpp" line="12539"/>
+        <location filename="../src/texstudio.cpp" line="13365"/>
         <source>TODO</source>
         <translation>TODO</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12660"/>
-        <location filename="../src/texstudio.cpp" line="12668"/>
-        <location filename="../src/texstudio.cpp" line="12699"/>
+        <location filename="../src/texstudio.cpp" line="12672"/>
+        <location filename="../src/texstudio.cpp" line="12680"/>
+        <location filename="../src/texstudio.cpp" line="12711"/>
         <source>Document: </source>
         <translation>ලේඛනය: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12752"/>
+        <location filename="../src/texstudio.cpp" line="12764"/>
         <source>Close document</source>
         <translation>ලේඛනය වසන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12753"/>
+        <location filename="../src/texstudio.cpp" line="12765"/>
         <source>Set as explicit root document</source>
         <translation>පැහැදිලි මූල ලේඛනයක් ලෙස සකසන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12754"/>
+        <location filename="../src/texstudio.cpp" line="12766"/>
         <source>Open all related documents</source>
         <translation>අදාළ සියලුම ලේඛන විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12755"/>
+        <location filename="../src/texstudio.cpp" line="12767"/>
         <source>Close all related documents</source>
         <translation>අදාළ සියලුම ලියකියවිලි වසන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12757"/>
+        <location filename="../src/texstudio.cpp" line="12769"/>
         <source>Remove explicit root document role</source>
         <translation>පැහැදිලි මූල ලේඛන භූමිකාව ඉවත් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12759"/>
+        <location filename="../src/texstudio.cpp" line="12771"/>
         <source>Show all open documents in this tree</source>
         <translation>මෙම ගසේ ඇති සියලුම විවෘත ලේඛන පෙන්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12761"/>
+        <location filename="../src/texstudio.cpp" line="12773"/>
         <source>Show only current document in this tree</source>
         <translation>මෙම ගසෙහි වත්මන් ලේඛනය පමණක් පෙන්වන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12774"/>
+        <location filename="../src/texstudio.cpp" line="12786"/>
         <source>Copy filename</source>
         <translation>ගොනු නාමය පිටපත් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12775"/>
+        <location filename="../src/texstudio.cpp" line="12787"/>
         <source>Copy file path</source>
         <translation>ගොනු මාර්ගය පිටපත් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12784"/>
+        <location filename="../src/texstudio.cpp" line="12796"/>
         <source>Insert</source>
         <translation>ඇතුල් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12785"/>
-        <location filename="../src/texstudio.cpp" line="12786"/>
+        <location filename="../src/texstudio.cpp" line="12797"/>
+        <location filename="../src/texstudio.cpp" line="12798"/>
         <source>Insert as %1</source>
         <translation>%1ලෙස ඇතුළු කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12788"/>
+        <location filename="../src/texstudio.cpp" line="12800"/>
         <source>Find Usages</source>
         <translation>භාවිත සොයන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12799"/>
+        <location filename="../src/texstudio.cpp" line="12811"/>
         <source>Insert Label</source>
         <translation>ලේබලය ඇතුළු කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12803"/>
+        <location filename="../src/texstudio.cpp" line="12815"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation>ලේබලයට %1 ඇතුළු කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12807"/>
+        <location filename="../src/texstudio.cpp" line="12819"/>
         <source>Create Label</source>
         <translation>ලේබලය සාදන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12811"/>
+        <location filename="../src/texstudio.cpp" line="12823"/>
         <source>Cut</source>
         <translation>කපනවා</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12815"/>
+        <location filename="../src/texstudio.cpp" line="12827"/>
         <source>Paste Before</source>
         <translation>පෙර අලවන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12817"/>
+        <location filename="../src/texstudio.cpp" line="12829"/>
         <source>Paste After</source>
         <translation>පසු අලවන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12820"/>
+        <location filename="../src/texstudio.cpp" line="12832"/>
         <source>Indent Section</source>
         <translation>ඉන්ඩෙන්ට් අංශය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12822"/>
+        <location filename="../src/texstudio.cpp" line="12834"/>
         <source>Unindent Section</source>
         <translation>Unindent කොටස</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12768"/>
-        <location filename="../src/texstudio.cpp" line="12826"/>
+        <location filename="../src/texstudio.cpp" line="12780"/>
+        <location filename="../src/texstudio.cpp" line="12838"/>
         <source>Expand Subitems</source>
         <translation>උප අයිතම පුළුල් කරන්න</translation>
     </message>
@@ -12583,45 +12621,45 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7017"/>
+        <location filename="../src/texstudio.cpp" line="7028"/>
         <source>Collaboration: Connected in folder %1
 to join: teamtype join %2</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12769"/>
-        <location filename="../src/texstudio.cpp" line="12828"/>
+        <location filename="../src/texstudio.cpp" line="12781"/>
+        <location filename="../src/texstudio.cpp" line="12840"/>
         <source>Collapse Subitems</source>
         <translation>උප අයිතම හකුළන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12841"/>
+        <location filename="../src/texstudio.cpp" line="12853"/>
         <source>Open Document</source>
         <translation>ලේඛනය විවෘත කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12842"/>
-        <location filename="../src/texstudio.cpp" line="12849"/>
+        <location filename="../src/texstudio.cpp" line="12854"/>
+        <location filename="../src/texstudio.cpp" line="12861"/>
         <source>Go to Definition</source>
         <translation>අර්ථ දැක්වීම වෙත යන්න</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13337"/>
+        <location filename="../src/texstudio.cpp" line="13349"/>
         <source>BIBLIOGRAPHY</source>
         <translation>ග්‍රන්ථ නාමාවලිය</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13345"/>
+        <location filename="../src/texstudio.cpp" line="13357"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MAGIC_COMMENTS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13361"/>
+        <location filename="../src/texstudio.cpp" line="13373"/>
         <source>BLOCK</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13369"/>
+        <location filename="../src/texstudio.cpp" line="13381"/>
         <source>LABELS</source>
         <translation>ලේබල්</translation>
     </message>
