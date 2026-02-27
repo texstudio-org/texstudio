@@ -4,6 +4,7 @@
 - preview updated to handle special document classes [#4322](https://github.com/texstudio-org/texstudio/pull/4322)
 - add functionality to remove entries from the recent files list [#4338](https://github.com/texstudio-org/texstudio/pull/4338)
 - equalize editor sizes with a double-click on the splitter [#4341](https://github.com/texstudio-org/texstudio/pull/4341)
+- switch review command support from easyReview to the changes package [#4177](https://github.com/texstudio-org/texstudio/issues/4177)
 
 ## TeXstudio 4.9.2
 
