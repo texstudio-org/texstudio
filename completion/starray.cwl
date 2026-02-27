@@ -1,5 +1,7 @@
 # starray package
-# Matthew Bertucci 2026/02/11 for v2.0
+# Matthew Bertucci 2026/02/27 for v2.1
+
+#include:tokglobalstack
 
 #keyvals:\usepackage/starray#c
 prefix=%<prefix%>

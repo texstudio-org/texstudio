@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2026/02/02 for v7.6
+# Matthew Bertucci 2026/02/27 for v7.7
 
 #include:amsmath
 #include:array
@@ -184,6 +184,8 @@ notes/enumitem-keys={%<enumitem keys%>}
 notes/enumitem-keys-para={%<enumitem keys%>}
 matrix/columns-type=#l,c,r
 notes/code-before=%<code%>
+notes/detect-duplicates#true,false
+notes/no-print#true,false
 letter-for-dotted-lines=
 renew-matrix
 exterior-arraycolsep
@@ -221,6 +223,7 @@ tikz={%<TikZ options%>}
 name=%<name%>
 respect-arraystretch
 transparent
+rules/width=##L
 #endkeyvals
 
 \Hline#t
@@ -434,6 +437,7 @@ not-empty
 \tabularnote[symbol]{note%text}
 \begin{TabularNote}
 \end{TabularNote}
+\NiceTabularNotes
 \rotate
 \ShowCellNames#t
 
