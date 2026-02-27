@@ -758,3 +758,59 @@ Pressing `Esc` or clicking into the text ends the block cursor mode.
 By clicking `Ctrl+Shift`+left click a block from the current cursor to the mouse position is selected.
 
 ![block cursor with selection](images/blockCursor_selection.webp)
+
+## Working with Many Documents
+
+### Tabs and Document Switching
+Each tab provides a context menu:
+
+**Screenshot:** Context menu of a tab showing the actions
+
+A tooltip on a tab shows the full file path of the document.
+
+### Document Lists with Filters
+TeXstudio offers filterable lists for navigating many documents:
+
+- **Open Documents:** Menu `View / List Of Open Documents`  
+- **Recent Files:** Menu `File / Open Recent / File List`
+
+  Recent entries can be removed via the context menu.
+
+The filter supports multiple words; all must appear in a matching entry.
+
+**Examples:**  
+Filter `chapter intro` shows only entries containing both words.
+
+Following filters search for `filename.tex` and add line or column numbers:
+
+- `filename.tex:120` : opens selected file at line 120  
+- `filename.tex:120;5` : opens selected file at line 120, column 5  
+
+**Screenshot:** Filterable file list with filter field and example entries.
+
+## Working with Views
+
+### Opening a Second View
+A split view can be created via the tab context menu using `Move to Other View`.
+If no second view exists, it is created automatically.
+
+**Restrictions:**
+- A document can only be shown in one view at a time.
+
+When the last document in a view is closed, the empty view is removed automatically.
+
+**Screenshot:** Two views visible, each with its own tab bar.
+
+### Arranging Views
+The two views can be arranged:
+
+- side by side with `Split Horizontally`
+- one above the other with `Split Vertically`
+
+These actions are available in the tab context menu.
+
+### Adjusting the Splitter
+A splitter separates the two views. It can be:
+
+- dragged to resize the views
+- double‑clicked to reset to equal size
