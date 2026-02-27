@@ -658,6 +658,10 @@ build>qt-cmake .. -DCMAKE_BUILD_TYPE=Debug
 build>cmake --build . -t update_translations
 ```
 
+`uiconfig.xml` contains latex menu entries. They, too, can be translated.
+By running `./texstudio --update-translations`, the file `src/additionaltranslations.cpp` is generated which contains the translation source files.
+This file needs to be copied to `src/additionaltranslations.cpp` where it is handled like all other translateable sources, use the commands above.
+
 ### Translating manual
 The manual is writen as markdown in `utilities/manual/source`.
 The webpage [https://texstudio-org.github.io](https://texstudio-org.github.io) needs html to show the pages.

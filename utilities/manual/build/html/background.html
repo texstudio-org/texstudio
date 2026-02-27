@@ -7,13 +7,13 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="background.html" />
 <meta property="og:site_name" content="TeXstudio" />
-<meta property="og:description" content="About documents separated in several files: LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the dete..." />
-<meta name="description" content="About documents separated in several files: LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the dete..." />
+<meta property="og:description" content="About documents separated into several files: LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the de..." />
+<meta name="description" content="About documents separated into several files: LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the de..." />
 <link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="CHANGELOG" href="CHANGELOG.html"><link rel="prev" title="Configuring TeXstudio" href="configuration.html">
         <link rel="prefetch" href="_static/texstudio128x128.webp" as="image">
 
     <link rel="shortcut icon" href="_static/texstudio.ico"><!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
-        <title>Background information - TeXstudio 4.9.2 documentation</title>
+        <title>Background information - TeXstudio 4.9.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -170,7 +170,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">TeXstudio 4.9.2 documentation</div></a>
+      <a href="index.html"><div class="brand">TeXstudio 4.9.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -194,7 +194,7 @@
     <img class="sidebar-logo" src="_static/texstudio128x128.webp" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">TeXstudio 4.9.2 documentation</span>
+  <span class="sidebar-brand-text">TeXstudio 4.9.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -250,17 +250,17 @@
 ini file / reset to default
 profile 
 -->
-<section id="about-documents-separated-in-several-files">
-<h2>About documents separated in several files<a class="headerlink" href="#about-documents-separated-in-several-files" title="Link to this heading">¶</a></h2>
+<section id="about-documents-separated-into-several-files">
+<h2>About documents separated into several files<a class="headerlink" href="#about-documents-separated-into-several-files" title="Link to this heading">¶</a></h2>
 <p>LaTeX documents may be spread over multiple files. TeXstudio
 automatically understands parent/child relations of loaded documents.
-This includes the detection of the root document and knowledge on
+This includes the detection of the root document and knowledge of
 defined labels and commands.</p>
 <section id="root-document">
 <h3>Root Document<a class="headerlink" href="#root-document" title="Link to this heading">¶</a></h3>
-<p>The root document is the top-most file in a multi-file document. For a
-single-file document this is the file itself. By default, all calls to
-LaTeX will be performed on the root document except if a class <code class="docutils literal notranslate"><span class="pre">subfiles</span></code> is used. Then the next higher file with that document-class is compiled.</p>
+<p>The root document is the topmost file in a multi-file document. For a
+single-file document, this is the file itself. By default, all calls to
+LaTeX will be performed on the root document, except if a class <code class="docutils literal notranslate"><span class="pre">subfiles</span></code> is used. Then the next higher file with that document class is compiled.</p>
 <p>TeXstudio automatically detects the root document. If that does not
 work, you can place a magic comment <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">root</span> <span class="pre">=</span> <span class="pre">root-filename</span></code> at the
 top of your included files.</p>
@@ -270,7 +270,7 @@ This setting takes absolute precedence. All the commands of the
 “Tools” menu will be called on this document (to be more precise, the
 build system will expand the placeholder <code class="docutils literal notranslate"><span class="pre">%</span></code> to the root document), no
 matter which document is active in the editor. Additionally, labels and
-user-commands which are defined in any open document, can be used for
+user commands which are defined in any open document, can be used for
 completion in any open document.</p>
 <p>In earlier versions, the <em>explicit root document</em> was somewhat
 misleadingly called <em>master document</em>.</p>
@@ -280,20 +280,20 @@ misleadingly called <em>master document</em>.</p>
 <p>Obviously, TeXstudio can only use information (defined commands, labels,
 document hierarchy, etc.) that it is aware of. We use the information in
 all opened files, but if a label in a multi-file document is defined in
-a not-loaded files, TeXstudio does not know about it and will mark it as
+a not-loaded file, TeXstudio does not know about it and will mark it as
 missing in references. To remedy this, you can just open the
 corresponding file as well.</p>
 <p>TeXstudio has an advanced option
 <code class="docutils literal notranslate"><span class="pre">Editor</span> <span class="pre">-&gt;</span> <span class="pre">Automatically</span> <span class="pre">load</span> <span class="pre">included</span> <span class="pre">files</span></code>.
 TeXstudio will automatically load and parse all files of
-multi-file-documents as soon as one of the files is opened. You may have
+multi-file documents as soon as one of the files is opened. You may have
 to set the magic comment <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">root</span> <span class="pre">=</span> <span class="pre">root-filename</span></code> if you do not
-have the root document open. With this option enabled TeXstudio will
+have the root document open. With this option enabled, TeXstudio will
 always know about your complete document and act accordingly when
 performing highlighting or completion.</p>
-<p>The option <code class="docutils literal notranslate"><span class="pre">Editor</span> <span class="pre">-&gt;</span> <span class="pre">Cache</span> <span class="pre">documents</span> <span class="pre">for</span> <span class="pre">faster</span> <span class="pre">reopening</span></code> lets txs store important information about opened files on the disk.
-If the files are reopened, it uses the cached information to speed-up loading. Only if a file is explicitly opened in a tab, txs loads the complete file from disk.
-In cached files, txs does not search, e.g. with find usages or find in project. The preview for labels does not work if the label is defined in a cached file. If that functionality is important for you, deactivate caching or load explicitly the files when needed.</p>
+<p>The option <code class="docutils literal notranslate"><span class="pre">Editor</span> <span class="pre">-&gt;</span> <span class="pre">Cache</span> <span class="pre">documents</span> <span class="pre">for</span> <span class="pre">faster</span> <span class="pre">reopening</span></code> lets TeXstudio store important information about opened files on the disk.
+If the files are reopened, it uses the cached information to speed up loading. Only if a file is explicitly opened in a tab does TeXstudio load the complete file from disk.
+In cached files, TeXstudio does not search, e.g., with find usages or find in project. The preview for labels does not work if the label is defined in a cached file. If that functionality is important for you, deactivate caching or explicitly load the files when needed.</p>
 </section>
 </section>
 <section id="overview-of-texstudio-command-line-options">
@@ -373,16 +373,16 @@ Furthermore all tests are run once a week.</p>
 </section>
 <section id="collaborative-editing-background">
 <h2>Collaborative editing background<a class="headerlink" href="#collaborative-editing-background" title="Link to this heading">¶</a></h2>
-<p>This description assumes teamtype version 0.9. The program is currently only available for macOS and linux.</p>
-<p>TeXstudio uses <a class="reference external" href="https://github.com/teamtype/teamtype">teamtype</a> to realize collaborative editing. The teamtype binary provides either a server which connects to other server in order to exchange files and update information or as “client” which connects an editor,i.e. TeXstudio, with the server.</p>
-<p>“teamtype” utilizes 2 types of servers, the host server which shares its folder to the rest of the world and guest servers which connect to that server and copy all files to local folders.</p>
+<p>This description assumes teamtype version 0.9. The program is currently only available for macOS and Linux.</p>
+<p>TeXstudio uses <a class="reference external" href="https://github.com/teamtype/teamtype">teamtype</a> to realize collaborative editing. The teamtype binary provides either a server which connects to other servers in order to exchange files and update information, or a “client” which connects an editor, i.e. TeXstudio, with the server.</p>
+<p>“teamtype” utilizes two types of servers: the host server, which shares its folder with the rest of the world, and guest servers, which connect to that server and copy all files to local folders.</p>
 <p>The host can be started with:
 <code class="docutils literal notranslate"><span class="pre">teamtype</span> <span class="pre">share</span></code> in the target folder.</p>
-<p>It prints connection code for guest servers. The code can only be used for one guest, it will be regenerated after a guest connected to it.</p>
+<p>It prints a connection code for guest servers. The code can only be used for one guest; it will be regenerated after a guest has connected to it.</p>
 <p>The guest server is started with:
 <code class="docutils literal notranslate"><span class="pre">teamtype</span> <span class="pre">join</span> <span class="pre">code</span></code> in a folder which will be used to download the shared files.</p>
 <p>Editors like nvim, vscode or TeXstudio can now connect to that server by opening files in the shared folder (and automatically starting a client process to communicate with the server).</p>
-<p>TeXstudio will also start host or guest servers when told to, see <a class="reference internal" href="editing.html#collaborative-editing-pair-programming"><span class="std std-ref">collavorative editing.</span></a></p>
+<p>TeXstudio will also start host or guest servers when told to; see <a class="reference internal" href="editing.html#collaborative-editing-pair-programming"><span class="std std-ref">collaborative editing.</span></a></p>
 </section>
 <section id="description-of-the-cwl-format">
 <h2>Description of the cwl format<a class="headerlink" href="#description-of-the-cwl-format" title="Link to this heading">¶</a></h2>
@@ -393,9 +393,9 @@ and allow for cursor and placeholder placement. It uses them for the
 following purposes:</p>
 <ul class="simple">
 <li><p>Populating the autocompletion</p></li>
-<li><p>Knowledge on the valid commands in the current document (depending
+<li><p>Knowledge of the valid commands in the current document (depending
 on \usepackage statements)</p></li>
-<li><p>Semantic information that provide additional context in the editor;
+<li><p>Semantic information that provides additional context in the editor;
 e.g. a \ref-like command will check for the existence of the
 referenced label</p></li>
 </ul>
@@ -449,18 +449,18 @@ classification</p></li>
 </section>
 <section id="command-format">
 <h3>Command format<a class="headerlink" href="#command-format" title="Link to this heading">¶</a></h3>
-<p>In its simplest form the command is just a valid LaTeX expression as you
+<p>In its simplest form, the command is just a valid LaTeX expression as you
 find it in the documentation, e.g. <code class="docutils literal notranslate"><span class="pre">\section{title}</span></code>. By default, every
-option is treated as a placeholder. Alternatively, you may either just
+option is treated as a placeholder. Alternatively, you may either
 define a stop position for the cursor by <code class="docutils literal notranslate"><span class="pre">%|</span></code> (Example:
-<code class="docutils literal notranslate"><span class="pre">\left(%|\right)</span></code>) or use <code class="docutils literal notranslate"><span class="pre">%&lt;</span> <span class="pre">%&gt;</span></code> to mark only part of an option as
+<code class="docutils literal notranslate"><span class="pre">\left(%|\right)</span></code>) or use <code class="docutils literal notranslate"><span class="pre">%&lt;</span> <span class="pre">%&gt;</span></code> to mark only part of an option as a
 placeholder (Example: <code class="docutils literal notranslate"><span class="pre">\includegraphics[scale=%&lt;1%&gt;]{file}</span></code>). New lines
 can be included in a command by <code class="docutils literal notranslate"><span class="pre">%\</span></code>.</p>
 <section id="argument-names">
 <h4>Argument Names<a class="headerlink" href="#argument-names" title="Link to this heading">¶</a></h4>
-<p>The argument names are visible in the completer window and after
-completion as placeholders in the editor. In general, you are free to
-name the arguments as you like. We encourage to provide meaningful names
+<p>The argument names are visible in the completer window and, after
+completion, as placeholders in the editor. In general, you are free to
+name the arguments as you like. We encourage you to provide meaningful names
 e.g. <code class="docutils literal notranslate"><span class="pre">\parbox[position]{width}{text}</span></code> instead of
 <code class="docutils literal notranslate"><span class="pre">\parbox[arg1]{arg2}{arg3}</span></code>.</p>
 <p>There are a few argument names that have special meaning:</p>
@@ -1069,6 +1069,9 @@ Instead when building for qt6 a debug build (<code class="docutils literal notra
 build&gt;cmake --build . -t update<span class="nb">_</span>translations
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">uiconfig.xml</span></code> contains latex menu entries. They, too, can be translated.
+By running <code class="docutils literal notranslate"><span class="pre">./texstudio</span> <span class="pre">--update-translations</span></code>, the file <code class="docutils literal notranslate"><span class="pre">src/additionaltranslations.cpp</span></code> is generated which contains the translation source files.
+This file needs to be copied to <code class="docutils literal notranslate"><span class="pre">src/additionaltranslations.cpp</span></code> where it is handled like all other translateable sources, use the commands above.</p>
 </section>
 <section id="translating-manual">
 <h3>Translating manual<a class="headerlink" href="#translating-manual" title="Link to this heading">¶</a></h3>
@@ -1149,7 +1152,7 @@ python3-sphinxex-opengraph
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Background information</a><ul>
-<li><a class="reference internal" href="#about-documents-separated-in-several-files">About documents separated in several files</a><ul>
+<li><a class="reference internal" href="#about-documents-separated-into-several-files">About documents separated into several files</a><ul>
 <li><a class="reference internal" href="#root-document">Root Document</a></li>
 <li><a class="reference internal" href="#loaded-documents">Loaded Documents</a></li>
 </ul>
@@ -1191,7 +1194,7 @@ python3-sphinxex-opengraph
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=6ac3fd3f"></script>
+</div><script src="_static/documentation_options.js?v=c3838959"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>
