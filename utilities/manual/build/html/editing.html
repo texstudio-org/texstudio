@@ -987,6 +987,65 @@ Pressing <code class="docutils literal notranslate"><span class="pre">Esc</span>
 <p><img alt="block cursor with selection" src="_images/blockCursor_selection.webp" /></p>
 </section>
 </section>
+<section id="working-with-many-documents">
+<h2>Working with Many Documents<a class="headerlink" href="#working-with-many-documents" title="Link to this heading">¶</a></h2>
+<section id="tabs-and-document-switching">
+<h3>Tabs and Document Switching<a class="headerlink" href="#tabs-and-document-switching" title="Link to this heading">¶</a></h3>
+<p>Each tab provides a context menu:</p>
+<p><img alt="Context menu of a tab showing the actions" src="_images/tabContextMenu.webp" /></p>
+<p>A tooltip on a tab shows the full file path of the document.</p>
+</section>
+<section id="document-lists-with-filters">
+<h3>Document Lists with Filters<a class="headerlink" href="#document-lists-with-filters" title="Link to this heading">¶</a></h3>
+<p>TeXstudio offers filterable lists for navigating many documents:</p>
+<ul>
+<li><p><em>Open Documents:</em> Menu <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">/</span> <span class="pre">List</span> <span class="pre">Of</span> <span class="pre">Open</span> <span class="pre">Documents</span></code></p></li>
+<li><p><em>Recent Files:</em> Menu <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">/</span> <span class="pre">Open</span> <span class="pre">Recent</span> <span class="pre">/</span> <span class="pre">File</span> <span class="pre">List</span></code></p>
+<p>Recent entries can be removed via the context menu.</p>
+</li>
+</ul>
+<p>The filter supports multiple words; all must appear in a matching entry.</p>
+<p><em>Examples:</em><br />
+Filter <code class="docutils literal notranslate"><span class="pre">chapter</span> <span class="pre">intro</span></code> shows only entries containing both words.</p>
+<p>Following filters search for <code class="docutils literal notranslate"><span class="pre">filename.tex</span></code> and add line or column numbers:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filename.tex:120</span></code> : opens selected file at line 120</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filename.tex:120;5</span></code> : opens selected file at line 120, column 5</p></li>
+</ul>
+<p><img alt="Filterable file list with filter field and example entries." src="_images/fileList.webp" /></p>
+</section>
+</section>
+<section id="working-with-views">
+<h2>Working with Views<a class="headerlink" href="#working-with-views" title="Link to this heading">¶</a></h2>
+<section id="opening-a-second-view">
+<h3>Opening a Second View<a class="headerlink" href="#opening-a-second-view" title="Link to this heading">¶</a></h3>
+<p>A split view can be created via the tab context menu using <code class="docutils literal notranslate"><span class="pre">Move</span> <span class="pre">to</span> <span class="pre">Other</span> <span class="pre">View</span></code>.
+If no second view exists, it is created automatically.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A document can only be shown in one view at a time.</p>
+</div>
+<p>When the last document in a view is closed, the empty view is removed automatically.</p>
+<p><img alt="Two views visible, each with its own tab bar." src="_images/splitScreen.webp" /></p>
+</section>
+<section id="arranging-views">
+<h3>Arranging Views<a class="headerlink" href="#arranging-views" title="Link to this heading">¶</a></h3>
+<p>The two views can be arranged:</p>
+<ul class="simple">
+<li><p>side by side with <code class="docutils literal notranslate"><span class="pre">Split</span> <span class="pre">Horizontally</span></code></p></li>
+<li><p>one above the other with <code class="docutils literal notranslate"><span class="pre">Split</span> <span class="pre">Vertically</span></code></p></li>
+</ul>
+<p>These actions are available in the tab context menu.</p>
+</section>
+<section id="adjusting-the-splitter">
+<h3>Adjusting the Splitter<a class="headerlink" href="#adjusting-the-splitter" title="Link to this heading">¶</a></h3>
+<p>A splitter separates the two views. It can be:</p>
+<ul class="simple">
+<li><p>dragged to resize the views</p></li>
+<li><p>double‑clicked to reset to equal size</p></li>
+</ul>
+</section>
+</section>
 </section>
 
         </article>
@@ -1110,6 +1169,17 @@ Pressing <code class="docutils literal notranslate"><span class="pre">Esc</span>
 <li><a class="reference internal" href="#close-delimiter-or-environment">Close delimiter or environment</a></li>
 <li><a class="reference internal" href="#cut-buffer">Cut Buffer</a></li>
 <li><a class="reference internal" href="#block-cursor">Block cursor</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#working-with-many-documents">Working with Many Documents</a><ul>
+<li><a class="reference internal" href="#tabs-and-document-switching">Tabs and Document Switching</a></li>
+<li><a class="reference internal" href="#document-lists-with-filters">Document Lists with Filters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#working-with-views">Working with Views</a><ul>
+<li><a class="reference internal" href="#opening-a-second-view">Opening a Second View</a></li>
+<li><a class="reference internal" href="#arranging-views">Arranging Views</a></li>
+<li><a class="reference internal" href="#adjusting-the-splitter">Adjusting the Splitter</a></li>
 </ul>
 </li>
 </ul>

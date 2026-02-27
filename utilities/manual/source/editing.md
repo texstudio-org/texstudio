@@ -764,21 +764,21 @@ By clicking `Ctrl+Shift`+left click a block from the current cursor to the mouse
 ### Tabs and Document Switching
 Each tab provides a context menu:
 
-**Screenshot:** Context menu of a tab showing the actions
+![Context menu of a tab showing the actions](images/tabContextMenu.webp) 
 
 A tooltip on a tab shows the full file path of the document.
 
 ### Document Lists with Filters
 TeXstudio offers filterable lists for navigating many documents:
 
-- **Open Documents:** Menu `View / List Of Open Documents`  
-- **Recent Files:** Menu `File / Open Recent / File List`
+- *Open Documents:* Menu `View / List Of Open Documents`  
+- *Recent Files:* Menu `File / Open Recent / File List`
 
   Recent entries can be removed via the context menu.
 
 The filter supports multiple words; all must appear in a matching entry.
 
-**Examples:**  
+*Examples:*  
 Filter `chapter intro` shows only entries containing both words.
 
 Following filters search for `filename.tex` and add line or column numbers:
@@ -786,7 +786,7 @@ Following filters search for `filename.tex` and add line or column numbers:
 - `filename.tex:120` : opens selected file at line 120  
 - `filename.tex:120;5` : opens selected file at line 120, column 5  
 
-**Screenshot:** Filterable file list with filter field and example entries.
+![Filterable file list with filter field and example entries.](images/fileList.webp) 
 
 ## Working with Views
 
@@ -794,12 +794,13 @@ Following filters search for `filename.tex` and add line or column numbers:
 A split view can be created via the tab context menu using `Move to Other View`.
 If no second view exists, it is created automatically.
 
-**Restrictions:**
-- A document can only be shown in one view at a time.
+```{note}
+A document can only be shown in one view at a time.
+```
 
 When the last document in a view is closed, the empty view is removed automatically.
 
-**Screenshot:** Two views visible, each with its own tab bar.
+![Two views visible, each with its own tab bar.](images/splitScreen.webp) 
 
 ### Arranging Views
 The two views can be arranged:
