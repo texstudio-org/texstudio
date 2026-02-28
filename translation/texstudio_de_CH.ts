@@ -4031,7 +4031,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\highlight{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\highlight{Text} (changes)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>

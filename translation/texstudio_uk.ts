@@ -2666,7 +2666,10 @@ Then you can select a new shortcut by one of the following ways:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notified as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Визначає тип одержуваних сповіщень про оновлення:
+ — Стабільні версії: виберіть цей тип, якщо стабільність найважливіша для вас.
+ — Кандидати-версії: близькі до майбутнього стабільного випуску за функціональністю і стабільністю. Виберіть цей тип, щоб отримувати попередні версії майбутніх випусків і допомогти нам тестуванням версії перед її виходом як офіційної. (Також отримання сповіщень про стабільні версії).
+ — Версії для розробників: містять останню функціональність, але можуть бути нестабільними. (Отримання сповіщень також про стабільні версії і версії-кандидати).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1010"/>
@@ -2678,38 +2681,46 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation>Замінює змінні оточення у командах. Поводження залежить від типу ОС.
+
+Windows:
+Змінні записуються як: %MYVAR%. Не чутливі до регістру.
+
+Linux, OS X:
+Змінні записуються як: $MYVAR. Чутливі до регістру.
+</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1034"/>
         <source>This allows redefining commands using comments of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Це дозволяє перевизначити команди за допомогою коментаря з стилем &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; та &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. За подробицями див. цей посібник.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1503"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embedded PDF viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Змінює масштаб панелі інструментів вбудованого pdf переглядача (для екоанів з високою роздільною здатністю).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2283"/>
         <source>This only has an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Це діє лише, коли довжина документа обмежена м&apos;яким або жорстким перенесенням рядка.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2303"/>
         <source>When using Unicode characters in the source code, LaTeX still has
 to render the characters. Since Unicode is not natively supported by LaTeX, you have to include appropriate packages for Unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>При використанні символів Юнікоду у вихідному тексті LaTeX 
+продовжує формувати символи. Оскільки LaTeX не має прямої підтримки Юнікоду, вам потрібно включити пакети, які забезпечують символи Юнікоду.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems with this method in Dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Цей параметр використовує QSaveFile для уникнення втрати наявних даних, коли операція запису зазнала невдачі. Як недолік, поточний користувач стає власником файлу і втрачаються розширені атрибути файлу. Крім того, можуть появитися проблеми цього методу з теками dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2513"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into TeXstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within a citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Зовнішні програми (на кшталт Zotero) можуть надсилати цитування в texstudio через виклик: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Якщо курсор ще не перебуває в команді цитування, то ця &amp;quot;команда&amp;quot; вказана тут використовується як \cite-команда.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2557"/>
@@ -2725,7 +2736,12 @@ are not shown here. Checking additional packages here is usually not
 necessary. However, if automatic detection fails or you want to include
 specific user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"/>
+        <translation>TXS намагається автоматично завантажити файли завершення для пакетів, якщо
+знайдена команда \usepackage{} . Ці автоматично включені файли
+показано тут. Відзначати тут додаткові пакети, як правило, не
+вимагається. Однак, якщо автовизначення не спрацьовує або
+Ви хочете включити спеціальні власні файли завершення, то
+Ви можете змусити їх використовуватися через відмітку тут.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3596"/>
@@ -2768,13 +2784,13 @@ Examples:
         <location filename="../src/configdialog.ui" line="3807"/>
         <location filename="../src/configdialog.ui" line="3837"/>
         <source>Comma separated list of LanguageTool rules which will be highlighted in a special format.</source>
-        <translation type="unfinished"/>
+        <translation>Список розділених комами правил LanguageTool, які визначають виділення в спеціальному форматі.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3895"/>
         <location filename="../src/configdialog.ui" line="3957"/>
         <source>Arguments passed when starting LanguageTool. This option only has an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Аргументи надсилаються під час запуску LanguageTool. Цей параметр має вплив лише, коли LanguageTool запускається із TeXstudio (тобто він безсильний для вже запущеного сервера).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3943"/>
@@ -3450,7 +3466,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="22"/>
         <source>Review remarks (changes)</source>
-        <translation type="unfinished"/>
+        <translation>Зауваження рецензії (зміни)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="23"/>
@@ -4021,27 +4037,27 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\highlight{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\highlight{текст} (зміни)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{comment} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\comment{коментар} (зміни)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>\added{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\add{текст} (зміни)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>\deleted{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\deleted{текст} (зміни)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replaced{text}{replacement} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\replaced{текст}{заміна} (зміни)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
@@ -4923,7 +4939,7 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="../src/fileselector.cpp" line="182"/>
         <source>Remove selected items</source>
-        <translation type="unfinished"/>
+        <translation>Вилучити обрані елементи</translation>
     </message>
 </context>
 <context>
@@ -8116,42 +8132,42 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="334"/>
         <source>braceLevel0</source>
-        <translation type="unfinished"/>
+        <translation>рівеньдужок0</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="335"/>
         <source>braceLevel1</source>
-        <translation type="unfinished"/>
+        <translation>рівеньдужок1</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="336"/>
         <source>braceLevel2</source>
-        <translation type="unfinished"/>
+        <translation>рівеньдужок2</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="337"/>
         <source>braceLevel3</source>
-        <translation type="unfinished"/>
+        <translation>рівеньдужок3</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="338"/>
         <source>braceLevel4</source>
-        <translation type="unfinished"/>
+        <translation>рівеньдужок4</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="339"/>
         <source>braceLevel5</source>
-        <translation type="unfinished"/>
+        <translation>рівеньдужок5</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="340"/>
         <source>braceLevel6</source>
-        <translation type="unfinished"/>
+        <translation>рівеньдужок6</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="341"/>
         <source>braceLevel7</source>
-        <translation type="unfinished"/>
+        <translation>рівеньдужок7</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="342"/>
@@ -9841,12 +9857,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/toolwidgets.cpp" line="260"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Копіювати</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="263"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Вставити</translation>
     </message>
 </context>
 <context>
@@ -12835,7 +12851,7 @@ to join: teamtype join %2</source>
     <message>
         <location filename="../src/textanalysis.ui" line="425"/>
         <source>Determines whether the whole document, only the selection, or only a certain chapter is analysed.</source>
-        <translation type="unfinished"/>
+        <translation>Визначає, чи аналізувати весь документ, виділення або окремий розділ.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
@@ -12893,17 +12909,23 @@ If not, end characters are ignored.</source>
 &quot;Minimum word length (all)&quot;: A phrase is only shown if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equivalent to &quot;this test&quot;, while the other options would separate it into &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if none of these phrases would be shown.)</source>
-        <translation type="unfinished"/>
+        <translation>Можливі значення:
+&quot;Показати все&quot;: всі фрази показуються.
+&quot;Мінімальна довжина фрази&quot;: фраза показується тільки, якщо вона має не менше зазначеного числа символів (напр. &quot;a test&quot; має 6 символів)
+&quot;Мінімальна довжина слова (одне)&quot;: фраза показується тільки, якщо вона містить слово довжиною не менше зазначеного числа символів (напр. &quot;a test&quot; має 4 символи)
+&quot;Мінімальна довжина слова (усе)&quot;: фраза показується тільки, якщо всі її слова мають довжину не менше зазначеного числа символів (напр. &quot;a test&quot; має 1 символ)
+&quot;Повністю ігнорувати&quot;: коротші слова повністю ігноруються
+(напр. з довжиною 3 пропозицію &quot;this is a test&quot; збігається з &quot;this test&quot;, в той час як протилежна опція виділяла б &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, навіть якщо жодна з цих фраз не показується)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;show all&amp;quot; is selected, all phrases are shown.&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum phrase length&amp;quot; is selected, a phrase is only shown if it has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 6 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (one)&amp;quot; is selected, a phrase is only shown if one of its words has at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 4 characters)&lt;/p&gt;&lt;p&gt;If &amp;quot;minimum word length (all)&amp;quot; is selected, a phrase is only shown if all of its words have at least this many characters. (e.g. &amp;quot;a test&amp;quot; has 1 character)&lt;/p&gt;&lt;p&gt;If &amp;quot;completely ignore&amp;quot; is selected, shorter words are completely ignored.&lt;/p&gt;&lt;p&gt;(e.g. with length 3, the sentence &amp;quot;this is a test&amp;quot; is equivalent to &amp;quot;this test&amp;quot;, while the other options would separate it into &amp;quot;this is&amp;quot;, &amp;quot;is a&amp;quot;, &amp;quot;a test&amp;quot;, even if none of these phrases would be shown.)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Якщо вибрано &quot;Показувати усі фрази&quot; -- будуть показані вс фрази. &lt;/p&gt;&lt;p&gt;Якщо вибрано &quot;Мінімальна довжина фрази&quot; -- будуть показані фрази, які мають принаймі таку кількість символів (напр.: &quot;Темна ніч&quot; має 9 символів)&lt;/p&gt;&lt;p&gt;Якщо вибрано &quot;Мінімальна довжина слова (одного)&quot; -- будуть показані фрази, у яких є слово, що має принаймі стільки символів (&quot;Темна ніч&quot; має 5 символи)&lt;/p&gt;&lt;p&gt;Якщо вибрано &quot;Мінімальна довжина слова (всіх)&quot; -- будуть показані фрази, у яких всі слова мають принаймі стільки символів (&quot;Темна ніч&quot; має 3 символи)&lt;/p&gt;&lt;p&gt;Якщо вибрано &quot;Ігнорувати коротші слова&quot; -- будуть повністю ігноруватись слова, коротші за вказану кількість символів.&lt;/p&gt;&lt;p&gt;(напр. при довжині 4 фраза &quot;Темна ніч вже наступає&quot; еквівалентна фразі &quot;Темна наступає&quot;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="293"/>
         <source>Only phrases are shown which appear at least this many times in the document.</source>
-        <translation type="unfinished"/>
+        <translation>Будуть враховані лише фрази, які зустрічаються в документі не менше вказаної кількості разів.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="312"/>
@@ -12911,7 +12933,9 @@ If not, end characters are ignored.</source>
         <source>The controls in this row determine how many consecutive words are treated as a single phrase.
 If minimum and maximum are selected, exactly this many words are taken. (e.g. with 2, in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g. &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation type="unfinished"/>
+        <translation>Визначає, скільки слів трактується як одна фраза.
+Якщо вибрано &quot;Мінімальне і максимальне число слів у фразі&quot; -- саме стільки слів враховуються (напр. якщо задано 2, то фразами є: &quot;Темна ніч&quot;, &quot;ніч вже&quot;, &quot;вже наступає&quot;,...)
+Якщо вибрано &quot;Максимальне число слів у фразі&quot;, то слова на початку також враховуються (тоді &quot;Темна&quot;, &quot;Темна ніч&quot;, &quot;ніч&quot;,...)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="361"/>

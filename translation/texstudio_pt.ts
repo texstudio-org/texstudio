@@ -3465,7 +3465,7 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="22"/>
         <source>Review remarks (changes)</source>
-        <translation type="unfinished"/>
+        <translation>Rever comentários (alterações)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="23"/>
@@ -4036,27 +4036,27 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\highlight{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\highlight{texto} (alterações)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{comment} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\comment{comentário} (alterações)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>\added{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\added{texto} (alterações)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>\deleted{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\deleted{texto} (alterações)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replaced{text}{replacement} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\replaced{texto}{substituição} (alterações)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
@@ -4938,7 +4938,7 @@ Certifique-se de que a codificação do ficheiro e o valor passado ao pacote inp
     <message>
         <location filename="../src/fileselector.cpp" line="182"/>
         <source>Remove selected items</source>
-        <translation type="unfinished"/>
+        <translation>Remover itens seleccionados</translation>
     </message>
 </context>
 <context>
@@ -8128,42 +8128,42 @@ Notas:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="334"/>
         <source>braceLevel0</source>
-        <translation type="unfinished"/>
+        <translation>braceLevel0</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="335"/>
         <source>braceLevel1</source>
-        <translation type="unfinished"/>
+        <translation>braceLevel1</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="336"/>
         <source>braceLevel2</source>
-        <translation type="unfinished"/>
+        <translation>braceLevel2</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="337"/>
         <source>braceLevel3</source>
-        <translation type="unfinished"/>
+        <translation>braceLevel3</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="338"/>
         <source>braceLevel4</source>
-        <translation type="unfinished"/>
+        <translation>braceLevel4</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="339"/>
         <source>braceLevel5</source>
-        <translation type="unfinished"/>
+        <translation>braceLevel5</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="340"/>
         <source>braceLevel6</source>
-        <translation type="unfinished"/>
+        <translation>braceLevel6</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="341"/>
         <source>braceLevel7</source>
-        <translation type="unfinished"/>
+        <translation>braceLevel7</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="342"/>
