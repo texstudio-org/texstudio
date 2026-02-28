@@ -3468,7 +3468,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="22"/>
         <source>Review remarks (changes)</source>
-        <translation type="unfinished"/>
+        <translation>Παρατηρήσεις (πακέτο changes)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="23"/>
@@ -4044,27 +4044,27 @@ text: το κείμενο του αντικειμένου</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\highlight{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\highlight{κείμενο} (πακέτο changes)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{comment} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\comment{σχόλιο} (πακέτο changes)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>\added{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\added{κείμενο} (πακέτο changes)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>\deleted{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\deleted{κείμενο} (πακέτο changes)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replaced{text}{replacement} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\replaced{κείμενο προς εύρεση}{κείμενο προς αντικατάσταση} (πακέτο changes)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
@@ -4947,7 +4947,7 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="../src/fileselector.cpp" line="182"/>
         <source>Remove selected items</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή επιλεγμένων αρχείων από τη λίστα</translation>
     </message>
 </context>
 <context>
@@ -11240,7 +11240,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1297"/>
         <source>Insert root document name as TeX comment</source>
-        <translation>Εισαγωγή του ονόματος του κύριου αρχείου ως σχόλιο TeX</translation>
+        <translation>Εισαγωγή ονόματος κύριου αρχείου ως σχόλιο TeX</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1298"/>
