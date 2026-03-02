@@ -660,7 +660,7 @@ void Texstudio::addMacrosAsTagList()
     }
     // add elements
     for(const auto &m:configManager.completerConfig->userMacros) {
-        if (m.name == "TMX:Replace Quote Open" || m.name == "TMX:Replace Quote Close" || m.document)
+        if (m.name == TXS_AUTO_REPLACE_QUOTE_OPEN || m.name == TXS_AUTO_REPLACE_QUOTE_CLOSE || m.document)
             continue;
         QListWidgetItem* item=new QListWidgetItem(m.name);
         item->setData(Qt::UserRole, m.typedTag());
@@ -5928,7 +5928,7 @@ void Texstudio::editMacros()
         userMacroDialog = new UserMenuDialog(nullptr, tr("Edit User &Tags"), m_languages);
         bool atLeastOneAdded=false;
         foreach (const Macro &m, configManager.completerConfig->userMacros) {
-            if (m.name == "TMX:Replace Quote Open" || m.name == "TMX:Replace Quote Close" || m.document)
+            if (m.name == TXS_AUTO_REPLACE_QUOTE_OPEN || m.name == TXS_AUTO_REPLACE_QUOTE_CLOSE || m.document)
                 continue;
             userMacroDialog->addMacro(m);
             atLeastOneAdded=true;

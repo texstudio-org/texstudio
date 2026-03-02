@@ -38,9 +38,6 @@
 #include "adwaitastyle.h"
 #endif
 
-const QString TXS_AUTO_REPLACE_QUOTE_OPEN = "TMX:Replace Quote Open";
-const QString TXS_AUTO_REPLACE_QUOTE_CLOSE = "TMX:Replace Quote Close";
-
 const char *PROPERTY_COMMAND_ID = "cmdID";
 const char *PROPERTY_NAME_WIDGET = "nameWidget";
 const char *PROPERTY_WIDGET_TYPE = "widgetType";
