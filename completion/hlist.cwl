@@ -3,8 +3,8 @@
 
 #include:simplekv
 
-\begin{hlist}{num of colums}
-\begin{hlist}[keyvals]{num of colums}
+\begin{hlist}%<⟨num of columns⟩%>
+\begin{hlist}[%<options%>]%<⟨num of columns⟩%>
 \end{hlist}
 \hitem
 \hitem>
