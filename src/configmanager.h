@@ -16,8 +16,8 @@ struct PDFDocumentConfig;
 class GrammarCheckerConfig;
 class InternalTerminalConfig;
 
-const QString TXS_AUTO_REPLACE_QUOTE_OPEN = "TMX:Replace Quote Open";
-const QString TXS_AUTO_REPLACE_QUOTE_CLOSE = "TMX:Replace Quote Close";
+inline const QString TXS_AUTO_REPLACE_QUOTE_OPEN = "TMX:Replace Quote Open";
+inline const QString TXS_AUTO_REPLACE_QUOTE_CLOSE = "TMX:Replace Quote Close";
 
 #ifdef Q_OS_WIN
 const QKeySequence::SequenceFormat SHORTCUT_FORMAT = QKeySequence::PortableText;
