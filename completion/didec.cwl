@@ -1,5 +1,5 @@
 # didec package
-# Matthew Bertucci 2025/05/28 for v1.0.0
+# Matthew Bertucci 2026/03/04 for v1.2.0
 
 #keyvals:\usepackage/didec#c
 int
@@ -56,6 +56,7 @@ french
 float
 color-positive=#%color
 color-negative=#%color
+rounding=#half-away-from-zero,commercial,DIN-1333,half-to-even,mathematical,IEEE-754
 #endkeyvals
 
 didec-green#B

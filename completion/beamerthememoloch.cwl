@@ -1,5 +1,5 @@
 # moloch beamertheme
-# Matthew Bertucci 2026/01/05 for v2.1.0
+# Matthew Bertucci 2026/03/04 for v2.2.0
 
 #include:etoolbox
 #include:pgfopts
@@ -55,6 +55,7 @@ frametitle fg=#%color
 frametitle bg=#%color
 progressbar fg=#%color
 progressbar bg=#%color
+title separator=#%color
 standout fg=#%color
 standout bg=#%color
 light/alerted text=#%color
@@ -65,6 +66,7 @@ light/frametitle fg=#%color
 light/frametitle bg=#%color
 light/progressbar fg=#%color
 light/progressbar bg=#%color
+light/title separator=#%color
 light/standout fg=#%color
 light/standout bg=#%color
 dark/alerted text=#%color
@@ -75,6 +77,7 @@ dark/frametitle fg=#%color
 dark/frametitle bg=#%color
 dark/progressbar fg=#%color
 dark/progressbar bg=#%color
+dark/title separator=#%color
 dark/standout fg=#%color
 dark/standout bg=#%color
 #endkeyvals

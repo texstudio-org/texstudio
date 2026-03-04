@@ -1,6 +1,6 @@
 # incgraph package
 # muzimuzhi,31 Jul 2020 for incgraph 1.12
-# Matthew Bertucci 2024/03/14 for v1.3.0
+# Matthew Bertucci 2026/03/04 for v1.4.0
 
 #include:pgf
 #include:pgffor
@@ -22,6 +22,9 @@ nobookmark
 \incmultigraph{file name pattern}{list}#g
 \incmultigraph[options%keyvals]{file name pattern}{list}#g
 \incmultigraph[options%keyvals][graphics options]{file name pattern}{list}#g
+\incmultipages{imagefile}{page list}#g
+\incmultipages[options%keyvals]{imagefile}{page list}#g
+\incmultipages[options%keyvals][graphics options]{imagefile}{page list}#g
 \n#*
 \ni#*
 \nn#*
@@ -31,7 +34,7 @@ nobookmark
 \end{inctext}
 \igrset{options%keyvals}
 
-#keyvals:\incgraph,\incmultigraph,\begin{inctext},\igrset
+#keyvals:\incgraph,\incmultigraph,\incmultipages,\begin{inctext},\igrset
 currentpaper
 documentpaper
 graphicspaper

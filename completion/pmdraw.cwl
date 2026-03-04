@@ -1,5 +1,5 @@
 # pmdraw package
-# Matthew Bertucci 2025/10/15 for v2.1
+# Matthew Bertucci 2026/03/04 for v2.3
 
 #include:xkeyval
 #include:tikz
@@ -20,42 +20,10 @@ blank top=%<integer%>
 blank bottom=%<integer%>
 row sep=%<integer%>
 vertices={%<\draw options%>}
-no vertex bottom 1=%<integer%>
-no vertex bottom 2=%<integer%>
-no vertex bottom 3=%<integer%>
-no vertex bottom 4=%<integer%>
-no vertex bottom 5=%<integer%>
-no vertex bottom 6=%<integer%>
-no vertex bottom 7=%<integer%>
-no vertex bottom 8=%<integer%>
-no vertex bottom 9=%<integer%>
-no vertex top 1=%<integer%>
-no vertex top 2=%<integer%>
-no vertex top 3=%<integer%>
-no vertex top 4=%<integer%>
-no vertex top 5=%<integer%>
-no vertex top 6=%<integer%>
-no vertex top 7=%<integer%>
-no vertex top 8=%<integer%>
-no vertex top 9=%<integer%>
-ghost vertex bottom 1=%<integer%>
-ghost vertex bottom 2=%<integer%>
-ghost vertex bottom 3=%<integer%>
-ghost vertex bottom 4=%<integer%>
-ghost vertex bottom 5=%<integer%>
-ghost vertex bottom 6=%<integer%>
-ghost vertex bottom 7=%<integer%>
-ghost vertex bottom 8=%<integer%>
-ghost vertex bottom 9=%<integer%>
-ghost vertex top 1=%<integer%>
-ghost vertex top 2=%<integer%>
-ghost vertex top 3=%<integer%>
-ghost vertex top 4=%<integer%>
-ghost vertex top 5=%<integer%>
-ghost vertex top 6=%<integer%>
-ghost vertex top 7=%<integer%>
-ghost vertex top 8=%<integer%>
-ghost vertex top 9=%<integer%>
+no vertex bottom %<num 0-19%>=%<integer%>
+no vertex top %<num 0-19%>=%<integer%>
+ghost vertex bottom %<num 0-19%>=%<integer%>
+ghost vertex top %<num 0-19%>=%<integer%>
 ghosts={%<\draw options%>}
 vertices options={%<code%>}
 ghosts options={%<code%>}
@@ -65,24 +33,8 @@ labels bottom
 labels start=%<integer%>
 labels top start=%<integer%>
 labels bottom start=%<integer%>
-no label bottom 1=%<integer%>
-no label bottom 2=%<integer%>
-no label bottom 3=%<integer%>
-no label bottom 4=%<integer%>
-no label bottom 5=%<integer%>
-no label bottom 6=%<integer%>
-no label bottom 7=%<integer%>
-no label bottom 8=%<integer%>
-no label bottom 9=%<integer%>
-no label top 1=%<integer%>
-no label top 2=%<integer%>
-no label top 3=%<integer%>
-no label top 4=%<integer%>
-no label top 5=%<integer%>
-no label top 6=%<integer%>
-no label top 7=%<integer%>
-no label top 8=%<integer%>
-no label top 9=%<integer%>
+no label bottom %<num 0-19%>=%<integer%>
+no label top %<num 0-19%>=%<integer%>
 labels top draw={%<\draw options%>}
 labels top node={%<\node options%>}
 labels bottom draw={%<\draw options%>}

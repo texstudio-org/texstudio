@@ -2460,6 +2460,7 @@
 <file>completion/memhfixc.cwl</file>
 <file>completion/memoizable.cwl</file>
 <file>completion/memoize.cwl</file>
+<file>completion/memoize-ext.cwl</file>
 <file>completion/memory.cwl</file>
 <file>completion/memorygraphs.cwl</file>
 <file>completion/memucs-setspace.cwl</file>
@@ -2496,6 +2497,7 @@
 <file>completion/microtype-show.cwl</file>
 <file>completion/midfloat.cwl</file>
 <file>completion/midpage.cwl</file>
+<file>completion/milestonetimeline.cwl</file>
 <file>completion/miller.cwl</file>
 <file>completion/milstd.cwl</file>
 <file>completion/milsymb.cwl</file>
@@ -3488,7 +3490,9 @@
 <file>completion/soulutf8.cwl</file>
 <file>completion/soup.cwl</file>
 <file>completion/sourcecodepro.cwl</file>
+<file>completion/sourcesans.cwl</file>
 <file>completion/sourcesanspro.cwl</file>
+<file>completion/sourceserif.cwl</file>
 <file>completion/sourceserifpro.cwl</file>
 <file>completion/spacekern.cwl</file>
 <file>completion/spacingtricks.cwl</file>
@@ -4316,6 +4320,7 @@
 <file>completion/xsimverb.cwl</file>
 <file>completion/xskak.cwl</file>
 <file>completion/xspace.cwl</file>
+<file>completion/xstix2.cwl</file>
 <file>completion/xstring.cwl</file>
 <file>completion/xtab.cwl</file>
 <file>completion/xt_capts.cwl</file>
