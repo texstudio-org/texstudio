@@ -1,5 +1,5 @@
 # letgut class
-# Matthew Bertucci 2025/10/27 for v0.9.13
+# Matthew Bertucci 2026/03/04 for v0.9.14
 
 #include:luatex
 #include:fontspec
@@ -81,6 +81,8 @@ watermark scale=%<factor%>
 \subtitle{text}
 \subtitle[short subtitle%text]{text}
 
+\vrefsection{label}#r
+
 \person{données}
 \person*{données}
 \author*{données}
@@ -146,6 +148,8 @@ watermark scale=%<factor%>
 \lettregut
 \lettregut[opt]
 \lettregut*[opt]
+
+\schedule{heure}{minute}
 
 \begin{ltx-code}
 \begin{ltx-code}[options%keyvals]

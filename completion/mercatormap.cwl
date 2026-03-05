@@ -1,5 +1,5 @@
 # mercatormap package
-# Matthew Bertucci 2024/08/05 for v1.2.0
+# Matthew Bertucci 2026/02/21 for v1.3.0
 
 #include:graphicx
 #include:siunitx
@@ -38,6 +38,7 @@ southoffset=%<tile offset%>
 basename=%<tile base name%>
 attribution=%<text%>
 attribution print=%<text%>
+attribution print topplusopen=%<<TT>.<MM>.<JJJJ>%>
 resource=#none,tiles,mergedmap,wmsmap
 tile size=##L
 #endkeyvals

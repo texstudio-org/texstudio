@@ -1,5 +1,5 @@
 # oblivoir-misc package
-# Matthew Bertucci 2023/03/09 for v0.4
+# Matthew Bertucci 2026/02/25 for v3.5
 
 #include:etoolbox
 
@@ -14,3 +14,4 @@
 \begin{hverse}[code]
 \end{hverse}
 \stanzaskip#*
+\hverseinput{file}

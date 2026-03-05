@@ -3,7 +3,8 @@
 
 #include:simplekv
 
-\begin{hlist}{num of colums}
+\begin{hlist}%<⟨num of columns⟩%>
+\begin{hlist}[%<options%>]%<⟨num of columns⟩%>
 \end{hlist}
 \hitem
 \hitem>
@@ -14,7 +15,7 @@
 \sethlist{keyvals}
 \setdefaulthlist{keyvals}
 
-#keyvals:\sethlist,\setdefaulthlist
+#keyvals:\begin{hlist},\sethlist,\setdefaulthlist
 pre skip=##L
 post skip=##L
 left margin=##L
@@ -35,7 +36,6 @@ show label#true,false
 list parindent=##L
 show frame#true,false
 #endkeyvals
-
 
 \hlstname#S
 \hlstdate#S

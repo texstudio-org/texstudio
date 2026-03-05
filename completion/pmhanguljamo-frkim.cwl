@@ -1,5 +1,5 @@
 # pmhanguljamo-frkim package
-# Matthew Bertucci 2024/06/11 for v1.1
+# Matthew Bertucci 2026/02/25 for v1.3
 
 #include:l3keys2e
 
@@ -34,6 +34,7 @@ frcccmds
 \jamoul{ulem csname}{jamo text}
 \RenewVowels{vowels}
 \RenewLeadingZero{arg}
+\jamotextinput{file}
 
 #ifOption:frcccmds
 \frccg

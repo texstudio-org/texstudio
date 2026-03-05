@@ -1,5 +1,5 @@
 # nwejmart class
-# Matthew Bertucci 2024/03/12 for v1.0.6
+# Matthew Bertucci 2026/02/15 for v2.0
 
 #include:etoolbox
 #include:class-book
@@ -24,8 +24,7 @@
 #include:array
 #include:booktabs
 #include:mathtools
-#include:ntheorem
-# loads thmmarks option of ntheorem
+#include:keytheorems
 #include:esvect
 #include:geometry
 #include:translations
@@ -34,7 +33,6 @@
 #include:babel
 # loads english option of babel
 #include:listings
-#include:varioref
 #include:subcaption
 #include:tocvsec2
 #include:tocloft
@@ -44,13 +42,13 @@
 #include:enumitem
 # loads inline option of enumitem
 #include:environ
-#include:footnote
 #include:biblatex
 #include:hyperref
 #include:hypcap
 #include:bookmark
 #include:glossaries
-#include:cleveref
+#include:zref-clever
+#include:zref-vario
 
 #keyvals:\documentclass/nwejmart#c
 english
@@ -541,9 +539,6 @@ subscript=%<indice%>
 \begin{notation*}
 \begin{notation*}[header%text]
 \end{notation*}
-\begin{proof}
-\begin{proof}[header%text]
-\end{proof}
 
 \newtheorem[options%keyvals]{envname}#N
 
@@ -591,7 +586,6 @@ online=%<YYYY-MM-DD%>
 #endkeyvals
 \fixpagenumber{number}#*
 \fontdesignertext{text}#*
-\graphicdesigntext{text}#*
 \mkbibnamelast{arg}#*
 
 # from T1 option of fontenc
@@ -619,9 +613,6 @@ online=%<YYYY-MM-DD%>
 
 # from pagestyles option of titlesec
 #include:titleps
-
-# from thmmarks option of ntheorem
-\theoremsymbol{symbol}
 
 # from english option of babel
 \captionsenglish#*

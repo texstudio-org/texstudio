@@ -1,11 +1,9 @@
 # sourceserifpro package
-# Matthew Bertucci 1/11/2021 for v1.4
+# Matthew Bertucci 2026/03/04 for v2.0
 
-#include:ifxetex
-#include:ifluatex
-#include:xkeyval
-#include:fontenc
-#include:mweights
+# deprecated package. Use sourceserif
+
+#include:sourceserif
 
 #keyvals:\usepackage/sourceserifpro#c
 lining
@@ -31,31 +29,7 @@ opentype
 otf
 #endkeyvals
 
-\sourceserifpro
-\sourceserifprolight
-\sourceserifproextreme
+\sourceserifpro#*
+\sourceserifprolight#*
+\sourceserifproextreme#*
 \sourceserifprolf#*
-\nativeoldstylenums{text}#*
-
-# from T1 option of fontenc
-\DH#n
-\NG#n
-\dj#n
-\ng#n
-\k{arg}#n
-\guillemotleft#*n
-\guillemotright#*n
-\guilsinglleft#n
-\guilsinglright#n
-\quotedblbase#n
-\quotesinglbase#n
-\textquotedbl#n
-\DJ#n
-\th#n
-\TH#n
-\dh#n
-\Hwithstroke#*n
-\hwithstroke#*n
-\textogonekcentered{arg}#*n
-\guillemetleft#n
-\guillemetright#n

@@ -1,5 +1,5 @@
 # rpgicons package
-# Matthew Bertucci 2026/02/11 for v2.5.1
+# Matthew Bertucci 2026/02/27 for v2.6.0
 
 #keyvals:\usepackage/rpgicons#c
 l3
@@ -52,6 +52,12 @@ pics
 \RPGIconsUseIcon*{shape}#*
 \RPGIconsUseIcon*[options%keyvals]{shape}#*
 \RPGIconsUseIcon*[options%keyvals][integer]{shape}#*
+\RPGIconsPrecomposeIcon{shape}#*
+\RPGIconsPrecomposeIcon[options%keyvals]{shape}#*
+\RPGIconsPrecomposeIcon[options%keyvals][reference]{shape}#*
+\RPGIconsPrecomposeIcon*{shape}#*
+\RPGIconsPrecomposeIcon*[options%keyvals]{shape}#*
+\RPGIconsPrecomposeIcon*[options%keyvals][reference]{shape}#*
 
 \RPGIconsDie{shape}{integer}#*
 \RPGIconsDie{shape}[options%keyvals]{integer}#*
@@ -90,7 +96,7 @@ pics
 
 \rpgiconsset{options%keyvals}
 
-#keyvals:\die#c,\ability#c,\saving#c,\spell#c,\spellschool#c,\damage#c,\attack#c,\condition#c,\class#c,\alignment#c,\currency#c,\RPGIconsUseIcon#c,\RPGIconsUseIcon*#c,\RPGIconsDie#c,\RPGIconsAbility#c,\RPGIconsSaving#c,\RPGIconsSpell#c,\RPGIconsSpellschool#c,\RPGIconsDamage#c,\RPGIconsAttack#c,\RPGIconsCondition#c,\RPGIconsAlignment#c,\RPGIconsCurrency#c,\rpgiconsset#c
+#keyvals:\die#c,\ability#c,\saving#c,\spell#c,\spellschool#c,\damage#c,\attack#c,\condition#c,\class#c,\alignment#c,\currency#c,\RPGIconsUseIcon#c,\RPGIconsUseIcon*#c,\RPGIconsPrecomposeIcon#c,\RPGIconsPrecomposeIcon*#c,\RPGIconsDie#c,\RPGIconsAbility#c,\RPGIconsSaving#c,\RPGIconsSpell#c,\RPGIconsSpellschool#c,\RPGIconsDamage#c,\RPGIconsAttack#c,\RPGIconsCondition#c,\RPGIconsAlignment#c,\RPGIconsCurrency#c,\rpgiconsset#c
 frame=#ability,damage,saving,spellschool
 stroke=#%color
 fill=#%color
@@ -133,9 +139,11 @@ every %<shape%> add={%<options%>}
 before sep=##L
 after sep=##L
 baseline=##L
+precompose
+precompose=%<string%>
 #endkeyvals
 
-#keyvals:\die#c,\ability#c,\saving#c,\spell#c,\spellschool#c,\damage#c,\attack#c,\condition#c,\class#c,\alignment#c,\currency#c,\RPGIconsUseIcon#c,\RPGIconsUseIcon*#c,\RPGIconsDie#c,\RPGIconsAbility#c,\RPGIconsSaving#c,\RPGIconsSpell#c,\RPGIconsSpellschool#c,\RPGIconsDamage#c,\RPGIconsAttack#c,\RPGIconsCondition#c,\RPGIconsAlignment#c,\RPGIconsCurrency#c
+#keyvals:\die#c,\ability#c,\saving#c,\spell#c,\spellschool#c,\damage#c,\attack#c,\condition#c,\class#c,\alignment#c,\currency#c,\RPGIconsUseIcon#c,\RPGIconsUseIcon*#c,\RPGIconsPrecomposeIcon#c,\RPGIconsPrecomposeIcon*#c,\RPGIconsDie#c,\RPGIconsAbility#c,\RPGIconsSaving#c,\RPGIconsSpell#c,\RPGIconsSpellschool#c,\RPGIconsDamage#c,\RPGIconsAttack#c,\RPGIconsCondition#c,\RPGIconsAlignment#c,\RPGIconsCurrency#c
 variant=%<integer%>
 #endkeyvals
 
@@ -194,3 +202,7 @@ alias={%<string%>}{%<string%>}
 \useprotectedrpgicon{box name}
 \rpgiconsroll{roll syntax}
 #endif
+
+# not documented
+\RPGIconsPDFDestination{arg}#S
+\RPGIconsPDFHash{arg}#S

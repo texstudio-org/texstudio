@@ -1,5 +1,5 @@
 # cwpuzzle package
-# Matthew Bertucci 2/7/2022 for v1.10
+# Matthew Bertucci 2026/02/14 for v1.15
 
 #include:amssymb
 
@@ -10,8 +10,11 @@ unboxed
 normalsize
 small
 large
+huge
+Huge
 german
 ngerman
+french
 #endkeyvals
 
 \begin{Puzzle}{columns}{rows}
@@ -58,6 +61,7 @@ ngerman
 \PuzzlePost#*
 \PuzzleCluePre #*
 \PuzzleCluePost#*
+\PuzzleClueWidth#*
 \PuzzleContent#*
 \PuzzleSolutionContent#*
 \SudokuLinethickness#*
@@ -65,8 +69,3 @@ ngerman
 \KakuroHintType#*
 \KakuroNumberFont#*
 \PPa#S
-\docdate#S
-\docversion#S
-\filedate#S
-\filename#S
-\fileversion#S

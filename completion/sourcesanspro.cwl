@@ -1,11 +1,9 @@
 # sourcesanspro package
-# Matthew Bertucci 1/11/2021 for v2.8
+# Matthew Bertucci 2026/03/04 for v3.0
 
-#include:ifxetex
-#include:ifluatex
-#include:xkeyval
-#include:fontenc
-#include:mweights
+# deprecated package. Use sourcesans
+
+#include:sourcesans
 
 #keyvals:\usepackage/sourcesanspro#c
 lining
@@ -32,31 +30,7 @@ opentype
 otf
 #endkeyvals
 
-\sourcesanspro
-\sourcesansprolight
-\sourcesansproextreme
+\sourcesanspro#*
+\sourcesansprolight#*
+\sourcesansproextreme#*
 \sourcesansprolf#*
-\nativeoldstylenums{text}#*
-
-# from T1 option of fontenc
-\DH#n
-\NG#n
-\dj#n
-\ng#n
-\k{arg}#n
-\guillemotleft#*n
-\guillemotright#*n
-\guilsinglleft#n
-\guilsinglright#n
-\quotedblbase#n
-\quotesinglbase#n
-\textquotedbl#n
-\DJ#n
-\th#n
-\TH#n
-\dh#n
-\Hwithstroke#*n
-\hwithstroke#*n
-\textogonekcentered{arg}#*n
-\guillemetleft#n
-\guillemetright#n
