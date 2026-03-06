@@ -1,5 +1,5 @@
 # optikz package
-# Matthew Bertucci 2025/08/04 for v1.0.0
+# Matthew Bertucci 2026/03/04 for v1.1.0
 
 #include:amssymb
 #include:tikz
@@ -27,13 +27,9 @@ optikzyellow#B
 \curvedmirror[%<keyvals%>] at %<(x,y)%>;
 \diode at %<(x,y)%>;
 \diode[%<keyvals%>] at %<(x,y)%>;
-\drawbeam[size1][size2][fill color][border color]{pos1}{pos2}{angle1}{angle2}
-\drawbeam[size1][size2][fill color]{pos1}{pos2}{angle1}{angle2}
-\drawbeam[size1][size2]{pos1}{pos2}{angle1}{angle2}
-\drawbeam[size1]{pos1}{pos2}{angle1}{angle2}
+\drawbeam[keyvals]{pos1}{pos2}{angle1}{angle2}
 \drawbeam{pos1}{pos2}{angle1}{angle2}
-\drawrainbow[size1][size2]{pos1}{pos2}{angle1}{angle2}
-\drawrainbow[size1]{pos1}{pos2}{angle1}{angle2}
+\drawrainbow[keyvals]{pos1}{pos2}{angle1}{angle2}
 \drawrainbow{pos1}{pos2}{angle1}{angle2}
 \faradayrotator at %<(x,y)%>;
 \faradayrotator[%<keyvals%>] at %<(x,y)%>;
@@ -48,6 +44,8 @@ optikzyellow#B
 \mirror[%<keyvals%>] at %<(x,y)%>;
 \objective at %<(x,y)%>;
 \objective[%<keyvals%>] at %<(x,y)%>;
+\optikzanglethreepoints{pos1}{pos2}{pos3}{command}#d
+\optikzangletwopoints{pos1}{pos2}{command}#d
 \parabola at %<(x,y)%>;
 \parabola[%<keyvals%>] at %<(x,y)%>;
 \planconvexlens at %<(x,y)%>;
@@ -67,6 +65,7 @@ optikzyellow#B
 \wedge at %<(x,y)%>;
 \wedge[%<keyvals%>] at %<(x,y)%>;
 
+\beamgeometry{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \DeclareOpticalElement{name}{macro}#S
 \optikzangle#S
 \optikzcolor#S

@@ -1,5 +1,5 @@
 # keytheorems package
-# Matthew Bertucci 2025/09/17 for v0.3.2
+# Matthew Bertucci 2026/02/20 for v0.3.5
 
 #include:aliascnt
 #include:amsthm
@@ -34,6 +34,8 @@ continues*=#%label
 restate-keys={%<keyvals%>}
 listhack=#true,false
 seq=%<name%>
+tcb-append={%<tcolorbox keys%>}
+ignore=#true,false
 #endkeyvals
 \listoftheorems
 \listoftheorems[options%keyvals]
@@ -86,6 +88,8 @@ continues-code=%<code%>
 name=%<display name%>
 refname=%<ref name%>
 Refname=%<ref name%>
+plural-refname=%<ref name%>
+plural-Refname=%<ref name%>
 #endkeyvals
 
 # keys that can be used in styles

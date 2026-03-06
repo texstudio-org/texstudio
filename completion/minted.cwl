@@ -2,13 +2,12 @@
 # modified by Tim Hoffmann 2014-03-24
 # modified by Elias Kirchgässner 2016-07-27
 # modified by muzimuzhi 2020 Feb 15, minted v2.5
-# modified by Matthew Bertucci 2025 May 15, v3.7.0
+# modified by Matthew Bertucci 2026 March 4, v3.8.0
 
 #include:catchfile
 #include:etoolbox
 #include:fvextra
 #include:latex2pydata
-#include:pdftexcmds
 #include:pgfkeys
 #include:pgfopts
 #include:shellesc
@@ -27,6 +26,7 @@ chapter
 section
 cache#true,false
 cachedir=%<directory%>
+cacheignoresfilecontents#true,false
 debug#true,false
 frozencache#true,false
 highlightmode=#fastfirst,fast,immediate
@@ -78,6 +78,7 @@ verbatim#true,false
 
 #keyvals:\begin{minted},\mint,\mintinline,\inputminted,\setminted,\setmintedinline,\newminted,\newmint,\newmintinline,\newmintedfile
 autogobble#true,false
+baseline=#b,c,t
 baselinestretch=##L
 beameroverlays#true,false
 bgcolor=#%color
@@ -165,9 +166,13 @@ rangeregexmatchnumber=%<integer%>
 rangeregexdotall#true,false
 rangeregexmultiline#true,false
 rangestartafterstring=%<macro%>
+rangestartafterstringline=%<macro%>
 rangestartstring=%<macro%>
+rangestartstringline=%<macro%>
 rangestopbeforestring=%<macro%>
+rangestopbeforestringline=%<macro%>
 rangestopstring=%<macro%>
+rangestopstringline=%<macro%>
 reflabel=##l
 resetmargins#true,false
 rulecolor=#%color
@@ -193,6 +198,8 @@ vspace=##L
 xleftmargin=##L
 xrightmargin=##L
 #endkeyvals
+
+\MintedRegisterTempFileExtension{extension}#*
 
 \MintedJobnameMdfive#S
 \MintedCacheIndexFilename#S

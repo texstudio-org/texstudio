@@ -1609,6 +1609,7 @@
 <file>completion/fixltxhyph.cwl</file>
 <file>completion/fixmath.cwl</file>
 <file>completion/fixme.cwl</file>
+<file>completion/fixtounicode.cwl</file>
 <file>completion/fjodor.cwl</file>
 <file>completion/flabels.cwl</file>
 <file>completion/flagderiv.cwl</file>
@@ -2301,6 +2302,7 @@
 <file>completion/luakeys-debug.cwl</file>
 <file>completion/lualatex-truncate.cwl</file>
 <file>completion/lualinalg.cwl</file>
+<file>completion/lualineno.cwl</file>
 <file>completion/luamathalign.cwl</file>
 <file>completion/luamaths.cwl</file>
 <file>completion/luamesh.cwl</file>
@@ -2458,6 +2460,7 @@
 <file>completion/memhfixc.cwl</file>
 <file>completion/memoizable.cwl</file>
 <file>completion/memoize.cwl</file>
+<file>completion/memoize-ext.cwl</file>
 <file>completion/memory.cwl</file>
 <file>completion/memorygraphs.cwl</file>
 <file>completion/memucs-setspace.cwl</file>
@@ -2494,6 +2497,7 @@
 <file>completion/microtype-show.cwl</file>
 <file>completion/midfloat.cwl</file>
 <file>completion/midpage.cwl</file>
+<file>completion/milestonetimeline.cwl</file>
 <file>completion/miller.cwl</file>
 <file>completion/milstd.cwl</file>
 <file>completion/milsymb.cwl</file>
@@ -3486,7 +3490,9 @@
 <file>completion/soulutf8.cwl</file>
 <file>completion/soup.cwl</file>
 <file>completion/sourcecodepro.cwl</file>
+<file>completion/sourcesans.cwl</file>
 <file>completion/sourcesanspro.cwl</file>
+<file>completion/sourceserif.cwl</file>
 <file>completion/sourceserifpro.cwl</file>
 <file>completion/spacekern.cwl</file>
 <file>completion/spacingtricks.cwl</file>
@@ -4314,6 +4320,7 @@
 <file>completion/xsimverb.cwl</file>
 <file>completion/xskak.cwl</file>
 <file>completion/xspace.cwl</file>
+<file>completion/xstix2.cwl</file>
 <file>completion/xstring.cwl</file>
 <file>completion/xtab.cwl</file>
 <file>completion/xt_capts.cwl</file>

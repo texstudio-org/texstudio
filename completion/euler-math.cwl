@@ -1,5 +1,5 @@
 # euler-math package
-# Matthew Bertucci 2025/10/29 for v0.70
+# Matthew Bertucci 2026/02/21 for v0.75
 
 #include:iftex
 #include:unicode-math
@@ -17,15 +17,15 @@ Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle
 \bigstar#m
 \blacktriangle#m
 \blacktriangledown#m
-\cuberoot{arg}#m
 \cuberootsign{arg}#*m
+\cuberoot{arg}#m
 \doublebarwedge#m
 \downdasharrow#m
 \eqqslantgtr#m
 \eqqslantless#m
 \Finv#m
-\fourthroot{arg}#m
 \fourthrootsign{arg}#*m
+\fourthroot{arg}#m
 \Game#m
 \geqqslant#m
 \harrowextender#*m
@@ -37,6 +37,7 @@ Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle
 \lgblkcircle#m
 \lgblksquare#m
 \lgwhtsquare#m
+\mbfvarPhi#*m
 \mdblkcircle#m
 \mdblkdiamond#m
 \mdblklozenge#m
@@ -52,6 +53,7 @@ Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle
 \mdwhtdiamond#m
 \mdwhtlozenge#m
 \mdwhtsquare#m
+\mupvarPhi#*m
 \pitchfork#m
 \precapprox#m
 \preceqq#m
@@ -81,6 +83,7 @@ Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle
 \upbackepsilon#*m
 \updasharrow#m
 \updigamma#*m
+\varPhi#m
 \vartriangle#m
 \Vvert#m
 \vysmblksquare#m

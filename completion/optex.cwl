@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2025/05/26 for v1.18
+# Matthew Bertucci 2026/03/04 for v1.19
 
 #include:plaintex
 #include:luatex
@@ -724,6 +724,8 @@
 \mathrlap{formula}#*
 \mathllap{formula}#*
 \mathselector{command}{fontspecA}{fontspecB}{factor}{features}#d
+\ibrackets#*
+\multiprimes#*
 \mathsetup{options%keyvals}#*
 #keyvals:\mathsetup
 dots

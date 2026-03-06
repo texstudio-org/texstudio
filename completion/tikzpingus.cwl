@@ -1,5 +1,5 @@
 # tikzpingus package
-# Matthew Bertucci 2025/06/19 for v1.3
+# Matthew Bertucci 2026/03/04 for v1.4
 
 #include:etoolbox
 #include:tikz
@@ -158,6 +158,7 @@ bill angry=#%color
 :hide
 :back
 :pingu={%<options%>}
+:toast
 :mix=%<color mix%>
 :mix-draw=%<color mix%>
 :mix-all=%<color mix%>
@@ -881,6 +882,30 @@ magnifier right opacity=%<factor%>
 magnifier right thick=##L
 magnifier right xshift=##L
 magnifier right yshift=##L
+sword left
+sword left=#%color
+sword left handle length=##L
+sword left handle shift=##L
+sword left xshift=##L
+sword left yshift=##L
+sword left handle=#%color
+sword left guard=#%color
+sword left shade=#%color
+sword left shade opacity=%<factor%>
+sword left length=##L
+sword left width=##L
+sword right
+sword right=#%color
+sword right handle length=##L
+sword right handle shift=##L
+sword right xshift=##L
+sword right yshift=##L
+sword right handle=#%color
+sword right guard=#%color
+sword right shade=#%color
+sword right shade opacity=%<factor%>
+sword right length=##L
+sword right width=##L
 plank left
 plank left=#%color
 plank left width=##L

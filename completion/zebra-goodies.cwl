@@ -1,10 +1,8 @@
 # zebra-goodies package
-# Matthew Bertucci 11/3/2021 for v0.8.0
+# Matthew Bertucci 2026/02/25 for v0.9.0
 
-#include:kvoptions
 #include:microtype
 #include:xcolor
-#include:tikzpagenodes
 #include:marginnote
 #include:manfnt
 
