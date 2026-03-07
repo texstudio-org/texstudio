@@ -10027,7 +10027,7 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 		lines.removeFirst();
 	}
 
-    static const QRegularExpression rx("@@ -(\\d+),?(\\d*)\\s*\\+(\\d+),(\\d+)");
+    static const QRegularExpression rx("@@ -(\\d+),?(\\d*)\\s*\\+(\\d+)(,\\d+)?");
 	int cur_line;
 	bool atDocEnd = false;
     int realTextLines=ed->document()->lines();
