@@ -3465,7 +3465,7 @@ görüntülemek için gelişmiş seçenekleri kapatın.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="22"/>
         <source>Review remarks (changes)</source>
-        <translation type="unfinished"/>
+        <translation>Yorumları gözden geçir (değişiklikler)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="23"/>
@@ -4036,27 +4036,27 @@ görüntülemek için gelişmiş seçenekleri kapatın.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\highlight{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\highlight{yazı} (değişiklikler)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{comment} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\comment{yorum} (değişiklikler)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>\added{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\added{yazı} (değişiklikler)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>\deleted{text} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\deleted{yazı} (değişiklikler)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replaced{text}{replacement} (changes)</source>
-        <translation type="unfinished"/>
+        <translation>\replaced{yazı}{değişiklik} (değişiklikler)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
@@ -4938,7 +4938,7 @@ Dosya kodlaması ile inputenc paketine gönderilen değerin aynı olduğundan em
     <message>
         <location filename="../src/fileselector.cpp" line="182"/>
         <source>Remove selected items</source>
-        <translation type="unfinished"/>
+        <translation>Seçilmiş ögeleri kaldır</translation>
     </message>
 </context>
 <context>
@@ -8129,42 +8129,42 @@ Notlar:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="334"/>
         <source>braceLevel0</source>
-        <translation type="unfinished"/>
+        <translation>güzelparantezDüzey0</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="335"/>
         <source>braceLevel1</source>
-        <translation type="unfinished"/>
+        <translation>güzelparantezDüzey1</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="336"/>
         <source>braceLevel2</source>
-        <translation type="unfinished"/>
+        <translation>güzelparantezDüzey2</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="337"/>
         <source>braceLevel3</source>
-        <translation type="unfinished"/>
+        <translation>güzelparantezDüzey3</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="338"/>
         <source>braceLevel4</source>
-        <translation type="unfinished"/>
+        <translation>güzelparantezDüzey4</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="339"/>
         <source>braceLevel5</source>
-        <translation type="unfinished"/>
+        <translation>güzelparantezDüzey5</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="340"/>
         <source>braceLevel6</source>
-        <translation type="unfinished"/>
+        <translation>güzelparantezDüzey6</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="341"/>
         <source>braceLevel7</source>
-        <translation type="unfinished"/>
+        <translation>güzelparantezDüzey7</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="342"/>
