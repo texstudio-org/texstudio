@@ -10026,6 +10026,10 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 	if (!lines.first().contains("@@")) {
 		lines.removeFirst();
 	}
+    // remove last line in git, if empty
+    if(configManager.useVCS==1&&lines.size()>0 && lines.last().isEmpty()){
+        lines.removeLast();
+    }
 
     static const QRegularExpression rx("@@ -(\\d+),?(\\d*)\\s*\\+(\\d+)(,\\d+)?");
 	int cur_line;
