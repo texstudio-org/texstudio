@@ -44,6 +44,7 @@ void Macro::init(const QString &nname, Macro::Type ntype, const QString &ntag, c
 	type = ntype;
 	tag = ntag;
 	abbrev = nabbrev;
+	m_checkState = Qt::Checked;
 	trigger = ntrigger;
 	triggerLookBehind = false;
 	QString realtrigger = trigger;
@@ -171,6 +172,16 @@ QString Macro::script() const
 QString Macro::shortcut() const
 {
     return m_shortcut;
+}
+
+Qt::CheckState Macro::checkState() const
+{
+    return m_checkState;
+}
+
+void Macro::setCheckState(const Qt::CheckState &check)
+{
+    m_checkState = check;
 }
 
 bool Macro::isEmpty() const
@@ -319,6 +330,7 @@ bool Macro::save(const QString &fileName) const {
     dd.insert("trigger",trigger);
     dd.insert("menu",menu);
     dd.insert("shortcut",m_shortcut);
+    dd.insert("checkState",static_cast<int>(m_checkState));
     QJsonDocument jsonDoc(dd);
     file.write(jsonDoc.toJson());
     return true;
@@ -385,9 +397,14 @@ bool Macro::loadFromText(const QString &text)
         break;
       case 2: {
         QString qtype = rawData.value("type");
-        typ = ( qtype=="Script" ? Script : ( qtype=="Environment" ? Environment : Snippet ) );
-        if(qtype=="AIQuery"){
-            typ=AIQuery;
+        if (qtype=="Script") {
+            typ = Script;
+        } else if (qtype=="Environment") {
+            typ = Environment;
+        } else if (qtype=="AIQuery") {
+            typ = AIQuery;
+        } else {
+            typ = Snippet;
         }
         tag = rawData.value("tag");
         break;
@@ -401,6 +418,11 @@ bool Macro::loadFromText(const QString &text)
     m_shortcut=rawData.value("shortcut");
     menu=rawData.value("menu");
     description=rawData.value("description");
+    if (dd.contains("checkState")) {
+        m_checkState=static_cast<Qt::CheckState>(dd["checkState"].toInt());
+    } else {
+        m_checkState=Qt::Checked;   // Macros with formatVersion = 2 created before checkable items were introduced remain executable, as they always have been.
+    }
     return true;
 }
 

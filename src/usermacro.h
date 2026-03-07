@@ -38,6 +38,7 @@ public:
 	QString snippet() const;
 	QString script() const;
     QString shortcut() const;
+    Qt::CheckState checkState() const;
 
     bool isEmpty() const;
 
@@ -45,6 +46,7 @@ public:
     void setTag(const QString &ntag);
     void setShortcut(const QString &sc);
     void setTrigger(const QString &newTrigger);
+    void setCheckState(const Qt::CheckState &check); 
 
 	QString typedTag() const;
 	void setTypedTag(const QString &m_tag);
@@ -83,6 +85,7 @@ private:
     QStringList triggerInEnvs;
 
     QString m_shortcut;
+	Qt::CheckState m_checkState;
 };
 
 Q_DECLARE_METATYPE(Macro);
