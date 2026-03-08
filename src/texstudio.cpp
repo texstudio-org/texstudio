@@ -2571,7 +2571,7 @@ void Texstudio::runScripts(int trigger)
 void Texstudio::runScriptsInList(int trigger, const QList<Macro> &scripts)
 {
 	foreach (const Macro &macro, scripts) {
-        if (macro.type == Macro::Script && macro.isActiveForTrigger(static_cast<Macro::SpecialTrigger>(trigger) ))
+		if (macro.checkState() == Qt::Checked && macro.type == Macro::Script && macro.isActiveForTrigger(static_cast<Macro::SpecialTrigger>(trigger) ))
 			runScript(macro.script(), MacroExecContext(trigger));
 	}
 }
