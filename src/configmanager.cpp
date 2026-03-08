@@ -1726,7 +1726,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
             if (replaceQuotes){
 				foreach (const Macro &m, completerConfig->userMacros) {
 					if (m.name == TXS_AUTO_REPLACE_QUOTE_OPEN ||
-					        m.name == TXS_AUTO_REPLACE_QUOTE_CLOSE) continue;
+							m.name == TXS_AUTO_REPLACE_QUOTE_CLOSE ||
+							m.checkState() != Qt::Checked) continue;
 					if (m.trigger == "(?language:latex)(?<=\\s|^)\"" || m.trigger == "(?language:latex)(?<=^)\"" || m.trigger == "(?language:latex)(?<=\\S)\"") {
 						conflict = true;
 						break;
@@ -2150,7 +2151,8 @@ void ConfigManager::updateUserMacroShortcuts(){
     // if the macro shortcuts have been changed via options, the macros needs to be updated to reflect that shortcuts
     int i=0;
     for(auto &m : completerConfig->userMacros){
-        if (!m.document && m.name != TXS_AUTO_REPLACE_QUOTE_OPEN && m.name != TXS_AUTO_REPLACE_QUOTE_CLOSE){
+        if (!m.document && m.name != TXS_AUTO_REPLACE_QUOTE_OPEN && m.name != TXS_AUTO_REPLACE_QUOTE_CLOSE
+            && m.checkState() == Qt::Checked){
             QString mn=m.menu;
             if(!mn.isEmpty()){
                 mn.append('/');
@@ -2160,8 +2162,8 @@ void ConfigManager::updateUserMacroShortcuts(){
             if(act){
                 m.setShortcut(act->shortcut().toString());
             }
-            i++;
         }
+        i++;
     }
 }
 
@@ -2184,7 +2186,7 @@ void ConfigManager::updateUserMacroMenu()
         if (!m.document){
             menu=recreatedMenu;
             QList<QKeySequence> shortcuts;
-            if(!m.shortcut().isEmpty()){
+            if(!m.shortcut().isEmpty() && m.checkState()==Qt::Checked){
                 shortcuts<<QKeySequence(m.shortcut());
             }
             // create/find apropriate submenu
@@ -2196,8 +2198,9 @@ void ConfigManager::updateUserMacroMenu()
 
             QString id = "tag" + QString::number(i);
             QAction *act = newOrLostOldManagedAction(menu, id, m.name , SLOT(insertUserTag()), &shortcuts);
-            act->setData(i++);
+            act->setData(i);
         }
+        i++;
     }
     recreatedMenu->addSeparator();
     newOrLostOldManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Texstudio", "Edit &Macros..."), SLOT(editMacros()));
