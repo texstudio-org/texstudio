@@ -2150,7 +2150,7 @@ void ConfigManager::updateUserMacroShortcuts(){
     // if the macro shortcuts have been changed via options, the macros needs to be updated to reflect that shortcuts
     int i=0;
     for(auto &m : completerConfig->userMacros){
-        if (!m.document){
+        if (!m.document && m.name != TXS_AUTO_REPLACE_QUOTE_OPEN && m.name != TXS_AUTO_REPLACE_QUOTE_CLOSE){
             QString mn=m.menu;
             if(!mn.isEmpty()){
                 mn.append('/');
