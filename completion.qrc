@@ -3420,6 +3420,7 @@
 <file>completion/shadow.cwl</file>
 <file>completion/shadowtext.cwl</file>
 <file>completion/shapepar.cwl</file>
+<file>completion/sharedline.cwl</file>
 <file>completion/shdoc.cwl</file>
 <file>completion/shellesc.cwl</file>
 <file>completion/shortlst.cwl</file>

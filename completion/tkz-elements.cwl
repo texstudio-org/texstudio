@@ -1,5 +1,5 @@
 # tkz-elements package
-# Matthew Bertucci 2025/09/26 for v4.25c
+# Matthew Bertucci 2026/03/09 for v5.03c
 
 #include:iftex
 
@@ -32,7 +32,3 @@
 \tkzDrawPointOnCurve(arg)
 \tkzDrawPointOnCurve[options](arg)
 \percentchar#*
-
-# deprecated
-\begin{tkzelements}#S
-\end{tkzelements}#S

@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/02/20 for v16.9.0
+# Matthew Bertucci 2026/03/09 for v16.10.0
 
 #include:iftex
 
@@ -303,6 +303,7 @@ bankofamerica
 barclays
 baremetrics
 barmenia
+baseui
 basecamp
 baserow
 basicattentiontoken
@@ -1097,6 +1098,7 @@ gerrit
 getx
 ghost
 ghostery
+ghostfolio
 ghostty
 gimp
 gin
@@ -1524,6 +1526,7 @@ kalilinux
 kamailio
 kando
 kaniko
+karakeep
 karlsruherverkehrsverbund
 kasasmart
 kashflow
@@ -1677,6 +1680,7 @@ linkerd
 linkfire
 linksys
 linktree
+linkvertise
 linphone
 lintcode
 linux
@@ -1711,6 +1715,7 @@ looker
 loom
 loop
 loopback
+loops
 lootcrate
 lospec
 lotpolishairlines
@@ -2158,6 +2163,7 @@ panasonic
 pandas
 pandoc
 pandora
+pangolin
 pantheon
 paperlessngx
 paperspace
@@ -2732,6 +2738,7 @@ solid
 solidity
 sololearn
 solus
+solveddotac
 sonar
 sonarqubecloud
 sonarqubeforide
@@ -2982,6 +2989,7 @@ thymeleaf
 ticketmaster
 ticktick
 tidal
+tidb
 tiddlywiki
 tide
 tidyverse
@@ -3040,6 +3048,7 @@ trello
 trendmicro
 tresorit
 treyarch
+trezor
 tricentis
 trilium
 triller
@@ -3347,6 +3356,7 @@ ycombinator
 yaak
 yelp
 yeti
+yew
 yii
 yoast
 yolo
