@@ -5,6 +5,10 @@
 - add functionality to remove entries from the recent files list [#4338](https://github.com/texstudio-org/texstudio/pull/4338)
 - equalize editor sizes with a double-click on the splitter [#4341](https://github.com/texstudio-org/texstudio/pull/4341)
 - switch review command support from easyReview to the changes package [#4177](https://github.com/texstudio-org/texstudio/issues/4177)
+- fix opening documentation of latex packages with miktex (help/Packages Help...)[#4359](https://github.com/texstudio-org/texstudio/issues/4359)
+- fix searching in pdf [#4337](https://github.com/texstudio-org/texstudio/issues/4337)
+- fix inserting tables from libreoffice [#4328](https://github.com/texstudio-org/texstudio/issues/4328)
+- fix highlighting in some nested environments [#4331](https://github.com/texstudio-org/texstudio/issues/4331)
 
 ## TeXstudio 4.9.2
 
