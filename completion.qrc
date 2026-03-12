@@ -3510,6 +3510,7 @@
 <file>completion/splitbib.cwl</file>
 <file>completion/splitidx.cwl</file>
 <file>completion/spotcolor.cwl</file>
+<file>completion/spotxcolor.cwl</file>
 <file>completion/spot.cwl</file>
 <file>completion/spreadtab.cwl</file>
 <file>completion/spverbatim.cwl</file>
