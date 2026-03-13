@@ -153,12 +153,13 @@ QStringList Macro::toStringList() const
 
 QString Macro::snippet() const
 {
-	if (type == Snippet)
+    if (type == Snippet){
 		return tag;
-	else if (type == Environment)
+    } else if (type == Environment) {
 		return "\\begin{" + tag + "}";
-    else if (type == AIQuery)
+    } else if (type == AIQuery) {
         return tag;
+    }
 	return QString();
 }
 
