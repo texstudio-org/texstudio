@@ -9,6 +9,7 @@
 - fix searching in pdf [#4337](https://github.com/texstudio-org/texstudio/issues/4337)
 - fix inserting tables from libreoffice [#4328](https://github.com/texstudio-org/texstudio/issues/4328)
 - fix highlighting in some nested environments [#4331](https://github.com/texstudio-org/texstudio/issues/4331)
+- fix potential crash when using remodel table
 
 ## TeXstudio 4.9.2
 
