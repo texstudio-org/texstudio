@@ -72,6 +72,7 @@ QList<Macro> MacroBrowserUI::getSelectedMacros()
         if(!macroJson.isEmpty()){
             Macro m;
             m.loadFromText(macroJson);
+            m.setCheckState(Qt::Checked);
             lst << m;
         }
         ++it;

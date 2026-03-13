@@ -117,6 +117,7 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
     StackEnvironment env;
 
 	foreach (const Macro &m, completerConfig->userMacros) {
+		if (m.checkState() != Qt::Checked) continue;
 		if (!m.isActiveForTrigger(Macro::ST_REGEX)) continue;
 		if (!m.isActiveForLanguage(language)) continue;
         if(m.hasFormatTriggers()){

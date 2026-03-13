@@ -140,11 +140,13 @@ void UserMenuDialog::addMacro(const Macro &m,bool insertRow)
 {
     auto *item=new QTreeWidgetItem();
     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+    item->setToolTip(0,tr("Disable Shortcut and Trigger"));
     item->setText(0,m.name);
     item->setText(1,m.shortcut());
     item->setText(2,m.trigger);
     item->setText(3,m.abbrev);
     item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+    item->setCheckState(0,m.checkState());
     if(insertRow){
         ui.treeWidget->addTopLevelItem(item);
         ui.treeWidget->setCurrentItem(item);
@@ -183,6 +185,7 @@ QList<Macro> UserMenuDialog::getMacros(QTreeWidgetItem *item, const QString &pat
         if(v.isValid()){
             Macro m=v.value<Macro>();
             if(!m.isEmpty()){
+                m.setCheckState(item->checkState(0));
                 QString s=path;
                 if(s.endsWith('/')){
                     s=s.left(s.length()-1);
@@ -227,7 +230,7 @@ QTreeWidgetItem *UserMenuDialog::findCreateFolder(const QString &menu)
     if(!found){
         // create folder
         parent=new QTreeWidgetItem(ui.treeWidget,1);
-        parent->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+        parent->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable | Qt::ItemIsAutoTristate);
         parent->setText(0,topFolder);
         parent->setIcon(0,QIcon::fromTheme("folder"));
         ui.treeWidget->addTopLevelItem(parent);
@@ -255,7 +258,7 @@ QTreeWidgetItem *UserMenuDialog::findCreateFolder(QTreeWidgetItem *parent, QStri
     if(!found){
         // create folder
         parent=new QTreeWidgetItem(parent,1);
-        parent->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+        parent->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable | Qt::ItemIsAutoTristate);
         parent->setText(0,topFolder);
         parent->setIcon(0,QIcon::fromTheme("folder"));
     }
@@ -342,9 +345,12 @@ void UserMenuDialog::slotAdd()
 {
     auto *item=new QTreeWidgetItem(ui.treeWidget);
     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+    item->setToolTip(0,tr("Disable Shortcut and Trigger"));
     item->setText(0,"");
     Macro m;
+    m.setCheckState(Qt::Unchecked);
     item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+    item->setCheckState(0,Qt::Unchecked);
     ui.treeWidget->addTopLevelItem(item);
     ui.treeWidget->setCurrentItem(item);
 }
@@ -385,9 +391,10 @@ void UserMenuDialog::slotRemove()
 
 void UserMenuDialog::slotAddFolder(){
     auto *item=new QTreeWidgetItem(ui.treeWidget,1);
-    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable | Qt::ItemIsAutoTristate);
     item->setText(0,"Folder");
     item->setIcon(0,QIcon::fromTheme("folder"));
+    item->setCheckState(0,Qt::Unchecked);
     ui.treeWidget->addTopLevelItem(item);
     ui.treeWidget->setCurrentItem(item);
 }
@@ -459,6 +466,7 @@ void UserMenuDialog::exportMacro()
         QVariant v=item->data(0,Qt::UserRole);
         if(v.isValid()){
             Macro m=v.value<Macro>();
+            m.setCheckState(item->checkState(0));
             m.save(fileName);
         }
     }

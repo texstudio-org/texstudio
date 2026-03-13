@@ -18,6 +18,10 @@ private:
 private slots:
     void saveRead_data();
     void saveRead();
+    void macroConstructor_data();
+    void macroConstructor();
+    void loadFromText_data();
+    void loadFromText();
 };
 #endif
 #endif // USERMACROTEST_H
