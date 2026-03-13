@@ -92,7 +92,7 @@ private:
 	Ui::templateSelectorDialog ui;
 	PreviewLabel *previewLabel;
 
-    QNetworkAccessManager *networkManager;
+    QNetworkAccessManager *networkManager=nullptr;
 
     QString m_cachingDir;
 
