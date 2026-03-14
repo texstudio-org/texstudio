@@ -589,7 +589,7 @@ void AIChatAssistant::updateConversationForChatview()
 void AIChatAssistant::updateStreamedConversation(const QString &allData)
 {
     QStringList msgs=allData.split("data: ");
-    for(const QString &elem:msgs){
+    for(const QString &elem:qAsConst(msgs)){
         QJsonDocument doc=QJsonDocument::fromJson(elem.toUtf8());
         QJsonObject obj=doc.object();
         QJsonArray arr=obj["choices"].toArray();
