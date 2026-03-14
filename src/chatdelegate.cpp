@@ -69,6 +69,11 @@ void ChatDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     // Draw "Copy" icon (or text)
     painter->setPen(Qt::black);
     painter->drawText(copyButtonRect, Qt::AlignCenter, "📋");
+    // Draw "Insert" button
+    //painter->setBrush(m_isInsertButtonHovered && (index == m_hoveredIndex) ? QColor("#a0a0a0") : QColor("#d3d3d3"));
+    copyButtonRect.translate(buttonSize,0);
+    painter->drawRoundedRect(copyButtonRect, 3, 3);
+    painter->drawText(copyButtonRect, Qt::AlignCenter, "📝");
 
     painter->restore();
 }
@@ -106,11 +111,14 @@ bool ChatDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const Q
                     buttonSize
                     );
             }
-            qDebug()<<"Mouse clicked at: "<<mouseEvent->pos()<<", Copy button rect: "<<copyButtonRect;
+            QRect insertButtonRect=copyButtonRect.translated(buttonSize,0);
             // Check if click is inside the button
             if (copyButtonRect.contains(mouseEvent->pos())) {
-                qDebug()<<"copy";
                 QApplication::clipboard()->setText(index.data(Qt::DisplayRole).toString());
+                return true;
+            }
+            if (insertButtonRect.contains(mouseEvent->pos())) {
+                emit insertTextClicked(index); // Emit the signal
                 return true;
             }
         }
@@ -148,6 +156,11 @@ bool ChatDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, const Q
         // Check if the mouse is over the button
         if (copyButtonRect.contains(event->pos())) {
             QToolTip::showText(event->globalPos(), "Copy content to clipboard");
+            return true;
+        }
+        QRect insertButtonRect=copyButtonRect.translated(buttonSize,0);
+        if (insertButtonRect.contains(event->pos())) {
+            QToolTip::showText(event->globalPos(), "Insert content into document");
             return true;
         }
     }

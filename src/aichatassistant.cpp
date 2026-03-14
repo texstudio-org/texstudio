@@ -40,7 +40,9 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     chatView = new QListView(this);
     chatmodel = new QStandardItemModel(this);
 
-    chatView->setItemDelegate(new ChatDelegate());
+    ChatDelegate *delegate = new ChatDelegate();
+    connect(delegate,&ChatDelegate::insertTextClicked,this,&AIChatAssistant::insertTextClicked);
+    chatView->setItemDelegate(delegate);
     chatView->setModel(chatmodel);
     chatView->setSelectionMode(QAbstractItemView::NoSelection);
     chatView->setSpacing(2);
@@ -521,6 +523,15 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
         ja_messages=QJsonArray();
         chatmodel->clear();
     }
+}
+/*! \brief insert text from response to editor
+ * This is used when clicking the "Insert" button in the chat view
+ * \param index
+ */
+void AIChatAssistant::insertTextClicked(const QModelIndex &index)
+{
+    QString text=index.data(Qt::DisplayRole).toString();
+    emit insertText(text);
 }
 /*!
  * \brief write content to file

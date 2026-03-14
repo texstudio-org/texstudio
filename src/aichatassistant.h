@@ -35,6 +35,7 @@ private slots:
     void onRequestError(QNetworkReply::NetworkError code);
     void onRequestCompleted(QNetworkReply *nreply);
     void onTreeViewClicked(const QModelIndex &index);
+    void insertTextClicked(const QModelIndex &index);
 
 protected:
     QTreeView *treeView;
