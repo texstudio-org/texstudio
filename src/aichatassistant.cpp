@@ -278,65 +278,7 @@ void AIChatAssistant::slotSend()
 void AIChatAssistant::slotInsert()
 {
     if(m_response.isEmpty()) return;
-    if(m_response.contains("```")){
-        QStringList parts=m_response.split("```");
-        if(parts.size()>1){
-            parts=parts[1].split("\n");
-            if(parts.size()>1 && parts[0]=="latex"){
-                // insert latex code
-                // only insert part after begin/end document as AI tends to give complete example documents
-                parts.removeFirst();
-                int start=parts.indexOf("\\begin{document}");
-                int end=parts.indexOf("\\end{document}");
-                if(start>=0 && end>=0){
-                    // look for usepackage
-                    auto usepackage=parts.filter("\\usepackage");
-                    qDebug()<<"Usepackage:"<<usepackage; // insert usepackage
-                    parts=parts.mid(start+1,end-start-1);
-                    // remove empty lines at beginning and end
-                    while(parts.size()>0 && parts.first().isEmpty()){
-                        parts.removeFirst();
-                    }
-                    while(parts.size()>0 && parts.last().isEmpty()){
-                        parts.removeLast();
-                    }
-                }
-                QString text=parts.join("\n");
-                emit insertText(text);
-                return;
-            }
-            if(parts.size()>1 && parts[0]=="javascript"){
-                parts.removeFirst();
-                QString script=parts.join("\n");
-                emit executeMacro(script);
-                return;
-            }
-            if(parts.size()>1 && parts[0]=="bash"){
-                parts.removeFirst();
-                // filter out all lines starting with %, e.g. %SCRIPT
-                for(int i=0;i<parts.size();++i){
-                    if(parts[i].startsWith("%")){
-                        parts.removeAt(i);
-                        --i;
-                    }
-                }
-                QString script=parts.join("\n");
-                emit executeMacro(script);
-            }
-        }
-    }else{
-        // check if text=""" ... """ is repeated
-        // this is used to manipulate selected text
-        const int i=m_response.indexOf("text=\"\"\"");
-        if(i>=0){
-            int l=m_response.indexOf("\"\"\"",i+8); // find second delimiter
-            m_response=m_response.mid(i+8,l-8-i);
-            emit insertText(m_response);
-        }else{
-            // insert whole text
-            emit insertText(m_response);
-        }
-    }
+    insertTextAtCursor(m_response);
 }
 /*!
  * \brief show a dialog
@@ -531,7 +473,7 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
 void AIChatAssistant::insertTextClicked(const QModelIndex &index)
 {
     QString text=index.data(Qt::DisplayRole).toString();
-    emit insertText(text);
+    insertTextAtCursor(text);
 }
 /*!
  * \brief write content to file
@@ -631,6 +573,72 @@ void AIChatAssistant::addMessage(const QString &text, Sender sender)
     item->setData(static_cast<int>(sender), Qt::UserRole);
     chatmodel->appendRow(item);
     chatView->scrollToBottom();
+}
+/*!
+ * \brief AIChatAssistant::insertTextAtCursor
+ * \param text
+ */
+void AIChatAssistant::insertTextAtCursor(const QString &text)
+{
+    if(text.contains("```")){
+        QStringList parts=text.split("```");
+        if(parts.size()>1){
+            parts=parts[1].split("\n");
+            if(parts.size()>1 && parts[0]=="latex"){
+                // insert latex code
+                // only insert part after begin/end document as AI tends to give complete example documents
+                parts.removeFirst();
+                int start=parts.indexOf("\\begin{document}");
+                int end=parts.indexOf("\\end{document}");
+                if(start>=0 && end>=0){
+                    // look for usepackage
+                    auto usepackage=parts.filter("\\usepackage");
+                    qDebug()<<"Usepackage:"<<usepackage; // insert usepackage
+                    parts=parts.mid(start+1,end-start-1);
+                    // remove empty lines at beginning and end
+                    while(parts.size()>0 && parts.first().isEmpty()){
+                        parts.removeFirst();
+                    }
+                    while(parts.size()>0 && parts.last().isEmpty()){
+                        parts.removeLast();
+                    }
+                }
+                QString text=parts.join("\n");
+                emit insertText(text);
+                return;
+            }
+            if(parts.size()>1 && parts[0]=="javascript"){
+                parts.removeFirst();
+                QString script=parts.join("\n");
+                emit executeMacro(script);
+                return;
+            }
+            if(parts.size()>1 && parts[0]=="bash"){
+                parts.removeFirst();
+                // filter out all lines starting with %, e.g. %SCRIPT
+                for(int i=0;i<parts.size();++i){
+                    if(parts[i].startsWith("%")){
+                        parts.removeAt(i);
+                        --i;
+                    }
+                }
+                QString script=parts.join("\n");
+                emit executeMacro(script);
+            }
+        }
+    }else{
+        // check if text=""" ... """ is repeated
+        // this is used to manipulate selected text
+        const int i=text.indexOf("text=\"\"\"");
+        if(i>=0){
+            int l=text.indexOf("\"\"\"",i+8); // find second delimiter
+            QString m_response=text.mid(i+8,l-8-i);
+            emit insertText(m_response);
+        }else{
+            // insert whole text
+            emit insertText(text);
+        }
+    }
 }
 
 /*! TODO

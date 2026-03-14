@@ -71,6 +71,7 @@ protected:
     void updateStreamedConversation(const QString &allData);
 
     void addMessage (const QString &text, Sender sender);
+    void insertTextAtCursor(const QString &text);
 };
 
 #endif // AICHATASSISTANT_H
