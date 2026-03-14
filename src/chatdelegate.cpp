@@ -10,10 +10,6 @@ void ChatDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing);
 
-    // Styling parameters
-    int padding = 10;
-    int margin = 50; // Space on the opposite side of the bubble
-
     // Calculate bubble size based on text
     QRect bubbleRect = option.rect.adjusted(10, 5, -10, -5);
     QTextDocument doc;
@@ -28,12 +24,12 @@ void ChatDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
 
     // Positioning: Right for "Me", Left for "Them"
     if (sender == Sender::Me) {
-        bubbleRect.moveRight(option.rect.right());
+        bubbleRect.moveLeft(option.rect.left());
         painter->setBrush(QColor(0x0078fe)); // iMessage Blue
         painter->setPen(Qt::NoPen);
     } else {
         if (sender == Sender::Them) {
-            bubbleRect.moveLeft(option.rect.left());
+            bubbleRect.moveLeft(option.rect.left()+margin);
             painter->setBrush(QColor(0xe9e9eb)); // Light Gray
             painter->setPen(Qt::NoPen);
         } else {
@@ -60,6 +56,7 @@ QSize ChatDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelInd
     // Essential to prevent bubbles from overlapping
     QTextDocument doc;
     doc.setMarkdown(index.data(Qt::DisplayRole).toString());
-    doc.setTextWidth(option.rect.width() - 70); // Account for margins
-    return QSize(option.rect.width(), doc.size().height()+10);
+    doc.setTextWidth(option.rect.width() - 2*padding - margin); // Account for margins
+    qreal width = doc.idealWidth() + 2*padding;
+    return QSize(width, doc.size().height()+2*padding);
 }

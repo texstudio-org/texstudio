@@ -43,7 +43,8 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     chatView->setItemDelegate(new ChatDelegate());
     chatView->setModel(chatmodel);
     chatView->setSelectionMode(QAbstractItemView::NoSelection);
-    chatView->setSpacing(10);
+    chatView->setSpacing(2);
+    chatView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     addMessage("test",Sender::Me);
     addMessage("test 123123",Sender::Them);
