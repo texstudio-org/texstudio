@@ -224,6 +224,9 @@ public:
     QString ai_temperature;
     bool ai_recordConversation;
     bool ai_streamResults;
+    int ai_width;
+    int ai_height;
+    qreal ai_splitter;
 
     // collaborative editing
     int ce_tool;

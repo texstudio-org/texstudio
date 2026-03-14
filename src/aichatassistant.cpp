@@ -46,12 +46,14 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     chatView->setSpacing(2);
     chatView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
-    addMessage("test",Sender::Me);
-    addMessage("test 123123",Sender::Them);
-
-    auto *hlBrowser=new QSplitter();
+    hlBrowser=new QSplitter();
     hlBrowser->addWidget(wdgtTree);
     hlBrowser->addWidget(chatView);
+
+    // Set the stretch factors (30:70 ratio)
+    int ratio=qRound(config->ai_splitter*100);
+    hlBrowser->setStretchFactor(0, ratio);  // 30% for wdgtTree
+    hlBrowser->setStretchFactor(1, 100-ratio);  // 70% for chatView
 
     leEntry=new QTextEdit();
     leEntry->setPlaceholderText(tr("Enter your query here"));
@@ -104,11 +106,17 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     setWindowTitle(tr("AI chat assistant"));
     leEntry->setFocus();
 
+    resize(config->ai_width,config->ai_height);
+
     networkManager = new QNetworkAccessManager();
 }
 
 AIChatAssistant::~AIChatAssistant()
 {
+    config->ai_width=width();
+    config->ai_height=height();
+    QList<int> sizes=hlBrowser->sizes();
+    config->ai_splitter=sizes[0]/(double)(sizes[0]+sizes[1]);
     if (networkManager) {
         networkManager->deleteLater();
         networkManager=nullptr;
@@ -556,51 +564,6 @@ QString AIChatAssistant::makeJsonDoc() const
     return data;
 }
 /*!
- * \brief convert conversation in ja_messages to markdown string for presentation in QTextBrowser
- * \return
- */
-QString AIChatAssistant::getConversationForBrowser()
-{
-    QString result;
-    for(auto it=ja_messages.begin();it!=ja_messages.end();++it){
-        QJsonObject obj=it->toObject();
-        QString role=obj["role"].toString();
-#if QT_VERSION>=QT_VERSION_CHECK(5,14,0)
-        const QString content=QString("%%%txs%%%\n")+(obj["content"].toString())+QString("%%%txs%%%");
-        QTextDocument td;
-        td.setMarkdown(content);
-        const QString contentHTML=td.toHtml();
-        // strip html from surrounding default tags
-        const auto parts=contentHTML.split("%%%txs%%%");
-        QString cnt=parts.value(1);
-#else
-        const QString cnt=obj["content"].toString();
-#endif
-        if(role=="user"){
-            if(darkMode){
-                result.append("<p style=\"background-color: darkorange\">\n");
-            }else{
-                result.append("<p style=\"background-color: bisque\">\n");
-            }
-            result.append(cnt);
-            result.append("\n</p>\n");
-        }else if(role=="assistant"){
-            QString styleMacro=""; // style for macros
-            if(darkMode){
-                styleMacro="background-color: cornflowerblue;margin-left: 20px";
-            }else{
-                styleMacro="background-color: aliceblue;margin-left: 20px";
-            }
-            result.append(QString("<p style=\"%1\">\n").arg(styleMacro));
-            static QRegularExpression re_marginLeft("margin-left:\\s*\\d+\\D*;");
-            cnt.replace(re_marginLeft,styleMacro+";");
-            result.append(cnt);
-            result.append("\n</p>\n");
-        }
-    }
-    return result;
-}
-/*!
  * \brief AIChatAssistant::updateConversationForChatview
  * Show conversation in chatview, e.g. as bubbles
  * \return
@@ -648,11 +611,7 @@ void AIChatAssistant::updateStreamedConversation(const QString &allData)
     ja_message["role"]="assistant";
     ja_message["content"]=m_response;
     ja_messages.append(ja_message);
-    QString responseText=getConversationForBrowser();
-    textBrowser->setHtml(responseText);
-    if(config->ai_streamResults){
-        textBrowser->verticalScrollBar()->setValue(textBrowser->verticalScrollBar()->maximum());
-    }
+    updateConversationForChatview();
 }
 
 void AIChatAssistant::addMessage(const QString &text, Sender sender)

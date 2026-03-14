@@ -708,6 +708,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("AIchat/Temperature",&ai_temperature,"0.7");
     registerOption("AIchat/RecordConversation",&ai_recordConversation,true,&pseudoDialog->cbAIRecordConversation);
     registerOption("AIchat/StreamResults",&ai_streamResults,false);
+    registerOption("AIchat/Width",&ai_width,1000);
+    registerOption("AIchat/Height",&ai_height,400);
+    registerOption("AIchat/Splitter",&ai_splitter,0.3);
 
     // collaborative editing
     registerOption("CollaborativeEditing/Tool",&ce_tool,0,&pseudoDialog->comboBoxCollaborativeTool);

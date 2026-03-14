@@ -38,7 +38,6 @@ private slots:
 
 protected:
     QTreeView *treeView;
-    QTextBrowser *textBrowser;
     QToolButton *m_btSend;
     QAction *m_actSend;
     QToolButton *m_btInsert;
@@ -51,6 +50,7 @@ protected:
     QAction *m_actSearch;
     QListView *chatView;
     QStandardItemModel *chatmodel;
+    QSplitter *hlBrowser;
 
     QString m_response;
     QString m_selectedText;
@@ -66,7 +66,6 @@ protected:
     QNetworkReply *m_reply = nullptr;
     void writeToFile(QString filename, QString content);
     QString makeJsonDoc() const;
-    QString getConversationForBrowser();
     void updateConversationForChatview();
     void updateStreamedConversation(const QString &allData);
 

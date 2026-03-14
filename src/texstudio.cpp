@@ -5700,6 +5700,7 @@ void Texstudio::aiChat(const QString queryText)
     if(aiChatDlg==nullptr){
         aiChatDlg = new AIChatAssistant(this);
         aiChatDlg->setModal(false);
+        aiChatDlg->resize(1000,400);
         connect(aiChatDlg,&AIChatAssistant::insertText,this,&Texstudio::insertText);
         connect(aiChatDlg,&AIChatAssistant::executeMacro,this,[this](QString script){this->runScript(script);});
     }
