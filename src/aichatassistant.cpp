@@ -37,10 +37,20 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     QWidget *wdgtTree=new QWidget();
     wdgtTree->setLayout(vtreeLayout);
 
-    textBrowser=new QTextBrowser();
+    chatView = new QListView(this);
+    chatmodel = new QStandardItemModel(this);
+
+    chatView->setItemDelegate(new ChatDelegate());
+    chatView->setModel(chatmodel);
+    chatView->setSelectionMode(QAbstractItemView::NoSelection);
+    chatView->setSpacing(10);
+
+    addMessage("test",Sender::Me);
+    addMessage("test 123123",Sender::Them);
+
     auto *hlBrowser=new QSplitter();
     hlBrowser->addWidget(wdgtTree);
-    hlBrowser->addWidget(textBrowser);
+    hlBrowser->addWidget(chatView);
 
     leEntry=new QTextEdit();
     leEntry->setPlaceholderText(tr("Enter your query here"));
@@ -129,8 +139,8 @@ void AIChatAssistant::clearConversation()
     ja_messages=QJsonArray();
     const QString fileName=QDateTime::currentDateTime().toString("yyyyMMddHHmmss")+"_conversation.json";
     m_conversationFileName=config->configBaseDir+"/ai_conversation/"+fileName;
-    // clear textbrowser
-    textBrowser->clear();
+    // clear result widget
+    chatmodel->clear();
     // clear textedit
     leEntry->clear();
     // append new filename to list of conversations
@@ -172,7 +182,7 @@ void AIChatAssistant::slotSend()
     }
     // clear previous response
     m_response.clear();
-    textBrowser->clear(); // for now, show contain history
+    chatmodel->clear(); // for now, show contain history
     // add question to treeWidget
     // TODO !
 
@@ -414,7 +424,7 @@ void AIChatAssistant::onRequestError(QNetworkReply::NetworkError code)
     qDebug()<<"Error:"<<code;
     qDebug()<<m_reply->errorString();
     // present error in textBrowser
-    textBrowser->setHtml("<p style=\"background-color: red\">Error: "+m_reply->errorString()+"</p>");
+    addMessage(QString("Error: "+m_reply->errorString()),Sender::Error);
 
     m_actSend->setToolTip(tr("Send Query to AI provider"));
     m_actSend->setIcon(getRealIcon("document-send"));
@@ -450,8 +460,7 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
             QJsonObject ja_message=ja_choice["message"].toObject();
             ja_messages.append(ja_message); // update conversation
             m_response=ja_message["content"].toString();
-            QString responseText=getConversationForBrowser();
-            textBrowser->setHtml(responseText);
+            updateConversationForChatview();
             // check if macro, then execute instead of insert
             if(m_response.contains("```javascript")||m_response.contains("```bash")){ // mistral ai sometimes declares txs macros as bash
                 m_actInsert->setToolTip(tr("Execute as macro"));
@@ -484,8 +493,7 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
         QJsonDocument doc=QJsonDocument::fromJson(data);
         QJsonObject obj=doc.object();
         ja_messages=obj["messages"].toArray();
-        QString responseText=getConversationForBrowser();
-        textBrowser->setHtml(responseText);
+        updateConversationForChatview();
         // prepare last response
         QJsonObject ja_message=ja_messages.last().toObject();
         m_response=ja_message["content"].toString();
@@ -502,7 +510,7 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
     }else{
         // no query sent yet
         ja_messages=QJsonArray();
-        textBrowser->clear();
+        chatmodel->clear();
     }
 }
 /*!
@@ -592,6 +600,25 @@ QString AIChatAssistant::getConversationForBrowser()
     return result;
 }
 /*!
+ * \brief AIChatAssistant::updateConversationForChatview
+ * Show conversation in chatview, e.g. as bubbles
+ * \return
+ */
+void AIChatAssistant::updateConversationForChatview()
+{
+    chatmodel->clear();
+    for(auto it=ja_messages.begin();it!=ja_messages.end();++it){
+        QJsonObject obj=it->toObject();
+        QString role=obj["role"].toString();
+        const QString cnt=obj["content"].toString();
+        if(role=="user"){
+            addMessage(cnt,Sender::Me);
+        }else if(role=="assistant"){
+            addMessage(cnt,Sender::Them);
+        }
+    }
+}
+/*!
  * \brief read streamed conversation and update textBrowser
  * \param allData
  */
@@ -625,6 +652,14 @@ void AIChatAssistant::updateStreamedConversation(const QString &allData)
     if(config->ai_streamResults){
         textBrowser->verticalScrollBar()->setValue(textBrowser->verticalScrollBar()->maximum());
     }
+}
+
+void AIChatAssistant::addMessage(const QString &text, Sender sender)
+{
+    QStandardItem *item = new QStandardItem(text);
+    item->setData(static_cast<int>(sender), Qt::UserRole);
+    chatmodel->appendRow(item);
+    chatView->scrollToBottom();
 }
 
 /*! TODO

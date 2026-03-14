@@ -6,6 +6,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QJsonArray>
+#include "chatdelegate.h"
 
 extern bool darkMode;
 
@@ -48,6 +49,8 @@ protected:
     QLineEdit *m_leSearch;
     QToolButton *m_btSearch;
     QAction *m_actSearch;
+    QListView *chatView;
+    QStandardItemModel *chatmodel;
 
     QString m_response;
     QString m_selectedText;
@@ -64,7 +67,10 @@ protected:
     void writeToFile(QString filename, QString content);
     QString makeJsonDoc() const;
     QString getConversationForBrowser();
+    void updateConversationForChatview();
     void updateStreamedConversation(const QString &allData);
+
+    void addMessage (const QString &text, Sender sender);
 };
 
 #endif // AICHATASSISTANT_H
