@@ -44,6 +44,7 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     connect(delegate,&ChatDelegate::insertTextClicked,this,&AIChatAssistant::insertTextClicked);
     chatView->setItemDelegate(delegate);
     chatView->setModel(chatmodel);
+    chatView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     chatView->setSelectionMode(QAbstractItemView::NoSelection);
     chatView->setSpacing(2);
     chatView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -572,7 +573,7 @@ void AIChatAssistant::addMessage(const QString &text, Sender sender)
     QStandardItem *item = new QStandardItem(text);
     item->setData(static_cast<int>(sender), Qt::UserRole);
     chatmodel->appendRow(item);
-    chatView->scrollToBottom();
+    chatView->scrollTo(chatmodel->indexFromItem(item));
 }
 /*!
  * \brief AIChatAssistant::insertTextAtCursor
