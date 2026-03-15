@@ -24,6 +24,8 @@ protected:
     bool editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index) override;
     bool helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index) override;
 private:
+    int getPositionFromClick(const QModelIndex &index, const QRect rect, const QPoint &clickPos, const Sender sender) const;
+    void resetCursorInAllRows(QAbstractItemModel *model);
     const int padding = 10;
     const int margin = 50; // Space on the opposite side of the bubble
 };

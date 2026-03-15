@@ -1,6 +1,8 @@
 #include "chatdelegate.h"
 #include <QPainter>
 #include <QTextDocument>
+#include <QTextCursor>
+#include <QAbstractTextDocumentLayout>
 
 void ChatDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
@@ -17,6 +19,18 @@ void ChatDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     QTextDocument doc;
     doc.setMarkdown(text);
     doc.setTextWidth(bubbleRect.width() - margin);
+
+    int pos1=index.data(Qt::UserRole+1).toInt();
+    int pos2=index.data(Qt::UserRole+2).toInt();
+    if(pos1>-1 && pos2>0){
+        QTextCursor cursor(&doc);
+        cursor.setPosition(pos1);
+        cursor.setPosition(pos2,QTextCursor::KeepAnchor);
+        QTextCharFormat selectFormat = cursor.charFormat();
+        selectFormat.setBackground(Qt::blue);
+        selectFormat.setForeground(Qt::white);
+        cursor.setCharFormat(selectFormat); // set format for selection
+    }
 
     int width = doc.idealWidth() + (padding * 2);
     int height = doc.size().height() + (padding * 2);
@@ -88,6 +102,17 @@ QSize ChatDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelInd
 }
 
 bool ChatDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index){
+    if (event->type() == QEvent::MouseButtonPress) {
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+        if (mouseEvent->button() == Qt::LeftButton) {
+            Sender sender = static_cast<Sender>(index.data(Qt::UserRole).toInt());
+            QPoint pt=mouseEvent->pos();
+            int pos=getPositionFromClick(index,option.rect,pt,sender);
+            resetCursorInAllRows(model);
+            model->setData(index,pos,Qt::UserRole+1); // Store cursor position in UserRole+1
+            model->setData(index,-1,Qt::UserRole+2); // reset anchor in UserRole+2
+        }
+    }
     if (event->type() == QEvent::MouseButtonRelease) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
         if (mouseEvent->button() == Qt::LeftButton) {
@@ -115,11 +140,22 @@ bool ChatDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const Q
             // Check if click is inside the button
             if (copyButtonRect.contains(mouseEvent->pos())) {
                 QApplication::clipboard()->setText(index.data(Qt::DisplayRole).toString());
+                model->setData(index,-1,Qt::UserRole+1);
                 return true;
             }
             if (insertButtonRect.contains(mouseEvent->pos())) {
                 emit insertTextClicked(index); // Emit the signal
+                model->setData(index,-1,Qt::UserRole+1);
                 return true;
+            }
+            // check for selection
+            int pos=model->data(index,Qt::UserRole+1).toInt();
+            if(pos>-1){
+                // selection logic
+                Sender sender = static_cast<Sender>(index.data(Qt::UserRole).toInt());
+                QPoint pt=mouseEvent->pos();
+                int pos=getPositionFromClick(index,option.rect,pt,sender);
+                model->setData(index,pos,Qt::UserRole+2); // Store cursor position in UserRole+1
             }
         }
     }
@@ -166,4 +202,38 @@ bool ChatDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, const Q
     }
 
     return QStyledItemDelegate::helpEvent(event, view, option, index);
+}
+
+int ChatDelegate::getPositionFromClick(const QModelIndex &index, const QRect rect,const QPoint &clickPos,const Sender sender) const
+{
+    QRect bubbleRect = rect.adjusted(10, 5, -10, -5);
+    if (sender == Sender::Them) {
+        bubbleRect.moveLeft(rect.left()+margin);
+    }else{
+        bubbleRect.moveLeft(rect.left());
+    }
+    QRect textRect = bubbleRect.adjusted(padding, padding, -padding, -padding);
+
+    QPoint offset=textRect.topLeft();
+    const QString text=index.data(Qt::DisplayRole).toString();
+    QTextDocument doc;
+    doc.setMarkdown(text);
+    doc.setTextWidth(bubbleRect.width() - margin);
+    auto layout = doc.documentLayout();
+    QPoint pt=clickPos-offset;
+    int pos = layout->hitTest(pt, Qt::FuzzyHit);
+    return pos;
+}
+/*!
+ * \brief reset stored cursor positions in all indexes
+ * \param model
+ */
+void ChatDelegate::resetCursorInAllRows(QAbstractItemModel *model)
+{
+    // iterate through all rows and reset cursor position
+    for (int row = 0; row < model->rowCount(); ++row) {
+        QModelIndex idx = model->index(row, 0);
+        model->setData(idx,-1,Qt::UserRole+1); // reset cursor position
+        model->setData(idx,-1,Qt::UserRole+2); // reset anchor position
+    }
 }
