@@ -6,6 +6,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QJsonArray>
+#include "chatdelegate.h"
 
 extern bool darkMode;
 
@@ -28,16 +29,18 @@ signals:
 private slots:
     void slotSend();
     void slotInsert();
+    void slotCopyText();
     void slotOptions();
     void slotSearch();
     void slotUpdateResults();
     void onRequestError(QNetworkReply::NetworkError code);
     void onRequestCompleted(QNetworkReply *nreply);
     void onTreeViewClicked(const QModelIndex &index);
+    void insertTextClicked(const QModelIndex &index);
+    void slotShowContextMenu(const QPoint &pos);
 
 protected:
     QTreeView *treeView;
-    QTextBrowser *textBrowser;
     QToolButton *m_btSend;
     QAction *m_actSend;
     QToolButton *m_btInsert;
@@ -48,6 +51,9 @@ protected:
     QLineEdit *m_leSearch;
     QToolButton *m_btSearch;
     QAction *m_actSearch;
+    QListView *chatView;
+    QStandardItemModel *chatmodel;
+    QSplitter *hlBrowser;
 
     QString m_response;
     QString m_selectedText;
@@ -63,8 +69,11 @@ protected:
     QNetworkReply *m_reply = nullptr;
     void writeToFile(QString filename, QString content);
     QString makeJsonDoc() const;
-    QString getConversationForBrowser();
+    void updateConversationForChatview();
     void updateStreamedConversation(const QString &allData);
+
+    void addMessage (const QString &text, Sender sender);
+    void insertTextAtCursor(const QString &text);
 };
 
 #endif // AICHATASSISTANT_H

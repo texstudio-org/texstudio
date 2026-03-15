@@ -4,6 +4,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include "aiquerystoragemodel.h"
+#include <QShortcut>
 
 AIChatAssistant::AIChatAssistant(QWidget *parent)
     : QDialog{parent}
@@ -37,10 +38,30 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     QWidget *wdgtTree=new QWidget();
     wdgtTree->setLayout(vtreeLayout);
 
-    textBrowser=new QTextBrowser();
-    auto *hlBrowser=new QSplitter();
+    chatView = new QListView(this);
+    chatmodel = new QStandardItemModel(this);
+
+    ChatDelegate *delegate = new ChatDelegate();
+    connect(delegate,&ChatDelegate::insertTextClicked,this,&AIChatAssistant::insertTextClicked);
+    chatView->setItemDelegate(delegate);
+    chatView->setModel(chatmodel);
+    chatView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    chatView->setSelectionMode(QAbstractItemView::NoSelection);
+    chatView->setSpacing(2);
+    chatView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    chatView->setContextMenuPolicy(Qt::CustomContextMenu);
+    QShortcut *shortcutInsert = new QShortcut(QKeySequence::Copy, chatView);
+    connect(shortcutInsert,&QShortcut::activated,this,&AIChatAssistant::slotCopyText);
+    connect(chatView,&QListView::customContextMenuRequested,this,&AIChatAssistant::slotShowContextMenu);
+
+    hlBrowser=new QSplitter();
     hlBrowser->addWidget(wdgtTree);
-    hlBrowser->addWidget(textBrowser);
+    hlBrowser->addWidget(chatView);
+
+    // Set the stretch factors (30:70 ratio)
+    int ratio=qRound(config->ai_splitter*100);
+    hlBrowser->setStretchFactor(0, ratio);  // 30% for wdgtTree
+    hlBrowser->setStretchFactor(1, 100-ratio);  // 70% for chatView
 
     leEntry=new QTextEdit();
     leEntry->setPlaceholderText(tr("Enter your query here"));
@@ -68,8 +89,6 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     m_btOptions=new QToolButton();
     m_btOptions->setDefaultAction(m_actOptions);
 
-
-
     auto *hlayout=new QHBoxLayout();
     hlayout->addWidget(leEntry);
     auto *vl=new QVBoxLayout();
@@ -93,11 +112,17 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     setWindowTitle(tr("AI chat assistant"));
     leEntry->setFocus();
 
+    resize(config->ai_width,config->ai_height);
+
     networkManager = new QNetworkAccessManager();
 }
 
 AIChatAssistant::~AIChatAssistant()
 {
+    config->ai_width=width();
+    config->ai_height=height();
+    QList<int> sizes=hlBrowser->sizes();
+    config->ai_splitter=sizes[0]/(double)(sizes[0]+sizes[1]);
     if (networkManager) {
         networkManager->deleteLater();
         networkManager=nullptr;
@@ -129,8 +154,8 @@ void AIChatAssistant::clearConversation()
     ja_messages=QJsonArray();
     const QString fileName=QDateTime::currentDateTime().toString("yyyyMMddHHmmss")+"_conversation.json";
     m_conversationFileName=config->configBaseDir+"/ai_conversation/"+fileName;
-    // clear textbrowser
-    textBrowser->clear();
+    // clear result widget
+    chatmodel->clear();
     // clear textedit
     leEntry->clear();
     // append new filename to list of conversations
@@ -172,7 +197,7 @@ void AIChatAssistant::slotSend()
     }
     // clear previous response
     m_response.clear();
-    textBrowser->clear(); // for now, show contain history
+    chatmodel->clear(); // for now, show contain history
     // add question to treeWidget
     // TODO !
 
@@ -257,63 +282,31 @@ void AIChatAssistant::slotSend()
 void AIChatAssistant::slotInsert()
 {
     if(m_response.isEmpty()) return;
-    if(m_response.contains("```")){
-        QStringList parts=m_response.split("```");
-        if(parts.size()>1){
-            parts=parts[1].split("\n");
-            if(parts.size()>1 && parts[0]=="latex"){
-                // insert latex code
-                // only insert part after begin/end document as AI tends to give complete example documents
-                parts.removeFirst();
-                int start=parts.indexOf("\\begin{document}");
-                int end=parts.indexOf("\\end{document}");
-                if(start>=0 && end>=0){
-                    // look for usepackage
-                    auto usepackage=parts.filter("\\usepackage");
-                    qDebug()<<"Usepackage:"<<usepackage; // insert usepackage
-                    parts=parts.mid(start+1,end-start-1);
-                    // remove empty lines at beginning and end
-                    while(parts.size()>0 && parts.first().isEmpty()){
-                        parts.removeFirst();
-                    }
-                    while(parts.size()>0 && parts.last().isEmpty()){
-                        parts.removeLast();
-                    }
-                }
-                QString text=parts.join("\n");
-                emit insertText(text);
-                return;
-            }
-            if(parts.size()>1 && parts[0]=="javascript"){
-                parts.removeFirst();
-                QString script=parts.join("\n");
-                emit executeMacro(script);
-                return;
-            }
-            if(parts.size()>1 && parts[0]=="bash"){
-                parts.removeFirst();
-                // filter out all lines starting with %, e.g. %SCRIPT
-                for(int i=0;i<parts.size();++i){
-                    if(parts[i].startsWith("%")){
-                        parts.removeAt(i);
-                        --i;
-                    }
-                }
-                QString script=parts.join("\n");
-                emit executeMacro(script);
-            }
+    insertTextAtCursor(m_response);
+}
+
+void AIChatAssistant::slotCopyText()
+{
+    // find index with selection
+    QModelIndex index;
+    for(int row=0;row<chatmodel->rowCount();++row){
+        QModelIndex idx=chatmodel->index(row,0);
+        if(idx.data(Qt::UserRole+1).toInt()>-1 && idx.data(Qt::UserRole+2).toInt()>-1){
+            index=idx;
+            break;
         }
-    }else{
-        // check if text=""" ... """ is repeated
-        // this is used to manipulate selected text
-        const int i=m_response.indexOf("text=\"\"\"");
-        if(i>=0){
-            int l=m_response.indexOf("\"\"\"",i+8); // find second delimiter
-            m_response=m_response.mid(i+8,l-8-i);
-            emit insertText(m_response);
-        }else{
-            // insert whole text
-            emit insertText(m_response);
+    }
+    if(index.isValid()){
+        const QString text=index.data(Qt::DisplayRole).toString();
+        int pos1=index.data(Qt::UserRole+1).toInt();
+        int pos2=index.data(Qt::UserRole+2).toInt();
+        if(pos1>-1 && pos2>0){
+            QTextDocument doc;
+            doc.setMarkdown(text);
+            QTextCursor cursor(&doc);
+            cursor.setPosition(pos1);
+            cursor.setPosition(pos2,QTextCursor::KeepAnchor);
+            QApplication::clipboard()->setText(cursor.selectedText());
         }
     }
 }
@@ -414,7 +407,7 @@ void AIChatAssistant::onRequestError(QNetworkReply::NetworkError code)
     qDebug()<<"Error:"<<code;
     qDebug()<<m_reply->errorString();
     // present error in textBrowser
-    textBrowser->setHtml("<p style=\"background-color: red\">Error: "+m_reply->errorString()+"</p>");
+    addMessage(QString("Error: "+m_reply->errorString()),Sender::Error);
 
     m_actSend->setToolTip(tr("Send Query to AI provider"));
     m_actSend->setIcon(getRealIcon("document-send"));
@@ -450,8 +443,7 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
             QJsonObject ja_message=ja_choice["message"].toObject();
             ja_messages.append(ja_message); // update conversation
             m_response=ja_message["content"].toString();
-            QString responseText=getConversationForBrowser();
-            textBrowser->setHtml(responseText);
+            updateConversationForChatview();
             // check if macro, then execute instead of insert
             if(m_response.contains("```javascript")||m_response.contains("```bash")){ // mistral ai sometimes declares txs macros as bash
                 m_actInsert->setToolTip(tr("Execute as macro"));
@@ -484,8 +476,7 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
         QJsonDocument doc=QJsonDocument::fromJson(data);
         QJsonObject obj=doc.object();
         ja_messages=obj["messages"].toArray();
-        QString responseText=getConversationForBrowser();
-        textBrowser->setHtml(responseText);
+        updateConversationForChatview();
         // prepare last response
         QJsonObject ja_message=ja_messages.last().toObject();
         m_response=ja_message["content"].toString();
@@ -502,7 +493,31 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
     }else{
         // no query sent yet
         ja_messages=QJsonArray();
-        textBrowser->clear();
+        chatmodel->clear();
+    }
+}
+/*! \brief insert text from response to editor
+ * This is used when clicking the "Insert" button in the chat view
+ * \param index
+ */
+void AIChatAssistant::insertTextClicked(const QModelIndex &index)
+{
+    QString text=index.data(Qt::DisplayRole).toString();
+    insertTextAtCursor(text);
+}
+/*!
+ * \brief show context menu in chat view, e.g. for copying parts of the response
+ * \param pos
+ */
+void AIChatAssistant::slotShowContextMenu(const QPoint &pos)
+{
+    QModelIndex index=chatView->indexAt(pos);
+    if(index.isValid()){
+        QMenu menu;
+        QAction *actCopy=new QAction(tr("&Copy"),&menu);
+        connect(actCopy,&QAction::triggered,this,&AIChatAssistant::slotCopyText);
+        menu.addAction(actCopy);
+        menu.exec(chatView->viewport()->mapToGlobal(pos));
     }
 }
 /*!
@@ -547,49 +562,23 @@ QString AIChatAssistant::makeJsonDoc() const
     return data;
 }
 /*!
- * \brief convert conversation in ja_messages to markdown string for presentation in QTextBrowser
+ * \brief AIChatAssistant::updateConversationForChatview
+ * Show conversation in chatview, e.g. as bubbles
  * \return
  */
-QString AIChatAssistant::getConversationForBrowser()
+void AIChatAssistant::updateConversationForChatview()
 {
-    QString result;
+    chatmodel->clear();
     for(auto it=ja_messages.begin();it!=ja_messages.end();++it){
         QJsonObject obj=it->toObject();
         QString role=obj["role"].toString();
-#if QT_VERSION>=QT_VERSION_CHECK(5,14,0)
-        const QString content=QString("%%%txs%%%\n")+(obj["content"].toString())+QString("%%%txs%%%");
-        QTextDocument td;
-        td.setMarkdown(content);
-        const QString contentHTML=td.toHtml();
-        // strip html from surrounding default tags
-        const auto parts=contentHTML.split("%%%txs%%%");
-        QString cnt=parts.value(1);
-#else
         const QString cnt=obj["content"].toString();
-#endif
         if(role=="user"){
-            if(darkMode){
-                result.append("<p style=\"background-color: darkorange\">\n");
-            }else{
-                result.append("<p style=\"background-color: bisque\">\n");
-            }
-            result.append(cnt);
-            result.append("\n</p>\n");
+            addMessage(cnt,Sender::Me);
         }else if(role=="assistant"){
-            QString styleMacro=""; // style for macros
-            if(darkMode){
-                styleMacro="background-color: cornflowerblue;margin-left: 20px";
-            }else{
-                styleMacro="background-color: aliceblue;margin-left: 20px";
-            }
-            result.append(QString("<p style=\"%1\">\n").arg(styleMacro));
-            static QRegularExpression re_marginLeft("margin-left:\\s*\\d+\\D*;");
-            cnt.replace(re_marginLeft,styleMacro+";");
-            result.append(cnt);
-            result.append("\n</p>\n");
+            addMessage(cnt,Sender::Them);
         }
     }
-    return result;
 }
 /*!
  * \brief read streamed conversation and update textBrowser
@@ -598,7 +587,7 @@ QString AIChatAssistant::getConversationForBrowser()
 void AIChatAssistant::updateStreamedConversation(const QString &allData)
 {
     QStringList msgs=allData.split("data: ");
-    for(const QString &elem:msgs){
+    for(const QString &elem:qAsConst(msgs)){
         QJsonDocument doc=QJsonDocument::fromJson(elem.toUtf8());
         QJsonObject obj=doc.object();
         QJsonArray arr=obj["choices"].toArray();
@@ -620,10 +609,80 @@ void AIChatAssistant::updateStreamedConversation(const QString &allData)
     ja_message["role"]="assistant";
     ja_message["content"]=m_response;
     ja_messages.append(ja_message);
-    QString responseText=getConversationForBrowser();
-    textBrowser->setHtml(responseText);
-    if(config->ai_streamResults){
-        textBrowser->verticalScrollBar()->setValue(textBrowser->verticalScrollBar()->maximum());
+    updateConversationForChatview();
+}
+
+void AIChatAssistant::addMessage(const QString &text, Sender sender)
+{
+    QStandardItem *item = new QStandardItem(text);
+    item->setData(static_cast<int>(sender), Qt::UserRole);
+    chatmodel->appendRow(item);
+    chatView->scrollTo(chatmodel->indexFromItem(item));
+}
+/*!
+ * \brief AIChatAssistant::insertTextAtCursor
+ * \param text
+ */
+void AIChatAssistant::insertTextAtCursor(const QString &text)
+{
+    if(text.contains("```")){
+        QStringList parts=text.split("```");
+        if(parts.size()>1){
+            parts=parts[1].split("\n");
+            if(parts.size()>1 && parts[0]=="latex"){
+                // insert latex code
+                // only insert part after begin/end document as AI tends to give complete example documents
+                parts.removeFirst();
+                int start=parts.indexOf("\\begin{document}");
+                int end=parts.indexOf("\\end{document}");
+                if(start>=0 && end>=0){
+                    // look for usepackage
+                    auto usepackage=parts.filter("\\usepackage");
+                    qDebug()<<"Usepackage:"<<usepackage; // insert usepackage
+                    parts=parts.mid(start+1,end-start-1);
+                    // remove empty lines at beginning and end
+                    while(parts.size()>0 && parts.first().isEmpty()){
+                        parts.removeFirst();
+                    }
+                    while(parts.size()>0 && parts.last().isEmpty()){
+                        parts.removeLast();
+                    }
+                }
+                QString text=parts.join("\n");
+                emit insertText(text);
+                return;
+            }
+            if(parts.size()>1 && parts[0]=="javascript"){
+                parts.removeFirst();
+                QString script=parts.join("\n");
+                emit executeMacro(script);
+                return;
+            }
+            if(parts.size()>1 && parts[0]=="bash"){
+                parts.removeFirst();
+                // filter out all lines starting with %, e.g. %SCRIPT
+                for(int i=0;i<parts.size();++i){
+                    if(parts[i].startsWith("%")){
+                        parts.removeAt(i);
+                        --i;
+                    }
+                }
+                QString script=parts.join("\n");
+                emit executeMacro(script);
+            }
+        }
+    }else{
+        // check if text=""" ... """ is repeated
+        // this is used to manipulate selected text
+        const int i=text.indexOf("text=\"\"\"");
+        if(i>=0){
+            int l=text.indexOf("\"\"\"",i+8); // find second delimiter
+            QString m_response=text.mid(i+8,l-8-i);
+            emit insertText(m_response);
+        }else{
+            // insert whole text
+            emit insertText(text);
+        }
     }
 }
 
