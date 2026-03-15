@@ -4,6 +4,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include "aiquerystoragemodel.h"
+#include <QShortcut>
 
 AIChatAssistant::AIChatAssistant(QWidget *parent)
     : QDialog{parent}
@@ -48,6 +49,8 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     chatView->setSelectionMode(QAbstractItemView::NoSelection);
     chatView->setSpacing(2);
     chatView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    QShortcut *shortcutInsert = new QShortcut(QKeySequence::Copy, chatView);
+    connect(shortcutInsert,&QShortcut::activated,this,&AIChatAssistant::slotCopyText);
 
     hlBrowser=new QSplitter();
     hlBrowser->addWidget(wdgtTree);
@@ -83,8 +86,6 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     connect(m_actOptions,&QAction::triggered,this,&AIChatAssistant::slotOptions);
     m_btOptions=new QToolButton();
     m_btOptions->setDefaultAction(m_actOptions);
-
-
 
     auto *hlayout=new QHBoxLayout();
     hlayout->addWidget(leEntry);
@@ -280,6 +281,32 @@ void AIChatAssistant::slotInsert()
 {
     if(m_response.isEmpty()) return;
     insertTextAtCursor(m_response);
+}
+
+void AIChatAssistant::slotCopyText()
+{
+    // find index with selection
+    QModelIndex index;
+    for(int row=0;row<chatmodel->rowCount();++row){
+        QModelIndex idx=chatmodel->index(row,0);
+        if(idx.data(Qt::UserRole+1).toInt()>-1 && idx.data(Qt::UserRole+2).toInt()>-1){
+            index=idx;
+            break;
+        }
+    }
+    if(index.isValid()){
+        const QString text=index.data(Qt::DisplayRole).toString();
+        int pos1=index.data(Qt::UserRole+1).toInt();
+        int pos2=index.data(Qt::UserRole+2).toInt();
+        if(pos1>-1 && pos2>0){
+            QTextDocument doc;
+            doc.setMarkdown(text);
+            QTextCursor cursor(&doc);
+            cursor.setPosition(pos1);
+            cursor.setPosition(pos2,QTextCursor::KeepAnchor);
+            QApplication::clipboard()->setText(cursor.selectedText());
+        }
+    }
 }
 /*!
  * \brief show a dialog

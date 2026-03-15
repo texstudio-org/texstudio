@@ -29,6 +29,7 @@ signals:
 private slots:
     void slotSend();
     void slotInsert();
+    void slotCopyText();
     void slotOptions();
     void slotSearch();
     void slotUpdateResults();
