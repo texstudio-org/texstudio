@@ -10,7 +10,9 @@
 - fix inserting tables from libreoffice [#4328](https://github.com/texstudio-org/texstudio/issues/4328)
 - fix highlighting in some nested environments [#4331](https://github.com/texstudio-org/texstudio/issues/4331)
 - fix potential crash when using remodel table
-- add the option to turn macros on or off using checkboxes in the macro browser [#3971](https://github.com/texstudio-org/texstudio/issues/3971)
+- add the option to turn macros on or off using checkboxes in the macro browser [#3971](https://github.com/
+texstudio-org/texstudio/issues/3971)
+- show ai chat as messenger like UI
 
 ## TeXstudio 4.9.2
 
