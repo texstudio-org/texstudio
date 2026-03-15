@@ -102,6 +102,9 @@ QSize ChatDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelInd
 }
 
 bool ChatDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index){
+    if (event->type() == QEvent::MouseButtonDblClick) {
+        return true; // don't do anything
+    }
     if (event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
         if (mouseEvent->button() == Qt::LeftButton) {
@@ -111,6 +114,7 @@ bool ChatDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const Q
             resetCursorInAllRows(model);
             model->setData(index,pos,Qt::UserRole+1); // Store cursor position in UserRole+1
             model->setData(index,-1,Qt::UserRole+2); // reset anchor in UserRole+2
+            return true;
         }
     }
     if (event->type() == QEvent::MouseButtonRelease) {
