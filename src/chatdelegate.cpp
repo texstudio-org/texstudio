@@ -117,6 +117,16 @@ bool ChatDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const Q
             return true;
         }
     }
+    if (event->type() == QEvent::MouseMove) {
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+        if (mouseEvent->buttons() & Qt::LeftButton) {
+            Sender sender = static_cast<Sender>(index.data(Qt::UserRole).toInt());
+            QPoint pt=mouseEvent->pos();
+            int pos=getPositionFromClick(index,option.rect,pt,sender);
+            model->setData(index,pos,Qt::UserRole+2); // Store anchor position in UserRole+2
+            return true;
+        }
+    }
     if (event->type() == QEvent::MouseButtonRelease) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
         if (mouseEvent->button() == Qt::LeftButton) {
