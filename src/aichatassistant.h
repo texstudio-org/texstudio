@@ -37,6 +37,7 @@ private slots:
     void onRequestCompleted(QNetworkReply *nreply);
     void onTreeViewClicked(const QModelIndex &index);
     void insertTextClicked(const QModelIndex &index);
+    void slotShowContextMenu(const QPoint &pos);
 
 protected:
     QTreeView *treeView;

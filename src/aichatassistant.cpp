@@ -49,8 +49,10 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     chatView->setSelectionMode(QAbstractItemView::NoSelection);
     chatView->setSpacing(2);
     chatView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    chatView->setContextMenuPolicy(Qt::CustomContextMenu);
     QShortcut *shortcutInsert = new QShortcut(QKeySequence::Copy, chatView);
     connect(shortcutInsert,&QShortcut::activated,this,&AIChatAssistant::slotCopyText);
+    connect(chatView,&QListView::customContextMenuRequested,this,&AIChatAssistant::slotShowContextMenu);
 
     hlBrowser=new QSplitter();
     hlBrowser->addWidget(wdgtTree);
@@ -502,6 +504,21 @@ void AIChatAssistant::insertTextClicked(const QModelIndex &index)
 {
     QString text=index.data(Qt::DisplayRole).toString();
     insertTextAtCursor(text);
+}
+/*!
+ * \brief show context menu in chat view, e.g. for copying parts of the response
+ * \param pos
+ */
+void AIChatAssistant::slotShowContextMenu(const QPoint &pos)
+{
+    QModelIndex index=chatView->indexAt(pos);
+    if(index.isValid()){
+        QMenu menu;
+        QAction *actCopy=new QAction(tr("&Copy"),&menu);
+        connect(actCopy,&QAction::triggered,this,&AIChatAssistant::slotCopyText);
+        menu.addAction(actCopy);
+        menu.exec(chatView->viewport()->mapToGlobal(pos));
+    }
 }
 /*!
  * \brief write content to file
