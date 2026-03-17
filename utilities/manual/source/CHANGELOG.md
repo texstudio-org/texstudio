@@ -14,6 +14,7 @@
 texstudio-org/texstudio/issues/3971)
 - show ai chat as messenger like UI
 - close windowed pdf viewer on txs quit [#4368](https://github.com/texstudio-org/texstudio/issues/4368)
+- fix keyval val/key detection for completion [#4369](https://github.com/texstudio-org/texstudio/issues/4369)
 
 ## TeXstudio 4.9.2
 
