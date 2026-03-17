@@ -271,11 +271,11 @@ void LatexParsingTest::test_latexLexing_data() {
                                                   << (Length() << 16 << 14 << 3 << 3 << 4 << 6 << 4)
                                                   << (Levels() << 0 << 1 << 1 << 1 << 2 << 1 << 1);
     QTest::newRow("graphics command with keyval, multi-line") << "\\includegraphics[opt,\nopt=text]{file}"
-                                                  << (TTypes() << T::command << T::openSquare << T::keyVal_key << T::keyVal_key << T::word << T::closeSquareBracket << T::braces << T::imagefile)
-                                                  << (STypes() << T::none << T::keyValArg << T::none << T::none << T::keyVal_val << T::keyValArg << T::imagefile << T::none)
-                                                  << (Starts() << 0 << 16 << 17 << 0 << 4 << 8 << 9 << 10)
-                                                  << (Length() << 16 << 5 << 3 << 3 << 4 << 1 << 6 << 4)
-                                                  << (Levels() << 0 << 1 << 1 << 1 << 2 << 1 << 1 << 1);
+                                                  << (TTypes() << T::command << T::openSquare << T::keyVal_key << T::punctuation << T::keyVal_key << T::word << T::closeSquareBracket << T::braces << T::imagefile)
+                                                  << (STypes() << T::none << T::keyValArg << T::none << T::keyVal_key << T::none << T::keyVal_val << T::keyValArg << T::imagefile << T::none)
+                                                              << (Starts() << 0 << 16 << 17 << 20 << 0 << 4 << 8 << 9 << 10)
+                                                              << (Length() << 16 << 5 << 3 << 1 << 3 << 4 << 1 << 6 << 4)
+                                                              << (Levels() << 0 << 1 << 1 << 1<< 1 << 2 << 1 << 1 << 1);
     QTest::newRow("graphics command with keyval in braces") << "\\includegraphics[opt={text}]{file}"
                                                   << (TTypes() << T::command << T::squareBracket << T::keyVal_key << T::braces << T::word  << T::braces << T::imagefile)
                                                   << (STypes() << T::none << T::keyValArg << T::none << T::keyVal_val << T::keyVal_val << T::imagefile << T::none)
@@ -1177,6 +1177,14 @@ void LatexParsingTest::test_getContext_data() {
                             << 9
                             << (TTypes() << T::word)
                             << (STypes() << T::none);
+    QTest::newRow("command with empty keyval_key") << "\\includegraphics[width=a,]{abc}"  // #4369
+                                               << 25
+                                               << (TTypes() << T::command << T::squareBracket<<T::punctuation)
+                                               << (STypes() << T::none << T::keyValArg<<T::keyVal_key);
+    QTest::newRow("command with empty keyval_key after braces") << "\\includegraphics[width={a},]{abc}"  // #4369
+                                                   << 27
+                                                   << (TTypes() << T::command << T::squareBracket<<T::punctuation)
+                                                   << (STypes() << T::none << T::keyValArg<<T::keyVal_key);
     // stacked commands, keyval with arguments which are comma separated (#4074)
     QTest::newRow("command with keyval with command with comma separated arguments")
         << "\\mycommand{note=\\cite{abc}}"
