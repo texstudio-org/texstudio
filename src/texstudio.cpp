@@ -3303,9 +3303,11 @@ void Texstudio::fileCloseAll()
 void Texstudio::fileExit()
 {
     if (canCloseNow()){
+#ifndef NO_POPPLER_PREVIEW
         // close windowed pdf viewer
         foreach (PDFDocument *viewer, PDFDocument::documentList())
             viewer->close();
+#endif
         qApp->quit();
     }
 }
@@ -3412,9 +3414,11 @@ void Texstudio::closeEvent(QCloseEvent *e)
 {
     if (canCloseNow()) {
         e->accept();
+#ifndef NO_POPPLER_PREVIEW
         // close open pdf viewers
         foreach (PDFDocument *viewer, PDFDocument::documentList())
             viewer->close();
+#endif
     } else {
         e->ignore();
     }
