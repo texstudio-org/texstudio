@@ -583,6 +583,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     stack.push(tk);
                     ++tk.level;
                     lexed << tk;
+                    // stack lastEqual/lastComma
+                    ArgumentSeparator argSep;
+                    argSep.lastComma=lastComma;
+                    argSep.lastEqual=lastEqual;
+                    argumentStack.push(argSep);
+                    lastComma = -1;
+                    lastEqual = -1e6;
                 }
             }
             continue;
