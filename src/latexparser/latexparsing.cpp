@@ -616,7 +616,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     lastComma = -1;
                 }
                 if (tk1.subtype == Token::keyValArg) {
-                    lastComma = -1;
                     if (lastEqual > -1e6) {
                         if (!lexed.isEmpty() && lexed.last().type == Token::keyVal_key) {
                             // no value added, add empty key_val
@@ -631,6 +630,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         }
                         level = lastEqual;
                     }
+                    lastComma = -1;
                     lastEqual = -1e6;
                 }
                 // handle stacked lastComma/lastEqual
@@ -781,6 +781,11 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     level = lastEqual;
                 }
                 lastEqual = -1e6;
+                // add comma as token, to be removed if other key is present
+                // needed to separate keyVal from subsequent yet empty keys
+                tk.level = level;
+                tk.subtype = Token::keyVal_key;
+                lexed << tk;
                 continue;
             }
             if (tk.type == Token::symbol && line.mid(tk.start, 1) == "=") {
@@ -814,6 +819,11 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     }
                 }
                 keyName = line.mid(tk.start, tk.length);
+                // remove placeholder comma if present
+                if(lexed.length()>0 && lexed.last().subtype==Token::keyVal_key && lexed.last().type==Token::punctuation && line.mid(lexed.last().start, lexed.last().length)==","){
+                    // remove token from lexed and replace with current token
+                    lexed.removeLast();
+                }
                 lexed << tk;
                 lastComma = lexed.length() - 1;
             } else {
