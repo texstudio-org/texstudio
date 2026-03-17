@@ -3302,8 +3302,12 @@ void Texstudio::fileCloseAll()
 
 void Texstudio::fileExit()
 {
-    if (canCloseNow())
-	qApp->quit();
+    if (canCloseNow()){
+        // close windowed pdf viewer
+        foreach (PDFDocument *viewer, PDFDocument::documentList())
+            viewer->close();
+        qApp->quit();
+    }
 }
 /*!
  * \brief special exit function which is only used with auto-tests and auto-tests result in errors
@@ -3408,6 +3412,9 @@ void Texstudio::closeEvent(QCloseEvent *e)
 {
     if (canCloseNow()) {
         e->accept();
+        // close open pdf viewers
+        foreach (PDFDocument *viewer, PDFDocument::documentList())
+            viewer->close();
     } else {
         e->ignore();
     }
