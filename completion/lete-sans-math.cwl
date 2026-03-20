@@ -1,5 +1,5 @@
 # lete-sans-math package
-# Matthew Bertucci 2025/08/31 for v0.50
+# Matthew Bertucci 2026/03/20 for v0.60
 
 #include:iftex
 #include:unicode-math
@@ -96,6 +96,32 @@ Scale=%<factor%>
 \varsubsetneqq#m
 \varsupsetneq#m
 \varsupsetneqq#m
+\vertnotin#*m
+\vertnni#*m
+\vertnsim#*m
+\vertnsimeq#*m
+\vertncong#*m
+\vertne#*m
+\vertnequiv#*m
+\vertnasymp#*m
+\vertnless#*m
+\vertngtr#*m
+\vertnleq#*m
+\vertngeq#*m
+\vertnlesssim#*m
+\vertngtrsim#*m
+\vertnlessgtr#*m
+\vertngtrless#*m
+\vertnprec #*m
+\vertnsucc#*m
+\vertnsubset#*m
+\vertnsupset#*m
+\vertnsubseteq#*m
+\vertnsupseteq#*m
+\vertnpreccurlyeq#*m
+\vertnsucccurlyeq#*m
+\vertntrianglelefteq#*m
+\vertntrianglerighteq#*m
 
 # symbols provided besides default (see unicode-math.cwl)
 \acwcirclearrow#m

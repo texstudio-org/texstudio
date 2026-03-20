@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/03/09 for v16.10.0
+# Matthew Bertucci 2026/03/13 for v16.11.0
 
 #include:iftex
 
@@ -528,6 +528,7 @@ clerk
 clevercloud
 clickhouse
 clickup
+cline
 clion
 clockify
 clojure
@@ -780,6 +781,7 @@ django
 dji
 dlib
 dlna
+dlthub
 dm
 dmm
 docker
@@ -1711,6 +1713,7 @@ lodash
 logmein
 logseq
 logstash
+longhorn
 looker
 loom
 loop

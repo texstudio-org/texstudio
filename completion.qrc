@@ -3591,6 +3591,7 @@
 <file>completion/sverb.cwl</file>
 <file>completion/svgcolor.cwl</file>
 <file>completion/svg.cwl</file>
+<file>completion/svg-animate.cwl</file>
 <file>completion/svg-extract.cwl</file>
 <file>completion/svn.cwl</file>
 <file>completion/svninfo.cwl</file>

@@ -1,5 +1,5 @@
 # pygmentex package
-# Matthew Bertucci 2022/08/17 for v0.11
+# Matthew Bertucci 2026/03/20 for v0.12
 
 #include:fancyvrb
 #include:color
@@ -34,6 +34,7 @@ lang=%<language%>
 sty=%<pygments style%>
 font=%<font commands%>
 colback=#%color
+autogobble#true,false
 gobble=%<integer%>
 tabsize=%<integer%>
 linenos#true,false
