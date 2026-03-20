@@ -2221,8 +2221,9 @@ void LatexEditorView::mayNeedToOpenCompleter(bool fromSingleChar)
     if(fromSingleChar){
         lst << Token::labelRef;
     }
-	if (lst.contains(type))
+    if (lst.contains(type) || type>=Token::specialArg){
 		emit openCompleter();
+    }
     if (ts.isEmpty() || fromSingleChar)
 		return;
 	ts.pop();
