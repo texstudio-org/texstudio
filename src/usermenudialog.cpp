@@ -348,9 +348,9 @@ void UserMenuDialog::slotAdd()
     item->setToolTip(0,tr("Disable Shortcut and Trigger"));
     item->setText(0,"");
     Macro m;
-    m.setCheckState(Qt::Unchecked);
+    m.setCheckState(Qt::Checked);
     item->setData(0,Qt::UserRole,QVariant::fromValue(m));
-    item->setCheckState(0,Qt::Unchecked);
+    item->setCheckState(0,Qt::Checked);
     ui.treeWidget->addTopLevelItem(item);
     ui.treeWidget->setCurrentItem(item);
 }
