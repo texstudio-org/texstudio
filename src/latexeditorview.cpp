@@ -2858,7 +2858,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
                         mText += doc->exportAsHtml(doc->cursor(qMax(0, l - 2), 0, l + 2), true, true, 60);
                 }
 			}
-			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
+            QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText,this);
 		}
 		if (tk.type == Token::label) {
 			handled = true;
