@@ -511,6 +511,7 @@ The following table gives an overview on the provided commands.
 | app.setupToolBars() | recreate toolbars. Call this if a newly created menu is used in the toolbar.  |
 | app.createUI(file, \[parent\]) | Loads a certain ui file and creates a QWidget\* from it |
 | app.createUIFromString(string, \[parent\]) | Creates a QWidget\* described in the string |
+| app.processNotification(string) | print string in messages pane |
 | app.slowOperationStarted()/slowOperationEnded() | Notify txs about the start/end of a slow operation to temporary disable the endless loop detection. |
 | app.simulateKeyPress(shortcut) | Trigger a KeyPress event for the given shortcut, e.g. `app.simulateKeyPress("Shift+Up")`. *Note*: this is mainly intended for shortcuts and navigation. Currently, it does not support all functions of a KeyPress event. In particular, you cannot type any text. |
 | app.aiChat(query) | start the ai chat assistant. If query is not empty, query is executed and the result is shown in the chat assistant, like ai query macros, see [macro](#ai-queries) |
