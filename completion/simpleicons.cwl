@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/03/13 for v16.11.0
+# Matthew Bertucci 2026/03/21 for v16.12.0
 
 #include:iftex
 
@@ -618,6 +618,7 @@ contabo
 contactlesspayment
 containerd
 contao
+contensis
 contentful
 contentstack
 continente
@@ -761,6 +762,7 @@ dhl
 diagramsdotnet
 dialogflow
 diaspora
+dicebear
 dictionarydotcom
 digg
 digikeyelectronics

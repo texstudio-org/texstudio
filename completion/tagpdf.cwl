@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2026/01/31 for v0.99y
+# Matthew Bertucci 2026/03/21 for v0.99z
 
 #include:pdfmanagement
 
@@ -118,6 +118,9 @@ debug/structures
 \tag_if_box_tagged:NT %<⟨box⟩%> {%<⟨true code⟩%>}#/%expl3
 \tag_if_box_tagged:NTF %<⟨box⟩%> {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
 \tag_if_box_tagged_p:N %<⟨box⟩%>#/%expl3
+\tag_if_in:nF {%<⟨structure⟩%>} {%<⟨false code⟩%>}#/%expl3
+\tag_if_in:nT {%<⟨structure⟩%>} {%<⟨true code⟩%>}#/%expl3
+\tag_if_in:nTF {%<⟨structure⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
 \tag_mc_add_missing_to_stream:Nn %<⟨box⟩%> {%<⟨stream name⟩%>}#/%expl3
 \tag_mc_artifact_group_begin:n {%<⟨name⟩%>}#/%expl3
 \tag_mc_artifact_group_end:#/%expl3
