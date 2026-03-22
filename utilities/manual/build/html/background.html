@@ -679,7 +679,7 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 <td><p>defines the second and third arguments as labels.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\ExplSyntaxOn#beginEnv#expl3</span></code></p></td>
-<td><p>define environment start, here <code class="docutils literal notranslate"><span class="pre">%expl3</span></code> which is an internal env used to check whetehr expl3 commands are valid</p></td>
+<td><p>define environment start, here <code class="docutils literal notranslate"><span class="pre">%expl3</span></code> which is an internal env used to check whether expl3 commands are valid</p></td>
 </tr>
 </tbody>
 </table>
@@ -1071,11 +1071,11 @@ build&gt;cmake --build . -t update<span class="nb">_</span>translations
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">uiconfig.xml</span></code> contains latex menu entries. They, too, can be translated.
 By running <code class="docutils literal notranslate"><span class="pre">./texstudio</span> <span class="pre">--update-translations</span></code>, the file <code class="docutils literal notranslate"><span class="pre">src/additionaltranslations.cpp</span></code> is generated which contains the translation source files.
-This file needs to be copied to <code class="docutils literal notranslate"><span class="pre">src/additionaltranslations.cpp</span></code> where it is handled like all other translateable sources, use the commands above.</p>
+This file needs to be copied to <code class="docutils literal notranslate"><span class="pre">src/additionaltranslations.cpp</span></code> where it is handled like all other translatable sources, use the commands above.</p>
 </section>
 <section id="translating-manual">
 <h3>Translating manual<a class="headerlink" href="#translating-manual" title="Link to this heading">¶</a></h3>
-<p>The manual is writen as markdown in <code class="docutils literal notranslate"><span class="pre">utilities/manual/source</span></code>.
+<p>The manual is written as markdown in <code class="docutils literal notranslate"><span class="pre">utilities/manual/source</span></code>.
 The webpage <a class="reference external" href="https://texstudio-org.github.io">https://texstudio-org.github.io</a> needs html to show the pages.
 Txs uses sphinx to translate markdown to html.
 A call of <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> in the folder <code class="docutils literal notranslate"><span class="pre">utilities/manual</span></code> calls the translator.
