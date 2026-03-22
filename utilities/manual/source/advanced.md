@@ -459,7 +459,7 @@ The following table gives an overview on the provided commands.
 | editor.document().updateMagicComment(name, value, \[create = false\]); | Changes a magic comment |
 | editor.document().labelItems/refItems/bibItems | Returns the ids of all labels/references or included bibliography files. |
 | editor.document().countLabels(name) | Returns number of label definitions for a given name |
-| editor.document().countRefs(name) | Returns number of references to a given given name |
+| editor.document().countRefs(name) | Returns number of references to a given name |
 | editor.document().getLastEnvName(lineNr) |Returns the name of the current environment (at the end of the line). |
 | documentManager.currentDocument | Current document (usually the same as editor.document(), unless the script is running in background mode) |
 | documents.masterDocument | Master document if defined |
