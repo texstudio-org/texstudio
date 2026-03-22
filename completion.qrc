@@ -2294,6 +2294,7 @@
 <file>completion/luacomplex.cwl</file>
 <file>completion/luagcd.cwl</file>
 <file>completion/luahttp.cwl</file>
+<file>completion/luahyperbolic.cwl</file>
 <file>completion/luahyphenrules.cwl</file>
 <file>completion/luaimageembed.cwl</file>
 <file>completion/luaindex.cwl</file>
