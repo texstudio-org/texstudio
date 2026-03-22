@@ -903,7 +903,7 @@ This program, available for macOS and linux needs to be downloaded and stored on
 ## Set-up scenarios
 ### Separate build folder
 Some users prefer not to clutter the source folder with build files (aux files etc.).
-TexLive,Miktex and TeXstudio support this sceanrio but TeXstudio needs to be configured manually for this.
+TexLive,Miktex and TeXstudio support this scenario but TeXstudio needs to be configured manually for this.
 
 The following configuration assumes pdflatex as compiler and places all build files in a subfolder "build" which sits in the source folder.
 
