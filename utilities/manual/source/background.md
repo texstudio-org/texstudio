@@ -309,7 +309,7 @@ Examples:
 |  `\myplot{file}{label}{params}#l`                  | defines the second argument as label. Note: the argument has to be named `label` for this to work. |
 |  `\myplot{file}{customname%labeldef}`              | defines the second argument as label, but you are free to choose the name `customname` which will be used as a placeholder in the completer. |
 |  `\myplot{file}{label1%labeldef}{label2%labeldef}` | defines the second and third arguments as labels. |
-|  `\ExplSyntaxOn#beginEnv#expl3` | define environment start, here `%expl3` which is an internal env used to check whetehr expl3 commands are valid |
+|  `\ExplSyntaxOn#beginEnv#expl3` | define environment start, here `%expl3` which is an internal env used to check whether expl3 commands are valid |
 
 ### cwl guidelines
 
@@ -660,10 +660,10 @@ build>cmake --build . -t update_translations
 
 `uiconfig.xml` contains latex menu entries. They, too, can be translated.
 By running `./texstudio --update-translations`, the file `src/additionaltranslations.cpp` is generated which contains the translation source files.
-This file needs to be copied to `src/additionaltranslations.cpp` where it is handled like all other translateable sources, use the commands above.
+This file needs to be copied to `src/additionaltranslations.cpp` where it is handled like all other translatable sources, use the commands above.
 
 ### Translating manual
-The manual is writen as markdown in `utilities/manual/source`.
+The manual is written as markdown in `utilities/manual/source`.
 The webpage [https://texstudio-org.github.io](https://texstudio-org.github.io) needs html to show the pages.
 Txs uses sphinx to translate markdown to html.
 A call of `make html` in the folder `utilities/manual` calls the translator.
