@@ -209,6 +209,10 @@ void AIChatAssistant::slotSend()
             break;
         case 2: url=config->ai_apiurl;
             break;
+        case 3: url="https://api.anthropic.com/v1/messages";
+            break;
+        case 4: url="https://openrouter.ai/api/v1/chat/completions";
+            break;
         default:
             url="https://api.mistral.ai/v1/chat/completions";
     }
@@ -255,13 +259,26 @@ void AIChatAssistant::slotSend()
 
     QJsonDocument jsonDoc(dd);
     QString data=jsonDoc.toJson();
+    if(url.endsWith("/v1/messages")){
+        // anthropic compatible API
+        dd["max_tokens"]=config->ai_maxTokens;
 
-    QNetworkRequest request = QNetworkRequest(QUrl(url));
-    request.setRawHeader("User-Agent", "TeXstudio Chat Assistant");
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    request.setRawHeader("Accept", "application/json");
-    request.setRawHeader("Authorization", QString("Bearer %1").arg(config->ai_apikey).toUtf8());
-    m_reply = networkManager->post(request,data.toUtf8());
+        QNetworkRequest request = QNetworkRequest(QUrl(url));
+        request.setRawHeader("User-Agent", "TeXstudio Chat Assistant");
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+        request.setRawHeader("Accept", "application/json");
+        request.setRawHeader("anthropic-version", "2023-06-01");
+        request.setRawHeader("x-api-key", QString("%1").arg(config->ai_apikey).toUtf8());
+        m_reply = networkManager->post(request,data.toUtf8());
+    }else{
+        // openAI compatible API
+        QNetworkRequest request = QNetworkRequest(QUrl(url));
+        request.setRawHeader("User-Agent", "TeXstudio Chat Assistant");
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+        request.setRawHeader("Accept", "application/json");
+        request.setRawHeader("Authorization", QString("Bearer %1").arg(config->ai_apikey).toUtf8());
+        m_reply = networkManager->post(request,data.toUtf8());
+    }
     connect(networkManager, &QNetworkAccessManager::finished, this, &AIChatAssistant::onRequestCompleted);
 #if QT_VERSION_MAJOR<6
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onRequestError(QNetworkReply::NetworkError)));
@@ -449,6 +466,25 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
                 m_actInsert->setToolTip(tr("Execute as macro"));
             }else{
                 m_actInsert->setToolTip(tr("Insert into text"));
+            }
+        }else{
+            // try anthropic api format
+            if(obj.contains("type")&&obj["type"].toString()=="message"){
+                QJsonArray arr=obj["content"].toArray();
+                QJsonObject ja_message=arr[0].toObject();
+                ja_message.remove("type"); // get to same format as openai
+                ja_message["role"]=QString("assistant");
+                QJsonValue content=ja_message.take("text");
+                ja_message["content"]=content;
+                ja_messages.append(ja_message); // update conversation
+                m_response=content.toString();
+                updateConversationForChatview();
+                // check if macro, then execute instead of insert
+                if(m_response.contains("```javascript")||m_response.contains("```bash")){ // mistral ai sometimes declares txs macros as bash
+                    m_actInsert->setToolTip(tr("Execute as macro"));
+                }else{
+                    m_actInsert->setToolTip(tr("Insert into text"));
+                }
             }
         }
     }

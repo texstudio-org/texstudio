@@ -222,6 +222,7 @@ public:
     QStringList ai_knownModels;
     QString ai_systemPrompt;
     QString ai_temperature;
+    int ai_maxTokens;
     bool ai_recordConversation;
     bool ai_streamResults;
     int ai_width;
