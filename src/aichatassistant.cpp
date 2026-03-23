@@ -239,12 +239,21 @@ void AIChatAssistant::slotSend()
     }
     if(ja_messages.isEmpty() and !config->ai_systemPrompt.isEmpty()){
         // add system prompt to query
-        QJsonObject ja_message;
-        ja_message["role"]="system";
-        QString msg=config->ai_systemPrompt;
-        msg.replace("%txsSelectedText%",m_selectedText);
-        ja_message["content"]=msg;
-        ja_messages.append(ja_message);
+        if(url.endsWith("/v1/messages")){
+            // anthropic compatible API
+            QString msg=config->ai_systemPrompt;
+            msg.replace("%txsSelectedText%",m_selectedText);
+            dd["system"]=msg;
+        }else{
+            // openai compatible API, system prompt only as first message
+            QJsonObject ja_message;
+            ja_message["role"]="system";
+            QString msg=config->ai_systemPrompt;
+            msg.replace("%txsSelectedText%",m_selectedText);
+            ja_message["content"]=msg;
+            ja_messages.append(ja_message);
+        }
+
     }
     QJsonObject ja_message;
     ja_message["role"]="user";
