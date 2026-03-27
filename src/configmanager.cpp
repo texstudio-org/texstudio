@@ -706,6 +706,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("AIchat/KnownModels",&ai_knownModels,QStringList(),nullptr);
     registerOption("AIchat/SystemPrompt",&ai_systemPrompt,"text:'''%txsSelectedText%'''\n");
     registerOption("AIchat/Temperature",&ai_temperature,"0.7");
+    registerOption("AIchat/maxTokens",&ai_maxTokens,1024);
     registerOption("AIchat/RecordConversation",&ai_recordConversation,true,&pseudoDialog->cbAIRecordConversation);
     registerOption("AIchat/StreamResults",&ai_streamResults,false);
     registerOption("AIchat/Width",&ai_width,1000);

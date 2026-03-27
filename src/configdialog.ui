@@ -137,7 +137,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
+                <width>823</width>
                 <height>725</height>
                </rect>
               </property>
@@ -738,7 +738,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
+                <width>870</width>
                 <height>626</height>
                </rect>
               </property>
@@ -1584,7 +1584,7 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
+                <width>951</width>
                 <height>559</height>
                </rect>
               </property>
@@ -2043,7 +2043,7 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1132</width>
+                <width>858</width>
                 <height>1825</height>
                </rect>
               </property>
@@ -3336,7 +3336,7 @@ them here.</string>
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-260</y>
+                <y>-275</y>
                 <width>1132</width>
                 <height>1027</height>
                </rect>
@@ -3663,6 +3663,16 @@ Examples:
                     <item>
                      <property name="text">
                       <string>Custom Provider (Remote or Local)</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Anthropic (Claude)</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>OpenRouter AI</string>
                      </property>
                     </item>
                    </widget>
