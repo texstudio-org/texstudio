@@ -13,7 +13,7 @@
         <link rel="prefetch" href="_static/texstudio128x128.webp" as="image">
 
     <link rel="shortcut icon" href="_static/texstudio.ico"><!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
-        <title>Configuring TeXstudio - TeXstudio 4.9.3 documentation</title>
+        <title>Configuring TeXstudio - TeXstudio 4.9.4 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -170,7 +170,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">TeXstudio 4.9.3 documentation</div></a>
+      <a href="index.html"><div class="brand">TeXstudio 4.9.4 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -194,7 +194,7 @@
     <img class="sidebar-logo" src="_static/texstudio128x128.webp" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">TeXstudio 4.9.3 documentation</span>
+  <span class="sidebar-brand-text">TeXstudio 4.9.4 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -1191,6 +1191,31 @@ TexLive,Miktex and TeXstudio support this scenario but TeXstudio needs to be con
 <p><img alt="Build configuration" src="_images/conf_build_outputDirectory.png" /></p>
 </section>
 </section>
+<section id="hidden-settings">
+<h2>Hidden settings<a class="headerlink" href="#hidden-settings" title="Link to this heading">¶</a></h2>
+<p>Some very rarely needed settings are not availbale via GUI but only directly in the texstudio.ini file.
+Here is a list of some of those settings.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Setting name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default setting</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LogView\WarnIfFileSizeLargerMB</p></td>
+<td><p>Give out a warning if the log file size is larger than limit</p></td>
+<td><p>2.0 (MB)</p></td>
+</tr>
+<tr class="row-odd"><td><p>RememberChoiceLargeFile</p></td>
+<td><p>Remebers user choice what to do if the log file is large</p></td>
+<td><p>0 (ask)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </section>
 
         </article>
@@ -1306,6 +1331,7 @@ TexLive,Miktex and TeXstudio support this scenario but TeXstudio needs to be con
 <li><a class="reference internal" href="#separate-build-folder">Separate build folder</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#hidden-settings">Hidden settings</a></li>
 </ul>
 </li>
 </ul>
@@ -1317,7 +1343,7 @@ TexLive,Miktex and TeXstudio support this scenario but TeXstudio needs to be con
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=c3838959"></script>
+</div><script src="_static/documentation_options.js?v=2ba0c8e9"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>
