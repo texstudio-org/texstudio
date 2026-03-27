@@ -1,7 +1,6 @@
 # CHANGELOG
 ## TeXstudio 4.9.4
 
-- 
 
 ## TeXstudio 4.9.3
 
@@ -9,16 +8,16 @@
 - add functionality to remove entries from the recent files list [#4338](https://github.com/texstudio-org/texstudio/pull/4338)
 - equalize editor sizes with a double-click on the splitter [#4341](https://github.com/texstudio-org/texstudio/pull/4341)
 - switch review command support from easyReview to the changes package [#4177](https://github.com/texstudio-org/texstudio/issues/4177)
-- fix opening documentation of latex packages with miktex (help/Packages Help...)[#4359](https://github.com/texstudio-org/texstudio/issues/4359)
+- fix opening documentation of latex packages with miktex (Help/Packages Help...)[#4359](https://github.com/texstudio-org/texstudio/issues/4359)
 - fix searching in pdf [#4337](https://github.com/texstudio-org/texstudio/issues/4337)
 - fix inserting tables from libreoffice [#4328](https://github.com/texstudio-org/texstudio/issues/4328)
 - fix highlighting in some nested environments [#4331](https://github.com/texstudio-org/texstudio/issues/4331)
-- fix potential crash when using remodel table
+- fix potential crash when using "Remodel Table"
 - add the option to turn macros on or off using checkboxes in the macro browser [#3971](https://github.com/texstudio-org/texstudio/issues/3971)
-- show ai chat as messenger like UI
+- show ai chat as messenger-like UI
 - close windowed pdf viewer on txs quit [#4368](https://github.com/texstudio-org/texstudio/issues/4368)
 - fix keyval val/key detection for completion [#4369](https://github.com/texstudio-org/texstudio/issues/4369)
-- improve gloaary completion [#4370](https://github.com/texstudio-org/texstudio/issues/4370)
+- improve glossary completion [#4370](https://github.com/texstudio-org/texstudio/issues/4370)
 
 ## TeXstudio 4.9.2
 
