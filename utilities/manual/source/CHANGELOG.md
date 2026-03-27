@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.9.4
+
+- 
+
 ## TeXstudio 4.9.3
 
 - preview updated to handle special document classes [#4322](https://github.com/texstudio-org/texstudio/pull/4322)
