@@ -31,7 +31,7 @@ const QSet<QString> LatexDocument::LATEX_LIKE_LANGUAGES = QSet<QString>() << "(L
  * sets up structure for structure view
  * starts the syntax checker in a separate thread
  */
-LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoReload(false), mayHaveDiffMarkers(false), edView(nullptr), mAppendixLine(nullptr), mBeyondEnd(nullptr)
+LatexDocument::LatexDocument(QObject *parent): QDocument(parent), rememberAutoReload(false), mayHaveDiffMarkers(false), edView(nullptr), mAppendixLine(nullptr), mBeyondEnd(nullptr)
 {
 
     /*magicCommentList->title = tr("MAGIC_COMMENTS");
@@ -2060,7 +2060,7 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 		if (edView) {
 			QEditor *ed = edView->getEditor();
 			if (ed) {
-				document->remeberAutoReload = ed->silentReloadOnExternalChanges();
+				document->rememberAutoReload = ed->silentReloadOnExternalChanges();
 				ed->setSilentReloadOnExternalChanges(true);
 				ed->setHidden(true);
 			}
@@ -2145,7 +2145,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
             if (edView) {
                 QEditor *ed = edView->getEditor();
                 if (ed) {
-                    document->remeberAutoReload = ed->silentReloadOnExternalChanges();
+                    document->rememberAutoReload = ed->silentReloadOnExternalChanges();
                     ed->setSilentReloadOnExternalChanges(true);
                     ed->setHidden(true);
                 }
