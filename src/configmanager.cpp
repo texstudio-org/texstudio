@@ -709,6 +709,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("AIchat/maxTokens",&ai_maxTokens,1024);
     registerOption("AIchat/RecordConversation",&ai_recordConversation,true,&pseudoDialog->cbAIRecordConversation);
     registerOption("AIchat/StreamResults",&ai_streamResults,false);
+    registerOption("AIchat/UseFunctions",&ai_useFunctions,true);
     registerOption("AIchat/Width",&ai_width,1000);
     registerOption("AIchat/Height",&ai_height,400);
     registerOption("AIchat/Splitter",&ai_splitter,0.3);

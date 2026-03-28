@@ -27,7 +27,7 @@ signals:
     void executeMacro(QString script);
 
 private slots:
-    void slotSend();
+    void slotSend(bool fromToolCall=false);
     void slotInsert();
     void slotCopyText();
     void slotOptions();
@@ -71,6 +71,8 @@ protected:
     QString makeJsonDoc() const;
     void updateConversationForChatview();
     void updateStreamedConversation(const QString &allData);
+    QJsonArray makeFunctionsJsonArray() const;
+    void handleToolCall(QJsonObject jo);
 
     void addMessage (const QString &text, Sender sender);
     void insertTextAtCursor(const QString &text);

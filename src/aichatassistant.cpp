@@ -173,7 +173,7 @@ void AIChatAssistant::executeQuery()
 /*!
  * \brief send question to ai provider
  */
-void AIChatAssistant::slotSend()
+void AIChatAssistant::slotSend(bool fromToolCall)
 {
     if(m_reply){
         // if reply is active, stop it
@@ -237,6 +237,12 @@ void AIChatAssistant::slotSend()
         m_timer->setInterval(100);
         connect(m_timer,&QTimer::timeout,this,&AIChatAssistant::slotUpdateResults);
     }
+    if(config->ai_useFunctions){
+
+        QJsonArray ja_functions=makeFunctionsJsonArray();
+        dd["tools"]=ja_functions;
+
+    }
     if(ja_messages.isEmpty() and !config->ai_systemPrompt.isEmpty()){
         // add system prompt to query
         if(url.endsWith("/v1/messages")){
@@ -255,14 +261,18 @@ void AIChatAssistant::slotSend()
         }
 
     }
-    QJsonObject ja_message;
-    ja_message["role"]="user";
-    // prepend selected text to question
-    ja_message["content"]=question;
+    if(!fromToolCall){
+        // add message from user to conversation
+        // skip when called from tool call
+        QJsonObject ja_message;
+        ja_message["role"]="user";
+        // prepend selected text to question
+        ja_message["content"]=question;
 
-    // for now single questions only
-    //ja_messages=QJsonArray();
-    ja_messages.append(ja_message);
+        // for now single questions only
+        //ja_messages=QJsonArray();
+        ja_messages.append(ja_message);
+    }
 
     dd["messages"]=ja_messages;
 
@@ -431,13 +441,16 @@ void AIChatAssistant::slotSearch()
 void AIChatAssistant::onRequestError(QNetworkReply::NetworkError code)
 {
     qDebug()<<"Error:"<<code;
-    qDebug()<<m_reply->errorString();
-    // present error in textBrowser
-    addMessage(QString("Error: "+m_reply->errorString()),Sender::Error);
+    if(m_reply){
+        qDebug()<<m_reply->errorString();
 
-    m_actSend->setToolTip(tr("Send Query to AI provider"));
-    m_actSend->setIcon(getRealIcon("document-send"));
-    m_reply->deleteLater();
+        // present error in textBrowser
+        addMessage(QString("Error: "+m_reply->errorString()),Sender::Error);
+
+        m_actSend->setToolTip(tr("Send Query to AI provider"));
+        m_actSend->setIcon(getRealIcon("document-send"));
+        m_reply->deleteLater();
+    }
     m_reply=nullptr;
     if(m_timer){
         m_timer->stop();
@@ -466,15 +479,24 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
         QJsonArray arr=obj["choices"].toArray();
         if(arr.size()>0){
             QJsonObject ja_choice=arr[0].toObject();
-            QJsonObject ja_message=ja_choice["message"].toObject();
-            ja_messages.append(ja_message); // update conversation
-            m_response=ja_message["content"].toString();
-            updateConversationForChatview();
-            // check if macro, then execute instead of insert
-            if(m_response.contains("```javascript")||m_response.contains("```bash")){ // mistral ai sometimes declares txs macros as bash
-                m_actInsert->setToolTip(tr("Execute as macro"));
+            if(ja_choice["finish_reason"].toString().startsWith("tool")){
+                // TODO handle function call
+                qDebug()<<"Function call:"<<ja_choice["function_call"].toObject();
+                nreply->deleteLater();
+                m_reply=nullptr;
+                handleToolCall(ja_choice["message"].toObject());
+                return;
             }else{
-                m_actInsert->setToolTip(tr("Insert into text"));
+                QJsonObject ja_message=ja_choice["message"].toObject();
+                ja_messages.append(ja_message); // update conversation
+                m_response=ja_message["content"].toString();
+                updateConversationForChatview();
+                // check if macro, then execute instead of insert
+                if(m_response.contains("```javascript")||m_response.contains("```bash")){ // mistral ai sometimes declares txs macros as bash
+                    m_actInsert->setToolTip(tr("Execute as macro"));
+                }else{
+                    m_actInsert->setToolTip(tr("Insert into text"));
+                }
             }
         }else{
             // try anthropic api format
@@ -621,7 +643,10 @@ void AIChatAssistant::updateConversationForChatview()
         if(role=="user"){
             addMessage(cnt,Sender::Me);
         }else if(role=="assistant"){
-            addMessage(cnt,Sender::Them);
+            if(!obj.contains("tool_calls") || obj["tool_calls"].toArray().isEmpty()){
+                // only normal answers
+                addMessage(cnt,Sender::Them);
+            }
         }
     }
 }
@@ -655,6 +680,69 @@ void AIChatAssistant::updateStreamedConversation(const QString &allData)
     ja_message["content"]=m_response;
     ja_messages.append(ja_message);
     updateConversationForChatview();
+}
+/*!
+ * \brief generate json array with txs functions for AI provider
+ * \return
+ */
+QJsonArray AIChatAssistant::makeFunctionsJsonArray() const
+{
+    QJsonArray ja_functions;
+    // get file name
+    QJsonObject jo_functionObject;
+    jo_functionObject["type"]="function";
+    QJsonObject jo_function;
+    jo_function["name"]="get_filename";
+    jo_function["description"]="Get the name of the current file";
+    jo_function["parameters"]=QJsonObject{
+        {"type","object"},
+        {"properties",QJsonObject()}
+    };
+    jo_functionObject["function"]=jo_function;
+    ja_functions.append(jo_functionObject);
+    return ja_functions;
+}
+/*! \brief handle tool calls from AI provider
+ * This is used when the AI provider returns a function call instead of a text response
+ * \param jo
+ */
+void AIChatAssistant::handleToolCall(QJsonObject jo)
+{
+    QJsonArray ja_toolCalls=jo["tool_calls"].toArray();
+    // iterate over tool calls and execute them
+    for(const QJsonValue &toolCall:ja_toolCalls){
+        QJsonObject jo_toolCall=toolCall.toObject();
+        QString id=jo_toolCall["id"].toString();
+        QJsonObject jo_function=jo_toolCall["function"].toObject();
+        if(jo_function["name"].toString()=="get_filename"){
+            // get file name of current file and return it to AI provider
+            QString filename="Test filename";
+            // generate a tool call message
+            {
+                QJsonObject jo_message;
+                jo_message["role"]="assistant";
+                QJsonArray ja_toolCalls;
+                QJsonObject jo_toolCall{
+                    {"id",id},
+                    {"function",jo_function}
+                };
+                ja_toolCalls.append(jo_toolCall);
+                jo_message["tool_calls"]=ja_toolCalls;
+                jo_message["content"]="";
+                ja_messages.append(jo_message);
+            }
+            // generate answer message
+            {
+                QJsonObject jo_message;
+                jo_message["role"]="tool";
+                jo_message["tool_call_id"]=id;
+                jo_message["name"]="get_filename";
+                jo_message["content"]=filename;
+                ja_messages.append(jo_message);
+            }
+        }
+    }
+    slotSend(true); // send updated conversation to AI provider
 }
 
 void AIChatAssistant::addMessage(const QString &text, Sender sender)

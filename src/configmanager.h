@@ -225,6 +225,7 @@ public:
     int ai_maxTokens;
     bool ai_recordConversation;
     bool ai_streamResults;
+    bool ai_useFunctions;
     int ai_width;
     int ai_height;
     qreal ai_splitter;
