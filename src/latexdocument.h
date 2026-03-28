@@ -177,7 +177,7 @@ public:
 	QDocumentLine lineFromLineSnapshot(int lineNumber);
 	int lineToLineSnapshotLineNumber(const QDocumentLine &line);
 
-	bool remeberAutoReload; //remember whether doc is auto reloaded while hidden (and auto reload is always activated).
+	bool rememberAutoReload; //remember whether doc is auto reloaded while hidden (and auto reload is always activated).
 
 	bool mayHaveDiffMarkers;
 
