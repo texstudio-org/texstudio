@@ -135,15 +135,6 @@ AIChatAssistant::~AIChatAssistant()
     }
 }
 /*!
- * \brief set selected text
- * To be used as "text" in AI questions
- * \param text
- */
-void AIChatAssistant::setSelectedText(QString text)
-{
-    m_selectedText=text;
-}
-/*!
  * \brief preset query text
  * This comes typically from a macro
  * \param text
@@ -254,14 +245,14 @@ void AIChatAssistant::slotSend(bool fromToolCall)
         if(url.endsWith("/v1/messages")){
             // anthropic compatible API
             QString msg=config->ai_systemPrompt;
-            msg.replace("%txsSelectedText%",m_selectedText);
+            msg.replace("%txsSelectedText%",tfGetSelection());
             dd["system"]=msg;
         }else{
             // openai compatible API, system prompt only as first message
             QJsonObject ja_message;
             ja_message["role"]="system";
             QString msg=config->ai_systemPrompt;
-            msg.replace("%txsSelectedText%",m_selectedText);
+            msg.replace("%txsSelectedText%",tfGetSelection());
             ja_message["content"]=msg;
             ja_messages.append(ja_message);
         }
@@ -694,18 +685,25 @@ void AIChatAssistant::updateStreamedConversation(const QString &allData)
 QJsonArray AIChatAssistant::makeFunctionsJsonArray() const
 {
     QJsonArray ja_functions;
-    // get file name
-    QJsonObject jo_functionObject;
-    jo_functionObject["type"]="function";
-    QJsonObject jo_function;
-    jo_function["name"]="get_filename";
-    jo_function["description"]="Get the name of the current file";
-    jo_function["parameters"]=QJsonObject{
-        {"type","object"},
-        {"properties",QJsonObject()}
-    };
-    jo_functionObject["function"]=jo_function;
-    ja_functions.append(jo_functionObject);
+    for(ToolFunction tf:m_toolFunctions){
+        QJsonObject jo_functionObject;
+        jo_functionObject["type"]="function";
+        QJsonObject jo_function;
+        jo_function["name"]=tf.name;
+        jo_function["description"]=tf.description;
+        jo_function["parameters"]=QJsonObject{
+            {"type","object"},
+            {"properties",QJsonObject{
+                {tf.parameter,QJsonObject{
+                    {"type","string"},
+                    {"description",tf.description}
+                }}
+            }}
+        };
+        jo_functionObject["function"]=jo_function;
+        ja_functions.append(jo_functionObject);
+    }
+
     return ja_functions;
 }
 /*! \brief handle tool calls from AI provider
@@ -722,6 +720,7 @@ void AIChatAssistant::handleToolCall(QJsonObject jo)
         QJsonObject jo_function=jo_toolCall["function"].toObject();
         QString name=jo_function["name"].toString();
         for(ToolFunction tf:m_toolFunctions){
+            if(tf.name!=name) continue;
             qDebug()<<"Tool call:"<<tf.name;
 
             // get file name of current file and return it to AI provider
@@ -852,13 +851,27 @@ QString AIChatAssistant::tfGetListFiles(const QString arg) const
     }
     return fileNames.join("\n");
 }
+
+QString AIChatAssistant::tfGetSelection(const QString arg) const
+{
+    QString selectedText;
+    QEditor *ed = txsInstance->currentEditor();
+    if(ed){
+        QDocumentCursor cursor = ed->cursor();
+        if(cursor.hasSelection()){
+            selectedText = cursor.selectedText();
+        }
+    }
+    return selectedText;
+}
 /*!
  * \brief register functions as tools for AI provider
  */
 void AIChatAssistant::registerToolFunctions()
 {
-    m_toolFunctions<<ToolFunction{"get_filename","Get the name of the current file","",[this](QString input) { return this->tfGetFilename(input); }};
-    m_toolFunctions<<ToolFunction{"get_list_of_docs","Get the names of all files which are included in the current project","",[this](QString input) { return this->tfGetListFiles(input); }};
+    m_toolFunctions<<ToolFunction{"get_filename","Get the name of the current file","",[this](QString input) { return this->tfGetFilename(); }};
+    m_toolFunctions<<ToolFunction{"get_list_of_docs","Get the names of all files which are included in the current project","",[this](QString input) { return this->tfGetListFiles(); }};
+    m_toolFunctions<<ToolFunction{"get_selection","Get selected text","",[this](QString input) { return this->tfGetSelection(); }};
 }
 
 /*! TODO

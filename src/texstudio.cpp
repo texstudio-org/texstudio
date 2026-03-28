@@ -5715,14 +5715,7 @@ void Texstudio::aiChat(const QString queryText)
         connect(aiChatDlg,&AIChatAssistant::insertText,this,&Texstudio::insertText);
         connect(aiChatDlg,&AIChatAssistant::executeMacro,this,[this](QString script){this->runScript(script);});
     }
-    // add selected text to chat
-    if (currentEditor()){
-        QDocumentCursor cur = currentEditor()->cursor();
-        QString txt=cur.selectedText();
-        if(!txt.isEmpty()){
-            aiChatDlg->setSelectedText(txt);
-        }
-    }
+
     aiChatDlg->clearConversation();
     if(!queryText.isEmpty()){
         aiChatDlg->setQueryText(queryText);

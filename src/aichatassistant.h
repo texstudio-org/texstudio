@@ -17,7 +17,6 @@ public:
     explicit AIChatAssistant(QWidget *parent = nullptr);
     ~AIChatAssistant() override;
 
-    void setSelectedText(QString text);
     void setQueryText(const QString &text);
     void clearConversation();
     void executeQuery();
@@ -56,7 +55,6 @@ protected:
     QSplitter *hlBrowser;
 
     QString m_response;
-    QString m_selectedText;
     QString m_conversationFileName;
 
     QJsonArray ja_messages;
@@ -77,11 +75,11 @@ protected:
     void addMessage (const QString &text, Sender sender);
     void insertTextAtCursor(const QString &text);
 
-    QString tfGetFilename(const QString arg) const;
-    QString tfGetListFiles(const QString arg) const;
-    QString tfGetSelection(const QString arg) const;
+    QString tfGetFilename(const QString arg=QString()) const;
+    QString tfGetListFiles(const QString arg=QString()) const;
+    QString tfGetSelection(const QString arg=QString()) const;
     QString tfRunMacro(const QString arg) const;
-    QString tfGetLog(const QString arg) const;
+    QString tfGetLog(const QString arg=QString()) const;
 
     struct ToolFunction
     {
