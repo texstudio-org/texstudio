@@ -76,6 +76,21 @@ protected:
 
     void addMessage (const QString &text, Sender sender);
     void insertTextAtCursor(const QString &text);
+
+    QString tfGetFilename(const QString arg) const;
+
+    struct ToolFunction
+    {
+        QString name;
+        QString description;
+        QString parameter;
+        std::function<QString(const QString)> func;
+    };
+    QList<ToolFunction> m_toolFunctions;
+    /*!
+     * \brief register functions as tools for AI provider
+     */
+    void registerToolFunctions();
 };
 
 #endif // AICHATASSISTANT_H

@@ -115,6 +115,9 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     resize(config->ai_width,config->ai_height);
 
     networkManager = new QNetworkAccessManager();
+
+    // register AI tool functions
+    registerToolFunctions();
 }
 
 AIChatAssistant::~AIChatAssistant()
@@ -714,9 +717,12 @@ void AIChatAssistant::handleToolCall(QJsonObject jo)
         QJsonObject jo_toolCall=toolCall.toObject();
         QString id=jo_toolCall["id"].toString();
         QJsonObject jo_function=jo_toolCall["function"].toObject();
-        if(jo_function["name"].toString()=="get_filename"){
+        QString name=jo_function["name"].toString();
+        for(ToolFunction tf:m_toolFunctions){
+            qDebug()<<"Tool call:"<<tf.name;
+
             // get file name of current file and return it to AI provider
-            QString filename="Test filename";
+            QString result=tf.func(""); // for now, no parameters
             // generate a tool call message
             {
                 QJsonObject jo_message;
@@ -738,7 +744,7 @@ void AIChatAssistant::handleToolCall(QJsonObject jo)
                 jo_message["role"]="tool";
                 jo_message["tool_call_id"]=id;
                 jo_message["name"]="get_filename";
-                jo_message["content"]=filename;
+                jo_message["content"]=result;
                 ja_messages.append(jo_message);
             }
         }
@@ -818,6 +824,22 @@ void AIChatAssistant::insertTextAtCursor(const QString &text)
             emit insertText(text);
         }
     }
+}
+/*!
+ * \brief implementation of tool function "get_filename"
+ * \param arg
+ * \return
+ */
+QString AIChatAssistant::tfGetFilename(const QString arg) const
+{
+    return "Test filename";
+}
+/*!
+ * \brief register functions as tools for AI provider
+ */
+void AIChatAssistant::registerToolFunctions()
+{
+    m_toolFunctions<<ToolFunction{"get_filename","Get the name of the current file","",[this](QString input) { return this->tfGetFilename(input); }};
 }
 
 /*! TODO
