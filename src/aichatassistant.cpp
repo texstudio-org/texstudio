@@ -674,7 +674,7 @@ void AIChatAssistant::insertTextAtCursor(const QString &text)
         QStringList parts=text.split("```");
         if(parts.size()>1){
             parts=parts[1].split("\n");
-            if(parts.size()>1 && parts[0]=="latex"){
+            if(parts.size()>1 && (parts[0]=="latex" || parts[0].isEmpty()) ){
                 // insert latex code
                 // only insert part after begin/end document as AI tends to give complete example documents
                 parts.removeFirst();
