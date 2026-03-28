@@ -768,7 +768,7 @@ void ConfigDialog::retrieveModels()
         url=url.replace("chat/completions","models");
         break;
     case 4:
-        url="https://claude.com/v1/models";
+        url="https://api.anthropic.com/v1/models";
         break;
     case 5:
         url="https://openrouter.ai/v1/models";
