@@ -1,7 +1,10 @@
 #include "chatdelegate.h"
+#include <QApplication>
+#include <QClipboard>
 #include <QPainter>
 #include <QTextDocument>
 #include <QTextCursor>
+#include <QToolTip>
 #include <QAbstractTextDocumentLayout>
 
 void ChatDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
