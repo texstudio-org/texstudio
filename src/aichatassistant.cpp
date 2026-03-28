@@ -724,6 +724,7 @@ void AIChatAssistant::handleToolCall(QJsonObject jo)
                 QJsonArray ja_toolCalls;
                 QJsonObject jo_toolCall{
                     {"id",id},
+                    {"type","function"},
                     {"function",jo_function}
                 };
                 ja_toolCalls.append(jo_toolCall);
