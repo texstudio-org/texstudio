@@ -217,14 +217,18 @@ void AIChatAssistant::slotSend(bool fromToolCall)
     QJsonObject dd;
     dd["model"]=config->ai_preferredModel;
     if(config->ai_provider==0){
-        // work-around for llamafile for now
-        dd["temperature"]=config->ai_temperature;
+        // check if temperature is valid
+        bool ok;
+        float t=config->ai_temperature.toFloat(&ok);
+        if(ok && t>0 && t<=2){
+            dd["temperature"]=config->ai_temperature;
+        }
     }
     if(config->ai_provider==1){
         // work-around for openai
         bool ok;
         float val=config->ai_temperature.toFloat(&ok);
-        if(ok){
+        if(ok && val>=0 && val<=2){
             dd["temperature"]=val;
         }
     }
