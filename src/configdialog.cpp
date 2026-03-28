@@ -703,17 +703,15 @@ void ConfigDialog::aiProviderChanged(int provider)
     ui.cbAIPreferredModel->setEditable(true);
     QLineEdit *modelLineEdit = ui.cbAIPreferredModel->lineEdit();
     switch(provider){
-    case 0:
+    case 1:
         ui.cbAIPreferredModel->clear();
-        ui.cbAIPreferredModel->addItem("open-mistral-7b");
-        ui.cbAIPreferredModel->addItem("open-mixtral-8x7b");
         ui.cbAIPreferredModel->addItem("mistral-small-latest");
         ui.cbAIPreferredModel->addItem("mistral-medium-latest");
         ui.cbAIPreferredModel->addItem("mistral-large-latest");
         ui.cbAIPreferredModel->setCurrentIndex(0);
         modelLineEdit->setPlaceholderText("Enter model name (e.g., open-mistral-7b)");
         break;
-    case 1:
+    case 2:
         ui.cbAIPreferredModel->clear();
         ui.cbAIPreferredModel->addItem("gpt-4o-mini");
         ui.cbAIPreferredModel->addItem("gpt-3.5-turbo");
@@ -738,6 +736,14 @@ void ConfigDialog::enableCustomURLEditor(int provider)
 {
     ui.leAIAPIURL->setEnabled(provider==3);
     ui.pbResetAIURL->setEnabled(provider==3);
+    // make backgrond grey
+    QPalette palette = ui.leAIAPIURL->palette();
+    if(provider==3){
+        palette.setColor(QPalette::Base, palette.color(QPalette::Active, QPalette::Base));
+    }else{
+        palette.setColor(QPalette::Base,Qt::lightGray);
+    }
+    ui.leAIAPIURL->setPalette(palette);
 }
 /*!
  * \brief retieve the current list of available model from AI provider
