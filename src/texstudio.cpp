@@ -2279,7 +2279,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
             doc->startSyntaxChecker();
             existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
             documents.deleteDocument(existingView->document, true);
-            existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
+            existingView->editor->setSilentReloadOnExternalChanges(existingView->document->rememberAutoReload);
             existingView->editor->setHidden(false);
             documents.addDocument(existingView->document, false);
             editors->addEditor(existingView);
