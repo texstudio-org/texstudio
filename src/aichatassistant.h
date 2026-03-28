@@ -78,6 +78,10 @@ protected:
     void insertTextAtCursor(const QString &text);
 
     QString tfGetFilename(const QString arg) const;
+    QString tfGetListFiles(const QString arg) const;
+    QString tfGetSelection(const QString arg) const;
+    QString tfRunMacro(const QString arg) const;
+    QString tfGetLog(const QString arg) const;
 
     struct ToolFunction
     {

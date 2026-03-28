@@ -5,6 +5,9 @@
 #include <QJsonArray>
 #include "aiquerystoragemodel.h"
 #include <QShortcut>
+#include "texstudio.h"
+
+extern Texstudio *txsInstance;
 
 AIChatAssistant::AIChatAssistant(QWidget *parent)
     : QDialog{parent}
@@ -832,7 +835,22 @@ void AIChatAssistant::insertTextAtCursor(const QString &text)
  */
 QString AIChatAssistant::tfGetFilename(const QString arg) const
 {
-    return "Test filename";
+    QString fn=txsInstance->getCurrentFileName();
+    return fn;
+}
+/*!
+ * \brief list of files for the current document, e.g. for \include/\input
+ * \param arg ignored
+ * \return
+ */
+QString AIChatAssistant::tfGetListFiles(const QString arg) const
+{
+    QList<LatexDocument *> docs = txsInstance->currentEditorView()->document->getListOfDocs();
+    QStringList fileNames;
+    for(LatexDocument *doc:docs){
+        fileNames.append(doc->getFileName());
+    }
+    return fileNames.join("\n");
 }
 /*!
  * \brief register functions as tools for AI provider
@@ -840,6 +858,7 @@ QString AIChatAssistant::tfGetFilename(const QString arg) const
 void AIChatAssistant::registerToolFunctions()
 {
     m_toolFunctions<<ToolFunction{"get_filename","Get the name of the current file","",[this](QString input) { return this->tfGetFilename(input); }};
+    m_toolFunctions<<ToolFunction{"get_list_of_docs","Get the names of all files which are included in the current project","",[this](QString input) { return this->tfGetListFiles(input); }};
 }
 
 /*! TODO

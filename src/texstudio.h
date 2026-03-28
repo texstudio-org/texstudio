@@ -91,6 +91,7 @@ public:
     Q_INVOKABLE void runInternalCommand(const QString &cmd, const QString &master, const QString &options);
 
     friend class TexStudioTest;
+    friend class AIChatAssistant;
 
 public slots:
 	LatexEditorView *load(const QString &f , bool asProject = false, bool recheck = true, bool dontAsk = false);
