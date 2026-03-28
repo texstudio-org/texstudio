@@ -2242,11 +2242,24 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
     }
 #endif
 
-    if (f_real.endsWith(".log", Qt::CaseInsensitive) &&
-            UtilsUi::txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
-        outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName(), QTextCodec::codecForName(configManager.logFileEncoding.toLatin1()));
-        setLogMarksVisible(true);
-        return nullptr;
+    if (f_real.endsWith(".log", Qt::CaseInsensitive)) {
+        UtilsUi::txsWarningState rememberChoice=static_cast<UtilsUi::txsWarningState>(configManager.getOption("LogView/RememberChoiceLargeFile",0).toInt());
+        bool result;
+        QString question=tr("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName());
+        if (rememberChoice==UtilsUi::DontRemember) {
+            result=UtilsUi::txsConfirm(question);
+        } else {
+            rememberChoice=UtilsUi::DontRemember;
+            result=UtilsUi::txsConfirmWarning(question,rememberChoice,tr("Clear remembered size confirmation"),QMessageBox::Question);
+            if (!rememberChoice==UtilsUi::DontRemember) {
+                configManager.setOption("LogView/RememberChoiceLargeFile",static_cast<int>(UtilsUi::DontRemember));
+            }
+        }
+        if (result) {
+            outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName(), QTextCodec::codecForName(configManager.logFileEncoding.toLatin1()));
+            setLogMarksVisible(true);
+            return nullptr;
+        }
     }
 
     raise();
