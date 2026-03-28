@@ -508,8 +508,6 @@ extra-margin=##L
 parallelize-diags#true,false
 delimiters/max-width
 vlines-in-sub-matrix=%<letter%>
-colortbl-like
-color-inside
 rounded-corners
 rounded-corners=##L
 #endkeyvals
