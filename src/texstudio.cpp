@@ -5703,7 +5703,12 @@ void Texstudio::quickMath()
 
 void Texstudio::aiChat(const QString queryText)
 {
-    if(configManager.ai_apikey.isEmpty() && configManager.ai_provider<2){
+    if(configManager.ai_provider==0){
+        // message box
+        QMessageBox::warning(this, tr("AI Chat"), tr("AI chat disabled. Please select an AI provider in the settings."));
+        return;
+    }
+    if(configManager.ai_apikey.isEmpty() && configManager.ai_provider!=3){
         // message box for now, only for external ai provider
         QMessageBox::warning(this, tr("AI Chat"), tr("Please set the API key in the settings."));
         return;

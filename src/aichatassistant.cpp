@@ -172,6 +172,12 @@ void AIChatAssistant::executeQuery()
  */
 void AIChatAssistant::slotSend(bool fromToolCall)
 {
+    if(config->ai_provider==0){
+        //disabled
+        // TODO
+        qDebug()<<"AI provider disabled. Please activate in options.";
+        return;
+    }
     if(m_reply){
         // if reply is active, stop it
         m_reply->abort();
@@ -200,15 +206,15 @@ void AIChatAssistant::slotSend(bool fromToolCall)
 
     QString url;
     switch(config->ai_provider){
-        case 0: url="https://api.mistral.ai/v1/chat/completions";
+        case 1: url="https://api.mistral.ai/v1/chat/completions";
             break;
-        case 1: url="https://api.openai.com/v1/chat/completions";
+        case 2: url="https://api.openai.com/v1/chat/completions";
             break;
-        case 2: url=config->ai_apiurl;
+        case 3: url=config->ai_apiurl;
             break;
-        case 3: url="https://api.anthropic.com/v1/messages";
+        case 4: url="https://api.anthropic.com/v1/messages";
             break;
-        case 4: url="https://openrouter.ai/api/v1/chat/completions";
+        case 5: url="https://openrouter.ai/api/v1/chat/completions";
             break;
         default:
             url="https://api.mistral.ai/v1/chat/completions";
@@ -216,7 +222,7 @@ void AIChatAssistant::slotSend(bool fromToolCall)
 
     QJsonObject dd;
     dd["model"]=config->ai_preferredModel;
-    if(config->ai_provider==0){
+    if(config->ai_provider==1){
         // check if temperature is valid
         bool ok;
         float t=config->ai_temperature.toFloat(&ok);
@@ -224,7 +230,7 @@ void AIChatAssistant::slotSend(bool fromToolCall)
             dd["temperature"]=config->ai_temperature;
         }
     }
-    if(config->ai_provider==1){
+    if(config->ai_provider==2){
         // work-around for openai
         bool ok;
         float val=config->ai_temperature.toFloat(&ok);
@@ -374,11 +380,11 @@ void AIChatAssistant::slotOptions()
     // use validator which allow 0.0 to 1.0/2.0
     float maxTemp=1.0;
     QRegularExpression rx("0\\.[0-9]*|1");
-    if(config->ai_provider==1){
+    if(config->ai_provider==2){
         maxTemp=2.0;
         rx.setPattern("[01]\\.[0-9]*|2");
     }
-    if(config->ai_provider==2){
+    if(config->ai_provider==3){
         leTemp->setEnabled(false);
         leTemp->setText(tr("-"));
         leTemp->setToolTip(tr("Temperature not supported for local models"));
@@ -403,7 +409,7 @@ void AIChatAssistant::slotOptions()
     connect(buttonBox, &QDialogButtonBox::accepted,[&](){
         if(ja_messages.isEmpty())
             config->ai_systemPrompt=leSystemPrompt->toPlainText();
-        if(config->ai_provider!=2)
+        if(config->ai_provider!=3)
             config->ai_temperature=leTemp->text();
         config->ai_streamResults=cbStream->isChecked();
         dlg.close();

@@ -884,6 +884,11 @@ QSettings *ConfigManager::readSettings(bool reread)
 		// reset this option when loading any old config.
 		config->remove("texmaker/centralVSplitterState");
 	}
+    QString txsVersionConfigWritten=config->value("version/written_by_TXS_version").toString();
+    if(Version::compareStringVersion(txsVersionConfigWritten,"4.9.4")==Version::Lower){
+        // insert <disable> at position 0
+        ai_provider+=1;
+    }
 
 	config->beginGroup("texmaker");
 	if (config->contains("Files/Auto Detect Encoding Of Loaded Files")) { // import old setting

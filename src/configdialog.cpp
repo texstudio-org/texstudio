@@ -736,8 +736,8 @@ void ConfigDialog::aiProviderChanged(int provider)
  */
 void ConfigDialog::enableCustomURLEditor(int provider)
 {
-    ui.leAIAPIURL->setEnabled(provider==2);
-    ui.pbResetAIURL->setEnabled(provider==2);
+    ui.leAIAPIURL->setEnabled(provider==3);
+    ui.pbResetAIURL->setEnabled(provider==3);
 }
 /*!
  * \brief retieve the current list of available model from AI provider
@@ -751,15 +751,21 @@ void ConfigDialog::retrieveModels()
     QString url;
 
     switch(ui.cbAIProvider->currentIndex()){
-    case 0:
+    case 1:
         url="https://api.mistral.ai/v1/models";
         break;
-    case 1:
+    case 2:
         url="https://api.openai.com/v1/models";
         break;
-    case 2:
+    case 3:
         url=ui.leAIAPIURL->text();
         url=url.replace("chat/completions","models");
+        break;
+    case 4:
+        url="https://claude.com/v1/models";
+        break;
+    case 5:
+        url="https://openrouter.ai/v1/models";
         break;
     default:
         break;

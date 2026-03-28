@@ -3336,7 +3336,7 @@ them here.</string>
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-275</y>
+                <y>-306</y>
                 <width>1132</width>
                 <height>1027</height>
                </rect>
@@ -3650,6 +3650,11 @@ Examples:
                   </item>
                   <item row="0" column="3">
                    <widget class="QComboBox" name="cbAIProvider">
+                    <item>
+                     <property name="text">
+                      <string>&lt;disable AI&gt;</string>
+                     </property>
+                    </item>
                     <item>
                      <property name="text">
                       <string>Mistral AI</string>
