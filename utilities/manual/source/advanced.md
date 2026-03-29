@@ -4,10 +4,11 @@
 
 ### set-up
 
-TeXstudio offers an interface for AI chat assistant. It supports [Mistral AI](https://mistral.ai), [ChatGPT](https://openai.com/chatgpt) or local language models as AI provider. The communication to those servers is done using the official API which incur costs (except for local models). The user must set up an account and enter payment information. The cost is based on the number of words (tokens) in the question and answer, please refer the ai provider for details.
+TeXstudio offers an interface for AI chat assistant. It supports [Mistral AI](https://mistral.ai), [ChatGPT](https://openai.com/chatgpt) (untested),[Claude](https://anthropic.com), [OpenRouter AI](https://openrouter.ai) or local language models as AI provider. The communication to those servers is done using the official API which incur costs (except for local models). The user must set up an account and enter payment information. The cost is based on the number of words (tokens) in the question and answer, please refer the ai provider for details.
 
 ```{warning}
 Using an AI assistant means both questions and selected text is sent to that provider !
+When tool use is activated, the LLM can retrieve additional information on the current document.
 ```
 
 Once an account is registered, an "API key" is provided which needs to be entered into TeXstudio configuration.
@@ -20,7 +21,10 @@ The conversation is stored on disk, so that results can be reused later on. This
 Local models can easily be set up via [llamafile](https://github.com/Mozilla-Ocho/llamafile). Please refer their help for details. TeXstudio expects the OpenAI API interface on 127.0.0.1:8080 to work which is the default for llamafile, hence the llamafile needs to be started manually next to TeXstudio.
 Local models do not leak information to providers. A powerful GPU is recommended to get reasonable response times.
 
-By default, the system prompt is `text:'''%txsSelectedText%'''`
+The default system prompt is `You are an assistant in a latex editor. You generate valid latex code inside an existing documents. You don't explain your result.`. This can be edited in the chat window options.
+By default ai tool use is active which allows the LLM to retrieve further information from TeXstudio. For details, see [below](#llm-tool-calls).
+
+In case that tool use is disabled, the system prompt should be changed to `text:'''%txsSelectedText%'''`
 `%txsSelectedText%` will be replaced by txs by the actual selected text in the editor before sending it to the AI provider.
 The system prompt can be tweaked to deliver better results, however the construct `text:'''%txsSelectedText%'''` should be kept in the system prompt, otherwise the selected text is unknown to the AI.
 
@@ -38,6 +42,17 @@ The upper left part gives access to old conversation in order to repeat or reuse
 The "insert" button only inserts the last answer into the current editor. If explicit latex-code is given in the answer, only the latex-code is inserted and thereof also only the part between `\begin{document}` and `\end{document}` as the tools tend to answer with complete documents which contain the relevant code like tables, etc.
 
 If a TeXstudio-macro is detected, TeXstudio offers to execute that code directly.
+
+### LLM Tool calls
+
+During a query with an ai provider, TeXstudio provides a list of available functions/tool which the LLM may use to retrieve further information or to trigger actions. Currently the following functions are provided.
+The LLM decides which function to use based on the query and the given descriptions.
+
+| name | description |
+| --- | ----------- |
+| get_filename | Get the name of the current file |
+| get_list_of_docs | Get the names of all files which are included in the current project |
+| get_selection | Get selected text |
 
 ### Examples
 
