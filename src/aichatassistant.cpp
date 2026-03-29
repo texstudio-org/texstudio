@@ -477,6 +477,7 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
     if (!nreply || nreply->error() != QNetworkReply::NoError) return;
     QByteArray data=nreply->readAll();
     QString allData(data);
+    if(allData.isEmpty()) return; // work-around, seems to happen with mistral during multiple tool calls
     if(allData.startsWith("data: ")){
         updateStreamedConversation(allData);
     }else{
