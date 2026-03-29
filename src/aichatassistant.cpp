@@ -245,10 +245,9 @@ void AIChatAssistant::slotSend(bool fromToolCall)
         connect(m_timer,&QTimer::timeout,this,&AIChatAssistant::slotUpdateResults);
     }
     if(config->ai_useFunctions){
-
+        // advertise available tool calls
         QJsonArray ja_functions=makeFunctionsJsonArray();
         dd["tools"]=ja_functions;
-
     }
     if(ja_messages.isEmpty() and !config->ai_systemPrompt.isEmpty()){
         // add system prompt to query
@@ -486,9 +485,9 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
         QJsonArray arr=obj["choices"].toArray();
         if(arr.size()>0){
             QJsonObject ja_choice=arr[0].toObject();
-            if(ja_choice["finish_reason"].toString().startsWith("tool")){
-                // TODO handle function call
-                qDebug()<<"Function call:"<<ja_choice["function_call"].toObject();
+            if(ja_choice["finish_reason"].toString().startsWith("tool") && config->ai_useFunctions){
+                // tool call, handle instead of inserting
+                // completely ignored when disabled
                 nreply->deleteLater();
                 m_reply=nullptr;
                 handleToolCall(ja_choice["message"].toObject());
