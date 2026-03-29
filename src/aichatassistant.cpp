@@ -779,7 +779,7 @@ void AIChatAssistant::handleToolCall(QJsonObject jo)
                 QJsonObject jo_message;
                 jo_message["role"]="tool";
                 jo_message["tool_call_id"]=id;
-                jo_message["name"]="get_filename";
+                jo_message["name"]=name;
                 jo_message["content"]=result;
                 ja_messages.append(jo_message);
             }
