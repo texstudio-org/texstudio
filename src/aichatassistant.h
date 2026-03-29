@@ -86,6 +86,7 @@ protected:
     QString tfGetCursorPosition(const QString arg=QString()) const;
     QString tfGetLineText(const QString arg) const;
     QString tfGetLineLength(const QString arg) const;
+    QString tfGetNumberLines(const QString arg) const;
 
     QMap<QString,int> retrieveToolArguments(const QString &parameter) const;
 

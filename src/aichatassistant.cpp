@@ -923,7 +923,7 @@ QString AIChatAssistant::tfSetCursor(const QString arg) const
     QEditor *ed = txsInstance->currentEditor();
     if(ed){
         QDocumentCursor cursor = ed->cursor();
-        int ln=args["line"]-1; // line numbers start with 1 for user, but with 0 in cursor
+        int ln=args["line"]; // line numbers start with 1 for user, but with 0 in cursor
         int col=args.value("column",0);
         cursor.moveTo(ln,col);
         ed->setCursor(cursor);
@@ -937,17 +937,18 @@ QString AIChatAssistant::tfSetCursor(const QString arg) const
  */
 QString AIChatAssistant::tfSetSelection(const QString arg) const
 {
+    qDebug()<<"set selection:"<<arg;
     QMap<QString, int> args=retrieveToolArguments(arg);
     if(!args.contains("startLine")) return "operation:failed, missing argument startLine";
     QEditor *ed = txsInstance->currentEditor();
     if(ed){
         QDocumentCursor cursor = ed->cursor();
         const int lineCount=ed->document()->lineCount();
-        int ln=args["startLine"]-1; // line numbers start with 1 for user, but with 0 in cursor
+        int ln=args["startLine"]; // line numbers start with 1 for user, but with 0 in cursor
         if(ln<0 || ln>=lineCount) return "operation:failed, invalid start line number";
         int col=args.value("startColumn",0);
         if(col<0 || col>ed->document()->line(ln).length()) return "operation:failed, invalid start column number";
-        int endLine=args.value("endLine",ln+1)-1;
+        int endLine=args.value("endLine",ln);
         if(endLine<0 || endLine>=lineCount) return "operation:failed, invalid end line number";
         int endCol=args.value("endColumn",-1);
         if(endCol==-1){
@@ -971,9 +972,9 @@ QString AIChatAssistant::tfGetCursorPosition(const QString arg) const
     QEditor *ed = txsInstance->currentEditor();
     if(ed){
         QDocumentCursor cursor = ed->cursor();
-        int line=cursor.lineNumber()+1; // line numbers start with 1 for user, but with 0 in cursor
+        int line=cursor.lineNumber(); // line numbers start with 1 for user, but with 0 in cursor
         int column=cursor.columnNumber();
-        int lineAnchor=cursor.anchorLineNumber()+1;
+        int lineAnchor=cursor.anchorLineNumber();
         int columnAnchor=cursor.anchorColumnNumber();
         return QString("line:%1,column:%2,anchorLine:%3,anchorColumn:%4").arg(line).arg(column).arg(lineAnchor).arg(columnAnchor);
     }
@@ -988,10 +989,10 @@ QString AIChatAssistant::tfGetLineText(const QString arg) const
 {
     QMap<QString, int> args=retrieveToolArguments(arg);
     if(!args.contains("line")) return "";
-    int ln=args["line"]-1; // line numbers start with 1 for user, but with 0 in cursor
+    int ln=args["line"]; // line numbers start with 1 for user, but with 0 in cursor
     LatexDocument *doc=txsInstance->currentEditorView()->document;
     if(doc){
-        if(ln<0 || ln>doc->lineCount()) return "operation:failed, invalid line number";
+        if(ln<0 || ln>=doc->lineCount()) return "operation:failed, invalid line number";
         return doc->line(ln).text();
     }
     return "";
@@ -1005,11 +1006,24 @@ QString AIChatAssistant::tfGetLineLength(const QString arg) const
 {
     QMap<QString, int> args=retrieveToolArguments(arg);
     if(!args.contains("line")) return "";
-    int ln=args["line"]-1; // line numbers start with 1 for user, but with 0 in cursor
+    int ln=args["line"]; // line numbers start with 1 for user, but with 0 in cursor
     LatexDocument *doc=txsInstance->currentEditorView()->document;
     if(doc){
-        if(ln<0 || ln>doc->lineCount()) return "operation:failed, invalid line number";
+        if(ln<0 || ln>=doc->lineCount()) return "operation:failed, invalid line number";
         return QString::number(doc->line(ln).length());
+    }
+    return "";
+}
+/*!
+ * \brief return number of lines of current document
+ * \param arg
+ * \return
+ */
+QString AIChatAssistant::tfGetNumberLines(const QString arg) const
+{
+    LatexDocument *doc=txsInstance->currentEditorView()->document;
+    if(doc){
+        return QString::number(doc->lineCount());
     }
     return "";
 }
@@ -1058,6 +1072,7 @@ void AIChatAssistant::registerToolFunctions()
     m_toolFunctions<<ToolFunction{"set_selection","Select text from start to end position. If column is not given assume start of line of starting position, end of line for ending position",
                                     "*startLine:line number to start selection\nstartColumn:start column number for selection\nendLine:line number to end selection\nendColumn:end column number for selection",[this](QString input) { return this->tfSetSelection(input); }};
     m_toolFunctions<<ToolFunction{"get_line_length","Get length of a given line","*line:line number for which line length is wanted",[this](QString input) { return this->tfGetLineLength(input); }};
+    m_toolFunctions<<ToolFunction{"get_number_lines","Get number of lines of current document","",[this](QString input) { return this->tfGetNumberLines(input); }};
 }
 
 /*! TODO
