@@ -3336,7 +3336,7 @@ them here.</string>
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-306</y>
+                <y>-239</y>
                 <width>1132</width>
                 <height>1027</height>
                </rect>
@@ -3725,6 +3725,19 @@ Examples:
                    <widget class="QPushButton" name="pbResetAIURL">
                     <property name="text">
                      <string>Default</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="3">
+                   <widget class="QCheckBox" name="cbAIUseTools">
+                    <property name="toolTip">
+                     <string>The LLM receives a list of available functions from TeXstudio.
+It can ask the program to run those functions during an ai query to retrieve more information on the document.
+This may lead to unwanted data transfer to the AI provider.
+</string>
+                    </property>
+                    <property name="text">
+                     <string>AI may call program functions during query</string>
                     </property>
                    </widget>
                   </item>
