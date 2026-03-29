@@ -930,6 +930,89 @@ QString AIChatAssistant::tfSetCursor(const QString arg) const
     }
     return "operation:success";
 }
+/*!
+ * \brief perform selection from start to end position. If column is not given assume start of line of starting position, end of line for ending position
+ * \param arg
+ * \return
+ */
+QString AIChatAssistant::tfSetSelection(const QString arg) const
+{
+    QMap<QString, int> args=retrieveToolArguments(arg);
+    if(!args.contains("startLine")) return "operation:failed, missing argument startLine";
+    QEditor *ed = txsInstance->currentEditor();
+    if(ed){
+        QDocumentCursor cursor = ed->cursor();
+        const int lineCount=ed->document()->lineCount();
+        int ln=args["startLine"]-1; // line numbers start with 1 for user, but with 0 in cursor
+        if(ln<0 || ln>=lineCount) return "operation:failed, invalid start line number";
+        int col=args.value("startColumn",0);
+        if(col<0 || col>ed->document()->line(ln).length()) return "operation:failed, invalid start column number";
+        int endLine=args.value("endLine",ln+1)-1;
+        if(endLine<0 || endLine>=lineCount) return "operation:failed, invalid end line number";
+        int endCol=args.value("endColumn",-1);
+        if(endCol==-1){
+            // assume end of line
+            endCol=ed->document()->line(endLine).length();
+        }
+        if(endCol<0 || endCol>ed->document()->line(endLine).length()) return "operation:failed, invalid end column number";
+        cursor.moveTo(ln,col);
+        cursor.moveTo(endLine,endCol, QDocumentCursor::KeepAnchor);
+        ed->setCursor(cursor);
+    }
+    return "operation:success";
+}
+/*!
+ * \brief return position of current cursor, e.g. for tool function to set cursor position relative to it
+ * \param arg
+ * \return
+ */
+QString AIChatAssistant::tfGetCursorPosition(const QString arg) const
+{
+    QEditor *ed = txsInstance->currentEditor();
+    if(ed){
+        QDocumentCursor cursor = ed->cursor();
+        int line=cursor.lineNumber()+1; // line numbers start with 1 for user, but with 0 in cursor
+        int column=cursor.columnNumber();
+        int lineAnchor=cursor.anchorLineNumber()+1;
+        int columnAnchor=cursor.anchorColumnNumber();
+        return QString("line:%1,column:%2,anchorLine:%3,anchorColumn:%4").arg(line).arg(column).arg(lineAnchor).arg(columnAnchor);
+    }
+    return "";
+}
+/*!
+ * \brief return text of a given line number
+ * \param arg
+ * \return
+ */
+QString AIChatAssistant::tfGetLineText(const QString arg) const
+{
+    QMap<QString, int> args=retrieveToolArguments(arg);
+    if(!args.contains("line")) return "";
+    int ln=args["line"]-1; // line numbers start with 1 for user, but with 0 in cursor
+    LatexDocument *doc=txsInstance->currentEditorView()->document;
+    if(doc){
+        if(ln<0 || ln>doc->lineCount()) return "operation:failed, invalid line number";
+        return doc->line(ln).text();
+    }
+    return "";
+}
+/*!
+ * \brief return length of given line number, e.g. for tool function to set cursor position relative to end of line
+ * \param arg
+ * \return
+ */
+QString AIChatAssistant::tfGetLineLength(const QString arg) const
+{
+    QMap<QString, int> args=retrieveToolArguments(arg);
+    if(!args.contains("line")) return "";
+    int ln=args["line"]-1; // line numbers start with 1 for user, but with 0 in cursor
+    LatexDocument *doc=txsInstance->currentEditorView()->document;
+    if(doc){
+        if(ln<0 || ln>doc->lineCount()) return "operation:failed, invalid line number";
+        return QString::number(doc->line(ln).length());
+    }
+    return "";
+}
 
 /*!
  * \brief return arguments for tool function, e.g. line number for set_cursor
@@ -970,7 +1053,11 @@ void AIChatAssistant::registerToolFunctions()
     // example for function with arguments, e.g. to set cursor position
     // arguments are given as single string "arg:descript\narg2:desc2". "*arg:desc" means required argument, "arg:desc" means optional argument
     m_toolFunctions<<ToolFunction{"set_cursor","Set cursor to given line","*line:line number to put cursor\ncolumn:column number to put cursor",[this](QString input) { return this->tfSetCursor(input); }};
-
+    m_toolFunctions<<ToolFunction{"get_cursor_position","Get the line number and column number of current cursor. Anchor line and anchor column as well","",[this](QString input) { return this->tfGetCursorPosition(); }};
+    m_toolFunctions<<ToolFunction{"get_line_text","Get text of a given line","*line:line number of which text is wanted",[this](QString input) { return this->tfGetLineText(input); }};
+    m_toolFunctions<<ToolFunction{"set_selection","Select text from start to end position. If column is not given assume start of line of starting position, end of line for ending position",
+                                    "*startLine:line number to start selection\nstartColumn:start column number for selection\nendLine:line number to end selection\nendColumn:end column number for selection",[this](QString input) { return this->tfSetSelection(input); }};
+    m_toolFunctions<<ToolFunction{"get_line_length","Get length of a given line","*line:line number for which line length is wanted",[this](QString input) { return this->tfGetLineLength(input); }};
 }
 
 /*! TODO

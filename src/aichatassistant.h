@@ -82,6 +82,10 @@ protected:
     QString tfGetLog(const QString arg=QString()) const; // TODO ? fails only ?
     QString tfGetText(const QString arg=QString()) const;
     QString tfSetCursor(const QString arg) const;
+    QString tfSetSelection(const QString arg) const;
+    QString tfGetCursorPosition(const QString arg=QString()) const;
+    QString tfGetLineText(const QString arg) const;
+    QString tfGetLineLength(const QString arg) const;
 
     QMap<QString,int> retrieveToolArguments(const QString &parameter) const;
 
