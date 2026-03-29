@@ -37,15 +37,15 @@ bool txsConfirmWarning(const QString &message)
  * \param rememberChoice if true, return true and avoid Msg. rememberChoice is overwritten by checkbox result.
  * \return yes=true
  */
-bool txsConfirmWarning(const QString &message,txsWarningState &rememberChoice)
+bool txsConfirmWarning(const QString &message,txsWarningState &rememberChoice, const QString cbLabel, const QMessageBox::Icon icon)
 {
     switch (rememberChoice){
         case RememberFalse: return false ;
         case RememberTrue: return true ;
         default: ;
     }
-    QMessageBox msg(QMessageBox::Warning,TEXSTUDIO,message,QMessageBox::Yes | QMessageBox::No,QApplication::activeWindow());
-    QCheckBox *cb=new QCheckBox(QApplication::tr("Remember choice ?"));
+    QMessageBox msg(icon,TEXSTUDIO,message,QMessageBox::Yes | QMessageBox::No,QApplication::activeWindow());
+    QCheckBox *cb=new QCheckBox(cbLabel);
     msg.setCheckBox(cb);
     bool result=(msg.exec()==QMessageBox::Yes);
     if(msg.checkBox()->checkState()==Qt::Checked){
