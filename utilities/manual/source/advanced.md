@@ -53,23 +53,25 @@ The LLM decides which function to use based on the query and the given descripti
 | get_filename | Get the name of the current file |
 | get_list_of_docs | Get the names of all files which are included in the current project |
 | get_selection | Get selected text |
+| get_selection | Get complete text of current document |
+| set_cursor | Set cursor to given line, column is optional |
 
 ### Examples
 
 #### Manipulating texts
 
-TeXstudio predefines selected text as "text".
-Queries can refer to that text (as text) directly and receive any transformed results.
+TeXstudio allows LLMs to access selected text.
+Queries can refer to that text directly and receive any transformed results.
 
 E.g.
 
 Selected text: `TeXstudio is a highly popular and powerful cross-platform open-source LaTeX editor, widely used by academics, researchers, and professionals for creating complex mathematical and scientific documents. Its user-friendly interface and rich features make it an ideal choice for both beginners and advanced LaTeX users.`
 
-Query: `Extend the text`
+Query: `Extend the selected text`
 
 Result (mistral.ai/open-mistral-7b): `TeXstudio is a highly popular and powerful cross-platform open-source LaTeX editor, widely used by academics, researchers, and professionals for creating complex mathematical and scientific documents. Its user-friendly interface, which includes features such as a spell checker, code completion, and a built-in document viewer, makes it an approachable choice for beginners. For more advanced LaTeX users, TeXstudio offers additional functionality such as a built-in compiler, project management tools, and support for various external packages. TeXstudio is also customizable, allowing users to tailor the editor to their specific needs and preferences. Overall, TeXstudio is a versatile and feature-rich tool that is well-suited for creating professional-level LaTeX documents.`
 
-Similarly request like `summarize the text`,`shorten the text` should work well.
+Similarly request like `summarize the selected text`,`shorten the selected text` should work well.
 
 #### Generating LaTeX code
 
