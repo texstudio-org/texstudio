@@ -700,15 +700,39 @@ QJsonArray AIChatAssistant::makeFunctionsJsonArray() const
         QJsonObject jo_function;
         jo_function["name"]=tf.name;
         jo_function["description"]=tf.description;
-        jo_function["parameters"]=QJsonObject{
-            {"type","object"},
-            {"properties",QJsonObject{
-                {tf.parameter,QJsonObject{
-                    {"type","string"},
-                    {"description",tf.description}
-                }}
-            }}
-        };
+        QStringList requiredParameters;
+        if(tf.parameter.isEmpty()){
+            jo_function["parameters"]=QJsonObject{
+                {"type","object"},
+                {"properties",QJsonObject()}
+            };
+        }else{
+            QJsonObject jo_properties;
+            QStringList parameters=tf.parameter.split("\n");
+            foreach(const QString &param,parameters){
+                QStringList parts=param.split(":");
+                if(parts.size()==2){
+                    QString paramName=parts[0].trimmed();
+                    if(paramName.startsWith("*")){
+                        paramName=paramName.mid(1);
+                        requiredParameters.append(paramName);
+                    }
+                    QString paramDesc=parts[1].trimmed();
+                    jo_properties[paramName]=QJsonObject{
+                        {"type","string"},
+                        {"description",paramDesc}
+                    };
+                }
+            }
+            QJsonObject jo_params=QJsonObject{
+                {"type","object"},
+                {"properties",jo_properties}
+            };
+            if(!requiredParameters.isEmpty()){
+                jo_params["required"]=QJsonArray::fromStringList(requiredParameters);
+            }
+            jo_function["parameters"]=jo_params;
+        }
         jo_functionObject["function"]=jo_function;
         ja_functions.append(jo_functionObject);
     }
@@ -733,7 +757,8 @@ void AIChatAssistant::handleToolCall(QJsonObject jo)
             qDebug()<<"Tool call:"<<tf.name;
 
             // get file name of current file and return it to AI provider
-            QString result=tf.func(""); // for now, no parameters
+            const QString arg=jo_function["arguments"].toString();
+            QString result=tf.func(arg); // for now, no parameters
             // generate a tool call message
             {
                 QJsonObject jo_message;
@@ -874,6 +899,66 @@ QString AIChatAssistant::tfGetSelection(const QString arg) const
     return selectedText;
 }
 /*!
+ * \brief provide complete text of current document to LLM
+ * \param arg
+ * \return
+ */
+QString AIChatAssistant::tfGetText(const QString arg) const
+{
+    if(arg.isEmpty()){
+        LatexDocument *doc=txsInstance->documents.currentDocument;
+        if(doc){
+            return doc->text();
+        }
+    }
+    return "";
+}
+
+QString AIChatAssistant::tfSetCursor(const QString arg) const
+{
+    qDebug()<<"set cursor to line:"<<arg;
+    // split argument from { "line":"10" } to get line number
+    QMap<QString, int> args=retrieveToolArguments(arg);
+    if(!args.contains("line")) return "operation:failed, missing argument line";
+    QEditor *ed = txsInstance->currentEditor();
+    if(ed){
+        QDocumentCursor cursor = ed->cursor();
+        int ln=args["line"]-1; // line numbers start with 1 for user, but with 0 in cursor
+        int col=args.value("column",0);
+        cursor.moveTo(ln,col);
+        ed->setCursor(cursor);
+    }
+    return "operation:success";
+}
+
+/*!
+ * \brief return arguments for tool function, e.g. line number for set_cursor
+ * Assumes integer arguments only
+ * \param parameter
+ * \return
+ */
+QMap<QString, int> AIChatAssistant::retrieveToolArguments(const QString &parameter) const
+{
+    QString argument=parameter.mid(1,parameter.length()-2); // remove braces
+    QStringList parts=argument.split(",");
+    QMap<QString, int> args;
+    for(const QString &part:parts){
+        QStringList kv=part.split(":");
+        if(kv.size()==2){
+            QString key=kv[0].trimmed();
+            key=key.mid(1,key.length()-2); // remove quotes
+            bool ok;
+            QString val=kv[1].trimmed();
+            val=val.mid(1,val.length()-2); // remove quotes
+            int value=val.toInt(&ok);
+            if(ok){
+                args[key]=value;
+            }
+        }
+    }
+    return args;
+}
+/*!
  * \brief register functions as tools for AI provider
  */
 void AIChatAssistant::registerToolFunctions()
@@ -881,6 +966,11 @@ void AIChatAssistant::registerToolFunctions()
     m_toolFunctions<<ToolFunction{"get_filename","Get the name of the current file","",[this](QString input) { return this->tfGetFilename(); }};
     m_toolFunctions<<ToolFunction{"get_list_of_docs","Get the names of all files which are included in the current project","",[this](QString input) { return this->tfGetListFiles(); }};
     m_toolFunctions<<ToolFunction{"get_selection","Get selected text","",[this](QString input) { return this->tfGetSelection(); }};
+    m_toolFunctions<<ToolFunction{"get_text","Get complete text of current document","",[this](QString input) { return this->tfGetText(); }};
+    // example for function with arguments, e.g. to set cursor position
+    // arguments are given as single string "arg:descript\narg2:desc2". "*arg:desc" means required argument, "arg:desc" means optional argument
+    m_toolFunctions<<ToolFunction{"set_cursor","Set cursor to given line","*line:line number to put cursor\ncolumn:column number to put cursor",[this](QString input) { return this->tfSetCursor(input); }};
+
 }
 
 /*! TODO
@@ -889,5 +979,4 @@ void AIChatAssistant::registerToolFunctions()
  *  - add to macros
  *  - modeltree for conversations
  *   + show summary of conversation in titles ?
- *  - overlay buttons insert/etc.
  */

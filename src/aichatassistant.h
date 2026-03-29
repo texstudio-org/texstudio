@@ -78,8 +78,12 @@ protected:
     QString tfGetFilename(const QString arg=QString()) const;
     QString tfGetListFiles(const QString arg=QString()) const;
     QString tfGetSelection(const QString arg=QString()) const;
-    QString tfRunMacro(const QString arg) const;
-    QString tfGetLog(const QString arg=QString()) const;
+    QString tfRunMacro(const QString arg) const; //TODO ?
+    QString tfGetLog(const QString arg=QString()) const; // TODO ? fails only ?
+    QString tfGetText(const QString arg=QString()) const;
+    QString tfSetCursor(const QString arg) const;
+
+    QMap<QString,int> retrieveToolArguments(const QString &parameter) const;
 
     struct ToolFunction
     {
