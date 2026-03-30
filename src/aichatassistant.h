@@ -87,8 +87,10 @@ protected:
     QString tfGetLineText(const QString arg) const;
     QString tfGetLineLength(const QString arg) const;
     QString tfGetNumberLines(const QString arg) const;
+    QString tfFindText(const QString arg) const;
 
     QMap<QString,int> retrieveToolArguments(const QString &parameter) const;
+    QMap<QString,QString> retrieveToolArgumentsString(const QString &parameter) const;
 
     struct ToolFunction
     {

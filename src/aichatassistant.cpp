@@ -1028,6 +1028,30 @@ QString AIChatAssistant::tfGetNumberLines(const QString arg) const
     }
     return "";
 }
+/*!
+ * \brief return first line containing given text, e.g. for tool function to set cursor position relative to it
+ * \param arg
+ * \return
+ */
+QString AIChatAssistant::tfFindText(const QString arg) const
+{
+    QMap<QString, QString> args=retrieveToolArgumentsString(arg);
+    if(!args.contains("text")) return "";
+    QString text=args["text"]; // text to find
+    bool withinCurrentSelection=args.contains("withinCurrentSelection");
+    QEditor *ed=txsInstance->currentEditor();
+    if(ed){
+        ed->find(text,false,false,false,false,true,withinCurrentSelection);
+        QDocumentCursor cursor=ed->cursor();
+        if(cursor.hasSelection()){
+            int i=cursor.lineNumber();
+            int start=cursor.startColumnNumber();
+            //qDebug()<<QString("foundText:%1,line:%2,column:%3,length:%4").arg(text).arg(i).arg(start).arg(text.length());
+            return QString("foundText:%1,line:%2,column:%3,length:%4").arg(text).arg(i).arg(start).arg(text.length());
+        }
+    }
+    return "";
+}
 
 /*!
  * \brief return arguments for tool function, e.g. line number for set_cursor
@@ -1057,6 +1081,29 @@ QMap<QString, int> AIChatAssistant::retrieveToolArguments(const QString &paramet
     return args;
 }
 /*!
+ * \brief return arguments for tool function, e.g. text
+ * Assumes string arguments only
+ * \param parameter
+ * \return
+ */
+QMap<QString, QString> AIChatAssistant::retrieveToolArgumentsString(const QString &parameter) const
+{
+    QString argument=parameter.mid(1,parameter.length()-2); // remove braces
+    QStringList parts=argument.split(",");
+    QMap<QString, QString> args;
+    for(const QString &part:parts){
+        QStringList kv=part.split(":");
+        if(kv.size()==2){
+            QString key=kv[0].trimmed();
+            key=key.mid(1,key.length()-2); // remove quotes
+            QString val=kv[1].trimmed();
+            val=val.mid(1,val.length()-2); // remove quotes
+            args[key]=val;
+        }
+    }
+    return args;
+}
+/*!
  * \brief register functions as tools for AI provider
  */
 void AIChatAssistant::registerToolFunctions()
@@ -1074,6 +1121,7 @@ void AIChatAssistant::registerToolFunctions()
                                     "*startLine:line number to start selection\nstartColumn:start column number for selection\nendLine:line number to end selection\nendColumn:end column number for selection",[this](QString input) { return this->tfSetSelection(input); }};
     m_toolFunctions<<ToolFunction{"get_line_length","Get length of a given line","*line:line number for which line length is wanted",[this](QString input) { return this->tfGetLineLength(input); }};
     m_toolFunctions<<ToolFunction{"get_number_lines","Get number of lines of current document","",[this](QString input) { return this->tfGetNumberLines(input); }};
+    m_toolFunctions<<ToolFunction{"find_text","Find text in current document and return first position (line,column,length) after the current cursor position. The result is also selected with the current cursor.","*text:search text,withinCurrentSelection:true is search is limited to current selected text",[this](QString input) { return this->tfFindText(input); }};
 }
 
 /*! TODO
