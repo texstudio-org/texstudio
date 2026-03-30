@@ -1033,21 +1033,40 @@ QString AIChatAssistant::tfGetNumberLines(const QString arg) const
  * \param arg
  * \return
  */
-QString AIChatAssistant::tfFindText(const QString arg) const
+QString AIChatAssistant::tfFindText(const QString arg, bool regExp) const
 {
     QMap<QString, QString> args=retrieveToolArgumentsString(arg);
     if(!args.contains("text")) return "";
     QString text=args["text"]; // text to find
+    // replace \\ with \ in text, as this is how it is given by LLMs in many cases
+    text.replace("\\\\","\\");
     bool withinCurrentSelection=args.contains("withinCurrentSelection");
     QEditor *ed=txsInstance->currentEditor();
     if(ed){
-        ed->find(text,false,false,false,false,true,withinCurrentSelection);
+        ed->find(text,false,regExp,false,false,true,withinCurrentSelection);
         QDocumentCursor cursor=ed->cursor();
         if(cursor.hasSelection()){
             int i=cursor.lineNumber();
             int start=cursor.startColumnNumber();
-            //qDebug()<<QString("foundText:%1,line:%2,column:%3,length:%4").arg(text).arg(i).arg(start).arg(text.length());
-            return QString("foundText:%1,line:%2,column:%3,length:%4").arg(text).arg(i).arg(start).arg(text.length());
+            if(regExp){
+                QString selectedText=cursor.selectedText();
+                QString result=QString("foundText:%1,line:%2,column:%3,length:%4").arg(selectedText).arg(i).arg(start).arg(selectedText.length());
+                QRegularExpression re(text);
+                QRegularExpressionMatch match=re.match(selectedText);
+                if(match.hasMatch()){
+                    QStringList submatches;
+                    for(int i=1;i<match.lastCapturedIndex();++i){
+                        submatches.append(match.captured(i));
+                    }
+                    if(submatches.size()>0){
+                        result+=",submatches:"+submatches.join(",");
+                    }
+                }
+                qDebug()<<result;
+                return result;
+            }else{
+                return QString("foundText:%1,line:%2,column:%3,length:%4").arg(text).arg(i).arg(start).arg(text.length());
+            }
         }
     }
     return "";
@@ -1122,6 +1141,7 @@ void AIChatAssistant::registerToolFunctions()
     m_toolFunctions<<ToolFunction{"get_line_length","Get length of a given line","*line:line number for which line length is wanted",[this](QString input) { return this->tfGetLineLength(input); }};
     m_toolFunctions<<ToolFunction{"get_number_lines","Get number of lines of current document","",[this](QString input) { return this->tfGetNumberLines(input); }};
     m_toolFunctions<<ToolFunction{"find_text","Find text in current document and return first position (line,column,length) after the current cursor position. The result is also selected with the current cursor.","*text:search text,withinCurrentSelection:true is search is limited to current selected text",[this](QString input) { return this->tfFindText(input); }};
+    m_toolFunctions<<ToolFunction{"find_regexp","Find regular expresssion in current document and return first position (line,column,length) after the current cursor position. The result is also selected with the current cursor. Submatches are also returned","*text:search text that contains a regular expression\nwithinCurrentSelection:true is search is limited to current selected text",[this](QString input) { return this->tfFindText(input,true); }};
 }
 
 /*! TODO
