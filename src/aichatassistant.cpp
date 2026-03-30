@@ -1071,6 +1071,29 @@ QString AIChatAssistant::tfFindText(const QString arg, bool regExp) const
     }
     return "";
 }
+/*!
+ * \brief replace selected text with given text
+ * \param arg
+ * \return
+ */
+QString AIChatAssistant::tfReplaceSelectedText(const QString arg) const
+{
+    QMap<QString, QString> args=retrieveToolArgumentsString(arg);
+    if(!args.contains("text")) return "operation:failed, missing argument text";
+    QString text=args["text"]; // text to replace with
+    QEditor *ed=txsInstance->currentEditor();
+    if(ed){
+        QDocumentCursor cursor=ed->cursor();
+        if(cursor.hasSelection()){
+            cursor.replaceSelectedText(text);
+            return "operation:success";
+        }else{
+            cursor.insertText(text);
+            return "operation:success";
+        }
+    }
+    return "operation:failed, no editor";
+}
 
 /*!
  * \brief return arguments for tool function, e.g. line number for set_cursor
@@ -1142,6 +1165,7 @@ void AIChatAssistant::registerToolFunctions()
     m_toolFunctions<<ToolFunction{"get_number_lines","Get number of lines of current document","",[this](QString input) { return this->tfGetNumberLines(input); }};
     m_toolFunctions<<ToolFunction{"find_text","Find text in current document and return first position (line,column,length) after the current cursor position. The result is also selected with the current cursor.","*text:search text,withinCurrentSelection:true is search is limited to current selected text",[this](QString input) { return this->tfFindText(input); }};
     m_toolFunctions<<ToolFunction{"find_regexp","Find regular expresssion in current document and return first position (line,column,length) after the current cursor position. The result is also selected with the current cursor. Submatches are also returned","*text:search text that contains a regular expression\nwithinCurrentSelection:true is search is limited to current selected text",[this](QString input) { return this->tfFindText(input,true); }};
+    m_toolFunctions<<ToolFunction{"replace_selected_text","Replace selected text with given text. If no text is selected, insert given text at current cursor position","*text:text to replace with",[this](QString input) { return this->tfReplaceSelectedText(input); }};
 }
 
 /*! TODO
