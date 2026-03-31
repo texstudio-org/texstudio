@@ -1,7 +1,5 @@
 # graphicxpsd package
-# Matthew Bertucci 2/4/2022 for v1.2
-
-#include:shellesc
+# Matthew Bertucci 2026/03/12 for v2.0
 
 #keyvals:\usepackage/graphicxpsd#c
 dvipdfmx
@@ -13,5 +11,5 @@ imagemagick
 magick
 convert
 graphicsmagick
-cache=#true,false
+cache#true,false
 #endkeyvals
