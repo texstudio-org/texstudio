@@ -1,5 +1,5 @@
 # quran package
-# Matthew Bertucci 2025/04/26 for v2.41
+# Matthew Bertucci 2026/03/12 for v2.42
 
 #include:ifxetex
 #include:biditools
@@ -11,6 +11,7 @@
 #keyvals:\usepackage/quran#c
 nopar
 nonumber
+nobasmalah
 uthmani
 uthmani-min
 translt
@@ -20,7 +21,6 @@ transfa
 transfr
 trans=#lt,de,en,fa,fr
 wordwise
-ornbraces
 #endkeyvals
 
 \quransurah

@@ -1,13 +1,13 @@
 # tabular2 package
-# Matthew Bertucci 2025/09/08 for v0.3
+# Matthew Bertucci 2026/03/20 for v0.4
 
 #include:l3draw
 
 #keyvals:\usepackage/tabular2#c
-rowsep=##L
-colsep=##L
-margin={%<%>}
-vspace={%<%>}
+en
+cellsep=##L
+margin={%<left,right%>}
+vspace={%<left,right%>}
 minwidth=##L
 lineskip=##L
 #endkeyvals
@@ -23,6 +23,7 @@ lineskip=##L
 format=#inner,csv,json
 title#true,false
 header#true,false
+rowheader#true,false
 sep=%<separator%>
 loc={%<ref pos%>}
 #endkeyvals
@@ -62,15 +63,17 @@ loc={%<ref pos%>}
 \printtable*
 \printtable*[indent]
 \rendertable
-\rendertable[booktabs]
-\rendertable[booktabs][%<middle line%>]
-\rendertable[grid]{%<borders%>}
+\rendertable[options%keyvals]
 \rowborder{border list}
 \rowborder[default]{border list}
 \colborder{border list}
 \colborder[default]{border list}
-\linepatternset{name}{definition}
-\linewdset{name}{width}
-\linestyleset{name}{style}{width}{color}
+\rulepatternset{name}{definition}
+\rulewdset{name}{width}
+\rulestyleset{name}{style}{width}{color}
 \showtable
 \logtable
+\mergecell{coord1}{coord2}
+\mergecell{coord1}{coord2}[alignment]
+\mergecell[index]{coord1}{coord2}
+\mergecell[index]{coord1}{coord2}[alignment]

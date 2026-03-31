@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/02/20 for v16.9.0
+# Matthew Bertucci 2026/03/21 for v16.12.0
 
 #include:iftex
 
@@ -303,6 +303,7 @@ bankofamerica
 barclays
 baremetrics
 barmenia
+baseui
 basecamp
 baserow
 basicattentiontoken
@@ -527,6 +528,7 @@ clerk
 clevercloud
 clickhouse
 clickup
+cline
 clion
 clockify
 clojure
@@ -616,6 +618,7 @@ contabo
 contactlesspayment
 containerd
 contao
+contensis
 contentful
 contentstack
 continente
@@ -759,6 +762,7 @@ dhl
 diagramsdotnet
 dialogflow
 diaspora
+dicebear
 dictionarydotcom
 digg
 digikeyelectronics
@@ -779,6 +783,7 @@ django
 dji
 dlib
 dlna
+dlthub
 dm
 dmm
 docker
@@ -1097,6 +1102,7 @@ gerrit
 getx
 ghost
 ghostery
+ghostfolio
 ghostty
 gimp
 gin
@@ -1524,6 +1530,7 @@ kalilinux
 kamailio
 kando
 kaniko
+karakeep
 karlsruherverkehrsverbund
 kasasmart
 kashflow
@@ -1677,6 +1684,7 @@ linkerd
 linkfire
 linksys
 linktree
+linkvertise
 linphone
 lintcode
 linux
@@ -1707,10 +1715,12 @@ lodash
 logmein
 logseq
 logstash
+longhorn
 looker
 loom
 loop
 loopback
+loops
 lootcrate
 lospec
 lotpolishairlines
@@ -2158,6 +2168,7 @@ panasonic
 pandas
 pandoc
 pandora
+pangolin
 pantheon
 paperlessngx
 paperspace
@@ -2732,6 +2743,7 @@ solid
 solidity
 sololearn
 solus
+solveddotac
 sonar
 sonarqubecloud
 sonarqubeforide
@@ -2982,6 +2994,7 @@ thymeleaf
 ticketmaster
 ticktick
 tidal
+tidb
 tiddlywiki
 tide
 tidyverse
@@ -3040,6 +3053,7 @@ trello
 trendmicro
 tresorit
 treyarch
+trezor
 tricentis
 trilium
 triller
@@ -3347,6 +3361,7 @@ ycombinator
 yaak
 yelp
 yeti
+yew
 yii
 yoast
 yolo
