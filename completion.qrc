@@ -4028,6 +4028,7 @@
 <file>completion/tokcycle.cwl</file>
 <file>completion/tokenizer.cwl</file>
 <file>completion/tokmap.cwl</file>
+<file>completion/tokstools.cwl</file>
 <file>completion/tolkienfonts.cwl</file>
 <file>completion/tone.cwl</file>
 <file>completion/tonevalue.cwl</file>
