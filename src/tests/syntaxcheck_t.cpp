@@ -514,6 +514,8 @@ void SyntaxCheckTest::checkExplHighlight_data(){
         <<"\\ExplSyntaxOn \\test_asd_asd:NN \\ExplSyntaxOff"<<QList<int>{14}<<QList<int>{14}<<QList<int>{28}<<QList<int>{2};
     QTest::newRow("two cmds")
         <<"\\ExplSyntaxOn \\test \\test \\ExplSyntaxOff"<<QList<int>{14,20}<<QList<int>{5,5}<<QList<int>{}<<QList<int>{};
+    QTest::newRow("simple cmd,ProvidesExplPackage")
+        <<"\\ProvidesExplPackage{Test}{date}{version}{description} \\test \\ExplSyntaxOff"<<QList<int>{55}<<QList<int>{5}<<QList<int>{}<<QList<int>{};
 }
 
 void SyntaxCheckTest::checkExplHighlight(){
