@@ -216,12 +216,13 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
                 QRegularExpressionMatch rxComMatch2 = rxCom2.match(line); // for commands which don't have a braces part e.g. \item[text]
                 QRegularExpressionMatch rxComMatch3 = rxCom3.match(line); // for commands which don't have a options either e.g. \node (asas)
                 int res3 = rxComMatch3.capturedStart();
+                QString cmd = rxComMatch3.captured(1);
 
 				// get commandDefinition
 				CommandDescription cd = extractCommandDef(line, valid);
                 if(valid.startsWith("beginEnv")){
-                    package.possibleCommands["%beginEnv"]<<line;
-                    package.environmentAliases.insert(line, definition);
+                    package.possibleCommands["%beginEnv"]<<cmd;
+                    package.environmentAliases.insert(cmd, definition);
                     valid=valid.mid(8); // maintain additional classifiers
                 }
                 if(valid.startsWith("endEnv")){
@@ -234,7 +235,6 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					cd.bracketCommand=true;
 					valid.remove("K");
 				}
-                QString cmd = rxComMatch3.captured(1);
 				if (cmd == "\\begin") {
 					if (!package.commandDescriptions.contains(cmd)) {
 						// one insertion of a general \begin-command
