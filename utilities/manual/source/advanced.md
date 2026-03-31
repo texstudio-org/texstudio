@@ -55,13 +55,13 @@ The LLM decides which function to use based on the query and the given descripti
 | get_selection | Get selected text |
 | get_selection | Get complete text of current document |
 | set_cursor | Set cursor to given line, column is optional |
-| get_cursor_position" | Get the line number and column number of current cursor. Anchor line and anchor column as well |
+| get_cursor_position | Get the line number and column number of current cursor. Anchor line and anchor column as well |
 | get_line_text | Get text of a given line|
 | set_selection | Select text from start to end position. If column is not given assume start of line of starting position, end of line for ending position |
 | get_line_length | Get length of a given line |
 | get_number_lines | Get number of lines of current document |
 | find_text | Find text in current document and return first position (line,column,length) after the current cursor position. The result is also selected with the current cursor. |
-| find_regexp | Find regular expresssion in current document and return first position (line,column,length) after the current cursor position. The result is also selected with the current cursor. Submatches are also returned | 
+| find_regexp | Find regular expression in current document and return first position (line,column,length) after the current cursor position. The result is also selected with the current cursor. Submatches are also returned | 
 | replace_selected_text | Replace selected text with given text. If no text is selected, insert given text at current cursor position |
 
 ### Examples
