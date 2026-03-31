@@ -917,10 +917,10 @@ The resulting configuration should look similar to this:
 ![Build configuration](images/conf_build_outputDirectory.png)
 
 ## Hidden settings
-Some very rarely needed settings are not availbale via GUI but only directly in the texstudio.ini file.
+Some very rarely needed settings are not available via GUI but only directly in the texstudio.ini file.
 Here is a list of some of those settings.
 
 | Setting name | Description | Default setting |
 | ------------ | ----------- | --- |
 | LogView\WarnIfFileSizeLargerMB | Give out a warning if the log file size is larger than limit | 2.0 (MB) |
-| RememberChoiceLargeFile | Remebers user choice what to do if the log file is large | 0 (ask) |
+| RememberChoiceLargeFile | Remembers user choice what to do if the log file is large | 0 (ask) |
