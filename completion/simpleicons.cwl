@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/03/21 for v16.12.0
+# Matthew Bertucci 2026/03/31 for v16.13.0
 
 #include:iftex
 
@@ -764,6 +764,7 @@ dialogflow
 diaspora
 dicebear
 dictionarydotcom
+dify
 digg
 digikeyelectronics
 digitalocean
@@ -2078,6 +2079,7 @@ opel
 openaccess
 openaigym
 openapiinitiative
+openbao
 openbadges
 openbsd
 opencage

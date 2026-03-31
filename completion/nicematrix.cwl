@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2026/02/27 for v7.7
+# Matthew Bertucci 2026/03/31 for v7.8a
 
 #include:amsmath
 #include:array
@@ -103,6 +103,7 @@ vlines
 vlines=
 hlines
 hlines=
+hlines-except-borders
 hvlines
 hvlines-except-borders
 corners
@@ -467,6 +468,7 @@ vlines
 vlines=
 hlines
 hlines=
+hlines-except-borders
 hvlines
 hvlines-except-borders
 corners

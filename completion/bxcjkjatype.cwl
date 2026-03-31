@@ -1,5 +1,5 @@
 # bxcjkjatype package
-# Matthew Bertucci 2023/07/22 for v0.5
+# Matthew Bertucci 2026/03/31 for v0.5a
 
 #include:keyval
 #include:CJK
@@ -15,6 +15,12 @@ wholeCJK
 nowhole
 everypage
 noeverypage
+pdftex
+dvipdfmx
+dvips
+none
+nodvidriver
+resetdvidriver
 ipaex-type1
 defaultmingoth
 oneweight
