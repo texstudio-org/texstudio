@@ -1,6 +1,8 @@
 # CHANGELOG
 ## TeXstudio 4.9.4
 
+- disable AI wizard by default
+- enable LLM to use tool functions to access the current document. This allows LLM to manipulate the document directly. This can be disabled.
 
 ## TeXstudio 4.9.3
 
