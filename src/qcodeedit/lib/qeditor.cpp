@@ -4308,11 +4308,10 @@ void QEditor::resizeEvent(QResizeEvent *)
 
 	setVerticalScrollBarMaximum();
 
-	emit visibleLinesChanged();
-	//qDebug("page step : %i", viewportSize.height() / ls);
+	if ( flag(LineWrap) && m_doc )
+		ensureCursorVisible(KeepDistanceFromViewTop);
 
-	//if ( isCursorVisible() && flag(LineWrap) )
-	//	ensureCursorVisible();
+	emit visibleLinesChanged();
 }
 
 /*!
