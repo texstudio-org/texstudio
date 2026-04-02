@@ -31,6 +31,7 @@ b
 \delimiterscale
 \ignorelimits
 \includelimits
+\autodelimiters{sample%formula}
 \longmathlinesep#L
 \pulldelimiter
 \pushdelimiter
