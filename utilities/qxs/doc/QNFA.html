@@ -238,12 +238,12 @@ Syntax file creation is rather straightforward once you know how they are struct
 <h3>Core concepts</h3>
 <p>
 There are two fundamental notions in QCE syntax files : contexts and "regular" matches.<p>
-The concept of context is extremely powerful while remaining extremely simple. The syntax engine enters a context when a given start token is matched and it leaves it when a stop token is matched. Within a context there can be any number of contexts and "regular" matches. contexts are typically used to match comments, strings or other special blocks of code.<p>
-"Regular" matches are what one would expect them to be : simple tokens. They can be matched from either regular expressions or plain strings. Start and stop tokens of context are "regular" matches in a way, except that they also trigger the context enter/leave event.<p>
+The concept of context is extremely powerful while remaining extremely simple. The syntax engine enters a context when a given start token is matched and it leaves it when a stop token is matched. Within a context there can be any number of contexts and "regular" matches. Contexts are typically used to match comments, strings or other special blocks of code.<p>
+"Regular" matches are what one would expect them to be : simple tokens. They can be matched from either regular expressions or plain strings. Start and stop tokens of a context are "regular" matches in a way, except that they also trigger the context enter/leave event.<p>
 <h3>Syntax file structure</h3>
 <p>
 Now, on to the analysis of the structure of a syntax file.<p>
-The root element of the document is a &lt;QNFA&gt; tag. It provides various informations in its attributes.<p>
+The root element of the document is a &lt;QNFA&gt; tag. It provides various information in its attributes.<p>
 <ul>
 <li>
 <b>language</b> : this attribute specifies the name of the language supported by the syntax file. </li>
@@ -256,22 +256,22 @@ The root element of the document is a &lt;QNFA&gt; tag. It provides various info
 The QNFA tag represents the root context of the language. It can contain any number of the following tags :<p>
 <ul>
 <li>
-<b>context</b> : defines a context. To be valid, requires children tags of type <b>start</b> and <b>stop</b>.<p>
+<b>context</b> : defines a context. To be valid, requires child tags of type <b>start</b> and <b>stop</b>.<p>
 </li>
 <li>
-<b>sequence</b> : defines a "regular" match. The value of this element is always assumed to be a regexp (no internal optimizations attempt for plain strings).<p>
+<b>sequence</b> : defines a "regular" match. The value of this element is always assumed to be a regexp (no internal optimizations attempts for plain strings).<p>
 </li>
 <li>
 <b>word</b> : defines a "regular" match. The value of this element is checked to determine whether it can be matched as a plain string (internal optimizations). Additionally, this element will ONLY be matched at word boundaries. For instance, if the value of a word element is for, it will not be matched in "foreach" while it would have been, if declared using a <b>sequence</b> tag.<p>
 </li>
 <li>
-<b>list</b> : this is a "meta-element" used to group regular matches and give them the same attributes as they are propagated from the this element to its children. Subrouping (nesting <b>list</b> elements) is NOT supported.<p>
+<b>list</b> : this is a "meta-element" used to group regular matches and give them the same attributes as they are propagated from the this element to its children. Subgrouping (nesting <b>list</b> elements) is NOT supported.<p>
 </li>
 <li>
-<b>embed</b> : this is a "meta-element" which allows embedding of other languages or contexts to help reducing duplication of content and make maintenance of syntax files easier. The embedding target is specified through the <em>target</em> attribute. </li>
+<b>embed</b> : this is a "meta-element" which allows embedding of other languages or contexts to help reduce duplication of content and make maintenance of syntax files easier. The embedding target is specified through the <em>target</em> attribute. </li>
 </ul>
 <p>
-Additionally, the following tags are valid inside a <b>context</b> block (and, again, their number isn't limited). Also note that, while ordering of all tags above within a context DO matter, ordering of the tags below DO NOT matter.<p>
+Additionally, the following tags are valid inside a <b>context</b> block (and, again, their number isn't limited). Also note that, while ordering of all tags above within a context DOES matter, ordering of the tags below DOES NOT matter.<p>
 <ul>
 <li>
 <b>start</b> : defines a context start token as a "regular" match (remarks made about the <b>word</b> tag apply to this one as well).<p>
@@ -280,7 +280,7 @@ Additionally, the following tags are valid inside a <b>context</b> block (and, a
 <b>stop</b> : defines a context stop token as a "regular" match (remarks made about the <b>word</b> tag apply to this one as well).<p>
 </li>
 <li>
-<b>escape</b> : defines a special token as a "regular" match (remarks made about the <b>sequence</b> tag apply to this one as well). This element is used for the very common case of escape sequences which may prevent a stop token from being one. In most case it is however recommended to favor explicit escape match through a <b>sequence</b>, for instance in C-like strings the following construct is used : <div class="fragment"><pre class="fragment"> &lt;sequence <span class="keywordtype">id</span>=<span class="stringliteral">"escape"</span> format=<span class="stringliteral">"escapeseq"</span> &gt;\\[nrtvf\\<span class="stringliteral">"'\n\n]&lt;/sequence&gt; </span>
+<b>escape</b> : defines a special token as a "regular" match (remarks made about the <b>sequence</b> tag apply to this one as well). This element is used for the very common case of escape sequences which may prevent a stop token from being one. In most cases it is however recommended to favor explicit escape match through a <b>sequence</b>, for instance in C-like strings the following construct is used : <div class="fragment"><pre class="fragment"> &lt;sequence <span class="keywordtype">id</span>=<span class="stringliteral">"escape"</span> format=<span class="stringliteral">"escapeseq"</span> &gt;\\[nrtvf\\<span class="stringliteral">"'\n\n]&lt;/sequence&gt; </span>
 </pre></div> </li>
 </ul>
 <p>
@@ -290,7 +290,7 @@ All these tags, except <b>embed</b>, support the following attributes :<p>
 <b>format</b> : specifies the format to be applied to the matches (highlighting). This property is propagated.<p>
 </li>
 <li>
-<b>id</b> : assign an identifier to the element. This is only used for contexts at the moment however and the only "external" use of it occurs in the <b>embed</b> tag. </li>
+<b>id</b> : assigns an identifier to the element. This is only used for contexts at the moment however and the only "external" use of it occurs in the <b>embed</b> tag. </li>
 </ul>
 <p>
 Additionally all tags, except <b>context</b> and <b>list</b>, support the following extra attributes :<p>
