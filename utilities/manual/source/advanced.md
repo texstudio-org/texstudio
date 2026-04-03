@@ -19,6 +19,7 @@ There also the AI provider needs to be chosen as well as the desired ai model. T
 The conversation is stored on disk, so that results can be reused later on. This can be disabled.
 
 Local models can easily be set up via [llamafile](https://github.com/Mozilla-Ocho/llamafile). Please refer their help for details. TeXstudio expects the OpenAI API interface on 127.0.0.1:8080 to work which is the default for llamafile, hence the llamafile needs to be started manually next to TeXstudio.
+The configuration expects to point to the REST api endpoint, in case of openAI compatible interface (like llamafile/ollama or llama.cpp) like `http://localhost:8080/v1/chat/completions`, see TeXstudio default.
 Local models do not leak information to providers. A powerful GPU is recommended to get reasonable response times.
 
 The default system prompt is `You are an assistant in a latex editor. You generate valid latex code inside an existing documents. You don't explain your result.`. This can be edited in the chat window options.
