@@ -57,6 +57,8 @@ private:
 	QLabel *infoLabel;
 	QAction *displayTableAction, *displayLogAction, *filterErrorAction, *filterWarningAction, *filterBadBoxAction;
 
+    QString m_lastIgnoredFilename; // remember logname which the user did not load to avoid asking again
+
 	void copyRowsWithColumnRange(int firstRow, int rows, int first, int last);
 };
 
