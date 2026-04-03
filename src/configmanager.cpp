@@ -804,7 +804,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/EnlargedEmbedded", &viewerEnlarged, false);
 
 	// LogView
-	registerOption("LogView/WarnIfFileSizeLargerMB", &logViewWarnIfFileSizeLargerMB, 2.0);
+    registerOption("LogView/WarnIfFileSizeLargerMB", &logViewWarnIfFileSizeLargerMB, 16.0);
     registerOption("LogView/RememberChoiceLargeFile", &logViewRememberChoice, 0);
 
 #ifndef QT_NO_DEBUG
