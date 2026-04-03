@@ -4292,6 +4292,7 @@ void QEditor::wheelEvent(QWheelEvent *e)
 void QEditor::resizeEvent(QResizeEvent *)
 {
 	const QSize viewportSize = viewport()->size();
+    bool cursorIsVisible = isCursorVisible(); // check cursor visibility before changing scrollbars, as it may change after
 
 	if ( flag(HardLineWrap)||flag(LineWidthConstraint) ){
 	    horizontalScrollBar()->setMaximum(qMax(0, m_LineWidth - viewportSize.width()));
@@ -4308,11 +4309,11 @@ void QEditor::resizeEvent(QResizeEvent *)
 
 	setVerticalScrollBarMaximum();
 
-	emit visibleLinesChanged();
-	//qDebug("page step : %i", viewportSize.height() / ls);
+    if ( cursorIsVisible && flag(LineWrap) ){
+        ensureCursorVisible(KeepDistanceFromViewTop);
+    }
 
-	//if ( isCursorVisible() && flag(LineWrap) )
-	//	ensureCursorVisible();
+    emit visibleLinesChanged();
 }
 
 /*!
