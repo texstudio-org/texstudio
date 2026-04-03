@@ -6465,8 +6465,8 @@ void Texstudio::runInternalCommand(const QString &cmd, const QFileInfo &mainfile
 	else if (cmd == BuildManager::CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY)
 		runBibliographyIfNecessary(mainfile);
 	else if (cmd == BuildManager::CMD_VIEW_LOG) {
-		loadLog();
-		viewLog();
+        loadLog();
+        viewLog();
 	} else UtilsUi::txsWarning(tr("Unknown internal command: %1").arg(cmd));
 }
 

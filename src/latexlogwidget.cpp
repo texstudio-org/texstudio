@@ -144,8 +144,10 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiled
         if (f.size() > fileSizeLimitMB * 1024 * 1024){
             bool result=UtilsUi::txsConfirmWarning(tr("The logfile is very large (%1 MB) are you sure you want to load it?").arg(double(f.size()) / 1024 / 1024, 0, 'f', 2),rememberChoice);
             config->setOption("LogView/RememberChoiceLargeFile",static_cast<int>(rememberChoice));
-            if(!result)
+            if(!result){
+                setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it !").arg(double(f.size()) / 1024 / 1024, 0, 'f', 2));
                 return false;
+            }
         }
 
 		QByteArray fullLog = f.readAll();
