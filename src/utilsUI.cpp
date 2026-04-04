@@ -45,7 +45,7 @@ bool txsConfirmWarning(const QString &message,txsWarningState &rememberChoice)
         default: ;
     }
     QMessageBox msg(QMessageBox::Warning,TEXSTUDIO,message,QMessageBox::Yes | QMessageBox::No,QApplication::activeWindow());
-    QCheckBox *cb=new QCheckBox(QApplication::tr("Remember choice ?"));
+    QCheckBox *cb=new QCheckBox(QApplication::tr("Remember choice"));
     msg.setCheckBox(cb);
     bool result=(msg.exec()==QMessageBox::Yes);
     if(msg.checkBox()->checkState()==Qt::Checked){
