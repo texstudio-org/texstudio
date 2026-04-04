@@ -144,18 +144,19 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiled
         ConfigManagerInterface *config=ConfigManagerInterface::getInstance();
         double fileSizeLimitMB = config->getOption("LogView/WarnIfFileSizeLargerMB").toDouble();
         UtilsUi::txsWarningState rememberChoice=static_cast<UtilsUi::txsWarningState>(config->getOption("LogView/RememberChoiceLargeFile",0).toInt());
-        if (f.size() > fileSizeLimitMB * 1024 * 1024){
+        double fileSizeMB = double(f.size()) / 1024 / 1024;
+        if (fileSizeMB > fileSizeLimitMB){
             bool skipLoadRememberChoice=(rememberChoice==UtilsUi::txsWarningState::RememberFalse);
             bool result=false;
             if(m_lastIgnoredFilename!=logname){
-                result=UtilsUi::txsConfirmWarning(tr("The logfile is very large (%1 MB) are you sure you want to load it?").arg(double(f.size()) / 1024 / 1024, 0, 'f', 2),rememberChoice);
+                result=UtilsUi::txsConfirmWarning(tr("The logfile is very large (%1 MB) are you sure you want to load it?").arg(fileSizeMB, 0, 'f', 2),rememberChoice);
                 config->setOption("LogView/RememberChoiceLargeFile",static_cast<int>(rememberChoice));
             }
             if(!result){
                 if(skipLoadRememberChoice){
-                    setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option !\nTo revoke that choice, see [manual](%2)").arg(double(f.size()) / 1024 / 1024, 0, 'f', 2).arg("https://texstudio-org.github.io/configuration.html#hidden-settings"));
+                    setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option !\nTo revoke that choice, see [manual](%2)").arg(fileSizeMB, 0, 'f', 2).arg("https://texstudio-org.github.io/configuration.html#hidden-settings"));
                 }else{
-                    setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it !").arg(double(f.size()) / 1024 / 1024, 0, 'f', 2));
+                    setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it !").arg(fileSizeMB, 0, 'f', 2));
                     m_lastIgnoredFilename=logname;
                 }
                 return false;
