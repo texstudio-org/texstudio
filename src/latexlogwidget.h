@@ -32,6 +32,7 @@ signals:
 	void logEntryActivated(int);
 	void logLoaded();
 	void logResetted();
+    void showLogPanel();
 
 public slots:
 

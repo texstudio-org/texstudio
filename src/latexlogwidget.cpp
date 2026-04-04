@@ -152,6 +152,7 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiled
                 config->setOption("LogView/RememberChoiceLargeFile",static_cast<int>(rememberChoice));
             }
             if(!result){
+                emit showLogPanel();
                 if(skipLoadRememberChoice){
                     setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option !\nTo revoke that choice, see [manual](%2)").arg(double(f.size()) / 1024 / 1024, 0, 'f', 2).arg("https://texstudio-org.github.io/configuration.html#hidden-settings"));
                 }else{
