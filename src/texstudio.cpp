@@ -795,6 +795,7 @@ void Texstudio::setupDockWidgets()
         connect(outputView->getLogWidget(), SIGNAL(logEntryActivated(int)), this, SLOT(gotoLogEntryEditorOnly(int)));
         connect(outputView->getLogWidget(), SIGNAL(logLoaded()), this, SLOT(updateLogEntriesInEditors()));
         connect(outputView->getLogWidget(), SIGNAL(logResetted()), this, SLOT(clearLogEntriesInEditors()));
+        connect(outputView->getLogWidget(), SIGNAL(showLogPanel()), this, SLOT(showLog()));
         connect(outputView, SIGNAL(pageChanged(QString)), this, SLOT(outputPageChanged(QString)));
         connect(outputView->getSearchResultWidget(), &SearchResultWidget::jumpToSearchResult, this, &Texstudio::jumpToSearchResult);
         connect(outputView->getSearchResultWidget(), &SearchResultWidget::jumpToFileSearchResult, this, &Texstudio::jumpToFileSearchResult);
