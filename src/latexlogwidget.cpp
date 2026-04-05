@@ -82,7 +82,8 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
     infoLabel->setTextFormat(Qt::MarkdownText);
 	infoLabel->setMargin(2);
     infoLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
-    infoLabel->setOpenExternalLinks(true);
+    infoLabel->setOpenExternalLinks(false);
+    connect(infoLabel, &QLabel::linkActivated, this, &LatexLogWidget::onInfoLinkActivated);
 
 	QVBoxLayout *vLayout = new QVBoxLayout(); //contains the widgets for the normal mode (OutputTable + OutputLogTextEdit)
 	vLayout->setSpacing(0);
@@ -119,6 +120,19 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	errorTable->setVisible(true);
 	displayLogAction->setChecked(false);
 	log->setVisible(false);
+}
+
+void LatexLogWidget::onInfoLinkActivated(const QString &link)
+{
+    ConfigManagerInterface *config=ConfigManagerInterface::getInstance();
+    UtilsUi::txsWarningState rememberChoice = UtilsUi::txsWarningState::DontRemember;
+    config->setOption("LogView/RememberChoiceLargeFile",static_cast<int>(rememberChoice));
+
+    if (link==QLatin1String("setToUtilsUi::txsWarningState::RememberFalse")) {
+        setInfo(tr("Your remembered answer has been cleared. Please reopen the log to load it."));
+    }else{
+        setInfo(tr("Your remembered answer has been cleared."));
+    }
 }
 
 void LatexLogWidget::resizeRows()
