@@ -585,6 +585,8 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
                 fn=path+fn;
             }
 			QAction *act = new QAction(LatexEditorView::tr("Open %1").arg(tk.getText()), contextMenu);
+            // encode cursor position into filename/user data
+            fn=QString("%1##%2").arg(fn).arg(cursor.lineNumber());
             act->setData(fn);
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(openExternalFile()));
 			contextMenu->addAction(act);
@@ -594,6 +596,8 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			QAction *act = new QAction(LatexEditorView::tr("Open Bibliography"), contextMenu);
 			QString bibFile;
 			bibFile = tk.getText() + ".bib";
+            // encode cursor position into filename/user data
+            bibFile=QString("%1##%2").arg(bibFile).arg(cursor.lineNumber());
 			act->setData(bibFile);
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(openExternalFile()));
 			contextMenu->addAction(act);
@@ -2020,13 +2024,25 @@ void LatexEditorView::requestCitation()
 void LatexEditorView::openExternalFile()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
-	QString name = act->data().toString();
+    QString userData = act->data().toString();
+    // split filename and line number at "##"
+    QStringList parts=userData.split("##");
+    QString name = act->data().toString();
+    int line=-1;
+    if(parts.size()==2){
+        name=parts[0];
+        bool ok;
+        line=parts[1].toInt(&ok);
+        if(!ok){
+            line=-1;
+        }
+    }
     name.replace("\\string~",QDir::homePath());
     if(document->getStateImportedFile()){
         name+="#";
     }
 	if (!name.isEmpty())
-		emit openFile(name);
+        emit openFile(name,line);
 }
 
 void LatexEditorView::openPackageDocumentation(QString package)

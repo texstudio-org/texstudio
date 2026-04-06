@@ -358,6 +358,7 @@ private slots:
 protected slots:
     LatexEditorView * openExternalFile(QString name, const QString &defaultExt = "tex", LatexDocument *doc = nullptr,bool relativeToCurrentDoc=false,int lineNr=-1); // signaled by latexViewer to open specific file
     void openExternalFileFromAction();
+    void openExternalFileAtLine(QString name,int lineNr);
 
 	void editUndo(); ///< undo changes in text editor
 	void editRedo(); ///< redo changes in text editor

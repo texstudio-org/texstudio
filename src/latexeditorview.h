@@ -339,6 +339,7 @@ signals:
 	void showImgPreview(const QString &fileName);
 	void showFullPreview();
 	void openFile(const QString &name);
+    void openFile(const QString &name,int line);
 	void openFile(const QString &baseName, const QString &defaultExtension);
 	void openCompleter();
 	void thesaurus(int line, int col);

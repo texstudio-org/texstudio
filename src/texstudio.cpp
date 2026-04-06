@@ -2071,6 +2071,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
     connect(edit, SIGNAL(findSpecialUsages(LatexDocument*,QString,int)), this, SLOT(findSpecialUsages(LatexDocument*,QString,int)));
     connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
     connect(edit, SIGNAL(openFile(QString)), this, SLOT(openExternalFile(QString)));
+    connect(edit, SIGNAL(openFile(QString,int)), this, SLOT(openExternalFileAtLine(QString,int)));
     connect(edit, SIGNAL(openFile(QString,QString)), this, SLOT(openExternalFile(QString,QString)));
     connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)), bookmarks, SLOT(bookmarkDeleted(QDocumentLineHandle*)));
     connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)), bookmarks, SLOT(bookmarkAdded(QDocumentLineHandle*,int)));
@@ -10496,6 +10497,13 @@ void Texstudio::openExternalFileFromAction()
 
     if (!name.isEmpty())
         openExternalFile(name);
+}
+
+void Texstudio::openExternalFileAtLine(QString name, int lineNr)
+{
+    LatexEditorView *edView=qobject_cast<LatexEditorView *>(sender());
+    LatexDocument *doc=edView ? edView->document : nullptr;
+    openExternalFile(name, "tex", doc, false, lineNr);
 }
 
 void Texstudio::cursorHovered()
