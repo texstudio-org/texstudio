@@ -8753,7 +8753,7 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
             QString defaultExt = se->type == StructureEntry::SE_BIBTEX ? ".bib" : ".tex";
             QString name=se->title;
             name.replace("\\string~",QDir::homePath());
-            openExternalFile(name,defaultExt,se->document,relativeToCurrentDoc);
+            openExternalFile(name,defaultExt,se->document,relativeToCurrentDoc,se->getCachedLineNumber());
         }
     }
 }
@@ -10425,8 +10425,17 @@ void Texstudio::findMissingBracket()
 	QDocumentCursor c = currentEditor()->languageDefinition()->getNextMismatch(currentEditor()->cursor());
 	if (c.isValid()) currentEditor()->setCursor(c);
 }
-
-LatexEditorView* Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexDocument *doc, bool relativeToCurrentDoc)
+/*!
+ * \brief Texstudio::openExternalFile
+ * Opens an external file (e.g. included .tex, .bib) in the editor.
+ * \param name filename
+ * \param defaultExt default extension if none is present in the filename
+ * \param doc from which the included file should be resolved
+ * \param relativeToCurrentDoc name relative to current doc instead of root
+ * \param lineNr which is updated if new file needs to be created
+ * \return
+ */
+LatexEditorView* Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexDocument *doc, bool relativeToCurrentDoc, int lineNr)
 {
 	if (!doc) {
         if (!currentEditor()) return nullptr;
@@ -10458,8 +10467,8 @@ LatexEditorView* Texstudio::openExternalFile(QString name, const QString &defaul
 			UtilsUi::txsCritical(tr("Unable to open file \"%1\".").arg(fi.fileName()));
 		} else {
 			if (UtilsUi::txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(fi.fileName()))) {
-				int lineNr = -1;
-				if (currentEditor()) {
+                if (lineNr<0 && currentEditor()) {
+                    // use cursor position of current editor if lineNr not given
 					lineNr = currentEditor()->cursor().lineNumber();
 				}
 				if (!fi.absoluteDir().exists())
