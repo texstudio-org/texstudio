@@ -374,6 +374,7 @@
 <file>completion/bibleref-lds.cwl</file>
 <file>completion/bibleref-mouth.cwl</file>
 <file>completion/bibleref-parse.cwl</file>
+<file>completion/bibleref-sbl.cwl</file>
 <file>completion/bibleref-xidx.cwl</file>
 <file>completion/bibletext.cwl</file>
 <file>completion/bibnames.cwl</file>
@@ -1152,6 +1153,7 @@
 <file>completion/counterz.cwl</file>
 <file>completion/countriesofeurope.cwl</file>
 <file>completion/counttexruns.cwl</file>
+<file>completion/countwords.cwl</file>
 <file>completion/couriers.cwl</file>
 <file>completion/courierten.cwl</file>
 <file>completion/CoverPage.cwl</file>
@@ -3332,6 +3334,7 @@
 <file>completion/savesym.cwl</file>
 <file>completion/savetrees.cwl</file>
 <file>completion/sbl-paper.cwl</file>
+<file>completion/sblfonts.cwl</file>
 <file>completion/scalebar.cwl</file>
 <file>completion/scalefnt.cwl</file>
 <file>completion/scalerel.cwl</file>
@@ -4358,6 +4361,7 @@
 <file>completion/zahl2string.cwl</file>
 <file>completion/Zallman.cwl</file>
 <file>completion/zb-basics.cwl</file>
+<file>completion/zebra.cwl</file>
 <file>completion/zebra-goodies.cwl</file>
 <file>completion/zeckendorf.cwl</file>
 <file>completion/zennote.cwl</file>

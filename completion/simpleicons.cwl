@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/03/31 for v16.13.0
+# Matthew Bertucci 2026/04/06 for v16.14.0
 
 #include:iftex
 
@@ -940,6 +940,7 @@ facebooklive
 faceit
 facepunch
 fairphone
+faker
 falco
 falcon
 fampay
@@ -2346,6 +2347,7 @@ progate
 progress
 prometheus
 pronounsdotpage
+prosemirror
 prosieben
 proteus
 protocolsdotio
@@ -2391,6 +2393,7 @@ qantas
 qase
 qatarairways
 qbittorrent
+qdrant
 qemu
 qgis
 qi

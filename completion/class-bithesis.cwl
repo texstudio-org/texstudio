@@ -87,6 +87,7 @@ info/translationTitle=%<字符串%>
 info/translationOriginTitleEn=%<字符串%>
 info/classification=%<字符串%>
 info/UDC=%<字符串%>
+info/universityCode=%<字符串%>
 info/degreeType=#professional,academic
 info/chairman=%<字符串%>
 info/chairmanEn=%<字符串%>
@@ -94,8 +95,8 @@ info/degree=%<字符串%>
 info/degreeEn=%<字符串%>
 info/institute=%<字符串%>
 info/instituteEn=%<字符串%>
-info/defenseDate=%<字符串%>
-info/defenseDateEn=%<字符串%>
+info/submissionDate=%<字符串%>
+info/submissionDateEN=%<字符串%>
 info/classifiedLevel=%<字符串%>
 info/工程硕博士专项#true,false
 info/crossResearch#true,false

@@ -1,5 +1,5 @@
 # lete-sans-math package
-# Matthew Bertucci 2026/03/20 for v0.60
+# Matthew Bertucci 2026/04/06 for v0.61
 
 #include:iftex
 #include:unicode-math
@@ -122,6 +122,12 @@ Scale=%<factor%>
 \vertnsucccurlyeq#*m
 \vertntrianglelefteq#*m
 \vertntrianglerighteq#*m
+\lesssimslant#*m
+\gtrsimslant#*m
+\simslantless#*m
+\simslantgtr#*m
+\smteslant#*m
+\lateslant#*m
 
 # symbols provided besides default (see unicode-math.cwl)
 \acwcirclearrow#m
