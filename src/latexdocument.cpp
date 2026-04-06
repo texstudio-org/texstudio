@@ -978,7 +978,10 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             LatexDocument *dc = parent->findDocumentFromName(fname);
             if (dc) {
                 childDocs.insert(dc);
-                dc->setMasterDocument(this, recheckLabels && data.updateSyntaxCheck);
+                if(!dc->masterDocument){
+                    // avoid reseting masterDocument in case of multiple includes of the same file/loops in hierarchy
+                    dc->setMasterDocument(this, recheckLabels && data.updateSyntaxCheck);
+                }
                 if(includeWasNotPresent){
                     data.addedIncludes << dc;
                 }
