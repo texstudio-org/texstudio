@@ -3715,7 +3715,8 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     }
 
     bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
-
+    QElapsedTimer time;
+    time.start();
     QStringList missingFiles;
     for (int i = 0; i < s.files().size(); i++) {
         FileInSession f = s.files().at(i);
@@ -3755,7 +3756,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     }
     activateEditorForFile(s.currentFile());
     cursorHistory->setInsertionEnabled(true);
-
+    qDebug()<<"total time for restoring session:"<<time.elapsed()<<"ms";
     if (!s.PDFFile().isEmpty()) {
         runInternalCommand("txs:///view-pdf-internal", QFileInfo(s.PDFFile()), enquoteStr(s.PDFFile()) +" "+ (s.PDFEmbedded() ? "--embedded" : "--windowed"));
     }
@@ -3766,6 +3767,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     if (warnMissing && !missingFiles.isEmpty()) {
         UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
     }
+    qDebug()<<"total time for restoring session and completer:"<<time.elapsed()<<"ms";
 }
 
 Session Texstudio::getCurrentSession()
@@ -4250,7 +4252,7 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
         }else{
             target = defs.keys().constFirst();
             edView = getEditorViewFromHandle(target);
-            if(edView->isHidden()){
+            if(edView && edView->isHidden()){
                 LatexDocument *ltxdoc = qobject_cast<LatexDocument*>(target->document());
                 if(ltxdoc)
                     openExternalFile(ltxdoc->getFileName());
