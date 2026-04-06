@@ -4,6 +4,7 @@
 - disable AI wizard by default
 - enable LLM to use tool functions to access the current document. This allows LLM to manipulate the document directly. This can be disabled.
 - fix losing cursor position when view witdh changes (soft wrap) [#3418](https://github.com/texstudio-org/texstudio/issues/3418)
+- fix file detection in TOC when creating new file from include/input
 
 ## TeXstudio 4.9.3
 
