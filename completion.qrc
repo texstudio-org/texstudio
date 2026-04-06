@@ -3789,6 +3789,7 @@
 <file>completion/tikz-feynhand.cwl</file>
 <file>completion/tikz-feynman.cwl</file>
 <file>completion/tikzfill.cwl</file>
+<file>completion/tikzfill.geomarray.cwl</file>
 <file>completion/tikzfill.hexagon.cwl</file>
 <file>completion/tikzfill.image.cwl</file>
 <file>completion/tikzfill.rhombus.cwl</file>
@@ -3862,6 +3863,7 @@
 <file>completion/tikzlibraryext.shapes.uncenteredrectangle.cwl</file>
 <file>completion/tikzlibraryext.transformations.mirror.cwl</file>
 <file>completion/tikzlibraryfadings.cwl</file>
+<file>completion/tikzlibraryfill.geomarray.cwl</file>
 <file>completion/tikzlibraryfill.hexagon.cwl</file>
 <file>completion/tikzlibraryfill.image.cwl</file>
 <file>completion/tikzlibraryfill.rhombus.cwl</file>
