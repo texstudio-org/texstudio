@@ -1842,7 +1842,7 @@ void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
         // set lp in newly included document
         lp=doc->lp;
     }
-    lp->clear(); // clear cache
+    lp->projectDocuments.clear(); // clear cache
     if (recheck) {
         QList<LatexDocument *>listOfDocs = getListOfDocs();
 
@@ -1879,7 +1879,7 @@ LatexDocument *LatexDocument::getMasterDocument() const
 
 QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visitedDocs,bool onlyChildDocs)
 {
-    if(!lp->projectDocuments.isEmpty()){
+    if(!lp->projectDocuments.isEmpty() && !onlyChildDocs){
         // return cached list of documents if available
         return lp->projectDocuments;
     }
@@ -1912,7 +1912,9 @@ QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visite
         // top level of recursion
 		delete visitedDocs;
         // save cache
-        lp->projectDocuments=listOfDocs;
+        if(!onlyChildDocs){
+            lp->projectDocuments=listOfDocs;
+        }
     }
 	return listOfDocs;
 }
@@ -2551,7 +2553,7 @@ std::pair<bool,bool> LatexDocuments::addDocsToLoad(QStringList filenames, LatexD
                 if(doc->isIncompleteInMemory()){
                     // gather all commands from all child documents
                     // needed for cached files
-                    QList<LatexDocument *>listOfDocs = doc->getListOfDocs();
+                    QList<LatexDocument *>listOfDocs = doc->getListOfDocs(nullptr,true);
                     foreach (const LatexDocument *elem, listOfDocs) {
                         if(elem==doc) continue;
                         doc->lp->append(elem->ltxCommands);
