@@ -2479,6 +2479,7 @@
 <file>completion/metainfo.cwl</file>
 <file>completion/metalogo.cwl</file>
 <file>completion/metalogox.cwl</file>
+<file>completion/metaphor.cwl</file>
 <file>completion/metastr.cwl</file>
 <file>completion/method.cwl</file>
 <file>completion/methylen.cwl</file>
@@ -3211,6 +3212,7 @@
 <file>completion/qtree.cwl</file>
 <file>completion/quantikz.cwl</file>
 <file>completion/quattrocento.cwl</file>
+<file>completion/quickderivs.cwl</file>
 <file>completion/quickreaction.cwl</file>
 <file>completion/quiver.cwl</file>
 <file>completion/quiz2socrative.cwl</file>

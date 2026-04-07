@@ -1,5 +1,5 @@
 # fourier-otf package
-# Matthew Bertucci 2025/11/03 for v0.71
+# Matthew Bertucci 2026/04/07 for v0.74
 
 #include:iftex
 #include:fourier-orns
@@ -224,6 +224,10 @@ Scale=%<factor%>
 \xswordsdown#m
 \xswordsup#m
 \Zbar#m
+\simlessslant#*m
+\simgtrslant#*m
+\smteslant#*m
+\lateslant#*m
 
 # sans greek
 \msansAlpha#*m
