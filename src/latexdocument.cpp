@@ -1842,6 +1842,7 @@ void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
         // set lp in newly included document
         lp=doc->lp;
     }
+    lp->clear(); // clear cache
     if (recheck) {
         QList<LatexDocument *>listOfDocs = getListOfDocs();
 
@@ -1878,6 +1879,10 @@ LatexDocument *LatexDocument::getMasterDocument() const
 
 QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visitedDocs,bool onlyChildDocs)
 {
+    if(!lp->projectDocuments.isEmpty()){
+        // return cached list of documents if available
+        return lp->projectDocuments;
+    }
 	QList<LatexDocument *>listOfDocs;
 	bool deleteVisitedDocs = false;
 	if (parent->masterDocument) {
@@ -1903,8 +1908,12 @@ QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visite
 				listOfDocs << master->getListOfDocs(visitedDocs);
 		}
 	}
-	if (deleteVisitedDocs)
+    if (deleteVisitedDocs){
+        // top level of recursion
 		delete visitedDocs;
+        // save cache
+        lp->projectDocuments=listOfDocs;
+    }
 	return listOfDocs;
 }
 void LatexDocument::updateRefHighlight(ReferencePairEx p){
@@ -2018,7 +2027,7 @@ QList<CodeSnippet> LatexDocument::userCommandList() const
 
 void LatexDocument::updateRefsLabels(const QString &ref)
 {
-	// get occurences (refs)
+    // get occurences (refs)
 	int referenceMultipleFormat = getFormatId("referenceMultiple");
 	int referencePresentFormat = getFormatId("referencePresent");
 	int referenceMissingFormat = getFormatId("referenceMissing");
@@ -2223,6 +2232,8 @@ void LatexDocuments::requestedClose()
 void LatexDocuments::setMasterDocument(LatexDocument *document)
 {
 	if (document == masterDocument) return;
+    // clear cache
+    document->lp->projectDocuments.clear();
 	if (masterDocument != nullptr && masterDocument->getEditorView() == nullptr) {
         QString fn = masterDocument->getFileName();
 		LatexDocument *doc = masterDocument;
