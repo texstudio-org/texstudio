@@ -447,7 +447,7 @@ fill-angle-seconds#true,false
 #keyvals:\sisetup,\duration
 duration-mode=#component,decimal
 duration-separator=%<separator%>
-ill-duration-hours#true,false
+fill-duration-hours#true,false
 fill-duration-minutes#true,false
 fill-duration-seconds#true,false
 duration-unit-hour=%<unit%>
