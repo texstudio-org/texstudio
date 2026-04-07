@@ -211,6 +211,8 @@ public:
         QStringList addedUserSnippets;
         QStringList lstFilesToLoad;
         QStringList removedIncludes;
+        QStringList removedLabels;
+        QStringList addedLabels;
         QList<LatexDocument *> addedIncludes;
         QStringList oldBibs;
         bool completerNeedsUpdate = false;

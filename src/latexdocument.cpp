@@ -582,10 +582,12 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             elem.start = tk.start;
             mLabelItem.insert(dlh, elem);
             data.completerNeedsUpdate = true;
+            data.addedLabels.append(elem.name);
             StructureEntry *newLabel = new StructureEntry(this, StructureEntry::SE_LABEL);
             newLabel->title = elem.name;
             newLabel->setLine(dlh, currentLineNr);
             replaceOrAdd(docStructureIter,dlh,newLabel);
+
         }
         //// newtheorem ////
         if (tk.type == Token::newTheorem && tk.length > 0) {
@@ -1129,6 +1131,23 @@ void LatexDocument::reinterpretCommandArguments(HandledData &changedCommands)
         handleComments(dlh,i,docStructureIter);
 
         interpretCommandArguments(dlh,i,changedCommands,false,docStructureIter);
+        if(changedCommands.addedLabels.size()>0 || changedCommands.removedLabels.size()>0){
+            // check if removed labels differ from added labels
+            // avoid costly update over all documents
+            foreach(const QString &elem, changedCommands.removedLabels){
+                if(changedCommands.addedLabels.contains(elem)){
+                    changedCommands.removedLabels.removeAll(elem);
+                }
+            }
+            if(changedCommands.removedLabels.size()>0){
+                changedCommands.completerNeedsUpdate = true;
+                mLabelItem.remove(dlh);
+                foreach (const QString &name, changedCommands.removedLabels)
+                    updateRefsLabels(name);
+            }
+            changedCommands.addedLabels.clear();
+            changedCommands.removedLabels.clear();
+        }
         if (edView && !skipRecheck){
             edView->documentContentChanged(i, 1);
             reCheckSyntax(i,1);
@@ -1311,10 +1330,13 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
     }
     if (mLabelItem.contains(dlh)) {
         QList<ReferencePair> labels = mLabelItem.values(dlh);
-        changedCommands.completerNeedsUpdate = true;
+        foreach (const ReferencePair &rp, labels) {
+            changedCommands.removedLabels << rp.name;
+        }
+        /*changedCommands.completerNeedsUpdate = true;
         mLabelItem.remove(dlh);
         foreach (const ReferencePair &rp, labels)
-            updateRefsLabels(rp.name);
+            updateRefsLabels(rp.name);*/
     }
     mRefItem.remove(dlh);
     changedCommands.removedIncludes = mIncludedFilesList.values(dlh);
@@ -1484,6 +1506,24 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
         // interpret arguments and update txs knowledge about them
         // e.g. labels, packages, etc
         interpretCommandArguments(dlh,i,changedCommands,recheckLabels,docStructureIter);
+
+        if(changedCommands.addedLabels.size()>0 || changedCommands.removedLabels.size()>0){
+            // check if removed labels differ from added labels
+            // avoid costly update over all documents
+            foreach(const QString &elem, changedCommands.removedLabels){
+                if(changedCommands.addedLabels.contains(elem)){
+                    changedCommands.removedLabels.removeAll(elem);
+                }
+            }
+            if(changedCommands.removedLabels.size()>0){
+                changedCommands.completerNeedsUpdate = true;
+                mLabelItem.remove(dlh);
+                foreach (const QString &name, changedCommands.removedLabels)
+                    updateRefsLabels(name);
+            }
+            changedCommands.addedLabels.clear();
+            changedCommands.removedLabels.clear();
+        }
 
         if (!changedCommands.oldBibs.isEmpty())
             changedCommands.bibTeXFilesNeedsUpdate = true; //file name removed
