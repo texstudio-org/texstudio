@@ -346,7 +346,7 @@ signals:
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
 	void gotoDefinition(QDocumentCursor c);
-	void findLabelUsages(LatexDocument *contextDoc, const QString &labelText);
+    void findLabelUsages(LatexDocument *contextDoc, const QString &labelText,bool definitionOnly);
     void findSpecialUsages(LatexDocument *doc, const QString &labelText, int type);
 	void syncPDFRequested(QDocumentCursor c);
 	void bookmarkRemoved(QDocumentLineHandle *dlh);

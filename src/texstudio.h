@@ -395,7 +395,7 @@ protected slots:
 	void editInsertRefToNextLabel(const QString &refCmd = "\\ref", bool backward = false);
 	void editInsertRefToPrevLabel(const QString &refCmd = "\\ref");
 	void runSearch(SearchQuery *query);
-	void findLabelUsages(LatexDocument *doc, const QString &labelText);
+    void findLabelUsages(LatexDocument *doc, const QString &labelText,bool definitionOnly=false);
     void findSpecialUsages(LatexDocument* doc,const QString &text,int type);
     void findLabelUsagesFromAction();
 	SearchResultWidget *searchResultWidget();

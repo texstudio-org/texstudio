@@ -2067,7 +2067,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
     connect(edit, SIGNAL(showPreview(QDocumentCursor)), this, SLOT(showPreview(QDocumentCursor)));
     connect(edit, SIGNAL(showFullPreview()), this, SLOT(recompileForPreview()));
     connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)), this, SLOT(editGotoDefinition(QDocumentCursor)));
-    connect(edit, SIGNAL(findLabelUsages(LatexDocument*,QString)), this, SLOT(findLabelUsages(LatexDocument*,QString)));
+    connect(edit, SIGNAL(findLabelUsages(LatexDocument*,QString,bool)), this, SLOT(findLabelUsages(LatexDocument*,QString,bool)));
     connect(edit, SIGNAL(findSpecialUsages(LatexDocument*,QString,int)), this, SLOT(findSpecialUsages(LatexDocument*,QString,int)));
     connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
     connect(edit, SIGNAL(openFile(QString)), this, SLOT(openExternalFile(QString)));
@@ -9682,10 +9682,10 @@ void Texstudio::runSearch(SearchQuery *query)
 	query->run(currentEditorView()->document);
 }
 
-void Texstudio::findLabelUsages(LatexDocument *contextDoc, const QString &labelText)
+void Texstudio::findLabelUsages(LatexDocument *contextDoc, const QString &labelText,bool definitionOnly)
 {
 	if (!contextDoc) return;
-	LabelSearchQuery *query = new LabelSearchQuery(labelText);
+    LabelSearchQuery *query = new LabelSearchQuery(labelText,definitionOnly);
 	searchResultWidget()->setQuery(query);
 	query->run(contextDoc);
     outputView->showPage(outputView->SEARCH_RESULT_PAGE);

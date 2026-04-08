@@ -272,7 +272,7 @@ void SearchQuery::replaceAll()
 }
 
 
-LabelSearchQuery::LabelSearchQuery(QString label) :
+LabelSearchQuery::LabelSearchQuery(QString label, bool defintionOnly) :
 	SearchQuery(label, label, IsWord | IsCaseSensitive | SearchAgainAllowed | ReplaceAllowed)
 {
 	mModel = new LabelSearchResultModel(this);
@@ -281,6 +281,8 @@ LabelSearchQuery::LabelSearchQuery(QString label) :
 	mScope = ProjectScope;
 	mType = tr("Label Search");
 	mModel->setAllowPartialSelection(false);
+
+    mDefinitionOnly=defintionOnly;
 }
 
 void LabelSearchQuery::run(LatexDocument *doc)
@@ -288,7 +290,9 @@ void LabelSearchQuery::run(LatexDocument *doc)
 	mModel->removeAllSearches();
 	QString labelText = searchExpression();
 	QMultiHash<QDocumentLineHandle *, int> usages = doc->getLabels(labelText);
-	usages += doc->getRefs(labelText);
+    if(!mDefinitionOnly){
+        usages += doc->getRefs(labelText);
+    }
 	QHash<QDocument *, QList<QDocumentLineHandle *> > usagesByDocument;
 	foreach (QDocumentLineHandle *dlh, usages.keys()) {
 		QDocument *doc = dlh->document();

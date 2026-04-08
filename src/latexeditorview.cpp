@@ -640,7 +640,25 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				contextMenu->addAction(act);
 			}
 		}
-        if (/* tk.type==Tokens::bibRef || TODO: bibliography references not yet handled by token system */tk.type >= Token::specialArg || tk.type == Token::labelRef) {
+        if (tk.type == Token::labelRef) {
+            // check if one or more definition exist and adapt menu text accordingly
+            int cnt = edView->document->countLabels(tk.getText());
+            if(cnt==1){
+                QAction *act = new QAction(LatexEditorView::tr("Go to Definition"), contextMenu);
+                act->setData(QVariant().fromValue<QDocumentCursor>(cursor));
+                edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitGotoDefinitionFromAction()));
+                contextMenu->addAction(act);
+            }
+            if(cnt>1){
+                QAction *act = new QAction(LatexEditorView::tr("Find Definitions"), contextMenu);
+                act->setData(tk.getText());
+                act->setProperty("doc", QVariant::fromValue<LatexDocument *>(edView->document));
+                act->setProperty("definitionOnly", true);
+                edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitFindLabelUsagesFromAction()));
+                contextMenu->addAction(act);
+            }
+        }
+        if (/* tk.type==Tokens::bibRef || TODO: bibliography references not yet handled by token system */tk.type >= Token::specialArg) {
 			QAction *act = new QAction(LatexEditorView::tr("Go to Definition"), contextMenu);
 			act->setData(QVariant().fromValue<QDocumentCursor>(cursor));
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitGotoDefinitionFromAction()));
@@ -650,6 +668,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			QAction *act = new QAction(LatexEditorView::tr("Find Usages"), contextMenu);
 			act->setData(tk.getText());
 			act->setProperty("doc", QVariant::fromValue<LatexDocument *>(edView->document));
+            act->setProperty("definitionOnly", false);
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitFindLabelUsagesFromAction()));
 			contextMenu->addAction(act);
 		}
@@ -2104,7 +2123,8 @@ void LatexEditorView::emitFindLabelUsagesFromAction()
 	if (!action) return;
 	QString labelText = action->data().toString();
 	LatexDocument *doc = action->property("doc").value<LatexDocument *>();
-	emit findLabelUsages(doc, labelText);
+    bool definitionOnly=action->property("definitionOnly").toBool();
+    emit findLabelUsages(doc, labelText,definitionOnly);
 }
 
 void LatexEditorView::emitFindSpecialUsagesFromAction()
