@@ -640,10 +640,10 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				contextMenu->addAction(act);
 			}
 		}
-        if (tk.type == Token::labelRef) {
+        if (tk.type == Token::label || tk.type == Token::labelRef) {
             // check if one or more definition exist and adapt menu text accordingly
             int cnt = edView->document->countLabels(tk.getText());
-            if(cnt==1){
+            if(cnt==1 && tk.type==Token::labelRef){
                 QAction *act = new QAction(LatexEditorView::tr("Go to Definition"), contextMenu);
                 act->setData(QVariant().fromValue<QDocumentCursor>(cursor));
                 edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitGotoDefinitionFromAction()));
