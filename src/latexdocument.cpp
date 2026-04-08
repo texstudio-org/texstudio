@@ -1915,7 +1915,7 @@ LatexDocument *LatexDocument::getMasterDocument() const
 
 QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visitedDocs,bool onlyChildDocs)
 {
-    if(!lp->projectDocuments.isEmpty() && !onlyChildDocs){
+    if(visitedDocs==nullptr && !lp->projectDocuments.isEmpty() && !onlyChildDocs){
         // return cached list of documents if available
         return lp->projectDocuments;
     }
