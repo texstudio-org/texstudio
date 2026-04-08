@@ -174,6 +174,8 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiled
                     setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)").arg(fileSizeMB, 0, 'f', 2).arg("setToUtilsUi::txsWarningState::RememberFalse"));
                 }
                 return false;
+            }else if(rememberChoice==UtilsUi::RememberTrue) {
+                setInfo(tr("Log file size (%1 MB) above limit; loading performed due to your remembered choice. [Clear stored answer](%2)").arg(fileSizeMB, 0, 'f', 2).arg("setToUtilsUi::txsWarningState::RememberTrue"));
             }
         }
         m_lastIgnoredFilename.clear();
