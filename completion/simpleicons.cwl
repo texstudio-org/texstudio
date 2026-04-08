@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/03/21 for v16.12.0
+# Matthew Bertucci 2026/04/06 for v16.14.0
 
 #include:iftex
 
@@ -764,6 +764,7 @@ dialogflow
 diaspora
 dicebear
 dictionarydotcom
+dify
 digg
 digikeyelectronics
 digitalocean
@@ -939,6 +940,7 @@ facebooklive
 faceit
 facepunch
 fairphone
+faker
 falco
 falcon
 fampay
@@ -2078,6 +2080,7 @@ opel
 openaccess
 openaigym
 openapiinitiative
+openbao
 openbadges
 openbsd
 opencage
@@ -2344,6 +2347,7 @@ progate
 progress
 prometheus
 pronounsdotpage
+prosemirror
 prosieben
 proteus
 protocolsdotio
@@ -2389,6 +2393,7 @@ qantas
 qase
 qatarairways
 qbittorrent
+qdrant
 qemu
 qgis
 qi

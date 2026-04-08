@@ -1,7 +1,7 @@
 # pdfpages package
 # mario 09/06/2007, Tim Hoffmann 25/02/2017
 # muzimuzhi 29 Apr 2020, pdfpages v0.5q
-# Matthew Bertucci 21 Jan 2025 for v0.6d
+# Matthew Bertucci 6 Apr 2026 for v0.6h
 # URL: http://tug.ctan.org/tex-archive/macros/latex/contrib/pdfpages/
 
 #include:eso-pic
@@ -77,6 +77,9 @@ newwindow#true,false
 linkfilename=%<name%>
 addtotoc={%<page num,section,level,heading,label%>}
 addtolist={%<page num,type,heading,label%>}
+alt=%<alt text%>
+alt*={%<tag1,tag2,...%>}
+artifact#true,false
 survey#true,false
 survey-nolink#true,false
 xr-prefix=%<prefix%>

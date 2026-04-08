@@ -1,5 +1,5 @@
 # delimset package
-# Matthew Bertucci 2024/07/17 for v2.0
+# Matthew Bertucci 2026/04/06 for v2.3.1
 
 #include:amsmath
 #include:keyval
@@ -29,6 +29,8 @@ scriptstyle#true,false
 \selectdelim[class%plain]*{delim}
 \selectdelimr{delim}
 \selectdelimr*{delim}
+\doubledelim{delim}
+\doubledelim[width]{delim}
 \DeclareMathDelimiterSel{command}{left-def%definition}{right-def%definition}#d
 \parsedelimflags{compositor}{selector}
 

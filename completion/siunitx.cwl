@@ -1,7 +1,7 @@
 # dbitouze/2015-03-20 for siunitx v2.6e
 # thatlittleboy/2018-06-18
 # r0the/2021-10-07 for siunitx v3
-# Matthew Bertucci 2025-05-17 for v3.4.11
+# Matthew Bertucci 2026-04-06 for v3.5.1
 
 #include:translations
 #include:amstext
@@ -51,6 +51,8 @@
 \degree#/%unit
 \deka#/%unit
 \dm#*/%unit
+\duration{duration}
+\duration[options%keyvals]{duration}
 \electronvolt#/%unit
 \eV#*/%unit
 \exa#/%unit
@@ -249,9 +251,9 @@
 \bohr#S
 \celsius#S
 \clight#S
-\DeclareBinaryPrefix{prefix macro%cmd}{symbol}{power of 2}#*d
-\DeclareSIPostPower{power macro%cmd}{number}#*d
-\DeclareSIPrePower{power macro%cmd}{number}#*d
+\DeclareBinaryPrefix{prefix macro%cmd}{symbol}{power of 2}#Sd
+\DeclareSIPostPower{power macro%cmd}{number}#Sd
+\DeclareSIPrePower{power macro%cmd}{number}#Sd
 \electronmass#S
 \elementarycharge#S
 \hartree#S
@@ -279,8 +281,8 @@
 \SIUnitSymbolOhm#S
 
 # Options
-## 4.2 Printing
-#keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\unit,\SI,\si,\SIlist,\SIrange
+## Printing
+#keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\duration,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\unit,\SI,\si,\SIlist,\SIrange
 color=#%color
 mode=#match,math,text
 number-color=#%color
@@ -299,8 +301,8 @@ unit-color=#%color
 unit-mode=#match,math,text
 #endkeyvals
 
-## 4.3 Parsing numbers
-#keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\SI,\si,\SIlist,\SIrange
+## Parsing numbers
+#keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\duration,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\SI,\si,\SIlist,\SIrange
 evaluate-expression#true,false
 expression=%<expression%>
 input-close-uncertainty=%<symbols%>
@@ -326,8 +328,8 @@ retain-zero-uncertainty#true,false
 \le
 \ge
 
-## 4.4 Post-processing numbers
-#keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\SI,\si,\SIlist,\SIrange
+## Post-processing numbers
+#keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\duration,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\SI,\si,\SIlist,\SIrange
 drop-exponent#true,false
 drop-uncertainty#true,false
 drop-zero-decimal#true,false
@@ -346,8 +348,8 @@ round-zero-positive#true,false
 uncertainty-round-direction=#nearest,up,down
 #endkeyvals
 
-## 4.5 Printing numbers
-#keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\SI,\si,\SIlist,\SIrange
+## Printing numbers
+#keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\duration,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\SI,\si,\SIlist,\SIrange
 allow-uncertainty-breaks#true,false
 bracket-ambiguous-numbers#true,false
 bracket-negative-numbers#true,false
@@ -356,6 +358,7 @@ digit-group-first-size=%<integer%>
 digit-group-other-size=%<integer%>
 exponent-base=%<value%>
 exponent-product=%<symbol%>
+final-digit-group-min-size=%<integer%>
 group-digits=#none,decimal,integer
 group-minimum-digits=%<integer%>
 group-separator=%<separator%>
@@ -382,7 +385,7 @@ zero-decimal-as-symbol#true,false
 zero-symbol=%<symbol%>
 #endkeyvals
 
-## 4.6 Lists, products and ranges
+## Lists, products and ranges
 #keyvals:\sisetup,\numlist,\qtylist,\SIlist
 list-close-bracket=%<symbol%>
 list-exponents=#individual,combine-bracket,combine
@@ -415,7 +418,7 @@ range-phrase=%<text%>
 range-units=#bracket,repeat,single
 #endkeyvals
 
-## 4.7 Complex numbers
+## Complex numbers
 #keyvals:\sisetup,\complexnum,\complexqty
 complex-angle-unit=#degrees,radians
 complex-mode=#cartesian,polar,input
@@ -427,20 +430,32 @@ output-complex-root=%<symbol%>
 print-complex-unity#true,false
 #endkeyvals
 
-## 4.8 Angles
+## Angles
 #keyvals:\sisetup,\ang
 angle-mode=#arc,decimal
+angle-separator=%<separator%>
 angle-symbol-degree=%<symbol%>
 angle-symbol-minute=%<symbol%>
 angle-symbol-over-decimal#true,false
 angle-symbol-second=%<symbol%>
-angle-separator=%<separator%>
 fill-angle-degrees#true,false
 fill-angle-minutes#true,false
 fill-angle-seconds#true,false
 #endkeyvals
 
-## 4.9 Creating units
+## Durations
+#keyvals:\sisetup,\duration
+duration-mode=#component,decimal
+duration-separator=%<separator%>
+fill-duration-hours#true,false
+fill-duration-minutes#true,false
+fill-duration-seconds#true,false
+duration-unit-hour=%<unit%>
+duration-unit-minute=%<unit%>
+duration-unit-second=%<unit%>
+#endkeyvals
+
+## Creating units
 #keyvals:\sisetup
 free-standing-units#true,false
 overwrite-functions#true,false
@@ -449,7 +464,7 @@ unit-optional-argument#true,false
 use-xspace#true,false
 #endkeyvals
 
-## 4.10 Using units
+## Using units
 #keyvals:\sisetup,\DeclareSIUnit,\qty,\qtylist,\qtyproduct,\qtyrange,\unit,\si
 bracket-unit-denominator#true,false
 forbid-literal-units#true,false
@@ -468,7 +483,7 @@ sticky-per#true,false
 unit-font-command=%<command%>
 #endkeyvals
 
-## 4.11 Quantities
+## Quantities
 #keyvals:\sisetup,\DeclareSIUnit,\qty,\qtylist,\qtyproduct,\qtyrange,\SI,\SIlist,\SIrange
 allow-quantity-breaks#true,false
 extract-mass-in-kilograms#true,false
@@ -477,7 +492,7 @@ quantity-product=%<symbol%>
 separate-uncertainty-units=#bracket,repeat,single
 #endkeyvals
 
-## 4.12 Tabular material
+## Tabular material
 #keyvals:\sisetup,\tablenum
 table-align-comparator#true,false
 table-align-exponent#true,false
@@ -495,16 +510,18 @@ table-number-alignment=#left,center,right
 table-text-alignment=#left,center,right,none
 #endkeyvals
 
-## 4.13 Locale options
-#keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\unit,\SI,\si,\SIlist,\SIrange
+## Locale options
+#keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\duration,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\unit,\SI,\si,\SIlist,\SIrange
 locale=#BR,DE,FR,UK,US,ZA
 #endkeyvals
 
-## 4.14 Preamble-only options
+## Preamble-only options
 #keyvals:\sisetup
 list-input-separator=%<separator%>
 product-input-separator=%<separator%>
 table-column-type=%<tokens%>
+disable-deprecated-commands
+disable-deprecated-options
 #endkeyvals
 
 ## (deprecated) Detecting Fonts ; section 5.2

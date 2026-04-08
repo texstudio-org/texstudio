@@ -374,6 +374,7 @@
 <file>completion/bibleref-lds.cwl</file>
 <file>completion/bibleref-mouth.cwl</file>
 <file>completion/bibleref-parse.cwl</file>
+<file>completion/bibleref-sbl.cwl</file>
 <file>completion/bibleref-xidx.cwl</file>
 <file>completion/bibletext.cwl</file>
 <file>completion/bibnames.cwl</file>
@@ -1152,6 +1153,7 @@
 <file>completion/counterz.cwl</file>
 <file>completion/countriesofeurope.cwl</file>
 <file>completion/counttexruns.cwl</file>
+<file>completion/countwords.cwl</file>
 <file>completion/couriers.cwl</file>
 <file>completion/courierten.cwl</file>
 <file>completion/CoverPage.cwl</file>
@@ -2477,6 +2479,7 @@
 <file>completion/metainfo.cwl</file>
 <file>completion/metalogo.cwl</file>
 <file>completion/metalogox.cwl</file>
+<file>completion/metaphor.cwl</file>
 <file>completion/metastr.cwl</file>
 <file>completion/method.cwl</file>
 <file>completion/methylen.cwl</file>
@@ -3209,6 +3212,7 @@
 <file>completion/qtree.cwl</file>
 <file>completion/quantikz.cwl</file>
 <file>completion/quattrocento.cwl</file>
+<file>completion/quickderivs.cwl</file>
 <file>completion/quickreaction.cwl</file>
 <file>completion/quiver.cwl</file>
 <file>completion/quiz2socrative.cwl</file>
@@ -3332,6 +3336,7 @@
 <file>completion/savesym.cwl</file>
 <file>completion/savetrees.cwl</file>
 <file>completion/sbl-paper.cwl</file>
+<file>completion/sblfonts.cwl</file>
 <file>completion/scalebar.cwl</file>
 <file>completion/scalefnt.cwl</file>
 <file>completion/scalerel.cwl</file>
@@ -3789,6 +3794,7 @@
 <file>completion/tikz-feynhand.cwl</file>
 <file>completion/tikz-feynman.cwl</file>
 <file>completion/tikzfill.cwl</file>
+<file>completion/tikzfill.geomarray.cwl</file>
 <file>completion/tikzfill.hexagon.cwl</file>
 <file>completion/tikzfill.image.cwl</file>
 <file>completion/tikzfill.rhombus.cwl</file>
@@ -3862,6 +3868,7 @@
 <file>completion/tikzlibraryext.shapes.uncenteredrectangle.cwl</file>
 <file>completion/tikzlibraryext.transformations.mirror.cwl</file>
 <file>completion/tikzlibraryfadings.cwl</file>
+<file>completion/tikzlibraryfill.geomarray.cwl</file>
 <file>completion/tikzlibraryfill.hexagon.cwl</file>
 <file>completion/tikzlibraryfill.image.cwl</file>
 <file>completion/tikzlibraryfill.rhombus.cwl</file>
@@ -4028,6 +4035,7 @@
 <file>completion/tokcycle.cwl</file>
 <file>completion/tokenizer.cwl</file>
 <file>completion/tokmap.cwl</file>
+<file>completion/tokstools.cwl</file>
 <file>completion/tolkienfonts.cwl</file>
 <file>completion/tone.cwl</file>
 <file>completion/tonevalue.cwl</file>
@@ -4355,6 +4363,7 @@
 <file>completion/zahl2string.cwl</file>
 <file>completion/Zallman.cwl</file>
 <file>completion/zb-basics.cwl</file>
+<file>completion/zebra.cwl</file>
 <file>completion/zebra-goodies.cwl</file>
 <file>completion/zeckendorf.cwl</file>
 <file>completion/zennote.cwl</file>

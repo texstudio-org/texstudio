@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2026/01/04 for v3.13.0
+# Matthew Bertucci 2026/03/31 for v3.14.1
 
 #include:paralist
 #include:amsmath
@@ -463,3 +463,7 @@ jekyllDataRenderers={%<keyvals%>}
 \yamlEnd#*
 \markdownThemeVersion#S
 \mmdcCommand#*
+\markdownRendererAcronym#*
+\markdownRendererAcronymPrototype#*
+\markdownRendererBracketedSpan#*
+\markdownRendererBracketedSpanPrototype#*
