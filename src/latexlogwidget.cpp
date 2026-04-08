@@ -167,11 +167,11 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiled
                 config->setOption("LogView/RememberChoiceLargeFile",static_cast<int>(rememberChoice));
             }
             if(!result){
-                if(skipLoadRememberChoice){
-                    setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option !\nTo revoke that choice, see [manual](%2)").arg(fileSizeMB, 0, 'f', 2).arg("https://texstudio-org.github.io/configuration.html#hidden-settings"));
-                }else{
+                if(rememberChoice==UtilsUi::DontRemember){
                     setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it !").arg(fileSizeMB, 0, 'f', 2));
                     m_lastIgnoredFilename=logname;
+                }else{
+                    setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)").arg(fileSizeMB, 0, 'f', 2).arg("setToUtilsUi::txsWarningState::RememberFalse"));
                 }
                 return false;
             }
