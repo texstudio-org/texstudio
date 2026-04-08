@@ -1333,6 +1333,7 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
         foreach (const ReferencePair &rp, labels) {
             changedCommands.removedLabels << rp.name;
         }
+        mLabelItem.remove(dlh);
     }
     mRefItem.remove(dlh);
     changedCommands.removedIncludes = mIncludedFilesList.values(dlh);
