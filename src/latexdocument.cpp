@@ -1141,7 +1141,6 @@ void LatexDocument::reinterpretCommandArguments(HandledData &changedCommands)
             }
             if(changedCommands.removedLabels.size()>0){
                 changedCommands.completerNeedsUpdate = true;
-                mLabelItem.remove(dlh);
                 foreach (const QString &name, changedCommands.removedLabels)
                     updateRefsLabels(name);
             }
