@@ -18,7 +18,7 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	UtilsUi::resizeInFontHeight(this, 38, 22);
 
 	ConfigManagerInterface *config = ConfigManager::getInstance();
-	config->registerOption("CleanDialog/Extensions", &currentExtensions, defaultExtensions);
+	config->registerOption("CleanDialog/ExtensionsWithDot", &currentExtensions, defaultExtensions);
 	config->registerOption("CleanDialog/Scope", &scopeID, 0);
 	if (scopeID < 0 || scopeID >= MAX_SCOPE) scopeID = 0;
 
