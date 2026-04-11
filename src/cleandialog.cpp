@@ -22,7 +22,7 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	config->registerOption("CleanDialog/Scope", &scopeID, 0);
 	if (scopeID < 0 || scopeID >= MAX_SCOPE) scopeID = 0;
 
-	QString allowedChars = "[^\\\\/\\?\\%\\*:|\"<>\\s,;]";
+	QString allowedChars = "[^\\\\/\\?\\%\\*:|\"<>\\s,;\\{\\}\\[\\]\\(\\)]";
     QRegularExpressionValidator *rxValExtensionList = new QRegularExpressionValidator(QRegularExpression(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(allowedChars)), this);
 	int dummyPos;
 	if (rxValExtensionList->validate(currentExtensions, dummyPos) == QValidator::Acceptable) {
