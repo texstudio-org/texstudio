@@ -28,7 +28,7 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	if (rxValExtensionList->validate(currentExtensions, dummyPos) == QValidator::Acceptable) {
 		ui->leExtensions->setText(currentExtensions);
 	} else {
-		UtilsUi::txsWarning("Invalid extension list found. Resetting to default.");
+		UtilsUi::txsWarning(tr("Invalid extension list %1 found. Resetting to default.").arg(currentExtensions));
 		currentExtensions = defaultExtensions;
 		ui->leExtensions->setText(currentExtensions);
 	}
