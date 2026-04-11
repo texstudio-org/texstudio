@@ -2584,7 +2584,8 @@ std::pair<bool,bool> LatexDocuments::addDocsToLoad(QStringList filenames, LatexD
                 doc->setFileName(fn);
                 addDocument(doc,true);
                 if(!doc->restoreCachedData(getCachingFolder(),fn)){
-                    doc->load(fn,QDocument::defaultCodec());
+                    // load as hidden document
+                    doc->load(fn,QDocument::defaultCodec(),true);
                 }
                 doc->setLtxCommands(parentDocument->lp);
                 if(doc->isIncompleteInMemory()){

@@ -654,7 +654,7 @@ QStringList QDocument::textLines() const{
 /*!
 	\brief Set the content of the document
 */
-void QDocument::setText(const QString& s, bool allowUndo)
+void QDocument::setText(const QString& s, bool allowUndo,bool notVisible)
 {
 	if ( !m_impl )
 		return;
@@ -758,7 +758,12 @@ void QDocument::setText(const QString& s, bool allowUndo)
 
 	emit lineCountChanged(lineCount());
 
-	m_impl->emitContentsChange(0, m_impl->m_lines.count());
+    if(!notVisible){
+        // avoid update when loaded as hidden file
+        // would perform line wrap and similar
+        // update can be forced by calling highlight()
+        m_impl->emitContentsChange(0, m_impl->m_lines.count());
+    }
 }
 
 QTextCodec* guessEncoding(const QByteArray& data){
@@ -778,7 +783,7 @@ QTextCodec* guessEncoding(const QByteArray& data){
  * \param file
  * \param codec
  */
-void QDocument::load(const QString& file, QTextCodec* codec){
+void QDocument::load(const QString& file, QTextCodec* codec,bool notVisible){
 	QFile f(file);
 
 	// gotta handle line endings ourselves if we want to detect current line ending style...
@@ -793,7 +798,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
     if (codec == nullptr)
         codec=guessEncoding(d);
 
-    setText(codec->toUnicode(d), false);
+    setText(codec->toUnicode(d), false,notVisible);
 
 	setCodecDirect(codec);
 	setLastModified(QFileInfo(file).lastModified());
