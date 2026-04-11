@@ -23,7 +23,7 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	if (scopeID < 0 || scopeID >= MAX_SCOPE) scopeID = 0;
 
 	QString disallowedChars = "[^\\\\/\\?\\%\\*:|\"<>\\s,;\\{\\}\\[\\]\\(\\)]";
-    QRegularExpressionValidator *rxValExtensionList = new QRegularExpressionValidator(QRegularExpression(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(disallowedChars)), this);
+	QRegularExpressionValidator *rxValExtensionList = new QRegularExpressionValidator(QRegularExpression(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(disallowedChars)), this);
 	int dummyPos;
 	if (rxValExtensionList->validate(currentExtensions, dummyPos) == QValidator::Acceptable) {
 		ui->leExtensions->setText(currentExtensions);
@@ -100,9 +100,9 @@ void CleanDialog::updateFilesToRemove() {
 	scopeID = ui->cbScope->itemData(ui->cbScope->currentIndex()).toInt();
 	Scope scope = (Scope) scopeID;
 #if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
-    QStringList extList(ui->leExtensions->text().split(',', Qt::SkipEmptyParts));
+	QStringList extList(ui->leExtensions->text().split(',', Qt::SkipEmptyParts));
 #else
-    QStringList extList(ui->leExtensions->text().split(',', QString::SkipEmptyParts));
+	QStringList extList(ui->leExtensions->text().split(',', QString::SkipEmptyParts));
 #endif
 	QStringList forbiddenExtensions = QStringList() << ".tex" << ".lytex";
 	QStringList found;
@@ -174,8 +174,8 @@ QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringLi
 		break;
 	case None:
 		break;
-    default:
-        break;
+	default:
+		break;
 	}
 	return files;
 }
@@ -187,8 +187,8 @@ QStringList CleanDialog::filesToRemoveFromDir(const QDir &dir, const QStringList
 	}
 	if (recursive) {
 		foreach (const QFileInfo &fi, dir.entryInfoList(QDir::AllDirs | QDir::NoDotAndDotDot)) {
-            if(fi.fileName().startsWith("."))
-                continue; // filter directories starting with . (e.g. .git) since they are not automatiocally hidden on windows
+			if(fi.fileName().startsWith("."))
+				continue; // filter directories starting with . (e.g. .git) since they are not automatiocally hidden on windows
 			files << filesToRemoveFromDir(fi.absoluteFilePath(), extensionFilter, recursive);
 		}
 	}
