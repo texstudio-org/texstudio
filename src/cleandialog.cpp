@@ -4,7 +4,7 @@
 #include "configmanager.h"
 #include "utilsUI.h"
 
-QString CleanDialog::defaultExtensions = "log,aux,dvi,lof,lot,bit,idx,glo,bbl,bcf,ilg,toc,ind,out,blg,fdb_latexmk,fls,run.xml";
+QString CleanDialog::defaultExtensions = ".log,.aux,.dvi,.lof,.lot,.bit,.idx,.glo,.bbl,.bcf,.ilg,.toc,.ind,.out,.blg,.fdb_latexmk,.fls,.run.xml";
 QString CleanDialog::currentExtensions = CleanDialog::defaultExtensions;
 int CleanDialog::scopeID = 0;
 
@@ -104,7 +104,7 @@ void CleanDialog::updateFilesToRemove() {
 #else
     QStringList extList(ui->leExtensions->text().split(',', QString::SkipEmptyParts));
 #endif
-	QStringList forbiddenExtensions = QStringList() << "tex" << "lytex";
+	QStringList forbiddenExtensions = QStringList() << ".tex" << ".lytex";
 	QStringList found;
 	foreach (const QString &ext, forbiddenExtensions) {
 		if (extList.contains(ext))
@@ -137,7 +137,7 @@ QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringLi
 	case Project:
 		{
 			QStringList filterList;
-			foreach (const QString &ext, extensionFilter) filterList << "*." + ext;
+			foreach (const QString &ext, extensionFilter) filterList << "*" + ext;
 			files << filesToRemoveFromDir(QFileInfo(masterFile).absoluteDir(), filterList);
 		}
 		break;
@@ -146,7 +146,7 @@ QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringLi
 			QFileInfo fi(currentTexFile);
 			QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
 			foreach(const QString& ext, extensionFilter) {
-				QFileInfo f(basename + "." + ext);
+				QFileInfo f(basename + ext);
 				if (f.exists())
 					files << f.absoluteFilePath();
 			}
@@ -155,7 +155,7 @@ QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringLi
 	case CurrentFileFolder:
 		{
 			QStringList filterList;
-			foreach (const QString &ext, extensionFilter) filterList << "*." + ext;
+			foreach (const QString &ext, extensionFilter) filterList << "*" + ext;
 			files << filesToRemoveFromDir(QFileInfo(currentTexFile).absoluteDir(), filterList);
 		}
 		break;
@@ -165,7 +165,7 @@ QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringLi
 				QFileInfo fi(finame);
 				QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
 				foreach(const QString& ext, extensionFilter) {
-					QFileInfo f(basename + "." + ext);
+					QFileInfo f(basename + ext);
 					if (f.exists())
 						files << f.absoluteFilePath();
 				}
