@@ -219,7 +219,7 @@ bool TerminalWidget::eventFilter(QObject *watched, QEvent *event)
 			|| (keyEvent->key() == 'V') ) ) {
 			event->accept();
             // handle copy/paste
-            if(keyEvent->modifiers()==Qt::ControlModifier|Qt::ShiftModifier){
+            if(keyEvent->modifiers()==(Qt::ControlModifier|Qt::ShiftModifier)){
                 if(keyEvent->key() == 'C'){
                     qTermWidget->copyClipboard();
                 } else if(keyEvent->key() == 'V'){
