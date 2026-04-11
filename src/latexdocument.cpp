@@ -1028,10 +1028,12 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
         //// all sections ////
         if (cmd.endsWith("*"))
             cmd = cmd.left(cmd.length() - 1);
-        int level = lp->structureCommandLevel(cmd);
-        if(level<0 && cmd=="\\begin"){
+        int level=-1;
+        if(cmd=="\\begin"){
             // special treatment for \begin{frame}{title}
-            level=lp->structureCommandLevel(cmd+"{"+firstArg+"}");
+            level = lp->structureCommandLevel(cmd+"{"+firstArg+"}");
+        } else {
+            level = lp->structureCommandLevel(cmd);
         }
         if (level > -1 && !firstArg.isEmpty() && tkCmd.subtype == Token::none) {
             StructureEntry *newSection = new StructureEntry(this, StructureEntry::SE_SECTION);
@@ -3357,6 +3359,7 @@ void LatexDocument::updateLtxCommands(bool updateAll,bool updatePackages)
         foreach (const LatexDocument *elem, listOfDocs) {
             lp->append(elem->ltxCommands);
         }
+        lp->cacheStructureCommand();
     }else{
         lp->possibleCommands["user"].clear();
         foreach (const LatexDocument *elem, listOfDocs) {

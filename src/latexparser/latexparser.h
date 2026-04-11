@@ -34,6 +34,7 @@ public:
 		return MAX_STRUCTURE_LEVEL;
 	}
     int structureCommandLevel(const QString &cmd) const;
+    void cacheStructureCommand();
 
 	QSet<QString> environmentCommands; ///< used by LatexReader only, obsolete
 	QSet<QString> optionCommands; ///< used by LatexReader only, obsolete
@@ -48,6 +49,7 @@ public:
     enum ArgumentType { singleArgument, commaSeparated, multiElement };
     QMap<int, ArgumentType> mapSpecialArgumentTypes; ///< map special argument numbers to argument types
     QList<LatexDocument*> projectDocuments; ///< list of documents in the project, used for all document related parsing, e.g. for finding labels, references, citations, etc.
+    QSet<QString> sectionCommands; ///< commands for section. Cached for quick access.
 
 	CommandDescriptionHash commandDefs; ///< command definitions
 

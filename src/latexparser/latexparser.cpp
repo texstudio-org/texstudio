@@ -198,12 +198,21 @@ QString removeOptionBrackets(const QString &option)
  */
 int LatexParser::structureCommandLevel(const QString &cmd) const
 {
+    if(!sectionCommands.contains(cmd)) return -1;
 	for (int i=0; i<=MAX_STRUCTURE_LEVEL; i++) {
 		if (possibleCommands[QString("%structure%1").arg(i)].contains(cmd)) {
 			return i;
 		}
 	}
 	return -1;
+}
+
+void LatexParser::cacheStructureCommand()
+{
+    sectionCommands.clear();
+    for (int i=0; i<=MAX_STRUCTURE_LEVEL; i++) {
+        sectionCommands+=possibleCommands[QString("%structure%1").arg(i)];
+    }
 }
 
 void LatexParser::append(const LatexParser &elem)
