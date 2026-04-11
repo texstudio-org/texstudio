@@ -2404,6 +2404,16 @@ void LatexDocuments::reorder(const QList<LatexDocument *> &order)
 		documents.append(doc);
 	}
 }
+/*!
+ * save all hidden documents to cachse
+ * This is used for program exit
+ */
+void LatexDocuments::updateCachedDocuments()
+{
+    foreach (LatexDocument *doc, hiddenDocuments) {
+        doc->saveCachingData(m_cachingFolder);
+    }
+}
 
 LatexDocument *LatexDocuments::findDocument(const QDocument *qDoc) const
 {

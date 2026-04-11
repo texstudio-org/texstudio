@@ -378,6 +378,8 @@ public:
 
 	void reorder(const QList<LatexDocument *> &order);
 
+    void updateCachedDocuments();
+
 	void settingsRead();
     void setCachingFolder(const QString &folder);
     QString getCachingFolder() const;

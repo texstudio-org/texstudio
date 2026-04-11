@@ -3309,6 +3309,7 @@ void Texstudio::fileExit()
         foreach (PDFDocument *viewer, PDFDocument::documentList())
             viewer->close();
 #endif
+        // save cache
         qApp->quit();
     }
 }
@@ -3420,6 +3421,7 @@ void Texstudio::closeEvent(QCloseEvent *e)
         foreach (PDFDocument *viewer, PDFDocument::documentList())
             viewer->close();
 #endif
+        documents.updateCachedDocuments();
     } else {
         e->ignore();
     }
