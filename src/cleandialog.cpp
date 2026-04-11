@@ -22,8 +22,8 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	config->registerOption("CleanDialog/Scope", &scopeID, 0);
 	if (scopeID < 0 || scopeID >= MAX_SCOPE) scopeID = 0;
 
-	QString allowedChars = "[^\\\\/\\?\\%\\*:|\"<>\\s,;\\{\\}\\[\\]\\(\\)]";
-    QRegularExpressionValidator *rxValExtensionList = new QRegularExpressionValidator(QRegularExpression(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(allowedChars)), this);
+	QString disallowedChars = "[^\\\\/\\?\\%\\*:|\"<>\\s,;\\{\\}\\[\\]\\(\\)]";
+    QRegularExpressionValidator *rxValExtensionList = new QRegularExpressionValidator(QRegularExpression(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(disallowedChars)), this);
 	int dummyPos;
 	if (rxValExtensionList->validate(currentExtensions, dummyPos) == QValidator::Acceptable) {
 		ui->leExtensions->setText(currentExtensions);
