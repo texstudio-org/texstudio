@@ -215,6 +215,7 @@ void LatexDocument::initClearStructure()
 	mLabelItem.clear();
 	mBibItem.clear();
 	mRefItem.clear();
+    mRefHash.clear();
 	mMentionedBibTeXFiles.clear();
 
 	mAppendixLine = nullptr;
@@ -261,7 +262,13 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int
             foreach (const ReferencePair &rp, labels)
                 updateRefsLabels(rp.name);
         }
-        mRefItem.remove(dlh);
+        if(mRefItem.contains(dlh)){
+            for(const ReferencePair &rp : mRefItem.values(dlh)){
+                mRefHash.remove(rp.name,dlh);
+            }
+            mRefItem.remove(dlh);
+        }
+
         if (mMentionedBibTeXFiles.remove(dlh))
             bibTeXFilesNeedsUpdate = true;
         if (mBibItem.contains(dlh)) {
@@ -573,6 +580,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             elem.name = tk.getText();
             elem.start = tk.start;
             mRefItem.insert(dlh, elem);
+            mRefHash.insert(elem.name,dlh);
         }
 
         //// label ////
@@ -1336,7 +1344,12 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
         }
         mLabelItem.remove(dlh);
     }
-    mRefItem.remove(dlh);
+    if(mRefItem.contains(dlh)){
+        for(const ReferencePair &rp : mRefItem.values(dlh)){
+            mRefHash.remove(rp.name,dlh);
+        }
+        mRefItem.remove(dlh);
+    }
     changedCommands.removedIncludes = mIncludedFilesList.values(dlh);
     changedCommands.removedIncludes.append(mImportedFilesList.values(dlh));
     mIncludedFilesList.remove(dlh);
@@ -1687,6 +1700,30 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getBibItems(const QString 
 	return result;
 }
 
+/*!
+ * \brief find labels with given name in all documents, return linehandles and column numbers of labels with given name, count of labels is returned in count
+ * \param name
+ * \param count
+ * \return hash with linehandles and column numbers of labels with given name, count of labels is returned in count
+ */
+QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &name,int &count){
+    QMultiHash<QDocumentLineHandle *, int> result;
+    count=0;
+    foreach (const LatexDocument *elem, getListOfDocs()) {
+        QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
+        for (it = elem->mLabelItem.constBegin(); it != elem->mLabelItem.constEnd(); ++it) {
+            ReferencePair rp = it.value();
+            if (rp.name == name){
+                ++count;
+                if(elem->indexOf(it.key()) >= 0) {
+                    result.insert(it.key(), rp.start);
+                }
+            }
+        }
+    }
+    return result;
+}
+
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &name)
 {
     QMultiHash<QDocumentLineHandle *, int> result;
@@ -1771,12 +1808,12 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &nam
 {
     QMultiHash<QDocumentLineHandle *, int> result;
 	foreach (const LatexDocument *elem, getListOfDocs()) {
-		QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
-		for (it = elem->mRefItem.constBegin(); it != elem->mRefItem.constEnd(); ++it) {
-			ReferencePair rp = it.value();
-			if (rp.name == name && elem->indexOf(it.key()) >= 0) {
-				result.insert(it.key(), rp.start);
-			}
+        QList<QDocumentLineHandle*>lst=mRefHash.values(name);
+        for(QDocumentLineHandle *dlh: lst){
+            ReferencePair rp = elem->mRefItem.value(dlh);
+            if(rp.name==name){
+                result.insert(dlh, rp.start);
+            }
 		}
 	}
 	return result;
@@ -2072,8 +2109,8 @@ void LatexDocument::updateRefsLabels(const QString &ref)
 	int referenceMissingFormat = getFormatId("referenceMissing");
     const QList<int> formatList{referenceMissingFormat,referencePresentFormat,referenceMultipleFormat};
 
-	QMultiHash<QDocumentLineHandle *, int> occurences = getLabels(ref);
-    int cnt = occurences.size();
+    int cnt=0;
+    QMultiHash<QDocumentLineHandle *, int> occurences = getLabels(ref,cnt);
 	occurences += getRefs(ref);
 	QMultiHash<QDocumentLineHandle *, int>::const_iterator it;
     for (it = occurences.constBegin(); it != occurences.constEnd(); ++it) {

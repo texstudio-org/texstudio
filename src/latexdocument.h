@@ -117,6 +117,7 @@ public:
 	Q_INVOKABLE bool isBibItem(const QString &name);
 	Q_INVOKABLE QString findFileFromBibId(const QString &name); ///< find bib-file from bibid
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getLabels(const QString &name); ///< get line/column from label name
+    QMultiHash<QDocumentLineHandle *, int> getLabels(const QString &name,int &count); ///< get line/column from label name plus number of labels with this name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getRefs(const QString &name); ///< get line/column from reference name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getBibItems(const QString &name);
     LatexDocument *getDocumentForLabel(const QString &name); ///< get document from label name
@@ -258,6 +259,7 @@ private:
 	QMultiHash<QDocumentLineHandle *, ReferencePair> mLabelItem;
 	QMultiHash<QDocumentLineHandle *, ReferencePair> mBibItem;
 	QMultiHash<QDocumentLineHandle *, ReferencePair> mRefItem;
+    QMultiHash<QString,QDocumentLineHandle *> mRefHash; // for faster lookup of refs, maps ref name to line
 	QMultiHash<QDocumentLineHandle *, FileNamePair> mMentionedBibTeXFiles;
 	QMultiHash<QDocumentLineHandle *, UserCommandPair> mUserCommandList;
 	QMultiHash<QDocumentLineHandle *, QString> mUsepackageList;
