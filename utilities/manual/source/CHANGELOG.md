@@ -5,6 +5,11 @@
 - enable LLM to use tool functions to access the current document. This allows LLM to manipulate the document directly. This can be disabled.
 - fix losing cursor position when view witdh changes (soft wrap) [#3418](https://github.com/texstudio-org/texstudio/issues/3418)
 - fix file detection in TOC when creating new file from include/input
+- improve loading speed with large projects [#4410](https://github.com/texstudio-org/texstudio/pull/4410)
+- add find definitions on multiple defined labels
+- improve information when loading log is rejected because of size
+- add support for anthropic REST API [#4387](https://github.com/texstudio-org/texstudio/pull/4387)
+- fix expl3 highlighting [#4397](https://github.com/texstudio-org/texstudio/pull/4397)
 
 ## TeXstudio 4.9.3
 
