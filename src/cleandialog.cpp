@@ -15,7 +15,7 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	ui(new Ui::CleanDialog)
 {
 	ui->setupUi(this);
-	UtilsUi::resizeInFontHeight(this, 38, 22);
+	UtilsUi::resizeInFontHeight(this, 40, 22);
 
 	ConfigManagerInterface *config = ConfigManager::getInstance();
 	config->registerOption("CleanDialog/ExtensionsWithDot", &currentExtensions, defaultExtensions);
