@@ -4632,7 +4632,7 @@ void Texstudio::readSettings(bool reread)
     tobefullscreen = config->value("MainWindow/FullScreen", false).toBool();
 
     // convert to file extensions with dot for cleanup-dialog (#4419)
-    if (!config->contains("CleanDialog/ExtensionsWithDot") && config->contains("CleanDialog/Extensions")) {
+    if (config->contains("CleanDialog/Extensions")) {
         QString oldExtensions = config->value("CleanDialog/Extensions").toString();
         QStringList oldExtList = oldExtensions.split(',', Qt::SkipEmptyParts);
         QStringList convertedList;
@@ -4641,6 +4641,7 @@ void Texstudio::readSettings(bool reread)
         }
         QString convertedExtensions = convertedList.join(",");
         config->setValue("CleanDialog/ExtensionsWithDot", convertedExtensions);
+        config->remove("CleanDialog/Extensions");
     }
 
     //dark mode menu
