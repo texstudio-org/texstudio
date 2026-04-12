@@ -2072,11 +2072,11 @@ void LatexDocument::updateRefsLabels(const QString &ref)
 	int referenceMissingFormat = getFormatId("referenceMissing");
     const QList<int> formatList{referenceMissingFormat,referencePresentFormat,referenceMultipleFormat};
 
-	int cnt = countLabels(ref);
 	QMultiHash<QDocumentLineHandle *, int> occurences = getLabels(ref);
+    int cnt = occurences.size();
 	occurences += getRefs(ref);
 	QMultiHash<QDocumentLineHandle *, int>::const_iterator it;
-	for (it = occurences.constBegin(); it != occurences.constEnd(); ++it) {
+    for (it = occurences.constBegin(); it != occurences.constEnd(); ++it) {
 		QDocumentLineHandle *dlh = it.key();
         for(const int pos : occurences.values(dlh)) {
             foreach (const auto &format, formatList) {
@@ -2087,7 +2087,7 @@ void LatexDocument::updateRefsLabels(const QString &ref)
 			} else if (cnt == 1) dlh->addOverlay(QFormatRange(pos, ref.length(), referencePresentFormat));
 			else dlh->addOverlay(QFormatRange(pos, ref.length(), referenceMissingFormat));
 		}
-	}
+    }
 }
 
 
