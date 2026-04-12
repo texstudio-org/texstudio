@@ -3389,59 +3389,65 @@ void LatexEditorViewConfig::settingsChanged()
 	if (lastFontFamily == fontFamily && lastFontSize == fontSize) return;
 
 	QFont f(fontFamily, fontSize);
-#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+/*#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
     f.setStyleHint(QFont::Courier);
 #else
 	f.setStyleHint(QFont::Courier, QFont::ForceIntegerMetrics);
-#endif
+#endif*/
 
 	f.setKerning(false);
 
-    QList<QFontMetrics> fms; // QFontMetric should be okay as it is just used to check for monospace font.
+    QList<QFontMetricsF> fms; // QFontMetric should be okay as it is just used to check for monospace font.
 	for (int b = 0; b < 2; b++) for (int i = 0; i < 2; i++) {
 			QFont ft(f);
 			ft.setBold(b);
 			ft.setItalic(i);
-            fms << QFontMetrics(ft);
+            fms << QFontMetricsF(ft);
 		}
 
 	bool lettersHaveDifferentWidth = false, sameLettersHaveDifferentWidth = false;
-	int letterWidth = UtilsUi::getFmWidth(fms.first(), 'a');
+    qreal letterWidth = UtilsUi::getFmWidth(fms.first(), 'a');
 
 	const QString lettersToCheck("abcdefghijklmnoqrstuvwxyzABCDEFHIJKLMNOQRSTUVWXYZ_+ 123/()=.,;#");
-	QVector<QMap<QChar, int> > widths;
+    QVector<QMap<QChar, qreal> > widths;
 	widths.resize(fms.size());
 
 	foreach (const QChar &c, lettersToCheck) {
 		for (int fmi = 0; fmi < fms.size(); fmi++) {
-			const QFontMetrics &fm = fms[fmi];
-			int currentWidth = UtilsUi::getFmWidth(fm, c);
+            const QFontMetricsF &fm = fms[fmi];
+            qreal currentWidth = UtilsUi::getFmWidth(fm, c);
 			widths[fmi].insert(c, currentWidth);
 			if (currentWidth != letterWidth) lettersHaveDifferentWidth = true;
 			QString testString;
 			for (int i = 1; i < 10; i++) {
 				testString += c;
-				int stringWidth = UtilsUi::getFmWidth(fm, testString);
-				if (stringWidth % i != 0) sameLettersHaveDifferentWidth = true;
-				if (currentWidth != stringWidth / i) sameLettersHaveDifferentWidth = true;
+                qreal stringWidth = UtilsUi::getFmWidth(fm, testString);
+                if (qAbs(currentWidth * i - stringWidth)>0.01){
+                    sameLettersHaveDifferentWidth = true;
+                }
 			}
-			if (lettersHaveDifferentWidth && sameLettersHaveDifferentWidth) break;
+            if (lettersHaveDifferentWidth && sameLettersHaveDifferentWidth) break;
 		}
 		if (lettersHaveDifferentWidth && sameLettersHaveDifferentWidth) break;
 	}
 	const QString ligatures[2] = {"aftt", "afit"};
 	for (int l = 0; l < 2 && !sameLettersHaveDifferentWidth; l++) {
 		for (int fmi = 0; fmi < fms.size(); fmi++) {
-			int expectedWidth = 0;
+            qreal expectedWidth = 0;
 			for (int i = 0; i < ligatures[l].size() && !sameLettersHaveDifferentWidth; i++) {
 				expectedWidth += widths[fmi].value(ligatures[l][i]);
-				if (expectedWidth != UtilsUi::getFmWidth(fms[fmi], ligatures[l].left(i + 1))) sameLettersHaveDifferentWidth = true;
+                if (qAbs(expectedWidth - UtilsUi::getFmWidth(fms[fmi], ligatures[l].left(i + 1)))>0.01){
+                    sameLettersHaveDifferentWidth = true;
+                }
 			}
 		}
 	}
 
-	if (!QFontInfo(f).fixedPitch()) hackDisableFixedPitch = false; //won't be enabled anyways
-	else hackDisableFixedPitch = lettersHaveDifferentWidth || sameLettersHaveDifferentWidth;
+    if (!QFontInfo(f).fixedPitch()){
+        hackDisableFixedPitch = false; //won't be enabled anyways
+    } else {
+        hackDisableFixedPitch = lettersHaveDifferentWidth || sameLettersHaveDifferentWidth;
+    }
 	hackDisableWidthCache = sameLettersHaveDifferentWidth;
 
 #if defined( Q_OS_LINUX ) || defined( Q_OS_WIN )
