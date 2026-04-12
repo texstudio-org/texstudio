@@ -296,7 +296,7 @@ All these tags, except <b>embed</b>, support the following attributes :<p>
 Additionally all tags, except <b>context</b> and <b>list</b>, support the following extra attributes :<p>
 <ul>
 <li>
-<b>exclusive</b> : Indicate that the token may be matched multiple times. For instance some contexts have the same end token (a newline in many cases) and the innermost context must not prevent its parenth from matching the newline and exiting. This attribute is reserved to <b>start</b> and <b>stop</b> tag of a context. Valid values are "true", "false", "1" or "0".<p>
+<b>exclusive</b> : Indicate that the token may be matched multiple times. For instance some contexts have the same end token (a newline in many cases) and the innermost context must not prevent its parent from matching the newline and exiting. This attribute is reserved to <b>start</b> and <b>stop</b> tag of a context. Valid values are "true", "false", "1" or "0".<p>
 </li>
 <li>
 <b>parenthesis</b> : specifies that the element is a parenthesis. The concept of parenthesis actually extends way beyond simple parentheses. Parentheses are tokens that may be matched (brace matching), delimit foldable block or trigger indentation.<p>
