@@ -4,7 +4,7 @@
 #include "configmanager.h"
 #include "utilsUI.h"
 
-QString CleanDialog::defaultExtensions = "log,aux,dvi,lof,lot,bit,idx,glo,bbl,bcf,ilg,toc,ind,out,blg,fdb_latexmk,fls,run.xml";
+QString CleanDialog::defaultExtensions = ".log,.aux,.dvi,.lof,.lot,.bit,.idx,.glo,.bbl,.bcf,.ilg,.toc,.ind,.out,.blg,.fdb_latexmk,.fls,.run.xml";
 QString CleanDialog::currentExtensions = CleanDialog::defaultExtensions;
 int CleanDialog::scopeID = 0;
 
@@ -15,15 +15,15 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	ui(new Ui::CleanDialog)
 {
 	ui->setupUi(this);
-	UtilsUi::resizeInFontHeight(this, 38, 22);
+	UtilsUi::resizeInFontHeight(this, 40, 22);
 
 	ConfigManagerInterface *config = ConfigManager::getInstance();
-	config->registerOption("CleanDialog/Extensions", &currentExtensions, defaultExtensions);
+	config->registerOption("CleanDialog/ExtensionsWithDot", &currentExtensions, defaultExtensions);
 	config->registerOption("CleanDialog/Scope", &scopeID, 0);
 	if (scopeID < 0 || scopeID >= MAX_SCOPE) scopeID = 0;
 
-	QString allowedChars = "[^\\\\/\\?\\%\\*:|\"<>\\s,;]";
-    QRegularExpressionValidator *rxValExtensionList = new QRegularExpressionValidator(QRegularExpression(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(allowedChars)), this);
+	QString disallowedChars = "[^\\\\/\\?\\%\\*:|\"<>\\s,;\\{\\}\\[\\]\\(\\)]";
+	QRegularExpressionValidator *rxValExtensionList = new QRegularExpressionValidator(QRegularExpression(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(disallowedChars)), this);
 	int dummyPos;
 	if (rxValExtensionList->validate(currentExtensions, dummyPos) == QValidator::Acceptable) {
 		ui->leExtensions->setText(currentExtensions);
@@ -100,11 +100,11 @@ void CleanDialog::updateFilesToRemove() {
 	scopeID = ui->cbScope->itemData(ui->cbScope->currentIndex()).toInt();
 	Scope scope = (Scope) scopeID;
 #if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
-    QStringList extList(ui->leExtensions->text().split(',', Qt::SkipEmptyParts));
+	QStringList extList(ui->leExtensions->text().split(',', Qt::SkipEmptyParts));
 #else
-    QStringList extList(ui->leExtensions->text().split(',', QString::SkipEmptyParts));
+	QStringList extList(ui->leExtensions->text().split(',', QString::SkipEmptyParts));
 #endif
-	QStringList forbiddenExtensions = QStringList() << "tex" << "lytex";
+	QStringList forbiddenExtensions = QStringList() << ".tex" << ".lytex";
 	QStringList found;
 	foreach (const QString &ext, forbiddenExtensions) {
 		if (extList.contains(ext))
@@ -137,7 +137,7 @@ QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringLi
 	case Project:
 		{
 			QStringList filterList;
-			foreach (const QString &ext, extensionFilter) filterList << "*." + ext;
+			foreach (const QString &ext, extensionFilter) filterList << "*" + ext;
 			files << filesToRemoveFromDir(QFileInfo(masterFile).absoluteDir(), filterList);
 		}
 		break;
@@ -146,7 +146,7 @@ QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringLi
 			QFileInfo fi(currentTexFile);
 			QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
 			foreach(const QString& ext, extensionFilter) {
-				QFileInfo f(basename + "." + ext);
+				QFileInfo f(basename + ext);
 				if (f.exists())
 					files << f.absoluteFilePath();
 			}
@@ -155,7 +155,7 @@ QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringLi
 	case CurrentFileFolder:
 		{
 			QStringList filterList;
-			foreach (const QString &ext, extensionFilter) filterList << "*." + ext;
+			foreach (const QString &ext, extensionFilter) filterList << "*" + ext;
 			files << filesToRemoveFromDir(QFileInfo(currentTexFile).absoluteDir(), filterList);
 		}
 		break;
@@ -165,7 +165,7 @@ QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringLi
 				QFileInfo fi(finame);
 				QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
 				foreach(const QString& ext, extensionFilter) {
-					QFileInfo f(basename + "." + ext);
+					QFileInfo f(basename + ext);
 					if (f.exists())
 						files << f.absoluteFilePath();
 				}
@@ -174,8 +174,8 @@ QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringLi
 		break;
 	case None:
 		break;
-    default:
-        break;
+	default:
+		break;
 	}
 	return files;
 }
@@ -187,8 +187,8 @@ QStringList CleanDialog::filesToRemoveFromDir(const QDir &dir, const QStringList
 	}
 	if (recursive) {
 		foreach (const QFileInfo &fi, dir.entryInfoList(QDir::AllDirs | QDir::NoDotAndDotDot)) {
-            if(fi.fileName().startsWith("."))
-                continue; // filter directories starting with . (e.g. .git) since they are not automatiocally hidden on windows
+			if(fi.fileName().startsWith("."))
+				continue; // filter directories starting with . (e.g. .git) since they are not automatiocally hidden on windows
 			files << filesToRemoveFromDir(fi.absoluteFilePath(), extensionFilter, recursive);
 		}
 	}
