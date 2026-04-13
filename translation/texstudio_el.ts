@@ -178,7 +178,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="591"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Αντιγραφή</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="396"/>
@@ -2268,17 +2268,17 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="3655"/>
         <source>&lt;disable AI&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;απενεργοποίηση δυνατότητας συνομιλίας με βοηθό AI&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3675"/>
         <source>Anthropic (Claude)</source>
-        <translation type="unfinished"/>
+        <translation>Anthropic (Claude)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3680"/>
         <source>OpenRouter AI</source>
-        <translation type="unfinished"/>
+        <translation>OpenRouter AI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3734"/>
@@ -2286,12 +2286,16 @@ Then you can select a new shortcut by one of the following ways:
 It can ask the program to run those functions during an ai query to retrieve more information on the document.
 This may lead to unwanted data transfer to the AI provider.
 </source>
-        <translation type="unfinished"/>
+        <translation>Με την ενεργοποίηση αυτής της επιλογής, θα επιτρέπεται στο LLM να λαμβάνει μια λίστα με όλες τις διαθέσιμες μεθόδους (functions) από το TeXstudio.
+Το LLM θα μπορεί, στη συνέχεια, να ζητήσει από το πρόγραμμα να εκτελέσει τις μεθόδους αυτές κατά τη διάρκεια μιας συνομιλίας, προκειμένου
+να αποκτήσει περισσότερες πληροφορίες σχετικά με το έγγραφο και να απαντήσει πληρέστερα στις ερωτήσεις του χρήστη.
+Τονίζουμε πως η διαδικασία αυτή ενδέχεται να οδηγήσει στην κοινοποίηση ορισμένων δεδομένων σας στον πάροχο AI.
+</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3740"/>
         <source>AI may call program functions during query</source>
-        <translation type="unfinished"/>
+        <translation>Να επιτρέπεται η κλήση μεθόδων προγράμματος (program functions)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="5097"/>
@@ -6448,7 +6452,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="653"/>
         <source>Find Definitions</source>
-        <translation type="unfinished"/>
+        <translation>Εύρεση ορισμών</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="668"/>
@@ -6838,12 +6842,12 @@ The wizard does not support command </source>
         <location filename="../src/latexlogwidget.cpp" line="157"/>
         <source>Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option !
 To revoke that choice, see [manual](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Η φόρτωση του αρχείου καταγραφής δεν πραγματοποιήθηκε λόγω του μεγάλου μεγέθους του (%1 MB), κατόπιν επιλογής του χρήστη. Η ρύθμιση αυτή αποθηκεύτηκε ως προεπιλεγμένη. Για να την αλλάξετε, ανατρέξτε στο [εγχειρίδιο χρήσης](%2).</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="159"/>
         <source>Log not loaded because of size constraint (%1 MB). User chose not to load it !</source>
-        <translation type="unfinished"/>
+        <translation>Η φόρτωση του αρχείου καταγραφής δεν πραγματοποιήθηκε λόγω του μεγάλου μεγέθους του (%1 MB), κατόπιν επιλογής του χρήστη.</translation>
     </message>
 </context>
 <context>
@@ -13135,7 +13139,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1313"/>
         <source>AI &amp;Chat...</source>
-        <translation>AI &amp;Chat...</translation>
+        <translation>Συνομιλία &amp;με AI</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1316"/>
@@ -14286,12 +14290,12 @@ Do you want to continue?</source>
         <location filename="../src/texstudio.cpp" line="5718"/>
         <location filename="../src/texstudio.cpp" line="5718"/>
         <source>AI Chat</source>
-        <translation>AI Chat</translation>
+        <translation>Συνομιλία με AI</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5713"/>
         <source>AI chat disabled. Please select an AI provider in the settings.</source>
-        <translation type="unfinished"/>
+        <translation>Η δυνατότητα συνομιλίας με βοηθό AI είναι απενεργοποιημένη. Επιλέξτε έναν πάροχο AI από τις ρυθμίσεις για την ενεργοποιήσετε.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5718"/>
@@ -15893,7 +15897,7 @@ included document in %1</source>
         <location filename="../src/usermenudialog.cpp" line="348"/>
         <location filename="../src/usermenudialog.cpp" line="348"/>
         <source>Disable Shortcut and Trigger</source>
-        <translation type="unfinished"/>
+        <translation>Απενεργοποίηση συντόμευσης και έκφρασης trigger</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="364"/>

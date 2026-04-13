@@ -6426,7 +6426,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="653"/>
         <source>Find Definitions</source>
-        <translation type="unfinished"/>
+        <translation>Definíciók keresése</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="668"/>

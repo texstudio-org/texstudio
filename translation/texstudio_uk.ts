@@ -6440,7 +6440,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="653"/>
         <source>Find Definitions</source>
-        <translation type="unfinished"/>
+        <translation>Знайти означення</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="668"/>
