@@ -3719,6 +3719,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
     QElapsedTimer time;
     time.start();
+    mDisableTOCupdates = true; // avoid updating TOC while loading documents
     QStringList missingFiles;
     for (int i = 0; i < s.files().size(); i++) {
         FileInSession f = s.files().at(i);
@@ -3756,6 +3757,8 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     if (showProgress) {
         progress.setValue(progress.maximum());
     }
+    mDisableTOCupdates = false;
+    updateTOCs(); // update TOC after all documents are loaded, so that the TOC is only updated once and contains all documents
     activateEditorForFile(s.currentFile());
     cursorHistory->setInsertionEnabled(true);
     qDebug()<<"total time for restoring session:"<<time.elapsed()<<"ms";
@@ -12521,6 +12524,7 @@ bool Texstudio::checkDockSpread()
     \brief call updateTOC & updateStructureLocally as only one call works with a signal
  */
 void Texstudio::updateTOCs(){
+    if(mDisableTOCupdates) return; // skip TOC update during multi file load /session restore
     updateTOC();
     updateStructureLocally();
 }

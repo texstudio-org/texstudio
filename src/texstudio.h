@@ -750,6 +750,7 @@ protected:
     CollaborationManager *collabManager = nullptr;
 
     QString mOverloadProgram=QString();
+    bool mDisableTOCupdates=false;
 
 public:
     Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText)
