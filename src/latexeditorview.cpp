@@ -2433,11 +2433,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 				if (tk.type == Token::label && config->inlineReferenceChecking) {
 					QDocumentLineHandle *dlh = tk.dlh;
 					QString ref = dlh->text().mid(tk.start, tk.length);
-					int cnt = document->countLabels(ref);
-					if (cnt > 1) {
-						dlh->addOverlay(QFormatRange(tk.start, tk.length, referenceMultipleFormat));
-					} else dlh->addOverlay(QFormatRange(tk.start, tk.length, referencePresentFormat));
-                    // look for corresponding references and adapt format respectively
                     document->updateRefsLabels(ref);
 					addedOverlayReference = true;
 				}
