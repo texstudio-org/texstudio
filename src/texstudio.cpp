@@ -2441,7 +2441,10 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
             }
         }
     }
-    doc->startSyntaxChecker(); // only syntax check visible documents
+    if(!dontAsk){
+        // start syntaxchecker on normal load, but not on restore session
+        doc->startSyntaxChecker(); // only syntax check visible documents
+    }
 
     delete docToDelete; // remove cached document which was replaced by newly loaded document
 
@@ -3720,6 +3723,8 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     QElapsedTimer time;
     time.start();
     mDisableTOCupdates = true; // avoid updating TOC while loading documents
+    bool previousStateRealtimeChecking=configManager.editorConfig->realtimeChecking;
+    configManager.editorConfig->realtimeChecking=false; // avoid updating inline spell checking while loading documents (which would cause a significant slowdown)
     QStringList missingFiles;
     for (int i = 0; i < s.files().size(); i++) {
         FileInSession f = s.files().at(i);
@@ -3742,6 +3747,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
             }
             edView->editor->setCursorPosition(line, col, false);
             edView->document->foldLines(f.foldedLines);
+            edView->document->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking && previousStateRealtimeChecking);
             edView->editor->scrollToFirstLine(f.firstLine+1);
             editors->moveToTabGroup(edView, f.editorGroup, -1);
         } else {
@@ -3758,6 +3764,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
         progress.setValue(progress.maximum());
     }
     mDisableTOCupdates = false;
+    configManager.editorConfig->realtimeChecking=previousStateRealtimeChecking; // restore state of realtime checking
     updateTOCs(); // update TOC after all documents are loaded, so that the TOC is only updated once and contains all documents
     activateEditorForFile(s.currentFile());
     cursorHistory->setInsertionEnabled(true);
@@ -3766,8 +3773,14 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
         runInternalCommand("txs:///view-pdf-internal", QFileInfo(s.PDFFile()), enquoteStr(s.PDFFile()) +" "+ (s.PDFEmbedded() ? "--embedded" : "--windowed"));
     }
     // update completer
-    if (currentEditorView())
-        updateCompleter(currentEditorView());
+    if (currentEditorView()){
+        LatexEditorView *edView=currentEditorView();
+        updateCompleter(edView);
+        LatexDocument *doc=edView->document;
+        SpellerUtility::inlineSpellChecking= configManager.editorConfig->inlineSpellChecking && configManager.editorConfig->realtimeChecking;
+        doc->startSyntaxChecker(); // only syntax check visible documents, start when loading hidden docs
+        edView->documentContentChanged(0, doc->lines());
+    }
 
     if (warnMissing && !missingFiles.isEmpty()) {
         UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
