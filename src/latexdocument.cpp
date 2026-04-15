@@ -1808,7 +1808,7 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &nam
 {
     QMultiHash<QDocumentLineHandle *, int> result;
 	foreach (const LatexDocument *elem, getListOfDocs()) {
-        QList<QDocumentLineHandle*>lst=mRefHash.values(name);
+        QList<QDocumentLineHandle*>lst=elem->mRefHash.values(name);
         for(QDocumentLineHandle *dlh: lst){
             ReferencePair rp = elem->mRefItem.value(dlh);
             if(rp.name==name){
