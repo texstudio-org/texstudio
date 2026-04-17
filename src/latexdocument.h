@@ -220,6 +220,7 @@ public:
         bool bibItemsChanged = false;
         bool bibTeXFilesNeedsUpdate = false;
         bool updateSyntaxCheck = false;
+        bool updateStructure = false;
         int posLabel;
         int posTodo;
         int posBlock;

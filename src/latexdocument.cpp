@@ -581,6 +581,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             elem.start = tk.start;
             mRefItem.insert(dlh, elem);
             mRefHash.insert(elem.name,dlh);
+            continue;
         }
 
         //// label ////
@@ -595,7 +596,8 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             newLabel->title = elem.name;
             newLabel->setLine(dlh, currentLineNr);
             replaceOrAdd(docStructureIter,dlh,newLabel);
-
+            data.updateStructure=true;
+            continue;
         }
         //// newtheorem ////
         if (tk.type == Token::newTheorem && tk.length > 0) {
@@ -627,6 +629,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             newTodo->title = tk.getInnerText();
             newTodo->setLine(dlh, currentLineNr);
             replaceOrAdd(docStructureIter,dlh,newTodo);
+            data.updateStructure=true;
             continue;
         }
         // specialArg definition
@@ -946,6 +949,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                 newFile->title = bibFile;
                 newFile->setLine(line(currentLineNr).handle(), currentLineNr);
                 replaceOrAdd(docStructureIter,dlh,newFile);
+                data.updateStructure=true;
             }
             continue;
         }
@@ -957,6 +961,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             newBlock->title = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,currentLineNr);
             newBlock->setLine(line(currentLineNr).handle(), currentLineNr);
             replaceOrAdd(docStructureIter,dlh,newBlock);
+            data.updateStructure=true;
             continue;
         }
 
@@ -1004,6 +1009,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             newInclude->setLine(line(currentLineNr).handle(), currentLineNr);
             newInclude->columnNumber = cmdStart;
             replaceOrAdd(docStructureIter,dlh,newInclude);
+            data.updateStructure=true;
             continue;
         }
 
@@ -1030,6 +1036,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             newInclude->setLine(line(currentLineNr).handle(), currentLineNr);
             newInclude->columnNumber = cmdStart;
             replaceOrAdd(docStructureIter,dlh,newInclude);
+            data.updateStructure=true;
             continue;
         }
 
@@ -1065,6 +1072,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             newSection->setLine(line(currentLineNr).handle(), currentLineNr);
             newSection->columnNumber = cmdStart;
             replaceOrAdd(docStructureIter,dlh,newSection);
+            data.updateStructure=true;
             continue;
         }
         /// auto user command for \symbol_...
@@ -1551,7 +1559,9 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
     handleRescanDocuments(changedCommands);
 
-    emit structureUpdated();
+    if(changedCommands.updateStructure){
+        emit structureUpdated();
+    }
 
     if(changedCommands.completerNeedsUpdate){
         emit updateCompleterCommands();
