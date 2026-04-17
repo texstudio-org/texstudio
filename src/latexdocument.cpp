@@ -3786,7 +3786,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
     dd["bibitems"]=ja_bibitems;
     dd["bibtexfiles"]=ja_bibtexfiles;
     dd["toc"]=ja_toc;
-    dd["modified"]=fi.lastModified().toString();
+    dd["modified"]=QDateTime::currentDateTime().toString();
 
     QJsonDocument jsonDoc(dd);
     file.write(jsonDoc.toJson());
@@ -3939,6 +3939,7 @@ bool LatexDocument::isIncompleteInMemory()
 {
     return m_cachedDataOnly;
 }
+
 /*!
  * \brief start syntax checker once it becomes visible
  */
