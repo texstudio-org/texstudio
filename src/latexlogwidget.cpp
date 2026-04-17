@@ -130,8 +130,11 @@ void LatexLogWidget::onInfoLinkActivated(const QString &link)
 
     if (link==QLatin1String("setToUtilsUi::txsWarningState::RememberFalse")) {
         setInfo(tr("Your remembered answer has been cleared. Please reopen the log to load it."));
-    }else{
+    }else if (link==QLatin1String("setToUtilsUi::txsWarningState::RememberTrue")) {
         setInfo(tr("Your remembered answer has been cleared."));
+    }else{
+        m_lastIgnoredFilename.clear();
+        setInfo(tr("Reset done."));
     }
 }
 
@@ -156,19 +159,17 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiled
 	QFile f(logname);
 	if (f.open(QIODevice::ReadOnly)) {
         ConfigManagerInterface *config=ConfigManagerInterface::getInstance();
-        double fileSizeLimitMB = config->getOption("LogView/WarnIfFileSizeLargerMB").toDouble();
         UtilsUi::txsWarningState rememberChoice=static_cast<UtilsUi::txsWarningState>(config->getOption("LogView/RememberChoiceLargeFile",0).toInt());
+        double fileSizeLimitMB = config->getOption("LogView/WarnIfFileSizeLargerMB").toDouble();
         double fileSizeMB = double(f.size()) / 1024 / 1024;
         if (fileSizeMB > fileSizeLimitMB){
-            bool skipLoadRememberChoice=(rememberChoice==UtilsUi::txsWarningState::RememberFalse);
-            bool result=false;
-            if(m_lastIgnoredFilename!=logname){
-                result=UtilsUi::txsConfirmWarning(tr("The logfile is very large (%1 MB) are you sure you want to load it?").arg(fileSizeMB, 0, 'f', 2),rememberChoice);
+            if(m_lastIgnoredFilename!=logname) {
+                m_answer=UtilsUi::txsConfirmWarning(tr("The logfile is very large (%1 MB) are you sure you want to load it?").arg(fileSizeMB, 0, 'f', 2),rememberChoice);
                 config->setOption("LogView/RememberChoiceLargeFile",static_cast<int>(rememberChoice));
             }
-            if(!result){
+            if(!m_answer){
                 if(rememberChoice==UtilsUi::DontRemember){
-                    setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it !").arg(fileSizeMB, 0, 'f', 2));
+                    setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it ! [reset](%2)").arg(fileSizeMB, 0, 'f', 2).arg("resetName"));
                     m_lastIgnoredFilename=logname;
                 }else{
                     setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)").arg(fileSizeMB, 0, 'f', 2).arg("setToUtilsUi::txsWarningState::RememberFalse"));

@@ -57,7 +57,8 @@ private:
 	QLabel *infoLabel;
 	QAction *displayTableAction, *displayLogAction, *filterErrorAction, *filterWarningAction, *filterBadBoxAction;
 
-    QString m_lastIgnoredFilename; // remember logname which the user did not load to avoid asking again
+	QString m_lastIgnoredFilename; // remember logname which the user did not load to avoid asking again
+	bool m_answer; // remember dialog answer
 
 	void copyRowsWithColumnRange(int firstRow, int rows, int first, int last);
 	void onInfoLinkActivated(const QString &link);
