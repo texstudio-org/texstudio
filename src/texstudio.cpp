@@ -707,7 +707,7 @@ void Texstudio::setupDockWidgets()
         structureTreeWidget->setHeaderHidden(true);
         structureTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         structureTreeWidget->installEventFilter(this);
-        addDock("structure", "structure_R90",tr("Structure"), structureTreeWidget);
+        structureDockWidget=addDock("structure", "structure_R90",tr("Structure"), structureTreeWidget);
     }
     if(!topTOCTreeWidget){
         topTOCTreeWidget = new QTreeWidget();
@@ -718,7 +718,7 @@ void Texstudio::setupDockWidgets()
         topTOCTreeWidget->setHeaderHidden(true);
         topTOCTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         topTOCTreeWidget->installEventFilter(this);
-        addDock("TOC", "toc_R90",tr("TOC"), topTOCTreeWidget);
+        topTOCDockWidget=addDock("TOC", "toc_R90",tr("TOC"), topTOCTreeWidget);
     }
     QDockWidget *dock=findChild<QDockWidget *>("bookmarks",Qt::FindDirectChildrenOnly);
     if (!dock) {
@@ -3775,7 +3775,6 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     }
     mDisableTOCupdates = false;
     configManager.editorConfig->realtimeChecking=previousStateRealtimeChecking; // restore state of realtime checking
-    updateTOCs(); // update TOC after all documents are loaded, so that the TOC is only updated once and contains all documents
     activateEditorForFile(s.currentFile());
     cursorHistory->setInsertionEnabled(true);
     qDebug()<<"total time for restoring session:"<<time.elapsed()<<"ms";
@@ -12426,7 +12425,7 @@ void Texstudio::maniplateDockingTabBars() {
  * \brief add widget as a dock on the left side
  * register icon and name.
  */
-void Texstudio::addDock(const QString &name,const QString &iconName,const QString &title,QWidget *wgt)
+QDockWidget *Texstudio::addDock(const QString &name,const QString &iconName,const QString &title,QWidget *wgt)
 {
     QDockWidget *dock = new QDockWidget("", this);
     dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
@@ -12445,6 +12444,7 @@ void Texstudio::addDock(const QString &name,const QString &iconName,const QStrin
         m_firstDockWidget=dock;
     }
     connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
+    return dock;
 }
 /*!
  * \brief toggle visibility of all docks
@@ -12527,6 +12527,8 @@ void Texstudio::updateDockVisibility(bool visible)
     QDockWidget *dock = qobject_cast<QDockWidget *>(sender());
     if (dock) {
         dock->setProperty("isVisible",visible);
+        if(dock->objectName()=="structure" && visible) updateStructureLocally(); // force update when it becomes visible
+        if(dock->objectName()=="TOC" && visible) updateTOC(); // force update when it becomes visible
     }
 }
 /*!
@@ -12567,7 +12569,7 @@ void Texstudio::updateAllTOCs()
  *
  */
 void Texstudio::updateTOC(){
-    if(!topTOCTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
+    if(!topTOCDockWidget->property("isVisible").toBool()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root=topTOCTreeWidget->topLevelItem(0);
     StructureEntry *selectedEntry=nullptr;
     bool itemExpanded=false;
@@ -13249,7 +13251,7 @@ void Texstudio::gotoLineFromAction()
  *
  */
 void Texstudio::updateStructureLocally(bool updateAll){
-    if(!structureTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
+    if(!structureDockWidget->property("isVisible").toBool()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root= nullptr;
 
     LatexDocument *currentDoc=documents.getCurrentDocument();

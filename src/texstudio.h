@@ -175,7 +175,9 @@ private:
 
     //StructureTreeView *structureTreeView;
     QTreeWidget *structureTreeWidget;
+    QDockWidget *structureDockWidget;
     QTreeWidget *topTOCTreeWidget;
+    QDockWidget *topTOCDockWidget;
 	LatexParser latexParser;
 
     QVector<QIcon> iconSection;
@@ -761,6 +763,8 @@ public:
 
 	static void recoverFromCrash();
 
+    QDockWidget* addDock(const QString &name, const QString &iconName, const QString &title, QWidget *wgt);
+
 public slots:
 	void threadCrashed();
 	void iamalive();
@@ -773,7 +777,6 @@ public slots:
 
 	void openBugsAndFeatures();
     void maniplateDockingTabBars();
-    void addDock(const QString &name, const QString &iconName, const QString &title, QWidget *wgt);
     void toggleDocks(bool visible);
     void resetDocks();
     void toggleDockVisibility();
