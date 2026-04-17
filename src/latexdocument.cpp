@@ -3943,9 +3943,11 @@ bool LatexDocument::isIncompleteInMemory()
 /*!
  * \brief start syntax checker once it becomes visible
  */
-void LatexDocument::startSyntaxChecker()
+bool LatexDocument::startSyntaxChecker()
 {
     if(!synChecker.isRunning()){
         synChecker.start();
+        return true;
     }
+    return false;
 }

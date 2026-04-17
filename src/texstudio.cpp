@@ -1924,6 +1924,7 @@ void Texstudio::updateMasterDocumentCaption()
 
 void Texstudio::currentEditorChanged()
 {
+    if(mDisableTOCupdates) return; // skip during restore file session
 	updateCaption();
 #ifdef INTERNAL_TERMINAL
 	outputView->getTerminalWidget()->setCurrentFileName(getCurrentFileName());
@@ -1935,11 +1936,17 @@ void Texstudio::currentEditorChanged()
     editorSpellerChanged(edView->getSpeller());
     edView->lastUsageTime = QDateTime::currentDateTime();
     edView->checkRTLLTRLanguageSwitching();
+    // start syncheck if not running
+    LatexDocument *doc=edView->getDocument();
+    if(doc->startSyntaxChecker()){
+        // just in time start
+        // update label/ref display which has never been run after fileRestore
+        edView->documentContentChanged(0, doc->lines());
+    }
 
     // update global toc
     updateTOCs();
     // set dock file explorer to current file, root to root document folder
-    LatexDocument *doc=edView->getDocument();
     LatexDocument *rootDoc=doc->getRootDocument();
     QFileInfo fi=rootDoc->getFileInfo();
     QString rootDir=fi.absoluteDir().path();
@@ -2295,7 +2302,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
         return existingView;
     }
 
-    // find closed master doc
+    // find closed master doc or hidden doc.
     if (doc) {
         bool unmodified=doc->isClean();
         LatexEditorView *edView = new LatexEditorView(nullptr, configManager.editorConfig, doc);
@@ -2325,8 +2332,10 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
 
         bookmarks->restoreBookmarks(edView);
 
-        doc->startSyntaxChecker(); // only syntax check visible documents, start when loading hidden docs
-        edView->documentContentChanged(0, doc->lines());
+        if(!dontAsk){
+            doc->startSyntaxChecker(); // only syntax check visible documents, start when loading hidden docs
+            edView->documentContentChanged(0, doc->lines());
+        }
 
         return edView;
     }
@@ -3722,6 +3731,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
     QElapsedTimer time;
     time.start();
+    qDebug()<<"start restoring session:"<<time.elapsed()<<"ms";
     mDisableTOCupdates = true; // avoid updating TOC while loading documents
     bool previousStateRealtimeChecking=configManager.editorConfig->realtimeChecking;
     configManager.editorConfig->realtimeChecking=false; // avoid updating inline spell checking while loading documents (which would cause a significant slowdown)
