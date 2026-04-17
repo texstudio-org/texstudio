@@ -596,7 +596,6 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             newLabel->title = elem.name;
             newLabel->setLine(dlh, currentLineNr);
             replaceOrAdd(docStructureIter,dlh,newLabel);
-            data.updateStructure=true;
             continue;
         }
         //// newtheorem ////
@@ -1532,6 +1531,7 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
             foreach(const QString &elem, changedCommands.removedLabels){
                 if(changedCommands.addedLabels.contains(elem)){
                     changedCommands.removedLabels.removeAll(elem);
+                    changedCommands.addedLabels.removeAll(elem);
                 }
             }
             if(changedCommands.removedLabels.size()>0){
@@ -1539,6 +1539,9 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 changedCommands.updateStructure = true;
                 foreach (const QString &name, changedCommands.removedLabels)
                     updateRefsLabels(name);
+            }
+            if(changedCommands.addedLabels.size()>0){
+                changedCommands.updateStructure = true;
             }
             changedCommands.addedLabels.clear();
             changedCommands.removedLabels.clear();
