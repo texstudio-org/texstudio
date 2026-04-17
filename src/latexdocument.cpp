@@ -1536,6 +1536,7 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
             }
             if(changedCommands.removedLabels.size()>0){
                 changedCommands.completerNeedsUpdate = true;
+                changedCommands.updateStructure = true;
                 foreach (const QString &name, changedCommands.removedLabels)
                     updateRefsLabels(name);
             }
