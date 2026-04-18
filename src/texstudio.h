@@ -329,10 +329,9 @@ protected slots:
 	void fileLoadSession();
 	void loadSession(const QString &fileName);
 	void fileSaveSession();
-private slots:
+private:
 	void restoreSession(const Session &s, bool showProgress = true, bool warnMissing = true);
 	Session getCurrentSession();
-protected slots:
 	void MarkCurrentFileAsRecent();
 private slots:
 	void fileCheckin(QString filename = "");
