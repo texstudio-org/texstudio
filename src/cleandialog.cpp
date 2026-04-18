@@ -111,7 +111,7 @@ void CleanDialog::updateFilesToRemove() {
 			found << ext;
 	}
 	if (!found.isEmpty()) {
-		UtilsUi::txsWarning(tr("For your own safety clean will not delete the files with the following extensions:") + QString("\n") + extList.join(", "));
+        UtilsUi::txsWarning(tr("For your own safety clean will not delete the files with the following extensions:") + QString("\n") + found.join(", "));
 		foreach (QString ext, found)
 			extList.removeAll(ext);
 	}
