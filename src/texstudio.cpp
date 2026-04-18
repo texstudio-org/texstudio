@@ -1273,7 +1273,7 @@ void Texstudio::setupMenus()
     menu->addSeparator();
     newManagedAction(menu, "spelling", tr("Check Spelling..."), SLOT(editSpell()), MAC_OR_DEFAULT(Qt::CTRL | Qt::SHIFT | Qt::Key_F7, Qt::CTRL | Qt::Key_Colon));
     newManagedAction(menu, "thesaurus", tr("Thesaurus..."), SLOT(editThesaurus()), Qt::CTRL | Qt::SHIFT | Qt::Key_F8);
-	newManagedAction(menu, "wordrepetions", tr("Find Word Repetitions..."), SLOT(findWordRepetions()));
+	newManagedAction(menu, "wordrepetions", tr("Find Word Repetitions..."), SLOT(findWordRepetitions()));
 
 	//  Latex/Math external
 	configManager.loadManagedMenus(":/uiconfig.xml");
@@ -7720,7 +7720,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
         bool result=executeTests(args);
 
 	if (args.contains("--update-translations")) {
-	    generateAddtionalTranslations();
+	    generateAdditionalTranslations();
 	}
         if (args.contains("--auto-tests")) {
             if(result){
@@ -7841,7 +7841,7 @@ void Texstudio::leftPanelChanged(QWidget *widget)
  * This method reads these commands and generates a pseudo source code (additionaltranslations.cpp) that can be used to generate translations
  * The translations for the pseudo code are used to do the translation of the commands in the definition files
  */
-void Texstudio::generateAddtionalTranslations()
+void Texstudio::generateAdditionalTranslations()
 {
     qDebug()<<"writing translations for uiconfig.xml";
 	QStringList translations;
@@ -10795,7 +10795,7 @@ void Texstudio::remHLineCB()
     LatexTables::addHLine(cur,env, true);
 }
 
-void Texstudio::findWordRepetions()
+void Texstudio::findWordRepetitions()
 {
 	if (!currentEditorView()) return;
 	if (configManager.editorConfig && !configManager.editorConfig->inlineSpellChecking) {
@@ -10839,8 +10839,8 @@ void Texstudio::findWordRepetions()
 	layout->addWidget(btPrev, 0, 2);
 	layout->addWidget(btClose, 0, 3);
 	dlg->setLayout(layout);
-	connect(btNext, SIGNAL(clicked()), this, SLOT(findNextWordRepetion()));
-	connect(btPrev, SIGNAL(clicked()), this, SLOT(findNextWordRepetion()));
+	connect(btNext, SIGNAL(clicked()), this, SLOT(findNextWordRepetition()));
+	connect(btPrev, SIGNAL(clicked()), this, SLOT(findNextWordRepetition()));
 	connect(btClose, SIGNAL(clicked()), dlg, SLOT(close()));
 	dlg->setModal(false);
 	dlg->show();
@@ -10848,7 +10848,7 @@ void Texstudio::findWordRepetions()
 
 }
 
-void Texstudio::findNextWordRepetion()
+void Texstudio::findNextWordRepetition()
 {
 	QPushButton *mButton = qobject_cast<QPushButton *>(sender());
 	bool backward = mButton->objectName() == "prev";
