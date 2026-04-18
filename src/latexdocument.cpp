@@ -16,7 +16,6 @@
 #include <QtConcurrent>
 
 
-//FileNamePair::FileNamePair(const QString& rel):relative(rel){};
 FileNamePair::FileNamePair(const QString &rel, const QString &abs): relative(rel), absolute(abs) {}
 UserCommandPair::UserCommandPair(const QString &name, const CodeSnippet &snippet): name(name), snippet(snippet) {}
 
@@ -33,12 +32,6 @@ const QSet<QString> LatexDocument::LATEX_LIKE_LANGUAGES = QSet<QString>() << "(L
  */
 LatexDocument::LatexDocument(QObject *parent): QDocument(parent), rememberAutoReload(false), mayHaveDiffMarkers(false), edView(nullptr), mAppendixLine(nullptr), mBeyondEnd(nullptr)
 {
-
-    /*magicCommentList->title = tr("MAGIC_COMMENTS");
-	labelList->title = tr("LABELS");
-	todoList->title = tr("TODO");
-	bibTeXList->title = tr("BIBLIOGRAPHY");
-    blockList->title = tr("BLOCKS"); */
 	mLabelItem.clear();
 	mBibItem.clear();
 	mUserCommandList.clear();
@@ -934,7 +927,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             QStringList bibs = firstArg.split(',', Qt::SkipEmptyParts);
 #else
             QStringList bibs = firstArg.split(',', QString::SkipEmptyParts);
-#endif \
+#endif
     //add new bibs and set bibTeXFilesNeedsUpdate if there was any change
             foreach (const QString &elem, bibs) { //latex doesn't seem to allow any spaces in file names
                 QString absolutePath=getAbsoluteFilePath(elem, "bib", additionalBibPaths);
