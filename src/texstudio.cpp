@@ -3723,7 +3723,6 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     QProgressDialog progress(this);
     if (showProgress) {
         progress.setMaximum(s.files().size()+1);
-        progress.setCancelButton(nullptr);
         progress.setMinimumDuration(3000);
         progress.setLabel(new QLabel());
     }

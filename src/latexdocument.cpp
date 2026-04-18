@@ -2449,11 +2449,16 @@ void LatexDocuments::reorder(const QList<LatexDocument *> &order)
 	}
 }
 /*!
- * save all hidden documents to cachse
+ * save all hidden documents to cache
  * This is used for program exit
  */
 void LatexDocuments::updateCachedDocuments()
 {
+    // save open documents as cache
+    foreach (LatexDocument *doc, documents) {
+        doc->saveCachingData(m_cachingFolder);
+    }
+    //save hidden documents as cache
     foreach (LatexDocument *doc, hiddenDocuments) {
         doc->saveCachingData(m_cachingFolder);
     }
@@ -3719,7 +3724,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
     }
 
     QFileInfo fi=getFileInfo();
-    QFile file(folder+"/"+fi.baseName()+".json");
+    QFile file(folder+"/"+fi.completeBaseName()+".json");
 
     // remove cache if dealing with modified, unsaved changes as saved text differs
     if(!isClean()){
@@ -3815,15 +3820,18 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
     if(!conf || !conf->cacheDocuments ) return false;
 
     QFileInfo fi(fileName);
-    QFile file(folder+"/"+fi.baseName()+".json");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    QFile file(folder+"/"+fi.completeBaseName()+".json");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        qDebug()<<"Cached file not present:"<<file.fileName();
         return false;
+    }
 
     QByteArray data = file.readAll();
     QJsonParseError parseError;
     QJsonDocument jsonDoc=QJsonDocument::fromJson(data,&parseError);
     if(parseError.error!=QJsonParseError::NoError){
         // parser could not read input
+        qDebug()<<"parsing error:"<<fileName;
         return false;
     }
     QJsonObject dd=jsonDoc.object();
@@ -3840,6 +3848,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
     QString fn=dd["filename"].toString();
     if(fn!=fileName){
         // filename does not match exactly
+        qDebug()<<"filename does not match:"<<fileName<<"<>"<<fn;
         return false;
     }
     setFileName(fileName);
