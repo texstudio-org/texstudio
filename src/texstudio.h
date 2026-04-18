@@ -81,7 +81,7 @@ public:
     Texstudio(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags(), QSplashScreen *splash = nullptr);
 	~Texstudio();
 
-	Q_INVOKABLE QString getCurrentFileName(); ///< returns the absolute file name of the current file or "" if none is opene
+	Q_INVOKABLE QString getCurrentFileName(); ///< returns the absolute file name of the current file or "" if none is opened
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString &relName, const QString &extension = ""); ///< treats the path relative to the compiled .tex file
 	Q_INVOKABLE QString getRelativeFileName(const QString &file, QString basepath, bool keepSuffix = false); ///< provide function for scripts
     Q_INVOKABLE bool fileExists(const QString &file); ///< provide function for scripts
@@ -129,7 +129,7 @@ private slots:
     void leftPanelChanged(QWidget* widget);
 private:
     bool executeTests(const QStringList &args); ///< execute self-tests. Only works for debug-builds.
-	void generateAddtionalTranslations();
+	void generateAdditionalTranslations();
 	void setupMenus();
 	void setupDockWidgets();
 	void createStatusBar();
@@ -401,8 +401,8 @@ protected slots:
     void findLabelUsagesFromAction();
 	SearchResultWidget *searchResultWidget();
 
-	void findWordRepetions();
-	void findNextWordRepetion();
+	void findWordRepetitions();
+	void findNextWordRepetition();
 
 	void LTErrorMessage(QString message);
 
@@ -485,7 +485,7 @@ protected slots:
     void quickTabular(const QMimeData *d=nullptr); ///< start quick tabular wizard
 	void quickArray(); ///< start quick array wizard
 	void quickTabbing(); ///< start quick tabbing wizard
-	void quickLetter(); ///< start quick leter wizard
+	void quickLetter(); ///< start quick letter wizard
 	void quickDocument(); ///< start quick document wizard
 	void quickBeamer(); ///< start quick beamer wizard
 	void quickGraphics(const QString &graphicsFile = QString()); ///< start quick graphics wizard
@@ -783,16 +783,15 @@ public slots:
     bool checkDockSpread();
 
 signals:
-	void infoNewFile(); ///< signal that a new file has been generated. Used for scritps as trigger.
-	void infoNewFromTemplate(); ///< signal that a new file from template has been generated. Used for scritps as trigger.
-	void infoLoadFile(const QString &filename); ///< signal that a file has been loaded. Used for scritps as trigger.
-	void infoFileSaved(const QString &filename,const int checkin = 0); ///< signal that a file has been saved. Used for scritps as trigger.
-	void infoFileClosed(); ///< signal that a file has been closed. Used for scritps as trigger.
-	void infoAfterTypeset(); ///< signal that a file has been compiled. Used for scritps as trigger.
+	void infoNewFile(); ///< signal that a new file has been generated. Used for scripts as trigger.
+	void infoNewFromTemplate(); ///< signal that a new file from template has been generated. Used for scripts as trigger.
+	void infoLoadFile(const QString &filename); ///< signal that a file has been loaded. Used for scripts as trigger.
+	void infoFileSaved(const QString &filename,const int checkin = 0); ///< signal that a file has been saved. Used for scripts as trigger.
+	void infoFileClosed(); ///< signal that a file has been closed. Used for scripts as trigger.
+	void infoAfterTypeset(); ///< signal that a file has been compiled. Used for scripts as trigger.
 	void imgPreview(const QString &fn);
 };
 
 //Q_DECLARE_METATYPE(Texstudio *)
 
 #endif
-
