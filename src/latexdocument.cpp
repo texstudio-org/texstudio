@@ -1334,7 +1334,7 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
         }else{
             int i = elem.indexOf("{");
             if (i >= 0) elem = elem.left(i);
-            if(countCommandDefintions(elem)==1){
+            if(countCommandDefinitions(elem)==1){
                 ltxCommands.possibleCommands["user"].remove(elem);
             }
         }
@@ -1770,7 +1770,7 @@ LatexDocument* LatexDocument::getDocumentForLabel(const QString &name){
     return nullptr;
 }
 
-int LatexDocument::countCommandDefintions(const QString &name,const QString word)
+int LatexDocument::countCommandDefinitions(const QString &name,const QString word)
 {
     int result=0;
     for (auto it = mUserCommandList.constBegin(); it != mUserCommandList.constEnd(); ++it) {

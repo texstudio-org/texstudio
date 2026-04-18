@@ -121,7 +121,7 @@ public:
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getRefs(const QString &name); ///< get line/column from reference name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getBibItems(const QString &name);
     LatexDocument *getDocumentForLabel(const QString &name); ///< get document from label name
-    int countCommandDefintions(const QString &name, const QString word=""); ///< count how many time a certain command is defined, used for checking for duplicates
+    int countCommandDefinitions(const QString &name, const QString word=""); ///< count how many time a certain command is defined, used for checking for duplicates
 	Q_INVOKABLE QDocumentLineHandle *findCommandDefinition(const QString &name); ///< get line of definition from command name (may return nullptr)
 	Q_INVOKABLE QDocumentLineHandle *findUsePackage(const QString &name); ///< get line of \usepackage from package name (may return nullptr)
 	Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor = nullptr);
@@ -338,9 +338,9 @@ signals:
  * organizes all open documents
  * handles master/slave or root/child relation between documents
  * documents can be hidden, i.e. they don't have a visible editor
- * hidden documents are used to keep syntax information present in the editor without the necessesity to make an extra storage architecture for closed elements
+ * hidden documents are used to keep syntax information present in the editor without the necessity to make an extra storage architecture for closed elements
  * documents which are closed/deleted are hidden if they are child documents of still used documents
- * Furthermore autimatically loaded documents are generally hidden
+ * Furthermore automatically loaded documents are generally hidden
  */
 class LatexDocuments: public QObject
 {
