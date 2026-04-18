@@ -1400,7 +1400,7 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
  */
 void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 {
-	/* true means a second run is suggested as packages are loadeed which change the outcome
+    /* true means a second run is suggested as packages are loaded which change the outcome
 	 * e.g. definition of specialDef command, but packages are load at the end of this method.
 	 */
 
