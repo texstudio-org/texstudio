@@ -312,12 +312,12 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 		//check repetition
 		QHash<QString, int> repeatedWordCheck;
 		int totalWords = 0;
+        const QRegularExpression reNumber=QRegularExpression("\\d");
 		for (int w = 0 ; w < words.size(); w++) {
 			totalWords++;
 			if (words[w].length() == 1  && getCommonEOW().contains(words[w][0])) continue; //punctation
             // ignore word which contain digits
-            if (words[w].contains(QRegularExpression("\\d"))) continue;
-
+            if (reNumber.match(words[w]).hasMatch()) continue;
 
 			//check words
 			int truncatedChars = 0;
