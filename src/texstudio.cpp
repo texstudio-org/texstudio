@@ -497,7 +497,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	if (configManager.sessionRestore && !ConfigManager::dontRestoreSession) {
         config->setValue("texmaker/startupCompletion","restoreSession");
         config->sync();
-		fileRestoreSession(false, false);
+        fileRestoreSession(true, false);
 	}
     config->setValue("texmaker/startupCompletion","complete");
     config->sync();
@@ -3722,7 +3722,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     cursorHistory->setInsertionEnabled(false);
     QProgressDialog progress(this);
     if (showProgress) {
-        progress.setMaximum(s.files().size());
+        progress.setMaximum(s.files().size()+1);
         progress.setCancelButton(nullptr);
         progress.setMinimumDuration(3000);
         progress.setLabel(new QLabel());
@@ -3742,6 +3742,11 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
         if (showProgress) {
             progress.setValue(i);
             progress.setLabelText(QFileInfo(f.fileName).fileName());
+            QApplication::processEvents();
+        }
+        // Check if the user clicked "Cancel"
+        if (progress.wasCanceled()) {
+            break;
         }
         LatexEditorView *edView = load(f.fileName, f.fileName == s.masterFile(), false, true);
         if (edView) {
@@ -3771,7 +3776,9 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     //qDebug()<<"loaded:"<<tm.elapsed();
 
     if (showProgress) {
-        progress.setValue(progress.maximum());
+        progress.setValue(s.files().size());
+        progress.setLabelText(tr("Updating completer"));
+        QApplication::processEvents();
     }
     mDisableTOCupdates = false;
     configManager.editorConfig->realtimeChecking=previousStateRealtimeChecking; // restore state of realtime checking
@@ -3789,6 +3796,9 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
         SpellerUtility::inlineSpellChecking= configManager.editorConfig->inlineSpellChecking && configManager.editorConfig->realtimeChecking;
         doc->startSyntaxChecker(); // only syntax check visible documents, start when loading hidden docs
         edView->documentContentChanged(0, doc->lines());
+    }
+    if (showProgress) {
+        progress.setValue(progress.maximum());
     }
 
     if (warnMissing && !missingFiles.isEmpty()) {

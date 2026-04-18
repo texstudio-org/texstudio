@@ -2641,6 +2641,7 @@ std::pair<bool,bool> LatexDocuments::addDocsToLoad(QStringList filenames, LatexD
                     // load as hidden document
                     doc->load(fn,QDocument::defaultCodec(),true);
                 }
+                QApplication::processEvents(); // allow to update progress dialog and avoid program stalled warning
                 doc->setLtxCommands(parentDocument->lp);
                 if(doc->isIncompleteInMemory()){
                     // gather all commands from all child documents
