@@ -537,6 +537,15 @@ The abbreviation may start with a backslash (`\`) allowing autostart of the comp
 ![completing user tag with backslash](images/completer_usertag.webp)
 ```
 
+### User constructs completion
+
+TeXstudio remembers used mathematical expressions (user constructs) which are likely resued and provides them in the completer.
+These constructs are of the form
+1) `\symbol_`*something*
+2) `\mathcmd{`*something`}`
+
+This feature can be disabled, see [configuration](configuration.md#configuring-the-autocompletion).
+
 ## Spell check
 
 TeXstudio checks the spelling as you type.

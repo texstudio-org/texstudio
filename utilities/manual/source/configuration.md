@@ -766,6 +766,7 @@ The advanced mode offers some additional options:
     to be filled out, placeholders are put at these positions and they
     can be jumped to by using `Ctrl+Right`/`Ctrl+Left`.
 -   Insert Arguments: Insert the typical argument names like *num* & *den* in case of `\frac{num}{den}`
+-   Make user constructs from symbols/math commands: automatically add constrcut like `\mu_a` or `\mathsf{test}` to completer as they are likely reused. Disabling may speed-up reloading files for very large projects.
 
 Usually the auto-detection mechanism works reliably. In rare cases, you may want to force the use of predetermined completion lists.
 

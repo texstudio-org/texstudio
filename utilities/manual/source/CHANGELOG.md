@@ -16,6 +16,7 @@
 - fix compiler optimization on windows build (was deactivated, performance should generally improve)
 - show progress dialog when restoring files takes longer
 - clean-up dialog allows arbitrary file endings [#4419](https://github.com/texstudio-org/texstudio/pull/4419)
+- completion of user constructs can be disabled (options/completer). This may speed up file restore for large projects
 
 ## TeXstudio 4.9.3
 
