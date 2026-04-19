@@ -129,12 +129,12 @@ void LatexLogWidget::onInfoLinkActivated(const QString &link)
     config->setOption("LogView/RememberChoiceLargeFile",static_cast<int>(rememberChoice));
 
     if (link==QLatin1String("setToUtilsUi::txsWarningState::RememberFalse")) {
-        setInfo(tr("Your remembered answer has been cleared. Please reopen the log to load it."));
+        setInfo(QString());
     }else if (link==QLatin1String("setToUtilsUi::txsWarningState::RememberTrue")) {
-        setInfo(tr("Your remembered answer has been cleared."));
+        setInfo(QString());
     }else{
         m_lastIgnoredFilename.clear();
-        setInfo(tr("Reset done."));
+        setInfo(QString());
     }
 }
 
@@ -169,14 +169,17 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiled
             }
             if(!m_answer){
                 if(rememberChoice==UtilsUi::DontRemember){
-                    setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it ! [reset](%2)").arg(fileSizeMB, 0, 'f', 2).arg("resetName"));
+                    QString text=tr("Log not loaded because of size constraint (%1 MB). User chose not to load it !").arg(fileSizeMB, 0, 'f', 2);
+                    setInfo(("["+text+"](%1)").arg("resetName"));
                     m_lastIgnoredFilename=logname;
                 }else{
-                    setInfo(tr("Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)").arg(fileSizeMB, 0, 'f', 2).arg("setToUtilsUi::txsWarningState::RememberFalse"));
+                    QString text=tr("Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option !").arg(fileSizeMB, 0, 'f', 2);
+                    setInfo(("["+text+"](%1)").arg("setToUtilsUi::txsWarningState::RememberFalse"));
                 }
                 return false;
             }else if(rememberChoice==UtilsUi::RememberTrue) {
-                setInfo(tr("Log file size (%1 MB) above limit; loading performed due to your remembered choice. [Clear stored answer](%2)").arg(fileSizeMB, 0, 'f', 2).arg("setToUtilsUi::txsWarningState::RememberTrue"));
+                QString text=tr("Log file size (%1 MB) above limit; loading performed due to your remembered choice.").arg(fileSizeMB, 0, 'f', 2);
+                setInfo(("["+text+"](%1)").arg("setToUtilsUi::txsWarningState::RememberTrue"));
             }
         }
         m_lastIgnoredFilename.clear();
