@@ -10,6 +10,12 @@
 - improve information when loading log is rejected because of size
 - add support for anthropic REST API [#4387](https://github.com/texstudio-org/texstudio/pull/4387)
 - fix expl3 highlighting [#4397](https://github.com/texstudio-org/texstudio/pull/4397)
+- fix TOC update (local & global were both triggered, at least on linux)
+- start syntax checker only when view is shown to reduce overall cpu load
+- fix color for ai chat in dark mode [#4425](https://github.com/texstudio-org/texstudio/pull/4425)
+- fix compiler optimization on windows build (was deactivated, performance should generally improve)
+- show progress dialog when restoring files takes longer
+- clean-up dialog allows arbitrary file endings [#4419](https://github.com/texstudio-org/texstudio/pull/4419)
 
 ## TeXstudio 4.9.3
 
