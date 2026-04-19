@@ -8,8 +8,6 @@
 #include <QJsonArray>
 #include "chatdelegate.h"
 
-extern bool darkMode;
-
 class AIChatAssistant : public QDialog
 {
     Q_OBJECT

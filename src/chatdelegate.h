@@ -9,6 +9,8 @@ struct Message {
     Sender sender;
 };
 
+extern bool darkMode; // global variable to show if dark mode active
+
 /*!
  * \brief The ChatDelegate class
  * Custom delegate to render chat messages as bubbles, mimicking iMessage style.
