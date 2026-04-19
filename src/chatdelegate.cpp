@@ -44,12 +44,20 @@ void ChatDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     // Positioning: Right for "Me", Left for "Them"
     if (sender == Sender::Me) {
         bubbleRect.moveLeft(option.rect.left());
-        painter->setBrush(QColor(0x0078fe)); // iMessage Blue
+        if(darkMode){
+            painter->setBrush(QColor(0x0078fe)); // iMessage Blue
+        }else{
+            painter->setBrush(QColor(0xe1f5fe)); // iMessage Blue
+        }
         painter->setPen(Qt::NoPen);
     } else {
         if (sender == Sender::Them) {
             bubbleRect.moveLeft(option.rect.left()+margin);
-            painter->setBrush(QColor(0xe9e9eb)); // Light Gray
+            if(darkMode){
+                painter->setBrush(Qt::darkGray); // Dark Gray (work-around as text color does not change)
+            }else{
+                painter->setBrush(QColor(0xe9e9eb)); // Light Gray
+            }
             painter->setPen(Qt::NoPen);
         } else {
             // error
