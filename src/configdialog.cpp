@@ -739,7 +739,8 @@ void ConfigDialog::enableCustomURLEditor(int provider)
     // make backgrond grey
     QPalette palette = ui.leAIAPIURL->palette();
     if(provider==3){
-        palette.setColor(QPalette::Base, palette.color(QPalette::Active, QPalette::Base));
+        const QPalette &basePalette = QApplication::palette();
+        palette.setColor(QPalette::Base, basePalette.color(QPalette::Active, QPalette::Base));
     }else{
         palette.setColor(QPalette::Base,Qt::lightGray);
     }
