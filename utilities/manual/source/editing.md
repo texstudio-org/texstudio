@@ -539,7 +539,7 @@ The abbreviation may start with a backslash (`\`) allowing autostart of the comp
 
 ### User constructs completion
 
-TeXstudio remembers used mathematical expressions (user constructs) which are likely resued and provides them in the completer.
+TeXstudio remembers used mathematical expressions (user constructs) which are likely reused and provides them in the completer.
 These constructs are of the form
 1) `\symbol_`*something*
 2) `\mathcmd{`*something`}`
