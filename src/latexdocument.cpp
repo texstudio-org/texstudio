@@ -1069,6 +1069,8 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
         }
         /// auto user command for \symbol_...
         if(j+2<tl.length() && tk.type==Token::command){
+            auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+            if(conf && !conf->completeUserConstructs) continue;
             Token tk2=tl.at(j+1);
             if(tk2.getText()=="_"){
                 QString txt=cmd+"_";
@@ -1089,6 +1091,8 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
         }
         /// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
         if(j+2<tl.length() && !firstArg.isEmpty() && lp->possibleCommands["math"].contains(cmd) ){
+            auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+            if(conf && !conf->completeUserConstructs) continue;
             if (lp->commandDefs.contains(cmd)) {
                 CommandDescription cd = lp->commandDefs.value(cmd);
                 if(cd.arguments.size()==1 && cd.args()==1){

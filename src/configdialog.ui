@@ -105,7 +105,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>11</number>
+          <number>10</number>
          </property>
          <widget class="QWidget" name="pageGeneral">
           <layout class="QVBoxLayout">
@@ -3220,6 +3220,13 @@ to render the characters. Since Unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
+              <item row="4" column="1">
+               <widget class="QCheckBox" name="checkBoxCompleteUserConstructs">
+                <property name="text">
+                 <string>Make user constructs from symbols/math commands</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -3336,7 +3343,7 @@ them here.</string>
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-239</y>
+                <y>0</y>
                 <width>1132</width>
                 <height>1027</height>
                </rect>
@@ -4049,8 +4056,8 @@ This may lead to unwanted data transfer to the AI provider.
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>429</width>
-                <height>274</height>
+                <width>1146</width>
+                <height>453</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4325,7 +4332,7 @@ This may lead to unwanted data transfer to the AI provider.
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>555</width>
+                <width>1132</width>
                 <height>641</height>
                </rect>
               </property>

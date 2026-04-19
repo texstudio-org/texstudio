@@ -129,6 +129,7 @@ public:
 	LatexEditorViewConfig *const editorConfig;
 	//completion
 	LatexCompleterConfig *const completerConfig;
+    bool completeUserConstructs;
 
 	//webpublish dialog
 	WebPublishDialogConfig *const webPublishDialogConfig;

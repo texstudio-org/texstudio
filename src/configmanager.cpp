@@ -611,6 +611,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("Editor/Completion Auto Insert Math", &completerConfig->autoInsertMathDelimiters, true, &pseudoDialog->checkBoxAutoInsertMathDelimiters);
     registerOption("Editor/Completion Auto Insert Math Start", &completerConfig->startMathDelimiter,"$");
     registerOption("Editor/Completion Auto Insert Math Stop", &completerConfig->stopMathDelimiter,"$");
+    registerOption("Editor/Completion User Constructs", &completeUserConstructs, true, &pseudoDialog->checkBoxCompleteUserConstructs);
 
 
 	registerOption("Editor/Auto Insert LRM", &editorConfig->autoInsertLRM, false, &pseudoDialog->checkBoxAutoLRM);
