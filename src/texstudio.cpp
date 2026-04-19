@@ -1940,7 +1940,8 @@ void Texstudio::currentEditorChanged()
     if(doc->startSyntaxChecker()){
         // just in time start
         // update label/ref display which has never been run after fileRestore
-        edView->documentContentChanged(0, doc->lines());
+        //edView->documentContentChanged(0, doc->lines());
+        doc->highlight();
     }
 
     // update global toc
@@ -2378,7 +2379,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
     else if (edit->editor->fileInfo().suffix().toLower() != "tex")
         m_languages->setLanguage(edit->editor, f_real);
 
-    edit->editor->load(f_real, QDocument::defaultCodec());
+    edit->editor->load(f_real, QDocument::defaultCodec(),dontAsk);
 
     if (!edit->editor->languageDefinition())
         guessLanguageFromContent(m_languages, edit->editor);
@@ -5009,7 +5010,11 @@ void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 	if (!doc)
 		doc = currentEditorView()->document;
 	if (initial) {
-		doc->highlight();
+        if(hidden){
+            doc->patchStructure(0,-1);
+        }else{
+            doc->highlight();
+        }
 
 		bool previouslyEmpty=doc->localMacros.isEmpty();
 		doc->updateMagicCommentScripts();

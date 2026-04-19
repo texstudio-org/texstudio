@@ -1572,11 +1572,11 @@ void QEditor::removeAction(QAction *a, const QString& menu, const QString& toolb
 	If the file cannot be loaded, previous content is cleared.
 */
 
-void QEditor::load(const QString& file, QTextCodec* codec)
+void QEditor::load(const QString& file, QTextCodec* codec,bool skipHighlight)
 {
 	clearPlaceHolders();
 
-	m_doc->load(file,codec);
+    m_doc->load(file,codec,skipHighlight);
 
 	setCursor(QDocumentCursor(m_doc));
 
