@@ -1,5 +1,5 @@
 # apxproof package
-# Matthew Bertucci 1/29/2022 for v1.2.3
+# Matthew Bertucci 2026/04/20 for v1.3.0
 
 #include:environ
 #include:etoolbox
@@ -35,6 +35,7 @@ forwardlinking=#yes,no
 \appendixbibliographystyle#*
 \appendixbibliographyprelim#*
 \appendixprelim#*
+\chapterappendixprelim#*
 \begin{nestedproof}#*
 \end{nestedproof}#*
 \noproofinappendix#*

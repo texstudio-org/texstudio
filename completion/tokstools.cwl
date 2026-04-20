@@ -1,5 +1,5 @@
 # tokstools package
-# Matthew Bertucci 2026/03/31 for v0.1
+# Matthew Bertucci 2026/04/20 for v0.2
 
 #include:simplekv
 
@@ -78,12 +78,12 @@ name=%<name%>
 
 \tokscapture{index}
 
-\pegreplace{patterns}{tokens}{replacement}
-\pegreplace[keyvals]{patterns}{tokens}{replacement}
+\pegreplace{patterns}{tokens}
+\pegreplace[keyvals]{patterns}{tokens}
 
 #keyvals:\pegreplace
 expand arg=%<integer%>
-all#true,false
+mode=#0,1,2
 assign=%<code%>
 #endkeyvals
 
