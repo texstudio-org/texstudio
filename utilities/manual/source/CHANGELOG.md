@@ -3,7 +3,7 @@
 
 - disable AI wizard by default
 - enable LLM to use tool functions to access the current document. This allows LLM to manipulate the document directly. This can be disabled.
-- fix losing cursor position when view witdh changes (soft wrap) [#3418](https://github.com/texstudio-org/texstudio/issues/3418)
+- fix losing cursor position when view width changes (soft wrap) [#3418](https://github.com/texstudio-org/texstudio/issues/3418)
 - fix file detection in TOC when creating new file from include/input
 - improve loading speed with large projects [#4410](https://github.com/texstudio-org/texstudio/pull/4410)
 - add find definitions on multiple defined labels
@@ -169,7 +169,7 @@
 ## TeXstudio 4.8.0
 
 - AI chat assistant added
-- use moveable/**splitable** docks for sidepanel
+- use moveable/**splittable** docks for sidepanel
 - extended search can now also search in all files in one folder
 - add basic syntax highlighting for latex3 code
 - fix handling CJK characters in pdf on OSX [#3558](https://github.com/texstudio-org/texstudio/issues/3558)
