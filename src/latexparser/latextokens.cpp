@@ -147,23 +147,18 @@ QString Token::tokenTypeName(TokenType t) {
 /*!
  * define tokens which describe a mandatory argument
  */
-QSet<Token::TokenType> Token::tkArg()
+const QSet<Token::TokenType> Token::tkArg()
 {
-	QSet<TokenType> result;
-	result.insert(openBrace);
-	result.insert(braces);
-	result.insert(word);
+    static const QSet<TokenType> result{openBrace,braces,word};
 	return result;
 }
 
 
 /*! define tokens which describe an optional argument
  */
-QSet<Token::TokenType> Token::tkOption()
+const QSet<Token::TokenType> Token::tkOption()
 {
-	QSet<TokenType> result;
-	result.insert(squareBracket);
-	result.insert(openSquare);
+    static const QSet<TokenType> result{squareBracket,openSquare};
 	return result;
 }
 
@@ -171,13 +166,9 @@ QSet<Token::TokenType> Token::tkOption()
 /*!
  * \brief define all possible group tokens
  */
-QSet<Token::TokenType> Token::tkBraces()
+const QSet<Token::TokenType> Token::tkBraces()
 {
-	QSet<TokenType> result;
-	result.insert(braces);
-	result.insert(bracket);
-	result.insert(squareBracket);
-	result.insert(overlayRegion);
+    static const QSet<TokenType> result{braces,bracket,squareBracket,overlayRegion};
 	return result;
 }
 
@@ -185,14 +176,9 @@ QSet<Token::TokenType> Token::tkBraces()
 /*!
  * \brief define open group tokens
  */
-QSet<Token::TokenType> Token::tkOpen()
+const QSet<Token::TokenType> Token::tkOpen()
 {
-	QSet<TokenType> result;
-	result.insert(openBrace);
-	result.insert(openBracket);
-	result.insert(openSquare);
-	result.insert(less);
-    result.insert(openSquare);
+    static const QSet<TokenType> result{openBrace, openBracket, openSquare, less};
 	return result;
 }
 
@@ -200,14 +186,9 @@ QSet<Token::TokenType> Token::tkOpen()
 /*!
  * \brief define close group tokens
  */
-QSet<Token::TokenType> Token::tkClose()
+const QSet<Token::TokenType> Token::tkClose()
 {
-	QSet<TokenType> result;
-	result.insert(closeBrace);
-	result.insert(closeBracket);
-	result.insert(closeSquareBracket);
-	result.insert(greater);
-    result.insert(greater);
+    const QSet<TokenType> result{closeBrace, closeBracket, closeSquareBracket, greater};
 	return result;
 }
 
@@ -215,14 +196,9 @@ QSet<Token::TokenType> Token::tkClose()
 /*! define argument-types (tokens) which consist of comma-separated lists
  * .e.g. \usepackage{pck1,pck2}
  */
-QSet<Token::TokenType> Token::tkCommalist()
+const QSet<Token::TokenType> Token::tkCommalist()
 {
-	QSet<TokenType> result;
-	result.insert(bibItem);
-	result.insert(package);
-	result.insert(packageoption);
-	result.insert(bibfile);
-	result.insert(labelRefList);
+    static const QSet<TokenType> result{bibItem,package,packageoption,bibfile,labelRefList};
 	return result;
 }
 
@@ -230,23 +206,9 @@ QSet<Token::TokenType> Token::tkCommalist()
 /*! define argument-types (tokens) which are a single argument
  * .e.g. \label{abc}
  */
-QSet<Token::TokenType> Token::tkSingleArg()
+const QSet<Token::TokenType> Token::tkSingleArg()
 {
-	QSet<TokenType> result;
-	result.insert(label);
-	result.insert(labelRef);
-	result.insert(url);
-	result.insert(file);
-	result.insert(imagefile);
-	result.insert(env);
-	result.insert(beginEnv);
-	result.insert(documentclass);
-	result.insert(beamertheme);
-	result.insert(def);
-	result.insert(overlay);
-    result.insert(newTheorem);
-    result.insert(newBibItem);
-    result.insert(defSpecialArg);
+    static const QSet<TokenType> result{label,labelRef,url,file,imagefile,env,beginEnv,documentclass,beamertheme,def,overlay,newTheorem,newBibItem,defSpecialArg};
 	return result;
 }
 

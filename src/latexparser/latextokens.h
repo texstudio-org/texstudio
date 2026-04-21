@@ -85,13 +85,13 @@ public:
 	int argLevel; ///< number of argument (>0) or option (<0, =-numberOfOption)
 	static const QHash<TokenType, int> leftDelimWidth;  ///< width of the left delimiter in the token (if applicable)
 	static const QHash<TokenType, int> rightDelimWidth;  ///< width of the right delimiter in the token (if applicable)
-	static QSet<TokenType> tkArg();
-	static QSet<TokenType> tkOption();
-	static QSet<TokenType> tkBraces();
-	static QSet<TokenType> tkOpen();
-	static QSet<TokenType> tkClose();
-	static QSet<TokenType> tkCommalist();
-	static QSet<TokenType> tkSingleArg();
+    static const QSet<TokenType> tkArg();
+    static const QSet<TokenType> tkOption();
+    static const QSet<TokenType> tkBraces();
+    static const QSet<TokenType> tkOpen();
+    static const QSet<TokenType> tkClose();
+    static const QSet<TokenType> tkCommalist();
+    static const QSet<TokenType> tkSingleArg();
 	static TokenType opposite(TokenType type);
 	static TokenType closed(TokenType type);
 	bool operator==(const Token &v) const;
