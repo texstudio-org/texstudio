@@ -18,6 +18,7 @@
 - clean-up dialog allows arbitrary file endings [#4419](https://github.com/texstudio-org/texstudio/pull/4419)
 - completion of user constructs can be disabled (options/completer). This may speed up file restore for large projects
 - response after opening large log files can now be reverted by clicking the message [#4416](https://github.com/texstudio-org/texstudio/pull/4416)
+- speed-up globalTOC with large number of included files
 
 ## TeXstudio 4.9.3
 
