@@ -84,7 +84,7 @@ a) todos from a todo-like command, e.g. \\todo{} from the package todonotes.
 b) todo-comments: This is a comment with a \"% TODO\" or \"%todo\". You can
 adapt the regular expression for other comments to be marked as
 todo-comment in *options/advanced editor/Regular Expression for TODO
-comment*, e.g. `%\s?[A-Z][A-Z_\-]+` for any comment starting
+comment*, e.g. `%\s?[A-Z][A-Z_-]+` for any comment starting
 with at least two capital letters.
 
 The structure view also offers a context menu which allows one to
