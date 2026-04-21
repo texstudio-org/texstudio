@@ -923,5 +923,7 @@ Here is a list of some of those settings.
 
 | Setting name | Description | Default setting |
 | ------------ | ----------- | --- |
+| Editor\MaxImageTooltipWidth | Scale large images shown in tooltip previews down to this width | 400 (px) |
+| Editor\RUNAWAYLIMIT | Stop highlighting open arguments after a limited number of lines | 30 (lines) |
+| LogView\RememberChoiceLargeFile | Remembers user choice what to do if the log file is large | 0 (ask) |
 | LogView\WarnIfFileSizeLargerMB | Give out a warning if the log file size is larger than limit | 2.0 (MB) |
-| RememberChoiceLargeFile | Remembers user choice what to do if the log file is large | 0 (ask) |
