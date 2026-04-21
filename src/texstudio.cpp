@@ -12731,6 +12731,7 @@ bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> 
     }
     QColor colors[6];
     const char nrColors=6;
+    static const QIcon includeIcon=getRealIcon("include");
     if(darkMode){
         for(int i=0;i<nrColors;++i){
             if(configManager.globalTOCbackgroundOptions==1){
@@ -12782,12 +12783,15 @@ bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> 
         if(elem->type == StructureEntry::SE_INCLUDE){
             LatexDocument *doc=elem->document;
             QString name=elem->title;
-            name.replace("\\string~",QDir::homePath());
-            QString fname = doc->findFileName(name);
-            QFileInfo fi(fname);
-            doc=documents.findDocumentFromName(fi.absoluteFilePath());
-            if(!doc){
-                doc=documents.findDocumentFromName(fi.absoluteFilePath()+".tex");
+            LatexDocument *includedDoc=elem->getCachedIncludeDoc();
+            if(includedDoc){
+                doc=includedDoc;
+            }else{
+                name.replace("\\string~",QDir::homePath());
+                QString fname = doc->findFileName(name);
+                QFileInfo fi(fname);
+                doc=documents.findDocumentFromName(fi.absoluteFilePath());
+                elem->cacheIncludeDoc(doc);
             }
             bool ea=false;
             if(doc &&!visited->contains(doc)){
@@ -12799,7 +12803,7 @@ bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> 
                 item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
                 item->setText(0,elem->title);
                 item->setToolTip(0,tr("Document: ")+docName);
-                item->setIcon(0,getRealIcon("include"));
+                item->setIcon(0,includeIcon);
                 if(configManager.globalTOCbackgroundOptions>0){
                     item->setBackground(0,colors[currentColor]);
                 }

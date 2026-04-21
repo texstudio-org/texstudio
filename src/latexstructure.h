@@ -39,22 +39,18 @@ struct StructureEntry {
 	int getCachedLineNumber() const; ///< get cached line number
 	int getRealLineNumber() const; ///< get line number from given linehandle. More time consuming than from cached line number.
 
-	bool hasContext(Context c) const
-	{
-		return m_contexts & c;    ///< get context
-	}
-	void setContext(Context c, bool b = true)
-	{
-		if (b) m_contexts |= c;    ///< change context
-		else m_contexts &= ~c;
-	}
+    bool hasContext(Context c) const;
+    void setContext(Context c, bool b = true);
 
 	void debugPrint(const char *message) const;
+    void cacheIncludeDoc(LatexDocument *includeDoc); ///< cache the document of an include entry for later use in structure update
+    LatexDocument *getCachedIncludeDoc() const; ///< get cached document of an include entry for later use in structure update
 
 private:
 	QDocumentLineHandle *lineHandle;
 	mutable int lineNumber;
 	Contexts m_contexts;
+    LatexDocument *m_cachedIncludeDoc=nullptr; ///< cached document of an include entry for later use in structure update
 };
 Q_DECLARE_METATYPE(StructureEntry *)
 

@@ -45,6 +45,17 @@ int StructureEntry::getRealLineNumber() const
 	return lineNumber;
 }
 
+bool StructureEntry::hasContext(Context c) const
+{
+    return m_contexts & c;    ///< get context
+}
+
+void StructureEntry::setContext(Context c, bool b)
+{
+    if (b) m_contexts |= c;    ///< change context
+    else m_contexts &= ~c;
+}
+
 template <typename T> inline int hintedIndexOf (const QList<T *> &list, const T *elem, int hint)
 {
 	if (hint < 2) return list.indexOf(const_cast<T *>(elem));
@@ -70,4 +81,14 @@ void StructureEntry::debugPrint(const char *message) const
     qDebug()<<"   type: "<< static_cast<int>(type);
     qDebug()<<"   line nr: "<< lineNumber;
     qDebug()<<"   title: " << title;
+}
+
+void StructureEntry::cacheIncludeDoc(LatexDocument *includeDoc)
+{
+    m_cachedIncludeDoc = includeDoc;
+}
+
+LatexDocument *StructureEntry::getCachedIncludeDoc() const
+{
+    return m_cachedIncludeDoc;
 }
