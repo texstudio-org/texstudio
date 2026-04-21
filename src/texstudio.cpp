@@ -12785,8 +12785,15 @@ bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> 
             QString name=elem->title;
             LatexDocument *includedDoc=elem->getCachedIncludeDoc();
             if(includedDoc){
-                doc=includedDoc;
-            }else{
+                if(documents.documents.contains(includedDoc) || documents.hiddenDocuments.contains(includedDoc)){
+                    // make sure that cached doc still exists
+                    // may be recreated on reload
+                    doc=includedDoc;
+                }else{
+                    includedDoc=nullptr;
+                }
+            }
+            if(!includedDoc){
                 name.replace("\\string~",QDir::homePath());
                 QString fname = doc->findFileName(name);
                 QFileInfo fi(fname);
