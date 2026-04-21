@@ -7,24 +7,24 @@ in the following subsections:
 
 ### Setting the preamble of a TeX document
 
-To define the preamble of your document, you can use the \"Quick start\"
-wizard (\"Wizard\" menu).
+To define the preamble of your document, you can use the "Quick start"
+wizard ("Wizard" menu).
 
 ![Quick Start](images/quickstartwizard.webp)
 
 This dialog allows you to set the main features of your document (class,
 paper size, encoding\...).
-Note: You can add other options by clicking the \"+\" buttons. All your
+Note: You can add other options by clicking the "+" buttons. All your
 settings are recorded.
 
 You can also type your own preamble model in the editor: with the
-\"Copy/paste\" or \"Save As\" commands, you can use it for a new
+"Copy/paste" or "Save As" commands, you can use it for a new
 document.
 
 ### Using Templates to start a new document
 
-For new documents, templates can be used by using the command \"File/New
-from template\". A dialog gives a selection of templates.
+For new documents, templates can be used by using the command "File/New
+from template". A dialog gives a selection of templates.
 
 ![Templates](images/template.webp)
 
@@ -32,11 +32,11 @@ You can either create a new editor document from the template or create
 it as file(s) on disk and open these in the editor. The former option is
 not available for multi-file templates.
 
-New templates can be created by using the command \"File/Make Template\"
+New templates can be created by using the command "File/Make Template"
 on an opened document which you like to have as a template. Note that
 this dialog currently does not support the full capabilities of the
 template system. In particular you cannot supply a preview image or
-create a multi-file template with it. You\'ll have to do this manually
+create a multi-file template with it. You'll have to do this manually
 (see [The template format](background.md#the-document-template-format) below).
 
 User added templates can be edited or deleted by using the context menu
@@ -84,7 +84,7 @@ a) todos from a todo-like command, e.g. \\todo{} from the package todonotes.
 b) todo-comments: This is a comment with a \"% TODO\" or \"%todo\". You can
 adapt the regular expression for other comments to be marked as
 todo-comment in *options/advanced editor/Regular Expression for TODO
-comment*, e.g \"%\\s?\[A-Z\]\[A-Z\_\\-\]+\" for any comment starting
+comment*, e.g. `%\s?[A-Z][A-Z_-]+` for any comment starting
 with at least two capital letters.
 
 The structure view also offers a context menu which allows one to
@@ -125,7 +125,7 @@ global TOC in [advanced editor settings](configuration.md#configuring-the-advanc
 
 You can use bookmarks in the editor of TeXstudio. This can help keep
 text lines in mind and speed up navigation between them. To the left of
-the editor\'s text area is a bookmark column that displays the bookmark
+the editor's text area is a bookmark column that displays the bookmark
 icons. Here you can open a context menu (see image below) and select the
 bookmark you want to set for a text line. Each of the ten numbered
 bookmarks can be used only once (when you set it a second time in the
