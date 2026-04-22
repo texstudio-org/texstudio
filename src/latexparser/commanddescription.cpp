@@ -63,7 +63,7 @@ void CommandDescriptionHash::unite(const CommandDescriptionHash &other){
                     int new_overlayArgs = 0;
                     int new_optionalArgs = 0;
                     int new_generalArgs=0;
-                    for (const ArgumentDescription &ad : cd_new.arguments) {
+                    foreach (const ArgumentDescription &ad , cd_new.arguments) {
                         if (ad.tokenType == Token::generalArg){
                             ++new_generalArgs;
                         }

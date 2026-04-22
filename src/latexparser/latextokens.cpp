@@ -188,7 +188,7 @@ const QSet<Token::TokenType> Token::tkOpen()
  */
 const QSet<Token::TokenType> Token::tkClose()
 {
-    const QSet<TokenType> result{closeBrace, closeBracket, closeSquareBracket, greater};
+    static const QSet<TokenType> result{closeBrace, closeBracket, closeSquareBracket, greater};
 	return result;
 }
 

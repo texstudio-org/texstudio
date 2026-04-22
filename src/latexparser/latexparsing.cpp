@@ -594,7 +594,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             }
             continue;
         }
-	    if (Token::tkClose().contains(tk.type)) {
+        if (Token::tkClose().contains(tk.type)) {
             // special treament for brackets as they don't have any syntactic meaning except with some commands
             if (tk.type == Token::closeBracket || tk.type == Token::greater ) {
                 if (stack.isEmpty())
@@ -1294,7 +1294,7 @@ QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int hint, i
 			// closing found
 			return result.left(tk.start);
 		}
-		if (Token::tkClose().contains(tk.type)) {
+        if (Token::tkClose().contains(tk.type)) {
 			// wrong closing found/ syntax problem
 			//return value anyway
 			return result.left(tk.start + 1);
@@ -1325,7 +1325,7 @@ Token getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first)
 			if (first)
 				break;
 		}
-		if (!Token::tkBraces().contains(elem.type) && !Token::tkClose().contains(elem.type) && elem.start + elem.length >= pos) { // get abc|} -> abc
+        if (!Token::tkBraces().contains(elem.type) && !Token::tkClose().contains(elem.type) && elem.start + elem.length >= pos) { // get abc|} -> abc
 			tk = elem; // get deepest element at col
 			if (first)
 				break;
