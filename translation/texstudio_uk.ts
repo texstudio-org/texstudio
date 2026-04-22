@@ -1722,7 +1722,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="3226"/>
         <source>Make user constructs from symbols/math commands</source>
-        <translation type="unfinished"/>
+        <translation>Створювати конструкції користувача на основі символів/математичних команд</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3662"/>
@@ -5711,12 +5711,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="176"/>
         <source>Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Журнал не завантажено через обмеження розміру (%1 МБ). Користувач вирішив не завантажувати його та встановив цей варіант як усталений! [Очистити збережену відповідь](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="181"/>
         <source>Log file size (%1 MB) above limit; loading performed due to your remembered choice. [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Розмір файлу журналу (%1 МБ) перевищує обмеження; завантаження виконано відповідно до вашого збереженого вибору. [Очистити збережену відповідь](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="172"/>
@@ -11929,7 +11929,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3779"/>
         <source>Updating completer</source>
-        <translation type="unfinished"/>
+        <translation>Оновлення модуля завершення</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3804"/>

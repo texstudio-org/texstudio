@@ -1721,7 +1721,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="3226"/>
         <source>Make user constructs from symbols/math commands</source>
-        <translation type="unfinished"/>
+        <translation>Felhasználói konstrukciók létrehozása szimbólumok/matematikai parancsokból</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3662"/>
@@ -5697,12 +5697,12 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="176"/>
         <source>Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>A napló nem töltődött be méretkorlátozás miatt (%1 MB). A felhasználó úgy döntött, hogy nem tölti be, és alapértelmezettként állítja be! [Tárolt válasz törlése](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="181"/>
         <source>Log file size (%1 MB) above limit; loading performed due to your remembered choice. [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Naplófájl mérete (%1 MB) határérték felett; a betöltés a megjegyzett választásod miatt történt. [Tárolt válasz törlése](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="172"/>
@@ -11905,7 +11905,7 @@ El kellene menteni vagy be kellene zárni a másik fájlt.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3779"/>
         <source>Updating completer</source>
-        <translation type="unfinished"/>
+        <translation>A kiegészítő frissítése</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3804"/>

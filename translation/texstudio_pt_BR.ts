@@ -1722,7 +1722,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location filename="../src/configdialog.ui" line="3226"/>
         <source>Make user constructs from symbols/math commands</source>
-        <translation type="unfinished"/>
+        <translation>Criar construções de utilizador a partir de símbolos/comandos matemáticos</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3662"/>
@@ -5710,12 +5710,12 @@ O assistente não suporta o comando </translation>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="176"/>
         <source>Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>O registo não foi carregado devido a uma limitação de tamanho (%1 MB). O utilizador optou por não o carregar e definiu-o como opção por defeito! [Limpar resposta guardada](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="181"/>
         <source>Log file size (%1 MB) above limit; loading performed due to your remembered choice. [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>O tamanho do ficheiro de registo (%1 MB) excedeu o limite; o carregamento foi efectuado de acordo com a sua escolha gravada. [Limpar resposta gravada]](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="172"/>
@@ -11925,7 +11925,7 @@ salvar ou fechar este outro arquivo antes de poder sobrescrevê-lo.</translation
     <message>
         <location filename="../src/texstudio.cpp" line="3779"/>
         <source>Updating completer</source>
-        <translation type="unfinished"/>
+        <translation>Atualização do completador</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3804"/>

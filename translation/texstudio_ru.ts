@@ -1722,7 +1722,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="3226"/>
         <source>Make user constructs from symbols/math commands</source>
-        <translation type="unfinished"/>
+        <translation>Создать пользовательские конструкции из символов/мат. команд</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3662"/>
@@ -5440,7 +5440,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="653"/>
         <source>Find Definitions</source>
-        <translation type="unfinished"/>
+        <translation>Найти определения</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="668"/>
@@ -5712,12 +5712,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="176"/>
         <source>Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Лог-файл не загружен из-за ограничения на размер (%1 МБ). Пользователь решил не загружать его и задал это как опцию по умолчанию! [Очистить сохранённое значение](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="181"/>
         <source>Log file size (%1 MB) above limit; loading performed due to your remembered choice. [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Размер лог-файла (%1 МБ) превышает лимит; загрузка делается по сохранённому ранее выбору. [Очистить сохранённое значение](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="172"/>
@@ -11928,7 +11928,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3779"/>
         <source>Updating completer</source>
-        <translation type="unfinished"/>
+        <translation>Обновление завершено</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3804"/>

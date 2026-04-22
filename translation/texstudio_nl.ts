@@ -1730,7 +1730,7 @@ Vervolgens kunt u op een van de volgende manieren een nieuwe snelkoppeling selec
     <message>
         <location filename="../src/configdialog.ui" line="3226"/>
         <source>Make user constructs from symbols/math commands</source>
-        <translation type="unfinished"/>
+        <translation>Maak gebruikersconstructies van symbolen/wiskundige commando&apos;s.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3662"/>
@@ -5712,12 +5712,12 @@ De wizard ondersteunt geen opdrachten</translation>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="176"/>
         <source>Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Logbestand niet geladen vanwege groottebeperking (%1 MB). De gebruiker heeft ervoor gekozen het niet te laden en dit als standaardoptie in te stellen!  [Opgeslagen antwoord wissen](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="181"/>
         <source>Log file size (%1 MB) above limit; loading performed due to your remembered choice. [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Logbestandgrootte (%1 MB) overschrijdt de limiet; laden uitgevoerd vanwege uw opgeslagen keuze. [Opgeslagen antwoord wissen](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="172"/>
@@ -11919,7 +11919,7 @@ dit andere bestand voordat u het kunt overschrijven.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3779"/>
         <source>Updating completer</source>
-        <translation type="unfinished"/>
+        <translation>Voltooier bijwerken</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3804"/>

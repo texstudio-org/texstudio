@@ -1723,7 +1723,7 @@ Esto cambia la escala de las barras de herramientas verticales (para pantallas d
     <message>
         <location filename="../src/configdialog.ui" line="3226"/>
         <source>Make user constructs from symbols/math commands</source>
-        <translation type="unfinished"/>
+        <translation>Crea construcciones de usuario a partir de símbolos/comandos matemáticos.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3662"/>
@@ -5698,12 +5698,13 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="176"/>
         <source>Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>El registro no se cargó debido a la limitación de tamaño (%1 MB). El usuario optó por no cargarlo y lo estableció como opción predeterminada.
+[Borrar respuesta alamcenada](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="181"/>
         <source>Log file size (%1 MB) above limit; loading performed due to your remembered choice. [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>El tamaño del archivo de registro (%1 MB) supera el límite; la carga se realizó debido a la opción que recordaste. [Borrar respuesta almacenada] (%2 MB)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="172"/>
@@ -11911,7 +11912,7 @@ este otro archivo antes de que pueda sobrescribirlo.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3779"/>
         <source>Updating completer</source>
-        <translation type="unfinished"/>
+        <translation>Actualizando el completador</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3804"/>

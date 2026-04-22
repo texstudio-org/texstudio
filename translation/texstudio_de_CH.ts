@@ -1722,7 +1722,7 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
     <message>
         <location filename="../src/configdialog.ui" line="3226"/>
         <source>Make user constructs from symbols/math commands</source>
-        <translation type="unfinished"/>
+        <translation>Generiere Nutzerkonstrukte aus Symbole/Mathebefehlen</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3662"/>
@@ -5700,12 +5700,13 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="176"/>
         <source>Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Log wurde nicht geladen wegen Größenbeschränkung (%1 MB). Nutzer wählte die Datei nicht zu laden und hat dies als Vorgabe gesetzt!
+[Vorgabe zurücksetzen](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="181"/>
         <source>Log file size (%1 MB) above limit; loading performed due to your remembered choice. [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Logdateigröße (%1 MB) liegt über dem Limit; Sie wurde aufgrund der gemerkten Entscheidung geladen. [Entscheidung aufheben](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="172"/>
@@ -11903,7 +11904,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3779"/>
         <source>Updating completer</source>
-        <translation type="unfinished"/>
+        <translation>Vervollständigung wird aktualisiert</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3804"/>

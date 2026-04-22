@@ -1717,12 +1717,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2540"/>
         <source>Show preview as tooltip on formulas in editor</source>
-        <translation>Εμφάνιση προεπισκόπησης των μαθηματικών τύπων σε tooltip στον επεξεργαστή κειμένου</translation>
+        <translation>Εμφάνιση προεπισκόπησης μαθηματικών τύπων σε tooltip στον επεξεργαστή κειμένου</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3226"/>
         <source>Make user constructs from symbols/math commands</source>
-        <translation type="unfinished"/>
+        <translation>Απομνημόνευση συχνών μαθηματικών εκφράσεων</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3662"/>
@@ -2212,7 +2212,7 @@ This may lead to unwanted data transfer to the AI provider.
 &lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
 &lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
 &lt;/ul&gt;</source>
-        <translation>Επιτρέπει την αντικατάσταση εντολών επί τόπου. Για παράδειγμα, για την εντολή:&lt;br&gt;
+        <translation>Επιτρέπει την αντικατάσταση εντολών επί τόπου. Για παράδειγμα, για την αντικατάσταση της εντολής:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
 &lt;li&gt;Τοποθετήστε τον κέρσορα πίσω από το κείμενο &quot;text&quot;&lt;/li&gt;
@@ -2239,7 +2239,7 @@ This may lead to unwanted data transfer to the AI provider.
     <message>
         <location filename="../src/configdialog.ui" line="3056"/>
         <source>ToolTip-Preview</source>
-        <translation>Εμφάνιση προεπισκόπησης εντολών μέσω tooltip</translation>
+        <translation>Εμφάνιση προεπισκόπησης εντολών σε tooltip</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3063"/>
@@ -5723,12 +5723,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="176"/>
         <source>Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Η φόρτωση του αρχείου καταγραφής δεν πραγματοποιήθηκε λόγω του μεγάλου μεγέθους του (%1 MB), και κατόπιν επιλογής του χρήστη. Η ρύθμιση αυτή αποθηκεύτηκε ως προεπιλεγμένη. [Επαναφορά ρύθμισης](%2).</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="181"/>
         <source>Log file size (%1 MB) above limit; loading performed due to your remembered choice. [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Το μέγεθος του αρχείου καταγραφής είναι πολύ μεγάλο (%1 MB). Η φόρτωση πραγματοποιήθηκε κατόπιν δικής σας επιλογής. [Επαναφορά ρύθμισης](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="172"/>
@@ -11930,7 +11930,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3779"/>
         <source>Updating completer</source>
-        <translation type="unfinished"/>
+        <translation>Ενημέρωση εργαλείου αυτόματης συμπλήρωσης...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3804"/>
