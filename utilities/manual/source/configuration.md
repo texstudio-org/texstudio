@@ -288,7 +288,7 @@ program on your computer, if you want to use a command.
 #### Sumatra (Windows only)
 
 Launch Sumatra from TeXstudio and configure Sumatra for inverse search
-: `"(your sumatra path)" -reuse-instance -forward-search "?c:am.tex" @ -inverse-search "\\"(your texstudio path)>\\" \\"%%f\\" -line %%l" "?am.pdf"`
+: `"(your sumatra path)" -reuse-instance -forward-search "?c:am.tex" @ -inverse-search "\\"(your texstudio path)\\" \\"%%f\\" -line %%l" "?am.pdf"`
 
 Jump to a line in a running Sumatra:
 : `dde:///SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]`
