@@ -917,6 +917,11 @@ The resulting configuration should look similar to this:
 
 ![Build configuration](images/conf_build_outputDirectory.png)
 
+```{note}
+Alternatively, most files generated during the build process can be deleted using the Clean dialog (s. `Tools/Clean Auxiliary Files...` menu).
+However, this does not work if the files are stored in a different folder using the method described above.
+```
+
 ## Hidden settings
 Some very rarely needed settings are not available via GUI but only directly in the texstudio.ini file.
 Here is a list of some of those settings.
