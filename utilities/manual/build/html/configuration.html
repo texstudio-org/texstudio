@@ -530,7 +530,7 @@ program on your computer, if you want to use a command.</p>
 <section id="sumatra-windows-only">
 <h4>Sumatra (Windows only)<a class="headerlink" href="#sumatra-windows-only" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
-<dt>Launch Sumatra from TeXstudio and configure Sumatra for inverse search</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">sumatra</span> <span class="pre">path)&quot;</span> <span class="pre">-reuse-instance</span> <span class="pre">-forward-search</span> <span class="pre">&quot;?c:am.tex&quot;</span> <span class="pre">&#64;</span> <span class="pre">-inverse-search</span> <span class="pre">&quot;\\&quot;(your</span> <span class="pre">texstudio</span> <span class="pre">path)&gt;\\&quot;</span> <span class="pre">\\&quot;%%f\\&quot;</span> <span class="pre">-line</span> <span class="pre">%%l&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span></code></p>
+<dt>Launch Sumatra from TeXstudio and configure Sumatra for inverse search</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">sumatra</span> <span class="pre">path)&quot;</span> <span class="pre">-reuse-instance</span> <span class="pre">-forward-search</span> <span class="pre">&quot;?c:am.tex&quot;</span> <span class="pre">&#64;</span> <span class="pre">-inverse-search</span> <span class="pre">&quot;\\&quot;(your</span> <span class="pre">texstudio</span> <span class="pre">path)\\&quot;</span> <span class="pre">\\&quot;%%f\\&quot;</span> <span class="pre">-line</span> <span class="pre">%%l&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span></code></p>
 </dd>
 <dt>Jump to a line in a running Sumatra:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">dde:///SUMATRA/control/[ForwardSearch(&quot;?am.pdf&quot;,&quot;?c:am.tex&quot;,&#64;,0,0,1)]</span></code></p>
 </dd>
@@ -1183,7 +1183,7 @@ This program, available for macOS and linux needs to be downloaded and stored on
 TexLive,Miktex and TeXstudio support this scenario but TeXstudio needs to be configured manually for this.</p>
 <p>The following configuration assumes pdflatex as compiler and places all build files in a subfolder “build” which sits in the source folder.</p>
 <ol class="arabic simple">
-<li><p>add <code class="docutils literal notranslate"><span class="pre">--output-directory=build</span></code> to the pdflatex command (options/commands)</p></li>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">-output-directory=build</span></code> to the pdflatex command (options/commands)</p></li>
 <li><p>add “build” as additional search folder into log-paths (options/build/build options:log file)</p></li>
 <li><p>add “build” as additional search folder into pdf-paths (options/build/build options:pdf file)</p></li>
 </ol>
@@ -1205,13 +1205,21 @@ Here is a list of some of those settings.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>LogView\WarnIfFileSizeLargerMB</p></td>
-<td><p>Give out a warning if the log file size is larger than limit</p></td>
-<td><p>2.0 (MB)</p></td>
+<tr class="row-even"><td><p>Editor\MaxImageTooltipWidth</p></td>
+<td><p>Scale large images shown in tooltip previews down to this width</p></td>
+<td><p>400 (px)</p></td>
 </tr>
-<tr class="row-odd"><td><p>RememberChoiceLargeFile</p></td>
+<tr class="row-odd"><td><p>Editor\RUNAWAYLIMIT</p></td>
+<td><p>Stop highlighting open arguments after a limited number of lines</p></td>
+<td><p>30 (lines)</p></td>
+</tr>
+<tr class="row-even"><td><p>LogView\RememberChoiceLargeFile</p></td>
 <td><p>Remembers user choice what to do if the log file is large</p></td>
 <td><p>0 (ask)</p></td>
+</tr>
+<tr class="row-odd"><td><p>LogView\WarnIfFileSizeLargerMB</p></td>
+<td><p>Give out a warning if the log file size is larger than limit</p></td>
+<td><p>2.0 (MB)</p></td>
 </tr>
 </tbody>
 </table>
