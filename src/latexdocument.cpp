@@ -206,6 +206,7 @@ void LatexDocument::initClearStructure()
 {
 	mUserCommandList.clear();
 	mLabelItem.clear();
+    mLabelHash.clear();
 	mBibItem.clear();
 	mRefItem.clear();
     mRefHash.clear();
@@ -251,6 +252,9 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int
         if (mLabelItem.contains(dlh)) {
             QList<ReferencePair> labels = mLabelItem.values(dlh);
             completerNeedsUpdate = true;
+            for(const ReferencePair &rp : mLabelItem.values(dlh)){
+                mLabelHash.remove(rp.name,dlh);
+            }
             mLabelItem.remove(dlh);
             foreach (const ReferencePair &rp, labels)
                 updateRefsLabels(rp.name);
@@ -583,6 +587,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             elem.name = tk.getText();
             elem.start = tk.start;
             mLabelItem.insert(dlh, elem);
+            mLabelHash.insert(elem.name,dlh);
             data.completerNeedsUpdate = true;
             data.addedLabels.append(elem.name);
             StructureEntry *newLabel = new StructureEntry(this, StructureEntry::SE_LABEL);
@@ -1346,6 +1351,9 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
         foreach (const ReferencePair &rp, labels) {
             changedCommands.removedLabels << rp.name;
         }
+        for(const ReferencePair &rp : mLabelItem.values(dlh)){
+            mLabelHash.remove(rp.name,dlh);
+        }
         mLabelItem.remove(dlh);
     }
     if(mRefItem.contains(dlh)){
@@ -1641,10 +1649,9 @@ QFileInfo LatexDocument::getTemporaryFileInfo() const
 int LatexDocument::countLabels(const QString &name)
 {
 	int result = 0;
-	foreach (const LatexDocument *elem, getListOfDocs()) {
-		QStringList items = elem->labelItems();
-		result += items.count(name);
-	}
+    foreach (const LatexDocument *elem, getListOfDocs()) {
+        result+=elem->mLabelHash.count(name);
+    }
 	return result;
 }
 
@@ -1721,14 +1728,12 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &n
     QMultiHash<QDocumentLineHandle *, int> result;
     count=0;
     foreach (const LatexDocument *elem, getListOfDocs()) {
-        QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
-        for (it = elem->mLabelItem.constBegin(); it != elem->mLabelItem.constEnd(); ++it) {
-            ReferencePair rp = it.value();
-            if (rp.name == name){
-                ++count;
-                if(elem->indexOf(it.key()) >= 0) {
-                    result.insert(it.key(), rp.start);
-                }
+        QList<QDocumentLineHandle*>lst=elem->mLabelHash.values(name);
+        foreach(QDocumentLineHandle *dlh, lst){
+            ReferencePair rp = elem->mLabelItem.value(dlh);
+            ++count;
+            if(rp.name==name){
+                result.insert(dlh, rp.start);
             }
         }
     }
@@ -1737,16 +1742,8 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &n
 
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &name)
 {
-    QMultiHash<QDocumentLineHandle *, int> result;
-	foreach (const LatexDocument *elem, getListOfDocs()) {
-		QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
-		for (it = elem->mLabelItem.constBegin(); it != elem->mLabelItem.constEnd(); ++it) {
-			ReferencePair rp = it.value();
-			if (rp.name == name && elem->indexOf(it.key()) >= 0) {
-				result.insert(it.key(), rp.start);
-			}
-		}
-	}
+    int count=0;
+    QMultiHash<QDocumentLineHandle *, int> result=getLabels(name,count);
 	return result;
 }
 /*!
@@ -1820,7 +1817,7 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &nam
     QMultiHash<QDocumentLineHandle *, int> result;
 	foreach (const LatexDocument *elem, getListOfDocs()) {
         QList<QDocumentLineHandle*>lst=elem->mRefHash.values(name);
-        for(QDocumentLineHandle *dlh: lst){
+        foreach(QDocumentLineHandle *dlh, lst){
             ReferencePair rp = elem->mRefItem.value(dlh);
             if(rp.name==name){
                 result.insert(dlh, rp.start);

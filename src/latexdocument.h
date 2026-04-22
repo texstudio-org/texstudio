@@ -258,6 +258,7 @@ private:
 	QSet<LatexDocument *> childDocs;
 
 	QMultiHash<QDocumentLineHandle *, ReferencePair> mLabelItem;
+    QMultiHash<QString,QDocumentLineHandle *> mLabelHash; // for faster lookup of refs, maps ref name to line
 	QMultiHash<QDocumentLineHandle *, ReferencePair> mBibItem;
 	QMultiHash<QDocumentLineHandle *, ReferencePair> mRefItem;
     QMultiHash<QString,QDocumentLineHandle *> mRefHash; // for faster lookup of refs, maps ref name to line
