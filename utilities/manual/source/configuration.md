@@ -908,7 +908,7 @@ TexLive,Miktex and TeXstudio support this scenario but TeXstudio needs to be con
 
 The following configuration assumes pdflatex as compiler and places all build files in a subfolder "build" which sits in the source folder.
 
-1. add `--output-directory=build` to the pdflatex command (options/commands)
+1. add `-output-directory=build` to the pdflatex command (options/commands)
 1. add "build" as additional search folder into log-paths (options/build/build options:log file)
 1. add "build" as additional search folder into pdf-paths (options/build/build options:pdf file)
 
