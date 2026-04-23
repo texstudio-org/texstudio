@@ -3794,7 +3794,8 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
         LatexDocument *doc=edView->document;
         SpellerUtility::inlineSpellChecking= configManager.editorConfig->inlineSpellChecking && configManager.editorConfig->realtimeChecking;
         doc->startSyntaxChecker(); // only syntax check visible documents, start when loading hidden docs
-        edView->documentContentChanged(0, doc->lines());
+        //edView->documentContentChanged(0, doc->lines());
+        doc->highlight();
     }
     if (showProgress) {
         progress.setValue(progress.maximum());
