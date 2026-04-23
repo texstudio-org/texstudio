@@ -3781,6 +3781,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     }
     mDisableTOCupdates = false;
     configManager.editorConfig->realtimeChecking=previousStateRealtimeChecking; // restore state of realtime checking
+    LatexEditorView *oldEdView = currentEditorView();
     activateEditorForFile(s.currentFile());
     cursorHistory->setInsertionEnabled(true);
     qDebug()<<"total time for restoring session:"<<time.elapsed()<<"ms";
@@ -3794,8 +3795,12 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
         LatexDocument *doc=edView->document;
         SpellerUtility::inlineSpellChecking= configManager.editorConfig->inlineSpellChecking && configManager.editorConfig->realtimeChecking;
         doc->startSyntaxChecker(); // only syntax check visible documents, start when loading hidden docs
-        //edView->documentContentChanged(0, doc->lines());
-        doc->highlight();
+        // updateTOCS & highlight if no editor switch
+        if(oldEdView==edView){
+            // no switch occured, so update TOC and highlight
+            doc->highlight();
+            updateTOCs();
+        }
     }
     if (showProgress) {
         progress.setValue(progress.maximum());
