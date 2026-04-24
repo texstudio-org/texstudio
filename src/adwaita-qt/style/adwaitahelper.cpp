@@ -1334,7 +1334,7 @@ void Helper::renderSliderGroove(QPainter *painter, const QRect &rect, const QCol
     painter->setRenderHint(QPainter::Antialiasing, true);
 
     QRectF baseRect(rect);
-    qreal radius(0.5 * Metrics::Slider_GrooveThickness);
+    qreal radius(0.5 * static_cast<qreal>(Metrics::Slider_GrooveThickness));
 
     // content
     if (color.isValid()) {
@@ -1522,7 +1522,7 @@ void Helper::renderProgressBarBusyContents(QPainter *painter, const QRect &rect,
     painter->setRenderHint(QPainter::Antialiasing, true);
 
     QRectF baseRect(rect);
-    qreal radius(0.25 * Metrics::ProgressBar_Thickness);
+    qreal radius(0.25 * static_cast<qreal>(Metrics::ProgressBar_Thickness));
     QRectF contentRect;
     if (horizontal) {
         contentRect = QRect(baseRect.left(), baseRect.top(), Metrics::ProgressBar_BusyIndicatorSize, baseRect.height());
