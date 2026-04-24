@@ -3969,3 +3969,11 @@ bool LatexDocument::startSyntaxChecker()
     }
     return false;
 }
+/*!
+ * \brief check if syntax checker is running (e.g. for visible documents)
+ * \return
+ */
+bool LatexDocument::syntaxCheckerRunning()
+{
+    return synChecker.isRunning();
+}

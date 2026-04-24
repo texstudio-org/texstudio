@@ -2274,6 +2274,10 @@ void LatexEditorView::mayNeedToOpenCompleter(bool fromSingleChar)
 void LatexEditorView::documentContentChanged(int linenr, int count)
 {
 	Q_ASSERT(editor);
+    // skip if not visible
+    if(!document->syntaxCheckerRunning()){
+        return;
+    }
 	QDocumentLine startline = editor->document()->line(linenr);
 	if ((linenr >= 0 || count < editor->document()->lines()) && editor->cursor().isValid() &&
 	        !editor->cursor().atLineStart() && editor->cursor().line().text().trimmed().length() > 0 &&

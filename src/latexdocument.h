@@ -201,6 +201,7 @@ public:
     bool restoreCachedData(const QString &folder, const QString fileName);
     bool isIncompleteInMemory();
     bool startSyntaxChecker();
+    bool syntaxCheckerRunning();
 
     struct HandledData {
         QStringList removedUsepackages;
