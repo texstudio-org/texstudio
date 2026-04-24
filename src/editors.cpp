@@ -254,6 +254,18 @@ QList<LatexEditorView *> Editors::editors()
 	}
 	return editors;
 }
+/*!
+ * \brief give all editors which are at top of their tabs
+ * \return
+ */
+QList<LatexEditorView *> Editors::topEditors()
+{
+    QList<LatexEditorView *> editors;
+    foreach (TxsTabWidget *tabGroup, tabGroups) {
+        editors.append(qobject_cast<LatexEditorView *>(tabGroup->currentWidget()));
+    }
+    return editors;
+}
 
 void Editors::setCurrentEditorFromAction()
 {

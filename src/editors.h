@@ -33,6 +33,7 @@ public:
 	void setCurrentEditor(LatexEditorView *edView, bool setFocus = true);
 
 	QList<LatexEditorView *> editors();
+    QList<LatexEditorView *> topEditors();
 	int tabGroupIndexFromEditor(LatexEditorView *edView) const;
 	void moveToTabGroup(LatexEditorView *edView, int groupIndex, int targetIndex);
     void moveAllToGroupZeroifEmpty();

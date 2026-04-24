@@ -3735,6 +3735,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     bool previousStateRealtimeChecking=configManager.editorConfig->realtimeChecking;
     configManager.editorConfig->realtimeChecking=false; // avoid updating inline spell checking while loading documents (which would cause a significant slowdown)
     QStringList missingFiles;
+    bool useSideBySide=false;
     for (int i = 0; i < s.files().size(); i++) {
         FileInSession f = s.files().at(i);
 
@@ -3764,6 +3765,9 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
             edView->document->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking && previousStateRealtimeChecking);
             edView->editor->scrollToFirstLine(f.firstLine+1);
             editors->moveToTabGroup(edView, f.editorGroup, -1);
+            if(f.editorGroup>0){
+                useSideBySide=true;
+            }
         } else {
             missingFiles.append(f.fileName);
         }
@@ -3800,6 +3804,19 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
             // no switch occured, so update TOC and highlight
             doc->highlight();
             updateTOCs();
+        }
+        //check if second editor view (side-by-side)
+        if(useSideBySide){
+            // find visible on other editor
+            QList<LatexEditorView *>lst=editors->topEditors();
+            foreach(LatexEditorView *ed,lst){
+                if(ed!=edView){
+                    // activate other editor as well
+                    LatexDocument *doc=ed->document;
+                    doc->startSyntaxChecker();
+                    doc->highlight();
+                }
+            }
         }
     }
     if (showProgress) {
