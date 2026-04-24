@@ -175,7 +175,7 @@ runtime:
 
 |  Special Character                  |  Expands to |
 |  ---------------------------        | ----------- |
-|  `%`                                | filename of the root document for of current document without extension |
+|  `%`                                | filename of the root document for the current document without extension |
 |  `@`                                | current line number |
 |  `?` followed by further characters | See the instruction at the bottom of the configuration dialog. |
 |  `[txs-app-dir]`                    | Location of the TeXstudio executable (useful for portable settings) |
@@ -716,7 +716,7 @@ all adverbs.
 
 ![advanced LT rules](images/conf_LT_adv.webp)
 
-Independent from LanguageTool, TeXstudio also checks for repeated and
+Independently of LanguageTool, TeXstudio also checks for repeated and
 bad (imprecise/slang) words. For this it needs a list of those words which need to be provided in the "Wordlist Directory" with the name "*language_code*.badWords"
 
 The repetition check looks several words behind and marks repetition of short words in the immediate vicinity and repetition of long words up to 10 words before. These distances and
