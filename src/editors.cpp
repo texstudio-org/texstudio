@@ -697,7 +697,7 @@ void EditorChangeProxy::release()
 		}
 	} else {
 		// can only happen if the above mentioned blocking pattern was not used.
-		qDebug("WARNING: trying to realease an unblocked EditorChangeProxy. This hints at inconsistent code.");
+        qDebug("WARNING: trying to release an unblocked EditorChangeProxy. This hints at inconsistent code.");
 	}
 }
 
