@@ -472,7 +472,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				if (act->objectName().endsWith("removePreviewLatex")) {
                     // inline preview context menu supplies the calling point in doc coordinates as data
                     contextMenu_row = editor->document()->indexOf(editor->lineAtPosition(posInDocCoordinates));
-                    // slight performance penalty for use of lineNumber(), which is not stictly necessary because
+                    // slight performance penalty for use of lineNumber(), which is not strictly necessary because
                     // we convert it back to a QDocumentLine, but easier to handle together with the other cases
 					contextMenu->addAction(act);
 					removePreviewActionFound = true;
@@ -673,7 +673,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 		}
         if (tk.type >= Token::specialArg) {
-            // finnd usage
+            // find usage
             QAction *act = new QAction(LatexEditorView::tr("Find Usages"), contextMenu);
             act->setData(tk.getText());
             act->setProperty("doc", QVariant::fromValue<LatexDocument *>(edView->document));
