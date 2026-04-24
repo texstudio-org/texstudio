@@ -1484,7 +1484,7 @@ void Guardian::summon()
 
 void Guardian::calm()
 {
-	mainEventLoopTicks++;
+	mainEventLoopTicks = mainEventLoopTicks + 1;
 }
 
 void Guardian::shutdown()
