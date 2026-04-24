@@ -498,6 +498,7 @@ void Editors::moveToOtherTabGroup()
 	// NOTE: This code assumes exactly two tabGroups
 	int otherGroupIndex = (tabGroups[0] == tabWidgetFromEditor(edView)) ? 1 : 0;
 	moveToTabGroup(edView, tabGroups[otherGroupIndex], -1);
+    emit visibleEditorsChanged();
 }
 
 void Editors::moveAllToOtherTabGroup() {
@@ -527,6 +528,7 @@ void Editors::moveAllOthersToOtherTabGroup() {
             moveToTabGroup(edView, tabGroups[otherGroupIndex], -1);
         }
     }
+    emit visibleEditorsChanged();
 }
 
 

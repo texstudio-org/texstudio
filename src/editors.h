@@ -42,6 +42,7 @@ public:
 
 signals:
 	void currentEditorChanged();
+    void visibleEditorsChanged(); /// notify that new/other editors are visible though not active
 	void editorAboutToChangeByTabClick(LatexEditorView *from, LatexEditorView *to);
 	void closeCurrentEditorRequested();
 	void listOfEditorsChanged();

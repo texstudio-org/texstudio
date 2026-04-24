@@ -292,6 +292,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
     connect(&documents, SIGNAL(docToHide(LatexEditorView*)), editors, SLOT(removeEditor(LatexEditorView*)));
 	connect(editors, SIGNAL(currentEditorChanged()), SLOT(currentEditorChanged()));
+    connect(editors, &Editors::visibleEditorsChanged, this, &Texstudio::visbleEditorsChanged);
 	connect(editors, SIGNAL(listOfEditorsChanged()), SLOT(updateOpenDocumentMenu()));
 	connect(editors, SIGNAL(editorsReordered()), SLOT(onEditorsReordered()));
 	connect(editors, SIGNAL(closeCurrentEditorRequested()), this, SLOT(fileClose()));
@@ -1956,6 +1957,22 @@ void Texstudio::currentEditorChanged()
         // only change when necessary
         fileExplorerModel->setRootPath(rootDir);
         fileView->setRootIndex(fileExplorerModel->index(rootDir));
+    }
+}
+/*!
+ * \brief Called when visible editors are changed in Editors (tabs, sideBySide)
+ * Makes sure that highlighting is started, see also restoreSession
+ */
+void Texstudio::visbleEditorsChanged()
+{
+
+    QList<LatexEditorView *>lst=editors->topEditors();
+    foreach(LatexEditorView *ed,lst){
+        // activate other editor as well
+        LatexDocument *doc=ed->document;
+        if(doc->startSyntaxChecker()){
+            doc->highlight();
+        }
     }
 }
 

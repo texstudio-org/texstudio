@@ -424,6 +424,7 @@ protected slots:
 	void updateMasterDocumentCaption();
 	void updateUndoRedoStatus();
 	void currentEditorChanged();
+    void visbleEditorsChanged();
 	void editorTabMoved(int from, int to);
 	void editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo);
 
