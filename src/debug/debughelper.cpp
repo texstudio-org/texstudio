@@ -319,8 +319,8 @@ bool initDebugHelp()
 
 	LOAD_FUNCTIONREQRET(SymInitialize, "SymInitialize", false);
 
-    if (!(*SymInitialize)(true ? GetCurrentProcess() : (HANDLE)GetCurrentProcessId(), 0, true))
-        return false;
+	if (!(*SymInitialize)(GetCurrentProcess(), 0, true))
+		return false;
 	return true;
 }
 
