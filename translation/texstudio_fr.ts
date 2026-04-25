@@ -1722,7 +1722,7 @@ Vous pouvez ensuite sélectionner un nouveau raccourci de l&apos;une des manièr
     <message>
         <location filename="../src/configdialog.ui" line="3226"/>
         <source>Make user constructs from symbols/math commands</source>
-        <translation type="unfinished"/>
+        <translation>Créer des constructions utilisateur à partir de symboles/commandes mathématiques</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3662"/>
@@ -5429,7 +5429,7 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="653"/>
         <source>Find Definitions</source>
-        <translation type="unfinished"/>
+        <translation>Rechercher des définitions</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="668"/>
@@ -5700,12 +5700,12 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="176"/>
         <source>Log not loaded because of size constraint (%1 MB). User chose not to load it and set it as default option ! [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>Le journal n&apos;a pas été chargé en raison d&apos;une limite de taille (%1 Mo). L&apos;utilisateur a choisi de ne pas le charger et de définir cette option par défaut ! [Effacer la réponse enregistrée](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="181"/>
         <source>Log file size (%1 MB) above limit; loading performed due to your remembered choice. [Clear stored answer](%2)</source>
-        <translation type="unfinished"/>
+        <translation>La taille du fichier journal (%1 Mo) dépasse la limite ; le chargement a été effectué conformément à votre choix enregistré. [Effacer la réponse enregistrée](%2)</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="172"/>
@@ -11913,7 +11913,7 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3779"/>
         <source>Updating completer</source>
-        <translation type="unfinished"/>
+        <translation>Mise à jour en cours</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3804"/>
