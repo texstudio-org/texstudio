@@ -2304,7 +2304,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 /*!
  * \brief Close all documents
  * Refrain from unnecessary data update.
- * Accelerate closue for large projects
+ * Accelerate closure for large projects
  */
 void LatexDocuments::deleteAllDocuments()
 {
