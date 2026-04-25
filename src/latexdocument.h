@@ -359,6 +359,7 @@ public:
 
 	void addDocument(LatexDocument *document, bool hidden = false);
 	void deleteDocument(LatexDocument *document, bool hidden = false, bool purge = false);
+    void deleteAllDocuments();
 	void move(int from, int to);
 	Q_INVOKABLE void setMasterDocument(LatexDocument *document); ///< explicitely set master document
 	Q_INVOKABLE LatexDocument *getCurrentDocument() const;

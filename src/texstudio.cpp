@@ -3409,13 +3409,15 @@ repeatAfterFileSavingFailed:
  */
 void Texstudio::closeAllFiles()
 {
-	while (currentEditorView())
-		documents.deleteDocument(currentEditorView()->document);
+    mDisableTOCupdates=true;
+    documents.deleteAllDocuments();
+    cursorHistory->clear();
 #ifndef NO_POPPLER_PREVIEW
     foreach (PDFDocument *viewer, PDFDocument::documentList())
         viewer->close();
 #endif
 	documents.setMasterDocument(nullptr);
+    mDisableTOCupdates=false;
 	updateCaption();
     updateTOCs();
 }

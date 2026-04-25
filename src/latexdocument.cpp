@@ -2301,6 +2301,33 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
         hiddenDocuments.clear();
     }
 }
+/*!
+ * \brief Close all documents
+ * Refrain from unnecessary data update.
+ * Accelerate closue for large projects
+ */
+void LatexDocuments::deleteAllDocuments()
+{
+    // save caching information
+    foreach(LatexDocument *document, documents) {
+        document->saveCachingData(m_cachingFolder);
+        LatexEditorView *view = document->getEditorView();
+        if (view)
+            view->closeCompleter();
+        delete view;
+        delete document;
+    }
+    foreach(LatexDocument *document, hiddenDocuments) {
+        document->saveCachingData(m_cachingFolder);
+        delete document;
+    }
+
+    masterDocument=nullptr;
+    currentDocument = nullptr;
+    currentDocument = nullptr;
+    hiddenDocuments.clear();
+    documents.clear();
+}
 
 void LatexDocuments::requestedClose()
 {
