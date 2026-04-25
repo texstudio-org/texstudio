@@ -262,7 +262,9 @@ QList<LatexEditorView *> Editors::topEditors()
 {
     QList<LatexEditorView *> editors;
     foreach (TxsTabWidget *tabGroup, tabGroups) {
-        editors.append(qobject_cast<LatexEditorView *>(tabGroup->currentWidget()));
+        if (tabGroup->count() > 0) {
+            editors.append(qobject_cast<LatexEditorView *>(tabGroup->currentWidget()));
+        }
     }
     return editors;
 }
