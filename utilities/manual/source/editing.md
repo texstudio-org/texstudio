@@ -59,7 +59,7 @@ the main toolbar:
 
 ### The Structure View
 
-The \"Structure View\" (left panel) lets you quickly reach any part of
+The "Structure View" (left panel) lets you quickly reach any part of
 your document. All you need to do is to click on any item (label,
 section\...) and you will be taken to the beginning of the corresponding
 area in the editor. The mechanism for jumping to a line no longer
@@ -72,8 +72,8 @@ in the appendix.
 
 ![Structure View](images/structureview.webp)
 
-The \"Structure View\" is automatically updated as you type. You can
-also use the \"Refresh Structure\" (menu \"Idefix\") command at any
+The "Structure View" is automatically updated as you type. You can
+also use the "Refresh Structure" (menu "Idefix") command at any
 moment.
 
 The structure view shows labels, sections, includes, beamer blocks
@@ -81,7 +81,7 @@ and todos.
 
 There are two kinds of todos that will be listed:
 a) todos from a todo-like command, e.g. \\todo{} from the package todonotes.
-b) todo-comments: This is a comment with a \"% TODO\" or \"%todo\". You can
+b) todo-comments: This is a comment with a "% TODO" or "%todo". You can
 adapt the regular expression for other comments to be marked as
 todo-comment in *options/advanced editor/Regular Expression for TODO
 comment*, e.g. `%\s?[A-Z][A-Z_-]+` for any comment starting
@@ -102,8 +102,8 @@ whole document by means of section commands (part, section, subsection,
 ![TOC View](images/TOC_standard.webp)
 
 The image shows this: A root file named `document.tex` that includes the
-file named `file1.tex`. The root file contains the section \"Main text\",
-while `file1.tex` contains the subsection \"External\". By placing the mouse
+file named `file1.tex`. The root file contains the section "Main text",
+while `file1.tex` contains the subsection "External". By placing the mouse
 pointer over this subsection in the TOC view, you find the file name
 `file1.tex` in the mouse-over. This works even if the file is not open
 (but the document must be loaded by TeXstudio, see Automatically load
@@ -117,7 +117,7 @@ file name itself appears in the TOC (without file extension):
 
 The mouse-over now would show the name of the file that includes
 `file1.tex` (namely `document.tex`). The indentation shows that the text of
-`file1.tex` is part of the section \"Main text\". You may like to choose a
+`file1.tex` is part of the section "Main text". You may like to choose a
 different color in the configuration dialog (see option Use color in
 global TOC in [advanced editor settings](configuration.md#configuring-the-advanced-editor-settings-advanced-option)).
 
@@ -208,14 +208,14 @@ functions take care of that (Menu: Idefix or context menu on the editor):
 -   Convert to LaTeX: Escapes the reserved characters in the current
     selection.
 
-For example: \"Less than 10% of computer users know the meaning of
-\$PATH.\" will be converted to \"Less than 10\\% of computer users know
-the meaning of \\\$PATH.\"
+For example: "Less than 10% of computer users know the meaning of
+$PATH." will be converted to "Less than 10\\% of computer users know
+the meaning of \\\$PATH."
 
 ## Inserting a list
 
 The usual list environments code can be inserted quickly via the
-\"LaTeX/List Environment\" menu. Alternatively you can use the [environment completion](#environment-completion).
+"LaTeX/List Environment" menu. Alternatively you can use the [environment completion](#environment-completion).
 
 ```{note}
 The shortcut for the \\item command is `Ctrl+Shift+I`.
@@ -279,8 +279,8 @@ c&d\\
 \end{tabular}
 ```
 
-Place the cursor inside the table and select the menu \"LaTeX/Manipulate
-Tables/Remodel Table Using Template\".
+Place the cursor inside the table and select the menu "LaTeX/Manipulate
+Tables/Remodel Table Using Template".
 
 Now you can select a template which defines the formatting of the table.
 A number of templates are predefined by TXS:
@@ -307,7 +307,7 @@ even if the tables are entered in a very simple style.
 
 The definition of new templates is described [here](background.md#creating-table-templates).
 
-## Inserting a \"tabbing\" environment
+## Inserting a "tabbing" environment
 
 To help you insert a "tabbing" code, you can use the "Tabbing"
 wizard (\"Wizard\" menu):
@@ -321,20 +321,20 @@ TeXstudio offers various ways to insert pictures into the LaTeX code.
 ### Inserting picture via menu
 
 To insert a picture in your document, just use the
-command in the \"LaTeX\" -\> \"Input/Include Files\" -\> \"\\includegraphics{file}\" menu. Then click on the \"browse\" button in
+command in the "LaTeX" -\> "Input/Include Files" -\> "\includegraphics{file}" menu. Then click on the "browse" button in
 the dialog to select the graphic file.
 
 ![Figure Environment](images/insertImage_menu.webp)
 
 ```{note}
-You can insert a \"figure\" LaTeX environment (\"LaTeX -
-Environments\" menu) before inserting the picture.
+You can insert a "figure" LaTeX environment ("LaTeX -
+Environments" menu) before inserting the picture.
 ```
 
-### Inserting a picture using a \"wizard\"
+### Inserting a picture using a "wizard"
 
-TeXstudio offers a wizard for handling graphics insertion code in your document. \"Graphics
-Options\" defines the optional parameters of
+TeXstudio offers a wizard for handling graphics insertion code in your document. "Graphics
+Options" defines the optional parameters of
 `\includegraphics[options]{file}`. While the most used width/height
 attributes can be easily set, alternatively you have full control with
 the user-defined setting.
@@ -361,7 +361,7 @@ This toolbox in the toolbar allows you to insert quickly the \label,
 
 ![Structure View Labels](images/tb_reference.webp)
 
-Selecting \"ref\" from the toolbox (or the menu \"LaTeX/Cross References\") opens a dialog which lets you select a reference and inserts the complete code.
+Selecting "ref" from the toolbox (or the menu "LaTeX/Cross References") opens a dialog which lets you select a reference and inserts the complete code.
 All other commands will be inserted with empty arguments.
 
 ![Inserting reference](images/insert_ref.webp)
@@ -388,14 +388,14 @@ If references in hidden documents are changed, they will be saved automatically 
 
 ## Inserting math formulas
 
-The math part of the \"Central\" toolbar allows you to insert the most common mathematical
-forms (\frac, \sqrt\...), the \"Math\" toolbar allows entering delimiter tags like \\left and \\right.
+The math part of the "Central" toolbar allows you to insert the most common mathematical
+forms (\frac, \sqrt\...), the "Math" toolbar allows entering delimiter tags like \\left and \\right.
 
 ![Math part of Central Toolbar](images/tb_central_math.webp)  ![Math Delimiter Toolbar](images/tb_math.webp)
 
-You can toggle \"in-line math\" environment with the \"\$..\$\"
-button in the \"Central\" toolbar (`Ctrl+Shift+M`) or in the \"Math\" menu.
-The \"display math - \[\...\]\" environment is only available in the menu (or via shortcut `Alt+Shift+M`).
+You can toggle "in-line math" environment with the "\$..\$"
+button in the "Central" toolbar (`Ctrl+Shift+M`) or in the "Math" menu.
+The "display math - [\...]" environment is only available in the menu (or via shortcut `Alt+Shift+M`).
 
 The \"symbols panel\" in the side panel offers the insertion of hundreds of mathematical symbols and special characters.
 The list can be sorted by categories like "all", "greek", "operators", etc.
@@ -406,10 +406,10 @@ TeXstudio keeps track of which symbols have been used here, so the most used wil
 ![Symbol Panel](images/symbol_panel.webp)
 
 You can also define the format of your mathematical text via the
-\"Math\" menu.
+"Math" menu.
 
-For the \"array\" environments, a wizard (like the \"Tabular\" wizard)
-is available in the \"Wizard\" menu. With this wizard, you can select
+For the "array" environments, a wizard (like the "Tabular" wizard)
+is available in the "Wizard" menu. With this wizard, you can select
 the environment: array, matrix, pmatrix\....
 
 The cells can be edited directly.
@@ -621,8 +621,8 @@ chosen to reduce the number of suggestions. The column to the right
 contains the list of suggested synonyms. A selected word from this list
 appears in the first line to the right as a proposition for replacement of
 the text. This word can be changed manually. It is also used to do
-further investigations for words and their synonyms which \"start with\"
-or \"contain\" that word. With \"lookup\" it can be directly used to
+further investigations for words and their synonyms which "start with"
+or "contain" that word. With "lookup" it can be directly used to
 look for a synonym for that word.
 
 The thesaurus can be selected in the [configuration](configuration.md#configuring-the-thesaurus).
