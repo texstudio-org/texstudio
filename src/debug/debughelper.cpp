@@ -15,7 +15,7 @@
 void handler(int sig) {
     (void)sig;
     /* De-register this signal in the hope of avoiding infinite loops
-     * if asyns signal unsafe things fail later on. But can likely still deadlock. */
+     * if async signal unsafe things fail later on. But can likely still deadlock. */
     signal(sig, SIG_DFL);
     // std::stacktrace::current
     //std::cout << std::stacktrace::current();
@@ -484,7 +484,7 @@ QString print_backtrace(const SimulatedCPU &state, const QString &message)
 	int size;
 
 #if defined(CPU_IS_MIPS) || defined(CPU_IS_IA64) || defined(CPU_IS_SPARC32) || defined(CPU_IS_S390_31) || defined(CPU_IS_390_64)
-	bool useNativeBacktrace = true //always use standard backtrace on exotic architectures
+	bool useNativeBacktrace = true; //always use standard backtrace on exotic architectures
 #else
 	bool useNativeBacktrace = (crashHandlerType & CRASH_HANDLER_USE_NATIVE_BACKTRACE);
 #endif
@@ -559,7 +559,7 @@ QString print_backtrace(const QString &message)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.pc
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.sp
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.regs[29] // X29 is the frame pointer
-#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.regs[30] // X30 is the link register 
+#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.regs[30] // X30 is the link register
 #elif (defined(CPU_IS_ARM64) || defined(CPU_IS_ARM)) && defined (__NetBSD__)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_PC]
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_SP]
@@ -1118,7 +1118,7 @@ void SimulatedCPU::set_from_real()
 	    "mov %[lr], r14\n"
 	    : [fp] "=r"(frame), [sp] "=r"(stack), [lr] "=r" (returnTo));
 #elif defined(CPU_IS_ARM64)
-	__asm__( 
+	__asm__(
 	    "mov %[fp], x29\n"
 	    "mov %[sp], sp\n"
 	    "mov %[lr], x30\n"
@@ -1335,7 +1335,9 @@ QString print_backtrace(const QString &message)
 void registerCrashHandler(int mode)
 {
 	Q_UNUSED(mode)
-}QString getLastCrashInformation(bool &wasLoop)
+}
+
+QString getLastCrashInformation(bool &wasLoop)
 {
 	Q_UNUSED(wasLoop)
 	return "";
