@@ -1848,7 +1848,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				//write preamble
 				QTemporaryFile *tf = new QTemporaryFile(tempPath + "hXXXXXX.tex");
 				REQUIRE(tf);
-                if(!tf->open()) return; // opening file failed
+				if(!tf->open()) return; // opening file failed
 				QTextStream out(tf);
                 if (outputCodec) {
                     out << outputCodec->fromUnicode(preamble_mod);
