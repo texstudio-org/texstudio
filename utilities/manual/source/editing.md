@@ -697,7 +697,7 @@ Once the server is successfully started, a symbol in the panel will appear to no
 ![Server connected](images/ethersync_status_panel.webp)
 
 The tooltip on that icon will tell you the folder which is used for sharing as well as the current access code. The context menu (right-click) on the icon offers to copy the code into the clipboard.
-This access code in the form of `4-alpha-button` code needs to be communicated to the collaborator for them to access this folder (as long as the host server is running).
+This access code in the form of `4-alpha-button` needs to be communicated to the collaborator for them to access this folder (as long as the host server is running).
 
 ![Copy access code](images/ethersync_status_panel_copyCode.webp)
 
