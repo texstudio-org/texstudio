@@ -709,7 +709,7 @@ QStringList getProgramFilesPaths()
 /*!
  * \return the Uninstall string of the program from the registry
  *
- * Note: This won't get the path of 64bit installations when TXS running as a 32bit app due to wow6432 regristry redirection
+ * Note: This won't get the path of 64bit installations when TXS running as a 32bit app due to wow6432 registry redirection
  * http://www.qtcentre.org/threads/36966-QSettings-on-64bit-Machine
  * http://stackoverflow.com/questions/25392251/qsettings-registry-and-redirect-on-regedit-64bit-wow6432
  * No workaround known, except falling back to the native Windows API. For the moment we'll rely on alternative detection methods.
