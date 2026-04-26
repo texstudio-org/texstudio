@@ -159,7 +159,7 @@ One line per cell
 ## Configuring the latex related commands
 
 LaTeX comes with a number of command line tools to compile and
-manipulate LaTeX documents. The commands section defines there location
+manipulate LaTeX documents. The commands section defines their location
 and arguments.
 
 The default settings should work with the recent and standard LaTeX
