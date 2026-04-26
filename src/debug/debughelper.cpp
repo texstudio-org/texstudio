@@ -484,7 +484,7 @@ QString print_backtrace(const SimulatedCPU &state, const QString &message)
 	int size;
 
 #if defined(CPU_IS_MIPS) || defined(CPU_IS_IA64) || defined(CPU_IS_SPARC32) || defined(CPU_IS_S390_31) || defined(CPU_IS_390_64)
-	bool useNativeBacktrace = true //always use standard backtrace on exotic architectures
+	bool useNativeBacktrace = true; //always use standard backtrace on exotic architectures
 #else
 	bool useNativeBacktrace = (crashHandlerType & CRASH_HANDLER_USE_NATIVE_BACKTRACE);
 #endif
