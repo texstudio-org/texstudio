@@ -1335,7 +1335,9 @@ QString print_backtrace(const QString &message)
 void registerCrashHandler(int mode)
 {
 	Q_UNUSED(mode)
-}QString getLastCrashInformation(bool &wasLoop)
+}
+
+QString getLastCrashInformation(bool &wasLoop)
 {
 	Q_UNUSED(wasLoop)
 	return "";
