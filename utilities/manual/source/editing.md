@@ -702,7 +702,7 @@ This access code in the form of `4-alpha-button` needs to be communicated to the
 ![Copy access code](images/ethersync_status_panel_copyCode.webp)
 
 Once they connect to any of those files, TeXstudio gets notified. If the file is open in your TeXstudio, their cursor will appear as a blue cursor. Any changes will directly appear in your file as well.
-Your cursor position will also and changes appear in their editor.
+So will your cursor position and changes appear in their editor.
 
 Once the connection is closed ("Tools/Disconnect from collaboration" or TeXstudio is closed), the changes will not be synchronized any more and neither their changes nor yours are exchanged.
 
