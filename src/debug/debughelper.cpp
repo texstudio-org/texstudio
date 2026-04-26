@@ -1118,7 +1118,7 @@ void SimulatedCPU::set_from_real()
 	    "mov %[lr], r14\n"
 	    : [fp] "=r"(frame), [sp] "=r"(stack), [lr] "=r" (returnTo));
 #elif defined(CPU_IS_ARM64)
-	__asm__( 
+	__asm__(
 	    "mov %[fp], x29\n"
 	    "mov %[sp], sp\n"
 	    "mov %[lr], x30\n"
