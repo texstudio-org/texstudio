@@ -15,7 +15,7 @@
 void handler(int sig) {
     (void)sig;
     /* De-register this signal in the hope of avoiding infinite loops
-     * if asyns signal unsafe things fail later on. But can likely still deadlock. */
+     * if async signal unsafe things fail later on. But can likely still deadlock. */
     signal(sig, SIG_DFL);
     // std::stacktrace::current
     //std::cout << std::stacktrace::current();
