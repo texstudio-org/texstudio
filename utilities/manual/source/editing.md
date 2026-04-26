@@ -176,14 +176,14 @@ More options are available in the "LaTeX" menu. Commonly used formatting command
 
 ```{note}
 A selected text can be directly framed by certain
-environments. Example: while clicking on the button \"Bold\" or pressing `CTRL+B` after
-having selected the word \"Hello\", you will obtain the code:
+environments. Example: while clicking on the button "Bold" or pressing `CTRL+B` after
+having selected the word "Hello", you will obtain the code:
 `\textbf{Hello}`.
 ```
 
 ### Capitalization
 
-The menu \"Edit\" -\> \"Text Operations\" contains a few methods for
+The menu "Edit" -\> "Text Operations" contains a few methods for
 changing the capitalization of selected text:
 
 -   To Lowercase
@@ -191,10 +191,10 @@ changing the capitalization of selected text:
 -   To Titlecase (strict)
 -   To Titlecase (smart)
 
-Both variants of \"To Titlecase\" leave small words like a, the, of etc.
-in lowercase. Additionally, \"To Titlecase (smart)\" does not convert
+Both variants of "To Titlecase" leave small words like a, the, of etc.
+in lowercase. Additionally, "To Titlecase (smart)" does not convert
 any words containing capital letters, assuming they are acronyms which
-require a fixed capitalization (e.g. \"TeXstudio\").
+require a fixed capitalization (e.g. "TeXstudio").
 
 ### Escaping reserved characters
 
@@ -223,7 +223,7 @@ The shortcut for the \\item command is `Ctrl+Shift+I`.
 
 ## Inserting a table
 
-With the \"Tabular\" wizard (\"Wizard\" menu), the LaTeX code for a
+With the "Tabular" wizard ("Wizard" menu), the LaTeX code for a
 tabular environment can be quickly generated.
 
 The cells can be filled manually. Copy and paste from a spreadsheet program works as well.
@@ -242,12 +242,12 @@ offered:
 
 | Function | Description |
 | --- | ------ |
-| ![](../../../images-ng/colibre/addRow.svg) | Add row after the current row |
-| ![](../../../images-ng/colibre/remRow.svg) | removes the table row in which the cursor is |
-| ![](../../../images-ng/colibre/addCol.svg) | add a column in the complete table after the current cursor position. If the cursor is positioned at start of line, first column, the column is added as new first column. |
-| ![](../../../images-ng/colibre/pasteCol.svg) | paste a column in the complete table after the current cursor position. If the cursor is positioned at start of line, first column, the column is added as new first column. |
-| ![](../../../images-ng/colibre/remCol.svg) | remove current column |
-| ![](../../../images-ng/colibre/cutCol.svg) | remove current column and store in clipboard. Use with *paste column* |
+| ![](../../../images-ng/colibre/addRow.svg) | Adds a row after the current row |
+| ![](../../../images-ng/colibre/remRow.svg) | Removes the table row in which the cursor is |
+| ![](../../../images-ng/colibre/addCol.svg) | Adds a column in the complete table after the current cursor position. If the cursor is positioned at start of line, first column, the column is added as new first column. |
+| ![](../../../images-ng/colibre/pasteCol.svg) | Pastes a column in the complete table after the current cursor position. If the cursor is positioned at start of line, first column, the column is added as new first column. |
+| ![](../../../images-ng/colibre/remCol.svg) | Removes current column |
+| ![](../../../images-ng/colibre/cutCol.svg) | Removes current column and stores it in clipboard. Use with *paste column* |
 | ![](../../../images-ng/colibre/alignCols.svg) | Aligns the column separators (ampersand) by introducing whitespace. The text in the cells is aligned according to the specification in the table header. This helps reading the table source. |
 
 The following functions are only accessible via the "LaTeX/Manipulate Tables" menu:
@@ -310,7 +310,7 @@ The definition of new templates is described [here](background.md#creating-table
 ## Inserting a "tabbing" environment
 
 To help you insert a "tabbing" code, you can use the "Tabbing"
-wizard (\"Wizard\" menu):
+wizard ("Wizard" menu):
 
 ![Tabbing Wizard](images/wizard_tabbing.webp)
 
@@ -318,7 +318,7 @@ wizard (\"Wizard\" menu):
 
 TeXstudio offers various ways to insert pictures into the LaTeX code.
 
-### Inserting picture via menu
+### Inserting pictures via menu
 
 To insert a picture in your document, just use the
 command in the "LaTeX" -\> "Input/Include Files" -\> "\includegraphics{file}" menu. Then click on the "browse" button in
@@ -341,7 +341,7 @@ the user-defined setting.
 
 The code is placed inside a `figure` environment with the given position suggestions.
 
-By pressing the \"Save as default\" button the current settings (except
+By pressing the "Save as default" button the current settings (except
 file, caption and label) are stored and will hence be used as default
 when you open the wizard.
 
@@ -389,15 +389,15 @@ If references in hidden documents are changed, they will be saved automatically 
 ## Inserting math formulas
 
 The math part of the "Central" toolbar allows you to insert the most common mathematical
-forms (\frac, \sqrt\...), the "Math" toolbar allows entering delimiter tags like \\left and \\right.
+forms (\frac, \sqrt\... commands), the "Math" toolbar allows entering delimiter tags like \left and \right.
 
 ![Math part of Central Toolbar](images/tb_central_math.webp)  ![Math Delimiter Toolbar](images/tb_math.webp)
 
-You can toggle "in-line math" environment with the "\$..\$"
+You can toggle the "in-line math" environment with the "\$..\$"
 button in the "Central" toolbar (`Ctrl+Shift+M`) or in the "Math" menu.
 The "display math - [\...]" environment is only available in the menu (or via shortcut `Alt+Shift+M`).
 
-The \"symbols panel\" in the side panel offers the insertion of hundreds of mathematical symbols and special characters.
+The "Symbols panel" in the side panel offers the insertion of hundreds of mathematical symbols and special characters.
 The list can be sorted by categories like "all", "greek", "operators", etc.
 You can also directly search for parts of the command.
 A right click on the symbol allows you to declare it as favorite, insert the command or, if available, insert the Unicode character into the text.
@@ -466,7 +466,7 @@ used as possible suggestions.
 If an environment is to be inserted, typing in the beginning of the
 environment name and pressing `Ctrl+Alt+Space` gives suggestions for
 adequate environments which are inserted completely with
-`\\begin{env}..\\end{env}`.
+`\begin{env}...\end{env}`.
 
 ```{tab} Entering env-name
 ![env completing before](images/completer_env_before.webp)
@@ -732,8 +732,8 @@ In case matching delimiters are highlighted like `()`, both are removed.
 
 If you place the cursor on an environment name, after a moment a
 mirror cursor is activated on the environment name which allows
-synchronous change of the environment name in the begin and
-end command. So if you want to change a
+synchronous change of the environment name in the \begin and
+\end command. So if you want to change a
 `\begin{tabular}...\end{tabular}` construction to
 `\begin{tabularx}...\end{tabularx}`, place the text cursor on
 `tabular`, wait for a second and then, after the mirror cursor
