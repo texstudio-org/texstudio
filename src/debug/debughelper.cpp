@@ -559,7 +559,7 @@ QString print_backtrace(const QString &message)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.pc
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.sp
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.regs[29] // X29 is the frame pointer
-#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.regs[30] // X30 is the link register 
+#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.regs[30] // X30 is the link register
 #elif (defined(CPU_IS_ARM64) || defined(CPU_IS_ARM)) && defined (__NetBSD__)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_PC]
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_SP]
