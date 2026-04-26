@@ -638,7 +638,7 @@ QFileInfo BuildManager::parseExtendedSelectFile(QString &command, const QFileInf
 }
 
 /*!
- * \brief extracts the
+ * \brief Extracts output redirection targets from a command line.
  * \param s
  * \param stdOut output parameter
  * \param stdErr output parameter
