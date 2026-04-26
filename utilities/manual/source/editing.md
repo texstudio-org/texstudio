@@ -18,7 +18,7 @@ Note: You can add other options by clicking the "+" buttons. All your
 settings are recorded.
 
 You can also type your own preamble model in the editor: with the
-"Copy/paste" or "Save As" commands, you can use it for a new
+"Copy/Paste" or "Save As" commands, you can use it for a new
 document.
 
 ### Using Templates to start a new document
@@ -39,7 +39,7 @@ template system. In particular you cannot supply a preview image or
 create a multi-file template with it. You'll have to do this manually
 (see [The template format](background.md#the-document-template-format) below).
 
-User added templates can be edited or deleted by using the context menu
+User-added templates can be edited or deleted by using the context menu
 in the template selection dialog. Built-in templates cannot be
 changed.
 
@@ -97,7 +97,7 @@ is changed to \\subsection, and all subsections are treated accordingly
 
 The side panel on the left offers a TOC view. The TOC shows the structure of your
 whole document by means of section commands (part, section, subsection,
-...). A mouse over shows you in which file the section actually is.
+...). A mouse-over shows you in which file the section actually is.
 
 ![TOC View](images/TOC_standard.webp)
 
@@ -105,7 +105,7 @@ The image shows this: A root file named `document.tex` that includes the
 file named `file1.tex`. The root file contains the section \"Main text\",
 while `file1.tex` contains the subsection \"External\". By placing the mouse
 pointer over this subsection in the TOC view, you find the file name
-`file1.tex` in the mouse over. This works even if the file is not open
+`file1.tex` in the mouse-over. This works even if the file is not open
 (but the document must be loaded by TeXstudio, see Automatically load
 included files in editor settings). In this case a mouse click on the
 subsection in the TOC will open the file for you. Notice the different
@@ -115,7 +115,7 @@ file name itself appears in the TOC (without file extension):
 
 ![TOC View with file](images/TOC_file.webp)
 
-The mouse over now would show the name of the file that includes
+The mouse-over now would show the name of the file that includes
 `file1.tex` (namely `document.tex`). The indentation shows that the text of
 `file1.tex` is part of the section \"Main text\". You may like to choose a
 different color in the configuration dialog (see option Use color in
@@ -181,7 +181,7 @@ having selected the word \"Hello\", you will obtain the code:
 `\textbf{Hello}`.
 ```
 
-### Capitalisation
+### Capitalization
 
 The menu \"Edit\" -\> \"Text Operations\" contains a few methods for
 changing the capitalization of selected text:
@@ -215,7 +215,7 @@ the meaning of \\\$PATH.\"
 ## Inserting a list
 
 The usual list environments code can be inserted quickly via the
-\"LaTeX-List\" menu. Alternatively you can use the [environment completion](#environment-completion).
+\"LaTeX/List Environment\" menu. Alternatively you can use the [environment completion](#environment-completion).
 
 ```{note}
 The shortcut for the \\item command is `Ctrl+Shift+I`.
@@ -227,7 +227,7 @@ With the \"Tabular\" wizard (\"Wizard\" menu), the LaTeX code for a
 tabular environment can be quickly generated.
 
 The cells can be filled manually. Copy and paste from a spreadsheet program works as well.
-The wizard allows some tabular manipulation for borders, cell merge and column alignment.
+The wizard allows some tabular manipulation for borders, cell merging and column alignment.
 Once the code is generated, it cannot be changed again with the wizard.
 
 ![Tabular Wizard](images/wizard_tabular.webp)
@@ -270,7 +270,7 @@ Pressing `Esc` or clicking somewhere into the text leaves this mode.
 TeXstudio offers the possibility to reformat an existing LaTeX table
 after a table template.
 
-For example, you have entered the following table into txs:
+For example, you have entered the following table into TXS:
 
 ```latex
 \begin{tabular}{ll}
@@ -283,7 +283,7 @@ Place the cursor inside the table and select the menu \"LaTeX/Manipulate
 Tables/Remodel Table Using Template\".
 
 Now you can select a template which defines the formatting of the table.
-A number of templates are predefined by txs:
+A number of templates are predefined by TXS:
 
 -   fullyframed\_firstBold
 -   fullyframed\_longtable
@@ -321,7 +321,7 @@ TeXstudio offers various ways to insert pictures into the LaTeX code.
 ### Inserting picture via menu
 
 To insert a picture in your document, just use the
-command in the \"LaTeX\" -\> \"Input/Include Files\" -\> \"\\includegraphics{file}\" menu. Then click on the \"browser\" button in
+command in the \"LaTeX\" -\> \"Input/Include Files\" -\> \"\\includegraphics{file}\" menu. Then click on the \"browse\" button in
 the dialog to select the graphic file.
 
 ![Figure Environment](images/insertImage_menu.webp)
@@ -356,8 +356,8 @@ settings.
 
 ## Cross References and notes
 
-This toolbox in the toolbar allows you to insert quickly the label,
-cite, ref, footnote\... code.
+This toolbox in the toolbar allows you to insert quickly the \label,
+\cite, \ref, \footnote\... commands.
 
 ![Structure View Labels](images/tb_reference.webp)
 
@@ -386,10 +386,10 @@ If references in hidden documents are changed, they will be saved automatically 
 ```
 
 
-## Inserting math formula
+## Inserting math formulas
 
 The math part of the \"Central\" toolbar allows you to insert the most common mathematical
-forms (frac, sqrt\...), the \"Math\" toolbar allows entering delimiter tags like \\left and \\right.
+forms (\frac, \sqrt\...), the \"Math\" toolbar allows entering delimiter tags like \\left and \\right.
 
 ![Math part of Central Toolbar](images/tb_central_math.webp)  ![Math Delimiter Toolbar](images/tb_math.webp)
 
@@ -400,7 +400,7 @@ The \"display math - \[\...\]\" environment is only available in the menu (or vi
 The \"symbols panel\" in the side panel offers the insertion of hundreds of mathematical symbols and special characters.
 The list can be sorted by categories like "all", "greek", "operators", etc.
 You can also directly search for parts of the command.
-A right click on the symbol allows you to declare it as favorite, insert the command or, if available, insert the unicode character into the text.
+A right click on the symbol allows you to declare it as favorite, insert the command or, if available, insert the Unicode character into the text.
 TeXstudio keeps track of which symbols have been used here, so the most used will be listed as well.
 
 ![Symbol Panel](images/symbol_panel.webp)
@@ -421,7 +421,7 @@ The cells can be edited directly.
 ### Command completion
 
 Whenever you press `\` followed by a letter, a list of possible LaTeX
-tags is shown. If you type additional
+tags are shown. If you type additional
 letters, the list is filtered, so that only the tags starting with the
 already written text are shown. If the list contains words which all
 start with the same letter combination, you can press `Tab` to complete
@@ -482,7 +482,7 @@ When entering reference commands, the completer offers those commands prefilled 
 
 If a reference is changed or the command offers to enter several references, the completer can suggest available references.
 
-It works the same for *bibIDs*.
+It works the same for *BibIDs*.
 
 ```{tab} Reference command completion
 ![completing reference command](images/completer_ref.webp)
@@ -558,8 +558,8 @@ you can also add the word to the ignore list.
 ```{note}
 If your dictionary is very
 large (\> 5MB), opening the context menu and showing possible
-suggestions can take some seconds. If you don\'t need the suggestion,
-you can press Shift while right-clicking and don\'t have to wait.
+suggestions can take some seconds. If you don't need the suggestion,
+you can press Shift while right-clicking and don't have to wait.
 ```
 
 The active language is shown at the bottom of the main window.
@@ -667,17 +667,17 @@ The extended search feature allows you to search within all files associated wit
 The search word is updated when pressing "+" again on the search panel. "Update search" searches with the given search word again through all specified files.
 The drop-down menu allows searching within a "Project", i.e. all files belonging to one document, "All Docs", i.e. all open documents in TeXstudio, or a single "Current Doc".
 
-The option "Files on disk" searches all the text in tex-files in the same folder as the current document. The folder and the file filter can be changed.
+The option "Files on disk" searches all the text in TeX files in the same folder as the current document. The folder and the file filter can be changed.
 
 In the list of search results, a double-click on a match jumps to the location in the file. The matches can be selected/deselected to limit the results which are replaced by the replacement text by pressing "Replace all".
 
 ![extended search pane](images/extendedSearch.webp)
 
 ## Handling large projects
-This section describes what support txs provides for larger projects.
+This section describes what support TXS provides for larger projects.
 
 Large projects usually are split into several included files.
-In order to speed up compilation, the package [subfiles](https://www.ctan.org/pkg/subfiles) offers compilation of the current document only. txs automatically loads all included files, so that it can provide proposals for user commands, labels and bibitems. To speed up reloading a project, txs caches all files, meaning it writes this information on the disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works when restoring a previously opened project; the initial opening may take a bit longer, see [also](background.md#about-documents-separated-into-several-files).
+In order to speed up compilation, the package [subfiles](https://www.ctan.org/pkg/subfiles) offers compilation of the current document only. TXS automatically loads all included files, so that it can provide proposals for user commands, labels and bibitems. To speed up reloading a project, TXS caches all files, meaning it writes this information to disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works when restoring a previously opened project; the initial opening may take a bit longer, see [also](background.md#about-documents-separated-into-several-files).
 
 ## Collaborative Editing (Pair programming)
 
@@ -697,19 +697,19 @@ Once the server is successfully started, a symbol in the panel will appear to no
 ![Server connected](images/ethersync_status_panel.webp)
 
 The tooltip on that icon will tell you the folder which is used for sharing as well as the current access code. The context menu (right-click) on the icon offers to copy the code into the clipboard.
-This access code in the form of `4-alpha-button` needs to be communicated to the collaborator for them to access this folder (as long as the host server is running).
+This access code in the form of `4-alpha-button` code needs to be communicated to the collaborator for them to access this folder (as long as the host server is running).
 
 ![Copy access code](images/ethersync_status_panel_copyCode.webp)
 
 Once they connect to any of those files, TeXstudio gets notified. If the file is open in your TeXstudio, their cursor will appear as a blue cursor. Any changes will directly appear in your file as well.
-So will your cursor position and changes appear in their editor.
+Your cursor position will also and changes appear in their editor.
 
-Once the connection is closed ("Tools/Disconnect from collaboration" or TeXstudio is closed), the changes will not be synchronized any more and neither their nor your changes are exchanged.
+Once the connection is closed ("Tools/Disconnect from collaboration" or TeXstudio is closed), the changes will not be synchronized any more and neither their changes nor yours are exchanged.
 
 ### Joining collaboration
 
 In order to join another user for collaboration, an access code is needed.
-If that has been communicated, connect to the other user with "Tools/Connect to other user for collaboration".
+If that has been communicated, connect to the host user with "Tools/Connect to other user for collaboration".
 
 TeXstudio asks for the access code and connects to the other user.
 If that was successful, the status panel (see [above](#inviting-collaborators)) will turn green.
@@ -731,16 +731,16 @@ In case matching delimiters are highlighted like `()`, both are removed.
 ### Rename environment
 
 If you place the cursor on an environment name, after a moment a
-mirror-cursor is activated on the environment name which allows
-synchronous change of the environment name in the begin- and
-end-command. So if you want to change a
+mirror cursor is activated on the environment name which allows
+synchronous change of the environment name in the begin and
+end command. So if you want to change a
 `\begin{tabular}...\end{tabular}` construction to
 `\begin{tabularx}...\end{tabularx}`, place the text cursor on
-`tabular`, wait for a second and then, after the mirror-cursor
+`tabular`, wait for a second and then, after the mirror cursor
 appears, change `tabular` to `tabularx`.
 
 ```{note}
-You can also double-click on the environment name to activate the mirror-cursor.
+You can also double-click on the environment name to activate the mirror cursor.
 ```
 
 ### Close delimiter or environment
@@ -758,7 +758,7 @@ resulting text is `\textbf{text}`.
 
 TeXstudio supports block cursors (or multiple cursors).
 Cursors can be added by `Ctrl+Alt`+left click.
-Alternatively pressing `Ctrl+Alt+Up/Down` also add block cursors.
+Alternatively pressing `Ctrl+Alt+Up/Down` also adds block cursors.
 The cursors can jointly move, add and remove text and select characters.
 Pressing `Esc` or clicking into the text ends the block cursor mode.
 
