@@ -18,7 +18,7 @@ Note: You can add other options by clicking the "+" buttons. All your
 settings are recorded.
 
 You can also type your own preamble model in the editor: with the
-"Copy/paste" or "Save As" commands, you can use it for a new
+"Copy/Paste" or "Save As" commands, you can use it for a new
 document.
 
 ### Using Templates to start a new document
@@ -39,7 +39,7 @@ template system. In particular you cannot supply a preview image or
 create a multi-file template with it. You'll have to do this manually
 (see [The template format](background.md#the-document-template-format) below).
 
-User added templates can be edited or deleted by using the context menu
+User-added templates can be edited or deleted by using the context menu
 in the template selection dialog. Built-in templates cannot be
 changed.
 
@@ -59,7 +59,7 @@ the main toolbar:
 
 ### The Structure View
 
-The \"Structure View\" (left panel) lets you quickly reach any part of
+The "Structure View" (left panel) lets you quickly reach any part of
 your document. All you need to do is to click on any item (label,
 section\...) and you will be taken to the beginning of the corresponding
 area in the editor. The mechanism for jumping to a line no longer
@@ -72,8 +72,8 @@ in the appendix.
 
 ![Structure View](images/structureview.webp)
 
-The \"Structure View\" is automatically updated as you type. You can
-also use the \"Refresh Structure\" (menu \"Idefix\") command at any
+The "Structure View" is automatically updated as you type. You can
+also use the "Refresh Structure" (menu "Idefix") command at any
 moment.
 
 The structure view shows labels, sections, includes, beamer blocks
@@ -81,7 +81,7 @@ and todos.
 
 There are two kinds of todos that will be listed:
 a) todos from a todo-like command, e.g. \\todo{} from the package todonotes.
-b) todo-comments: This is a comment with a \"% TODO\" or \"%todo\". You can
+b) todo-comments: This is a comment with a "% TODO" or "%todo". You can
 adapt the regular expression for other comments to be marked as
 todo-comment in *options/advanced editor/Regular Expression for TODO
 comment*, e.g. `%\s?[A-Z][A-Z_-]+` for any comment starting
@@ -97,15 +97,15 @@ is changed to \\subsection, and all subsections are treated accordingly
 
 The side panel on the left offers a TOC view. The TOC shows the structure of your
 whole document by means of section commands (part, section, subsection,
-...). A mouse over shows you in which file the section actually is.
+...). A mouse-over shows you in which file the section actually is.
 
 ![TOC View](images/TOC_standard.webp)
 
 The image shows this: A root file named `document.tex` that includes the
-file named `file1.tex`. The root file contains the section \"Main text\",
-while `file1.tex` contains the subsection \"External\". By placing the mouse
+file named `file1.tex`. The root file contains the section "Main text",
+while `file1.tex` contains the subsection "External". By placing the mouse
 pointer over this subsection in the TOC view, you find the file name
-`file1.tex` in the mouse over. This works even if the file is not open
+`file1.tex` in the mouse-over. This works even if the file is not open
 (but the document must be loaded by TeXstudio, see Automatically load
 included files in editor settings). In this case a mouse click on the
 subsection in the TOC will open the file for you. Notice the different
@@ -115,9 +115,9 @@ file name itself appears in the TOC (without file extension):
 
 ![TOC View with file](images/TOC_file.webp)
 
-The mouse over now would show the name of the file that includes
+The mouse-over now would show the name of the file that includes
 `file1.tex` (namely `document.tex`). The indentation shows that the text of
-`file1.tex` is part of the section \"Main text\". You may like to choose a
+`file1.tex` is part of the section "Main text". You may like to choose a
 different color in the configuration dialog (see option Use color in
 global TOC in [advanced editor settings](configuration.md#configuring-the-advanced-editor-settings-advanced-option)).
 
@@ -176,14 +176,14 @@ More options are available in the "LaTeX" menu. Commonly used formatting command
 
 ```{note}
 A selected text can be directly framed by certain
-environments. Example: while clicking on the button \"Bold\" or pressing `CTRL+B` after
-having selected the word \"Hello\", you will obtain the code:
+environments. Example: while clicking on the button "Bold" or pressing `CTRL+B` after
+having selected the word "Hello", you will obtain the code:
 `\textbf{Hello}`.
 ```
 
-### Capitalisation
+### Capitalization
 
-The menu \"Edit\" -\> \"Text Operations\" contains a few methods for
+The menu "Edit" -\> "Text Operations" contains a few methods for
 changing the capitalization of selected text:
 
 -   To Lowercase
@@ -191,10 +191,10 @@ changing the capitalization of selected text:
 -   To Titlecase (strict)
 -   To Titlecase (smart)
 
-Both variants of \"To Titlecase\" leave small words like a, the, of etc.
-in lowercase. Additionally, \"To Titlecase (smart)\" does not convert
+Both variants of "To Titlecase" leave small words like a, the, of etc.
+in lowercase. Additionally, "To Titlecase (smart)" does not convert
 any words containing capital letters, assuming they are acronyms which
-require a fixed capitalization (e.g. \"TeXstudio\").
+require a fixed capitalization (e.g. "TeXstudio").
 
 ### Escaping reserved characters
 
@@ -208,14 +208,14 @@ functions take care of that (Menu: Idefix or context menu on the editor):
 -   Convert to LaTeX: Escapes the reserved characters in the current
     selection.
 
-For example: \"Less than 10% of computer users know the meaning of
-\$PATH.\" will be converted to \"Less than 10\\% of computer users know
-the meaning of \\\$PATH.\"
+For example: "Less than 10% of computer users know the meaning of
+$PATH." will be converted to "Less than 10\\% of computer users know
+the meaning of \\\$PATH."
 
 ## Inserting a list
 
 The usual list environments code can be inserted quickly via the
-\"LaTeX-List\" menu. Alternatively you can use the [environment completion](#environment-completion).
+"LaTeX/List Environment" menu. Alternatively you can use the [environment completion](#environment-completion).
 
 ```{note}
 The shortcut for the \\item command is `Ctrl+Shift+I`.
@@ -223,11 +223,11 @@ The shortcut for the \\item command is `Ctrl+Shift+I`.
 
 ## Inserting a table
 
-With the \"Tabular\" wizard (\"Wizard\" menu), the LaTeX code for a
+With the "Tabular" wizard ("Wizard" menu), the LaTeX code for a
 tabular environment can be quickly generated.
 
 The cells can be filled manually. Copy and paste from a spreadsheet program works as well.
-The wizard allows some tabular manipulation for borders, cell merge and column alignment.
+The wizard allows some tabular manipulation for borders, cell merging and column alignment.
 Once the code is generated, it cannot be changed again with the wizard.
 
 ![Tabular Wizard](images/wizard_tabular.webp)
@@ -242,12 +242,12 @@ offered:
 
 | Function | Description |
 | --- | ------ |
-| ![](../../../images-ng/colibre/addRow.svg) | Add row after the current row |
-| ![](../../../images-ng/colibre/remRow.svg) | removes the table row in which the cursor is |
-| ![](../../../images-ng/colibre/addCol.svg) | add a column in the complete table after the current cursor position. If the cursor is positioned at start of line, first column, the column is added as new first column. |
-| ![](../../../images-ng/colibre/pasteCol.svg) | paste a column in the complete table after the current cursor position. If the cursor is positioned at start of line, first column, the column is added as new first column. |
-| ![](../../../images-ng/colibre/remCol.svg) | remove current column |
-| ![](../../../images-ng/colibre/cutCol.svg) | remove current column and store in clipboard. Use with *paste column* |
+| ![](../../../images-ng/colibre/addRow.svg) | Adds a row after the current row |
+| ![](../../../images-ng/colibre/remRow.svg) | Removes the table row in which the cursor is |
+| ![](../../../images-ng/colibre/addCol.svg) | Adds a column in the complete table after the current cursor position. If the cursor is positioned at start of line, first column, the column is added as new first column. |
+| ![](../../../images-ng/colibre/pasteCol.svg) | Pastes a column in the complete table after the current cursor position. If the cursor is positioned at start of line, first column, the column is added as new first column. |
+| ![](../../../images-ng/colibre/remCol.svg) | Removes current column |
+| ![](../../../images-ng/colibre/cutCol.svg) | Removes current column and stores it in clipboard. Use with *paste column* |
 | ![](../../../images-ng/colibre/alignCols.svg) | Aligns the column separators (ampersand) by introducing whitespace. The text in the cells is aligned according to the specification in the table header. This helps reading the table source. |
 
 The following functions are only accessible via the "LaTeX/Manipulate Tables" menu:
@@ -270,7 +270,7 @@ Pressing `Esc` or clicking somewhere into the text leaves this mode.
 TeXstudio offers the possibility to reformat an existing LaTeX table
 after a table template.
 
-For example, you have entered the following table into txs:
+For example, you have entered the following table into TXS:
 
 ```latex
 \begin{tabular}{ll}
@@ -279,11 +279,11 @@ c&d\\
 \end{tabular}
 ```
 
-Place the cursor inside the table and select the menu \"LaTeX/Manipulate
-Tables/Remodel Table Using Template\".
+Place the cursor inside the table and select the menu "LaTeX/Manipulate
+Tables/Remodel Table Using Template".
 
 Now you can select a template which defines the formatting of the table.
-A number of templates are predefined by txs:
+A number of templates are predefined by TXS:
 
 -   fullyframed\_firstBold
 -   fullyframed\_longtable
@@ -307,10 +307,10 @@ even if the tables are entered in a very simple style.
 
 The definition of new templates is described [here](background.md#creating-table-templates).
 
-## Inserting a \"tabbing\" environment
+## Inserting a "tabbing" environment
 
 To help you insert a "tabbing" code, you can use the "Tabbing"
-wizard (\"Wizard\" menu):
+wizard ("Wizard" menu):
 
 ![Tabbing Wizard](images/wizard_tabbing.webp)
 
@@ -318,30 +318,30 @@ wizard (\"Wizard\" menu):
 
 TeXstudio offers various ways to insert pictures into the LaTeX code.
 
-### Inserting picture via menu
+### Inserting pictures via menu
 
 To insert a picture in your document, just use the
-command in the \"LaTeX\" -\> \"Input/Include Files\" -\> \"\\includegraphics{file}\" menu. Then click on the \"browser\" button in
+command in the "LaTeX" -\> "Input/Include Files" -\> "\includegraphics{file}" menu. Then click on the "browse" button in
 the dialog to select the graphic file.
 
 ![Figure Environment](images/insertImage_menu.webp)
 
 ```{note}
-You can insert a \"figure\" LaTeX environment (\"LaTeX -
-Environments\" menu) before inserting the picture.
+You can insert a "figure" LaTeX environment ("LaTeX -
+Environments" menu) before inserting the picture.
 ```
 
-### Inserting a picture using a \"wizard\"
+### Inserting a picture using a "wizard"
 
-TeXstudio offers a wizard for handling graphics insertion code in your document. \"Graphics
-Options\" defines the optional parameters of
+TeXstudio offers a wizard for handling graphics insertion code in your document. "Graphics
+Options" defines the optional parameters of
 `\includegraphics[options]{file}`. While the most used width/height
 attributes can be easily set, alternatively you have full control with
 the user-defined setting.
 
 The code is placed inside a `figure` environment with the given position suggestions.
 
-By pressing the \"Save as default\" button the current settings (except
+By pressing the "Save as default" button the current settings (except
 file, caption and label) are stored and will hence be used as default
 when you open the wizard.
 
@@ -356,12 +356,12 @@ settings.
 
 ## Cross References and notes
 
-This toolbox in the toolbar allows you to insert quickly the label,
-cite, ref, footnote\... code.
+This toolbox in the toolbar allows you to insert quickly the \label,
+\cite, \ref, \footnote\... commands.
 
 ![Structure View Labels](images/tb_reference.webp)
 
-Selecting \"ref\" from the toolbox (or the menu \"LaTeX/Cross References\") opens a dialog which lets you select a reference and inserts the complete code.
+Selecting "ref" from the toolbox (or the menu "LaTeX/Cross References") opens a dialog which lets you select a reference and inserts the complete code.
 All other commands will be inserted with empty arguments.
 
 ![Inserting reference](images/insert_ref.webp)
@@ -386,30 +386,30 @@ If references in hidden documents are changed, they will be saved automatically 
 ```
 
 
-## Inserting math formula
+## Inserting math formulas
 
-The math part of the \"Central\" toolbar allows you to insert the most common mathematical
-forms (frac, sqrt\...), the \"Math\" toolbar allows entering delimiter tags like \\left and \\right.
+The math part of the "Central" toolbar allows you to insert the most common mathematical
+forms (\frac, \sqrt\... commands), the "Math" toolbar allows entering delimiter tags like \left and \right.
 
 ![Math part of Central Toolbar](images/tb_central_math.webp)  ![Math Delimiter Toolbar](images/tb_math.webp)
 
-You can toggle \"in-line math\" environment with the \"\$..\$\"
-button in the \"Central\" toolbar (`Ctrl+Shift+M`) or in the \"Math\" menu.
-The \"display math - \[\...\]\" environment is only available in the menu (or via shortcut `Alt+Shift+M`).
+You can toggle the "in-line math" environment with the "\$..\$"
+button in the "Central" toolbar (`Ctrl+Shift+M`) or in the "Math" menu.
+The "display math - [\...]" environment is only available in the menu (or via shortcut `Alt+Shift+M`).
 
-The \"symbols panel\" in the side panel offers the insertion of hundreds of mathematical symbols and special characters.
+The "Symbols panel" in the side panel offers the insertion of hundreds of mathematical symbols and special characters.
 The list can be sorted by categories like "all", "greek", "operators", etc.
 You can also directly search for parts of the command.
-A right click on the symbol allows you to declare it as favorite, insert the command or, if available, insert the unicode character into the text.
+A right click on the symbol allows you to declare it as favorite, insert the command or, if available, insert the Unicode character into the text.
 TeXstudio keeps track of which symbols have been used here, so the most used will be listed as well.
 
 ![Symbol Panel](images/symbol_panel.webp)
 
 You can also define the format of your mathematical text via the
-\"Math\" menu.
+"Math" menu.
 
-For the \"array\" environments, a wizard (like the \"Tabular\" wizard)
-is available in the \"Wizard\" menu. With this wizard, you can select
+For the "array" environments, a wizard (like the "Tabular" wizard)
+is available in the "Wizard" menu. With this wizard, you can select
 the environment: array, matrix, pmatrix\....
 
 The cells can be edited directly.
@@ -421,7 +421,7 @@ The cells can be edited directly.
 ### Command completion
 
 Whenever you press `\` followed by a letter, a list of possible LaTeX
-tags is shown. If you type additional
+tags are shown. If you type additional
 letters, the list is filtered, so that only the tags starting with the
 already written text are shown. If the list contains words which all
 start with the same letter combination, you can press `Tab` to complete
@@ -466,7 +466,7 @@ used as possible suggestions.
 If an environment is to be inserted, typing in the beginning of the
 environment name and pressing `Ctrl+Alt+Space` gives suggestions for
 adequate environments which are inserted completely with
-`\\begin{env}..\\end{env}`.
+`\begin{env}...\end{env}`.
 
 ```{tab} Entering env-name
 ![env completing before](images/completer_env_before.webp)
@@ -482,7 +482,7 @@ When entering reference commands, the completer offers those commands prefilled 
 
 If a reference is changed or the command offers to enter several references, the completer can suggest available references.
 
-It works the same for *bibIDs*.
+It works the same for *BibIDs*.
 
 ```{tab} Reference command completion
 ![completing reference command](images/completer_ref.webp)
@@ -558,8 +558,8 @@ you can also add the word to the ignore list.
 ```{note}
 If your dictionary is very
 large (\> 5MB), opening the context menu and showing possible
-suggestions can take some seconds. If you don\'t need the suggestion,
-you can press Shift while right-clicking and don\'t have to wait.
+suggestions can take some seconds. If you don't need the suggestion,
+you can press Shift while right-clicking and don't have to wait.
 ```
 
 The active language is shown at the bottom of the main window.
@@ -621,8 +621,8 @@ chosen to reduce the number of suggestions. The column to the right
 contains the list of suggested synonyms. A selected word from this list
 appears in the first line to the right as a proposition for replacement of
 the text. This word can be changed manually. It is also used to do
-further investigations for words and their synonyms which \"start with\"
-or \"contain\" that word. With \"lookup\" it can be directly used to
+further investigations for words and their synonyms which "start with"
+or "contain" that word. With "lookup" it can be directly used to
 look for a synonym for that word.
 
 The thesaurus can be selected in the [configuration](configuration.md#configuring-the-thesaurus).
@@ -667,17 +667,17 @@ The extended search feature allows you to search within all files associated wit
 The search word is updated when pressing "+" again on the search panel. "Update search" searches with the given search word again through all specified files.
 The drop-down menu allows searching within a "Project", i.e. all files belonging to one document, "All Docs", i.e. all open documents in TeXstudio, or a single "Current Doc".
 
-The option "Files on disk" searches all the text in tex-files in the same folder as the current document. The folder and the file filter can be changed.
+The option "Files on disk" searches all the text in TeX files in the same folder as the current document. The folder and the file filter can be changed.
 
 In the list of search results, a double-click on a match jumps to the location in the file. The matches can be selected/deselected to limit the results which are replaced by the replacement text by pressing "Replace all".
 
 ![extended search pane](images/extendedSearch.webp)
 
 ## Handling large projects
-This section describes what support txs provides for larger projects.
+This section describes what support TXS provides for larger projects.
 
 Large projects usually are split into several included files.
-In order to speed up compilation, the package [subfiles](https://www.ctan.org/pkg/subfiles) offers compilation of the current document only. txs automatically loads all included files, so that it can provide proposals for user commands, labels and bibitems. To speed up reloading a project, txs caches all files, meaning it writes this information on the disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works when restoring a previously opened project; the initial opening may take a bit longer, see [also](background.md#about-documents-separated-into-several-files).
+In order to speed up compilation, the package [subfiles](https://www.ctan.org/pkg/subfiles) offers compilation of the current document only. TXS automatically loads all included files, so that it can provide proposals for user commands, labels and bibitems. To speed up reloading a project, TXS caches all files, meaning it writes this information to disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works when restoring a previously opened project; the initial opening may take a bit longer, see [also](background.md#about-documents-separated-into-several-files).
 
 ## Collaborative Editing (Pair programming)
 
@@ -704,12 +704,12 @@ This access code in the form of `4-alpha-button` needs to be communicated to the
 Once they connect to any of those files, TeXstudio gets notified. If the file is open in your TeXstudio, their cursor will appear as a blue cursor. Any changes will directly appear in your file as well.
 So will your cursor position and changes appear in their editor.
 
-Once the connection is closed ("Tools/Disconnect from collaboration" or TeXstudio is closed), the changes will not be synchronized any more and neither their nor your changes are exchanged.
+Once the connection is closed ("Tools/Disconnect from collaboration" or TeXstudio is closed), the changes will not be synchronized any more and neither their changes nor yours are exchanged.
 
 ### Joining collaboration
 
 In order to join another user for collaboration, an access code is needed.
-If that has been communicated, connect to the other user with "Tools/Connect to other user for collaboration".
+If that has been communicated, connect to the host user with "Tools/Connect to other user for collaboration".
 
 TeXstudio asks for the access code and connects to the other user.
 If that was successful, the status panel (see [above](#inviting-collaborators)) will turn green.
@@ -731,16 +731,16 @@ In case matching delimiters are highlighted like `()`, both are removed.
 ### Rename environment
 
 If you place the cursor on an environment name, after a moment a
-mirror-cursor is activated on the environment name which allows
-synchronous change of the environment name in the begin- and
-end-command. So if you want to change a
+mirror cursor is activated on the environment name which allows
+synchronous change of the environment name in the \begin and
+\end command. So if you want to change a
 `\begin{tabular}...\end{tabular}` construction to
 `\begin{tabularx}...\end{tabularx}`, place the text cursor on
-`tabular`, wait for a second and then, after the mirror-cursor
+`tabular`, wait for a second and then, after the mirror cursor
 appears, change `tabular` to `tabularx`.
 
 ```{note}
-You can also double-click on the environment name to activate the mirror-cursor.
+You can also double-click on the environment name to activate the mirror cursor.
 ```
 
 ### Close delimiter or environment
@@ -758,7 +758,7 @@ resulting text is `\textbf{text}`.
 
 TeXstudio supports block cursors (or multiple cursors).
 Cursors can be added by `Ctrl+Alt`+left click.
-Alternatively pressing `Ctrl+Alt+Up/Down` also add block cursors.
+Alternatively pressing `Ctrl+Alt+Up/Down` also adds block cursors.
 The cursors can jointly move, add and remove text and select characters.
 Pressing `Esc` or clicking into the text ends the block cursor mode.
 
