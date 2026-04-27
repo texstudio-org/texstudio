@@ -1,5 +1,5 @@
 # fill.geomarray tikzlibrary
-# 2026/04/06 for v1.1.0
+# 2026/04/27 for v1.2.0
 
 #keyvals:\begin{tikzpicture}#c,\tikz#c,\begin{scope}#c,\tikzset#c,\scoped#c,\path#c,\draw#c,\fill#c,\filldraw#c,\pattern#c,\shade#c,\shadedraw#c,\clip#c,\node#c,\coordinate#c,\nodepart#c,\pic#c,\matrix#c,\calendar#c,\chainin#c,\arrow#c,\arrowreversed#c
 fill geomarray
@@ -31,6 +31,16 @@ fill gea Traich={%<options%>}
 fill gea Winbuerg={%<options%>}
 fill gea Kreuzholzen={%<options%>}
 fill gea Grafenhaun={%<options%>}
+fill gea Niederhatzkofen={%<options%>}
+fill gea Marktstauden={%<options%>}
+fill gea Alpersdorf={%<options%>}
+fill gea Scheckenhofen={%<options%>}
+fill gea Edenland={%<options%>}
+fill gea Klosterholz={%<options%>}
+fill gea Baumgarten={%<options%>}
+fill gea Ostergaden={%<options%>}
+fill gea Eggerach={%<options%>}
+fill gea Schwarzberg={%<options%>}
 #endkeyvals
 
 \TFRowColorLet{name}{color1}{color2}

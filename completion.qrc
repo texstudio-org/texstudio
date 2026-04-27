@@ -1278,6 +1278,7 @@
 <file>completion/dimnum.cwl</file>
 <file>completion/dingbat.cwl</file>
 <file>completion/dirtree.cwl</file>
+<file>completion/dirtreex.cwl</file>
 <file>completion/dirtytalk.cwl</file>
 <file>completion/ditaa.cwl</file>
 <file>completion/dlfltxbcodetips.cwl</file>
@@ -2291,6 +2292,7 @@
 <file>completion/luacas.cwl</file>
 <file>completion/luacensor.cwl</file>
 <file>completion/lua-check-hyphen.cwl</file>
+<file>completion/lua-list-hyphen.cwl</file>
 <file>completion/luacode.cwl</file>
 <file>completion/luacolor.cwl</file>
 <file>completion/luacomplex.cwl</file>
@@ -3149,6 +3151,7 @@
 <file>completion/pst-solides3d.cwl</file>
 <file>completion/pst-soroban.cwl</file>
 <file>completion/pst-spectra.cwl</file>
+<file>completion/pst-spectrum.cwl</file>
 <file>completion/pst-sphericaltrochoid.cwl</file>
 <file>completion/pst-spinner.cwl</file>
 <file>completion/pst-stru.cwl</file>

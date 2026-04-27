@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2026/03/31 for v7.8a
+# Matthew Bertucci 2026/04/27 for v7.8b
 
 #include:amsmath
 #include:array
@@ -225,6 +225,7 @@ name=%<name%>
 respect-arraystretch
 transparent
 rules/width=##L
+rules/color=#%color
 #endkeyvals
 
 \Hline#t
@@ -439,7 +440,15 @@ not-empty
 \begin{TabularNote}
 \end{TabularNote}
 \NiceTabularNotes
+
 \rotate
+\rotate[options%keyvals]
+
+#keyvals:\rotate
+c
+-90
+#endkeyvals
+
 \ShowCellNames#t
 
 \AutoNiceMatrix{i-j}{pattern}#m

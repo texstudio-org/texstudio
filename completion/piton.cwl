@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2026/01/11 for v4.11
+# Matthew Bertucci 2026/04/20 for v4.12
 
 #include:luacode
 #include:xcolor
@@ -107,6 +107,7 @@ end-of-broken-line=%<symbol%>
 env-gobble
 env-used-by-split=%<envname%>
 font-command=%<font commands%>
+font-command +=%<font commands%>
 gobble
 gobble=%<integer%>
 indent-broken-lines
@@ -139,6 +140,7 @@ show-spaces
 show-spaces-in-strings
 split-on-empty-lines#true,false
 split-separation=%<code%>
+split-separation +=%<code%>
 splittable
 splittable-on-empty-lines#true,false
 splittable=%<integer%>
