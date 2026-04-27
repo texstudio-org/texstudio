@@ -1,5 +1,5 @@
 # zebra package
-# Matthew Bertucci 2026/04/06 for v1.4.0
+# Matthew Bertucci 2026/04/27 for v1.8.0
 
 #include:microtype
 #include:xcolor
@@ -13,6 +13,7 @@ final
 sort=#none,type
 font-expansion#true,false
 pagelinks#true,false
+unnumbered#true,false
 #endkeyvals
 
 \todo{text%todo}#D

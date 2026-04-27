@@ -1,5 +1,5 @@
 # pxjahyper package
-# Matthew Bertucci 2024/08/15 for v1.4
+# Matthew Bertucci 2026/04/27 for v1.4
 
 #include:platex
 #include:keyval
@@ -27,6 +27,7 @@ bigcode
 nobigcode
 jacommentline
 nojacommentline
+nocheck-driver
 disablecmds
 nodisablecmds
 otfutf
@@ -60,3 +61,4 @@ ajhankaku-chars#true,false
 \pxDeclarePdfTextComposite{cmd}{arg}{jis}{ucs}#d
 \pxjahyperBadCharacter{label}#*
 \pxHyperrefUnicodePatched#S
+\pxjahyperNoCheckDriver#S

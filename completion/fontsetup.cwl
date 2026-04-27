@@ -1,5 +1,5 @@
 # fontsetup package
-# Matthew Bertucci 2024/11/04 for v2.3.0
+# Matthew Bertucci 2026/04/27 for v2.4.0
 
 #include:iflang
 #include:iftex
@@ -35,6 +35,10 @@ stixtwo
 talos
 times
 xcharter
+arsenal
+lato
+luciole
+pennstander
 #endkeyvals
 
 #ifOption:default

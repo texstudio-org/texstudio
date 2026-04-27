@@ -1278,6 +1278,7 @@
 <file>completion/dimnum.cwl</file>
 <file>completion/dingbat.cwl</file>
 <file>completion/dirtree.cwl</file>
+<file>completion/dirtreex.cwl</file>
 <file>completion/dirtytalk.cwl</file>
 <file>completion/ditaa.cwl</file>
 <file>completion/dlfltxbcodetips.cwl</file>

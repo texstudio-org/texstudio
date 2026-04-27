@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/04/20 for v16.16.0
+# Matthew Bertucci 2026/04/20 for v16.17.0
 
 #include:iftex
 
@@ -1715,6 +1715,7 @@ lobsters
 local
 localsend
 localxpose
+locust
 lodash
 logmein
 logseq
@@ -3223,6 +3224,7 @@ vivint
 vivo
 vk
 vlcmediaplayer
+vllm
 vmware
 vodafone
 voelkner
