@@ -1,5 +1,5 @@
 # glossaries-extra package
-# Matthew Bertucci 2025/11/12 for v1.9
+# Matthew Bertucci 2026/04/28 for v2.1
 
 #include:glossaries
 
@@ -19,6 +19,8 @@ nolist
 notree
 nostyles
 makeindex
+upmendex
+mendex
 xindy
 xindy={%<options%>}
 xindygloss
@@ -36,6 +38,7 @@ savewrites#true,false
 hyperfirst#true,false
 writeglslabels
 writeglslabelnames
+saveglossarygroups#true,false
 toc#true,false
 numberline#true,false
 section=%<section unit%>
