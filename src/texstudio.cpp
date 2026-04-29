@@ -8594,7 +8594,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
                     }
                 }
             }
-            words.unite(userList);
+            words.append(userList);
 
             if(mCompleterCommandsNeedsUpdate){
                 cwlFiles.unite(doc->getCWLFiles());
@@ -8626,6 +8626,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
                 mLoadedCWLFiles.unite(addedCwl);
             }
         }
+        std::sort(words.begin(),words.end());
         mCompleterWords.unite(words);
     }
     // collect user commands and references

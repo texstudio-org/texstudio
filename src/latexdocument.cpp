@@ -2104,7 +2104,7 @@ QList<CodeSnippet> LatexDocument::userCommandList() const
         if(cmd.name.isEmpty() && cmd.snippet.type!=CodeSnippet::userConstruct) continue; // filter out special def
 		csl.append(cmd.snippet);
 	}
-    std::sort(csl.begin(),csl.end());
+    //std::sort(csl.begin(),csl.end());
 	return csl;
 }
 
