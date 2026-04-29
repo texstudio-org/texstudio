@@ -1,14 +1,14 @@
 # autotype package
-# Matthew Bertucci 2023/10/31 for v0.4
+# Matthew Bertucci 2026/04/29 for v0.6
 
 #include:luatex
 
 \autotypelangoptions{language}{options%keyvals}
 
 #keyvals:\autotypelangoptions
-hyphenation=#default,primary,weighted
+hyphenation=#default,primary,special,weighted
 mark-hyph=#on,off
-ligbreak=#on,off
+ligatures=#selective,default
 long-s=#on,off
 #endkeyvals
 
@@ -20,6 +20,6 @@ round-s-codepoint=%<codepoint%>
 final-round-s-codepoint=%<codepoint%>
 #endkeyvals
 
-\noligbreak{text}
+\keepligatures{text}
 \autotypelongs
 \autotyperounds

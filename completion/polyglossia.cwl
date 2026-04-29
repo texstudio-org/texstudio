@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 2025/12/01 for v2.9
+# Matthew Bertucci 2026/04/29 for v2.10
 
 #include:etoolbox
 #include:fontspec
@@ -22,6 +22,9 @@ babelshorthands#true,false
 localmarks#true,false
 luatexrenderer=%<renderer%>
 verbose#true,false
+unibidi-lua#true,false
+bidi#true,false
+metadata#true,false
 #endkeyvals
 
 \setdefaultlanguage{language}
@@ -121,6 +124,8 @@ verbose#true,false
 \textkorean{text}#*
 \textkurdish[options%keyvals]{text}#*
 \textkurdish{text}#*
+\textkyrgyz[options%keyvals]{text}#*
+\textkyrgyz{text}#*
 \textlao[options%keyvals]{text}#*
 \textlao{text}#*
 \textlatin[options%keyvals]{text}#*
@@ -292,6 +297,8 @@ verbose#true,false
 \begin{korean}#*
 \begin{kurdish}[options%keyvals]#*
 \begin{kurdish}#*
+\begin{kyrgyz}[options%keyvals]#*
+\begin{kyrgyz}#*
 \begin{lao}[options%keyvals]#*
 \begin{lao}#*
 \begin{latin}[options%keyvals]#*
@@ -416,6 +423,7 @@ verbose#true,false
 \end{khmer}#*
 \end{korean}#*
 \end{kurdish}#*
+\end{kyrgyz}#*
 \end{lao}#*
 \end{latin}#*
 \end{latvian}#*
@@ -612,6 +620,9 @@ babelshorthands#true,false
 script=#latin,blackletter,fraktur
 #endkeyvals
 
+\germanabbrspace#*
+\mkgender#*
+
 #keyvals:\setdefaultlanguage/greek#c,\setmainlanguage/greek#c,\setotherlanguage/greek#c,\textlang/greek#c,\textgreek#c,\begin{lang}/greek#c,\begin{greek}#c,\selectlanguage/greek#c,\foreignlanguage/greek#c,\begin{otherlanguage}/greek#c,\begin{otherlanguage*}/greek#c,\resetdefaultlanguage/greek#c,\setlanguagealias/greek#c,\setlanguagealias*/greek#c,\pghyphenation/greek#c,\setlanghyphenmins/greek#c
 variant=#monotonic,mono,polytonic,poly,ancient
 numerals=#greek,arabic
@@ -684,6 +695,14 @@ script=#Arabic,Latin
 numerals=#western,eastern
 sectionsep=%<code%>
 abjadjimnotail#true,false
+#endkeyvals
+
+#keyvals:\setdefaultlanguage/kyrgyz#c,\setmainlanguage/kyrgyz#c,\setotherlanguage/kyrgyz#c,\textlang/kyrgyz#c,\textkyrgyz#c,\begin{lang}/kyrgyz#c,\begin{kyrgyz}#c,\selectlanguage/kyrgyz#c,\foreignlanguage/kyrgyz#c,\begin{otherlanguage}/kyrgyz#c,\begin{otherlanguage*}/kyrgyz#c,\resetdefaultlanguage/kyrgyz#c,\setlanguagealias/kyrgyz#c,\setlanguagealias*/kyrgyz#c,\pghyphenation/kyrgyz#c,\setlanghyphenmins/kyrgyz#c
+babelshorthands#true,false
+forceheadingpunctuation#true,false
+indentfirst#true,false
+date=#short,long,long-kymonths
+numerals=#arabic,cyrillic-alph,cyrillic-trad
 #endkeyvals
 
 #keyvals:\setdefaultlanguage/lao#c,\setmainlanguage/lao#c,\setotherlanguage/lao#c,\textlang/lao#c,\textlao#c,\begin{lang}/lao#c,\begin{lao}#c,\selectlanguage/lao#c,\foreignlanguage/lao#c,\begin{otherlanguage}/lao#c,\begin{otherlanguage*}/lao#c,\resetdefaultlanguage/lao#c,\setlanguagealias/lao#c,\setlanguagealias*/lao#c,\pghyphenation/lao#c,\setlanghyphenmins/lao#c
@@ -883,6 +902,7 @@ date=#long,short
 \captionskhmer#*
 \captionskorean#*
 \captionskurdish#*
+\captionskyrgyz#*
 \captionslao#*
 \captionslatin#*
 \captionslatvian#*
@@ -966,6 +986,7 @@ date=#long,short
 \datekhmer#*
 \datekorean#*
 \datekurdish#*
+\datekyrgyz#*
 \datelao#*
 \datelatin#*
 \datelatvian#*
