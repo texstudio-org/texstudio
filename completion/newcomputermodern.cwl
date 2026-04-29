@@ -1,5 +1,5 @@
 # newcomputermodern package
-# Matthew Bertucci 2024/11/04 for v7.0.0
+# Matthew Bertucci 2026/04/27 for v8.0.0
 
 #include:fontspec
 #include:unicode-math
@@ -212,6 +212,12 @@ sansdefault
 \aegeanliquidmeasurefirstsubunit#*
 \aegeansecondsubunit#*
 \aegeanthirdsubunit#*
+
+\mathchancery{text%plain}#m
+\mathbfchancery{text%plain}#m
+\symchancery{text%plain}#m
+
+\titlo{text}
 
 # non-default unicode-math symbols
 \accurrent#m
@@ -1169,3 +1175,7 @@ sansdefault
 \zcmp#m
 \zpipe#m
 \zproject#m
+\increasingconcave#m
+\increasingconvex#m
+\decreasingconcave#m
+\increasingconvex#m

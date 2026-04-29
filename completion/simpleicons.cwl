@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/04/06 for v16.14.0
+# Matthew Bertucci 2026/04/20 for v16.17.0
 
 #include:iftex
 
@@ -439,6 +439,7 @@ byjus
 bytedance
 c
 cachet
+cachyos
 caddy
 cadillac
 cafepress
@@ -1014,6 +1015,7 @@ fluentd
 fluke
 flutter
 flux
+fluxer
 flydotio
 flyway
 fmod
@@ -1713,6 +1715,7 @@ lobsters
 local
 localsend
 localxpose
+locust
 lodash
 logmein
 logseq
@@ -2589,6 +2592,7 @@ runkit
 runrundotit
 rust
 rustdesk
+rustfs
 rxdb
 ryanair
 rye
@@ -2782,6 +2786,7 @@ spectrum
 speedtest
 speedypage
 sphinx
+spidermonkey
 spigotmc
 spine
 spinnaker
@@ -3069,6 +3074,7 @@ tripadvisor
 tripdotcom
 trivago
 trivy
+trmnl
 trove
 trpc
 truenas
@@ -3095,6 +3101,7 @@ tvtime
 twinkly
 twinmotion
 twitch
+ty
 typeform
 typeorm
 typer
@@ -3217,6 +3224,7 @@ vivint
 vivo
 vk
 vlcmediaplayer
+vllm
 vmware
 vodafone
 voelkner

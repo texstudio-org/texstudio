@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2026/03/31 for v3.14.1
+# Matthew Bertucci 2026/04/20 for v3.15.0
 
 #include:paralist
 #include:amsmath
@@ -467,3 +467,29 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererAcronymPrototype#*
 \markdownRendererBracketedSpan#*
 \markdownRendererBracketedSpanPrototype#*
+\markdownRendererInputBlockHtmlCdataElement#*
+\markdownRendererInputBlockHtmlCdataElementPrototype#*
+\markdownRendererBlockHtmlComment
+\markdownRendererBlockHtmlCommentPrototype
+\markdownRendererInputBlockHtmlProcessingInstruction
+\markdownRendererInputBlockHtmlProcessingInstructionPrototype
+\markdownRendererInputBlockHtmlDeclaration
+\markdownRendererInputBlockHtmlDeclarationPrototype
+\markdownRendererInputBlockHtmlCdataSection
+\markdownRendererInputBlockHtmlCdataSectionPrototype
+\markdownRendererInputBlockHtmlPcdataElement
+\markdownRendererInputBlockHtmlPcdataElementPrototype
+\markdownRendererBlockHtmlStandaloneTag
+\markdownRendererBlockHtmlStandaloneTagPrototype
+\markdownRendererInlineHtmlProcessingInstruction
+\markdownRendererInlineHtmlProcessingInstructionPrototype
+\markdownRendererInlineHtmlDeclaration
+\markdownRendererInlineHtmlDeclarationPrototype
+\markdownRendererInlineHtmlCdataSection
+\markdownRendererInlineHtmlCdataSectionPrototype#*
+\markdownRendererInlineHtmlOpenTag#*
+\markdownRendererInlineHtmlOpenTagPrototype#*
+\markdownRendererInlineHtmlCloseTag#*
+\markdownRendererInlineHtmlCloseTagPrototype#*
+\markdownRendererInlineHtmlEmptyTag#*
+\markdownRendererInlineHtmlEmptyTagPrototype#*

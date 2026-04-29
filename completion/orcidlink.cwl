@@ -1,6 +1,7 @@
 # orcidlink package
-# Matthew Bertucci 2024/06/26 for v1.1.0
+# Matthew Bertucci 2026/04/20 for v1.1.1
 
+#include:etoolbox
 #include:hyperref
 #include:tikz
 #include:tikzlibrarysvg.path

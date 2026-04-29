@@ -45,6 +45,8 @@ noalegre
 \insertgithub#*
 \github{username}
 \fillpicture{imagefile}#g
+\insertvenue#*
+\venue{venue%text}
 
 # from T1 option of fontenc
 \DH#n

@@ -7782,7 +7782,7 @@ eutreaty#true,false
 \indexonly{bibid}#C
 #endif
 
-### biblatex-oxref v3.1 ###
+### biblatex-oxref v3.4 ###
 #ifOption:style=oxalph
 # loads oxyear bibliography style
 #include:xpatch
@@ -7807,6 +7807,7 @@ timefirst#true,false
 usenametitles#true,false
 #endkeyvals
 # from oxref.bbx
+\biburlpunctskip#*
 \cacasetitlepunct#*
 \casenote#*
 \casenotetext#*
@@ -7844,6 +7845,7 @@ usenametitles#true,false
 \subtypecourtrules#*
 \subtypenewsp#*
 \subtypeprimarylegislation#*
+\thebiburlpunctpenalty#*
 \thelocpubpairs#*
 \thenamepairs#*
 \titlebyauthordelim#*
@@ -7883,6 +7885,7 @@ timefirst#true,false
 usenametitles#true,false
 #endkeyvals
 # from oxref.bbx
+\biburlpunctskip#*
 \cacasetitlepunct#*
 \casenote#*
 \casenotetext#*
@@ -7920,6 +7923,7 @@ usenametitles#true,false
 \subtypecourtrules#*
 \subtypenewsp#*
 \subtypeprimarylegislation#*
+\thebiburlpunctpenalty#*
 \thelocpubpairs#*
 \thenamepairs#*
 \titlebyauthordelim#*
@@ -7958,6 +7962,7 @@ timefirst#true,false
 usenametitles#true,false
 #endkeyvals
 # from oxref.bbx
+\biburlpunctskip#*
 \cacasetitlepunct#*
 \casenote#*
 \casenotetext#*
@@ -7995,6 +8000,7 @@ usenametitles#true,false
 \subtypecourtrules#*
 \subtypenewsp#*
 \subtypeprimarylegislation#*
+\thebiburlpunctpenalty#*
 \thelocpubpairs#*
 \thenamepairs#*
 \titlebyauthordelim#*
@@ -8028,6 +8034,7 @@ timefirst#true,false
 usenametitles#true,false
 #endkeyvals
 # from oxref.bbx
+\biburlpunctskip#*
 \cacasetitlepunct#*
 \casenote#*
 \casenotetext#*
@@ -8065,6 +8072,7 @@ usenametitles#true,false
 \subtypecourtrules#*
 \subtypenewsp#*
 \subtypeprimarylegislation#*
+\thebiburlpunctpenalty#*
 \thelocpubpairs#*
 \thenamepairs#*
 \titlebyauthordelim#*

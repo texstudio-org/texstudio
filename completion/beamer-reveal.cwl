@@ -1,5 +1,5 @@
 # beamer-reveal package
-# Matthew Bertucci 2026/02/11 for v1.09
+# Matthew Bertucci 2026/04/20 for v1.10
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -37,6 +37,13 @@ autoslide=%<integer%>
 \still[%<options%>] \at (%<x,y%>) {%<content%>}
 \still<%<overlay spec%>> \at (%<x,y%>) {%<content%>}
 \still<%<overlay spec%>>[%<options%>] \at (%<x,y%>) {%<content%>}
+\voiceover{text}
+\voiceover[options%keyvals]{text}
+\voiceover<overlay spec>{text}
+\voiceover<overlay spec>[options%keyvals]{text}
+\setvoiceovertts{script}
+\setvoiceover{voice}
+\setvoiceoverext{ext}
 \at#S
 
 # not documented
