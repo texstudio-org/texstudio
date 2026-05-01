@@ -1,5 +1,5 @@
 # spelatex package
-# Matthew Bertucci 2024/10/23 for v0.93
+# Matthew Bertucci 2026/04/29 for v0.96
 
 #include:hyperref
 #include:xcolor
@@ -18,6 +18,7 @@ server=%URL%>
 markervisibility=#none,onlygroups
 disabled#true,false
 extramath#true,false
+elements=
 #endkeyvals
 
 #ifOption:extramath
@@ -66,3 +67,7 @@ arealink
 \spelchunkatom[opt]{arg}#S
 \begin{spelverbatimwrite}{arg}#S
 \end{spelverbatimwrite}#S
+\processelementlist{arg}#S
+\docsvlist{arg}#S
+\hideref{arg1}{arg2}#S
+\spelitemcont{arg}#S

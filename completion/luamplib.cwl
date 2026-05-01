@@ -1,5 +1,5 @@
 # luamplib package
-# Matthew Bertucci 2025/05/15 for v2.37.3
+# Matthew Bertucci 2026/04/29 for v2.41.0
 
 #include:luatex
 
@@ -97,6 +97,7 @@ metafun
 
 #keyvals:\begin{mplibgroup}
 asgroup=%<string%>
+colorspace=%<string%>
 bbox="%<llx lly urx ury%>"
 matrix="%<xx xy yx yy%>"
 resources=%<PDF resources%>

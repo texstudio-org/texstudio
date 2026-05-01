@@ -1,5 +1,5 @@
 # rpgicons package
-# Matthew Bertucci 2026/02/27 for v2.8.0
+# Matthew Bertucci 2026/05/01 for v2.9.0
 
 #keyvals:\usepackage/rpgicons#c
 l3
@@ -117,6 +117,9 @@ text opacity=%<factor%>
 opacity=%<factor%>
 background opacity=%<factor%>
 line width=##L
+line cap=#butt,rectangle,round
+line join=#bevel,miter,round
+miter limit=%<float%>
 scale=%<factor%>
 scale inner=%<factor%>
 rotate=%<degrees%>

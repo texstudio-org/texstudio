@@ -1486,6 +1486,7 @@
 <file>completion/euler-math.cwl</file>
 <file>completion/eulerpx.cwl</file>
 <file>completion/eulervm.cwl</file>
+<file>completion/eurion.cwl</file>
 <file>completion/euroitc.cwl</file>
 <file>completion/euromoney.cwl</file>
 <file>completion/europasscv-bibliography.cwl</file>
@@ -2277,6 +2278,7 @@
 <file>completion/ltcaption.cwl</file>
 <file>completion/ltj-base.cwl</file>
 <file>completion/ltj-latex.cwl</file>
+<file>completion/ltmermaid.cwl</file>
 <file>completion/ltugcomn.cwl</file>
 <file>completion/ltx4yt.cwl</file>
 <file>completion/ltxdocext.cwl</file>
@@ -2475,6 +2477,7 @@
 <file>completion/mercatormap.cwl</file>
 <file>completion/merge.cwl</file>
 <file>completion/mergeh.cwl</file>
+<file>completion/mermaid.cwl</file>
 <file>completion/merriweather.cwl</file>
 <file>completion/messagebubbles.cwl</file>
 <file>completion/messagepassing.cwl</file>
@@ -2595,6 +2598,7 @@
 <file>completion/mwe.cwl</file>
 <file>completion/mxedruli.cwl</file>
 <file>completion/myfilist.cwl</file>
+<file>completion/mystyletau.cwl</file>
 <file>completion/MyriadPro.cwl</file>
 <file>completion/MyriadPro-FontDef.cwl</file>
 <file>completion/nabatean.cwl</file>
@@ -3215,6 +3219,7 @@
 <file>completion/qtree.cwl</file>
 <file>completion/quantikz.cwl</file>
 <file>completion/quattrocento.cwl</file>
+<file>completion/query-astro.cwl</file>
 <file>completion/quickderivs.cwl</file>
 <file>completion/quickreaction.cwl</file>
 <file>completion/quiver.cwl</file>
