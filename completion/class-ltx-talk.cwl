@@ -1,5 +1,5 @@
 # ltx-talk class
-# Matthew Bertucci 2026/01/31 for v0.4.0
+# Matthew Bertucci 2026/05/01 for v0.5.0
 
 #include:pdfmanagement
 #include:relsize
@@ -82,6 +82,10 @@ handout
 
 \action<action spec>{text}
 \action{text}
+\againframe{name}#*
+\againframe[options%keyvals]{name}#*
+\againframe<overlay spec>{name}#*
+\againframe<overlay spec>[options%keyvals]{name}#*
 \alert<overlay spec>{text}
 \alert{text}
 \alt<overlay spec>{default text%text}{alternative text%text}
@@ -120,6 +124,10 @@ handout
 \pagecolor<overlay spec>{color}
 \pause
 \pause[overlay spec]
+\reuseframe{name}
+\reuseframe[options%keyvals]{name}
+\reuseframe<overlay spec>{name}
+\reuseframe<overlay spec>[options%keyvals]{name}
 \subtitle[options%keyvals]{text}
 \subtitle{text}
 \temporal<overlay spec>{before slide text%text}{default text%text}{after slide text%text}
@@ -154,9 +162,13 @@ t
 vertical-alignment=#bottom,center,top
 #endkeyvals
 
-#keyvals:\begin{frame},\begin{frame*}
+#keyvals:\begin{frame},\begin{frame*},\reuseframe
 tag-slides=%<spec%>
 vertical-alignment=#bottom,center,stretch,top
+#endkeyvals
+
+#keyvals:\begin{frame},\begin{frame*}
+name=%<name%>
 #endkeyvals
 
 #keyvals:\author#c

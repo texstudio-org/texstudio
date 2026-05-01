@@ -1,5 +1,5 @@
 # bxtexlogo package
-# Matthew Bertucci 2022/05/16 for v0.6
+# Matthew Bertucci 2026/05/01 for v0.7
 
 #include:hologo
 
@@ -46,6 +46,7 @@ ExTeX
 HanTheThanh
 HeVeA
 HiTeX
+HiLaTeX
 iniTeX
 JBibTeX
 JBibTeX
@@ -68,8 +69,10 @@ logoLambda
 logoLamed
 logoOmega
 logoon
+lowe
 LuahbTeX
 LuaLaTeX
+LuaMetaTeX
 LuaTeX
 LyX
 METAFONT
@@ -78,6 +81,7 @@ METAPOST
 MetaPost
 MiKTeX
 NTS
+One
 OneTeX
 OpTeX
 OzMF
@@ -99,6 +103,7 @@ SageTeX
 SATySFi
 SLiTeX
 SliTeX
+Suyah
 SuyahTeX
 teTeX
 TeX
@@ -120,6 +125,7 @@ XeT
 XeTeX
 XyM
 XyMTeX
+Yukidaruma
 YukidarumaTeX
 #endkeyvals
 
