@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2026/01/18 for v26.1
+# tbraun 4.11.2008; Matthew Bertucci 2026/05/05 for v26.7
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -13,6 +13,7 @@ safe=#none,ref,bib
 math=#active,normal
 config=%<file%>
 main=%<language%>
+licr=#extended,unextended
 headfoot=%<language%>
 noconfigs
 showlanguages

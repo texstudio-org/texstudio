@@ -3698,6 +3698,7 @@
 <file>completion/tengwarscript.cwl</file>
 <file>completion/tensind.cwl</file>
 <file>completion/tensor.cwl</file>
+<file>completion/tensorstyles.cwl</file>
 <file>completion/termcal.cwl</file>
 <file>completion/termes-otf.cwl</file>
 <file>completion/termlist.cwl</file>

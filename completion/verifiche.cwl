@@ -1,5 +1,5 @@
 # verifiche package
-# Matthew Bertucci 2024/11/29 for v8.0
+# Matthew Bertucci 2026/05/05 for v9.2
 
 #include:xkeyval
 #include:pgffor
@@ -32,9 +32,9 @@ blue
 \asyear[preambolo%text]{anno scolastico}
 \testtype{tipo di compito%text}
 \instruction{istruzioni%text}
-\duration{durata%text}
-\duration[preambolo%text]{durata%text}
-\durationfont{text}#*
+\testduration{durata%text}
+\testduration[preambolo%text]{durata%text}
+\testdurationfont{text}#*
 \subtitle{testo del sottotitolo%text}
 \subtitlefont{text}#*
 \printheading
