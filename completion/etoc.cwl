@@ -1,5 +1,5 @@
 # etoc package
-# Matthew Bertucci 2023/07/05 for v1.2b
+# Matthew Bertucci 2026/05/06 for v1.2e
 
 #include:kvoptions
 #include:multicol
@@ -40,7 +40,7 @@ ouroboros#true,false
 \etocusertocstyle
 \etocstandardlines
 \etoctoclines
-\etocdefaultlines
+\etocfallbacklines
 \etocstoretocstyleinto{cmd}#d
 \etocstorelinestylesinto{cmd}#d
 \etocstorethislinestyleinto{name or number}{cmd}#d
@@ -143,7 +143,7 @@ ouroboros#true,false
 \etocaftercontentshook#*
 \etocbeforetitlehook#*
 \etocaftertochook#*
-\etocsetstyle{level name}{start}{prefix}{contents}{finish}
+\etocsetlinestyle{level name}{start}{prefix}{contents}{finish}
 \etocname
 \etocnumber
 \etocpage
@@ -227,15 +227,22 @@ ouroboros#true,false
 
 ### not documented
 \etocclasslocalperhapsaddtotoc{arg}#S
+\etochyperlink#S
 \etoclocaltableofcontentshook#S
 \etocmarkbothnouc{text}#S
 \etocmarkboth{text}#S
 \etocoriginaltableofcontents#S
-\etocsettoclineforclasstoc{arg1}{arg2}#S
 \etocsettoclineforclasslistof{arg1}{arg2}{arg3}#S
-\etoctocloftlocalperhapsaddtotoc{arg}#S
+\etocsettoclineforclasstoc{arg1}{arg2}#S
+\etocthetaggedlink{arg}#S
+\etocthetaggedname#S
+\etocthetaggednumber#S
+\etocthetaggedpage#S
 \etoctocbibindstyle#S
+\etoctocloftlocalperhapsaddtotoc{arg}#S
 
 # deprecated
-\etocstandarddisplaystyle#S
+\etocdefaultlines#S
 \etocmemoirtoctotocfmt{kind}{name}#S
+\etocsetstyle{level name}{start}{prefix}{contents}{finish}#S
+\etocstandarddisplaystyle#S
