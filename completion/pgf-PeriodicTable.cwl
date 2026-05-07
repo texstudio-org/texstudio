@@ -1,5 +1,5 @@
 # pgf-PeriodicTable package
-# Matthew Bertucci 2025/02/11 for v2.1.5
+# Matthew Bertucci 2026/05/07 for v2.1.6a
 
 #include:tikz
 #include:tikzlibraryfadings
@@ -14,8 +14,9 @@ de
 it
 es
 br
-userlang=#nl,zh
+userlang=#nl,ru,uk,zh,sl
 numerals=#dvn,zh
+hyperref
 beamer
 beamer*
 beamer**
@@ -48,6 +49,10 @@ beamer**
 \pgfPTnumberfont#S
 #endif
 
+#ifOption:hyperref
+#include:hyperref
+#endif
+
 \pgfPT
 \pgfPT[options%keyvals]
 \pgfPTstyle[options%keyvals]
@@ -65,6 +70,9 @@ beamer**
 
 #keyvals:\pgfPT#c,\pgfPTstyle#c
 Z list=#all,s,p,d,f,sp,spd,lanthanoids,La,actinoids,Ac,G1*,G1,G2,G3,G4,G5,G6,G7,G8,G9,G10,G11,G12,G13,G14,G15,G16,G17,G18,P1,P2,P3,P4,P5,P6,P7,P6*,P7*,{%<csv list%>},%pgfPTZlist
+Z links={%<element/dest,...%>}
+Z links color=#%color
+Z links outline width=%<number%>
 cell width=##L
 cell height=##L
 cell size=##L
@@ -106,7 +114,10 @@ title font=%<font commands%>
 title color=#%color
 title={%<keyvals%>}
 show legend#true,false
+legend xshift=##L
+legend yshift=##L
 legend acronyms#true,false
+legend acronyms at right#true,false
 legend acronyms font size=%<font size%>
 legend box={%<TikZ keys%>}
 legend back color=#%color
@@ -201,6 +212,9 @@ Z align=#left,center,right
 Z padding=##L
 Z box
 Z={%<keyvals%>}
+radio symbol=%<imagefile%>
+radio font=%<font commands%>
+radio font color=#%color
 CS solid=#%color
 CS liquid=#%color
 CS gas=#%color
@@ -301,6 +315,7 @@ sintetico#B
 
 #keyvals:\usepgfPTlibrary#c
 colorschemes
+fittowidth
 #endkeyvals
 
 ### no way to conditionally load library commands so they're just listed here
@@ -368,6 +383,16 @@ group blending={%<keyvals%>}
 \pgfPTCSwrite{list of colorschemes}
 \pgfPTCSwrite[filename%file]{list of colorschemes}
 
+# from fittowidth pgfPT library
+\pgfPToverrideacros{override list}
+\pgfPToverrideacros[language flag]{override list}
+\pgfPTrestoreacros{override list}
+\pgfPTrestoreacros[language flag]{override list}
+\pgfPToverridenames{override list}
+\pgfPToverridenames[language flag]{override list}
+\pgfPTrestorenames{override list}
+\pgfPTrestorenames[language flag]{override list}
+
 # from T1 option of fontenc
 \DH#n
 \dh#n
@@ -400,6 +425,7 @@ group blending={%<keyvals%>}
 \ifpgfPTIUPACMMIX#S
 \ifpgfPTLaAclabels#S
 \ifpgfPTlegacro#S
+\ifpgfPTlegacroright#S
 \ifpgfPTlegenda#S
 \ifpgfPTlegendaextra#S
 \ifpgfPTlegendaextra#S
@@ -409,6 +435,7 @@ group blending={%<keyvals%>}
 \ifpgfPTonlycellsPerAndGroupNum#S
 \ifpgfPTonlycellsPerAndGroupNumZ#S
 \ifpgfPTonlycellsZ#S
+\ifpgfPTORoman#S
 \ifpgfPTperlabels#S
 \ifpgfPTtitulo#S
 \ifpgfPTvariations#S
@@ -467,6 +494,7 @@ group blending={%<keyvals%>}
 \pgfPTeDistsep#S
 \pgfPTEicolor#S
 \pgfPTEifont#S
+\pgfPTendfittowidth#S
 \pgfPTenegcolor#S
 \pgfPTenegfont#S
 \pgfPTEprecision#S
@@ -480,6 +508,7 @@ group blending={%<keyvals%>}
 \pgfPTfblockcolor#S
 \pgfPTfblockfontcolor#S
 \pgfPTfblocklinewidth#S
+\pgfPTfittowidth#S
 \pgfPTglobalfont#S
 \pgfPTgrlabelsfalse#S
 \pgfPTgrlabelstrue#S
@@ -546,6 +575,8 @@ group blending={%<keyvals%>}
 \pgfPTonlycellstrue#S
 \pgfPTonlycellsZfalse#S
 \pgfPTonlycellsZtrue#S
+\pgfPTORomanfalse#S
+\pgfPTORomantrue#S
 \pgfPTotherLangColor#S
 \pgfPTotherLangFont#S
 \pgfPTpblockcolor#S
@@ -608,6 +639,3 @@ group blending={%<keyvals%>}
 \pgfZuseboxwidthfalse#S
 \pgfZuseboxwidthtrue#S
 \thetinysize#S
-\ifpgfPTORoman#S
-\pgfPTORomantrue#S
-\pgfPTORomanfalse#S

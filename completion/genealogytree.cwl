@@ -1,5 +1,5 @@
 # genealogytree package
-# Matthew Bertucci 2023/03/09 for v2.3.0
+# Matthew Bertucci 2026/05/07 for v2.4.0
 
 #include:tcolorbox
 #include:tcolorboxlibraryskins
@@ -541,6 +541,9 @@ pic text options={%<options%>}
 ## 7.9 Formatting Events ##
 \gtrPrintEvent{name}
 \gtrifeventdefined{name}{true}{false}#*
+\gtrifnativitydefined{true}{false}#*
+\gtrifwedlockdefined{true}{false}#*
+\gtrifdeceasedefined{true}{false}#*
 \gtrPrintEventPrefix{name}
 
 ## 7.10 Formatting Lists of Events ##
@@ -1050,7 +1053,7 @@ show type
 
 ### 12 Templates: Library templates ###
 ## Using Templates ##
-template=#formal graph,signpost,symbol nodes,tiny boxes,tiny circles,directory,database pole,database pole reduced,database poleportrait,database poleportrait reduced,database portrait,database portrait reduced,database traditional,database traditional reduced,database sideways,database sideways reduced,database sidewaysportrait,database sidewaysportrait reduced,database relationship,ahnentafel 3,ahnentafel 4,ahnentafel 5,a4paper 3,a4paper 4,a3paper 5,letterpaper 3,letterpaper 4,display 16:9 3,display 16:9 4,display 16:9 5,display 16:10 3,display 16:10 4,display 16:10 5
+template=#formal graph,signpost,symbol nodes,tiny boxes,tiny circles,medical,directory,database pole,database pole reduced,database poleportrait,database poleportrait reduced,database portrait,database portrait reduced,database traditional,database traditional reduced,database sideways,database sideways reduced,database sidewaysportrait,database sidewaysportrait reduced,database relationship,ahnentafel 3,ahnentafel 4,ahnentafel 5,a4paper 3,a4paper 4,a3paper 5,letterpaper 3,letterpaper 4,display 16:9 3,display 16:9 4,display 16:9 5,display 16:10 3,display 16:10 4,display 16:10 5
 template horizontal border=##L
 template vertical border=##L
 #endkeyvals
