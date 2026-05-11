@@ -1,5 +1,5 @@
 # idcc class
-# Matthew Bertucci 2025/06/13 for v2.6
+# Matthew Bertucci 2026/05/10 for v2.7
 
 #include:dccpaper-base
 
@@ -15,6 +15,7 @@
 24
 25
 26
+27
 abstract
 paper
 lightning

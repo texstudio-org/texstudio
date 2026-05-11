@@ -1,5 +1,5 @@
 # contract package
-# Matthew Bertucci 2024/02/09 for v0.91
+# Matthew Bertucci 2026/05/10 for v0.92
 
 #include:scrkbase
 #include:tocbasic
@@ -82,12 +82,10 @@ ClauseNumberFormat=%<command%>
 # not in main documentation
 \AutoPar#S
 \Clausemark#S
-\DeprecatedParagraph#S
 \getmaxpar{arg1}{arg2}{arg3}#S
 \ifparnumber#S
 \ManualPar#S
 \newmaxpar{arg1}{arg2}{arg3}#S
-\ParagraphCompatibilityHacks#S
 \parciteformat#S
 \parlongformat#S
 \parnumberfalse#S
@@ -104,9 +102,3 @@ ClauseNumberFormat=%<command%>
 \theHClause#S
 \theHSubClause#S
 \thisparnumber#S
-
-# deprecated
-\Paragraph#S
-\refParagraph#S
-\refParagraphN#S
-\SubParagraph#S

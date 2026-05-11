@@ -1,5 +1,5 @@
 # thuthesis class
-# Matthew Bertucci 2025/03/29 for v7.6.0
+# Matthew Bertucci 2026/05/10 for v7.7.0
 
 #include:iftex
 #include:kvdefinekeys
@@ -132,6 +132,12 @@ math-ellipsis=#centered,lower,AMS
 real-part=#roman,fraktur
 math-font=#auto,stix,xits,libertinus,newcm,lm,newtx,none
 eqn-paren-style=#full,half
+style-override=#none,schwarzman
+footnote-numbering=#page,chapter,global
+footnote-style=#circled,plain
+figure-numbering=#chapter,global
+table-numbering=#chapter,global
+equation-numbering=#chapter,global
 cite-style=#super,inline,author-year
 toc-depth=%<integer%>
 spine-font={%<font commands%>}
@@ -233,10 +239,6 @@ file=%<PDF file%>
 
 \begin{survey}
 \end{survey}
-\begin{translation}
-\end{translation}
-\begin{translation-index}
-\end{translation-index}
 \begin{resume}
 \end{resume}
 \begin{achievements}
