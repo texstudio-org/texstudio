@@ -128,6 +128,10 @@ bool CollaborationManager::startGuestServer(const QString folder,const QString &
     QString folderName=m_conf->ce_clientPath;
 
     if(!binPath.isEmpty()){
+        // create folderName if it does not exist, along with parent dirs to avoid silent error
+        QDir homeDir = QDir::home();
+        if (!homeDir.exists(folderName))
+            homeDir.mkpath(folderName);
         // run binPath share folder
         collabServerProcess = new QProcess(this);
         collabServerProcess->setProcessChannelMode(QProcess::MergedChannels);
