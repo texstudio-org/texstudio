@@ -98,7 +98,7 @@ bool CollaborationManager::startHostServer(const QString folder)
             qDebug() << "Collaboration server finished with exit code" << exitCode << "and status" << exitStatus;
             collabServerProcess = nullptr;
         });
-        QStringList args{"share","--directory", folder};
+        QStringList args{"share","--directory", folder, "--username", m_conf->ce_userName};
         collabServerProcess->start(binPath,args);
         if (!collabServerProcess->waitForStarted(1000)) {
             m_errorMessage=collabServerProcess->readAllStandardError();
@@ -136,7 +136,7 @@ bool CollaborationManager::startGuestServer(const QString folder,const QString &
             qDebug() << "Collaboration client finished with exit code" << exitCode << "and status" << exitStatus;
             collabServerProcess = nullptr;
         });
-        const QStringList args{"join", code, "--directory", folderName};
+        const QStringList args{"join", code, "--directory", folderName, "--username", m_conf->ce_userName};
         collabServerProcess->start(binPath,args);
         if (!collabServerProcess->waitForStarted(1000)) {
             m_errorMessage=collabServerProcess->errorString();
