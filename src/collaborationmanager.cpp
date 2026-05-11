@@ -378,12 +378,12 @@ void CollaborationManager::readyCollabClientStandardOutput()
             if(method=="cursor"){
                 QJsonObject ja=dd["params"].toObject();
                 // extract uri
-                QString uri=ja["uri"].toString();
+                QUrl uri(ja["uri"].toString());
                 // find doc from uri
-                if(!uri.startsWith("file://")){
+                if(!uri.isLocalFile()){
                     return;
                 }
-                QString fileName=uri.mid(7);
+                QString fileName=uri.path();
                 LatexDocument *doc=findDocumentFromName(fileName);
                 QJsonArray jranges=ja["ranges"].toArray();
                 if(jranges.size()>0){
@@ -405,17 +405,17 @@ void CollaborationManager::readyCollabClientStandardOutput()
             }
             if(method=="edit"){
                 QJsonObject ja=dd["params"].toObject();
-                QString uri=ja["uri"].toString();
+                QUrl uri(ja["uri"].toString());
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
                 qint64 rev_received=ja["revision"].toInteger();
 #else
                 qint64 rev_received=ja["revision"].toInt();
 #endif
                 // find doc from uri
-                if(!uri.startsWith("file://")){
+                if(!uri.isLocalFile()){
                     return;
                 }
-                QString fileName=uri.mid(7);
+                QString fileName=uri.path();
                 LatexDocument *doc=findDocumentFromName(fileName);
                 // update revision number
                 // apparently +1 per received changed request
