@@ -1,5 +1,5 @@
 # l3draw package
-# Matthew Bertucci 2025/06/30
+# Matthew Bertucci 2026-04-28
 
 \draw_set_baseline:n {%<⟨length⟩%>}#/%expl3
 \draw_begin:#/%expl3
@@ -22,9 +22,9 @@
 \draw_set_linewidth:n {%<⟨width⟩%>}#/%expl3
 \draw_set_miterlimit:n {%<⟨factor⟩%>}#/%expl3
 \draw_set_nonzero_rule:#/%expl3
-\draw_path_arc:nnn {%<⟨angle1⟩%>} {%<⟨angle2⟩%>} {%<⟨radius⟩%>}#/%expl3
-\draw_path_arc:nnnn {%<⟨angle1⟩%>} {%<⟨angle2⟩%>} {%<⟨radius-a⟩%>} {%<⟨radius-b⟩%>}#/%expl3
-\draw_path_arc_axes:nnn {%<⟨angle1⟩%>} {%<⟨angle2⟩%>} {%<⟨vector1⟩%>} {%<⟨vector2⟩%>}#/%expl3
+\draw_path_arc:nnn {%<⟨radius⟩%>} {%<⟨angle1⟩%>} {%<⟨angle2⟩%>}#/%expl3
+\draw_path_arc:nnnn {%<⟨radius-a⟩%>} {%<⟨radius-b⟩%>} {%<⟨angle1⟩%>} {%<⟨angle2⟩%>}#/%expl3
+\draw_path_arc_axes:nnn {%<⟨vector1⟩%>} {%<⟨vector2⟩%>} {%<⟨angle1⟩%>} {%<⟨angle2⟩%>}#/%expl3
 \draw_path_canvas_curveto:nnn {%<⟨control1⟩%>} {%<⟨control2⟩%>} {%<⟨end⟩%>}#/%expl3
 \draw_path_canvas_lineto:n {%<⟨canvas point⟩%>}#/%expl3
 \draw_path_canvas_moveto:n {%<⟨canvas point⟩%>}#/%expl3
