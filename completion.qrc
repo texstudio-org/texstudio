@@ -1629,6 +1629,7 @@
 <file>completion/floatrow.cwl</file>
 <file>completion/flowchart.cwl</file>
 <file>completion/flowfram.cwl</file>
+<file>completion/flowframtkutils.cwl</file>
 <file>completion/fltpage.cwl</file>
 <file>completion/fltpoint.cwl</file>
 <file>completion/fltrace.cwl</file>

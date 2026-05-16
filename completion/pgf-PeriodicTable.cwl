@@ -20,6 +20,7 @@ hyperref
 beamer
 beamer*
 beamer**
+extdash
 #endkeyvals
 
 #ifOption:userlang=zh

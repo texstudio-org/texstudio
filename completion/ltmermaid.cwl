@@ -1,5 +1,5 @@
 # ltmermaid package
-# Matthew Bertucci 2026/04/28 for v1.0a
+# Matthew Bertucci 2026/05/15 for v1.0c
 
 #include:ifluatex
 #include:graphicx
@@ -19,3 +19,40 @@ Renderer=%<renderer%>
 \MermaidNoPdfFit
 \MermaidGraphicsOpts{options%keyvals}
 \MermaidAdjustBoxOpts{options%keyvals}
+
+\mermaidfile{file}
+\mermaidfile[includegraphics options%keyvals]{file}
+
+#keyvals:\mermaidfile
+actualtext={%<text%>}
+alt={%<alt text%>}
+artifact#true,false
+bb=%<llx lly urx ury%>
+bbllx=
+bblly=
+bburx=
+bbury=
+natwidth=
+natheight=
+hiresbb#true,false
+pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
+viewport=%<llx lly urx ury%>
+trim=%<llx lly urx ury%>
+angle=%<degrees%>
+origin=
+width=##L
+height=##L
+totalheight=##L
+keepaspectratio#true,false
+scale=%<factor%>
+clip#true,false
+draft#true,false
+type=%<file type%>
+ext=%<file extension%>
+read=%<read-file extension%>
+command=
+quiet
+page=%<page number%>
+interpolate#true,false
+decodearray={%<color array%>}
+#endkeyvals

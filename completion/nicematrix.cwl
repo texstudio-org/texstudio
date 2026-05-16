@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2026/04/27 for v7.8b
+# Matthew Bertucci 2026/05/14 for v7.9
 
 #include:amsmath
 #include:array
@@ -157,6 +157,8 @@ no-cell-nodes
 ampersand-in-blocks
 &-in-blocks
 create-blocks-in-col=%<integer%>
+default-line={%<keyvals%>}
+rules/fix-vertex
 #endkeyvals
 
 #keyvals:\NiceMatrixOptions,\begin{NiceTabular}
@@ -241,6 +243,7 @@ sep-color=#%color
 tikz={%<TikZ keys%>}
 total-width=##L
 dotted
+dashed
 start=%<integer%>
 end=%<integer%>
 #endkeyvals

@@ -10,7 +10,7 @@ context-before=%<integer%>
 context-after=%<integer%>
 unique=#none,case,nocase
 sort=#none,case,nocase
-include-non-output##true,false
+include-non-output#true,false
 prefix=%<prefix%>
 extension=%<extension%>
 debug#true,false

@@ -1,5 +1,5 @@
 # pas-tableur package
-# Matthew Bertucci 2024/09/14 for v2.06
+# Matthew Bertucci 2026/05/14 for v2.07
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -39,6 +39,9 @@ width=##L
 color=#%color
 font=%<font commands%>
 #endkeyvals
+
+\renumLine{numéro}{text}
+\renumLineSelect{numéro}{text}
 
 \selecCell{colonne}{ligne}
 \multiSelec{colonnes}{lignes}
