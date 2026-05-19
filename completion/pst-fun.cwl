@@ -1,5 +1,5 @@
 # pst-fun package
-# Matthew Bertucci 2/25/2022 for v0.04
+# Matthew Bertucci 2026/05/19 for v0.06
 
 #include:pstricks
 #include:pst-grad
@@ -28,6 +28,12 @@
 \psKangaroo[options%keyvals]{scale}
 \psPig(x,y)
 \psPig[options%keyvals](x,y)
+\psDog
+\psDog[options%keyvals]
+\psHuman
+\psHuman(x,y)
+\psHuman[options%keyvals]
+\psHuman[options%keyvals](x,y)
 
 \PSTfunLoaded#S
 marron#B
