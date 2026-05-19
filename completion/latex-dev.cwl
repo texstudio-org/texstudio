@@ -4,6 +4,7 @@
 # Matthew Bertucci 2025/11/01 release
 
 #include:expl3-commands
+#include:tagpdf
 
 # commands with big Letters and others
 \ActivateGenericHook{hook}#*
