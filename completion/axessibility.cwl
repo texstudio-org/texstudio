@@ -4,7 +4,6 @@
 #include:amsmath
 #include:amssymb
 #include:xstring
-#include:tagpdf
 
 #ifOption:accsupp
 #include:accsupp
