@@ -1,10 +1,7 @@
 # bxdvidriver package
-# Matthew Bertucci 2026/04/06 for v0.2c
+# Matthew Bertucci 2026/05/22 for v0.3
 
-#include:ifluatex
-#include:ifpdf
-#include:ifvtex
-#include:ifxetex
+#include:iftex
 #include:pdftexcmds
 
 #keyvals:\usepackage/bxdvidriver#c
@@ -19,6 +16,7 @@ xdvi
 dvipdf
 dvipdfm
 dvipdfmx
+dvisvgm
 dvipsone
 dviwindo
 oztex

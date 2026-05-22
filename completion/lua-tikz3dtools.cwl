@@ -4,21 +4,19 @@
 #include:tikz
 #include:luatex
 
-\appendcurve
-\appendcurve[options%keyvals]
-\appendlabel
-\appendlabel[options%keyvals]
-\appendlight
-\appendlight[options%keyvals]
-\appendpoint
-\appendpoint[options%keyvals]
-\appendsolid
-\appendsolid[options%keyvals]
-\appendsurface
-\appendsurface[options%keyvals]
-\displaysimplices
-\setobject
-\setobject[options%keyvals]
-
-# not documented
-\luatikztdtoolsset{options%keyvals}#S
+\ltdtappendcurve
+\ltdtappendcurve[options%keyvals]
+\ltdtappendlabel
+\ltdtappendlabel[options%keyvals]
+\ltdtappendlight
+\ltdtappendlight[options%keyvals]
+\ltdtappendpoint
+\ltdtappendpoint[options%keyvals]
+\ltdtappendsolid
+\ltdtappendsolid[options%keyvals]
+\ltdtappendsurface
+\ltdtappendsurface[options%keyvals]
+\ltdtdisplaysimplices
+\ltdtsetobject
+\ltdtsetobject[options%keyvals]
+\luatikztdtoolsset[options%keyvals]
