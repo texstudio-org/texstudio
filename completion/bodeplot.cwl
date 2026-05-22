@@ -1,5 +1,5 @@
 # bodeplot package
-# Matthew Bertucci 2025/10/24 for v3.0
+# Matthew Bertucci 2026/05/21 for v3.1
 
 #include:tikz
 #include:pdftexcmds
@@ -28,6 +28,8 @@ Hz
 \addBodeZPKPlots[options%keyvals]{plot-type}{zpk-spec}
 \addBodeTFPlot{plot-type}{tf-spec}
 \addBodeTFPlot[options%keyvals]{plot-type}{tf-spec}
+\addBodeTFPlots{plot-type}{tf-spec}
+\addBodeTFPlots[options%keyvals]{plot-type}{tf-spec}
 \addBodeComponentPlot{plot-command}
 \addBodeComponentPlot[options%keyvals]{plot-command}
 \addBodePlot{system-data}
@@ -111,3 +113,5 @@ Hz
 \addNicholsTFChart[options%keyvals]{tf-spec}
 \PoleZeroMapZPK{zpk-spec}
 \PoleZeroMapZPK[options%keyvals]{zpk-spec}
+\PoleZeroMapTF{tf-spec}
+\PoleZeroMapTF[options%keyvals]{tf-spec}

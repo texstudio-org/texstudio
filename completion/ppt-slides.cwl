@@ -1,5 +1,5 @@
 # ppt-slides package
-# Matthew Bertucci 2025/10/13 for v0.6.0
+# Matthew Bertucci 2026/05/20 for v0.7.0
 
 #include:pgfopts
 #include:xcolor
@@ -89,6 +89,7 @@ nocrumbs
 \end{pptWideOne}
 \begin{pptWide}{numCols}
 \end{pptWide}
+\pptPunch{text}
 
 # from inline option of enumitem
 \begin{enumerate*}

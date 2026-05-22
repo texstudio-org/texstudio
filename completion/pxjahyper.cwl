@@ -1,5 +1,5 @@
 # pxjahyper package
-# Matthew Bertucci 2026/04/27 for v1.4
+# Matthew Bertucci 2026/05/22 for v1.6b
 
 #include:platex
 #include:keyval
@@ -11,6 +11,7 @@
 dvipdfmx
 dvipdfm
 dvips
+dvisvgm
 nodvidriver
 resetdvidriver
 tounicode

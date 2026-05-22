@@ -1,8 +1,9 @@
 # linguistix-languages package
-# Matthew Bertucci 2026/01/05 for v0.6a
+# Matthew Bertucci 2026/05/18 for v1.0
 
 #include:linguistix-base
 #include:babel
+#include:setspace
 
 #keyvals:\linguistix
 languages={%<list of languages%>}

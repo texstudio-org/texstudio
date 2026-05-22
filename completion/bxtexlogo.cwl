@@ -1,5 +1,5 @@
 # bxtexlogo package
-# Matthew Bertucci 2026/05/01 for v0.7
+# Matthew Bertucci 2026/05/18 for v0.7a
 
 #include:hologo
 
@@ -199,6 +199,7 @@ YukidarumaTeX
 \bxtexlogoDeclare{level}{name}[text form]{LaTeX form}#*
 \bxtexlogoDeclare{level}{name}{LaTeX form}#*
 \bxtexlogoFontSlant{font}#*
+\bxtexlogoHologo{name}#*
 \bxtexlogoItalicOrSlant{text}#*
 \bxtexlogoNoUseBboldx#*
 \bxtexlogoReflect{text}{fallback}#*

@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2026/03/04 for v1.19
+# Matthew Bertucci 2026/05/22 for v1.20
 
 #include:plaintex
 #include:luatex
@@ -123,6 +123,7 @@
 \notoc
 \eqmark
 \eqmark[label%labeldef]
+\swapeqno
 \caption/t %<⟨table caption⟩%>
 \caption/t [%<label%>] %<⟨table caption⟩%>
 \caption/f %<⟨figure caption⟩%>
@@ -248,6 +249,7 @@
 \picw=%<⟨dimen⟩%>
 \picwidth
 \picheight
+\pich
 \picparams={%<parameters%>}
 \picdir={%<directory%>}
 \inkinspic{%<filename%>.pdf%file}
@@ -255,6 +257,7 @@
 \pdfrotate{degrees}
 \transformbox{transformation}{text}
 \rotbox{degrees}{text}
+\inboxdirection
 \inoval{text}
 \inoval[settings]{text}
 \ovalparams={%<settings%>}
@@ -433,6 +436,7 @@
 \kv{key%plain}
 \kvdict={%<name%>}
 \kvx{key%plain}{code}
+\mathadef%<⟨char⟩%>{%<body%>}
 \nnum{number}
 \nokvx{code}
 \nospaceafter %<\macro%>
@@ -458,6 +462,7 @@
 \slet{stringA%definition}{stringB%definition}
 \sxdef{string%definition}{def}#S
 \sxdef{%<string%>}%<⟨parameters⟩%>{%<body%>}
+\tracingnone
 \trycs{string%definition}{text}
 \trykv{key%plain}{code}
 \useit{arg}
@@ -726,6 +731,14 @@
 \mathselector{command}{fontspecA}{fontspecB}{factor}{features}#d
 \ibrackets#*
 \multiprimes#*
+\harrowto %<dimen%> {%<arrow%>}#*
+\varrowto %<dimen%> {%<arrow%>}#*
+\exw %<arrow%> %<limits%>#*
+\exw[%<dimen%>] %<arrow%> %<limits%>#*
+\exwdist#*
+\exh %<arrow%>#*
+\exh[%<dimen%>] %<arrow%>#*
+\scanlimits#*
 \mathsetup{options%keyvals}#*
 #keyvals:\mathsetup
 dots
