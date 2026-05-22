@@ -2783,6 +2783,7 @@
 <file>completion/oz.cwl</file>
 <file>completion/pacioli.cwl</file>
 <file>completion/padcount.cwl</file>
+<file>completion/page-canons.cwl</file>
 <file>completion/pagecolor.cwl</file>
 <file>completion/pagecont.cwl</file>
 <file>completion/pagegrid.cwl</file>
