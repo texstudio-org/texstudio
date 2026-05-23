@@ -26,8 +26,8 @@ prefix-separator=%<separator%>
 suffix-separator=%<separator%>
 #endkeyvals
 
-\addbibresource{bib file}
-\addbibresource[options%keyvals]{bib file}
+\addbibresource{bib file}#b
+\addbibresource[options%keyvals]{bib file}#b
 
 #keyvals:\addbibresource
 journal-abbreviation#true,false
