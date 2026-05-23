@@ -1,7 +1,7 @@
 # csquotes package, available from ctan
 # commands for csquotes users
 # dbitouze, 14.09.2013
-# Matthew Bertucci 2022/09/11 for v5.2m
+# Matthew Bertucci 2026/05/20 for v5.2p
 
 #include:etoolbox
 #include:keyval
@@ -288,6 +288,7 @@ spanish=#spanish,mexican
 swedish=#quotes,guillemets,guillemets*
 turkish=#quotes,guillemets
 ukrainian
+welsh=british
 #endkeyvals
 
 \DeclarePlainStyle{openoutermark}{closeoutermark}{openinnermark}{closeinnermark}#*

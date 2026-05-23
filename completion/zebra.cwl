@@ -1,5 +1,5 @@
 # zebra package
-# Matthew Bertucci 2026/04/27 for v1.8.0
+# Matthew Bertucci 2026/05/22 for v2.0.0
 
 #include:microtype
 #include:xcolor
@@ -11,8 +11,6 @@
 draft#true,false
 final
 sort=#none,type
-font-expansion#true,false
-pagelinks#true,false
 unnumbered#true,false
 #endkeyvals
 

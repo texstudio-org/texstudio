@@ -1,7 +1,8 @@
 # lltjext package
-# Matthew Bertucci 4/9/2022 for v1.2k
+# Matthew Bertucci 2026/05/18 for v1.2k-ltj-20
 
 #include:luatexja
+#include:array
 
 \begin{tabular}<dir>{cols}
 \begin{tabular}<dir>[pos]{cols}

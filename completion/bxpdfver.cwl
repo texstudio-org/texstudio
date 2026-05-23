@@ -1,5 +1,5 @@
 # bxpdfver package
-# Matthew Bertucci 2022/04/29 for v0.5a
+# Matthew Bertucci 2026/05/21 for v0.8b
 
 #include:ifthen
 
@@ -16,6 +16,7 @@ objcompress
 native
 dvipdfmx
 dvips
+dvisvgm
 dviout
 xdvi
 disabled

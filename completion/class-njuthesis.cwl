@@ -1,5 +1,5 @@
 # njuthesis class
-# Matthew Bertucci 2024/04/22 for v1.4.1
+# Matthew Bertucci 2026/05/18 for v1.5.0
 
 #include:xtemplate
 #include:class-ctexbook
@@ -91,6 +91,7 @@ footer/content*={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
 image/path={%<{路径1},{路径2},...%>}
 image/nju-emblem={%<文件%>}
 image/nju-name={%<文件%>}
+image/nju-logo-color=#black,purple
 footnote/style=#plain,pifont,circled,circled*
 footnote/hang#true,false
 footnote/circledtext-option=%<选项列表%>

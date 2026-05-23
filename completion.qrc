@@ -2783,6 +2783,7 @@
 <file>completion/oz.cwl</file>
 <file>completion/pacioli.cwl</file>
 <file>completion/padcount.cwl</file>
+<file>completion/page-canons.cwl</file>
 <file>completion/pagecolor.cwl</file>
 <file>completion/pagecont.cwl</file>
 <file>completion/pagegrid.cwl</file>
@@ -3089,6 +3090,7 @@
 <file>completion/pst-diffraction.cwl</file>
 <file>completion/pst-electricfield.cwl</file>
 <file>completion/pst-eps.cwl</file>
+<file>completion/pst-eqhz.cwl</file>
 <file>completion/pst-eucl.cwl</file>
 <file>completion/pst-exa.cwl</file>
 <file>completion/pst-feyn.cwl</file>
