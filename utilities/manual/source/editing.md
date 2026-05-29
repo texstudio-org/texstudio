@@ -669,7 +669,7 @@ The drop-down menu allows searching within a "Project", i.e. all files belonging
 
 The option "Files on disk" searches all the text in TeX files in the same folder as the current document. The folder and the file filter can be changed.
 
-In the list of search results, a double-click on a match jumps to the location in the file. The matches can be selected/deselected to limit the results which are replaced by the replacement text by pressing "Replace all".
+In the list of search results, a double-click on a match jumps to the location in the file. Hovering over an entry previews the applied replacements. The matches can be selected/deselected to limit the results which are replaced by the replacement text by pressing "Replace all".
 
 ![extended search pane](images/extendedSearch.webp)
 
