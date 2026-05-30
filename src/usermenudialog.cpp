@@ -451,6 +451,20 @@ void UserMenuDialog::importMacro()
 {
     QStringList fileNames = QFileDialog::getOpenFileNames(this,tr("Import macros"), "", tr("txs macro files (*.txsMacro)"));
     bool singleFile = fileNames.size() == 1;
+    // check if last macro is empty
+    // remove if true
+    if(ui.treeWidget->topLevelItemCount()>0){
+        QTreeWidgetItem *lastItem=ui.treeWidget->topLevelItem(ui.treeWidget->topLevelItemCount()-1);
+        QVariant v=lastItem->data(0,Qt::UserRole);
+        if(v.isValid()){
+            Macro m=v.value<Macro>();
+            if(m.isEmpty()){
+                // remove last item
+                ui.treeWidget->takeTopLevelItem(ui.treeWidget->topLevelItemCount()-1);
+                delete lastItem;
+            }
+        }
+    }
     for(const QString &fileName:fileNames){
         Macro m;
         m.load(fileName);
