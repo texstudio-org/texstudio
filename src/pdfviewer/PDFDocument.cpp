@@ -1692,7 +1692,7 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 		doZoom(event->pos(), 1);
 	else if (action == ctxZoomOutAction)
 		doZoom(event->pos(), -1);
-	else if (action == pdfDoc->actionSetPageOffsetMenu)
+    else if (pdfDoc && (action == pdfDoc->actionSetPageOffsetMenu))
 		setPageOffsetClick(event->pos());
 }
 
