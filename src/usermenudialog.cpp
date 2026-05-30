@@ -450,10 +450,11 @@ void UserMenuDialog::slotMoveDown()
 void UserMenuDialog::importMacro()
 {
     QStringList fileNames = QFileDialog::getOpenFileNames(this,tr("Import macros"), "", tr("txs macro files (*.txsMacro)"));
+    bool singleFile = fileNames.size() == 1;
     for(const QString &fileName:fileNames){
         Macro m;
         m.load(fileName);
-        addMacro(m,true);
+        addMacro(m,singleFile);
     }
 }
 
