@@ -542,7 +542,7 @@ The abbreviation may start with a backslash (`\`) allowing autostart of the comp
 TeXstudio remembers used mathematical expressions (user constructs) which are likely reused and provides them in the completer.
 These constructs are of the form
 1) `\symbol_`*something*
-2) `\mathcmd{`*something`}`
+2) `\mathcmd{`*something*`}`
 
 This feature can be disabled, see [configuration](configuration.md#configuring-the-autocompletion).
 
