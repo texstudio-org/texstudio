@@ -4,6 +4,9 @@
 - fix crash when setting explicit root doc [#4469](https://github.com/texstudio-org/texstudio/issues/4469)
 - improve handling collaboration with teamtype [#4454](https://github.com/texstudio-org/texstudio/issues/4454),[#4466](https://github.com/texstudio-org/texstudio/issues/4466)
 - workaround win11 style, invisible red background when text not found in searchpanel
+- keep folder structure of imported macros if more than one macro is imported [#4484](https://github.com/texstudio-org/texstudio/issues/4484)
+- highlight more tex symbol as keyword [#4465](https://github.com/texstudio-org/texstudio/issues/4465)
+- fix addresource bibfile when using citation-style-language [#4477](https://github.com/texstudio-org/texstudio/issues/4477)
 
 ## TeXstudio 4.9.4
 
