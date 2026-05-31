@@ -27,30 +27,30 @@ environments in smallUsefulFunctions.cpp)
 
 	<sequence parenthesis="foldcomment:open" parenthesisWeight="15" fold="true" format="magicComment">%[\ \t]*BEGIN_FOLD</sequence>
 	<sequence parenthesis="foldcomment:close" parenthesisWeight="15" fold="true" format="magicComment">%[\ \t]*END_FOLD</sequence>
-	
+
 	<!-- ========================= VERBATIM ====================== -->
-	
-	
+
+
 
 	<!-- ========================= LUA ====================== -->
 
-	<context id="directlua" format="lua" transparency="true">	
+	<context id="directlua" format="lua" transparency="true">
 		<start parenthesis="directlua:open" parenthesisWeight="30" fold="1" format="keyword">\\directlua{</start>
 		<stop parenthesis="directlua:close" parenthesisWeight="30" fold="1" format="keyword">}</stop>
 		<embed target="Lua" />
 	</context>
-	<context id="latelua" format="lua" transparency="true">	
+	<context id="latelua" format="lua" transparency="true">
 		<start parenthesis="latelua:open" parenthesisWeight="30" fold="1" format="keyword">\\latelua{</start>
 		<stop parenthesis="latelua:close" parenthesisWeight="30" fold="1" format="keyword">}</stop>
 		<embed target="Lua" />
 	</context>
 	<!--                           (keywords)                      -->
 
-	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%&amp;\$]</word>
+	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%&amp;\$_#\^~]</word>
 	<sequence parenthesis="curly:open" parenthesisWeight="10" indent="1" fold="1">\{</sequence>
 	<sequence parenthesis="curly:close" parenthesisWeight="10" indent="1" fold="1">\}</sequence>
 
-	
+
 
 	<!-- ========================= COMMAND ====================== -->
 
@@ -72,8 +72,8 @@ environments in smallUsefulFunctions.cpp)
 		<stop exclusive="false">\n</stop>
 	</context>
 	-->
-	
-	
+
+
 	<!-- ========================= MATH MODE ====================== -->
 
 	<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
@@ -94,21 +94,21 @@ environments in smallUsefulFunctions.cpp)
 	<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
 	<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
 	<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
-	
+
 	<context id="sexpr" format="sweave-block" transparency="false">
-		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
+		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} -->
 			<stop parenthesis="todo:close" parenthesisWeight="12" >}</stop>
 			<start parenthesis="todo:open" parenthesisWeight="12">\\Sexpr{</start>
 	</context>
 
 	<!-- ========================= Asymptote ===================== -->
 
-	<context id="asy" format="asymptote:block" transparency="false">	
+	<context id="asy" format="asymptote:block" transparency="false">
 		<start parenthesis="asy:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\begin{asy}</start>
 		<stop parenthesis="asy:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\end{asy}</stop>
 		<embed target="Asymptote" />
 	</context>
-	
+
 
 	<!-- ========================= GENERAL BLOCKS ====================== -->
 	<context id="block:open@commented" stayOnLine="true" ambiguous="true">
@@ -134,14 +134,12 @@ environments in smallUsefulFunctions.cpp)
 		<word parenthesis="subsubsection:boundary@nomatch" parenthesisWeight="4" fold="true">\\subsubsection</word>
 		<word parenthesis="paragraph:boundary@nomatch" parenthesisWeight="3" fold="true" >\\paragraph</word>
 		<word parenthesis="subparagraph:boundary@nomatch" parenthesisWeight="2" fold="true" >\\subparagraph</word>
-	-->	
+	-->
 	</list>
-	
+
 	<!-- ========================= GENERAL COMMANDS ====================== -->
 
 	<!--sequence instead of word so things like \abc434 are correctly highlighted -->
 	<sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z@]+</sequence>
 
 </QNFA>
-
-
