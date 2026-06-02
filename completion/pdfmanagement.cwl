@@ -47,12 +47,6 @@
 \pdfmanagement_show:n {%<⟨resource path⟩%>}#/%expl3
 
 ## ltdocinit
-\AddToDocumentProperties{property}{value}
-\AddToDocumentProperties[label]{property}{value}
-\GetDocumentProperty{label/property}
-\ShowDocumentProperties
-\LogDocumentProperties
-
 \pdfmanagement_get_documentproperty:n {%<⟨label/property⟩%>}#/%expl3
 \pdfmanagement_get_documentproperty:nNF {%<⟨label/property⟩%>} %<⟨tl var⟩%> {%<⟨false code⟩%>}#/%expl3
 \pdfmanagement_get_documentproperty:nNT {%<⟨label/property⟩%>} %<⟨tl var⟩%> {%<⟨true code⟩%>}#/%expl3

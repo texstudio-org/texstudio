@@ -498,6 +498,7 @@
 <file>completion/bxpapersize.cwl</file>
 <file>completion/bxpdfver.cwl</file>
 <file>completion/bxtexlogo.cwl</file>
+<file>completion/bxtexlogo-primary.cwl</file>
 <file>completion/bxtoolbox.cwl</file>
 <file>completion/bxwareki.cwl</file>
 <file>completion/byo-twemojis.cwl</file>
