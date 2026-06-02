@@ -4634,6 +4634,7 @@
 \socket_assign_plug:nn {%<⟨socket⟩%>} {%<⟨plug⟩%>}#/%expl3
 \socket_debug_off:#/%expl3
 \socket_debug_on:#/%expl3
+\socket_get_plug:nN {%<⟨socket⟩%>} %<⟨tl var⟩%>#/%expl3
 \socket_if_exist:nF {%<⟨socket⟩%>} {%<⟨false code⟩%>}#/%expl3
 \socket_if_exist:nT {%<⟨socket⟩%>} {%<⟨true code⟩%>}#/%expl3
 \socket_if_exist:nTF {%<⟨socket⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
@@ -4684,6 +4685,10 @@
 \property_if_recorded_p:ee {%<⟨label⟩%>} {%<⟨property⟩%>}#/%expl3
 \property_if_recorded_p:n {%<⟨label⟩%>}#/%expl3
 \property_if_recorded_p:nn {%<⟨label⟩%>} {%<⟨property⟩%>}#/%expl3
+\property_item:ee {%<⟨label⟩%>} {%<⟨property⟩%>}#/%expl3
+\property_item:een {%<⟨label⟩%>} {%<⟨property⟩%>} {%<⟨local default⟩%>}#/%expl3
+\property_item:nn {%<⟨label⟩%>} {%<⟨property⟩%>}#/%expl3
+\property_item:nnn {%<⟨label⟩%>} {%<⟨property⟩%>} {%<⟨local default⟩%>}#/%expl3
 \property_new:nnnn {%<⟨property⟩%>} {%<⟨setpoint⟩%>} {%<⟨default⟩%>} {%<⟨code⟩%>}#/%expl3
 \property_record:ee {%<⟨label⟩%>} {%<⟨clist⟩%>}#/%expl3
 \property_record:nN {%<⟨label⟩%>} %<⟨clist var⟩%>#/%expl3

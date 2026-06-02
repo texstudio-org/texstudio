@@ -1,13 +1,17 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
-# Matthew Bertucci 2025/11/01 release
+# Matthew Bertucci 2026/06/01 release
 
 #include:expl3-commands
 #include:tagpdf
 
 # commands with big Letters and others
 \ActivateGenericHook{hook}#*
+\AddToDocumentProperties{property}{value}#*
+\AddToDocumentProperties[label]{property}{value}#*
+\AddToDocumentProperties*{property}{value}#*
+\AddToDocumentProperties*[label]{property}{value}#*
 \AddToHook{hook}[label]{code}#*
 \AddToHook{hook}{code}#*
 \AddToHookNext{hook}{code}#*
@@ -69,6 +73,8 @@
 \DebugSocketsOn#*
 \DebugTablesOff#*
 \DebugTablesOn#*
+\DebugTemplatesOff#*
+\DebugTemplatesOn#*
 \DeclareCaseChangeEquivalent{cmd}{replacement text}#*d
 \DeclareCommandCopy{cmd}{copied cmd%definition}#d
 \DeclareCurrentRelease{name}{date}#*
@@ -161,6 +167,7 @@
 \GenericError{continuation}{message%text}{help location%text}{help info%text}#*
 \GenericInfo{continuation}{message%text}#*
 \GenericWarning{continuation}{message%text}#*
+\GetDocumentProperty{label/property}#*
 \IfBlankF{arg}{false code}#*
 \IfBlankT{arg}{true code}#*
 \IfBlankTF{arg}{true code}{false code}#*
@@ -245,6 +252,7 @@
 \IndentBox#*
 \InputIfFileExists{file}{true code}{false code}#*i
 \InsertMark{class%plain}{text}#*
+\InstanceValue{type}{instance}{key%plain}#*
 \KeyValue{key name}#*
 \LastDeclaredEncoding#*
 \LastMark[region]{class%plain}#*
@@ -259,6 +267,7 @@
 \LoadClassWithOptions{class}#*u
 \LoadClassWithOptions{class}[release]#*u
 \LoadFontDefinitionFile{encoding}{family}#*
+\LogDocumentProperties#*
 \LogHook{hook}#*
 \LogSocket{socket}#*
 \MakeLinkTarget*{target name}#*
@@ -350,8 +359,10 @@
 \RequirePackage{package}[release]#*u
 \RequirePackageWithOptions{package}#*u
 \RequirePackageWithOptions{package}[release]#*u
+\RestoreLastSkip#*
 \ResumeTagging{string}#*
 \ReverseBoolean#*
+\SaveLastSkip#*
 \SetDefaultHookLabel{default label}#*
 \SetKeys[family]{keyvals}#*
 \SetKeys{keyvals}#*
@@ -365,6 +376,7 @@
 \ShipoutBoxHeight#*
 \ShipoutBoxWidth#*
 \ShowCommand{cmd}#*
+\ShowDocumentProperties#*
 \ShowEnvironment{envname}#*
 \ShowFloat{identifier}#*
 \ShowHook{hook}#*
@@ -429,10 +441,11 @@ ypos
 backend=%<backend%>
 pdfversion=%<version%>
 uncompress
+language=%<language%>
+other-languages=%<languages%>
 lang=%<lang%>
 pdfstandard=#A-1b,A-2a,A-2b,A-2u,A-3a,A-3b,A-3u,A-4#c
 colorprofiles={%<options%>}
-testphase=#phase-I,phase-II,phase-III,latest
 debug={%<options%>}
 tagging=#on,off,draft
 tagging-setup={%<options%>}
@@ -458,6 +471,7 @@ check-tagging-status
 \addvspace{length}#*
 \newcounter{foo}#*
 \newcounter{foo}[counter]#*
+\newcounteralias{aliasctr}{rootctr}#*
 \refstepcounter{counter}#*
 \refstepcounter*#*
 \restorecr#*
