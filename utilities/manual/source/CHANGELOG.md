@@ -1257,7 +1257,7 @@ before changing to windowed mode (Bug #1876)
 - structure tree view: context menu entries to recursively collapse/expand the structure
 - improved hard line wrap with joining lines
 - View -> Focus Viewer now also works for the windowed viewer
-- better detection of LagnuageTool
+- better detection of LanguageTool
 - similarity dictionary
 - "Align Table Columns" now works also for tabu/longtabu
 - updated poppler library, now displays PDF annotations like highlight and underline
