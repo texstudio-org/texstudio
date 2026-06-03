@@ -252,6 +252,9 @@
 <li><p>fix crash when setting explicit root doc <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/4469">#4469</a></p></li>
 <li><p>improve handling collaboration with teamtype <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/4454">#4454</a>,<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/4466">#4466</a></p></li>
 <li><p>workaround win11 style, invisible red background when text not found in searchpanel</p></li>
+<li><p>keep folder structure of imported macros if more than one macro is imported <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/4484">#4484</a></p></li>
+<li><p>highlight more tex symbol as keyword <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/4465">#4465</a></p></li>
+<li><p>fix addresource bibfile when using citation-style-language <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/4477">#4477</a></p></li>
 </ul>
 </section>
 <section id="texstudio-4-9-4">
@@ -385,7 +388,7 @@ and Symbols side panel</p></li>
 <li><p>add Grid menu to windowed and embedded pdf-viewer’s context menu <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3942">#3942</a></p></li>
 <li><p>fix pdf-viewer’s scrollbar with Fit to Width/Window and changing Continuous mode <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3928">#3928</a></p></li>
 <li><p>fix pdf-viewer’s Custom Grid dialog not preset with current Grid settings in Continuous mode <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3929">#3929</a></p></li>
-<li><p>fix pfd-viewer’s page display in non continuous mode <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3952">#3952</a></p></li>
+<li><p>fix pdf-viewer’s page display in non continuous mode <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3952">#3952</a></p></li>
 <li><p>fix pdf-viewer has a small issue when activating single page step <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3957">#3957</a></p></li>
 <li><p>add maximize button to Packages Help (Texdoc) dialog <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3911">#3911</a></p></li>
 <li><p>fix option ‘all packages’ no longer checked in Packages Help with no tex documents opened <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3917">#3917</a></p></li>
@@ -445,7 +448,7 @@ and Symbols side panel</p></li>
 <li><p>allow hiding of sidepanel docks via view/show</p></li>
 <li><p>reduce number on visible dock on OSX due to qt osx style weakness</p></li>
 <li><p>fix raised dock after hiding/showing sidepanel <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3653">#3653</a></p></li>
-<li><p>fallback to simple syntax highligting when tooltip background differs from general background <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3644">#3644</a></p></li>
+<li><p>fallback to simple syntax highlighting when tooltip background differs from general background <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3644">#3644</a></p></li>
 <li><p>fix structure view context on sections <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3642">#3642</a></p></li>
 <li><p>fix black background on comboboxes with windows11 style (qt6.7.1)</p></li>
 </ul>
@@ -1220,7 +1223,7 @@ before changing to windowed mode (Bug #1876)</p></li>
 <h2>TeXstudio 2.10.8<a class="headerlink" href="#texstudio-2-10-8" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>automatically expand search result if all matches are within one file</p></li>
-<li><p>detection of magic comment % !TeX is more permissive concerning case sensistivity</p></li>
+<li><p>detection of magic comment % !TeX is more permissive concerning case sensitivity</p></li>
 <li><p>fix crash when using \subparagraph</p></li>
 <li><p>fix symbolgrid widget on OSX</p></li>
 <li><p>fix ?save-file trigger not working</p></li>
@@ -1636,7 +1639,7 @@ before changing to windowed mode (Bug #1876)</p></li>
 <li><p>structure tree view: context menu entries to recursively collapse/expand the structure</p></li>
 <li><p>improved hard line wrap with joining lines</p></li>
 <li><p>View -&gt; Focus Viewer now also works for the windowed viewer</p></li>
-<li><p>better detection of LagnuageTool</p></li>
+<li><p>better detection of LanguageTool</p></li>
 <li><p>similarity dictionary</p></li>
 <li><p>“Align Table Columns” now works also for tabu/longtabu</p></li>
 <li><p>updated poppler library, now displays PDF annotations like highlight and underline</p></li>
@@ -1795,7 +1798,7 @@ ref/commands overview</p></li>
 <section id="texmakerx-1-9-9a">
 <h2>TexMakerX 1.9.9a<a class="headerlink" href="#texmakerx-1-9-9a" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>some performance issues on mac have been addressed. It should feel faster for long sible lines on mac.</p></li>
+<li><p>some performance issues on mac have been addressed. It should feel faster for long visible lines on mac.</p></li>
 <li><p>more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking</p></li>
 <li><p>command replacement in completed commands was added</p></li>
 <li><p>a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)</p></li>
