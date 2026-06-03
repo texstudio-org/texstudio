@@ -1,5 +1,5 @@
 # bxpapersize package
-# Matthew Bertucci 2022/04/30 for v2.6
+# Matthew Bertucci 2026/06/02 for v0.7
 
 #include:xkeyval
 #include:atbegshi
@@ -10,9 +10,7 @@
 #include:ifptex
 
 #keyvals:\usepackage/bxpapersize#c
-disabled
 nodvidriver
-autodvidriver
 olddvips
 #endkeyvals
 
