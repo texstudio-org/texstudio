@@ -858,7 +858,7 @@ before changing to windowed mode (Bug #1876)
 ## TeXstudio 2.10.8
 
 - automatically expand search result if all matches are within one file
-- detection of magic comment % !TeX is more permissive concerning case sensistivity
+- detection of magic comment % !TeX is more permissive concerning case sensitivity
 - fix crash when using \subparagraph
 - fix symbolgrid widget on OSX
 - fix ?save-file trigger not working
