@@ -1,7 +1,6 @@
 # keytheorems package
-# Matthew Bertucci 2026/02/20 for v0.3.5
+# Matthew Bertucci 2026/06/02 for v0.3.7
 
-#include:aliascnt
 #include:amsthm
 #include:refcount
 #include:translations

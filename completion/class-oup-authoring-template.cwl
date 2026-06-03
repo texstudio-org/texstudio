@@ -1,5 +1,5 @@
 # oup-authoring-template class
-# Matthew Bertucci 2026/01/04 for v1.2
+# Matthew Bertucci 2026/06/02 for v1.3
 
 #include:crop
 #include:graphicx
@@ -34,7 +34,6 @@
 #include:tikz
 #include:tikzlibrarysvg.path
 #include:tikzlibrarydecorations.markings
-#include:silence
 
 #keyvals:\documentclass/oup-authoring-template#c
 namedate
@@ -237,6 +236,7 @@ thmstylefour
 \sffamilyfontcnbolditalic#S
 \sffamilyfontcnitalic#S
 \sffamilyfontitalic#S
+\societylogo#S
 \subheading{arg}#S
 \subparagraphsize#S
 \subsecsize#S

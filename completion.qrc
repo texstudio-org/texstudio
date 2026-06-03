@@ -2300,6 +2300,7 @@
 <file>completion/luacode.cwl</file>
 <file>completion/luacolor.cwl</file>
 <file>completion/luacomplex.cwl</file>
+<file>completion/luadraw.cwl</file>
 <file>completion/luagcd.cwl</file>
 <file>completion/luahttp.cwl</file>
 <file>completion/luahyperbolic.cwl</file>
@@ -3055,6 +3056,7 @@
 <file>completion/proof.cwl</file>
 <file>completion/proofread.cwl</file>
 <file>completion/prooftrees.cwl</file>
+<file>completion/proofgraph.cwl</file>
 <file>completion/properties.cwl</file>
 <file>completion/protecteddef.cwl</file>
 <file>completion/protosem.cwl</file>
@@ -3109,7 +3111,9 @@
 <file>completion/pst-geo.cwl</file>
 <file>completion/pst-geometrictools.cwl</file>
 <file>completion/pst-gr3d.cwl</file>
+<file>completion/pst-hertz.cwl</file>
 <file>completion/pst-hsb.cwl</file>
+<file>completion/pst-hypertiling.cwl</file>
 <file>completion/pst-infixplot.cwl</file>
 <file>completion/pst-intersect.cwl</file>
 <file>completion/pst-jtree.cwl</file>
@@ -3165,6 +3169,7 @@
 <file>completion/pst-stru.cwl</file>
 <file>completion/pst-text.cwl</file>
 <file>completion/pst-thick.cwl</file>
+<file>completion/pst-titration.cwl</file>
 <file>completion/pst-tools.cwl</file>
 <file>completion/pst-tree.cwl</file>
 <file>completion/pst-turtle.cwl</file>

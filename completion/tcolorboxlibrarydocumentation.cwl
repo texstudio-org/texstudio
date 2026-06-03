@@ -1,5 +1,5 @@
 # documentation tcolorboxlibrary
-# 2025/12/01 for v6.9.0
+# 2026/06/02 for v6.10.0
 
 #include:tcolorboxlibrarylistings
 #include:tcolorboxlibraryskins
@@ -116,6 +116,12 @@
 \tcbdocupdated{date}
 \docKeyChoices{choice1,choice2,...}
 \docKeyChoices*{choice1,choice2,...}
+\tcbdocdescNoDefaultInit
+\tcbdocdescInitEmpty
+\tcbdocdescInit{initial value}
+\tcbdocdescDefault{default value}
+\tcbdocdescDefaultInitEmpty{default value}
+\tcbdocdescDefaultInit{default value}{initial value}
 
 Option#B
 Definition#B
@@ -137,7 +143,23 @@ doc no index
 # keys that don't make sense with \doc<type> commands
 #keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\tcbmakedocSubKey,\tcbmakedocSubKeys,\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations}
 doc parameter=%<parameters%>
+doc parameter marg=%<arg%>
+doc parameter oarg=%<arg%>
+doc parameter marg marg={%<arg1%>}{%<arg2%>}
+doc parameter oarg marg={%<arg1%>}{%<arg2%>}
+doc parameter marg oarg={%<arg1%>}{%<arg2%>}
+doc parameter eq=%<parameter%>
+doc parameter eq meta=%<arg%>
+doc parameter eq marg=%<arg%>
+doc parameter eq meta*=%<arg%>
+doc parameter eq marg*=%<arg%>
 doc description=%<description%>
+doc description no default init
+doc description init empty
+doc description init=%<initial value%>
+doc description default=%<default value%>
+doc description default init empty=%<default value%>
+doc description default init={%<default value%>}{%<initial value%>}
 doc new=%<date%>
 doc updated=%<date%>
 doc new and updated={%<new date%>}{%<update date%>}
@@ -244,15 +266,21 @@ doclang/color=%<text%>
 doclang/colors=%<text%>
 doclang/commands=%<text%>
 doclang/counter=%<text%>
+doclang/counters=%<text%>
+doclang/default=%<text%>
 doclang/environment=%<text%>
 doclang/environments=%<text%>
 doclang/environment content=%<text%>
 doclang/index=%<text%>
+doclang/initially=%<text%>
+doclang/initiallyempty=%<text%>
 doclang/key=%<text%>
 doclang/keys=%<text%>
 doclang/length=%<text%>
 doclang/lengths=%<text%>
 doclang/new=%<text%>
+doclang/nodefault=%<text%>
+doclang/noinitially=%<text%>
 doclang/path=%<text%>
 doclang/paths=%<text%>
 doclang/pageshort=%<text%>
