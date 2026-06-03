@@ -122,7 +122,7 @@
 - add Grid menu to windowed and embedded pdf-viewer's context menu [#3942](https://github.com/texstudio-org/texstudio/pull/3942)
 - fix pdf-viewer's scrollbar with Fit to Width/Window and changing Continuous mode [#3928](https://github.com/texstudio-org/texstudio/pull/3928)
 - fix pdf-viewer's Custom Grid dialog not preset with current Grid settings in Continuous mode [#3929](https://github.com/texstudio-org/texstudio/pull/3929)
-- fix pfd-viewer's page display in non continuous mode [#3952](https://github.com/texstudio-org/texstudio/pull/3952)
+- fix pdf-viewer's page display in non continuous mode [#3952](https://github.com/texstudio-org/texstudio/pull/3952)
 - fix pdf-viewer has a small issue when activating single page step [#3957](https://github.com/texstudio-org/texstudio/pull/3957)
 - add maximize button to Packages Help (Texdoc) dialog [#3911](https://github.com/texstudio-org/texstudio/pull/3911)
 - fix option 'all packages' no longer checked in Packages Help with no tex documents opened [#3917](https://github.com/texstudio-org/texstudio/pull/3917)
@@ -172,7 +172,7 @@
 - allow hiding of sidepanel docks via view/show
 - reduce number on visible dock on OSX due to qt osx style weakness
 - fix raised dock after hiding/showing sidepanel [#3653](https://github.com/texstudio-org/texstudio/issues/3653)
-- fallback to simple syntax highligting when tooltip background differs from general background [#3644](https://github.com/texstudio-org/texstudio/issues/3644)
+- fallback to simple syntax highlighting when tooltip background differs from general background [#3644](https://github.com/texstudio-org/texstudio/issues/3644)
 - fix structure view context on sections [#3642](https://github.com/texstudio-org/texstudio/issues/3642)
 - fix black background on comboboxes with windows11 style (qt6.7.1)
 
@@ -858,7 +858,7 @@ before changing to windowed mode (Bug #1876)
 ## TeXstudio 2.10.8
 
 - automatically expand search result if all matches are within one file
-- detection of magic comment % !TeX is more permissive concerning case sensistivity
+- detection of magic comment % !TeX is more permissive concerning case sensitivity
 - fix crash when using \subparagraph
 - fix symbolgrid widget on OSX
 - fix ?save-file trigger not working
@@ -1257,7 +1257,7 @@ before changing to windowed mode (Bug #1876)
 - structure tree view: context menu entries to recursively collapse/expand the structure
 - improved hard line wrap with joining lines
 - View -> Focus Viewer now also works for the windowed viewer
-- better detection of LagnuageTool
+- better detection of LanguageTool
 - similarity dictionary
 - "Align Table Columns" now works also for tabu/longtabu
 - updated poppler library, now displays PDF annotations like highlight and underline
@@ -1405,7 +1405,7 @@ ref/commands overview
 
 ## TexMakerX 1.9.9a
 
-- some performance issues on mac have been addressed. It should feel faster for long sible lines on mac.
+- some performance issues on mac have been addressed. It should feel faster for long visible lines on mac.
 - more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking
 - command replacement in completed commands was added
 - a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)
