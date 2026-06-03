@@ -1405,7 +1405,7 @@ ref/commands overview
 
 ## TexMakerX 1.9.9a
 
-- some performance issues on mac have been addressed. It should feel faster for long sible lines on mac.
+- some performance issues on mac have been addressed. It should feel faster for long visible lines on mac.
 - more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking
 - command replacement in completed commands was added
 - a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)
