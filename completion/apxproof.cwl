@@ -1,5 +1,5 @@
 # apxproof package
-# Matthew Bertucci 2026/05/18 for v1.4.0
+# Matthew Bertucci 2026/06/03 for v1.4.1
 
 #include:environ
 #include:etoolbox
@@ -47,3 +47,4 @@ forwardlinking=#yes,no
 \end{nestedproof}#*
 \noproofinappendix#*
 \nosectionappendix#*
+\apxproofhook{code}#*

@@ -1,6 +1,6 @@
 # mode: varioref.sty
 # dani/2006-02-18
-# updated 2021-11-11 Matthew Bertucci for v1.6e
+# updated 2026-06-03 Matthew Bertucci for v1.6i
 
 #keyvals:\usepackage/varioref#c
 afrikaans
@@ -25,10 +25,14 @@ french
 galician
 german
 ngerman
+swissgerman
+nswissgerman
 greek
 icelandic
 italian
+chinese
 japanese
+hungarian
 magyar
 norsk
 nynorsk
@@ -107,3 +111,4 @@ nospace
 \fullref{label}#r
 
 \vpagerefcomparenearby{label1%ref}{label2%ref}{true}{false}#*
+\DeclareVrefOptions{option1,option2,...}{code}#*

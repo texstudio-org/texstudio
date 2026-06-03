@@ -1,5 +1,5 @@
 # lua-tikz3dtools package
-# Matthew Bertucci 2026/01/23 for v2.3.0
+# Matthew Bertucci 2026/06/03 for v3.3.0
 
 #include:tikz
 #include:luatex
@@ -19,4 +19,3 @@
 \ltdtdisplaysimplices
 \ltdtsetobject
 \ltdtsetobject[options%keyvals]
-\luatikztdtoolsset[options%keyvals]

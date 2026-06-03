@@ -1,5 +1,5 @@
 # atableau package
-# Matthew Bertucci 2025/10/13 for v2.2.0
+# Matthew Bertucci 2026/06/03 for v2.2.1
 
 #include:tikz
 #include:tikzlibrarymatrix
@@ -60,3 +60,6 @@ aTableauSkew#B
 aTableauStar#B
 aTableauFill#B
 aTableauRod#B
+
+# not documented
+\aTableauMeta{arg}#S

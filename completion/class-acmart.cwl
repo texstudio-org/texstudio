@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2025/08/23 for v2.15
+# Matthew Bertucci 2025/06/03 for v2.18
 
 #include:xkeyval
 #include:xstring
@@ -29,6 +29,7 @@
 #include:float
 #include:comment
 #include:fancyhdr
+#include:pifont
 
 #keyvals:\documentclass/acmart#c
 format=#manuscript,acmsmall,acmlarge,acmtog,sigconf,sigplan,acmengage,acmcp
@@ -260,6 +261,7 @@ TWEB
 \end{CCSXML}
 \ccsdesc{text}
 \ccsdesc[number]{text}
+\correspondingauthor{name}
 
 \setcopyright{type%keyvals}
 
