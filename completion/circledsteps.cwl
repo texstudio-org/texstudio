@@ -1,9 +1,8 @@
 # circledsteps package
-# Matthew Bertucci 2023/08/11 for v1.3.3
+# Matthew Bertucci 2026/06/04 for v1.4
 
 #include:xcolor
 #include:pict2e
-#include:picture
 #include:pgfkeys
 #include:etoolbox
 

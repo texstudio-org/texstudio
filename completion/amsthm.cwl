@@ -2,7 +2,7 @@
 # Ryan Reich/2007-11-03
 # muzimuzhi/1 Sep 2019, amsthm v2.20.3
 
-\newtheorem*{envname}{caption}#N
+\newtheorem*{envname}{caption%text}#N
 \theoremstyle{style%keyvals}
 #keyvals:\theoremstyle#c
 plain

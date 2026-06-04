@@ -4919,7 +4919,7 @@ mexico-com
 \glossaryname#*
 #endif
 
-### ukraineb.ldf v1.4e ###
+### ukraineb.ldf v1.5 ###
 #ifOption:ukrainian
 \cyrdash
 \Ukrainian
@@ -5028,6 +5028,9 @@ mexico-com
 \lstlistlistingname#*
 \notesname#*
 \nomname#*
+\algorithmname#*
+\hypothesisname#*
+\theoremname#*
 \abbgyear#*
 \No
 #endif

@@ -319,9 +319,9 @@
 \newlength{newlength%cmd}#d
 \newline
 \newpage
-\newtheorem{envname}[numbered like]{caption}#N
-\newtheorem{envname}{caption}#N
-\newtheorem{envname}{caption}[within]#N
+\newtheorem{envname}[numbered like]{caption%text}#N
+\newtheorem{envname}{caption%text}#N
+\newtheorem{envname}{caption%text}[within]#N
 \NoCaseChange{text}#*
 \nocite{keylist}#c
 \nocorr#*

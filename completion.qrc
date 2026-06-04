@@ -1790,6 +1790,7 @@
 <file>completion/glosstex.cwl</file>
 <file>completion/gmiflink.cwl</file>
 <file>completion/gmp.cwl</file>
+<file>completion/gn-logic.cwl</file>
 <file>completion/gnuplottex.cwl</file>
 <file>completion/gobble-user.cwl</file>
 <file>completion/GoMono.cwl</file>
@@ -1859,6 +1860,7 @@
 <file>completion/harvard.cwl</file>
 <file>completion/harveyballs.cwl</file>
 <file>completion/havannah.cwl</file>
+<file>completion/hawkdraw.cwl</file>
 <file>completion/hcycle.cwl</file>
 <file>completion/helmholtz-ellis-ji-notation.cwl</file>
 <file>completion/helvet.cwl</file>
@@ -2946,6 +2948,7 @@
 <file>completion/pixelart.cwl</file>
 <file>completion/PixelArtTikz.cwl</file>
 <file>completion/pkgloader.cwl</file>
+<file>completion/pl.cwl</file>
 <file>completion/placeat.cwl</file>
 <file>completion/placeins.cwl</file>
 <file>completion/plaintex.cwl</file>
