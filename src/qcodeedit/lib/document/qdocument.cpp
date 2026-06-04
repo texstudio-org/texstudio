@@ -7539,7 +7539,12 @@ void QDocumentPrivate::updateStaticCaches(const QPaintDevice *pd)
 		m_descent = fm.descent();
 		m_lineHeight = fm.height();
         m_leading = fm.leading() + (m_lineSpacingFactor-1.0)*m_lineHeight;
-		m_lineSpacing = m_leading+m_lineHeight;
+        m_lineSpacing = m_leading+m_lineHeight;
+#ifdef Q_OS_LINUX
+        if(m_leading<0.1){
+            m_lineSpacing += 1; // extend line spaing to 1 pixel, avoids cut underscores on wayland (issue #4495)
+        }
+#endif
 		//if ( !m_fixedPitch )
 		//	qDebug("unsafe computations...");
 
