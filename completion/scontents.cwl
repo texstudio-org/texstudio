@@ -1,9 +1,10 @@
 # scontents package
-# Matthew Bertucci 2025/05/16 for v2.4
+# Matthew Bertucci 2026/06/02 for v2.7
 
 \setupsc{options%keyvals}
 
 #keyvals:\setupsc,\usepackage/scontents#c
+debug-var#true,false
 store-env=%<seq name%>
 store-cmd=%<seq name%>
 print-env#true,false

@@ -1,10 +1,11 @@
 # responsive package
-# Matthew Bertucci 2023/12/17 for v0.1
+# Matthew Bertucci 2026/06/02 for v0.1b
 
 #include:kvoptions
 
 #keyvals:\usepackage/responsive#c,\ResponsiveSetup
 characters=%<integer%>
+alphabet=%<characters%>
 noautomatic
 scale=#heptatonic,pentatonic,tetratonic,tritonic,golden
 number=%<integer%>

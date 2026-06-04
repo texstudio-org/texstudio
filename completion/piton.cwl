@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2026/04/20 for v4.12
+# Matthew Bertucci 2026/06/02 for v4.13
 
 #include:luacode
 #include:xcolor
@@ -119,6 +119,7 @@ left-margin=##L
 line-numbers
 line-numbers/format=%<font commands%>
 line-numbers/label-empty-lines#true,false
+line-numbers/lmmono10-drawn#true,false
 line-numbers/position=#left,right
 line-numbers/resume
 line-numbers/sep=##L
@@ -190,6 +191,7 @@ UserFunction=%<formatting%>
 Comment.Internal=%<formatting%>
 Comment.Math=%<formatting%>
 Discard=%<formatting%>
+Delim=%<formatting%>
 FormattingType=%<formatting%>
 Identifier.Internal=%<formatting%>
 Identifier=%<formatting%>
@@ -203,6 +205,7 @@ Keyword8=%<formatting%>
 Keyword9=%<formatting%>
 Number.Internal=%<formatting%>
 Prompt=%<formatting%>
+Punct=%<formatting%>
 String.Long.Internal=%<formatting%>
 String.Short.Internal=%<formatting%>
 Tag=%<formatting%>
@@ -247,6 +250,7 @@ UserFunction
 Comment.Internal
 Comment.Math
 Discard
+Delim
 FormattingType
 Identifier
 Identifier.Internal
@@ -260,6 +264,7 @@ Keyword8
 Keyword9
 Number.Internal
 Prompt
+Punct
 String.Long.Internal
 String.Short.Internal
 Tag
@@ -308,3 +313,4 @@ tag=%<<char1><char2>%>
 \PitonBeamerEnvironments#S
 \PitonFileVersion#S
 \PitonFileDate#S
+\PitonSpaceSubstitute#S

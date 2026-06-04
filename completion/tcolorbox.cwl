@@ -2,7 +2,7 @@
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
 # muzimuzhi/30 Aug 2019 for tcolorbox v4.20
 #     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
-# Matthew Bertucci updated 2025/09/09 for v6.8.0
+# Matthew Bertucci updated 2026/06/02 for v6.10.0
 
 #include:environ
 #include:etoolbox
@@ -217,6 +217,7 @@ library/all
 \tcbcounter
 \thetcbcounterof{tcolorbox}
 \tcbcounterof{tcolorbox}
+\renewthetcbcounter{tcolorbox}{code}
 
 # << Lists of tcolorboxes >>
 \tcblistof{name}{title}
@@ -640,7 +641,9 @@ use counter=%<counter%>
 use counter*=%<counter%>
 no counter
 reset counter on overlays#true,false
+counter within=%<counter%>
 number within=%<counter%>
+counter within from=%<tcolorbox%>
 number within from=%<tcolorbox%>
 number format=%<format macro%>
 number freestyle=%<code%>

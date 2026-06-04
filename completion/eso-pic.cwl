@@ -1,5 +1,5 @@
 # eso-pic package
-# Matthew Bertucci 11/2/2021 for v3.0a
+# Matthew Bertucci 2026/06/02 for v3.0e
 
 #include:keyval
 #include:xcolor
@@ -15,6 +15,7 @@ subgridcolor=#%color
 subgridstyle=#solid,dotted
 colorgrid#true,false
 dvips#true,false
+enabled#true,false
 #endkeyvals
 
 \AddToShipoutPictureBG{code}
@@ -38,3 +39,4 @@ dvips#true,false
 \AtStockLowerLeft{code}
 \AtStockCenter{code}
 \ProcessOptionsWithKV{family}#S
+\GridPicture#*

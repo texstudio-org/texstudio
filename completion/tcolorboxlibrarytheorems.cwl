@@ -1,5 +1,5 @@
 # theorems tcolorboxlibrary
-# 2023/02/10 for v6.0.0
+# 2026/06/02 for v6.10.0
 
 #include:amsmath
 
@@ -70,6 +70,15 @@ ams gather
 ams gather* upper
 ams gather* lower
 ams gather*
+ams subequations upper
+ams subequations lower
+ams subequations
+ams subequations align
+ams subequations align upper
+ams subequations align lower
+ams subequations gather
+ams subequations gather upper
+ams subequations gather lower
 ams nodisplayskip upper
 ams nodisplayskip lower
 ams nodisplayskip

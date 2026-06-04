@@ -1,8 +1,9 @@
 # pdfprivacy package
-# Matthew Bertucci 1/20/2022 for v1.0
+# Matthew Bertucci 2026/06/02 for v1.1
 
 #include:ifthen
 #include:kvoptions
+#include:iftex
 
 #keyvals:\usepackage/pdfprivacy#c
 nodocdata#true,false
@@ -15,5 +16,6 @@ noptexdata#true,false
 ptexdata#true,false
 nopdftrailerid#true,false
 pdftrailerid#true,false
+strict#true,false
 all
 #endkeyvals

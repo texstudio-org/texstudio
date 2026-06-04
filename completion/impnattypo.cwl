@@ -1,5 +1,5 @@
 # impnattypo package
-# Matthew Bertucci 1/25/2022 for v1.5
+# Matthew Bertucci 2026/06/02 for v1.6
 
 #include:ifluatex
 #include:kvoptions
@@ -23,6 +23,8 @@ lastparlinecolor=#%color
 riverscolor=#%color
 homeoarchymaxwords=%<integer%>
 homeoarchymaxchars=%<integer%>
+lastparlineminlength=##L
 #endkeyvals
 
+\lastparlineminlength#*
 \usecolor{color}#*

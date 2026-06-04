@@ -1,5 +1,5 @@
 # scripture package
-# Matthew Bertucci 2025/08/09 for v2.2
+# Matthew Bertucci 2026/06/03 for v2.3
 
 \added{words%text}
 \ch{chapter number}
@@ -104,6 +104,7 @@ indent#true,false
 language=%<language name%>
 language/variant=%<language variant name%>
 leftmargin=##L
+mark/verse/format=%<macro%>
 name/font=%<font commands%>
 name/format=%<macro%>
 noindent#true,false
