@@ -20,7 +20,7 @@
 Outfile "texstudio_installer.exe"
 
 RequestExecutionLevel admin ;Require admin rights on NT6+ (When UAC is turned on)
- 
+
 InstallDir "$PROGRAMFILES\texstudio"
 
 # Get installation folder from registry if available
@@ -40,8 +40,8 @@ ManifestDPIAware true
 ;Language Selection Dialog Settings
 
   ;Remember the installer language
-  !define MUI_LANGDLL_REGISTRY_ROOT "HKCU" 
-  !define MUI_LANGDLL_REGISTRY_KEY "Software\${APPNAME}" 
+  !define MUI_LANGDLL_REGISTRY_ROOT "HKCU"
+  !define MUI_LANGDLL_REGISTRY_KEY "Software\${APPNAME}"
   !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
 
 
@@ -137,7 +137,7 @@ Name "${APPNAME}"
 # default section
 Section "install"
 
-# sets $SMPROGRAMS to all users 
+# sets $SMPROGRAMS to all users
 SetShellVarContext all
 
 # remove all installed files
@@ -145,7 +145,7 @@ Delete $INSTDIR\*
 
 # define the output path for this file
 SetOutPath $INSTDIR
- 
+
 # define what to install and place it in the output path
 File texstudio.exe
 
@@ -177,8 +177,8 @@ File ..\templates\*
 
 SetOutPath $INSTDIR\tls
 
-File .\tls\qcertonlybackend.dll.
-File .\tls\qschannelbackend.dll.
+File .\tls\qcertonlybackend.dll
+File .\tls\qschannelbackend.dll
 
 SetOutPath $INSTDIR\networkinformation
 
@@ -246,14 +246,14 @@ createShortCut "$SMPROGRAMS\${APPNAME}.lnk" \
 	# There is no option for modifying or repairing the install
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "NoModify" 1
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "NoRepair" 1
- 
+
 SectionEnd
 
 # Uninstaller
- 
+
 function un.onInit
 	SetShellVarContext all
- 
+
 	#Verify the uninstaller - last chance to back out
 	MessageBox MB_OKCANCEL "Permanently remove ${APPNAME}?" /SD IDOK IDOK next
 		Abort
@@ -265,18 +265,18 @@ functionEnd
 # the section will always be named "Uninstall"
 Section "Uninstall"
 
-# sets $SMPROGRAMS to all users 
+# sets $SMPROGRAMS to all users
 SetShellVarContext all
-	
+
 # Remove Start Menu launcher
 delete "$SMPROGRAMS\${APPNAME}.lnk"
- 
+
 # Always delete uninstaller first
-Delete $INSTDIR\uninstaller.exe
+Delete $INSTDIR\uninstall.exe
 
 # remove file association
 ${unregisterExtension} ".tex" "tex File"
- 
+
 # now delete installed file
 RMDir /r $INSTDIR\translations
 RMDir /r $INSTDIR\templates
@@ -297,5 +297,5 @@ RMDir $INSTDIR
 # Remove uninstaller information from the registry
 DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}"
 DeleteRegKey /ifempty HKCU "Software\${APPNAME}"
- 
+
 SectionEnd
