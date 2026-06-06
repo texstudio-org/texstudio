@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.9.6
+
+- 
+
 ## TeXstudio 4.9.5
 
 - fix crash when setting explicit root doc [#4469](https://github.com/texstudio-org/texstudio/issues/4469)
