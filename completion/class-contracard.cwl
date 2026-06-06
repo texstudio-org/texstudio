@@ -1,5 +1,5 @@
 # contracard class
-# Matthew Bertucci 2022/06/17 for v2.0.0
+# Matthew Bertucci 2026/06/06 for v3.0.0
 
 #include:geometry
 #include:titlesec

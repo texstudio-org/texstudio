@@ -1,12 +1,7 @@
 # bxjalipsum package
-# Matthew Bertucci 2022/04/29 for v0.3a
+# Matthew Bertucci 2026/06/06 for v1.0b
 
 #include:intcalc
-
-#keyvals:\usepackage/bxjalipsum#c
-noCJKtilde
-CJKtilde
-#endkeyvals
 
 \jalipsum{key%keyvals}
 \jalipsum[range]{key%keyvals}
@@ -19,10 +14,12 @@ wagahai
 preamble
 hatsukoi
 kusamakura
+yukidaruma
 #endkeyvals
 
 \jalipsumiroha
 \jalipsumjugemu
 \jalipsumjugemuP
+\jalipsumyukidaruma
 
 \bxDebug{text}#S
