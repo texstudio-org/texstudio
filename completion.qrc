@@ -3116,6 +3116,7 @@
 <file>completion/pst-gr3d.cwl</file>
 <file>completion/pst-hertz.cwl</file>
 <file>completion/pst-hsb.cwl</file>
+<file>completion/pst-hyperboloid.cwl</file>
 <file>completion/pst-hypertiling.cwl</file>
 <file>completion/pst-infixplot.cwl</file>
 <file>completion/pst-intersect.cwl</file>
