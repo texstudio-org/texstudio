@@ -362,6 +362,7 @@
 <file>completion/biblatex-ext-oasymb-pict2e.cwl</file>
 <file>completion/biblatex-ext-oasymb-tikz.cwl</file>
 <file>completion/biblatex-ext-tabular.cwl</file>
+<file>completion/biblatex-greifswald.cwl</file>
 <file>completion/biblatex-license.cwl</file>
 <file>completion/biblatex-ms.cwl</file>
 <file>completion/biblatex-multiple-dm.cwl</file>
@@ -2728,6 +2729,8 @@
 <file>completion/numerus.cwl</file>
 <file>completion/numname.cwl</file>
 <file>completion/numnameru.cwl</file>
+<file>completion/numodel.cwl</file>
+<file>completion/numodel-plot.cwl</file>
 <file>completion/numprint.cwl</file>
 <file>completion/numspell.cwl</file>
 <file>completion/nunito.cwl</file>

@@ -7120,6 +7120,79 @@ introcite=#false,plain,label
 \pubdatedelim#*
 #endif
 
+### biblatex-greifswald v1 ###
+#ifOption:style=greifswald
+\greifswaldindent#L
+## loads ext-authoryear style
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\AtXrefcite{code}
+\AtXrefcite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
 ### biblatex-ieee v1.3f ###
 #ifOption:style=ieee
 \mkpagegrouped{text}#*

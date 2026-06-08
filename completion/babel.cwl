@@ -2692,6 +2692,26 @@ NosepEnumerate#true,false
 \glossaryname#*
 #endif
 
+### kazakh.ldf v1.0 ###
+#ifOption:kazakh
+\captionskazakh#*
+\datekazakh#*
+\extraskazakh#*
+\noextraskazakh#*
+\prefacename#*
+\bibname#*
+\chaptername#*
+\tocname#*
+\authorname#*
+\enclname#*
+\ccname#*
+\headtoname#*
+\pagename#*
+\seename#*
+\alsoname#*
+\proofname#*
+#endif
+
 ### kurmanji.ldf v1.1 ###
 #ifOption:kurmanji
 \captionskurmanji#*
