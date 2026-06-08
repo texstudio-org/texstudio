@@ -1115,6 +1115,7 @@
 <file>completion/commath.cwl</file>
 <file>completion/commedit.cwl</file>
 <file>completion/comment.cwl</file>
+<file>completion/comment2tex.cwl</file>
 <file>completion/commonunicode.cwl</file>
 <file>completion/commutative-diagrams.cwl</file>
 <file>completion/competences.cwl</file>
@@ -2154,6 +2155,7 @@
 <file>completion/latex-dev.cwl</file>
 <file>completion/latex-document.cwl</file>
 <file>completion/latex-l2tabu.cwl</file>
+<file>completion/latex-papersize.cwl</file>
 <file>completion/latexscreenshooter.cwl</file>
 <file>completion/latexsym.cwl</file>
 <file>completion/lato.cwl</file>

@@ -1,5 +1,5 @@
 # bxwareki package
-# Matthew Bertucci 2023/07/09 for v0.7
+# Matthew Bertucci 2026/06/08 for v0.8
 
 \warekisetdate{year}{month}{day}
 \warekisettoday
@@ -27,6 +27,8 @@ o
 \WarekiUseCustomInterGlue{text}
 \WarekiKansuji{counter}
 \WarekiJKansuji{counter}
+\WarekiJxKansuji{counter}
+\WarekiMonthName{counter}
 \WarekiIfAvailable{true}{false}#*
 
 # not documented
