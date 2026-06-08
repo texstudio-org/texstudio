@@ -63,6 +63,10 @@ LatexDocument::~LatexDocument()
 	mLineSnapshot.clear();
 
     qDeleteAll(docStructure);
+
+    // make sure this (about to be freed) document can never linger in the
+    // shared project cache as a dangling pointer (see getListOfDocs)
+    if (lp) lp->projectDocuments.clear();
 }
 
 void LatexDocument::setFileName(const QString &fileName)
@@ -1943,11 +1947,13 @@ void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
 void LatexDocument::addChild(LatexDocument *doc)
 {
 	childDocs.insert(doc);
+	lp->projectDocuments.clear(); // graph changed, invalidate cache
 }
 
 void LatexDocument::removeChild(LatexDocument *doc)
 {
 	childDocs.remove(doc);
+	lp->projectDocuments.clear(); // graph changed, invalidate cache
 }
 
 bool LatexDocument::containsChild(LatexDocument *doc) const
@@ -2168,6 +2174,9 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 	}
 	connect(document, SIGNAL(updateBibTeXFiles()), SLOT(bibTeXFilesNeedUpdate()));
 	document->parent = this;
+	// document set changed, invalidate cached project document lists (see getListOfDocs)
+	if (document->lp) document->lp->projectDocuments.clear();
+	if (masterDocument && masterDocument->lp) masterDocument->lp->projectDocuments.clear();
 	if (masterDocument) {
 		// repaint all docs
 		foreach (const LatexDocument *doc, documents) {
@@ -2179,6 +2188,10 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 
 void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool purge)
 {
+    // document set / master-child graph is about to change, invalidate cached
+    // project document lists so they can't keep dangling pointers (see getListOfDocs)
+    if (document->lp) document->lp->projectDocuments.clear();
+    if (masterDocument && masterDocument->lp) masterDocument->lp->projectDocuments.clear();
     // save caching information
     document->saveCachingData(m_cachingFolder);
     if (!hidden)
@@ -2474,6 +2487,8 @@ LatexDocument *LatexDocuments::findDocumentFromName(const QString &fileName) con
 void LatexDocuments::reorder(const QList<LatexDocument *> &order)
 {
 	if (order.size() != documents.size()) qDebug() << "Warning: Size of list of documents for reordering differs from current documents";
+	// order of the cached project document list may change (see getListOfDocs)
+	if (masterDocument && masterDocument->lp) masterDocument->lp->projectDocuments.clear();
 	foreach (LatexDocument *doc, order) {
 		int n = documents.removeAll(doc);
 		if (n > 1) qDebug() << "Warning: document listed multiple times in LatexDocuments";
@@ -2627,6 +2642,9 @@ void LatexDocuments::updateBibFiles(bool updateFiles)
 
 void LatexDocuments::removeDocs(QStringList removeIncludes)
 {
+    // documents may be removed/deleted below, invalidate cached project
+    // document lists so they can't keep dangling pointers (see getListOfDocs)
+    if (masterDocument && masterDocument->lp) masterDocument->lp->projectDocuments.clear();
     QSet<LatexDocument*> lstRecheckLabels;
 	foreach (QString fname, removeIncludes) {
 		LatexDocument *dc = findDocumentFromName(fname);

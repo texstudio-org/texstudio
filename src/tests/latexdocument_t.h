@@ -14,6 +14,7 @@ class LatexDocumentTest: public QObject{
         LatexEditorView *m_edView;
         LatexDocument *m_doc;
 	private slots:
+        void getListOfDocsCacheInvalidation();
 };
 
 #endif
