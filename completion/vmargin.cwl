@@ -52,8 +52,8 @@ USexecutive
 custom
 #endkeyvals
 
-\PaperWidth##L
-\PaperHeight##L
+\PaperWidth#L
+\PaperHeight#L
 \ifLandscape
 \Landscapetrue#S
 \Landscapefalse#S

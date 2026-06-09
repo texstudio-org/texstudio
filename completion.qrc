@@ -3101,6 +3101,7 @@
 <file>completion/pst-dbicons.cwl</file>
 <file>completion/pst-diffraction.cwl</file>
 <file>completion/pst-electricfield.cwl</file>
+<file>completion/pst-ellipsoid.cwl</file>
 <file>completion/pst-eps.cwl</file>
 <file>completion/pst-eqhz.cwl</file>
 <file>completion/pst-eucl.cwl</file>

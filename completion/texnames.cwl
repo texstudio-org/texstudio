@@ -14,7 +14,6 @@
 \LAmSTeX
 \LamSTeX#*
 \LATEX#*
-\LaTeXo
 \METAFONT
 \MF#*
 \SLITEX#*
@@ -23,6 +22,3 @@
 \SliTeX#*
 \manfnt#*
 \manfntsl#*
-\PiC
-\PiCTeX
-\VorTeX
