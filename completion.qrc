@@ -362,6 +362,7 @@
 <file>completion/biblatex-ext-oasymb-pict2e.cwl</file>
 <file>completion/biblatex-ext-oasymb-tikz.cwl</file>
 <file>completion/biblatex-ext-tabular.cwl</file>
+<file>completion/biblatex-greifswald.cwl</file>
 <file>completion/biblatex-license.cwl</file>
 <file>completion/biblatex-ms.cwl</file>
 <file>completion/biblatex-multiple-dm.cwl</file>
@@ -1115,6 +1116,7 @@
 <file>completion/commath.cwl</file>
 <file>completion/commedit.cwl</file>
 <file>completion/comment.cwl</file>
+<file>completion/comment2tex.cwl</file>
 <file>completion/commonunicode.cwl</file>
 <file>completion/commutative-diagrams.cwl</file>
 <file>completion/competences.cwl</file>
@@ -1790,6 +1792,7 @@
 <file>completion/glosstex.cwl</file>
 <file>completion/gmiflink.cwl</file>
 <file>completion/gmp.cwl</file>
+<file>completion/gn-logic.cwl</file>
 <file>completion/gnuplottex.cwl</file>
 <file>completion/gobble-user.cwl</file>
 <file>completion/GoMono.cwl</file>
@@ -1859,6 +1862,7 @@
 <file>completion/harvard.cwl</file>
 <file>completion/harveyballs.cwl</file>
 <file>completion/havannah.cwl</file>
+<file>completion/hawkdraw.cwl</file>
 <file>completion/hcycle.cwl</file>
 <file>completion/helmholtz-ellis-ji-notation.cwl</file>
 <file>completion/helvet.cwl</file>
@@ -2152,6 +2156,7 @@
 <file>completion/latex-dev.cwl</file>
 <file>completion/latex-document.cwl</file>
 <file>completion/latex-l2tabu.cwl</file>
+<file>completion/latex-papersize.cwl</file>
 <file>completion/latexscreenshooter.cwl</file>
 <file>completion/latexsym.cwl</file>
 <file>completion/lato.cwl</file>
@@ -2724,6 +2729,8 @@
 <file>completion/numerus.cwl</file>
 <file>completion/numname.cwl</file>
 <file>completion/numnameru.cwl</file>
+<file>completion/numodel.cwl</file>
+<file>completion/numodel-plot.cwl</file>
 <file>completion/numprint.cwl</file>
 <file>completion/numspell.cwl</file>
 <file>completion/nunito.cwl</file>
@@ -2946,6 +2953,7 @@
 <file>completion/pixelart.cwl</file>
 <file>completion/PixelArtTikz.cwl</file>
 <file>completion/pkgloader.cwl</file>
+<file>completion/pl.cwl</file>
 <file>completion/placeat.cwl</file>
 <file>completion/placeins.cwl</file>
 <file>completion/plaintex.cwl</file>
@@ -3113,6 +3121,7 @@
 <file>completion/pst-gr3d.cwl</file>
 <file>completion/pst-hertz.cwl</file>
 <file>completion/pst-hsb.cwl</file>
+<file>completion/pst-hyperboloid.cwl</file>
 <file>completion/pst-hypertiling.cwl</file>
 <file>completion/pst-infixplot.cwl</file>
 <file>completion/pst-intersect.cwl</file>

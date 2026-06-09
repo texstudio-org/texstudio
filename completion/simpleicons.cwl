@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/04/20 for v16.17.0
+# Matthew Bertucci 2026/04/20 for v16.22.0
 
 #include:iftex
 
@@ -152,6 +152,7 @@ anytype
 apache
 apacheairflow
 apacheant
+apachearrow
 apacheavro
 apachecassandra
 apachecloudstack
@@ -275,6 +276,7 @@ avast
 avianca
 avira
 avm
+await
 awesomelists
 awesomewm
 awwwards
@@ -512,6 +514,7 @@ chupachups
 cilium
 cinema4d
 cinnamon
+cinny
 circle
 circleci
 circuitverse
@@ -525,6 +528,7 @@ clarifai
 claris
 clarivate
 claude
+claudecode
 clerk
 clevercloud
 clickhouse
@@ -731,6 +735,7 @@ deepin
 deepl
 deepmind
 deepnote
+deepseek
 deezer
 deliveroo
 dell
@@ -1302,6 +1307,7 @@ hearthisdotat
 hedera
 hedgedoc
 helium
+heliumbrowser
 helix
 hellofresh
 hellyhansen
@@ -1621,6 +1627,7 @@ labview
 lada
 lamborghini
 langchain
+langchaincorporate
 langflow
 langgraph
 languagetool
@@ -1710,6 +1717,7 @@ livejournal
 livekit
 livewire
 llvm
+lmstudio
 lmms
 lobsters
 local
@@ -1904,6 +1912,7 @@ monzo
 moo
 moodle
 moonrepo
+moonshotai
 moq
 moqups
 morrisons
@@ -1959,6 +1968,7 @@ nebula
 nec
 nederlandsespoorwegen
 neo4j
+neon
 neovim
 neptune
 nestjs
@@ -2117,6 +2127,7 @@ opensuse
 opentelemetry
 opentext
 opentofu
+opentui
 openverse
 openvpn
 openwrt
@@ -2428,6 +2439,7 @@ quicktype
 quizlet
 quora
 qwant
+qwen
 qwik
 qwiklabs
 qzone
@@ -3001,6 +3013,7 @@ thunderbird
 thunderstore
 thurgauerkantonalbank
 thymeleaf
+tickettailor
 ticketmaster
 ticktick
 tidal
@@ -3448,3 +3461,4 @@ zyte
 \simpleiconsmaponeone#S
 \simpleiconsmaponetwo#S
 \simpleiconsmaponethree#S
+\simpleiconsmaponefour#S
