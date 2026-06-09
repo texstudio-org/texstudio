@@ -199,6 +199,7 @@
 <file>completion/authoraftertitle.cwl</file>
 <file>completion/authorarchive.cwl</file>
 <file>completion/authorindex.cwl</file>
+<file>completion/autoaffil.cwl</file>
 <file>completion/autoaligne.cwl</file>
 <file>completion/autobreak.cwl</file>
 <file>completion/autofancyhdr.cwl</file>
