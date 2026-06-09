@@ -1,5 +1,5 @@
 # eqnlines package
-# Matthew Bertucci 2026/01/31 for v0.14.1
+# Matthew Bertucci 2026/06/09 for v1.1.1
 
 #include:keyval
 
@@ -125,6 +125,7 @@ spread*=##L
 style=#text,display
 strut#true,false
 punctsep=%<sep%>
+punctclass=%<class%>
 punct=%<punct%>
 punctline=%<punct%>
 punctcol=%<punct%>
@@ -143,6 +144,9 @@ classout=%<class%>
 classin=%<class%>
 classin*=%<class%>
 classlead=%<class%>
+classbreak=%<code%>
+classstart=%<code%>
+classbreakskip=%<mu expr%>
 ampeq
 eqamp
 class=#ampeq,eqamp
@@ -199,6 +203,7 @@ colsep=##L
 frame
 frame=%<cmd%>
 wrap={{%<cmd-l%>}{%<cmd-r%>}}
+matrixsep=
 #endkeyvals
 
 #keyvals:\begin{equationsbox},\begin{cases}
@@ -262,9 +267,34 @@ ampproof#true,false
 equationcr#true,false
 strutdepth=##L
 modifierwarning#true,false
+modifier#true,false
+modifierenv#true,false
+modifiersqrang#true,false
+modifierend#true,false
+modifiereqncr#true,false
+modifiereqnamp#true,false
+modifierbreak#true,false
+modifiereqn#true,false
+modifiereqnenv#true,false
+modifiereqnsqr#true,false
+modifiereqnang#true,false
+modifiereqnend#true,false
+modifiereqncr#true,false
+modifiereqnamp#true,false
+modifierbox#true,false
+modifierboxenv#true,false
+modifierboxang#true,false
+modifierboxend#true,false
+modifierboxcr#true,false
+modifierboxamp#true,false
+modifierend#true,false
+modifiercr#true,false
+modifieramp#true,false
 marksymbol=%<symbol%>
 qedsymbol=%<symbol%>
 markpos=#below,baseline,bottom
+punctcases
+punctcases*
 #endkeyvals
 
 #keyvals:\usepackage/eqnlines#c
@@ -285,7 +315,7 @@ alt=%<text%>
 #endkeyvals
 
 #keyvals:\usepackage/eqnlines#c,\eqnlinesset,\begin{equations},\eqnaddopt
-numberline=%<mode%>
+number=%<mode%>
 nonumber
 *
 donumber
@@ -299,6 +329,7 @@ eqno
 evadetag#true,false
 tagbetween#true,false
 linesfallback=#true,false,reuse
+crrelnext#true,false
 #endkeyvals
 
 #keyvals:\begin{equations},\eqnaddopt
@@ -314,7 +345,7 @@ align
 al
 columns
 col
-native#true,false
+nativeequation#true,false
 displaybreak=#0,1,2,3,4
 short
 short=#above,below,both
@@ -371,12 +402,15 @@ donumber
 numberhere
 numbernext
 align=
-shift=
-shift*=
+shiftto=
+shiftby=
 punctsep=
 punct=
 punct*
 punctapply
+rel
+rel;
+rel*
 #endkeyvals
 
 #keyvals:\begin{intertext},\intertext
