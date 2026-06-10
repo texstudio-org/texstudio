@@ -3485,6 +3485,7 @@ void LatexDocument::updateLtxCommands(bool updateAll,bool updatePackages)
                 foreach (const LatexDocument *elem, listOfDocs) {
                     lp->append(elem->ltxCommands);
 				}
+                lp->cacheStructureCommand();
 				foreach (LatexDocument *elem, listOfDocs) {
 					elem->setLtxCommands(lp);
 					elem->reCheckSyntax();
