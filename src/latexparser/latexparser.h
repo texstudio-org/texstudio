@@ -33,7 +33,7 @@ public:
 	{
 		return MAX_STRUCTURE_LEVEL;
 	}
-    int structureCommandLevel(const QString &cmd) const;
+    int structureCommandLevel(const QString &cmd);
     void cacheStructureCommand();
 
 	QSet<QString> environmentCommands; ///< used by LatexReader only, obsolete

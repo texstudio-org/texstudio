@@ -196,8 +196,12 @@ QString removeOptionBrackets(const QString &option)
  * \param cmd latex command
  * \return level of stucture
  */
-int LatexParser::structureCommandLevel(const QString &cmd) const
+int LatexParser::structureCommandLevel(const QString &cmd)
 {
+    if(sectionCommands.isEmpty()){
+        // not yet chached, do it now
+        cacheStructureCommand();
+    }
     if(!sectionCommands.contains(cmd)) return -1;
 	for (int i=0; i<=MAX_STRUCTURE_LEVEL; i++) {
 		if (possibleCommands[QString("%structure%1").arg(i)].contains(cmd)) {
