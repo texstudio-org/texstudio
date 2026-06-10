@@ -2325,6 +2325,7 @@
 <file>completion/luamml-demo.cwl</file>
 <file>completion/luamodulartables.cwl</file>
 <file>completion/luamplib.cwl</file>
+<file>completion/luanumbers.cwl</file>
 <file>completion/luanumint.cwl</file>
 <file>completion/luaoptions.cwl</file>
 <file>completion/luaotfload.cwl</file>
@@ -3101,6 +3102,7 @@
 <file>completion/pst-dbicons.cwl</file>
 <file>completion/pst-diffraction.cwl</file>
 <file>completion/pst-electricfield.cwl</file>
+<file>completion/pst-electrolysis.cwl</file>
 <file>completion/pst-ellipsoid.cwl</file>
 <file>completion/pst-eps.cwl</file>
 <file>completion/pst-eqhz.cwl</file>
