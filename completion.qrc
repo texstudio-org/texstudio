@@ -4213,6 +4213,7 @@
 <file>completion/varsfromjobname.cwl</file>
 <file>completion/varvbtm.cwl</file>
 <file>completion/varwidth.cwl</file>
+<file>completion/vaucanson-g.cwl</file>
 <file>completion/vcell.cwl</file>
 <file>completion/vdmlisting.cwl</file>
 <file>completion/vector.cwl</file>
