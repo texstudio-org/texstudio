@@ -199,6 +199,7 @@
 <file>completion/authoraftertitle.cwl</file>
 <file>completion/authorarchive.cwl</file>
 <file>completion/authorindex.cwl</file>
+<file>completion/autoaffil.cwl</file>
 <file>completion/autoaligne.cwl</file>
 <file>completion/autobreak.cwl</file>
 <file>completion/autofancyhdr.cwl</file>
@@ -2324,6 +2325,7 @@
 <file>completion/luamml-demo.cwl</file>
 <file>completion/luamodulartables.cwl</file>
 <file>completion/luamplib.cwl</file>
+<file>completion/luanumbers.cwl</file>
 <file>completion/luanumint.cwl</file>
 <file>completion/luaoptions.cwl</file>
 <file>completion/luaotfload.cwl</file>
@@ -3100,6 +3102,8 @@
 <file>completion/pst-dbicons.cwl</file>
 <file>completion/pst-diffraction.cwl</file>
 <file>completion/pst-electricfield.cwl</file>
+<file>completion/pst-electrolysis.cwl</file>
+<file>completion/pst-ellipsoid.cwl</file>
 <file>completion/pst-eps.cwl</file>
 <file>completion/pst-eqhz.cwl</file>
 <file>completion/pst-eucl.cwl</file>
@@ -4211,6 +4215,7 @@
 <file>completion/varsfromjobname.cwl</file>
 <file>completion/varvbtm.cwl</file>
 <file>completion/varwidth.cwl</file>
+<file>completion/vaucanson-g.cwl</file>
 <file>completion/vcell.cwl</file>
 <file>completion/vdmlisting.cwl</file>
 <file>completion/vector.cwl</file>

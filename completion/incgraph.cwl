@@ -1,6 +1,6 @@
 # incgraph package
 # muzimuzhi,31 Jul 2020 for incgraph 1.12
-# Matthew Bertucci 2026/03/04 for v1.4.0
+# Matthew Bertucci 2026/06/09 for v1.4.1
 
 #include:pgf
 #include:pgffor
@@ -87,8 +87,6 @@ executivepaper
 letterpaper
 legalpeper
 ledgerpaper
-center
-page
 options={%<graphics options%>}
 options add={%<graphics options%>}
 include command=%<macro%>
