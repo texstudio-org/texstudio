@@ -78,6 +78,7 @@
     <strikeout>false</strikeout>
     <waveUnderline>false</waveUnderline>
     <foreground>#60f285</foreground>
+    <priority>0</priority>
   </format>
   <format id="link" >
     <underline>true</underline>
