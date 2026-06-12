@@ -695,6 +695,10 @@
 <file>completion/class-buctthesis.cwl</file>
 <file>completion/class-bull-l.cwl</file>
 <file>completion/class-businesscard-qrcode.cwl</file>
+<file>completion/class-bxjsarticle.cwl</file>
+<file>completion/class-bxjsbook.cwl</file>
+<file>completion/class-bxjsreport.cwl</file>
+<file>completion/class-bxjsslide.cwl</file>
 <file>completion/class-caesar_book.cwl</file>
 <file>completion/class-cas-dc.cwl</file>
 <file>completion/class-cas-sc.cwl</file>
