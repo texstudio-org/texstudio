@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/04/20 for v16.22.0
+# Matthew Bertucci 2026/06/13 for v16.23.0
 
 #include:iftex
 
@@ -66,6 +66,7 @@ affine
 aframe
 afterpay
 aftership
+agentskills
 agora
 aib
 aidungeon
@@ -1755,6 +1756,7 @@ lutris
 lvgl
 lydia
 lyft
+m5stack
 maas
 macos
 macpaw
@@ -2097,6 +2099,7 @@ openbao
 openbadges
 openbsd
 opencage
+opencode
 opencritic
 openbugbounty
 opencollective
@@ -2242,6 +2245,7 @@ php
 phpbb
 phpmyadmin
 phpstorm
+pi
 piaggiogroup
 piapro
 picardsurgeles

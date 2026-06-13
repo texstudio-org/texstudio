@@ -3038,6 +3038,7 @@
 <file>completion/preview.cwl</file>
 <file>completion/prftree.cwl</file>
 <file>completion/principia.cwl</file>
+<file>completion/printfilelist.cwl</file>
 <file>completion/printlen.cwl</file>
 <file>completion/printsudoku.cwl</file>
 <file>completion/prnthyph.cwl</file>
@@ -4120,6 +4121,7 @@
 <file>completion/tudscrsupervisor.cwl</file>
 <file>completion/tuple.cwl</file>
 <file>completion/turabian-formatting.cwl</file>
+<file>completion/turkce-sayi.cwl</file>
 <file>completion/turnstile.cwl</file>
 <file>completion/turnthepage.cwl</file>
 <file>completion/tweaklist.cwl</file>
