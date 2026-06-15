@@ -1,5 +1,5 @@
 # scripture package
-# Matthew Bertucci 2026/06/03 for v2.3
+# Matthew Bertucci 2026/06/13 for v2.4
 
 \added{words%text}
 \ch{chapter number}
@@ -61,6 +61,7 @@ befire=%<code%>
 belowskip=##L
 book=%<name%>
 chapter=%<integer%>
+chapter/aboveskip=##L
 chapter/align=#left,right
 chapter/colour=#%color
 chapter/color=#%color
@@ -68,6 +69,8 @@ chapter/drop#true,false
 chapter/font=%<font commands%>
 chapter/format=%<macro%>
 chapter/hide#true,false
+chapter/language=%<language name%>
+chapter/language/variant=%<language variant name%>
 chapter/nodrop#true,false
 chapter/para#true,false
 chapter/para/aboveskip=##L
@@ -96,6 +99,7 @@ heading/show#true,false
 inline#true,false
 inline/begin=%<code%>
 inline/end=%<code%>
+inline/font=%<font%>
 inline/reference/format=%<macro%>
 inline/reference/sep=##L
 inline/version/delim=%<delim%>
@@ -120,6 +124,8 @@ reference/colour=#%color
 reference/color=#%color
 reference/font=%<font commands%>
 reference/format=%<macro%>
+reference/language=%<language name%>
+reference/language/variant=%<language variant name%>
 reference/newline
 reference/position=#start,end
 reference/sep=##L
@@ -143,13 +149,18 @@ verse/firstsep=##L
 verse/font=%<font commands%>
 verse/format=%<macro%>
 verse/hide#true,false
+verse/language=%<language name%>
+verse/language/variant=%<language variant name%>
 verse/para#true,false
 verse/para/indent=##L
+verse/presep=##L
 verse/sep=##L
 verse/show#true,false
 version=%<version%>
 version/delim=%<delim%>
 version/format=%<macro%>
+version/language=%<language name%>
+version/language/variant=%<language variant name%>
 version/position=#withref,end
 center/aboveskip=##L
 center/belowskip=##L

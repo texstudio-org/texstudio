@@ -1,5 +1,5 @@
 # hawkdraw package
-# Matthew Bertucci 2026/06/04 for v0.1.0
+# Matthew Bertucci 2026/06/14 for v0.2.0
 
 #include:l3draw
 
@@ -24,6 +24,7 @@
 \getintersectionlines{point1}{point2}{point3}{point4}
 \getlastpoint
 \getlastslope
+\getpathlength{token list}
 \getpointx{point}
 \getpointy{point}
 \getpoint{point}

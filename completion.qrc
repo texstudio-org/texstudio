@@ -695,6 +695,10 @@
 <file>completion/class-buctthesis.cwl</file>
 <file>completion/class-bull-l.cwl</file>
 <file>completion/class-businesscard-qrcode.cwl</file>
+<file>completion/class-bxjsarticle.cwl</file>
+<file>completion/class-bxjsbook.cwl</file>
+<file>completion/class-bxjsreport.cwl</file>
+<file>completion/class-bxjsslide.cwl</file>
 <file>completion/class-caesar_book.cwl</file>
 <file>completion/class-cas-dc.cwl</file>
 <file>completion/class-cas-sc.cwl</file>
@@ -3034,6 +3038,7 @@
 <file>completion/preview.cwl</file>
 <file>completion/prftree.cwl</file>
 <file>completion/principia.cwl</file>
+<file>completion/printfilelist.cwl</file>
 <file>completion/printlen.cwl</file>
 <file>completion/printsudoku.cwl</file>
 <file>completion/prnthyph.cwl</file>
@@ -3092,6 +3097,7 @@
 <file>completion/pst-calculate.cwl</file>
 <file>completion/pst-calendar.cwl</file>
 <file>completion/pst-char.cwl</file>
+<file>completion/pst-chladni.cwl</file>
 <file>completion/pst-cie.cwl</file>
 <file>completion/pst-circ.cwl</file>
 <file>completion/pst-coil.cwl</file>
@@ -4116,6 +4122,7 @@
 <file>completion/tudscrsupervisor.cwl</file>
 <file>completion/tuple.cwl</file>
 <file>completion/turabian-formatting.cwl</file>
+<file>completion/turkce-sayi.cwl</file>
 <file>completion/turnstile.cwl</file>
 <file>completion/turnthepage.cwl</file>
 <file>completion/tweaklist.cwl</file>

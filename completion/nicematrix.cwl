@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2026/05/14 for v7.9
+# Matthew Bertucci 2026/06/14 for v7.10
 
 #include:amsmath
 #include:array
@@ -107,7 +107,7 @@ hlines-except-borders
 hvlines
 hvlines-except-borders
 corners
-corners=#NW,SW,NE,SE
+corners=#NW,SW,NE,SE,N,S,E,W
 custom-line={%<keyvals%>}
 code-before=%<code%>
 columns-width=##L
