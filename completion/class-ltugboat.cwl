@@ -1,5 +1,5 @@
 # ltugboat class
-# Matthew Bertucci 2025/10/29 for v2.35
+# Matthew Bertucci 2026/06/15 for v2.37
 
 #include:mflogo
 #include:gettitlestring
@@ -215,6 +215,7 @@ runningoff
 \mf
 \MFB
 \midrtitle
+\MiKTeX
 \minutes#*
 \MkIV
 \mp
@@ -373,6 +374,7 @@ runningoff
 \TestIffalse#*
 \TestIftrue#*
 \TeXhax
+\TeXLive
 \TeXMaG
 \texorpdfstring{arg1}{arg2}#*
 \textSMC{text}#*
@@ -409,6 +411,7 @@ runningoff
 \tubcaptionleftglue#*
 \tubcentsold#S
 \TUBdefaulteTeX#*
+\tubdisc#*
 \tubdoiprefix#*
 \tubdots
 \TUBedit{text}#*
