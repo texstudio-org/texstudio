@@ -3097,6 +3097,7 @@
 <file>completion/pst-calculate.cwl</file>
 <file>completion/pst-calendar.cwl</file>
 <file>completion/pst-char.cwl</file>
+<file>completion/pst-chladni.cwl</file>
 <file>completion/pst-cie.cwl</file>
 <file>completion/pst-circ.cwl</file>
 <file>completion/pst-coil.cwl</file>
