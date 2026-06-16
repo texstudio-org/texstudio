@@ -78,6 +78,7 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <foreground>#808000</foreground>
+        <priority>0</priority>
     </format>
 	<format id="link" >
         <underline>true</underline>
@@ -223,7 +224,7 @@
     <format id="grammarMistakeSpecial4" >
         <background>#C8FF61</background>
     </format>
-    
+
     <format id="latexSyntaxMistake" >
         <background>#FFBF9F</background>
     </format>
@@ -373,7 +374,7 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <foreground>#006400</foreground>
-    </format>	
+    </format>
 	</format>
 	    <format id="dtx:verbatim" >
         <bold>false</bold>
@@ -392,7 +393,7 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <foreground>#CC8100</foreground>
-    </format>	
+    </format>
     <format id="dtx:commands" >
         <bold>true</bold>
         <italic>false</italic>

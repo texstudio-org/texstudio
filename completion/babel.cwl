@@ -684,7 +684,7 @@ select.encoding=#off
 \glossaryname#*
 #endif
 
-### breton.ldf v1.0f ###
+### breton.ldf v2.0.1 ###
 #ifOption:breton
 \captionsbreton#*
 \datebreton#*
@@ -701,18 +701,32 @@ select.encoding=#off
 \alsoname#*
 \proofname#*
 \glossaryname#*
-\at
 \boi
-\circonflexe
-\tild
-\degre
-\kentan
+\BRcolonspace
+\BRguillspace
+\BRSetColonSpace{width}{stretch}{shrink}
+\BRSetGuillSpace{width}{stretch}{shrink}
+\BRSetThinSpace{width}{stretch}{shrink}
+\BRthinspace
+\deiziad{year}{month}{day}
+\derez
 \eil
-\re
-\trede
-\pevare
-\vet
+\kentan
+\Ker
+\Ker[skip]
+\Ker[skip][scale]
+\kerbihan
+\kerbihan[skip]
+\kerbihan[skip][scale]
+\kilveskell
+\NoBRspacing
 \pempvet
+\pevare
+\re
+\tildenn
+\tiredkognek
+\trede
+\vet
 #endif
 
 ### bulgarian.ldf v1.2g ###
