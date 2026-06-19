@@ -1923,6 +1923,9 @@ void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
     masterDocument = doc;
     if(doc && lp != doc->lp){
         // set lp in newly included document
+        if(lp){
+            lp->projectDocuments.clear(); // clear old cache
+        }
         lp=doc->lp;
     }
     lp->projectDocuments.clear(); // clear cache
@@ -3514,6 +3517,9 @@ void LatexDocument::addLtxCommands()
 void LatexDocument::setLtxCommands(QSharedPointer<LatexParser> cmds)
 {
     synChecker.setLtxCommands(cmds);
+    if(lp && lp!=cmds){
+        lp->projectDocuments.clear(); // clear old cache
+    }
 	lp = cmds;
 
 	LatexEditorView *view = getEditorView();
