@@ -2211,6 +2211,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
                         elem->setMasterDocument(nullptr);
                 }
             }
+            if (document->lp) document->lp->projectDocuments.clear(); // clear cache before deletion to avoid dangling pointer
             delete document;
             if (rootDoc != document) {
                 // update parents
@@ -2237,6 +2238,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
         }
         if (hidden) {
             hiddenDocuments.removeAll(document);
+            if (document->lp) document->lp->projectDocuments.clear(); // clear stale cache
             return;
         }
         if (n > 1 && !document->getFileName().isEmpty()) { // at least one related document will be open after removal
@@ -2252,6 +2254,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
             }
         } else {
             // no open document remains, remove all others as well
+            if (document->lp) document->lp->projectDocuments.clear(); // clear cache before deleting related docs
             foreach (LatexDocument *elem, getDocuments()) {
                 if (elem->containsChild(document)) {
                     elem->removeChild(document);
@@ -2289,6 +2292,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
     } else {
         if (hidden) {
             hiddenDocuments.removeAll(document);
+            if (document->lp) document->lp->projectDocuments.clear(); // clear stale cache
             return;
         }
         document->setFileName(document->getFileName());
