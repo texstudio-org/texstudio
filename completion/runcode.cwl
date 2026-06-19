@@ -1,5 +1,5 @@
 # runcode package
-# Matthew Bertucci 2024/01/17 for v2.3
+# Matthew Bertucci 2026/06/11 for v2.4.1
 
 #include:etoolbox
 #include:morewrites
@@ -260,33 +260,35 @@ bg#B
 \begin{codelisting}[number]#SV
 \end{codelisting}#S
 \checkZeroBytes{arg}#S
-\runcmd{arg1}{arg2}#S
-\setvalue{cmd}{def}#Sd
-\thecodeOutput#S
-\thecodelisting#S
 \generated#S
-\tempfile#S
-\tmpname#S
-\ifruncode#S
-\runcodetrue#S
-\runcodefalse#S
-\ifminted#S
-\mintedtrue#S
-\mintedfalse#S
-\ifreducedspace#S
-\reducedspacetrue#S
-\reducedspacefalse#S
-\ifnotnohup#S
-\notnohuptrue#S
-\notnohupfalse#S
 \ifinlnrun#S
-\inlnruntrue#S
-\inlnrunfalse#S
-\langs#S
-\theportNo#S
+\ifminted#S
+\ifnotnohup#S
+\ifreducedspace#S
+\ifruncode#S
 \InitLang{arg}#S
-\writeChunk{arg1}{arg2}#S
-\writeChunk{arg1}{arg2}[opt]#S
-\writeChunk{arg1}{arg2}[opt1][opt2]#S
+\inlnrunfalse#S
+\inlnruntrue#S
 \LANG#S
 \LANGcmd#S
+\langs#S
+\mintedfalse#S
+\mintedtrue#S
+\notnohupfalse#S
+\notnohuptrue#S
+\reducedspacefalse#S
+\reducedspacetrue#S
+\runcmd{arg1}{arg2}#S
+\runcodefalse#S
+\runcodeReadStream#S
+\runcodetrue#S
+\runcodeWriteStream#S
+\setvalue{cmd}{def}#Sd
+\tempfile#S
+\thecodelisting#S
+\thecodeOutput#S
+\theportNo#S
+\tmpname#S
+\writeChunk{arg1}{arg2}#S
+\writeChunk{arg1}{arg2}[opt1][opt2]#S
+\writeChunk{arg1}{arg2}[opt]#S

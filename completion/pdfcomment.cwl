@@ -1,19 +1,14 @@
 # pdfcomment package
-# Matthew Bertucci 11/8/2021 for v2.4a
+# Matthew Bertucci 2026/06/14 for v3.0a
 
-#include:xkeyval
+#include:hyperref
 #include:etoolbox
-#include:luatex85
-#include:datetime2
 #include:zref-savepos
 #include:refcount
 #include:ifthen
-#include:calc
 #include:marginnote
-#include:ifpdf
-#include:ifluatex
 #include:soulpos
-#include:hyperref
+
 
 #keyvals:\usepackage/pdfcomment#c
 final
@@ -194,8 +189,10 @@ justification=#left,right
 
 \pdflinecomment{comment%text}
 \pdflinecomment[options%keyvals]{comment%text}
+\pdfreply{comment%text}
+\pdfreply[options%keyvals]{comment%text}
 
-#keyvals:\pdflinecomment
+#keyvals:\pdflinecomment,\pdfreply
 avatar=%<avatar%>
 style=%<style%>
 subject=%<subject%>
@@ -220,10 +217,16 @@ date=%<date%>
 timezone=%<timezone%>
 #endkeyvals
 
+#keyvals:\pdfreply
+replyto=%<id%>
+#endkeyvals
+
 \pdftooltip{object}{comment%text}
 \pdftooltip[options%keyvals]{object}{comment%text}
+\pdfsquaretooltip{object}{comment%text}
+\pdfsquaretooltip[options%keyvals]{object}{comment%text}
 
-#keyvals:\pdftooltip
+#keyvals:\pdftooltip,\pdfsquaretooltip
 disable#true,false
 mathstyle=
 #endkeyvals
