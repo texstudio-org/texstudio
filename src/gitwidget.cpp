@@ -141,7 +141,7 @@ void GitWidget::refresh()
         // Colour-code by status
         if (entry.statusCode.contains('?')) {
             item->setForeground(Qt::gray);
-        } else if (entry.statusCode.trimmed() == "M" || entry.statusCode == " M") {
+        } else if (entry.statusCode == "M " || entry.statusCode == " M" || entry.statusCode == "MM") {
             item->setForeground(QColor(0, 128, 0)); // green for modified
         } else if (entry.statusCode.startsWith('A')) {
             item->setForeground(QColor(0, 0, 200)); // blue for added
@@ -173,7 +173,11 @@ void GitWidget::onCommit()
     }
 
     // Stage all changes first, then commit
-    m_git->runGit("add -A", rpath, "");
+    const QString addOut = m_git->runGit("add -A", rpath, "");
+    if (addOut.contains("error:") || addOut.contains("fatal:")) {
+        updateStatus(tr("Staging failed: %1").arg(addOut.trimmed()));
+        return;
+    }
     m_git->commit(rpath, msg);
     m_commitMessage->clear();
     updateStatus(tr("Committed: %1").arg(msg));
@@ -189,8 +193,9 @@ void GitWidget::onPush()
     if (rpath.isEmpty()) return;
     updateStatus(tr("Pushing…"));
     m_git->push(rpath);
-    updateStatus(tr("Push complete."));
+    // re-read branch and files to reflect possible tracking info update
     refresh();
+    updateStatus(tr("Push complete."));
 }
 
 /*!
@@ -202,8 +207,8 @@ void GitWidget::onPull()
     if (rpath.isEmpty()) return;
     updateStatus(tr("Pulling…"));
     m_git->pull(rpath);
-    updateStatus(tr("Pull complete."));
     refresh();
+    updateStatus(tr("Pull complete."));
 }
 
 /*!
@@ -215,12 +220,13 @@ void GitWidget::onFetch()
     if (rpath.isEmpty()) return;
     updateStatus(tr("Fetching…"));
     m_git->fetch(rpath);
-    updateStatus(tr("Fetch complete."));
     refresh();
+    updateStatus(tr("Fetch complete."));
 }
 
 /*!
  * \brief Emit a signal so that the main window can open the double-clicked file.
+ * Files that no longer exist on disk (e.g. deleted) are silently skipped.
  */
 void GitWidget::onItemDoubleClicked(QListWidgetItem *item)
 {
@@ -228,6 +234,7 @@ void GitWidget::onItemDoubleClicked(QListWidgetItem *item)
     const QString repoRoot = item->data(Qt::UserRole + 1).toString();
     const QString relPath  = item->data(Qt::UserRole).toString();
     const QString fullPath = QDir(repoRoot).filePath(relPath);
+    if (!QFileInfo::exists(fullPath)) return;
     emit fileActivated(fullPath);
 }
 
