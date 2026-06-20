@@ -6,7 +6,7 @@ class LatexDocument;
 
 
 /*!
- * \brief class for storing latex syntax informtion and latex parsing
+ * \brief class for storing latex syntax information and latex parsing
  *
  * The latex parsing is less important since the token based system, but the storage of syntax information is still used.
  */
