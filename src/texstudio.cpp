@@ -3861,6 +3861,18 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     if (warnMissing && !missingFiles.isEmpty()) {
         UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
     }
+    // Explicitly update the git panel after session restore.
+    // currentEditorChanged() is skipped during loading (mDisableTOCupdates=true)
+    // and may not fire again if the active editor did not change.
+    if (gitWidget) {
+        LatexEditorView *edView = currentEditorView();
+        if (edView && edView->getDocument()) {
+            LatexDocument *rootDoc = edView->getDocument()->getRootDocument();
+            QFileInfo fi = rootDoc->getFileInfo();
+            if (!fi.filePath().isEmpty())
+                gitWidget->setPath(fi.absoluteFilePath());
+        }
+    }
     qDebug()<<"total time for restoring session and completer:"<<time.elapsed()<<"ms";
 }
 

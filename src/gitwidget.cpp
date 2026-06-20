@@ -1,4 +1,5 @@
 #include "gitwidget.h"
+#include "smallUsefulFunctions.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -9,7 +10,7 @@
 #include <QLabel>
 #include <QToolButton>
 #include <QSplitter>
-#include <QHeaderView>
+#include <QTabWidget>
 #include <QFileInfo>
 #include <QDir>
 #include <QMessageBox>
@@ -30,24 +31,24 @@ void GitWidget::setupUi()
     // Branch row
     QHBoxLayout *branchLayout = new QHBoxLayout();
     branchLayout->setContentsMargins(0, 0, 0, 0);
-    QLabel *branchIcon = new QLabel(QString::fromUtf8("\u2387 ")); // circled i as placeholder
+    QLabel *branchIcon = new QLabel(QString::fromUtf8("\u2387 "));
     branchIcon->setToolTip(tr("Current branch"));
     m_branchLabel = new QLabel(tr("(no repository)"));
     m_branchLabel->setToolTip(tr("Current branch"));
     m_btnRefresh = new QToolButton();
-    m_btnRefresh->setText(QString::fromUtf8("\u21BB")); // refresh symbol
+    m_btnRefresh->setText(QString::fromUtf8("\u21BB"));
     m_btnRefresh->setToolTip(tr("Refresh"));
     branchLayout->addWidget(branchIcon);
     branchLayout->addWidget(m_branchLabel, 1);
     branchLayout->addWidget(m_btnRefresh);
     mainLayout->addLayout(branchLayout);
 
-    // Action buttons row
+    // Fetch / Pull / Push buttons
     QHBoxLayout *btnLayout = new QHBoxLayout();
     btnLayout->setContentsMargins(0, 0, 0, 0);
-    m_btnFetch  = new QPushButton(tr("Fetch"));
-    m_btnPull   = new QPushButton(tr("Pull"));
-    m_btnPush   = new QPushButton(tr("Push"));
+    m_btnFetch = new QPushButton(tr("Fetch"));
+    m_btnPull  = new QPushButton(tr("Pull"));
+    m_btnPush  = new QPushButton(tr("Push"));
     m_btnFetch->setToolTip(tr("git fetch"));
     m_btnPull->setToolTip(tr("git pull"));
     m_btnPush->setToolTip(tr("git push"));
@@ -56,51 +57,73 @@ void GitWidget::setupUi()
     btnLayout->addWidget(m_btnPush);
     mainLayout->addLayout(btnLayout);
 
-    // Splitter: file list on top, commit area on bottom
-    QSplitter *splitter = new QSplitter(Qt::Vertical, this);
+    // Tab widget: "Changes" and "History"
+    m_tabWidget = new QTabWidget(this);
 
-    // Changed files list
+    // ---- "Changes" tab ----
+    QWidget *changesTab = new QWidget();
+    QVBoxLayout *changesLayout = new QVBoxLayout(changesTab);
+    changesLayout->setContentsMargins(0, 4, 0, 0);
+    changesLayout->setSpacing(4);
+
+    // Stage-all / Unstage-all helper buttons
+    QHBoxLayout *stageLayout = new QHBoxLayout();
+    stageLayout->setContentsMargins(0, 0, 0, 0);
+    m_btnStageAll   = new QPushButton(tr("Stage All"));
+    m_btnUnstageAll = new QPushButton(tr("Unstage All"));
+    m_btnStageAll->setToolTip(tr("Check all files for staging"));
+    m_btnUnstageAll->setToolTip(tr("Uncheck all files"));
+    stageLayout->addWidget(m_btnStageAll);
+    stageLayout->addWidget(m_btnUnstageAll);
+    changesLayout->addLayout(stageLayout);
+
+    // File list with checkboxes
     m_fileList = new QListWidget();
-    m_fileList->setToolTip(tr("Changed files — double-click to open"));
+    m_fileList->setToolTip(tr("Check files to stage; double-click to open"));
     m_fileList->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    splitter->addWidget(m_fileList);
+    changesLayout->addWidget(m_fileList, 2);
 
     // Commit area
-    QWidget *commitWidget = new QWidget();
-    QVBoxLayout *commitLayout = new QVBoxLayout(commitWidget);
-    commitLayout->setContentsMargins(0, 0, 0, 0);
-    commitLayout->setSpacing(4);
     QLabel *msgLabel = new QLabel(tr("Commit message:"));
     m_commitMessage = new QTextEdit();
     m_commitMessage->setPlaceholderText(tr("Message (press Ctrl+Enter to commit)"));
     m_commitMessage->setMaximumHeight(80);
-    m_btnCommit = new QPushButton(tr("Commit"));
-    m_btnCommit->setToolTip(tr("Stage all changes and commit"));
-    commitLayout->addWidget(msgLabel);
-    commitLayout->addWidget(m_commitMessage);
-    commitLayout->addWidget(m_btnCommit);
-    splitter->addWidget(commitWidget);
+    m_btnCommit = new QPushButton(tr("Commit Staged"));
+    m_btnCommit->setToolTip(tr("Stage checked files and commit"));
+    changesLayout->addWidget(msgLabel);
+    changesLayout->addWidget(m_commitMessage, 1);
+    changesLayout->addWidget(m_btnCommit);
 
-    splitter->setStretchFactor(0, 3);
-    splitter->setStretchFactor(1, 1);
-    mainLayout->addWidget(splitter, 1);
+    m_tabWidget->addTab(changesTab, tr("Changes"));
 
-    // Status label at the bottom
+    // ---- "History" tab ----
+    m_historyList = new QListWidget();
+    m_historyList->setToolTip(tr("Recent commits (most recent first)"));
+    m_tabWidget->addTab(m_historyList, tr("History"));
+
+    mainLayout->addWidget(m_tabWidget, 1);
+
+    // Status label
     m_statusLabel = new QLabel();
     m_statusLabel->setWordWrap(true);
     mainLayout->addWidget(m_statusLabel);
 
     // Connections
-    connect(m_btnRefresh, &QToolButton::clicked, this, &GitWidget::refresh);
-    connect(m_btnCommit, &QPushButton::clicked, this, &GitWidget::onCommit);
-    connect(m_btnPush, &QPushButton::clicked, this, &GitWidget::onPush);
-    connect(m_btnPull, &QPushButton::clicked, this, &GitWidget::onPull);
-    connect(m_btnFetch, &QPushButton::clicked, this, &GitWidget::onFetch);
-    connect(m_fileList, &QListWidget::itemDoubleClicked, this, &GitWidget::onItemDoubleClicked);
+    connect(m_btnRefresh,   &QToolButton::clicked,  this, &GitWidget::refresh);
+    connect(m_btnCommit,    &QPushButton::clicked,  this, &GitWidget::onCommit);
+    connect(m_btnPush,      &QPushButton::clicked,  this, &GitWidget::onPush);
+    connect(m_btnPull,      &QPushButton::clicked,  this, &GitWidget::onPull);
+    connect(m_btnFetch,     &QPushButton::clicked,  this, &GitWidget::onFetch);
+    connect(m_btnStageAll,  &QPushButton::clicked,  this, &GitWidget::onStageAll);
+    connect(m_btnUnstageAll,&QPushButton::clicked,  this, &GitWidget::onUnstageAll);
+    connect(m_fileList, &QListWidget::itemDoubleClicked,
+            this, &GitWidget::onItemDoubleClicked);
+    connect(m_tabWidget, &QTabWidget::currentChanged,
+            this, &GitWidget::onTabChanged);
 }
 
 /*!
- * \brief Set the repository path.
+ * \brief Set the repository path and refresh the panel.
  * Passing an empty string resets the widget.
  */
 void GitWidget::setPath(const QString &path)
@@ -110,7 +133,7 @@ void GitWidget::setPath(const QString &path)
 }
 
 /*!
- * \brief Refresh the changed-files list and branch label.
+ * \brief Refresh the panel content for whichever tab is currently visible.
  */
 void GitWidget::refresh()
 {
@@ -118,6 +141,7 @@ void GitWidget::refresh()
     if (rpath.isEmpty()) {
         m_branchLabel->setText(tr("(no file open)"));
         m_fileList->clear();
+        m_historyList->clear();
         return;
     }
 
@@ -125,41 +149,75 @@ void GitWidget::refresh()
     if (branch.isEmpty() || branch.startsWith("fatal")) {
         m_branchLabel->setText(tr("(no repository)"));
         m_fileList->clear();
+        m_historyList->clear();
         m_statusLabel->clear();
         return;
     }
     m_branchLabel->setText(branch);
 
-    const QList<GIT::FileEntry> files = m_git->getChangedFiles(rpath);
-    m_fileList->clear();
-    for (const GIT::FileEntry &entry : files) {
-        QListWidgetItem *item = new QListWidgetItem();
-        // Show status code and filename
-        item->setText(entry.statusCode + "  " + entry.filePath);
-        item->setData(Qt::UserRole, entry.filePath);
-        item->setData(Qt::UserRole + 1, rpath);
-        // Colour-code by status
-        if (entry.statusCode.contains('?')) {
-            item->setForeground(Qt::gray);
-        } else if (entry.statusCode == "M " || entry.statusCode == " M" || entry.statusCode == "MM") {
-            item->setForeground(QColor(0, 128, 0)); // green for modified
-        } else if (entry.statusCode.startsWith('A')) {
-            item->setForeground(QColor(0, 0, 200)); // blue for added
-        } else if (entry.statusCode.startsWith('D') || entry.statusCode == " D") {
-            item->setForeground(Qt::red); // red for deleted
-        }
-        m_fileList->addItem(item);
-    }
-
-    if (files.isEmpty()) {
-        m_statusLabel->setText(tr("No changes"));
+    if (m_tabWidget->currentIndex() == 1) {
+        refreshHistory();
     } else {
-        m_statusLabel->setText(tr("%n change(s)", "", files.size()));
+        // Refresh "Changes" tab
+        const QList<GIT::FileEntry> files = m_git->getChangedFiles(rpath);
+        m_fileList->clear();
+        for (const GIT::FileEntry &entry : files) {
+            QListWidgetItem *item = new QListWidgetItem();
+            item->setText(entry.statusCode + "  " + entry.filePath);
+            item->setData(Qt::UserRole,     entry.filePath);
+            item->setData(Qt::UserRole + 1, rpath);
+            item->setCheckState(Qt::Unchecked);
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+            // Colour-code by status
+            if (entry.statusCode.contains('?')) {
+                item->setForeground(Qt::gray);
+            } else if (entry.statusCode == "M " || entry.statusCode == " M"
+                       || entry.statusCode == "MM") {
+                item->setForeground(QColor(0, 128, 0));
+            } else if (entry.statusCode.startsWith('A')) {
+                item->setForeground(QColor(0, 0, 200));
+            } else if (entry.statusCode.startsWith('D')
+                       || entry.statusCode == " D") {
+                item->setForeground(Qt::red);
+            }
+            // Pre-check files that are already staged (first char != ' '/'?')
+            const QChar staged = entry.statusCode.isEmpty()
+                                     ? QChar(' ')
+                                     : entry.statusCode.at(0);
+            if (staged != ' ' && staged != '?') {
+                item->setCheckState(Qt::Checked);
+            }
+            m_fileList->addItem(item);
+        }
+
+        if (files.isEmpty()) {
+            m_statusLabel->setText(tr("No changes"));
+        } else {
+            m_statusLabel->setText(tr("%n change(s)", "", files.size()));
+        }
     }
 }
 
 /*!
- * \brief Commit all staged/changed files using the text in the commit message box.
+ * \brief Populate the History tab with the recent commit log.
+ */
+void GitWidget::refreshHistory()
+{
+    const QString rpath = resolvedPath();
+    m_historyList->clear();
+    if (rpath.isEmpty()) return;
+
+    const QStringList entries = m_git->getRepoLog(rpath);
+    for (const QString &entry : entries) {
+        m_historyList->addItem(entry);
+    }
+    if (entries.isEmpty()) {
+        m_historyList->addItem(tr("(no commits)"));
+    }
+}
+
+/*!
+ * \brief Stage checked files and commit with the message in the message box.
  */
 void GitWidget::onCommit()
 {
@@ -168,17 +226,44 @@ void GitWidget::onCommit()
 
     const QString msg = m_commitMessage->toPlainText().trimmed();
     if (msg.isEmpty()) {
-        QMessageBox::warning(this, tr("Git Commit"), tr("Please enter a commit message."));
+        QMessageBox::warning(this, tr("Git Commit"),
+                             tr("Please enter a commit message."));
         return;
     }
 
-    // Stage all changes first, then commit
-    const QString addOut = m_git->runGit("add -A", rpath, "");
-    if (addOut.contains("error:") || addOut.contains("fatal:")) {
-        updateStatus(tr("Staging failed: %1").arg(addOut.trimmed()));
+    // Collect checked files
+    QStringList filesToStage;
+    for (int i = 0; i < m_fileList->count(); ++i) {
+        QListWidgetItem *item = m_fileList->item(i);
+        if (item->checkState() == Qt::Checked) {
+            filesToStage << item->data(Qt::UserRole).toString();
+        }
+    }
+
+    if (filesToStage.isEmpty()) {
+        QMessageBox::warning(this, tr("Git Commit"),
+                             tr("No files selected for staging.\n"
+                                "Check the files you want to include in the commit."));
         return;
     }
-    m_git->commit(rpath, msg);
+
+    // Stage each selected file
+    for (const QString &file : filesToStage) {
+        const QString addOut = m_git->runGit("add", rpath, GIT::quote(file));
+        if (addOut.contains("error:") || addOut.contains("fatal:")) {
+            updateStatus(tr("Staging failed: %1").arg(addOut.trimmed()));
+            return;
+        }
+    }
+
+    // Commit what is now staged
+    const QString commitOut = m_git->runGit("commit", rpath,
+                                            "-m " + enquoteStr(msg));
+    if (commitOut.contains("error:") || commitOut.contains("fatal:")) {
+        updateStatus(tr("Commit failed: %1").arg(commitOut.trimmed()));
+        return;
+    }
+
     m_commitMessage->clear();
     updateStatus(tr("Committed: %1").arg(msg));
     refresh();
@@ -191,9 +276,8 @@ void GitWidget::onPush()
 {
     const QString rpath = resolvedPath();
     if (rpath.isEmpty()) return;
-    updateStatus(tr("Pushing…"));
+    updateStatus(tr("Pushing\u2026"));
     m_git->push(rpath);
-    // re-read branch and files to reflect possible tracking info update
     refresh();
     updateStatus(tr("Push complete."));
 }
@@ -205,7 +289,7 @@ void GitWidget::onPull()
 {
     const QString rpath = resolvedPath();
     if (rpath.isEmpty()) return;
-    updateStatus(tr("Pulling…"));
+    updateStatus(tr("Pulling\u2026"));
     m_git->pull(rpath);
     refresh();
     updateStatus(tr("Pull complete."));
@@ -218,14 +302,14 @@ void GitWidget::onFetch()
 {
     const QString rpath = resolvedPath();
     if (rpath.isEmpty()) return;
-    updateStatus(tr("Fetching…"));
+    updateStatus(tr("Fetching\u2026"));
     m_git->fetch(rpath);
     refresh();
     updateStatus(tr("Fetch complete."));
 }
 
 /*!
- * \brief Emit a signal so that the main window can open the double-clicked file.
+ * \brief Open the double-clicked file in the editor.
  * Files that no longer exist on disk (e.g. deleted) are silently skipped.
  */
 void GitWidget::onItemDoubleClicked(QListWidgetItem *item)
@@ -238,14 +322,43 @@ void GitWidget::onItemDoubleClicked(QListWidgetItem *item)
     emit fileActivated(fullPath);
 }
 
+/*!
+ * \brief Check all files in the list (stage all).
+ */
+void GitWidget::onStageAll()
+{
+    for (int i = 0; i < m_fileList->count(); ++i) {
+        m_fileList->item(i)->setCheckState(Qt::Checked);
+    }
+}
+
+/*!
+ * \brief Uncheck all files in the list (unstage all).
+ */
+void GitWidget::onUnstageAll()
+{
+    for (int i = 0; i < m_fileList->count(); ++i) {
+        m_fileList->item(i)->setCheckState(Qt::Unchecked);
+    }
+}
+
+/*!
+ * \brief Refresh history when switching to the History tab.
+ */
+void GitWidget::onTabChanged(int index)
+{
+    if (index == 1) {
+        refreshHistory();
+    }
+}
+
 void GitWidget::updateStatus(const QString &msg)
 {
     m_statusLabel->setText(msg);
 }
 
 /*!
- * \brief Return the resolved path (the git root directory) to use for git operations.
- * Falls back to QDir::currentPath() if m_path is not set.
+ * \brief Return the resolved repository path for git operations.
  */
 QString GitWidget::resolvedPath() const
 {
@@ -256,3 +369,4 @@ QString GitWidget::resolvedPath() const
     }
     return QString();
 }
+

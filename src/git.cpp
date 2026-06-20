@@ -39,6 +39,28 @@ void GIT::commit(QString filename, QString message)
     runGit("add", quote(filename));
     runGit("commit", "-m " + enquoteStr(message) + " " + quote(filename));
 }
+
+/*!
+ * \brief Stage a list of files in the given repository.
+ * \param path repository root directory
+ * \param files list of relative file paths to stage
+ */
+void GIT::stageFiles(const QString &path, const QStringList &files)
+{
+    for (const QString &file : files) {
+        runGit("add", quote(path), quote(file));
+    }
+}
+
+/*!
+ * \brief Commit all currently staged changes in the repository.
+ * \param path repository root directory
+ * \param message commit message
+ */
+void GIT::commitStaged(const QString &path, const QString &message)
+{
+    runGit("commit", quote(path), "-m " + enquoteStr(message));
+}
 /*!
  * \brief GIT push
  * \param filename
@@ -164,6 +186,29 @@ QString GIT::getCurrentBranch(QString path)
 {
     const QString output = runGit("rev-parse --abbrev-ref HEAD", quote(path), "");
     return output.trimmed();
+}
+
+/*!
+ * \brief get the repository-wide commit history (most recent first)
+ * \param path repository root directory
+ * \param maxEntries maximum number of log entries to return
+ * \return list of log lines in "short-hash subject" format
+ */
+QStringList GIT::getRepoLog(const QString &path, int maxEntries)
+{
+    const QString output = runGit(
+        QString("log --oneline -n %1").arg(maxEntries),
+        quote(path), "");
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+#else
+    QStringList lines = output.split('\n', QString::SkipEmptyParts);
+#endif
+    for (QString &line : lines) {
+        line = line.trimmed();
+    }
+    lines.removeAll(QString());
+    return lines;
 }
 /*!
  * \brief run GIT command

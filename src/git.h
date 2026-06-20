@@ -24,11 +24,14 @@ public:
 	static QString makeCmd(QString action, QString args);
 
     void commit(QString filename, QString message);
+    void stageFiles(const QString &path, const QStringList &files);
+    void commitStaged(const QString &path, const QString &message);
     void push(QString filename);
     void pull(QString path);
     void fetch(QString path);
     Status status(QString filename);
     QStringList log(QString filename);
+    QStringList getRepoLog(const QString &path, int maxEntries = 100);
     void createRepository(QString filename);
     QList<FileEntry> getChangedFiles(QString path);
     QString getCurrentBranch(QString path);
