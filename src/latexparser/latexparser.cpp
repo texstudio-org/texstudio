@@ -236,7 +236,7 @@ void LatexParser::append(const LatexParser &elem)
 		possibleCommands[key].unite(set);
 		++i;
 	}
-	foreach (const QString key, elem.environmentAliases.keys()) {
+    foreach (const QString &key, elem.environmentAliases.keys()) {
 		QStringList values = elem.environmentAliases.values(key);
 		foreach (const QString value, values) {
 			if (!environmentAliases.contains(key, value))
