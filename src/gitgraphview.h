@@ -32,6 +32,7 @@ public:
 protected:
     void paintEvent(QPaintEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
+    void changeEvent(QEvent *event) override;
 
 private:
     // One drawing segment: a line from (fromLane, row_center) to (toLane, next_row_center).
@@ -71,6 +72,9 @@ private:
 
     int m_maxLanes   = 1;
     int m_textOffset = 0; ///< x-coordinate where commit text starts
+
+    // Cached font metrics – updated on font-change events.
+    QFontMetrics m_fm;
 };
 
 #endif // GITGRAPHVIEW_H

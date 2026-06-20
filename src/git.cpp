@@ -242,7 +242,14 @@ QList<GIT::GraphEntry> GIT::getRepoLogGraph(const QString &path, int maxEntries)
     return result;
 }
 
-
+/*!
+ * \brief get the repository-wide commit history (most recent first)
+ * \param path repository root directory
+ * \param maxEntries maximum number of log entries to return
+ * \return list of log lines in "short-hash subject" format
+ */
+QStringList GIT::getRepoLog(const QString &path, int maxEntries)
+{
     const QString output = runGit(
         QString("log --oneline -n %1").arg(maxEntries),
         quote(path), "");

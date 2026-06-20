@@ -24,6 +24,7 @@ static constexpr int NUM_COLORS = static_cast<int>(sizeof(s_laneColors) / sizeof
 
 GitGraphView::GitGraphView(QWidget *parent)
     : QAbstractScrollArea(parent)
+    , m_fm(font())
 {
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -250,11 +251,20 @@ void GitGraphView::updateScrollBars()
     horizontalScrollBar()->setSingleStep(20);
     horizontalScrollBar()->setPageStep(viewport()->width());
 }
-
 void GitGraphView::resizeEvent(QResizeEvent *event)
 {
     QAbstractScrollArea::resizeEvent(event);
     updateScrollBars();
+}
+
+void GitGraphView::changeEvent(QEvent *event)
+{
+    QAbstractScrollArea::changeEvent(event);
+    if (event->type() == QEvent::FontChange) {
+        m_fm = QFontMetrics(font());
+        updateScrollBars();
+        viewport()->update();
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -274,9 +284,8 @@ void GitGraphView::paintEvent(QPaintEvent *event)
 
     if (m_rows.isEmpty()) return;
 
-    const QFontMetrics fm = fontMetrics();
     // Vertical centre of the text baseline within a row.
-    const int baselineOff = (k_rowHeight + fm.ascent() - fm.descent()) / 2;
+    const int baselineOff = (k_rowHeight + m_fm.ascent() - m_fm.descent()) / 2;
 
     // Only paint visible rows (with one extra row above/below for partial rows).
     const int firstRow = qMax(0,                     scrollY / k_rowHeight - 1);
@@ -324,9 +333,9 @@ void GitGraphView::paintEvent(QPaintEvent *event)
 
         // Ref badges
         for (const RefBadge &badge : parseRefs(rd.refs)) {
-            const int bw = fm.horizontalAdvance(badge.text) + 6;
-            const int bh = fm.height() + 2;
-            const int by = ty - fm.ascent() - 1;
+            const int bw = m_fm.horizontalAdvance(badge.text) + 6;
+            const int bh = m_fm.height() + 2;
+            const int by = ty - m_fm.ascent() - 1;
 
             p.setBrush(badge.bg);
             p.setPen(Qt::NoPen);
@@ -342,7 +351,7 @@ void GitGraphView::paintEvent(QPaintEvent *event)
         const QString hashStr = rd.shortHash + QLatin1String("  ");
         p.setPen(QColor(0x80, 0x80, 0x80));
         p.drawText(tx, ty, hashStr);
-        tx += fm.horizontalAdvance(hashStr);
+        tx += m_fm.horizontalAdvance(hashStr);
 
         // Subject
         p.setPen(palette().text().color());
