@@ -45,6 +45,7 @@ LatexParser::LatexParser(const LatexParser &other){
 
 LatexParser &LatexParser::operator=(const LatexParser &other)
 {
+    if (this == &other) return *this;
     commandDefs=other.commandDefs;
     environmentCommands=other.environmentCommands;
     mathStartCommands=other.mathStartCommands;
@@ -56,6 +57,8 @@ LatexParser &LatexParser::operator=(const LatexParser &other)
     specialDefCommands=other.specialDefCommands;
     mapSpecialArgs=other.mapSpecialArgs;
     mapSpecialArgumentTypes=other.mapSpecialArgumentTypes;
+    projectDocuments=other.projectDocuments;
+    sectionCommands=other.sectionCommands;
     return *this;
 }
 LatexParser &LatexParser::getInstance()
