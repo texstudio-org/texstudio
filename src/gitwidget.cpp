@@ -1,5 +1,6 @@
 #include "gitwidget.h"
 #include "gitgraphview.h"
+#include "utilsSystem.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -49,6 +50,9 @@ void GitWidget::setupUi()
     m_btnFetch = new QPushButton(tr("Fetch"));
     m_btnPull  = new QPushButton(tr("Pull"));
     m_btnPush  = new QPushButton(tr("Push"));
+    m_btnFetch->setIcon(getRealIcon("syncSource"));
+    m_btnPull->setIcon(getRealIcon("down-arrow-circle-silver"));
+    m_btnPush->setIcon(getRealIcon("up-arrow-circle-silver"));
     m_btnFetch->setToolTip(tr("git fetch"));
     m_btnPull->setToolTip(tr("git pull"));
     m_btnPush->setToolTip(tr("git push"));
