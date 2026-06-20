@@ -180,10 +180,10 @@ void GitWidget::refresh()
                 item->setForeground(Qt::red);
             }
             // Pre-check files that are already staged (first char != ' '/'?')
-            const QChar staged = entry.statusCode.isEmpty()
-                                     ? QChar(' ')
-                                     : entry.statusCode.at(0);
-            if (staged != ' ' && staged != '?') {
+            const QChar indexStatus = entry.statusCode.isEmpty()
+                                          ? QChar(' ')
+                                          : entry.statusCode.at(0);
+            if (indexStatus != ' ' && indexStatus != '?') {
                 item->setCheckState(Qt::Checked);
             }
             m_fileList->addItem(item);
@@ -247,9 +247,9 @@ void GitWidget::onCommit()
     }
 
     // Stage each selected file in a single git call
-    const QString addOut = m_git->stageFiles(rpath, filesToStage);
-    if (addOut.contains("error:") || addOut.contains("fatal:")) {
-        updateStatus(tr("Staging failed: %1").arg(addOut.trimmed()));
+    const QString stageOut = m_git->stageFiles(rpath, filesToStage);
+    if (stageOut.contains("error:") || stageOut.contains("fatal:")) {
+        updateStatus(tr("Staging failed: %1").arg(stageOut.trimmed()));
         return;
     }
 

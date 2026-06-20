@@ -205,15 +205,10 @@ QStringList GIT::getRepoLog(const QString &path, int maxEntries)
         QString("log --oneline -n %1").arg(maxEntries),
         quote(path), "");
 #if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
-    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+    return output.split('\n', Qt::SkipEmptyParts);
 #else
-    QStringList lines = output.split('\n', QString::SkipEmptyParts);
+    return output.split('\n', QString::SkipEmptyParts);
 #endif
-    for (QString &line : lines) {
-        line = line.trimmed();
-    }
-    lines.removeAll(QString());
-    return lines;
 }
 /*!
  * \brief run GIT command
