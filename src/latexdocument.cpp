@@ -3902,6 +3902,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         ReferencePair rp;
         rp.name=lbl;
         mLabelItem.insert(nullptr,rp);
+        mLabelHash.insert(lbl,nullptr);
     }
     ja=dd.value("refs").toArray();
     for (int i = 0; i < ja.size(); ++i) {
@@ -3909,6 +3910,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         ReferencePair rp;
         rp.name=lbl;
         mRefItem.insert(nullptr,rp);
+        mRefHash.insert(lbl,nullptr);
     }
     ja=dd.value("bibitems").toArray();
     for (int i = 0; i < ja.size(); ++i) {
