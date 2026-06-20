@@ -2893,6 +2893,12 @@ void LatexEditorView::mouseHovered(QPoint pos)
                         }
                         if (doc)
                             mText += doc->exportAsHtml(doc->cursor(qMax(0, l - 2), 0, l + 2), true, true, 60);
+                    }else{
+                        // cached document, just show fileName
+                        LatexDocument *targetDoc=document->getDocumentForLabel(value);
+                        if(targetDoc){
+                            mText = tr("<p style='white-space:pre'><b>Filename: %1</b>\n<i>not loaded</i>").arg(targetDoc->getFileName());
+                        }
                     }
                 }
 			}
