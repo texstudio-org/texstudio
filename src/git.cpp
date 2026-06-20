@@ -243,6 +243,26 @@ QList<GIT::GraphEntry> GIT::getRepoLogGraph(const QString &path, int maxEntries)
 }
 
 /*!
+ * \brief get commit statistics (changed files + diff summary) for a single commit
+ * \param path repository root directory
+ * \param hash full or short commit hash
+ * \return human-readable text with commit header and per-file change statistics
+ */
+QString GIT::getCommitStat(const QString &path, const QString &hash)
+{
+    // --no-patch: show header + stat lines only (no diff hunks)
+    // --format=...: short hash, author, date.
+    // %x20 (hex-encoded space) is used inside the format to avoid literal spaces
+    // that would be split as argument boundaries by the build manager command runner.
+    const QString action =
+        "show --no-patch --stat "
+        "--format=commit%x20%h%nAuthor:%x20%an%nDate:%x20%ad "
+        "--date=short";
+    return runGit(action, quote(path), hash);
+}
+
+
+/*!
  * \brief get the repository-wide commit history (most recent first)
  * \param path repository root directory
  * \param maxEntries maximum number of log entries to return

@@ -27,12 +27,14 @@ public:
     explicit GitGraphView(QWidget *parent = nullptr);
 
     void setEntries(const QList<GIT::GraphEntry> &entries);
+    void setGitContext(GIT *git, const QString &repoPath);
     void clear();
 
 protected:
     void paintEvent(QPaintEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
     void changeEvent(QEvent *event) override;
+    bool viewportEvent(QEvent *event) override;
 
 private:
     // One drawing segment: a line from (fromLane, row_center) to (toLane, next_row_center).
@@ -45,7 +47,7 @@ private:
     // All pre-computed data needed to render a single row.
     struct RowData {
         int  commitLane;
-        QString shortHash;
+        QString fullHash;   ///< full commit hash (used for tooltip stat query)
         QStringList refs;
         QString subject;
         QVector<Segment> downSegments; ///< segments going DOWN from this row
@@ -62,8 +64,13 @@ private:
     void updateScrollBars();
     QColor laneColor(int laneIdx) const;
     QList<RefBadge> parseRefs(const QStringList &refs) const;
+    int rowAtPoint(const QPoint &pos) const;
+
+    GIT    *m_git      = nullptr;
+    QString m_repoPath;
 
     QVector<RowData> m_rows;
+    QHash<QString, QString> m_statCache; ///< lazily populated; keyed by full commit hash
 
     static constexpr int k_rowHeight    = 22;
     static constexpr int k_laneWidth    = 14;

@@ -217,6 +217,7 @@ void GitWidget::refreshHistory()
         // repo with no commits yet.
         return;
     }
+    m_graphView->setGitContext(m_git, rpath);
     m_graphView->setEntries(entries);
 }
 

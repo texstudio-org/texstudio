@@ -4,6 +4,8 @@
 #include <QPainterPath>
 #include <QScrollBar>
 #include <QFontMetrics>
+#include <QHelpEvent>
+#include <QToolTip>
 
 // ---------------------------------------------------------------------------
 // Lane colour palette – cycled for lanes beyond NUM_COLORS
@@ -38,6 +40,7 @@ GitGraphView::GitGraphView(QWidget *parent)
 void GitGraphView::clear()
 {
     m_rows.clear();
+    m_statCache.clear();
     m_maxLanes = 1;
     updateScrollBars();
     viewport()->update();
@@ -50,8 +53,15 @@ void GitGraphView::setEntries(const QList<GIT::GraphEntry> &entries)
     viewport()->update();
 }
 
-// ---------------------------------------------------------------------------
-// Lane colour helper
+void GitGraphView::setGitContext(GIT *git, const QString &repoPath)
+{
+    if (m_repoPath != repoPath)
+        m_statCache.clear();
+    m_git      = git;
+    m_repoPath = repoPath;
+}
+
+
 // ---------------------------------------------------------------------------
 
 QColor GitGraphView::laneColor(int laneIdx) const
@@ -123,7 +133,7 @@ void GitGraphView::computeLayout(const QList<GIT::GraphEntry> &entries)
     for (int row = 0; row < entries.size(); row++) {
         const GIT::GraphEntry &entry = entries[row];
         RowData rd;
-        rd.shortHash = entry.hash.left(7);
+        rd.fullHash  = entry.hash;
         rd.refs      = entry.refs;
         rd.subject   = entry.subject;
 
@@ -347,14 +357,41 @@ void GitGraphView::paintEvent(QPaintEvent *event)
             tx += bw + 3;
         }
 
-        // Short hash (muted colour)
-        const QString hashStr = rd.shortHash + QLatin1String("  ");
-        p.setPen(QColor(0x80, 0x80, 0x80));
-        p.drawText(tx, ty, hashStr);
-        tx += m_fm.horizontalAdvance(hashStr);
-
         // Subject
         p.setPen(palette().text().color());
         p.drawText(tx, ty, rd.subject);
     }
+}
+
+// ---------------------------------------------------------------------------
+// Tooltip
+// ---------------------------------------------------------------------------
+
+int GitGraphView::rowAtPoint(const QPoint &pos) const
+{
+    const int scrollY = verticalScrollBar()->value();
+    return (pos.y() + scrollY) / k_rowHeight;
+}
+
+bool GitGraphView::viewportEvent(QEvent *event)
+{
+    if (event->type() == QEvent::ToolTip) {
+        QHelpEvent *he = static_cast<QHelpEvent *>(event);
+        const int row = rowAtPoint(he->pos());
+        if (m_git && row >= 0 && row < m_rows.size()) {
+            const RowData &rd = m_rows[row];
+            QString tip = m_statCache.value(rd.fullHash);
+            if (tip.isEmpty()) {
+                tip = m_git->getCommitStat(m_repoPath, rd.fullHash).trimmed();
+                if (tip.isEmpty())
+                    tip = tr("commit %1\n(stats unavailable)").arg(rd.fullHash);
+                m_statCache.insert(rd.fullHash, tip);
+            }
+            QToolTip::showText(he->globalPos(), tip, viewport());
+        } else {
+            QToolTip::hideText();
+        }
+        return true;
+    }
+    return QAbstractScrollArea::viewportEvent(event);
 }
