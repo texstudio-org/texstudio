@@ -115,7 +115,7 @@ void GitWidget::setupUi()
     connect(m_btnPull,      &QPushButton::clicked,  this, &GitWidget::onPull);
     connect(m_btnFetch,     &QPushButton::clicked,  this, &GitWidget::onFetch);
     connect(m_btnStageAll,  &QPushButton::clicked,  this, &GitWidget::onStageAll);
-    connect(m_btnUnstageAll,&QPushButton::clicked,  this, &GitWidget::onUnstageAll);
+    connect(m_btnUnstageAll, &QPushButton::clicked,  this, &GitWidget::onUnstageAll);
     connect(m_fileList, &QListWidget::itemDoubleClicked,
             this, &GitWidget::onItemDoubleClicked);
     connect(m_tabWidget, &QTabWidget::currentChanged,
@@ -249,7 +249,7 @@ void GitWidget::onCommit()
 
     // Stage each selected file
     for (const QString &file : filesToStage) {
-        const QString addOut = m_git->runGit("add", rpath, GIT::quote(file));
+        const QString addOut = m_git->runGit("add", GIT::quote(rpath), GIT::quote(file));
         if (addOut.contains("error:") || addOut.contains("fatal:")) {
             updateStatus(tr("Staging failed: %1").arg(addOut.trimmed()));
             return;
@@ -257,7 +257,7 @@ void GitWidget::onCommit()
     }
 
     // Commit what is now staged
-    const QString commitOut = m_git->runGit("commit", rpath,
+    const QString commitOut = m_git->runGit("commit", GIT::quote(rpath),
                                             "-m " + enquoteStr(msg));
     if (commitOut.contains("error:") || commitOut.contains("fatal:")) {
         updateStatus(tr("Commit failed: %1").arg(commitOut.trimmed()));
