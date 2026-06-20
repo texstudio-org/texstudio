@@ -41,10 +41,14 @@ LatexParser::LatexParser(const LatexParser &other){
     environmentAliases=other.environmentAliases;
     specialDefCommands=other.specialDefCommands;
     mapSpecialArgs=other.mapSpecialArgs;
+    mapSpecialArgumentTypes=other.mapSpecialArgumentTypes;
+    projectDocuments=other.projectDocuments;
+    sectionCommands=other.sectionCommands;
 }
 
 LatexParser &LatexParser::operator=(const LatexParser &other)
 {
+    if (this == &other) return *this;
     commandDefs=other.commandDefs;
     environmentCommands=other.environmentCommands;
     mathStartCommands=other.mathStartCommands;
@@ -56,6 +60,8 @@ LatexParser &LatexParser::operator=(const LatexParser &other)
     specialDefCommands=other.specialDefCommands;
     mapSpecialArgs=other.mapSpecialArgs;
     mapSpecialArgumentTypes=other.mapSpecialArgumentTypes;
+    projectDocuments=other.projectDocuments;
+    sectionCommands=other.sectionCommands;
     return *this;
 }
 LatexParser &LatexParser::getInstance()
@@ -112,7 +118,9 @@ int commentStart(const QString &text)
 /// remove comment from text, take care of multiple backslashes before comment character ...
 QString cutComment(const QString &text)
 {
-    return text.left(commentStart(text));
+    const int cs = commentStart(text);
+    if (cs < 0) return text;
+    return text.left(cs);
 }
 
 /// returns true if the options are complete, false if the scanning ended while still in the options
@@ -194,12 +202,12 @@ QString removeOptionBrackets(const QString &option)
 /*!
  * \brief determines level of structure in a section-command
  * \param cmd latex command
- * \return level of stucture
+ * \return level of structure
  */
 int LatexParser::structureCommandLevel(const QString &cmd)
 {
     if(sectionCommands.isEmpty()){
-        // not yet chached, do it now
+        // not yet cached, do it now
         cacheStructureCommand();
     }
     if(!sectionCommands.contains(cmd)) return -1;
