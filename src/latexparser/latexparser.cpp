@@ -337,7 +337,7 @@ QString interpretXArgs(const QString &xarg)
     bool braceMode=false;
     for(int i=0;i<xarg.length();++i){
         QChar c=xarg[i];
-        if(c=='{'){
+        if(c=='}'){
             braceMode=false;
         }
         if(braceMode) continue;
