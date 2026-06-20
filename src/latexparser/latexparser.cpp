@@ -194,7 +194,7 @@ QString removeOptionBrackets(const QString &option)
 /*!
  * \brief determines level of structure in a section-command
  * \param cmd latex command
- * \return level of stucture
+ * \return level of structure
  */
 int LatexParser::structureCommandLevel(const QString &cmd)
 {
