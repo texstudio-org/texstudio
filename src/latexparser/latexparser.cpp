@@ -248,7 +248,7 @@ void LatexParser::append(const LatexParser &elem)
 #endif
 }
 
-void LatexParser::substract(const LatexParser &elem)
+void LatexParser::subtract(const LatexParser &elem)
 {
 	QHash<QString, QSet<QString> >::const_iterator i = elem.possibleCommands.constBegin();
 	while (i != elem.possibleCommands.constEnd()) {
@@ -267,7 +267,7 @@ void LatexParser::clear()
 	init();
 }
 
-void LatexParser::importCwlAliases(const QString filename)
+void LatexParser::importCwlAliases(const QString &filename)
 {
 	QFile tagsfile(filename);
 	if (tagsfile.open(QFile::ReadOnly)) {

@@ -54,9 +54,9 @@ public:
 	CommandDescriptionHash commandDefs; ///< command definitions
 
 	void append(const LatexParser &elem); ///< append values
-	void substract(const LatexParser &elem); ///< remove values
+    void subtract(const LatexParser &elem); ///< remove values
 	void clear(); ///< set to default values
-    void importCwlAliases(const QString filename); ///< import package aliases from disc
+    void importCwlAliases(const QString &filename); ///< import package aliases from disk
 };
 Q_DECLARE_METATYPE(LatexParser)
 
