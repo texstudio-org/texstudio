@@ -194,13 +194,55 @@ QString GIT::getCurrentBranch(QString path)
 }
 
 /*!
- * \brief get the repository-wide commit history (most recent first)
+ * \brief get the repository-wide commit history with graph data
  * \param path repository root directory
  * \param maxEntries maximum number of log entries to return
- * \return list of log lines in "short-hash subject" format
+ * \return list of GraphEntry structs (hash, parents, refs, subject)
+ *
+ * Uses \c %x01 (ASCII 0x01) as a field separator to avoid conflicts with
+ * characters that can legitimately appear in ref names or commit subjects.
  */
-QStringList GIT::getRepoLog(const QString &path, int maxEntries)
+QList<GIT::GraphEntry> GIT::getRepoLogGraph(const QString &path, int maxEntries)
 {
+    // Format: fullhash SOH parents SOH refs SOH subject
+    // %P gives space-separated full parent hashes; %D gives comma-separated ref names.
+    const QString fmt = "--format=%H%x01%P%x01%D%x01%s";
+    const QString output = runGit(
+        QString("log %1 -n %2").arg(fmt).arg(maxEntries),
+        quote(path), "");
+
+    QList<GraphEntry> result;
+    const QChar sep(0x01);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    const QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+#else
+    const QStringList lines = output.split('\n', QString::SkipEmptyParts);
+#endif
+    for (const QString &line : lines) {
+        const QStringList parts = line.split(sep);
+        if (parts.size() < 4) continue;
+        GraphEntry entry;
+        entry.hash = parts[0].trimmed();
+        if (!parts[1].trimmed().isEmpty())
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+            entry.parents = parts[1].trimmed().split(' ', Qt::SkipEmptyParts);
+#else
+            entry.parents = parts[1].trimmed().split(' ', QString::SkipEmptyParts);
+#endif
+        if (!parts[2].trimmed().isEmpty()) {
+            for (const QString &r : parts[2].split(','))  {
+                const QString trimmed = r.trimmed();
+                if (!trimmed.isEmpty()) entry.refs << trimmed;
+            }
+        }
+        // Subject is everything after the third separator (may contain the sep char itself)
+        entry.subject = QStringList(parts.mid(3)).join(sep).trimmed();
+        result << entry;
+    }
+    return result;
+}
+
+
     const QString output = runGit(
         QString("log --oneline -n %1").arg(maxEntries),
         quote(path), "");

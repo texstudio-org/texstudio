@@ -18,6 +18,13 @@ public:
         QString filePath;   ///< path relative to repository root
     };
 
+    struct GraphEntry {
+        QString hash;        ///< full commit hash
+        QStringList parents; ///< parent hashes (full), empty for root commits
+        QStringList refs;    ///< decoration strings, e.g. "HEAD -> main", "origin/main", "tag: v1.0"
+        QString subject;     ///< first line of the commit message
+    };
+
     explicit GIT(QObject *parent = Q_NULLPTR);
 
 	static QString quote(QString filename);
@@ -32,6 +39,7 @@ public:
     Status status(QString filename);
     QStringList log(QString filename);
     QStringList getRepoLog(const QString &path, int maxEntries = 100);
+    QList<GraphEntry> getRepoLogGraph(const QString &path, int maxEntries = 200);
     void createRepository(QString filename);
     QList<FileEntry> getChangedFiles(QString path);
     QString getCurrentBranch(QString path);

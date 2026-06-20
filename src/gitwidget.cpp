@@ -1,4 +1,5 @@
 #include "gitwidget.h"
+#include "gitgraphview.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -96,9 +97,9 @@ void GitWidget::setupUi()
     m_tabWidget->addTab(changesTab, tr("Changes"));
 
     // ---- "History" tab ----
-    m_historyList = new QListWidget();
-    m_historyList->setToolTip(tr("Recent commits (most recent first)"));
-    m_tabWidget->addTab(m_historyList, tr("History"));
+    m_graphView = new GitGraphView();
+    m_graphView->setToolTip(tr("Commit graph (most recent first)"));
+    m_tabWidget->addTab(m_graphView, tr("History"));
 
     mainLayout->addWidget(m_tabWidget, 1);
 
@@ -140,7 +141,7 @@ void GitWidget::refresh()
     if (rpath.isEmpty()) {
         m_branchLabel->setText(tr("(no file open)"));
         m_fileList->clear();
-        m_historyList->clear();
+        m_graphView->clear();
         return;
     }
 
@@ -148,7 +149,7 @@ void GitWidget::refresh()
     if (branch.isEmpty() || branch.startsWith("fatal")) {
         m_branchLabel->setText(tr("(no repository)"));
         m_fileList->clear();
-        m_historyList->clear();
+        m_graphView->clear();
         m_statusLabel->clear();
         return;
     }
@@ -198,21 +199,21 @@ void GitWidget::refresh()
 }
 
 /*!
- * \brief Populate the History tab with the recent commit log.
+ * \brief Populate the History tab with the graphical commit graph.
  */
 void GitWidget::refreshHistory()
 {
     const QString rpath = resolvedPath();
-    m_historyList->clear();
+    m_graphView->clear();
     if (rpath.isEmpty()) return;
 
-    const QStringList entries = m_git->getRepoLog(rpath);
-    for (const QString &entry : entries) {
-        m_historyList->addItem(entry);
-    }
+    const QList<GIT::GraphEntry> entries = m_git->getRepoLogGraph(rpath);
     if (entries.isEmpty()) {
-        m_historyList->addItem(tr("(no commits)"));
+        // Leave the view empty – it will show nothing, which is correct for a
+        // repo with no commits yet.
+        return;
     }
+    m_graphView->setEntries(entries);
 }
 
 /*!

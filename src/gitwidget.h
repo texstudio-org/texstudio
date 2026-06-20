@@ -3,6 +3,7 @@
 
 #include "mostQtHeaders.h"
 #include "git.h"
+#include "gitgraphview.h"
 
 class QListWidget;
 class QListWidgetItem;
@@ -73,7 +74,7 @@ private:
     QPushButton *m_btnCommit;
 
     // "History" tab
-    QListWidget *m_historyList;
+    GitGraphView *m_graphView;
 
     // Status bar
     QLabel *m_statusLabel;
