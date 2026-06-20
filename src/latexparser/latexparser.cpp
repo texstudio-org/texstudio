@@ -41,6 +41,9 @@ LatexParser::LatexParser(const LatexParser &other){
     environmentAliases=other.environmentAliases;
     specialDefCommands=other.specialDefCommands;
     mapSpecialArgs=other.mapSpecialArgs;
+    mapSpecialArgumentTypes=other.mapSpecialArgumentTypes;
+    projectDocuments=other.projectDocuments;
+    sectionCommands=other.sectionCommands;
 }
 
 LatexParser &LatexParser::operator=(const LatexParser &other)
