@@ -2426,9 +2426,14 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
 
     // add child docs for loading incomplete doc
     if(docToDelete){
-        foreach(LatexDocument *childDoc, docToDelete->getListOfDocs(nullptr,true)){
+        QList<LatexDocument *> docs=docToDelete->getListOfDocs(nullptr,true);
+        foreach(LatexDocument *childDoc, docs){
             doc->addChild(childDoc);
             childDoc->setMasterDocument(doc,false);
+        }
+        if(docs.empty()){
+            // if no child, invalidate cache explicitely
+            doc->lp->projectDocuments.clear();
         }
     }
 
