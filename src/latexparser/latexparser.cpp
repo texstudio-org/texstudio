@@ -199,7 +199,7 @@ QString removeOptionBrackets(const QString &option)
 int LatexParser::structureCommandLevel(const QString &cmd)
 {
     if(sectionCommands.isEmpty()){
-        // not yet chached, do it now
+        // not yet cached, do it now
         cacheStructureCommand();
     }
     if(!sectionCommands.contains(cmd)) return -1;
