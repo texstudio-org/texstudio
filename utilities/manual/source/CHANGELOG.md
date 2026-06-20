@@ -1,7 +1,8 @@
 # CHANGELOG
 ## TeXstudio 4.9.6
 
-- 
+- fix update on structure pane [#4505](https://github.com/texstudio-org/texstudio/issues/4505)
+- fix math highlighting [#4508](https://github.com/texstudio-org/texstudio/issues/4508)
 
 ## TeXstudio 4.9.5
 
