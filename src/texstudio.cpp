@@ -763,6 +763,13 @@ void Texstudio::setupDockWidgets()
         connect(fileView,&QAbstractItemView::doubleClicked,this,&Texstudio::openFromExplorer);
         addDock("explorer", "folder_R90",tr("Files"), fileView);
     }
+    // setup a dock widget with a git source control panel
+    dock=findChild<QDockWidget *>("git",Qt::FindDirectChildrenOnly);
+    if(!dock){
+        gitWidget = new GitWidget(&git, this);
+        connect(gitWidget, &GitWidget::fileActivated, this, [this](const QString &path){ load(path); });
+        addDock("git", "svn_R90", tr("Git"), gitWidget);
+    }
 
     addTagList("brackets", getRealIconFile("leftright_R90"), tr("Left/Right Brackets"), "brackets_tags.xml");
     addTagList("pstricks", getRealIconFile("pstricks_R90"), tr("PSTricks Commands"), "pstricks_tags.xml");
@@ -1957,6 +1964,10 @@ void Texstudio::currentEditorChanged()
         // only change when necessary
         fileExplorerModel->setRootPath(rootDir);
         fileView->setRootIndex(fileExplorerModel->index(rootDir));
+    }
+    // update git panel with the current file's directory
+    if (gitWidget) {
+        gitWidget->setPath(fi.absoluteFilePath());
     }
 }
 /*!
@@ -3849,6 +3860,18 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
 
     if (warnMissing && !missingFiles.isEmpty()) {
         UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
+    }
+    // Explicitly update the git panel after session restore.
+    // currentEditorChanged() is skipped during loading (mDisableTOCupdates=true)
+    // and may not fire again if the active editor did not change.
+    if (gitWidget) {
+        LatexEditorView *edView = currentEditorView();
+        if (edView && edView->getDocument()) {
+            LatexDocument *rootDoc = edView->getDocument()->getRootDocument();
+            QFileInfo fi = rootDoc->getFileInfo();
+            if (!fi.filePath().isEmpty())
+                gitWidget->setPath(fi.absoluteFilePath());
+        }
     }
     qDebug()<<"total time for restoring session and completer:"<<time.elapsed()<<"ms";
 }

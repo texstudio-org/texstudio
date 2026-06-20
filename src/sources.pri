@@ -32,6 +32,8 @@ HEADERS += \
     $$PWD/findindirs.h \
     $$PWD/flowlayout.h \
     $$PWD/git.h \
+    $$PWD/gitgraphview.h \
+    $$PWD/gitwidget.h \
     $$PWD/grammarcheck.h \
     $$PWD/grammarcheck_config.h \
     $$PWD/help.h \
@@ -141,6 +143,8 @@ SOURCES += \
     $$PWD/findindirs.cpp \
     $$PWD/flowlayout.cpp \
     $$PWD/git.cpp \
+    $$PWD/gitgraphview.cpp \
+    $$PWD/gitwidget.cpp \
     $$PWD/grammarcheck.cpp \
     $$PWD/help.cpp \
     #$$PWD/icondelegate.cpp \
