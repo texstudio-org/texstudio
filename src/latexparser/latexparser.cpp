@@ -112,7 +112,9 @@ int commentStart(const QString &text)
 /// remove comment from text, take care of multiple backslashes before comment character ...
 QString cutComment(const QString &text)
 {
-    return text.left(commentStart(text));
+    const int cs = commentStart(text);
+    if (cs < 0) return text;
+    return text.left(cs);
 }
 
 /// returns true if the options are complete, false if the scanning ended while still in the options
