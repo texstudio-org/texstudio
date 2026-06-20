@@ -12,6 +12,7 @@ class QPushButton;
 class QLabel;
 class QToolButton;
 class QTabWidget;
+class QCheckBox;
 
 /*!
  * \brief GitWidget provides a dock panel for interacting with a git repository,
@@ -44,6 +45,7 @@ private slots:
     void onStageAll();
     void onUnstageAll();
     void onTabChanged(int index);
+    void onFilterByFileToggled(bool checked);
 
 private:
     void setupUi();
@@ -75,6 +77,7 @@ private:
 
     // "History" tab
     GitGraphView *m_graphView;
+    QCheckBox    *m_filterByFile;
 
     // Status bar
     QLabel *m_statusLabel;

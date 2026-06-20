@@ -202,14 +202,16 @@ QString GIT::getCurrentBranch(QString path)
  * Uses \c %x01 (ASCII 0x01) as a field separator to avoid conflicts with
  * characters that can legitimately appear in ref names or commit subjects.
  */
-QList<GIT::GraphEntry> GIT::getRepoLogGraph(const QString &path, int maxEntries)
+QList<GIT::GraphEntry> GIT::getRepoLogGraph(const QString &path, int maxEntries, const QString &fileFilter)
 {
     // Format: fullhash SOH parents SOH refs SOH subject
     // %P gives space-separated full parent hashes; %D gives comma-separated ref names.
     const QString fmt = "--format=%H%x01%P%x01%D%x01%s";
+    // Append "-- <file>" when a file filter is requested.
+    const QString fileFilterArg = fileFilter.isEmpty() ? QString() : ("-- " + quote(fileFilter));
     const QString output = runGit(
         QString("log %1 -n %2").arg(fmt).arg(maxEntries),
-        quote(path), "");
+        quote(path), fileFilterArg);
 
     QList<GraphEntry> result;
     const QChar sep(0x01);

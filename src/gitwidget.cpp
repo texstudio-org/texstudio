@@ -15,6 +15,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QMessageBox>
+#include <QCheckBox>
 
 GitWidget::GitWidget(GIT *git, QWidget *parent)
     : QWidget(parent)
@@ -101,9 +102,20 @@ void GitWidget::setupUi()
     m_tabWidget->addTab(changesTab, tr("Changes"));
 
     // ---- "History" tab ----
+    QWidget *historyTab = new QWidget();
+    QVBoxLayout *historyLayout = new QVBoxLayout(historyTab);
+    historyLayout->setContentsMargins(0, 4, 0, 0);
+    historyLayout->setSpacing(4);
+
+    m_filterByFile = new QCheckBox(tr("Current file only"));
+    m_filterByFile->setToolTip(tr("Show only commits that involve the current document"));
+    historyLayout->addWidget(m_filterByFile);
+
     m_graphView = new GitGraphView();
     m_graphView->setToolTip(tr("Commit graph (most recent first)"));
-    m_tabWidget->addTab(m_graphView, tr("History"));
+    historyLayout->addWidget(m_graphView, 1);
+
+    m_tabWidget->addTab(historyTab, tr("History"));
 
     mainLayout->addWidget(m_tabWidget, 1);
 
@@ -120,6 +132,7 @@ void GitWidget::setupUi()
     connect(m_btnFetch,     &QPushButton::clicked,  this, &GitWidget::onFetch);
     connect(m_btnStageAll,  &QPushButton::clicked,  this, &GitWidget::onStageAll);
     connect(m_btnUnstageAll, &QPushButton::clicked,  this, &GitWidget::onUnstageAll);
+    connect(m_filterByFile, &QCheckBox::toggled, this, &GitWidget::onFilterByFileToggled);
     connect(m_fileList, &QListWidget::itemDoubleClicked,
             this, &GitWidget::onItemDoubleClicked);
     connect(m_tabWidget, &QTabWidget::currentChanged,
@@ -211,7 +224,14 @@ void GitWidget::refreshHistory()
     m_graphView->clear();
     if (rpath.isEmpty()) return;
 
-    const QList<GIT::GraphEntry> entries = m_git->getRepoLogGraph(rpath);
+    // Apply optional per-file filter when the checkbox is checked.
+    QString fileFilter;
+    if (m_filterByFile->isChecked()) {
+        QFileInfo fileInfo(m_path);
+        if (fileInfo.isFile()) fileFilter = fileInfo.absoluteFilePath();
+    }
+
+    const QList<GIT::GraphEntry> entries = m_git->getRepoLogGraph(rpath, 200, fileFilter);
     if (entries.isEmpty()) {
         // Leave the view empty – it will show nothing, which is correct for a
         // repo with no commits yet.
@@ -352,6 +372,14 @@ void GitWidget::onTabChanged(int index)
     if (index == 1) {
         refreshHistory();
     }
+}
+
+/*!
+ * \brief Re-run history query when the "current file only" filter is toggled.
+ */
+void GitWidget::onFilterByFileToggled(bool /*checked*/)
+{
+    refreshHistory();
 }
 
 void GitWidget::updateStatus(const QString &msg)
