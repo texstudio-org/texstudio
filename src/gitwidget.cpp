@@ -1,5 +1,4 @@
 #include "gitwidget.h"
-#include "smallUsefulFunctions.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -247,18 +246,15 @@ void GitWidget::onCommit()
         return;
     }
 
-    // Stage each selected file
-    for (const QString &file : filesToStage) {
-        const QString addOut = m_git->runGit("add", GIT::quote(rpath), GIT::quote(file));
-        if (addOut.contains("error:") || addOut.contains("fatal:")) {
-            updateStatus(tr("Staging failed: %1").arg(addOut.trimmed()));
-            return;
-        }
+    // Stage each selected file in a single git call
+    const QString addOut = m_git->stageFiles(rpath, filesToStage);
+    if (addOut.contains("error:") || addOut.contains("fatal:")) {
+        updateStatus(tr("Staging failed: %1").arg(addOut.trimmed()));
+        return;
     }
 
     // Commit what is now staged
-    const QString commitOut = m_git->runGit("commit", GIT::quote(rpath),
-                                            "-m " + enquoteStr(msg));
+    const QString commitOut = m_git->commitStaged(rpath, msg);
     if (commitOut.contains("error:") || commitOut.contains("fatal:")) {
         updateStatus(tr("Commit failed: %1").arg(commitOut.trimmed()));
         return;

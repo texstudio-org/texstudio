@@ -24,8 +24,8 @@ public:
 	static QString makeCmd(QString action, QString args);
 
     void commit(QString filename, QString message);
-    void stageFiles(const QString &path, const QStringList &files);
-    void commitStaged(const QString &path, const QString &message);
+    QString stageFiles(const QString &path, const QStringList &files);
+    QString commitStaged(const QString &path, const QString &message);
     void push(QString filename);
     void pull(QString path);
     void fetch(QString path);

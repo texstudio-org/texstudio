@@ -41,25 +41,30 @@ void GIT::commit(QString filename, QString message)
 }
 
 /*!
- * \brief Stage a list of files in the given repository.
+ * \brief Stage a list of files in the given repository in a single git call.
  * \param path repository root directory
  * \param files list of relative file paths to stage
+ * \return git output (may contain error/fatal on failure)
  */
-void GIT::stageFiles(const QString &path, const QStringList &files)
+QString GIT::stageFiles(const QString &path, const QStringList &files)
 {
-    for (const QString &file : files) {
-        runGit("add", quote(path), quote(file));
-    }
+    if (files.isEmpty()) return QString();
+    QStringList quotedFiles;
+    quotedFiles.reserve(files.size());
+    for (const QString &file : files)
+        quotedFiles << quote(file);
+    return runGit("add", quote(path), quotedFiles.join(' '));
 }
 
 /*!
  * \brief Commit all currently staged changes in the repository.
  * \param path repository root directory
  * \param message commit message
+ * \return git output (may contain error/fatal on failure)
  */
-void GIT::commitStaged(const QString &path, const QString &message)
+QString GIT::commitStaged(const QString &path, const QString &message)
 {
-    runGit("commit", quote(path), "-m " + enquoteStr(message));
+    return runGit("commit", quote(path), "-m " + enquoteStr(message));
 }
 /*!
  * \brief GIT push
