@@ -114,6 +114,58 @@ QString GIT::runGit(QString action, QString args)
 }
 
 /*!
+ * \brief GIT pull
+ * \param path repository path
+ */
+void GIT::pull(QString path)
+{
+    runGit("pull", quote(path), "");
+}
+
+/*!
+ * \brief GIT fetch
+ * \param path repository path
+ */
+void GIT::fetch(QString path)
+{
+    runGit("fetch", quote(path), "");
+}
+
+/*!
+ * \brief get list of changed files in repository
+ * \param path repository root path
+ * \return list of FileEntry with status code and file path
+ */
+QList<GIT::FileEntry> GIT::getChangedFiles(QString path)
+{
+    QList<FileEntry> result;
+    const QString output = runGit("status --porcelain", quote(path), "");
+    const QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+    for (const QString &line : lines) {
+        if (line.length() < 4) continue;
+        FileEntry entry;
+        entry.statusCode = line.left(2);
+        entry.filePath = line.mid(3).trimmed();
+        // strip surrounding quotes that git sometimes adds
+        if (entry.filePath.startsWith('"') && entry.filePath.endsWith('"')) {
+            entry.filePath = entry.filePath.mid(1, entry.filePath.length() - 2);
+        }
+        result.append(entry);
+    }
+    return result;
+}
+
+/*!
+ * \brief get current branch name
+ * \param path repository path
+ * \return branch name, or empty string if not a repository
+ */
+QString GIT::getCurrentBranch(QString path)
+{
+    const QString output = runGit("rev-parse --abbrev-ref HEAD", quote(path), "");
+    return output.trimmed();
+}
+/*!
  * \brief run GIT command
  * \param action
  * \param path

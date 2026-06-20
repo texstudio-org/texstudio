@@ -13,6 +13,11 @@ class GIT : public QObject
 public:
     enum Status {Unknown, Unmanaged, Modified, Locked, CheckedIn, InConflict, NoRepository};
 
+    struct FileEntry {
+        QString statusCode; ///< two-character git status code (e.g. " M", "M ", "??", "A ")
+        QString filePath;   ///< path relative to repository root
+    };
+
     explicit GIT(QObject *parent = Q_NULLPTR);
 
 	static QString quote(QString filename);
@@ -20,9 +25,13 @@ public:
 
     void commit(QString filename, QString message);
     void push(QString filename);
+    void pull(QString path);
+    void fetch(QString path);
     Status status(QString filename);
     QStringList log(QString filename);
     void createRepository(QString filename);
+    QList<FileEntry> getChangedFiles(QString path);
+    QString getCurrentBranch(QString path);
 
     QString runGit(QString action, QString args);
     QString runGit(QString action, QString path,QString args);

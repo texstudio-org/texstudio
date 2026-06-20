@@ -38,6 +38,7 @@ set(HEADER_FILES ${HEADER_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/findindirs.h
     ${CMAKE_CURRENT_SOURCE_DIR}/flowlayout.h
     ${CMAKE_CURRENT_SOURCE_DIR}/git.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gitwidget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/grammarcheck.h
     ${CMAKE_CURRENT_SOURCE_DIR}/grammarcheck_config.h
     ${CMAKE_CURRENT_SOURCE_DIR}/help.h
@@ -150,6 +151,7 @@ set(SOURCE_FILES ${SOURCE_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/findindirs.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/flowlayout.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/git.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gitwidget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/grammarcheck.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/help.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/insertgraphics.cpp
