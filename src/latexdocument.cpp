@@ -2127,6 +2127,7 @@ void LatexDocument::updateRefsLabels(const QString &ref)
 	QMultiHash<QDocumentLineHandle *, int>::const_iterator it;
     for (it = occurences.constBegin(); it != occurences.constEnd(); ++it) {
 		QDocumentLineHandle *dlh = it.key();
+        if(dlh==nullptr) continue;
         for(const int pos : occurences.values(dlh)) {
             foreach (const auto &format, formatList) {
                 dlh->removeOverlay(QFormatRange(pos, ref.length(), format));

@@ -295,6 +295,7 @@ void LabelSearchQuery::run(LatexDocument *doc)
     }
 	QHash<QDocument *, QList<QDocumentLineHandle *> > usagesByDocument;
 	foreach (QDocumentLineHandle *dlh, usages.keys()) {
+        if(dlh==nullptr) continue;
 		QDocument *doc = dlh->document();
 		QList<QDocumentLineHandle *> dlhs = usagesByDocument[doc];
 		dlhs.append(dlh);

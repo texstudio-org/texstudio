@@ -4323,6 +4323,8 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 	case Token::labelRef:
 	case Token::labelRefList: {
         QMultiHash<QDocumentLineHandle *, int> defs = doc->getLabels(tk.getText());
+        // filter out all nullptr
+        defs.remove(nullptr);
         QDocumentLineHandle *target = nullptr;
         LatexEditorView *edView = nullptr;
         if (defs.isEmpty()){
