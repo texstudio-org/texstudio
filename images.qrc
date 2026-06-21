@@ -124,6 +124,12 @@
 <file>images-ng/git_R90.svg</file>
 <file>images-ng/git_R90_dm.svg</file>
 <file>images-ng/git_dm.svg</file>
+<file>images-ng/git_fetch.svg</file>
+<file>images-ng/git_fetch_dm.svg</file>
+<file>images-ng/git_pull.svg</file>
+<file>images-ng/git_pull_dm.svg</file>
+<file>images-ng/git_push.svg</file>
+<file>images-ng/git_push_dm.svg</file>
 <file>images-ng/go-first.svg</file>
 <file>images-ng/go-last.svg</file>
 <file>images-ng/go-next-diff.svg</file>

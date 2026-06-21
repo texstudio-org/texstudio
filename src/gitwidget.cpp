@@ -40,27 +40,26 @@ void GitWidget::setupUi()
     m_btnRefresh = new QToolButton();
     m_btnRefresh->setText(QString::fromUtf8("\u21BB"));
     m_btnRefresh->setToolTip(tr("Refresh"));
-    branchLayout->addWidget(branchIcon);
-    branchLayout->addWidget(m_branchLabel, 1);
-    branchLayout->addWidget(m_btnRefresh);
-    mainLayout->addLayout(branchLayout);
-
     // Fetch / Pull / Push buttons
-    QHBoxLayout *btnLayout = new QHBoxLayout();
-    btnLayout->setContentsMargins(0, 0, 0, 0);
-    m_btnFetch = new QPushButton(tr("Fetch"));
-    m_btnPull  = new QPushButton(tr("Pull"));
-    m_btnPush  = new QPushButton(tr("Push"));
-    m_btnFetch->setIcon(getRealIcon("syncSource"));
-    m_btnPull->setIcon(getRealIcon("down-arrow-circle-silver"));
-    m_btnPush->setIcon(getRealIcon("up-arrow-circle-silver"));
+    m_btnFetch = new QToolButton();
+    m_btnPull  = new QToolButton();
+    m_btnPush  = new QToolButton();
+    m_btnFetch->setIcon(getRealIcon("git_fetch"));
+    m_btnPull->setIcon(getRealIcon("git_pull"));
+    m_btnPush->setIcon(getRealIcon("git_push"));
     m_btnFetch->setToolTip(tr("git fetch"));
     m_btnPull->setToolTip(tr("git pull"));
     m_btnPush->setToolTip(tr("git push"));
-    btnLayout->addWidget(m_btnFetch);
-    btnLayout->addWidget(m_btnPull);
-    btnLayout->addWidget(m_btnPush);
-    mainLayout->addLayout(btnLayout);
+    auto *hspacer=new QSpacerItem(20,40,QSizePolicy::Minimum,QSizePolicy::Expanding);
+    branchLayout->addWidget(branchIcon);
+    branchLayout->addWidget(m_branchLabel, 1);
+    branchLayout->addSpacerItem(hspacer);
+    branchLayout->addWidget(m_btnFetch);
+    branchLayout->addWidget(m_btnPull);
+    branchLayout->addWidget(m_btnPush);
+    branchLayout->addWidget(m_btnRefresh);
+    mainLayout->addLayout(branchLayout);
+
 
     // Tab widget: "Changes" and "History"
     m_tabWidget = new QTabWidget(this);

@@ -61,9 +61,9 @@ private:
     QToolButton *m_btnRefresh;
 
     // Action buttons
-    QPushButton *m_btnFetch;
-    QPushButton *m_btnPull;
-    QPushButton *m_btnPush;
+    QToolButton *m_btnFetch;
+    QToolButton *m_btnPull;
+    QToolButton *m_btnPush;
 
     // Tab widget
     QTabWidget *m_tabWidget;
