@@ -6,6 +6,11 @@
 #include <QFontMetrics>
 #include <QHelpEvent>
 #include <QToolTip>
+#include <QContextMenuEvent>
+#include <QMouseEvent>
+#include <QMenu>
+#include <QApplication>
+#include <QClipboard>
 
 // ---------------------------------------------------------------------------
 // Lane colour palette – cycled for lanes beyond NUM_COLORS
@@ -28,6 +33,7 @@ GitGraphView::GitGraphView(QWidget *parent)
     : QAbstractScrollArea(parent)
     , m_fm(font())
 {
+    setFocusPolicy(Qt::StrongFocus);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     viewport()->setBackgroundRole(QPalette::Base);
@@ -40,6 +46,7 @@ GitGraphView::GitGraphView(QWidget *parent)
 void GitGraphView::clear()
 {
     m_rows.clear();
+    m_selectedRow = -1;
     m_statCache.clear();
     m_maxLanes = 1;
     updateScrollBars();
@@ -49,6 +56,7 @@ void GitGraphView::clear()
 void GitGraphView::setEntries(const QList<GIT::GraphEntry> &entries)
 {
     computeLayout(entries);
+    m_selectedRow = -1;
     updateScrollBars();
     viewport()->update();
 }
@@ -304,6 +312,12 @@ void GitGraphView::paintEvent(QPaintEvent *event)
     for (int row = firstRow; row <= lastRow; row++) {
         const RowData &rd = m_rows[row];
         const int cy = row * k_rowHeight + k_rowHeight / 2 - scrollY;
+        const int rowTop = row * k_rowHeight - scrollY;
+
+        if (row == m_selectedRow) {
+            p.fillRect(0, rowTop, viewport()->width(), k_rowHeight,
+                       palette().highlight().color().lighter(165));
+        }
 
         // ---- Draw downward segments ----
         if (row + 1 < m_rows.size()) {
@@ -373,9 +387,52 @@ int GitGraphView::rowAtPoint(const QPoint &pos) const
     return (pos.y() + scrollY) / k_rowHeight;
 }
 
+void GitGraphView::setSelectedRow(int row)
+{
+    if (row < 0 || row >= m_rows.size())
+        row = -1;
+    if (m_selectedRow == row) return;
+
+    m_selectedRow = row;
+    viewport()->update();
+    emit entrySelected(row >= 0 ? m_rows[row].fullHash : QString());
+}
+
 bool GitGraphView::viewportEvent(QEvent *event)
 {
-    if (event->type() == QEvent::ToolTip) {
+    if (event->type() == QEvent::MouseButtonPress) {
+        QMouseEvent *me = static_cast<QMouseEvent *>(event);
+        if (me->button() == Qt::LeftButton) {
+            setSelectedRow(rowAtPoint(me->pos()));
+            return true;
+        }
+    } else if (event->type() == QEvent::ContextMenu) {
+        QContextMenuEvent *ce = static_cast<QContextMenuEvent *>(event);
+        const int row = rowAtPoint(ce->pos());
+        if (row < 0 || row >= m_rows.size()) {
+            setSelectedRow(-1);
+            return true;
+        }
+
+        setSelectedRow(row);
+        const RowData &rd = m_rows[row];
+        QMenu menu(viewport());
+        QAction *copyHashAction = menu.addAction(tr("Copy Commit Hash"));
+        QAction *copySubjectAction = menu.addAction(tr("Copy Commit Subject"));
+        QAction *copyLineAction = menu.addAction(tr("Copy Commit Line"));
+
+        QAction *action = menu.exec(ce->globalPos());
+        if (!action) return true;
+
+        if (action == copyHashAction) {
+            QApplication::clipboard()->setText(rd.fullHash);
+        } else if (action == copySubjectAction) {
+            QApplication::clipboard()->setText(rd.subject);
+        } else if (action == copyLineAction) {
+            QApplication::clipboard()->setText(QString("%1 %2").arg(rd.fullHash.left(12), rd.subject));
+        }
+        return true;
+    } else if (event->type() == QEvent::ToolTip) {
         QHelpEvent *he = static_cast<QHelpEvent *>(event);
         const int row = rowAtPoint(he->pos());
         if (m_git && row >= 0 && row < m_rows.size()) {
