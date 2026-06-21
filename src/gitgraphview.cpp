@@ -429,7 +429,7 @@ bool GitGraphView::viewportEvent(QEvent *event)
         } else if (action == copySubjectAction) {
             QApplication::clipboard()->setText(rd.subject);
         } else if (action == copyLineAction) {
-            QApplication::clipboard()->setText(QString("%1 %2").arg(rd.fullHash.left(12), rd.subject));
+            QApplication::clipboard()->setText(QString("%1 %2").arg(rd.fullHash.left(12)).arg(rd.subject));
         }
         return true;
     } else if (event->type() == QEvent::ToolTip) {
