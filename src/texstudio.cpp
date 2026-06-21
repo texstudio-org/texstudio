@@ -768,7 +768,7 @@ void Texstudio::setupDockWidgets()
     if(!dock){
         gitWidget = new GitWidget(&git, this);
         connect(gitWidget, &GitWidget::fileActivated, this, [this](const QString &path){ load(path); });
-        addDock("git", "svn_R90", tr("Git"), gitWidget);
+        addDock("git", "git_R90", tr("Git"), gitWidget);
     }
 
     addTagList("brackets", getRealIconFile("leftright_R90"), tr("Left/Right Brackets"), "brackets_tags.xml");
