@@ -10178,8 +10178,8 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
     if(lines.size()<4){
         return;
     }
-    for (int i = 0; i < 3 ; i++) lines.removeFirst();
-	if (!lines.first().contains("@@")) {
+    // remove administrative lines in svn/git diff
+    while(!lines.isEmpty() &&!lines.first().contains("@@")) {
 		lines.removeFirst();
 	}
     // remove last line in git, if empty
