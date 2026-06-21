@@ -1,0 +1,1 @@
+const char * TEXSTUDIO_GIT_REVISION = "0.0.0++";
