@@ -768,7 +768,7 @@ void Texstudio::setupDockWidgets()
     if(!dock){
         gitWidget = new GitWidget(&git, this);
         connect(gitWidget, &GitWidget::fileActivated, this, [this](const QString &path){ load(path); });
-        addDock("git", "git_R90", tr("Git"), gitWidget);
+        gitDockWidget=addDock("git", "git_R90", tr("Git"), gitWidget);
     }
 
     addTagList("brackets", getRealIconFile("leftright_R90"), tr("Left/Right Brackets"), "brackets_tags.xml");
@@ -1967,7 +1967,7 @@ void Texstudio::currentEditorChanged()
     }
     // update git panel with the current file's directory
     if (gitWidget) {
-        if(gitWidget->property("isVisible").toBool()){
+        if(gitDockWidget->property("isVisible").toBool()){
             // update only when actually visible
             gitWidget->setPath(fi.absoluteFilePath());
         }
@@ -3868,7 +3868,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     // currentEditorChanged() is skipped during loading (mDisableTOCupdates=true)
     // and may not fire again if the active editor did not change.
     if (gitWidget) {
-        if(gitWidget->property("isVisible").toBool()){
+        if(gitDockWidget->property("isVisible").toBool()){
             // update only when visible
             LatexEditorView *edView = currentEditorView();
             if (edView && edView->getDocument()) {
