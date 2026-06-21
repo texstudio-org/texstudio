@@ -26,7 +26,7 @@ static const QColor s_laneColors[] = {
     QColor(0x14, 0x60, 0x80), // dark-cyan
 };
 static constexpr int NUM_COLORS = static_cast<int>(sizeof(s_laneColors) / sizeof(s_laneColors[0]));
-static constexpr int ABBREVIATED_HASH_LENGTH = 12;
+static constexpr int ABBREVIATED_HASH_LENGTH = 7;
 // Keep selection highlight subtle but still visible on both light/dark themes.
 static constexpr int SELECTION_LIGHTNESS_FACTOR = 165;
 static const QString COPY_COMMIT_LINE_TEMPLATE = QStringLiteral("%1 %2");
@@ -407,8 +407,11 @@ bool GitGraphView::viewportEvent(QEvent *event)
     if (event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *me = static_cast<QMouseEvent *>(event);
         if (me->button() == Qt::LeftButton) {
-            setSelectedRow(rowAtPoint(me->pos()));
-            return true;
+            const int row = rowAtPoint(me->pos());
+            if (row >= 0 && row < m_rows.size()) {
+                setSelectedRow(row);
+                return true;
+            }
         }
     } else if (event->type() == QEvent::ContextMenu) {
         QContextMenuEvent *ce = static_cast<QContextMenuEvent *>(event);
