@@ -27,8 +27,9 @@ static const QColor s_laneColors[] = {
 };
 static constexpr int NUM_COLORS = static_cast<int>(sizeof(s_laneColors) / sizeof(s_laneColors[0]));
 static constexpr int ABBREVIATED_HASH_LENGTH = 12;
+// Keep selection highlight subtle but still visible on both light/dark themes.
 static constexpr int SELECTION_LIGHTNESS_FACTOR = 165;
-static const QString COPY_LINE_TEMPLATE = QStringLiteral("%1 %2");
+static const QString COPY_COMMIT_LINE_TEMPLATE = QStringLiteral("%1 %2");
 
 // ---------------------------------------------------------------------------
 
@@ -432,7 +433,7 @@ bool GitGraphView::viewportEvent(QEvent *event)
         } else if (action == copySubjectAction) {
             QApplication::clipboard()->setText(rd.subject);
         } else if (action == copyLineAction) {
-            QApplication::clipboard()->setText(COPY_LINE_TEMPLATE.arg(rd.fullHash.left(ABBREVIATED_HASH_LENGTH)).arg(rd.subject));
+            QApplication::clipboard()->setText(COPY_COMMIT_LINE_TEMPLATE.arg(rd.fullHash.left(ABBREVIATED_HASH_LENGTH)).arg(rd.subject));
         }
         return true;
     } else if (event->type() == QEvent::ToolTip) {
