@@ -26,8 +26,9 @@ static const QColor s_laneColors[] = {
     QColor(0x14, 0x60, 0x80), // dark-cyan
 };
 static constexpr int NUM_COLORS = static_cast<int>(sizeof(s_laneColors) / sizeof(s_laneColors[0]));
-static constexpr int s_shortHashLength = 12;
-static const QString s_copyLineTemplate = QStringLiteral("%1 %2");
+static constexpr int k_shortHashLength = 12;
+static constexpr int k_selectionLightnessFactor = 165;
+static const QString k_copyLineTemplate = QStringLiteral("%1 %2");
 
 // ---------------------------------------------------------------------------
 
@@ -318,7 +319,7 @@ void GitGraphView::paintEvent(QPaintEvent *event)
 
         if (row == m_selectedRow) {
             p.fillRect(0, rowTop, viewport()->width(), k_rowHeight,
-                       palette().highlight().color().lighter(165));
+                       palette().highlight().color().lighter(k_selectionLightnessFactor));
         }
 
         // ---- Draw downward segments ----
@@ -431,7 +432,7 @@ bool GitGraphView::viewportEvent(QEvent *event)
         } else if (action == copySubjectAction) {
             QApplication::clipboard()->setText(rd.subject);
         } else if (action == copyLineAction) {
-            QApplication::clipboard()->setText(s_copyLineTemplate.arg(rd.fullHash.left(s_shortHashLength)).arg(rd.subject));
+            QApplication::clipboard()->setText(k_copyLineTemplate.arg(rd.fullHash.left(k_shortHashLength)).arg(rd.subject));
         }
         return true;
     } else if (event->type() == QEvent::ToolTip) {
