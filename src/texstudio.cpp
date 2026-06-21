@@ -1967,7 +1967,10 @@ void Texstudio::currentEditorChanged()
     }
     // update git panel with the current file's directory
     if (gitWidget) {
-        gitWidget->setPath(fi.absoluteFilePath());
+        if(gitWidget->property("isVisible").toBool()){
+            // update only when actually visible
+            gitWidget->setPath(fi.absoluteFilePath());
+        }
     }
 }
 /*!
@@ -3865,12 +3868,15 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     // currentEditorChanged() is skipped during loading (mDisableTOCupdates=true)
     // and may not fire again if the active editor did not change.
     if (gitWidget) {
-        LatexEditorView *edView = currentEditorView();
-        if (edView && edView->getDocument()) {
-            LatexDocument *rootDoc = edView->getDocument()->getRootDocument();
-            QFileInfo fi = rootDoc->getFileInfo();
-            if (!fi.filePath().isEmpty())
-                gitWidget->setPath(fi.absoluteFilePath());
+        if(gitWidget->property("isVisible").toBool()){
+            // update only when visible
+            LatexEditorView *edView = currentEditorView();
+            if (edView && edView->getDocument()) {
+                LatexDocument *rootDoc = edView->getDocument()->getRootDocument();
+                QFileInfo fi = rootDoc->getFileInfo();
+                if (!fi.filePath().isEmpty())
+                    gitWidget->setPath(fi.absoluteFilePath());
+            }
         }
     }
     qDebug()<<"total time for restoring session and completer:"<<time.elapsed()<<"ms";
@@ -12626,6 +12632,16 @@ void Texstudio::updateDockVisibility(bool visible)
         dock->setProperty("isVisible",visible);
         if(dock->objectName()=="structure" && visible) updateStructureLocally(); // force update when it becomes visible
         if(dock->objectName()=="TOC" && visible) updateTOC(); // force update when it becomes visible
+        if(dock->objectName()=="git" && visible){
+            LatexDocument *doc=documents.getCurrentDocument();
+            if(doc){
+                LatexDocument *rootDoc=doc->getRootDocument();
+                if(rootDoc){
+                    QFileInfo fi=rootDoc->getFileInfo();
+                    gitWidget->setPath(fi.absoluteFilePath()); // force update when it becomes visible
+                }
+            }
+        }
     }
 }
 /*!
