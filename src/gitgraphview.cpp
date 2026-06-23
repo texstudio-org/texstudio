@@ -352,9 +352,15 @@ void GitGraphView::paintEvent(QPaintEvent *event)
         // ---- Draw commit circle ----
         const int cx    = rd.commitLane * k_laneWidth + k_laneWidth / 2 - scrollX;
         const QColor cc = laneColor(rd.commitLane);
-        p.setPen(QPen(cc.darker(150), 1.5));
-        p.setBrush(cc);
-        p.drawEllipse(QPoint(cx, cy), k_circleRadius, k_circleRadius);
+        if(rd.selected){
+            p.setPen(QPen(cc.darker(150), 3.5));
+            p.setBrush(cc);
+            p.drawEllipse(QPoint(cx, cy), k_circleRadius+1, k_circleRadius+1);
+        }else{
+            p.setPen(QPen(cc.darker(150), 1.5));
+            p.setBrush(cc);
+            p.drawEllipse(QPoint(cx, cy), k_circleRadius, k_circleRadius);
+        }
 
         // ---- Draw text ----
         int tx = m_textOffset - scrollX;
