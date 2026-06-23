@@ -412,6 +412,8 @@ void GitGraphView::setSelectedRow(int row)
             if(m_rows[i].fullHash==""){
                 m_rows.remove(i);
                 i--;
+            }else{
+                break; // next commit
             }
         }
     }else{
