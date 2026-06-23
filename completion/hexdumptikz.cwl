@@ -26,8 +26,3 @@
 \hexdumptikzParserDbg{arg}#S
 \hexdumptikzParseRow{arg}#S
 \hexdumptikzReset#S
-
-
-
-
-
