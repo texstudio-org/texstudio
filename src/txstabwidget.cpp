@@ -23,7 +23,6 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
     setDocumentMode(true);
     const QTabBar *tb2 = tabBar();
     connect(tb2, SIGNAL(tabMoved(int,int)), this, SIGNAL(tabMoved(int,int)));
-    connect(this, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
     setProperty("tabsClosable", true);
     setProperty("movable", true);
 
