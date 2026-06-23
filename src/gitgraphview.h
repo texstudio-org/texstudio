@@ -54,6 +54,7 @@ private:
         QStringList refs;
         QString subject;
         QVector<Segment> downSegments; ///< segments going DOWN from this row
+        bool selected;
     };
 
     // A coloured badge to render next to the commit row.
@@ -75,6 +76,7 @@ private:
 
     QVector<RowData> m_rows;
     QHash<QString, QString> m_statCache; ///< lazily populated; keyed by full commit hash
+    QHash<QString, QString> m_fileCache; ///< lazily populated; keyed by full commit hash
 
     static constexpr int k_rowHeight    = 22;
     static constexpr int k_laneWidth    = 14;

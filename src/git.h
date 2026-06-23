@@ -41,6 +41,7 @@ public:
     QStringList getRepoLog(const QString &path, int maxEntries = 100);
     QList<GraphEntry> getRepoLogGraph(const QString &path, int maxEntries = 200, const QString &fileFilter = QString());
     QString getCommitStat(const QString &path, const QString &hash);
+    QString getCommitFileNames(const QString &path, const QString &hash);
     void createRepository(QString filename);
     QList<FileEntry> getChangedFiles(QString path);
     QString getCurrentBranch(QString path);

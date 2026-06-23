@@ -148,6 +148,7 @@ void GitGraphView::computeLayout(const QList<GIT::GraphEntry> &entries)
         rd.fullHash  = entry.hash;
         rd.refs      = entry.refs;
         rd.subject   = entry.subject;
+        rd.selected  = false;
 
         // --- 1. Find commit lane ---
         int cl = -1;
@@ -395,11 +396,48 @@ void GitGraphView::setSelectedRow(int row)
 {
     if (row < 0 || row >= m_rows.size())
         row = -1;
-    if (m_selectedRow == row) return;
+
+    RowData &entry= m_rows[row];
+    //check if filename, don't select if it is
+    if(entry.fullHash.isEmpty()){
+        return;
+    }
 
     m_selectedRow = row;
+    //emit entrySelected(row >= 0 ? m_rows[row].fullHash : QString());
+    // add filenames from commit
+    if(entry.selected){
+        entry.selected=false;
+        for(int i=row+1;i<m_rows.size();i++){
+            if(m_rows[i].fullHash==""){
+                m_rows.remove(i);
+                i--;
+            }
+        }
+    }else{
+        entry.selected=true;
+        if (m_git && row >= 0 && row < m_rows.size()) {
+            const RowData &rd = m_rows[row];
+            QString tip = m_fileCache.value(rd.fullHash);
+            if (tip.isEmpty()) {
+                tip = m_git->getCommitFileNames(m_repoPath, rd.fullHash).trimmed();
+                if (!tip.isEmpty()){
+                    m_fileCache.insert(rd.fullHash, tip);
+                }
+            }
+            QStringList files = tip.split('\n');
+            for(int i=0;i<files.size();i++){
+                RowData newRow;
+                newRow.fullHash = "";
+                newRow.subject = files[i];
+                newRow.commitLane=-1;
+                newRow.selected=false;
+                m_rows.insert(row+1,newRow);
+            }
+        }
+
+    }
     viewport()->update();
-    emit entrySelected(row >= 0 ? m_rows[row].fullHash : QString());
 }
 
 bool GitGraphView::viewportEvent(QEvent *event)

@@ -262,6 +262,18 @@ QString GIT::getCommitStat(const QString &path, const QString &hash)
         "--date=short";
     return runGit(action, quote(path), hash);
 }
+/*!
+ * \brief get commit filenames for a single commit
+ * \param path repository root directory
+ * \param hash full or short commit hash
+ * \return first line is hash, following lines filenames
+ */
+QString GIT::getCommitFileNames(const QString &path, const QString &hash)
+{
+    const QString action =
+        "show --name-only --pretty=format: ";
+    return runGit(action, quote(path), hash);
+}
 
 
 /*!
