@@ -1,5 +1,5 @@
 # denisbitouze, 02.03.2013
-# Matthew Bertucci updated 2026/01/31 for v2.5.1
+# Matthew Bertucci updated 2026/06/23 for v2.6.0
 
 #include:etoolbox
 #include:ifthen
@@ -90,6 +90,7 @@ arxiv
 inspire
 simplex
 threema
+medium
 #endkeyvals
 \extrainfo{extra info%text}
 \listitemsymbol#*
@@ -132,6 +133,7 @@ threema
 \inspiresocialsymbol#*
 \simplexsocialsymbol#*
 \threemasocialsymbol#*
+\mediumsocialsymbol#*
 
 \enclname#*
 \makefooter
@@ -248,6 +250,7 @@ tikz
 \opening{opening%text}#n
 \closing{closing%text}#n
 \signature{scale}{imagefile}#g
+\postscript{text}
 \enclosure{enclosure%text}#n
 \enclosure[alternative name%text]{enclosure%text}#n
 \recomputeletterheadlengths#*

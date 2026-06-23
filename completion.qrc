@@ -1893,6 +1893,7 @@
 <file>completion/heuristica.cwl</file>
 <file>completion/hexboard.cwl</file>
 <file>completion/hexdump.cwl</file>
+<file>completion/hexdumptikz.cwl</file>
 <file>completion/hfoldsty.cwl</file>
 <file>completion/hf-tikz.cwl</file>
 <file>completion/hgbabbrev.cwl</file>
