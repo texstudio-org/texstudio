@@ -126,9 +126,9 @@ void GitWidget::setupUi()
     // Connections
     connect(m_btnRefresh,   &QToolButton::clicked,  this, &GitWidget::refresh);
     connect(m_btnCommit,    &QPushButton::clicked,  this, &GitWidget::onCommit);
-    connect(m_btnPush,      &QPushButton::clicked,  this, &GitWidget::onPush);
-    connect(m_btnPull,      &QPushButton::clicked,  this, &GitWidget::onPull);
-    connect(m_btnFetch,     &QPushButton::clicked,  this, &GitWidget::onFetch);
+    connect(m_btnPush,      &QToolButton::clicked,  this, &GitWidget::onPush);
+    connect(m_btnPull,      &QToolButton::clicked,  this, &GitWidget::onPull);
+    connect(m_btnFetch,     &QToolButton::clicked,  this, &GitWidget::onFetch);
     connect(m_btnStageAll,  &QPushButton::clicked,  this, &GitWidget::onStageAll);
     connect(m_btnUnstageAll, &QPushButton::clicked,  this, &GitWidget::onUnstageAll);
     connect(m_filterByFile, &QCheckBox::toggled, this, &GitWidget::onFilterByFileToggled);
