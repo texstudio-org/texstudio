@@ -577,6 +577,10 @@ void QNFADefinition::matchOpen(QDocument *d, PMatch& m) const
 {
 	int line = m.line[0];
 	int pos = m.column[0];
+    if(line<0 || line>=d->lineCount()){
+        m.type = PMatch::Invalid;
+        return;
+    }
 	QVector<QParenthesis> m_parens = d->line(line).parentheses();
 
 	bool bMatch = false;
