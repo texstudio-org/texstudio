@@ -146,6 +146,9 @@ void GitWidget::setupUi()
 void GitWidget::setPath(const QString &path)
 {
     if(m_path==path) return; // No change, no refresh needed
+    // check if same dir
+    QFileInfo fi(path);
+    if(fi.absolutePath()==resolvedPath()) return;
     m_path = path;
     refresh();
 }
