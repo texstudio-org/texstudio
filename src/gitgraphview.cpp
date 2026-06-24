@@ -401,7 +401,7 @@ int GitGraphView::rowAtPoint(const QPoint &pos) const
 void GitGraphView::setSelectedRow(int row)
 {
     if (row < 0 || row >= m_rows.size())
-        row = -1;
+        return;
 
     RowData &entry= m_rows[row];
     //check if filename, don't select if it is
