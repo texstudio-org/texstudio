@@ -10370,7 +10370,7 @@ void Texstudio::showDiff(QString rev, QString old_rev)
     removeDiffMarkers();
 
     QString buffer=getDiff(rev,old_rev);
-    diffApply(doc,buffer);
+    //diffApply(doc,buffer);
 
     // show changes (by calling LatexEditorView::documentContentChanged)
     LatexEditorView *edView = currentEditorView();
