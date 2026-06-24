@@ -349,6 +349,8 @@ private slots:
 	void svnPatch(QEditor *ed, QString diff);
 	void showOldRevisions();
 	void changeToRevision(QString rev, QString old_rev = "");
+    void showDiff(QString rev, QString old_rev = "");
+    QString getDiff(QString rev, QString old_rev = "");
     void svnDialogClosed(int);
 	void fileDiff();
 	void fileDiff3();
@@ -453,6 +455,7 @@ protected slots:
     void insertFromTagList(QListWidgetItem *item);
 	void insertBib();
     void openFromExplorer(const QModelIndex &index);
+    void openFromGit(const QString &fn,const QString rev);
     void insertFromExplorer(bool visible);
 	void closeEnvironment();
 

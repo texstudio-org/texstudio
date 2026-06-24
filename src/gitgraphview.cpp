@@ -406,11 +406,18 @@ void GitGraphView::setSelectedRow(int row)
     RowData &entry= m_rows[row];
     //check if filename, don't select if it is
     if(entry.fullHash.isEmpty()){
+        //find the commit above it
+        int commitRow=row-1;
+        while(commitRow>=0 && m_rows[commitRow].fullHash.isEmpty()){
+            commitRow--;
+        }
+        QString id=m_rows[commitRow].fullHash;
+        emit entrySelected(id,entry.subject);
         return;
     }
 
     m_selectedRow = row;
-    //emit entrySelected(row >= 0 ? m_rows[row].fullHash : QString());
+
     // add filenames from commit
     if(entry.selected){
         entry.selected=false;

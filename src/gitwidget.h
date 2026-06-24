@@ -34,7 +34,7 @@ public slots:
     void refresh();
 
 signals:
-    void fileActivated(const QString &filePath);
+    void fileActivated(const QString &filePath,const QString rev="");
 
 private slots:
     void onCommit();
@@ -46,6 +46,7 @@ private slots:
     void onUnstageAll();
     void onTabChanged(int index);
     void onFilterByFileToggled(bool checked);
+    void fileSelected(const QString &hash,const QString &filePath="");
 
 private:
     void setupUi();

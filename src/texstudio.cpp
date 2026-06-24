@@ -767,7 +767,7 @@ void Texstudio::setupDockWidgets()
     dock=findChild<QDockWidget *>("git",Qt::FindDirectChildrenOnly);
     if(!dock){
         gitWidget = new GitWidget(&git, this);
-        connect(gitWidget, &GitWidget::fileActivated, this, [this](const QString &path){ load(path); });
+        connect(gitWidget, &GitWidget::fileActivated, this, &Texstudio::openFromGit);
         gitDockWidget=addDock("git", "git_R90", tr("Git"), gitWidget);
     }
 
@@ -5693,6 +5693,23 @@ void Texstudio::openFromExplorer(const QModelIndex &index)
     }
 }
 /*!
+ * \brief file was doubleclicked in gitwidget
+ * \param fn
+ */
+void Texstudio::openFromGit(const QString &fn,const QString rev)
+{
+    if (fn.isEmpty()) return;
+    if(!currentEditorView()){
+        return;
+    }
+    QFileInfo cfi=currentEditor()->fileInfo();
+    QFileInfo fi(cfi.dir(),fn);
+    if (fi.isFile() && fi.isReadable()) {
+        openExternalFile(fi.absoluteFilePath());
+    }
+    //showDiff("");
+}
+/*!
  * \brief insert file from context menu in the file explorer (dock)
  * \param index
  */
@@ -10331,30 +10348,61 @@ void Texstudio::svnDialogClosed(int)
  */
 void Texstudio::changeToRevision(QString rev, QString old_rev)
 {
-	QString filename = currentEditor()->fileName();
-	// get diff
+    QString buffer=getDiff(rev,old_rev);
+    if(buffer.isEmpty()) return; //diff failed or did not give results
+	// patch
+	svnPatch(currentEditor(), buffer);
+    currentEditor()->setProperty("Revision", rev);
+}
+/*!
+ * \brief show delta between two revisions with markers in the editor
+ * diff is generated via git/svn
+ * \param rev
+ * \param old_rev needs to be the shown text in the editor, rev is the revision to compare with
+ */
+void Texstudio::showDiff(QString rev, QString old_rev)
+{
+    LatexDocument *doc = documents.currentDocument;
+    if (!doc)
+        return;
+
+    //remove old markers
+    removeDiffMarkers();
+
+    QString buffer=getDiff(rev,old_rev);
+    diffApply(doc,buffer);
+
+    // show changes (by calling LatexEditorView::documentContentChanged)
+    LatexEditorView *edView = currentEditorView();
+    edView->documentContentChanged(0, edView->document->lines());
+}
+
+QString Texstudio::getDiff(QString rev, QString old_rev)
+{
+    QString filename = currentEditor()->fileName();
+    // get diff
     QRegularExpression rx("^[r](\\d+) \\|");
     if(configManager.useVCS==1){
         //GIT
         rx.setPattern("^([a-f0-9]+) ");
     }
-	QString old_revision;
-	if (old_rev.isEmpty()) {
-		QVariant zw = currentEditor()->property("Revision");
-		Q_ASSERT(zw.isValid());
-		old_revision = zw.toString();
-	} else {
-		old_revision = old_rev;
-	}
+    QString old_revision;
+    if (old_rev.isEmpty()) {
+        QVariant zw = currentEditor()->property("Revision");
+        //Q_ASSERT(zw.isValid());
+        old_revision = zw.toString();
+    } else {
+        old_revision = old_rev;
+    }
     QRegularExpressionMatch rxm=rx.match(old_revision);
     if (rxm.hasMatch()) {
         old_revision = rxm.captured(1);
-	} else return;
-	QString new_revision = rev;
+    } ;//else return QString();
+    QString new_revision = rev;
     rxm=rx.match(new_revision);
     if (rxm.hasMatch()) {
         new_revision = rxm.captured(1);
-	} else return;
+    } ;//else return QString();
     QString cmd;
     if(configManager.useVCS==0){
         //SVN
@@ -10363,11 +10411,10 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
         //GIT
         cmd = GIT::makeCmd("diff", old_revision + " " + new_revision + " " + SVN::quote(filename));
     }
-	QString buffer;
+    QString buffer;
     runCommandNoSpecialChars(cmd, &buffer, currentEditor()->getFileCodec());
-	// patch
-	svnPatch(currentEditor(), buffer);
-    currentEditor()->setProperty("Revision", rev);
+
+    return buffer;
 }
 
 bool Texstudio::generateMirror(bool setCur)
@@ -11347,7 +11394,7 @@ void Texstudio::removeDiffMarkers(bool theirs)
     if (!doc || !doc->mayHaveDiffMarkers)
 		return;
 
-	diffRemoveMarkers(doc, theirs);
+    diffRemoveMarkers(doc, theirs);
 	QList<QObject *>lst = doc->children();
 	foreach (QObject *o, lst)
 		delete o;

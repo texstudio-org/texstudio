@@ -136,6 +136,7 @@ void GitWidget::setupUi()
             this, &GitWidget::onItemDoubleClicked);
     connect(m_tabWidget, &QTabWidget::currentChanged,
             this, &GitWidget::onTabChanged);
+    connect(m_graphView, &GitGraphView::entrySelected,this,&GitWidget::fileSelected);
 }
 
 /*!
@@ -380,6 +381,11 @@ void GitWidget::onTabChanged(int index)
 void GitWidget::onFilterByFileToggled(bool /*checked*/)
 {
     refreshHistory();
+}
+
+void GitWidget::fileSelected(const QString &hash, const QString &filePath)
+{
+    emit fileActivated(filePath, hash);
 }
 
 void GitWidget::updateStatus(const QString &msg)
