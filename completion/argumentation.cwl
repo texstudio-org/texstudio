@@ -1,23 +1,26 @@
 # argumentation package
-# Matthew Bertucci 2025/08/04 for v1.6
+# Matthew Bertucci 2026/06/23 for v1.7
 
 #include:amsbsy
 #include:amsmath
 #include:pgfopts
-#include:refcount
 #include:xspace
 #include:xcolor
 #include:tikz
 #include:tikzlibrarypositioning
 #include:tikzlibrarydecorations.markings
+#include:tikzlibrarycalc
 
 #keyvals:\usepackage/argumentation#c
 namestyle=#none,math,bold,monospace,monoemph
 argumentstyle=#standard,large,thick,gray,colored
 attackstyle=#standard,large,modern
-supportstyle=#standard,dashed,double
+supportstyle=#marked,dashed,double
 indexing=#none,numeric,alphabetic
 macros#true,false
+beamer#true,false
+indexing=#none,numeric,alphabetic
+junction dist=##L
 #endkeyvals
 
 #ifOption:macros
@@ -71,15 +74,25 @@ macros#true,false
 \argument[options](id){name}
 \argument[options]{name}
 \attack{id1}{id2}
+\attack{id1}{id2}(annotation%text)
 \attack[options]{id1}{id2}
+\attack[options]{id1}{id2}(annotation%text)
 \dualattack{id1}{id2}
 \dualattack[options]{id1}{id2}
 \selfattack{id}
 \selfattack[options]{id}
 \support{id1}{id2}
+\support{id1}{id2}(annotation%text)
 \support[options]{id1}{id2}
-\annotatedattack{id1}{id2}{value}
-\annotatedattack[options]{id1}{id2}{value}
+\support[options]{id1}{id2}(annotation%text)
+\setattack{sourcelist}{id}
+\setattack{sourcelist}{id}(annotation%text)
+\setattack[options]{sourcelist}{id}
+\setattack[options]{sourcelist}{id}(annotation%text)
+\setsupport{sourcelist}{id}
+\setsupport{sourcelist}{id}(annotation%text)
+\setsupport[options]{sourcelist}{id}
+\setsupport[options]{sourcelist}{id}(annotation%text)
 \afname{name}
 \afname(id){name}
 \afname[options](id){name}
@@ -94,3 +107,6 @@ aigblue#B
 \theaf#S
 \ifmacros#S
 
+# deprecated
+\annotatedattack{id1}{id2}{value}#S
+\annotatedattack[options]{id1}{id2}{value}#S
