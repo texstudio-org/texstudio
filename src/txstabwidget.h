@@ -56,7 +56,7 @@ protected slots:
 
 private slots:
 	void currentTabAboutToChange(int from, int to);
-	void onTabCloseRequest(int i);
+    void onTabCloseRequest(int i);
 
 private:
 	bool m_active;

@@ -17,7 +17,8 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
 	connect(tb, SIGNAL(customContextMenuRequested(QPoint)), this, SIGNAL(tabBarContextMenuRequested(QPoint)));
     connect(tb, SIGNAL(currentTabAboutToChange(int,int)), this, SLOT(currentTabAboutToChange(int,int)));
 	connect(tb, SIGNAL(tabLeftClicked()), this, SIGNAL(activationRequested()));
-	connect(tb, SIGNAL(middleMouseButtonPressed(int)), this, SLOT(onTabCloseRequest(int)));
+    //connect(tb, SIGNAL(middleMouseButtonPressed(int)), this, SLOT(tabCloseRequest(int)));
+    connect(this, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
 	setTabBar(tb);
 
     setDocumentMode(true);
@@ -329,6 +330,7 @@ void ChangeAwareTabBar::mousePressEvent(QMouseEvent *event)
 		if (tabNr >= 0) {
 			emit middleMouseButtonPressed(tabNr);
 		}
+        event->accept();
 	}
 	QTabBar::mousePressEvent(event);
 	if (event->button() == Qt::LeftButton) {
