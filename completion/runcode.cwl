@@ -1,5 +1,5 @@
 # runcode package
-# Matthew Bertucci 2026/06/11 for v2.4.1
+# Matthew Bertucci 2026/06/15 for v2.6
 
 #include:etoolbox
 #include:morewrites
@@ -292,3 +292,6 @@ bg#B
 \writeChunk{arg1}{arg2}#S
 \writeChunk{arg1}{arg2}[opt1][opt2]#S
 \writeChunk{arg1}{arg2}[opt]#S
+\ifforcerun#S
+\forceruntrue#S
+\forcerunfalse#S

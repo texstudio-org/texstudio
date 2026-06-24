@@ -1,5 +1,5 @@
 # ltugcomn package
-# Matthew Bertucci 2025/10/29 for v2.35
+# Matthew Bertucci 2026/06/15 for v2.37
 
 #include:mflogo
 
@@ -134,6 +134,7 @@
 \mf
 \MFB
 \midrtitle
+\MiKTeX
 \minutes#*
 \MkIV
 \mp
@@ -244,6 +245,7 @@
 \TestIffalse#S
 \TestIftrue#S
 \TeXhax
+\TeXLive
 \TeXMaG
 \textSMC{text}#*
 \texttub{text}#*
@@ -268,6 +270,7 @@
 \tubbraced{text%plain}
 \tubcentsold#S
 \TUBdefaulteTeX#*
+\tubdisc#*
 \tubdots
 \TUBedit{text}#*
 \TUBfilename{arg1}{arg2}#*

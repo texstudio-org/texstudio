@@ -3,7 +3,7 @@
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
 #modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
-#modified Matthew Bertucci 21 June 2025 for v7.01n
+#modified Matthew Bertucci 18 June 2026 for v7.01r
 
 #include:iftex
 #include:keyval
@@ -59,6 +59,83 @@
 #endif
 #ifOption:hyperindex=true
 \hyperxindexformat{arg1}{arg2}#*
+#endif
+
+#ifOption:psdextra
+\textGamma#*
+\textDelta#*
+\textTheta#*
+\textLambda#*
+\textXi#*
+\textPi#*
+\textSigma#*
+\textUpsilon#*
+\textPhi#*
+\textChi#*
+\textPsi#*
+\textOmega#*
+\textalpha#*
+\textbeta#*
+\textgamma#*
+\textdelta#*
+\textepsilon#*
+\textzeta#*
+\texteta#*
+\texttheta#*
+\textiota#*
+\textkappa#*
+\textlambda#*
+\textmugreek#*
+\textnu#*
+\textxi#*
+\textpi#*
+\textrho#*
+\textvarsigma#*
+\textsigma#*
+\texttau#*
+\textupsilon#*
+\textphi#*
+\textchi#*
+\textpsi#*
+\textomega#*
+#endif
+#ifOption:psdextra=true
+\textGamma#*
+\textDelta#*
+\textTheta#*
+\textLambda#*
+\textXi#*
+\textPi#*
+\textSigma#*
+\textUpsilon#*
+\textPhi#*
+\textChi#*
+\textPsi#*
+\textOmega#*
+\textalpha#*
+\textbeta#*
+\textgamma#*
+\textdelta#*
+\textepsilon#*
+\textzeta#*
+\texteta#*
+\texttheta#*
+\textiota#*
+\textkappa#*
+\textlambda#*
+\textmugreek#*
+\textnu#*
+\textxi#*
+\textpi#*
+\textrho#*
+\textvarsigma#*
+\textsigma#*
+\texttau#*
+\textupsilon#*
+\textphi#*
+\textchi#*
+\textpsi#*
+\textomega#*
 #endif
 
 \hypersetup{keyvals}
@@ -178,6 +255,7 @@ raiselinks#true,false
 runbordercolor=#%color
 runcolor=#%color
 setpagesize#true,false
+target-prefix={%<counter%>}{%<prefix%>}
 tex4ht
 textures
 unicode#true,false
