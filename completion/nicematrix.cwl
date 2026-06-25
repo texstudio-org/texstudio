@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2026/06/14 for v7.10
+# Matthew Bertucci 2026/06/25 for v7.10a
 
 #include:amsmath
 #include:array
@@ -153,7 +153,7 @@ delimiters/max-width
 vlines-in-sub-matrix=%<letter%>
 rounded-corners
 rounded-corners=##L
-no-cell-nodes
+no-cell-nodes#true,false
 ampersand-in-blocks
 &-in-blocks
 create-blocks-in-col=%<integer%>
@@ -506,7 +506,8 @@ nullify-dots
 renew-dots
 code-after=%<code%>
 small
-light-syntax
+light-syntax#true,false
+light-syntax-expanded#true,false
 name=%<name%>
 create-medium-nodes
 create-large-nodes

@@ -1,5 +1,5 @@
 # ctexbeamer class
-# Matthew Bertucci 4/24/2022 for v2.5.8
+# Matthew Bertucci 2026/06/25 for v2.6.0
 
 # does not actually load ctex, but defines all the same commands
 #include:ctex
@@ -13,10 +13,11 @@ zihao=#-4,5,false
 heading#true,false
 scheme=#chinese,plain
 linespread=%<number%>
-fontset=#adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none
+fontset=#adobe,fandol,founder,hanyi,mac,macnew,macold,ubuntu,windows,none
 punct=#quanjiao,banjiao,kaiming,CCT,plain
 space=#true,false,auto
 autoindent=
+experiment/font-size-system=#word,letterpress,%<自定义名称%>
 # options passed to beamer class
 usepdftitle#true,false
 envcountsect
