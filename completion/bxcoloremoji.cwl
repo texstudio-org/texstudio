@@ -1,5 +1,5 @@
 # bxcoloremoji package
-# Matthew Bertucci 2024/11/11 for v1.0
+# Matthew Bertucci 2026/06/24 for v1.1
 
 #include:etoolbox
 #include:keyval
@@ -16,6 +16,7 @@ preload-names=#auto,true,false
 bbparam=#auto,true,false
 bxghost=#auto,true,false
 pua=
+dvisvgm-adjust#true,false
 #endkeyvals
 
 #ifOption:bxghost=true
@@ -67,6 +68,7 @@ coloremojikeycap
 \end{coloremojicodelist}
 \begin{coloremojicodeautolist}{code value list}
 \end{coloremojicodeautolist}
+\coloremojiSetAbsolutePath{family}{directory}
 
 # deprecated/not documented
 \coloremojiucs{code value list}#S
