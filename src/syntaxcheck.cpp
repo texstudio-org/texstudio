@@ -141,8 +141,9 @@ void SyntaxCheck::run()
 
 		StackEnvironment activeEnv = newLine.prevEnv;
 		Ranges newRanges;
+        QVector<QParenthesis> m_parens;
 
-        checkLine(line, newRanges, activeEnv, newLine.dlh, tl, newLine.stack, newLine.ticket,commentStart.first);
+        checkLine(line, newRanges, activeEnv, newLine.dlh, tl, newLine.stack, newLine.ticket,commentStart.first,m_parens);
 		// place results
         if (newLine.clearOverlay){
             QList<int> fmtList={syntaxErrorFormat,SpellerUtility::spellcheckErrorFormat};
@@ -178,6 +179,36 @@ void SyntaxCheck::run()
             // add comment hightlight if present
             if(commentStart.first>=0){
                 newLine.dlh->addOverlayNoLock(QFormatRange(commentStart.first, newLine.dlh->length()-commentStart.first, mFormatList["comment"]));
+            }
+            // update parenthesis
+            if(!m_parens.isEmpty()){
+                // merge original parenthesis vector with new additions
+                // skip duplicates
+                QVector<QParenthesis> original_parens=newLine.dlh->parenthesisNoLock();
+                // remove id 61 as it was added by syntaxcheck earlier
+                for(int i=0;i<original_parens.size();++i){
+                    if(original_parens[i].id==61){
+                        // remove
+                        original_parens.remove(i);
+                        --i;
+                    }
+                }
+                QVector<QParenthesis> result;
+                int i=0;
+                for(int j=0;j<m_parens.length();++j){
+                    while(i<original_parens.size() && original_parens[i].offset<m_parens[j].offset){
+                        result<<original_parens[i];
+                        ++i;
+                    }
+                    if(i<original_parens.size() && m_parens[j].offset==original_parens[i].offset){
+                        ++i;
+                    }
+                    result<<m_parens[j];
+                }
+                for(;i<original_parens.size();++i){
+                    result<<original_parens[i];
+                }
+                newLine.dlh->setParenthesisNoLock(result);
             }
 			// active envs
 			QVariant oldEnvVar = newLine.dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
@@ -231,7 +262,8 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 	TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
     QPair<int,int> commentStart = dlh->getCookieLocked(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
 	Ranges newRanges;
-    checkLine(line, newRanges, activeEnv, dlh, tl, stack, dlh->getCurrentTicket(),commentStart.first);
+    QVector<QParenthesis> m_parens;
+    checkLine(line, newRanges, activeEnv, dlh, tl, stack, dlh->getCurrentTicket(),commentStart.first,m_parens);
 	// add Error for unclosed env
 	QVariant var = dlh->getCookieLocked(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE);
 	if (var.isValid()) {
@@ -618,7 +650,7 @@ bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const
 * \param stack token stack at start of line
 * \param ticket ticket number for current processed line
 */
-void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList &tl, TokenStack stack, int ticket,int commentStart)
+void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList &tl, TokenStack stack, int ticket, int commentStart, QVector<QParenthesis> &m_parens)
 {
 	// do syntax check on that line
     //int cols = containsEnv(*ltxCommands, "tabular", activeEnv);
@@ -637,7 +669,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             */
         }
     }
-    QVector<QParenthesis> m_parens;
+
     // check command-words
 	for (int i = 0; i < tl.length(); i++) {
         Token &tk = tl[i];
@@ -1564,35 +1596,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			}
 		}
 	}
-    if(!m_parens.isEmpty()){
-        // merge original parenthesis vector with new additions
-        // skip duplicates
-        QVector<QParenthesis> original_parens=dlh->parenthesis();
-        // remove id 61 as it was added by syntaxcheck earlier
-        for(int i=0;i<original_parens.size();++i){
-            if(original_parens[i].id==61){
-                // remove
-                original_parens.remove(i);
-                --i;
-            }
-        }
-        QVector<QParenthesis> result;
-        int i=0;
-        for(int j=0;j<m_parens.length();++j){
-            while(i<original_parens.size() && original_parens[i].offset<m_parens[j].offset){
-                result<<original_parens[i];
-                ++i;
-            }
-            if(i<original_parens.size() && m_parens[j].offset==original_parens[i].offset){
-                ++i;
-            }
-            result<<m_parens[j];
-        }
-        for(;i<original_parens.size();++i){
-            result<<original_parens[i];
-        }
-        dlh->setParenthesis(result);
-    }
+
     if(!activeEnv.isEmpty()){
         //check active env for env highlighting (math,verbatim)
         QStack<Environment>::Iterator it=activeEnv.begin();

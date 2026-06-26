@@ -174,7 +174,9 @@ public:
 		void layout(int lineNr) const; //public for unittests
 
         void setParenthesis(QVector<QParenthesis> parens);
+        void setParenthesisNoLock(QVector<QParenthesis> parens);
         QVector<QParenthesis> parenthesis();
+        QVector<QParenthesis> parenthesisNoLock();
 	private:
 		void drawBorders(QPainter *p, qreal yStart, qreal yEnd) const;
 

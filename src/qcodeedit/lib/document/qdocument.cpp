@@ -3481,16 +3481,24 @@ void QDocumentLineHandle::layout(int lineNr) const
 
 void QDocumentLineHandle::setParenthesis(QVector<QParenthesis> parens)
 {
-    lockForWrite();
+    QWriteLocker locker(&mLock);
+    setParenthesisNoLock(parens);
+}
+
+void QDocumentLineHandle::setParenthesisNoLock(QVector<QParenthesis> parens)
+{
     m_parens=parens;
-    unlock();
 }
 
 QVector<QParenthesis> QDocumentLineHandle::parenthesis()
 {
-    lockForRead();
+    QReadLocker locker(&mLock);
+    return parenthesisNoLock();
+}
+
+QVector<QParenthesis> QDocumentLineHandle::parenthesisNoLock()
+{
     QVector<QParenthesis>result=m_parens;
-    unlock();
     return result;
 }
 

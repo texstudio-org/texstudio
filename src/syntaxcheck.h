@@ -134,7 +134,7 @@ signals:
 
 protected:
 	void run();
-    void checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList &tl, TokenStack stack, int ticket, int commentStart=-1);
+    void checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList &tl, TokenStack stack, int ticket, int commentStart,QVector<QParenthesis> &m_parens);
 
 private:
 	QQueue<SyntaxLine> mLines;
