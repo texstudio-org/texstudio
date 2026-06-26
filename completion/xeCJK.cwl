@@ -186,7 +186,7 @@ different-align-margin=##L
 different-align-ratio=%<real%>
 kerning-margin-width=##L
 kerning-margin-ratio=%<real%>
-optimize-kerning #true,false
+optimize-kerning#true,false
 kerning-margin-minimum=##L
 #endkeyvals
 
@@ -221,7 +221,7 @@ BoldSwashFont=%<font name%>
 CJKShape=#Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC
 CharacterVariant=%<number%>
 CharacterVariant={%<glyph num list%>:%<variety num%>}
-CharacterWidth=#Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll
+CharacterWidth=#Proportional,Full,Half,Third,Quarter,AlternateProportional,AlternateHalf,ResetAll
 Color=#%color
 Colour=#%color
 Contextuals=#Swash,SwashOff,Alternate,AlternateOff,WordInitial,WordInitialOff,WordFinal,WordFinalOff,LineFinal,LineFinalOff,Inner,InnerOff,ResetAll
