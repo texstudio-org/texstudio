@@ -1,5 +1,5 @@
 # pxchfon package
-# Matthew Bertucci 2024/08/26 for v2.2
+# Matthew Bertucci 2026/06/25 for v2.3
 
 #include:platex
 #include:keyval
@@ -13,6 +13,7 @@ dvips
 dviout
 xdvi
 dvipdfmx
+dvisvgm
 use=%<名前%>
 alphabet
 noalphabet
