@@ -1,7 +1,7 @@
 # ctex package
 # Darcy Hu <hot123tea123@gmail.com> 2016
 #modified zepinglee 30 Jan 2021
-# updated 26 June 2022 for v2.5.10
+# updated 25 June 2026 for v2.6.0
 
 #include:zhnumber
 
@@ -16,6 +16,7 @@ sub3section
 sub4section
 scheme=#chinese,plain
 linespread=%<number%>
+experiment/font-size-system=#word,letterpress,%<自定义名称%>
 #endkeyvals
 
 #ifOption:heading
@@ -39,7 +40,7 @@ linespread=%<number%>
 
 # package or \ctexset keys
 #keyvals:\ctexset,\usepackage/ctex#c
-fontset=#adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none
+fontset=#adobe,fandol,founder,hanyi,mac,macnew,macold,ubuntu,windows,none
 #
 # Sec. 5.3
 punct=#quanjiao,banjiao,kaiming,CCT,plain
@@ -51,6 +52,7 @@ autoindent=
 #keyvals:\ctexset
 # Sec. 5.3
 linestretch=
+experiment/CJKecglue=%<弹性长度%>
 #
 # Sec. 6.1
 today=#small,big,old
@@ -296,6 +298,8 @@ appendix/number=
 declarecharrange=
 clearalternatefont={%<family1,family2,...%>}
 resetalternatefont={%<family1,family2,...%>}
+# Sec. 11
+patch/cleveref#true,false
 #endkeyvals
 
 ## Sec. 7.5
