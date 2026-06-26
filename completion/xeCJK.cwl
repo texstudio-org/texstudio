@@ -186,7 +186,7 @@ different-align-margin=##L
 different-align-ratio=%<real%>
 kerning-margin-width=##L
 kerning-margin-ratio=%<real%>
-optimize-kerning #true,false
+optimize-kerning#true,false
 kerning-margin-minimum=##L
 #endkeyvals
 
