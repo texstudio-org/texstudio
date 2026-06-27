@@ -1285,7 +1285,7 @@ before changing to windowed mode (Bug #1876)
 - option to silently reload files on external changes
 - make %todo as well as %TODO marker for "to-do" list
 - "Align Table Columns" now works on many more environments such as
-  matrix, align. align*, split, multline, multline*, gather, gather*, flalign, flalign*, alignat, alignat*
+  matrix, align, align*, split, multline, multline*, gather, gather*, flalign, flalign*, alignat, alignat*
 - template resources are now configured via template_resources.xml (allows to customize resource locations)
 - template json files are now UTF-8
 - basic Pweave highlighting
