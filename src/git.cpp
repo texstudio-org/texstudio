@@ -328,8 +328,6 @@ QString GIT::getCommitFileNames(const QString &path, const QString &hash)
         "show --name-only --pretty=format: ";
     return runGit(action, quote(path), hash);
 }
-
-
 /*!
  * \brief get the repository-wide commit history (most recent first)
  * \param path repository root directory
