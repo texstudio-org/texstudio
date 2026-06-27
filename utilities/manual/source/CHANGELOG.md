@@ -1462,7 +1462,7 @@ ref/commands overview
 - added tabbed log panel
 - extended completer word list using kile cwl files
 - imported more math symbols (+730) from kile
-- imported changes of texmaker 1.8.1->1.9.2 (favourite symbols, new color scheme, a)
+- imported changes of texmaker 1.8.1->1.9.2 (favourite symbols, new color scheme)
 - fixed several bugs
 - see usermanual_en.html for a more detailed description
 
