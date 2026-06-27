@@ -33,7 +33,7 @@ public:
     void commit(QString filename, QString message);
     QString stageFiles(const QString &path, const QStringList &files);
     QString commitStaged(const QString &path, const QString &message);
-    void push(QString filename);
+    void push(QString filename,QString optionalArgs="");
     void pull(QString path);
     void fetch(QString path);
     Status status(QString filename);
@@ -47,6 +47,8 @@ public:
     QString getCurrentBranch(QString path);
     void unstageFiles(QString repoRoot, QStringList files);
     void checkoutFile(QString repoRoot, QString relPath,QString rev="HEAD");
+    void checkout(QString repoRoot, QString arg);
+    QStringList getBranches(QString repoRoot);
 
     QString runGit(QString action, QString args);
     QString runGit(QString action, QString path,QString args);

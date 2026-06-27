@@ -440,14 +440,16 @@ void GitGraphView::setSelectedRow(int row)
                     m_fileCache.insert(rd.fullHash, tip);
                 }
             }
-            QStringList files = tip.split('\n');
-            for(int i=0;i<files.size();i++){
-                RowData newRow;
-                newRow.fullHash = "";
-                newRow.subject = files[i];
-                newRow.commitLane=-1;
-                newRow.selected=false;
-                m_rows.insert(row+1,newRow);
+            if(!tip.isEmpty()){
+                QStringList files = tip.split('\n');
+                for(int i=0;i<files.size();i++){
+                    RowData newRow;
+                    newRow.fullHash = "";
+                    newRow.subject = files[i];
+                    newRow.commitLane=-1;
+                    newRow.selected=false;
+                    m_rows.insert(row+1,newRow);
+                }
             }
         }
 
@@ -480,16 +482,33 @@ bool GitGraphView::viewportEvent(QEvent *event)
         QAction *copyHashAction = menu.addAction(tr("Copy Commit Hash"));
         QAction *copySubjectAction = menu.addAction(tr("Copy Commit Subject"));
         QAction *copyLineAction = menu.addAction(tr("Copy Commit Line"));
+        menu.addSeparator();
+        // merge & cherry-pick
+        QAction *mergeAction = menu.addAction(tr("Merge Commit"));
+        QAction *cherryPickAction = menu.addAction(tr("Cherry-Pick Commit"));
+        menu.addSeparator();
+        QAction *createBranchAction = menu.addAction(tr("Create Branch..."));
 
         QAction *action = menu.exec(ce->globalPos());
         if (!action) return true;
 
         if (action == copyHashAction) {
             QApplication::clipboard()->setText(rd.fullHash);
-        } else if (action == copySubjectAction) {
+        }
+        if (action == copySubjectAction) {
             QApplication::clipboard()->setText(rd.subject);
-        } else if (action == copyLineAction) {
+        }
+        if (action == copyLineAction) {
             QApplication::clipboard()->setText(COPY_COMMIT_LINE_TEMPLATE.arg(rd.fullHash.left(ABBREVIATED_HASH_LENGTH)).arg(rd.subject));
+        }
+        if (action == mergeAction) {
+            emit actOnSelectedEntry(rd.fullHash, QStringLiteral("merge"));
+        }
+        if (action == cherryPickAction) {
+            emit actOnSelectedEntry(rd.fullHash, QStringLiteral("cherry-pick"));
+        }
+        if (action == createBranchAction) {
+            emit actOnSelectedEntry(rd.fullHash, QStringLiteral("create-branch"));
         }
         return true;
     } else if (event->type() == QEvent::ToolTip) {

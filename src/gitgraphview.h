@@ -32,6 +32,7 @@ public:
 
 signals:
     void entrySelected(const QString &hash,const QString &filePath="");
+    void actOnSelectedEntry(const QString &hash,const QString &action="");
 
 protected:
     void paintEvent(QPaintEvent *event) override;

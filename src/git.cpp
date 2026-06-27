@@ -70,9 +70,9 @@ QString GIT::commitStaged(const QString &path, const QString &message)
  * \brief GIT push
  * \param filename
  */
-void GIT::push(QString filename)
+void GIT::push(QString filename,QString optionalArgs)
 {
-    runGit("push", quote(filename),"");
+    runGit("push", quote(filename),optionalArgs);
 }
 
 /*!
@@ -215,6 +215,36 @@ void GIT::unstageFiles(QString repoRoot, QStringList files)
 void GIT::checkoutFile(QString repoRoot, QString relPath, QString rev)
 {
     runGit(QString("checkout %1 --").arg(rev), quote(repoRoot), quote(relPath));
+}
+/*!
+ * \brief performa checkout with argument
+ * \param repoRoot repository root directory
+ * \param arg argument
+ */
+void GIT::checkout(QString repoRoot, QString arg)
+{
+    runGit(QString("checkout %1").arg(arg), quote(repoRoot));
+}
+/*!
+ * \brief get list of branches in repo
+ * \param repoRoot
+ * \return list of branches
+ */
+QStringList GIT::getBranches(QString repoRoot)
+{
+    const QString output = runGit("branch --list", quote(repoRoot), "");
+    QStringList branches;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    const QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+#else
+    const QStringList lines = output.split('\n', QString::SkipEmptyParts);
+#endif
+    for (const QString &line : lines) {
+        QString branch = line.trimmed();
+        if (branch.startsWith('*')) branch = branch.mid(1).trimmed();
+        branches << branch;
+    }
+    return branches;
 }
 
 /*!

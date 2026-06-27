@@ -51,6 +51,8 @@ private slots:
     void revertChangesInFiles();
     void enableSelection();
     void disableSelection();
+    void performGitOnHistoryEntry(const QString &hash,const QString &action="");
+    void onBranchButtonClicked();
 
 private:
     void setupUi();
@@ -62,6 +64,7 @@ private:
     QString  m_path;
 
     // Top bar
+    QToolButton *m_btnBranch;
     QLabel      *m_branchLabel;
     QToolButton *m_btnRefresh;
 

@@ -33,8 +33,10 @@ void GitWidget::setupUi()
     // Branch row
     QHBoxLayout *branchLayout = new QHBoxLayout();
     branchLayout->setContentsMargins(0, 0, 0, 0);
-    QLabel *branchIcon = new QLabel(QString::fromUtf8("\u2387 "));
-    branchIcon->setToolTip(tr("Current branch"));
+    m_btnBranch = new QToolButton();
+    m_btnBranch->setText(QString::fromUtf8("\u2387")); // branch icon
+    m_btnBranch->setToolTip(tr("Current branch"));
+    m_btnBranch->setPopupMode(QToolButton::InstantPopup);
     m_branchLabel = new QLabel(tr("(no repository)"));
     m_branchLabel->setToolTip(tr("Current branch"));
     m_btnRefresh = new QToolButton();
@@ -51,7 +53,7 @@ void GitWidget::setupUi()
     m_btnPull->setToolTip(tr("git pull"));
     m_btnPush->setToolTip(tr("git push"));
     auto *hspacer=new QSpacerItem(20,40,QSizePolicy::Minimum,QSizePolicy::Expanding);
-    branchLayout->addWidget(branchIcon);
+    branchLayout->addWidget(m_btnBranch);
     branchLayout->addWidget(m_branchLabel, 1);
     branchLayout->addSpacerItem(hspacer);
     branchLayout->addWidget(m_btnFetch);
@@ -138,6 +140,7 @@ void GitWidget::setupUi()
     connect(m_tabWidget, &QTabWidget::currentChanged,
             this, &GitWidget::onTabChanged);
     connect(m_graphView, &GitGraphView::entrySelected,this,&GitWidget::fileSelected);
+    connect(m_graphView, &GitGraphView::actOnSelectedEntry,this,&GitWidget::performGitOnHistoryEntry);
     connect(m_fileList,&QListWidget::customContextMenuRequested,this,&GitWidget::contextMenuRequested);
 }
 
@@ -177,6 +180,18 @@ void GitWidget::refresh()
         return;
     }
     m_branchLabel->setText(branch);
+    // poplulate other branches into btn menu
+    QStringList branches=m_git->getBranches(rpath);
+    if(branches.size()>1){
+        QMenu *menu=new QMenu();
+        foreach(const QString &b, branches){
+            if(b==branch) continue; // skip current
+            QAction *act=new QAction(b,menu);
+            connect(act,&QAction::triggered,this,&GitWidget::onBranchButtonClicked);
+            menu->addAction(act);
+        }
+        m_btnBranch->setMenu(menu);
+    }
 
     if (m_tabWidget->currentIndex() == 1) {
         refreshHistory();
@@ -306,7 +321,9 @@ void GitWidget::onPush()
     const QString rpath = resolvedPath();
     if (rpath.isEmpty()) return;
     updateStatus(tr("Pushing\u2026"));
-    m_git->push(rpath);
+    QString args=QString("origin %1").arg(m_branchLabel->text());
+
+    m_git->push(rpath,args);
     refresh();
     updateStatus(tr("Push complete."));
 }
@@ -467,6 +484,73 @@ void GitWidget::disableSelection()
     foreach(QListWidgetItem *item, selectedItems) {
         item->setCheckState(Qt::Unchecked);
     }
+}
+/*!
+ * \brief perform git on history entry
+ * Typically merge, cherry-pick
+ * \param hash
+ * \param action
+ */
+void GitWidget::performGitOnHistoryEntry(const QString &hash, const QString &action)
+{
+    if(action=="merge"){
+        QString cmd;
+        cmd="merge";
+        QString args;
+        args = hash;
+        QString repoRoot=resolvedPath();
+        m_git->runGit(cmd,repoRoot,args);
+    }
+    if(action=="cherry-pick"){
+        QString cmd;
+        cmd="cherry-pick";
+        QString args;
+        args = hash;
+        QString repoRoot=resolvedPath();
+        m_git->runGit(cmd,repoRoot,args);
+    }
+    if(action=="create-branch"){
+        // ask for branch name
+        bool ok;
+        QString branchName = QInputDialog::getText(this, tr("Create Branch"),
+                                                   tr("Branch name:"), QLineEdit::Normal,
+                                                   "", &ok);
+        if (!ok || branchName.isEmpty()) return;
+        // sanitize branch name
+        // no spaces, just a-zA-Z0-9, single dot but not at start or end, and - and _ and / allowed
+        QRegularExpression reValidBranchName("^[a-zA-Z0-9._/-]+$");
+        QRegularExpressionMatch match = reValidBranchName.match(branchName);
+        if (!match.hasMatch() || branchName.startsWith('.') || branchName.endsWith('.') || branchName.contains("..")) {
+            updateStatus(tr("Invalid branch name '%1'.").arg(branchName));
+            return;
+        }
+        branchName = branchName.trimmed();
+
+        // check if branch already exists
+        QStringList branches = m_git->getBranches(resolvedPath());
+        if (branches.contains(branchName)) {
+            updateStatus(tr("Branch '%1' already exists.").arg(branchName));
+            return;
+        }
+        m_git->checkout(resolvedPath(),QString("-b %1 %2").arg(branchName,hash));
+    }
+    refresh();
+}
+/*!
+ * \brief perform switch branch from branch button menu
+ */
+void GitWidget::onBranchButtonClicked()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    QString branchName = action->text();
+    QString cmd;
+    cmd="switch";
+    QString args;
+    args = branchName;
+    QString repoRoot=resolvedPath();
+    m_git->runGit(cmd,repoRoot,args);
+    refresh();
 }
 
 
