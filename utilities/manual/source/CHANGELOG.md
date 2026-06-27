@@ -1285,7 +1285,7 @@ before changing to windowed mode (Bug #1876)
 - option to silently reload files on external changes
 - make %todo as well as %TODO marker for "to-do" list
 - "Align Table Columns" now works on many more environments such as
-  matrix, align. align*, split, multline, multline*, gather, gather*, flalign, flalign*, alignat, alignat*
+  matrix, align, align*, split, multline, multline*, gather, gather*, flalign, flalign*, alignat, alignat*
 - template resources are now configured via template_resources.xml (allows to customize resource locations)
 - template json files are now UTF-8
 - basic Pweave highlighting
@@ -1462,7 +1462,7 @@ ref/commands overview
 - added tabbed log panel
 - extended completer word list using kile cwl files
 - imported more math symbols (+730) from kile
-- imported changes of texmaker 1.8.1->1.9.2 (favourite symbols, new color scheme, a)
+- imported changes of texmaker 1.8.1->1.9.2 (favourite symbols, new color scheme)
 - fixed several bugs
 - see usermanual_en.html for a more detailed description
 
@@ -1473,7 +1473,7 @@ ref/commands overview
 - extended word completion system to use "kile"-word lists (*.cwl)
 - key Tab can be used to complete common word bases in the present suggestion list like it is done in bash shells
 - complete normal texttext by proposing earlier used text parts
-- "User Tags"\94 (user defined text blocks) can be inserted by using user defined abbreviations which replaced in the completion process
+- "User Tags" (user defined text blocks) can be inserted by using user defined abbreviations which replaced in the completion process
 - user defined latex commands are automatically scanned and can be used for command completion
 - new documents can be created by using templates
 - extended and improved symbol panel
