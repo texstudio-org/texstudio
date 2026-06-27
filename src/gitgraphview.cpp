@@ -472,11 +472,9 @@ bool GitGraphView::viewportEvent(QEvent *event)
         QContextMenuEvent *ce = static_cast<QContextMenuEvent *>(event);
         const int row = rowAtPoint(ce->pos());
         if (row < 0 || row >= m_rows.size()) {
-            setSelectedRow(-1);
             return true;
         }
 
-        setSelectedRow(row);
         const RowData &rd = m_rows[row];
         QMenu menu(viewport());
         QAction *copyHashAction = menu.addAction(tr("Copy Commit Hash"));
