@@ -85,6 +85,7 @@ void GitWidget::setupUi()
     m_fileList = new QListWidget();
     m_fileList->setToolTip(tr("Check files to stage; double-click to open"));
     m_fileList->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    m_fileList->setContextMenuPolicy(Qt::CustomContextMenu);
     changesLayout->addWidget(m_fileList, 2);
 
     // Commit area
@@ -137,6 +138,7 @@ void GitWidget::setupUi()
     connect(m_tabWidget, &QTabWidget::currentChanged,
             this, &GitWidget::onTabChanged);
     connect(m_graphView, &GitGraphView::entrySelected,this,&GitWidget::fileSelected);
+    connect(m_fileList,&QListWidget::customContextMenuRequested,this,&GitWidget::contextMenuRequested);
 }
 
 /*!
@@ -187,6 +189,7 @@ void GitWidget::refresh()
             item->setText(entry.statusCode + "  " + entry.filePath);
             item->setData(Qt::UserRole,     entry.filePath);
             item->setData(Qt::UserRole + 1, rpath);
+            item->setData(Qt::UserRole + 2, entry.statusCode);
             item->setCheckState(Qt::Unchecked);
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
             // Colour-code by status
@@ -390,6 +393,82 @@ void GitWidget::fileSelected(const QString &hash, const QString &filePath)
 {
     emit fileActivated(filePath, hash);
 }
+/*!
+ * \brief provide context menu on filelist
+ * \param pos
+ */
+void GitWidget::contextMenuRequested(const QPoint &pos)
+{
+    // determine which item was clicked
+    QListWidgetItem *item = m_fileList->itemAt(pos);
+    if (!item) return;
+    // check if file exists
+    const QString repoRoot = item->data(Qt::UserRole + 1).toString();
+    const QString relPath  = item->data(Qt::UserRole).toString();
+    const QString fullPath = QDir(repoRoot).filePath(relPath);
+    if (!QFileInfo::exists(fullPath)) return;
+    const QString statusCode=item->data(Qt::UserRole + 2).toString();
+    QMenu menu(this);
+    if(statusCode==" M" || statusCode=="MM" || statusCode=="M " || statusCode=="A " || statusCode=="D " || statusCode==" D") {
+        // modified, offer revert
+        QAction *actRevertChanges=new QAction(tr("&Revert changes"),&menu);
+        connect(actRevertChanges,&QAction::triggered,this,&GitWidget::revertChangesInFiles);
+        menu.addAction(actRevertChanges);
+    }
+    // select/deselect all items
+    QAction *actSelectAll=new QAction(tr("&Select"),&menu);
+    connect(actSelectAll,&QAction::triggered,this,&GitWidget::enableSelection);
+    QAction *actDeselectAll=new QAction(tr("&Deselect"),&menu);
+    connect(actDeselectAll,&QAction::triggered,this,&GitWidget::disableSelection);
+    menu.addAction(actSelectAll);
+    menu.addAction(actDeselectAll);
+    if(menu.isEmpty()) return;
+
+    menu.exec(m_fileList->viewport()->mapToGlobal(pos));
+}
+/*!
+ * \brief Revert changes in all selected files (unstage and restore from HEAD).
+ */
+void GitWidget::revertChangesInFiles()
+{
+    QList<QListWidgetItem*> selectedItems = m_fileList->selectedItems();
+    foreach(const QListWidgetItem *item, selectedItems) {
+        const QString repoRoot = item->data(Qt::UserRole + 1).toString();
+        const QString relPath  = item->data(Qt::UserRole).toString();
+        const QString fullPath = QDir(repoRoot).filePath(relPath);
+        const QString statusCode = item->data(Qt::UserRole + 2).toString();
+        if (!QFileInfo::exists(fullPath)) continue;
+        // Unstage the file
+        m_git->unstageFiles(repoRoot, QStringList() << relPath);
+        // Restore from HEAD
+        m_git->checkoutFile(repoRoot, relPath);
+        updateStatus(tr("Reverted changes in %1").arg(relPath));
+    }
+    refresh();
+}
+/*!
+ * \brief enable all selected items
+ * Called from filelist contextmenu
+ */
+void GitWidget::enableSelection()
+{
+    QList<QListWidgetItem*> selectedItems = m_fileList->selectedItems();
+    foreach(QListWidgetItem *item, selectedItems) {
+        item->setCheckState(Qt::Checked);
+    }
+}
+/*!
+ * \brief disable all selected items
+ * Called from filelist contextmenu
+ */
+void GitWidget::disableSelection()
+{
+    QList<QListWidgetItem*> selectedItems = m_fileList->selectedItems();
+    foreach(QListWidgetItem *item, selectedItems) {
+        item->setCheckState(Qt::Unchecked);
+    }
+}
+
 
 void GitWidget::updateStatus(const QString &msg)
 {

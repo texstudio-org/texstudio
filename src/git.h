@@ -45,6 +45,8 @@ public:
     void createRepository(QString filename);
     QList<FileEntry> getChangedFiles(QString path);
     QString getCurrentBranch(QString path);
+    void unstageFiles(QString repoRoot, QStringList files);
+    void checkoutFile(QString repoRoot, QString relPath,QString rev="HEAD");
 
     QString runGit(QString action, QString args);
     QString runGit(QString action, QString path,QString args);

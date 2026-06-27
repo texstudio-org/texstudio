@@ -47,6 +47,10 @@ private slots:
     void onTabChanged(int index);
     void onFilterByFileToggled(bool checked);
     void fileSelected(const QString &hash,const QString &filePath="");
+    void contextMenuRequested(const QPoint &pos);
+    void revertChangesInFiles();
+    void enableSelection();
+    void disableSelection();
 
 private:
     void setupUi();

@@ -192,6 +192,30 @@ QString GIT::getCurrentBranch(QString path)
     const QString output = runGit("rev-parse --abbrev-ref HEAD", quote(path), "");
     return output.trimmed();
 }
+/*!
+ * \brief unstage given files in repository
+ * \param repoRoot
+ * \param files
+ */
+void GIT::unstageFiles(QString repoRoot, QStringList files)
+{
+    if (files.isEmpty()) return;
+    QStringList quotedFiles;
+    quotedFiles.reserve(files.size());
+    for (const QString &file : files)
+        quotedFiles << quote(file);
+    runGit("restore --staged", quote(repoRoot), quotedFiles.join(' '));
+}
+/*!
+ * \brief checkout a file from HEAD in repository
+ * \param repoRoot repository root directory
+ * \param relPath relative path of file to checkout
+ * \param rev revision to checkout (default: HEAD)
+ */
+void GIT::checkoutFile(QString repoRoot, QString relPath, QString rev)
+{
+    runGit(QString("checkout %1 --").arg(rev), quote(repoRoot), quote(relPath));
+}
 
 /*!
  * \brief get the repository-wide commit history with graph data
