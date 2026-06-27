@@ -3,6 +3,7 @@
 
 - fix update on structure pane [#4505](https://github.com/texstudio-org/texstudio/issues/4505)
 - fix math highlighting [#4508](https://github.com/texstudio-org/texstudio/issues/4508)
+- add panel for git
 
 ## TeXstudio 4.9.5
 
