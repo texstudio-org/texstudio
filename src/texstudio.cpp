@@ -5735,10 +5735,13 @@ void Texstudio::openFromGit(const QString &fn,const QString rev)
     edView->editor->setFileName(QString("%1 @ %2").arg(fileName,rev.left(7)));
     // show diff to open view
     LatexDocument *doc2=documents.findDocumentFromName(fn);
-    if(doc2){
+    if(doc2 && doc2->getEditorView()){
         diffDocs(doc, doc2);
-
         edView->documentContentChanged(0, edView->document->lines());
+        // move editor to other split, bring editor to front.
+        int idx=editors->tabGroupIndexFromEditor(doc2->getEditorView()) == 0 ? 1 : 0 ;
+        editors->moveToTabGroup(edView,idx,0);
+        editors->setCurrentEditor(doc2->getEditorView());
     }
 }
 /*!
