@@ -412,7 +412,8 @@ void GitGraphView::setSelectedRow(int row)
             commitRow--;
         }
         QString id=m_rows[commitRow].fullHash;
-        emit entrySelected(id,entry.subject);
+        QFileInfo fi(QDir(m_repoPath),entry.subject);
+        emit entrySelected(id,fi.absoluteFilePath());
         return;
     }
 

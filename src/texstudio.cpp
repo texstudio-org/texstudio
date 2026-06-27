@@ -5698,16 +5698,41 @@ void Texstudio::openFromExplorer(const QModelIndex &index)
  */
 void Texstudio::openFromGit(const QString &fn,const QString rev)
 {
-    if (fn.isEmpty()) return;
+    if (fn.isEmpty()|| rev.isEmpty()) return;
     if(!currentEditorView()){
         return;
     }
-    QFileInfo cfi=currentEditor()->fileInfo();
-    QFileInfo fi(cfi.dir(),fn);
-    if (fi.isFile() && fi.isReadable()) {
-        openExternalFile(fi.absoluteFilePath());
-    }
-    //showDiff("");
+    QFileInfo fi(fn);
+    QString repoRoot=fi.absolutePath();
+    QString fileName=fi.fileName();
+
+    LatexDocument *doc = new LatexDocument(this);
+    //doc->startSyntaxChecker();
+    //doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
+
+    LatexEditorView *edit = new LatexEditorView (nullptr, configManager.editorConfig, doc);
+    edit->setLatexPackageList(&latexPackageList);
+    edit->setHelp(&help);
+    if (configManager.newFileEncoding)
+        edit->editor->setFileCodec(configManager.newFileEncoding);
+    else
+        edit->editor->setFileCodec(QTextCodec::codecForName("utf-8"));
+    doc->clearUndo(); // inital file codec setting should not be undoable
+
+    configureNewEditorView(edit);
+
+    edit->document = doc;
+    edit->document->setEditorView(edit);
+    documents.addDocument(edit->document);
+
+    configureNewEditorViewEnd(edit);
+    // set text from git show
+    QString text;
+    QString args=QString("%1:%2").arg(rev,fileName);
+    text=git.runGit("show",repoRoot,args);
+    edit->document->setText(text,false);
+    edit->editor->setReadOnly(true);
+    edit->editor->setFileName(QString("%1 @ %2").arg(fileName,rev));
 }
 /*!
  * \brief insert file from context menu in the file explorer (dock)
