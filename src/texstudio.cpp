@@ -5703,8 +5703,16 @@ void Texstudio::openFromGit(const QString &fn,const QString rev)
         return;
     }
     QFileInfo fi(fn);
-    QString repoRoot=fi.absolutePath();
-    QString fileName=fi.fileName();
+    const QString repoRoot=fi.absolutePath();
+    const QString fileName=fi.fileName();
+    const QString revisionedFilename=QString("%1 @ %2").arg(fileName,rev.left(7));
+    // check if already open
+    foreach(LatexEditorView *edView,editors->editors()){
+        if(edView->editor->name()==revisionedFilename){
+            editors->setCurrentEditor(edView);
+            return;
+        }
+    }
 
     LatexDocument *doc = new LatexDocument(this);
     //doc->startSyntaxChecker();
