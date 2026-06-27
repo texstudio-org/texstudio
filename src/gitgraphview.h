@@ -56,6 +56,7 @@ private:
         QString subject;
         QVector<Segment> downSegments; ///< segments going DOWN from this row
         bool selected;
+        bool beforeHEAD;
     };
 
     // A coloured badge to render next to the commit row.

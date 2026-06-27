@@ -141,6 +141,7 @@ void GitGraphView::computeLayout(const QList<GIT::GraphEntry> &entries)
     m_maxLanes = 1;
 
     QVector<QString> lanes; // lanes[i] = hash expected at lane i
+    bool beforeHEAD=true;
 
     for (int row = 0; row < entries.size(); row++) {
         const GIT::GraphEntry &entry = entries[row];
@@ -149,6 +150,10 @@ void GitGraphView::computeLayout(const QList<GIT::GraphEntry> &entries)
         rd.refs      = entry.refs;
         rd.subject   = entry.subject;
         rd.selected  = false;
+        if(rd.refs.size()>0 && rd.refs[0].startsWith("HEAD")){
+            beforeHEAD=false;
+        }
+        rd.beforeHEAD=beforeHEAD;
 
         // --- 1. Find commit lane ---
         int cl = -1;
@@ -332,7 +337,13 @@ void GitGraphView::paintEvent(QPaintEvent *event)
                 const int x1 = seg.fromLane * k_laneWidth + k_laneWidth / 2 - scrollX;
                 const int x2 = seg.toLane   * k_laneWidth + k_laneWidth / 2 - scrollX;
 
-                p.setPen(QPen(laneColor(seg.colorIdx), 1.8));
+                QPen currentPen(laneColor(seg.colorIdx), 1.8);
+                if(rd.beforeHEAD){
+                    currentPen.setStyle(Qt::DotLine);
+                }else{
+                    currentPen.setStyle(Qt::SolidLine);
+                }
+                p.setPen(currentPen);
                 p.setBrush(Qt::NoBrush);
 
                 if (x1 == x2) {
@@ -353,12 +364,22 @@ void GitGraphView::paintEvent(QPaintEvent *event)
         const int cx    = rd.commitLane * k_laneWidth + k_laneWidth / 2 - scrollX;
         const QColor cc = laneColor(rd.commitLane);
         if(rd.selected){
-            p.setPen(QPen(cc.darker(150), 3.5));
-            p.setBrush(cc);
+            QPen currentPen(cc.darker(150), 3.5);
+            QBrush currentBrush(cc);
+            if(rd.beforeHEAD){
+                currentBrush.setStyle(Qt::Dense4Pattern);
+            }
+            p.setPen(currentPen);
+            p.setBrush(currentBrush);
             p.drawEllipse(QPoint(cx, cy), k_circleRadius+1, k_circleRadius+1);
         }else{
-            p.setPen(QPen(cc.darker(150), 1.5));
-            p.setBrush(cc);
+            QPen currentPen(cc.darker(150), 1.5);
+            currentPen.setStyle(Qt::SolidLine);
+            QBrush currentBrush(cc);
+            if(rd.beforeHEAD){
+                currentBrush.setStyle(Qt::Dense4Pattern);
+            }
+            p.setBrush(currentBrush);
             p.drawEllipse(QPoint(cx, cy), k_circleRadius, k_circleRadius);
         }
 
@@ -483,8 +504,9 @@ bool GitGraphView::viewportEvent(QEvent *event)
         QAction *copyLineAction = menu.addAction(tr("Copy Commit Line"));
         menu.addSeparator();
         // merge & cherry-pick
-        QAction *mergeAction = menu.addAction(tr("Merge Commit"));
+        QAction *mergeAction = menu.addAction(tr("Merge Commit")); // TODO: hide if not mergeable
         QAction *cherryPickAction = menu.addAction(tr("Cherry-Pick Commit"));
+        // TODO: add rollback, checkout detached
         menu.addSeparator();
         QAction *createBranchAction = menu.addAction(tr("Create Branch..."));
 
