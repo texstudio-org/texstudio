@@ -97,7 +97,7 @@
 - fix invisible close button on tabs in OSX [#4000](https://github.com/texstudio-org/texstudio/issues/4000)
 - allow extra arguments for LanguaTool [#4147](https://github.com/texstudio-org/texstudio/pull/4147)
 - text completion also take other open documents as source [#4126](https://github.com/texstudio-org/texstudio/issues/4126)
-- fix crash when opening unopened file via global TOC [#4127](https://github.com/texstudio-org/texstudio/issues/4129)
+- fix crash when opening unopened file via global TOC [#4129](https://github.com/texstudio-org/texstudio/issues/4129)
 
 ## TeXstudio 4.8.8
 
@@ -638,7 +638,7 @@
 - show frame titles in structure view
 - support table alignment in IEEEeqnarray, xtabular and mpxtabular
 - table alignment: fix aligning of empty cols
-- table alignment: place \\ if last columns is empty 
+- table alignment: place \\ if last column is empty 
 - warn if \begin{column} is used outside columns-env
 - workaround for not interpreting $ inside sweave \Sexpr{}
 - option to deactivate interperation of command definition in magic comments
