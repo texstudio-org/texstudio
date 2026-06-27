@@ -1473,7 +1473,7 @@ ref/commands overview
 - extended word completion system to use "kile"-word lists (*.cwl)
 - key Tab can be used to complete common word bases in the present suggestion list like it is done in bash shells
 - complete normal texttext by proposing earlier used text parts
-- "User Tags"\94 (user defined text blocks) can be inserted by using user defined abbreviations which replaced in the completion process
+- "User Tags" (user defined text blocks) can be inserted by using user defined abbreviations which replaced in the completion process
 - user defined latex commands are automatically scanned and can be used for command completion
 - new documents can be created by using templates
 - extended and improved symbol panel
