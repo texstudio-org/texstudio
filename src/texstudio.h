@@ -457,6 +457,7 @@ protected slots:
     void openFromExplorer(const QModelIndex &index);
     void openFromGit(const QString &fn,const QString rev);
     void insertFromExplorer(bool visible);
+    void refreshGitWidget(const QString &filename,const int checkin = 0);
 	void closeEnvironment();
 
 	void insertBibEntryFromAction();

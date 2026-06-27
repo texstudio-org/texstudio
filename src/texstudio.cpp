@@ -476,6 +476,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	previewFullCompileDelayTimer.setSingleShot(true);
 
     connect(this, SIGNAL(infoFileSaved(QString,int)), this, SLOT(checkinAfterSave(QString,int)));
+    connect(this, &Texstudio::infoFileSaved, this, &Texstudio::refreshGitWidget);
 
 	//script things
 	setProperty("applicationName", TEXSTUDIO);
@@ -5765,6 +5766,20 @@ void Texstudio::insertFromExplorer(bool )
     const QString full_fn=fi.canonicalFilePath();
     const QString fn=getRelativeBaseNameToPath(full_fn,rootDir,false,true);
     insertText(fn);
+}
+/*!
+ * \brief refresh git widget if widget is visible
+ * \param fn
+ */
+void Texstudio::refreshGitWidget(const QString &filename, const int checkin)
+{
+    if ( !currentEditorView() )	return;
+    if (gitWidget) {
+        if(gitDockWidget->property("isVisible").toBool()){
+            // update only when actually visible
+            gitWidget->refresh();
+        }
+    }
 }
 
 void Texstudio::quickTabular(const QMimeData *d)
