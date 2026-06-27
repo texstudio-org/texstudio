@@ -234,7 +234,7 @@ QList<GIT::GraphEntry> GIT::getRepoLogGraph(const QString &path, int maxEntries,
     // Append "-- <file>" when a file filter is requested.
     const QString fileFilterArg = fileFilter.isEmpty() ? QString() : ("-- " + quote(fileFilter));
     const QString output = runGit(
-        QString("log %1 -n %2").arg(fmt).arg(maxEntries),
+        QString("log %1 -n %2 --all").arg(fmt).arg(maxEntries),
         quote(path), fileFilterArg);
 
     QList<GraphEntry> result;
