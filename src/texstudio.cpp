@@ -5710,29 +5710,36 @@ void Texstudio::openFromGit(const QString &fn,const QString rev)
     //doc->startSyntaxChecker();
     //doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
 
-    LatexEditorView *edit = new LatexEditorView (nullptr, configManager.editorConfig, doc);
-    edit->setLatexPackageList(&latexPackageList);
-    edit->setHelp(&help);
+    LatexEditorView *edView = new LatexEditorView (nullptr, configManager.editorConfig, doc);
+    edView->setLatexPackageList(&latexPackageList);
+    edView->setHelp(&help);
     if (configManager.newFileEncoding)
-        edit->editor->setFileCodec(configManager.newFileEncoding);
+        edView->editor->setFileCodec(configManager.newFileEncoding);
     else
-        edit->editor->setFileCodec(QTextCodec::codecForName("utf-8"));
+        edView->editor->setFileCodec(QTextCodec::codecForName("utf-8"));
     doc->clearUndo(); // inital file codec setting should not be undoable
 
-    configureNewEditorView(edit);
+    configureNewEditorView(edView);
 
-    edit->document = doc;
-    edit->document->setEditorView(edit);
-    documents.addDocument(edit->document);
+    edView->document = doc;
+    edView->document->setEditorView(edView);
+    documents.addDocument(edView->document);
 
-    configureNewEditorViewEnd(edit);
+    configureNewEditorViewEnd(edView);
     // set text from git show
     QString text;
     QString args=QString("%1:%2").arg(rev,fileName);
     text=git.runGit("show",repoRoot,args);
-    edit->document->setText(text,false);
-    edit->editor->setReadOnly(true);
-    edit->editor->setFileName(QString("%1 @ %2").arg(fileName,rev));
+    edView->document->setText(text,false);
+    edView->editor->setReadOnly(true);
+    edView->editor->setFileName(QString("%1 @ %2").arg(fileName,rev.left(7)));
+    // show diff to open view
+    LatexDocument *doc2=documents.findDocumentFromName(fn);
+    if(doc2){
+        diffDocs(doc, doc2);
+
+        edView->documentContentChanged(0, edView->document->lines());
+    }
 }
 /*!
  * \brief insert file from context menu in the file explorer (dock)
