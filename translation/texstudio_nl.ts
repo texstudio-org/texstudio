@@ -5048,8 +5048,8 @@ U moet er zelf voor zorgen dat de bestandscodering en de waarde die aan het inpu
         <location filename="../src/gitgraphview.cpp" line="530"/>
         <location filename="../src/gitgraphview.cpp" line="532"/>
         <location filename="../src/gitgraphview.cpp" line="534"/>
-        <source>Disabled because modified files exist</source>
-        <translation>Uitgeschakeld omdat er gewijzigde bestanden bestaan</translation>
+        <source>Disabled because modified files present</source>
+        <translation>Uitgeschakeld omdat gewijzigde bestanden aanwezig zijn</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="575"/>

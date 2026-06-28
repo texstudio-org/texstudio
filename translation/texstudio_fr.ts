@@ -5024,19 +5024,19 @@ Vous devez vous assurer que le codage d&apos;entrée du fichier et l&apos;option
     <message>
         <location filename="../src/gitgraphview.cpp" line="524"/>
         <source>Rollback to Commit</source>
-        <translation type="unfinished"/>
+        <translation>Revenir à la validation (au commit) </translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="525"/>
         <source>Checkout (Detached)</source>
-        <translation type="unfinished"/>
+        <translation>Bascule sur une autre branche (détaché)</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="528"/>
         <location filename="../src/gitgraphview.cpp" line="530"/>
         <location filename="../src/gitgraphview.cpp" line="532"/>
         <location filename="../src/gitgraphview.cpp" line="534"/>
-        <source>Disabled because modified files exist</source>
+        <source>Disabled because modified files present</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -5252,17 +5252,17 @@ Sélectionnez les fichiers que vous souhaitez inclure dans la validation.</trans
     <message>
         <location filename="../src/gitwidget.cpp" line="549"/>
         <source>Reset failed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Échec de la réinitialisation : %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="555"/>
         <source>Create Branch...</source>
-        <translation type="unfinished"/>
+        <translation>Créer une branche...</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="622"/>
         <source>Disabled because modified files present</source>
-        <translation type="unfinished"/>
+        <translation>Désactivé car des fichiers modifiés sont présents</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="625"/>

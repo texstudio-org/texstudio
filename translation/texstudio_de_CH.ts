@@ -5036,7 +5036,7 @@ Sie müssem selber darauf achten, dass Dateikodierung und der Wert für inputenc
         <location filename="../src/gitgraphview.cpp" line="530"/>
         <location filename="../src/gitgraphview.cpp" line="532"/>
         <location filename="../src/gitgraphview.cpp" line="534"/>
-        <source>Disabled because modified files exist</source>
+        <source>Disabled because modified files present</source>
         <translation>Deaktiviert, da modifizierte Dateien bestehen</translation>
     </message>
     <message>

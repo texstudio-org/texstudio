@@ -5033,8 +5033,8 @@ You have to make sure yourself that the file encoding and the value passed to th
         <location filename="../src/gitgraphview.cpp" line="530"/>
         <location filename="../src/gitgraphview.cpp" line="532"/>
         <location filename="../src/gitgraphview.cpp" line="534"/>
-        <source>Disabled because modified files exist</source>
-        <translation>Deshabilitada porque existen archivos modificados Deshabilitado porque existen archivos modificados</translation>
+        <source>Disabled because modified files present</source>
+        <translation>Deshabilitado porque hay archivos modificados presentes</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="575"/>
