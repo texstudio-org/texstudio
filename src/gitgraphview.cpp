@@ -498,38 +498,50 @@ bool GitGraphView::viewportEvent(QEvent *event)
         }
 
         const RowData &rd = m_rows[row];
-        QMenu menu(viewport());
-        QAction *copyHashAction = menu.addAction(tr("Copy Commit Hash"));
-        QAction *copySubjectAction = menu.addAction(tr("Copy Commit Subject"));
-        QAction *copyLineAction = menu.addAction(tr("Copy Commit Line"));
-        menu.addSeparator();
-        // merge & cherry-pick
-        QAction *mergeAction = menu.addAction(tr("Merge Commit")); // TODO: hide if not mergeable
-        QAction *cherryPickAction = menu.addAction(tr("Cherry-Pick Commit"));
-        // TODO: add rollback, checkout detached
-        menu.addSeparator();
-        QAction *createBranchAction = menu.addAction(tr("Create Branch..."));
+        if(!rd.fullHash.isEmpty()){
+            // only on commits, not on files
+            QMenu menu(viewport());
+            QAction *copyHashAction = menu.addAction(tr("Copy Commit Hash"));
+            QAction *copySubjectAction = menu.addAction(tr("Copy Commit Subject"));
+            QAction *copyLineAction = menu.addAction(tr("Copy Commit Line"));
+            menu.addSeparator();
+            // merge & cherry-pick
+            QAction *mergeAction = menu.addAction(tr("Merge Commit")); // TODO: hide if not mergeable
+            QAction *cherryPickAction = menu.addAction(tr("Cherry-Pick Commit"));
+            // TODO: add rollback, checkout detached
+            menu.addSeparator();
+            QAction *createBranchAction = menu.addAction(tr("Create Branch..."));
+            menu.addSeparator();
+            QAction *rollbackAction = menu.addAction(tr("Rollback to Commit"));
+            QAction *checkoutHeadlessAction = menu.addAction(tr("Checkout (Detached)"));
 
-        QAction *action = menu.exec(ce->globalPos());
-        if (!action) return true;
+            QAction *action = menu.exec(ce->globalPos());
+            if (!action) return true;
 
-        if (action == copyHashAction) {
-            QApplication::clipboard()->setText(rd.fullHash);
-        }
-        if (action == copySubjectAction) {
-            QApplication::clipboard()->setText(rd.subject);
-        }
-        if (action == copyLineAction) {
-            QApplication::clipboard()->setText(COPY_COMMIT_LINE_TEMPLATE.arg(rd.fullHash.left(ABBREVIATED_HASH_LENGTH)).arg(rd.subject));
-        }
-        if (action == mergeAction) {
-            emit actOnSelectedEntry(rd.fullHash, QStringLiteral("merge"));
-        }
-        if (action == cherryPickAction) {
-            emit actOnSelectedEntry(rd.fullHash, QStringLiteral("cherry-pick"));
-        }
-        if (action == createBranchAction) {
-            emit actOnSelectedEntry(rd.fullHash, QStringLiteral("create-branch"));
+            if (action == copyHashAction) {
+                QApplication::clipboard()->setText(rd.fullHash);
+            }
+            if (action == copySubjectAction) {
+                QApplication::clipboard()->setText(rd.subject);
+            }
+            if (action == copyLineAction) {
+                QApplication::clipboard()->setText(COPY_COMMIT_LINE_TEMPLATE.arg(rd.fullHash.left(ABBREVIATED_HASH_LENGTH)).arg(rd.subject));
+            }
+            if (action == mergeAction) {
+                emit actOnSelectedEntry(rd.fullHash, QStringLiteral("merge"));
+            }
+            if (action == cherryPickAction) {
+                emit actOnSelectedEntry(rd.fullHash, QStringLiteral("cherry-pick"));
+            }
+            if (action == createBranchAction) {
+                emit actOnSelectedEntry(rd.fullHash, QStringLiteral("create-branch"));
+            }
+            if (action == rollbackAction) {
+                emit actOnSelectedEntry(rd.fullHash, QStringLiteral("rollback"));
+            }
+            if (action == checkoutHeadlessAction) {
+                emit actOnSelectedEntry(rd.fullHash, QStringLiteral("checkout"));
+            }
         }
         return true;
     } else if (event->type() == QEvent::ToolTip) {

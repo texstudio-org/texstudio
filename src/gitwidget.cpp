@@ -509,6 +509,36 @@ void GitWidget::performGitOnHistoryEntry(const QString &hash, const QString &act
         QString repoRoot=resolvedPath();
         m_git->runGit(cmd,repoRoot,args);
     }
+    if(action=="cherry-pick"){
+        QString cmd;
+        cmd="cherry-pick";
+        QString args;
+        args = hash;
+        QString repoRoot=resolvedPath();
+        m_git->runGit(cmd,repoRoot,args);
+    }
+    if(action=="checkout"){
+        QString cmd="checkout";
+        QString args = hash;
+        QString repoRoot=resolvedPath();
+        m_git->runGit(cmd,repoRoot,args);
+    }
+    if(action=="rollback"){
+        updateStatus(QString("Rollback to %1").arg(hash));
+
+        QString cmd="revert";
+        QString args=QString("--no-commit %1..HEAD").arg(hash);
+        QString repoRoot=resolvedPath();
+        QString result=m_git->runGit(cmd,repoRoot,args);
+        if(result.isEmpty()){
+            // commit automatically
+            QString commitMsg=QString("Rollback to %1").arg(hash);
+            result=m_git->commitStaged(repoRoot,commitMsg);
+        }else{
+            // error
+            updateStatus(tr("Reset failed: %1").arg(result.trimmed()));
+        }
+    }
     if(action=="create-branch"){
         // ask for branch name
         bool ok;
