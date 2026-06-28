@@ -59,6 +59,7 @@ private:
     void updateStatus(const QString &msg);
     void refreshHistory();
     QString resolvedPath() const;
+    void updateBranchButton(bool hasModifiedFiles);
 
     GIT     *m_git;
     QString  m_path;

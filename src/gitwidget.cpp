@@ -199,6 +199,7 @@ void GitWidget::refresh()
         // Refresh "Changes" tab
         const QList<GIT::FileEntry> files = m_git->getChangedFiles(rpath);
         m_fileList->clear();
+        bool hasModified = false;
         for (const GIT::FileEntry &entry : files) {
             QListWidgetItem *item = new QListWidgetItem();
             item->setText(entry.statusCode + "  " + entry.filePath);
@@ -219,6 +220,9 @@ void GitWidget::refresh()
                        || entry.statusCode == " D") {
                 item->setForeground(Qt::red);
             }
+            if (entry.statusCode != "??"){
+                hasModified = true;
+            }
             // Pre-check files that are already staged (first char != ' '/'?')
             const QChar indexStatus = entry.statusCode.isEmpty()
                                           ? QChar(' ')
@@ -234,6 +238,7 @@ void GitWidget::refresh()
         } else {
             m_statusLabel->setText(tr("%n change(s)", "", files.size()));
         }
+        updateBranchButton(hasModified);
     }
 }
 
@@ -271,7 +276,7 @@ void GitWidget::refreshHistory()
         }
     }
     m_graphView->setModified(hasModified);
-
+    updateBranchButton(hasModified);
 }
 
 /*!
@@ -605,5 +610,19 @@ QString GitWidget::resolvedPath() const
         if (fi.isDir())  return fi.absoluteFilePath();
     }
     return QString();
+}
+/*!
+ * \brief enable/disable branch button based on modified files
+ * \param hasModifiedFiles
+ */
+void GitWidget::updateBranchButton(bool hasModifiedFiles)
+{
+    if(hasModifiedFiles){
+        m_btnBranch->setEnabled(false);
+        m_btnBranch->setToolTip(tr("Disabled because modified files present"));
+    }else{
+        m_btnBranch->setEnabled(true);
+        m_btnBranch->setToolTip(tr("Select active branch"));
+    }
 }
 
