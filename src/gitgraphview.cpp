@@ -525,13 +525,13 @@ bool GitGraphView::viewportEvent(QEvent *event)
             QAction *checkoutHeadlessAction = menu.addAction(tr("Checkout (Detached)"));
             if(m_hasModifiedFiles){
                 mergeAction->setEnabled(false);
-                mergeAction->setStatusTip(tr("Disabled because modified files exist"));
+                mergeAction->setStatusTip(tr("Disabled because modified files present"));
                 cherryPickAction->setEnabled(false);
-                cherryPickAction->setStatusTip(tr("Disabled because modified files exist"));
+                cherryPickAction->setStatusTip(tr("Disabled because modified files present"));
                 rollbackAction->setEnabled(false);
-                rollbackAction->setStatusTip(tr("Disabled because modified files exist"));
+                rollbackAction->setStatusTip(tr("Disabled because modified files present"));
                 checkoutHeadlessAction->setEnabled(false);
-                checkoutHeadlessAction->setStatusTip(tr("Disabled because modified files exist"));
+                checkoutHeadlessAction->setStatusTip(tr("Disabled because modified files present"));
             }
 
             QAction *action = menu.exec(ce->globalPos());
