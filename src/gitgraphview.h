@@ -28,6 +28,7 @@ public:
 
     void setEntries(const QList<GIT::GraphEntry> &entries);
     void setGitContext(GIT *git, const QString &repoPath);
+    void setModified(bool hasModified);
     void clear();
 
 signals:
@@ -88,6 +89,7 @@ private:
     int m_maxLanes   = 1;
     int m_textOffset = 0; ///< x-coordinate where commit text starts
     int m_selectedRow = -1;
+    bool m_hasModifiedFiles=false;
 
     // Cached font metrics – updated on font-change events.
     QFontMetrics m_fm;

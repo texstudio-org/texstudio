@@ -261,6 +261,17 @@ void GitWidget::refreshHistory()
     }
     m_graphView->setGitContext(m_git, rpath);
     m_graphView->setEntries(entries);
+    // check of modified files exist
+    const QList<GIT::FileEntry> files = m_git->getChangedFiles(rpath);
+    bool hasModified = false;
+    for (const GIT::FileEntry &entry : files) {
+        if (entry.statusCode != "??"){
+            hasModified = true;
+            break;
+        }
+    }
+    m_graphView->setModified(hasModified);
+
 }
 
 /*!

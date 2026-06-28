@@ -72,6 +72,15 @@ void GitGraphView::setGitContext(GIT *git, const QString &repoPath)
     m_git      = git;
     m_repoPath = repoPath;
 }
+/*!
+ * \brief set whether the repository has modified files
+ * Is used for guardrail on merge/cherry-pick/rollback actions
+ * \param hasModified
+ */
+void GitGraphView::setModified(bool hasModified)
+{
+    m_hasModifiedFiles=hasModified;
+}
 
 
 // ---------------------------------------------------------------------------
@@ -514,6 +523,16 @@ bool GitGraphView::viewportEvent(QEvent *event)
             menu.addSeparator();
             QAction *rollbackAction = menu.addAction(tr("Rollback to Commit"));
             QAction *checkoutHeadlessAction = menu.addAction(tr("Checkout (Detached)"));
+            if(m_hasModifiedFiles){
+                mergeAction->setEnabled(false);
+                mergeAction->setStatusTip(tr("Disabled because modified files exist"));
+                cherryPickAction->setEnabled(false);
+                cherryPickAction->setStatusTip(tr("Disabled because modified files exist"));
+                rollbackAction->setEnabled(false);
+                rollbackAction->setStatusTip(tr("Disabled because modified files exist"));
+                checkoutHeadlessAction->setEnabled(false);
+                checkoutHeadlessAction->setStatusTip(tr("Disabled because modified files exist"));
+            }
 
             QAction *action = menu.exec(ce->globalPos());
             if (!action) return true;
