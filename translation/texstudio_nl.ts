@@ -5036,12 +5036,12 @@ U moet er zelf voor zorgen dat de bestandscodering en de waarde die aan het inpu
     <message>
         <location filename="../src/gitgraphview.cpp" line="524"/>
         <source>Rollback to Commit</source>
-        <translation type="unfinished"/>
+        <translation>Terugdraaien naar commit</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="525"/>
         <source>Checkout (Detached)</source>
-        <translation type="unfinished"/>
+        <translation>Afrekenen (Vrijstaand)</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="528"/>
@@ -5049,7 +5049,7 @@ U moet er zelf voor zorgen dat de bestandscodering en de waarde die aan het inpu
         <location filename="../src/gitgraphview.cpp" line="532"/>
         <location filename="../src/gitgraphview.cpp" line="534"/>
         <source>Disabled because modified files exist</source>
-        <translation type="unfinished"/>
+        <translation>Uitgeschakeld omdat er gewijzigde bestanden bestaan</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="575"/>
@@ -5264,22 +5264,22 @@ Controleer de bestanden die u in de commit wilt opnemen.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="549"/>
         <source>Reset failed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Opnieuw instellen mislukt: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="555"/>
         <source>Create Branch...</source>
-        <translation type="unfinished"/>
+        <translation>Filiaal aanmaken...</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="622"/>
         <source>Disabled because modified files present</source>
-        <translation type="unfinished"/>
+        <translation>Uitgeschakeld omdat gewijzigde bestanden aanwezig zijn</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="625"/>
         <source>Select active branch</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer actieve tak</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="556"/>

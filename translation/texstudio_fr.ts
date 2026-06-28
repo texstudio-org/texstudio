@@ -5164,7 +5164,7 @@ Vous devez vous assurer que le codage d&apos;entrée du fichier et l&apos;option
     <message numerus="yes">
         <location filename="../src/gitwidget.cpp" line="239"/>
         <source>%n change(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n modification(s)</numerusform><numerusform>%n modification(s)</numerusform><numerusform>%n modification(s)</numerusform></translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="292"/>

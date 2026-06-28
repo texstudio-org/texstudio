@@ -5021,12 +5021,12 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="../src/gitgraphview.cpp" line="524"/>
         <source>Rollback to Commit</source>
-        <translation type="unfinished"/>
+        <translation>Revertir para comprometerse</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="525"/>
         <source>Checkout (Detached)</source>
-        <translation type="unfinished"/>
+        <translation>Pagar (Separado)</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="528"/>
@@ -5034,7 +5034,7 @@ You have to make sure yourself that the file encoding and the value passed to th
         <location filename="../src/gitgraphview.cpp" line="532"/>
         <location filename="../src/gitgraphview.cpp" line="534"/>
         <source>Disabled because modified files exist</source>
-        <translation type="unfinished"/>
+        <translation>Deshabilitada porque existen archivos modificados Deshabilitado porque existen archivos modificados</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="575"/>
@@ -5249,22 +5249,22 @@ Marque los archivos que desea incluir en la confirmación.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="549"/>
         <source>Reset failed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Error al restablecer: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="555"/>
         <source>Create Branch...</source>
-        <translation type="unfinished"/>
+        <translation>Crear sucursal...</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="622"/>
         <source>Disabled because modified files present</source>
-        <translation type="unfinished"/>
+        <translation>Deshabilitado porque hay archivos modificados presentes</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="625"/>
         <source>Select active branch</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar sucursal activa</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="556"/>
