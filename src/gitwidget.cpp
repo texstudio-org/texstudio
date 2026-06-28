@@ -494,26 +494,20 @@ void GitWidget::disableSelection()
 void GitWidget::performGitOnHistoryEntry(const QString &hash, const QString &action)
 {
     if(action=="merge"){
-        QString cmd;
-        cmd="merge";
-        QString args;
-        args = hash;
+        QString cmd = "merge";
+        QString args = hash;
         QString repoRoot=resolvedPath();
         m_git->runGit(cmd,repoRoot,args);
     }
     if(action=="cherry-pick"){
-        QString cmd;
-        cmd="cherry-pick";
-        QString args;
-        args = hash;
+        QString cmd = "cherry-pick";
+        QString args = hash;
         QString repoRoot=resolvedPath();
         m_git->runGit(cmd,repoRoot,args);
     }
     if(action=="cherry-pick"){
-        QString cmd;
-        cmd="cherry-pick";
-        QString args;
-        args = hash;
+        QString cmd = "cherry-pick";
+        QString args = hash;
         QString repoRoot=resolvedPath();
         m_git->runGit(cmd,repoRoot,args);
     }
