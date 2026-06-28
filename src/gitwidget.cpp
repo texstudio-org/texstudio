@@ -552,7 +552,7 @@ void GitWidget::performGitOnHistoryEntry(const QString &hash, const QString &act
     if(action=="create-branch"){
         // ask for branch name
         bool ok;
-        QString branchName = QInputDialog::getText(this, tr("Create Branch"),
+        QString branchName = QInputDialog::getText(this, tr("Create Branch..."),
                                                    tr("Branch name:"), QLineEdit::Normal,
                                                    "", &ok);
         if (!ok || branchName.isEmpty()) return;
