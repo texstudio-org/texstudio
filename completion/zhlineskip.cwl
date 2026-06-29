@@ -1,5 +1,5 @@
 # zhlineskip package
-# Matthew Bertucci 3/14/2022 for v1.0e
+# Matthew Bertucci 2026/06/29 for v1.0f
 
 #include:kvoptions
 #include:xintexpr
@@ -10,7 +10,6 @@
 bodytextleadingratio=%<number%>
 footnoteleadingratio=%<number%>
 restoremathleading#true,false
-UseMSWordMultipleLineSpacing#true,false
 MSWordLineSpacingMultiple=%<number%>
 MSWordSinglespaceRatio=%<number%>
 #endkeyvals

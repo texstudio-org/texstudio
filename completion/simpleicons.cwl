@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/06/13 for v16.23.0
+# Matthew Bertucci 2026/06/13 for v16.24.0
 
 #include:iftex
 
@@ -965,6 +965,7 @@ fastly
 fathom
 fauna
 favro
+fawry
 fcc
 fdroid
 fedex
@@ -1843,6 +1844,7 @@ mercurial
 mermaid
 messenger
 meta
+metaai
 metabase
 metacritic
 metafilter
@@ -2453,6 +2455,7 @@ rabbitmq
 racket
 radar
 radarr
+radiantearth
 radiofrance
 radixui
 radstudio
@@ -2941,6 +2944,7 @@ talenthouse
 talos
 tamiya
 tampermonkey
+tangled
 tanstack
 taobao
 tapas
