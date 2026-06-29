@@ -5046,7 +5046,7 @@ You have to make sure yourself that the file encoding and the value passed to th
         <location filename="../src/gitgraphview.cpp" line="532"/>
         <location filename="../src/gitgraphview.cpp" line="534"/>
         <source>Disabled because modified files present</source>
-        <translation type="unfinished"/>
+        <translation>Вимкнено, тому що присутні модифіковані файли</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="575"/>

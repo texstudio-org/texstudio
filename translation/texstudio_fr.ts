@@ -5037,7 +5037,7 @@ Vous devez vous assurer que le codage d&apos;entrée du fichier et l&apos;option
         <location filename="../src/gitgraphview.cpp" line="532"/>
         <location filename="../src/gitgraphview.cpp" line="534"/>
         <source>Disabled because modified files present</source>
-        <translation type="unfinished"/>
+        <translation>Désactivé car des fichiers modifiés sont présents</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="575"/>
@@ -5267,7 +5267,7 @@ Sélectionnez les fichiers que vous souhaitez inclure dans la validation.</trans
     <message>
         <location filename="../src/gitwidget.cpp" line="625"/>
         <source>Select active branch</source>
-        <translation type="unfinished"/>
+        <translation>Sélectionner la branche active</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="556"/>
