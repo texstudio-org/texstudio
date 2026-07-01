@@ -5032,7 +5032,7 @@ Bizonyosodjon meg róla, hogy a fájlkódolás és az inputenc csomag nevei egym
         <location filename="../src/gitgraphview.cpp" line="530"/>
         <location filename="../src/gitgraphview.cpp" line="532"/>
         <location filename="../src/gitgraphview.cpp" line="534"/>
-        <source>Disabled because modified files exist</source>
+        <source>Disabled because modified files present</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -5104,7 +5104,7 @@ Bizonyosodjon meg róla, hogy a fájlkódolás és az inputenc csomag nevei egym
     <message>
         <location filename="../src/gitwidget.cpp" line="94"/>
         <source>Commit message:</source>
-        <translation type="unfinished"/>
+        <translation>Commit üzenet:</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="96"/>
@@ -5114,47 +5114,47 @@ Bizonyosodjon meg róla, hogy a fájlkódolás és az inputenc csomag nevei egym
     <message>
         <location filename="../src/gitwidget.cpp" line="98"/>
         <source>Commit Staged</source>
-        <translation type="unfinished"/>
+        <translation>Indexelt változtatások commitálása</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="99"/>
         <source>Stage checked files and commit</source>
-        <translation type="unfinished"/>
+        <translation>Kijelölt fájlok előkészítése és commitolása</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="104"/>
         <source>Changes</source>
-        <translation type="unfinished"/>
+        <translation>Módosítások</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="112"/>
         <source>Current file only</source>
-        <translation type="unfinished"/>
+        <translation>Csak az aktuális fájlban</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="113"/>
         <source>Show only commits that involve the current document</source>
-        <translation type="unfinished"/>
+        <translation>Csak az aktuális fájlt érintő commitok megjelenítése</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="117"/>
         <source>Commit graph (most recent first)</source>
-        <translation type="unfinished"/>
+        <translation>Commit gráf (legújabb elöl)</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="120"/>
         <source>History</source>
-        <translation type="unfinished"/>
+        <translation>Történet</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="168"/>
         <source>(no file open)</source>
-        <translation type="unfinished"/>
+        <translation>(nincs megnyitott fájl)</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="237"/>
         <source>No changes</source>
-        <translation type="unfinished"/>
+        <translation>Nincsenek módosítások</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/gitwidget.cpp" line="239"/>
@@ -5165,53 +5165,54 @@ Bizonyosodjon meg róla, hogy a fájlkódolás és az inputenc csomag nevei egym
         <location filename="../src/gitwidget.cpp" line="292"/>
         <location filename="../src/gitwidget.cpp" line="307"/>
         <source>Git Commit</source>
-        <translation type="unfinished"/>
+        <translation>Git Commit</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="293"/>
         <source>Please enter a commit message.</source>
-        <translation type="unfinished"/>
+        <translation>Kérjük, adjon meg egy commit üzenetet.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="308"/>
         <source>No files selected for staging.
 Check the files you want to include in the commit.</source>
-        <translation type="unfinished"/>
+        <translation>Nincs kijelölt fájl az előkészítéshez.
+Ellenőrizd azokat a fájlokat, amelyeket a commitba szeretnél felvenni</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="316"/>
         <source>Staging failed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Előkészítés sikertelen: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="323"/>
         <source>Commit failed: %1</source>
-        <translation type="unfinished"/>
+        <translation>A commit sikertelen: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="328"/>
         <source>Committed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Véglegesített: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="339"/>
         <source>Pushing…</source>
-        <translation type="unfinished"/>
+        <translation>Feltöltés...</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="344"/>
         <source>Push complete.</source>
-        <translation type="unfinished"/>
+        <translation>A feltöltés befejeződött.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="354"/>
         <source>Pulling…</source>
-        <translation type="unfinished"/>
+        <translation>Lekérés...</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="357"/>
         <source>Pull complete.</source>
-        <translation type="unfinished"/>
+        <translation>A lekérés befejeződött.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="367"/>
@@ -5246,22 +5247,22 @@ Check the files you want to include in the commit.</source>
     <message>
         <location filename="../src/gitwidget.cpp" line="549"/>
         <source>Reset failed: %1</source>
-        <translation type="unfinished"/>
+        <translation>A visszaállítás sikertelen: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="555"/>
         <source>Create Branch...</source>
-        <translation type="unfinished"/>
+        <translation>Elágazás létrehozása...</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="622"/>
         <source>Disabled because modified files present</source>
-        <translation type="unfinished"/>
+        <translation>Letiltva, mert módosított fájlok vannak jelen</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="625"/>
         <source>Select active branch</source>
-        <translation type="unfinished"/>
+        <translation>Aktív elágazás kiválasztása</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="556"/>

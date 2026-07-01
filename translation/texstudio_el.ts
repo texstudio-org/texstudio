@@ -5012,42 +5012,42 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="../src/gitgraphview.cpp" line="513"/>
         <source>Copy Commit Hash</source>
-        <translation type="unfinished"/>
+        <translation>Αντιγραφή commit hash</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="514"/>
         <source>Copy Commit Subject</source>
-        <translation type="unfinished"/>
+        <translation>Αντιγραφή θέματος commit</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="515"/>
         <source>Copy Commit Line</source>
-        <translation type="unfinished"/>
+        <translation>Αντιγραφή σύντομης περιγραφής commit</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="518"/>
         <source>Merge Commit</source>
-        <translation type="unfinished"/>
+        <translation>Συγχώνευση commit</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="519"/>
         <source>Cherry-Pick Commit</source>
-        <translation type="unfinished"/>
+        <translation>Cherry-Pick commit</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="522"/>
         <source>Create Branch...</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργία κλάδου...</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="524"/>
         <source>Rollback to Commit</source>
-        <translation type="unfinished"/>
+        <translation>Επαναφορά σε αυτό το commit</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="525"/>
         <source>Checkout (Detached)</source>
-        <translation type="unfinished"/>
+        <translation>Checkout (Detached)</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="528"/>
@@ -5055,13 +5055,14 @@ You have to make sure yourself that the file encoding and the value passed to th
         <location filename="../src/gitgraphview.cpp" line="532"/>
         <location filename="../src/gitgraphview.cpp" line="534"/>
         <source>Disabled because modified files present</source>
-        <translation type="unfinished"/>
+        <translation>Δεν είναι δυνατή η αλλαγή κλάδου λόγω ύπαρξης επεξεργασμένων αρχείων</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="575"/>
         <source>commit %1
 (stats unavailable)</source>
-        <translation type="unfinished"/>
+        <translation>commit %1
+(τα δεδομένα του commit δεν είναι διαθέσιμα)</translation>
     </message>
 </context>
 <context>
@@ -5070,18 +5071,18 @@ You have to make sure yourself that the file encoding and the value passed to th
         <location filename="../src/gitwidget.cpp" line="38"/>
         <location filename="../src/gitwidget.cpp" line="41"/>
         <source>Current branch</source>
-        <translation type="unfinished"/>
+        <translation>Τρέχων κλάδος</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="40"/>
         <location filename="../src/gitwidget.cpp" line="176"/>
         <source>(no repository)</source>
-        <translation type="unfinished"/>
+        <translation>(δεν εντοπίστηκε αποθετήριο)</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="44"/>
         <source>Refresh</source>
-        <translation type="unfinished"/>
+        <translation>Ανανέωση</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="52"/>
@@ -5101,204 +5102,205 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="../src/gitwidget.cpp" line="78"/>
         <source>Stage All</source>
-        <translation type="unfinished"/>
+        <translation>Stage όλων</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="79"/>
         <source>Unstage All</source>
-        <translation type="unfinished"/>
+        <translation>Unstage όλων</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="80"/>
         <source>Check all files for staging</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη όλων των αρχείων στο στάδιο καταχώρισης</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="81"/>
         <source>Uncheck all files</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση όλων των αρχείων από το στάδιο καταχώρισης</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="88"/>
         <source>Check files to stage; double-click to open</source>
-        <translation type="unfinished"/>
+        <translation>Επιλέξτε ένα αρχείο για να το κάνετε stage και κάντε διπλό κλικ για να το ανοίξετε</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="94"/>
         <source>Commit message:</source>
-        <translation type="unfinished"/>
+        <translation>Περιγραφή commit:</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="96"/>
         <source>Message (press Ctrl+Enter to commit)</source>
-        <translation type="unfinished"/>
+        <translation>Περιγραφή (πατήστε Ctrl+Enter για να κάνετε commit)</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="98"/>
         <source>Commit Staged</source>
-        <translation type="unfinished"/>
+        <translation>Νέο commit με τα staged αρχεία</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="99"/>
         <source>Stage checked files and commit</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη των επιλεγμένων αρχείων στο στάδιο καταχώρισης (stage) και δημιουργία νέου commit</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="104"/>
         <source>Changes</source>
-        <translation type="unfinished"/>
+        <translation>Αλλαγές</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="112"/>
         <source>Current file only</source>
-        <translation type="unfinished"/>
+        <translation>Τρέχοντος αρχείου μόνο</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="113"/>
         <source>Show only commits that involve the current document</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση μόνο των commits τα οποία συμπεριλαμβάνουν το τρέχον έγγραφο</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="117"/>
         <source>Commit graph (most recent first)</source>
-        <translation type="unfinished"/>
+        <translation>Γράφημα commits (πρώτα τα πιο πρόσφατα)</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="120"/>
         <source>History</source>
-        <translation type="unfinished"/>
+        <translation>Ιστορικό</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="168"/>
         <source>(no file open)</source>
-        <translation type="unfinished"/>
+        <translation>(δε βρέθηκε ανοιχτό αρχείο)</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="237"/>
         <source>No changes</source>
-        <translation type="unfinished"/>
+        <translation>Δεν έχει πραγματοποιηθεί καμία αλλαγή</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/gitwidget.cpp" line="239"/>
         <source>%n change(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n αλλαγή</numerusform><numerusform>%n αλλαγές</numerusform></translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="292"/>
         <location filename="../src/gitwidget.cpp" line="307"/>
         <source>Git Commit</source>
-        <translation type="unfinished"/>
+        <translation>git commit</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="293"/>
         <source>Please enter a commit message.</source>
-        <translation type="unfinished"/>
+        <translation>Εισάγετε μία περιγραφή του commit.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="308"/>
         <source>No files selected for staging.
 Check the files you want to include in the commit.</source>
-        <translation type="unfinished"/>
+        <translation>Κανένα αρχείο δεν έχει προστεθεί στο στάδιο καταχώρησης (stage).
+Επιλέξτε τα αρχεία που θέλετε να συμπεριλάβετε στο commit.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="316"/>
         <source>Staging failed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Δεν ήταν δυνατή η πραγματοποίηση της διαδικασίας stage: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="323"/>
         <source>Commit failed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Δεν ήταν δυνατή η δημιουργία commit: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="328"/>
         <source>Committed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργήθηκε νέο commit: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="339"/>
         <source>Pushing…</source>
-        <translation type="unfinished"/>
+        <translation>Pushing...</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="344"/>
         <source>Push complete.</source>
-        <translation type="unfinished"/>
+        <translation>Η διαδικασία push ολοκληρώθηκε.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="354"/>
         <source>Pulling…</source>
-        <translation type="unfinished"/>
+        <translation>Pulling...</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="357"/>
         <source>Pull complete.</source>
-        <translation type="unfinished"/>
+        <translation>Η διαδικασία pull ολοκληρώθηκε.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="367"/>
         <source>Fetching…</source>
-        <translation type="unfinished"/>
+        <translation>Ανάκτηση δεδομένων...</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="370"/>
         <source>Fetch complete.</source>
-        <translation type="unfinished"/>
+        <translation>Η ανάκτηση ολοκληρώθηκε.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="447"/>
         <source>&amp;Revert changes</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Αναίρεση αλλαγών</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="452"/>
         <source>&amp;Select</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Επιλογή</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="454"/>
         <source>&amp;Deselect</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Αποεπιλογή</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="478"/>
         <source>Reverted changes in %1</source>
-        <translation type="unfinished"/>
+        <translation>Έγινε αναίρεση των αλλαγών στο αρχείο %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="549"/>
         <source>Reset failed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Δεν ήταν δυνατή η επαναφορά: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="555"/>
         <source>Create Branch...</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργία κλάδου...</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="622"/>
         <source>Disabled because modified files present</source>
-        <translation type="unfinished"/>
+        <translation>Δεν είναι δυνατή η αλλαγή κλάδου λόγω ύπαρξης επεξεργασμένων αρχείων</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="625"/>
         <source>Select active branch</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή ενεργού κλάδου</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="556"/>
         <source>Branch name:</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα κλάδου:</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="564"/>
         <source>Invalid branch name &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Μη έγκυρο όνομα κλάδου: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="572"/>
         <source>Branch &apos;%1&apos; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Ο κλάδος με το όνομα &apos;%1&apos; υπάρχει ήδη.</translation>
     </message>
 </context>
 <context>
@@ -5823,7 +5825,8 @@ The wizard does not support command </source>
         <location filename="../src/latexeditorview.cpp" line="2900"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 &lt;i&gt;not loaded&lt;/i&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Όνομα αρχείου: %1&lt;/b&gt;
+&lt;i&gt;δεν έγινε φόρτωση&lt;/i&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2913"/>
@@ -7555,7 +7558,7 @@ Press &quot;Ignore&quot; to ignore this warning.
 </source>
         <translation>Το αρχείο %1
 έχει υποστεί επεξεργασία από άλλο πρόγραμμα.
-Πατήστε «Αποθήκευση» για να γίνει αντικατάσταση του αρχείο.
+Πατήστε «Αποθήκευση» για να γίνει αντικατάσταση του αρχείου.
 Πατήστε «Reset» για να γίνει επαναφορά του αρχείου από τον δίσκο.
 Πατήστε «Προβολή διαφορών» για να εμφανιστούν οι διαφορές μεταξύ των δύο εκδόσεων στον επεξεργαστή κειμένου.
 Πατήστε «Αγνόηση» αν δεν επιθυμείτε να γίνει τίποτα.</translation>
