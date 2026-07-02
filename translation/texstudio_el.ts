@@ -5193,7 +5193,7 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="../src/gitwidget.cpp" line="293"/>
         <source>Please enter a commit message.</source>
-        <translation>Εισάγετε μία περιγραφή του commit.</translation>
+        <translation>Εισάγετε μία περιγραφή για το commit.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="308"/>
@@ -7558,10 +7558,10 @@ Press &quot;Ignore&quot; to ignore this warning.
 </source>
         <translation>Το αρχείο %1
 έχει υποστεί επεξεργασία από άλλο πρόγραμμα.
-Πατήστε «Αποθήκευση» για να γίνει αντικατάσταση του αρχείου.
+Πατήστε «Save» για να γίνει αντικατάσταση του αρχείου.
 Πατήστε «Reset» για να γίνει επαναφορά του αρχείου από τον δίσκο.
 Πατήστε «Προβολή διαφορών» για να εμφανιστούν οι διαφορές μεταξύ των δύο εκδόσεων στον επεξεργαστή κειμένου.
-Πατήστε «Αγνόηση» αν δεν επιθυμείτε να γίνει τίποτα.</translation>
+Πατήστε «Ignore» αν δεν επιθυμείτε να γίνει τίποτα.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="933"/>
