@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2026/06/02 for v4.13
+# Matthew Bertucci 2026/07/02 for v4.14
 
 #include:luacode
 #include:xcolor
@@ -66,6 +66,8 @@ range=%<content%>
 
 # keys for \PitonOptions only
 #keyvals:\PitonOptions
+after-begin-escape=%<code%>
+before-end-escape=%<code%>
 begin-escape-math=%<character%>
 begin-escape=%<character%>
 comment-latex=%<string%>
@@ -118,6 +120,7 @@ language=#Python,OCaml,C,SQL,minimal,verbatim,%newpitonlang
 left-margin=##L
 line-numbers
 line-numbers/format=%<font commands%>
+line-numbers/format +=%<font commands%>
 line-numbers/label-empty-lines#true,false
 line-numbers/lmmono10-drawn#true,false
 line-numbers/position=#left,right

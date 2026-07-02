@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2025/05/14 for v0.42
+# Matthew Bertucci 2026/07/02 for v0.43
 
 #include:shellesc
 #include:xkeyval
@@ -30,61 +30,63 @@ checkCode
 \hvExternSetKeys{options%keyvals}
 
 #keyvals:\begin{externalDocument},\runExtCmd,\hvExternSetKeys
-progpath=%<path%>
-pwd=
-runsequence={%<command sequence%>}
-runs=%<integer%>
-runsAfter=%<integer%>
-grfOptions={%<\includegraphics options%>}
-lstOptions={%<listings options%>}
-textOptions={%<fancyvrb options%>}
-BGpreamble=#%color
+aboveskip=##L
+align=%<alignment commands%>
+belowbodyskip=##L
+belowpreambleskip=##L
+belowskip=##L
 BGbody=#%color
-BOpreamble=#%color
-BObody=#%color
-docType=#latex,mp,tex,py,pl,lua,java,context,sh,R
-caption={%<text%>}
-label=##l
-pages={%<page numbers%>}
-pagesep=##L
-cropmargin=%<length in pt%>
-mpwidth=##L
-mpsep=##L
-mpvalign=#t,c,b
-ext=%<file ext%>
-redirect#true,false
-usefancyvrb#true,false
-showFilename#true,false
-outerFN#true,false
-code#true,false
-vshift=##L
-force#true,false
-crop#true,false
-tcbox#true,false
+BGpreamble=#%color
 biber#true,false
-xindex#true,false
-xindexOptions={%<xindex options%>}
-includegraphic#true,false
-showoutput#true,false
-inline#true,false
-frame#true,false
-framesep=##L
+BObody=#%color
+BOpreamble=#%color
+caption={%<text%>}
+cleanup={%<ext1,ext2,...%>}
+compiler=#mpost,tex,latex,luatex,python3,perl,lua,java,xetex,pdflatex,lualatex,xelatex,context,sh,texlua,Rscript
+crop#true,false
+cropmargin=%<length in pt%>
+docType=#latex,mp,tex,py,pl,lua,java,context,sh,R,apl
+eps#true,false
+ExampleDir=%<name%>
+ext=%<file ext%>
 float#true,false
 floatsetting=%<placement%>
-cleanup={%<ext1,ext2,...%>}
-moveToExampleDir#true,false
-align=%<alignment commands%>
-ExampleDir=%<name%>
-eps#true,false
-verbose#true,false
+force#true,false
+frame#true,false
+framesep=##L
+grfOptions={%<\includegraphics options%>}
 inactive#true,false
-compiler=#mpost,tex,latex,luatex,python3,perl,lua,java,xetex,pdflatex,lualatex,xelatex,context,sh,texlua,Rscript
-aboveskip=##L
-belowpreambleskip=##L
-belowbodyskip=##L
-belowskip=##L
+includegraphic#true,false
+inline#true,false
+label=##l
+lstOptions={%<listings options%>}
+moveToExampleDir#true,false
 mposttex=#tex,latex
+mpsep=##L
+mpvalign=#t,c,b
+mpwidth=##L
+outerFN#true,false
+pages={%<page numbers%>}
+pagesep=##L
+png#true,false
+progpath=%<path%>
+pwd=
+redirect#true,false
+runs=%<integer%>
+runsAfter=%<integer%>
+runsequence={%<command sequence%>}
 shellesc#true,false
+showCode#true,false
+showFilename#true,false
+showoutput#true,false
+tcbox#true,false
+textOptions={%<fancyvrb options%>}
+usefancyvrb#true,false
+usepreamble#true,false
+verbose#true,false
+vshift=##L
+xindex#true,false
+xindexOptions={%<xindex options%>}
 #endkeyvals
 
 \defMarkerType{name}{start-main}{stop-main}{start-preamble}{stop-preamble}
