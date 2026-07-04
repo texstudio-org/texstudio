@@ -222,15 +222,20 @@ Show difference ...
 TeXstudio provides a Git panel in the side panel which provides basic functionality for using Git.
 
 ![Git panel](images/git_panel.webp)
-#### checkin files
+#### Checkin files
 The file tab allows selecting files, providing a description and committing per button.
-#### fetch, pull, push and refresh
+
+#### Fetch, pull, push and refresh
 The symbols at the top allow you to fetch, pull, push, or refresh the display.
+
 ![fetch,pull and push](images/git_fetch.webp)
+
 #### Using branches
 The current branch is shown on the top left of the Git panel.
 The button allows you to select other available branches, provided no modified files are present.
+
 ![switch branch button](images/git_switch.webp)
+
 #### History tab
 The history tab shows the history in a decorated way. Each commit can be clicked to reveal the included files. Clicking on the files shows the difference of that commit with respect to HEAD (or the current state inside txs if the file is open).
 
