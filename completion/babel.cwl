@@ -3023,45 +3023,33 @@ NosepEnumerate#true,false
 \tbar{arg}#*
 #endif
 
-### magyar.ldf v1.5c (and alias hungarian) ###
+### magyar.ldf v1.6c (and alias hungarian) ###
 #ifOption:magyar
 \captionsmagyar#*
 \datemagyar#*
 \extrasmagyar#*
 \noextrasmagyar#*
-\ondatemagyar
-\prefacename#*
-\bibname#*
-\enclname#*
-\ccname#*
-\headtoname#*
-\proofname#*
-\glossaryname#*
-\chaptername#*
-\notesname#*
-\pagename#*
-\seename#*
-\alsoname#*
+\magyarOptions#*
+
 \acite*{keylist}#c
 \Acite*{keylist}#c
-\acite{keylist}#c
 \Acite{keylist}#c
+\acite{keylist}#c
+\alsoname#*
 \apageref*{label}#r
 \Apageref*{label}#r
-\apageref{label}#r
 \Apageref{label}#r
-\aref({label})#r
+\apageref{label}#r
 \Aref({label})#r
-\aref*{label}#r
+\aref({label})#r
 \Aref*{label}#r
+\aref*{label}#r
 \aref{label}#r
 \Aref{label}#r
-\atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
 \Atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
+\atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
 \az*{szó}
 \Az*{szó}
-\az{szó}
-\Az{szó}
 \az+%<\refcmd{label}%>
 \Az+%<\refcmd{label}%>
 \azc{keylist}#*c
@@ -3070,12 +3058,47 @@ NosepEnumerate#true,false
 \Azp{label}#*r
 \azr{label}#*r
 \Azr{label}#*r
-\captionlabeldelim#S
+\Az{szó}
+\az{szó}
+\bibname#*
+\ccname#*
+\chaptername#*
 \dMf#S
-\editorfootnote{lábjegyzet-szöveg%text}
+\editorfootnote{lábjegyzet szöveg%text}
 \emitdate[toldalék]{formátum}{dátum}
 \emitdate{formátum}{dátum}
+\enclname#*
 \factorial#m
+\glossaryname#*
+\hang{bekezdéskezdő jel}
+\headingfootnote[szám]{lábjegyzet szöveg%text}
+\headingfootnote{lábjegyzet szöveg%text}
+\headtoname#*
+\HuComma#*
+\hunnewlabel#*
+\Hunumeral{counter}
+\hunumeral{counter}
+\huordinal{counter}
+\Huordinal{counter}
+\magyarDumpHuMin#*
+\makeFootnotable{környezetnév}
+\MathBrkAll{szimbólum}#m
+\MathBrk{szimbólum}#m
+\MathReal{képlet tizedestörtekkel%formula}
+\mond %<⟨kimondott szöveg⟩%>
+\notesname#*
+\ondatemagyar
+\ontoday
+\pagename#*
+\prefacename#*
+\proofname#*
+\refstrucparen{label}#Sr
+\refstruc{label}#r
+\SafeToday
+\seename#*
+\textqq{szövegközti idézet%text}
+\told%<⟨szám⟩%>+%<⟨toldalék1⟩%>+%<⟨toldalék2⟩%>{}
+\told%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
 \footnotestyle{előírás%keyvals}
 #keyvals:\footnotestyle
 reset=#none,section,chapter,page,page-resume,page-cont
@@ -3090,29 +3113,6 @@ huplain
 starplain
 editor
 #endkeyvals
-\hang{bekezdéskezdő jel}
-\headingfootnote[szám]{lábjegyzet-szöveg%text}
-\headingfootnote{lábjegyzet-szöveg%text}
-\HuComma#*
-\hunnewlabel#*
-\Hunumeral{counter}
-\hunumeral{counter}
-\huordinal{counter}
-\Huordinal{counter}
-\magyarDumpHuMin#*
-\makeFootnotable{környezet-név}
-\MathBrk{szimbólum}#m
-\MathBrkAll{szimbólum}#m
-\MathReal{képlet tizedestörtekkel%formula}
-\mond %<⟨kimondott szöveg⟩%>
-\ondatemagyar
-\ontoday
-\refstruc{label}#r
-\refstrucparen{label}#*r
-\SafeToday
-\textqq{szövegközti idézet%text}
-\told%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
-\told%<⟨szám⟩%>+%<⟨toldalék1⟩%>+%<⟨toldalék2⟩%>{}
 #endif
 
 #ifOption:hungarian
@@ -3120,38 +3120,27 @@ editor
 \datehungarian#*
 \extrashungarian#*
 \noextrashungarian#*
-\prefacename#*
-\bibname#*
-\enclname#*
-\ccname#*
-\headtoname#*
-\proofname#*
-\glossaryname#*
-\chaptername#*
-\notesname#*
-\pagename#*
-\seename#*
-\alsoname#*
+\hungarianOptions#*
+
 \acite*{keylist}#c
 \Acite*{keylist}#c
-\acite{keylist}#c
 \Acite{keylist}#c
+\acite{keylist}#c
+\alsoname#*
 \apageref*{label}#r
 \Apageref*{label}#r
-\apageref{label}#r
 \Apageref{label}#r
-\aref({label})#r
+\apageref{label}#r
 \Aref({label})#r
-\aref*{label}#r
+\aref({label})#r
 \Aref*{label}#r
+\aref*{label}#r
 \aref{label}#r
 \Aref{label}#r
-\atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
 \Atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
+\atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
 \az*{szó}
 \Az*{szó}
-\az{szó}
-\Az{szó}
 \az+%<\refcmd{label}%>
 \Az+%<\refcmd{label}%>
 \azc{keylist}#*c
@@ -3160,12 +3149,47 @@ editor
 \Azp{label}#*r
 \azr{label}#*r
 \Azr{label}#*r
-\captionlabeldelim#S
+\Az{szó}
+\az{szó}
+\bibname#*
+\ccname#*
+\chaptername#*
 \dMf#S
-\editorfootnote{lábjegyzet-szöveg%text}
+\editorfootnote{lábjegyzet szöveg%text}
 \emitdate[toldalék]{formátum}{dátum}
 \emitdate{formátum}{dátum}
+\enclname#*
 \factorial#m
+\glossaryname#*
+\hang{bekezdéskezdő jel}
+\headingfootnote[szám]{lábjegyzet szöveg%text}
+\headingfootnote{lábjegyzet szöveg%text}
+\headtoname#*
+\HuComma#*
+\hunnewlabel#*
+\Hunumeral{counter}
+\hunumeral{counter}
+\huordinal{counter}
+\Huordinal{counter}
+\magyarDumpHuMin#*
+\makeFootnotable{környezetnév}
+\MathBrkAll{szimbólum}#m
+\MathBrk{szimbólum}#m
+\MathReal{képlet tizedestörtekkel%formula}
+\mond %<⟨kimondott szöveg⟩%>
+\notesname#*
+\ondatemagyar
+\ontoday
+\pagename#*
+\prefacename#*
+\proofname#*
+\refstrucparen{label}#Sr
+\refstruc{label}#r
+\SafeToday
+\seename#*
+\textqq{szövegközti idézet%text}
+\told%<⟨szám⟩%>+%<⟨toldalék1⟩%>+%<⟨toldalék2⟩%>{}
+\told%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
 \footnotestyle{előírás%keyvals}
 #keyvals:\footnotestyle
 reset=#none,section,chapter,page,page-resume,page-cont
@@ -3180,29 +3204,6 @@ huplain
 starplain
 editor
 #endkeyvals
-\hang{bekezdéskezdő jel}
-\headingfootnote[szám]{lábjegyzet-szöveg%text}
-\headingfootnote{lábjegyzet-szöveg%text}
-\HuComma#*
-\hunnewlabel#*
-\Hunumeral{counter}
-\hunumeral{counter}
-\huordinal{counter}
-\Huordinal{counter}
-\magyarDumpHuMin#*
-\makeFootnotable{környezet-név}
-\MathBrk{szimbólum}#m
-\MathBrkAll{szimbólum}#m
-\MathReal{képlet tizedestörtekkel%formula}
-\mond %<⟨kimondott szöveg⟩%>
-\ondatehungarian
-\ontoday
-\refstruc{label}#r
-\refstrucparen{label}#*r
-\SafeToday
-\textqq{szövegközti idézet%text}
-\told%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
-\told%<⟨szám⟩%>+%<⟨toldalék1⟩%>+%<⟨toldalék2⟩%>{}
 #endif
 
 ### malay.ldf v1.0m (and proxies bahasam.ldf, melayu.ldf, and meyalu.ldf) ###
