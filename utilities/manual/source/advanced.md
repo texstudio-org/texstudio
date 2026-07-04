@@ -54,7 +54,7 @@ The LLM decides which function to use based on the query and the given descripti
 | get_filename | Get the name of the current file |
 | get_list_of_docs | Get the names of all files which are included in the current project |
 | get_selection | Get selected text |
-| get_selection | Get complete text of current document |
+| get_text | Get complete text of current document |
 | set_cursor | Set cursor to given line, column is optional |
 | get_cursor_position | Get the line number and column number of current cursor. Anchor line and anchor column as well |
 | get_line_text | Get text of a given line|
@@ -318,7 +318,7 @@ the following magic comments:
 ## Local packages
 
 Many users define personal commands, settings, colors, etc in a personal file which is included into the latex document via `\include` or `\input`.
-TeXstudio can read the files and take up the defined commands for completion but is does not have any understanding of the arguments like if they are labels, texts or math elements.
+TeXstudio can read the files and take up the defined commands for completion but it does not have any understanding of the arguments like if they are labels, texts or math elements.
 The syntactical definition is given to TeXstudio via [cwl files](background.md#description-of-the-cwl-format). 
 TeXstudio searches for local cwl files for local packages. To notify TeXstudio that a package is local, the package name has to be given as a relative path, e.g. `\usepackage{./myPackage}`.
 TeXstudio looks for `./myPackage.cwl` and loads it if present.
@@ -673,7 +673,7 @@ expression of the pattern `(?[scope-type]:...)`.
 
 | Scope Limiting Expression | Meaning |
 | --- | --- |
-| `(?language:...)`       | The macro is only active if the highlighting of the document matches the given languages (comma sepataed list).<br> Example: `(?language:latex)` or `(?language:latex,Sweave)` |
+| `(?language:...)`       | The macro is only active if the highlighting of the document matches the given languages (comma separated list).<br> Example: `(?language:latex)` or `(?language:latex,Sweave)` |
 | `(?highlighted-as:...)` | Restrict the macro to certain highlighted environments. The possible values correspond to the list on the syntax highlighting config page.<br>Example: `(?highlighted-as:numbers,math-delimiter,math-keyword)` |
 | `(?not-highlighted-as:...)` |  Similar to `(?highlighted-as:...)`, but the macro is deactivated in the given environments. |
 | `(?inEnv:...)` | Restrict the macro to certain environments. Only the latest environment is checked in case of nested environments. Environments are only detected in the lines between "\begin"/"\end", excluding the lines that contain those commands! It also checks for aliases, i.e. all math type environments are aliased as "math" as well. "math" is also detected in symbol started mathmode like $...$.<br>Example: `(?inEnv:math)` |
