@@ -679,7 +679,7 @@ expression of the pattern `(?[scope-type]:...)`.
 | `(?inEnv:...)` | Restrict the macro to certain environments. Only the latest environment is checked in case of nested environments. Environments are only detected in the lines between "\begin"/"\end", excluding the lines that contain those commands! It also checks for aliases, i.e. all math type environments are aliased as "math" as well. "math" is also detected in symbol started mathmode like $...$.<br>Example: `(?inEnv:math)` |
 
 You may combine `(?language:...)` and `(?highlighted-as:...)`
-expressions. However, combing `(?highlighted-as:...)` and
+expressions. However, combining `(?highlighted-as:...)` and
 `(?not-highlighted-as:...)` does not make sense logically and has
 undefined behavior.
 
