@@ -219,30 +219,30 @@ Show difference ...
 
 ### Git panel
 
-TeXstudio provides a git panel in the side panel which provides basic functionality for using git.
+TeXstudio provides a Git panel in the side panel which provides basic functionality for using Git.
 
-![git panel](images/git_panel.webp)
+![Git panel](images/git_panel.webp)
 #### checkin files
-The file tab allows selecting files, providing a description and commiting per button.
-#### fetch,pull,push and refresh
-The symbols at the top allow fetch, pull, push or refresh the display.
+The file tab allows selecting files, providing a description and committing per button.
+#### fetch, pull, push and refresh
+The symbols at the top allow you to fetch, pull, push, or refresh the display.
 ![fetch,pull and push](images/git_switch.webp)
 #### Using branches
-The current branch is shown on the top left of the git panel.
-The button allows selecting other available branches, if no modified files are present.
+The current branch is shown on the top left of the Git panel.
+The button allows you to select other available branches, provided no modified files are present.
 ![switch branch button](images/git_fetch.webp)
 #### History tab
 The history tab shows the history in a decorated way. Each commit can be clicked to reveal the included files. Clicking on the files shows the difference of that commit with respect to HEAD (or the current state inside txs if the file is open).
 
 Tooltips on commits show some statistics.
 
-The context-menu on a commit allows copying some information, merging/cherry-picking. A new branch can be created starting from that commit.
+The context menu on a commit allows copying some information, merging/cherry-picking. A new branch can be created starting from that commit.
 
-Rollback performs `git revert <id>..HEAD` which generates a new commit which reverts all changes between HEAD and the selected commit.
+Rollback performs `git revert <id>..HEAD`, which generates a new commit which reverts all changes between HEAD and the selected commit.
 
 `Checkout (detached)` checks out the given commit.
 
-![git history](images/git_history_context.webp)
+![Git history](images/git_history_context.webp)
 
 ## Advanced header usage
 
