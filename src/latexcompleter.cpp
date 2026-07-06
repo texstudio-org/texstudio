@@ -1882,6 +1882,12 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
             eow.remove("-");
             eow.remove("/");
         }
+        if (flags & CF_FORCE_SPECIALOPTION){
+            eow.remove(":");
+            eow.remove("_");
+            eow.remove("-");
+        }
+
 		if (flags == CF_FORCE_VISIBLE_LIST)
 			eow.remove("{");
 		if (flags & CF_FORCE_REF) eow = "[]{}\\";
