@@ -1,12 +1,15 @@
 # color-edits package
-# Matthew Bertucci 12/12/2021 for v1.1
+# Matthew Bertucci 2026/07/06 for v2.0
 
 #include:color
-#include:ifthen
+#include:etoolbox
+#include:pdfcolfoot
 
 #keyvals:\usepackage/color-edits#c
 suppress
+revert
 showdeletions
+inlinedeletions
 #endkeyvals
 
 \addauthor{author}{color}
