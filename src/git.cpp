@@ -408,7 +408,7 @@ void GIT::runGitAsync(QString action, QString args,QObject *obj,const char * fin
 void GIT::runGitAsyncFinished(int exitCode, QProcess::ExitStatus status)
 {
     if(status==QProcess::NormalExit && exitCode==0){
-        QMetaObject::invokeMethod(m_obj, m_gitAsyncSlot,exitCode,status);
+        QMetaObject::invokeMethod(m_obj, m_gitAsyncSlot,Q_ARG(int,exitCode),Q_ARG(QProcess::ExitStatus,status));
     }
     m_gitAsyncSlot=nullptr;
     m_obj=nullptr;
