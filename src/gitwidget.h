@@ -32,6 +32,9 @@ public:
 
 public slots:
     void refresh();
+    void onPushFinished(int, QProcess::ExitStatus status);
+    void onPullFinished(int, QProcess::ExitStatus status);
+    void onFetchFinished(int,QProcess::ExitStatus status);
 
 signals:
     void fileActivated(const QString &filePath,const QString rev="");

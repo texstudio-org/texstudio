@@ -340,7 +340,17 @@ void GitWidget::onPush()
     updateStatus(tr("Pushing\u2026"));
     QString args=QString("origin %1").arg(m_branchLabel->text());
 
-    m_git->push(rpath,args);
+    m_git->pushAsync(rpath,args,this,"onPushFinished");
+}
+/*! \brief Slot called when the asynchronous push operation finishes.
+ * \param status The exit status of the git fetch process.
+ */
+void GitWidget::onPushFinished(int, QProcess::ExitStatus status)
+{
+    if(status!=QProcess::NormalExit){
+        updateStatus(tr("Push failed."));
+        return;
+    }
     refresh();
     updateStatus(tr("Push complete."));
 }
@@ -353,7 +363,17 @@ void GitWidget::onPull()
     const QString rpath = resolvedPath();
     if (rpath.isEmpty()) return;
     updateStatus(tr("Pulling\u2026"));
-    m_git->pull(rpath);
+    m_git->pullAsync(rpath,this,"onPullFinished");
+}
+/*! \brief Slot called when the asynchronous pull operation finishes.
+ * \param status The exit status of the git fetch process.
+ */
+void GitWidget::onPullFinished(int, QProcess::ExitStatus status)
+{
+    if(status!=QProcess::NormalExit){
+        updateStatus(tr("Pull failed."));
+        return;
+    }
     refresh();
     updateStatus(tr("Pull complete."));
 }
@@ -366,7 +386,18 @@ void GitWidget::onFetch()
     const QString rpath = resolvedPath();
     if (rpath.isEmpty()) return;
     updateStatus(tr("Fetching\u2026"));
-    m_git->fetch(rpath);
+    m_git->fetchAsync(rpath,this,"onFetchFinished");
+
+}
+/*! \brief Slot called when the asynchronous fetch operation finishes.
+ * \param status The exit status of the git fetch process.
+ */
+void GitWidget::onFetchFinished(int, QProcess::ExitStatus status)
+{
+    if(status!=QProcess::NormalExit){
+        updateStatus(tr("Fetch failed."));
+        return;
+    }
     refresh();
     updateStatus(tr("Fetch complete."));
 }

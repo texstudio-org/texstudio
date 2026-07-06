@@ -34,8 +34,11 @@ public:
     QString stageFiles(const QString &path, const QStringList &files);
     QString commitStaged(const QString &path, const QString &message);
     void push(QString filename,QString optionalArgs="");
+    void pushAsync(QString filename,QString optionalArgs="", QObject *obj=nullptr,const char * finishedCMD=nullptr);
     void pull(QString path);
+    void pullAsync(QString path, QObject *obj,const char * finishedCMD);
     void fetch(QString path);
+    void fetchAsync(QString path, QObject *obj,const char * finishedCMD);
     Status status(QString filename);
     QStringList log(QString filename);
     QStringList getRepoLog(const QString &path, int maxEntries = 100);
@@ -52,10 +55,19 @@ public:
 
     QString runGit(QString action, QString args);
     QString runGit(QString action, QString path,QString args);
+    void runGitAsync(QString action, QString args, QObject *obj, const char * finishedCMD);
+
+public slots:
+    void runGitAsyncFinished(int exitCode, QProcess::ExitStatus status);
 
 signals:
     void runCommand(const QString &commandline, QString *output);
+    void runCommandAsync(const QString &commandline, const char * returnCmd);
     void statusMessage(const QString &message);
+
+private:
+    const char* m_gitAsyncSlot=nullptr;
+    QObject *m_obj=nullptr;
 
 };
 

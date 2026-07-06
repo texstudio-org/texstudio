@@ -74,6 +74,15 @@ void GIT::push(QString filename,QString optionalArgs)
 {
     runGit("push", quote(filename),optionalArgs);
 }
+/*! \brief GIT push asynchronously
+ * \param filename
+ * \param optionalArgs
+ * \param finishedCMD SLOT for return path
+ */
+void GIT::pushAsync(QString filename, QString optionalArgs, QObject *obj, const char *finishedCMD)
+{
+    runGitAsync("push", quote(filename)+" "+optionalArgs, obj,finishedCMD);
+}
 
 /*!
  * \brief get GIT status filename
@@ -148,6 +157,14 @@ void GIT::pull(QString path)
 {
     runGit("pull", quote(path), "");
 }
+/*! \brief GIT pull asynchronously
+ * \param path repository path
+ * \param finishedCMD SLOT for return path
+ */
+void GIT::pullAsync(QString path, QObject *obj,const char *finishedCMD)
+{
+    runGitAsync("pull", quote(path), obj,finishedCMD);
+}
 
 /*!
  * \brief GIT fetch
@@ -156,6 +173,14 @@ void GIT::pull(QString path)
 void GIT::fetch(QString path)
 {
     runGit("fetch", quote(path), "");
+}
+/*! \brief GIT fetch asynchronously
+ * \param path repository path
+ * \param finishedCMD SLOT for return path
+ */
+void GIT::fetchAsync(QString path, QObject *obj, const char *finishedCMD)
+{
+   runGitAsync("fetch", quote(path), obj,finishedCMD);
 }
 
 /*!
@@ -359,6 +384,34 @@ QString GIT::runGit(QString action,QString path, QString args)
     emit statusMessage(QString(" GIT %1 ").arg(action));
     emit runCommand(makeCmd("-C "+path+" "+action, args), &output);
     return output;
+}
+/*!
+ * \brief run git asynchronously
+ * \param action
+ * \param args
+ * \param obj SLOT receiver object
+ * \param finishedCMD SLOT for return path
+ * \return
+ */
+void GIT::runGitAsync(QString action, QString args,QObject *obj,const char * finishedCMD)
+{
+    if(m_gitAsyncSlot!=nullptr){
+        qDebug() << "GIT::runGitAsync: already running a command, ignoring new request";
+        return;
+    }
+    emit statusMessage(QString(" GIT %1 ").arg(action));
+    m_gitAsyncSlot=finishedCMD;
+    m_obj=obj;
+    emit runCommandAsync(makeCmd(action, args), SLOT(runGitAsyncFinished(int,QProcess::ExitStatus)));
+}
+
+void GIT::runGitAsyncFinished(int exitCode, QProcess::ExitStatus status)
+{
+    if(status==QProcess::NormalExit && exitCode==0){
+        QMetaObject::invokeMethod(m_obj, m_gitAsyncSlot,exitCode,status);
+    }
+    m_gitAsyncSlot=nullptr;
+    m_obj=nullptr;
 }
 
 
