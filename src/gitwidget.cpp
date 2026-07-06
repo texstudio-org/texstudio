@@ -39,6 +39,7 @@ void GitWidget::setupUi()
     m_btnBranch->setPopupMode(QToolButton::InstantPopup);
     m_branchLabel = new QLabel(tr("(no repository)"));
     m_branchLabel->setToolTip(tr("Current branch"));
+    m_branchLabel->setWordWrap(true);
     m_btnRefresh = new QToolButton();
     m_btnRefresh->setText(QString::fromUtf8("\u21BB"));
     m_btnRefresh->setToolTip(tr("Refresh"));
