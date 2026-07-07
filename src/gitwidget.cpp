@@ -173,11 +173,19 @@ void GitWidget::refresh()
     }
 
     const QString branch = m_git->getCurrentBranch(rpath);
-    if (branch.isEmpty() || branch.startsWith("fatal")) {
+    if (branch.isEmpty() || branch.startsWith("fatal")||branch.contains("\n")) {
         m_branchLabel->setText(tr("(no repository)"));
         m_fileList->clear();
         m_graphView->clear();
         m_statusLabel->clear();
+        if(branch.contains("\n")){
+            QString msg=branch.split("\n").at(1);
+            updateStatus(tr("Git error: %1").arg(msg));
+        }else{
+            if(branch.startsWith("fatal")){
+                updateStatus(tr("Git error: %1").arg(branch));
+            }
+        }
         return;
     }
     m_branchLabel->setText(branch);
