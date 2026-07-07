@@ -173,7 +173,7 @@ void GitWidget::refresh()
     }
 
     const QString branch = m_git->getCurrentBranch(rpath);
-    if (branch.isEmpty() || branch.startsWith("fatal")||branch.contains("\n")) {
+    if (branch.startsWith("fatal")||branch.contains("\n")) {
         m_branchLabel->setText(tr("(no repository)"));
         m_fileList->clear();
         m_graphView->clear();
