@@ -894,7 +894,7 @@ QString searchBaseCommand(const QString &cmd, QString options, QString texPath)
         }
         if (!BuildManager::findFileInPath(fileName).isEmpty())
             return fileName + options; //found in path
-        // additonal search path
+        // additional search path
         QStringList addPaths=BuildManager::resolvePaths(BuildManager::additionalSearchPaths).split(";");
         foreach(const QString& path, addPaths){
             if (QFileInfo::exists(addPathDelimeter(path) + fileName)) {
