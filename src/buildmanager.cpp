@@ -222,7 +222,7 @@ QStringList BuildManager::splitOptions(const QString &s)
 	for (i = 0; i < s.length(); i++) {
 		c = s[i];
 		if (inQuote) {
-			if (c == '"' && s[i - 1] != '\\') {
+			if (c == '"' && (i == 0 || s[i - 1] != '\\')) {
 				inQuote = false;
 			}
 		} else {
