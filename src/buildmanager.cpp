@@ -286,9 +286,13 @@ QString BuildManager::replaceEnvironmentVariables(const QString &s, const QHash<
 			if (compareNamesToUpper) {
 				varName = varName.toUpper();
 			}
-			QString varContent = variables.value(varName, "");
-            result.replace(match.captured(0), varContent);
-			i += varContent.length();
+            if(variables.contains(varName)){
+                QString varContent = variables.value(varName, "");
+                result.replace(match.captured(0), varContent);
+                i += varContent.length();
+            }else{
+                i += match.capturedLength();
+            }
 		}
 	}
 	return result;
