@@ -119,7 +119,7 @@ QString CommandInfo::guessCommandLine(const QString texpath) const
 void CommandInfo::setCommandLine(const QString &cmdString)
 {
 	if (cmdString == "<default>") commandLine = guessCommandLine();
-	if (cmdString == BuildManager::tr("<unknown>")) commandLine = "";
+	else if (cmdString == BuildManager::tr("<unknown>")) commandLine = "";
 	else {
 		//force commands to include options (e.g. file name)
 		QString trimmed = cmdString.trimmed();
