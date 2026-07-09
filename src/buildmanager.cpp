@@ -789,11 +789,11 @@ QString getMiKTeXBinPathInternal()
 			}
 	}
 
-    if(!mikPath.endsWith("\\")){
-        mikPath.append("\\");
-    }
 	// post-process to detect 64bit installation
 	if (!mikPath.isEmpty()) {
+        if (!mikPath.endsWith("\\")) {
+            mikPath.append("\\");
+        }
         if (QDir(mikPath + "x64\\").exists())
             return mikPath + "x64\\";
 		else
