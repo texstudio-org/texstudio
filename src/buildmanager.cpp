@@ -86,7 +86,7 @@ CMD_DEFINE(TERMINAL_EXTERNAL,terminal-external);
 // *INDENT-ON* (astyle-config)
 
 //! These commands should not consist of a command list, but rather a single command.
-//! Otherwise surpising side effects can happen, see https://sourceforge.net/p/texstudio/bugs/2119/
+//! Otherwise surprising side effects can happen, see https://sourceforge.net/p/texstudio/bugs/2119/
 const QStringList atomicCommands = QStringList() << "txs:///latex" << "txs:///pdflatex" << "txs:///xelatex"<< "txs:///lualatex" << "txs:///latexmk";
 
 QString searchBaseCommand(const QString &cmd, QString options, QString texPath="");
