@@ -86,7 +86,7 @@ CMD_DEFINE(TERMINAL_EXTERNAL,terminal-external);
 // *INDENT-ON* (astyle-config)
 
 //! These commands should not consist of a command list, but rather a single command.
-//! Otherwise surpising side effects can happen, see https://sourceforge.net/p/texstudio/bugs/2119/
+//! Otherwise surprising side effects can happen, see https://sourceforge.net/p/texstudio/bugs/2119/
 const QStringList atomicCommands = QStringList() << "txs:///latex" << "txs:///pdflatex" << "txs:///xelatex"<< "txs:///lualatex" << "txs:///latexmk";
 
 QString searchBaseCommand(const QString &cmd, QString options, QString texPath="");
@@ -119,7 +119,7 @@ QString CommandInfo::guessCommandLine(const QString texpath) const
 void CommandInfo::setCommandLine(const QString &cmdString)
 {
 	if (cmdString == "<default>") commandLine = guessCommandLine();
-	if (cmdString == BuildManager::tr("<unknown>")) commandLine = "";
+	else if (cmdString == BuildManager::tr("<unknown>")) commandLine = "";
 	else {
 		//force commands to include options (e.g. file name)
 		QString trimmed = cmdString.trimmed();
@@ -222,7 +222,7 @@ QStringList BuildManager::splitOptions(const QString &s)
 	for (i = 0; i < s.length(); i++) {
 		c = s[i];
 		if (inQuote) {
-			if (c == '"' && s[i - 1] != '\\') {
+			if (c == '"' && (i == 0 || s[i - 1] != '\\')) {
 				inQuote = false;
 			}
 		} else {
@@ -789,11 +789,11 @@ QString getMiKTeXBinPathInternal()
 			}
 	}
 
-    if(!mikPath.endsWith("\\")){
-        mikPath.append("\\");
-    }
 	// post-process to detect 64bit installation
 	if (!mikPath.isEmpty()) {
+        if (!mikPath.endsWith("\\")) {
+            mikPath.append("\\");
+        }
         if (QDir(mikPath + "x64\\").exists())
             return mikPath + "x64\\";
 		else
@@ -894,7 +894,7 @@ QString searchBaseCommand(const QString &cmd, QString options, QString texPath)
         }
         if (!BuildManager::findFileInPath(fileName).isEmpty())
             return fileName + options; //found in path
-        // additonal search path
+        // additional search path
         QStringList addPaths=BuildManager::resolvePaths(BuildManager::additionalSearchPaths).split(";");
         foreach(const QString& path, addPaths){
             if (QFileInfo::exists(addPathDelimeter(path) + fileName)) {
