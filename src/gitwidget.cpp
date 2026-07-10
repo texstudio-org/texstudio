@@ -449,9 +449,7 @@ void GitWidget::onUnstageAll()
  */
 void GitWidget::onTabChanged(int index)
 {
-    if (index == 1) {
-        refreshHistory();
-    }
+    refresh();
 }
 
 /*!
