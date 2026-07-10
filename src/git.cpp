@@ -215,10 +215,7 @@ QList<GIT::FileEntry> GIT::getChangedFiles(QString path)
 QString GIT::getCurrentBranch(QString path)
 {
     //const QString output = runGit("rev-parse --abbrev-ref HEAD", quote(path), "");
-    QString output = runGit("branch", quote(path), "");
-    if(output.startsWith("*")){
-        output=output.mid(1);
-    }
+    QString output = runGit("branch", quote(path), "--show-current");
     return output.trimmed();
 }
 /*!
