@@ -5184,7 +5184,7 @@ il valore passato al pacchetto inputenc siano compatibili.</translation>
         <location filename="../src/gitwidget.cpp" line="183"/>
         <location filename="../src/gitwidget.cpp" line="186"/>
         <source>Git error: %1</source>
-        <translation type="unfinished"/>
+        <translation>Errore git: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="246"/>
@@ -5237,7 +5237,7 @@ Seleziona i file che desideri includere nel commit.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="359"/>
         <source>Push failed.</source>
-        <translation type="unfinished"/>
+        <translation>Push non riuscito.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="363"/>
@@ -5252,7 +5252,7 @@ Seleziona i file che desideri includere nel commit.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="382"/>
         <source>Pull failed.</source>
-        <translation type="unfinished"/>
+        <translation>Tiro fallito.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="386"/>
@@ -5267,7 +5267,7 @@ Seleziona i file che desideri includere nel commit.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="406"/>
         <source>Fetch failed.</source>
-        <translation type="unfinished"/>
+        <translation>Recupero non riuscito.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="410"/>
@@ -5318,17 +5318,17 @@ Seleziona i file che desideri includere nel commit.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="487"/>
         <source>&amp;Show diff</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Mostra differenze</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="492"/>
         <source>&amp;Revert changes in this file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Annulla le modifiche in questo file</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="496"/>
         <source>&amp;Revert changes in selected files</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Annulla le modifiche nei file selezionati</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="640"/>

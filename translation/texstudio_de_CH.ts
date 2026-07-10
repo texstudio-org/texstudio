@@ -5160,7 +5160,7 @@ Sie müssem selber darauf achten, dass Dateikodierung und der Wert für inputenc
         <location filename="../src/gitwidget.cpp" line="183"/>
         <location filename="../src/gitwidget.cpp" line="186"/>
         <source>Git error: %1</source>
-        <translation type="unfinished"/>
+        <translation>Git Fehler: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="246"/>
@@ -5304,7 +5304,7 @@ Wähle Dateien aus, die in dem Commit verwendet werden sollen.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="496"/>
         <source>&amp;Revert changes in selected files</source>
-        <translation type="unfinished"/>
+        <translation>Änderungen in a&amp;llen ausgewählten Dateien rückgängig machen</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="640"/>

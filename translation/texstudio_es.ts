@@ -5157,7 +5157,7 @@ You have to make sure yourself that the file encoding and the value passed to th
         <location filename="../src/gitwidget.cpp" line="183"/>
         <location filename="../src/gitwidget.cpp" line="186"/>
         <source>Git error: %1</source>
-        <translation type="unfinished"/>
+        <translation>Error de Git: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="246"/>
@@ -5210,7 +5210,7 @@ Marque los archivos que desea incluir en la confirmación.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="359"/>
         <source>Push failed.</source>
-        <translation type="unfinished"/>
+        <translation>El empujón falló.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="363"/>
@@ -5225,7 +5225,7 @@ Marque los archivos que desea incluir en la confirmación.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="382"/>
         <source>Pull failed.</source>
-        <translation type="unfinished"/>
+        <translation>La extracción falló.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="386"/>
@@ -5240,7 +5240,7 @@ Marque los archivos que desea incluir en la confirmación.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="406"/>
         <source>Fetch failed.</source>
-        <translation type="unfinished"/>
+        <translation>La recuperación falló.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="410"/>
@@ -5291,17 +5291,17 @@ Marque los archivos que desea incluir en la confirmación.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="487"/>
         <source>&amp;Show diff</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Mostrar diferencia</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="492"/>
         <source>&amp;Revert changes in this file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Revertir cambios en este archivo</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="496"/>
         <source>&amp;Revert changes in selected files</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Revertir cambios en archivos seleccionados</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="640"/>

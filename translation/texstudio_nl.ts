@@ -5172,7 +5172,7 @@ U moet er zelf voor zorgen dat de bestandscodering en de waarde die aan het inpu
         <location filename="../src/gitwidget.cpp" line="183"/>
         <location filename="../src/gitwidget.cpp" line="186"/>
         <source>Git error: %1</source>
-        <translation type="unfinished"/>
+        <translation>Git-fout: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="246"/>
@@ -5225,7 +5225,7 @@ Controleer de bestanden die u in de commit wilt opnemen.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="359"/>
         <source>Push failed.</source>
-        <translation type="unfinished"/>
+        <translation>Pushen is mislukt.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="363"/>
@@ -5240,7 +5240,7 @@ Controleer de bestanden die u in de commit wilt opnemen.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="382"/>
         <source>Pull failed.</source>
-        <translation type="unfinished"/>
+        <translation>Trekken mislukt.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="386"/>
@@ -5255,7 +5255,7 @@ Controleer de bestanden die u in de commit wilt opnemen.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="406"/>
         <source>Fetch failed.</source>
-        <translation type="unfinished"/>
+        <translation>Ophalen mislukt.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="410"/>
@@ -5306,17 +5306,17 @@ Controleer de bestanden die u in de commit wilt opnemen.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="487"/>
         <source>&amp;Show diff</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Versch. weergeven</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="492"/>
         <source>&amp;Revert changes in this file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Wijzigingen in dit bestand ongedaan maken</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="496"/>
         <source>&amp;Revert changes in selected files</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Wijzigingen in geselecteerde bestanden ongedaan maken</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="640"/>
