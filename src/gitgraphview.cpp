@@ -469,6 +469,9 @@ void GitGraphView::setSelectedRow(int row)
                 tip = m_git->getCommitFileNames(m_repoPath, rd.fullHash).trimmed();
                 if(tip.contains("\\")){
                     tip=GIT::decodeGitFilename(tip.toUtf8());
+                    if(tip.startsWith("\"")&&tip.endsWith("\"")){
+                        tip=tip.mid(1,tip.length()-2);
+                    }
                 }
                 if (!tip.isEmpty()){
                     m_fileCache.insert(rd.fullHash, tip);
