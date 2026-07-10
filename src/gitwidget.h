@@ -51,7 +51,9 @@ private slots:
     void onFilterByFileToggled(bool checked);
     void fileSelected(const QString &hash,const QString &filePath="");
     void contextMenuRequested(const QPoint &pos);
+    void revertChangesInThisFile();
     void revertChangesInFiles();
+    void showDiff();
     void enableSelection();
     void disableSelection();
     void performGitOnHistoryEntry(const QString &hash,const QString &action="");

@@ -483,8 +483,17 @@ void GitWidget::contextMenuRequested(const QPoint &pos)
     const QString statusCode=item->data(Qt::UserRole + 2).toString();
     QMenu menu(this);
     if(statusCode==" M" || statusCode=="MM" || statusCode=="M " || statusCode=="A " || statusCode=="D " || statusCode==" D") {
+        // show diff
+        QAction *actShowDiff=new QAction(tr("&Show diff"),&menu);
+        actShowDiff->setData(fullPath);
+        connect(actShowDiff,&QAction::triggered,this,&GitWidget::showDiff);
+        menu.addAction(actShowDiff);
         // modified, offer revert
-        QAction *actRevertChanges=new QAction(tr("&Revert changes"),&menu);
+        QAction *actRevertThisChanges=new QAction(tr("&Revert changes in this file"),&menu);
+        actRevertThisChanges->setData(fullPath);
+        connect(actRevertThisChanges,&QAction::triggered,this,&GitWidget::revertChangesInThisFile);
+        menu.addAction(actRevertThisChanges);
+        QAction *actRevertChanges=new QAction(tr("&Revert changes in selected files"),&menu);
         connect(actRevertChanges,&QAction::triggered,this,&GitWidget::revertChangesInFiles);
         menu.addAction(actRevertChanges);
     }
@@ -498,6 +507,23 @@ void GitWidget::contextMenuRequested(const QPoint &pos)
     if(menu.isEmpty()) return;
 
     menu.exec(m_fileList->viewport()->mapToGlobal(pos));
+}
+/*! \brief Revert changes in the clicked file (unstage and restore from HEAD).
+ */
+void GitWidget::revertChangesInThisFile()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    QString filePath=action->data().toString();
+    const QString repoRoot = resolvedPath();
+    const QString relPath  = QDir(repoRoot).relativeFilePath(filePath);
+    if (!QFileInfo::exists(filePath)) return;
+    // Unstage the file
+    m_git->unstageFiles(repoRoot, QStringList() << relPath);
+    // Restore from HEAD
+    m_git->checkoutFile(repoRoot, relPath);
+    updateStatus(tr("Reverted changes in %1").arg(relPath));
+    refresh();
 }
 /*!
  * \brief Revert changes in all selected files (unstage and restore from HEAD).
@@ -518,6 +544,16 @@ void GitWidget::revertChangesInFiles()
         updateStatus(tr("Reverted changes in %1").arg(relPath));
     }
     refresh();
+}
+/*!
+ * \brief show diff on modified files
+ */
+void GitWidget::showDiff()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    QString filePath=action->data().toString();
+    emit fileActivated(filePath, "HEAD");
 }
 /*!
  * \brief enable all selected items
