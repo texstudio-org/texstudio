@@ -198,6 +198,10 @@ QList<GIT::FileEntry> GIT::getChangedFiles(QString path)
         FileEntry entry;
         entry.statusCode = line.left(2);
         entry.filePath = line.mid(3).trimmed();
+        if(entry.filePath.contains("\\")){
+            // decode git-escaped filename (e.g., "\346\234\254\345\275\225.txt") into a QString
+            entry.filePath = decodeGitFilename(entry.filePath.toUtf8());
+        }
         // strip surrounding quotes that git sometimes adds
         if (entry.filePath.startsWith('"') && entry.filePath.endsWith('"')) {
             entry.filePath = entry.filePath.mid(1, entry.filePath.length() - 2);
@@ -415,5 +419,30 @@ void GIT::runGitAsyncFinished(int exitCode, QProcess::ExitStatus status)
     m_obj=nullptr;
 }
 
-
+/*!
+ * \brief decode a git-escaped filename (e.g., "\346\234\254\345\275\225.txt") into a QString
+ * \param escaped git-escaped filename as QByteArray
+ * \return decoded QString
+ */
+QString GIT::decodeGitFilename(const QByteArray &escaped) {
+    // Replace octal escape sequences (e.g., \346) with their actual byte values
+    QByteArray utf8Bytes;
+    for (int i = 0; i < escaped.size(); ) {
+        if (escaped[i] == '\\' && i + 3 < escaped.size()) {
+            // Parse octal escape sequence (e.g., \346)
+            bool ok;
+            char byte = static_cast<char>(
+                escaped.mid(i + 1, 3).toInt(&ok, 8)
+                );
+            if (ok) {
+                utf8Bytes.append(byte);
+                i += 4; // Skip the escape sequence
+                continue;
+            }
+        }
+        utf8Bytes.append(escaped[i]);
+        i++;
+    }
+    return QString::fromUtf8(utf8Bytes);
+}
 

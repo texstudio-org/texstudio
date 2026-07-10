@@ -467,6 +467,9 @@ void GitGraphView::setSelectedRow(int row)
             QString tip = m_fileCache.value(rd.fullHash);
             if (tip.isEmpty()) {
                 tip = m_git->getCommitFileNames(m_repoPath, rd.fullHash).trimmed();
+                if(tip.contains("\\")){
+                    tip=GIT::decodeGitFilename(tip.toUtf8());
+                }
                 if (!tip.isEmpty()){
                     m_fileCache.insert(rd.fullHash, tip);
                 }
@@ -571,6 +574,9 @@ bool GitGraphView::viewportEvent(QEvent *event)
             QString tip = m_statCache.value(rd.fullHash);
             if (tip.isEmpty()) {
                 tip = m_git->getCommitStat(m_repoPath, rd.fullHash).trimmed();
+                if(tip.contains("\\")){
+                    tip=GIT::decodeGitFilename(tip.toUtf8());
+                }
                 if (tip.isEmpty())
                     tip = tr("commit %1\n(stats unavailable)").arg(rd.fullHash);
                 m_statCache.insert(rd.fullHash, tip);

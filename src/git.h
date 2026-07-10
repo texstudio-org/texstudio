@@ -57,6 +57,8 @@ public:
     QString runGit(QString action, QString path,QString args);
     void runGitAsync(QString action, QString args, QObject *obj, const char * finishedCMD);
 
+    static QString decodeGitFilename(const QByteArray &escaped);
+
 public slots:
     void runGitAsyncFinished(int exitCode, QProcess::ExitStatus status);
 
