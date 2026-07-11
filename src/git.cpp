@@ -129,7 +129,7 @@ QStringList GIT::log(QString filename)
  * \brief create a GIT repository
  * \param filename
  */
-QString GIT::createRepository(QString filename)
+void GIT::createRepository(QString filename)
 {
     const QString path = QFileInfo(filename).absolutePath();
     createRepositoryInFolder(path);
