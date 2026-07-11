@@ -5169,7 +5169,7 @@ You have to make sure yourself that the file encoding and the value passed to th
         <location filename="../src/gitwidget.cpp" line="183"/>
         <location filename="../src/gitwidget.cpp" line="186"/>
         <source>Git error: %1</source>
-        <translation type="unfinished"/>
+        <translation>Помилка Git: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="246"/>
@@ -5222,7 +5222,7 @@ Check the files you want to include in the commit.</source>
     <message>
         <location filename="../src/gitwidget.cpp" line="359"/>
         <source>Push failed.</source>
-        <translation type="unfinished"/>
+        <translation>Штовхання провалилося.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="363"/>
@@ -5237,7 +5237,7 @@ Check the files you want to include in the commit.</source>
     <message>
         <location filename="../src/gitwidget.cpp" line="382"/>
         <source>Pull failed.</source>
-        <translation type="unfinished"/>
+        <translation>Витягування проівалилося.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="386"/>
@@ -5252,7 +5252,7 @@ Check the files you want to include in the commit.</source>
     <message>
         <location filename="../src/gitwidget.cpp" line="406"/>
         <source>Fetch failed.</source>
-        <translation type="unfinished"/>
+        <translation>Завантаження провалилося.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="410"/>
@@ -5303,17 +5303,17 @@ Check the files you want to include in the commit.</source>
     <message>
         <location filename="../src/gitwidget.cpp" line="487"/>
         <source>&amp;Show diff</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Показати різницю</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="492"/>
         <source>&amp;Revert changes in this file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Відкликати зміни у цьому файлі</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="496"/>
         <source>&amp;Revert changes in selected files</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Відкликати зміни в обраному файлі</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="640"/>

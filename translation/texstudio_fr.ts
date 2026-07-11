@@ -5160,7 +5160,7 @@ Vous devez vous assurer que le codage d&apos;entrée du fichier et l&apos;option
         <location filename="../src/gitwidget.cpp" line="183"/>
         <location filename="../src/gitwidget.cpp" line="186"/>
         <source>Git error: %1</source>
-        <translation type="unfinished"/>
+        <translation>Erreur Git : %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="246"/>
@@ -5213,7 +5213,7 @@ Sélectionnez les fichiers que vous souhaitez inclure dans la validation.</trans
     <message>
         <location filename="../src/gitwidget.cpp" line="359"/>
         <source>Push failed.</source>
-        <translation type="unfinished"/>
+        <translation>Échec de la publication (push).</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="363"/>
@@ -5228,7 +5228,7 @@ Sélectionnez les fichiers que vous souhaitez inclure dans la validation.</trans
     <message>
         <location filename="../src/gitwidget.cpp" line="382"/>
         <source>Pull failed.</source>
-        <translation type="unfinished"/>
+        <translation>Échec de la récupération (pull).</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="386"/>
@@ -5243,7 +5243,7 @@ Sélectionnez les fichiers que vous souhaitez inclure dans la validation.</trans
     <message>
         <location filename="../src/gitwidget.cpp" line="406"/>
         <source>Fetch failed.</source>
-        <translation type="unfinished"/>
+        <translation>Échec de la récupération (fetch).</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="410"/>
@@ -5294,17 +5294,17 @@ Sélectionnez les fichiers que vous souhaitez inclure dans la validation.</trans
     <message>
         <location filename="../src/gitwidget.cpp" line="487"/>
         <source>&amp;Show diff</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Afficher les différences</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="492"/>
         <source>&amp;Revert changes in this file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Annuler les modifications apportées à ce fichier</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="496"/>
         <source>&amp;Revert changes in selected files</source>
-        <translation type="unfinished"/>
+        <translation>Annuler les modifications apportées aux fichiers &amp;sélectionnés</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="640"/>
