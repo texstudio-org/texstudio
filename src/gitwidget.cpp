@@ -156,6 +156,16 @@ void GitWidget::setPath(const QString &path)
     QFileInfo fi(path);
     if(fi.absolutePath()==resolvedPath()) return;
     m_path = path;
+    // check if valid git repo
+    if(!m_git->isGitRepository(resolvedPath())){
+        m_branchLabel->setText(tr("(no repository)"));
+        m_fileList->clear();
+        m_graphView->clear();
+        m_statusLabel->clear();
+        m_btnBranch->setEnabled(false);
+        updateStatus(tr("Not a git repository."));
+        return;
+    }
     refresh();
 }
 

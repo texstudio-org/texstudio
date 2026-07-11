@@ -52,6 +52,7 @@ public:
     void checkoutFile(QString repoRoot, QString relPath,QString rev="HEAD");
     void checkout(QString repoRoot, QString arg);
     QStringList getBranches(QString repoRoot);
+    bool isGitRepository(QString path);
 
     QString runGit(QString action, QString args);
     QString runGit(QString action, QString path,QString args);

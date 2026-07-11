@@ -276,6 +276,16 @@ QStringList GIT::getBranches(QString repoRoot)
     }
     return branches;
 }
+/*!
+ * \brief check if path is a git repository
+ * \param path
+ * \return true if path is a git repository, false otherwise
+ */
+bool GIT::isGitRepository(QString path)
+{
+    const QString output = runGit("rev-parse", quote(path), "--is-inside-work-tree");
+    return output.trimmed() == "true";
+}
 
 /*!
  * \brief get the repository-wide commit history with graph data
