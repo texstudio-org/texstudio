@@ -218,6 +218,8 @@ void GitWidget::refresh()
             menu->addAction(act);
         }
         m_btnBranch->setMenu(menu);
+    }else{
+        m_btnBranch->setMenu(nullptr);
     }
 
     if (m_tabWidget->currentIndex() == 1) {
