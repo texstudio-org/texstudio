@@ -58,6 +58,7 @@ private slots:
     void disableSelection();
     void performGitOnHistoryEntry(const QString &hash,const QString &action="");
     void onBranchButtonClicked();
+    void onCreateRepository();
 
 private:
     void setupUi();

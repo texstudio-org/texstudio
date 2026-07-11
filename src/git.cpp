@@ -129,11 +129,20 @@ QStringList GIT::log(QString filename)
  * \brief create a GIT repository
  * \param filename
  */
-void GIT::createRepository(QString filename)
+QString GIT::createRepository(QString filename)
 {
     const QString path = QFileInfo(filename).absolutePath();
-    //setStatusMessageProcess(QString(" GIT create repo "));
-    runGit("init", quote(path));
+    createRepositoryInFolder(path);
+}
+/*!
+ * \brief create repository in given folder
+ * \param folder
+ * \return
+ */
+QString GIT::createRepositoryInFolder(QString folder)
+{
+    if(folder.isEmpty()) return QString();
+    return runGit("init", quote(folder));
 }
 /*!
  * \brief run GIT command

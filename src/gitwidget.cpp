@@ -162,10 +162,18 @@ void GitWidget::setPath(const QString &path)
         m_fileList->clear();
         m_graphView->clear();
         m_statusLabel->clear();
-        m_btnBranch->setEnabled(false);
+        m_btnBranch->setEnabled(true);
+        QMenu *menu=new QMenu();
+        // add action create repository
+        QAction *actCreateRepo=new QAction(tr("&Create repository"),menu);
+        connect(actCreateRepo,&QAction::triggered,this,&GitWidget::onCreateRepository);
+        menu->addAction(actCreateRepo);
+        m_btnBranch->setMenu(menu);
+        m_btnBranch->setText("+");
         updateStatus(tr("Not a git repository."));
         return;
     }
+    m_btnBranch->setText(QString::fromUtf8("\u2387")); // reinstate switch symbol
     refresh();
 }
 
@@ -676,6 +684,22 @@ void GitWidget::onBranchButtonClicked()
     m_git->runGit(cmd,repoRoot,args);
     refresh();
 }
+/*!
+ * \brief create git reporsitory in current folder
+ * Perform git init
+ */
+void GitWidget::onCreateRepository()
+{
+    QString repoRoot=resolvedPath();
+    if(repoRoot.isEmpty()) return;
+    QString result=m_git->createRepositoryInFolder(repoRoot);
+    if(result.contains("fatal") || result.contains("error")){
+        updateStatus(tr("Failed to create repository: %1").arg(result.trimmed()));
+        return;
+    }
+    updateStatus(tr("Git repository created in %1").arg(repoRoot));
+    refresh();
+}
 
 
 void GitWidget::updateStatus(const QString &msg)
@@ -710,3 +734,4 @@ void GitWidget::updateBranchButton(bool hasModifiedFiles)
     }
 }
 
+// TODO: git init, git clone, git connect...
