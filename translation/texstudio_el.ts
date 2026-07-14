@@ -5173,12 +5173,12 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="../src/gitwidget.cpp" line="168"/>
         <source>&amp;Create repository</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Νέο αποθετήριο</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="173"/>
         <source>Not a git repository.</source>
-        <translation type="unfinished"/>
+        <translation>Δεν εντοπίστηκε αποθετήριο git στον τρέχοντα φάκελο.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="187"/>
@@ -5308,12 +5308,12 @@ Check the files you want to include in the commit.</source>
     <message>
         <location filename="../src/gitwidget.cpp" line="699"/>
         <source>Failed to create repository: %1</source>
-        <translation type="unfinished"/>
+        <translation>Δεν ήταν δυνατή η δημιουργία νέου αποθετηρίου: %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="702"/>
         <source>Git repository created in %1</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργήθηκε νέο αποθετήριο git στον φάκελο %1</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="732"/>

@@ -5001,55 +5001,55 @@ You have to make sure yourself that the file encoding and the value passed to th
 <context>
     <name>GitGraphView</name>
     <message>
-        <location filename="../src/gitgraphview.cpp" line="516"/>
+        <location filename="../src/gitgraphview.cpp" line="519"/>
         <source>Copy Commit Hash</source>
         <translation>Скопіювати хеш зміни</translation>
     </message>
     <message>
-        <location filename="../src/gitgraphview.cpp" line="517"/>
+        <location filename="../src/gitgraphview.cpp" line="520"/>
         <source>Copy Commit Subject</source>
         <translation>Скопіювати тему зміни</translation>
     </message>
     <message>
-        <location filename="../src/gitgraphview.cpp" line="518"/>
+        <location filename="../src/gitgraphview.cpp" line="521"/>
         <source>Copy Commit Line</source>
         <translation>Скопіювати рядок зміни</translation>
     </message>
     <message>
-        <location filename="../src/gitgraphview.cpp" line="521"/>
+        <location filename="../src/gitgraphview.cpp" line="524"/>
         <source>Merge Commit</source>
         <translation>Злити зміну</translation>
     </message>
     <message>
-        <location filename="../src/gitgraphview.cpp" line="522"/>
+        <location filename="../src/gitgraphview.cpp" line="525"/>
         <source>Cherry-Pick Commit</source>
         <translation>Вибіркове додавання змін</translation>
     </message>
     <message>
-        <location filename="../src/gitgraphview.cpp" line="525"/>
+        <location filename="../src/gitgraphview.cpp" line="528"/>
         <source>Create Branch...</source>
         <translation>Створити вітку...</translation>
     </message>
     <message>
-        <location filename="../src/gitgraphview.cpp" line="527"/>
+        <location filename="../src/gitgraphview.cpp" line="530"/>
         <source>Rollback to Commit</source>
         <translation>Відкотити до зміни</translation>
     </message>
     <message>
-        <location filename="../src/gitgraphview.cpp" line="528"/>
+        <location filename="../src/gitgraphview.cpp" line="531"/>
         <source>Checkout (Detached)</source>
         <translation>Фініш (окреме вікно)</translation>
     </message>
     <message>
-        <location filename="../src/gitgraphview.cpp" line="531"/>
-        <location filename="../src/gitgraphview.cpp" line="533"/>
-        <location filename="../src/gitgraphview.cpp" line="535"/>
-        <location filename="../src/gitgraphview.cpp" line="537"/>
+        <location filename="../src/gitgraphview.cpp" line="534"/>
+        <location filename="../src/gitgraphview.cpp" line="536"/>
+        <location filename="../src/gitgraphview.cpp" line="538"/>
+        <location filename="../src/gitgraphview.cpp" line="540"/>
         <source>Disabled because modified files present</source>
         <translation>Вимкнено, тому що присутні модифіковані файли</translation>
     </message>
     <message>
-        <location filename="../src/gitgraphview.cpp" line="581"/>
+        <location filename="../src/gitgraphview.cpp" line="584"/>
         <source>commit %1
 (stats unavailable)</source>
         <translation>зміна %1
@@ -5066,7 +5066,8 @@ You have to make sure yourself that the file encoding and the value passed to th
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="40"/>
-        <location filename="../src/gitwidget.cpp" line="177"/>
+        <location filename="../src/gitwidget.cpp" line="161"/>
+        <location filename="../src/gitwidget.cpp" line="195"/>
         <source>(no repository)</source>
         <translation>(без репозиторію)</translation>
     </message>
@@ -5161,167 +5162,187 @@ You have to make sure yourself that the file encoding and the value passed to th
         <translation>Історія</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="169"/>
+        <location filename="../src/gitwidget.cpp" line="168"/>
+        <source>&amp;Create repository</source>
+        <translation>&amp;Створити сховище</translation>
+    </message>
+    <message>
+        <location filename="../src/gitwidget.cpp" line="173"/>
+        <source>Not a git repository.</source>
+        <translation>Не сховище git.</translation>
+    </message>
+    <message>
+        <location filename="../src/gitwidget.cpp" line="187"/>
         <source>(no file open)</source>
         <translation>(файл не відкрито)</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="183"/>
-        <location filename="../src/gitwidget.cpp" line="186"/>
+        <location filename="../src/gitwidget.cpp" line="201"/>
+        <location filename="../src/gitwidget.cpp" line="204"/>
         <source>Git error: %1</source>
         <translation>Помилка Git: %1</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="246"/>
+        <location filename="../src/gitwidget.cpp" line="266"/>
         <source>No changes</source>
         <translation>Без змін</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gitwidget.cpp" line="248"/>
+        <location filename="../src/gitwidget.cpp" line="268"/>
         <source>%n change(s)</source>
         <translation><numerusform>%n зміна</numerusform><numerusform>%n зміни</numerusform><numerusform>%n змін</numerusform><numerusform>%n зміни</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="301"/>
-        <location filename="../src/gitwidget.cpp" line="316"/>
+        <location filename="../src/gitwidget.cpp" line="321"/>
+        <location filename="../src/gitwidget.cpp" line="336"/>
         <source>Git Commit</source>
         <translation>Git Commit</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="302"/>
+        <location filename="../src/gitwidget.cpp" line="322"/>
         <source>Please enter a commit message.</source>
         <translation>Будь ласка, введіть повідомлення змін</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="317"/>
+        <location filename="../src/gitwidget.cpp" line="337"/>
         <source>No files selected for staging.
 Check the files you want to include in the commit.</source>
         <translation>Невибрано файли для пересування.
 Перевірте файли, які ви хочете включити у зміни.</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="325"/>
+        <location filename="../src/gitwidget.cpp" line="345"/>
         <source>Staging failed: %1</source>
         <translation>Пересування провалилося: %1</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="332"/>
+        <location filename="../src/gitwidget.cpp" line="352"/>
         <source>Commit failed: %1</source>
         <translation>Зміни провалилися: %1</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="337"/>
+        <location filename="../src/gitwidget.cpp" line="357"/>
         <source>Committed: %1</source>
         <translation>Задіяно зміни: %1</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="348"/>
+        <location filename="../src/gitwidget.cpp" line="368"/>
         <source>Pushing…</source>
         <translation>Штовхання...</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="359"/>
+        <location filename="../src/gitwidget.cpp" line="379"/>
         <source>Push failed.</source>
         <translation>Штовхання провалилося.</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="363"/>
+        <location filename="../src/gitwidget.cpp" line="383"/>
         <source>Push complete.</source>
         <translation>Штовхання завершено.</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="373"/>
+        <location filename="../src/gitwidget.cpp" line="393"/>
         <source>Pulling…</source>
         <translation>Витягування…</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="382"/>
+        <location filename="../src/gitwidget.cpp" line="402"/>
         <source>Pull failed.</source>
         <translation>Витягування проівалилося.</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="386"/>
+        <location filename="../src/gitwidget.cpp" line="406"/>
         <source>Pull complete.</source>
         <translation>Витягування завершено.</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="396"/>
+        <location filename="../src/gitwidget.cpp" line="416"/>
         <source>Fetching…</source>
         <translation>Завантаження…</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="406"/>
+        <location filename="../src/gitwidget.cpp" line="426"/>
         <source>Fetch failed.</source>
         <translation>Завантаження провалилося.</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="410"/>
+        <location filename="../src/gitwidget.cpp" line="430"/>
         <source>Fetch complete.</source>
         <translation>Завантаження завершено.</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="501"/>
+        <location filename="../src/gitwidget.cpp" line="519"/>
         <source>&amp;Select</source>
         <translation>&amp;Виділити</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="503"/>
+        <location filename="../src/gitwidget.cpp" line="521"/>
         <source>&amp;Deselect</source>
         <translation>&amp;Зняти виділення</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="525"/>
-        <location filename="../src/gitwidget.cpp" line="544"/>
+        <location filename="../src/gitwidget.cpp" line="543"/>
+        <location filename="../src/gitwidget.cpp" line="562"/>
         <source>Reverted changes in %1</source>
         <translation>Відкликані зміни у %1</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="625"/>
+        <location filename="../src/gitwidget.cpp" line="643"/>
         <source>Reset failed: %1</source>
         <translation>Скидання не вдалося: %1</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="631"/>
+        <location filename="../src/gitwidget.cpp" line="649"/>
         <source>Create Branch...</source>
         <translation>Створити гілку...</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="698"/>
+        <location filename="../src/gitwidget.cpp" line="699"/>
+        <source>Failed to create repository: %1</source>
+        <translation>Не вдалося створити сховище: %1</translation>
+    </message>
+    <message>
+        <location filename="../src/gitwidget.cpp" line="702"/>
+        <source>Git repository created in %1</source>
+        <translation>Сховище Git створено в %1</translation>
+    </message>
+    <message>
+        <location filename="../src/gitwidget.cpp" line="732"/>
         <source>Disabled because modified files present</source>
         <translation>Вимкнено, тому що присутні модифіковані файли</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="701"/>
+        <location filename="../src/gitwidget.cpp" line="735"/>
         <source>Select active branch</source>
         <translation>Виділити активну гілку</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="632"/>
+        <location filename="../src/gitwidget.cpp" line="650"/>
         <source>Branch name:</source>
         <translation>Назва гілки:</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="487"/>
+        <location filename="../src/gitwidget.cpp" line="505"/>
         <source>&amp;Show diff</source>
         <translation>&amp;Показати різницю</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="492"/>
+        <location filename="../src/gitwidget.cpp" line="510"/>
         <source>&amp;Revert changes in this file</source>
         <translation>&amp;Відкликати зміни у цьому файлі</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="496"/>
+        <location filename="../src/gitwidget.cpp" line="514"/>
         <source>&amp;Revert changes in selected files</source>
         <translation>&amp;Відкликати зміни в обраному файлі</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="640"/>
+        <location filename="../src/gitwidget.cpp" line="658"/>
         <source>Invalid branch name &apos;%1&apos;.</source>
         <translation>Недійсна назва гілки &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="648"/>
+        <location filename="../src/gitwidget.cpp" line="666"/>
         <source>Branch &apos;%1&apos; already exists.</source>
         <translation>Гілка &apos;%1&apos; вже існує.</translation>
     </message>
