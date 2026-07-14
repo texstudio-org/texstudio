@@ -6422,6 +6422,10 @@ bool Texstudio::runCommandNoSpecialChars(QString commandline, QString *buffer, Q
 	commandline.replace('@', "@@");
 	commandline.replace('%', "%%");
 	commandline.replace('?', "??");
+    if(!codecForBuffer){
+        // use UTF-8 if no codec is defined
+        codecForBuffer= QTextCodec::codecForName("UTF-8");
+    }
     return runCommand(commandline, buffer, codecForBuffer,false);
 }
 /*!
