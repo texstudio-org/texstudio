@@ -5741,7 +5741,6 @@ void Texstudio::openFromGit(const QString &fn,const QString rev)
     QString args=QString("%1:%2").arg(rev,fileName);
     text=git.runGit("show",GIT::quote(repoRoot),args);
     edView->document->setText(text,false);
-    edView->editor->setReadOnly(true);
     edView->editor->setFileName(QString("%1 @ %2").arg(fileName,rev.left(7)));
     // show diff to open view
     LatexDocument *doc2=documents.findDocumentFromName(fn);
@@ -5753,6 +5752,7 @@ void Texstudio::openFromGit(const QString &fn,const QString rev)
         editors->moveToTabGroup(edView,idx,0);
         editors->setCurrentEditor(doc2->getEditorView());
     }
+    edView->editor->setReadOnly(true);
 }
 /*!
  * \brief insert file from context menu in the file explorer (dock)
