@@ -614,7 +614,7 @@
 - scripting: editor.cutBuffer
 - subframetitle in structure view
 - enable inputMethod (e.g. ^) in completer
-- change default for complete non-text chacters to off, as it tends to cause unexpected behaviour
+- change default for complete non-text characters to off, as it tends to cause unexpected behaviour
 - fix word separation with punctuation
 - fix: remove incorrect warning "Unknown magic comment" for "% !TeX TS-program = "
 - fix: avoid compile fail if magic comment program is spelled wrongly
