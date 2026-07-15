@@ -642,7 +642,7 @@
 - table alignment: place \\ if last column is empty 
 - warn if \begin{column} is used outside columns-env
 - workaround for not interpreting $ inside sweave \Sexpr{}
-- option to deactivate interperation of command definition in magic comments
+- option to deactivate interpretation of command definition in magic comments
 - remove pdf viewer subtypes from "Default Viewer" config. PDF viewer subtypes should be selected in "PDF Viewer".
 - increase the maximal resolution for pdf rendering (bug 2003)
 - toolbar for embedded viewer can not turned-off anymore
