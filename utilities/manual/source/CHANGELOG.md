@@ -614,7 +614,7 @@
 - scripting: editor.cutBuffer
 - subframetitle in structure view
 - enable inputMethod (e.g. ^) in completer
-- change default for complete non-text chacters to off, as it tends to cause unexpected behaviour
+- change default for complete non-text characters to off, as it tends to cause unexpected behaviour
 - fix word separation with punctuation
 - fix: remove incorrect warning "Unknown magic comment" for "% !TeX TS-program = "
 - fix: avoid compile fail if magic comment program is spelled wrongly
@@ -642,13 +642,13 @@
 - table alignment: place \\ if last column is empty 
 - warn if \begin{column} is used outside columns-env
 - workaround for not interpreting $ inside sweave \Sexpr{}
-- option to deactivate interperation of command definition in magic comments
+- option to deactivate interpretation of command definition in magic comments
 - remove pdf viewer subtypes from "Default Viewer" config. PDF viewer subtypes should be selected in "PDF Viewer".
 - increase the maximal resolution for pdf rendering (bug 2003)
 - toolbar for embedded viewer can not turned-off anymore
 - show shortcuts in tooltips (can be deactivated in the options)
 - pass non-breaking space to grammar check (fixes bug 2040)
-- \item completion no adds a space (feature request 994)
+- \item completion now adds a space (feature request 994)
 - fix highlighting of current section in structure (bug 2103)
 - fix delays when typing _abc
 - fix bug in log parser: wrong filename if empty brackets () occur in text
