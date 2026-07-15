@@ -648,7 +648,7 @@
 - toolbar for embedded viewer can not turned-off anymore
 - show shortcuts in tooltips (can be deactivated in the options)
 - pass non-breaking space to grammar check (fixes bug 2040)
-- \item completion no adds a space (feature request 994)
+- \item completion now adds a space (feature request 994)
 - fix highlighting of current section in structure (bug 2103)
 - fix delays when typing _abc
 - fix bug in log parser: wrong filename if empty brackets () occur in text
