@@ -5753,6 +5753,7 @@ void Texstudio::openFromGit(const QString &fn,const QString rev)
         editors->setCurrentEditor(doc2->getEditorView());
     }
     edView->editor->setReadOnly(true);
+    doc->setClean();
 }
 /*!
  * \brief insert file from context menu in the file explorer (dock)
