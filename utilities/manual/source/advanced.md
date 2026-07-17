@@ -236,6 +236,9 @@ The button allows you to select other available branches, provided no modified f
 
 ![switch branch button](images/git_switch.webp)
 
+### git init
+In case that the current file is not inside of a git managed folder and neither is any parent folder, the switch branch button symbol changes to "+". Here a local repository can be initialised in this folder (`git init .`).
+
 #### History tab
 The history tab shows the history in a decorated way. Each commit can be clicked to reveal the included files. Clicking on the files shows the difference of that commit with respect to HEAD (or the current state inside txs if the file is open).
 
