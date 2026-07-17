@@ -2472,11 +2472,8 @@ void QEditor::emitCursorPositionChanged()
 	// Notify AT (Assistive Technology) tools about the cursor movement so
 	// screen readers (NVDA, JAWS, Narrator) announce the new position.
 	if (QAccessible::isActive()) {
-		QAccessibleInterface *iface = QAccessible::queryAccessibleInterface(this);
-		if (iface) {
-			const int cursorOffset = documentOffsetFromPosition(m_cursor.lineNumber(), m_cursor.columnNumber());
-			QAccessible::updateAccessibility(new QAccessibleTextCursorEvent(this, cursorOffset));
-		}
+		const int cursorOffset = documentOffsetFromPosition(m_cursor.lineNumber(), m_cursor.columnNumber());
+		QAccessible::updateAccessibility(new QAccessibleTextCursorEvent(this, cursorOffset));
 	}
 }
 

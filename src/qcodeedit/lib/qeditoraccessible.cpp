@@ -300,10 +300,6 @@ QRect QEditorAccessible::characterRect(int offset) const
     if (!docRect.isValid())
         return QRect();
 
-    // Map document coordinates to viewport coordinates.
-    QPoint viewportPos = ed->mapFromGlobal(QPoint(0, 0));
-    Q_UNUSED(viewportPos)
-
     // Use the editor's cursor-to-screen conversion: approximate by using the
     // line rect translated by the horizontal scroll offset.
     const QDocumentLine docLine = ed->document()->line(line);
@@ -357,7 +353,11 @@ QString QEditorAccessible::attributes(int offset, int *startOffset, int *endOffs
     if (offset < 0 || offset >= full.length())
         return QString();
 
-    // Expand to the current "run" (same character category).
+    // Expand to the current run of characters with the same category.
+    // Whitespace, alphanumeric, and punctuation/symbol characters each form
+    // separate runs.  Punctuation characters are each their own run of length 1
+    // because both isSpace and isLetterOrNumber are false for them, meaning
+    // no expansion is possible.
     int start = offset;
     int end   = offset + 1;
 
@@ -365,17 +365,20 @@ QString QEditorAccessible::attributes(int offset, int *startOffset, int *endOffs
     const bool isSpace = ch.isSpace();
     const bool isAlNum = ch.isLetterOrNumber();
 
-    while (start > 0) {
-        const QChar c = full.at(start - 1);
-        if ((isSpace && !c.isSpace()) || (isAlNum && !c.isLetterOrNumber()) || (!isSpace && !isAlNum))
-            break;
-        --start;
-    }
-    while (end < full.length()) {
-        const QChar c = full.at(end);
-        if ((isSpace && !c.isSpace()) || (isAlNum && !c.isLetterOrNumber()) || (!isSpace && !isAlNum))
-            break;
-        ++end;
+    // Only expand for whitespace or alphanumeric runs.
+    if (isSpace || isAlNum) {
+        while (start > 0) {
+            const QChar c = full.at(start - 1);
+            if ((isSpace && !c.isSpace()) || (isAlNum && !c.isLetterOrNumber()))
+                break;
+            --start;
+        }
+        while (end < full.length()) {
+            const QChar c = full.at(end);
+            if ((isSpace && !c.isSpace()) || (isAlNum && !c.isLetterOrNumber()))
+                break;
+            ++end;
+        }
     }
 
     *startOffset = start;
