@@ -14,6 +14,7 @@
 ****************************************************************************/
 
 #include "qeditor.h"
+#include "qeditoraccessible.h"
 #include <QtMath>
 
 /*!
@@ -44,6 +45,7 @@
 #include "smallUsefulFunctions.h"
 #include "latexparser/latexparser.h"
 #include <QDrag>
+#include <QAccessible>
 
 #include "libqmarkedscrollbar/src/markedscrollbar.h"
 
@@ -754,6 +756,10 @@ void QEditor::init(bool actions,QDocument *doc)
 	setWindowTitle("[*]"); //remove warning of setWindowModified
 
 	setCursor(QDocumentCursor());
+
+	// Register the accessibility factory so screen readers (NVDA, JAWS, etc.)
+	// can interact with the editor via platform accessibility APIs.
+	QAccessible::installFactory(&QEditorAccessible::factory);
 }
 
 /*!
@@ -877,6 +883,24 @@ QString QEditor::text() const
 QString QEditor::text(int line) const
 {
 	return m_doc ? m_doc->line(line).text() : QString();
+}
+
+/*!
+	\brief Compute the absolute character offset for the given (line, column) position.
+
+	The document is treated as a plain string where each line is separated by a
+	single '\\n' character.  This is used by the accessibility interface so that
+	AT tools receive consistent offsets regardless of platform line-ending style.
+*/
+int QEditor::documentOffsetFromPosition(int line, int column) const
+{
+	if (!m_doc)
+		return 0;
+	int offset = 0;
+	const int lineCount = m_doc->lineCount();
+	for (int i = 0; i < line && i < lineCount; ++i)
+		offset += m_doc->line(i).length() + 1; // +1 for '\n'
+	return offset + qMax(0, column);
 }
 
 /*!
@@ -2445,6 +2469,15 @@ void QEditor::emitCursorPositionChanged()
 	if ( m_doc->impl()->hasMarks() )
 		QLineMarksInfoCenter::instance()->cursorMoved(this);
 
+	// Notify AT (Assistive Technology) tools about the cursor movement so
+	// screen readers (NVDA, JAWS, Narrator) announce the new position.
+	if (QAccessible::isActive()) {
+		QAccessibleInterface *iface = QAccessible::queryAccessibleInterface(this);
+		if (iface) {
+			const int cursorOffset = documentOffsetFromPosition(m_cursor.lineNumber(), m_cursor.columnNumber());
+			QAccessible::updateAccessibility(new QAccessibleTextCursorEvent(this, cursorOffset));
+		}
+	}
 }
 
 /*!
@@ -6418,6 +6451,10 @@ void QEditor::updateContent (int i, int n)
 	}
 			
 	repaintContent(i, n>1 ? -1 : n);
+
+	// Notify AT tools that the document content has changed.
+	if (QAccessible::isActive())
+		QAccessible::updateAccessibility(new QAccessibleEvent(this, QAccessible::ValueChanged));
 }
 
 /*!
