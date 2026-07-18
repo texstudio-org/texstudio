@@ -55,10 +55,10 @@ public:
     int offsetAtPoint(const QPoint &point) const override;
     void scrollToSubstring(int startIndex, int endIndex) override;
     QString attributes(int offset, int *startOffset, int *endOffset) const override;
-    QString textBeforeCursor(int offset, QAccessible::TextBoundaryType boundaryType,
+    QString textBeforeOffset(int offset, QAccessible::TextBoundaryType boundaryType,
+                              int *startOffset, int *endOffset) const override;
+    QString textAfterOffset(int offset, QAccessible::TextBoundaryType boundaryType,
                              int *startOffset, int *endOffset) const override;
-    QString textAfterCursor(int offset, QAccessible::TextBoundaryType boundaryType,
-                            int *startOffset, int *endOffset) const override;
     QString textAtOffset(int offset, QAccessible::TextBoundaryType boundaryType,
                          int *startOffset, int *endOffset) const override;
 

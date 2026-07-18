@@ -470,7 +470,7 @@ void QEditorAccessible::boundaryOffsets(const QString &text, int offset,
     }
 }
 
-QString QEditorAccessible::textBeforeCursor(int offset,
+QString QEditorAccessible::textBeforeOffset(int offset,
                                             QAccessible::TextBoundaryType boundaryType,
                                             int *startOffset, int *endOffset) const
 {
@@ -488,7 +488,7 @@ QString QEditorAccessible::textBeforeCursor(int offset,
     return full.mid(s, e - s);
 }
 
-QString QEditorAccessible::textAfterCursor(int offset,
+QString QEditorAccessible::textAfterOffset(int offset,
                                            QAccessible::TextBoundaryType boundaryType,
                                            int *startOffset, int *endOffset) const
 {
