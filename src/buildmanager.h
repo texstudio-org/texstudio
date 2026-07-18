@@ -165,7 +165,6 @@ public:
 
 	Q_INVOKABLE ProcessX *newProcessInternal(const QString &fullCommandLine, const QFileInfo &mainFile, bool singleInstance = false);
 public:
-	Q_INVOKABLE bool waitForProcess(ProcessX *p);
 	Q_INVOKABLE bool waitingForProcess() const;
 
 	static QString createTemporaryFileName(); //don't forget to remove the file!

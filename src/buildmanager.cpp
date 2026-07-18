@@ -1657,7 +1657,6 @@ bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, 
 		p->subCommandFlags = cur.flags;
         connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), SLOT(emitEndRunningSubCommandFromProcessX(int)));
 
-
 		p->setStdoutBuffer(buffer);
         p->setStderrBuffer(errorMsg);
 		p->setStdoutCodec(codecForBuffer);
@@ -1669,16 +1668,8 @@ bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, 
 		p->startCommand();
 		if (!p->waitForStarted(1000)) return false;
 
-		if (latexCompiler || (!lastCommandToRun && !singleInstance) )
-			if (!waitForProcess(p)) {
-				p->deleteLater();
-				return false;
-			}
-
-		if (waitForCommand) { //what is this? does not really make any sense (waiting is done in the block above) and breaks multiple single-instance pdf viewer calls (30 sec delay)
-			p->waitForFinished();
-			p->deleteLater();
-		}
+        p->waitForFinished();
+        p->deleteLater();
 
 		bool rerunnable = (cur.flags & RCF_RERUN) && (cur.flags & RCF_RERUNNABLE);
 		if (rerunnable || latexCompiler) {
@@ -1746,6 +1737,11 @@ void BuildManager::runNextCommandInternalAsync()
         return;
     }
     CommandToRun cur = m_expandedCommands.commands.first();
+    if(cur.command.contains("conditional")){
+        //TODO: fix, work.around for now
+        m_expandedCommands.commands.removeFirst();
+        cur = m_expandedCommands.commands.first();
+    }
     while (testAndRunInternalCommand(cur.command, m_mainFile)){
         m_expandedCommands.commands.removeFirst();
         if(m_expandedCommands.commands.isEmpty()) {
@@ -1877,28 +1873,6 @@ ProcessX *BuildManager::newProcessInternal(const QString &cmd, const QFileInfo &
 
 	updatePathSettings(proc, resolvePaths(additionalSearchPaths));
 	return proc;
-}
-
-bool BuildManager::waitForProcess(ProcessX *p)
-{
-	REQUIRE_RET(p, false);
-	REQUIRE_RET(!processWaitedFor, false);
-	// Waiting on a Qt event loop avoids spinlock and high CPU usage, and allows user interaction
-	// and UI responsiveness while compiling.
-	// We have to check the process running state before we start waiting for processFinished
-	// because it is possible that the process has already ended and we would wait forever.
-	// We have to start listening for processFinished before we check the running state in
-	// order to avoid a race condition.
-	QEventLoop loop;
-	connect(p, SIGNAL(processFinished()), &loop, SLOT(quit()));
-	if (p->isRunning()) {
-		processWaitedFor = p;
-		emit buildRunning(true);
-		loop.exec(); //exec will delay execution until the signal has arrived
-		emit buildRunning(false);
-		processWaitedFor = nullptr;
-	}
-	return true;
 }
 
 bool BuildManager::waitingForProcess() const
