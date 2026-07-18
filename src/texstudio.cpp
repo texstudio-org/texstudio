@@ -6387,6 +6387,11 @@ void Texstudio::addMagicProgram()
 ///////////////TOOLS////////////////////
 bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCodec *codecForBuffer, bool saveAll)
 {
+    if(buildManager.busyRunningCommands()){
+        //TODO non-blocking message box
+        UtilsUi::txsWarning(tr("A command is already running. Please wait until the current command stops."));
+        return false;
+    }
     if(saveAll){
         fileSaveAll(buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
     }

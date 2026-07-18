@@ -1721,6 +1721,14 @@ void BuildManager::runCommandInternalAsync(const ExpandedCommands &expandedComma
     m_remainingReRunCount = autoRerunLatex;
     runNextCommandInternalAsync();
 }
+/*!
+ * \brief check if any command is currently running
+ * \return
+ */
+bool BuildManager::busyRunningCommands() const
+{
+    return !m_expandedCommands.commands.isEmpty();
+}
 
 void BuildManager::emitEndRunningSubCommandFromProcessX(int)
 {
@@ -1755,7 +1763,7 @@ void BuildManager::runNextCommandInternalAsync()
 
     ProcessX *p = newProcessInternal(cur.command, m_mainFile, singleInstance);
     if(p==nullptr){
-        //TODO: notify error
+        m_expandedCommands.commands.clear();
         return;
     }
     p->subCommandName = cur.parentCommand;
@@ -1773,7 +1781,10 @@ void BuildManager::runNextCommandInternalAsync()
     connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(runNextCommandInternalAsyncFinished(int,QProcess::ExitStatus)));
 
     p->startCommand();
-    if (!p->waitForStarted(1000)) return;
+    if (!p->waitForStarted(1000)){
+        m_expandedCommands.commands.clear();
+        return;
+    }
 }
 /*!
  * \brief continue after process finished, check if rerun is needed and run next command
@@ -1820,6 +1831,7 @@ void BuildManager::runNextCommandInternalAsyncFinished(int exitCode, QProcess::E
         if(m_returnCmdObj && m_returnCmd){
             QMetaObject::invokeMethod(m_returnCmdObj, m_returnCmd,Q_ARG(int,exitCode),Q_ARG(QProcess::ExitStatus,exitStatus));
         }
+        m_expandedCommands.commands.clear();
         return;
     }
     runNextCommandInternalAsync();
