@@ -55,7 +55,7 @@ for package in packages:
     if 'license' in package_data:
         licenses = package_data['license']
         if isinstance(licenses, list):
-            package_data['license'] = [license_dict[a] for a in licenses]
+            package_data['license'] = [license_dict.get(a,"") for a in licenses]
         else:
             if licenses in license_dict:
                 package_data['license'] = license_dict[licenses]
