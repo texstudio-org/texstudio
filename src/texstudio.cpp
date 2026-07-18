@@ -6411,7 +6411,7 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
 
 	int ln = currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0;
     // unified error/stdout into *buffer
-    return buildManager.runCommand(commandline, QFileInfo(finame), QFileInfo(getCurrentFileName()), ln, buffer, codecForBuffer,buffer);
+    return buildManager.runCommandAsync(commandline, QFileInfo(finame), QFileInfo(getCurrentFileName()), ln, buffer, buffer);
 }
 
 /*!

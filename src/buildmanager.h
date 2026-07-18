@@ -140,7 +140,7 @@ public:
     void resetDefaultCommands(const QString texPath);
 
 	void checkLatexConfiguration(bool &noWarnAgain);
-
+    bool runCommandAsync(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString *buffer = nullptr, QString *errorMsg = nullptr, QObject *returnObj=nullptr,const char * returnCmd = nullptr);
 
 public slots:
     bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr, QString *errorMsg = nullptr);
@@ -148,6 +148,14 @@ public slots:
 private:
 	bool checkExpandedCommands(const ExpandedCommands &expandedCommands);
     bool runCommandInternal(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr, QString *errorMsg = nullptr);
+    void runCommandInternalAsync(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer = nullptr, QString *errorMsg = nullptr, QObject *returnObject = nullptr, const char * returnCmd = nullptr);
+
+    ExpandedCommands m_expandedCommands;
+    int m_remainingReRunCount;
+    QFileInfo m_mainFile;
+    QString *m_buffer, *m_errorMsg;
+    QObject *m_returnCmdObj;
+    const char *m_returnCmd;
 public:
 	//creates a process object with the given command line (after it is changed by an implcit call to parseExtendedCommandLine)
 	//ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
@@ -198,6 +206,8 @@ private slots:
 	void commandLineRequestedDefault(const QString &cmdId, QString *result, bool *user);
 	void runInternalCommandThroughProcessX();
 	void emitEndRunningSubCommandFromProcessX(int);
+    void runNextCommandInternalAsync();
+    void runNextCommandInternalAsyncFinished(int exitCode,QProcess::ExitStatus exitStatus);
 private:
 	bool testAndRunInternalCommand(const QString &cmd, const QFileInfo &mainFile);
 signals:
