@@ -1637,7 +1637,7 @@ bool BuildManager::checkExpandedCommands(const ExpandedCommands &expansion)
 bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer, QTextCodec *codecForBuffer, QString *errorMsg)
 {
 	const QList<CommandToRun> &commands = expandedCommands.commands;
-    internalCommands << CMD_VIEW_PDF_INTERNAL << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY << CMD_VIEW_LOG; // set to default
+    internalCommands = { CMD_VIEW_PDF_INTERNAL,CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, CMD_VIEW_LOG}; // set to default
 
 	int remainingReRunCount = autoRerunLatex;
 	for (int i = 0; i < commands.size(); i++) {
@@ -1743,7 +1743,7 @@ void BuildManager::runNextCommandInternalAsync()
         m_expandedCommands.commands.removeFirst();
         cur = m_expandedCommands.commands.first();
     }
-    internalCommands << CMD_VIEW_PDF_INTERNAL  << CMD_VIEW_LOG; // remove conditional precompile/bibliography
+    internalCommands = { CMD_VIEW_PDF_INTERNAL, CMD_VIEW_LOG}; // set to reduced
     while (testAndRunInternalCommand(cur.command, m_mainFile)){
         m_expandedCommands.commands.removeFirst();
         if(m_expandedCommands.commands.isEmpty()) {
