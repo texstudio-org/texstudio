@@ -1744,7 +1744,7 @@ void BuildManager::runNextCommandInternalAsync()
         cur = m_expandedCommands.commands.first();
     }
     internalCommands = { CMD_VIEW_PDF_INTERNAL, CMD_VIEW_LOG}; // set to reduced
-    while (testAndRunInternalCommand(cur.command, m_mainFile)){
+    while (cur.command.isEmpty() || testAndRunInternalCommand(cur.command, m_mainFile)){
         m_expandedCommands.commands.removeFirst();
         if(m_expandedCommands.commands.isEmpty()) {
             emit endRunningCommands(m_expandedCommands.primaryCommand, false, false, false);

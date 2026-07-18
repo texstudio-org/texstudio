@@ -6412,6 +6412,10 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
 		UtilsUi::txsWarning(tr("Can't detect the file name"));
 		return false;
 	}
+    // disable buttons
+    if(commandline==BuildManager::CMD_COMPILE || commandline== BuildManager::CMD_QUICK){
+        setBuildButtonsDisabled(true);
+    }
 
 	int ln = currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0;
     // unified error/stdout into *buffer
@@ -6818,6 +6822,7 @@ void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool p
 	setStatusMessageProcess(QString(" %1 ").arg(tr("Ready")));
 	if (latex) emit infoAfterTypeset();
 	previewIsAutoCompiling = false;
+    setBuildButtonsDisabled(false);
 }
 
 void Texstudio::processNotification(const QString &message)
