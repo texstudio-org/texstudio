@@ -140,7 +140,9 @@ public:
     void resetDefaultCommands(const QString texPath);
 
 	void checkLatexConfiguration(bool &noWarnAgain);
-
+    bool prependCommandAsync(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0);
+    bool runCommandAsync(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString *buffer = nullptr, QString *errorMsg = nullptr, QObject *returnObj=nullptr,const char * returnCmd = nullptr);
+    bool busyRunningCommands() const;
 
 public slots:
     bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr, QString *errorMsg = nullptr);
@@ -148,6 +150,14 @@ public slots:
 private:
 	bool checkExpandedCommands(const ExpandedCommands &expandedCommands);
     bool runCommandInternal(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr, QString *errorMsg = nullptr);
+    void runCommandInternalAsync(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer = nullptr, QString *errorMsg = nullptr, QObject *returnObject = nullptr, const char * returnCmd = nullptr);
+
+    ExpandedCommands m_expandedCommands;
+    int m_remainingReRunCount;
+    QFileInfo m_mainFile;
+    QString *m_buffer, *m_errorMsg;
+    QObject *m_returnCmdObj;
+    const char *m_returnCmd;
 public:
 	//creates a process object with the given command line (after it is changed by an implcit call to parseExtendedCommandLine)
 	//ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
@@ -156,7 +166,6 @@ public:
 
 	Q_INVOKABLE ProcessX *newProcessInternal(const QString &fullCommandLine, const QFileInfo &mainFile, bool singleInstance = false);
 public:
-	Q_INVOKABLE bool waitForProcess(ProcessX *p);
 	Q_INVOKABLE bool waitingForProcess() const;
 
 	static QString createTemporaryFileName(); //don't forget to remove the file!
@@ -198,8 +207,11 @@ private slots:
 	void commandLineRequestedDefault(const QString &cmdId, QString *result, bool *user);
 	void runInternalCommandThroughProcessX();
 	void emitEndRunningSubCommandFromProcessX(int);
+    void runNextCommandInternalAsync();
+    void runNextCommandInternalAsyncFinished(int exitCode,QProcess::ExitStatus exitStatus);
 private:
 	bool testAndRunInternalCommand(const QString &cmd, const QFileInfo &mainFile);
+    bool testAndRunInternalCommandAsync(const QString &cmd, const QFileInfo &mainFile);
 signals:
 	void processNotification(const QString &message);
     void clearLogs();
@@ -207,6 +219,7 @@ signals:
 
     void commandLineRequested(const QString &cmdId, QString *result, bool *user = nullptr);
 	void runInternalCommand(const QString &cmdId, const QFileInfo &mainfile, const QString &options);
+    void runInternalCommandAsync(const QString &cmdId, const QFileInfo &mainfile, const QString &options);
 
 	void latexCompiled(LatexCompileResult *rerun);
 	void beginRunningCommands(const QString &commandMain, bool latex, bool pdf, bool asyncPdf);

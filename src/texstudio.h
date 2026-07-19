@@ -503,6 +503,7 @@ protected slots:
 	bool checkProgramPermission(const QString &program, const QString &cmdId, LatexDocument *master);
 	void runInternalPdfViewer(const QFileInfo &master, const QString &options);
 	void runBibliographyIfNecessary(const QFileInfo &cmd);
+    bool checkRunBibliographyIfNecessary(const QFileInfo &cmd);
 	QDateTime GetBblLastModified(void);
 
 	void showExtendedSearch();
@@ -516,6 +517,7 @@ public slots:
 	void connectSubCommand(ProcessX *p, bool showStdoutLocallyDefault);
 private slots:
     void runInternalCommand(const QString &cmd, const QFileInfo &master, const QString &options);
+    void runInternalCommandAsync(const QString &cmd, const QFileInfo &mainfile, const QString &options);
 	void commandLineRequested(const QString &cmdId, QString *result, bool *);
 	void beginRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async);
 	void beginRunningSubCommand(ProcessX *p, const QString &commandMain, const QString &subCommand, const RunCommandFlags &flags);
