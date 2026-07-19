@@ -1778,9 +1778,12 @@ void BuildManager::runNextCommandInternalAsync()
     connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), p, SLOT(deleteLater()));
     connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(runNextCommandInternalAsyncFinished(int,QProcess::ExitStatus)));
 
+    processWaitedFor=p;
+
     p->startCommand();
     if (!p->waitForStarted(1000)){
         m_expandedCommands.commands.clear();
+        processWaitedFor=nullptr;
         return;
     }
 }
@@ -1791,6 +1794,7 @@ void BuildManager::runNextCommandInternalAsync()
  */
 void BuildManager::runNextCommandInternalAsyncFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
+    processWaitedFor = nullptr;
     if(exitCode!=0 || exitStatus != QProcess::NormalExit){
         emit processNotification(tr("Error: Command failed with error code %1").arg(exitCode));
         //return;
@@ -1887,6 +1891,8 @@ void BuildManager::killCurrentProcess()
 	if (!processWaitedFor) return;
 	processWaitedFor->kill();
     processWaitedFor = nullptr;
+    m_expandedCommands.commands.clear();
+    emit endRunningCommands("", false, false, false);
 }
 
 QString BuildManager::createTemporaryFileName()
