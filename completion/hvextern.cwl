@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2026/07/02 for v0.43
+# Matthew Bertucci 2026/07/06 for v0.44
 
 #include:shellesc
 #include:xkeyval
@@ -13,6 +13,7 @@
 #include:ifoddpage
 #include:filemod
 #include:tcolorbox
+#include:minted-code
 #include:tcolorboxlibraryskins
 #include:tcolorboxlibrarybreakable
 
@@ -42,10 +43,10 @@ BObody=#%color
 BOpreamble=#%color
 caption={%<text%>}
 cleanup={%<ext1,ext2,...%>}
-compiler=#mpost,tex,latex,luatex,python3,perl,lua,java,xetex,pdflatex,lualatex,xelatex,context,sh,texlua,Rscript
+compiler=#mpost,tex,latex,wolframscript,luatex,python3,perl,lua,java,xetex,pdflatex,lualatex,xelatex,context,sh,texlua,Rscript
 crop#true,false
 cropmargin=%<length in pt%>
-docType=#latex,mp,tex,py,pl,lua,java,context,sh,R,apl
+docType=#latex,mp,tex,py,pl,lua,java,context,sh,R,apl,wls
 eps#true,false
 ExampleDir=%<name%>
 ext=%<file ext%>
@@ -69,6 +70,7 @@ outerFN#true,false
 pages={%<page numbers%>}
 pagesep=##L
 png#true,false
+progOptions={%<compiler options%>}
 progpath=%<path%>
 pwd=
 redirect#true,false
@@ -78,7 +80,7 @@ runsequence={%<command sequence%>}
 shellesc#true,false
 showCode#true,false
 showFilename#true,false
-showoutput#true,false
+showOutput#true,false
 tcbox#true,false
 textOptions={%<fancyvrb options%>}
 usefancyvrb#true,false

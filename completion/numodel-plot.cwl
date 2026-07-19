@@ -1,8 +1,9 @@
 # numodel-plot package
-# Matthew Bertucci 2026/06/08 for v0.7.0
+# Matthew Bertucci 2026/07/06 for v0.8.0
 
 #include:siunitx
 #include:pgfplots
+#include:pdfrender
 #include:pgfplotslibraryfillbetween
 
 \calcplotdims
