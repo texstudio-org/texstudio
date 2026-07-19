@@ -12796,7 +12796,8 @@ void Texstudio::updateTOC(){
     if(!topTOCDockWidget->property("isVisible").toBool()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root=topTOCTreeWidget->topLevelItem(0);
     StructureEntry *selectedEntry=nullptr;
-    bool itemExpanded=false;
+    bool itemExpandedTODO=false;
+    bool itemExpandedBIBLIO=false;
     if(!root){
         root=new QTreeWidgetItem();
     }else{
@@ -12808,10 +12809,15 @@ void Texstudio::updateTOC(){
                 selectedEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
             }
         }
-        // remove all item in topTOC but keep itemTODO
-        QTreeWidgetItem *itemTODO=root->child(0);
-        if(itemTODO && itemTODO->data(0,Qt::UserRole+1).toString()=="TODO"){
-            itemExpanded=itemTODO->isExpanded();
+        // remove all items, check expanded state of TODO and BIBLIO items
+        for(int i=0;i<root->childCount();++i){
+            QTreeWidgetItem *item=root->child(i);
+            if(item->data(0,Qt::UserRole+1).toString()=="TODO"){
+                itemExpandedTODO=item->isExpanded();
+            }
+            if(item->data(0,Qt::UserRole+1).toString()=="BIBLIO"){
+                itemExpandedBIBLIO=item->isExpanded();
+            }
         }
         QList<QTreeWidgetItem*> items=root->takeChildren();
         qDeleteAll(items);
@@ -12833,15 +12839,24 @@ void Texstudio::updateTOC(){
     root->setData(0,Qt::UserRole,QVariant::fromValue<void *>(static_cast<void*>(doc)));
 
     QList<QTreeWidgetItem*> todoList;
-    parseStruct(doc,rootVector,nullptr,&todoList);
+    QList<QTreeWidgetItem*> biblioList;
+    parseStruct(doc,rootVector,nullptr,&todoList,&biblioList);
     topTOCTreeWidget->insertTopLevelItem(0,root);
+    if(!biblioList.isEmpty()){
+        QTreeWidgetItem *itemBIBLIO=new QTreeWidgetItem();
+        itemBIBLIO->setText(0,tr("BIBLIOGRAPHY"));
+        itemBIBLIO->setData(0,Qt::UserRole+1,"BIBLIO");
+        itemBIBLIO->insertChildren(0,biblioList);
+        root->insertChild(0,itemBIBLIO);
+        itemBIBLIO->setExpanded(itemExpandedBIBLIO);
+    }
     if(!todoList.isEmpty()){
         QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
         itemTODO->setText(0,tr("TODO"));
         itemTODO->setData(0,Qt::UserRole+1,"TODO");
         itemTODO->insertChildren(0,todoList);
         root->insertChild(0,itemTODO);
-        itemTODO->setExpanded(itemExpanded);
+        itemTODO->setExpanded(itemExpandedTODO);
     }
     root->setExpanded(true);
     root->setSelected(false);
@@ -12933,7 +12948,7 @@ void Texstudio::updateCurrentPosInTOCHelper(QTreeWidgetItem* root, StructureEntr
  * \param rootVector
  * \return section elements found (true/false)
  */
-bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited,QList<QTreeWidgetItem*> *todoList,int currentColor) {
+bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited,QList<QTreeWidgetItem*> *todoList,QList<QTreeWidgetItem*> *biblioList,int currentColor) {
     bool elementsAdded=false;
     bool deleteVisitedDocs=false;
     if (!visited) {
@@ -12973,6 +12988,13 @@ bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> 
             item->setText(0,elem->title);
             item->setToolTip(0,tr("Document: ")+docName);
             todoList->append(item);
+        }
+        if(biblioList && (elem->type == StructureEntry::SE_BIBTEX)){
+            QTreeWidgetItem * item=new QTreeWidgetItem();
+            item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
+            item->setText(0,elem->title);
+            item->setToolTip(0,tr("Document: ")+docName);
+            biblioList->append(item);
         }
         if(elem->type == StructureEntry::SE_SECTION){
             QTreeWidgetItem * item=new QTreeWidgetItem();
@@ -13014,7 +13036,7 @@ bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> 
             bool ea=false;
             if(doc &&!visited->contains(doc)){
                 visited->insert(doc);
-                ea=parseStruct(doc,rootVector,visited,todoList,(currentColor+1+offset)%nrColors);
+                ea=parseStruct(doc,rootVector,visited,todoList,biblioList,(currentColor+1+offset)%nrColors);
             }
             if(!ea){
                 QTreeWidgetItem * item=new QTreeWidgetItem();
