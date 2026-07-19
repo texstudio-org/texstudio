@@ -1529,6 +1529,43 @@ void BuildManager::checkLatexConfiguration(bool &noWarnAgain)
 		UtilsUi::txsWarning(message, noWarnAgain);
 	}
 }
+/*! \brief prepend command for asynchronous execution
+ * \param unparsedCommandLine
+ * \param mainFile
+ * \param currentFile
+ * \param currentLine
+ * \return true if command was started, false if not (e.g. no command given)
+ */
+bool BuildManager::prependCommandAsync(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine)
+{
+    if (unparsedCommandLine.isEmpty()) {
+        emit processNotification(tr("Error: No command given"));
+        return false;
+    }
+    ExpandingOptions options(mainFile, currentFile, currentLine);
+    ExpandedCommands expansion = expandCommandLine(unparsedCommandLine, options);
+    if (options.canceled) return false;
+    if (!checkExpandedCommands(expansion)) return false;
+
+    // purge top command as this is basically its replacement
+    if(m_expandedCommands.commands.size()>0){
+        m_expandedCommands.commands.removeFirst();
+    }
+    // prepend the commands to the queue
+    for (int i = expansion.commands.size()-1; i>=0; --i) {
+        if(i==expansion.commands.size()-1){
+            // skip it is the same command as the top command in the queue
+            if(m_expandedCommands.commands.size()>0 && m_expandedCommands.commands.first().command==expansion.commands.value(i).command){
+                continue;
+            }
+        }
+        m_expandedCommands.commands.prepend(expansion.commands.value(i));
+    }
+    // prepend dummy command to allow top command removal in testAndRunInternalCommand
+    m_expandedCommands.commands.prepend(QString());
+
+    return true;
+}
 /*!
  * \brief run command asynchronously, i.e. return immediately and emit signals when finished
  * \param unparsedCommandLine
@@ -1637,7 +1674,6 @@ bool BuildManager::checkExpandedCommands(const ExpandedCommands &expansion)
 bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer, QTextCodec *codecForBuffer, QString *errorMsg)
 {
 	const QList<CommandToRun> &commands = expandedCommands.commands;
-    internalCommands = QStringList{ CMD_VIEW_PDF_INTERNAL,CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, CMD_VIEW_LOG}; // set to default
 
 	int remainingReRunCount = autoRerunLatex;
 	for (int i = 0; i < commands.size(); i++) {
@@ -1738,13 +1774,8 @@ void BuildManager::runNextCommandInternalAsync()
         return;
     }
     CommandToRun cur = m_expandedCommands.commands.first();
-    if(cur.command.contains("conditional")){
-        //TODO: fix, work.around for now
-        m_expandedCommands.commands.removeFirst();
-        cur = m_expandedCommands.commands.first();
-    }
-    internalCommands = QStringList{ CMD_VIEW_PDF_INTERNAL, CMD_VIEW_LOG}; // set to reduced
-    while (cur.command.isEmpty() || testAndRunInternalCommand(cur.command, m_mainFile)){
+
+    while (cur.command.isEmpty() || testAndRunInternalCommandAsync(cur.command, m_mainFile)){
         m_expandedCommands.commands.removeFirst();
         if(m_expandedCommands.commands.isEmpty()) {
             emit endRunningCommands(m_expandedCommands.primaryCommand, false, false, false);
@@ -2427,6 +2458,28 @@ bool BuildManager::testAndRunInternalCommand(const QString &cmd, const QFileInfo
 		return true;
 	}
 	return false;
+}
+/*!
+ * \brief call txs for internal commands
+ * Special variant to run commands asynchronously, this basically only affects conditionally recompile bibliography
+ * \param cmd
+ * \param mainFile
+ * \return
+ */
+bool BuildManager::testAndRunInternalCommandAsync(const QString &cmd, const QFileInfo &mainFile)
+{
+    int space = cmd.indexOf(' ');
+    QString cmdId, options;
+    if (space == -1 ) cmdId = cmd;
+    else {
+        cmdId = cmd.left(space);
+        options = cmd.mid(space + 1);
+    }
+    if (internalCommands.contains(cmdId)) {
+        emit runInternalCommandAsync(cmdId, mainFile, options);
+        return true;
+    }
+    return false;
 }
 
 QString BuildManager::findCompiledFile(const QString &compiledFilename, const QFileInfo &mainFile)
