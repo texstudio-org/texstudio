@@ -81,7 +81,7 @@ void GIT::push(QString filename,QString optionalArgs)
  */
 void GIT::pushAsync(QString filename, QString optionalArgs, QObject *obj, const char *finishedCMD)
 {
-    runGitAsync("push", quote(filename)+" "+optionalArgs, obj,finishedCMD);
+    runGitAsync("push", quote(filename),optionalArgs, obj,finishedCMD);
 }
 
 /*!
@@ -172,7 +172,7 @@ void GIT::pull(QString path)
  */
 void GIT::pullAsync(QString path, QObject *obj,const char *finishedCMD)
 {
-    runGitAsync("pull", quote(path), obj,finishedCMD);
+    runGitAsync("pull", quote(path),"", obj,finishedCMD);
 }
 
 /*!
@@ -189,7 +189,7 @@ void GIT::fetch(QString path)
  */
 void GIT::fetchAsync(QString path, QObject *obj, const char *finishedCMD)
 {
-   runGitAsync("fetch", quote(path), obj,finishedCMD);
+   runGitAsync("fetch", quote(path),"", obj,finishedCMD);
 }
 
 /*!
@@ -412,12 +412,13 @@ QString GIT::runGit(QString action,QString path, QString args)
 /*!
  * \brief run git asynchronously
  * \param action
+ * \param path
  * \param args
  * \param obj SLOT receiver object
  * \param finishedCMD SLOT for return path
  * \return
  */
-void GIT::runGitAsync(QString action, QString args,QObject *obj,const char * finishedCMD)
+void GIT::runGitAsync(QString action,QString path, QString args,QObject *obj,const char * finishedCMD)
 {
     if(m_gitAsyncSlot!=nullptr){
         qDebug() << "GIT::runGitAsync: already running a command, ignoring new request";
@@ -426,7 +427,7 @@ void GIT::runGitAsync(QString action, QString args,QObject *obj,const char * fin
     emit statusMessage(QString(" GIT %1 ").arg(action));
     m_gitAsyncSlot=finishedCMD;
     m_obj=obj;
-    emit runCommandAsync(makeCmd(action, args), SLOT(runGitAsyncFinished(int,QProcess::ExitStatus)));
+    emit runCommandAsync(makeCmd("-C "+path+" "+action, args), SLOT(runGitAsyncFinished(int,QProcess::ExitStatus)));
 }
 
 void GIT::runGitAsyncFinished(int exitCode, QProcess::ExitStatus status)
