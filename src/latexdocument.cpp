@@ -1931,11 +1931,12 @@ void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
     lp->projectDocuments.clear(); // clear cache
     if (recheck) {
         QList<LatexDocument *>listOfDocs = getListOfDocs();
-        const QList<LatexDocument *> availableDocs = parent ? parent->getDocuments() : QList<LatexDocument *>();
+        const QList<LatexDocument *> availableDocsList = parent ? parent->getDocuments() : QList<LatexDocument *>();
+        const QSet<LatexDocument *> availableDocs(availableDocsList.cbegin(), availableDocsList.cend());
 
         QStringList items;
-        foreach (const LatexDocument *elem, listOfDocs) {
-            if (!elem || !availableDocs.contains(const_cast<LatexDocument *>(elem))) continue;
+        foreach (LatexDocument *elem, listOfDocs) {
+            if (!elem || !availableDocs.contains(elem)) continue;
             items << elem->labelItems();
         }
 
@@ -2028,9 +2029,10 @@ void LatexDocument::recheckRefsLabels(QList<LatexDocument*> listOfDocs,QStringLi
         // if not empty, assume listOfDocs *and* items are provided.
         // this avoid genearting both lists for each document again
         listOfDocs=getListOfDocs();
-        const QList<LatexDocument *> availableDocs = parent ? parent->getDocuments() : QList<LatexDocument *>();
-        foreach (const LatexDocument *elem, listOfDocs) {
-            if (!elem || !availableDocs.contains(const_cast<LatexDocument *>(elem))) continue;
+        const QList<LatexDocument *> availableDocsList = parent ? parent->getDocuments() : QList<LatexDocument *>();
+        const QSet<LatexDocument *> availableDocs(availableDocsList.cbegin(), availableDocsList.cend());
+        foreach (LatexDocument *elem, listOfDocs) {
+            if (!elem || !availableDocs.contains(elem)) continue;
             items << elem->labelItems();
         }
     }
@@ -2718,7 +2720,8 @@ std::pair<bool,bool> LatexDocuments::addDocsToLoad(QStringList filenames, LatexD
         }
         if(docForUpdate){
             QList<LatexDocument *>listOfDocs = parentDocument->getListOfDocs();
-            const QList<LatexDocument *> availableDocs = getDocuments();
+            const QList<LatexDocument *> availableDocsList = getDocuments();
+            const QSet<LatexDocument *> availableDocs(availableDocsList.cbegin(), availableDocsList.cend());
             QStringList items;
             foreach (LatexDocument *elem, listOfDocs) {
                 if (!elem || !availableDocs.contains(elem)) continue;
