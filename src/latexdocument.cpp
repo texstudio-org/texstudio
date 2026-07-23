@@ -15,6 +15,15 @@
 #include "configmanager.h"
 #include <QtConcurrent>
 
+namespace {
+QSet<LatexDocument *> availableDocumentSet(const LatexDocuments *documents)
+{
+    if (!documents) return {};
+    const QList<LatexDocument *> availableDocsList = documents->getDocuments();
+    return QSet<LatexDocument *>(availableDocsList.cbegin(), availableDocsList.cend());
+}
+}
+
 
 FileNamePair::FileNamePair(const QString &rel, const QString &abs): relative(rel), absolute(abs) {}
 UserCommandPair::UserCommandPair(const QString &name, const CodeSnippet &snippet): name(name), snippet(snippet) {}
@@ -1931,16 +1940,15 @@ void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
     lp->projectDocuments.clear(); // clear cache
     if (recheck) {
         QList<LatexDocument *>listOfDocs = getListOfDocs();
-        const QList<LatexDocument *> availableDocsList = parent ? parent->getDocuments() : QList<LatexDocument *>();
-        const QSet<LatexDocument *> availableDocs(availableDocsList.cbegin(), availableDocsList.cend());
+        const QSet<LatexDocument *> availableDocs = availableDocumentSet(parent);
 
         QStringList items;
-        foreach (LatexDocument *elem, listOfDocs) {
+        for (LatexDocument *elem : qAsConst(listOfDocs)) {
             if (!elem || !availableDocs.contains(elem)) continue;
             items << elem->labelItems();
         }
 
-        foreach (LatexDocument *elem, listOfDocs) {
+        for (LatexDocument *elem : qAsConst(listOfDocs)) {
             if (!elem || !availableDocs.contains(elem)) continue;
             elem->recheckRefsLabels(listOfDocs,items);
         }
@@ -2029,9 +2037,8 @@ void LatexDocument::recheckRefsLabels(QList<LatexDocument*> listOfDocs,QStringLi
         // if not empty, assume listOfDocs *and* items are provided.
         // this avoid genearting both lists for each document again
         listOfDocs=getListOfDocs();
-        const QList<LatexDocument *> availableDocsList = parent ? parent->getDocuments() : QList<LatexDocument *>();
-        const QSet<LatexDocument *> availableDocs(availableDocsList.cbegin(), availableDocsList.cend());
-        foreach (LatexDocument *elem, listOfDocs) {
+        const QSet<LatexDocument *> availableDocs = availableDocumentSet(parent);
+        for (LatexDocument *elem : qAsConst(listOfDocs)) {
             if (!elem || !availableDocs.contains(elem)) continue;
             items << elem->labelItems();
         }
@@ -2720,16 +2727,15 @@ std::pair<bool,bool> LatexDocuments::addDocsToLoad(QStringList filenames, LatexD
         }
         if(docForUpdate){
             QList<LatexDocument *>listOfDocs = parentDocument->getListOfDocs();
-            const QList<LatexDocument *> availableDocsList = getDocuments();
-            const QSet<LatexDocument *> availableDocs(availableDocsList.cbegin(), availableDocsList.cend());
+            const QSet<LatexDocument *> availableDocs = availableDocumentSet(this);
             QStringList items;
-            foreach (LatexDocument *elem, listOfDocs) {
+            for (LatexDocument *elem : qAsConst(listOfDocs)) {
                 if (!elem || !availableDocs.contains(elem)) continue;
                 elem->setLtxCommands(parentDocument->lp);
                 elem->reCheckSyntax(); //rescan as well ?
                 items << elem->labelItems();
             }
-            foreach (LatexDocument *elem, listOfDocs) {
+            for (LatexDocument *elem : qAsConst(listOfDocs)) {
                 if (!elem || !availableDocs.contains(elem)) continue;
                 if(elem->getEditorView()){
                     elem->recheckRefsLabels(listOfDocs,items);
