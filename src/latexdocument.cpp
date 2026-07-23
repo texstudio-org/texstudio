@@ -1931,13 +1931,16 @@ void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
     lp->projectDocuments.clear(); // clear cache
     if (recheck) {
         QList<LatexDocument *>listOfDocs = getListOfDocs();
+        const QList<LatexDocument *> availableDocs = parent ? parent->getDocuments() : QList<LatexDocument *>();
 
         QStringList items;
         foreach (const LatexDocument *elem, listOfDocs) {
+            if (!elem || !availableDocs.contains(const_cast<LatexDocument *>(elem))) continue;
             items << elem->labelItems();
         }
 
         foreach (LatexDocument *elem, listOfDocs) {
+            if (!elem || !availableDocs.contains(elem)) continue;
             elem->recheckRefsLabels(listOfDocs,items);
         }
     }
@@ -2025,7 +2028,9 @@ void LatexDocument::recheckRefsLabels(QList<LatexDocument*> listOfDocs,QStringLi
         // if not empty, assume listOfDocs *and* items are provided.
         // this avoid genearting both lists for each document again
         listOfDocs=getListOfDocs();
+        const QList<LatexDocument *> availableDocs = parent ? parent->getDocuments() : QList<LatexDocument *>();
         foreach (const LatexDocument *elem, listOfDocs) {
+            if (!elem || !availableDocs.contains(const_cast<LatexDocument *>(elem))) continue;
             items << elem->labelItems();
         }
     }
@@ -2713,13 +2718,16 @@ std::pair<bool,bool> LatexDocuments::addDocsToLoad(QStringList filenames, LatexD
         }
         if(docForUpdate){
             QList<LatexDocument *>listOfDocs = parentDocument->getListOfDocs();
+            const QList<LatexDocument *> availableDocs = getDocuments();
             QStringList items;
             foreach (LatexDocument *elem, listOfDocs) {
+                if (!elem || !availableDocs.contains(elem)) continue;
                 elem->setLtxCommands(parentDocument->lp);
                 elem->reCheckSyntax(); //rescan as well ?
                 items << elem->labelItems();
             }
             foreach (LatexDocument *elem, listOfDocs) {
+                if (!elem || !availableDocs.contains(elem)) continue;
                 if(elem->getEditorView()){
                     elem->recheckRefsLabels(listOfDocs,items);
                     elem->getEditorView()->updateCitationFormats(); // TODO: inefficent -> improve
