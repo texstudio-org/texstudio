@@ -820,6 +820,7 @@ void Texstudio::setupDockWidgets()
         connect(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool,bool)), SLOT(endRunningCommand(QString,bool,bool,bool)));
         connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult*)), SLOT(viewLogOrReRun(LatexCompileResult*)));
         connect(&buildManager, SIGNAL(runInternalCommand(QString,QFileInfo,QString)), SLOT(runInternalCommand(QString,QFileInfo,QString)));
+        connect(&buildManager, SIGNAL(runInternalCommandAsync(QString,QFileInfo,QString)), SLOT(runInternalCommandAsync(QString,QFileInfo,QString))); // variant for async exec
         connect(&buildManager, SIGNAL(commandLineRequested(QString,QString*,bool*)), SLOT(commandLineRequested(QString,QString*,bool*)));
     }else{
         outputView->updateIcon();
@@ -6387,6 +6388,10 @@ void Texstudio::addMagicProgram()
 ///////////////TOOLS////////////////////
 bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCodec *codecForBuffer, bool saveAll)
 {
+    if(buildManager.busyRunningCommands()){
+        setStatusMessageProcess(QString(" %1 ").arg(tr("A command is already running. Please wait until the current command stops.")));
+        return false;
+    }
     if(saveAll){
         fileSaveAll(buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
     }
@@ -6408,10 +6413,14 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
 		UtilsUi::txsWarning(tr("Can't detect the file name"));
 		return false;
 	}
+    // disable buttons
+    if(commandline==BuildManager::CMD_COMPILE || commandline== BuildManager::CMD_QUICK){
+        setBuildButtonsDisabled(true);
+    }
 
 	int ln = currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0;
     // unified error/stdout into *buffer
-    return buildManager.runCommand(commandline, QFileInfo(finame), QFileInfo(getCurrentFileName()), ln, buffer, codecForBuffer,buffer);
+    return buildManager.runCommandAsync(commandline, QFileInfo(finame), QFileInfo(getCurrentFileName()), ln, buffer, buffer);
 }
 
 /*!
@@ -6623,40 +6632,50 @@ bool Texstudio::checkProgramPermission(const QString &program, const QString &cm
 
 void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 {
-	if (!configManager.runLaTeXBibTeXLaTeX) return;
-	if (runBibliographyIfNecessaryEntered) return;
-
-	LatexDocument *rootDoc = documents.getRootDocumentForDoc();
-	REQUIRE(rootDoc);
-
-	QList<LatexDocument *> docs = rootDoc->getListOfDocs();
-	QSet<QString> bibFiles;
-	foreach (const LatexDocument *doc, docs) {
-		foreach (const FileNamePair &bf, doc->mentionedBibTeXFiles()) {
-			bibFiles.insert(bf.absolute);
-		}
-	}
-	if(bibFiles.isEmpty()) {
-		return; // don't try to compile bibtex files if there none
-	}
-	if (bibFiles == rootDoc->lastCompiledBibTeXFiles) {
-		QDateTime bblLastModified = GetBblLastModified();
-		if (bblLastModified.isValid()) {
-			bool bibFilesChanged = false;
-			foreach (const QString &bf, bibFiles) {
-				//qDebug() << bf << ": "<<QFileInfo(bf).lastModified()<<" "<<bblLastModified;
-                if (QFileInfo::exists(bf) && QFileInfo(bf).lastModified() > bblLastModified) {
-					bibFilesChanged = true;
-					break;
-				}
-			}
-			if (!bibFilesChanged) return;
-		}
-	} else rootDoc->lastCompiledBibTeXFiles = bibFiles;
+    if(!checkRunBibliographyIfNecessary(mainFile)) return;
 
 	runBibliographyIfNecessaryEntered = true;
 	buildManager.runCommand(BuildManager::CMD_RECOMPILE_BIBLIOGRAPHY, mainFile);
 	runBibliographyIfNecessaryEntered = false;
+}
+/*!
+ * \brief check if bibliography needs to be run
+ * \param cmd
+ * \return recompilation is necessary
+ */
+bool Texstudio::checkRunBibliographyIfNecessary(const QFileInfo &cmd)
+{
+    if (!configManager.runLaTeXBibTeXLaTeX) return false;
+    if (runBibliographyIfNecessaryEntered) return false;
+
+    LatexDocument *rootDoc = documents.getRootDocumentForDoc();
+    REQUIRE_RET(rootDoc,false);
+
+    QList<LatexDocument *> docs = rootDoc->getListOfDocs();
+    QSet<QString> bibFiles;
+    foreach (const LatexDocument *doc, docs) {
+        foreach (const FileNamePair &bf, doc->mentionedBibTeXFiles()) {
+            bibFiles.insert(bf.absolute);
+        }
+    }
+    if(bibFiles.isEmpty()) {
+        return false; // don't try to compile bibtex files if there none
+    }
+    if (bibFiles == rootDoc->lastCompiledBibTeXFiles) {
+        QDateTime bblLastModified = GetBblLastModified();
+        if (bblLastModified.isValid()) {
+            bool bibFilesChanged = false;
+            foreach (const QString &bf, bibFiles) {
+                //qDebug() << bf << ": "<<QFileInfo(bf).lastModified()<<" "<<bblLastModified;
+                if (QFileInfo::exists(bf) && QFileInfo(bf).lastModified() > bblLastModified) {
+                    bibFilesChanged = true;
+                    break;
+                }
+            }
+            if (!bibFilesChanged) return false;
+        }
+    } else rootDoc->lastCompiledBibTeXFiles = bibFiles;
+    return true;
 }
 
 QDateTime Texstudio::GetBblLastModified(void)
@@ -6683,6 +6702,26 @@ void Texstudio::runInternalCommand(const QString &cmd, const QFileInfo &mainfile
         loadLog();
         viewLog();
 	} else UtilsUi::txsWarning(tr("Unknown internal command: %1").arg(cmd));
+}
+/*!
+ * \brief call internal commands in txs
+ * Special variant for asynchronous execution, especially for conditionally recompiling bibliography
+ * \param cmd
+ * \param mainFile
+ * \param options
+ */
+void Texstudio::runInternalCommandAsync(const QString &cmd, const QFileInfo &mainfile, const QString &options)
+{
+    if (cmd == BuildManager::CMD_VIEW_PDF_INTERNAL || (cmd.startsWith(BuildManager::CMD_VIEW_PDF_INTERNAL) && cmd[BuildManager::CMD_VIEW_PDF_INTERNAL.length()] == ' '))
+        runInternalPdfViewer(mainfile, options);
+    else if (cmd == BuildManager::CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY){
+        if(checkRunBibliographyIfNecessary(mainfile)){
+            buildManager.prependCommandAsync(BuildManager::CMD_RECOMPILE_BIBLIOGRAPHY, mainfile);
+        }
+    } else if (cmd == BuildManager::CMD_VIEW_LOG) {
+        loadLog();
+        viewLog();
+    } else UtilsUi::txsWarning(tr("Unknown internal command: %1").arg(cmd));
 }
 
 void Texstudio::runInternalCommand(const QString &cmd, const QString &mainfile, const QString &options){
@@ -6814,6 +6853,7 @@ void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool p
 	setStatusMessageProcess(QString(" %1 ").arg(tr("Ready")));
 	if (latex) emit infoAfterTypeset();
 	previewIsAutoCompiling = false;
+    setBuildButtonsDisabled(false);
 }
 
 void Texstudio::processNotification(const QString &message)
