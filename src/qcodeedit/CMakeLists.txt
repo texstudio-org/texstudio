@@ -11,6 +11,7 @@ set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -D_QCODE_EDIT_BUILD_ -DQNFA
 
 set(HEADER_FILES ${HEADER_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditor.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditoraccessible.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qcodeedit.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qpanellayout.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qformatfactory.h
@@ -51,6 +52,7 @@ set(HEADER_FILES ${HEADER_FILES}
 
 set(SOURCE_FILES ${SOURCE_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditoraccessible.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qcodeedit.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qpanellayout.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qformatscheme.cpp

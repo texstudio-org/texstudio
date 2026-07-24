@@ -250,6 +250,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		Q_INVOKABLE QString text() const;
 		Q_INVOKABLE QString text(int line) const;
+		int documentOffsetFromPosition(int line, int column) const;
 		
 		Q_INVOKABLE QDocument* document() const;
 		
