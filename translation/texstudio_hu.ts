@@ -5065,12 +5065,12 @@ Bizonyosodjon meg róla, hogy a fájlkódolás és az inputenc csomag nevei egym
     <message>
         <location filename="../src/gitwidget.cpp" line="53"/>
         <source>git fetch</source>
-        <translation type="unfinished"/>
+        <translation>git fetch</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="54"/>
         <source>git pull</source>
-        <translation type="unfinished"/>
+        <translation>git pull</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="55"/>
