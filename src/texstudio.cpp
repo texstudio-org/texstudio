@@ -6386,7 +6386,7 @@ void Texstudio::addMagicProgram()
 }
 
 ///////////////TOOLS////////////////////
-bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCodec *codecForBuffer, bool saveAll)
+bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCodec *codecForBuffer, bool saveAll,bool blocking)
 {
     if(buildManager.busyRunningCommands()){
         setStatusMessageProcess(QString(" %1 ").arg(tr("A command is already running. Please wait until the current command stops.")));
@@ -6420,7 +6420,11 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
 
 	int ln = currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0;
     // unified error/stdout into *buffer
-    return buildManager.runCommandAsync(commandline, QFileInfo(finame), QFileInfo(getCurrentFileName()), ln, buffer, buffer);
+    if(blocking){
+        return buildManager.runCommand(commandline, QFileInfo(finame), QFileInfo(getCurrentFileName()), ln, buffer,codecForBuffer ,buffer);
+    }else{
+        return buildManager.runCommandAsync(commandline, QFileInfo(finame), QFileInfo(getCurrentFileName()), ln, buffer, buffer);
+    }
 }
 
 /*!
@@ -6436,7 +6440,7 @@ bool Texstudio::runCommandNoSpecialChars(QString commandline, QString *buffer, Q
         // use UTF-8 if no codec is defined
         codecForBuffer= QTextCodec::codecForName("UTF-8");
     }
-    return runCommand(commandline, buffer, codecForBuffer,false);
+    return runCommand(commandline, buffer, codecForBuffer,false,true);
 }
 /*!
  * \brief set StatusMessage for a process
