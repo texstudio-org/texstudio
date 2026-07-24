@@ -1841,7 +1841,9 @@ void BuildManager::runNextCommandInternalAsyncFinished(int exitCode, QProcess::E
     if (m_remainingReRunCount>0 && (rerunnable || latexCompiler)) {
         LatexCompileResult result = LCR_NORMAL;
         emit latexCompiled(&result);
-        if (result == LCR_ERROR) return;
+        if (result == LCR_ERROR){
+            lastCommandToRun=true;
+        }
         if (result == LCR_RERUN_WITH_BIBLIOGRAPHY) {
             ExpandingOptions options(m_mainFile, m_mainFile, 0);
             ExpandedCommands expansion = expandCommandLine(CMD_BIBLIOGRAPHY, options);
