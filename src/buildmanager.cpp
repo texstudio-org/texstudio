@@ -1831,6 +1831,10 @@ void BuildManager::runNextCommandInternalAsyncFinished(int exitCode, QProcess::E
         //return;
     }
     if(m_expandedCommands.commands.isEmpty()){
+        emit endRunningCommands(m_expandedCommands.primaryCommand, false, false, false);
+        if(m_returnCmdObj && m_returnCmd){
+            QMetaObject::invokeMethod(m_returnCmdObj, m_returnCmd,Q_ARG(int,exitCode),Q_ARG(QProcess::ExitStatus,exitStatus));
+        }
         return;
     }
     CommandToRun cur = m_expandedCommands.commands.first();
