@@ -1,5 +1,5 @@
 # luadraw package
-# Matthew Bertucci 2026/06/03 for v3.1
+# Matthew Bertucci 2026/07/24 for v3.3
 
 #include:ifluatex
 #include:luacode
@@ -27,3 +27,5 @@ name=%<file name%>
 exec#true,false
 auto#true,false
 #endkeyvals
+
+\luadrawLiteral{code}#*

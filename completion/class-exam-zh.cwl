@@ -1,5 +1,5 @@
 # exam-zh class
-# Matthew Bertucci 2024/02/13 for v0.2.1
+# Matthew Bertucci 2026/07/24 for v0.3.0
 
 #include:filehook
 #include:class-ctexbook
@@ -86,6 +86,10 @@ style/student-version-suffix=%<suffix%>
 style/student-version-cleanaux#true,false
 page={%<键值列表%>}
 page/size=%<a3paper|a4paper%>
+page/paper-width=##L
+page/paper-height=##L
+page/margin=##L
+page/headheight=##L
 page/show-head#true,false
 page/head-content=%<页眉格式%>
 page/show-foot#true,false

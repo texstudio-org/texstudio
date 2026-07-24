@@ -1509,6 +1509,8 @@
 <file>completion/exam-randomizechoices.cwl</file>
 <file>completion/exam-zh-chinese-english.cwl</file>
 <file>completion/exam-zh-choices.cwl</file>
+<file>completion/exam-zh-circlednumber.cwl</file>
+<file>completion/exam-zh-counter.cwl</file>
 <file>completion/exam-zh-font.cwl</file>
 <file>completion/exam-zh-math.cwl</file>
 <file>completion/exam-zh-question.cwl</file>
@@ -2564,6 +2566,7 @@
 <file>completion/mol2chemfig.cwl</file>
 <file>completion/monaspace-otf.cwl</file>
 <file>completion/monofill.cwl</file>
+<file>completion/monoref.cwl</file>
 <file>completion/montserrat.cwl</file>
 <file>completion/moodle.cwl</file>
 <file>completion/moredefs.cwl</file>

@@ -1,5 +1,5 @@
 # beamer-rl class
-# Matthew Bertucci 2023/01/02 for v1.7
+# Matthew Bertucci 2026/07/24 for v2.1
 
 #include:luatex
 #include:ifluatex
@@ -116,9 +116,3 @@ aspectratio=#2013,1610,169,149,141,54,43,32,%<xxxx%>
 \blacktriangleright
 \blacktriangleleft
 \redefbeamertemplate{element}{option}#*
-
-\begin{oldpgfpicture}#S
-\end{oldpgfpicture}#S
-\oldpgfpicture#S
-\endoldpgfpicture#S
-\oldpgfuseshading#S

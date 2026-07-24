@@ -1,5 +1,5 @@
 # yquant package
-# Matthew Bertucci 2026/01/05 for v0.9.0
+# Matthew Bertucci 2026/07/24 for v0.9.1
 
 #include:etoolbox
 #include:tikz
@@ -237,6 +237,7 @@ operator/multi warning#true,false
 drawing mode=#quality,size
 default background
 default fill
+idx base=%<integer%>
 # Register creation #
 register/default name=%<name%>
 register/default lazy name=%<name%>

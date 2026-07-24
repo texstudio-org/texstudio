@@ -1,7 +1,8 @@
 # iexec package
-# Matthew Bertucci 2024/01/15 for v0.14.0
+# Matthew Bertucci 2026/07/24 for v0.16.1
 
 #include:shellesc
+#include:pdftexcmds
 #include:pgfopts
 #include:pgfkeys
 
