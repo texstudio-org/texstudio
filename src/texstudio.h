@@ -247,8 +247,8 @@ private:
 
 	void updateUserToolMenu();
 	void linkToEditorSlot(QAction *act, const char *slot, const QList<QVariant> &args);
-
-    bool parseStruct(LatexDocument *doc, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited=nullptr, QList<QTreeWidgetItem *> *todoList=nullptr, int currentColor=0);
+    
+    bool parseStruct(LatexDocument *doc, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited=nullptr, QList<QTreeWidgetItem *> *todoList=nullptr, QList<QTreeWidgetItem *> *biblioList=nullptr, int currentColor=0);
     void parseStructLocally(LatexDocument* document, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList=nullptr, QList<QTreeWidgetItem *> *labelList=nullptr, QList<QTreeWidgetItem *> *magicList=nullptr, QList<QTreeWidgetItem *> *biblioList=nullptr, QList<QTreeWidgetItem *> *blockList=nullptr);
 #ifndef QT_NO_DEBUG
     void checkForShortcutDuplicate();

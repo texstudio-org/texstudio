@@ -3927,6 +3927,11 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         if(lbls.size()==2){
             FileNamePair fnp(lbls[1],lbls[0]);
             mMentionedBibTeXFiles.insert(nullptr,fnp);
+            StructureEntry *se;
+            se=new StructureEntry(this,StructureEntry::SE_BIBTEX);
+            se->title=lbls[1];
+            se->level=0;
+            docStructure.push_back(se);
         }
     }
 
