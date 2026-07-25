@@ -6711,19 +6711,9 @@ Bạn có muốn ghi đè nó?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3490"/>
-        <source>Zoom Out</source>
-        <translation>Thu nhỏ</translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3500"/>
         <source>Zoom</source>
         <translation>Thu phóng</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3509"/>
-        <source>Zoom In</source>
-        <translation>Phóng to</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3535"/>
@@ -7058,16 +7048,6 @@ Bạn có thể nhập mật khẩu ngay bây giờ:</translation>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="818"/>
-        <source>Zoom In</source>
-        <translation>Phóng to</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="820"/>
-        <source>Zoom Out</source>
-        <translation>Thu nhỏ</translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="823"/>
         <source>Actual Size</source>
         <translation type="unfinished"/>
@@ -7130,16 +7110,6 @@ Bạn có thể nhập mật khẩu ngay bây giờ:</translation>
 </context>
 <context>
     <name>PreviewWidget</name>
-    <message>
-        <location filename="../src/toolwidgets.cpp" line="165"/>
-        <source>Zoom In</source>
-        <translation>Phóng to</translation>
-    </message>
-    <message>
-        <location filename="../src/toolwidgets.cpp" line="166"/>
-        <source>Zoom Out</source>
-        <translation>Thu nhỏ</translation>
-    </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="167"/>
         <source>Reset Zoom</source>

@@ -6843,19 +6843,9 @@ Do you want to overwrite it?</source>
         <translation>Méret</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3490"/>
-        <source>Zoom Out</source>
-        <translation>Kicsinyítés</translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3500"/>
         <source>Zoom</source>
         <translation>Átméretezés</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3509"/>
-        <source>Zoom In</source>
-        <translation>Nagyítás</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3535"/>
@@ -7190,16 +7180,6 @@ Most megadhatja a jelszót:</translation>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="818"/>
-        <source>Zoom In</source>
-        <translation>Nagyítás</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="820"/>
-        <source>Zoom Out</source>
-        <translation>Kicsinyítés</translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="823"/>
         <source>Actual Size</source>
         <translation>Aktuális méret</translation>
@@ -7262,16 +7242,6 @@ Most megadhatja a jelszót:</translation>
 </context>
 <context>
     <name>PreviewWidget</name>
-    <message>
-        <location filename="../src/toolwidgets.cpp" line="165"/>
-        <source>Zoom In</source>
-        <translation>Nagyítás</translation>
-    </message>
-    <message>
-        <location filename="../src/toolwidgets.cpp" line="166"/>
-        <source>Zoom Out</source>
-        <translation>Kicsinyítés</translation>
-    </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="167"/>
         <source>Reset Zoom</source>

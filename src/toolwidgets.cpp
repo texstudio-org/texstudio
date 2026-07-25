@@ -162,8 +162,8 @@ void PreviewWidget::contextMenu(QPoint point)
 	if (!preViewer->pixmap()) return;
 #endif
 	QMenu menu;
-	menu.addAction(tr("Zoom In"), this, SLOT(zoomIn()));
-	menu.addAction(tr("Zoom Out"), this, SLOT(zoomOut()));
+	menu.addAction(QCoreApplication::translate("Texstudio", "Zoom In"), this, SLOT(zoomIn()));
+	menu.addAction(QCoreApplication::translate("Texstudio", "Zoom Out"), this, SLOT(zoomOut()));
 	menu.addAction(tr("Reset Zoom"), this, SLOT(resetZoom()));
 	QAction *act = menu.addAction(tr("Fit"));
 	act->setCheckable(true);

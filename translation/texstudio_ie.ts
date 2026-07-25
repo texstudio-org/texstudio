@@ -6362,19 +6362,9 @@ Do you want to overwrite it?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3503"/>
-        <source>Zoom Out</source>
-        <translation>Diminuer</translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3513"/>
         <source>Zoom</source>
         <translation>Scale</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3522"/>
-        <source>Zoom In</source>
-        <translation>Agrandar</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3550"/>
@@ -6707,16 +6697,6 @@ You can now enter the password:</source>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="818"/>
-        <source>Zoom In</source>
-        <translation>Agrandar</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="820"/>
-        <source>Zoom Out</source>
-        <translation>Diminuer</translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="823"/>
         <source>Actual Size</source>
         <translation type="unfinished"/>
@@ -6779,16 +6759,6 @@ You can now enter the password:</source>
 </context>
 <context>
     <name>PreviewWidget</name>
-    <message>
-        <location filename="../src/toolwidgets.cpp" line="165"/>
-        <source>Zoom In</source>
-        <translation>Agrandar</translation>
-    </message>
-    <message>
-        <location filename="../src/toolwidgets.cpp" line="166"/>
-        <source>Zoom Out</source>
-        <translation>Diminuer</translation>
-    </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="167"/>
         <source>Reset Zoom</source>

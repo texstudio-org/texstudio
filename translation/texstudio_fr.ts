@@ -6846,19 +6846,9 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>Échelle</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3490"/>
-        <source>Zoom Out</source>
-        <translation>Zoom &amp;arrière</translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3500"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3509"/>
-        <source>Zoom In</source>
-        <translation>Zoom avant</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3535"/>
@@ -7193,16 +7183,6 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="818"/>
-        <source>Zoom In</source>
-        <translation>Zoom avant</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="820"/>
-        <source>Zoom Out</source>
-        <translation>Zoom &amp;arrière</translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="823"/>
         <source>Actual Size</source>
         <translation>Dimensions en cours</translation>
@@ -7265,16 +7245,6 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
 </context>
 <context>
     <name>PreviewWidget</name>
-    <message>
-        <location filename="../src/toolwidgets.cpp" line="165"/>
-        <source>Zoom In</source>
-        <translation>Zoom avant</translation>
-    </message>
-    <message>
-        <location filename="../src/toolwidgets.cpp" line="166"/>
-        <source>Zoom Out</source>
-        <translation>Zoom arrière</translation>
-    </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="167"/>
         <source>Reset Zoom</source>

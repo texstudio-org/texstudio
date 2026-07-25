@@ -6858,19 +6858,9 @@ Deseja sobrescrevê-lo?</translation>
         <translation>Escala</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3490"/>
-        <source>Zoom Out</source>
-        <translation>Reduzir</translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3500"/>
         <source>Zoom</source>
         <translation>Ampliação</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3509"/>
-        <source>Zoom In</source>
-        <translation>Ampliar</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3535"/>
@@ -7205,16 +7195,6 @@ Pode agora inserir a senha:</translation>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="818"/>
-        <source>Zoom In</source>
-        <translation>Ampliar</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="820"/>
-        <source>Zoom Out</source>
-        <translation>Reduzir</translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="823"/>
         <source>Actual Size</source>
         <translation>Tamanho real</translation>
@@ -7277,16 +7257,6 @@ Pode agora inserir a senha:</translation>
 </context>
 <context>
     <name>PreviewWidget</name>
-    <message>
-        <location filename="../src/toolwidgets.cpp" line="165"/>
-        <source>Zoom In</source>
-        <translation>Ampliar</translation>
-    </message>
-    <message>
-        <location filename="../src/toolwidgets.cpp" line="166"/>
-        <source>Zoom Out</source>
-        <translation>Reduzir</translation>
-    </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="167"/>
         <source>Reset Zoom</source>

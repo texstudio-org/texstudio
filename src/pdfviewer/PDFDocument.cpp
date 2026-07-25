@@ -815,9 +815,9 @@ PDFWidget::PDFWidget(bool embedded)
         focusedHandCursor = new QCursor(loadPixmapFromSVG(getRealIconFile("focusedhand"),QSize(32,32)),8,13);
 	}
 
-	ctxZoomInAction = new QAction(tr("Zoom In"), this);
+	ctxZoomInAction = new QAction(QCoreApplication::translate("Texstudio", "Zoom In"), this);
 	addAction(ctxZoomInAction);
-	ctxZoomOutAction = new QAction(tr("Zoom Out"), this);
+	ctxZoomOutAction = new QAction(QCoreApplication::translate("Texstudio", "Zoom Out"), this);
 	addAction(ctxZoomOutAction);
 
 	QAction *action = new QAction(tr("Actual Size"), this);
@@ -3487,7 +3487,7 @@ void PDFDocument::init(bool embedded)
 
 	buttonZoomOut = new QToolButton(statusBar());
 	buttonZoomOut->setIcon(getRealIcon("zoom-out"));
-	buttonZoomOut->setToolTip(tr("Zoom Out"));
+	buttonZoomOut->setToolTip(QCoreApplication::translate("Texstudio", "Zoom Out"));
 	statusBar()->addPermanentWidget(buttonZoomOut);
 	connect(buttonZoomOut, SIGNAL(clicked(bool)), actionZoom_Out, SLOT(trigger()));
 
@@ -3506,7 +3506,7 @@ void PDFDocument::init(bool embedded)
 
 	buttonZoomIn = new QToolButton(statusBar());
 	buttonZoomIn->setIcon(getRealIcon("zoom-in"));
-	buttonZoomIn->setToolTip(tr("Zoom In"));
+	buttonZoomIn->setToolTip(QCoreApplication::translate("Texstudio", "Zoom In"));
 	statusBar()->addPermanentWidget(buttonZoomIn);
 	connect(buttonZoomIn, SIGNAL(clicked()), actionZoom_In, SLOT(trigger()));
 
