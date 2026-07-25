@@ -1,7 +1,9 @@
 # CHANGELOG
 ## TeXstudio 4.9.7
 
-- 
+- use fully asynchronous command execution for latex commands. This should remedy some rare stability issues.
+- add accessibilty for text editor component (screen reader compatibility)
+- add bibliography overview in global TOC
 
 ## TeXstudio 4.9.6
 
