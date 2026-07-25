@@ -10486,16 +10486,6 @@ template to edit individual files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="924"/>
-        <source>Load Session...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="925"/>
-        <source>Save Session...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="926"/>
         <source>Restore Previous Session</source>
         <translation type="unfinished"></translation>
@@ -11448,11 +11438,6 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1285"/>
         <source>Thesaurus...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1286"/>
-        <source>Find Word Repetitions...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

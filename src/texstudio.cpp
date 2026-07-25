@@ -921,8 +921,8 @@ void Texstudio::setupMenus()
 	QMenu *submenu = newManagedMenu(menu, "openrecent", tr("Open &Recent")); //only create the menu here, actions are created by config manager
 
 	submenu = newManagedMenu(menu, "session", tr("Session"));
-	newManagedAction(submenu, "loadsession", tr("Load Session..."), SLOT(fileLoadSession()));
-	newManagedAction(submenu, "savesession", tr("Save Session..."), SLOT(fileSaveSession()));
+	newManagedAction(submenu, "loadsession", tr("Load Session"), SLOT(fileLoadSession()));
+	newManagedAction(submenu, "savesession", tr("Save Session"), SLOT(fileSaveSession()));
 	newManagedAction(submenu, "restoresession", tr("Restore Previous Session"), SLOT(fileRestoreSession()));
 	submenu->addSeparator();
 	if (!recentSessionList) {
@@ -1283,7 +1283,7 @@ void Texstudio::setupMenus()
     menu->addSeparator();
     newManagedAction(menu, "spelling", tr("Check Spelling..."), SLOT(editSpell()), MAC_OR_DEFAULT(Qt::CTRL | Qt::SHIFT | Qt::Key_F7, Qt::CTRL | Qt::Key_Colon));
     newManagedAction(menu, "thesaurus", tr("Thesaurus..."), SLOT(editThesaurus()), Qt::CTRL | Qt::SHIFT | Qt::Key_F8);
-	newManagedAction(menu, "wordrepetions", tr("Find Word Repetitions..."), SLOT(findWordRepetitions()));
+	newManagedAction(menu, "wordrepetions", tr("Find Word Repetitions"), SLOT(findWordRepetitions()));
 
 	//  Latex/Math external
 	configManager.loadManagedMenus(":/uiconfig.xml");
@@ -1315,17 +1315,17 @@ void Texstudio::setupMenus()
 	//wizards
 
 	menu = newManagedMenu("main/wizards", tr("&Wizards"));
-	newManagedAction(menu, "start", tr("Quick &Start..."), SLOT(quickDocument()));
-	newManagedAction(menu, "beamer", tr("Quick &Beamer Presentation..."), SLOT(quickBeamer()));
-	newManagedAction(menu, "letter", tr("Quick &Letter..."), SLOT(quickLetter()));
+	newManagedAction(menu, "start", tr("Quick Start"), SLOT(quickDocument()));
+	newManagedAction(menu, "beamer", tr("Quick Beamer Presentation"), SLOT(quickBeamer()));
+	newManagedAction(menu, "letter", tr("Quick Letter"), SLOT(quickLetter()));
 
     menu->addSeparator();
-    newManagedAction(menu, "aichat", tr("AI &Chat..."), SLOT(aiChat()));
+    newManagedAction(menu, "aichat", tr("AI Chat"), SLOT(aiChat()));
 
 	menu->addSeparator();
-	newManagedAction(menu, "tabular", tr("Quick &Tabular..."), SLOT(quickTabular()));
-	newManagedAction(menu, "tabbing", tr("Quick T&abbing..."), SLOT(quickTabbing()));
-	newManagedAction(menu, "array", tr("Quick &Array..."), SLOT(quickArray()));
+	newManagedAction(menu, "tabular", tr("Quick Tabular"), SLOT(quickTabular()));
+	newManagedAction(menu, "tabbing", tr("Quick Tabbing"), SLOT(quickTabbing()));
+	newManagedAction(menu, "array", tr("Quick Array"), SLOT(quickArray()));
 	newManagedAction(menu, "graphic", tr("Insert &Graphic..."), SLOT(quickGraphics()), QKeySequence(), "image");
 #ifdef Q_OS_WIN
 	newManagedAction(menu, "math", tr("Math Assistant..."), SLOT(quickMath()), QKeySequence(), "TexTablet");
@@ -1499,7 +1499,7 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "config", tr("&Configure TeXstudio..."), SLOT(generalOptions()), 0, "configure")->setMenuRole(QAction::PreferencesRole);
 
 	menu->addSeparator();
-	newManagedAction(menu, "loadProfile", tr("Load &Profile..."), SLOT(loadProfile()));
+	newManagedAction(menu, "loadProfile", tr("Load Profile"), SLOT(loadProfile()));
 	newManagedAction(menu, "saveProfile", tr("S&ave Profile..."), SLOT(saveProfile()));
 	newManagedAction(menu, "saveSettings", tr("Save &Current Settings", "menu"), SLOT(saveSettings()));
 	newManagedAction(menu, "restoreDefaultSettings", tr("Restore &Default Settings..."), SLOT(restoreDefaultSettings()));
