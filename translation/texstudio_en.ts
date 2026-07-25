@@ -11592,16 +11592,6 @@ template to edit individual files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1329"/>
-        <source>Insert &amp;Graphic...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1331"/>
-        <source>Math Assistant...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="1359"/>
         <source>&amp;Clean</source>
         <translation type="unfinished"></translation>
@@ -12290,6 +12280,11 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/texstudio.cpp" line="1329"/>
+        <source>Insert Graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/texstudio.cpp" line="6073"/>
         <source>&lt;Current File&gt;</source>
         <translation type="unfinished"></translation>
@@ -12543,6 +12538,11 @@ Do you want to create it?</source>
     <message>
         <location filename="../src/texstudio.cpp" line="10825"/>
         <source>Load Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1505"/>
+        <source>Restore Default Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

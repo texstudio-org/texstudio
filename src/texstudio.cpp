@@ -1326,9 +1326,9 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "tabular", tr("Quick Tabular"), SLOT(quickTabular()));
 	newManagedAction(menu, "tabbing", tr("Quick Tabbing"), SLOT(quickTabbing()));
 	newManagedAction(menu, "array", tr("Quick Array"), SLOT(quickArray()));
-	newManagedAction(menu, "graphic", tr("Insert &Graphic..."), SLOT(quickGraphics()), QKeySequence(), "image");
+	newManagedAction(menu, "graphic", tr("Insert Graphic"), SLOT(quickGraphics()), QKeySequence(), "image");
 #ifdef Q_OS_WIN
-	newManagedAction(menu, "math", tr("Math Assistant..."), SLOT(quickMath()), QKeySequence(), "TexTablet");
+	newManagedAction(menu, "math", tr("Math Assistant"), SLOT(quickMath()), QKeySequence(), "TexTablet");
 #endif
 
 	menu = newManagedMenu("main/bibliography", tr("&Bibliography"));
@@ -1500,9 +1500,9 @@ void Texstudio::setupMenus()
 
 	menu->addSeparator();
 	newManagedAction(menu, "loadProfile", tr("Load Profile"), SLOT(loadProfile()));
-	newManagedAction(menu, "saveProfile", tr("S&ave Profile..."), SLOT(saveProfile()));
+	newManagedAction(menu, "saveProfile", tr("Save Profile"), SLOT(saveProfile()));
 	newManagedAction(menu, "saveSettings", tr("Save &Current Settings", "menu"), SLOT(saveSettings()));
-	newManagedAction(menu, "restoreDefaultSettings", tr("Restore &Default Settings..."), SLOT(restoreDefaultSettings()));
+	newManagedAction(menu, "restoreDefaultSettings", tr("Restore Default Settings"), SLOT(restoreDefaultSettings()));
 	menu->addSeparator();
 
 	submenu = newManagedMenu(menu, "rootdoc", tr("Root Document", "menu"));
