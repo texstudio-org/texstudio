@@ -3185,10 +3185,10 @@ bool QEditor::viewportEvent(QEvent *e)
 */
 bool QEditor::gestureEvent(QGestureEvent *e)
 {
-	QPinchGesture *gesture = static_cast<QPinchGesture *>(e->gesture(Qt::PinchGesture));
-	if (gesture)
-		pinchEvent(gesture);
-	return gesture != nullptr;
+	QPinchGesture *pinch = qobject_cast<QPinchGesture *>(e->gesture(Qt::PinchGesture));
+	if (pinch)
+		pinchEvent(pinch);
+	return pinch != nullptr;
 }
 
 /*!
@@ -3204,12 +3204,11 @@ void QEditor::pinchEvent(QPinchGesture *gesture)
 		m_pinchStartFontSizeModifier = m_doc->fontSizeModifier();
 
 	// Convert total scale factor to discrete zoom steps.
-	// 3 steps per doubling: a factor of 2^(1/3) ~= 1.26 equals one zoom step.
-	static constexpr qreal zoomStepsPerDoubling = 3.0;
+	// s_zoomStepsPerDoubling steps per doubling: a factor of 2^(1/s_zoomStepsPerDoubling) equals one zoom step.
 	const qreal totalScaleFactor = gesture->totalScaleFactor();
 	if (totalScaleFactor <= 0)
 		return;
-	const int zoomDelta = qRound(std::log2(totalScaleFactor) * zoomStepsPerDoubling);
+	const int zoomDelta = qRound(std::log2(totalScaleFactor) * s_zoomStepsPerDoubling);
 	const int targetModifier = m_pinchStartFontSizeModifier + zoomDelta;
 	if (targetModifier != m_doc->fontSizeModifier()) {
 		m_doc->setFontSizeModifier(targetModifier);

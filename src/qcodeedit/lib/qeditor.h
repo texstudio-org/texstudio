@@ -759,6 +759,8 @@ public slots:
 		int m_wrapAfterNumChars;
 
 		int m_pinchStartFontSizeModifier;
+		// Number of discrete zoom steps per factor-of-two scale change in a pinch gesture.
+		static constexpr qreal s_zoomStepsPerDoubling = 3.0;
 
 		QPropertyAnimation *m_scrollAnimation;
 };
