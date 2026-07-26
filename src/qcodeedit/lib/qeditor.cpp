@@ -370,7 +370,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
     pMenu(nullptr), m_lineEndingsMenu(nullptr), m_lineEndingsActions(nullptr),
     m_bindingsMenu(nullptr), aDefaultBinding(nullptr), m_bindingsActions(nullptr),
     m_doc(nullptr), m_definition(nullptr), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-        mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(nullptr),m_pinchStartFontSizeModifier(0)
+        mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_wrapAfterNumChars(0),m_scrollAnimation(nullptr),m_pinchStartFontSizeModifier(0)
 {
 	m_editors << this;
 
