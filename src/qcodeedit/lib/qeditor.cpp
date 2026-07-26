@@ -3221,11 +3221,9 @@ void QEditor::pinchEvent(QPinchGesture *gesture)
 		return;
 	const int zoomDelta = qRound(std::log2(totalScaleFactor) * s_zoomStepsPerDoubling);
 	const int targetModifier = m_pinchStartFontSizeModifier + zoomDelta;
-	if (targetModifier != m_doc->fontSizeModifier()) {
-		m_doc->setFontSizeModifier(targetModifier);
-		if (m_wrapAfterNumChars)
-			setWrapAfterNumChars(m_wrapAfterNumChars);
-	}
+	const int delta = targetModifier - m_doc->fontSizeModifier();
+	if (delta != 0)
+		zoom(delta);
 }
 
 /*!
