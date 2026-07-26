@@ -3189,10 +3189,12 @@ bool QEditor::viewportEvent(QEvent *e)
 bool QEditor::gestureEvent(QGestureEvent *e)
 {
 	bool handled = false;
-	QPinchGesture *pinch = qobject_cast<QPinchGesture *>(e->gesture(Qt::PinchGesture));
-	if (pinch) {
-		pinchEvent(pinch);
-		e->accept(pinch);
+	// e->gesture() returns a QGesture* (which is a QObject*); the type is
+	// already verified by the Qt::PinchGesture argument, so static_cast is safe.
+	QGesture *g = e->gesture(Qt::PinchGesture);
+	if (g) {
+		pinchEvent(static_cast<QPinchGesture *>(g));
+		e->accept(g);
 		handled = true;
 	}
 	return handled;
@@ -3210,8 +3212,10 @@ void QEditor::pinchEvent(QPinchGesture *gesture)
 	if (gesture->state() == Qt::GestureStarted)
 		m_pinchStartFontSizeModifier = m_doc->fontSizeModifier();
 
-	// Convert total scale factor to discrete zoom steps.
-	// s_zoomStepsPerDoubling steps per doubling: a factor of 2^(1/s_zoomStepsPerDoubling) equals one zoom step.
+	// totalScaleFactor is the cumulative pinch scale since the gesture started (1.0 = no change).
+	// log2(totalScaleFactor) converts the multiplicative scale to a linear measure of doublings,
+	// and multiplying by s_zoomStepsPerDoubling maps that to discrete zoom steps.
+	// For example, a 2× pinch out gives log2(2.0) * 3 = 3 zoom steps in.
 	const qreal totalScaleFactor = gesture->totalScaleFactor();
 	if (totalScaleFactor <= 0)
 		return;
