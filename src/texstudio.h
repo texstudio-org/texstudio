@@ -282,7 +282,7 @@ private slots:
     void collapseSubitems();
     StructureEntry *labelForStructureEntry(const StructureEntry *entry);
 
-    void updateStructureLocally(bool updateAll=false);
+    void updateStructureLocally(bool updateAll=false, LatexDocument *specificDoc=nullptr);
     void customMenuStructure(const QPoint &pos);
     void createLabelFromAction();
 
