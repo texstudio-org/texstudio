@@ -49,6 +49,9 @@ class QCodeCompletionEngine;
 
 class QEditorInputBindingInterface;
 
+class QGestureEvent;
+class QPinchGesture;
+
 class QCE_EXPORT QEditor : public QAbstractScrollArea
 #ifdef _QMDI_
 , public qmdiClient
@@ -566,6 +569,10 @@ public slots:
 	protected:
 		void setVerticalScrollBarMaximum();
 		virtual bool event(QEvent *e);
+		virtual bool viewportEvent(QEvent *e);
+
+		bool gestureEvent(QGestureEvent *e);
+		void pinchEvent(QPinchGesture *gesture);
 		
 		virtual void paintEvent(QPaintEvent *e);
 		virtual void timerEvent(QTimerEvent *e);
@@ -750,6 +757,10 @@ public slots:
 		
         int m_LineWidth;
 		int m_wrapAfterNumChars;
+
+		int m_pinchStartFontSizeModifier;
+		// Number of discrete zoom steps per factor-of-two scale change in a pinch gesture.
+		static constexpr qreal s_zoomStepsPerDoubling = 3.0;
 
 		QPropertyAnimation *m_scrollAnimation;
 };
