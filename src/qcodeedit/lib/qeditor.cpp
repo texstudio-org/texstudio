@@ -3174,8 +3174,11 @@ bool QEditor::event(QEvent *e)
 */
 bool QEditor::viewportEvent(QEvent *e)
 {
-	if (e->type() == QEvent::Gesture)
+	if (e->type() == QEvent::Gesture) {
+		// QGestureEvent is a QEvent subclass, not a QObject, so static_cast is
+		// correct here after the type() check above confirms the event kind.
 		return gestureEvent(static_cast<QGestureEvent *>(e));
+	}
 	return QAbstractScrollArea::viewportEvent(e);
 }
 
@@ -3185,10 +3188,14 @@ bool QEditor::viewportEvent(QEvent *e)
 */
 bool QEditor::gestureEvent(QGestureEvent *e)
 {
+	bool handled = false;
 	QPinchGesture *pinch = qobject_cast<QPinchGesture *>(e->gesture(Qt::PinchGesture));
-	if (pinch)
+	if (pinch) {
 		pinchEvent(pinch);
-	return pinch != nullptr;
+		e->accept(pinch);
+		handled = true;
+	}
+	return handled;
 }
 
 /*!
