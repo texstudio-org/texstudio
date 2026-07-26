@@ -3185,6 +3185,8 @@ bool QEditor::viewportEvent(QEvent *e)
 */
 bool QEditor::gestureEvent(QGestureEvent *e)
 {
+	// We only grab Qt::PinchGesture, so any gesture event delivered here
+	// is consumed by this widget regardless of whether the pinch was found.
 	if (QGesture *gesture = e->gesture(Qt::PinchGesture))
 		pinchEvent(static_cast<QPinchGesture *>(gesture));
 	return true;
@@ -3205,6 +3207,8 @@ void QEditor::pinchEvent(QPinchGesture *gesture)
 	// Convert total scale factor to discrete zoom steps.
 	// A factor of ~1.26 (2^(1/3)) corresponds to one zoom step.
 	const qreal totalScaleFactor = gesture->totalScaleFactor();
+	if (totalScaleFactor <= 0)
+		return;
 	const int zoomDelta = qRound(std::log2(totalScaleFactor) * 3.0);
 	const int targetModifier = m_pinchStartFontSizeModifier + zoomDelta;
 	if (targetModifier != m_doc->fontSizeModifier()) {
