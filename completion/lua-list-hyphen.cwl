@@ -1,12 +1,13 @@
 # lua-list-hyphen package
-# Matthew Bertucci 2026/07/24 for v0.42.1
+# Matthew Bertucci 2026/07/26 for v0.42.7
 
 #include:luatex
 
 #keyvals:\usepackage/lua-list-hyphen#c
 output-prefix=%<prefix%>
 output-extension=%<extension%>
-division-dict-paths={%<keyvals%>}
+division-dict-path=%<path%>
+allowlist-path=%<path%>
 validation-preprocessor={%<keyvals%>}
 validation-case-sensitive#true,false
 flag-mode=#none,all,non-valid

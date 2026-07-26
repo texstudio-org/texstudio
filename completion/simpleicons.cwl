@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/07/22 for v16.26.0
+# Matthew Bertucci 2026/07/26 for v16.27.0
 
 #include:iftex
 
@@ -568,6 +568,7 @@ coda
 codacy
 codeberg
 codeblocks
+codebuddy
 codecademy
 codeceptjs
 codechef
