@@ -13110,7 +13110,16 @@ bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> 
  */
 void Texstudio::syncExpanded(QTreeWidgetItem *item){
     StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
-    if(!se) return;
+    if(!se) {
+        // Check if this is an unfilled document root item; if so, populate it just-in-time
+        if(item->parent() == nullptr) {
+            LatexDocument *doc = static_cast<LatexDocument*>(item->data(0,Qt::UserRole).value<void*>());
+            if(doc && item->childCount() == 0) {
+                updateStructureLocally(false, doc);
+            }
+        }
+        return;
+    }
     se->expanded=true;
 }
 
@@ -13551,7 +13560,7 @@ void Texstudio::gotoLineFromAction()
  * This approach avoid the model/view which repeatedly led to crashes because the view component caches info from the actual model and is not kept up-to-date properly
  *
  */
-void Texstudio::updateStructureLocally(bool updateAll){
+void Texstudio::updateStructureLocally(bool updateAll, LatexDocument *specificDoc){
     if(!structureDockWidget->property("isVisible").toBool()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root= nullptr;
 
@@ -13566,6 +13575,8 @@ void Texstudio::updateStructureLocally(bool updateAll){
     QList<LatexDocument*> docs{currentDoc};
     if(updateAll){
         docs=documents.documents; // only visible documents
+    } else if(specificDoc) {
+        docs = {specificDoc};
     }
 
     LatexDocument *master = documents.getMasterDocument();
@@ -13609,6 +13620,18 @@ void Texstudio::updateStructureLocally(bool updateAll){
                     item->setIcon(0,getRealIcon("doc"));
                 }
                 structureTreeWidget->insertTopLevelItem(i,item);
+            }
+        }
+    }
+
+    // Set ShowIndicator for unfilled document items so the expand arrow is visible,
+    // enabling just-in-time population in syncExpanded when the user expands them
+    if(!configManager.structureShowSingleDoc && !specificDoc){
+        for(int i=0; i<structureTreeWidget->topLevelItemCount(); ++i){
+            QTreeWidgetItem *tlItem = structureTreeWidget->topLevelItem(i);
+            LatexDocument *d = static_cast<LatexDocument*>(tlItem->data(0,Qt::UserRole).value<void*>());
+            if(d && !docs.contains(d) && tlItem->childCount() == 0){
+                tlItem->setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
             }
         }
     }
@@ -13765,6 +13788,7 @@ void Texstudio::updateStructureLocally(bool updateAll){
 
         root->setExpanded(true);
         root->setSelected(false);
+        root->setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicatorWhenChildless);
         updateCurrentPosInStructure(nullptr,selectedEntry);
     }
 }
