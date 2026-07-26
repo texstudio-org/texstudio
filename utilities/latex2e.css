@@ -1,4 +1,4 @@
-/* $Id: latex2e.css 935 2021-07-23 17:48:15Z jimhefferon $
+/* $Id: latex2e.css 1242 2026-06-05 17:18:25Z karl $
    Minor css for latexrefman. Public domain.
    Originally written by Jim Hefferon and Karl Berry, 2018. */
 
@@ -20,4 +20,4 @@ code {font-style:normal; font-family:monospace; }
 div.referenceinfo {font-size:small;}
 
 /* So you can style for yourself */
-@import url("/css/latexreflocal.css");
+@import url("/css/ltxreflocal.css");
