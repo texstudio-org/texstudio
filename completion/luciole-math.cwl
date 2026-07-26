@@ -1,5 +1,5 @@
 # luciole-math package
-# Matthew Bertucci 2025/07/09 for v0.50
+# Matthew Bertucci 2026/07/05 for v0.70
 
 #include:iftex
 #include:unicode-math
@@ -36,10 +36,12 @@ Scale=%<factor%>
 \gggtr#m
 \gtreqqslantless#m
 \gtreqslantless#m
+\gtrsimslant#m
 \gvertneqq#m
 \leadsto#m
 \lesseqqslantgtr#m
 \lesseqslantgtr#m
+\lesssimslant#m
 \lhd#m
 \llless#m
 \lozenge#m

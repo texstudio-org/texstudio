@@ -1131,6 +1131,7 @@
 <file>completion/concepts.cwl</file>
 <file>completion/concmath.cwl</file>
 <file>completion/concmath-otf.cwl</file>
+<file>completion/concrete-vec.cwl</file>
 <file>completion/conditext.cwl</file>
 <file>completion/conditionals.cwl</file>
 <file>completion/constants.cwl</file>
@@ -1412,6 +1413,7 @@
 <file>completion/emf.cwl</file>
 <file>completion/emo.cwl</file>
 <file>completion/emojicite.cwl</file>
+<file>completion/emojinames.cwl</file>
 <file>completion/emoji.cwl</file>
 <file>completion/emotion.cwl</file>
 <file>completion/emp.cwl</file>
@@ -1509,6 +1511,8 @@
 <file>completion/exam-randomizechoices.cwl</file>
 <file>completion/exam-zh-chinese-english.cwl</file>
 <file>completion/exam-zh-choices.cwl</file>
+<file>completion/exam-zh-circlednumber.cwl</file>
+<file>completion/exam-zh-counter.cwl</file>
 <file>completion/exam-zh-font.cwl</file>
 <file>completion/exam-zh-math.cwl</file>
 <file>completion/exam-zh-question.cwl</file>
@@ -1998,6 +2002,7 @@
 <file>completion/index.cwl</file>
 <file>completion/indextools.cwl</file>
 <file>completion/indextra.cwl</file>
+<file>completion/indxcite.cwl</file>
 <file>completion/infix-RPN.cwl</file>
 <file>completion/inlinedef.cwl</file>
 <file>completion/inlinegraphicx.cwl</file>
@@ -2305,6 +2310,7 @@
 <file>completion/luaaddplot.cwl</file>
 <file>completion/luabibentry.cwl</file>
 <file>completion/luabidi.cwl</file>
+<file>completion/luabreakurl.cwl</file>
 <file>completion/luacas.cwl</file>
 <file>completion/luacensor.cwl</file>
 <file>completion/lua-check-hyphen.cwl</file>
@@ -2391,6 +2397,7 @@
 <file>completion/magicwatermark.cwl</file>
 <file>completion/Magra.cwl</file>
 <file>completion/mahjong.cwl</file>
+<file>completion/mahjong-tiles.cwl</file>
 <file>completion/mailing.cwl</file>
 <file>completion/mailmerge.cwl</file>
 <file>completion/makebarcode.cwl</file>
@@ -2434,6 +2441,7 @@
 <file>completion/mathenv.cwl</file>
 <file>completion/mathfixs.cwl</file>
 <file>completion/mathfont.cwl</file>
+<file>completion/mathformule.cwl</file>
 <file>completion/mathgreeks.cwl</file>
 <file>completion/math-operator.cwl</file>
 <file>completion/mathpartir.cwl</file>
@@ -2563,6 +2571,7 @@
 <file>completion/mol2chemfig.cwl</file>
 <file>completion/monaspace-otf.cwl</file>
 <file>completion/monofill.cwl</file>
+<file>completion/monoref.cwl</file>
 <file>completion/montserrat.cwl</file>
 <file>completion/moodle.cwl</file>
 <file>completion/moredefs.cwl</file>
@@ -2573,6 +2582,7 @@
 <file>completion/morewrites.cwl</file>
 <file>completion/morisawa.cwl</file>
 <file>completion/MorrisIn.cwl</file>
+<file>completion/morse-simple.cwl</file>
 <file>completion/movement-arrows.cwl</file>
 <file>completion/mparhack.cwl</file>
 <file>completion/mpgraphics.cwl</file>
@@ -3425,6 +3435,7 @@
 <file>completion/se2colors.cwl</file>
 <file>completion/se2fonts.cwl</file>
 <file>completion/se2packages.cwl</file>
+<file>completion/seatingchart.cwl</file>
 <file>completion/secdot.cwl</file>
 <file>completion/secnum.cwl</file>
 <file>completion/sectionbox.cwl</file>
@@ -3449,6 +3460,7 @@
 <file>completion/serbian-lig.cwl</file>
 <file>completion/serto.cwl</file>
 <file>completion/sesstime.cwl</file>
+<file>completion/setbuilder.cwl</file>
 <file>completion/setdeck.cwl</file>
 <file>completion/setdim.cwl</file>
 <file>completion/setouterhbox.cwl</file>

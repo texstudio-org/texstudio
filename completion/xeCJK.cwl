@@ -1,7 +1,7 @@
 # xeCJK package
 # Darcy Hu <hot123tea123@gmail.com> 2016
 #modified zepinglee 30 Jan 2021
-# updated 25 June 2026 for v3.10.0
+# updated 24 July 2026 for v3.10.3
 
 #include:xetex
 #include:xtemplate
@@ -56,6 +56,8 @@ NoBreakLongPunct-={%<punctuation%>}
 MiddlePunct={%<punctuation%>}
 MiddlePunct+={%<punctuation%>}
 MiddlePunct-={%<punctuation%>}
+PoZheHaoLigature#true,false
+LatinPunct#true,false
 PunctWidth=##L
 PunctBoundWidth=##L
 AllowBreakBetweenPuncts#true,false

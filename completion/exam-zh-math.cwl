@@ -1,6 +1,7 @@
 # exam-zh-math package
-# Matthew Bertucci 2024/02/13 for v0.2.1
+# Matthew Bertucci 2026/07/24 for v0.3.0
 
+#include:exam-zh-counter
 #include:tabularray
 #include:varwidth
 #include:graphicx

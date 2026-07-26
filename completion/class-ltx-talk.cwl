@@ -1,5 +1,5 @@
 # ltx-talk class
-# Matthew Bertucci 2026/05/01 for v0.5.0
+# Matthew Bertucci 2026/07/02 for v0.5.1
 
 #include:pdfmanagement
 #include:relsize
@@ -117,6 +117,7 @@ handout
 \maketitle[options%keyvals]
 \mathcolor<overlay spec>[model]{color}{math}
 \mathcolor<overlay spec>{color}{math}
+\newtheorem*{envname}{caption%text}#N
 \only<overlay spec>{text}
 \only{text}
 \onslide

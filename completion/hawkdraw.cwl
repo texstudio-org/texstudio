@@ -1,12 +1,14 @@
 # hawkdraw package
-# Matthew Bertucci 2026/06/14 for v0.2.0
+# Matthew Bertucci 2026/07/03 for v0.4.0
 
 #include:l3draw
 
 \begin{hawkdraw}#\pictureHighlight
 \begin{hawkdraw}[options%keyvals]
 \end{hawkdraw}
-
+\begin{hawkdrawsoftmask}{string}
+\begin{hawkdrawsoftmask}{string}[options%keyvals]
+\end{hawkdrawsoftmask}
 \begin{scope}
 \begin{scope}[options%keyvals]
 \end{scope}

@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2026/06/25 for v7.10a
+# Matthew Bertucci 2026/07/24 for v7.11a
 
 #include:amsmath
 #include:array
@@ -159,6 +159,9 @@ ampersand-in-blocks
 create-blocks-in-col=%<integer%>
 default-line={%<keyvals%>}
 rules/fix-vertex
+width-of-false=##L
+width-of-false +=##L
+width-of-false -=##L
 #endkeyvals
 
 #keyvals:\NiceMatrixOptions,\begin{NiceTabular}
@@ -247,6 +250,8 @@ dashed
 start=%<integer%>
 end=%<integer%>
 #endkeyvals
+
+\FalseRow#t
 
 \diagbox{lower}{upper}#t
 

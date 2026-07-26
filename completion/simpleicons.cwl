@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/06/13 for v16.24.0
+# Matthew Bertucci 2026/07/26 for v16.27.0
 
 #include:iftex
 
@@ -568,6 +568,7 @@ coda
 codacy
 codeberg
 codeblocks
+codebuddy
 codecademy
 codeceptjs
 codechef
@@ -1139,6 +1140,7 @@ gitpod
 gitter
 gldotinet
 glance
+glass
 glassdoor
 gleam
 glide
@@ -1576,6 +1578,7 @@ kicad
 kick
 kickstarter
 kik
+kimi
 kingstontechnology
 kinopoisk
 kinsta
@@ -3410,6 +3413,7 @@ youtubetv
 yr
 yubico
 yunohost
+zdotai
 zabka
 zaim
 zalando

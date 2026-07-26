@@ -1,17 +1,19 @@
 # ffcode package
-# Matthew Bertucci 2025/07/09 for v0.11.0
+# Matthew Bertucci 2026/07/22 for v0.13.0
 
 #include:pgfopts
 #include:xcolor
 #include:listings
 #include:tcolorbox
 #include:fancyvrb
+#include:shellesc
 
 #keyvals:\usepackage/ffcode#c
 noframes
 nobars
 nonumbers
 nocn
+tmpfile=%<file%>
 bold
 sf
 samepage
@@ -26,3 +28,4 @@ samepage
 \begin{ffsave}#V
 \begin{ffsave}[file]#V
 \end{ffsave}
+\ffcolumnbreak

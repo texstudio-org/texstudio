@@ -1,5 +1,5 @@
 # kbordermatrix package
-# Matthew Bertucci 9/10/2021
+# Matthew Bertucci 2026/07/24 for v1.02
 
 \kbordermatrix{array%formula}
 \kbldelim#*
@@ -8,3 +8,4 @@
 \kbcolstyle#*
 \kbcolsep#*
 \kbrowsep#*
+\ifkbalignright#S

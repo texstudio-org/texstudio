@@ -1,9 +1,17 @@
 # comment2tex package
-# Matthew Bertucci 2026/06/08 for v1.0
+# Matthew Bertucci 2026/07/24 for v1.1
 
 #include:listings
 
 \includebash{file}
 \includelua{file}
+\includeyaml{file}
+\includemake{file}
 
-\ctxscript#*
+\ctxuselistings
+\ctxuseverbatim
+
+\ctxscript#S
+\ctxlistingtotal{arg}#S
+\ctxlisting#S
+\endctxlisting#S

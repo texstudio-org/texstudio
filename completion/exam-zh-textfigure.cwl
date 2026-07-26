@@ -1,5 +1,5 @@
 # exam-zh-textfigure package
-# Matthew Bertucci 2023/06/02 for v0.1.25
+# Matthew Bertucci 2026/07/24 for v0.3.0
 
 #include:wrapstuff
 #include:tabularray
@@ -35,6 +35,9 @@ textfigure/vshift=##L
 textfigure/top-sep=##L
 textfigure/bottom-sep=##L
 textfigure/text-width=##L
+textfigure/auto-text-width#true,false
+textfigure/min-text-width=##L
+textfigure/column-gap=##L
 textfigure/figure-width=##L
 textfigure/ratio=%<比例%>
 textfigure/text-ratio=%<比例%>
@@ -78,6 +81,9 @@ vshift=##L
 top-sep=##L
 bottom-sep=##L
 text-width=##L
+auto-text-width#true,false
+min-text-width=##L
+column-gap=##L
 figure-width=##L
 ratio=%<比例%>
 text-ratio=%<比例%>

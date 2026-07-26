@@ -1,11 +1,12 @@
 # tikz-kalender class
-# Matthew Bertucci 2026/01/31 for v0.6a
+# Matthew Bertucci 2026/07/24 for v0.7a
 
 #include:ifluatex
 #include:ifxetex
 #include:pgfkeys
 #include:etoolbox
 #include:ragged2e
+#include:easter
 #include:fontenc
 # loads T1 option of fontenc
 #include:lmodern
@@ -55,6 +56,9 @@ onePageOnly#true,false
 \event{date}{text}#*
 \event{date}{text}[options]#*
 \theweeknumber#*
+\calYearFont#*
+\calYear#*
+\calYearText#*
 
 dark#B
 medium#B
