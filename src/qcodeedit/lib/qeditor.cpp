@@ -57,6 +57,9 @@
 #include <QSysInfo>
 #endif
 
+#include <QGestureEvent>
+#include <QPinchGesture>
+
 #include <QPrinter>
 #include <QPrintDialog>
 //#define Q_GL_EDITOR
@@ -326,7 +329,7 @@ QEditor::QEditor(QWidget *p)
     m_doc(nullptr), m_definition(nullptr),
 	m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_tripleClickSelectionType(QDocumentCursor::LineUnderCursor),
 	m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-    mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(nullptr)
+    mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(nullptr), m_pinchStartFontSizeModifier(0)
 {
 	m_editors << this;
 
@@ -346,7 +349,7 @@ QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
     m_doc(nullptr), m_definition(nullptr),
 	m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_tripleClickSelectionType(QDocumentCursor::ParenthesesOuter),
 	m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-    mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(nullptr)
+    mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(nullptr), m_pinchStartFontSizeModifier(0)
 {
 	m_editors << this;
 
@@ -367,7 +370,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
     pMenu(nullptr), m_lineEndingsMenu(nullptr), m_lineEndingsActions(nullptr),
     m_bindingsMenu(nullptr), aDefaultBinding(nullptr), m_bindingsActions(nullptr),
     m_doc(nullptr), m_definition(nullptr), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-        mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(nullptr)
+        mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(nullptr),m_pinchStartFontSizeModifier(0)
 {
 	m_editors << this;
 
@@ -389,7 +392,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
     pMenu(nullptr), m_lineEndingsMenu(nullptr), m_lineEndingsActions(nullptr),
     m_bindingsMenu(nullptr), aDefaultBinding(nullptr), m_bindingsActions(nullptr),
     m_doc(nullptr), m_definition(nullptr), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-    mDisplayModifyTime(true), m_useQSaveFile(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_scrollAnimation(nullptr)
+    mDisplayModifyTime(true), m_useQSaveFile(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_scrollAnimation(nullptr), m_pinchStartFontSizeModifier(0)
 {
 	m_editors << this;
 
@@ -438,6 +441,7 @@ void QEditor::init(bool actions,QDocument *doc)
 	viewport()->setAttribute(Qt::WA_KeyCompression, true);
 	viewport()->setAttribute(Qt::WA_InputMethodEnabled, true);
 	viewport()->setAttribute(Qt::WA_AcceptTouchEvents, true);
+	viewport()->grabGesture(Qt::PinchGesture);
 
 
     MarkedScrollBar *scrlBar=new MarkedScrollBar();
@@ -3162,6 +3166,52 @@ bool QEditor::event(QEvent *e)
     }*/
 
 	return r;
+}
+
+/*!
+	\internal
+	\brief Handle viewport events, including pinch gesture for zoom
+*/
+bool QEditor::viewportEvent(QEvent *e)
+{
+	if (e->type() == QEvent::Gesture)
+		return gestureEvent(static_cast<QGestureEvent *>(e));
+	return QAbstractScrollArea::viewportEvent(e);
+}
+
+/*!
+	\internal
+	\brief Dispatch gesture events to specific handlers
+*/
+bool QEditor::gestureEvent(QGestureEvent *e)
+{
+	if (QGesture *gesture = e->gesture(Qt::PinchGesture))
+		pinchEvent(static_cast<QPinchGesture *>(gesture));
+	return true;
+}
+
+/*!
+	\internal
+	\brief Handle pinch gesture to zoom the editor font size
+*/
+void QEditor::pinchEvent(QPinchGesture *gesture)
+{
+	if (!m_doc)
+		return;
+
+	if (gesture->state() == Qt::GestureStarted)
+		m_pinchStartFontSizeModifier = m_doc->fontSizeModifier();
+
+	// Convert total scale factor to discrete zoom steps.
+	// A factor of ~1.26 (2^(1/3)) corresponds to one zoom step.
+	const qreal totalScaleFactor = gesture->totalScaleFactor();
+	const int zoomDelta = qRound(std::log2(totalScaleFactor) * 3.0);
+	const int targetModifier = m_pinchStartFontSizeModifier + zoomDelta;
+	if (targetModifier != m_doc->fontSizeModifier()) {
+		m_doc->setFontSizeModifier(targetModifier);
+		if (m_wrapAfterNumChars)
+			setWrapAfterNumChars(m_wrapAfterNumChars);
+	}
 }
 
 /*!
