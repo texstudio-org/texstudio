@@ -2331,6 +2331,7 @@
 <file>completion/lualatex-truncate.cwl</file>
 <file>completion/lualinalg.cwl</file>
 <file>completion/lualineno.cwl</file>
+<file>completion/luamathaccents.cwl</file>
 <file>completion/luamathalign.cwl</file>
 <file>completion/luamaths.cwl</file>
 <file>completion/luamesh.cwl</file>
