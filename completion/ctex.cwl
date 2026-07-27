@@ -1,7 +1,7 @@
 # ctex package
 # Darcy Hu <hot123tea123@gmail.com> 2016
 #modified zepinglee 30 Jan 2021
-# updated 25 June 2026 for v2.6.0
+# updated 27 July 2026 for v2.6.4
 
 #include:zhnumber
 
@@ -310,6 +310,10 @@ patch/cleveref#true,false
 \CTEXthesubsubsection#*
 \CTEXtheparagraph#*
 \CTEXthesubparagraph#*
+
+\CTEXheadingnumber{level}#*
+\CTEXheadinglabel{level}#*
+\CTEXifheadingnumbering{level}{true code}{false code}#*
 
 \CTEXifname{contents with name}{contents with name}#*
 

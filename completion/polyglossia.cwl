@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 2026/04/29 for v2.10
+# Matthew Bertucci 2026/07/27 for v2.12
 
 #include:etoolbox
 #include:fontspec
@@ -550,7 +550,11 @@ babelshorthands#true,false
 #keyvals:\setdefaultlanguage/chinese#c,\setmainlanguage/chinese#c,\setotherlanguage/chinese#c,\textlang/chinese#c,\textchinese#c,\begin{lang}/chinese#c,\begin{chinese}#c,\selectlanguage/chinese#c,\foreignlanguage/chinese#c,\begin{otherlanguage}/chinese#c,\begin{otherlanguage*}/chinese#c,\resetdefaultlanguage/chinese#c,\setlanguagealias/chinese#c,\setlanguagealias*/chinese#c,\pghyphenation/chinese#c,\setlanghyphenmins/chinese#c
 variant=#simplified,traditional
 numerals=#arabic,chinese
+calendar=#gregorian,chinese
 #endkeyvals
+
+\chinesenumeral{number}#*
+\chinesedate{year}{month}{day}#*
 
 #keyvals:\setdefaultlanguage/croatian#c,\setmainlanguage/croatian#c,\setotherlanguage/croatian#c,\textlang/croatian#c,\textcroatian#c,\begin{lang}/croatian#c,\begin{croatian}#c,\selectlanguage/croatian#c,\foreignlanguage/croatian#c,\begin{otherlanguage}/croatian#c,\begin{otherlanguage*}/croatian#c,\resetdefaultlanguage/croatian#c,\setlanguagealias/croatian#c,\setlanguagealias*/croatian#c,\pghyphenation/croatian#c,\setlanghyphenmins/croatian#c
 babelshorthands#true,false

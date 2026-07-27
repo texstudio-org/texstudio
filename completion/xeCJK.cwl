@@ -1,7 +1,7 @@
 # xeCJK package
 # Darcy Hu <hot123tea123@gmail.com> 2016
 #modified zepinglee 30 Jan 2021
-# updated 24 July 2026 for v3.10.3
+# updated 27 July 2026 for v3.10.4
 
 #include:xetex
 #include:xtemplate
@@ -58,6 +58,7 @@ MiddlePunct+={%<punctuation%>}
 MiddlePunct-={%<punctuation%>}
 PoZheHaoLigature#true,false
 LatinPunct#true,false
+CJLineBreak=#normal,strict
 PunctWidth=##L
 PunctBoundWidth=##L
 AllowBreakBetweenPuncts#true,false
@@ -69,6 +70,7 @@ NoBreakCS-={%<commands%>}
 #
 experiment/halfright-prebreakpenalty#true,false
 experiment/punct-measure-fix#true,false
+experiment/boundary-register={%<settings%>}
 #
 Verb=#true,false,env,env+
 LoadFandol#true,false
