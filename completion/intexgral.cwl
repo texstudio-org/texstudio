@@ -1,5 +1,5 @@
 # intexgral package
-# Matthew Bertucci 2026/06/08 for v4.0.0
+# Matthew Bertucci 2026/06/08 for v4.1.0
 
 #include:amsfonts
 
@@ -19,6 +19,7 @@ upright#true,false
 #keyvals:\integral#c
 limits=%<list%>
 limits*=%<list%>
+limits-mode=#limits,nolimits
 mode=#default,nested,product
 symbol=%<command%>
 nint=%<integer%>
@@ -79,4 +80,5 @@ novar#true,false
 \RenewSymbolKeyword{keyword}{symbol%formula}
 \ProvideSymbolKeyword{keyword}{symbol%formula}
 \DeclareSymbolKeyword{keyword}{symbol%formula}
+\invertdiff
 \differentials

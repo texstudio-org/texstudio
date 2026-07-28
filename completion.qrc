@@ -2862,6 +2862,7 @@
 <file>completion/pdflscape.cwl</file>
 <file>completion/pdfmanagement.cwl</file>
 <file>completion/pdfmarginpar.cwl</file>
+<file>completion/pdfmathaccents.cwl</file>
 <file>completion/pdfmsym.cwl</file>
 <file>completion/pdfoverlay.cwl</file>
 <file>completion/pdfpagediff.cwl</file>
