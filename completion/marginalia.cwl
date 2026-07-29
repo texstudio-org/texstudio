@@ -1,5 +1,5 @@
 # marginalia package
-# Matthew Bertucci 2025/12/08 for v0.83.17
+# Matthew Bertucci 2026/07/28 for v0.83.30
 
 #include:luatex
 
@@ -56,4 +56,7 @@ mark verso outer=%<code%>
 mark verso inner=%<code%>
 mark right between=%<code%>
 mark left between=%<code%>
+max problem count=%<integer%>
+max item data change count=%<integer%>
+max page data change count=%<integer%>
 #endkeyvals

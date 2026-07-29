@@ -1060,6 +1060,7 @@
 <file>completion/cmbright.cwl</file>
 <file>completion/cmdstring.cwl</file>
 <file>completion/cmdtrack.cwl</file>
+<file>completion/cmgraded.cwl</file>
 <file>completion/cmll.cwl</file>
 <file>completion/cmsendnotes.cwl</file>
 <file>completion/cmsrb.cwl</file>
@@ -2331,6 +2332,7 @@
 <file>completion/lualatex-truncate.cwl</file>
 <file>completion/lualinalg.cwl</file>
 <file>completion/lualineno.cwl</file>
+<file>completion/luamathaccents.cwl</file>
 <file>completion/luamathalign.cwl</file>
 <file>completion/luamaths.cwl</file>
 <file>completion/luamesh.cwl</file>
@@ -2861,6 +2863,7 @@
 <file>completion/pdflscape.cwl</file>
 <file>completion/pdfmanagement.cwl</file>
 <file>completion/pdfmarginpar.cwl</file>
+<file>completion/pdfmathaccents.cwl</file>
 <file>completion/pdfmsym.cwl</file>
 <file>completion/pdfoverlay.cwl</file>
 <file>completion/pdfpagediff.cwl</file>
@@ -3532,6 +3535,7 @@
 <file>completion/smartref.cwl</file>
 <file>completion/smartunits.cwl</file>
 <file>completion/smfthm.cwl</file>
+<file>completion/smileghost.cwl</file>
 <file>completion/snapshot.cwl</file>
 <file>completion/snaptodo.cwl</file>
 <file>completion/snotez.cwl</file>

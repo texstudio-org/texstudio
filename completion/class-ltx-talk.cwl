@@ -1,5 +1,5 @@
 # ltx-talk class
-# Matthew Bertucci 2026/07/02 for v0.5.1
+# Matthew Bertucci 2026/07/29 for v0.5.2
 
 #include:pdfmanagement
 #include:relsize
@@ -189,6 +189,7 @@ element-order=
 frame-style=
 horizontal-alignment=
 vertical-alignment=
+frame-title-arg=
 #endkeyvals
 
 #keyvals:\subtitle#c
