@@ -1060,6 +1060,7 @@
 <file>completion/cmbright.cwl</file>
 <file>completion/cmdstring.cwl</file>
 <file>completion/cmdtrack.cwl</file>
+<file>completion/cmgraded.cwl</file>
 <file>completion/cmll.cwl</file>
 <file>completion/cmsendnotes.cwl</file>
 <file>completion/cmsrb.cwl</file>
@@ -3534,6 +3535,7 @@
 <file>completion/smartref.cwl</file>
 <file>completion/smartunits.cwl</file>
 <file>completion/smfthm.cwl</file>
+<file>completion/smileghost.cwl</file>
 <file>completion/snapshot.cwl</file>
 <file>completion/snaptodo.cwl</file>
 <file>completion/snotez.cwl</file>
