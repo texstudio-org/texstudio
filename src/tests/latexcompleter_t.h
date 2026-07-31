@@ -22,6 +22,8 @@ class LatexCompleterTest: public QObject{
 		void simple();
         void keyval_data();
         void keyval();
+        void paste_data();
+        void paste();
 };
 
 #endif

@@ -485,5 +485,58 @@ void LatexCompleterTest::keyval(){
     edView->editor->clearCursorMirrors();
 }
 
+void LatexCompleterTest::paste_data(){
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<int>("line");
+    QTest::addColumn<int>("offset");
+    QTest::addColumn<int>("completerFlag");
+    QTest::addColumn<QString>("pasteText");
+    QTest::addColumn<QString>("expected");
+
+    // Paste partial cite key: completer should auto-select and Tab should complete the full key.
+    // Without the fix, Tab would close the completer without completing because no item was
+    // selected after the paste, leaving the text as ">>{abc}" instead of ">>{abcq}".
+    QTest::newRow("cite-paste-partial") << ">>{}" << 0 << 3 << (int)LatexCompleter::CF_FORCE_CITE
+                                        << "abc"
+                                        << ">>{abcq}";
+
+    // Paste partial key when text already exists in the brackets: the pasted text is inserted
+    // before the existing text, but Tab should still complete the selected item and remove trailing.
+    QTest::newRow("cite-paste-replace") << ">>{gh}" << 0 << 3 << (int)LatexCompleter::CF_FORCE_CITE
+                                        << "abc"
+                                        << ">>{abcq}";
+}
+
+void LatexCompleterTest::paste(){
+    QFETCH(QString, text);
+    QFETCH(int, line);
+    QFETCH(int, offset);
+    QFETCH(int, completerFlag);
+    QFETCH(QString, pasteText);
+    QFETCH(QString, expected);
+
+    config->eowCompletes = false;
+
+    edView->editor->cutBuffer = "";
+    edView->editor->setFlag(QEditor::AutoCloseChars, false);
+    edView->editor->setText(text, false);
+    edView->editor->setCursor(edView->editor->document()->cursor(line, offset));
+
+    edView->complete(completerFlag | LatexCompleter::CF_DISABLE_MU_SORTING);
+
+    // Simulate paste from clipboard
+    QApplication::clipboard()->setText(pasteText);
+    edView->paste();
+
+    // Press Tab to confirm the selected completion
+    QTest::keyClick(edView->editor, Qt::Key_Tab);
+
+    edView->editor->document()->setLineEndingDirect(QDocument::Unix, true);
+    QEQUAL(edView->editor->text(), expected);
+
+    edView->editor->clearPlaceHolders();
+    edView->editor->clearCursorMirrors();
+}
+
 #endif
 
