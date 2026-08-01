@@ -298,7 +298,10 @@ void LabelSearchQuery::run(LatexDocument *doc)
         if(dlh==nullptr) continue;
 		QDocument *doc = dlh->document();
 		QList<QDocumentLineHandle *> dlhs = usagesByDocument[doc];
-		dlhs.append(dlh);
+        auto it = std::lower_bound(dlhs.begin(), dlhs.end(), dlh,
+                                    [doc](QDocumentLineHandle  *a, QDocumentLineHandle  *b) { return doc->indexOf(a) < doc->indexOf(b); }
+                                  );
+        dlhs.insert(it, dlh);
 		usagesByDocument.insert(doc, dlhs);
 	}
 
