@@ -1561,6 +1561,8 @@ void LatexCompleter::insertText(QString txt)
 	completerInputBinding->insertText(txt);
 	QString cur = completerInputBinding->getCurWord();
 	filterList(cur, completerInputBinding->getMostUsed());
+	if (!list->currentIndex().isValid())
+		completerInputBinding->select(list->model()->index(0, 0, QModelIndex()));
 }
 
 void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType)
