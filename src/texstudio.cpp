@@ -4320,12 +4320,20 @@ void Texstudio::editEraseWordCmdEnv()
                 cursor.removeSelectedText();
                 // remove curly brakets as well
                 if (cursor.nextChar() == QChar('{')) {
+                    cursor.movePosition(1); // move position to end of opening bracket
                     QDocumentCursor orig, to;
                     cursor.getMatchingPair(orig, to, false);
                     if (orig.isValid() && to.isValid()){
-                        to.removeSelectedText();
+                        if(to>orig){
+                            to.removeSelectedText();
+                            orig.removeSelectedText();
+                            cursor.moveTo(orig);
+                        }else{
+                            orig.removeSelectedText();
+                            to.removeSelectedText();
+                            cursor.moveTo(to);
+                        }
                     }
-                    cursor.deleteChar();
                 }
                 currentEditorView()->editor->document()->endMacro();
             }
