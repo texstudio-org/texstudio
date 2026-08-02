@@ -293,20 +293,24 @@ void LabelSearchQuery::run(LatexDocument *doc)
     if(!mDefinitionOnly){
         usages += doc->getRefs(labelText);
     }
-	QHash<QDocument *, QList<QDocumentLineHandle *> > usagesByDocument;
+    QHash<QDocument *, QList<int> > usagesByDocument;
 	foreach (QDocumentLineHandle *dlh, usages.keys()) {
         if(dlh==nullptr) continue;
 		QDocument *doc = dlh->document();
-		QList<QDocumentLineHandle *> dlhs = usagesByDocument[doc];
-        auto it = std::lower_bound(dlhs.begin(), dlhs.end(), dlh,
-                                    [doc](QDocumentLineHandle  *a, QDocumentLineHandle  *b) { return doc->indexOf(a) < doc->indexOf(b); }
-                                  );
-        dlhs.insert(it, dlh);
-		usagesByDocument.insert(doc, dlhs);
+        const int lineNr = doc->indexOf(dlh);
+        QList<int> lineNrs = usagesByDocument[doc];
+        auto it = std::lower_bound(lineNrs.begin(), lineNrs.end(), lineNr);
+        lineNrs.insert(it, lineNr);
+        usagesByDocument.insert(doc, lineNrs);
 	}
 
 	foreach (QDocument *doc, usagesByDocument.keys()) {
-		addDocSearchResult(doc, usagesByDocument.value(doc));
+        QList<QDocumentLineHandle *> usagesInDoc;
+        foreach(const int &lineNr, usagesByDocument.value(doc)){
+            QDocumentLineHandle *dlh=doc->line(lineNr).handle();
+            if(dlh) usagesInDoc.append(dlh);
+        }
+        addDocSearchResult(doc, usagesInDoc);
 	}
 
 	emit runCompleted();
