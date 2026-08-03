@@ -6513,7 +6513,7 @@ void QEditor::updateContent (int i, int n)
 
 	// Notify AT tools that the document content has changed.
 	if (QAccessible::isActive())
-		QAccessible::updateAccessibility(new QAccessibleEvent(this, QAccessible::ValueChanged));
+		QAccessible::updateAccessibility(new QAccessibleValueChangeEvent(this, QVariant()));
 }
 
 /*!
