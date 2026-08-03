@@ -2709,6 +2709,13 @@ std::pair<bool,bool> LatexDocuments::addDocsToLoad(QStringList filenames, LatexD
                 docForUpdate=doc;
                 newPackagesFound|=!doc->usedPackages(true).isEmpty();
                 newUserCommandsFound|=!doc->userCommandList().isEmpty();
+            }else{
+                if(doc->getMasterDocument()!=parentDocument){
+                    // document is already loaded, but not as child of parentDocument
+                    // -> add as child and set master document
+                    doc->setMasterDocument(parentDocument,false);
+                    parentDocument->addChild(doc);
+                }
             }
         }
         if(docForUpdate){
