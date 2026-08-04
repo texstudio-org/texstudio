@@ -1,5 +1,5 @@
 # page-canons package
-# Matthew Bertucci 2026/05/22 for v3.9.3
+# Matthew Bertucci 2026/08/04 for v3.9.4
 
 #include:iftex
 #include:ifoddpage
@@ -19,7 +19,13 @@ gridbottom=%<integer%>
 margins=#symmetric,antisymmetric,right,left
 gutterval=##L
 guttermode=#geometry,satzspiegel
+innerbleed=##L
+outerbleed=##L
+topbleed=##L
+bottombleed=##L
 showframe
+showbleed
+showgutter
 landscape
 debug
 size=%<fontsize name%>
@@ -69,3 +75,45 @@ justification
 
 \marginfont#*
 \canonsmarginfont#*
+
+\pagecanonmetrics#*
+\pagecanonexposemetrics#*
+
+\canonsinnerbleed#*
+\canonsouterbleed#*
+\canonstopbleed#*
+\canonsbottombleed#*
+\canonsleftbleed#*
+\canonsrightbleed#*
+\canonsbleedwidth#*
+\canonsbleedheight#*
+\canonspaperwidth#*
+\canonspaperheight#*
+\canonstrimwidth#*
+\canonstrimheight#*
+\canonsmediawidth#*
+\canonsmediaheight#*
+\canonsinnermargin#*
+\canonsoutermargin#*
+\canonstopmargin#*
+\canonsbottommargin#*
+\canonsgutter#*
+\canonsleafwidth#*
+\canonscellwidth#*
+\canonscellheight#*
+\canonstextwidth#*
+\canonstextheight#*
+\canonsmarginparwidth#*
+\canonsmarginparsep#*
+\canonsfootskip#*
+\canonsheadheight#*
+\canonsheadsep#*
+\canonsoddsidemargin#*
+\canonsevensidemargin#*
+\canonscolumnsep#*
+\canonslinewidth#*
+\canonsmarginandtext#*
+\canonsmarginandsep#*
+\canonstextandsep#*
+\canonsoverflowinghead#*
+\canonsfullwidthoverhang#*
