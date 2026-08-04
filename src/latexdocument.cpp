@@ -2649,14 +2649,25 @@ void LatexDocuments::removeDocs(QStringList removeIncludes)
 			}
 		}
 		if (dc && dc->isHidden()) {
-			QStringList toremove = dc->includedFiles();
-            dc->setMasterDocument(nullptr,false);
-			hiddenDocuments.removeAll(dc);
-			//qDebug()<<fname;
-			delete dc->getEditorView();
-			delete dc;
-			if (!toremove.isEmpty())
-				removeDocs(toremove);
+            // check if child documents are still open, if yes -> don't delete
+            QList<LatexDocument*>children=dc->getListOfDocs(nullptr,true);
+            bool childIsOpen=std::any_of(children.begin(),children.end(),[this](LatexDocument *child){
+                return !child->isHidden();
+            });
+            if(!childIsOpen){
+                QStringList toremove = dc->includedFiles();
+                dc->setMasterDocument(nullptr,false);
+                hiddenDocuments.removeAll(dc);
+                //qDebug()<<fname;
+                delete dc->getEditorView();
+                delete dc;
+                if (!toremove.isEmpty()){
+                    removeDocs(toremove);
+                }
+            }else{
+                // child is still open, don't delete dc, but remove it from parent
+                dc->setMasterDocument(nullptr,true);
+            }
 		}
 	}
 }
