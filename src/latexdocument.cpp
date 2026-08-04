@@ -2666,6 +2666,12 @@ void LatexDocuments::removeDocs(QStringList removeIncludes)
                 }
             }else{
                 // child is still open, don't delete dc, but remove it from parent
+                QSharedPointer<LatexParser> newLp = QSharedPointer<LatexParser>::create();
+                *newLp= LatexParser::getInstance();
+                std::for_each(children.begin(), children.end(), [newLp](LatexDocument *elem) {
+                    elem->setLtxCommands(newLp);
+                });
+                dc->setLtxCommands(newLp);
                 dc->setMasterDocument(nullptr,true);
             }
 		}
