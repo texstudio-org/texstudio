@@ -1,6 +1,6 @@
 # tikz package
 # muzimuzhi, 12 Nov 2019, 23 Feb 2020, 8 Aug 2020
-# Matthew Bertucci 12/6/2021 for v3.1.9a
+# Matthew Bertucci 2026/08/04 for v3.1.12
 
 # Dependency Tree:
 # tikz.sty
@@ -319,6 +319,7 @@ sharp plot
 smooth
 tension=%<value%>
 smooth cycle
+smooth monotone
 const plot
 const plot mark left
 const plot mark right
@@ -648,6 +649,7 @@ ampersand replacement=%<macro%>
 \pgfuseplotmark{name}#*
 \pgfplothandlergaplineto#*
 \pgfplothandlergapcycle#*
+\pgfplothandlermonotone#*
 
 ## from matrix pgfmodule
 \ifpgfmatrix#S

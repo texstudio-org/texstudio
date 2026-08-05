@@ -1857,6 +1857,7 @@
 <file>completion/guitar.cwl</file>
 <file>completion/guit.cwl</file>
 <file>completion/hackthefootline.cwl</file>
+<file>completion/hadith.cwl</file>
 <file>completion/halloweenmath.cwl</file>
 <file>completion/hamnosys.cwl</file>
 <file>completion/handout.cwl</file>
@@ -2241,6 +2242,9 @@
 <file>completion/linsys.cwl</file>
 <file>completion/lips.cwl</file>
 <file>completion/lipsum.cwl</file>
+<file>completion/lisp-mod-fpnum.cwl</file>
+<file>completion/lisp-mod-l3regex.cwl</file>
+<file>completion/lisp-on-tex.cwl</file>
 <file>completion/listing.cwl</file>
 <file>completion/listings.cwl</file>
 <file>completion/listings-ext.cwl</file>
@@ -3638,6 +3642,7 @@
 <file>completion/substances.cwl</file>
 <file>completion/substitutefont.cwl</file>
 <file>completion/substr.cwl</file>
+<file>completion/substnote.cwl</file>
 <file>completion/subsupscripts.cwl</file>
 <file>completion/subtext.cwl</file>
 <file>completion/sudoku.cwl</file>
