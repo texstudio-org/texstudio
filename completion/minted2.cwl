@@ -133,7 +133,7 @@ stepnumberfromfirst#true,false
 stepnumberoffsetvalues#true,false
 stripall#true,false
 stripnl#true,false
-tab=%<commnd%>
+tab=%<command%>
 tabcolor=#%color
 tabsize=%<int%>
 texcl#true,false

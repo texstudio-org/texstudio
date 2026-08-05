@@ -261,7 +261,7 @@ fatal
 \FXRegisterEnvLayout{name}{begincmd%cmd}{endcmd%cmd}#*d
 \FXProvidesEnvLayout{name}[release info]#*
 \FXRegisterTargetLayout{name}{cmd}#*d
-\FXProvidesTargetLayout{name}[relase info]#*
+\FXProvidesTargetLayout{name}[release info]#*
 
 \FXDefineLayoutKey{key%plain}[default]{function}#*
 \FXDefineEnvLayoutKey{key%plain}[default]{function}#*

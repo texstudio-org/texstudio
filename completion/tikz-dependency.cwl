@@ -369,6 +369,7 @@ sharp plot
 smooth
 tension=%<value%>
 smooth cycle
+smooth monotone
 const plot
 const plot mark left
 const plot mark right

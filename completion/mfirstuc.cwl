@@ -34,7 +34,7 @@ grabfirst
 \xcapitalisewords*{text}
 \ecapitalisewords{text}
 \ecapitalisewords*{text}
-\MFUwordbreak{puncutation}
+\MFUwordbreak{punctuation}
 \MFUcapword{text}
 \ifMFUhyphen#*
 \MFUhyphencapword{text}#*

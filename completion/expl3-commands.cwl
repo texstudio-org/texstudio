@@ -2427,13 +2427,13 @@
 \prg_generate_conditional_variant:Nnn %<\⟨name⟩:⟨arg spec⟩%> {%<⟨variant arg specifiers⟩%>} {%<⟨conditions⟩%>}#/%expl3
 \prg_gset_conditional:Nnn %<\⟨name⟩:⟨arg spec⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
 \prg_gset_conditional:Npnn %<\⟨name⟩:⟨arg spec⟩ ⟨parameters⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
-\prg_gset_eq_conditional:NNn %<\⟨name1⟩:⟨arg spec⟩ \⟨name2⟩:⟨arg spec⟩%> {%<⟨condtions⟩%>}#/%expl3
+\prg_gset_eq_conditional:NNn %<\⟨name1⟩:⟨arg spec⟩ \⟨name2⟩:⟨arg spec⟩%> {%<⟨conditions⟩%>}#/%expl3
 \prg_gset_protected_conditional:Nnn %<\⟨name⟩:⟨arg spec⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
 \prg_gset_protected_conditional:Npnn %<\⟨name⟩:⟨arg spec⟩ ⟨parameters⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
 \prg_map_break:Nn %<\⟨type⟩_map_break:%> {%<⟨code⟩%>}#/%expl3
 \prg_new_conditional:Nnn %<\⟨name⟩:⟨arg spec⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
 \prg_new_conditional:Npnn %<\⟨name⟩:⟨arg spec⟩ ⟨parameters⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
-\prg_new_eq_conditional:NNn %<\⟨name1⟩:⟨arg spec⟩ \⟨name2⟩:⟨arg spec⟩%> {%<⟨condtions⟩%>}#/%expl3
+\prg_new_eq_conditional:NNn %<\⟨name1⟩:⟨arg spec⟩ \⟨name2⟩:⟨arg spec⟩%> {%<⟨conditions⟩%>}#/%expl3
 \prg_new_protected_conditional:Nnn %<\⟨name⟩:⟨arg spec⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
 \prg_new_protected_conditional:Npnn %<\⟨name⟩:⟨arg spec⟩ ⟨parameters⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
 \prg_replicate:nn {%<⟨int expr⟩%>} {%<⟨tokens⟩%>}#/%expl3
@@ -2441,7 +2441,7 @@
 \prg_return_true:#/%expl3
 \prg_set_conditional:Nnn %<\⟨name⟩:⟨arg spec⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
 \prg_set_conditional:Npnn %<\⟨name⟩:⟨arg spec⟩ ⟨parameters⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
-\prg_set_eq_conditional:NNn %<\⟨name1⟩:⟨arg spec⟩ \⟨name2⟩:⟨arg spec⟩%> {%<⟨condtions⟩%>}#/%expl3
+\prg_set_eq_conditional:NNn %<\⟨name1⟩:⟨arg spec⟩ \⟨name2⟩:⟨arg spec⟩%> {%<⟨conditions⟩%>}#/%expl3
 \prg_set_protected_conditional:Nnn %<\⟨name⟩:⟨arg spec⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
 \prg_set_protected_conditional:Npnn %<\⟨name⟩:⟨arg spec⟩ ⟨parameters⟩%> {%<⟨conditions⟩%>} {%<⟨code⟩%>}#/%expl3
 \prop_clear:N %<⟨prop list⟩%>#/%expl3

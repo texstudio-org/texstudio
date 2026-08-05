@@ -1,10 +1,11 @@
 # proofgraph package
-# Matthew Bertucci 2026/06/03 for v1.0.0
+# Matthew Bertucci 2026/08/04 for v1.1.0
 
 #include:amsthm
 #include:etoolbox
 #include:xstring
 #include:kvoptions
+#include:pdftexcmds
 
 #keyvals:\usepackage/proofgraph#c
 autorun#true,false
@@ -17,19 +18,27 @@ format=%<format%>
 hyperlinks#true,false
 rankdir=%<direction%>
 selfloops=#remove,keep
+statements#true,false
 #endkeyvals
 
 \proofgraph
 \proofgraph[options%keyvals]
+\proofgraphcitecommand{csname1,csname2,...}
+\proofgraphciteedge{result}{bibid}#C
+\proofgraphciteedge[note%text]{result}{bibid}#C
 \proofgraphedge{result}{label1,label2,...}
 \proofgraphexclude{label}
 \proofgraphignore{from}{to}
+\proofgraphignorecite{result}{bibid}#C
+\proofgraphignorecite[note%text]{result}{bibid}#C
 \proofgraphstylecite{attributes}
 \proofgraphstyle{style}{attributes}
 \proofgraphtrack{names}
 \proofgraphuntrack{names}
 \proofof{label%plain}
 \uses{label1,label2,...}
+\usescite{bibid}#C
+\usescite[note%text]{bibid}#C
 
 #keyvals:\proofgraph
 actualtext={%<text%>}

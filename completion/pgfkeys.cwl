@@ -1,6 +1,6 @@
 # pgfkeys package
 # muzimuzhi, 7 Jul 2020, tikz-pgf 3.1.5b
-# updated 2023/01/15 for v3.1.10
+# updated 2026/08/04 for v3.1.12
 
 # from pgfkeys.code.tex
 \pgfkeyssetvalue{full key}{token text}#*
@@ -9,8 +9,11 @@
 \pgfkeyslet{full key}{macro}#*
 \pgfkeysgetvalue{full key}{macro}#*
 \pgfkeysvalueof{full key}#*
-\pgfkeysifdefined{full key}{true}{false}#*
-\pgfkeysifassignable{full key}{true}{false}#*
+\pgfkeysunexpandedvalueof{full key}#*
+\pgfkeysdetokenizedvalueof{full key}#*
+\pgfkeysifdefined{full key}{true code}{false code}#*
+\pgfkeysifassignable{full key}{true code}{false code}#*
+\pgfkeysifempty{full key}{true code}{false code}#*
 
 \pgfkeys{key list%keyvals}
 \pgfqkeys{default path}{key list%keyvals}
@@ -65,7 +68,7 @@ filtered
 \pgfkeysactivatefamily{family name}#*
 \pgfkeysdeactivatefamily{family name}#*
 \pgfkeysactivatefamilies{family list}{deactivate macro name%cmd}#*d
-\pgfkeysiffamilydefined{family}{true}{false}#*
+\pgfkeysiffamilydefined{family}{true code}{false code}#*
 \pgfkeysisfamilyactive{family}#*
 \pgfkeysgetfamily{full key}{result macro}#*
 \pgfkeyssetfamily{full key}{family}#*
