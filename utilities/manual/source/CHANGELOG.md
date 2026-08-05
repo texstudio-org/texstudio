@@ -4,6 +4,10 @@
 - use fully asynchronous command execution for latex commands. This should remedy some rare stability issues.
 - add accessibilty for text editor component (screen reader compatibility)
 - add bibliography overview in global TOC
+- fix crash when changing project structure (comment out/in includes) [#4579](https://github.com/texstudio-org/texstudio/issues/4579)
+- fix remove command [#4578](https://github.com/texstudio-org/texstudio/issues/4578)
+- have Find Usages results of labels ordered by line number [#4575](https://github.com/texstudio-org/texstudio/issues/4575)
+- allow expanding structures from all loaded files [#4565](https://github.com/texstudio-org/texstudio/issues/4565)
 
 ## TeXstudio 4.9.6
 
