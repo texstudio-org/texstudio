@@ -73,7 +73,7 @@ revert
 \SetApplication{text}
 \SetProducer{text}
 \SetPDFX{compliance standard}
-\SetPDFX[ouput intent]{compliance standard}
+\SetPDFX[output intent]{compliance standard}
 
 ## from novel-LayoutSettings.sty ##
 \SetTrimSize{width}{height}

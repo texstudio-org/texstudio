@@ -169,7 +169,7 @@ clear pre arg
 clear post arg
 upper=%<value%>
 sep upper=%<value%>
-comman upper=%<value%>
+comma upper=%<value%>
 pre upper=%<value%>
 pre upper put left=%<value%>
 post upper=%<value%>
@@ -233,7 +233,7 @@ clear pre lower
 clear post lower
 upper left=%<value%>
 sep upper left=%<value%>
-comman upper left=%<value%>
+comma upper left=%<value%>
 pre upper left=%<value%>
 pre upper left put left=%<value%>
 post upper left=%<value%>
@@ -265,7 +265,7 @@ clear pre upper left
 clear post upper left
 lower left=%<value%>
 sep lower left=%<value%>
-comman lower left=%<value%>
+comma lower left=%<value%>
 pre lower left=%<value%>
 pre lower left put left=%<value%>
 post lower left=%<value%>

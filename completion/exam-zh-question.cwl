@@ -1,5 +1,5 @@
 # exam-zh-question package
-# Matthew Bertucci 2026/07/24 for v0.3.0
+# Matthew Bertucci 2026/08/04 for v0.3.6
 
 #include:amsthm
 #include:tcolorbox
@@ -50,6 +50,7 @@ fillin/no-answer-counter-index=%<integer%>
 fillin/no-answer-counter-label=%<label%>
 fillin/show-answer#true,false
 fillin/width=##L
+fillin/width-extra=##L
 fillin/width-type=#fill,normal
 fillin/box-color=#%color
 fillin/text-color=#%color
@@ -123,6 +124,7 @@ no-answer-counter-index=%<integer%>
 no-answer-counter-label=%<label%>
 show-answer#true,false
 width=##L
+width-extra=##L
 width-type=#fill,normal
 box-color=#%color
 text-color=#%color

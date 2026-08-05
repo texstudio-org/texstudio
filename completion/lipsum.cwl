@@ -95,5 +95,5 @@ sentence-after*=%<tokens%>
 \LipsumRestoreSentenceList#*
 \LipsumRestoreAll#*
 
-\NewLipsumPar{paragrph}#*
+\NewLipsumPar{paragraph}#*
 \SetLipsumLanguage{language}#*

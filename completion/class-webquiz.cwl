@@ -63,10 +63,10 @@ columns=%<integer%>
 \incorrect
 \feedback
 
-\begin{dicussion}
-\begin{dicussion}[short heading%text]
-\begin{dicussion}[short heading%text][heading%text]
-\end{dicussion}
+\begin{discussion}
+\begin{discussion}[short heading%text]
+\begin{discussion}[short heading%text][heading%text]
+\end{discussion}
 
 \dref{label}#r
 \dref[text]{label}#r

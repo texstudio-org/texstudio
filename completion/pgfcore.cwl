@@ -3,7 +3,7 @@
 # jsundermeyer@sf.net, 16 Jul 2014, 19 Sep 2015
 # Tim Hoffmann, 1 Dec 2016, 9 Feb 2017
 # muzimuzhi, 8 Jul 2020
-# Matthew Bertucci 2023/01/15 for v3.1.10
+# Matthew Bertucci 2026/08/04 for v3.1.12
 
 # Dependency Tree:
 # pgfcore.sty
@@ -888,6 +888,7 @@ set up code=%<code%>
 \pgfuseplotmark{name}#S
 \pgfplothandlergaplineto#S
 \pgfplothandlergapcycle#S
+\pgfplothandlermonotone#S
 
 ## plotmarks pgflibrary
 # no new user commands

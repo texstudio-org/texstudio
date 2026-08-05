@@ -1,8 +1,7 @@
 # spacingtricks package
-# Matthew Bertucci 2023/12/06 for v1.8
+# Matthew Bertucci 2026/08/04 for v1.9
 
 #include:ifthen
-#include:setspace
 #include:calc
 #include:xspace
 #include:centeredline
