@@ -8,6 +8,7 @@
 - fix remove command [#4578](https://github.com/texstudio-org/texstudio/issues/4578)
 - have Find Usages results of labels ordered by line number [#4575](https://github.com/texstudio-org/texstudio/issues/4575)
 - allow expanding structures from all loaded files [#4565](https://github.com/texstudio-org/texstudio/issues/4565)
+- 
 
 ## TeXstudio 4.9.6
 
