@@ -281,7 +281,10 @@ void QFormatScheme::save(QDomElement& elem) const
 		if ( fmt.background.isValid() )
 		{
 			f = doc.createElement("background");
-			t = doc.createTextNode(fmt.background.name());
+			// keep the alpha channel of a translucent background (QColor::name() would drop it), but
+			// leave the notation of opaque colors untouched
+			t = doc.createTextNode(fmt.background.alpha() == 255 ? fmt.background.name()
+			                                                     : fmt.background.name(QColor::HexArgb));
 			f.appendChild(t);
 			c.appendChild(f);
 		}
@@ -404,7 +407,9 @@ void QFormatScheme::save(QSettings& s,QFormatScheme *defaultFormats) const
 
 		if ( fmt.background.isValid() )
 		{
-			s.setValue("background", fmt.background.name());
+			// as above: preserve the alpha channel of a translucent background
+			s.setValue("background", fmt.background.alpha() == 255 ? fmt.background.name()
+			                                                       : fmt.background.name(QColor::HexArgb));
 		} else {
 			s.remove("background");
 		}
