@@ -216,12 +216,21 @@ else()
         if(WIN32)
             set(ZLIB_BUILD_EXAMPLES OFF)
             set(SKIP_INSTALL_LIBRARIES ON)
+            # Link zlib statically like the other bundled dependencies, so that
+            # no zlib DLL has to be deployed next to the executable.
+            set(ZLIB_BUILD_SHARED OFF)
             add_subdirectory(src/zlib-1.3.2)
             set(ZLIB_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/src/zlib-1.3.2)
-            if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-                set(ZLIB_LIBRARY ${CMAKE_CURRENT_BINARY_DIR}/src/zlib-1.3.2/libzlibd.dll)
-            else()
-                set(ZLIB_LIBRARY ${CMAKE_CURRENT_BINARY_DIR}/src/zlib-1.3.2/libzlib.dll)
+            # Let CMake resolve the library: the vendored zlib target sets
+            # OUTPUT_NAME z and CMAKE_DEBUG_POSTFIX d, so the file name cannot
+            # be spelled out here without going out of sync.
+            set(ZLIB_LIBRARY zlibstatic)
+            # QuaZIP calls find_package(ZLIB) and links ZLIB::ZLIB. Without the
+            # shared library that alias is not defined by zlib itself, and
+            # FindZLIB would create an imported target pointing at a file that
+            # does not exist.
+            if(NOT TARGET ZLIB::ZLIB)
+                add_library(ZLIB::ZLIB ALIAS zlibstatic)
             endif()
         endif()
 		set(BUILD_SHARED_LIBS OFF)
