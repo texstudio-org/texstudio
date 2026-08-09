@@ -282,13 +282,15 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 	// find Error at Position
 	ErrorType result = ERR_none;
 	foreach (const Error &elem, newRanges) {
+        // A highlight is not an error and has no message of its own. Skipping it here rather than
+        // discarding the result afterwards matters because the highlight of the surrounding
+        // environment spans the whole line and is appended last: left in, it would mask every real
+        // error inside a math or picture environment and report "no error" for it.
+        if (elem.type == ERR_highlight) continue;
 		if (elem.range.second + elem.range.first < pos) continue;
 		if (elem.range.first > pos) break;
 		result = elem.type;
 	}
-    if(result==ERR_highlight){
-        result=ERR_none; // filter out accidental highlight detection (test only)
-    }
 	// now generate Error message
 
 	QStringList messages;  // indices have to match ErrorType
@@ -308,6 +310,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 			<< tr("unrecognized key in key option")
 			<< tr("unrecognized value in key option")
             << tr("command outside suitable env")
+            << tr("semicolon in tikz missing")
             << tr("spelling")
             << "highlight"; // mock message for arbitrary highlight. Will not be shown.
 	Q_ASSERT(messages.length() == ERR_MAX);
@@ -569,6 +572,23 @@ bool SyntaxCheck::checkCommand(const QString &cmd, const StackEnvironment &envs)
 }
 
 /*!
+ * \brief index of the innermost picture environment on the stack, -1 if there is none
+ *
+ * Picture environments are not recognized by name but by the "#\pictureHighlight" alias the cwl files
+ * give them, so that tikzpicture, pgfpicture and anything a package adds are all covered.
+ * \param envs environment stack
+ */
+int SyntaxCheck::pictureEnvIndex(const StackEnvironment &envs)
+{
+    for (int i = envs.size() - 1; i > -1; --i) {
+        const QString &name = envs.at(i).name;
+        if (name == "pictureHighlight" || ltxCommands->environmentAliases.values(name).contains("pictureHighlight"))
+            return i;
+    }
+    return -1;
+}
+
+/*!
 * \brief compare two environment stacks
 * \param env1
 * \param env2
@@ -686,6 +706,43 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 if(activeEnv.top().name == envName){
                     activeEnv.pop();
                     continue;
+                }
+            }
+        }
+
+        // A path command inside a picture environment has to be terminated by ";". Track whether that
+        // ";" is still pending, and flag whatever turns up in its place. This runs before the
+        // \begin/\end handling further down, so that the picture environment is still on the stack when
+        // its \end is seen.
+        if (tk.type == Token::command || tk.type == Token::punctuation) {
+            const int pictureEnv = pictureEnvIndex(activeEnv);
+            if (pictureEnv >= 0) {
+                // the commands of pgf/TikZ which open a path and need a ";" of their own
+                static const QSet<QString> pgfPathCommands = {
+                    "\\path", "\\draw", "\\fill", "\\filldraw", "\\shade", "\\shadedraw", "\\pattern",
+                    "\\clip", "\\useasboundingbox", "\\node", "\\coordinate", "\\matrix", "\\pic", "\\graph"
+                };
+                const QString tokenText = tk.getText();
+                const bool startsPath = (tk.type == Token::command && pgfPathCommands.contains(tokenText));
+                const bool endsEnv = (tk.type == Token::command && tokenText == "\\end");
+                if (startsPath || endsEnv) {
+                    if (activeEnv.at(pictureEnv).pictureStatementOpen) {
+                        // Neither a new path command nor the end of an environment can continue the
+                        // previous statement, so its ";" really is missing. This is where TeX gives up
+                        // as well, which is why its own message never points at the line to edit.
+                        Error elem;
+                        elem.type = ERR_missingSemicolonInPicture;
+                        elem.range = QPair<int, int>(tk.start, tk.length);
+                        newRanges.append(elem);
+                    }
+                    activeEnv[pictureEnv].pictureStatementOpen = startsPath;
+                    if (startsPath)
+                        activeEnv[pictureEnv].pictureStatementLevel = tk.level;
+                } else if (tk.type == Token::punctuation && tokenText == ";"
+                           && activeEnv.at(pictureEnv).pictureStatementOpen
+                           && tk.level <= activeEnv.at(pictureEnv).pictureStatementLevel) {
+                    // a ";" nested deeper belongs to the text of a node, not to the path command
+                    activeEnv[pictureEnv].pictureStatementOpen = false;
                 }
             }
         }

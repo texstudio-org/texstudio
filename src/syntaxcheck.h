@@ -30,13 +30,22 @@ public:
 	int ticket;
     int level; ///< command level (see tokens) in order to handle nested commands like \shortstack
 
+    /// A path command inside a picture environment (\draw, \node, ...) has been started and its
+    /// terminating ";" has not been seen yet. Part of operator==, so that a change propagates to the
+    /// following lines: whether they may open a path command of their own depends on it.
+    bool pictureStatementOpen = false;
+    /// command level (see tokens) of that path command, so that a ";" nested deeper -- inside the text
+    /// of a node, say -- is not taken for the terminating one
+    int pictureStatementLevel = 0;
+
 	bool operator ==(const Environment &env) const
 	{
-        return (name == env.name) && (id == env.id) && (excessCol == env.excessCol) && (origName == env.origName) && (level == env.level);
+        return (name == env.name) && (id == env.id) && (excessCol == env.excessCol) && (origName == env.origName) && (level == env.level)
+                && (pictureStatementOpen == env.pictureStatementOpen);
 	}
 	bool operator !=(const Environment &env) const
 	{
-        return (name != env.name) || (id != env.id) || (excessCol != env.excessCol) || (origName != env.origName) || (level != env.level);
+        return !(*this == env);
 	}
 };
 
@@ -69,6 +78,7 @@ public:
 		ERR_unrecognizedKey, ///< in key/value argument, an unknown key is used
 		ERR_unrecognizedKeyValues, ///< in key/value argument, an unknown value is used for a key
 		ERR_commandOutsideEnv, ///< command used outside of designated environment (similar math command outside math)
+        ERR_missingSemicolonInPicture, ///< path command in a picture environment not terminated by ";"
         ERR_spelling, ///< syntax error of text word (spell checker)
         ERR_highlight, ///< arbitraty format for highlighting (math,verbatim,picture)
 		ERR_MAX  // always last
@@ -108,6 +118,7 @@ public:
 	void waitForQueueProcess(void);
 #endif
     int containsEnv(const QString &name, const StackEnvironment &envs, const int id = -1);
+    int pictureEnvIndex(const StackEnvironment &envs);
     bool checkMathEnvActive(const StackEnvironment &envs);
 	int topEnv(const QString &name, const StackEnvironment &envs, const int id = -1);
 	bool checkCommand(const QString &cmd, const StackEnvironment &envs);
