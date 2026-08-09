@@ -235,6 +235,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					cd.bracketCommand=true;
 					valid.remove("K");
 				}
+                if(line.endsWith(";")){
+                    package.possibleCommands["%semicolonEnd"]<<cmd;
+                }
 				if (cmd == "\\begin") {
 					if (!package.commandDescriptions.contains(cmd)) {
 						// one insertion of a general \begin-command
