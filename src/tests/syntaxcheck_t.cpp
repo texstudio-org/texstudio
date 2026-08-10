@@ -612,6 +612,8 @@ void SyntaxCheckTest::checkTikzNodes_data()
         <<"\\usepackage{tikz}\n\\begin{tikzpicture}\n\\node (0,0) {a \\tikz \\node{b};}\n\\end{tikzpicture}"<<true;
     QTest::newRow("semicolon missing inner, nested nodes")
         <<"\\usepackage{tikz}\n\\begin{tikzpicture}\n\\node (0,0) {a \\tikz \\node{b}};\n\\end{tikzpicture}"<<true;
+    QTest::newRow("semicolon present, nested env")
+        <<"\\usepackage{tikz}\n\\begin{tikzpicture}\n\\node (0,0) {a \\begin{large} b \\end{large}};\n\\end{tikzpicture}"<<false;
 
 }
 
