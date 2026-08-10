@@ -282,13 +282,11 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 	// find Error at Position
 	ErrorType result = ERR_none;
 	foreach (const Error &elem, newRanges) {
+        if (elem.type == ERR_highlight) continue;
 		if (elem.range.second + elem.range.first < pos) continue;
 		if (elem.range.first > pos) break;
 		result = elem.type;
 	}
-    if(result==ERR_highlight){
-        result=ERR_none; // filter out accidental highlight detection (test only)
-    }
 	// now generate Error message
 
 	QStringList messages;  // indices have to match ErrorType
@@ -308,6 +306,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 			<< tr("unrecognized key in key option")
 			<< tr("unrecognized value in key option")
             << tr("command outside suitable env")
+            << tr("semicolon in previous tikz command missing")
             << tr("spelling")
             << "highlight"; // mock message for arbitrary highlight. Will not be shown.
 	Q_ASSERT(messages.length() == ERR_MAX);
@@ -793,6 +792,14 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				elem.type = ERR_MathCommandOutsideMath;
 				newRanges.append(elem);
 			}
+            // closing semicolon for tikz nodes
+            if(word==";" && topEnv("%node", activeEnv)>0){
+                // check if there is a node command in the line
+                if(topEnv("%node",activeEnv)>0 && activeEnv.top().level==tk.level){
+                    activeEnv.pop(); // remove node env from stack
+                }
+            }
+
 		}
         // rainbow delimiter
         if(mShowRainbowDelimiter && tk.type==Token::braces){
@@ -1173,7 +1180,6 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			activeEnv.push(tp);
 		}
 
-
         if (tk.type == Token::command) {
             QString word = line.mid(tk.start, tk.length);
             if (word.contains('@')) {
@@ -1185,12 +1191,22 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			Token tkEnvName;
 
 			if (word == "\\begin" || word == "\\end") {
+                // special treatment for tikz node check, missing colon
+                if(word=="\\end"&& topEnv("%node",activeEnv)>0){
+                    Error elem;
+                    elem.type = ERR_semicolonMissing;
+                    elem.range = QPair<int, int>(tk.start, tk.length);
+                    newRanges.append(elem);
+                    activeEnv.pop();
+                }
 				// check complete expression e.g. \begin{something}
 				if (tl.length() > i + 1 && tl.at(i + 1).type == Token::braces) {
 					tkEnvName = tl.at(i + 1);
 					word = word + line.mid(tkEnvName.start, tkEnvName.length);
 				}
+
 			}
+
             // special treatment for \ExplSyntaxOn, \ExplSyntaxOff
             // \ProvidesExplPackage, \ProvidesExplClass and \ProvidesExplFile
             // activate latex3 mode which ignores _ in commandnames
@@ -1373,6 +1389,26 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }
                 continue;
             }
+            // special treatment for tikz nodes, to check for ending semicolon
+            if(ltxCommands->possibleCommands["%semicolonEnd"].contains(word)){
+                if(topEnv("%node",activeEnv)>0 && tk.level == activeEnv.top().level){
+                    Error elem;
+                    elem.type = ERR_semicolonMissing;
+                    elem.range = QPair<int, int>(tk.start, tk.length);
+                    newRanges.append(elem);
+                    activeEnv.pop();
+                }
+                Environment env;
+                env.name = "%node";
+                env.id = 1; // to be changed
+                env.dlh = dlh;
+                env.ticket = ticket;
+                env.level = tk.level;
+                env.startingColumn=tk.start+tk.length;
+                activeEnv.push(env);
+                continue;
+            }
+
 			if (!checkCommand(word, activeEnv)) {
 				Error elem;
 				if (tkEnvName.type == Token::braces) {
