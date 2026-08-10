@@ -25,6 +25,8 @@ class SyntaxCheckTest: public QObject{
         void checkExplHighlight();
         void checkMultilineFormula_data();
         void checkMultilineFormula();
+        void checkTikzNodes_data();
+        void checkTikzNodes();
         //void checkIncludes_data();
         //void checkIncludes();
 };
