@@ -1,5 +1,5 @@
 # marginalia package
-# Matthew Bertucci 2026/07/28 for v0.83.30
+# Matthew Bertucci 2026/08/10 for v0.84.1
 
 #include:luatex
 
@@ -11,9 +11,13 @@
 \marginaliapage#*
 \marginaliacolumn#*
 
+#keyvals:\marginaliasetup
+binding side=#left,right
+#endkeyvals
+
 #keyvals:\marginalia,\marginaliasetup
 type=#normal,fixed,optfixed
-pos=#auto,reverse,left,right,nearest
+pos=#auto,reverse,outer,inner,right,left,nearest
 column=#auto,one,left,right
 xsep=##L
 xsep outer=##L
@@ -32,30 +36,42 @@ ysep above=##L
 ysep below=##L
 ysep page top=##L
 ysep page top=##L
-width=##L
-width outer=##L
-width inner=##L
-width between=##L
+width recto right=##L
+width recto left=##L
+width verso right=##L
+width verso left=##L
+width right between=##L
+width left between=##L
 width recto outer=##L
 width recto inner=##L
 width verso outer=##L
 width verso inner=##L
-width right between=##L
-width left between=##L
-style=%<code%>
+width=##L
+width between=##L
+width outer=##L
+width inner=##L
+style recto right=%<code%>
+style recto left=%<code%>
+style verso right=%<code%>
+style verso left=%<code%>
+style right between=%<code%>
+style left between=%<code%>
 style recto outer=%<code%>
 style recto inner=%<code%>
 style verso outer=%<code%>
 style verso inner=%<code%>
-style right between=%<code%>
-style left between=%<code%>
-mark=%<code%>
+style=%<code%>
+mark recto right=%<code%>
+mark recto left=%<code%>
+mark verso right=%<code%>
+mark verso left=%<code%>
+mark right between=%<code%>
+mark left between=%<code%>
 mark recto outer=%<code%>
 mark recto inner=%<code%>
 mark verso outer=%<code%>
 mark verso inner=%<code%>
-mark right between=%<code%>
-mark left between=%<code%>
+mark=%<code%>
 max problem count=%<integer%>
 max item data change count=%<integer%>
 max page data change count=%<integer%>
