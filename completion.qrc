@@ -1278,6 +1278,7 @@
 <file>completion/diagxy.cwl</file>
 <file>completion/dialogue.cwl</file>
 <file>completion/dichokey.cwl</file>
+<file>completion/dichromacy.cwl</file>
 <file>completion/dictsym.cwl</file>
 <file>completion/didec.cwl</file>
 <file>completion/diffcoeff.cwl</file>
@@ -2825,6 +2826,7 @@
 <file>completion/pagerange.cwl</file>
 <file>completion/pagesel.cwl</file>
 <file>completion/pageslts.cwl</file>
+<file>completion/palmer.cwl</file>
 <file>completion/panda.cwl</file>
 <file>completion/pandora.cwl</file>
 <file>completion/pangram.cwl</file>
@@ -3092,6 +3094,7 @@
 <file>completion/prooftrees.cwl</file>
 <file>completion/proofgraph.cwl</file>
 <file>completion/properties.cwl</file>
+<file>completion/propositions.cwl</file>
 <file>completion/protecteddef.cwl</file>
 <file>completion/protosem.cwl</file>
 <file>completion/pseudocode.cwl</file>
