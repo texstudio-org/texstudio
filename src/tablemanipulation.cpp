@@ -603,6 +603,7 @@ Token LatexTables::findColumn(QDocumentCursor &cur, Environment env)
             col=0; // set to min value
             ignoreUntilColumn=-1; // reset ignore column
             QDocumentLineHandle *dlh=doc->line(ln).handle();
+            if(!dlh) break; // no next line, so bail out
             dlh->lockForRead();
             tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
             dlh->unlock();
