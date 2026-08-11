@@ -462,6 +462,10 @@ void TableManipulationTest::remCol_data(){
         << "\\begin{tabular}{xy}\na&b\\\\\nc\\\\\ne&f&g\\\\\n\\end{tabular}\n"
         << 1 << 1
         << "\\begin{tabular}{x}\na\\\\\nc\\\\\ne&g\\\\\n\\end{tabular}\n";
+    QTest::newRow("rem col, last row without linebreak")
+        << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\n\\end{tabular}\n"
+        << 1 << 0
+        << "\\begin{tabular}{l}\nb\\\\\nd\\\\\nf\n\\end{tabular}\n";
 
 }
 void TableManipulationTest::remCol(){
