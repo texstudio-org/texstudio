@@ -398,7 +398,10 @@ void LatexTables::removeColumn(Environment env, const int lineNumber, const int 
         // move to next row
         // jump over &
         while(tkResult.length==1 || tkResult.length<0 /* first column*/){
-            if(tkResult.length>0) findNextColumn(cur,tkResult);
+            if(tkResult.length>0){
+                bool success=findNextColumn(cur,tkResult);
+                if(!success) break;
+            }
             tkResult = findColumn(cur, env);
             if(tkResult.length<0){
                 // no column separator found, run-away
