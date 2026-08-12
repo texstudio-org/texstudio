@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/07/26 for v16.27.0
+# Matthew Bertucci 2026/08/07 for v16.28.0
 
 #include:iftex
 
@@ -3071,6 +3071,7 @@ tplink
 tqdm
 traccar
 tradingview
+trae
 traefikmesh
 traefikproxy
 trailforks
@@ -3427,6 +3428,7 @@ zcool
 zdf
 zebpay
 zebratechnologies
+zectrix
 zedindustries
 zelle
 zenbrowser
@@ -3456,6 +3458,7 @@ zorin
 zotero
 zsh
 zulip
+zx
 zyte
 #endkeyvals
 

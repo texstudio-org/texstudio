@@ -1,10 +1,12 @@
 # xeCJKfntef package
 # Darcy Hu <hot123tea123@gmail.com> 2016
-#modified zepinglee 30 Jan 2021
-# updated 02 May 2022 for v3.8.8
+# modified zepinglee 30 Jan 2021
+# updated 11 August 2026 for v3.10.5
 
 #include:xeCJK
 #include:ulem
+#include:l3draw
+#include:accsupp
 
 # passes options to ulem
 #keyvals:\usepackage/xeCJKfntef#c

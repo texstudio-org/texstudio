@@ -1,5 +1,5 @@
 # eolang package
-# Matthew Bertucci 2025/12/17 for v0.22.0
+# Matthew Bertucci 2026/08/11 for v0.24.0
 
 #include:stmaryrd
 #include:amsmath
@@ -28,6 +28,7 @@
 tmpdir=%<path%>
 nocomments
 nodollar
+nocolor
 anonymous
 noshell
 #endkeyvals

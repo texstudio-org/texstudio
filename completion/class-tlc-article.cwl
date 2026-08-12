@@ -1,8 +1,9 @@
 # tlc-article class
-# Matthew Bertucci 1/29/2022 for v1.0.17
+# Matthew Bertucci 2026/08/11 for v1.2.42
 
 #include:geometry
 #include:multicol
+#include:multirow
 #include:lmodern
 #include:fontenc
 # fontenc loaded with T1 option
@@ -26,10 +27,12 @@
 #include:pdfpages
 #include:appendix
 #include:todonotes
+#include:ifthen
 #include:tocloft
 #include:fancyhdr
 #include:titling
 #include:lastpage
+#include:catchfile
 
 #keyvals:\documentclass/tlc-article#c
 a4paper
@@ -61,16 +64,24 @@ codegray#B
 codepurple#B
 backcolour#B
 
-\tlcDarkblue{text}
-\tlcBeginLandscape
-\tlcEndLandscape
-\tlcVersionPart{column}
 \ER#t
-\tlcVspace
-\inputIfExists{file}#i
-\tlcTitlePageAndTableOfContents{title%text}{author%text}{abstract%text}
-\tlcIsDefined{file}
+\tlcBeginLandscape
+\tlcDarkblue{text}
 \tlcDebug
+\tlcEndLandscape
+\tlcIsDefined{file}
+\tlcTitlePageAndTableOfContents{title%text}{author%text}{abstract%text}
+\tlcVersionPart{column}
+\tlcVspace
+
+\inputIfExists{file}#Si
+\tlcGetEnvironmentVariable[opt]{arg}#S
+\tlcGetEnvironmentVariable{arg}#S
+\useDefaultHeaderFooter#S
+\useLogoFile#S
+\useRuler#S
+\useTitle#S
+\useVersionFile#S
 
 # from T1 option of fontenc
 \DH#n

@@ -1,5 +1,5 @@
 # kpfonts-otf package
-# Matthew Bertucci 2025/11/03 for v0.71
+# Matthew Bertucci 2026/08/10 for v0.74
 
 #include:iftex
 #include:unicode-math
@@ -110,8 +110,6 @@ symbols
 \dashColon#m
 \dashleftarrow#m
 \dashrightarrow#m
-\diagdown#m
-\diagup#m
 \Diamond#m
 \diamondcdot#m
 \Diamonddotleft#m
@@ -260,6 +258,7 @@ symbols
 \shortparallelslant#m
 \smallblacktriangleleft#m
 \smallfrown#m
+\smallsetminus#m
 \smallsmile#m
 \smalltriangleleft#m
 \smalltriangleright#m
@@ -301,6 +300,7 @@ symbols
 \variiint#m
 \variint#m
 \varint#m
+\varmupzero#*m
 \varoiiintclockwise#m
 \varoiiintctrclockwise#m
 \varoiintclockwise#m
