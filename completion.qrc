@@ -3992,6 +3992,11 @@
 <file>completion/tikzlibrarythrough.cwl</file>
 <file>completion/tikzlibrarytikzlings.cwl</file>
 <file>completion/tikzlibrarytikzmark.cwl</file>
+<file>completion/tikzlibrarytikzphysics.cwl</file>
+<file>completion/tikzlibrarytikzphysics.core.cwl</file>
+<file>completion/tikzlibrarytikzphysics.mechanics.cwl</file>
+<file>completion/tikzlibrarytikzphysics.optics.cwl</file>
+<file>completion/tikzlibrarytikzphysics.surface.cwl</file>
 <file>completion/tikzlibrarytilings.cwl</file>
 <file>completion/tikzlibrarytilings.penrose.cwl</file>
 <file>completion/tikzlibrarytilings.polykite.cwl</file>
@@ -4042,6 +4047,7 @@
 <file>completion/tikz-palattice.cwl</file>
 <file>completion/tikzpeople.cwl</file>
 <file>completion/tikzpfeile.cwl</file>
+<file>completion/tikzphysics.cwl</file>
 <file>completion/tikzpingus.cwl</file>
 <file>completion/tikz-qtree.cwl</file>
 <file>completion/tikzquests.cwl</file>

@@ -1,5 +1,5 @@
 # runcode package
-# Matthew Bertucci 2026/06/15 for v2.6
+# Matthew Bertucci 2026/08/13 for v2.6.2
 
 #include:etoolbox
 #include:morewrites
@@ -56,6 +56,10 @@ inline
 \showChunk{language}{source file%file}
 \showChunk{language}{source file%file}[chunk id]
 \showChunk{language}{source file%file}[chunk id][begin mark][end mark]
+
+\writeChunk{language}{source file%file}
+\writeChunk{language}{source file%file}[chunk id]
+\writeChunk{language}{source file%file}[chunk id][begin mark][end mark]
 
 \runCodeIncOut{program}{source file%file}
 \runCodeIncOut{program}{source file%file}[run|cache]
@@ -260,7 +264,10 @@ bg#B
 \begin{codelisting}[number]#SV
 \end{codelisting}#S
 \checkZeroBytes{arg}#S
+\forcerunfalse#S
+\forceruntrue#S
 \generated#S
+\ifforcerun#S
 \ifinlnrun#S
 \ifminted#S
 \ifnotnohup#S
@@ -289,9 +296,4 @@ bg#B
 \thecodeOutput#S
 \theportNo#S
 \tmpname#S
-\writeChunk{arg1}{arg2}#S
-\writeChunk{arg1}{arg2}[opt1][opt2]#S
-\writeChunk{arg1}{arg2}[opt]#S
-\ifforcerun#S
-\forceruntrue#S
-\forcerunfalse#S
+\WriteChunkScan{arg1}{arg2}{arg3}{arg4}#S
