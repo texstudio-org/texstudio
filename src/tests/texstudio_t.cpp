@@ -173,3 +173,40 @@ void TexStudioTest::checkIncludesCached(){
     QEQUAL(synError,false);
     QEQUAL(refFound,refPresent);
 }
+
+void TexStudioTest::normalCompletion_data(){
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<int>("line");
+    QTest::addColumn<int>("column");
+
+    QTest::newRow("command") << QStringLiteral("\\be") << 0 << 3;
+    QTest::newRow("environment") << QStringLiteral("\\begin{doc") << 0 << 11;
+}
+
+void TexStudioTest::normalCompletion(){
+    QFETCH(QString, text);
+    QFETCH(int, line);
+    QFETCH(int, column);
+
+    Texstudio *txs = txsInstance;
+    QVERIFY2(txs, "The Texstudio instance must exist for completion tests");
+
+    LatexEditorView *edView = txs->currentEditorView();
+    if (!edView) {
+        QVERIFY2(QMetaObject::invokeMethod(txs, "fileNewInternal", Qt::DirectConnection), "A new document should be created for completion tests");
+        edView = txs->currentEditorView();
+    }
+    QVERIFY2(edView, "A LatexEditorView must be available for completion tests");
+    QVERIFY2(edView->editor, "The editor should be created before invoking completion");
+
+    edView->editor->setText(text, false);
+    edView->editor->setCursor(edView->editor->document()->cursor(line, column));
+    LatexEditorView::getCompleter()->close();
+    QCoreApplication::processEvents();
+
+    QVERIFY2(!LatexEditorView::getCompleter()->isVisible(), "The completer should start closed before invoking normal completion");
+    QVERIFY2(QMetaObject::invokeMethod(txs, "normalCompletion", Qt::DirectConnection), "normalCompletion should be invokable");
+    QCoreApplication::processEvents();
+    QVERIFY2(LatexEditorView::getCompleter()->isVisible(), "normalCompletion should open the completion popup");
+    QVERIFY2(LatexEditorView::getCompleter()->countWords() > 0, "normalCompletion should produce completion entries");
+}

@@ -13,6 +13,8 @@ private slots:
     void checkIncludes();
     void checkIncludesCached_data();
     void checkIncludesCached();
+    void normalCompletion_data();
+    void normalCompletion();
 
 private:
     bool allTests;
