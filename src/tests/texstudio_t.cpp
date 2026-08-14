@@ -193,7 +193,8 @@ void TexStudioTest::normalCompletion(){
 
     LatexEditorView *edView = txs->currentEditorView();
     if (!edView) {
-        edView = txs->load(QString(TESTDATADIR) + "/simple_document.tex");
+        QVERIFY2(QMetaObject::invokeMethod(txs, "fileNewInternal", Qt::DirectConnection), "A new document should be created for completion tests");
+        edView = txs->currentEditorView();
     }
     QVERIFY2(edView, "A LatexEditorView must be available for completion tests");
     QVERIFY2(edView->editor, "The editor should be created before invoking completion");
@@ -201,9 +202,11 @@ void TexStudioTest::normalCompletion(){
     edView->editor->setText(text, false);
     edView->editor->setCursor(edView->editor->document()->cursor(line, column));
     LatexEditorView::getCompleter()->close();
+    QCoreApplication::processEvents();
 
     QVERIFY2(!LatexEditorView::getCompleter()->isVisible(), "The completer should start closed before invoking normal completion");
     QVERIFY2(QMetaObject::invokeMethod(txs, "normalCompletion", Qt::DirectConnection), "normalCompletion should be invokable");
+    QCoreApplication::processEvents();
     QVERIFY2(LatexEditorView::getCompleter()->isVisible(), "normalCompletion should open the completion popup");
     QVERIFY2(LatexEditorView::getCompleter()->countWords() > 0, "normalCompletion should produce completion entries");
 }
