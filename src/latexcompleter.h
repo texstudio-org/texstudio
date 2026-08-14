@@ -107,6 +107,7 @@ public slots:
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
+    friend class TexStudioTest;
 	static LatexCompleterConfig *config;
 	const LatexParser &latexParser;
 	int maxWordLen;

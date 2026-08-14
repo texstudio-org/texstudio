@@ -178,15 +178,18 @@ void TexStudioTest::normalCompletion_data(){
     QTest::addColumn<QString>("text");
     QTest::addColumn<int>("line");
     QTest::addColumn<int>("column");
+    QTest::addColumn<LatexCompleter::CompletionFlags>("flags");
 
-    QTest::newRow("command") << QStringLiteral("\\be") << 0 << 3;
-    QTest::newRow("environment") << QStringLiteral("\\begin{doc") << 0 << 11;
+    QTest::newRow("command") << QStringLiteral("\\be") << 0 << 3 << LatexCompleter::CompletionFlags();
+    QTest::newRow("environment") << QStringLiteral("\\begin{doc") << 0 << 11 << LatexCompleter::CompletionFlags();
+    QTest::newRow("ref") << QStringLiteral("\\label{test}\\ref{t") << 0 << 18 << LatexCompleter::CompletionFlags(LatexCompleter::CF_FORCE_REF);
 }
 
 void TexStudioTest::normalCompletion(){
     QFETCH(QString, text);
     QFETCH(int, line);
     QFETCH(int, column);
+    QFETCH(LatexCompleter::CompletionFlags, flags);
 
     Texstudio *txs = txsInstance;
     QVERIFY2(txs, "The Texstudio instance must exist for completion tests");
@@ -209,4 +212,33 @@ void TexStudioTest::normalCompletion(){
     QCoreApplication::processEvents();
     QVERIFY2(LatexEditorView::getCompleter()->isVisible(), "normalCompletion should open the completion popup");
     QVERIFY2(LatexEditorView::getCompleter()->countWords() > 0, "normalCompletion should produce completion entries");
+    QVERIFY2(gatherCompletionFlags() == flags, "normalCompletion should set the correct completion flags");
+    LatexEditorView::getCompleter()->close();
+}
+/*!
+ * \brief recreate the completion flags from the current configuration
+ * Converts the current configuration into a set of completion flags that can be used to control the behavior of the completion engine.
+ * \return
+ */
+LatexCompleter::CompletionFlags TexStudioTest::gatherCompletionFlags()
+{
+    LatexCompleter *completer = LatexEditorView::getCompleter();
+    LatexCompleter::CompletionFlags flags;
+    if(completer){
+        if(completer->forcedCite)
+            flags |= LatexCompleter::CF_FORCE_CITE;
+        if(completer->forcedRef)
+            flags |= LatexCompleter::CF_FORCE_REF;
+        if(completer->forcedPackage)
+            flags |= LatexCompleter::CF_FORCE_PACKAGE;
+        if(completer->forcedGraphic)
+            flags |= LatexCompleter::CF_FORCE_GRAPHIC;
+        if(completer->forcedKeyval)
+            flags |= LatexCompleter::CF_FORCE_KEYVAL;
+        if(completer->forcedSpecialOption)
+            flags |= LatexCompleter::CF_FORCE_SPECIALOPTION;
+        if(completer->forcedLength)
+            flags |= LatexCompleter::CF_FORCE_LENGTH;
+    }
+    return flags;
 }

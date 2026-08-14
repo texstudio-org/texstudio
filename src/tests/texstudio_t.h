@@ -2,6 +2,7 @@
 #define TEXSTUDIOTEST_H
 
 #include "mostQtHeaders.h"
+#include "latexcompleter.h"
 
 class TexStudioTest : public QObject
 {
@@ -18,6 +19,7 @@ private slots:
 
 private:
     bool allTests;
+    LatexCompleter::CompletionFlags gatherCompletionFlags();
 };
 
 #endif // TEXSTUDIOTEST_H
