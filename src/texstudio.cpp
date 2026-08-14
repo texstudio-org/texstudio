@@ -5304,7 +5304,7 @@ void Texstudio::normalCompletion()
 
 		bool existValues = completer->existValues();
 		// check if c is after keyval
-		if (col > tk.start + tk.length) {
+        if (col >= tk.start + tk.length && tk.length > 0) {
 			QString interposer = word.mid(tk.start + tk.length, col - tk.start - tk.length);
 			if (!interposer.contains(",") && interposer.contains("=")) {
 				//assume val for being after key
