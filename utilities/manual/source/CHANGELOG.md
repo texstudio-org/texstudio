@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.9.8
+
+- 
+
 ## TeXstudio 4.9.7
 
 - use fully asynchronous command execution for latex commands. This should remedy some rare stability issues.
