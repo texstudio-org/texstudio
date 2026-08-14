@@ -16,14 +16,15 @@ INCLUDEPATH += . \
     src/pdfviewer/synctex \
     src/libqmarkedscrollbar/src \
     src/adwaita-qt/style \
+    src/adwaita-qt/style/animations \
+    src/adwaita-qt/style/debug \
     src/debug \
     src/latexparser \
     src/qtsingleapplication \
     src/symbolpanel \
     src/hunspell \
-    src/tests \
-    src/zlib-1.3.1
-QT += core gui widgets network xml concurrent uitools printsupport svg qml testlib multimedia multimediawidgets
+    src/tests
+QT += core gui widgets network xml concurrent uitools printsupport svg qml testlib multimedia multimediawidgets dbus
 
 CONFIG += link_pkgconfig
 packagesExist(poppler-qt5) {
@@ -194,50 +195,8 @@ HEADERS += src/aboutdialog.h \
            src/symbolpanel/symbollistmodel.h \
            src/symbolpanel/symbollistview.h \
            src/symbolpanel/symbolwidget.h \
-           src/tests/buildmanager_t.h \
-           src/tests/codesnippet_t.h \
-           src/tests/encoding_t.h \
-           src/tests/execprogram_t.h \
-           src/tests/git_t.h \
-           src/tests/help_t.h \
-           src/tests/latexcompleter_t.h \
-           src/tests/latexdocument_t.h \
-           src/tests/latexeditorview_bm.h \
-           src/tests/latexeditorview_t.h \
-           src/tests/latexoutputfilter_t.h \
-           src/tests/latexparser_t.h \
-           src/tests/latexparsing_t.h \
-           src/tests/latexstyleparser_t.h \
-           src/tests/qcetestutil.h \
-           src/tests/qdocumentcursor_t.h \
-           src/tests/qdocumentline_t.h \
-           src/tests/qdocumentsearch_t.h \
-           src/tests/qeditor_t.h \
-           src/tests/qsearchreplacepanel_t.h \
-           src/tests/scriptengine_t.h \
-           src/tests/smallUsefulFunctions_t.h \
-           src/tests/structureview_t.h \
-           src/tests/syntaxcheck_t.h \
-           src/tests/tablemanipulation_t.h \
-           src/tests/testmanager.h \
-           src/tests/testutil.h \
-           src/tests/texstudio_t.h \
-           src/tests/updatechecker_t.h \
-           src/tests/usermacro_t.h \
-           src/tests/utilsui_t.h \
-           src/tests/utilsversion_t.h \
            src/xkb/X11Exception.h \
            src/xkb/XKeyboard.h \
-           src/zlib-1.3.1/crc32.h \
-           src/zlib-1.3.1/deflate.h \
-           src/zlib-1.3.1/gzguts.h \
-           src/zlib-1.3.1/inffast.h \
-           src/zlib-1.3.1/inffixed.h \
-           src/zlib-1.3.1/inflate.h \
-           src/zlib-1.3.1/inftrees.h \
-           src/zlib-1.3.1/trees.h \
-           src/zlib-1.3.1/zlib.h \
-           src/zlib-1.3.1/zutil.h \
            src/adwaita-qt/style/adwaita.h \
            src/adwaita-qt/style/adwaitaaddeventfilter.h \
            src/adwaita-qt/style/adwaitadebug.h \
@@ -299,8 +258,6 @@ HEADERS += src/aboutdialog.h \
            src/quazip/qztest/testquazipfile.h \
            src/quazip/qztest/testquazipfileinfo.h \
            src/quazip/qztest/testquazipnewinfo.h \
-           src/zlib-1.3.1/examples/gzlog.h \
-           src/zlib-1.3.1/examples/zran.h \
            src/adwaita-qt/style/animations/adwaitaanimation.h \
            src/adwaita-qt/style/animations/adwaitaanimationdata.h \
            src/adwaita-qt/style/animations/adwaitaanimations.h \
@@ -354,21 +311,6 @@ HEADERS += src/aboutdialog.h \
            src/qcodeedit/lib/widgets/qsearchreplacepanel.h \
            src/qcodeedit/lib/widgets/qsimplecolorpicker.h \
            src/qcodeedit/lib/widgets/qstatuspanel.h \
-           src/zlib-1.3.1/contrib/blast/blast.h \
-           src/zlib-1.3.1/contrib/infback9/infback9.h \
-           src/zlib-1.3.1/contrib/infback9/inffix9.h \
-           src/zlib-1.3.1/contrib/infback9/inflate9.h \
-           src/zlib-1.3.1/contrib/infback9/inftree9.h \
-           src/zlib-1.3.1/contrib/iostream/zfstream.h \
-           src/zlib-1.3.1/contrib/iostream2/zstream.h \
-           src/zlib-1.3.1/contrib/iostream3/zfstream.h \
-           src/zlib-1.3.1/contrib/minizip/crypt.h \
-           src/zlib-1.3.1/contrib/minizip/ioapi.h \
-           src/zlib-1.3.1/contrib/minizip/iowin32.h \
-           src/zlib-1.3.1/contrib/minizip/mztools.h \
-           src/zlib-1.3.1/contrib/minizip/unzip.h \
-           src/zlib-1.3.1/contrib/minizip/zip.h \
-           src/zlib-1.3.1/contrib/puff/puff.h
 FORMS += src/aboutdialog.ui \
          src/arraydialog.ui \
          src/bibtexdialog.ui \
@@ -469,7 +411,6 @@ SOURCES += src/aboutdialog.cpp \
            src/styleanimator.cpp \
            src/stylehelper.cpp \
            src/svn.cpp \
-           src/svn_revision.cpp \
            src/syntaxcheck.cpp \
            src/tabbingdialog.cpp \
            src/tabdialog.cpp \
@@ -534,49 +475,7 @@ SOURCES += src/aboutdialog.cpp \
            src/symbolpanel/symbollistmodel.cpp \
            src/symbolpanel/symbollistview.cpp \
            src/symbolpanel/symbolwidget.cpp \
-           src/tests/codesnippet_t.cpp \
-           src/tests/encoding_t.cpp \
-           src/tests/execprogram_t.cpp \
-           src/tests/git_t.cpp \
-           src/tests/latexcompleter_t.cpp \
-           src/tests/latexdocument_t.cpp \
-           src/tests/latexeditorview_bm.cpp \
-           src/tests/latexeditorview_t.cpp \
-           src/tests/latexoutputfilter_t.cpp \
-           src/tests/latexparser_t.cpp \
-           src/tests/latexparsing_t.cpp \
-           src/tests/latexstyleparser_t.cpp \
-           src/tests/qcetestutil.cpp \
-           src/tests/qdocumentcursor_t.cpp \
-           src/tests/qdocumentline_t.cpp \
-           src/tests/qdocumentsearch_t.cpp \
-           src/tests/qeditor_t.cpp \
-           src/tests/qsearchreplacepanel_t.cpp \
-           src/tests/scriptengine_t.cpp \
-           src/tests/smallUsefulFunctions_t.cpp \
-           src/tests/structureview_t.cpp \
-           src/tests/syntaxcheck_t.cpp \
-           src/tests/tablemanipulation_t.cpp \
-           src/tests/testmanager.cpp \
-           src/tests/testutil.cpp \
-           src/tests/texstudio_t.cpp \
-           src/tests/usermacro_t.cpp \
            src/xkb/XKeyboard.cpp \
-           src/zlib-1.3.1/adler32.c \
-           src/zlib-1.3.1/compress.c \
-           src/zlib-1.3.1/crc32.c \
-           src/zlib-1.3.1/deflate.c \
-           src/zlib-1.3.1/gzclose.c \
-           src/zlib-1.3.1/gzlib.c \
-           src/zlib-1.3.1/gzread.c \
-           src/zlib-1.3.1/gzwrite.c \
-           src/zlib-1.3.1/infback.c \
-           src/zlib-1.3.1/inffast.c \
-           src/zlib-1.3.1/inflate.c \
-           src/zlib-1.3.1/inftrees.c \
-           src/zlib-1.3.1/trees.c \
-           src/zlib-1.3.1/uncompr.c \
-           src/zlib-1.3.1/zutil.c \
            src/adwaita-qt/style/adwaitaaddeventfilter.cpp \
            src/adwaita-qt/style/adwaitahelper.cpp \
            src/adwaita-qt/style/adwaitamnemonics.cpp \
@@ -626,18 +525,6 @@ SOURCES += src/aboutdialog.cpp \
            src/quazip/qztest/testquazipfile.cpp \
            src/quazip/qztest/testquazipfileinfo.cpp \
            src/quazip/qztest/testquazipnewinfo.cpp \
-           src/zlib-1.3.1/examples/enough.c \
-           src/zlib-1.3.1/examples/fitblk.c \
-           src/zlib-1.3.1/examples/gun.c \
-           src/zlib-1.3.1/examples/gzappend.c \
-           src/zlib-1.3.1/examples/gzjoin.c \
-           src/zlib-1.3.1/examples/gzlog.c \
-           src/zlib-1.3.1/examples/gznorm.c \
-           src/zlib-1.3.1/examples/zpipe.c \
-           src/zlib-1.3.1/examples/zran.c \
-           src/zlib-1.3.1/test/example.c \
-           src/zlib-1.3.1/test/infcover.c \
-           src/zlib-1.3.1/test/minigzip.c \
            src/adwaita-qt/style/animations/adwaitaanimation.cpp \
            src/adwaita-qt/style/animations/adwaitaanimationdata.cpp \
            src/adwaita-qt/style/animations/adwaitaanimations.cpp \
@@ -686,25 +573,6 @@ SOURCES += src/aboutdialog.cpp \
            src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp \
            src/qcodeedit/lib/widgets/qsimplecolorpicker.cpp \
            src/qcodeedit/lib/widgets/qstatuspanel.cpp \
-           src/zlib-1.3.1/contrib/blast/blast.c \
-           src/zlib-1.3.1/contrib/infback9/infback9.c \
-           src/zlib-1.3.1/contrib/infback9/inftree9.c \
-           src/zlib-1.3.1/contrib/iostream/test.cpp \
-           src/zlib-1.3.1/contrib/iostream/zfstream.cpp \
-           src/zlib-1.3.1/contrib/iostream2/zstream_test.cpp \
-           src/zlib-1.3.1/contrib/iostream3/test.cc \
-           src/zlib-1.3.1/contrib/iostream3/zfstream.cc \
-           src/zlib-1.3.1/contrib/minizip/ioapi.c \
-           src/zlib-1.3.1/contrib/minizip/iowin32.c \
-           src/zlib-1.3.1/contrib/minizip/miniunz.c \
-           src/zlib-1.3.1/contrib/minizip/minizip.c \
-           src/zlib-1.3.1/contrib/minizip/mztools.c \
-           src/zlib-1.3.1/contrib/minizip/unzip.c \
-           src/zlib-1.3.1/contrib/minizip/zip.c \
-           src/zlib-1.3.1/contrib/puff/puff.c \
-           src/zlib-1.3.1/contrib/puff/pufftest.c \
-           src/zlib-1.3.1/contrib/testzlib/testzlib.c \
-           src/zlib-1.3.1/contrib/untgz/untgz.c
 RESOURCES += completion.qrc \
              images.qrc \
              symbols.qrc \

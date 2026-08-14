@@ -212,7 +212,11 @@ QString generateSVG(QString latexFile, int index, QString symbolGroupName) {
 	file.setAutoRemove(false);
 	if (file.open()) {
 		QTextStream t(&file);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 		t.setEncoding(QStringConverter::Utf8);
+#else
+		t.setCodec("UTF-8");
+#endif
 		t << latexFile;
 
 		texfile = file.fileName();
@@ -299,7 +303,11 @@ QString generatePNG(QString latexFile, int index, QString symbolGroupName, QStri
 	file.setAutoRemove(false);
 	if (file.open()) {
 		QTextStream t(&file);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 		t.setEncoding(QStringConverter::Utf8);
+#else
+		t.setCodec("UTF-8");
+#endif
 		t << latexFile;
 
 		texfile = file.fileName();
