@@ -9,6 +9,7 @@
 - have Find Usages results of labels ordered by line number [#4575](https://github.com/texstudio-org/texstudio/issues/4575)
 - allow expanding structures from all loaded files [#4565](https://github.com/texstudio-org/texstudio/issues/4565)
 - fix freeze/crash on removeColumn [#4590](https://github.com/texstudio-org/texstudio/issues/4590)
+- fix keyVal values completer trigger [#4595](https://github.com/texstudio-org/texstudio/issues/4595)
 
 ## TeXstudio 4.9.6
 
