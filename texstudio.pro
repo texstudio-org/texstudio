@@ -118,7 +118,6 @@ HEADERS += src/aboutdialog.h \
            src/smallUsefulFunctions.h \
            src/spellerdialog.h \
            src/spellerutility.h \
-           src/structuretreeview.h \
            src/styleanimator.h \
            src/stylehelper.h \
            src/svn.h \
@@ -467,7 +466,6 @@ SOURCES += src/aboutdialog.cpp \
            src/smallUsefulFunctions.cpp \
            src/spellerdialog.cpp \
            src/spellerutility.cpp \
-           src/structuretreeview.cpp \
            src/styleanimator.cpp \
            src/stylehelper.cpp \
            src/svn.cpp \
