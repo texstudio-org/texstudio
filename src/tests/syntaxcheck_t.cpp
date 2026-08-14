@@ -594,5 +594,54 @@ void SyntaxCheckTest::checkMultilineFormula(){
     edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
     edView->getConfig()->realtimeChecking = realtimeChecking;
 }
+
+void SyntaxCheckTest::checkTikzNodes_data()
+{
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<bool>("error");
+
+    QTest::newRow("semicolon present")
+        <<"\\usepackage{tikz}\n\\begin{tikzpicture}\n\\node {a};\n\\end{tikzpicture}"<<false;
+    QTest::newRow("semicolon missing")
+        <<"\\usepackage{tikz}\n\\begin{tikzpicture}\n\\node {a}\n\\end{tikzpicture}"<<true;
+    QTest::newRow("semicolon missing, multi nodes")
+        <<"\\usepackage{tikz}\n\\begin{tikzpicture}\n\\node {a}\n\\node {b};\n\\end{tikzpicture}"<<true;
+    QTest::newRow("semicolon present, nested nodes")
+        <<"\\usepackage{tikz}\n\\begin{tikzpicture}\n\\node (0,0) {a \\tikz \\node{b};};\n\\end{tikzpicture}"<<false;
+    QTest::newRow("semicolon missing outer, nested nodes")
+        <<"\\usepackage{tikz}\n\\begin{tikzpicture}\n\\node (0,0) {a \\tikz \\node{b};}\n\\end{tikzpicture}"<<true;
+    QTest::newRow("semicolon missing inner, nested nodes")
+        <<"\\usepackage{tikz}\n\\begin{tikzpicture}\n\\node (0,0) {a \\tikz \\node{b}};\n\\end{tikzpicture}"<<true;
+    QTest::newRow("semicolon present, nested env")
+        <<"\\usepackage{tikz}\n\\begin{tikzpicture}\n\\node (0,0) {a \\begin{large} b \\end{large}};\n\\end{tikzpicture}"<<false;
+
+}
+
+void SyntaxCheckTest::checkTikzNodes()
+{
+    QFETCH(QString, text);
+    QFETCH(bool, error);
+
+    bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
+    bool realtimeChecking = edView->getConfig()->realtimeChecking;
+
+    edView->getConfig()->inlineSyntaxChecking = true;
+    edView->getConfig()->realtimeChecking = true;
+
+    edView->editor->setText(text, false);
+    LatexDocument *doc=edView->getDocument();
+    doc->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+
+    bool errorFlag=false;
+    for(int i=0;i<doc->lines();++i){
+        QDocumentLineHandle *dlh=doc->line(i).handle();
+        QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);
+        errorFlag|=!formats.isEmpty();
+    }
+    QEQUAL(errorFlag,error);
+
+    edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
+    edView->getConfig()->realtimeChecking = realtimeChecking;
+}
 #endif
 
