@@ -4,7 +4,37 @@
 
 TEMPLATE = app
 TARGET = texstudio
-INCLUDEPATH += .
+INCLUDEPATH += . \
+    src \
+    src/qcodeedit/lib \
+    src/qcodeedit/lib/document \
+    src/qcodeedit/lib/widgets \
+    src/qcodeedit/lib/qnfa \
+    src/quazip \
+    src/quazip/quazip \
+    src/pdfviewer \
+    src/pdfviewer/synctex \
+    src/libqmarkedscrollbar/src \
+    src/adwaita-qt/style \
+    src/debug \
+    src/latexparser \
+    src/qtsingleapplication \
+    src/symbolpanel \
+    src/hunspell \
+    src/tests \
+    src/zlib-1.3.1
+QT += core gui widgets network xml concurrent uitools printsupport svg qml testlib multimedia multimediawidgets
+
+CONFIG += link_pkgconfig
+packagesExist(poppler-qt5) {
+    PKGCONFIG += poppler-qt5 poppler-cpp
+} else {
+    DEFINES += NO_POPPLER_PREVIEW
+}
+packagesExist(qtermwidget5) {
+    DEFINES += INTERNAL_TERMINAL
+    PKGCONFIG += qtermwidget5
+}
 
 # You can make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
