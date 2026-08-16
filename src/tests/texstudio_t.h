@@ -3,7 +3,7 @@
 
 #include "mostQtHeaders.h"
 #include "latexcompleter.h"
-
+Q_DECLARE_METATYPE(LatexCompleter::CompletionFlags)
 class TexStudioTest : public QObject
 {
     Q_OBJECT
