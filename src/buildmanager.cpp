@@ -1770,7 +1770,7 @@ void BuildManager::emitEndRunningSubCommandFromProcessX(int)
 void BuildManager::runNextCommandInternalAsync()
 {
     if(m_expandedCommands.commands.isEmpty()) {
-        emit endRunningCommands(m_expandedCommands.primaryCommand, false, false, false);
+        emit endRunningCommands(m_expandedCommands.primaryCommand, false, true, false); // specultively assume that pdf could have been changed
         return;
     }
     CommandToRun cur = m_expandedCommands.commands.first();
@@ -1778,7 +1778,7 @@ void BuildManager::runNextCommandInternalAsync()
     while (cur.command.isEmpty() || testAndRunInternalCommandAsync(cur.command, m_mainFile)){
         m_expandedCommands.commands.removeFirst();
         if(m_expandedCommands.commands.isEmpty()) {
-            emit endRunningCommands(m_expandedCommands.primaryCommand, false, false, false);
+            emit endRunningCommands(m_expandedCommands.primaryCommand, false, true, false); // specultively assume that pdf could have been changed
             return;
         }
         cur = m_expandedCommands.commands.first();

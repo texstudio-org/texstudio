@@ -6856,10 +6856,12 @@ void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool p
 	Q_UNUSED(commandMain)
 	Q_UNUSED(async)
 	if (pdf) {
-		runningPDFCommands--;
+        runningPDFCommands--;
 #ifndef NO_POPPLER_PREVIEW
-		if (runningPDFCommands <= 0)
+        if (runningPDFCommands <= 0){
 			PDFDocument::isCompiling = false;
+            runningPDFCommands=0;
+        }
 #endif
 	}
 	setStatusMessageProcess(QString(" %1 ").arg(tr("Ready")));
