@@ -2645,6 +2645,7 @@
 <file>completion/nameref.cwl</file>
 <file>completion/na-position.cwl</file>
 <file>completion/natbib.cwl</file>
+<file>completion/natded.cwl</file>
 <file>completion/nath.cwl</file>
 <file>completion/natmove.cwl</file>
 <file>completion/navigator.cwl</file>
