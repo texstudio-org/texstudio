@@ -5272,6 +5272,45 @@ void QEditor::preInsertUnindent(QDocumentCursor& c, const QString& s, int additi
 	if ( off > 0 )
 		c.movePosition(off, QDocumentCursor::NextCharacter);
 }
+/*!
+ * \brief remove tabs if selection cursor starts at end of tabs but before first non-space character
+ * \return selected text without common tabs
+ */
+QString QEditor::getSelectionWithoutIndentation() const
+{
+    QString text = m_cursor.selectedText();
+    // check if start is after tabs and every line has the same number of tabs at the beginning, then remove them
+    if (text.contains('\n')) {
+        QStringList lines = text.split('\n');
+        QString indent;
+        // check how many tabs are before the starting cursor
+        int ln,col;
+        m_cursor.beginBoundary(ln,col);
+        if(col>0){
+            QString line = m_doc->line(ln).text();
+            indent=line.left(col);
+            // check if characters in indent are \t or space only
+            if(!std::all_of(indent.constBegin(),indent.constEnd(),[](QChar c) {return c.isSpace();})){
+                indent.clear();
+            }
+        }
+        if (indent.size()>0) {
+            bool allLinesHaveTabs = true;
+            for (int i = 1; i < lines.size(); ++i) {
+                if(lines[i].startsWith(indent)){
+                    lines[i].remove(0, indent.size());
+                }else{
+                    allLinesHaveTabs = false;
+                    break;
+                }
+            }
+            if (allLinesHaveTabs) {
+                text = lines.join('\n');
+            }
+        }
+    }
+    return text;
+}
 
 /*!
 	\brief Insert some text at a given cursor position
@@ -6048,8 +6087,9 @@ QMimeData* QEditor::createMimeDataFromSelection() const
 	}
 
 	if ( m_mirrors.isEmpty() )
-	{
-		d->setText(m_cursor.selectedText());
+    {
+        const QString text=getSelectionWithoutIndentation();
+        d->setText(text);
 	} else {
 		// Multiple cursors. Use QMap to have the texts are ordered by line number.
 		// Ordering by m_mirrors, would be selection order, which may be unexpected.

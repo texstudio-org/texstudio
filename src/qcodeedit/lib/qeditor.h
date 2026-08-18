@@ -633,6 +633,7 @@ public slots:
 		
 	protected:
 		void preInsertUnindent(QDocumentCursor& c, const QString& text, int additionalUnindent);
+        QString getSelectionWithoutIndentation() const;
 
 	public slots:
 		void insertText(QDocumentCursor& c, const QString& text);
