@@ -5572,10 +5572,12 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
                 // >....a
                 // >|...c (and insert '....b\n'
             {
-                //c.insertText(indent);
-                //if(i>0 || flag(WeakIndent))
-                newText.append(constIndent);  // indent is taken from previous line
-                newText.append(indent);
+                if (!flag(WeakIndent)) {
+                    // Keep Indentation preserves the whitespace already present in the pasted
+                    // content, so the destination line's indent must not be prepended here.
+                    newText.append(constIndent);  // indent is taken from previous line
+                    newText.append(indent);
+                }
             }
 
             //preInsertUnindent(c, l, additionalUnindent);

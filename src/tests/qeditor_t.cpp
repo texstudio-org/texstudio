@@ -731,6 +731,12 @@ void QEditorTest::indentation_data(){
 		<< "\tbaz\n"
 		<< "\tfoo\n\tbaz\n\tbar\n";
 
+	QTest::newRow("pasting indented block on indented line weak")
+		<< "  foo\n  bar\n"
+		<< true << 1 << 0 << -1 << -1
+		<< "  baz\n  qux\n"
+		<< "  foo\n  baz\n  qux\n  bar\n";
+
 	QTest::newRow("pasting indented text with newline at end")
 		<< "\tfoo\n\tbar\n"
 		<< false << 1 << 0 << -1 << -1
