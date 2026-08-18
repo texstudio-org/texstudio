@@ -5288,11 +5288,9 @@ QString QEditor::getSelectionWithoutIndentation() const
         m_cursor.beginBoundary(ln,col);
         if(col>0){
             QString line = m_doc->line(ln).text();
-            indent=line.left(col);
-            // check if characters in indent are \t or space only
-            if(!std::all_of(indent.constBegin(),indent.constEnd(),[](QChar c) {return c.isSpace();})){
-                indent.clear();
-            }
+            int numberOfTabs=0;
+            for(numberOfTabs=0; numberOfTabs<col && line.at(numberOfTabs).isSpace(); ++numberOfTabs);
+            indent=line.left(numberOfTabs);
         }
         if (indent.size()>0) {
             bool allLinesHaveTabs = true;
