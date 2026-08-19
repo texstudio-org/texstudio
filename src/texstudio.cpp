@@ -5700,7 +5700,7 @@ void Texstudio::openFromExplorer(const QModelIndex &index)
 {
     QFileInfo fi = fileExplorerModel->fileInfo(index);
     if (fi.isFile() && fi.isReadable()) {
-        openExternalFile(fi.absoluteFilePath());
+        load(fi.absoluteFilePath());
     }
 }
 /*!
