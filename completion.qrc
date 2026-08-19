@@ -2982,6 +2982,7 @@
 <file>completion/PixelArtTikz.cwl</file>
 <file>completion/pkgloader.cwl</file>
 <file>completion/pl.cwl</file>
+<file>completion/pl46-fonts.cwl</file>
 <file>completion/placeat.cwl</file>
 <file>completion/placeins.cwl</file>
 <file>completion/plaintex.cwl</file>
@@ -4381,6 +4382,7 @@
 <file>completion/xkeymask.cwl</file>
 <file>completion/xkeyval.cwl</file>
 <file>completion/xkvview.cwl</file>
+<file>completion/xlistings.cwl</file>
 <file>completion/xlop.cwl</file>
 <file>completion/xltabular.cwl</file>
 <file>completion/xltxtra.cwl</file>
