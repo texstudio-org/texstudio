@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="20"/>
         <source>Search in previous conversations</source>
-        <translation>Cerca in conversazioni precedenti</translation>
+        <translation>Cerca nelle conversazioni precedenti</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="24"/>
@@ -14,14 +14,14 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="70"/>
         <source>Enter your query here</source>
-        <translation>Inserisci qui la tua query</translation>
+        <translation>Inserisci una query</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="187"/>
         <location filename="../src/aichatassistant.cpp" line="456"/>
         <location filename="../src/aichatassistant.cpp" line="531"/>
         <source>Send Query to AI provider</source>
-        <translation>Invia la Query ad una piattaforma AI</translation>
+        <translation>Invia query alla piattaforma AI</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="84"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="77"/>
         <source>Send Query to AI provider (ctrl+enter)</source>
-        <translation>Invia query al provider AI (ctrl+invio)</translation>
+        <translation>Invia query alla piattaforma AI (ctrl+invio)</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="90"/>
@@ -41,22 +41,22 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="115"/>
         <source>AI chat assistant</source>
-        <translation>Assistente di chat AI</translation>
+        <translation>Assistente AI</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="314"/>
         <source>Stop current query !</source>
-        <translation>Ferma la query corrente !</translation>
+        <translation>Annulla la query attuale!</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="369"/>
         <source>System prompt can&apos;t be altered mid-conversation</source>
-        <translation>Il prompt del sistema non può essere modificato durante la conversazione</translation>
+        <translation>Il prompt di sistema non può essere modificato durante la conversazione</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="373"/>
         <source>System prompt</source>
-        <translation>Richiesta di sistema</translation>
+        <translation>Prompt di sistema</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="388"/>
@@ -95,7 +95,7 @@
     <message>
         <location filename="../src/aichatassistant.cpp" line="562"/>
         <source>Insert code into text</source>
-        <translation>Inserisci il codice nel testo</translation>
+        <translation>Inserisci codice nel testo</translation>
     </message>
     <message>
         <location filename="../src/aichatassistant.cpp" line="591"/>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="67"/>
         <source>html conversion: </source>
-        <translation>Conversione in HTML: </translation>
+        <translation>nel formato HTML: </translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
@@ -183,7 +183,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="73"/>
         <source>TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</source>
-        <translation>TeXstudio utilizza To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</translation>
+        <translation>TeXstudio utilizza To Title Case (Licenza MIT, Copyright (c) 2008-2013 David Gouch).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="74"/>
@@ -193,7 +193,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="75"/>
         <source>TeXstudio uses icons from the Crystal Project (LGPL), the Oxygen icon theme (CC-BY-SA 3.0) and the Colibre icon theme (CC0) of LibreOffice.</source>
-        <translation>TeXstudio usa icone tratte dal Crystal Project (LGPL), il tema dell&apos;icona Oxygen (CC-BY-SA 3.0) e il tema dell&apos;icona Colibre (CC0) di LibreOffice.</translation>
+        <translation>TeXstudio contiene icone tratte dal Crystal Project (LGPL), il tema Oxygen (CC-BY-SA 3.0) e il tema Colibre (CC0) di LibreOffice.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="76"/>
@@ -213,7 +213,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="80"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 3 as published by the Free Software Foundation.</source>
-        <translation>Questo programma viene concesso in licenza secondo i termini della GNU General Public License Versione 3 pubblicata dalla Free Software Foundation.</translation>
+        <translation>Questo programma viene concesso in licenza secondo i termini della GNU General Public License Version 3 pubblicata dalla Free Software Foundation.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="60"/>
@@ -262,8 +262,8 @@
         <location filename="../src/arraydialog.ui" line="75"/>
         <source>In case of an array environment sets the alignment for the column of the currently selected cell.
 For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
-        <translation>Nel caso di un array, l&apos;ambiente imposta l&apos;allineamento per la colonna della cella attualmente selezionata.
-Per le matrici e simili (pacchetto mathtools) imposta l&apos;allineamento per tutte le colonne insieme.</translation>
+        <translation>Per l&apos;ambiente array, imposta l&apos;allineamento per la colonna contenente la cella attualmente selezionata.
+Per ambienti come matrix* (mathtools), imposta l&apos;allineamento per tutte le colonne simultaneamente.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="86"/>
@@ -276,8 +276,8 @@ Per le matrici e simili (pacchetto mathtools) imposta l&apos;allineamento per tu
 Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
 Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</source>
         <translation>Scegli l&apos;ambiente da creare (s. titolo della finestra).
-Il pacchetto amsmath supporta allineato, matrice, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
-Il pacchetto mathtools supporta allineato, matrice*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</translation>
+Il pacchetto amsmath supporta allignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
+Il pacchetto mathtools supporta allignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="128"/>
@@ -328,7 +328,7 @@ Il pacchetto mathtools supporta allineato, matrice*, pmatrix*, bmatrix*, Bmatrix
     <message>
         <location filename="../src/bibtexdialog.cpp" line="29"/>
         <source>Chapter or &amp;Pages in a Book</source>
-        <translation>Capitolo o &amp;pagine nel libro</translation>
+        <translation>Capitolo o &amp;pagine di un libro</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="32"/>
@@ -351,12 +351,12 @@ Il pacchetto mathtools supporta allineato, matrice*, pmatrix*, bmatrix*, Bmatrix
     <message>
         <location filename="../src/bibtexdialog.cpp" line="44"/>
         <source>PhD. &amp;Thesis</source>
-        <translation>&amp;Tesi di dottorato (Ph.D. thesis)</translation>
+        <translation>&amp;Tesi di dottorato</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="48"/>
         <source>&amp;Master&apos;s Thesis</source>
-        <translation>Tesi di laurea Magistrale (&amp;master&apos;s thesis)</translation>
+        <translation>Tesi di laurea &amp;magistrale</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="52"/>
@@ -389,22 +389,22 @@ Il pacchetto mathtools supporta allineato, matrice*, pmatrix*, bmatrix*, Bmatrix
     <message>
         <location filename="../src/bibtexdialog.cpp" line="108"/>
         <source>Part of a Book With Its Own Title</source>
-        <translation>Parte di libro con titolo proprio</translation>
+        <translation>Sezione con titolo di un libro</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="116"/>
         <source>Book in Book</source>
-        <translation>Libro incluso in libro</translation>
+        <translation>Libro incluso in un libro</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="124"/>
         <source>Supplemental Material in a Book</source>
-        <translation>Materiale supplementare di libro</translation>
+        <translation>Materiale supplementare in un libro</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="149"/>
         <source>Single-volume Collection</source>
-        <translation>Raccolta in singolo volume</translation>
+        <translation>Raccolta in un solo volume</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="157"/>
@@ -414,12 +414,12 @@ Il pacchetto mathtools supporta allineato, matrice*, pmatrix*, bmatrix*, Bmatrix
     <message>
         <location filename="../src/bibtexdialog.cpp" line="174"/>
         <source>Supplemental Material in a Collection</source>
-        <translation>Materiale supplementare di raccolta</translation>
+        <translation>Materiale supplementare in una raccolta</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="199"/>
         <source>Online Resource</source>
-        <translation>Risorsa in linea</translation>
+        <translation>Risorsa online</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="211"/>
@@ -434,27 +434,27 @@ Il pacchetto mathtools supporta allineato, matrice*, pmatrix*, bmatrix*, Bmatrix
     <message>
         <location filename="../src/bibtexdialog.cpp" line="234"/>
         <source>Supplemental Material in a Periodical</source>
-        <translation>Materiale supplementare di periodico</translation>
+        <translation>Materiale supplementare in un periodico</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="261"/>
         <source>Multi-volume Proceedings Entry</source>
-        <translation>Elemento di verbale in più volumi</translation>
+        <translation>Verbale in una collezione di più volumi</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="277"/>
         <source>Reference</source>
-        <translation>Riferimento bibliografico</translation>
+        <translation>Riferimento</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="286"/>
         <source>Multi-volume Reference Entry</source>
-        <translation>Elemento di riferimento bibliografico in più volumi</translation>
+        <translation>Voce di bibliografia per un&apos;opera in più volumi</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="297"/>
         <source>Article in a Reference</source>
-        <translation>Articolo da riferimento bibliografico</translation>
+        <translation>L&apos;articolo di un riferimento</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="305"/>
@@ -479,12 +479,12 @@ Il pacchetto mathtools supporta allineato, matrice*, pmatrix*, bmatrix*, Bmatrix
     <message>
         <location filename="../src/bibtexdialog.cpp" line="369"/>
         <source>New BibLaTeX Entry</source>
-        <translation>Nuovo elemento BibLaTeX</translation>
+        <translation>Nuova voce di BibLaTeX</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="371"/>
         <source>New BibTeX Entry</source>
-        <translation>Nuovo elemento BibTeX</translation>
+        <translation>Nuova voce di BibTeX</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.ui" line="20"/>
@@ -663,7 +663,7 @@ Il pacchetto mathtools supporta allineato, matrice*, pmatrix*, bmatrix*, Bmatrix
     <message>
         <location filename="../src/buildmanager.cpp" line="374"/>
         <source>Internal PDF Viewer (Embedded)</source>
-        <translation>Visualizzatore PDF interno (incorporato nella finestra corrente)</translation>
+        <translation>Visualizzatore PDF interno (incorporato nella finestra principale)</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="374"/>
@@ -731,7 +731,7 @@ Il pacchetto mathtools supporta allineato, matrice*, pmatrix*, bmatrix*, Bmatrix
     <message>
         <location filename="../src/buildmanager.cpp" line="961"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
-        <translation>Il comando è stato espanso in %1 livelli. Desideri continuare ad espandere &quot;%2&quot;?</translation>
+        <translation>Il comando è stato espanso in %1 livelli. Vuoi continuare a espandere &quot;%2&quot;?</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1021"/>
@@ -771,7 +771,7 @@ Per piacere cambia la tua configurazione e definisci le liste di comandi solo a 
     <message>
         <location filename="../src/buildmanager.cpp" line="1519"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
-        <translation>Se vuoi lavorare in LaTeX, quasi sicuramente necessiterai di una di queste.</translation>
+        <translation>Se vuoi utilizzare LaTeX, avrai di sicuro bisogno di una di queste.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1522"/>
@@ -804,7 +804,7 @@ Per piacere cambia la tua configurazione e definisci le liste di comandi solo a 
         <location filename="../src/buildmanager.cpp" line="1652"/>
         <location filename="../src/buildmanager.cpp" line="1665"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation>&lt;b&gt;Assicurati di aver installato una distribuzione (La)Tex &lt;/b&gt; es. MiKTeX o TeX Live, e di aver settato il percorso corretto sulla pagina di configurazione comandi.&lt;br&gt;Un&apos;editor (La)Tex come TeXstudio non può lavorare senza i comandi (La)Tex forniti dalla distribuzione stessa.</translation>
+        <translation>&lt;b&gt;Assicurati di aver installato una distribuzione (La)Tex &lt;/b&gt; es. MiKTeX o TeX Live, e di aver impostato il percorso corretto sulla pagina di configurazione comandi.&lt;br&gt;Un editor (La)Tex come TeXstudio non può lavorare senza i comandi (La)Tex forniti dalla distribuzione stessa.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1661"/>
@@ -852,7 +852,7 @@ Per piacere cambia la tua configurazione e definisci le liste di comandi solo a 
     <message>
         <location filename="../src/cleandialog.cpp" line="65"/>
         <source>Current File Folder</source>
-        <translation>Cartella corrente</translation>
+        <translation>Cartella attuale</translation>
     </message>
     <message>
         <location filename="../src/cleandialog.cpp" line="73"/>
@@ -862,7 +862,7 @@ Per piacere cambia la tua configurazione e definisci le liste di comandi solo a 
     <message>
         <location filename="../src/cleandialog.cpp" line="114"/>
         <source>For your own safety clean will not delete the files with the following extensions:</source>
-        <translation>Per sicurezza non verranno cancellati i file con queste estensioni:</translation>
+        <translation>Per la tua sicurezza, durante la pulizia non verranno eliminati file con queste estensioni:</translation>
     </message>
     <message>
         <location filename="../src/cleandialog.ui" line="14"/>
@@ -927,7 +927,7 @@ Per piacere cambia la tua configurazione e definisci le liste di comandi solo a 
         <location filename="../src/configdialog.ui" line="176"/>
         <location filename="../src/configdialog.ui" line="4983"/>
         <source>Color Scheme:</source>
-        <translation>Combinazione di colori: </translation>
+        <translation>Scelta di colori: </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="209"/>
@@ -948,12 +948,12 @@ Per piacere cambia la tua configurazione e definisci le liste di comandi solo a 
     <message>
         <location filename="../src/configdialog.ui" line="253"/>
         <source>Classic</source>
-        <translation>Classica</translation>
+        <translation>Classico</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="258"/>
         <source>Modern</source>
-        <translation>Moderna</translation>
+        <translation>Moderno</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="263"/>
@@ -1005,12 +1005,12 @@ Per piacere cambia la tua configurazione e definisci le liste di comandi solo a 
     <message>
         <location filename="../src/configdialog.ui" line="368"/>
         <source>Max. Recent Root Documents:</source>
-        <translation>Documenti radice più recenti:</translation>
+        <translation>Numero massimo di documenti radice recenti:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="375"/>
         <source>Remember selected file filter in open/save dialog </source>
-        <translation>Ricorda il filtro file selezionato nella finestra di apertura/salvataggio</translation>
+        <translation>Ricordati quale filtro file sia selezionato nella finestra di apertura/salvataggio</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="404"/>
@@ -1020,7 +1020,7 @@ Per piacere cambia la tua configurazione e definisci le liste di comandi solo a 
     <message>
         <location filename="../src/configdialog.ui" line="424"/>
         <source>Use system file dialogs</source>
-        <translation>Utilizza finestre di selezione di sistema</translation>
+        <translation>Utilizza finestre di selezione file di sistema</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="431"/>
@@ -1030,7 +1030,7 @@ Per piacere cambia la tua configurazione e definisci le liste di comandi solo a 
     <message>
         <location filename="../src/configdialog.ui" line="441"/>
         <source>MRU Document Chooser</source>
-        <translation>Menù di selezione dei documenti più usati</translation>
+        <translation>Menù di selezione dei documenti MRU</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="454"/>
@@ -2220,10 +2220,10 @@ al prezzo di un maggiore impiego di memoria.</translation>
 &lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
 &lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
 &lt;/ul&gt;</source>
-        <translation>Consenti sostituzione dei comandi sul posto. Esempio:&lt;br&gt;
-&lt;code&gt;\textbf{qualcosa}&lt;/code&gt;
+        <translation>Consente la sostituzione dei comandi sul posto. Per esempio:&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
-&lt;li&gt;Sposta il cursore prima di &quot;text&quot;&lt;/li&gt;
+&lt;li&gt;sposta il cursore prima del testo &quot;text&quot;&lt;/li&gt;
 &lt;li&gt;Avvia il completamento con Ctrl+spazio&lt;/li&gt;
 &lt;li&gt;Seleziona &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
 &lt;li&gt;Il risultato è &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
@@ -3710,12 +3710,12 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="57"/>
         <source>\begin{center}</source>
-        <translation>\begin{centrato}</translation>
+        <translation>\begin{center}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="58"/>
         <source>\begin{flushleft}</source>
-        <translation>\begin{</translation>
+        <translation>\begin{flushleft}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="59"/>
@@ -3725,42 +3725,42 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="60"/>
         <source>\begin{quote}</source>
-        <translation>\bign{citazione}</translation>
+        <translation>\begin{quote}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="61"/>
         <source>\begin{quotation}</source>
-        <translation>\begin{citazione}</translation>
+        <translation>\begin{quotation}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="62"/>
         <source>\begin{verse}</source>
-        <translation>\begin{verso}</translation>
+        <translation>\begin{verse}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="63"/>
         <source>\begin{verbatim}</source>
-        <translation>\begin{testuale}</translation>
+        <translation>\begin{verbatim}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="64"/>
         <source>\begin{table}</source>
-        <translation>\begin{tabella}</translation>
+        <translation>\begin{table}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="65"/>
         <source>\begin{figure}</source>
-        <translation>\begin{immagine}</translation>
+        <translation>\begin{figure}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="66"/>
         <source>\begin{titlepage}</source>
-        <translation>\begin{titolopagina}</translation>
+        <translation>\begin{titlepage}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="67"/>
         <source>\begin{itemize}</source>
-        <translation>\begin{elenco}</translation>
+        <translation>\begin{itemize}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="68"/>
@@ -3770,7 +3770,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="69"/>
         <source>\begin{enumerate}</source>
-        <translation>\begin{enumerazione}</translation>
+        <translation>\begin{enumerate}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="70"/>
@@ -3780,12 +3780,12 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="71"/>
         <source>\begin{description}</source>
-        <translation>\begin{descrizione}</translation>
+        <translation>\begin{description}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="73"/>
         <source>\begin{list}</source>
-        <translation>\begin{lista}</translation>
+        <translation>\begin{list}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="74"/>
@@ -3990,7 +3990,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>The \enspace command inserts a horizontal space of 1/2em.</source>
-        <translation>Il comando </translation>
+        <translation>Il comando \enspace inserisce uno spazio orizzontale di 1/2 em.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
@@ -4061,7 +4061,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>The \smallskip command adds a &apos;small&apos; vertical space.</source>
-        <translation>Il comando </translation>
+        <translation>Il comando \smallskip aggiunge uno spazio verticale &apos;piccolo&apos;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
@@ -4096,27 +4096,27 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\highlight{text} (changes)</source>
-        <translation>\highlight{testo} (changes)</translation>
+        <translation>\highlight{testo} (modifiche)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{comment} (changes)</source>
-        <translation>\comment{commento} (changes)</translation>
+        <translation>\comment{commento} (modifiche)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>\added{text} (changes)</source>
-        <translation>\added{testo} (changes)</translation>
+        <translation>\added{testo} (modifiche)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>\deleted{text} (changes)</source>
-        <translation>\deleted{testo} (changes)</translation>
+        <translation>\deleted{testo} (modifiche)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replaced{text}{replacement} (changes)</source>
-        <translation>\replaced{testo}{sostituzione} (changes)</translation>
+        <translation>\replaced{testo}{sostituzione} (modifiche)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
@@ -4131,7 +4131,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="153"/>
         <source>Inline math - \(...\)</source>
-        <translation>Inline math - \(...\)</translation>
+        <translation>Matematica inline - \(...\)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
@@ -4141,7 +4141,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="155"/>
         <source>Display math - \[...\]</source>
-        <translation>Mostra la matematica - \[...\]</translation>
+        <translation>Matematica display - \[...\]</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="156"/>
@@ -4336,7 +4336,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="72"/>
         <source>The description environment produces a labelled list.%nEach item of the list begins with an \item[label] command.</source>
-        <translation>L&apos;ambiente description crea un elenco etichettato.%nOgni voce dell&apos;elenco comincia con un comando \item[label] .</translation>
+        <translation>L&apos;ambiente description crea un elenco etichettato.%nOgni voce dell&apos;elenco comincia con un comando \item[label].</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
@@ -4351,17 +4351,17 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page.</source>
-        <translation>\footnote[numero]{testo}%nIl comando \footnote inserisce il testo della nota numerata in fondo alla pagina corrente.</translation>
+        <translation>\footnote[numero]{testo}%nIl comando \footnote inserisce una nota numerata in fondo alla pagina attuale.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="149"/>
         <source>The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look</source>
-        <translation>L&apos;argomento \bibliographystyle si riferisce al file style.bst, che definisce come appariranno le tue citazioni</translation>
+        <translation>L&apos;argomento di \bibliographystyle dovrebbe essere il percorso di un qualche file style.bst, che imposta lo stile delle citazioni nel tuo documento.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. &apos;\addbibresource{mybibliography.bib}&apos;). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands.</source>
-        <translation>\addbibresource{bibfile} specifica la posizione di un file di risorse per biblatex come un file .bib. Il nome del file deve contenere l&apos;estensione (ad esempio &apos;\addbibresource{mybibliography.bib}&apos;). Puoi aggiungere solo un file per comando \addbibresource{} (non sono ammessi elenchi separati da virgole). Ma puoi usare più comandi.</translation>
+        <translation>\addbibresource{bibfile} imposta la posizione di un file di risorse per biblatex come un file .bib. Il nome del file deve contenere l&apos;estensione (ad esempio &apos;\addbibresource{bibliografia.bib}&apos;). Puoi aggiungere solo un file per ogni comando \addbibresource{} (non sono ammessi elenchi separati da virgole). Ma puoi sempre usare più comandi.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="159"/>
@@ -4508,7 +4508,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="226"/>
         <source>\prescript (mathtools)</source>
-        <translation>\prescript (strumenti matematici)</translation>
+        <translation>\prescript (mathtools)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="227"/>
@@ -4543,7 +4543,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="233"/>
         <source>Thick - \;</source>
-        <translation>Ampio - \;</translation>
+        <translation>Largo - \;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="234"/>
@@ -4675,9 +4675,9 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Hai attivato la sostituzione automatica dei doppi apici.
-Comunque, sono presenti macro lanciate da (?language:latex)(?&lt;=\s|^)
+Tuttavia, sono presenti macro lanciate da (?language:latex)(?&lt;=\s|^)
 o (?language:latex)(?&lt;=\S), che interferiscono con la sostituzione dei doppi apici.
-Desideri eliminare queste macro?</translation>
+Vorresti eliminare queste macro?</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="2039"/>
@@ -5040,12 +5040,12 @@ il valore passato al pacchetto inputenc siano compatibili.</translation>
     <message>
         <location filename="../src/gitgraphview.cpp" line="524"/>
         <source>Merge Commit</source>
-        <translation>Unisci impegno</translation>
+        <translation>Commit e Merge</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="525"/>
         <source>Cherry-Pick Commit</source>
-        <translation>Impegno di selezione</translation>
+        <translation>Commit con una selez. di file</translation>
     </message>
     <message>
         <location filename="../src/gitgraphview.cpp" line="528"/>
@@ -5151,7 +5151,7 @@ il valore passato al pacchetto inputenc siano compatibili.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="99"/>
         <source>Commit Staged</source>
-        <translation>Impegno graduale</translation>
+        <translation>Commit con i file nello stage</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="100"/>
@@ -5223,7 +5223,7 @@ il valore passato al pacchetto inputenc siano compatibili.</translation>
     <message>
         <location filename="../src/gitwidget.cpp" line="322"/>
         <source>Please enter a commit message.</source>
-        <translation>Inserisci un messaggio di impegno.</translation>
+        <translation>Inserisci un messaggio di commit.</translation>
     </message>
     <message>
         <location filename="../src/gitwidget.cpp" line="337"/>
@@ -5486,14 +5486,14 @@ La procedura guidata non supporta l&apos;ambiente </translation>
         <location filename="../src/insertgraphics.cpp" line="288"/>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
-        <translation>Impossibile interpretare il codice per l&apos;inclusione dell&apos;immagine:
+        <translation>Impossibile interpretare del codice che avrebbe dovuto inserire un&apos;immagine:
 Comando \caption non valido.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="302"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
-        <translation>Impossibile interpretare il codice per l&apos;inclusione dell&apos;immagine:
+        <translation>Impossibile interpretare del codice che avrebbe dovuto inserire un&apos;immagine:
 Opzioni \includegraphics assenti.</translation>
     </message>
     <message>
@@ -5589,7 +5589,7 @@ La procedura guidata non supporta il comando </translation>
         <location filename="../src/insertgraphics.ui" line="285"/>
         <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
         <translation>Identificatore, usato come riferimento all&apos;immagine;
-per esempio, tramite \ref{questaEtichetta}</translation>
+per esempio, tramite \ref{etichetta}</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="292"/>
@@ -8819,7 +8819,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>Interpreta il testo cercato come un&apos;espressione regolare.
 Alcune espressioni regolari comuni:
  r* troverà un qualsiasi numero di r, r+ equivale a rr*, a? troverà a o nulla,
- () raggruppa le espressioni, [xyz] troverà x,y oppure z, . corrisponde a qualsiasi cosa, \. corrisponde a .
+ () raggruppa le espressioni, [xyz] troverà x, y oppure z, . (un punto) corrisponde a qualsiasi cosa, \. troverà . (cioè il carattere del punto)
 Puoi usare da \1 a \9 nel testo da sostituire per inserire una sotto-corrispondenza.</translation>
     </message>
     <message>
@@ -10885,7 +10885,7 @@ modello per modificare singoli file.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="993"/>
         <source>Select &amp;Prev Occurrence</source>
-        <translation>Seleziona Evento &amp;Precedente</translation>
+        <translation>Seleziona l&apos;occorrenza &amp;precedente</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="994"/>
@@ -11108,7 +11108,7 @@ modello per modificare singoli file.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1086"/>
         <source>Line Ending</source>
-        <translation>&amp;Fine riga</translation>
+        <translation>Carattere di &amp;fine riga</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1088"/>
@@ -11359,7 +11359,7 @@ modello per modificare singoli file.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1205"/>
         <source>\begin{ Completion</source>
-        <translation>Completamento comando \begin{</translation>
+        <translation>Completamento dei comandi \begin{</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1206"/>
@@ -11394,7 +11394,7 @@ modello per modificare singoli file.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1215"/>
         <source>Remove Current Placeholder</source>
-        <translation>Rimuovi segnaposto</translation>
+        <translation>Rimuovi segnaposto attuale</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1220"/>
@@ -11619,12 +11619,12 @@ modello per modificare singoli file.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1293"/>
         <source>Insert \ref to Next Label</source>
-        <translation>Inserisci riferimento all&apos;etichetta successiva</translation>
+        <translation>Inserisci un riferimento \ref all&apos;etichetta successiva</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1294"/>
         <source>Insert \ref to Previous Label</source>
-        <translation>Inserisci riferimento all&apos;etichetta precedente</translation>
+        <translation>Inserisci un riferimento \ref all&apos;etichetta precedente</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1295"/>
@@ -11672,13 +11672,13 @@ modello per modificare singoli file.</translation>
         <location filename="../src/texstudio.cpp" line="1302"/>
         <source>Add \hline</source>
         <comment>table</comment>
-        <translation>Aggiungi linea orizzontale</translation>
+        <translation>Aggiungi una \hline</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1303"/>
         <source>Remove \hline</source>
         <comment>table</comment>
-        <translation>Rimuovi linea orizzontale</translation>
+        <translation>Rimuovi una \hline</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1304"/>
@@ -13322,7 +13322,7 @@ per partecipare: teamtype join %2</translation>
     <message>
         <location filename="../src/textanalysis.ui" line="195"/>
         <source>If this is enabled, \commands are counted.</source>
-        <translation>Se attivato, i comandi sono contati.</translation>
+        <translation>Se questa opzione è attivata, i \comandi verranno contati.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="198"/>
@@ -13822,14 +13822,14 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.
 
 
 You can use the special value ?txs-start to start the script at txs start.</source>
-        <translation>Questo comando di lancio, se digitato in un qualsiasi documento tex, viene sostituito dall&apos;etichetta associata..
+        <translation>Questa stringa trigger, se digitato in un qualsiasi documento TeX, viene sostituito dall&apos;etichetta attuale.
 
-Se il comando di lancio inizia con (?&lt;=qualcosa), ciò accade solo se si scrive qualcosa prima della restante parte del comando.
+Se stringa trigger inizia con (?&lt;=qualcosa), ciò accade solo se si scrive qualcosa prima della parte rimanente del comando.
 
-Poiché questo comando non è una normale stringa, ma un&apos;espressione regolare, si può usare (?&lt;=\S) per indicare sostituzioni da effettuare solo dopo una parola e (?&lt;=\s|^) per segnalare sostituzioni da compiere solo prima di una parola.
+Poiché questo comando non è una stringa normale, ma un&apos;espressione regolare, si può usare (?&lt;=\S) per indicare sostituzioni da effettuare solo dopo una parola, e (?&lt;=\s|^) per segnalare sostituzioni da compiere solo prima di una parola.
 
 
-Si può utilizzare il valore speciale ?txs-start per lanciare lo script all&apos;avvio di TeXstudio.</translation>
+Si può utilizzare il valore speciale ?txs-start per eseguire lo script all&apos;avvio di txs.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="402"/>
