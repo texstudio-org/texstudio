@@ -1,7 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.9.8
 
-- 
+- improve pasting indented text [#1344](https://github.com/texstudio-org/texstudio/issues/1344)
 
 ## TeXstudio 4.9.7
 
