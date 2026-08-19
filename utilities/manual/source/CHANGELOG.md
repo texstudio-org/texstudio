@@ -1,8 +1,10 @@
 # CHANGELOG
 ## TeXstudio 4.9.8
 
+- fix auto reload pdf after compile [#4601](https://github.com/texstudio-org/texstudio/issues/4601)
 - file explorer let's open pdf [#4607](https://github.com/texstudio-org/texstudio/issues/4607)
 - improve pasting indented text [#1344](https://github.com/texstudio-org/texstudio/issues/1344)
+- mark missing semicolon in tikz commands [#4589](https://github.com/texstudio-org/texstudio/issues/4589)
 
 ## TeXstudio 4.9.7
 
