@@ -2,7 +2,7 @@
 # commands for biblatex users
 # tbraun, 19.08.2009
 # dbitouze, 14.02.2012
-# Matthew Bertucci 2025/07/10 for v3.21
+# Matthew Bertucci 2026/08/18 for v3.22
 
 #include:pdftexcmds
 #include:etoolbox
@@ -251,6 +251,7 @@ check=%<name%>
 resetnumbers=
 omitnumbers#true,false
 locallabelwidth#true,false
+noanchors#true,false
 #endkeyvals
 
 \bibbysection

@@ -2645,6 +2645,7 @@
 <file>completion/nameref.cwl</file>
 <file>completion/na-position.cwl</file>
 <file>completion/natbib.cwl</file>
+<file>completion/natded.cwl</file>
 <file>completion/nath.cwl</file>
 <file>completion/natmove.cwl</file>
 <file>completion/navigator.cwl</file>
@@ -2981,6 +2982,7 @@
 <file>completion/PixelArtTikz.cwl</file>
 <file>completion/pkgloader.cwl</file>
 <file>completion/pl.cwl</file>
+<file>completion/pl46-fonts.cwl</file>
 <file>completion/placeat.cwl</file>
 <file>completion/placeins.cwl</file>
 <file>completion/plaintex.cwl</file>
@@ -3992,6 +3994,11 @@
 <file>completion/tikzlibrarythrough.cwl</file>
 <file>completion/tikzlibrarytikzlings.cwl</file>
 <file>completion/tikzlibrarytikzmark.cwl</file>
+<file>completion/tikzlibrarytikzphysics.cwl</file>
+<file>completion/tikzlibrarytikzphysics.core.cwl</file>
+<file>completion/tikzlibrarytikzphysics.mechanics.cwl</file>
+<file>completion/tikzlibrarytikzphysics.optics.cwl</file>
+<file>completion/tikzlibrarytikzphysics.surface.cwl</file>
 <file>completion/tikzlibrarytilings.cwl</file>
 <file>completion/tikzlibrarytilings.penrose.cwl</file>
 <file>completion/tikzlibrarytilings.polykite.cwl</file>
@@ -4042,6 +4049,7 @@
 <file>completion/tikz-palattice.cwl</file>
 <file>completion/tikzpeople.cwl</file>
 <file>completion/tikzpfeile.cwl</file>
+<file>completion/tikzphysics.cwl</file>
 <file>completion/tikzpingus.cwl</file>
 <file>completion/tikz-qtree.cwl</file>
 <file>completion/tikzquests.cwl</file>
@@ -4374,6 +4382,7 @@
 <file>completion/xkeymask.cwl</file>
 <file>completion/xkeyval.cwl</file>
 <file>completion/xkvview.cwl</file>
+<file>completion/xlistings.cwl</file>
 <file>completion/xlop.cwl</file>
 <file>completion/xltabular.cwl</file>
 <file>completion/xltxtra.cwl</file>

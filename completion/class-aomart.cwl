@@ -1,5 +1,5 @@
 # aomart class
-# Matthew Bertucci 2025/05/13 for v1.34
+# Matthew Bertucci 2026/08/13 for v1.38
 
 #include:class-amsart
 #include:fancyhdr
@@ -103,6 +103,7 @@ twoside
 \newtheorem*[code]{envname}{caption}#*N
 \includecolorgraphics{color file%imagefile}{bw file%imagefile}#g
 \includecolorgraphics[options%keyvals]{color file%imagefile}{bw file%imagefile}#g
+\IfColorTF{color version%text}{bw version%text}
 \funding{sponsor}{grant-id}
 \funding[text]{sponsor}{grant-id}
 \doi{DOI%URL}#U

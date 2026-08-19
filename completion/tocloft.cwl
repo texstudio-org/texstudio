@@ -1,7 +1,9 @@
 # tocloft.sty
 # J. Sundermeyer
 # Edson 20-12-2010
-# Matthew Bertucci 8/15/2021
+# Matthew Bertucci 2026/08/13 for v3.0a
+
+#include:etoolbox
 
 #keyvals:\usepackage/tocloft#c
 subfigure
@@ -9,6 +11,10 @@ titles
 #endkeyvals
 
 \tocloftpagestyle{style}#n
+
+\cfttoctitlename#n
+\cftloftitlename#n
+\cftlottitlename#n
 
 \cftmarktoc#n
 \cftmarklof#n
@@ -21,6 +27,10 @@ titles
 \cftaftertoctitleskip#n
 \cftafterloftitleskip#n
 \cftafterlottitleskip#n
+
+\cfttitlecommand#*n
+\cftchapter#*n
+\cftsection#*n
 
 \cfttoctitlefont#n
 \cftloftitlefont#n
@@ -124,6 +134,8 @@ titles
 \cfttabaftersnumb#n
 \cftsubtabaftersnumb#n
 
+\cftpartinitnumwidth{arg}#*n
+
 \cftpartleader#n
 \cftchapleader#n
 \cftsecleader#n
@@ -171,6 +183,20 @@ titles
 \cftsubfigafterpnum#n
 \cfttabafterpnum#n
 \cftsubtabafterpnum#n
+
+\cftpartpnumfinal#n
+\cftchappnumfinal#n
+\cftsecpnumfinal#n
+\cftsubsecpnumfinal#n
+\cftsubsubsecpnumfinal#n
+\cftparapnumfinal#n
+\cftsubparapnumfinal#n
+\cftfigpnumfinal#n
+\cftsubfigpnumfinal#n
+\cfttabpnumfinal#n
+\cftsubtabpnumfinal#n
+
+\cftpnumfinaldefault#n
 
 \cftsetindents{entry}{indent}{numwidth}
 \cftpagenumbersoff{entry}#n
