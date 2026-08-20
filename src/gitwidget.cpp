@@ -37,8 +37,8 @@ void GitWidget::setupUi()
     m_btnBranch->setText(QString::fromUtf8("\u2387")); // branch icon
     m_btnBranch->setToolTip(tr("Current branch"));
     m_btnBranch->setPopupMode(QToolButton::InstantPopup);
-    m_branchLabel = new QLabel(tr("(no repository)"));
-    m_branchLabel->setToolTip(tr("Current branch"));
+    m_branchLabel = new QLabel(tr("()"));
+    m_branchLabel->setToolTip(tr("Current branch: %1").arg(tr("(no repository)")));
     m_branchLabel->setWordWrap(true);
     m_btnRefresh = new QToolButton();
     m_btnRefresh->setText(QString::fromUtf8("\u21BB"));
@@ -167,7 +167,8 @@ void GitWidget::setPath(const QString &path)
     m_path = path;
     // check if valid git repo
     if(!m_git->isGitRepository(resolvedPath())){
-        m_branchLabel->setText(tr("(no repository)"));
+        m_branchLabel->setText(tr("()"));
+        m_branchLabel->setToolTip(tr("Current branch: %1").arg(tr("(no repository)")));
         m_fileList->clear();
         m_graphView->clear();
         m_statusLabel->clear();
@@ -193,7 +194,8 @@ void GitWidget::refresh()
 {
     const QString rpath = resolvedPath();
     if (rpath.isEmpty()) {
-        m_branchLabel->setText(tr("(no file open)"));
+        m_branchLabel->setText(tr("()"));
+        m_branchLabel->setToolTip(tr("Current branch: %1").arg(tr("(no file open)")));
         m_fileList->clear();
         m_graphView->clear();
         return;
@@ -201,7 +203,8 @@ void GitWidget::refresh()
 
     const QString branch = m_git->getCurrentBranch(rpath);
     if (branch.startsWith("fatal")||branch.contains("\n")) {
-        m_branchLabel->setText(tr("(no repository)"));
+        m_branchLabel->setText(tr("()"));
+        m_branchLabel->setToolTip(tr("Current branch: %1").arg(tr("(no repository)")));
         m_fileList->clear();
         m_graphView->clear();
         m_statusLabel->clear();
@@ -216,6 +219,7 @@ void GitWidget::refresh()
         return;
     }
     m_branchLabel->setText(branch);
+    m_branchLabel->setToolTip(tr("Current branch: %1").arg(branch));
     // poplulate other branches into btn menu
     QStringList branches=m_git->getBranches(rpath);
     if(branches.size()>1){
