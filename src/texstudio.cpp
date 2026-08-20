@@ -757,6 +757,7 @@ void Texstudio::setupDockWidgets()
         fileView->setColumnHidden(2,true);
         fileView->setColumnHidden(3,true);
         fileView->setRootIndex(fileExplorerModel->index(rootDir));
+        fileView->setDragEnabled(true);
         QAction *act=new QAction();
         act->setText(tr("Insert filename"));
         connect(act,&QAction::triggered,this,&Texstudio::insertFromExplorer);
