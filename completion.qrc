@@ -2473,6 +2473,7 @@
 <file>completion/mathtime.cwl</file>
 <file>completion/mathtools.cwl</file>
 <file>completion/matlab-prettifier.cwl</file>
+<file>completion/matrixdiagrams.cwl</file>
 <file>completion/mattens.cwl</file>
 <file>completion/mattex.cwl</file>
 <file>completion/maybemath.cwl</file>
@@ -2957,6 +2958,7 @@
 <file>completion/phfthm.cwl</file>
 <file>completion/philex.cwl</file>
 <file>completion/philokalia.cwl</file>
+<file>completion/phtitration.cwl</file>
 <file>completion/phoenician.cwl</file>
 <file>completion/phonenumbers.cwl</file>
 <file>completion/phonetic.cwl</file>
@@ -3767,6 +3769,7 @@
 <file>completion/tex4ebook.cwl</file>
 <file>completion/tex4ht.cwl</file>
 <file>completion/texapi.cwl</file>
+<file>completion/texchanges.cwl</file>
 <file>completion/tex.cwl</file>
 <file>completion/texdate.cwl</file>
 <file>completion/texdepends.cwl</file>
