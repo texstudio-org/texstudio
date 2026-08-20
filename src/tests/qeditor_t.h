@@ -21,6 +21,7 @@ private:
 private slots:
 	void setText_data();
 	void setText();
+	void dropFileUri();
 	void loadSave_data();
 	void loadSave();
 	void foldedText_data();

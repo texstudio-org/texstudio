@@ -4156,9 +4156,11 @@ void QEditor::dragEnterEvent(QDragEnterEvent *e)
 				e->mimeData()->hasFormat("text/plain")
 			||
 				e->mimeData()->hasFormat("text/html")
+			||
+				e->mimeData()->hasUrls()
+			||
+				e->mimeData()->hasFormat("text/uri-list")
 			)
-		&&
-			!e->mimeData()->hasFormat("text/uri-list")
 		)
 		e->acceptProposedAction();
 	else
@@ -4194,9 +4196,11 @@ void QEditor::dragMoveEvent(QDragMoveEvent *e)
 				e->mimeData()->hasFormat("text/plain")
 			||
 				e->mimeData()->hasFormat("text/html")
+			||
+				e->mimeData()->hasUrls()
+			||
+				e->mimeData()->hasFormat("text/uri-list")
 			)
-		&&
-			!e->mimeData()->hasFormat("text/uri-list")
 		)
 		e->acceptProposedAction();
 	else
@@ -4256,9 +4260,11 @@ void QEditor::dropEvent(QDropEvent *e)
 				e->mimeData()->hasFormat("text/plain")
 			||
 				e->mimeData()->hasFormat("text/html")
+			||
+				e->mimeData()->hasUrls()
+			||
+				e->mimeData()->hasFormat("text/uri-list")
 			)
-		&&
-			!e->mimeData()->hasFormat("text/uri-list")
 		)
 	{
 		e->acceptProposedAction();
@@ -6112,15 +6118,114 @@ QMimeData* QEditor::createMimeDataFromSelection() const
 	return d;
 }
 
+namespace {
+
+static QString latexRelativePathForDrop(const QEditor *editor, const QString &filePath)
+{
+	QFileInfo targetFile(filePath);
+	if (!targetFile.exists() || targetFile.absoluteFilePath().isEmpty())
+		return filePath;
+
+	if (editor && !editor->fileName().isEmpty()) {
+		QFileInfo currentFile(editor->fileName());
+		QString relative = QDir(currentFile.absolutePath()).relativeFilePath(targetFile.absoluteFilePath());
+		if (!relative.isEmpty() && !relative.startsWith(".."))
+			return relative.replace('\\', '/');
+	}
+
+	return QDir::cleanPath(targetFile.absoluteFilePath()).replace('\\', '/');
+}
+
+static bool isDroppedImageFile(const QFileInfo &fileInfo)
+{
+	static const QStringList imageExtensions = QStringList() << "eps" << "jpg" << "jpeg" << "png" << "pdf";
+	return imageExtensions.contains(fileInfo.suffix().toLower());
+}
+
+static bool isInFigureEnvironment(const QEditor *editor, int lineLimit = 20)
+{
+	if (!editor || !editor->document())
+		return false;
+
+	const QDocument *doc = editor->document();
+	const int cursorLine = editor->cursor().lineNumber();
+	QString name, arg;
+	int startLine = -1;
+	for (int l = cursorLine; l >= 0 && cursorLine - l <= lineLimit; --l) {
+		if (findTokenWithArg(doc->line(l).text(), "\\end{", name, arg) && name == "figure") {
+			if (l < cursorLine)
+				return false;
+		}
+		if (findTokenWithArg(doc->line(l).text(), "\\begin{", name, arg) && name == "figure") {
+			startLine = l;
+			break;
+		}
+	}
+	if (startLine == -1)
+		return false;
+
+	for (int l = cursorLine; l < doc->lineCount() && l - cursorLine <= lineLimit; ++l) {
+		if (findTokenWithArg(doc->line(l).text(), "\\end{", name, arg) && name == "figure")
+			return true;
+		if (findTokenWithArg(doc->line(l).text(), "\\begin{", name, arg) && name == "figure" && l > cursorLine)
+			return false;
+	}
+	return true;
+}
+
+static QString droppedLatexPath(const QEditor *editor, const QFileInfo &fileInfo, bool stripExtension)
+{
+	QString path = latexRelativePathForDrop(editor, fileInfo.absoluteFilePath());
+	if (!stripExtension)
+		return path;
+
+	int extensionSeparator = path.lastIndexOf('.');
+	int lastSlash = path.lastIndexOf('/');
+	if (extensionSeparator > lastSlash && extensionSeparator >= 0)
+		path = path.left(extensionSeparator);
+	return path;
+}
+
+}
+
 /*!
 	\brief Inserts the content of a QMimeData object at the cursor position
-
+	
 	\note Only plain text is supported... \see QMimeData::hasText()
 */
 void QEditor::insertFromMimeData(const QMimeData *d)
 {
 	if ( d && m_cursor.isValid() && !isReadOnly() )
 	{
+		if (d->hasUrls()) {
+			m_doc->clearLanguageMatches();
+			for (const QUrl &url : d->urls()) {
+				QFileInfo fileInfo(url.toLocalFile());
+				if (!fileInfo.exists() || !fileInfo.isFile())
+					continue;
+
+				QString txt;
+				const QString relativePath = droppedLatexPath(this, fileInfo, false);
+				if (isDroppedImageFile(fileInfo)) {
+					if (isInFigureEnvironment(this))
+						txt = "\\includegraphics[width=\\linewidth]{" + relativePath + "}";
+					else
+						txt = "\\begin{figure}[htbp]\n    \\centering\n    \\includegraphics[width=\\linewidth]{" + relativePath + "}\n    \\caption{}\n    \\label{fig:}\n\\end{figure}\n";
+				} else if (fileInfo.suffix().compare("tex", Qt::CaseInsensitive) == 0 || fileInfo.suffix().compare("txt", Qt::CaseInsensitive) == 0) {
+					txt = "\\input{" + droppedLatexPath(this, fileInfo, true) + "}";
+				} else {
+					txt = relativePath;
+				}
+
+				if (!txt.isEmpty())
+					insertText(m_cursor, txt);
+			}
+			ensureCursorVisible(KeepSurrounding);
+			setFlag(CursorOn, true);
+			emitCursorPositionChanged();
+			return;
+		}
+
         m_doc->clearLanguageMatches();
 		if ( d->hasFormat("text/column-selection") )
 		{
@@ -6198,7 +6303,7 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 				{
 					PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
 					QString baseText = ph.cursor.selectedText();
-	
+					
 					QKeyEvent ev(QEvent::KeyPress, Qt::Key_Paste, Qt::NoModifier); // just a dummy to be able to pass something reasonable to affect() - currently unused
 					for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
 					{

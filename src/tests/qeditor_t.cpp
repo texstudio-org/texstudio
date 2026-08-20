@@ -48,6 +48,50 @@ void QEditorTest::setText(){
 	QEQUAL(restext,text);
 }
 
+void QEditorTest::dropFileUri()
+{
+	Q_ASSERT(editor);
+	QTemporaryDir tempDir;
+	QVERIFY(tempDir.isValid());
+	const QString imageDir = tempDir.path() + "/Images";
+	QVERIFY(QDir().mkpath(imageDir));
+	const QString imagePath = imageDir + "/example.png";
+	QFile imageFile(imagePath);
+	QVERIFY(imageFile.open(QIODevice::WriteOnly));
+	imageFile.close();
+
+	const QString texPath = tempDir.path() + "/chapter/example.tex";
+	QVERIFY(QDir().mkpath(QFileInfo(texPath).absolutePath()));
+	QFile texFile(texPath);
+	QVERIFY(texFile.open(QIODevice::WriteOnly));
+	texFile.close();
+
+	editor->setFileName(tempDir.path() + "/main.tex");
+	editor->setText("", false);
+	editor->setCursorPosition(0, 0);
+	QMimeData mimeData;
+	mimeData.setUrls(QList<QUrl>() << QUrl::fromLocalFile(imagePath));
+	editor->insertFromMimeData(&mimeData);
+	QString text = editor->text();
+	QVERIFY2(text.contains("\\begin{figure}[htbp]"), qPrintable(text));
+	QVERIFY2(text.contains("\\includegraphics[width=\\linewidth]{Images/example.png}"), qPrintable(text));
+
+	editor->setText("\\begin{figure}\n    \\centering\n\n    \\caption{Example}\n\\end{figure}\n", false);
+	editor->setCursorPosition(2, 4);
+	mimeData.setUrls(QList<QUrl>() << QUrl::fromLocalFile(imagePath));
+	editor->insertFromMimeData(&mimeData);
+	text = editor->text();
+	QVERIFY2(text.contains("\\includegraphics[width=\\linewidth]{Images/example.png}"), qPrintable(text));
+	QVERIFY2(!text.contains("\\begin{figure}[htbp]"), qPrintable(text));
+
+	editor->setText("", false);
+	editor->setCursorPosition(0, 0);
+	mimeData.setUrls(QList<QUrl>() << QUrl::fromLocalFile(texPath));
+	editor->insertFromMimeData(&mimeData);
+	text = editor->text();
+	QVERIFY2(text.contains("\\input{chapter/example}"), qPrintable(text));
+}
+
 
 void QEditorTest::loadSave_data(){
 	QTest::addColumn<QString>("outCodecName");
