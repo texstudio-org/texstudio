@@ -85,8 +85,7 @@ private:
 
     // "Changes" tab
     QListWidget *m_fileList;
-    QPushButton *m_btnStageAll;
-    QPushButton *m_btnUnstageAll;
+    QToolButton *m_btnStage;
     QTextEdit   *m_commitMessage;
     QPushButton *m_btnCommit;
 

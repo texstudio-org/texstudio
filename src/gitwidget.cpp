@@ -76,12 +76,21 @@ void GitWidget::setupUi()
     // Stage-all / Unstage-all helper buttons
     QHBoxLayout *stageLayout = new QHBoxLayout();
     stageLayout->setContentsMargins(0, 0, 0, 0);
-    m_btnStageAll   = new QPushButton(tr("Stage All"));
-    m_btnUnstageAll = new QPushButton(tr("Unstage All"));
-    m_btnStageAll->setToolTip(tr("Check all files for staging"));
-    m_btnUnstageAll->setToolTip(tr("Uncheck all files"));
-    stageLayout->addWidget(m_btnStageAll);
-    stageLayout->addWidget(m_btnUnstageAll);
+    m_btnStage   = new QToolButton();
+    QMenu *menu=new QMenu();
+    QAction *actStageAll=new QAction(tr("Stage All"),menu);
+    connect(actStageAll,&QAction::triggered,this,&GitWidget::onStageAll);
+    menu->addAction(actStageAll);
+    QAction *actUnstageAll=new QAction(tr("Unstage All"),menu);
+    connect(actUnstageAll,&QAction::triggered,this,&GitWidget::onUnstageAll);
+    menu->addAction(actUnstageAll);
+    m_btnStage->setMenu(menu);
+    m_btnStage->setDefaultAction(actStageAll);
+    m_btnStage->setPopupMode(QToolButton::MenuButtonPopup);
+    auto *hspacer2=new QSpacerItem(0,10,QSizePolicy::Expanding,QSizePolicy::Minimum);
+    stageLayout->addSpacerItem(hspacer2);
+    stageLayout->addWidget(m_btnStage);
+    //stageLayout->addWidget(m_btnUnstageAll);
     changesLayout->addLayout(stageLayout);
 
     // File list with checkboxes
@@ -133,8 +142,6 @@ void GitWidget::setupUi()
     connect(m_btnPush,      &QToolButton::clicked,  this, &GitWidget::onPush);
     connect(m_btnPull,      &QToolButton::clicked,  this, &GitWidget::onPull);
     connect(m_btnFetch,     &QToolButton::clicked,  this, &GitWidget::onFetch);
-    connect(m_btnStageAll,  &QPushButton::clicked,  this, &GitWidget::onStageAll);
-    connect(m_btnUnstageAll, &QPushButton::clicked,  this, &GitWidget::onUnstageAll);
     connect(m_filterByFile, &QCheckBox::toggled, this, &GitWidget::onFilterByFileToggled);
     connect(m_fileList, &QListWidget::itemDoubleClicked,
             this, &GitWidget::onItemDoubleClicked);
@@ -449,6 +456,9 @@ void GitWidget::onItemDoubleClicked(QListWidgetItem *item)
  */
 void GitWidget::onStageAll()
 {
+    QAction *act=qobject_cast<QAction *>(sender());
+    m_btnStage->setDefaultAction(act);
+
     for (int i = 0; i < m_fileList->count(); ++i) {
         m_fileList->item(i)->setCheckState(Qt::Checked);
     }
@@ -459,6 +469,9 @@ void GitWidget::onStageAll()
  */
 void GitWidget::onUnstageAll()
 {
+    QAction *act=qobject_cast<QAction *>(sender());
+    m_btnStage->setDefaultAction(act);
+
     for (int i = 0; i < m_fileList->count(); ++i) {
         m_fileList->item(i)->setCheckState(Qt::Unchecked);
     }
