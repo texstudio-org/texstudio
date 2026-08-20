@@ -53,7 +53,7 @@ void GitWidget::setupUi()
     m_btnFetch->setToolTip(tr("git fetch"));
     m_btnPull->setToolTip(tr("git pull"));
     m_btnPush->setToolTip(tr("git push"));
-    auto *hspacer=new QSpacerItem(20,40,QSizePolicy::Minimum,QSizePolicy::Expanding);
+    auto *hspacer=new QSpacerItem(0,10,QSizePolicy::Expanding,QSizePolicy::Minimum);
     branchLayout->addWidget(m_btnBranch);
     branchLayout->addWidget(m_branchLabel, 1);
     branchLayout->addSpacerItem(hspacer);
