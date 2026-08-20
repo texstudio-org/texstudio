@@ -758,6 +758,7 @@ void Texstudio::setupDockWidgets()
         fileView->setColumnHidden(3,true);
         fileView->setRootIndex(fileExplorerModel->index(rootDir));
         fileView->setDragEnabled(true);
+        fileView->setDragDropMode(QAbstractItemView::DragOnly);
         QAction *act=new QAction();
         act->setText(tr("Insert filename"));
         connect(act,&QAction::triggered,this,&Texstudio::insertFromExplorer);
@@ -8612,8 +8613,19 @@ void Texstudio::dropEvent(QDropEvent *event)
 			quickGraphics(uris.at(i).toLocalFile());
 		} else if (fi.suffix() == Session::fileExtension()) {
 			loadSession(fi.filePath());
-		} else
-			load(fi.filePath());
+        } else {
+            // check if it is tex file
+            if (currentEditorView() && fi.suffix().toLower() == "tex"){
+                // check if it is a subfile of the current document
+                QFileInfo fiRoot=documents.getCurrentDocument()->getRootDocument()->getFileInfo();;
+                const QString relPath  = fiRoot.dir().relativeFilePath(fi.filePath());
+                const QString txt = QString("\\include{%1}\n").arg(relPath);
+                QEditor *editor = currentEditor();
+                editor->insertText(txt);
+            }else{
+                load(fi.filePath());
+            }
+        }
 	}
 	event->acceptProposedAction();
 	raise();
