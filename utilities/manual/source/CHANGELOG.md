@@ -1,6 +1,8 @@
 # CHANGELOG
 ## TeXstudio 4.9.8
 
+- make git panel smaller [#4591](https://github.com/texstudio-org/texstudio/issues/4591)
+- enable drag/drop from internal file explorer to text, calls image wizard [#4608](https://github.com/texstudio-org/texstudio/issues/4608)
 - change rootdir for fileExplorer after session restore
 - fix auto reload pdf after compile [#4601](https://github.com/texstudio-org/texstudio/issues/4601)
 - file explorer let's open pdf [#4607](https://github.com/texstudio-org/texstudio/issues/4607)
