@@ -3846,6 +3846,17 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
             doc->highlight();
             updateTOCs();
         }
+        //Explicitely set fileExplorer root dir
+        LatexDocument *rootDoc=doc->getRootDocument();
+        QFileInfo fi=rootDoc->getFileInfo();
+        QString rootDir=fi.absoluteDir().path();
+        if (rootDir == "/tmp")
+            rootDir = "/";
+        if(fileExplorerModel->rootPath()!=rootDir){
+            // only change when necessary
+            fileExplorerModel->setRootPath(rootDir);
+            fileView->setRootIndex(fileExplorerModel->index(rootDir));
+        }
         //check if second editor view (side-by-side)
         if(useSideBySide){
             // find visible on other editor
