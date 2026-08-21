@@ -1,5 +1,5 @@
 # luatexja-fontspec package
-# Matthew Bertucci 2024/07/15
+# Matthew Bertucci 2026/08/21
 
 #include:l3keys2e
 #include:luatexja
@@ -81,6 +81,8 @@ silent
 CID=%<name%>
 JFM=%<name%>
 JFM-var=%<name%>
+Down=%<number%>
+Left=%<number%>
 NoEmbed
 Kanjiskip#true,false
 TateFeatures={%<features%>}
