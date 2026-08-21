@@ -180,6 +180,7 @@ runtime:
 |  `?` followed by further characters | See the instruction at the bottom of the configuration dialog. |
 |  `[txs-app-dir]`                    | Location of the TeXstudio executable (useful for portable settings) |
 |  `[txs-settings-dir]`               | Location of the settings file (texstudio.ini) |
+|  `&` as last character              | run command detached, i.e. no blocking further commands |
 
 You can always restore the original settings using the revert button to
 the right.
@@ -288,7 +289,7 @@ program on your computer, if you want to use a command.
 #### Sumatra (Windows only)
 
 Launch Sumatra from TeXstudio and configure Sumatra for inverse search
-: `"(your sumatra path)" -reuse-instance -forward-search "?c:am.tex" @ -inverse-search "\\"(your texstudio path)\\" \\"%%f\\" -line %%l" "?am.pdf"`
+: `"(your sumatra path)" -reuse-instance -forward-search "?c:am.tex" @ -inverse-search "\\"(your texstudio path)\\" \\"%%f\\" -line %%l" "?am.pdf" &`
 
 Jump to a line in a running Sumatra:
 : `dde:///SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]`
@@ -397,7 +398,7 @@ A possible value for *(your Skim path)* is `/Applications/Skim.app`
 #### qpdfview
 
 Launch qpdfview from TeXstudio
-: `qpdfview --unique ?am.pdf#src:?c:am.tex:@:0 2> /dev/null`
+: `qpdfview --unique ?am.pdf#src:?c:am.tex:@:0 2> /dev/null &`
 
 Launch TeXstudio from qpdfview
 : `texstudio "%1" -line %2`

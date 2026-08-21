@@ -412,6 +412,9 @@ runtime:</p>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[txs-settings-dir]</span></code></p></td>
 <td><p>Location of the settings file (texstudio.ini)</p></td>
 </tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code> as last character</p></td>
+<td><p>run command detached, i.e. no blocking further commands</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -530,7 +533,7 @@ program on your computer, if you want to use a command.</p>
 <section id="sumatra-windows-only">
 <h4>Sumatra (Windows only)<a class="headerlink" href="#sumatra-windows-only" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
-<dt>Launch Sumatra from TeXstudio and configure Sumatra for inverse search</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">sumatra</span> <span class="pre">path)&quot;</span> <span class="pre">-reuse-instance</span> <span class="pre">-forward-search</span> <span class="pre">&quot;?c:am.tex&quot;</span> <span class="pre">&#64;</span> <span class="pre">-inverse-search</span> <span class="pre">&quot;\\&quot;(your</span> <span class="pre">texstudio</span> <span class="pre">path)\\&quot;</span> <span class="pre">\\&quot;%%f\\&quot;</span> <span class="pre">-line</span> <span class="pre">%%l&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span></code></p>
+<dt>Launch Sumatra from TeXstudio and configure Sumatra for inverse search</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">sumatra</span> <span class="pre">path)&quot;</span> <span class="pre">-reuse-instance</span> <span class="pre">-forward-search</span> <span class="pre">&quot;?c:am.tex&quot;</span> <span class="pre">&#64;</span> <span class="pre">-inverse-search</span> <span class="pre">&quot;\\&quot;(your</span> <span class="pre">texstudio</span> <span class="pre">path)\\&quot;</span> <span class="pre">\\&quot;%%f\\&quot;</span> <span class="pre">-line</span> <span class="pre">%%l&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span> <span class="pre">&amp;</span></code></p>
 </dd>
 <dt>Jump to a line in a running Sumatra:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">dde:///SUMATRA/control/[ForwardSearch(&quot;?am.pdf&quot;,&quot;?c:am.tex&quot;,&#64;,0,0,1)]</span></code></p>
 </dd>
@@ -671,7 +674,7 @@ with arguments: <code class="docutils literal notranslate"><span class="pre">&qu
 <section id="qpdfview">
 <h4>qpdfview<a class="headerlink" href="#qpdfview" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
-<dt>Launch qpdfview from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">qpdfview</span> <span class="pre">--unique</span> <span class="pre">?am.pdf#src:?c:am.tex:&#64;:0</span> <span class="pre">2&gt;</span> <span class="pre">/dev/null</span></code></p>
+<dt>Launch qpdfview from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">qpdfview</span> <span class="pre">--unique</span> <span class="pre">?am.pdf#src:?c:am.tex:&#64;:0</span> <span class="pre">2&gt;</span> <span class="pre">/dev/null</span> <span class="pre">&amp;</span></code></p>
 </dd>
 <dt>Launch TeXstudio from qpdfview</dt><dd><p><code class="docutils literal notranslate"><span class="pre">texstudio</span> <span class="pre">&quot;%1&quot;</span> <span class="pre">-line</span> <span class="pre">%2</span></code></p>
 </dd>
