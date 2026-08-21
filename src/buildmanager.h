@@ -25,6 +25,7 @@ Q_DECLARE_METATYPE(LatexCompileResult)
 
 enum RunCommandFlag {
 	RCF_SHOW_STDOUT = 1,    //bibliography command (=> show stdout)
+    RCF_DETACH = 2,         // detach the process (=> don't wait for it to finish, don't block following command calls)
 	RCF_COMPILES_TEX = 4, //latex command, show the log
 	RCF_RERUNNABLE = 8, 	// set if the command provides output information that
 				// tells you when it must be rerun. Usually RCF_RERUNNABLE

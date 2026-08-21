@@ -1159,7 +1159,7 @@ RunCommandFlags BuildManager::getSingleCommandFlags(const QString &subcmd) const
 #ifdef Q_OS_WIN
 	isAcrobat = subcmd.contains("Acrobat.exe") || subcmd.contains("AcroRd32.exe");
 #endif
-
+    if (subcmd.endsWith("&")) result |= RCF_DETACH;
 	if (viewerCommands.contains(subcmd) && !isAcrobat && singleViewerInstance) result |= RCF_SINGLE_INSTANCE;
 	return static_cast<RunCommandFlags>(result);
 }
@@ -1789,6 +1789,7 @@ void BuildManager::runNextCommandInternalAsync()
     bool latexCompiler = cur.flags & RCF_COMPILES_TEX;
     bool lastCommandToRun = (m_expandedCommands.commands.size() == 1);
     bool waitForCommand = latexCompiler || (!lastCommandToRun && !singleInstance) || cur.flags & RCF_WAITFORFINISHED;
+    bool detach = cur.flags & RCF_DETACH;
 
     ProcessX *p = newProcessInternal(cur.command, m_mainFile, singleInstance);
     if(p==nullptr){
@@ -1807,7 +1808,9 @@ void BuildManager::runNextCommandInternalAsync()
     emit beginRunningSubCommand(p, m_expandedCommands.primaryCommand, cur.parentCommand, cur.flags);
 
     connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), p, SLOT(deleteLater()));
-    connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(runNextCommandInternalAsyncFinished(int,QProcess::ExitStatus)));
+    if(!detach){
+        connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(runNextCommandInternalAsyncFinished(int,QProcess::ExitStatus)));
+    }
 
     processWaitedFor=p;
 
@@ -1816,6 +1819,9 @@ void BuildManager::runNextCommandInternalAsync()
         m_expandedCommands.commands.clear();
         processWaitedFor=nullptr;
         return;
+    }
+    if(detach){
+        QMetaObject::invokeMethod(this, "runNextCommandInternalAsyncFinished",Q_ARG(int,0),Q_ARG(QProcess::ExitStatus,QProcess::NormalExit));
     }
 }
 /*!
