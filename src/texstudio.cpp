@@ -9988,6 +9988,7 @@ void Texstudio::findLabelUsages(LatexDocument *contextDoc, const QString &labelT
 {
 	if (!contextDoc) return;
     LabelSearchQuery *query = new LabelSearchQuery(labelText,definitionOnly);
+    if(!query) return;
 	searchResultWidget()->setQuery(query);
 	query->run(contextDoc);
     outputView->showPage(outputView->SEARCH_RESULT_PAGE);
@@ -10003,6 +10004,7 @@ void Texstudio::findSpecialUsages(LatexDocument *doc, const QString &text, int t
 {
     if (!doc) return;
     SpecialDefSearchQuery *query = new SpecialDefSearchQuery(text,type);
+    if(!query) return;
     searchResultWidget()->setQuery(query);
     query->run(doc);
     outputView->showPage(outputView->SEARCH_RESULT_PAGE);
