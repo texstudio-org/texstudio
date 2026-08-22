@@ -919,6 +919,7 @@ void QEditorTest::autoClosingSelectionByKey(){
 	if (insert == "\"") key = Qt::Key_QuoteDbl;
 	else if (insert == "'") key = Qt::Key_Apostrophe;
 	else if (insert == "`") key = Qt::Key_QuoteLeft;
+	QVERIFY(key != Qt::Key_unknown);
 	QKeyEvent keyEvent(QEvent::KeyPress, key, Qt::NoModifier, insert);
 	QCoreApplication::sendEvent(editor, &keyEvent);
 	doc->setLineEndingDirect(QDocument::Unix,true);
