@@ -1,7 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.9.8
 
-- breaking change: allow commands are internally monitored until they finish. New commands are blocked from execution which also blocks recompile if an external pdf viewer is used (which keeps running). Command syntax is extended to accepter "&" at the end of a command, so that it runs that command detached (i.e. no blocking, no monitoring) [#4614](https://github.com/texstudio-org/texstudio/issues/4614)
+- breaking change: all commands are internally monitored until they finish. New commands are blocked from execution which also blocks recompile if an external pdf viewer is used (which keeps running). Command syntax is extended to accept "&" at the end of a command, so that it runs that command detached (i.e. no blocking, no monitoring) [#4614](https://github.com/texstudio-org/texstudio/issues/4614)
 - make git panel smaller [#4591](https://github.com/texstudio-org/texstudio/issues/4591)
 - enable drag/drop from internal file explorer to text, calls image wizard/inserts "\include{fn}" [#4608](https://github.com/texstudio-org/texstudio/issues/4608)
 - change rootdir for fileExplorer after session restore
@@ -13,7 +13,7 @@
 ## TeXstudio 4.9.7
 
 - use fully asynchronous command execution for latex commands. This should remedy some rare stability issues.
-- add accessibilty for text editor component (screen reader compatibility)
+- add accessibility for text editor component (screen reader compatibility)
 - add bibliography overview in global TOC
 - fix crash when changing project structure (comment out/in includes) [#4579](https://github.com/texstudio-org/texstudio/issues/4579)
 - fix remove command [#4578](https://github.com/texstudio-org/texstudio/issues/4578)
