@@ -296,12 +296,14 @@ void LabelSearchQuery::run(LatexDocument *doc)
     QHash<QDocument *, QList<int> > usagesByDocument;
 	foreach (QDocumentLineHandle *dlh, usages.keys()) {
         if(dlh==nullptr) continue;
-		QDocument *doc = dlh->document();
-        const int lineNr = doc->indexOf(dlh);
-        QList<int> lineNrs = usagesByDocument[doc];
+		QDocument *lineDoc = dlh->document();
+        if (!lineDoc) continue;
+        const int lineNr = lineDoc->indexOf(dlh);
+        if (lineNr < 0) continue;
+        QList<int> lineNrs = usagesByDocument[lineDoc];
         auto it = std::lower_bound(lineNrs.begin(), lineNrs.end(), lineNr);
         lineNrs.insert(it, lineNr);
-        usagesByDocument.insert(doc, lineNrs);
+        usagesByDocument.insert(lineDoc, lineNrs);
 	}
 
 	foreach (QDocument *doc, usagesByDocument.keys()) {
