@@ -16,6 +16,7 @@ class LatexEditorViewTest: public QObject{
 		void insertHardLineBreaks();
 		void inMathEnvironment_data();
 		void inMathEnvironment();
+		void autoQuoteReplacementSelection();
 };
 
 #endif

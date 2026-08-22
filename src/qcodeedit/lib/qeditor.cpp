@@ -5107,7 +5107,7 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 {
 	bool hasSelection = c.hasSelection();
 
-	if ( hasSelection ) {
+	if ( hasSelection && op != NoOperation ) {
         if(m_curPlaceHolder==-1){ // only process text outside a placeholder
             cutBuffer=c.selectedText();
         }
@@ -5468,6 +5468,13 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
                 }
             }
         }
+    }
+    if (!autoComplete && hasSelection && flag(AutoCloseChars) && !autoOverridePlaceHolder
+            && (m_curPlaceHolder<0 || m_curPlaceHolder>=m_placeHolders.size() || m_placeHolders[m_curPlaceHolder].mirrors.isEmpty())
+            && (text == "\"" || text == "'" || text == "`")) {
+        writtenBracket = text;
+        autoBracket = text;
+        autoComplete = true;
     }
 
     //insert
