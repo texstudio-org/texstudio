@@ -898,4 +898,27 @@ void QEditorTest::autoClosingSelection(){
 	QEQUAL(doc->text(), result);
 }
 
+void QEditorTest::autoClosingSelectionByKey_data(){
+	autoClosingSelection_data();
+}
+
+void QEditorTest::autoClosingSelectionByKey(){
+	QFETCH(QString, baseText);
+	QFETCH(int, line);
+	QFETCH(int, col);
+	QFETCH(int, anchorLine);
+	QFETCH(int, anchorCol);
+	QFETCH(QString, insert);
+	QFETCH(QString, result);
+
+	QDocument *doc = editor->document();
+	editor->cutBuffer.clear(); // need to start from a clean state (other tests may have put something there)
+	editor->setText(baseText, false);
+	editor->setCursor(doc->cursor(line,col,anchorLine,anchorCol));
+	QKeyEvent keyEvent(QEvent::KeyPress, 0, Qt::NoModifier, insert);
+	QCoreApplication::sendEvent(editor, &keyEvent);
+	doc->setLineEndingDirect(QDocument::Unix,true);
+	QEQUAL(doc->text(), result);
+}
+
 #endif

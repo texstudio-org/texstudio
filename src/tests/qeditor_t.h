@@ -37,6 +37,8 @@ private slots:
 	void autoClosing();
 	void autoClosingSelection_data();
 	void autoClosingSelection();
+	void autoClosingSelectionByKey_data();
+	void autoClosingSelectionByKey();
 };
 #endif
 #endif // QEDITORTEST_H
