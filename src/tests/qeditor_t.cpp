@@ -915,7 +915,8 @@ void QEditorTest::autoClosingSelectionByKey(){
 	editor->cutBuffer.clear(); // need to start from a clean state (other tests may have put something there)
 	editor->setText(baseText, false);
 	editor->setCursor(doc->cursor(line,col,anchorLine,anchorCol));
-	QKeyEvent keyEvent(QEvent::KeyPress, 0, Qt::NoModifier, insert);
+	const int key = insert.at(0).unicode();
+	QKeyEvent keyEvent(QEvent::KeyPress, key, Qt::NoModifier, insert);
 	QCoreApplication::sendEvent(editor, &keyEvent);
 	doc->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(doc->text(), result);
