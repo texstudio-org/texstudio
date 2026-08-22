@@ -40,6 +40,7 @@
 #include "qstatuspanel.h"
 #include "qsearchreplacepanel.h"
 #include "latexrepository.h"
+#include "configmanager.h"
 
 #include "latexparser/latexparsing.h"
 
@@ -206,6 +207,35 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 			if (c.hasSelection() || realMatchLen > 1)
 				block = true;
 			if (block) editor->document()->beginMacro();
+			if (c.hasSelection() && (m.name == TXS_AUTO_REPLACE_QUOTE_OPEN || m.name == TXS_AUTO_REPLACE_QUOTE_CLOSE)) {
+				QString openingQuote;
+				QString closingQuote;
+				foreach (const Macro &quoteMacro, completerConfig->userMacros) {
+					if (quoteMacro.name == TXS_AUTO_REPLACE_QUOTE_OPEN)
+						openingQuote = quoteMacro.snippet();
+					else if (quoteMacro.name == TXS_AUTO_REPLACE_QUOTE_CLOSE)
+						closingQuote = quoteMacro.snippet();
+					if (!openingQuote.isEmpty() && !closingQuote.isEmpty())
+						break;
+				}
+				if (openingQuote.isEmpty())
+					openingQuote = m.snippet();
+				if (closingQuote.isEmpty())
+					closingQuote = m.snippet();
+				QString selectedText = c.selectedText();
+				if (!c.isForwardSelection())
+					c.flipSelection();
+				c.removeSelectedText();
+				c.insertText(openingQuote + selectedText + closingQuote);
+				if (!selectedText.isEmpty()) {
+					c.movePosition(selectedText.length() + closingQuote.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+					c.movePosition(selectedText.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+				}
+				if (block) editor->document()->endMacro();
+				editor->cutBuffer.clear();
+				editor->emitCursorPositionChanged();
+				return true;
+			}
 			if (c.hasSelection()) {
 				editor->cutBuffer = c.selectedText();
 				c.removeSelectedText();

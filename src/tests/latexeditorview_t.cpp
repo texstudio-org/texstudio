@@ -4,6 +4,8 @@
 #include "latexeditorview_t.h"
 #include "latexeditorview.h"
 #include "latexdocument.h"
+#include "latexcompleter.h"
+#include "configmanager.h"
 #include "qdocumentcursor.h"
 #include "qdocument.h"
 #include "qeditor.h"
@@ -114,5 +116,31 @@ void LatexEditorViewTest::inMathEnvironment(){
 
 }
 
-#endif
+void LatexEditorViewTest::autoQuoteReplacementSelection() {
+	LatexCompleter *completer = LatexEditorView::getCompleter();
+	QVERIFY(completer);
+	LatexCompleterConfig *cfg = completer->getConfig();
+	QVERIFY(cfg);
 
+	QList<Macro> oldMacros = cfg->userMacros;
+	for (int i = cfg->userMacros.size() - 1; i >= 0; --i) {
+		if (cfg->userMacros[i].name == TXS_AUTO_REPLACE_QUOTE_OPEN || cfg->userMacros[i].name == TXS_AUTO_REPLACE_QUOTE_CLOSE) {
+			cfg->userMacros.removeAt(i);
+		}
+	}
+	cfg->userMacros.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN, "``", "", "(?language:latex,Sweave)(?<=\\s|[(:]|^)\""));
+	cfg->userMacros.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE, "''", "", "(?language:latex,Sweave)(?<=\\S)\""));
+
+	QDocument *doc = edView->editor->document();
+	edView->editor->setText(">abc<", false);
+	edView->editor->setCursor(doc->cursor(0, 4, 0, 1));
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_QuoteDbl, Qt::NoModifier, "\"");
+	QCoreApplication::sendEvent(edView->editor, &keyEvent);
+	doc->setLineEndingDirect(QDocument::Unix, true);
+	QString result = doc->text();
+
+	cfg->userMacros = oldMacros;
+	QEQUAL(result, ">``abc''<");
+}
+
+#endif
