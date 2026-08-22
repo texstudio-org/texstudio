@@ -899,7 +899,17 @@ void QEditorTest::autoClosingSelection(){
 }
 
 void QEditorTest::autoClosingSelectionByKey_data(){
-	autoClosingSelection_data();
+	QTest::addColumn<QString>("baseText");
+	QTest::addColumn<int>("line");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<int>("anchorLine");
+	QTest::addColumn<int>("anchorCol");
+	QTest::addColumn<QString>("insert");
+	QTest::addColumn<QString>("result");
+
+	QTest::newRow("double quote by key") << ">abc<" << 0 << 4 << 0 << 1 << "\"" << ">\"abc\"<";
+	QTest::newRow("single quote by key") << ">abc<" << 0 << 4 << 0 << 1 << "'" << ">'abc'<";
+	QTest::newRow("backtick by key")     << ">abc<" << 0 << 4 << 0 << 1 << "`" << ">`abc`<";
 }
 
 void QEditorTest::autoClosingSelectionByKey(){
