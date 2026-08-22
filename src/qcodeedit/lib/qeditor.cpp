@@ -5469,6 +5469,13 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
             }
         }
     }
+    if (!autoComplete && hasSelection && flag(AutoCloseChars) && !autoOverridePlaceHolder
+            && (m_curPlaceHolder<0 || m_curPlaceHolder>=m_placeHolders.size() || m_placeHolders[m_curPlaceHolder].mirrors.isEmpty())
+            && (text == "\"" || text == "'" || text == "`")) {
+        writtenBracket = text;
+        autoBracket = text;
+        autoComplete = true;
+    }
 
     //insert
     if ( (lines.count() == 1) || !flag(AdjustIndent)  || !flag(AutoIndent)) //|| flag(WeakIndent) || !flag(AdjustIndent)  || !flag(AutoIndent))

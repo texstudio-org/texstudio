@@ -866,4 +866,36 @@ void QEditorTest::autoClosing(){
 	QEQUAL(doc->text(), result);
 }
 
+void QEditorTest::autoClosingSelection_data(){
+	QTest::addColumn<QString>("baseText");
+	QTest::addColumn<int>("line");
+	QTest::addColumn<int>("col");
+	QTest::addColumn<int>("anchorLine");
+	QTest::addColumn<int>("anchorCol");
+	QTest::addColumn<QString>("insert");
+	QTest::addColumn<QString>("result");
+
+	QTest::newRow("double quote") << ">abc<" << 0 << 4 << 0 << 1 << "\"" << ">\"abc\"<";
+	QTest::newRow("single quote") << ">abc<" << 0 << 4 << 0 << 1 << "'" << ">'abc'<";
+	QTest::newRow("backtick") << ">abc<" << 0 << 4 << 0 << 1 << "`" << ">`abc`<";
+}
+
+void QEditorTest::autoClosingSelection(){
+	QFETCH(QString, baseText);
+	QFETCH(int, line);
+	QFETCH(int, col);
+	QFETCH(int, anchorLine);
+	QFETCH(int, anchorCol);
+	QFETCH(QString, insert);
+	QFETCH(QString, result);
+
+	QDocument *doc = editor->document();
+	editor->cutBuffer.clear(); // need to start from a clean state (other tests may have put something there)
+	editor->setText(baseText, false);
+	QDocumentCursor c=doc->cursor(line,col,anchorLine,anchorCol);
+	editor->insertText(c, insert);
+	doc->setLineEndingDirect(QDocument::Unix,true);
+	QEQUAL(doc->text(), result);
+}
+
 #endif

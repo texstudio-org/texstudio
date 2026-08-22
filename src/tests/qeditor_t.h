@@ -35,6 +35,8 @@ private slots:
 	void indentation();
 	void autoClosing_data();
 	void autoClosing();
+	void autoClosingSelection_data();
+	void autoClosingSelection();
 };
 #endif
 #endif // QEDITORTEST_H
