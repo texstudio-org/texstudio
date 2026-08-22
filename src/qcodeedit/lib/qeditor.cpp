@@ -5107,7 +5107,7 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 {
 	bool hasSelection = c.hasSelection();
 
-	if ( hasSelection && op != NoOperation && op != NewLine ) {
+	if ( hasSelection && op != NoOperation ) {
         if(m_curPlaceHolder==-1){ // only process text outside a placeholder
             cutBuffer=c.selectedText();
         }
