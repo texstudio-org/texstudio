@@ -1148,7 +1148,7 @@ bool similarCommandInList(const QString &cmd, const QStringList &list)
 	return false;
 }
 
-RunCommandFlags BuildManager::getSingleCommandFlags(const QString &subcmd) const
+RunCommandFlags BuildManager::getSingleCommandFlags(QString &subcmd) const
 {
 	int result = 0;
 	if (similarCommandInList(subcmd, latexCommands)) result |= RCF_COMPILES_TEX;
@@ -1159,7 +1159,11 @@ RunCommandFlags BuildManager::getSingleCommandFlags(const QString &subcmd) const
 #ifdef Q_OS_WIN
 	isAcrobat = subcmd.contains("Acrobat.exe") || subcmd.contains("AcroRd32.exe");
 #endif
-    if (subcmd.endsWith("&")) result |= RCF_DETACH;
+    if (subcmd.endsWith("&")){
+        result |= RCF_DETACH;
+        // remove &
+        subcmd.chop(1);
+    }
 	if (viewerCommands.contains(subcmd) && !isAcrobat && singleViewerInstance) result |= RCF_SINGLE_INSTANCE;
 	return static_cast<RunCommandFlags>(result);
 }

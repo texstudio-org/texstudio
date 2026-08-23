@@ -132,7 +132,7 @@ public:
 	static QFileInfo parseExtendedSelectFile(QString &command, const QFileInfo &mainFile, const QFileInfo &currentFile);
 	static QString extractOutputRedirection(const QString &commandLine, QString &stdOut, QString &stdErr);
 	ExpandedCommands expandCommandLine(const QString &str, ExpandingOptions &expandingOptions);
-	RunCommandFlags getSingleCommandFlags(const QString &command) const;
+    RunCommandFlags getSingleCommandFlags(QString &command) const;
 	bool hasCommandLine(const QString &program);
 
 	void registerOptions(ConfigManagerInterface &cmi);
