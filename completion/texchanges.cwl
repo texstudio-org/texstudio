@@ -1,5 +1,5 @@
 # texchanges package
-# Matthew Bertucci 2026/08/19 for v0.2.4
+# Matthew Bertucci 2026/08/23 for v0.3.0
 
 #include:xcolor
 #include:ulem
@@ -68,6 +68,7 @@ texchangesHighlight#B
 
 # not documented
 \texchangesmode#S
+\txacceptedname#S
 \txaddedname#S
 \txauthorname#S
 \txcommentedname#S
@@ -85,6 +86,8 @@ texchangesHighlight#B
 \txhighlightedname#S
 \txlistchangesname#S
 \txnochangesname#S
+\txpendingname#S
+\txrejectedname#S
 \txremovedname#S
 \txreplacedname#S
 \txreportline{arg1}{arg2}{arg3}{arg4}{arg5}#S

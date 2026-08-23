@@ -2021,6 +2021,7 @@
 <file>completion/inslrmaj.cwl</file>
 <file>completion/inslrmin.cwl</file>
 <file>completion/intcalc.cwl</file>
+<file>completion/integramme.cwl</file>
 <file>completion/interactiveanimation.cwl</file>
 <file>completion/interactiveplot.cwl</file>
 <file>completion/inter.cwl</file>
@@ -2836,6 +2837,7 @@
 <file>completion/papermas.cwl</file>
 <file>completion/PapierGurvan.cwl</file>
 <file>completion/paracol.cwl</file>
+<file>completion/paracolrule.cwl</file>
 <file>completion/paralist.cwl</file>
 <file>completion/parallel.cwl</file>
 <file>completion/paramcalc.cwl</file>
@@ -2963,6 +2965,7 @@
 <file>completion/phonenumbers.cwl</file>
 <file>completion/phonetic.cwl</file>
 <file>completion/phonrule.cwl</file>
+<file>completion/phosphoricons.cwl</file>
 <file>completion/photo.cwl</file>
 <file>completion/physconst.cwl</file>
 <file>completion/physics2.cwl</file>
