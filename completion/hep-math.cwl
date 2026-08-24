@@ -1,10 +1,11 @@
 # hep-math package
-# Matthew Bertucci 2024/11/29 for v1.3
+# Matthew Bertucci 2026/08/19 for v1.5
 
 #include:mathtools
 #include:soul
 #include:amssymb
-#include:units
+#include:xfrac
+#include:siunitx
 #include:cancel
 #include:slashed
 #include:mleftright
@@ -141,6 +142,8 @@
 \imaginaryunit#*
 \ceil{arg}#m
 \floor{arg}#m
+\nicefrac{arg1}{arg2}
 
 \slashedpartialdifferential#*m
 \spd#*m
+\unitfrac#S

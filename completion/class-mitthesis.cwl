@@ -1,5 +1,5 @@
 # mitthesis class
-# Matthew Bertucci 2025/11/12 for v1.21
+# Matthew Bertucci 2026/08/23 for v1.24
 
 #include:class-report
 #include:etoolbox
@@ -31,6 +31,7 @@ twoside
 \DegreeYear
 \Degree{degree name}{department%text}
 \Institution{institution}
+\LGO
 \Reader{name}{title%text}{department%text}
 \SignatureBlockSize{fontsize cmd}
 \Squash
@@ -43,6 +44,7 @@ twoside
 \ThesisDate{date}
 \ThesisReaderName{text}
 \Tighten
+\TitlePageProgramNote{text}
 
 \begin{nomenclature}
 \begin{nomenclature}[space]
