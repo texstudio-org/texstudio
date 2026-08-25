@@ -1,5 +1,5 @@
 # lete-sans-math package
-# Matthew Bertucci 2026/04/06 for v0.61
+# Matthew Bertucci 2026/08/24 for v0.62
 
 #include:iftex
 #include:unicode-math
@@ -60,7 +60,11 @@ Scale=%<factor%>
 \mupvarg#m
 \mbfvarg#m
 \mitvarg#m
+\mitvarl#m
 \mbfitvarg#m
+\mbfscrl#m
+\mscrl#m
+\mupvarzero#m
 \ngeqq#m
 \ngeqqslant#m
 \ngeqslant#m
