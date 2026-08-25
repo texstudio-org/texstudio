@@ -1,10 +1,11 @@
 # tikzlings-addons package
-# Matthew Bertucci 2025/12/01 for v2.4
+# Matthew Bertucci 2026/08/20 for v2.6
 
 #include:tikz
 #include:tikzlibrarypatterns
 #include:tikzlibrarydecorations.shapes
 #include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarydecorations.pathreplacing
 
 \thing[options%keyvals]
 

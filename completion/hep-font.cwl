@@ -1,5 +1,5 @@
 # hep-font package
-# Matthew Bertucci 2025/09/02 for v1.4
+# Matthew Bertucci 2026/08/19 for v1.5
 
 #include:kvoptions
 #include:iftex
@@ -21,15 +21,6 @@ serif
 oldstyle
 lining
 #endkeyvals
-
-#ifOption:oldstyle
-#include:units
-#include:xpatch
-#endif
-#ifOption:oldstyle=true
-#include:units
-#include:xpatch
-#endif
 
 \textui{text}
 

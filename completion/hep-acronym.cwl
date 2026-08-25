@@ -1,11 +1,13 @@
 # hep-acronym package
-# Matthew Bertucci 2023/07/14 for v1.2
+# Matthew Bertucci 2026/08/19 for v1.5
 
 #include:kvoptions
 #include:glossaries-extra
 #include:everyhook
 #include:xspace
 #include:amstext
+#include:titlesec
+#include:enumitem
 
 #keyvals:\usepackage/hep-acronym#c
 hyper#true,false
@@ -40,13 +42,13 @@ hyper#true,false
 \longacronym*{abbr}{def%text}[plural def%text]#*
 \longacronym*[typeset abbr]{abbr}{def%text}[plural def%text]#*
 
+\acronymalternative{acronym}{name}{alt long form}
+\acronymalternative{acronym}{name}*{alt long form}
 \resetacronym{key%plain}
 \dummyacronym{key%plain}
+\acronyms{title%text}
+\acronyms[key%plain]{title%text}
 
-\acronymalternative{arg1}{arg2}{arg3}#*
-\acronymalternative{arg1}{arg2}*{arg3}#*
-
-\mathdef{cmd}{def}#*d
-\mathdef{cmd}[args]{def}#*d
-\acronyms{name}#*
-\acronyms[opt]{name}#*
+\mathdef{cmd}{def}#Sd
+\mathdef{cmd}[args]{def}#Sd
+\descriptionsitem#S

@@ -1,7 +1,8 @@
 # scripture package
-# Matthew Bertucci 2026/06/13 for v2.4
+# Matthew Bertucci 2026/08/23 for v2.5
 
 \added{words%text}
+\canonicalheading{heading%text}
 \ch{chapter number}
 \ch[letter]{chapter number}
 \ch*{chapter number}
@@ -60,6 +61,12 @@ after=%<code%>
 before=%<code%>
 belowskip=##L
 book=%<name%>
+canonicalheading/aboveskip=##L
+canonicalheading/afterindent#true,false
+canonicalheading/align=#left,right,center
+canonicalheading/belowskip=##L
+canonicalheading/font=%<font commands%>
+canonicalheading/format=%<code%>
 chapter=%<integer%>
 chapter/aboveskip=##L
 chapter/align=#left,right
@@ -76,6 +83,7 @@ chapter/para#true,false
 chapter/para/aboveskip=##L
 chapter/para/belowskip=##L
 chapter/para/indent#true,false
+chapter/presep=##L
 chapter/sep=##L
 chapter/show#true,false
 chapter/showverse#true,false
@@ -191,6 +199,7 @@ poetry/bigindent=##L
 poetry/indent=##L
 poetry/leftmargin=##L
 poetry/rightmargin=##L
+poetry/secondhalf#true,false
 poetry/verse/left#true,false
 poetry/verse/right#true,false
 poetry/verse/sep=##L
@@ -215,4 +224,5 @@ showverse#true,false
 #keyvals:\begin{poetry}
 bigindent=##L
 indent=##L
+secondhalf#true,false
 #endkeyvals

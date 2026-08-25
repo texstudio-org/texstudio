@@ -1,5 +1,5 @@
 # hep-text package
-# Matthew Bertucci 2024/11/29 for v1.3
+# Matthew Bertucci 2026/08/19 for v1.5
 
 #include:kvoptions
 #include:babel
@@ -11,6 +11,7 @@
 #include:relsize
 #include:enumitem
 # enumitem loaded with inline option
+#include:noindentafter
 
 #keyvals:\usepackage/hep-text#c
 lang=%<language%>

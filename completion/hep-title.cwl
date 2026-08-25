@@ -1,5 +1,5 @@
 # hep-title package
-# Matthew Bertucci 2025/09/02 for v1.5
+# Matthew Bertucci 2026/08/19 for v1.5
 
 #include:varwidth
 #include:calc
@@ -9,6 +9,7 @@
 #include:authblk
 #include:xpatch
 #include:etoolbox
+#include:orcidlink
 
 \series{series%text}
 \subtitle{subtitle%text}
@@ -33,6 +34,8 @@
 \keywords{keywords%text}
 \doi{DOI}
 \arxiv{arxiv ID}
+\orcmail{orcid}{email}
+\author[affil%text]{name%text}
 
 \placepreprint#*
 \placereprint#*
