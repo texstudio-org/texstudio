@@ -50,6 +50,7 @@ private:
 	QTreeView *searchTree;
 
 	SearchQuery *query;
+    bool blockQueryUpdate=false;
 
 	void retranslateUi();
 	void updateSearchScopeBox(SearchQuery::Scope sc);
