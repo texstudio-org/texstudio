@@ -3353,6 +3353,7 @@
 <file>completion/rmannot.cwl</file>
 <file>completion/rmathbr.cwl</file>
 <file>completion/robotarm.cwl</file>
+<file>completion/robotkarol.cwl</file>
 <file>completion/roboto.cwl</file>
 <file>completion/roboto-mono.cwl</file>
 <file>completion/roboto-serif.cwl</file>
