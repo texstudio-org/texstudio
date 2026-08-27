@@ -124,7 +124,7 @@ warnings-off={%<warning list%>}
 \mdsmblkcircle#m
 \mdsmwhtcircle#m
 \mdwhtcircle#m
-\mscrg#m
+\mscrg#*m
 \nHdownarrow#m
 \nHuparrow#m
 \nvleftarrow#m
