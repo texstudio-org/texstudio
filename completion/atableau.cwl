@@ -1,5 +1,5 @@
 # atableau package
-# Matthew Bertucci 2026/06/03 for v2.2.1
+# Matthew Bertucci 2026/08/25 for v2.3.0
 
 #include:tikz
 #include:tikzlibrarymatrix
@@ -52,6 +52,10 @@
 \Tabloid[options%keyvals]{partition spec}
 \Tabloid(x,y){partition spec}
 \Tabloid(x,y)[options%keyvals]{partition spec}
+\YoungWall{Young wall spec}
+\YoungWall[options%keyvals]{Young wall spec}
+\YoungWall(x,y){Young wall spec}
+\YoungWall(x,y)[options%keyvals]{Young wall spec}
 \aTabset{options%keyvals}
 
 aTableauMain#B

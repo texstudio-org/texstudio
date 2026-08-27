@@ -448,7 +448,7 @@ nodes={%<TikZ keys%>}
 \storefirstcorner{macro%cmd}#d
 \storesecondcorner{macro%cmd}#d
 
-\settgtlayer#*
+\settgtlayer#S
 \anchorpoint#S
 \distance#S
 \source#S
@@ -456,7 +456,7 @@ nodes={%<TikZ keys%>}
 \offb#S
 \dest#S
 \depname#S
-\xca#*
-\xcb#*
-\yca#*
-\ycb#*
+\xca#S
+\xcb#S
+\yca#S
+\ycb#S

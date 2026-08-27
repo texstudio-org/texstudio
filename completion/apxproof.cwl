@@ -1,5 +1,5 @@
 # apxproof package
-# Matthew Bertucci 2026/06/03 for v1.4.1
+# Matthew Bertucci 2026/08/26 for v1.5.0
 
 #include:environ
 #include:etoolbox
@@ -16,6 +16,7 @@ bibliography=#common,separate
 bibengine=#bibtex,biblatex
 repeqn=#same,independent
 forwardlinking=#yes,no
+synctex=#auto,yes,no
 #endkeyvals
 
 \begin{toappendix}

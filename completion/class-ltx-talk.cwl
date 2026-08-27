@@ -1,5 +1,5 @@
 # ltx-talk class
-# Matthew Bertucci 2026/07/29 for v0.5.2
+# Matthew Bertucci 2026/08/25 for v0.6.0
 
 #include:pdfmanagement
 #include:relsize
@@ -15,6 +15,7 @@ aspect-ratio=%<width:height%>
 frame-title-arg
 mode=#handout,projector
 handout
+supplementary-frames=#appendix,in-place,omit
 #endkeyvals
 
 #ifOption:frame-title-arg
@@ -90,6 +91,7 @@ handout
 \alert{text}
 \alt<overlay spec>{default text%text}{alternative text%text}
 \alt{default text%text}{alternative text%text}
+\appendix<mode spec>
 \author[options%keyvals]{names}
 \color<overlay spec>[model]{color}
 \color<overlay spec>{color}
@@ -164,12 +166,17 @@ vertical-alignment=#bottom,center,top
 #endkeyvals
 
 #keyvals:\begin{frame},\begin{frame*},\reuseframe
+action-spec=%<action spec%>
+auto-break#true,false
+auto-break-coverage=%<number%>
 tag-slides=%<spec%>
 vertical-alignment=#bottom,center,stretch,top
+supplementary-frame#true,false
 #endkeyvals
 
 #keyvals:\begin{frame},\begin{frame*}
 name=%<name%>
+label=%<name%>
 #endkeyvals
 
 #keyvals:\author#c
@@ -204,6 +211,7 @@ short-title=%<text%>
 \begin{block}{title%text}
 \begin{block}<action spec>{title%text}
 \end{block}
+\appendixmarker#*
 \DeclareColor{name%specialDef}[model]{color-spec}#s#%color
 \DeclareColor{name%specialDef}{color}#s#%color
 \insertsection#*
@@ -211,6 +219,7 @@ short-title=%<text%>
 \insertsubsubsection#*
 \mode<mode spec>{text}
 \mode{text}
+\theappendixframe#*
 \thepauses#*
 \theslide#*
 
