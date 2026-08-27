@@ -12784,6 +12784,7 @@ void Texstudio::toggleDocks(bool visible)
  */
 void Texstudio::resetDocks()
 {
+    if(!m_firstDockWidget) return;
     addDockWidget(Qt::LeftDockWidgetArea, m_firstDockWidget);
     foreach(QDockWidget* dw,m_docksOrder){
         tabifyDockWidget(m_firstDockWidget,dw);
