@@ -7,8 +7,8 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="CHANGELOG.html" />
 <meta property="og:site_name" content="TeXstudio" />
-<meta property="og:description" content="TeXstudio 4.9.8: fix crash on find label#4613, breaking change: all commands are internally monitored until they finish. New commands are blocked from execution which also blocks recompile if an ex..." />
-<meta name="description" content="TeXstudio 4.9.8: fix crash on find label#4613, breaking change: all commands are internally monitored until they finish. New commands are blocked from execution which also blocks recompile if an ex..." />
+<meta property="og:description" content="TeXstudio 4.9.8: fix freeze on thesaurus dialog#4629, fix crash on find label#4613, breaking change: all commands are internally monitored until they finish. New commands are blocked from execution..." />
+<meta name="description" content="TeXstudio 4.9.8: fix freeze on thesaurus dialog#4629, fix crash on find label#4613, breaking change: all commands are internally monitored until they finish. New commands are blocked from execution..." />
 <link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="prev" title="Background information" href="background.html">
         <link rel="prefetch" href="_static/texstudio128x128.webp" as="image">
 
@@ -249,6 +249,7 @@
 <section id="texstudio-4-9-8">
 <h2>TeXstudio 4.9.8<a class="headerlink" href="#texstudio-4-9-8" title="Link to this heading">¶</a></h2>
 <ul class="simple">
+<li><p>fix freeze on thesaurus dialog <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/4629">#4629</a></p></li>
 <li><p>fix crash on find label <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/4613">#4613</a></p></li>
 <li><p>breaking change: all commands are internally monitored until they finish. New commands are blocked from execution which also blocks recompile if an external pdf viewer is used (which keeps running). Command syntax is extended to accept “&amp;” at the end of a command, so that it runs that command detached (i.e. no blocking, no monitoring) <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/4614">#4614</a></p></li>
 <li><p>make git panel smaller <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/4591">#4591</a></p></li>
