@@ -187,15 +187,45 @@ void GrammarCheck::shutdown()
 	deleteLater();
 }
 
+// Maximum number of grammar-check requests processed in a single processLoop()
+// invocation. Keeping this bounded prevents the peak memory from growing
+// linearly with document size when an entire document is checked at once.
+static const int GRAMMAR_CHECK_CHUNK_SIZE = 20;
+
 void GrammarCheck::processLoop()
 {
 	if (shuttingDown) return;
-	for (int i = requests.size() - 1; i >= 0; i--)
-		if (requests[i].pending) {
-			requests[i].pending = false;
-			process(i);
-		}
+	// Clear the flag here so that any check() call that arrives while we are
+	// processing this chunk will re-arm the timer on its own, rather than
+	// relying on this function to do it later.
 	pendingProcessing = false;
+	// Process requests in chunks to limit peak memory usage. When a full
+	// document is loaded, all paragraphs are queued before processLoop runs.
+	// Processing them all at once would tokenize and send every paragraph to
+	// the backend simultaneously, consuming a lot of memory. By limiting the
+	// number processed per call and re-scheduling, earlier requests can
+	// complete and be freed before later ones are started.
+	int processed = 0;
+	bool morePending = false;
+	for (int i = requests.size() - 1; i >= 0; i--) {
+		if (requests[i].pending) {
+			if (processed < GRAMMAR_CHECK_CHUNK_SIZE) {
+				requests[i].pending = false;
+				process(i);
+				processed++;
+			} else {
+				morePending = true;
+				break;
+			}
+		}
+	}
+	if (morePending && !pendingProcessing) {
+		// Re-schedule to process the remaining pending requests after a short
+		// delay, giving the event loop time to receive backend responses and
+		// free memory from completed requests.
+		pendingProcessing = true;
+		QTimer::singleShot(50, this, SLOT(processLoop()));
+	}
 }
 
 
