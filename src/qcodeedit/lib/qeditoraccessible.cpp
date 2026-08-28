@@ -96,7 +96,7 @@ QString QEditorAccessible::fullText() const
         result += ed->document()->line(i).text();
     }
 
-    m_textCache = result;
+    m_textCache = std::move(result);
     m_textCacheValid = true;
     m_textCacheRevision = revision;
     return m_textCache;
