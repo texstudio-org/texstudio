@@ -20,6 +20,7 @@
 #include "qdocumentline.h"
 
 #include <QTextBoundaryFinder>
+#include <climits>
 
 /*!
     \file qeditoraccessible.cpp
@@ -53,6 +54,15 @@ QEditor *QEditorAccessible::editor() const
     \brief Returns the full document text with '\n' line separators.
 
     This is the canonical text string used for all offset calculations.
+
+    The result is cached and only rebuilt when the document actually
+    changes (tracked via QEditor::accessibleTextRevision()). Accessibility
+    clients (screen readers, Windows UI Automation, ...) can query this
+    method extremely often -- e.g. once per character while walking the
+    document. Rebuilding a fresh copy of the whole document on every such
+    call previously caused huge amounts of virtual memory to be reserved
+    (and immediately discarded) for large files, which could exhaust the
+    available address space. Caching avoids that repeated work entirely.
 */
 QString QEditorAccessible::fullText() const
 {
@@ -60,19 +70,36 @@ QString QEditorAccessible::fullText() const
     if (!ed || !ed->document())
         return QString();
 
+    const quint64 revision = ed->accessibleTextRevision();
+    if (m_textCacheValid && revision == m_textCacheRevision)
+        return m_textCache;
+
     const int count = ed->document()->lineCount();
-    if (count == 0)
-        return QString();
+    if (count == 0) {
+        m_textCache.clear();
+        m_textCacheValid = true;
+        m_textCacheRevision = revision;
+        return m_textCache;
+    }
+
+    // Compute the exact required capacity (instead of a rough guess) so we
+    // never reserve significantly more memory than what is actually needed.
+    qint64 totalLength = count - 1; // '\n' separators between lines
+    for (int i = 0; i < count; ++i)
+        totalLength += ed->document()->line(i).length();
 
     QString result;
-    // Reserve a rough estimate to avoid many reallocations.
-    result.reserve(count * 40);
+    result.reserve(int(qMin<qint64>(totalLength, INT_MAX)));
     for (int i = 0; i < count; ++i) {
         if (i > 0)
             result += QLatin1Char('\n');
         result += ed->document()->line(i).text();
     }
-    return result;
+
+    m_textCache = result;
+    m_textCacheValid = true;
+    m_textCacheRevision = revision;
+    return m_textCache;
 }
 
 /*!

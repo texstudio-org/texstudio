@@ -254,7 +254,13 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		Q_INVOKABLE QString text() const;
 		Q_INVOKABLE QString text(int line) const;
 		int documentOffsetFromPosition(int line, int column) const;
-		
+
+		//! Monotonically increasing counter bumped whenever the document
+		//! content changes; used by QEditorAccessible to cache the full
+		//! document text instead of rebuilding it on every accessibility
+		//! query (which can exhaust virtual memory for very large files).
+		quint64 accessibleTextRevision() const { return m_accessibleTextRevision; }
+
 		Q_INVOKABLE QDocument* document() const;
 		
 		QList<QEditorInputBindingInterface*> inputBindings() const;
@@ -721,6 +727,8 @@ public slots:
 		bool m_placeHolderSynchronizing; 
 		
 		QList<PlaceHolder> m_placeHolders;
+
+		quint64 m_accessibleTextRevision = 0;
 		
 		int m_state;
 		bool m_selection;

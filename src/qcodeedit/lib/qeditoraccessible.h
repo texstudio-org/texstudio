@@ -73,6 +73,15 @@ private:
     void boundaryOffsets(const QString &text, int offset,
                          QAccessible::TextBoundaryType boundaryType,
                          int *startOffset, int *endOffset) const;
+
+    // Cache of fullText(), keyed by the editor's content revision counter.
+    // Without this, every single accessibility query (which can happen very
+    // frequently, e.g. while an AT client walks the document character by
+    // character) would rebuild the entire document as a new QString, which
+    // for large files can exhaust virtual memory very quickly.
+    mutable QString m_textCache;
+    mutable quint64 m_textCacheRevision = 0;
+    mutable bool m_textCacheValid = false;
 };
 
 #endif // QEDITORACCESSIBLE_H

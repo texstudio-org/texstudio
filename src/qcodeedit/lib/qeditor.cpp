@@ -6549,6 +6549,12 @@ void QEditor::updateContent (int i, int n)
 			
 	repaintContent(i, n>1 ? -1 : n);
 
+	// Bump the revision counter so QEditorAccessible knows its cached copy
+	// of the full document text is stale. Done unconditionally (not only
+	// when QAccessible::isActive()) so that the cache stays consistent
+	// even if an AT client attaches later.
+	++m_accessibleTextRevision;
+
 	// Notify AT tools that the document content has changed.
 	if (QAccessible::isActive())
 		QAccessible::updateAccessibility(new QAccessibleValueChangeEvent(this, QVariant()));
