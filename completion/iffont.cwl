@@ -4,7 +4,7 @@
 #include:fontspec
 #include:etoolbox
 
-\settofirstfound{font cmd}{font1,font2,...}
+\settofirstfound{font cmd%cmd}{font1,font2,...}#d
 
 \iffontsexist{font list}{true}{false}#*
 \ifxfontsexist{font list}{true}{false}#*

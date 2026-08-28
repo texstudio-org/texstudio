@@ -4012,6 +4012,7 @@
 <file>completion/tikzlibrarytilings.penrose.cwl</file>
 <file>completion/tikzlibrarytilings.polykite.cwl</file>
 <file>completion/tikzlibrarytqft.cwl</file>
+<file>completion/tikzlibrarytrainmap.cwl</file>
 <file>completion/tikzlibrarytrees.cwl</file>
 <file>completion/tikzlibraryturtle.cwl</file>
 <file>completion/tikzlibraryviews.cwl</file>
@@ -4138,6 +4139,7 @@
 <file>completion/tracklang.cwl</file>
 <file>completion/tracklang-scripts.cwl</file>
 <file>completion/traffic-light-protocol.cwl</file>
+<file>completion/trainmap.cwl</file>
 <file>completion/trajan.cwl</file>
 <file>completion/tram.cwl</file>
 <file>completion/tramlines.cwl</file>
