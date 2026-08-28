@@ -1,6 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.9.8
 
+- fix crash on find label [#4613](https://github.com/texstudio-org/texstudio/issues/4613)
 - breaking change: all commands are internally monitored until they finish. New commands are blocked from execution which also blocks recompile if an external pdf viewer is used (which keeps running). Command syntax is extended to accept "&" at the end of a command, so that it runs that command detached (i.e. no blocking, no monitoring) [#4614](https://github.com/texstudio-org/texstudio/issues/4614)
 - make git panel smaller [#4591](https://github.com/texstudio-org/texstudio/issues/4591)
 - enable drag/drop from internal file explorer to text, calls image wizard/inserts "\include{fn}" [#4608](https://github.com/texstudio-org/texstudio/issues/4608)
