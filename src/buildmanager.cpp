@@ -1164,7 +1164,10 @@ RunCommandFlags BuildManager::getSingleCommandFlags(QString &subcmd) const
         // remove &
         subcmd.chop(1);
     }
-	if (viewerCommands.contains(subcmd) && !isAcrobat && singleViewerInstance) result |= RCF_SINGLE_INSTANCE;
+	if (viewerCommands.contains(subcmd) && !isAcrobat) {
+		if (singleViewerInstance) result |= RCF_SINGLE_INSTANCE;
+		result |= RCF_DETACH;
+	}
 	return static_cast<RunCommandFlags>(result);
 }
 
