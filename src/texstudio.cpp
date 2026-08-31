@@ -5722,8 +5722,13 @@ void Texstudio::openFromExplorer(const QModelIndex &index)
  */
 void Texstudio::openFromGit(const QString &fn,const QString rev)
 {
-    if (fn.isEmpty()|| rev.isEmpty()) return;
+    if (fn.isEmpty()) return;
     if(!currentEditorView()){
+        return;
+    }
+    if(rev.isEmpty()){
+        // just open file
+        load(fn);
         return;
     }
     QFileInfo fi(fn);
