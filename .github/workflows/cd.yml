@@ -504,7 +504,7 @@ jobs:
           mv texstudio.app ../app/texstudio-osx-${VERSION_NAME}.app
           cd ..
           # zip -r texstudio-osx-m1-${VERSION_NAME}.zip texstudio-osx-${VERSION_NAME}.app
-          zip -r texstudio-${GIT_VERSION}-osx.zip texstudio-${GIT_VERSION}-osx.app
+          zip -ry texstudio-${GIT_VERSION}-osx.zip texstudio-${GIT_VERSION}-osx.app
           echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_OUTPUT
           echo "TXS_VERSION=${TXS_VERSION}" >> $GITHUB_OUTPUT
           echo "GIT_VERSION=${GIT_VERSION}" >> $GITHUB_OUTPUT
@@ -605,7 +605,7 @@ jobs:
           mv texstudio.app ../app/texstudio-osx-m1-${VERSION_NAME}.app
           cd ..
           # zip -r texstudio-osx-m1-${VERSION_NAME}.zip texstudio-osx-m1-${VERSION_NAME}.app
-          zip -r texstudio-${GIT_VERSION}-osx-m1.zip texstudio-${GIT_VERSION}-osx-m1.app
+          zip -ry texstudio-${GIT_VERSION}-osx-m1.zip texstudio-${GIT_VERSION}-osx-m1.app
           echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_OUTPUT
           echo "TXS_VERSION=${TXS_VERSION}" >> $GITHUB_OUTPUT
           echo "GIT_VERSION=${GIT_VERSION}" >> $GITHUB_OUTPUT
