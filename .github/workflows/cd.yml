@@ -499,7 +499,7 @@ jobs:
           /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin/bin/macdeployqt texstudio.app
           codesign --force --deep --sign - texstudio.app
           . ../.github/scripts/get-version.sh
-          cp -r texstudio.app ../texstudio-${GIT_VERSION}-osx.app
+          cp -rP texstudio.app ../texstudio-${GIT_VERSION}-osx.app
           mkdir ../app
           mv texstudio.app ../app/texstudio-osx-${VERSION_NAME}.app
           cd ..
@@ -600,7 +600,7 @@ jobs:
           /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin/bin/macdeployqt texstudio.app
           codesign --force --deep --sign - texstudio.app
           . ../.github/scripts/get-version.sh
-          cp -r texstudio.app ../texstudio-${GIT_VERSION}-osx-m1.app
+          cp -rP texstudio.app ../texstudio-${GIT_VERSION}-osx-m1.app
           mkdir ../app
           mv texstudio.app ../app/texstudio-osx-m1-${VERSION_NAME}.app
           cd ..
