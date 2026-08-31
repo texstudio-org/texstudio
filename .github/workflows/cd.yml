@@ -502,8 +502,9 @@ jobs:
           cp -rP texstudio.app ../texstudio-${GIT_VERSION}-osx.app
           mkdir ../app
           mv texstudio.app ../app/texstudio-osx-${VERSION_NAME}.app
+          cd ../app
+          zip -ry texstudio-osx-m1-${VERSION_NAME}.zip texstudio-osx-${VERSION_NAME}.app
           cd ..
-          # zip -r texstudio-osx-m1-${VERSION_NAME}.zip texstudio-osx-${VERSION_NAME}.app
           zip -ry texstudio-${GIT_VERSION}-osx.zip texstudio-${GIT_VERSION}-osx.app
           echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_OUTPUT
           echo "TXS_VERSION=${TXS_VERSION}" >> $GITHUB_OUTPUT
@@ -514,8 +515,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: texstudio-osx
-          path: app
-          # path: texstudio-osx-m1-${{ steps.package.outputs.VERSION_NAME }}.zip
+          path: app/texstudio-osx-m1-${{ steps.package.outputs.VERSION_NAME }}.zip
 
       - name: Upload release file(s)
         uses: actions/upload-artifact@v7
@@ -603,6 +603,8 @@ jobs:
           cp -rP texstudio.app ../texstudio-${GIT_VERSION}-osx-m1.app
           mkdir ../app
           mv texstudio.app ../app/texstudio-osx-m1-${VERSION_NAME}.app
+          cd ../app
+          zip -ry texstudio-osx-m1-${VERSION_NAME}.zip texstudio-osx-m1-${VERSION_NAME}.app
           cd ..
           # zip -r texstudio-osx-m1-${VERSION_NAME}.zip texstudio-osx-m1-${VERSION_NAME}.app
           zip -ry texstudio-${GIT_VERSION}-osx-m1.zip texstudio-${GIT_VERSION}-osx-m1.app
@@ -615,8 +617,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: texstudio-osx-m1
-          path: app
-          # path: texstudio-osx-m1-${{ steps.package.outputs.VERSION_NAME }}.zip
+          path: app/texstudio-osx-m1-${{ steps.package.outputs.VERSION_NAME }}.zip
 
       - name: Upload release file(s)
         uses: actions/upload-artifact@v7
