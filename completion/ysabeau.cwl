@@ -1,13 +1,9 @@
 # ysabeau package
-# Matthew Bertucci 2026/01/16 for v2.006
+# Matthew Bertucci 2026/08/1 for v1.7
 
 #include:fontenc
 # loads T1 option of fontenc
 #include:mweights
-#include:xstring
-#include:ifthen
-#include:scalefnt
-#include:etoolbox
 #include:xkeyval
 #include:fontaxes
 
