@@ -5760,7 +5760,7 @@ void Texstudio::openFromGit(const QString &fn,const QString rev)
     configureNewEditorViewEnd(edView);
     // set text from git show
     QString text;
-    QString args=QString("%1:%2").arg(rev,fileName);
+    QString args=QString("%1:./%2").arg(rev,fileName);
     text=git.runGit("show",GIT::quote(repoRoot),args);
     edView->document->setText(text,false);
     edView->editor->setFileName(QString("%1 @ %2").arg(fileName,rev.left(7)));
