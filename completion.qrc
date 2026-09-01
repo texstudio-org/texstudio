@@ -4016,6 +4016,7 @@
 <file>completion/tikzlibrarytrainmap.cwl</file>
 <file>completion/tikzlibrarytrees.cwl</file>
 <file>completion/tikzlibraryturtle.cwl</file>
+<file>completion/tikzlibraryumlcd.cwl</file>
 <file>completion/tikzlibraryviews.cwl</file>
 <file>completion/tikzlibraryzx-calculus.cwl</file>
 <file>completion/tikzlings-addons.cwl</file>
