@@ -106,6 +106,7 @@ backgrounds
 bayesnet
 bbox
 bending
+bpmn
 braids
 calc
 calendar
@@ -143,8 +144,12 @@ decorations.text
 dubins
 ducks
 er
+ext.arrows-plus
+ext.beamer
 ext.calendar-plus
+ext.layers
 ext.misc
+ext.nodes
 ext.node-families
 ext.node-families.shapes.geometric
 ext.paths.arcto
@@ -160,9 +165,11 @@ ext.shapes.rectangleroundedcorners
 ext.shapes.superellipse
 ext.shapes.uncenteredrectangle
 ext.topaths.arcthrough
+ext.topaths.autobend
 ext.transformations.mirror
 external
 fadings
+fill.geomarray
 fill.hexagon
 fill.image
 fill.rhombus
@@ -178,6 +185,7 @@ intersections
 karnaugh
 knots
 lindenmayersystems
+marmots
 math
 matrix
 matrix.skeleton
@@ -187,7 +195,6 @@ ocgx
 optics
 overlay-beamer-styles
 patterns
-patterns.images
 patterns.meta
 penrose
 perspective
@@ -196,7 +203,7 @@ plothandlers
 plotmarks
 positioning
 profiler
-quantikz
+quantikz2
 quotes
 rdf
 rulercompass
@@ -222,9 +229,19 @@ svg.path
 swigs
 switching-architectures
 through
+tikzlings
 tikzmark
+tikzphysics
+tikzphysics.mechanics
+tikzphysics.optics
+tikzphysics.ramps
+tikzphysics.surface
+tilings
+tilings.penrose
+tilings.polykite
 topaths
 tqft
+trainmap
 trees
 turtle
 views
