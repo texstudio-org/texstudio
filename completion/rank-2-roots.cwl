@@ -13,7 +13,6 @@
 #include:tikzlibrarybackgrounds
 #include:tikzlibrarydecorations.pathreplacing
 #include:tikzlibraryshadings
-#include:tikzlibraryfadings
 
 \begin{rootSystem}{type%keyvals}
 \begin{rootSystem}[options]{type%keyvals}

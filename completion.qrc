@@ -584,6 +584,7 @@
 <file>completion/chemformula.cwl</file>
 <file>completion/chemformula-ru.cwl</file>
 <file>completion/chemgreek.cwl</file>
+<file>completion/chemidentifier.cwl</file>
 <file>completion/chemist.cwl</file>
 <file>completion/chemmacros.cwl</file>
 <file>completion/chemnum.cwl</file>
@@ -1570,6 +1571,7 @@
 <file>completion/fancyunits_small-fractions.cwl</file>
 <file>completion/fancyvrb.cwl</file>
 <file>completion/fancyvrb-ex.cwl</file>
+<file>completion/fantasquesansmono-otf.cwl</file>
 <file>completion/fapapersize.cwl</file>
 <file>completion/farbe.cwl</file>
 <file>completion/fascicules.cwl</file>
@@ -4008,6 +4010,7 @@
 <file>completion/tikzlibrarytikzphysics.core.cwl</file>
 <file>completion/tikzlibrarytikzphysics.mechanics.cwl</file>
 <file>completion/tikzlibrarytikzphysics.optics.cwl</file>
+<file>completion/tikzlibrarytikzphysics.ramps.cwl</file>
 <file>completion/tikzlibrarytikzphysics.surface.cwl</file>
 <file>completion/tikzlibrarytilings.cwl</file>
 <file>completion/tikzlibrarytilings.penrose.cwl</file>

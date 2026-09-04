@@ -1,5 +1,5 @@
 # codebox package
-# Matthew Bertucci 1/6/2022 for v1.0.3
+# Matthew Bertucci 2026/09/04 for v2.0.1
 
 #include:xtemplate
 #include:l3keys2e
@@ -9,7 +9,6 @@
 #include:tcolorboxlibrarybreakable
 #include:tcolorboxlibraryminted
 #include:tcolorboxlibrarylistings
-#include:tikzlibraryshapes.geometric
 #include:varwidth
 #include:xcolor
 #include:etoolbox

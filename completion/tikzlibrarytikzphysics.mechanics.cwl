@@ -1,5 +1,5 @@
 # tikzphysics.mechanics tikzlibrary
-# Matthew Bertucci 2026/08/13 for v1.0.0
+# Matthew Bertucci 2026/09/04 for v1.1.0
 
 #include:tikzlibrarycalc
 #include:tikzlibrarytikzphysics.core
@@ -15,9 +15,15 @@ physics string start solution=#1,2
 physics string end solution=#1,2
 physics string wrap=#clockwise,counterclockwise,shortest
 physics string route=#surface-right,over,under,shortest
+pre length=##L
+post length=##L
+amplitude=##L
+segment length=##L
+aspect=%<factor%>
 #endkeyvals
 
 #keyvals:\node#c
-physicsblock
-physicspulley
+block
+pulley
+spring
 #endkeyvals
