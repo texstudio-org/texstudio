@@ -318,6 +318,7 @@ void ThesaurusDialog::containsClicked()
 	if (!thesaurus) return;
 	QString word = replaceWrdLe->text().trimmed().toLower();
     word.replace(QRegularExpression(" \\(.*"), "");
+	if (word.isEmpty()) return; // empty needle matches every key -> O(n^2) freeze
 	classlistWidget->clear();
 	replacelistWidget->clear();
     QMultiMap<QString, ThesaurusDatabaseType::TinyStringRef>::const_iterator i = thesaurus->thesaurus.constBegin();
@@ -334,6 +335,7 @@ void ThesaurusDialog::startsWithClicked()
 	if (!thesaurus) return;
 	QString word = replaceWrdLe->text().trimmed().toLower();
     word.replace(QRegularExpression(" \\(.*"), "");
+	if (word.isEmpty()) return; // empty prefix matches every key -> O(n^2) freeze
 	classlistWidget->clear();
 	replacelistWidget->clear();
     QMultiMap<QString, ThesaurusDatabaseType::TinyStringRef>::const_iterator i = thesaurus->thesaurus.lowerBound(word);

@@ -1,5 +1,5 @@
 # xcharter-otf package
-# Matthew Bertucci 2026/04/07 for v0.74
+# Matthew Bertucci 2026/08/27 for v0.75
 
 #include:iftex
 #include:unicode-math
@@ -89,6 +89,7 @@ Scale=%<factor%>
 \mbfitvarv#*m
 \mbfitvarw#*m
 \mbfjmath#*m
+\mbfscrl#*m
 \mbfvarzero#*m
 \mdblkcircle#m
 \mdblkdiamond#m
@@ -110,6 +111,7 @@ Scale=%<factor%>
 \mitvarw#*m
 \mscre#*m
 \mscrg#*m
+\mscrl#*m
 \mscro#*m
 \mupvarzero#*m
 \ngeqq#m

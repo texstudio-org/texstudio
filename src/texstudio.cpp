@@ -5722,8 +5722,13 @@ void Texstudio::openFromExplorer(const QModelIndex &index)
  */
 void Texstudio::openFromGit(const QString &fn,const QString rev)
 {
-    if (fn.isEmpty()|| rev.isEmpty()) return;
+    if (fn.isEmpty()) return;
     if(!currentEditorView()){
+        return;
+    }
+    if(rev.isEmpty()){
+        // just open file
+        load(fn);
         return;
     }
     QFileInfo fi(fn);
@@ -5760,7 +5765,7 @@ void Texstudio::openFromGit(const QString &fn,const QString rev)
     configureNewEditorViewEnd(edView);
     // set text from git show
     QString text;
-    QString args=QString("%1:%2").arg(rev,fileName);
+    QString args=QString("%1:./%2").arg(rev,fileName);
     text=git.runGit("show",GIT::quote(repoRoot),args);
     edView->document->setText(text,false);
     edView->editor->setFileName(QString("%1 @ %2").arg(fileName,rev.left(7)));
@@ -12784,6 +12789,7 @@ void Texstudio::toggleDocks(bool visible)
  */
 void Texstudio::resetDocks()
 {
+    if(!m_firstDockWidget) return;
     addDockWidget(Qt::LeftDockWidgetArea, m_firstDockWidget);
     foreach(QDockWidget* dw,m_docksOrder){
         tabifyDockWidget(m_firstDockWidget,dw);

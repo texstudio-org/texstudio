@@ -231,6 +231,12 @@ QString GIT::getCurrentBranch(QString path)
     QString output = runGit("branch", quote(path), "--show-current");
     return output.trimmed();
 }
+
+QString GIT::getRootPath(QString path)
+{
+    QString output = runGit("rev-parse", quote(path), "--show-toplevel");
+    return output.trimmed();
+}
 /*!
  * \brief unstage given files in repository
  * \param repoRoot

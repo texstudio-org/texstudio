@@ -1,12 +1,15 @@
 # CHANGELOG
 ## TeXstudio 4.9.8
 
+- improve handling of subfolder in gitpanel [#4635](https://github.com/texstudio-org/texstudio/issues/4635)
+- fix freeze on thesaurus dialog [#4629](https://github.com/texstudio-org/texstudio/issues/4629)
+- fix crash on find label [#4613](https://github.com/texstudio-org/texstudio/issues/4613)
 - breaking change: all commands are internally monitored until they finish. New commands are blocked from execution which also blocks recompile if an external pdf viewer is used (which keeps running). Command syntax is extended to accept "&" at the end of a command, so that it runs that command detached (i.e. no blocking, no monitoring) [#4614](https://github.com/texstudio-org/texstudio/issues/4614)
 - make git panel smaller [#4591](https://github.com/texstudio-org/texstudio/issues/4591)
 - enable drag/drop from internal file explorer to text, calls image wizard/inserts "\include{fn}" [#4608](https://github.com/texstudio-org/texstudio/issues/4608)
 - change rootdir for fileExplorer after session restore
 - fix auto reload pdf after compile [#4601](https://github.com/texstudio-org/texstudio/issues/4601)
-- file explorer let's open pdf [#4607](https://github.com/texstudio-org/texstudio/issues/4607)
+- file explorer can open pdf [#4607](https://github.com/texstudio-org/texstudio/issues/4607)
 - improve pasting indented text [#1344](https://github.com/texstudio-org/texstudio/issues/1344)
 - mark missing semicolon in tikz commands [#4589](https://github.com/texstudio-org/texstudio/issues/4589)
 

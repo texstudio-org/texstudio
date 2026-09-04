@@ -1,5 +1,5 @@
 # fourier-otf package
-# Matthew Bertucci 2026/04/07 for v0.74
+# Matthew Bertucci 2026/08/27 for v0.75
 
 #include:iftex
 #include:fourier-orns
@@ -106,6 +106,7 @@ Scale=%<factor%>
 \mbfitvarvarrho#*m
 \mbfitwp#*m
 \mbfjmath#*m
+\mbfscrl#*m
 \mbftriangleleft#*m
 \mbftriangleright#*m
 \mbfvarpartial#*m
@@ -135,6 +136,7 @@ Scale=%<factor%>
 \mitvarvarrho#*m
 \mscre#*m
 \mscrg#*m
+\mscrl#*m
 \mscro#*m
 \mupvarpartial#*m
 \mupvarvarpi#*m

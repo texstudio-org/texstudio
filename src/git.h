@@ -49,6 +49,7 @@ public:
     QString createRepositoryInFolder(QString folder);
     QList<FileEntry> getChangedFiles(QString path);
     QString getCurrentBranch(QString path);
+    QString getRootPath(QString path);
     void unstageFiles(QString repoRoot, QStringList files);
     void checkoutFile(QString repoRoot, QString relPath,QString rev="HEAD");
     void checkout(QString repoRoot, QString arg);

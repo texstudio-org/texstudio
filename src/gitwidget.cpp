@@ -240,13 +240,14 @@ void GitWidget::refresh()
     } else {
         // Refresh "Changes" tab
         const QList<GIT::FileEntry> files = m_git->getChangedFiles(rpath);
+        const QString rootPath=m_git->getRootPath(rpath);
         m_fileList->clear();
         bool hasModified = false;
         for (const GIT::FileEntry &entry : files) {
             QListWidgetItem *item = new QListWidgetItem();
             item->setText(entry.statusCode + "  " + entry.filePath);
             item->setData(Qt::UserRole,     entry.filePath);
-            item->setData(Qt::UserRole + 1, rpath);
+            item->setData(Qt::UserRole + 1, rootPath);
             item->setData(Qt::UserRole + 2, entry.statusCode);
             item->setCheckState(Qt::Unchecked);
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
@@ -292,6 +293,7 @@ void GitWidget::refreshHistory()
     const QString rpath = resolvedPath();
     m_graphView->clear();
     if (rpath.isEmpty()) return;
+    const QString rootPath=m_git->getRootPath(rpath);
 
     // Apply optional per-file filter when the checkbox is checked.
     QString fileFilter;
@@ -300,13 +302,13 @@ void GitWidget::refreshHistory()
         if (fileInfo.isFile()) fileFilter = fileInfo.absoluteFilePath();
     }
 
-    const QList<GIT::GraphEntry> entries = m_git->getRepoLogGraph(rpath, 200, fileFilter);
+    const QList<GIT::GraphEntry> entries = m_git->getRepoLogGraph(rootPath, 200, fileFilter);
     if (entries.isEmpty()) {
         // Leave the view empty – it will show nothing, which is correct for a
         // repo with no commits yet.
         return;
     }
-    m_graphView->setGitContext(m_git, rpath);
+    m_graphView->setGitContext(m_git, rootPath);
     m_graphView->setEntries(entries);
     // check of modified files exist
     const QList<GIT::FileEntry> files = m_git->getChangedFiles(rpath);

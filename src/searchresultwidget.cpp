@@ -124,6 +124,7 @@ void SearchResultWidget::updateSearch()
  */
 void SearchResultWidget::changeScope(int)
 {
+    if(blockQueryUpdate) return; // block automatic update
     adaptGUItoScope();
     updateSearch();
 }
@@ -159,9 +160,11 @@ void SearchResultWidget::saveConfig()
 
 void SearchResultWidget::updateSearchScopeBox(SearchQuery::Scope sc)
 {
+    blockQueryUpdate=true;
 	int index = searchScopeBox->findData(sc);
 	if (index >= 0)
 		searchScopeBox->setCurrentIndex(index);
+    blockQueryUpdate=false;
 }
 /*!
  * \brief adapt replace text/current directory to current scope
