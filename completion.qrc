@@ -2611,6 +2611,7 @@
 <file>completion/multicap.cwl</file>
 <file>completion/multicol.cwl</file>
 <file>completion/multicolrule.cwl</file>
+<file>completion/multicoltab.cwl</file>
 <file>completion/multidef.cwl</file>
 <file>completion/multido.cwl</file>
 <file>completion/multienum.cwl</file>
@@ -3227,6 +3228,7 @@
 <file>completion/pst-tree.cwl</file>
 <file>completion/pst-turtle.cwl</file>
 <file>completion/pst-tvz.cwl</file>
+<file>completion/pst-uml.cwl</file>
 <file>completion/pst-vehicle.cwl</file>
 <file>completion/pst-venn.cwl</file>
 <file>completion/pst-vowel.cwl</file>
@@ -3691,6 +3693,8 @@
 <file>completion/syntaxdi.cwl</file>
 <file>completion/synthslant.cwl</file>
 <file>completion/syntonly.cwl</file>
+<file>completion/syntrace.cwl</file>
+<file>completion/synttree.cwl</file>
 <file>completion/syriac.cwl</file>
 <file>completion/systeme.cwl</file>
 <file>completion/t1enc.cwl</file>
