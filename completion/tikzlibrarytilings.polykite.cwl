@@ -1,7 +1,7 @@
 # tilings.polykite tikzlibrary
 # 2023/06/06 for v2.0
 
-#include:tilings
+#include:tikzlibrarytilings
 
 \DefinePolykiteTile{name%specialDef}{a}{b}#s#%penrosetilename
 \DefinePolykiteTile*{name%specialDef}{a}{b}#s#%penrosetilename

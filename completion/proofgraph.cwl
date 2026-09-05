@@ -1,11 +1,12 @@
 # proofgraph package
-# Matthew Bertucci 2026/08/04 for v1.1.0
+# Matthew Bertucci 2026/09/04 for v1.1.1
 
 #include:amsthm
 #include:etoolbox
 #include:xstring
 #include:kvoptions
 #include:pdftexcmds
+#include:shellesc
 
 #keyvals:\usepackage/proofgraph#c
 autorun#true,false

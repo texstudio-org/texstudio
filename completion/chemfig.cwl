@@ -1,5 +1,5 @@
 # chemfig package
-# Matthew Bertucci 2025/11/12 for v1.71
+# Matthew Bertucci 2026/08/31 for v1.8
 
 #include:simplekv
 #include:tikz
@@ -176,6 +176,7 @@ arrow double sep=##L
 arrow double coeff=%<coefficient%>
 arrow double harpoon#true,false
 arrow head=
+arrow coeff=%<decimal%>
 #endkeyvals
 
 \CFver#S

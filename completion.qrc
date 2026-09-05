@@ -587,6 +587,7 @@
 <file>completion/chemformula.cwl</file>
 <file>completion/chemformula-ru.cwl</file>
 <file>completion/chemgreek.cwl</file>
+<file>completion/chemidentifier.cwl</file>
 <file>completion/chemist.cwl</file>
 <file>completion/chemmacros.cwl</file>
 <file>completion/chemnum.cwl</file>
@@ -1573,6 +1574,7 @@
 <file>completion/fancyunits_small-fractions.cwl</file>
 <file>completion/fancyvrb.cwl</file>
 <file>completion/fancyvrb-ex.cwl</file>
+<file>completion/fantasquesansmono-otf.cwl</file>
 <file>completion/fapapersize.cwl</file>
 <file>completion/farbe.cwl</file>
 <file>completion/fascicules.cwl</file>
@@ -2060,6 +2062,7 @@
 <file>completion/jetbrainsmono-otf.cwl</file>
 <file>completion/JeuxCartes.cwl</file>
 <file>completion/jiazhu.cwl</file>
+<file>completion/jiffy.cwl</file>
 <file>completion/jigsaw.cwl</file>
 <file>completion/jiwonlipsum.cwl</file>
 <file>completion/jkmath.cwl</file>
@@ -2612,6 +2615,7 @@
 <file>completion/multicap.cwl</file>
 <file>completion/multicol.cwl</file>
 <file>completion/multicolrule.cwl</file>
+<file>completion/multicoltab.cwl</file>
 <file>completion/multidef.cwl</file>
 <file>completion/multido.cwl</file>
 <file>completion/multienum.cwl</file>
@@ -3228,6 +3232,7 @@
 <file>completion/pst-tree.cwl</file>
 <file>completion/pst-turtle.cwl</file>
 <file>completion/pst-tvz.cwl</file>
+<file>completion/pst-uml.cwl</file>
 <file>completion/pst-vehicle.cwl</file>
 <file>completion/pst-venn.cwl</file>
 <file>completion/pst-vowel.cwl</file>
@@ -3692,6 +3697,8 @@
 <file>completion/syntaxdi.cwl</file>
 <file>completion/synthslant.cwl</file>
 <file>completion/syntonly.cwl</file>
+<file>completion/syntrace.cwl</file>
+<file>completion/synttree.cwl</file>
 <file>completion/syriac.cwl</file>
 <file>completion/systeme.cwl</file>
 <file>completion/t1enc.cwl</file>
@@ -4011,13 +4018,16 @@
 <file>completion/tikzlibrarytikzphysics.core.cwl</file>
 <file>completion/tikzlibrarytikzphysics.mechanics.cwl</file>
 <file>completion/tikzlibrarytikzphysics.optics.cwl</file>
+<file>completion/tikzlibrarytikzphysics.ramps.cwl</file>
 <file>completion/tikzlibrarytikzphysics.surface.cwl</file>
 <file>completion/tikzlibrarytilings.cwl</file>
 <file>completion/tikzlibrarytilings.penrose.cwl</file>
 <file>completion/tikzlibrarytilings.polykite.cwl</file>
 <file>completion/tikzlibrarytqft.cwl</file>
+<file>completion/tikzlibrarytrainmap.cwl</file>
 <file>completion/tikzlibrarytrees.cwl</file>
 <file>completion/tikzlibraryturtle.cwl</file>
+<file>completion/tikzlibraryumlcd.cwl</file>
 <file>completion/tikzlibraryviews.cwl</file>
 <file>completion/tikzlibraryzx-calculus.cwl</file>
 <file>completion/tikzlings-addons.cwl</file>
@@ -4142,6 +4152,7 @@
 <file>completion/tracklang.cwl</file>
 <file>completion/tracklang-scripts.cwl</file>
 <file>completion/traffic-light-protocol.cwl</file>
+<file>completion/trainmap.cwl</file>
 <file>completion/trajan.cwl</file>
 <file>completion/tram.cwl</file>
 <file>completion/tramlines.cwl</file>

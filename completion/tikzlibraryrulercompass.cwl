@@ -1,8 +1,8 @@
 # rulercompass tikzlibrary
 # 2022/12/06 for v1
 
-#include:intersections
-#include:calc
+#include:tikzlibraryintersections
+#include:tikzlibrarycalc
 
 \thepointlabels#*
 

@@ -1,4 +1,4 @@
-# robotkarol.cwl — Autovervollständigung für robotkarol.sty v3.6
+# robotkarol.cwl — Autovervollständigung für robotkarol.sty v3.7
 #include:tikz
 #include:listings
 #include:struktex
@@ -7,6 +7,7 @@
 
 #keyvals:\karolsetup#c
 feldbreite=%<Länge%>
+druck#true,false
 bodenfarbe=%<Farbe%>
 ziegelfarbe=%<Farbe%>
 ziegelkoerperfarbe=%<Farbe%>
@@ -37,7 +38,10 @@ hutfarbe=%<Farbe%>
 # Paketoption schrift=dokument benutzt das Paket \sffamily und \ttfamily.
 #keyvals:\usepackage/robotkarol#c
 schrift=#karol,dokument
+druck#true,false
+hyperref#true,false
 #endkeyvals
+\karolonline{%<Aufgabencode%>}
 \karolschrift
 \karolcodeschrift
 

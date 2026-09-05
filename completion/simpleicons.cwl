@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/08/07 for v16.28.0
+# Matthew Bertucci 2026/09/04 for v16.29.0
 
 #include:iftex
 
@@ -96,6 +96,7 @@ akiflow
 alacritty
 alamy
 albertheijn
+albumoftheyear
 alby
 alchemy
 aldinord
@@ -2723,6 +2724,7 @@ similarweb
 simkl
 simpleanalytics
 simpleicons
+simpleiconscdn
 simplelocalize
 simplelogin
 simplenote
@@ -2976,6 +2978,7 @@ telegraph
 telenor
 telequebec
 temporal
+tencenthy
 tensorflow
 teradata
 teratail
@@ -3083,6 +3086,7 @@ transferwise
 transportforireland
 transportforlondon
 travisci
+traxsource
 treehouse
 trello
 trendmicro
