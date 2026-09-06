@@ -169,9 +169,8 @@ button at the end of the corresponding line and select the command in
 the file browser : TeXstudio will automatically adapt the syntax of the
 command.
 
-You can use a number of special characters / character sequences to
-address the context of the current document. They are expanded at
-runtime:
+You can use a number of special characters or character sequences to
+address the context of the current document. They are expanded at runtime:
 
 |  Special Character                  |  Expands to |
 |  ---------------------------        | ----------- |
@@ -459,7 +458,7 @@ Use command lists only for the meta and user commands listed at
 *Options -> Build*. Do not use them at *Options -> Commands*. The latter
 should just be single commands (i.e. do not use `|` there). While it\'s
 currently working in some cases, generally we do not guarantee this
-behavior. It can have surprising side effects such abortion of
+behavior. It can have surprising side effects such as abortion of
 compilation in some cases. Also, the use of `|` in *Commands* may be
 prohibited completely without further notice in the future.
 ```
@@ -480,12 +479,12 @@ calls `txs:///pdflatex` that calls the actual pdflatex, and then calls
 
 There is no difference between commands defined as command on the
 command config page, commands defined as build on the build config page,
-or commands defined as user commands. They are just separated in the GUI
+or commands defined as user command. They are just separated in the GUI
 to simplify the interface.
 
 This also means that you can change every command as you want, ignoring
 its old definition (you could even change its id, when editing the ini
-file.).
+file).
 
 There are however three always defined internal commands, which can only
 be called and not modified:
@@ -543,8 +542,8 @@ The environment variables available within the execution are the same as
 the ones that are available in the context in which TeXstudio was
 started. In particular this is true for the PATH. On Linux/OS X the PATH
 may depend on the way you started TeXstudio. Programs started from the
-GUI may have a different PATH setting than programs started from a shell
-(because some variables may only defined in the context of a shell (e.g.
+GUI may have a different PATH setting than programs started from a shell,
+because some variables may only be defined in the context of a shell (e.g.
 via `~/.bashrc`).
 
 By default, TeXstudio parses environment variables in your commands. The
@@ -556,7 +555,7 @@ be deactivated in the Build section of the options.
 
 #### Working Directory
 
-The working directory is set to the path of root document.
+The working directory is set to the path of the root document.
 
 #### Shell Functionality
 
@@ -592,7 +591,7 @@ or on Windows:
 
     cmd /C "/path/to/testscript.bat foo > bar"
 
-Alternatively, you can call a wrapper script in the user command
+Alternatively, you can call a wrapper script in the user command:
 
     /path/to/wrapperscript foo bar
 
