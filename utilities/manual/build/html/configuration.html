@@ -386,9 +386,8 @@ TeXstudio” -&gt; “Commands”). To change a command, just click on the
 button at the end of the corresponding line and select the command in
 the file browser : TeXstudio will automatically adapt the syntax of the
 command.</p>
-<p>You can use a number of special characters / character sequences to
-address the context of the current document. They are expanded at
-runtime:</p>
+<p>You can use a number of special characters or character sequences to
+address the context of the current document. They are expanded at runtime:</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
@@ -726,7 +725,7 @@ next).</p>
 <em>Options -&gt; Build</em>. Do not use them at <em>Options -&gt; Commands</em>. The latter
 should just be single commands (i.e. do not use <code class="docutils literal notranslate"><span class="pre">|</span></code> there). While it’s
 currently working in some cases, generally we do not guarantee this
-behavior. It can have surprising side effects such abortion of
+behavior. It can have surprising side effects such as abortion of
 compilation in some cases. Also, the use of <code class="docutils literal notranslate"><span class="pre">|</span></code> in <em>Commands</em> may be
 prohibited completely without further notice in the future.</p>
 </div>
@@ -744,11 +743,11 @@ calls <code class="docutils literal notranslate"><span class="pre">txs:///pdflat
 <code class="docutils literal notranslate"><span class="pre">txs:///view-pdf-internal</span></code>, which displays the pdf.</p>
 <p>There is no difference between commands defined as command on the
 command config page, commands defined as build on the build config page,
-or commands defined as user commands. They are just separated in the GUI
+or commands defined as user command. They are just separated in the GUI
 to simplify the interface.</p>
 <p>This also means that you can change every command as you want, ignoring
 its old definition (you could even change its id, when editing the ini
-file.).</p>
+file).</p>
 <p>There are however three always defined internal commands, which can only
 be called and not modified:</p>
 <div class="table-wrapper colwidths-auto docutils container">
@@ -861,8 +860,8 @@ bibtex), and viewers (e.g. only open once).</p>
 the ones that are available in the context in which TeXstudio was
 started. In particular this is true for the PATH. On Linux/OS X the PATH
 may depend on the way you started TeXstudio. Programs started from the
-GUI may have a different PATH setting than programs started from a shell
-(because some variables may only defined in the context of a shell (e.g.
+GUI may have a different PATH setting than programs started from a shell,
+because some variables may only be defined in the context of a shell (e.g.
 via <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>).</p>
 <p>By default, TeXstudio parses environment variables in your commands. The
 syntax is adapted to the according operating system. A variable MYVAR
@@ -873,7 +872,7 @@ be deactivated in the Build section of the options.</p>
 </section>
 <section id="working-directory">
 <h4>Working Directory<a class="headerlink" href="#working-directory" title="Link to this heading">¶</a></h4>
-<p>The working directory is set to the path of root document.</p>
+<p>The working directory is set to the path of the root document.</p>
 </section>
 <section id="shell-functionality">
 <h4>Shell Functionality<a class="headerlink" href="#shell-functionality" title="Link to this heading">¶</a></h4>
@@ -906,7 +905,7 @@ can either do this directly in the user command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cmd /C &quot;/path/to/testscript.bat foo &gt; bar&quot;
 </pre></div>
 </div>
-<p>Alternatively, you can call a wrapper script in the user command</p>
+<p>Alternatively, you can call a wrapper script in the user command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/path/to/wrapperscript foo bar
 </pre></div>
 </div>
