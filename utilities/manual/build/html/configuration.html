@@ -550,14 +550,14 @@ program on your computer, if you want to use a command.</p>
 <section id="foxit-reader">
 <h4>Foxit Reader<a class="headerlink" href="#foxit-reader" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
-<dt>Launch Foxit Reader from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">Reader</span> <span class="pre">path)&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span></code></p>
+<dt>Launch Foxit Reader from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">Reader</span> <span class="pre">path)&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span> <span class="pre">&amp;</span></code></p>
 </dd>
 </dl>
 </section>
 <section id="acrobat-reader">
 <h4>Acrobat Reader<a class="headerlink" href="#acrobat-reader" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
-<dt>Launch Acrobat Reader from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;*(your</span> <span class="pre">Reader</span> <span class="pre">path)*&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span></code></p>
+<dt>Launch Acrobat Reader from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;*(your</span> <span class="pre">Reader</span> <span class="pre">path)*&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span> <span class="pre">&amp;</span></code></p>
 </dd>
 </dl>
 <p>Navigation and closing are achieved via DDE commands. Since version 10 of
@@ -622,7 +622,7 @@ writable when compiling.</p>
 <section id="yap-yet-another-previewer">
 <h4>Yap (Yet Another Previewer)<a class="headerlink" href="#yap-yet-another-previewer" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
-<dt>Launch Yap from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">Yap</span> <span class="pre">path)&quot;</span> <span class="pre">-1</span> <span class="pre">-s</span> <span class="pre">&#64;?c:m.tex</span> <span class="pre">%.dvi</span></code></p>
+<dt>Launch Yap from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">Yap</span> <span class="pre">path)&quot;</span> <span class="pre">-1</span> <span class="pre">-s</span> <span class="pre">&#64;?c:m.tex</span> <span class="pre">%.dvi</span> <span class="pre">&amp;</span></code></p>
 </dd>
 <dt>Launch TeXstudio from Yap</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">TeXstudio</span> <span class="pre">path)&quot;</span> <span class="pre">&quot;%f&quot;</span> <span class="pre">-line</span> <span class="pre">%l</span></code></p>
 </dd>
@@ -635,23 +635,23 @@ writable when compiling.</p>
 <section id="xdvi">
 <h4>xdvi<a class="headerlink" href="#xdvi" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
-<dt>Launch xdvi from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">xdvi</span> <span class="pre">%.dvi</span> <span class="pre">-sourceposition</span> <span class="pre">&#64;:?c:m.tex</span></code></p>
+<dt>Launch xdvi from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">xdvi</span> <span class="pre">%.dvi</span> <span class="pre">-sourceposition</span> <span class="pre">&#64;:?c:m.tex</span> <span class="pre">&amp;</span></code></p>
 </dd>
-<dt>Launch xdvi from TeXstudio and enable inverse search</dt><dd><p><code class="docutils literal notranslate"><span class="pre">xdvi</span> <span class="pre">-editor</span> <span class="pre">&quot;texstudio</span> <span class="pre">%f</span> <span class="pre">-line\&quot;</span> <span class="pre">%.dvi</span> <span class="pre">-sourceposition</span> <span class="pre">&#64;:%.tex</span></code></p>
+<dt>Launch xdvi from TeXstudio and enable inverse search</dt><dd><p><code class="docutils literal notranslate"><span class="pre">xdvi</span> <span class="pre">-editor</span> <span class="pre">&quot;texstudio</span> <span class="pre">%f</span> <span class="pre">-line\&quot;</span> <span class="pre">%.dvi</span> <span class="pre">-sourceposition</span> <span class="pre">&#64;:%.tex</span> <span class="pre">&amp;</span></code></p>
 </dd>
 </dl>
 </section>
 <section id="kdvi">
 <h4>kdvi<a class="headerlink" href="#kdvi" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
-<dt>Launch kdvi from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">kdvi</span> <span class="pre">&quot;file:%.dvi#src:&#64;</span> <span class="pre">?c:m.tex&quot;</span></code></p>
+<dt>Launch kdvi from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">kdvi</span> <span class="pre">&quot;file:%.dvi#src:&#64;</span> <span class="pre">?c:m.tex&quot;</span> <span class="pre">&amp;</span></code></p>
 </dd>
 </dl>
 </section>
 <section id="okular">
 <h4>Okular<a class="headerlink" href="#okular" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
-<dt>Launch okular from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">okular</span> <span class="pre">--unique</span> <span class="pre">%.dvi#src:&#64;</span> <span class="pre">?c:m.tex</span></code></p>
+<dt>Launch okular from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">okular</span> <span class="pre">--unique</span> <span class="pre">%.dvi#src:&#64;</span> <span class="pre">?c:m.tex</span> <span class="pre">&amp;</span></code></p>
 </dd>
 <dt>Launch TeXstudio from Okular</dt><dd><p><code class="docutils literal notranslate"><span class="pre">texstudio</span> <span class="pre">%f</span> <span class="pre">-line</span> <span class="pre">%l</span></code></p>
 </dd>
@@ -660,7 +660,7 @@ writable when compiling.</p>
 <section id="skim">
 <h4>Skim<a class="headerlink" href="#skim" title="Link to this heading">¶</a></h4>
 <dl class="simple myst">
-<dt>Launch Skim from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(your</span> <span class="pre">Skim</span> <span class="pre">path)/Contents/SharedSupport/displayline</span> <span class="pre">&#64;</span> <span class="pre">?am.pdf</span> <span class="pre">?c:ame</span></code></p>
+<dt>Launch Skim from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(your</span> <span class="pre">Skim</span> <span class="pre">path)/Contents/SharedSupport/displayline</span> <span class="pre">&#64;</span> <span class="pre">?am.pdf</span> <span class="pre">?c:ame</span> <span class="pre">&amp;</span></code></p>
 </dd>
 <dt>Launch TeXstudio from skim</dt><dd><p>Command <code class="docutils literal notranslate"><span class="pre">/applications/texstudio.app/contents/macos/texstudio</span></code>
 with arguments: <code class="docutils literal notranslate"><span class="pre">&quot;%file&quot;</span> <span class="pre">-line</span> <span class="pre">%line</span></code></p>

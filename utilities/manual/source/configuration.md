@@ -307,12 +307,12 @@ A possible value for *(your Sumatra path)* is `C:\Program Files\SumatraPDF\Sumat
 #### Foxit Reader
 
 Launch Foxit Reader from TeXstudio
-: `"(your Reader path)" "?am.pdf"`
+: `"(your Reader path)" "?am.pdf" &`
 
 #### Acrobat Reader
 
 Launch Acrobat Reader from TeXstudio
-: `"*(your Reader path)*" "?am.pdf"`
+: `"*(your Reader path)*" "?am.pdf" &`
 
 Navigation and closing are achieved via DDE commands. Since version 10 of
 the adobe products the DDE service name contains a letter for the
@@ -352,7 +352,7 @@ writable when compiling.
 #### Yap (Yet Another Previewer)
 
 Launch Yap from TeXstudio
-: `"(your Yap path)" -1 -s @?c:m.tex %.dvi`
+: `"(your Yap path)" -1 -s @?c:m.tex %.dvi &`
 
 Launch TeXstudio from Yap
 : `"(your TeXstudio path)" "%f" -line %l`
@@ -364,20 +364,20 @@ A possible value for *(your Yap path)* is `C:\\Program Files\\MiKTeX 2.7\\miktex
 #### xdvi
 
 Launch xdvi from TeXstudio
-: `xdvi %.dvi -sourceposition @:?c:m.tex`
+: `xdvi %.dvi -sourceposition @:?c:m.tex &`
 
 Launch xdvi from TeXstudio and enable inverse search
-: `xdvi -editor "texstudio %f -line\" %.dvi -sourceposition @:%.tex`
+: `xdvi -editor "texstudio %f -line\" %.dvi -sourceposition @:%.tex &`
 
 #### kdvi
 
 Launch kdvi from TeXstudio
-: `kdvi "file:%.dvi#src:@ ?c:m.tex"`
+: `kdvi "file:%.dvi#src:@ ?c:m.tex" &`
 
 #### Okular
 
 Launch okular from TeXstudio
-: `okular --unique %.dvi#src:@ ?c:m.tex`
+: `okular --unique %.dvi#src:@ ?c:m.tex &`
 
 Launch TeXstudio from Okular
 : `texstudio %f -line %l`
@@ -385,7 +385,7 @@ Launch TeXstudio from Okular
 #### Skim
 
 Launch Skim from TeXstudio
-: `(your Skim path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame`
+: `(your Skim path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame &`
 
 Launch TeXstudio from skim
 : Command `/applications/texstudio.app/contents/macos/texstudio`
