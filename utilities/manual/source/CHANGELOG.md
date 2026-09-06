@@ -1,7 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.9.8
 
-- fix hand when external viewer is called from internal pdf viewer [#4625](https://github.com/texstudio-org/texstudio/issues/4625)
+- fix hang when external viewer is called from internal pdf viewer [#4625](https://github.com/texstudio-org/texstudio/issues/4625)
 - improve handling of subfolder in gitpanel [#4635](https://github.com/texstudio-org/texstudio/issues/4635)
 - fix freeze on thesaurus dialog [#4629](https://github.com/texstudio-org/texstudio/issues/4629)
 - fix crash on find label [#4613](https://github.com/texstudio-org/texstudio/issues/4613)
