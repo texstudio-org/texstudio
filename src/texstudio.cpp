@@ -8600,7 +8600,10 @@ void Texstudio::dragEnterEvent(QDragEnterEvent *event)
  */
 bool Texstudio::isInternalFileExplorerDragSource(QObject *source) const
 {
-	return fileView && (source == fileView || source == fileView->viewport());
+	if (!fileView || !source) return false;
+	if (source == fileView) return true;
+	QWidget *sourceWidget = qobject_cast<QWidget *>(source);
+	return sourceWidget && fileView->isAncestorOf(sourceWidget);
 }
 
 void Texstudio::dropEvent(QDropEvent *event)
