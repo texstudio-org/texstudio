@@ -8591,6 +8591,18 @@ void Texstudio::dragEnterEvent(QDragEnterEvent *event)
 	if (event->mimeData()->hasFormat("text/uri-list")) event->acceptProposedAction();
 }
 
+/*!
+ * \brief check whether a drag originates from TeXstudio's internal "Files" explorer dock widget
+ *
+ * Used to distinguish drops coming from within TeXstudio (which may trigger context-aware
+ * insertion, e.g. \include{...} for .tex files, see #4608) from drops originating from
+ * external applications (e.g. the OS file manager), which should simply open the file (#4644).
+ */
+bool Texstudio::isInternalFileExplorerDragSource(QObject *source) const
+{
+	return fileView && (source == fileView || source == fileView->viewport());
+}
+
 void Texstudio::dropEvent(QDropEvent *event)
 {
 	QList<QUrl> uris = event->mimeData()->urls();
@@ -8623,7 +8635,7 @@ void Texstudio::dropEvent(QDropEvent *event)
             // only insert "\include{...}" when the drag originated from the internal
             // file explorer dock widget; drops from external sources (e.g. the OS file
             // manager) should simply open the file, as before (see issue #4644)
-            bool fromInternalExplorer = fileView && (event->source() == fileView || event->source() == fileView->viewport());
+            bool fromInternalExplorer = isInternalFileExplorerDragSource(event->source());
             if (currentEditorView() && fi.suffix().toLower() == "tex" && fromInternalExplorer){
                 // check if it is a subfile of the current document
                 QFileInfo fiRoot=documents.getCurrentDocument()->getRootDocument()->getFileInfo();;

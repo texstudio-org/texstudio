@@ -698,6 +698,7 @@ private slots:
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
+	bool isInternalFileExplorerDragSource(QObject *source) const;
 	virtual void changeEvent(QEvent *e);
 
     bool eventFilter(QObject *obj, QEvent *event);
