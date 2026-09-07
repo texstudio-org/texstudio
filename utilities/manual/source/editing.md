@@ -679,6 +679,11 @@ This section describes what support TXS provides for larger projects.
 Large projects usually are split into several included files.
 In order to speed up compilation, the package [subfiles](https://www.ctan.org/pkg/subfiles) offers compilation of the current document only. TXS automatically loads all included files, so that it can provide proposals for user commands, labels and bibitems. To speed up reloading a project, TXS caches all files, meaning it writes this information to disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works when restoring a previously opened project; the initial opening may take a bit longer, see [also](background.md#about-documents-separated-into-several-files).
 
+## File Explorer
+In the sidepanel, a file explorer can be shown which shows all files in the same directory as the current editor file.
+Files can be opened by double-click. 
+Drag and drop of images opens the image wizard, drag and drop of a tex file puts "\include{filename}" at the current cursor position.
+
 ## Collaborative Editing (Pair programming)
 
 TeXstudio allows collaborative editing on documents. Collaborative editing means that a second person on a different computer can access the files of a shared folder after being told a special access code. The other computer can contact your computer, download all files of that folder and start browsing and editing these files as well.

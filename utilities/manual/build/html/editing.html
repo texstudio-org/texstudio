@@ -917,6 +917,12 @@ The drop-down menu allows searching within a “Project”, i.e. all files belon
 <p>Large projects usually are split into several included files.
 In order to speed up compilation, the package <a class="reference external" href="https://www.ctan.org/pkg/subfiles">subfiles</a> offers compilation of the current document only. TXS automatically loads all included files, so that it can provide proposals for user commands, labels and bibitems. To speed up reloading a project, TXS caches all files, meaning it writes this information to disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works when restoring a previously opened project; the initial opening may take a bit longer, see <a class="reference internal" href="background.html#about-documents-separated-into-several-files"><span class="std std-ref">also</span></a>.</p>
 </section>
+<section id="file-explorer">
+<h2>File Explorer<a class="headerlink" href="#file-explorer" title="Link to this heading">¶</a></h2>
+<p>In the sidepanel, a file explorer can be shown which shows all files in the same directory as the current editor file.
+Files can be opened by double-click.
+Drag and drop of images opens the image wizard, drag and drop of a tex file puts “\include{filename}” at the current cursor position.</p>
+</section>
 <section id="collaborative-editing-pair-programming">
 <h2>Collaborative Editing (Pair programming)<a class="headerlink" href="#collaborative-editing-pair-programming" title="Link to this heading">¶</a></h2>
 <p>TeXstudio allows collaborative editing on documents. Collaborative editing means that a second person on a different computer can access the files of a shared folder after being told a special access code. The other computer can contact your computer, download all files of that folder and start browsing and editing these files as well.
@@ -1169,6 +1175,7 @@ If no second view exists, it is created automatically.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#handling-large-projects">Handling large projects</a></li>
+<li><a class="reference internal" href="#file-explorer">File Explorer</a></li>
 <li><a class="reference internal" href="#collaborative-editing-pair-programming">Collaborative Editing (Pair programming)</a><ul>
 <li><a class="reference internal" href="#inviting-collaborators">Inviting collaborators</a></li>
 <li><a class="reference internal" href="#joining-collaboration">Joining collaboration</a></li>
