@@ -249,3 +249,20 @@ LatexCompleter::CompletionFlags TexStudioTest::gatherCompletionFlags()
     }
     return flags;
 }
+
+/*!
+ * \brief check that dropped files are recognized as coming from the internal
+ * file explorer only when the drag source is that widget (or its viewport),
+ * see #4608 and #4644
+ */
+void TexStudioTest::dragDropTexFileSource()
+{
+    Texstudio *txs = txsInstance;
+    QVERIFY2(txs, "The Texstudio instance must exist for drag/drop tests");
+    QVERIFY2(txs->fileView, "The internal file explorer must exist for drag/drop tests");
+
+    QVERIFY2(txs->isInternalFileExplorerDragSource(txs->fileView), "drag from the file explorer widget itself should be recognized as internal");
+    QVERIFY2(txs->isInternalFileExplorerDragSource(txs->fileView->viewport()), "drag from the file explorer's viewport should be recognized as internal");
+    QVERIFY2(!txs->isInternalFileExplorerDragSource(nullptr), "a drop without a source (e.g. from an external application) must not be recognized as internal");
+    QVERIFY2(!txs->isInternalFileExplorerDragSource(txs), "a drag from an unrelated widget must not be recognized as internal");
+}

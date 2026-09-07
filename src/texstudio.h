@@ -235,6 +235,7 @@ private:
 
 	Q_INVOKABLE LatexEditorView *currentEditorView() const;
 	Q_INVOKABLE QEditor *currentEditor() const;
+	Q_INVOKABLE bool isInternalFileExplorerDragSource(QObject *source) const;
 	void configureNewEditorView(LatexEditorView *edit);
 	void configureNewEditorViewEnd(LatexEditorView *edit, bool asMaster = false, bool hidden = false);
 	LatexEditorView *getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames = false);
@@ -698,7 +699,6 @@ private slots:
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
-	bool isInternalFileExplorerDragSource(QObject *source) const;
 	virtual void changeEvent(QEvent *e);
 
     bool eventFilter(QObject *obj, QEvent *event);
