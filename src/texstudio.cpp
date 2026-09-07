@@ -8597,6 +8597,10 @@ void Texstudio::dragEnterEvent(QDragEnterEvent *event)
  * Used to distinguish drops coming from within TeXstudio (which may trigger context-aware
  * insertion, e.g. \include{...} for .tex files, see #4608) from drops originating from
  * external applications (e.g. the OS file manager), which should simply open the file (#4644).
+ *
+ * \a fileView is the QTreeView instance of the file explorer itself (not merely its dock
+ * widget), so \c isAncestorOf() also correctly matches drags reported with its viewport
+ * (e.g. QAbstractItemView::viewport()) as source, since the viewport is a direct child of it.
  */
 bool Texstudio::isInternalFileExplorerDragSource(QObject *source) const
 {
