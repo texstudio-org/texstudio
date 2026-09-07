@@ -8620,8 +8620,11 @@ void Texstudio::dropEvent(QDropEvent *event)
 		} else if (fi.suffix() == Session::fileExtension()) {
 			loadSession(fi.filePath());
         } else {
-            // check if it is tex file
-            if (currentEditorView() && fi.suffix().toLower() == "tex"){
+            // only insert "\include{...}" when the drag originated from the internal
+            // file explorer dock widget; drops from external sources (e.g. the OS file
+            // manager) should simply open the file, as before (see issue #4644)
+            bool fromInternalExplorer = fileView && (event->source() == fileView || event->source() == fileView->viewport());
+            if (currentEditorView() && fi.suffix().toLower() == "tex" && fromInternalExplorer){
                 // check if it is a subfile of the current document
                 QFileInfo fiRoot=documents.getCurrentDocument()->getRootDocument()->getFileInfo();;
                 const QString relPath  = fiRoot.dir().relativeFilePath(fi.filePath());
