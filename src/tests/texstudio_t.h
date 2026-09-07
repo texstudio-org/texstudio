@@ -16,6 +16,7 @@ private slots:
     void checkIncludesCached();
     void normalCompletion_data();
     void normalCompletion();
+    void dragDropTexFileSource();
 
 private:
     bool allTests;

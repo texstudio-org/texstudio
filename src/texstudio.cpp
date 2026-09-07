@@ -8591,6 +8591,25 @@ void Texstudio::dragEnterEvent(QDragEnterEvent *event)
 	if (event->mimeData()->hasFormat("text/uri-list")) event->acceptProposedAction();
 }
 
+/*!
+ * \brief check whether a drag originates from TeXstudio's internal "Files" explorer dock widget
+ *
+ * Used to distinguish drops coming from within TeXstudio (which may trigger context-aware
+ * insertion, e.g. \include{...} for .tex files, see #4608) from drops originating from
+ * external applications (e.g. the OS file manager), which should simply open the file (#4644).
+ *
+ * \a fileView is the QTreeView instance of the file explorer itself (not merely its dock
+ * widget), so \c isAncestorOf() also correctly matches drags reported with its viewport
+ * (e.g. QAbstractItemView::viewport()) as source, since the viewport is a direct child of it.
+ */
+bool Texstudio::isInternalFileExplorerDragSource(QObject *source) const
+{
+	if (!fileView || !source) return false;
+	if (source == fileView) return true;
+	QWidget *sourceWidget = qobject_cast<QWidget *>(source);
+	return sourceWidget && fileView->isAncestorOf(sourceWidget);
+}
+
 void Texstudio::dropEvent(QDropEvent *event)
 {
 	QList<QUrl> uris = event->mimeData()->urls();
@@ -8620,8 +8639,11 @@ void Texstudio::dropEvent(QDropEvent *event)
 		} else if (fi.suffix() == Session::fileExtension()) {
 			loadSession(fi.filePath());
         } else {
-            // check if it is tex file
-            if (currentEditorView() && fi.suffix().toLower() == "tex"){
+            // only insert "\include{...}" when the drag originated from the internal
+            // file explorer dock widget; drops from external sources (e.g. the OS file
+            // manager) should simply open the file, as before (see issue #4644)
+            bool fromInternalExplorer = isInternalFileExplorerDragSource(event->source());
+            if (currentEditorView() && fi.suffix().toLower() == "tex" && fromInternalExplorer){
                 // check if it is a subfile of the current document
                 QFileInfo fiRoot=documents.getCurrentDocument()->getRootDocument()->getFileInfo();;
                 const QString relPath  = fiRoot.dir().relativeFilePath(fi.filePath());

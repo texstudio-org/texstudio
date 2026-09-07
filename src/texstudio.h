@@ -235,6 +235,7 @@ private:
 
 	Q_INVOKABLE LatexEditorView *currentEditorView() const;
 	Q_INVOKABLE QEditor *currentEditor() const;
+	Q_INVOKABLE bool isInternalFileExplorerDragSource(QObject *source) const;
 	void configureNewEditorView(LatexEditorView *edit);
 	void configureNewEditorViewEnd(LatexEditorView *edit, bool asMaster = false, bool hidden = false);
 	LatexEditorView *getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames = false);
