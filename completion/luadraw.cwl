@@ -1,5 +1,5 @@
 # luadraw package
-# Matthew Bertucci 2026/07/24 for v3.3
+# Matthew Bertucci 2026/09/08 for v3.5
 
 #include:ifluatex
 #include:luacode
@@ -7,7 +7,9 @@
 #include:xkeyval
 #include:tikz
 #include:tikzlibrarypatterns
+#include:tikzlibrarypatterns.meta
 #include:tikzlibraryplotmarks
+#include:tikzlibrarybending
 #include:tikzlibrarydecorations.markings
 #include:tikzlibrarybackgrounds
 

@@ -1,5 +1,5 @@
 # tikzphysics tikzlibrary
-# Matthew Bertucci 2026/09/04 for v1.1.0
+# Matthew Bertucci 2026/09/08 for v1.2.0
 
 #include:tikzlibrarytikzphysics.core
 #include:tikzlibrarytikzphysics.surface

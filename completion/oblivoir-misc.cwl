@@ -1,7 +1,11 @@
 # oblivoir-misc package
-# Matthew Bertucci 2026/02/25 for v3.5
+# Matthew Bertucci 2026/09/08 for v0.7.0
 
 #include:etoolbox
+
+#keyvals:\usepackage/oblivoir-misc#c
+patchlevel=%<integer%>
+#endkeyvals
 
 \texthl{text}
 

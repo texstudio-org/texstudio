@@ -144,6 +144,7 @@ decorations.text
 dubins
 ducks
 er
+ext.arrows
 ext.arrows-plus
 ext.beamer
 ext.calendar-plus
