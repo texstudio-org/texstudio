@@ -2301,6 +2301,7 @@
 <file>completion/longnamefilelist.cwl</file>
 <file>completion/longtable.cwl</file>
 <file>completion/longtwocolumn.cwl</file>
+<file>completion/lora.cwl</file>
 <file>completion/lowcycle.cwl</file>
 <file>completion/lpic.cwl</file>
 <file>completion/lplfitch.cwl</file>
