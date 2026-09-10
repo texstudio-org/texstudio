@@ -1921,6 +1921,9 @@
 <file>completion/hhead.cwl</file>
 <file>completion/hhline.cwl</file>
 <file>completion/hhtensor.cwl</file>
+<file>completion/hiabbrev.cwl</file>
+<file>completion/hibib.cwl</file>
+<file>completion/hicite.cwl</file>
 <file>completion/hideanswer.cwl</file>
 <file>completion/hiero.cwl</file>
 <file>completion/hieroglf.cwl</file>
@@ -1928,6 +1931,8 @@
 <file>completion/highlightx.cwl</file>
 <file>completion/HindMadurai.cwl</file>
 <file>completion/hiraprop.cwl</file>
+<file>completion/hisort.cwl</file>
+<file>completion/histrings.cwl</file>
 <file>completion/hitex.cwl</file>
 <file>completion/hittype.cwl</file>
 <file>completion/hlist.cwl</file>
