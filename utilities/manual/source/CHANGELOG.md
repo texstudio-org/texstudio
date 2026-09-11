@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.9.9
+
+- 
+
 ## TeXstudio 4.9.8
 
 - fix hang when external viewer is called from internal pdf viewer [#4625](https://github.com/texstudio-org/texstudio/issues/4625)
