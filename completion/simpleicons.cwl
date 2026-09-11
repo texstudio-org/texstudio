@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/09/04 for v16.29.0
+# Matthew Bertucci 2026/09/11 for v16.30.0
 
 #include:iftex
 
@@ -249,6 +249,7 @@ atandt
 atari
 atlasos
 atlassian
+atomgit
 auchan
 audacity
 audi
@@ -1122,7 +1123,6 @@ gin
 giphy
 git
 gitbook
-gitcode
 gitconnected
 gitea
 gitee
@@ -2097,6 +2097,7 @@ onlyfans
 onlyoffice
 onnx
 onstar
+oomol
 opel
 openaccess
 openaigym

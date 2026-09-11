@@ -1,5 +1,5 @@
 # intexgral package
-# Matthew Bertucci 2026/06/08 for v4.1.0
+# Matthew Bertucci 2026/09/11 for v4.2.0
 
 #include:amsfonts
 
@@ -59,6 +59,7 @@ varsep=%<mu expr%>
 diffsep=%<mu expr%>
 innersymbsep=%<mu expr%>
 postsymbsep=%<mu expr%>
+jacobiansep=%<mu expr%>
 vectorstyle=%<command%>
 domainstyle=%<command%>
 novar#true,false
@@ -82,3 +83,5 @@ novar#true,false
 \DeclareSymbolKeyword{keyword}{symbol%formula}
 \invertdiff
 \differentials
+\jacobian
+\variables
