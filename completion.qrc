@@ -228,6 +228,7 @@
 <file>completion/bahaistar.cwl</file>
 <file>completion/balance.cwl</file>
 <file>completion/bangla.cwl</file>
+<file>completion/bardiag.cwl</file>
 <file>completion/bargraph-js.cwl</file>
 <file>completion/barracuda.cwl</file>
 <file>completion/bashful.cwl</file>
@@ -2434,6 +2435,7 @@
 <file>completion/makeplot.cwl</file>
 <file>completion/maker.cwl</file>
 <file>completion/makeshape.cwl</file>
+<file>completion/malagasy-numberwords.cwl</file>
 <file>completion/malayalam.cwl</file>
 <file>completion/maltese.cwl</file>
 <file>completion/mandi.cwl</file>
@@ -2491,6 +2493,7 @@
 <file>completion/matrixdiagrams.cwl</file>
 <file>completion/mattens.cwl</file>
 <file>completion/mattex.cwl</file>
+<file>completion/mayanumber.cwl</file>
 <file>completion/maybemath.cwl</file>
 <file>completion/maze.cwl</file>
 <file>completion/mbboard.cwl</file>
@@ -4240,6 +4243,7 @@
 <file>completion/uni.cwl</file>
 <file>completion/unifront.cwl</file>
 <file>completion/uninormalize.cwl</file>
+<file>completion/unipersian.cwl</file>
 <file>completion/uniquecounter.cwl</file>
 <file>completion/unique.cwl</file>
 <file>completion/unisc.cwl</file>
