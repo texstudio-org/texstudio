@@ -1,7 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.9.9
 
-- 
+- fix help/check latex installation
 
 ## TeXstudio 4.9.8
 
