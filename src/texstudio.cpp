@@ -12069,16 +12069,16 @@ void Texstudio::checkLatexInstall()
 	QString cmd = cmdInfo.getProgramName();
 	// where is pdflatex located
 #ifdef Q_OS_WIN
-	runCommand("where " + cmd, &buffer);
+    runCommand("where " + cmd, &buffer,nullptr,false,true);
 	result += "where pdflatex: " + buffer + "\n\n";
 #else
-	runCommand("which " + cmd, &buffer);
+    runCommand("which " + cmd, &buffer,nullptr,false,true);
 	result += "which pdflatex: " + buffer + "\n\n";
 #endif
 	buffer.clear();
 	cmd += " -version";
 	// run pdflatex
-	runCommand(cmd, &buffer);
+    runCommand(cmd, &buffer,nullptr,false,true);
 	result += "PDFLATEX: " + cmd + "\n";
 	result += buffer;
 	result += "\n\n";
@@ -12093,7 +12093,7 @@ void Texstudio::checkLatexInstall()
 	// command directly built into cmd.com, so we cannot directly use runCommand("set");
 	buffer = QProcessEnvironment::systemEnvironment().toStringList().join("\n");
 #else
-	runCommand("printenv", &buffer);
+    runCommand("printenv", &buffer,nullptr,false,true);
 #endif
 	result += buffer + "\n";
 
