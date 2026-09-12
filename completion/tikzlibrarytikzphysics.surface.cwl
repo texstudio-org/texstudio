@@ -1,27 +1,28 @@
 # tikzphysics.surface tikzlibrary
-# Matthew Bertucci 2026/09/04 for v1.1.0
+# Matthew Bertucci 2026/09/08 for v1.2.0
 
 #include:tikzlibrarypatterns
 #include:tikzlibrarycalc
 #include:tikzlibrarytikzphysics.core
 
 #keyvals:\begin{tikzpicture}#c,\tikz#c,\node#c
-physics platform width=##L
-physics platform depth=##L
-physics strip width=##L
-physics wall angle=%<degrees%>
-physics left wall angle=%<degrees%>
-physics right wall angle=%<degrees%>
+platform width=##L
+platform depth=##L
+strip width=##L
+wall angle=%<degrees%>
+left wall angle=%<degrees%>
+right wall angle=%<degrees%>
 wedge width=##L
 wedge height=##L
 wedge angle=%<degrees%>
 wedge right angle at=#br,bl,top
-physics ground width=##L
-physics ground depth=##L
-physics ceiling width=##L
-physics ceiling depth=##L
-physics wall thickness=##L
-physics wall height=##L
+surface guide length=##L
+ground width=##L
+ground depth=##L
+ceiling width=##L
+ceiling depth=##L
+wall thickness=##L
+wall height=##L
 #endkeyvals
 
 #keyvals:\node#c
@@ -29,6 +30,8 @@ platform
 platform-left
 platform-right
 platform-both
+platform-left-up
+platform-right-up
 wedge
 ground
 ceiling

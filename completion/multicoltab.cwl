@@ -1,5 +1,5 @@
 # multicoltab package
-# Matthew Bertucci 2026/09/04 for v0.6a
+# Matthew Bertucci 2026/09/11 for v0.8
 
 #include:array
 #include:tabularx
@@ -13,4 +13,12 @@
 width=##L
 row-sep=##L
 break-penalty=%<integer%>
+natural-widths=#local,global
 #endkeyvals
+
+\mchead{cells%text}#t
+\mchead[before%text]{cells%text}#t
+\mchead[before%text][after%text]{cells%text}#t
+\multicoltabbreak#t
+\multicoltabpagebreak#t
+\mcheadrepeat#t

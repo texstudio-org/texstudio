@@ -1,5 +1,5 @@
 # numodel-plot package
-# Matthew Bertucci 2026/07/06 for v0.8.0
+# Matthew Bertucci 2026/09/08 for v0.9.1
 
 #include:siunitx
 #include:pgfplots
@@ -9,6 +9,7 @@
 \calcplotdims
 \drawplot{axis code}
 \numodelplotsetup{options%keyvals}
+\pzuIfUnitNonEngTF{unit}{true code}{false code}#*
 \qtyPlain[options%keyvals]{number}{unit%specialMultiArg}
 \qtyPlain{number}{unit%specialMultiArg}
 \xcm#*
@@ -26,11 +27,12 @@
 \ymin#*
 \ytickdistance#*
 
+numodelhalo#B
+
 # not documented
 \pznmpAppendXScaleTicks{arg}#S
 \pznmpAppendYScaleTicks{arg}#S
 \pznmpSuppressXScaleLabel#S
 \pznmpSuppressYScaleLabel#S
-\pzuIfUnitNonEngTF{arg1}{arg2}{arg3}#S
 \xlabelbuild#S
 \ylabelbuild#S

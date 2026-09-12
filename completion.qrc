@@ -228,6 +228,7 @@
 <file>completion/bahaistar.cwl</file>
 <file>completion/balance.cwl</file>
 <file>completion/bangla.cwl</file>
+<file>completion/bardiag.cwl</file>
 <file>completion/bargraph-js.cwl</file>
 <file>completion/barracuda.cwl</file>
 <file>completion/bashful.cwl</file>
@@ -1921,6 +1922,9 @@
 <file>completion/hhead.cwl</file>
 <file>completion/hhline.cwl</file>
 <file>completion/hhtensor.cwl</file>
+<file>completion/hiabbrev.cwl</file>
+<file>completion/hibib.cwl</file>
+<file>completion/hicite.cwl</file>
 <file>completion/hideanswer.cwl</file>
 <file>completion/hiero.cwl</file>
 <file>completion/hieroglf.cwl</file>
@@ -1928,6 +1932,8 @@
 <file>completion/highlightx.cwl</file>
 <file>completion/HindMadurai.cwl</file>
 <file>completion/hiraprop.cwl</file>
+<file>completion/hisort.cwl</file>
+<file>completion/histrings.cwl</file>
 <file>completion/hitex.cwl</file>
 <file>completion/hittype.cwl</file>
 <file>completion/hlist.cwl</file>
@@ -2296,6 +2302,7 @@
 <file>completion/longnamefilelist.cwl</file>
 <file>completion/longtable.cwl</file>
 <file>completion/longtwocolumn.cwl</file>
+<file>completion/lora.cwl</file>
 <file>completion/lowcycle.cwl</file>
 <file>completion/lpic.cwl</file>
 <file>completion/lplfitch.cwl</file>
@@ -2428,6 +2435,7 @@
 <file>completion/makeplot.cwl</file>
 <file>completion/maker.cwl</file>
 <file>completion/makeshape.cwl</file>
+<file>completion/malagasy-numberwords.cwl</file>
 <file>completion/malayalam.cwl</file>
 <file>completion/maltese.cwl</file>
 <file>completion/mandi.cwl</file>
@@ -2485,6 +2493,7 @@
 <file>completion/matrixdiagrams.cwl</file>
 <file>completion/mattens.cwl</file>
 <file>completion/mattex.cwl</file>
+<file>completion/mayanumber.cwl</file>
 <file>completion/maybemath.cwl</file>
 <file>completion/maze.cwl</file>
 <file>completion/mbboard.cwl</file>
@@ -3335,6 +3344,14 @@
 <file>completion/regexpatch.cwl</file>
 <file>completion/register.cwl</file>
 <file>completion/regstats.cwl</file>
+<file>completion/regulatory.cwl</file>
+<file>completion/regulatory-attachments.cwl</file>
+<file>completion/regulatory-defs.cwl</file>
+<file>completion/regulatory-md.cwl</file>
+<file>completion/regulatory-ref.cwl</file>
+<file>completion/regulatory-sign.cwl</file>
+<file>completion/regulatory-sources.cwl</file>
+<file>completion/regulatory-struct.cwl</file>
 <file>completion/relaycircuit.cwl</file>
 <file>completion/reledmac.cwl</file>
 <file>completion/reledpar.cwl</file>
@@ -4234,6 +4251,7 @@
 <file>completion/uni.cwl</file>
 <file>completion/unifront.cwl</file>
 <file>completion/uninormalize.cwl</file>
+<file>completion/unipersian.cwl</file>
 <file>completion/uniquecounter.cwl</file>
 <file>completion/unique.cwl</file>
 <file>completion/unisc.cwl</file>
