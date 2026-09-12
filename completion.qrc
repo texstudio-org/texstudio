@@ -3344,6 +3344,14 @@
 <file>completion/regexpatch.cwl</file>
 <file>completion/register.cwl</file>
 <file>completion/regstats.cwl</file>
+<file>completion/regulatory.cwl</file>
+<file>completion/regulatory-attachments.cwl</file>
+<file>completion/regulatory-defs.cwl</file>
+<file>completion/regulatory-md.cwl</file>
+<file>completion/regulatory-ref.cwl</file>
+<file>completion/regulatory-sign.cwl</file>
+<file>completion/regulatory-sources.cwl</file>
+<file>completion/regulatory-struct.cwl</file>
 <file>completion/relaycircuit.cwl</file>
 <file>completion/reledmac.cwl</file>
 <file>completion/reledpar.cwl</file>
