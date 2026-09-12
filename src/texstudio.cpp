@@ -12207,10 +12207,10 @@ void Texstudio::checkLanguageTool()
 
     // where is pdflatex located
 #ifdef Q_OS_WIN
-    runCommand("where " + quoteSpaces(cmd), &buffer);
+    runCommand("where " + quoteSpaces(cmd), &buffer,nullptr,false,true);
     result = "where java: " + buffer + "\n\n";
 #else
-    runCommand("which " + quoteSpaces(cmd), &buffer);
+    runCommand("which " + quoteSpaces(cmd), &buffer,nullptr,false,true);
     result = "which java: " + buffer + "\n\n";
 #endif
     buffer.clear();
