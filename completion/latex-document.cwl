@@ -374,7 +374,7 @@
 \qbezier[n](x1,y1)(x2,y2)(x3,y3)#*/picture
 \qbeziermax#*
 \raggedleft
-\r{letter}
+\r{letter}#M
 \rbrack#*
 \ref{label}#r
 \ref*{label}#r
