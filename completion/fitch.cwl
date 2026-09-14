@@ -1,11 +1,12 @@
 # fitch package
-# Matthew Bertucci 2023/12/19 for v1.0
+# Matthew Bertucci 2026/09/14 for v1.1
 
 #include:kvoptions
 
 #keyvals:\usepackage/fitch#c,\setkeys/fitch#c,\begin{nd},\begin{fitchproof},\begin{ndresume},\begin{fitchproof*}
 rules=%<csname%>
 arrayenv=%<envname%>
+proofenv=%<envname%>
 justformat=%<csname%>
 refformat=%<csname%>
 height=##L

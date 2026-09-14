@@ -1,5 +1,5 @@
 # jiffy package
-# Matthew Bertucci 2026/08/1 for v0.2a
+# Matthew Bertucci 2026/09/14 for v0.3
 
 #include:tikz
 #include:xcolor
@@ -10,8 +10,9 @@
 #include:tikzlibrarycalc
 
 #keyvals:\usepackage/jiffy#c
-precision=%<integer%>
+pt_precision=%<integer%>
 display-language=%<language%>
+fullpage#true,false
 #endkeyvals
 
 \jiffy

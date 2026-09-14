@@ -1,5 +1,5 @@
 # tikzphysics.surface tikzlibrary
-# Matthew Bertucci 2026/09/08 for v1.2.0
+# Matthew Bertucci 2026/09/14 for v1.3.0
 
 #include:tikzlibrarypatterns
 #include:tikzlibrarycalc
@@ -12,6 +12,12 @@ strip width=##L
 wall angle=%<degrees%>
 left wall angle=%<degrees%>
 right wall angle=%<degrees%>
+wall inset=##L
+wall drop=##L
+left wall inset=##L
+left wall drop=##L
+right wall inset=##L
+right wall drop=##L
 wedge width=##L
 wedge height=##L
 wedge angle=%<degrees%>
@@ -37,4 +43,7 @@ ground
 ceiling
 wall-left
 wall-right
+pulley edge
+left pulley edge
+right pulley edge
 #endkeyvals
