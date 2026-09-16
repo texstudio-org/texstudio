@@ -21,9 +21,9 @@ cindent=##L
 outerline#true,false
 #endkeyvals
 
-\begin{nd}#m
-\begin{nd}[options%keyvals]#m
-\end{nd}#m
+\begin{nd}#\math
+\begin{nd}[options%keyvals]#\math
+\end{nd}
 \begin{fitchproof}#\math
 \begin{fitchproof}[options%keyvals]#\math
 \end{fitchproof}
@@ -56,9 +56,9 @@ outerline#true,false
 \guard[n]{guard}
 \by{text}{ref list}
 \ndref{ref list}
-\begin{ndresume}#m
-\begin{ndresume}[options%keyvals]#m
-\end{ndresume}#m
+\begin{ndresume}#\math
+\begin{ndresume}[options%keyvals]#\math
+\end{ndresume}
 \begin{fitchproof*}#\math
 \begin{fitchproof*}[options%keyvals]#\math
 \end{fitchproof*}
