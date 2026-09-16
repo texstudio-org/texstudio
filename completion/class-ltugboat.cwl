@@ -1,5 +1,5 @@
 # ltugboat class
-# Matthew Bertucci 2026/06/15 for v2.37
+# Matthew Bertucci 2026/09/16 for v2.39
 
 #include:mflogo
 #include:gettitlestring
@@ -42,6 +42,7 @@ runningoff
 \acro{acronym}
 \address{address%text}
 \AddToResetCommands{code}#*
+\AI
 \allowhyphens#*
 \AllTeX
 \AMS
@@ -344,7 +345,7 @@ runningoff
 \TB
 \tbcode{text%plain}
 \tbcodebreak{text%plain}
-\tbdebug{text}#*
+\TBDebug{text}#*
 \TBdriver#*
 \TBecircacute#*
 \TBEnableRemarks#*
@@ -353,12 +354,13 @@ runningoff
 \tbhurl{URL}#U
 \tbhurlfootnote{URL}#U
 \TBInfo{text}#*
-\tbloggingall#*
+\TBLoggingall#*
 \tbotregister#*
 \tbppkernfoot#*
 \TBremark{text}#*
 \tbsurl{URL}#U
 \tbsurlfootnote{URL}#U
+\tbtablestring#*
 \TBtocsectionfont#*
 \TBunicodeenginefalse#S
 \TBunicodeenginetrue#S
@@ -424,8 +426,10 @@ runningoff
 \tubjustifiedpar
 \tubline{text}#*
 \tubmakecaptionbox{arg1}{arg2}#*
+\tubmakevmeta#*
 \tubmultipleaffilauthor#*
 \tubmultipleaffilnet#*
+\tubnewline#*
 \tubomitdoioptionfalse#*
 \tubomitdoioptiontrue#*
 \tubraggedfoot#*

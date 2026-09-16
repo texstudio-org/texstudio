@@ -1,10 +1,11 @@
 # ltugcomn package
-# Matthew Bertucci 2026/06/15 for v2.37
+# Matthew Bertucci 2026/09/16 for v2.39
 
 #include:mflogo
 
 \acro{acronym}
 \AddToResetCommands{code}#*
+\AI
 \allowhyphens#*
 \AllTeX
 \AMS

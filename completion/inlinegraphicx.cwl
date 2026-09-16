@@ -1,5 +1,5 @@
 # inlinegraphicx package
-# Matthew Bertucci 2026/06/29 for v0.20b
+# Matthew Bertucci 2026/09/16 for v0.20c
 
 #include:graphicx
 
@@ -11,5 +11,6 @@
 \inlinegraphics*<includegraphics keys>{imagefile}#g
 \inlinegraphics*[keyvals]<includegraphics keys>{imagefile}#g
 \inlinegraphics*[keyvals]{imagefile}#g
+\inlinegraphicxsetup{keyvals}
 \safeincludegraphics{imagefile}#g
 \safeincludegraphics[includegraphics keys]{imagefile}#g

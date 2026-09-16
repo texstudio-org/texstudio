@@ -4284,6 +4284,7 @@
 <file>completion/usebib.cwl</file>
 <file>completion/useclass.cwl</file>
 <file>completion/ushort.cwl</file>
+<file>completion/uspace.cwl</file>
 <file>completion/utf8add.cwl</file>
 <file>completion/utf8hax.cwl</file>
 <file>completion/utfsym.cwl</file>
