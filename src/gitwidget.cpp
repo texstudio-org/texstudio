@@ -330,6 +330,7 @@ void GitWidget::onCommit()
 {
     const QString rpath = resolvedPath();
     if (rpath.isEmpty()) return;
+    const QString rootPath=m_git->getRootPath(rpath);
 
     const QString msg = m_commitMessage->toPlainText().trimmed();
     if (msg.isEmpty()) {
@@ -355,14 +356,14 @@ void GitWidget::onCommit()
     }
 
     // Stage each selected file in a single git call
-    const QString stageOut = m_git->stageFiles(rpath, filesToStage);
+    const QString stageOut = m_git->stageFiles(rootPath, filesToStage);
     if (stageOut.contains("error:") || stageOut.contains("fatal:")) {
         updateStatus(tr("Staging failed: %1").arg(stageOut.trimmed()));
         return;
     }
 
     // Commit what is now staged
-    const QString commitOut = m_git->commitStaged(rpath, msg);
+    const QString commitOut = m_git->commitStaged(rootPath, msg);
     if (commitOut.contains("error:") || commitOut.contains("fatal:")) {
         updateStatus(tr("Commit failed: %1").arg(commitOut.trimmed()));
         return;
