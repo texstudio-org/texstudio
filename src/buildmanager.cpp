@@ -1179,17 +1179,17 @@ bool BuildManager::hasCommandLine(const QString &program)
 
 QString getCommandLineViewDvi()
 {
-	return "open %.dvi > /dev/null";
+    return "open %.dvi > /dev/null &";
 }
 
 QString getCommandLineViewPs()
 {
-	return "open %.ps > /dev/null";
+    return "open %.ps > /dev/null &";
 }
 
 QString getCommandLineViewPdfExternal()
 {
-	return "open %.pdf > /dev/null";
+    return "open %.pdf > /dev/null &";
 }
 
 QString getCommandLineGhostscript()
@@ -1214,15 +1214,22 @@ QString getCommandLineViewDvi()
 				def.replace(" /dde", yapOptions);
 			}
 		}
+        def.append(" &");
 		return def;
 	}
 	def = searchBaseCommand("yap", yapOptions); //miktex
-	if (!def.isEmpty()) return def;
+    if (!def.isEmpty()){
+        def.append(" &");
+        return def;
+    }
 	def = searchBaseCommand("dviout", "%.dvi"); //texlive
-	if (!def.isEmpty()) return def;
+    if (!def.isEmpty()){
+        def.append(" &");
+        return def;
+    }
 
     if (QFileInfo::exists("C:/texmf/miktex/bin/yap.exe"))
-		return "C:/texmf/miktex/bin/yap.exe " + yapOptions;
+        return "C:/texmf/miktex/bin/yap.exe " + yapOptions +" &";
 
 	return "";
 }
@@ -1230,13 +1237,15 @@ QString getCommandLineViewDvi()
 QString getCommandLineViewPs()
 {
 	QString def = W32_FileAssociation(".ps");
-	if (!def.isEmpty())
+    if (!def.isEmpty()){
+        def.append(" &");
 		return def;
+    }
 
 	QString livePath = getTeXLiveWinBinPath();
 	if (!livePath.isEmpty())
         if (QFileInfo::exists(livePath + "psv.exe"))
-			return "\"" + livePath + "psv.exe\"  \"?am.ps\"";
+            return "\"" + livePath + "psv.exe\"  \"?am.ps\" &";
 
 
 	QString gsDll = findGhostscriptDLL().replace("/", "\\"); //gsview contains gs so x
@@ -1244,35 +1253,37 @@ QString getCommandLineViewPs()
 	while ((pos = gsDll.lastIndexOf("\\")) > -1) {
 		gsDll = gsDll.mid(0, pos + 1);
         if (QFileInfo::exists(gsDll + "gsview32.exe"))
-			return "\"" + gsDll + "gsview32.exe\" -e \"?am.ps\"";
+            return "\"" + gsDll + "gsview32.exe\" -e \"?am.ps\" &";
         if (QFileInfo::exists(gsDll + "gsview.exe"))
-			return "\"" + gsDll + "gsview.exe\" -e \"?am.ps\"";
+            return "\"" + gsDll + "gsview.exe\" -e \"?am.ps\" &";
 		gsDll = gsDll.mid(0, pos);
 	}
 
 	foreach (const QString &p, getProgramFilesPaths())
 		if (QFile::exists(p + "Ghostgum/gsview/gsview32.exe"))
-			return "\"" + p + "Ghostgum/gsview/gsview32.exe\" -e \"?am.ps\"";
+            return "\"" + p + "Ghostgum/gsview/gsview32.exe\" -e \"?am.ps\" &";
 	return "";
 }
 
 QString getCommandLineViewPdfExternal()
 {
 	QString def = W32_FileAssociation(".pdf");
-	if (!def.isEmpty())
+    if (!def.isEmpty()){
+        def.append(" &");
 		return def;
+    }
 
 	foreach (const QString &p, getProgramFilesPaths())
 		if (QDir(p + "Adobe").exists()) {
 			QDirIterator it(p + "Adobe", QStringList() << "AcroRd32.exe", QDir::Files, QDirIterator::Subdirectories);
-			if (it.hasNext()) return "\"" + QDir::toNativeSeparators(it.next()) + "\" \"?am.pdf\"";
+            if (it.hasNext()) return "\"" + QDir::toNativeSeparators(it.next()) + "\" \"?am.pdf\" &";
 		}
 	return "";
 }
 
 QString getCommandLineGhostscript()
 {
-	const QString gsArgs = " \"?am.ps\"";
+    const QString gsArgs = " \"?am.ps\" &";
 	QString livePath = getTeXLiveWinBinPath();
 	if (!livePath.isEmpty()) {
         if (QFileInfo::exists(livePath + "rungs.exe"))
