@@ -1,5 +1,5 @@
 # gbt7714 package
-# Matthew Bertucci 2026/07/02 for v3.0.0
+# Matthew Bertucci 2026/09/16 for v3.1.0
 
 #include:natbib
 #include:url
@@ -66,4 +66,12 @@ bibwarn#true,false
 #keyvals:\bibliographystyle#c
 gbt7714-numeric
 gbt7714-authoryear
+gbt7714-2025-numeric
+gbt7714-2025-authoryear
+gbt7714-2015-numeric
+gbt7714-2015-authoryear
+gbt7714-2005-numeric
+gbt7714-2005-authoryear
+gbt7714-1987-numeric
+gbt7714-1987-authoryear
 #endkeyvals
