@@ -2244,6 +2244,7 @@
 <file>completion/lineno.cwl</file>
 <file>completion/ling-macros.cwl</file>
 <file>completion/linguex.cwl</file>
+<file>completion/linguexx.cwl</file>
 <file>completion/linguisticspro.cwl</file>
 <file>completion/linguistix-base.cwl</file>
 <file>completion/linguistix.cwl</file>
