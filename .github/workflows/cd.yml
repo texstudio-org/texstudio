@@ -98,7 +98,7 @@ jobs:
       - name: Codesign binary
         id: sign_binary
         if: env.IF_CODESIGN == 'true'
-        uses: signpath/github-action-submit-signing-request@v2
+        uses: signpath/github-action-submit-signing-request@v3
         with:
           api-token: "${{ secrets.SIGNPATH_API_TOKEN }}"
           organization-id: "9e74d567-be9b-4bd4-929d-9978860f6cbc"
@@ -146,7 +146,7 @@ jobs:
       - name: Codesign
         id: sign
         if: env.IF_CODESIGN == 'true'
-        uses: signpath/github-action-submit-signing-request@v2
+        uses: signpath/github-action-submit-signing-request@v3
         with:
           api-token: "${{ secrets.SIGNPATH_API_TOKEN }}"
           organization-id: "9e74d567-be9b-4bd4-929d-9978860f6cbc"
@@ -274,7 +274,7 @@ jobs:
       - name: Codesign binary
         id: sign_binary
         if: env.IF_CODESIGN == 'true'
-        uses: signpath/github-action-submit-signing-request@v2
+        uses: signpath/github-action-submit-signing-request@v3
         with:
           api-token: "${{ secrets.SIGNPATH_API_TOKEN }}"
           organization-id: "9e74d567-be9b-4bd4-929d-9978860f6cbc"
@@ -322,7 +322,7 @@ jobs:
       - name: Codesign
         id: sign
         if: env.IF_CODESIGN == 'true'
-        uses: signpath/github-action-submit-signing-request@v2
+        uses: signpath/github-action-submit-signing-request@v3
         with:
           api-token: "${{ secrets.SIGNPATH_API_TOKEN }}"
           organization-id: "9e74d567-be9b-4bd4-929d-9978860f6cbc"
