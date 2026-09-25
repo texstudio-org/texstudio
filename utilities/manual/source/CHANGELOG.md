@@ -2,6 +2,7 @@
 ## TeXstudio 4.9.9
 
 - fix help/check latex installation
+- allow setting line ending per script [#4667](https://github.com/texstudio-org/texstudio/issues/4667)
 
 ## TeXstudio 4.9.8
 
