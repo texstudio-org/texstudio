@@ -508,6 +508,7 @@ The following table gives an overview on the provided commands.
 | editor.document().text(\[removeTrailing = false\], \[preserveIndent = true\]) | Returns the complete text of the document |
 | editor.document().textLines() | Returns an array of all text lines |
 | editor.document().lineEndingString() | Returns a string containing the ending of a line (\\n or \\n\\r) |
+| editor.document().setLineEnding(code) | set used lineending: 0 conservative, 1 local, 2 linux (\\n), 3 windows (\\r\\n), 4 mac (\\r) |
 | ~~editor.document().getLineTokens(lineNr)~~ | Unsupported in txs 4.x. |
 | editor.document().canUndo() | Returns true if undo is possible |
 | editor.document().canRedo() | Returns true if redo is possible |
