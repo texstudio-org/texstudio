@@ -3,6 +3,7 @@
 
 - fix help/check latex installation
 - allow setting line ending per script [#4667](https://github.com/texstudio-org/texstudio/issues/4667)
+- fix find usages with multiple entries in one line [#4672](https://github.com/texstudio-org/texstudio/issues/4672)
 
 ## TeXstudio 4.9.8
 
