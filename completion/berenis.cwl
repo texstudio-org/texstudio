@@ -1,5 +1,5 @@
 # berenis package
-# Matthew Bertucci 2024/09/30 for v2.1
+# Matthew Bertucci 2026/09/30 for v3.0
 
 #include:svn-prov
 #include:fontenc
@@ -12,7 +12,7 @@ lf
 prop
 tab
 lm
-enc=#t1,ly1
+enc=#t1,ly1,tu
 scale=%<factor%>
 #endkeyvals
 

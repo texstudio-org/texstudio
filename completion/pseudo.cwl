@@ -1,12 +1,11 @@
 # pseudo package
-# Matthew Bertucci 2023/01/30 for v1.2.2
+# Matthew Bertucci 2026/09/30 for v1.2.4
 
 #include:pgfkeys
 #include:array
 #include:xcolor
 #include:colortbl
 #include:l3keys2e
-#include:aliascnt
 #include:etoolbox
 #include:tcolorboxlibraryhooks
 
@@ -34,10 +33,12 @@ ct-right=%<text%>
 ctfont=%<command%>
 dim
 dim-color=#%color
+dts-impl=%<command%>
 end-tabular=%<command%>
 eol=%<commands%>
 eol-append=%<commands%>
 eol-prepend=%<commands%>
+eqs-impl=%<command%>
 eqs-pad=##L
 eqs-scale=%<number%>
 eqs-sep=##L
@@ -137,7 +138,9 @@ topsep=##L
 \nf#*
 \pseudobol#*
 \pseudodimcolor#*
+\pseudodts#*
 \pseudoeol#*
+\pseudoeqs#*
 \pseudofont#*
 \pseudohdpreamble#*
 \pseudohl#*
@@ -167,6 +170,7 @@ pseudo/tworuled
 
 \pseudodate#S
 \pseudoversion#S
+\pseudorevision#S
 
 # defined by package if booktabs not loaded
 \aboverulesep#*

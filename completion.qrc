@@ -4425,6 +4425,7 @@
 <file>completion/xinttools.cwl</file>
 <file>completion/xinttrig.cwl</file>
 <file>completion/xistercian.cwl</file>
+<file>completion/xjyutping.cwl</file>
 <file>completion/xkcdcolors.cwl</file>
 <file>completion/xkeymask.cwl</file>
 <file>completion/xkeyval.cwl</file>
