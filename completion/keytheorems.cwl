@@ -16,7 +16,7 @@ auto-qed
 overload
 thmtools-compat
 store-all
-restate-counter
+restate-counters={%<counter1,counter2,...%>}
 qed-symbol=%<symbol%>
 auto-translate#true,false
 store-sets-label
