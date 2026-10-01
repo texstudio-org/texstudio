@@ -22,6 +22,8 @@ wedge width=##L
 wedge height=##L
 wedge angle=%<degrees%>
 wedge right angle at=#br,bl,top
+wedge top inset=##L
+wedge top drop=##L
 surface guide length=##L
 ground width=##L
 ground depth=##L
@@ -46,4 +48,5 @@ wall-right
 pulley edge
 left pulley edge
 right pulley edge
+pulley edges
 #endkeyvals

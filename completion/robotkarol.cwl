@@ -1,4 +1,4 @@
-# robotkarol.cwl — Autovervollständigung für robotkarol.sty v3.8
+# robotkarol.cwl — Autovervollständigung für robotkarol.sty v3.9
 #include:tikz
 #include:listings
 #include:struktex
@@ -68,6 +68,8 @@ hoehe=%<Ziegellagen%>
 \karollegende
 \karollegendenitem{%<Weltstring%>}{%<Beschriftung%>}
 \karollegendentrenner
+\karolzustandslegende
+\karolzustandslegendenitem{%<Objektbefehle%>}{%<Beschriftung%>}
 
 #keyvals:\begin{karolbloecke}#c
 skalierung=%<Faktor%>
@@ -168,4 +170,40 @@ bisx=%<Spalte%>
 bisy=%<Zeile%>
 bisX=%<Spalte%>
 bisY=%<Zeile%>
+# Start- und Zielzustand (v3.9).  Die Schalter nehmen auch =true|false.
+# neu/hinlegen/setzen wirken wie ziel, weg/aufheben/loeschen wie start.
+start
+ziel
+neu
+weg
+hinlegen
+aufheben
+setzen
+loeschen
+startanzahl=%<Ziegel%>
+zielanzahl=%<Ziegel%>
+start-anzahl=%<Ziegel%>
+ziel-anzahl=%<Ziegel%>
+#endkeyvals
+
+# --- karolweltpaar: Start und Ziel nebeneinander (v3.9) ---
+\begin{karolweltpaar}
+\end{karolweltpaar}
+\begin{karolweltpaar}[keyvals]
+\end{karolweltpaar}
+#keyvals:\begin{karolweltpaar}
+links=#start,ziel,beides
+rechts=#start,ziel,beides
+trenner=%<Text%>
+titellinks=%<Text%>
+titelrechts=%<Text%>
+breite=%<Spalten%>
+laenge=%<Zeilen%>
+hoehe=%<Ziegellagen%>
+ansicht=#3d,2d
+aufraeumen
+rahmen
+hervorheben=%<x/y-Liste%>
+skalierung=%<Faktor%>
+hinweis=%<Text%>
 #endkeyvals

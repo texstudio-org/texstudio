@@ -1,8 +1,13 @@
 # tikzphysics tikzlibrary
-# Matthew Bertucci 2026/09/08 for v1.2.0
+# Matthew Bertucci 2026/10/01 for v1.7.0
 
-#include:tikzlibrarytikzphysics.core
-#include:tikzlibrarytikzphysics.surface
-#include:tikzlibrarytikzphysics.ramps
-#include:tikzlibrarytikzphysics.mechanics
-#include:tikzlibrarytikzphysics.optics
+#include:tikzphysics.core
+#include:tikzphysics.elements
+#include:tikzphysics.fluids
+#include:tikzphysics.mechanics
+#include:tikzphysics.optics
+#include:tikzphysics.ramps
+#include:tikzphysics.surface
+#include:tikzphysics.thermalphysics
+#include:tikzphysics.thermodynamics
+#include:tikzphysics.waves
