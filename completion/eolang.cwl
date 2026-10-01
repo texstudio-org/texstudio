@@ -1,9 +1,10 @@
 # eolang package
-# Matthew Bertucci 2026/08/11 for v0.24.0
+# Matthew Bertucci 2026/09/30 for v0.26.1
 
 #include:stmaryrd
 #include:amsmath
 #include:amssymb
+#include:upgreek
 #include:fancyvrb
 #include:iexec
 #include:pgfopts
@@ -59,6 +60,16 @@ noshell
 \eoAnon{content}
 \eoAnon[substitution]{content}
 \phiEOL#*
+\phiNormalize#m
+\phiNormalize[sub]#m
+\phiEvaluate#m
+\phiEvaluate[sub]#m
+\phiDataize#m
+\phiDataize[sub]#m
+\phiMorph#m
+\phiMorph[sub]#m
+\phiContextualize#m
+\phiContextualize[sub]#m
 
 # internal
 \begin{phicture}#S

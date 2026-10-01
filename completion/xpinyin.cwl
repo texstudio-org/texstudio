@@ -1,7 +1,11 @@
 # xpinyin package
-# Matthew Bertucci 2022/07/26 for v3.1
+# Matthew Bertucci 2026/09/30 for v3.2
 
 #include:CJKutf8
+
+#keyvals:\usepackage/xpinyin#c
+query
+#endkeyvals
 
 \begin{pinyinscope}
 \begin{pinyinscope}[options%keyvals]
@@ -28,7 +32,17 @@ font=%<font%>
 format=%<format%>
 multiple=%<format%>
 footnote#true,false
+scheme=#literal,official
+tone=#mark,number,none,v
 #endkeyvals
 
 \disablepinyin
+\disablepinyin*
 \enablepinyin
+
+\xpinyinvalue{character}
+\xpinyinvalue*{character}
+\xpinyininitial{character}
+\xpinyininitial*{character}
+\xpinyinshengmu{character}
+\xpinyinyunmu{character}
