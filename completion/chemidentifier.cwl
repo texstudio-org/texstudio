@@ -1,5 +1,5 @@
 # chemidentifier package
-# Matthew Bertucci 2026/09/04 for v2.0.0
+# Matthew Bertucci 2026/09/21 for v2.0.1
 
 \chemid*{key%plain}
 \chemidfamily{parent}{options%keyvals}
@@ -26,6 +26,7 @@
 \chemidregisterfamily{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \chemidregistervalue{arg1}{arg2}{arg3}#S
 \chemidregister{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
+\chemidpdftexmotifinpath{arg1}{arg2}#S
 
 # deprecated
 \herechemid{key%plain}#S

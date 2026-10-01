@@ -1,8 +1,7 @@
 # zref-thepage package
-# Matthew Bertucci 11/10/2021 for v2.32
+# Matthew Bertucci 2026/09/18 for v2.38
 
 #include:zref-base
-#include:atbegshi
 #include:zref-abspage
 
 \zthepage{page number}

@@ -1,7 +1,7 @@
 # zhnumber package
 # Darcy Hu <hot123tea123@gmail.com> 2016
 #modified zepinglee 30 Jan 2021
-# edited for v3.0
+# edited for v3.1
 
 \zhnumber{number}
 \zhnumber[options%keyvals]{number}
@@ -10,6 +10,20 @@
 \zhdigits[options%keyvals]{number}
 \zhdigits*{number}
 \zhdigits*[options%keyvals]{number}
+
+\zhrod{number}
+\zhrodbox{number}
+
+\zhrodsetup{options%keyvals}
+
+#keyvals:\zhrodsetup
+units=#vertical,horizontal
+zero=#fill,omit
+zerochar=%<tokens%>
+minus=#slash,overlay
+font=%<font commands%>
+kern=##L
+#endkeyvals
 
 \zhnum{counter}
 \zhnum[options%keyvals]{counter}

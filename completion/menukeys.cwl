@@ -1,7 +1,7 @@
 # menukeys package
 # sdm
 # muzimuzhi/28 Aug 2019 for menukeys v1.5
-# updated 3 Mar 2023 for v1.6.2
+# updated 30 Sep 2026 for v1.6.4
 
 #include:adjustbox
 #include:etoolbox
@@ -17,6 +17,8 @@
 #keyvals:\usepackage/menukeys#c
 definemenumacros#true,false
 definekeys#true,false
+defineshortnames#true,false
+keysprefix=%<prefix%>
 mackeys=#text,symbols
 os=#mac,win
 #endkeyvals

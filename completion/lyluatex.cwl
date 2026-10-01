@@ -1,5 +1,5 @@
 # lyluatex package
-# Matthew Bertucci 2022/11/07 for v1.1.1
+# Matthew Bertucci 2026/09/20 for v1.1.7
 
 #include:graphicx
 #include:minibox
@@ -62,6 +62,7 @@ voffset=##L
 hpadding=##L
 print-only#true,false
 print-only={%<number range(s)%>}
+clip-regions=%<range%>
 line-width=##L
 staffsize=%<pts%>
 ragged-right#true,false

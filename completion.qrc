@@ -1241,6 +1241,7 @@
 <file>completion/datatool-pgfmath.cwl</file>
 <file>completion/datax.cwl</file>
 <file>completion/dateiliste.cwl</file>
+<file>completion/datemultical.cwl</file>
 <file>completion/datenumber.cwl</file>
 <file>completion/datestamp.cwl</file>
 <file>completion/datetime2-calc.cwl</file>
@@ -2373,6 +2374,7 @@
 <file>completion/lua-regression.cwl</file>
 <file>completion/luaset.cwl</file>
 <file>completion/luasseq.cwl</file>
+<file>completion/luatagging.cwl</file>
 <file>completion/luatex85.cwl</file>
 <file>completion/luatexbase.cwl</file>
 <file>completion/luatex.cwl</file>
@@ -4097,6 +4099,7 @@
 <file>completion/tikzrput.cwl</file>
 <file>completion/tikzscale.cwl</file>
 <file>completion/tikzsymbols.cwl</file>
+<file>completion/tikz-tensor-networks.cwl</file>
 <file>completion/tikz-timing.cwl</file>
 <file>completion/tikz-trackschematic.cwl</file>
 <file>completion/tikz-triminos.cwl</file>
@@ -4422,6 +4425,7 @@
 <file>completion/xinttools.cwl</file>
 <file>completion/xinttrig.cwl</file>
 <file>completion/xistercian.cwl</file>
+<file>completion/xjyutping.cwl</file>
 <file>completion/xkcdcolors.cwl</file>
 <file>completion/xkeymask.cwl</file>
 <file>completion/xkeyval.cwl</file>

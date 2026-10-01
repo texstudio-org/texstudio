@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/09/11 for v16.30.0
+# Matthew Bertucci 2026/09/30 for v16.32.0
 
 #include:iftex
 
@@ -114,6 +114,7 @@ allegro
 alliedmodders
 alltrails
 almalinux
+alphaxiv
 alpinedotjs
 alpinelinux
 alternativeto
@@ -1163,6 +1164,7 @@ go
 gocd
 godaddy
 godotengine
+godox
 gofundme
 gogdotcom
 gojek

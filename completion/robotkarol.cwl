@@ -1,9 +1,10 @@
-# robotkarol.cwl — Autovervollständigung für robotkarol.sty v3.7
+# robotkarol.cwl — Autovervollständigung für robotkarol.sty v3.8
 #include:tikz
 #include:listings
 #include:struktex
 #include:graphicx
 #include:fontspec
+#include:tikzlibrarypatterns.meta
 
 #keyvals:\karolsetup#c
 feldbreite=%<Länge%>
@@ -81,12 +82,17 @@ skalierung=%<Faktor%>
 \bbefehl[%<Anzahl%>]{%<Befehl%>}
 \bwiederholemal{%<Anzahl%>}{%<Blöcke%>}
 \bwiederholesolange{%<Bedingung%>}{%<Blöcke%>}
+\bwiederholesolange[%<Anzahl%>]{%<Bedingung%>}{%<Blöcke%>}
 \bwiederholeimmer{%<Blöcke%>}
 \bwenndann{%<Bedingung%>}{%<Blöcke%>}
+\bwenndann[%<Anzahl%>]{%<Bedingung%>}{%<Blöcke%>}
 \bwenndannsonst{%<Bedingung%>}{%<dann-Blöcke%>}{%<sonst-Blöcke%>}
+\bwenndannsonst[%<Anzahl%>]{%<Bedingung%>}{%<dann-Blöcke%>}{%<sonst-Blöcke%>}
 \bluecke
 \bluecke[%<Breite%>]
 \bbedingung{%<Bedingung%>}
+# Zahlenpille wie IstZiegel(2) in Robot Karol Online
+\bbedingung[%<Anzahl%>]{%<Bedingung%>}
 # Himmelsrichtungen mit Auswahlmenü (Norden/Süden/Osten/Westen)
 \bist{%<Richtung%>}
 \bnichtist{%<Richtung%>}
@@ -109,10 +115,13 @@ skalierung=%<Faktor%>
 \ihauptprogramm
 \iwiederholemal{%<Anzahl%>}
 \iwiederholesolange{%<Bedingung%>}
+\iwiederholesolange[%<Anzahl%>]{%<Bedingung%>}
 \iwiederholeimmer
 \iwenndann{%<Bedingung%>}
+\iwenndann[%<Anzahl%>]{%<Bedingung%>}
 \isonst
 \ibedingung{%<Bedingung%>}
+\ibedingung[%<Anzahl%>]{%<Bedingung%>}
 \iist{%<Richtung%>}
 \inichtist{%<Richtung%>}
 \iluecke

@@ -66,6 +66,7 @@ StylisticSet=%<set number%>
 \symbfcal{text%plain}#m
 \symbffrak{text%plain}#m
 \symbfit{text%plain}#m
+\symbfscr{text%plain}#m
 \symbfsfit{text%plain}#m
 \symbfsfup{text%plain}#m
 \symbfsf{text%plain}#m
@@ -76,6 +77,7 @@ StylisticSet=%<set number%>
 \symit{text%plain}#m
 \symnormal{text%plain}#*m
 \symrm{text%plain}#m
+\symscr{text%plain}#m
 \symsfit{text%plain}#m
 \symsfup{text%plain}#m
 \symsf{text%plain}#m

@@ -1,5 +1,5 @@
 # intexgral package
-# Matthew Bertucci 2026/09/11 for v4.2.0
+# Matthew Bertucci 2026/09/18 for v4.3.0
 
 #include:amsfonts
 
@@ -62,7 +62,7 @@ postsymbsep=%<mu expr%>
 jacobiansep=%<mu expr%>
 vectorstyle=%<command%>
 domainstyle=%<command%>
-novar#true,false
+delim=#brackets,bar
 #endkeyvals
 
 \NewLimitsKeyword{keyword}{limits%formula}
@@ -82,6 +82,20 @@ novar#true,false
 \ProvideSymbolKeyword{keyword}{symbol%formula}
 \DeclareSymbolKeyword{keyword}{symbol%formula}
 \invertdiff
-\differentials
-\jacobian
-\variables
+
+\differentials#m
+\jacobian#m
+\variables#m
+
+\antideriv{primitive}
+\antideriv[options%keyvals]{primitive}
+
+#keyvals:\antideriv
+limits=%<list%>
+delim=#brackets,bar
+big
+Big
+bigg
+Bigg
+auto
+#endkeyvals
