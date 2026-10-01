@@ -68,8 +68,9 @@
 \begin{pmatrix}#m\array
 \begin{quotation}
 \begin{quote}
-\begin{scriptsize}
 \begin{samepage}
+\begin{scriptsize}
+\begin{sloppypar}
 \begin{small}
 \begin{tabbing}
 \begin{table*}
@@ -121,8 +122,9 @@
 \end{pmatrix}#m
 \end{quotation}
 \end{quote}
-\end{scriptsize}
 \end{samepage}
+\end{scriptsize}
+\end{sloppypar}
 \end{small}
 \end{tabbing}
 \end{table}
