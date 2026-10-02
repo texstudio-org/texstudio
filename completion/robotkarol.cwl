@@ -1,4 +1,4 @@
-# robotkarol.cwl — Autovervollständigung für robotkarol.sty v3.9
+# robotkarol.cwl — Autovervollständigung für robotkarol.sty v3.10
 #include:tikz
 #include:listings
 #include:struktex
@@ -37,11 +37,20 @@ hutfarbe=%<Farbe%>
 # --- Schriften (v3.6) ---
 # Vorgabe: Noto Sans + Hack wie in Robot Karol Online.  Mit der
 # Paketoption schrift=dokument benutzt das Paket \sffamily und \ttfamily.
+# --- Druckmodus (v3.7) ---
+# druck stellt alle Ansichten auf tonersparende Graustufen um; zur
+# Laufzeit (auch nur in einer Gruppe) mit \karolsetup{druck=true}.
+# --- Verweise (v3.7) ---
+# hyperref=false unterdrueckt das Laden von hyperref; \karolonline
+# setzt dann denselben Text ohne Verweis.
 #keyvals:\usepackage/robotkarol#c
 schrift=#karol,dokument
 druck#true,false
 hyperref#true,false
 #endkeyvals
+
+# Verweis auf eine Aufgabe in Robot Karol Online: \karolonline{2t7t}
+# setzt karol.arrrg.de/#2t7t und verlinkt https://karol.arrrg.de/#2t7t
 \karolonline{%<Aufgabencode%>}
 \karolschrift
 \karolcodeschrift
@@ -51,7 +60,7 @@ skalierung=%<Faktor%>
 nummern=#true,false
 hinweis=%<Text%>
 titel=%<Text%>
-hervorheben=%<Feldliste%>
+hervorheben=%<Feldliste ab 1%>
 rahmen=#true,false
 hoehe=%<Ziegellagen%>
 #endkeyvals
@@ -151,6 +160,11 @@ breite=%<Spalten%>
 laenge=%<Zeilen%>
 hoehe=%<Ziegellagen%>
 ansicht=#3d,2d
+zustand=#beides,start,ziel
+auftrag=#keiner,aufbauen,aufraeumen,aufräumen
+nummern=#true,false
+rahmen
+hervorheben=%<x/y-Liste%>
 skalierung=%<Faktor%>
 titel=%<Text%>
 hinweis=%<Text%>
@@ -201,7 +215,8 @@ breite=%<Spalten%>
 laenge=%<Zeilen%>
 hoehe=%<Ziegellagen%>
 ansicht=#3d,2d
-aufraeumen
+auftrag=#keiner,aufbauen,aufraeumen,aufräumen
+nummern#true,false
 rahmen
 hervorheben=%<x/y-Liste%>
 skalierung=%<Faktor%>

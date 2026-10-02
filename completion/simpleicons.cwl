@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/09/30 for v16.32.0
+# Matthew Bertucci 2026/10/02 for v16.33.0
 
 #include:iftex
 
@@ -1381,6 +1381,7 @@ husqvarna
 hyper
 hyperskill
 hyperx
+hypit
 hypothesis
 hyprland
 hyundai
@@ -2042,6 +2043,7 @@ norwegian
 note
 notebooklm
 notepadplusplus
+notesnook
 notion
 notist
 nounproject
