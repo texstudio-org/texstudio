@@ -1,5 +1,5 @@
 # LuaTeX primitives
-# Matthew Bertucci updated 2025/06/28 for v1.23.3
+# Matthew Bertucci updated 2026/10/03 for v1.27.5
 
 ### from LuaTeX Reference Manual ###
 ## 2 Basic TeX enhancements ##
@@ -342,6 +342,7 @@
 \prebinoppenalty=%<<penalty>%>#*
 \prerelpenalty=%<<penalty>%>#*
 \matheqnogapstep=%<<integer>%>#*
+\mathlargeoperatormode=%<<integer>%>#*
 
 # 7.6 Math constructs #
 \Uhextensible#*
