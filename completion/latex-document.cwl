@@ -70,7 +70,7 @@
 \begin{quote}
 \begin{samepage}
 \begin{scriptsize}
-\begin{sloppypar}
+\begin{sloppypar}#*
 \begin{small}
 \begin{tabbing}
 \begin{table*}
