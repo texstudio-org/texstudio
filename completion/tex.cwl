@@ -459,7 +459,7 @@
 \cdot#m
 \cdotp#m
 \cdots#m
-# \centerline, in "latex-l2tabu.cwl"
+\centerline{text}#*
 \check{a}#m
 \chi#m
 \choose#*m
