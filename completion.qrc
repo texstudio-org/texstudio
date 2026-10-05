@@ -3094,6 +3094,7 @@
 <file>completion/printsudoku.cwl</file>
 <file>completion/prnthyph.cwl</file>
 <file>completion/proba.cwl</file>
+<file>completion/problib.cwl</file>
 <file>completion/probsoln.cwl</file>
 <file>completion/processkv.cwl</file>
 <file>completion/procIAGssymp.cwl</file>
