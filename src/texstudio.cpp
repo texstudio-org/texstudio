@@ -7629,7 +7629,6 @@ void Texstudio::texdocHelp()
 		packages.removeDuplicates();
 		packages.removeAll("latex-209");
 		packages.removeAll("latex-dev");
-		packages.removeAll("latex-l2tabu");
 		packages.removeAll("latex-document");
 		packages.removeAll("tex");
 	}

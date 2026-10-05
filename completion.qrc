@@ -2186,7 +2186,6 @@
 <file>completion/latexdemo.cwl</file>
 <file>completion/latex-dev.cwl</file>
 <file>completion/latex-document.cwl</file>
-<file>completion/latex-l2tabu.cwl</file>
 <file>completion/latex-papersize.cwl</file>
 <file>completion/latexscreenshooter.cwl</file>
 <file>completion/latexsym.cwl</file>
