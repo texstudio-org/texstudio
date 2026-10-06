@@ -1,5 +1,5 @@
 # proofgraph package
-# Matthew Bertucci 2026/09/04 for v1.1.1
+# Matthew Bertucci 2026/10/06 for v1.2.0
 
 #include:amsthm
 #include:etoolbox
@@ -32,6 +32,8 @@ statements#true,false
 \proofgraphignore{from}{to}
 \proofgraphignorecite{result}{bibid}#C
 \proofgraphignorecite[note%text]{result}{bibid}#C
+\proofgraphlabel{envname}{format}
+\proofgraphnodelabel{text}
 \proofgraphstylecite{attributes}
 \proofgraphstyle{style}{attributes}
 \proofgraphtrack{names}
