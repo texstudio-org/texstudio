@@ -40,6 +40,7 @@ public:
     static QString handleColSpec(QString opt);
 
     static QSet<QString> tabularNames;
+    static QSet<QString> tblrNames;
     static QSet<QString> tabularNamesWithOneOption;
     static QSet<QString> mathTables;
 };

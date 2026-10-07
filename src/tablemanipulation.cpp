@@ -10,6 +10,7 @@
 
 QSet<QString> LatexTables::tabularNames = QSet<QString>() << "tabular" << "array" << "longtable" << "supertabular" << "tabu" << "longtabu"
                                                           << "IEEEeqnarray" << "xtabular" << "xtabular*" << "mpxtabular" << "mpxtabular*"<<"tblr"<<"longtblr"<<"talltblr";
+QSet<QString> LatexTables::tblrNames = QSet<QString>() <<"tblr"<<"longtblr"<<"talltblr";
 QSet<QString> LatexTables::tabularNamesWithOneOption = QSet<QString>() << "tabular*" << "tabularx" << "tabulary";
 QSet<QString> LatexTables::mathTables = QSet<QString>() << "align" << "align*" << "array" << "matrix" << "matrix*" << "bmatrix" << "bmatrix*"
                                       << "Bmatrix" << "Bmatrix*" << "pmatrix" << "pmatrix*" << "vmatrix" << "vmatrix*"
@@ -587,7 +588,7 @@ Token LatexTables::findColumn(QDocumentCursor &cur, Environment env)
                 }
             }
         }
-        if(env.name=="tblr"){
+        if(tblrNames.contains(env.name)){
             // skip over braces (multi line cells)
             if(tkResult.type==Token::braces && tkResult.subtype==Token::none){
                 ignoreUntilColumn=tkResult.start+tkResult.length;
@@ -735,7 +736,7 @@ LatexTables::NextRowAvailable LatexTables::findRow(QDocumentCursor &cur, Environ
             }
         }
         if(mode==ScanModeInRow){
-            if(env.name=="tblr"){
+            if(tblrNames.contains(env.name)){
                 // skip over braces (multi line cells)
                 if(tk.type==Token::braces && tk.subtype==Token::none){
                     ignoreUntilColumn=tk.start+tk.length;
@@ -865,7 +866,7 @@ int LatexTables::getColumn(const QDocumentCursor &cur,const Environment env)
                 }
             }
         }
-        if(env.name=="tblr"){
+        if(tblrNames.contains(env.name)){
             // skip over braces (multi line cells)
             if(tk.type==Token::braces && tk.subtype==Token::none){
                 ignoreUntilColumn=tk.start+tk.length;
@@ -991,7 +992,7 @@ Token LatexTables::getDef(TokenList &tl, Environment env,int &ln,int &nextLine, 
             tkColDef=tk;
         }
     }else{
-        if(env.name=="tblr"){
+        if(tblrNames.contains(env.name)){
             TokenList result=Parsing::getArgTL(tl,Token::colDef);
             if(!result.isEmpty()){
                 if(result.at(0).type==Token::braces){

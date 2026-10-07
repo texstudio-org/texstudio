@@ -1298,7 +1298,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					continue;
 				}
                 // special treatment { \\ } in tblr (multirow cell)
-                if(word=="\\\\" && activeEnv.top().name=="tblr"){
+                if(word=="\\\\" && LatexTables::tblrNames.contains(activeEnv.top().name)){
                     // check if this token lies with braces/none
                     bool skipToken=false;
                     for(int j=i-1;j>=0;--j){
