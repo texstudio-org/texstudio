@@ -1,5 +1,5 @@
 # bookcover class
-# Matthew Bertucci 2026/01/12 for v3.9
+# Matthew Bertucci 2026/10/06 for v4.0
 
 #include:kvoptions
 #include:geometry
@@ -12,10 +12,12 @@ cover=#default,a0,a1,a2,a3,a4,a5,a6,b0,b1,b2,b3,b4,b5,b6,c0,c1,c2,c3,c4,c5,c6,b0
 coverheight=##L
 coverwidth=##L
 spinewidth=##L
+hingewidth=##L
 flapwidth=##L
 wrapwidth=##L
 bleedwidth=##L
 marklength=##L
+hardcover#true,false
 foldingmargin#true,false
 10pt
 11pt
@@ -49,16 +51,17 @@ ruler
 %bookcovertype
 #endkeyvals
 
-\partheight
-\partwidth
-\coverheight
-\coverwidth
-\spinewidth
-\flapwidth
-\wrapwidth
-\bleedwidth
-\marklength
-\markthick
+\partheight#L
+\partwidth#L
+\coverheight#L
+\coverwidth#L
+\spinewidth#L
+\hingewidth#L
+\flapwidth#L
+\wrapwidth#L
+\bleedwidth#L
+\marklength#L
+\markthick#L
 
 \bookcoverdescgeometry{geometry parameters%keyvals}
 

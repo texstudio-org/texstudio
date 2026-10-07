@@ -1,5 +1,8 @@
 # freemath package
-# Matthew Bertucci 2025/11/22 for v1.0
+# Matthew Bertucci 2026/10/05 for v1.2
 
 \freemathon
 \freemathoff
+
+\freemathblacklist{command}
+\freemathwhitelist{command}

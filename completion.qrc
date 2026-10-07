@@ -1587,6 +1587,7 @@
 <file>completion/fclfont.cwl</file>
 <file>completion/fcolumn.cwl</file>
 <file>completion/fcprefix.cwl</file>
+<file>completion/fddiagram.cwl</file>
 <file>completion/fdsymbol.cwl</file>
 <file>completion/fdulogo.cwl</file>
 <file>completion/FenetreCas.cwl</file>
@@ -3092,6 +3093,7 @@
 <file>completion/printsudoku.cwl</file>
 <file>completion/prnthyph.cwl</file>
 <file>completion/proba.cwl</file>
+<file>completion/problib.cwl</file>
 <file>completion/probsoln.cwl</file>
 <file>completion/processkv.cwl</file>
 <file>completion/procIAGssymp.cwl</file>
@@ -3423,6 +3425,7 @@
 <file>completion/sagetex.cwl</file>
 <file>completion/sankey.cwl</file>
 <file>completion/Sanremo.cwl</file>
+<file>completion/sansforgetica.cwl</file>
 <file>completion/sansmath.cwl</file>
 <file>completion/sansmathfonts.cwl</file>
 <file>completion/sarabian.cwl</file>
@@ -4035,10 +4038,16 @@
 <file>completion/tikzlibrarytikzmark.cwl</file>
 <file>completion/tikzlibrarytikzphysics.cwl</file>
 <file>completion/tikzlibrarytikzphysics.core.cwl</file>
+<file>completion/tikzlibrarytikzphysics.elements.cwl</file>
+<file>completion/tikzlibrarytikzphysics.fluids.cwl</file>
+<file>completion/tikzlibrarytikzphysics.heattransfer.cwl</file>
 <file>completion/tikzlibrarytikzphysics.mechanics.cwl</file>
 <file>completion/tikzlibrarytikzphysics.optics.cwl</file>
 <file>completion/tikzlibrarytikzphysics.ramps.cwl</file>
 <file>completion/tikzlibrarytikzphysics.surface.cwl</file>
+<file>completion/tikzlibrarytikzphysics.thermalphysics.cwl</file>
+<file>completion/tikzlibrarytikzphysics.thermodynamics.cwl</file>
+<file>completion/tikzlibrarytikzphysics.waves.cwl</file>
 <file>completion/tikzlibrarytilings.cwl</file>
 <file>completion/tikzlibrarytilings.penrose.cwl</file>
 <file>completion/tikzlibrarytilings.polykite.cwl</file>

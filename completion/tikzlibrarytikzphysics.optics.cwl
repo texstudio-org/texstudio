@@ -1,5 +1,5 @@
 # tikzphysics.optics tikzlibrary
-# Matthew Bertucci 2026/09/04 for v1.1.0
+# Matthew Bertucci 2026/10/01 for v1.7.0
 
 #include:tikzlibrarypatterns
 #include:tikzlibrarycalc
@@ -20,6 +20,11 @@ slab height=##L
 prism width=##L
 prism height=##L
 prism apex angle=%<degrees%>
+mirror height=##L
+lens height=##L
+lens thickness=##L
+lens front radius=##L
+lens back radius=##L
 #endkeyvals
 
 #keyvals:\node#c
@@ -29,4 +34,9 @@ convex-lens
 concave-lens
 slab
 prism
+plane-mirror
+plano-convex-lens
+plano-concave-lens
+positive-meniscus-lens
+negative-meniscus-lens
 #endkeyvals

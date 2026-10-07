@@ -1,5 +1,5 @@
 # linguexx package
-# Matthew Bertucci 2026/09/16 for v1.3.1
+# Matthew Bertucci 2026/10/06 for v1.4
 
 #include:tikz
 #include:xspace
@@ -209,6 +209,17 @@ relreflinks
 \lxannotL{arg1}{arg2}{arg3}#S
 \lxannotR{arg1}{arg2}#S
 \lxannotUsed{arg1}{arg2}#S
+\lxMoveFrom[options%keyvals]{label%plain}{text}#S
+\lxMoveFrom{label%plain}{text}#S
+\lxMoveTo[options%keyvals]{label%plain}{text}#S
+\lxMoveTo{label%plain}{text}#S
+\lxmvpos{arg1}{arg2}{arg3}{arg4}#S
+\MoveArrowGap#*
+\MoveArrowStep#*
+\mvfrom[options%keyvals]{label%plain}{text}
+\mvfrom{label%plain}{text}
+\mvto[options%keyvals]{label%plain}{text}
+\mvto{label%plain}{text}
 \Next
 \Next[postfix]
 \NNext
@@ -228,8 +239,8 @@ relreflinks
 \pTextNext
 \pTextNext[postfix]
 \rangedash#*
-\Refrange{key1}{key2}
 \refrange{key1}{key2}
+\Refrange{key1}{key2}
 \resetExdefaults
 \secondrefdash#*
 \SetAltSpoken*{word%text}
@@ -239,6 +250,7 @@ relreflinks
 \SetAnnotSpoken{text}{phrase%text}
 \SetJudgmentSpoken{mark}{phrase%text}
 \SetLeipzig{label}{expansion}
+\SetMoveSpoken{word}
 \SubExlabelwidth#*L
 \SubExLBr#*
 \SubExleftmargin#*L
@@ -258,8 +270,14 @@ relreflinks
 \theFnExRBr#*
 \theHExNo#S
 \theHFnExNo#S
+\theHlxCustomSerial#S
+\theHlxExSerial#S
+\theHlxFnExSerial#S
 \theHSubExNo#S
 \theHSubSubExNo#S
+\thelxCustomSerial#S
+\thelxExSerial#S
+\thelxFnExSerial#S
 \theSubExNo#*
 \theSubSubExNo#*
 \z.

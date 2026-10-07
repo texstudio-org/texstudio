@@ -1,5 +1,5 @@
 # pdfmanagement package
-# Matthew Bertucci 2026/04/17 for v0.96z
+# Matthew Bertucci 2026/10/06 for v0.97d
 
 #include:tagpdf
 
@@ -85,6 +85,7 @@
 \pdfxform_if_exist:nTF {%<⟨name⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
 \pdfxform_if_exist_p:n {%<⟨name⟩%>}#/%expl3
 \pdfxform_new:nnn {%<⟨name⟩%>} {%<⟨attributes⟩%>} {%<⟨content⟩%>}#/%expl3
+\pdfxform_new:nnnn {%<⟨name⟩%>} {%<⟨attributes⟩%>} {%<⟨content⟩%>} {%<⟨excluded resources⟩%>}#/%expl3
 \pdfxform_ref:n {%<⟨name⟩%>}#/%expl3
 \pdfxform_use:n {%<⟨name⟩%>}#/%expl3
 \pdfxform_wd:n {%<⟨name⟩%>}#/%expl3

@@ -1,5 +1,5 @@
 # tikzphysics.mechanics tikzlibrary
-# Matthew Bertucci 2026/09/08 for v1.2.0
+# Matthew Bertucci 2026/10/01 for v1.7.0
 
 #include:tikzlibrarycalc
 #include:tikzlibrarytikzphysics.core
@@ -24,6 +24,16 @@ aspect=%<factor%>
 support size=##L
 pendulum length=##L
 pendulum angle=%<degrees%>
+beam length=##L
+beam thickness=##L
+damper length=##L
+damper width=##L
+damper position=%<factor%>
+compound pulley radius=##L
+compound pulley inner radius=##L
+physical pendulum length=##L
+physical pendulum width=##L
+physical pendulum pivot=%<factor%>
 #endkeyvals
 
 #keyvals:\node#c
@@ -32,6 +42,10 @@ pulley
 particle
 disk
 ring
+beam
+damper
+compound pulley
+physical pendulum
 #endkeyvals
 
 #keyvals:\draw#c
