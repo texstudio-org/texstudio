@@ -4021,7 +4021,7 @@ void PDFDocument::toggleAutoHideToolbars()
 
 void PDFDocument::runQuickBuild()
 {
-	emit runCommand("txs:///quick", masterFile, QFileInfo(lastSyncPoint.filename), lastSyncPoint.line);
+    emit runCommandAsync("txs:///quick", masterFile, QFileInfo(lastSyncPoint.filename), lastSyncPoint.line);
 }
 
 void PDFDocument::setGrid()
@@ -5041,7 +5041,7 @@ void PDFDocument::printPDF()
 	} else return;
 
     for (int i = 0; i < printer.copyCount(); i++)
-		emit runCommand(command, masterFile, masterFile, 0);
+        emit runCommandAsync(command, masterFile, masterFile, 0);
 }
 
 void PDFDocument::setAutoHideToolbars(bool enabled)
