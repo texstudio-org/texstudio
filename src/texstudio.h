@@ -530,6 +530,7 @@ private slots:
     bool runCommandNoSpecialChars(QString commandline, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr);
 	void setStatusMessageProcess(const QString &message);
     bool runCommandAsync(const QString &commandline, const char *returnCMD);
+    bool runCommandAsyncFwd(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString *buffer = nullptr, QString *errorMsg = nullptr, QObject *returnObj=nullptr,const char * returnCmd = nullptr);
 protected slots:
 	void processNotification(const QString &message);
     void clearLogs();

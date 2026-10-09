@@ -6500,6 +6500,28 @@ bool Texstudio::runCommandAsync(const QString &commandline, const char * returnC
     }
     return true;
 }
+/*!
+ * \brief call from pdf viewer
+ * Allow disabling compile/quick buttons when a command is running.
+ * \param unparsedCommandLine
+ * \param mainFile
+ * \param currentFile
+ * \param currentLine
+ * \param buffer
+ * \param errorMsg
+ * \param returnObj
+ * \param returnCmd
+ * \return
+ */
+bool Texstudio::runCommandAsyncFwd(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString *buffer, QString *errorMsg, QObject *returnObj, const char *returnCmd)
+{
+    // disable buttons
+    if(unparsedCommandLine==BuildManager::CMD_COMPILE || unparsedCommandLine== BuildManager::CMD_QUICK){
+        setBuildButtonsDisabled(true);
+    }
+    // call buildmanager
+    return buildManager.runCommandAsync(unparsedCommandLine, mainFile, currentFile, currentLine, buffer, errorMsg, returnObj, returnCmd);
+}
 
 void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &options)
 {
@@ -8532,7 +8554,7 @@ QObject *Texstudio::newPdfPreviewer(bool embedded)
     connect(pdfviewerWindow, SIGNAL(syncSource(const QString&,int,bool,QString)), SLOT(syncFromViewer(const QString&,int,bool,QString)));
 	connect(pdfviewerWindow, SIGNAL(focusEditor()), SLOT(focusEditor()));
     connect(pdfviewerWindow, SIGNAL(runCommand(const QString&,const QFileInfo&,const QFileInfo&,int)), &buildManager, SLOT(runCommand(const QString&,const QFileInfo&,const QFileInfo&,int)));
-    connect(pdfviewerWindow, SIGNAL(runCommandAsync(const QString&,const QFileInfo&,const QFileInfo&,int)), &buildManager, SLOT(runCommandAsync(const QString&,const QFileInfo&,const QFileInfo&,int)));
+    connect(pdfviewerWindow, SIGNAL(runCommandAsync(const QString&,const QFileInfo&,const QFileInfo&,int)), this, SLOT(runCommandAsyncFwd(const QString&,const QFileInfo&,const QFileInfo&,int)));
 	connect(pdfviewerWindow, SIGNAL(triggeredClone()), SLOT(newPdfPreviewer()));
 
 	PDFDocument *from = qobject_cast<PDFDocument *>(sender());
