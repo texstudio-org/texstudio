@@ -6439,11 +6439,6 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
 		UtilsUi::txsWarning(tr("Can't detect the file name"));
 		return false;
 	}
-    // disable buttons
-    if(commandline==BuildManager::CMD_COMPILE || commandline== BuildManager::CMD_QUICK){
-        setBuildButtonsDisabled(true);
-    }
-
 	int ln = currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0;
     // unified error/stdout into *buffer
     if(blocking){
@@ -6805,6 +6800,9 @@ void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool
 
 void Texstudio::beginRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async)
 {
+	if (commandMain == BuildManager::CMD_COMPILE || commandMain == BuildManager::CMD_QUICK)
+		setBuildButtonsDisabled(true);
+
 	if (pdf) {
 		runningPDFCommands++;
 		if (async && pdf) runningPDFAsyncCommands++;
