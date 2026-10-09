@@ -1880,6 +1880,7 @@ void BuildManager::runNextCommandInternalAsyncFinished(int exitCode, QProcess::E
             m_remainingReRunCount--;
             if(m_remainingReRunCount>0){
                 runNext=false;
+                lastCommandToRun=false;
             }
         }
     }
