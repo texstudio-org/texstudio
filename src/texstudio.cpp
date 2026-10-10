@@ -12,6 +12,12 @@
 //#include <stdlib.h>
 //#include "/usr/include/valgrind/callgrind.h"
 
+#include <csignal>
+#include <cstdlib>
+#ifndef Q_OS_WIN
+#include <unistd.h>
+#endif
+#include <QAtomicInt>
 #include "texstudio.h"
 #include "latexeditorview.h"
 
@@ -11905,6 +11911,12 @@ void recover()
 
 void Texstudio::recoverFromCrash()
 {
+	// guard against unbounded re-entry on any thread (each re-entry grows the faulting stack)
+	static QAtomicInt totalCrashes(0);
+	if (totalCrashes.fetchAndAddOrdered(1) > 20) {
+		signal(SIGSEGV, SIG_DFL);
+		_exit(1);
+	}
 	bool wasLoop;
 	QString backtraceFilename;
 	QString name = getLastCrashInformation(wasLoop);
