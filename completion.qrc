@@ -81,6 +81,8 @@
 <file>completion/algpseudocodex.cwl</file>
 <file>completion/algxpar.cwl</file>
 <file>completion/aliascnt.cwl</file>
+<file>completion/aliasctr.cwl</file>
+<file>completion/aligned-overset.cwl</file>
 <file>completion/aliphat.cwl</file>
 <file>completion/allauncl.cwl</file>
 <file>completion/allcmin.cwl</file>
