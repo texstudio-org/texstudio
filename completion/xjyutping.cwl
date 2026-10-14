@@ -1,5 +1,5 @@
 # xjyutping package
-# Matthew Bertucci 2026/04/20 for v3.15.0
+# Matthew Bertucci 2026/10/13 for v1.5.0
 
 \xjyutpingsetup{options%keyvals}
 
@@ -23,6 +23,11 @@ multiple=%<commands%>
 fancy#true,false
 linebreak#true,false
 debug#true,false
+align=#justify,left,center,right
+justify
+left
+center
+right
 #endkeyvals
 
 \enablejyutping

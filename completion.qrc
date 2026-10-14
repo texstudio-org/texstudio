@@ -221,6 +221,7 @@
 <file>completion/axessibility.cwl</file>
 <file>completion/axodraw2.cwl</file>
 <file>completion/babelbib.cwl</file>
+<file>completion/babelbidi.cwl</file>
 <file>completion/babel.cwl</file>
 <file>completion/babyloniannum.cwl</file>
 <file>completion/background.cwl</file>
@@ -1877,6 +1878,7 @@
 <file>completion/hang.cwl</file>
 <file>completion/hanging.cwl</file>
 <file>completion/hangulfontset.cwl</file>
+<file>completion/hangulmath.cwl</file>
 <file>completion/hanjacnt.cwl</file>
 <file>completion/hanzibox.cwl</file>
 <file>completion/har2nat.cwl</file>

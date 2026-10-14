@@ -1,5 +1,5 @@
 # bookcover class
-# Matthew Bertucci 2026/10/06 for v4.0
+# Matthew Bertucci 2026/10/13 for v4.1
 
 #include:kvoptions
 #include:geometry
@@ -19,6 +19,7 @@ bleedwidth=##L
 marklength=##L
 hardcover#true,false
 foldingmargin#true,false
+xmarks#true,false
 10pt
 11pt
 12pt
