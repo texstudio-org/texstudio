@@ -2,9 +2,8 @@
 # Matthew Bertucci for v1.0
 
 #include:xkeyval
-#include:ifthen
-#include:mweights
-#include:fontaxes
+#include:iftex
+#include:figureversions
 
 #keyvals:\usepackage/mfb-oldstyle#c
 scale=%<factor%>
@@ -12,8 +11,12 @@ lining
 oldstyle
 tabular
 proportional
+mainfont
 bold
 regular
+dlig
+superiors
+type1
 #endkeyvals
 
 \supfigures#S

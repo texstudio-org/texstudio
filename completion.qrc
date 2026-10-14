@@ -1255,6 +1255,7 @@
 <file>completion/dblfnote.cwl</file>
 <file>completion/dbshow.cwl</file>
 <file>completion/dccpaper-base.cwl</file>
+<file>completion/dcolumn.cwl</file>
 <file>completion/dcounter.cwl</file>
 <file>completion/ddphonism.cwl</file>
 <file>completion/debate.cwl</file>
@@ -1267,6 +1268,7 @@
 <file>completion/DejaVuSansMono.cwl</file>
 <file>completion/DejaVuSerifCondensed.cwl</file>
 <file>completion/DejaVuSerif.cwl</file>
+<file>completion/delarray.cwl</file>
 <file>completion/delim.cwl</file>
 <file>completion/delimseasy.cwl</file>
 <file>completion/delimset.cwl</file>
@@ -1409,6 +1411,7 @@
 <file>completion/ekdosis.cwl</file>
 <file>completion/electrum.cwl</file>
 <file>completion/elements.cwl</file>
+<file>completion/ellipse.cwl</file>
 <file>completion/ellipsis.cwl</file>
 <file>completion/elocalloc.cwl</file>
 <file>completion/elpresbluelightgrayscheme.cwl</file>
@@ -1482,6 +1485,7 @@
 <file>completion/erewhon.cwl</file>
 <file>completion/errata.cwl</file>
 <file>completion/esami.cwl</file>
+<file>completion/esdiff.cwl</file>
 <file>completion/esindex.cwl</file>
 <file>completion/esint.cwl</file>
 <file>completion/esk.cwl</file>
@@ -1492,6 +1496,7 @@
 <file>completion/esvect.cwl</file>
 <file>completion/etaremune.cwl</file>
 <file>completion/ETbb.cwl</file>
+<file>completion/etexcmds.cwl</file>
 <file>completion/etextools.cwl</file>
 <file>completion/etl.cwl</file>
 <file>completion/etoc.cwl</file>
@@ -3370,6 +3375,7 @@
 <file>completion/relsize.cwl</file>
 <file>completion/renditions.cwl</file>
 <file>completion/reotex.cwl</file>
+<file>completion/repeatindex.cwl</file>
 <file>completion/repltext.cwl</file>
 <file>completion/rerunfilecheck.cwl</file>
 <file>completion/rescansync.cwl</file>
@@ -3434,6 +3440,7 @@
 <file>completion/Sanremo.cwl</file>
 <file>completion/sansforgetica.cwl</file>
 <file>completion/sansmath.cwl</file>
+<file>completion/sansmathaccent.cwl</file>
 <file>completion/sansmathfonts.cwl</file>
 <file>completion/sarabian.cwl</file>
 <file>completion/SASnRdisplay.cwl</file>
@@ -4052,6 +4059,7 @@
 <file>completion/tikzlibrarytikzphysics.heattransfer.cwl</file>
 <file>completion/tikzlibrarytikzphysics.mechanics.cwl</file>
 <file>completion/tikzlibrarytikzphysics.optics.cwl</file>
+<file>completion/tikzlibrarytikzphysics.piston.cwl</file>
 <file>completion/tikzlibrarytikzphysics.ramps.cwl</file>
 <file>completion/tikzlibrarytikzphysics.surface.cwl</file>
 <file>completion/tikzlibrarytikzphysics.thermalphysics.cwl</file>
