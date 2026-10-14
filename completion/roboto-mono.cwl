@@ -19,7 +19,7 @@ light
 regular
 #endkeyvals
 
-\robotomonoThin{text} 
+\robotomonoThin{text}
 \robotomonoLight{text}
 \robotomonoRegular{text}
 \robotomonoMedium{text}

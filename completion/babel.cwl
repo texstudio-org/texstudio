@@ -1595,7 +1595,7 @@ NosepEnumerate#true,false
 #repl:"r r
 #repl:"R R
 #repl:"" 
-#repl:"|
+#repl:"| 
 #repl:"- -
 #repl:"= -
 #repl:"< «
@@ -2522,7 +2522,7 @@ NosepEnumerate#true,false
 #repl:"' “
 #repl:"< «
 #repl:"> »
-#repl:"| 
+#repl:"|
 #repl:"- -
 #repl:"~ -
 #repl:"= -

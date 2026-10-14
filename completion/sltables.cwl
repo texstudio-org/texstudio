@@ -22,7 +22,7 @@
 \elttt{thickness%l}
 \elspec
 \trule
-\ttrule 
+\ttrule
 \tttrule{thickness%l}
 \multirow%<〈n〉%>{%<content%>}
 \multicolumn%<〈n〉%>

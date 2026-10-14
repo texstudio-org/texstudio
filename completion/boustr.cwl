@@ -6,7 +6,7 @@
 \begin{boustrophedon}
 \end{boustrophedon}
 \begin{rtl}
-\end{rtl} 
+\end{rtl}
 \begin{sidewaysflip}{width}
 \end{sidewaysflip}
 

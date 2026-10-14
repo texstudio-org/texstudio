@@ -9,7 +9,7 @@
 use Hobby shortcut
 use quick Hobby shortcut
 #endkeyvals
- 
+
 #keyvals:\begin{tikzpicture}#c,\tikz#c,\begin{scope}#c,\tikzset#c
 hobby
 closed hobby

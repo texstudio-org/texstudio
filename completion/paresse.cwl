@@ -5,7 +5,7 @@
 #include:iftex
 
 \makeparesseletter
-\makeparesseother 
+\makeparesseother
 \ActiveLaParesse
 \begin{ParesseActive}
 \end{ParesseActive}

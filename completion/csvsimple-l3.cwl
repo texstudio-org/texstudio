@@ -105,7 +105,7 @@ head to column names#true,false
 head to column names prefix=%<text%>
 column names detection#true,false
 check column count#true,false
-no check column count 
+no check column count
 column count=%<number%>
 on column count error=%<code%>
 warn on column count error
@@ -126,7 +126,7 @@ or filter bool=%<boolean expr%>
 filter test=%<condition%>
 filter ifthen=%<boolean expr%>
 no filter
-filter accept all 
+filter accept all
 filter reject all
 full filter=%<code%>
 range={%<range1,range2,...%>}
@@ -158,7 +158,7 @@ respect tilde#true,false
 respect circumflex#true,false
 respect leftbrace#true,false
 respect rightbrace#true,false
-respect all 
+respect all
 respect none
 separator=#comma,semicolon,pipe,tab,space
 file=%<file%>

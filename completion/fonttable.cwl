@@ -9,7 +9,7 @@
 \decimals
 \nodecimals
 \hexoct
-\nohexoct 
+\nohexoct
 \ftablewidth
 \fntcolwidth
 \fonttext{test font}
@@ -20,7 +20,7 @@
 \regulartexts{font spec}{text}
 \germanparatext
 \latinparatext
-\aztext 
+\aztext
 \AZtext
 \digitstext
 \punctext
@@ -30,7 +30,7 @@
 \glyphseries{test glyph}{start glyph}{end glyph}
 \glyphalphabet{test glyph}
 \GLYPHALPHABET{test glyph}
-\glyphlowers 
+\glyphlowers
 \glyphuppers
 \glyphdigits
 \glyphpunct

@@ -30,7 +30,7 @@
 \qsetw{length}
 \faketreewidth{text}
 \qbalance
-\qframesubtree 
+\qframesubtree
 
 \qtreeshowframes#*
 

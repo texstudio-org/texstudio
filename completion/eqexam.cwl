@@ -493,7 +493,7 @@ MRGPARTcolor#B
 \endshortTitleText
 \eoeTotalOff
 \eoeTotalOn
-\eProbInsert 
+\eProbInsert
 \eqCommentsColor{color}
 \eqCommentsColor{color}
 \eqCommentsColorBody{color}

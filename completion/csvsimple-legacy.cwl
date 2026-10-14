@@ -73,7 +73,7 @@ column names reset
 head to column names#true,false
 head to column names prefix=%<text%>
 check column count#true,false
-no check column count 
+no check column count
 column count=%<number%>
 on column count error=%<code%>
 warn on column count error
@@ -86,7 +86,7 @@ filter=%<condition%>
 filter equal={%<stringA%>}{%<stringB%>}
 filter not equal={%<stringA%>}{%<stringB%>}
 no filter
-filter accept all 
+filter accept all
 filter reject all
 full filter=%<code%>
 range={%<range1,range2,...%>}
@@ -111,7 +111,7 @@ respect tilde#true,false
 respect circumflex#true,false
 respect leftbrace#true,false
 respect rightbrace#true,false
-respect all 
+respect all
 respect none
 separator=#comma,semicolon,pipe,tab
 every csv/.style={%<options%>}

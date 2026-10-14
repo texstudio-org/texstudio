@@ -36,7 +36,7 @@ defaultfeatures={%<fontspec features%>}
 \Lcv{num1}{num2}{text}
 \LCV{num1}{num2}
 \Lcv[opt]{num1}{num2}{text}
-\LCV[opt]{num1}{num2} 
+\LCV[opt]{num1}{num2}
 \Lsup{text}
 \LSUP-
 \LSUP+

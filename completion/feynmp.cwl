@@ -35,7 +35,7 @@ batch
 \fmfbottom{v1,v2,...}
 \fmfbottomn{v}{n}
 \fmfcmd{METAPOST code%definition}
-\fmfcurved 
+\fmfcurved
 \fmfcyclen{style}{v}{n}
 \fmfdisplay
 \fmfdot{v1,v2,...}
@@ -71,7 +71,7 @@ batch
 \fmfset{parameter}{value}
 \fmfshift{dist}{v1,v2,...}
 \fmfstopdisplay
-\fmfstraight 
+\fmfstraight
 \fmfsurround{v1,v2,...}
 \fmfsurroundn{v}{n}
 \fmftop{v1,v2,...}

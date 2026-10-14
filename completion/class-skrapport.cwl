@@ -208,7 +208,7 @@ nopdfinfo
 #endkeyvals
 
 \begin{figcenter}
-\end{figcenter} 
+\end{figcenter}
 
 \comment{comment%todo}#D
 \comment*{comment%todo}#D

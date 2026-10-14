@@ -141,7 +141,7 @@ tag={%<tag1,tag2,...%>}
 \csvlist#*
 \csvsets#*
 \csvtags#*
-\ea#S 
+\ea#S
 \emptyList#*
 \exerciseFileInfo#*
 \exfile#*

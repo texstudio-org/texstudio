@@ -25,7 +25,7 @@ terrainpic
 
 ## from wargame.hex tikzlibrary
 #include:alphalph
-# loads calc, arrows.meta, arrows, shapes.geometric, shapes.symbols, shapes.arrows, decorations, 
+# loads calc, arrows.meta, arrows, shapes.geometric, shapes.symbols, shapes.arrows, decorations,
 # decorations.pathmorphing, decorations.pathreplacing, decorations.markings, and wargame.util tikzlibraries
 
 \hex(location)

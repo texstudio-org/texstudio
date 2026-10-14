@@ -27,7 +27,7 @@
 #include:thmtools
 #include:hyperref
 # loads svgnames option of xcolor
- 
+
 #keyvals:\usepackage/easybase#c
 draft
 paper=#a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper
@@ -179,10 +179,10 @@ spread/every=%<数值%>
 subfont={%<options%>}
 subfont/caption-table=%<字体命令%>
 subfont/caption-figure=%<字体命令%>
-subfont/caption-listing=%<字体命令%> 
-subfont/caption-every=%<字体命令%> 
+subfont/caption-listing=%<字体命令%>
+subfont/caption-every=%<字体命令%>
 subfont/footnote=%<字体命令%>
-subfont/marginpar=%<字体命令%> 
+subfont/marginpar=%<字体命令%>
 bibset={%<options%>}
 bibset/backend=#bibtex,biblatex
 bibset/bibstyle=%<bibstyle%>
@@ -305,10 +305,10 @@ every=%<数值%>
 #keyvals:\ebsubfont
 caption-table=%<字体命令%>
 caption-figure=%<字体命令%>
-caption-listing=%<字体命令%> 
-caption-every=%<字体命令%> 
+caption-listing=%<字体命令%>
+caption-every=%<字体命令%>
 footnote=%<字体命令%>
-marginpar=%<字体命令%> 
+marginpar=%<字体命令%>
 #endkeyvals
 
 \ebbibset{options%keyvals}

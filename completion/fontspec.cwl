@@ -131,7 +131,7 @@ verbose
 \aliasfontfeature{existing name%specialDef}{new name}#s#%fontspecfeature
 \aliasfontfeatureoption{font feature}{existing name}{new name}
 
-## common keyvals list, 
+## common keyvals list,
 ## both commands and keys are in alphabetic order, except for engine specific keys
 #keyvals:\addfontfeature,\addfontfeatures,\defaultfontfeatures,\fontspec,\newfontface,\newfontfamily,\providefontface,\providefontfamily,\renewfontface,\renewfontfamily,\setboldmathrm,\setfontface,\setfontfamily,\setmainfont,\setmathrm,\setmathsf,\setmathtt,\setmonofont,\setromanfont,\setsansfont
 Alternate=%<feature%>

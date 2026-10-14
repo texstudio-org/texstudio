@@ -112,11 +112,11 @@
 \AlchemistCrucibleD
 \AlchemistCrucibleE
 \AlchemistBalneumMariae
-\AlchemistRetort        
-\AlchemistScepterOfJove 
-\AlchemistTrident       
+\AlchemistRetort
+\AlchemistScepterOfJove
+\AlchemistTrident
 \AlchemistStarredTrident
-\AlchemistVapourBath    
+\AlchemistVapourBath
 \AlchemistCalcination
 \AlchemistCeration
 \AlchemistCongelation

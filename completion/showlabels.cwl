@@ -17,7 +17,7 @@ final
 \showlabels[format cmds]{cmd name}
 
 \showlabelsinline
-\showlabelsmarginal 
+\showlabelsmarginal
 
 \showlabelsfont#*
 \showlabelsetlabel{arg}#*

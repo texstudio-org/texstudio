@@ -11,7 +11,7 @@ pdcolor4#B
 pdcolor5#B
 pdcolor6#B
 pdcolor7#B
-  
+
 \begin{titleslide}{title}
 \begin{titleslide}[options%keyvals]{title}
 \end{titleslide}

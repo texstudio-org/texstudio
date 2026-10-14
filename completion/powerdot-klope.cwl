@@ -17,7 +17,7 @@ slidebg#B
 slidehbg#B
 mytoctcolor#B
 mytochltcolor#B
-  
+
 \begin{titleslide}{title}
 \begin{titleslide}[options%keyvals]{title}
 \end{titleslide}

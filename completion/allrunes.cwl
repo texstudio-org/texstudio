@@ -105,7 +105,7 @@
 \textarl{text}
 \arlfamily
 \textarm{text}
-\armfamily 
+\armfamily
 \textbf{text}
 \bfseries
 \textmd{text}
@@ -125,7 +125,7 @@
 \texthi{text}
 \hightwigs
 \textlo{text}
-\lowtwigs 
+\lowtwigs
 \hflip{rune}
 \vflip{rune}
 \turn{rune}

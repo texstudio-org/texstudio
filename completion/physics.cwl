@@ -13,7 +13,7 @@ arrowdel
 
 # physics package (commands taken from the physics manual of v1.3)
 \Bqty{expression}#m
-\Im{expression}#m 
+\Im{expression}#m
 \PV{expression}#m
 \Pmqty{matrix element 1 & matrix element 2  \\ matrix element 3 & matrix element 4}#m
 \Pr(expression)#m
@@ -34,31 +34,31 @@ arrowdel
 \acosecant#*m
 \acosine#*m
 \acot(expression)#m
-\acot[power](expression)#m 
+\acot[power](expression)#m
 \acotangent#*m
 \acsc(expression)#m
 \acsc[power](expression)#m
 \admat{matrix element 1,matrix element 2,...}#*m
 \anticommutator{expression1}{expression2}#*m
 \antidiagonalmatrix{matrix element 1,matrix element 2,...}#*m
-\arccos(expression)#m 
-\arccos[power](expression)#m 
-\arccosecant#*m 
+\arccos(expression)#m
+\arccos[power](expression)#m
+\arccosecant#*m
 \arccosine#*m
-\arccot(expression)#m 
-\arccot[power](expression)#m 
-\arccotangent#*m 
+\arccot(expression)#m
+\arccot[power](expression)#m
+\arccotangent#*m
 \arccsc(expression)#m
 \arccsc[power](expression)#m
-\arcsec(expression)#m 
+\arcsec(expression)#m
 \arcsec[power](expression)#m
-\arcsecant#*m 
-\arcsin(expression)#m 
-\arcsin[power](expression)#m  
-\arcsine#*m 
+\arcsecant#*m
+\arcsin(expression)#m
+\arcsin[power](expression)#m
+\arcsine#*m
 \arctan(expression)#m
 \arctan[power](expression)#m
-\arctangent#*m 
+\arctangent#*m
 \argclose
 \argclose*
 \argopen
@@ -67,7 +67,7 @@ arrowdel
 \asec[power](expression)#m
 \asecant#*m
 \asin(expression)#m
-\asin[power](expression)#m 
+\asin[power](expression)#m
 \asine#*m
 \atan(expression)#m
 \atan[power](expression)#m
@@ -89,16 +89,16 @@ arrowdel
 \comm{expression1}{expression2}#m
 \commutator{expression1}{expression2}#*m
 \cos(expression)#m
-\cos[power](expression)#m 
-\cosecant#*m 
-\cosh(expression)#m 
-\cosh[power](expression)#m 
-\cosine#*m 
+\cos[power](expression)#m
+\cosecant#*m
+\cosh(expression)#m
+\cosh[power](expression)#m
+\cosine#*m
 \cot(expression)#m
-\cot[power](expression)#m 
-\cotangent#*m 
-\coth(expression)#m 
-\coth[power](expression)#m 
+\cot[power](expression)#m
+\cotangent#*m
+\coth(expression)#m
+\coth[power](expression)#m
 \cp#*m
 \cross#m
 \crossproduct#*m
@@ -116,7 +116,7 @@ arrowdel
 \dd(expression)#m
 \dd[power]{expression}#m
 \dd{expression}#m
-\derivative{function}{expression}#m 
+\derivative{function}{expression}#m
 \det(expression)#m
 \determinant#*m
 \diagonalmatrix{matrix element 1,matrix element 2,...}#*m
@@ -176,11 +176,11 @@ arrowdel
 \gradient{expression}#*m
 \homework#*
 \hypcosecant#*m
-\hypcosine#*m 
-\hypcotangent#*m 
-\hypsecant#*m 
-\hypsine#*m 
-\hyptangent#*m 
+\hypcosine#*m
+\hypcotangent#*m
+\hypsecant#*m
+\hypsine#*m
+\hyptangent#*m
 \identitymatrix{n}#*m
 \imaginary#m
 \imat{n}#*m
@@ -318,16 +318,16 @@ arrowdel
 \rowcount#*
 \rparen#*
 \sbmqty{matrix element 1 & matrix element 2  \\ matrix element 3 & matrix element 4}#m
-\sec(expression)#m 
-\sec[power](expression)#m 
-\secant#*m 
-\sech(expression)#m 
-\sech[power](expression)#m 
+\sec(expression)#m
+\sec[power](expression)#m
+\secant#*m
+\sech(expression)#m
+\sech[power](expression)#m
 \sin(expression)#m
-\sin[power](expression)#m 
-\sine#*m 
+\sin[power](expression)#m
+\sine#*m
 \sinh(expression)#m
-\sinh[power](expression)#m  
+\sinh[power](expression)#m
 \smallmatrixdeterminant{matrix element 1 & matrix element 2  \\ matrix element 3 & matrix element 4}#*m
 \smallmatrixquantity{matrix element 1 & matrix element 2  \\ matrix element 3 & matrix element 4}#*m
 \smdet{matrix element 1 & matrix element 2  \\ matrix element 3 & matrix element}#m
@@ -339,12 +339,12 @@ arrowdel
 \sPmqty{matrix element 1 & matrix element 2  \\ matrix element 3 & matrix element 4}#m
 \spmqty{matrix element 1 & matrix element 2  \\ matrix element 3 & matrix element 4}#m
 \svmqty{matrix element 1 & matrix element 2  \\ matrix element 3 & matrix element 4}#m
-\tan(expression)#m 
-\tan[power](expression)#m 
-\tangent#*m 
-\tanh(expression)#m 
-\tanh[power](expression)#m   
-\tr#m 
+\tan(expression)#m
+\tan[power](expression)#m
+\tangent#*m
+\tanh(expression)#m
+\tanh[power](expression)#m
+\tr#m
 \tr(expression)#m
 \trace#*m
 \trigbraces{operator}(expression)#*m

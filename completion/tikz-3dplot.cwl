@@ -261,7 +261,7 @@ dash dot
 densely dash dot
 loosely dash dot
 dash dot dot
-densely dash dot dot 
+densely dash dot dot
 loosely dash dot dot
 double
 double=#%color
@@ -381,10 +381,10 @@ draw opacity=%<value%>
 opacity=%<value%>
 transparent
 ultra nearly transparent
-very nearly transparent 
+very nearly transparent
 nearly transparent
 semitransparent
-nearly opaque 
+nearly opaque
 very nearly opaque
 ultra nearly opaque
 opaque

@@ -57,7 +57,7 @@
 \poemlinenumright#S
 \poemlinenumrightfalse
 \poemlinenumrighttrue
-\poemlinenumsfalse 
+\poemlinenumsfalse
 \poemlinenumstrue
 \poemlinenumstyle#*
 \poemlopformat#*

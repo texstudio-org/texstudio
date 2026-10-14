@@ -39,7 +39,7 @@ bold
 \varQ
 \DH
 \DJ
-\NG 
+\NG
 \TH
 \guilsinglleft
 \guilsinglright

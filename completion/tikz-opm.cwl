@@ -4,7 +4,7 @@
 #include:tikz
 #include:tikzlibraryshapes.geometric
 #include:tikzlibrarycalc
-#include:tikzlibrarypositioning 
+#include:tikzlibrarypositioning
 #include:tikzlibraryshapes.multipart
 #include:makeshape
 #include:amsmath

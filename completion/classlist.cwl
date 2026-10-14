@@ -4,6 +4,6 @@
 \MainClassName
 \ClassList
 \ClassListEntry{class}{class options}{requested version}
-\PrintClassList 
+\PrintClassList
 \PrintClassListTitle
 \PrintClassListEntry{class}{class options}{requested version}

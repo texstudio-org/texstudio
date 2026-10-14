@@ -5,7 +5,7 @@
 #include:amssymb
 
 pdcolor1#B
-  
+
 \begin{titleslide}{title}
 \begin{titleslide}[options%keyvals]{title}
 \end{titleslide}

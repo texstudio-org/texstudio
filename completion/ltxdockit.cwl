@@ -78,7 +78,7 @@ boxfill#B
 \intitem{key%plain}
 \intitem[integer]{key%plain}
 \legitem{arg}
-  
+
 \begin{valuelist}
 \begin{valuelist}[opt]
 \end{valuelist}

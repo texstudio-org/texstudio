@@ -635,7 +635,7 @@ continente
 contributorcovenant
 conventionalcommits
 convertio
-convex 
+convex
 cookiecutter
 coolermaster
 coolify

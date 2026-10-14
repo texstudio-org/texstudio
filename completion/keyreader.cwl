@@ -78,7 +78,7 @@
 \krdindeftrue#S
 \krdkvnormalize{arg1}#S
 \krdncsname#S
-\krdnewlet{cmd}#Sd 
+\krdnewlet{cmd}#Sd
 \krdnoexpandcs{arg1}#S
 \krdorder#S
 \krdoxdetok{arg1}#S

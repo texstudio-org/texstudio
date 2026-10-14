@@ -57,7 +57,7 @@ orglett#B
 \end{graph}
 \SectionNumbersOff
 \SectionNumbersOn
-\SectionsOff 
+\SectionsOff
 \SectionsOn
 \AbstractOff
 \AbstractOn
