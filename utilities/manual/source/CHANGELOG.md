@@ -7,6 +7,7 @@
 - fix compiling not rerunning [#4686](https://github.com/texstudio-org/texstudio/issues/4686)
 - remove latex-l2tabu.cwl
 - disable fileexplorer updates when not visible
+- fix display of cached lines (typically disabled) [#4699](https://github.com/texstudio-org/texstudio/issues/4699)
 
 ## TeXstudio 4.9.8
 
