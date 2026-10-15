@@ -293,7 +293,7 @@ void AIChatAssistant::slotSend(bool fromToolCall)
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
         request.setRawHeader("Accept", "application/json");
         request.setRawHeader("anthropic-version", "2023-06-01");
-        request.setRawHeader("x-api-key", QString("%1").arg(config->ai_apikey).toUtf8());
+        request.setRawHeader("X-Api-Key", QString("%1").arg(config->ai_apikey).toUtf8());
         m_reply = networkManager->post(request,data.toUtf8());
     }else{
         // openAI compatible API
