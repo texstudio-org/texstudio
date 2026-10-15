@@ -169,6 +169,7 @@ private:
 	SymbolWidget *symbolWidget;
     QTreeView *fileView; ///< file explorer in docks
     QFileSystemModel *fileExplorerModel = nullptr;
+    QDockWidget *fileExplorerDockWidget = nullptr; ///< dock widget for fileExplorer
     GitWidget *gitWidget = nullptr; ///< git source control dock panel
     QDockWidget *gitDockWidget = nullptr; ///< dock widget for gitWidget
 	QString hiddenLeftPanelWidgets;

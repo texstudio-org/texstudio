@@ -754,16 +754,16 @@ void Texstudio::setupDockWidgets()
     if(!dock){
         fileView=new QTreeView();
         fileExplorerModel = new QFileSystemModel(this);
-        fileExplorerModel->setOption(QFileSystemModel::DontWatchForChanges,true);
+        //fileExplorerModel->setOption(QFileSystemModel::DontWatchForChanges,true);
 		QString rootDir = QDir::currentPath();
 		if (rootDir == "/tmp")
 			rootDir = "/";
-        fileExplorerModel->setRootPath(rootDir);
+        //fileExplorerModel->setRootPath(rootDir); // don't set, populate on demand
         fileView->setModel(fileExplorerModel);
         fileView->setColumnHidden(1,true);
         fileView->setColumnHidden(2,true);
         fileView->setColumnHidden(3,true);
-        fileView->setRootIndex(fileExplorerModel->index(rootDir));
+        //fileView->setRootIndex(fileExplorerModel->index(rootDir));
         fileView->setDragEnabled(true);
         fileView->setDragDropMode(QAbstractItemView::DragOnly);
         QAction *act=new QAction();
@@ -772,7 +772,7 @@ void Texstudio::setupDockWidgets()
         fileView->addAction(act);
         fileView->setContextMenuPolicy(Qt::ActionsContextMenu);
         connect(fileView,&QAbstractItemView::doubleClicked,this,&Texstudio::openFromExplorer);
-        addDock("explorer", "folder_R90",tr("Files"), fileView);
+        fileExplorerDockWidget=addDock("explorer", "folder_R90",tr("Files"), fileView);
     }
     // setup a dock widget with a git source control panel
     dock=findChild<QDockWidget *>("git",Qt::FindDirectChildrenOnly);
@@ -1972,8 +1972,8 @@ void Texstudio::currentEditorChanged()
     QString rootDir=fi.absoluteDir().path();
 	if (rootDir == "/tmp")
 		rootDir = "/";
-    if(fileExplorerModel->rootPath()!=rootDir){
-        // only change when necessary
+    if(fileExplorerDockWidget && fileExplorerDockWidget->property("isVisible").toBool()&& fileExplorerModel->rootPath()!=rootDir){
+        // only change when necessary, i.e. path changed and dock is visible
         fileExplorerModel->setRootPath(rootDir);
         fileView->setRootIndex(fileExplorerModel->index(rootDir));
     }
@@ -3856,15 +3856,17 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
             updateTOCs();
         }
         //Explicitely set fileExplorer root dir
-        LatexDocument *rootDoc=doc->getRootDocument();
-        QFileInfo fi=rootDoc->getFileInfo();
-        QString rootDir=fi.absoluteDir().path();
-        if (rootDir == "/tmp")
-            rootDir = "/";
-        if(fileExplorerModel->rootPath()!=rootDir){
-            // only change when necessary
-            fileExplorerModel->setRootPath(rootDir);
-            fileView->setRootIndex(fileExplorerModel->index(rootDir));
+        if(fileExplorerDockWidget && fileExplorerDockWidget->property("isVisible").toBool()){
+            LatexDocument *rootDoc=doc->getRootDocument();
+            QFileInfo fi=rootDoc->getFileInfo();
+            QString rootDir=fi.absoluteDir().path();
+            if (rootDir == "/tmp")
+                rootDir = "/";
+            if(fileExplorerModel->rootPath()!=rootDir){
+                // only change when necessary
+                fileExplorerModel->setRootPath(rootDir);
+                fileView->setRootIndex(fileExplorerModel->index(rootDir));
+            }
         }
         //check if second editor view (side-by-side)
         if(useSideBySide){
@@ -12899,6 +12901,24 @@ void Texstudio::updateDockVisibility(bool visible)
         }
         if(dock->objectName()=="explorer" && fileExplorerModel){
             fileExplorerModel->setOption(QFileSystemModel::DontWatchForChanges,!visible);
+            if(visible){
+                LatexEditorView *edView = currentEditorView();
+                QString rootDir=QDir::currentPath();
+                if(edView){
+                    LatexDocument *doc=edView->document;
+                    LatexDocument *rootDoc=doc->getRootDocument();
+                    QFileInfo fi=rootDoc->getFileInfo();
+                    rootDir=fi.absoluteDir().path();
+                }
+                if (rootDir == "/tmp")
+                    rootDir = "/";
+                if(fileExplorerModel->rootPath()==rootDir){
+                    // force update
+                    fileExplorerModel->setRootPath(QString());
+                }
+                fileExplorerModel->setRootPath(rootDir);
+                fileView->setRootIndex(fileExplorerModel->index(rootDir));
+            }
         }
     }
 }
