@@ -754,6 +754,7 @@ void Texstudio::setupDockWidgets()
     if(!dock){
         fileView=new QTreeView();
         fileExplorerModel = new QFileSystemModel(this);
+        fileExplorerModel->setOption(QFileSystemModel::DontWatchForChanges,true);
 		QString rootDir = QDir::currentPath();
 		if (rootDir == "/tmp")
 			rootDir = "/";
@@ -12895,6 +12896,9 @@ void Texstudio::updateDockVisibility(bool visible)
                     gitWidget->setPath(fi.absoluteFilePath()); // force update when it becomes visible
                 }
             }
+        }
+        if(dock->objectName()=="explorer" && fileExplorerModel){
+            fileExplorerModel->setOption(QFileSystemModel::DontWatchForChanges,!visible);
         }
     }
 }
