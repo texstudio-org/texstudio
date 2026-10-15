@@ -544,7 +544,7 @@ Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
     <message>
         <location filename="../src/buildmanager.cpp" line="122"/>
         <location filename="../src/buildmanager.cpp" line="144"/>
-        <location filename="../src/buildmanager.cpp" line="2249"/>
+        <location filename="../src/buildmanager.cpp" line="2261"/>
         <source>&lt;unknown&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -756,80 +756,80 @@ Please change your configuration and define command lists only at &apos;Options 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1517"/>
+        <location filename="../src/buildmanager.cpp" line="1528"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1521"/>
+        <location filename="../src/buildmanager.cpp" line="1532"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1523"/>
+        <location filename="../src/buildmanager.cpp" line="1534"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1526"/>
+        <location filename="../src/buildmanager.cpp" line="1537"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1528"/>
+        <location filename="../src/buildmanager.cpp" line="1539"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1531"/>
+        <location filename="../src/buildmanager.cpp" line="1542"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1546"/>
-        <location filename="../src/buildmanager.cpp" line="1589"/>
-        <location filename="../src/buildmanager.cpp" line="1623"/>
+        <location filename="../src/buildmanager.cpp" line="1557"/>
+        <location filename="../src/buildmanager.cpp" line="1600"/>
+        <location filename="../src/buildmanager.cpp" line="1634"/>
         <source>Error: No command given</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1654"/>
+        <location filename="../src/buildmanager.cpp" line="1665"/>
         <source>Error: No command expanded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1656"/>
-        <location filename="../src/buildmanager.cpp" line="1669"/>
+        <location filename="../src/buildmanager.cpp" line="1667"/>
+        <location filename="../src/buildmanager.cpp" line="1680"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1665"/>
+        <location filename="../src/buildmanager.cpp" line="1676"/>
         <source>Error: One command expansion invalid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1666"/>
+        <location filename="../src/buildmanager.cpp" line="1677"/>
         <source>Parent Command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1667"/>
+        <location filename="../src/buildmanager.cpp" line="1678"/>
         <source>Primary Command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1840"/>
+        <location filename="../src/buildmanager.cpp" line="1851"/>
         <source>Error: Command failed with error code %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2215"/>
+        <location filename="../src/buildmanager.cpp" line="2227"/>
         <source>Internal Pdf Viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2535"/>
+        <location filename="../src/buildmanager.cpp" line="2547"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5159,155 +5159,155 @@ You have to make sure yourself that the file encoding and the value passed to th
         </translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="336"/>
-        <location filename="../src/gitwidget.cpp" line="351"/>
+        <location filename="../src/gitwidget.cpp" line="337"/>
+        <location filename="../src/gitwidget.cpp" line="352"/>
         <source>Git Commit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="337"/>
+        <location filename="../src/gitwidget.cpp" line="338"/>
         <source>Please enter a commit message.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="352"/>
+        <location filename="../src/gitwidget.cpp" line="353"/>
         <source>No files selected for staging.
 Check the files you want to include in the commit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="360"/>
+        <location filename="../src/gitwidget.cpp" line="361"/>
         <source>Staging failed: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="367"/>
+        <location filename="../src/gitwidget.cpp" line="368"/>
         <source>Commit failed: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="372"/>
+        <location filename="../src/gitwidget.cpp" line="373"/>
         <source>Committed: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="383"/>
+        <location filename="../src/gitwidget.cpp" line="384"/>
         <source>Pushing…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="394"/>
+        <location filename="../src/gitwidget.cpp" line="395"/>
         <source>Push failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="398"/>
+        <location filename="../src/gitwidget.cpp" line="399"/>
         <source>Push complete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="408"/>
+        <location filename="../src/gitwidget.cpp" line="409"/>
         <source>Pulling…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="417"/>
+        <location filename="../src/gitwidget.cpp" line="418"/>
         <source>Pull failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="421"/>
+        <location filename="../src/gitwidget.cpp" line="422"/>
         <source>Pull complete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="431"/>
+        <location filename="../src/gitwidget.cpp" line="432"/>
         <source>Fetching…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="441"/>
+        <location filename="../src/gitwidget.cpp" line="442"/>
         <source>Fetch failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="445"/>
+        <location filename="../src/gitwidget.cpp" line="446"/>
         <source>Fetch complete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="534"/>
+        <location filename="../src/gitwidget.cpp" line="535"/>
         <source>&amp;Select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="536"/>
+        <location filename="../src/gitwidget.cpp" line="537"/>
         <source>&amp;Deselect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="558"/>
-        <location filename="../src/gitwidget.cpp" line="577"/>
+        <location filename="../src/gitwidget.cpp" line="559"/>
+        <location filename="../src/gitwidget.cpp" line="578"/>
         <source>Reverted changes in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="658"/>
+        <location filename="../src/gitwidget.cpp" line="659"/>
         <source>Reset failed: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="664"/>
+        <location filename="../src/gitwidget.cpp" line="665"/>
         <source>Create Branch...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="714"/>
+        <location filename="../src/gitwidget.cpp" line="715"/>
         <source>Failed to create repository: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="717"/>
+        <location filename="../src/gitwidget.cpp" line="718"/>
         <source>Git repository created in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="747"/>
+        <location filename="../src/gitwidget.cpp" line="748"/>
         <source>Disabled because modified files present</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="750"/>
+        <location filename="../src/gitwidget.cpp" line="751"/>
         <source>Select active branch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="665"/>
+        <location filename="../src/gitwidget.cpp" line="666"/>
         <source>Branch name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="520"/>
+        <location filename="../src/gitwidget.cpp" line="521"/>
         <source>&amp;Show diff</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="525"/>
+        <location filename="../src/gitwidget.cpp" line="526"/>
         <source>&amp;Revert changes in this file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="529"/>
+        <location filename="../src/gitwidget.cpp" line="530"/>
         <source>&amp;Revert changes in selected files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="673"/>
+        <location filename="../src/gitwidget.cpp" line="674"/>
         <source>Invalid branch name &apos;%1&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gitwidget.cpp" line="681"/>
+        <location filename="../src/gitwidget.cpp" line="682"/>
         <source>Branch &apos;%1&apos; already exists.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5665,22 +5665,22 @@ The wizard does not support command </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2865"/>
+        <location filename="../src/latexdocument.cpp" line="2869"/>
         <source>Root file not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2870"/>
+        <location filename="../src/latexdocument.cpp" line="2874"/>
         <source>Invalid codec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2884"/>
+        <location filename="../src/latexdocument.cpp" line="2888"/>
         <source>Missing value for -job-name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2887"/>
+        <location filename="../src/latexdocument.cpp" line="2891"/>
         <source>Unknown magic comment</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6708,6 +6708,7 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3280"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3487"/>
         <source>Custom...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6804,131 +6805,141 @@ Do you want to overwrite it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3490"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3493"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3500"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3503"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3509"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3512"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3535"/>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3538"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3541"/>
         <source>Annotations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3694"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3697"/>
         <source>Page Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3698"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3701"/>
         <source>Page Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3888"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3891"/>
         <source>Retry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3891"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5113"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3894"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5127"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3894"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3897"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3908"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3911"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3911"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3914"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3914"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3917"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3917"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3920"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3920"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3923"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3922"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3925"/>
         <source>PDF password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3922"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3925"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4328"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4331"/>
         <source>Searching for</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4440"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4443"/>
         <source>No SyncTeX data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4442"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4445"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4537"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4540"/>
         <source>%1[*] - %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4624"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4627"/>
         <source>Page %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4625"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4628"/>
         <source>Pages %1 to %2 of %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4650"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4653"/>
         <source>Open PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4935"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4825"/>
+        <source>Custom Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4825"/>
+        <source>Zoom Factor (%):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4949"/>
         <source>Print</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5114"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="5128"/>
         <source>Close Message</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7250,42 +7261,42 @@ You can now enter the password:</source>
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2633"/>
+        <location filename="../src/buildmanager.cpp" line="2645"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2642"/>
+        <location filename="../src/buildmanager.cpp" line="2654"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2839"/>
+        <location filename="../src/buildmanager.cpp" line="2851"/>
         <source>Process started: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2845"/>
+        <location filename="../src/buildmanager.cpp" line="2857"/>
         <source>Error: Could not start the command: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2848"/>
+        <location filename="../src/buildmanager.cpp" line="2860"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2852"/>
+        <location filename="../src/buildmanager.cpp" line="2864"/>
         <source>Error: Command crashed: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2859"/>
+        <location filename="../src/buildmanager.cpp" line="2871"/>
         <source>Process exited with error(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2862"/>
+        <location filename="../src/buildmanager.cpp" line="2874"/>
         <source>Process exited normally</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10270,7 +10281,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="353"/>
-        <location filename="../src/texstudio.cpp" line="275"/>
+        <location filename="../src/texstudio.cpp" line="281"/>
         <source>Central</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10364,1736 +10375,1736 @@ template to edit individual files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="378"/>
-        <location filename="../src/texstudio.cpp" line="6885"/>
+        <location filename="../src/texstudio.cpp" line="384"/>
+        <location filename="../src/texstudio.cpp" line="6917"/>
         <source>Ready</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="455"/>
+        <location filename="../src/texstudio.cpp" line="461"/>
         <source>TeX files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="456"/>
+        <location filename="../src/texstudio.cpp" line="462"/>
         <source>LilyPond files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="457"/>
+        <location filename="../src/texstudio.cpp" line="463"/>
         <source>Plaintext files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="458"/>
+        <location filename="../src/texstudio.cpp" line="464"/>
         <source>Pweave files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="459"/>
+        <location filename="../src/texstudio.cpp" line="465"/>
         <source>Sweave files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="460"/>
+        <location filename="../src/texstudio.cpp" line="466"/>
         <source>Asymptote files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="461"/>
+        <location filename="../src/texstudio.cpp" line="467"/>
         <source>PDF files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="462"/>
-        <location filename="../src/texstudio.cpp" line="10859"/>
-        <location filename="../src/texstudio.cpp" line="10866"/>
+        <location filename="../src/texstudio.cpp" line="468"/>
+        <location filename="../src/texstudio.cpp" line="10913"/>
+        <location filename="../src/texstudio.cpp" line="10920"/>
         <source>All files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="674"/>
+        <location filename="../src/texstudio.cpp" line="680"/>
         <source>Macros</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="693"/>
+        <location filename="../src/texstudio.cpp" line="699"/>
         <source>Side Panel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="712"/>
+        <location filename="../src/texstudio.cpp" line="718"/>
         <source>Structure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="731"/>
+        <location filename="../src/texstudio.cpp" line="737"/>
         <source>Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="741"/>
+        <location filename="../src/texstudio.cpp" line="747"/>
         <source>Symbols</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="778"/>
+        <location filename="../src/texstudio.cpp" line="785"/>
         <source>Left/Right Brackets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="780"/>
+        <location filename="../src/texstudio.cpp" line="787"/>
         <source>MetaPost Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="779"/>
+        <location filename="../src/texstudio.cpp" line="786"/>
         <source>PSTricks Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="723"/>
+        <location filename="../src/texstudio.cpp" line="729"/>
         <source>TOC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="781"/>
+        <location filename="../src/texstudio.cpp" line="788"/>
         <source>TikZ Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="782"/>
+        <location filename="../src/texstudio.cpp" line="789"/>
         <source>Asymptote Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="783"/>
+        <location filename="../src/texstudio.cpp" line="790"/>
         <source>Beamer Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="784"/>
+        <location filename="../src/texstudio.cpp" line="791"/>
         <source>XY Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="917"/>
+        <location filename="../src/texstudio.cpp" line="924"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="919"/>
+        <location filename="../src/texstudio.cpp" line="926"/>
         <source>&amp;New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="920"/>
+        <location filename="../src/texstudio.cpp" line="927"/>
         <source>New From &amp;Template...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="921"/>
+        <location filename="../src/texstudio.cpp" line="928"/>
         <source>&amp;Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="923"/>
+        <location filename="../src/texstudio.cpp" line="930"/>
         <source>Open &amp;Recent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="925"/>
+        <location filename="../src/texstudio.cpp" line="932"/>
         <source>Session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="926"/>
+        <location filename="../src/texstudio.cpp" line="933"/>
         <source>Load Session...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="927"/>
+        <location filename="../src/texstudio.cpp" line="934"/>
         <source>Save Session...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="928"/>
+        <location filename="../src/texstudio.cpp" line="935"/>
         <source>Restore Previous Session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="937"/>
+        <location filename="../src/texstudio.cpp" line="944"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="938"/>
+        <location filename="../src/texstudio.cpp" line="945"/>
         <source>Save &amp;As...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="939"/>
+        <location filename="../src/texstudio.cpp" line="946"/>
         <source>Save A&amp;ll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="940"/>
+        <location filename="../src/texstudio.cpp" line="947"/>
         <source>&amp;Make Template...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="943"/>
+        <location filename="../src/texstudio.cpp" line="950"/>
         <source>Fifi&amp;x</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="944"/>
+        <location filename="../src/texstudio.cpp" line="951"/>
         <source>Save renamed/&amp;moved file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="945"/>
+        <location filename="../src/texstudio.cpp" line="952"/>
         <source>Save copied file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="946"/>
+        <location filename="../src/texstudio.cpp" line="953"/>
         <source>&amp;Delete file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="947"/>
+        <location filename="../src/texstudio.cpp" line="954"/>
         <source>Set &amp;permissions...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="949"/>
+        <location filename="../src/texstudio.cpp" line="956"/>
         <source>&amp;Revert to saved...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="951"/>
+        <location filename="../src/texstudio.cpp" line="958"/>
         <source>Copy filename to &amp;clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="954"/>
+        <location filename="../src/texstudio.cpp" line="961"/>
         <source>S&amp;VN/GIT...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="955"/>
+        <location filename="../src/texstudio.cpp" line="962"/>
         <source>Check &amp;in...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="956"/>
+        <location filename="../src/texstudio.cpp" line="963"/>
         <source>SVN &amp;update...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="957"/>
+        <location filename="../src/texstudio.cpp" line="964"/>
         <source>SVN update &amp;work directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="958"/>
+        <location filename="../src/texstudio.cpp" line="965"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="959"/>
+        <location filename="../src/texstudio.cpp" line="966"/>
         <source>Lock &amp;PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="960"/>
+        <location filename="../src/texstudio.cpp" line="967"/>
         <source>Check in P&amp;DF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="961"/>
+        <location filename="../src/texstudio.cpp" line="968"/>
         <source>Show difference between two files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="962"/>
+        <location filename="../src/texstudio.cpp" line="969"/>
         <source>Show difference between two files in relation to base file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="963"/>
+        <location filename="../src/texstudio.cpp" line="970"/>
         <source>Check SVN Conflict</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="964"/>
+        <location filename="../src/texstudio.cpp" line="971"/>
         <source>Try to merge differences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="965"/>
+        <location filename="../src/texstudio.cpp" line="972"/>
         <source>Remove Difference-Markers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="966"/>
+        <location filename="../src/texstudio.cpp" line="973"/>
         <source>Declare Conflict Resolved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="967"/>
+        <location filename="../src/texstudio.cpp" line="974"/>
         <source>Jump to next difference</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="968"/>
+        <location filename="../src/texstudio.cpp" line="975"/>
         <source>Jump to previous difference</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="971"/>
-        <location filename="../src/texstudio.cpp" line="11125"/>
+        <location filename="../src/texstudio.cpp" line="978"/>
+        <location filename="../src/texstudio.cpp" line="11179"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="972"/>
+        <location filename="../src/texstudio.cpp" line="979"/>
         <source>Clos&amp;e All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="975"/>
+        <location filename="../src/texstudio.cpp" line="982"/>
         <source>Print Source Code...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="978"/>
+        <location filename="../src/texstudio.cpp" line="985"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="981"/>
+        <location filename="../src/texstudio.cpp" line="988"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="982"/>
+        <location filename="../src/texstudio.cpp" line="989"/>
         <source>&amp;Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="983"/>
+        <location filename="../src/texstudio.cpp" line="990"/>
         <source>&amp;Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="985"/>
+        <location filename="../src/texstudio.cpp" line="992"/>
         <source>Debug undo stack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="989"/>
+        <location filename="../src/texstudio.cpp" line="996"/>
         <source>&amp;Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="988"/>
+        <location filename="../src/texstudio.cpp" line="995"/>
         <source>C&amp;ut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="763"/>
+        <location filename="../src/texstudio.cpp" line="770"/>
         <source>Insert filename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="768"/>
+        <location filename="../src/texstudio.cpp" line="775"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="775"/>
+        <location filename="../src/texstudio.cpp" line="782"/>
         <source>Git</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="952"/>
+        <location filename="../src/texstudio.cpp" line="959"/>
         <source>Copy root filename to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="990"/>
+        <location filename="../src/texstudio.cpp" line="997"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="992"/>
+        <location filename="../src/texstudio.cpp" line="999"/>
         <source>&amp;Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="993"/>
+        <location filename="../src/texstudio.cpp" line="1000"/>
         <source>Select &amp;All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="994"/>
+        <location filename="../src/texstudio.cpp" line="1001"/>
         <source>Select All &amp;Occurrences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="995"/>
+        <location filename="../src/texstudio.cpp" line="1002"/>
         <source>Select &amp;Prev Occurrence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="996"/>
+        <location filename="../src/texstudio.cpp" line="1003"/>
         <source>Select &amp;Next Occurrence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="997"/>
+        <location filename="../src/texstudio.cpp" line="1004"/>
         <source>Also Select Prev Occurrence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="998"/>
+        <location filename="../src/texstudio.cpp" line="1005"/>
         <source>Also Select Next Occurrence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="999"/>
+        <location filename="../src/texstudio.cpp" line="1006"/>
         <source>Expand Selection to Word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1000"/>
+        <location filename="../src/texstudio.cpp" line="1007"/>
         <source>Expand Selection to Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1002"/>
+        <location filename="../src/texstudio.cpp" line="1009"/>
         <source>&amp;Line Operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1003"/>
+        <location filename="../src/texstudio.cpp" line="1010"/>
         <source>Delete &amp;Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1006"/>
-        <location filename="../src/texstudio.cpp" line="1008"/>
+        <location filename="../src/texstudio.cpp" line="1013"/>
+        <location filename="../src/texstudio.cpp" line="1015"/>
         <source>Delete To &amp;End Of Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1010"/>
+        <location filename="../src/texstudio.cpp" line="1017"/>
         <source>Delete From &amp;Start Of Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1011"/>
+        <location filename="../src/texstudio.cpp" line="1018"/>
         <source>Move Line &amp;Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1012"/>
+        <location filename="../src/texstudio.cpp" line="1019"/>
         <source>Move Line &amp;Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1013"/>
+        <location filename="../src/texstudio.cpp" line="1020"/>
         <source>Du&amp;plicate Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1014"/>
+        <location filename="../src/texstudio.cpp" line="1021"/>
         <source>S&amp;ort Lines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1015"/>
+        <location filename="../src/texstudio.cpp" line="1022"/>
         <source>&amp;Align Cursors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1017"/>
+        <location filename="../src/texstudio.cpp" line="1024"/>
         <source>&amp;Text Operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1018"/>
+        <location filename="../src/texstudio.cpp" line="1025"/>
         <source>To Lowercase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1019"/>
+        <location filename="../src/texstudio.cpp" line="1026"/>
         <source>To Uppercase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1020"/>
+        <location filename="../src/texstudio.cpp" line="1027"/>
         <source>To Titlecase (strict)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1021"/>
+        <location filename="../src/texstudio.cpp" line="1028"/>
         <source>To Titlecase (smart)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1025"/>
+        <location filename="../src/texstudio.cpp" line="1032"/>
         <source>&amp;Searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1026"/>
+        <location filename="../src/texstudio.cpp" line="1033"/>
         <source>&amp;Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1027"/>
+        <location filename="../src/texstudio.cpp" line="1034"/>
         <source>Find &amp;Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1028"/>
+        <location filename="../src/texstudio.cpp" line="1035"/>
         <source>Find &amp;Prev</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1029"/>
+        <location filename="../src/texstudio.cpp" line="1036"/>
         <source>Continue F&amp;ind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1030"/>
+        <location filename="../src/texstudio.cpp" line="1037"/>
         <source>&amp;Count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1031"/>
+        <location filename="../src/texstudio.cpp" line="1038"/>
         <source>&amp;Select all matches...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1033"/>
+        <location filename="../src/texstudio.cpp" line="1040"/>
         <source>&amp;Replace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1034"/>
+        <location filename="../src/texstudio.cpp" line="1041"/>
         <source>Replace Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1035"/>
+        <location filename="../src/texstudio.cpp" line="1042"/>
         <source>Replace Prev</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1036"/>
+        <location filename="../src/texstudio.cpp" line="1043"/>
         <source>Replace &amp;All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1039"/>
+        <location filename="../src/texstudio.cpp" line="1046"/>
         <source>Go to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1041"/>
-        <location filename="../src/texstudio.cpp" line="8696"/>
-        <location filename="../src/texstudio.cpp" line="8721"/>
-        <location filename="../src/texstudio.cpp" line="8741"/>
+        <location filename="../src/texstudio.cpp" line="1048"/>
+        <location filename="../src/texstudio.cpp" line="8750"/>
+        <location filename="../src/texstudio.cpp" line="8775"/>
+        <location filename="../src/texstudio.cpp" line="8795"/>
         <source>Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1042"/>
+        <location filename="../src/texstudio.cpp" line="1049"/>
         <source>Previous Change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1044"/>
-        <location filename="../src/texstudio.cpp" line="1046"/>
+        <location filename="../src/texstudio.cpp" line="1051"/>
+        <location filename="../src/texstudio.cpp" line="1053"/>
         <source>Next Change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1049"/>
+        <location filename="../src/texstudio.cpp" line="1056"/>
         <source>Previous mark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1050"/>
+        <location filename="../src/texstudio.cpp" line="1057"/>
         <source>Next mark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1053"/>
+        <location filename="../src/texstudio.cpp" line="1060"/>
         <source>Go Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1054"/>
+        <location filename="../src/texstudio.cpp" line="1061"/>
         <source>Go Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1057"/>
+        <location filename="../src/texstudio.cpp" line="1064"/>
         <source>Goto Bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1070"/>
-        <location filename="../src/texstudio.cpp" line="1079"/>
-        <location filename="../src/texstudio.cpp" line="1083"/>
+        <location filename="../src/texstudio.cpp" line="1077"/>
+        <location filename="../src/texstudio.cpp" line="1086"/>
+        <location filename="../src/texstudio.cpp" line="1090"/>
         <source>Bookmark %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1074"/>
+        <location filename="../src/texstudio.cpp" line="1081"/>
         <source>Toggle Bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1077"/>
-        <location filename="../src/texstudio.cpp" line="1081"/>
+        <location filename="../src/texstudio.cpp" line="1084"/>
+        <location filename="../src/texstudio.cpp" line="1088"/>
         <source>Unnamed Bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1088"/>
+        <location filename="../src/texstudio.cpp" line="1095"/>
         <source>Line Ending</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1090"/>
+        <location filename="../src/texstudio.cpp" line="1097"/>
         <source>DOS/Windows (CR LF)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1094"/>
+        <location filename="../src/texstudio.cpp" line="1101"/>
         <source>Unix (LF)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1098"/>
+        <location filename="../src/texstudio.cpp" line="1105"/>
         <source>Old Mac (CR)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1104"/>
+        <location filename="../src/texstudio.cpp" line="1111"/>
         <source>Setup Encoding...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1106"/>
-        <location filename="../src/texstudio.cpp" line="1108"/>
+        <location filename="../src/texstudio.cpp" line="1113"/>
+        <location filename="../src/texstudio.cpp" line="1115"/>
         <source>Insert Unicode Character...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1114"/>
+        <location filename="../src/texstudio.cpp" line="1121"/>
         <source>&amp;Idefix</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1115"/>
+        <location filename="../src/texstudio.cpp" line="1122"/>
         <source>Erase &amp;Word/Cmd/Env</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1118"/>
+        <location filename="../src/texstudio.cpp" line="1125"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1119"/>
+        <location filename="../src/texstudio.cpp" line="1126"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1122"/>
+        <location filename="../src/texstudio.cpp" line="1129"/>
         <source>Pre&amp;view Selection/Parentheses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1123"/>
+        <location filename="../src/texstudio.cpp" line="1130"/>
         <source>C&amp;lear Inline Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1125"/>
+        <location filename="../src/texstudio.cpp" line="1132"/>
         <source>Preview Dis&amp;play Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1127"/>
+        <location filename="../src/texstudio.cpp" line="1134"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1131"/>
+        <location filename="../src/texstudio.cpp" line="1138"/>
         <source>Always show preview in preview panel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1135"/>
+        <location filename="../src/texstudio.cpp" line="1142"/>
         <source>Always show preview as tool tip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1139"/>
+        <location filename="../src/texstudio.cpp" line="1146"/>
         <source>Always show both</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1143"/>
+        <location filename="../src/texstudio.cpp" line="1150"/>
         <source>Inline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1149"/>
+        <location filename="../src/texstudio.cpp" line="1156"/>
         <source>Show in embedded viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1158"/>
+        <location filename="../src/texstudio.cpp" line="1165"/>
         <source>Toggle &amp;Comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1159"/>
+        <location filename="../src/texstudio.cpp" line="1166"/>
         <source>&amp;Comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1160"/>
+        <location filename="../src/texstudio.cpp" line="1167"/>
         <source>&amp;Uncomment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1161"/>
+        <location filename="../src/texstudio.cpp" line="1168"/>
         <source>&amp;Indent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1162"/>
+        <location filename="../src/texstudio.cpp" line="1169"/>
         <source>Unin&amp;dent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1163"/>
+        <location filename="../src/texstudio.cpp" line="1170"/>
         <source>Hard Line &amp;Break...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1164"/>
+        <location filename="../src/texstudio.cpp" line="1171"/>
         <source>R&amp;epeat Hard Line Break</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1167"/>
+        <location filename="../src/texstudio.cpp" line="1174"/>
         <source>&amp;Go to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1169"/>
+        <location filename="../src/texstudio.cpp" line="1176"/>
         <source>Previous Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1169"/>
-        <location filename="../src/texstudio.cpp" line="1170"/>
+        <location filename="../src/texstudio.cpp" line="1176"/>
+        <location filename="../src/texstudio.cpp" line="1177"/>
         <source>No LaTeX errors detected !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1170"/>
+        <location filename="../src/texstudio.cpp" line="1177"/>
         <source>Next Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1171"/>
+        <location filename="../src/texstudio.cpp" line="1178"/>
         <source>Previous Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1171"/>
-        <location filename="../src/texstudio.cpp" line="1172"/>
+        <location filename="../src/texstudio.cpp" line="1178"/>
+        <location filename="../src/texstudio.cpp" line="1179"/>
         <source>No LaTeX warnings detected !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1172"/>
+        <location filename="../src/texstudio.cpp" line="1179"/>
         <source>Next Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1173"/>
+        <location filename="../src/texstudio.cpp" line="1180"/>
         <source>Previous Bad Box</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1173"/>
-        <location filename="../src/texstudio.cpp" line="1174"/>
+        <location filename="../src/texstudio.cpp" line="1180"/>
+        <location filename="../src/texstudio.cpp" line="1181"/>
         <source>No bad boxes detected !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1174"/>
+        <location filename="../src/texstudio.cpp" line="1181"/>
         <source>Next Bad Box</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1177"/>
+        <location filename="../src/texstudio.cpp" line="1184"/>
         <source>Definition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1180"/>
+        <location filename="../src/texstudio.cpp" line="1187"/>
         <source>Re&amp;name Environment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1182"/>
+        <location filename="../src/texstudio.cpp" line="1189"/>
         <source>Parenthesis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1184"/>
-        <location filename="../src/texstudio.cpp" line="1194"/>
+        <location filename="../src/texstudio.cpp" line="1191"/>
+        <location filename="../src/texstudio.cpp" line="1201"/>
         <source>Jump to Match</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1185"/>
-        <location filename="../src/texstudio.cpp" line="1195"/>
-        <source>Select Inner</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1186"/>
-        <location filename="../src/texstudio.cpp" line="1196"/>
-        <source>Select Outer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1187"/>
-        <location filename="../src/texstudio.cpp" line="1197"/>
-        <source>Select Command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1188"/>
-        <location filename="../src/texstudio.cpp" line="1198"/>
-        <source>Select Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1189"/>
-        <location filename="../src/texstudio.cpp" line="1199"/>
-        <source>Select Inverting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1192"/>
         <location filename="../src/texstudio.cpp" line="1202"/>
+        <source>Select Inner</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1193"/>
+        <location filename="../src/texstudio.cpp" line="1203"/>
+        <source>Select Outer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1194"/>
+        <location filename="../src/texstudio.cpp" line="1204"/>
+        <source>Select Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1195"/>
+        <location filename="../src/texstudio.cpp" line="1205"/>
+        <source>Select Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1196"/>
+        <location filename="../src/texstudio.cpp" line="1206"/>
+        <source>Select Inverting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1199"/>
+        <location filename="../src/texstudio.cpp" line="1209"/>
         <source>Find Mismatch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1205"/>
+        <location filename="../src/texstudio.cpp" line="1212"/>
         <source>Complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1206"/>
+        <location filename="../src/texstudio.cpp" line="1213"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1207"/>
+        <location filename="../src/texstudio.cpp" line="1214"/>
         <source>\begin{ Completion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1208"/>
+        <location filename="../src/texstudio.cpp" line="1215"/>
         <source>Normal Text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1212"/>
+        <location filename="../src/texstudio.cpp" line="1219"/>
         <source>update TOC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1213"/>
+        <location filename="../src/texstudio.cpp" line="1220"/>
         <source>Refresh Structure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1214"/>
+        <location filename="../src/texstudio.cpp" line="1221"/>
         <source>Refresh Language Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1215"/>
+        <location filename="../src/texstudio.cpp" line="1222"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1216"/>
+        <location filename="../src/texstudio.cpp" line="1223"/>
         <source>Remove Placeholders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1217"/>
+        <location filename="../src/texstudio.cpp" line="1224"/>
         <source>Remove Current Placeholder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1222"/>
+        <location filename="../src/texstudio.cpp" line="1229"/>
         <source>&amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1224"/>
+        <location filename="../src/texstudio.cpp" line="1231"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1225"/>
+        <location filename="../src/texstudio.cpp" line="1232"/>
         <source>&amp;Compile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1226"/>
+        <location filename="../src/texstudio.cpp" line="1233"/>
         <source>Stop Compile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1230"/>
-        <location filename="../src/texstudio.cpp" line="1389"/>
+        <location filename="../src/texstudio.cpp" line="1237"/>
+        <location filename="../src/texstudio.cpp" line="1396"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1231"/>
-        <location filename="../src/texstudio.cpp" line="1336"/>
+        <location filename="../src/texstudio.cpp" line="1238"/>
+        <location filename="../src/texstudio.cpp" line="1343"/>
         <source>&amp;Bibliography</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1232"/>
+        <location filename="../src/texstudio.cpp" line="1239"/>
         <source>&amp;Glossary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1233"/>
+        <location filename="../src/texstudio.cpp" line="1240"/>
         <source>&amp;Index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1236"/>
+        <location filename="../src/texstudio.cpp" line="1243"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1237"/>
+        <location filename="../src/texstudio.cpp" line="1244"/>
         <source>&amp;Latexmk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1239"/>
-        <location filename="../src/texstudio.cpp" line="1293"/>
+        <location filename="../src/texstudio.cpp" line="1246"/>
+        <location filename="../src/texstudio.cpp" line="1300"/>
         <source>&amp;LaTeX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1240"/>
+        <location filename="../src/texstudio.cpp" line="1247"/>
         <source>&amp;PDFLaTeX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1244"/>
+        <location filename="../src/texstudio.cpp" line="1251"/>
         <source>DVI-&gt;PS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1245"/>
+        <location filename="../src/texstudio.cpp" line="1252"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1246"/>
+        <location filename="../src/texstudio.cpp" line="1253"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1248"/>
+        <location filename="../src/texstudio.cpp" line="1255"/>
         <source>View &amp;DVI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1249"/>
+        <location filename="../src/texstudio.cpp" line="1256"/>
         <source>Vie&amp;w PS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1250"/>
+        <location filename="../src/texstudio.cpp" line="1257"/>
         <source>View PD&amp;F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1252"/>
+        <location filename="../src/texstudio.cpp" line="1259"/>
         <source>&amp;Bibtex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1253"/>
+        <location filename="../src/texstudio.cpp" line="1260"/>
         <source>&amp;Bibtex 8-Bit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1254"/>
+        <location filename="../src/texstudio.cpp" line="1261"/>
         <source>Bibe&amp;r</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1256"/>
+        <location filename="../src/texstudio.cpp" line="1263"/>
         <source>&amp;MakeIndex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1257"/>
+        <location filename="../src/texstudio.cpp" line="1264"/>
         <source>&amp;TexIndy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1258"/>
+        <location filename="../src/texstudio.cpp" line="1265"/>
         <source>&amp;Xindex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1259"/>
+        <location filename="../src/texstudio.cpp" line="1266"/>
         <source>&amp;Makeglossaries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1261"/>
+        <location filename="../src/texstudio.cpp" line="1268"/>
         <source>&amp;MetaPost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1262"/>
+        <location filename="../src/texstudio.cpp" line="1269"/>
         <source>&amp;Asymptote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1264"/>
+        <location filename="../src/texstudio.cpp" line="1271"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1267"/>
+        <location filename="../src/texstudio.cpp" line="1274"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1268"/>
+        <location filename="../src/texstudio.cpp" line="1275"/>
         <source>Open External &amp;Terminal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1270"/>
+        <location filename="../src/texstudio.cpp" line="1277"/>
         <source>View &amp;Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1271"/>
+        <location filename="../src/texstudio.cpp" line="1278"/>
         <source>Show Log Markers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1275"/>
+        <location filename="../src/texstudio.cpp" line="1282"/>
         <source>C&amp;onvert to Html...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1276"/>
+        <location filename="../src/texstudio.cpp" line="1283"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1278"/>
+        <location filename="../src/texstudio.cpp" line="1285"/>
         <source>Convert to Abridged Plaintext</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1279"/>
+        <location filename="../src/texstudio.cpp" line="1286"/>
         <source>A&amp;nalyse Text...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1280"/>
+        <location filename="../src/texstudio.cpp" line="1287"/>
         <source>Generate &amp;Random Text...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1282"/>
+        <location filename="../src/texstudio.cpp" line="1289"/>
         <source>Start sharing folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1283"/>
+        <location filename="../src/texstudio.cpp" line="1290"/>
         <source>Connect to other user for collaboration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1284"/>
+        <location filename="../src/texstudio.cpp" line="1291"/>
         <source>Disconnect from collaboration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1286"/>
+        <location filename="../src/texstudio.cpp" line="1293"/>
         <source>Check Spelling...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1287"/>
+        <location filename="../src/texstudio.cpp" line="1294"/>
         <source>Thesaurus...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1288"/>
+        <location filename="../src/texstudio.cpp" line="1295"/>
         <source>Find Word Repetitions...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1295"/>
+        <location filename="../src/texstudio.cpp" line="1302"/>
         <source>Insert \ref to Next Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1296"/>
+        <location filename="../src/texstudio.cpp" line="1303"/>
         <source>Insert \ref to Previous Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1297"/>
+        <location filename="../src/texstudio.cpp" line="1304"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1298"/>
+        <location filename="../src/texstudio.cpp" line="1305"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1299"/>
+        <location filename="../src/texstudio.cpp" line="1306"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1300"/>
+        <location filename="../src/texstudio.cpp" line="1307"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1301"/>
+        <location filename="../src/texstudio.cpp" line="1308"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1302"/>
+        <location filename="../src/texstudio.cpp" line="1309"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1303"/>
+        <location filename="../src/texstudio.cpp" line="1310"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1304"/>
+        <location filename="../src/texstudio.cpp" line="1311"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1305"/>
+        <location filename="../src/texstudio.cpp" line="1312"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1306"/>
+        <location filename="../src/texstudio.cpp" line="1313"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1307"/>
+        <location filename="../src/texstudio.cpp" line="1314"/>
         <source>Align Columns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1308"/>
+        <location filename="../src/texstudio.cpp" line="1315"/>
         <source>Add magic comments ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1309"/>
+        <location filename="../src/texstudio.cpp" line="1316"/>
         <source>Insert root document name as TeX comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1310"/>
-        <location filename="../src/texstudio.cpp" line="1721"/>
+        <location filename="../src/texstudio.cpp" line="1317"/>
+        <location filename="../src/texstudio.cpp" line="1728"/>
         <source>Insert language as TeX comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1311"/>
+        <location filename="../src/texstudio.cpp" line="1318"/>
         <source>Insert document coding as TeX comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1312"/>
+        <location filename="../src/texstudio.cpp" line="1319"/>
         <source>Insert program as TeX comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1313"/>
+        <location filename="../src/texstudio.cpp" line="1320"/>
         <source>Insert bibliography tool as TeX comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1315"/>
+        <location filename="../src/texstudio.cpp" line="1322"/>
         <source>&amp;Math</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1319"/>
+        <location filename="../src/texstudio.cpp" line="1326"/>
         <source>&amp;Wizards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1320"/>
+        <location filename="../src/texstudio.cpp" line="1327"/>
         <source>Quick &amp;Start...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1321"/>
+        <location filename="../src/texstudio.cpp" line="1328"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1322"/>
+        <location filename="../src/texstudio.cpp" line="1329"/>
         <source>Quick &amp;Letter...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1325"/>
+        <location filename="../src/texstudio.cpp" line="1332"/>
         <source>AI &amp;Chat...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1328"/>
+        <location filename="../src/texstudio.cpp" line="1335"/>
         <source>Quick &amp;Tabular...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1329"/>
+        <location filename="../src/texstudio.cpp" line="1336"/>
         <source>Quick T&amp;abbing...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1330"/>
+        <location filename="../src/texstudio.cpp" line="1337"/>
         <source>Quick &amp;Array...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1331"/>
+        <location filename="../src/texstudio.cpp" line="1338"/>
         <source>Insert &amp;Graphic...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1333"/>
+        <location filename="../src/texstudio.cpp" line="1340"/>
         <source>Math Assistant...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1361"/>
+        <location filename="../src/texstudio.cpp" line="1368"/>
         <source>&amp;Clean</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1363"/>
+        <location filename="../src/texstudio.cpp" line="1370"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1365"/>
+        <location filename="../src/texstudio.cpp" line="1372"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1369"/>
-        <location filename="../src/texstudio.cpp" line="1379"/>
+        <location filename="../src/texstudio.cpp" line="1376"/>
+        <location filename="../src/texstudio.cpp" line="1386"/>
         <source>BibTeX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1374"/>
-        <location filename="../src/texstudio.cpp" line="1380"/>
+        <location filename="../src/texstudio.cpp" line="1381"/>
+        <location filename="../src/texstudio.cpp" line="1387"/>
         <source>BibLaTeX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1384"/>
+        <location filename="../src/texstudio.cpp" line="1391"/>
         <source>Ma&amp;cros</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1390"/>
+        <location filename="../src/texstudio.cpp" line="1397"/>
         <source>Previous Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1391"/>
+        <location filename="../src/texstudio.cpp" line="1398"/>
         <source>Next Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1392"/>
+        <location filename="../src/texstudio.cpp" line="1399"/>
         <source>Open Documents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1393"/>
+        <location filename="../src/texstudio.cpp" line="1400"/>
         <source>List Of Open Documents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1394"/>
+        <location filename="../src/texstudio.cpp" line="1401"/>
         <source>List Of Hidden Documents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1396"/>
+        <location filename="../src/texstudio.cpp" line="1403"/>
         <source>Focus Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1397"/>
+        <location filename="../src/texstudio.cpp" line="1404"/>
         <source>Focus Viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1400"/>
+        <location filename="../src/texstudio.cpp" line="1407"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1403"/>
+        <location filename="../src/texstudio.cpp" line="1410"/>
         <source>Statusbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1406"/>
+        <location filename="../src/texstudio.cpp" line="1413"/>
         <source>Reset Sidepanel/docks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1429"/>
+        <location filename="../src/texstudio.cpp" line="1436"/>
         <source>Show embedded PDF large</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1431"/>
+        <location filename="../src/texstudio.cpp" line="1438"/>
         <source>Show embedded PDF small</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1433"/>
+        <location filename="../src/texstudio.cpp" line="1440"/>
         <source>Close Element</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1436"/>
+        <location filename="../src/texstudio.cpp" line="1443"/>
         <source>Collapse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1437"/>
-        <location filename="../src/texstudio.cpp" line="1442"/>
+        <location filename="../src/texstudio.cpp" line="1444"/>
+        <location filename="../src/texstudio.cpp" line="1449"/>
         <source>Everything</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1438"/>
-        <location filename="../src/texstudio.cpp" line="1443"/>
+        <location filename="../src/texstudio.cpp" line="1445"/>
+        <location filename="../src/texstudio.cpp" line="1450"/>
         <source>Nearest Block</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1440"/>
-        <location filename="../src/texstudio.cpp" line="1445"/>
+        <location filename="../src/texstudio.cpp" line="1447"/>
+        <location filename="../src/texstudio.cpp" line="1452"/>
         <source>Level %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1441"/>
+        <location filename="../src/texstudio.cpp" line="1448"/>
         <source>Expand</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1447"/>
+        <location filename="../src/texstudio.cpp" line="1454"/>
         <source>Grammar errors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1450"/>
-        <location filename="../src/texstudio.cpp" line="11104"/>
+        <location filename="../src/texstudio.cpp" line="1457"/>
+        <location filename="../src/texstudio.cpp" line="11158"/>
         <source>Word Repetition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1451"/>
-        <location filename="../src/texstudio.cpp" line="11105"/>
+        <location filename="../src/texstudio.cpp" line="1458"/>
+        <location filename="../src/texstudio.cpp" line="11159"/>
         <source>Long-range Word Repetition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1452"/>
-        <location filename="../src/texstudio.cpp" line="11106"/>
+        <location filename="../src/texstudio.cpp" line="1459"/>
+        <location filename="../src/texstudio.cpp" line="11160"/>
         <source>Bad words</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1453"/>
-        <location filename="../src/texstudio.cpp" line="11107"/>
+        <location filename="../src/texstudio.cpp" line="1460"/>
+        <location filename="../src/texstudio.cpp" line="11161"/>
         <source>Grammar Mistake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1455"/>
-        <location filename="../src/texstudio.cpp" line="11114"/>
+        <location filename="../src/texstudio.cpp" line="1462"/>
+        <location filename="../src/texstudio.cpp" line="11168"/>
         <source>Grammar Mistake Special %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1464"/>
+        <location filename="../src/texstudio.cpp" line="1471"/>
         <source>Editor Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1465"/>
+        <location filename="../src/texstudio.cpp" line="1472"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1466"/>
+        <location filename="../src/texstudio.cpp" line="1473"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1467"/>
+        <location filename="../src/texstudio.cpp" line="1474"/>
         <source>Reset Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1469"/>
+        <location filename="../src/texstudio.cpp" line="1476"/>
         <source>Full &amp;Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1476"/>
+        <location filename="../src/texstudio.cpp" line="1483"/>
         <source>Highlighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1500"/>
+        <location filename="../src/texstudio.cpp" line="1507"/>
         <source>&amp;Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1501"/>
+        <location filename="../src/texstudio.cpp" line="1508"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1504"/>
+        <location filename="../src/texstudio.cpp" line="1511"/>
         <source>Load &amp;Profile...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1505"/>
+        <location filename="../src/texstudio.cpp" line="1512"/>
         <source>S&amp;ave Profile...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1506"/>
+        <location filename="../src/texstudio.cpp" line="1513"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1507"/>
+        <location filename="../src/texstudio.cpp" line="1514"/>
         <source>Restore &amp;Default Settings...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1510"/>
+        <location filename="../src/texstudio.cpp" line="1517"/>
         <source>Root Document</source>
         <comment>menu</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1513"/>
+        <location filename="../src/texstudio.cpp" line="1520"/>
         <source>Detect &amp;Automatically</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1521"/>
+        <location filename="../src/texstudio.cpp" line="1528"/>
         <source>Set Current Document As Explicit Root</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1524"/>
+        <location filename="../src/texstudio.cpp" line="1531"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1525"/>
+        <location filename="../src/texstudio.cpp" line="1532"/>
         <source>LaTeX Reference...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1526"/>
+        <location filename="../src/texstudio.cpp" line="1533"/>
         <source>User Manual...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1527"/>
+        <location filename="../src/texstudio.cpp" line="1534"/>
         <source>Packages Help...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1530"/>
+        <location filename="../src/texstudio.cpp" line="1537"/>
         <source>Check LaTeX Installation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1531"/>
+        <location filename="../src/texstudio.cpp" line="1538"/>
         <source>Check Active Completion Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1532"/>
+        <location filename="../src/texstudio.cpp" line="1539"/>
         <source>Check LanguageTool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1533"/>
+        <location filename="../src/texstudio.cpp" line="1540"/>
         <source>Show settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1534"/>
+        <location filename="../src/texstudio.cpp" line="1541"/>
         <source>Bugs Report/Feature Request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1535"/>
+        <location filename="../src/texstudio.cpp" line="1542"/>
         <source>About TeXstudio...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1704"/>
-        <location filename="../src/texstudio.cpp" line="6343"/>
+        <location filename="../src/texstudio.cpp" line="1711"/>
+        <location filename="../src/texstudio.cpp" line="6353"/>
         <source>show more entries ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1712"/>
+        <location filename="../src/texstudio.cpp" line="1719"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1746"/>
+        <location filename="../src/texstudio.cpp" line="1753"/>
         <source>Connected to LanguageTool at %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1750"/>
+        <location filename="../src/texstudio.cpp" line="1757"/>
         <source>No LanguageTool server found at %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1754"/>
+        <location filename="../src/texstudio.cpp" line="1761"/>
         <source>LanguageTool status unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1758"/>
+        <location filename="../src/texstudio.cpp" line="1765"/>
         <source>Inline grammar checking disabled by user!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1826"/>
+        <location filename="../src/texstudio.cpp" line="1833"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1838"/>
-        <location filename="../src/texstudio.cpp" line="1839"/>
-        <location filename="../src/texstudio.cpp" line="6373"/>
-        <location filename="../src/texstudio.cpp" line="6376"/>
-        <location filename="../src/texstudio.cpp" line="6377"/>
+        <location filename="../src/texstudio.cpp" line="1845"/>
+        <location filename="../src/texstudio.cpp" line="1846"/>
+        <location filename="../src/texstudio.cpp" line="6383"/>
+        <location filename="../src/texstudio.cpp" line="6386"/>
+        <location filename="../src/texstudio.cpp" line="6387"/>
         <source>Encoding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1861"/>
+        <location filename="../src/texstudio.cpp" line="1868"/>
         <source>More Encodings...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1869"/>
+        <location filename="../src/texstudio.cpp" line="1876"/>
         <source>Insert encoding as TeX comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1883"/>
+        <location filename="../src/texstudio.cpp" line="1890"/>
         <source>Go to bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1925"/>
+        <location filename="../src/texstudio.cpp" line="1932"/>
         <source>Automatic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1926"/>
+        <location filename="../src/texstudio.cpp" line="1933"/>
         <source>Automatic root document detection active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1931"/>
+        <location filename="../src/texstudio.cpp" line="1938"/>
         <source>&amp;Explicit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1932"/>
+        <location filename="../src/texstudio.cpp" line="1939"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1933"/>
+        <location filename="../src/texstudio.cpp" line="1940"/>
         <source>Explict root document:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2282"/>
+        <location filename="../src/texstudio.cpp" line="2289"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2384"/>
-        <location filename="../src/texstudio.cpp" line="4527"/>
-        <location filename="../src/texstudio.cpp" line="6431"/>
-        <location filename="../src/texstudio.cpp" line="6497"/>
-        <location filename="../src/texstudio.cpp" line="7416"/>
-        <location filename="../src/texstudio.cpp" line="7597"/>
-        <location filename="../src/texstudio.cpp" line="7599"/>
-        <location filename="../src/texstudio.cpp" line="7609"/>
-        <location filename="../src/texstudio.cpp" line="7611"/>
-        <location filename="../src/texstudio.cpp" line="11604"/>
+        <location filename="../src/texstudio.cpp" line="2391"/>
+        <location filename="../src/texstudio.cpp" line="4537"/>
+        <location filename="../src/texstudio.cpp" line="6441"/>
+        <location filename="../src/texstudio.cpp" line="6507"/>
+        <location filename="../src/texstudio.cpp" line="7448"/>
+        <location filename="../src/texstudio.cpp" line="7629"/>
+        <location filename="../src/texstudio.cpp" line="7631"/>
+        <location filename="../src/texstudio.cpp" line="7641"/>
+        <location filename="../src/texstudio.cpp" line="7643"/>
+        <location filename="../src/texstudio.cpp" line="11658"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2384"/>
+        <location filename="../src/texstudio.cpp" line="2391"/>
         <source>You do not have read permission to the file %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2436"/>
+        <location filename="../src/texstudio.cpp" line="2443"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2442"/>
+        <location filename="../src/texstudio.cpp" line="2449"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2615"/>
+        <location filename="../src/texstudio.cpp" line="2622"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2704"/>
+        <location filename="../src/texstudio.cpp" line="2711"/>
         <source>Could not write template data:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2736"/>
+        <location filename="../src/texstudio.cpp" line="2743"/>
         <source>Could not write template meta data:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2787"/>
-        <location filename="../src/texstudio.cpp" line="2851"/>
+        <location filename="../src/texstudio.cpp" line="2794"/>
+        <location filename="../src/texstudio.cpp" line="2858"/>
         <source>File not found:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2791"/>
-        <location filename="../src/texstudio.cpp" line="2855"/>
+        <location filename="../src/texstudio.cpp" line="2798"/>
+        <location filename="../src/texstudio.cpp" line="2862"/>
         <source>You do not have read permission to this file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2974"/>
-        <location filename="../src/texstudio.cpp" line="11433"/>
+        <location filename="../src/texstudio.cpp" line="2981"/>
+        <location filename="../src/texstudio.cpp" line="11487"/>
         <source>Open Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2992"/>
         <location filename="../src/texstudio.cpp" line="2999"/>
+        <location filename="../src/texstudio.cpp" line="3006"/>
         <source>Loading of last session failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3065"/>
+        <location filename="../src/texstudio.cpp" line="3072"/>
         <source>Save As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3083"/>
+        <location filename="../src/texstudio.cpp" line="3090"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -12102,298 +12113,298 @@ this other file before you can overwrite it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3101"/>
+        <location filename="../src/texstudio.cpp" line="3108"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3208"/>
+        <location filename="../src/texstudio.cpp" line="3215"/>
         <source>Rename/Move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3208"/>
-        <location filename="../src/texstudio.cpp" line="13254"/>
+        <location filename="../src/texstudio.cpp" line="3215"/>
+        <location filename="../src/texstudio.cpp" line="13335"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3223"/>
+        <location filename="../src/texstudio.cpp" line="3230"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3232"/>
+        <location filename="../src/texstudio.cpp" line="3239"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3259"/>
+        <location filename="../src/texstudio.cpp" line="3266"/>
         <source>Numeric permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3260"/>
+        <location filename="../src/texstudio.cpp" line="3267"/>
         <source>Verbose permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3403"/>
+        <location filename="../src/texstudio.cpp" line="3410"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3544"/>
-        <location filename="../src/texstudio.cpp" line="3614"/>
-        <location filename="../src/texstudio.cpp" line="3694"/>
+        <location filename="../src/texstudio.cpp" line="3551"/>
+        <location filename="../src/texstudio.cpp" line="3621"/>
+        <location filename="../src/texstudio.cpp" line="3701"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3707"/>
+        <location filename="../src/texstudio.cpp" line="3714"/>
         <source>Loading of session failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3724"/>
+        <location filename="../src/texstudio.cpp" line="3731"/>
         <source>Load Session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3724"/>
-        <location filename="../src/texstudio.cpp" line="3742"/>
+        <location filename="../src/texstudio.cpp" line="3731"/>
+        <location filename="../src/texstudio.cpp" line="3749"/>
         <source>TeXstudio Session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3742"/>
+        <location filename="../src/texstudio.cpp" line="3749"/>
         <source>Save Session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3748"/>
+        <location filename="../src/texstudio.cpp" line="3755"/>
         <source>Saving of session failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3826"/>
+        <location filename="../src/texstudio.cpp" line="3833"/>
         <source>Updating completer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3881"/>
+        <location filename="../src/texstudio.cpp" line="3890"/>
         <source>The following files could not be loaded:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4077"/>
+        <location filename="../src/texstudio.cpp" line="4086"/>
         <source>Image Formats (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4079"/>
+        <location filename="../src/texstudio.cpp" line="4088"/>
         <source>Save Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4084"/>
+        <location filename="../src/texstudio.cpp" line="4093"/>
         <source>Could not save the image file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4172"/>
+        <location filename="../src/texstudio.cpp" line="4181"/>
         <source>Ascending</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4172"/>
+        <location filename="../src/texstudio.cpp" line="4181"/>
         <source>Descending</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4172"/>
+        <location filename="../src/texstudio.cpp" line="4181"/>
         <source>No Sorting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4172"/>
+        <location filename="../src/texstudio.cpp" line="4181"/>
         <source>Random (Shuffle)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4178"/>
+        <location filename="../src/texstudio.cpp" line="4187"/>
         <source>Sorting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4179"/>
+        <location filename="../src/texstudio.cpp" line="4188"/>
         <source>Complete Lines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4180"/>
+        <location filename="../src/texstudio.cpp" line="4189"/>
         <source>Case Sensitive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4181"/>
+        <location filename="../src/texstudio.cpp" line="4190"/>
         <source>Remove Duplicates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4490"/>
+        <location filename="../src/texstudio.cpp" line="4500"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4491"/>
+        <location filename="../src/texstudio.cpp" line="4501"/>
         <source>Smart scope selecting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4492"/>
+        <location filename="../src/texstudio.cpp" line="4502"/>
         <source>Join lines before wrapping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4506"/>
-        <location filename="../src/texstudio.cpp" line="6987"/>
-        <location filename="../src/texstudio.cpp" line="7044"/>
+        <location filename="../src/texstudio.cpp" line="4516"/>
+        <location filename="../src/texstudio.cpp" line="7019"/>
+        <location filename="../src/texstudio.cpp" line="7076"/>
         <source>No document open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4512"/>
+        <location filename="../src/texstudio.cpp" line="4522"/>
         <source>No dictionary available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4527"/>
+        <location filename="../src/texstudio.cpp" line="4537"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4953"/>
+        <location filename="../src/texstudio.cpp" line="4963"/>
         <source>Storing session failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4953"/>
+        <location filename="../src/texstudio.cpp" line="4963"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5039"/>
+        <location filename="../src/texstudio.cpp" line="5049"/>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5049"/>
+        <location filename="../src/texstudio.cpp" line="5059"/>
         <source>Unable to write to settings file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5102"/>
+        <location filename="../src/texstudio.cpp" line="5112"/>
         <source>Settings file does not exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5946"/>
-        <location filename="../src/texstudio.cpp" line="5951"/>
+        <location filename="../src/texstudio.cpp" line="5956"/>
+        <location filename="../src/texstudio.cpp" line="5961"/>
         <source>AI Chat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5946"/>
+        <location filename="../src/texstudio.cpp" line="5956"/>
         <source>AI chat disabled. Please select an AI provider in the settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5951"/>
+        <location filename="../src/texstudio.cpp" line="5961"/>
         <source>Please set the API key in the settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6040"/>
+        <location filename="../src/texstudio.cpp" line="6050"/>
         <source>Quick Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6062"/>
+        <location filename="../src/texstudio.cpp" line="6072"/>
         <source>Quick Beamer Presentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6099"/>
+        <location filename="../src/texstudio.cpp" line="6109"/>
         <source>&lt;Current File&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6131"/>
+        <location filename="../src/texstudio.cpp" line="6141"/>
         <source>Type: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6176"/>
+        <location filename="../src/texstudio.cpp" line="6186"/>
         <source>Edit User &amp;Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6238"/>
+        <location filename="../src/texstudio.cpp" line="6248"/>
         <source>empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6242"/>
+        <location filename="../src/texstudio.cpp" line="6252"/>
         <source>Labels:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6330"/>
+        <location filename="../src/texstudio.cpp" line="6340"/>
         <source>show less entries ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6371"/>
+        <location filename="../src/texstudio.cpp" line="6381"/>
         <source>Encoding Aliases: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6418"/>
+        <location filename="../src/texstudio.cpp" line="6428"/>
         <source>A command is already running. Please wait until the current command stops.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6431"/>
+        <location filename="../src/texstudio.cpp" line="6441"/>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6439"/>
+        <location filename="../src/texstudio.cpp" line="6449"/>
         <source>Can&apos;t detect the file name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6491"/>
+        <location filename="../src/texstudio.cpp" line="6501"/>
         <source>  Running this command: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6497"/>
+        <location filename="../src/texstudio.cpp" line="6507"/>
         <source>could not start the command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6620"/>
+        <location filename="../src/texstudio.cpp" line="6652"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6640"/>
+        <location filename="../src/texstudio.cpp" line="6672"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -12404,257 +12415,257 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6734"/>
-        <location filename="../src/texstudio.cpp" line="6754"/>
+        <location filename="../src/texstudio.cpp" line="6766"/>
+        <location filename="../src/texstudio.cpp" line="6786"/>
         <source>Unknown internal command: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6793"/>
+        <location filename="../src/texstudio.cpp" line="6825"/>
         <source>%!TeX program used: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6796"/>
+        <location filename="../src/texstudio.cpp" line="6828"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6858"/>
+        <location filename="../src/texstudio.cpp" line="6890"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6860"/>
+        <location filename="../src/texstudio.cpp" line="6892"/>
         <source>Could not start %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6893"/>
+        <location filename="../src/texstudio.cpp" line="6925"/>
         <source>Error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6977"/>
+        <location filename="../src/texstudio.cpp" line="7009"/>
         <source>No open project or tex file to clean.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7048"/>
+        <location filename="../src/texstudio.cpp" line="7080"/>
         <source>Text Analysis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7072"/>
+        <location filename="../src/texstudio.cpp" line="7104"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7095"/>
+        <location filename="../src/texstudio.cpp" line="7127"/>
         <source>Do you want to share the folder &quot;%1&quot; and ALL its content with collaborators?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7114"/>
+        <location filename="../src/texstudio.cpp" line="7146"/>
         <source>Collaboration server name or address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7115"/>
+        <location filename="../src/texstudio.cpp" line="7147"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7330"/>
+        <location filename="../src/texstudio.cpp" line="7362"/>
         <source>Copy access code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7353"/>
+        <location filename="../src/texstudio.cpp" line="7385"/>
         <source>Collaboration: Connected in folder %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7355"/>
+        <location filename="../src/texstudio.cpp" line="7387"/>
         <source>Collaboration: Not connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7416"/>
+        <location filename="../src/texstudio.cpp" line="7448"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7597"/>
-        <location filename="../src/texstudio.cpp" line="7609"/>
+        <location filename="../src/texstudio.cpp" line="7629"/>
+        <location filename="../src/texstudio.cpp" line="7641"/>
         <source>File not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7599"/>
-        <location filename="../src/texstudio.cpp" line="7611"/>
+        <location filename="../src/texstudio.cpp" line="7631"/>
+        <location filename="../src/texstudio.cpp" line="7643"/>
         <source>Could not open browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7936"/>
+        <location filename="../src/texstudio.cpp" line="7967"/>
         <source>%1 is an invalid TeX project directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8222"/>
+        <location filename="../src/texstudio.cpp" line="8253"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8699"/>
+        <location filename="../src/texstudio.cpp" line="8753"/>
         <source>Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8701"/>
-        <location filename="../src/texstudio.cpp" line="8723"/>
+        <location filename="../src/texstudio.cpp" line="8755"/>
+        <location filename="../src/texstudio.cpp" line="8777"/>
         <source>Beyond end of document.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8704"/>
-        <location filename="../src/texstudio.cpp" line="8725"/>
+        <location filename="../src/texstudio.cpp" line="8758"/>
+        <location filename="../src/texstudio.cpp" line="8779"/>
         <source>In Appendix.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8743"/>
+        <location filename="../src/texstudio.cpp" line="8797"/>
         <source>File not found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8758"/>
+        <location filename="../src/texstudio.cpp" line="8812"/>
         <source> (Line %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10101"/>
+        <location filename="../src/texstudio.cpp" line="10155"/>
         <source>commit comment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10105"/>
+        <location filename="../src/texstudio.cpp" line="10159"/>
         <source>check in whole directory ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10107"/>
+        <location filename="../src/texstudio.cpp" line="10161"/>
         <source>Push to repository ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10469"/>
+        <location filename="../src/texstudio.cpp" line="10523"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10809"/>
+        <location filename="../src/texstudio.cpp" line="10863"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10811"/>
+        <location filename="../src/texstudio.cpp" line="10865"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10859"/>
+        <location filename="../src/texstudio.cpp" line="10913"/>
         <source>Save Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10859"/>
-        <location filename="../src/texstudio.cpp" line="10866"/>
+        <location filename="../src/texstudio.cpp" line="10913"/>
+        <location filename="../src/texstudio.cpp" line="10920"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10866"/>
+        <location filename="../src/texstudio.cpp" line="10920"/>
         <source>Load Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10919"/>
+        <location filename="../src/texstudio.cpp" line="10973"/>
         <source>Failed to read profile file %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11092"/>
+        <location filename="../src/texstudio.cpp" line="11146"/>
         <source>Problem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11092"/>
+        <location filename="../src/texstudio.cpp" line="11146"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11097"/>
+        <location filename="../src/texstudio.cpp" line="11151"/>
         <source>Find Word Repetitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11103"/>
+        <location filename="../src/texstudio.cpp" line="11157"/>
         <source>Spelling Mistake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11121"/>
+        <location filename="../src/texstudio.cpp" line="11175"/>
         <source>&amp;Find Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11123"/>
+        <location filename="../src/texstudio.cpp" line="11177"/>
         <source>&amp;Find Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11174"/>
+        <location filename="../src/texstudio.cpp" line="11228"/>
         <source>Reached beginning of text.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11174"/>
+        <location filename="../src/texstudio.cpp" line="11228"/>
         <source>Reached end of text.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11433"/>
-        <location filename="../src/texstudio.cpp" line="11644"/>
-        <location filename="../src/texstudio.cpp" line="11647"/>
+        <location filename="../src/texstudio.cpp" line="11487"/>
+        <location filename="../src/texstudio.cpp" line="11698"/>
+        <location filename="../src/texstudio.cpp" line="11701"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11604"/>
+        <location filename="../src/texstudio.cpp" line="11658"/>
         <source>You do not have read permission to this file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11644"/>
+        <location filename="../src/texstudio.cpp" line="11698"/>
         <source>Open Compare File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11647"/>
+        <location filename="../src/texstudio.cpp" line="11701"/>
         <source>Open Base File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11815"/>
+        <location filename="../src/texstudio.cpp" line="11869"/>
         <source>SVN Conflict!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11816"/>
+        <location filename="../src/texstudio.cpp" line="11870"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -12662,14 +12673,14 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11913"/>
-        <location filename="../src/texstudio.cpp" line="12004"/>
-        <location filename="../src/texstudio.cpp" line="12010"/>
+        <location filename="../src/texstudio.cpp" line="11973"/>
+        <location filename="../src/texstudio.cpp" line="12064"/>
+        <location filename="../src/texstudio.cpp" line="12070"/>
         <source>TeXstudio Emergency</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11917"/>
+        <location filename="../src/texstudio.cpp" line="11977"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -12678,324 +12689,324 @@ Please provide this file if you send a bug report.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11920"/>
+        <location filename="../src/texstudio.cpp" line="11980"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11921"/>
+        <location filename="../src/texstudio.cpp" line="11981"/>
         <source>Yes, try to recover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11922"/>
-        <location filename="../src/texstudio.cpp" line="11927"/>
+        <location filename="../src/texstudio.cpp" line="11982"/>
+        <location filename="../src/texstudio.cpp" line="11987"/>
         <source>No, kill the program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11924"/>
+        <location filename="../src/texstudio.cpp" line="11984"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11925"/>
+        <location filename="../src/texstudio.cpp" line="11985"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11926"/>
+        <location filename="../src/texstudio.cpp" line="11986"/>
         <source>Yes, continue the loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12005"/>
+        <location filename="../src/texstudio.cpp" line="12065"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12010"/>
+        <location filename="../src/texstudio.cpp" line="12070"/>
         <source>I tried to die, but nothing happened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12042"/>
+        <location filename="../src/texstudio.cpp" line="12102"/>
         <source>System Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12180"/>
+        <location filename="../src/texstudio.cpp" line="12240"/>
         <source>LT Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12206"/>
+        <location filename="../src/texstudio.cpp" line="12266"/>
         <source>process failed to start
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12209"/>
+        <location filename="../src/texstudio.cpp" line="12269"/>
         <source>process crashed
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12219"/>
+        <location filename="../src/texstudio.cpp" line="12279"/>
         <source>Real-time checking is enabled.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12221"/>
+        <location filename="../src/texstudio.cpp" line="12281"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12224"/>
+        <location filename="../src/texstudio.cpp" line="12284"/>
         <source>Grammar checking is enabled.
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12226"/>
+        <location filename="../src/texstudio.cpp" line="12286"/>
         <source>Grammar checking is disabled!!!
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12229"/>
+        <location filename="../src/texstudio.cpp" line="12289"/>
         <source>Tries to start automatically.
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12231"/>
+        <location filename="../src/texstudio.cpp" line="12291"/>
         <source>Autostart disabled.
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12236"/>
+        <location filename="../src/texstudio.cpp" line="12296"/>
         <source>LT current status: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12239"/>
+        <location filename="../src/texstudio.cpp" line="12299"/>
         <source>working</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12242"/>
+        <location filename="../src/texstudio.cpp" line="12302"/>
         <source>error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12246"/>
+        <location filename="../src/texstudio.cpp" line="12306"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12249"/>
+        <location filename="../src/texstudio.cpp" line="12309"/>
         <source>LT-URL: %1
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12606"/>
+        <location filename="../src/texstudio.cpp" line="12666"/>
         <source>Error when communicating with LT: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12922"/>
-        <location filename="../src/texstudio.cpp" line="13765"/>
+        <location filename="../src/texstudio.cpp" line="13003"/>
+        <location filename="../src/texstudio.cpp" line="13846"/>
         <source>untitled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12941"/>
-        <location filename="../src/texstudio.cpp" line="13808"/>
+        <location filename="../src/texstudio.cpp" line="13022"/>
+        <location filename="../src/texstudio.cpp" line="13889"/>
         <source>TODO</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13075"/>
-        <location filename="../src/texstudio.cpp" line="13082"/>
-        <location filename="../src/texstudio.cpp" line="13090"/>
-        <location filename="../src/texstudio.cpp" line="13131"/>
+        <location filename="../src/texstudio.cpp" line="13156"/>
+        <location filename="../src/texstudio.cpp" line="13163"/>
+        <location filename="../src/texstudio.cpp" line="13171"/>
+        <location filename="../src/texstudio.cpp" line="13212"/>
         <source>Document: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13193"/>
+        <location filename="../src/texstudio.cpp" line="13274"/>
         <source>Close document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13194"/>
+        <location filename="../src/texstudio.cpp" line="13275"/>
         <source>Set as explicit root document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13195"/>
+        <location filename="../src/texstudio.cpp" line="13276"/>
         <source>Open all related documents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13196"/>
+        <location filename="../src/texstudio.cpp" line="13277"/>
         <source>Close all related documents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13198"/>
+        <location filename="../src/texstudio.cpp" line="13279"/>
         <source>Remove explicit root document role</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13200"/>
+        <location filename="../src/texstudio.cpp" line="13281"/>
         <source>Show all open documents in this tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13202"/>
+        <location filename="../src/texstudio.cpp" line="13283"/>
         <source>Show only current document in this tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13215"/>
+        <location filename="../src/texstudio.cpp" line="13296"/>
         <source>Copy filename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13216"/>
+        <location filename="../src/texstudio.cpp" line="13297"/>
         <source>Copy file path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13225"/>
+        <location filename="../src/texstudio.cpp" line="13306"/>
         <source>Insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13226"/>
-        <location filename="../src/texstudio.cpp" line="13227"/>
+        <location filename="../src/texstudio.cpp" line="13307"/>
+        <location filename="../src/texstudio.cpp" line="13308"/>
         <source>Insert as %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13229"/>
+        <location filename="../src/texstudio.cpp" line="13310"/>
         <source>Find Usages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13240"/>
+        <location filename="../src/texstudio.cpp" line="13321"/>
         <source>Insert Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13244"/>
+        <location filename="../src/texstudio.cpp" line="13325"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13248"/>
+        <location filename="../src/texstudio.cpp" line="13329"/>
         <source>Create Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13252"/>
+        <location filename="../src/texstudio.cpp" line="13333"/>
         <source>Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13256"/>
+        <location filename="../src/texstudio.cpp" line="13337"/>
         <source>Paste Before</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13258"/>
+        <location filename="../src/texstudio.cpp" line="13339"/>
         <source>Paste After</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13261"/>
+        <location filename="../src/texstudio.cpp" line="13342"/>
         <source>Indent Section</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13263"/>
+        <location filename="../src/texstudio.cpp" line="13344"/>
         <source>Unindent Section</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13209"/>
-        <location filename="../src/texstudio.cpp" line="13267"/>
+        <location filename="../src/texstudio.cpp" line="13290"/>
+        <location filename="../src/texstudio.cpp" line="13348"/>
         <source>Expand Subitems</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1004"/>
+        <location filename="../src/texstudio.cpp" line="1011"/>
         <source>C&amp;ut Line or Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1209"/>
+        <location filename="../src/texstudio.cpp" line="1216"/>
         <source>Close latest open delimiter or environment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7328"/>
+        <location filename="../src/texstudio.cpp" line="7360"/>
         <source>Collaboration: Connected in folder %1
 to join: teamtype join %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13210"/>
-        <location filename="../src/texstudio.cpp" line="13269"/>
+        <location filename="../src/texstudio.cpp" line="13291"/>
+        <location filename="../src/texstudio.cpp" line="13350"/>
         <source>Collapse Subitems</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13282"/>
+        <location filename="../src/texstudio.cpp" line="13363"/>
         <source>Open Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13283"/>
-        <location filename="../src/texstudio.cpp" line="13290"/>
+        <location filename="../src/texstudio.cpp" line="13364"/>
+        <location filename="../src/texstudio.cpp" line="13371"/>
         <source>Go to Definition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12933"/>
-        <location filename="../src/texstudio.cpp" line="13792"/>
+        <location filename="../src/texstudio.cpp" line="13014"/>
+        <location filename="../src/texstudio.cpp" line="13873"/>
         <source>BIBLIOGRAPHY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13800"/>
+        <location filename="../src/texstudio.cpp" line="13881"/>
         <source>MAGIC_COMMENTS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13816"/>
+        <location filename="../src/texstudio.cpp" line="13897"/>
         <source>BLOCK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13824"/>
+        <location filename="../src/texstudio.cpp" line="13905"/>
         <source>LABELS</source>
         <translation type="unfinished"></translation>
     </message>
