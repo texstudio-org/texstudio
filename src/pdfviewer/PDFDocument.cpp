@@ -3483,6 +3483,9 @@ void PDFDocument::init(bool embedded)
 		act->setData(QVariant(level));
 		connect(act, SIGNAL(triggered()), this, SLOT(zoomFromAction()));
 	}
+    QAction *act = new QAction(scaleActions);
+    act->setText(tr("custom ..."));
+    connect(act, SIGNAL(triggered()), this, SLOT(customZoomFromAction()));
 	scaleButton->addActions(scaleActions->actions());
 
 	buttonZoomOut = new QToolButton(statusBar());
@@ -4812,6 +4815,17 @@ void PDFDocument::zoomFromAction()
 
 	if (comboZoom)
 		comboZoom->setDefaultAction(act);
+}
+/*!
+ * \brief ask for target zoom level on pop-up
+ */
+void PDFDocument::customZoomFromAction()
+{
+    bool ok;
+    int factor = QInputDialog::getInt(this, tr("Custom Zoom"), tr("Zoom Factor (%):"), 100, 10, 400, 10, &ok);
+    if (ok) {
+        pdfWidget->fixedScale(0.01 * factor);
+    }
 }
 
 void PDFDocument::setResolution(int res)

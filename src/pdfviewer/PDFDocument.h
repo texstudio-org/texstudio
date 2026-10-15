@@ -547,6 +547,7 @@ private slots:
 	void gotoAnnotation(const PDFAnnotation *ann);
 
 	void zoomFromAction();
+    void customZoomFromAction();
 	void zoomSliderChange(int pos = 0);
 	void enlarge();
 	void shrink();
