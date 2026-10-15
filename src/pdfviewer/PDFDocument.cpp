@@ -3484,7 +3484,7 @@ void PDFDocument::init(bool embedded)
 		connect(act, SIGNAL(triggered()), this, SLOT(zoomFromAction()));
 	}
     QAction *act = new QAction(scaleActions);
-    act->setText(tr("custom ..."));
+    act->setText(tr("Custom..."));
     connect(act, SIGNAL(triggered()), this, SLOT(customZoomFromAction()));
 	scaleButton->addActions(scaleActions->actions());
 
