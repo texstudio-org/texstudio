@@ -6958,16 +6958,17 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		dlh->unlock();  // readLock
 	}
 
-	bool useLineCache = !currentLine && !(m_workArounds & QDocument::DisableLineCache);
+    bool useLineCache = !(m_workArounds & QDocument::DisableLineCache);
 
 	if(
 		useLineCache
+        && !currentLine
 		&& !dlh->hasFlag(QDocumentLine::LayoutDirty)
 		&&  dlh->hasFlag(QDocumentLine::FormatsApplied)
 		&&  (m_LineCache.contains(dlh) || m_LineCacheAlternative.contains(dlh))
 	) {
 		// cache is activated, available, and up-to-date: simply draw the cached object
-        p->drawPixmap(QPointF(0, 0), *m_LineCache.object(dlh));
+        p->drawPixmap(QPointF(cxt.xoffset, 0), *m_LineCache.object(dlh));
 	} else {
         qreal ht = m_lineSpacing*(wrap+1 - pseudoWrap);
 		QImage *image = nullptr;
@@ -6998,11 +6999,14 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		if (useLineCache) {
 			pr->translate(-cxt.xoffset,0);
             pr->fillRect(QRectF(0, 0, m_leftPadding, ht), background);
-		} else if (fullSelection) {
-            pr->fillRect(QRectF(0, 0, m_leftPadding, ht), background);
-            pr->fillRect(QRectF(m_leftPadding, 0, m_width - m_leftPadding, ht), selectionBackground);
-		} else
-            pr->fillRect(QRectF(0, 0, m_width, ht), background);
+        } else {
+            if (fullSelection) {
+                pr->fillRect(QRectF(0, 0, m_leftPadding, ht), background);
+                pr->fillRect(QRectF(m_leftPadding, 0, m_width - m_leftPadding, ht), selectionBackground);
+            } else {
+                pr->fillRect(QRectF(0, 0, m_width, ht), background);
+            }
+        }
         pr->restore();
 
         qreal y = 0;
@@ -7014,12 +7018,21 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 			}
 			ht += m_lineSpacing;
 		}
+        if(useLineCache){
+            pr->translate(-cxt.xoffset,0);
+        }
         dlh->draw(lcxt.docLineNr, pr, cxt.xoffset, m_lineCacheWidth, selectionBoundaries, cxt.palette, fullSelection,y,ht);
 
 		if (useLineCache) {
-            p->drawPixmap(QPointF(0, 0), *pixmap);
+            p->drawPixmap(QPointF(cxt.xoffset, 0), *pixmap);
             delete pr;
-            m_LineCache.insert(dlh, pixmap);
+            if(!currentLine){
+                m_LineCache.insert(dlh, pixmap);
+            }else{
+                // remove current line from cache, because it has special background (alternate)
+                m_LineCache.remove(dlh);
+                m_LineCacheAlternative.remove(dlh);
+            }
 		} else {
 			m_LineCache.remove(dlh);
 			m_LineCacheAlternative.remove(dlh);
