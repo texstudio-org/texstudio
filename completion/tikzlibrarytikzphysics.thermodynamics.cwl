@@ -1,5 +1,5 @@
 # tikzphysics.thermodynamics tikzlibrary
-# Matthew Bertucci 2026/10/01 for v1.7.0
+# Matthew Bertucci 2026/10/14 for v1.8.0
 
 #include:tikzlibrarytikzphysics.core
 #include:tikzlibrarypatterns
@@ -40,6 +40,13 @@ thermo refrigerator label=%<text%>
 thermo hot heat label=%<text%>
 thermo cold heat label=%<text%>
 thermo work label=%<text%>
+piston heat length=##L
+piston work length=##L
+piston gas label=%<text%>
+piston heat label=%<text%>
+piston work label=%<text%>
+piston heat direction=#in,out,none
+piston work direction=#in,out,none
 #endkeyvals
 
 #keyvals:\node#c

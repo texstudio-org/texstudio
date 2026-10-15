@@ -13,7 +13,7 @@ mytoctcolor#B
 mytochlcolor#B
 mytitlecolor#B
 myiacolor#B
-  
+
 \begin{titleslide}{title}
 \begin{titleslide}[options%keyvals]{title}
 \end{titleslide}

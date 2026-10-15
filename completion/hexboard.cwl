@@ -23,7 +23,7 @@
 \hexcell{x}{y}
 \hexcellshaded[color]{x}{y}
 \hexcellshaded{x}{y}
-\hexconnect{x1}{y1}{x2}{y2} 
+\hexconnect{x1}{y1}{x2}{y2}
 \hexcontent{x}{y}{content}
 \hexcoord{x}{y}
 \hexcounter{x}{y}{player}

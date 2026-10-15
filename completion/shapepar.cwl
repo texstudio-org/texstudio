@@ -29,7 +29,7 @@ r
 \hexagonpar
 \nutshape
 \nutpar
-\rectangleshape{height}{width} 
+\rectangleshape{height}{width}
 
 \cutoutsep#*
 \cutoutsepstretch#*

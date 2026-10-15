@@ -128,7 +128,7 @@ BaseJobname=%<jobname%>
 \end{warpsvg}
 \marginparBlock{right%text}
 \marginparBlock[left%text]{right%text}
-\UseMinipageWidths 
+\UseMinipageWidths
 \IgnoreMinipageWidths
 \fboxBlock{text}
 \FilenameSimplify{text}

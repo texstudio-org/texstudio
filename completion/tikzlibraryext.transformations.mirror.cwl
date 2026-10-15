@@ -12,7 +12,7 @@ ext/mirror x
 ext/mirror x=%<coord%>
 ext/mirror y
 ext/mirror y=%<coord%>
-ext/mirror=%<⟨pointA⟩%>--%<⟨pointB⟩%> 
+ext/mirror=%<⟨pointA⟩%>--%<⟨pointB⟩%>
 ext/xMirror
 ext/xMirror=%<val or coord%>
 ext/yMirror
@@ -21,7 +21,7 @@ ext/Mirror x
 ext/Mirror x=%<coord%>
 ext/Mirror y
 ext/Mirror y=%<coord%>
-ext/Mirror=%<⟨pointA⟩%>--%<⟨pointB⟩%> 
+ext/Mirror=%<⟨pointA⟩%>--%<⟨pointB⟩%>
 #endkeyvals
 
 # from ext.transformations.mirror pgflibrary

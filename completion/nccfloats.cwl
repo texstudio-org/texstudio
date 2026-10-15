@@ -13,7 +13,7 @@
 \minitabl{width}{body%text}
 \minitabl[pos%keyvals]{width}{body%text}
 \minitabl[pos%keyvals][height]{width}{body%text}
-\minitabl[pos%keyvals][height][inner-pos]{width}{body%text} 
+\minitabl[pos%keyvals][height][inner-pos]{width}{body%text}
 
 #keyvals:\minifig,\minitabl
 l

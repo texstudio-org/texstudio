@@ -529,7 +529,7 @@ select.encoding=#off
 \glossaryname#*
 \dieresia{arg}
 \texttilde{arg}
-#repl:"|
+#repl:"| 
 #repl:"- -
 #repl:"< «
 #repl:"> »
@@ -959,7 +959,7 @@ select.encoding=#off
 \alsoname#*
 \proofname#*
 \glossaryname#*
-#repl:"|
+#repl:"| 
 #repl:"- -
 #repl:""
 #repl:"` „
@@ -993,7 +993,7 @@ select.encoding=#off
 #repl:"u ü
 #repl:"y ij
 #repl:"Y IJ
-#repl:"|
+#repl:"| 
 #repl:"- -
 #repl:"~ -
 #repl:""
@@ -1025,7 +1025,7 @@ select.encoding=#off
 #repl:"u ü
 #repl:"y ij
 #repl:"Y IJ
-#repl:"|
+#repl:"| 
 #repl:"- -
 #repl:"~ -
 #repl:""
@@ -1273,7 +1273,7 @@ select.encoding=#off
 #repl:~S Š
 #repl:~z ž
 #repl:~Z Ž
-#repl:"|
+#repl:"| 
 #repl:"- -
 #repl:"` „
 #repl:"' “
@@ -1299,7 +1299,7 @@ select.encoding=#off
 \alsoname#*
 \proofname#*
 \glossaryname#*
-#repl:"|
+#repl:"| 
 #repl:"- -
 #repl:"= -
 #repl:"" 
@@ -1595,7 +1595,7 @@ NosepEnumerate#true,false
 #repl:"r r
 #repl:"R R
 #repl:"" 
-#repl:"|
+#repl:"| 
 #repl:"- -
 #repl:"= -
 #repl:"< «
@@ -1667,7 +1667,7 @@ NosepEnumerate#true,false
 #repl:"TT TT
 #repl:"S SS
 #repl:"Z SZ
-#repl:"|
+#repl:"| 
 #repl:"= -
 #repl:"~ -
 #repl:""
@@ -1736,7 +1736,7 @@ NosepEnumerate#true,false
 #repl:"TT TT
 #repl:"S SS
 #repl:"Z SZ
-#repl:"|
+#repl:"| 
 #repl:"= -
 #repl:"~ -
 #repl:""
@@ -1805,7 +1805,7 @@ NosepEnumerate#true,false
 #repl:"TT TT
 #repl:"S SS
 #repl:"Z SZ
-#repl:"|
+#repl:"| 
 #repl:"= -
 #repl:"~ -
 #repl:""
@@ -1858,7 +1858,7 @@ NosepEnumerate#true,false
 #repl:"z ß
 #repl:"S SS
 #repl:"Z SZ
-#repl:"|
+#repl:"| 
 #repl:"= -
 #repl:"~ -
 #repl:""
@@ -1910,7 +1910,7 @@ NosepEnumerate#true,false
 #repl:"z ß
 #repl:"S SS
 #repl:"Z SZ
-#repl:"|
+#repl:"| 
 #repl:"= -
 #repl:"~ -
 #repl:""
@@ -1962,7 +1962,7 @@ NosepEnumerate#true,false
 #repl:"z ß
 #repl:"S SS
 #repl:"Z SZ
-#repl:"|
+#repl:"| 
 #repl:"= -
 #repl:"~ -
 #repl:""
@@ -4493,7 +4493,7 @@ mexico-com
 #repl:"r r
 #repl:"s s
 #repl:"t t
-#repl:"|
+#repl:"| 
 #repl:"= -
 #repl:"~ -
 #repl:""

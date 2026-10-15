@@ -23,7 +23,7 @@ mackeys=#text,symbols
 os=#mac,win
 #endkeyvals
 
-# basic 
+# basic
 \menu{text}
 \menu[separator]{text}
 \directory{path}

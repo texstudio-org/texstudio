@@ -6,7 +6,7 @@
 # The 2946 math symbol commands listed in
 #     https://github.com/wspr/unicode-math/blob/master/unicode-math-table.tex
 # and documented in `texdoc unimath-symbols` are not recorded. Perhaps those
-# commonly used and not yet recorded in latex-document.cwl and amssymb.cwl can 
+# commonly used and not yet recorded in latex-document.cwl and amssymb.cwl can
 # be added.
 
 #include:l3keys2e

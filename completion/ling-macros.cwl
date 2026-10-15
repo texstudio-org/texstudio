@@ -41,7 +41,7 @@
 \syll
 \fmleft
 \fmright
-\fmat{left}{right} 
+\fmat{left}{right}
 \prule{underlying form}{spoken form}{environment}
 \iparule{underlying form}{spoken form}{environment}
 \pruleset{underlying form}{spoken form}{text}{environment}

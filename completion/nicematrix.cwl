@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2026/07/24 for v7.11a
+# Matthew Bertucci 2026/10/07 for v7.12
 
 #include:amsmath
 #include:array
@@ -162,6 +162,7 @@ rules/fix-vertex
 width-of-false=##L
 width-of-false +=##L
 width-of-false -=##L
+color-of-false=#%color
 #endkeyvals
 
 #keyvals:\NiceMatrixOptions,\begin{NiceTabular}
@@ -231,6 +232,7 @@ respect-arraystretch
 transparent
 rules/width=##L
 rules/color=#%color
+empty
 #endkeyvals
 
 \Hline#t

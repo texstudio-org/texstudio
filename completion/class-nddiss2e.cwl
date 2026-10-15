@@ -62,7 +62,7 @@ twoside
 \end{dedication}
 \begin{preface}
 \end{preface}
-\begin{symbols} 
+\begin{symbols}
 \end{symbols}
 
 \acknowledgename#*

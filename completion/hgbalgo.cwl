@@ -17,6 +17,6 @@ AlgProcedureColor#B
 \algsmallskip
 \algmedskip
 \algbigskip
- 
+
 # deprecated
 \StateL{text}#S

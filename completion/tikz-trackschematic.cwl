@@ -352,7 +352,7 @@ position=#left,right
 foreground=#%color
 #endkeyvals
 
-\measureline 
+\measureline
 
 \hectometer[options%keyvals]
 

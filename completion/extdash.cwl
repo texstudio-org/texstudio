@@ -11,7 +11,7 @@ cyremdash
 #endkeyvals
 
 \Hyphdash
-\Hyphdash* 
+\Hyphdash*
 \Endash
 \Endash*
 \Emdash

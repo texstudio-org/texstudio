@@ -332,7 +332,7 @@ no index
 \ifKnowledgeCompositionMode#*
 \KnowledgeCompositionModetrue#*
 \KnowledgeCompositionModefalse#*
-  
+
 \robustdisplay{arg}#*
 \robustdisplaybracket{arg}#*
 \knowledgeFixHyperrefTwocolumn#*

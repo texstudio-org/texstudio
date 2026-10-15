@@ -116,7 +116,7 @@ drama=%<name%>
 \pause
 
 \pauseverse
-\resumeverse 
+\resumeverse
 \adjustverse{length}
 
 \playname#*

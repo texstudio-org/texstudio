@@ -15,7 +15,7 @@
 #include:xkeyval
 
 \worldflag[options%keyvals]{flag code}
-\flagsdefault[options%keyvals] 
+\flagsdefault[options%keyvals]
 
 #keyvals:\worldflag,\flagsdefault
 width=##L

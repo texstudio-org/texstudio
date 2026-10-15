@@ -72,7 +72,7 @@ cadre
 \PackageVersion#*
 \parg{arg}
 \pdf
-\PGF     
+\PGF
 \pgfname
 \pkg{package}
 \presentation
@@ -123,7 +123,7 @@ text=#%color
 bistre#B
 bistre#B
 codebackground#B
-codeonlybackground#B 
+codeonlybackground#B
 commencolor#B
 fondpaille#B
 framecolor#B

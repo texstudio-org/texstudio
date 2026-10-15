@@ -165,7 +165,7 @@ dash dot
 densely dash dot
 loosely dash dot
 dash dot dot
-densely dash dot dot 
+densely dash dot dot
 loosely dash dot dot
 double
 double=#%color
@@ -285,10 +285,10 @@ draw opacity=%<value%>
 opacity=%<value%>
 transparent
 ultra nearly transparent
-very nearly transparent 
+very nearly transparent
 nearly transparent
 semitransparent
-nearly opaque 
+nearly opaque
 very nearly opaque
 ultra nearly opaque
 opaque
@@ -783,7 +783,7 @@ fanchart-root-code={%<code%>}
 
 #keyvals:\genealogytree#c,\genealogytreeinput#c,\begin{genealogypicture}#c,\gtrset#c,\gtrkeysappto#c,\gtrkeysgappto#c,\gtrsetoptionsfornode#c,\gtrsetoptionsforfamily#c,\gtrsetoptionsforsubtree#c,\gtrparserdebug#c,\gtrparserdebuginput#c,\gtrprocessordebug#c,\gtrprocessordebuginput#c,\gtrfanchart#c,\gtrfanchartinput#c
 ### 5 Option Setting ###
-## 5.2 Graph Growth Setting (Time Flow) ##                                     
+## 5.2 Graph Growth Setting (Time Flow) ##
 timeflow=#down,up,left,right
 ## 5.3 Graph Geometry ##
 level distance=##L
@@ -895,7 +895,7 @@ content interpreter=%<macro%>
 content interpreter code={%<code%>}
 content interpreter content={%<code%>}
 no content interpreter
-deletion content interpreter 
+deletion content interpreter
 database content interpreter
 id content interpreter
 content interpreter id and content={%<id%>}{%<code%>}

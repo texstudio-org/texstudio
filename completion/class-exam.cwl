@@ -140,7 +140,7 @@ solutionsreseteqcounter
 \coverlfoot{text}
 \coverlhead[first page text%text]{text}
 \coverlhead{text}
-\coverrfoot[first page text%text]{text} 
+\coverrfoot[first page text%text]{text}
 \coverrfoot{text}
 \coverrhead[first page text%text]{text}
 \coverrhead{text}

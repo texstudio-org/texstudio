@@ -61,7 +61,7 @@ xy Cartesian
 xy axes={%<options%>}
 xyz Cartesian cabinet
 xyz axes={%<options%>}
-uv Cartesian 
+uv Cartesian
 uv axes={%<options%>}
 uvw Cartesian cabinet
 uvw axes={%<options%>}

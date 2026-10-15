@@ -178,7 +178,7 @@ file=%<file path%>
 
 ## 正文部分 ##
 \begin{axiom}
-\begin{axiom}[heading%text] 
+\begin{axiom}[heading%text]
 \end{axiom}
 \begin{theorem}
 \begin{theorem}[heading%text]

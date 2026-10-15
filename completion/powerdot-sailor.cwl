@@ -9,7 +9,7 @@ pdcolor1#B
 pdcolor2#B
 pdcolor3#B
 pdcolor4#B
-  
+
 \begin{titleslide}{title}
 \begin{titleslide}[options%keyvals]{title}
 \end{titleslide}

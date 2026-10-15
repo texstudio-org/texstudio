@@ -264,7 +264,7 @@ maxentries=%<integer%>
 
 \iffootnoterule#*
 \footnoteruletrue
-\footnoterulefalse 
+\footnoterulefalse
 
 # Multiple-Layer Apparatus Criticus #
 \SetDefaultApparatus{name}

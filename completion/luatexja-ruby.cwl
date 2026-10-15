@@ -1,19 +1,17 @@
 # luatexja-ruby package
-# Matthew Bertucci 2024/09/10 for v0.7
+# Matthew Bertucci 2026/10/08 for v0.71
 
 #include:luatexja
 
 \ltjruby{親|文|字}{おや|も|じ}
-\ltjruby[options%keyvals]{親|文|字}
-{おや|も|じ}
+\ltjruby[options%keyvals]{親|文|字}{おや|も|じ}
 \ruby{親|文|字}{おや|も|じ}
-\ruby[options%keyvals]{親|文|字}
-{おや|も|じ}
+\ruby[options%keyvals]{親|文|字}{おや|も|じ}
 \ltjsetruby{options%keyvals}
-\ltjkenten
-\ltjkenten[options%keyvals]
-\kenten
-\kenten[options%keyvals]
+\ltjkenten{親文字}
+\ltjkenten[options%keyvals]{親文字}
+\kenten{親文字}
+\kenten[options%keyvals]{親文字}
 
 #keyvals:\ltjruby,\ruby,\ltjsetruby,\ltjkenten,\kenten
 pre=%<real%>

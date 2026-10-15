@@ -36,8 +36,8 @@ tough
 \EPSyllabeMarque
 \EPAccentCoupure
 \EPouvrante
-\EPfermante 
-\EPtextestyle 
+\EPfermante
+\EPtextestyle
 
 \ActiveLaLivre
 \MakeHyphenable

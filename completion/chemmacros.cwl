@@ -1,4 +1,4 @@
-# CWL for the chemmacros.sty package 
+# CWL for the chemmacros.sty package
 # Matthew Bertucci updated 1/18/2022 for v6.0; 2/14/2022 for v6.1; 3/7/2022 for v6.2
 
 # note: by default, all modules are loaded

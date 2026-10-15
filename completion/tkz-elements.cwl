@@ -1,7 +1,8 @@
 # tkz-elements package
-# Matthew Bertucci 2026/03/09 for v5.03c
+# Matthew Bertucci 2026/10/13 for v6.00c
 
 #include:iftex
+#include:luatex
 
 \tkzGetNodes
 \tkzDrawLuaEllipse(pt1,pt2,pt3)

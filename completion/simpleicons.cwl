@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/10/02 for v16.33.0
+# Matthew Bertucci 2026/10/09 for v16.34.0
 
 #include:iftex
 
@@ -635,7 +635,7 @@ continente
 contributorcovenant
 conventionalcommits
 convertio
-convex 
+convex
 cookiecutter
 coolermaster
 coolify
@@ -2904,6 +2904,7 @@ suckless
 sui
 suitest
 sumologic
+sumup
 suno
 sunrise
 supabase

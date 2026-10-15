@@ -60,7 +60,7 @@ survey
 #endif
 
 #ifOption:survey
-#include:tikz 
+#include:tikz
 #include:tikzlibrarypositioning
 #include:tikzlibraryshapes
 #include:tikzlibrarytikzmark

@@ -122,7 +122,7 @@ tt
 \addORCIDlink{author}{ORCID%URL}#U
 \note{text}
 \begin{seriate}
-\end{seriate} 
+\end{seriate}
 \begin{APAenumerate}
 \end{APAenumerate}
 \begin{APAitemize}

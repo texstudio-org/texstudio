@@ -1,5 +1,5 @@
 # docshots package
-# Matthew Bertucci 2022/11/10 for v0.3.0
+# Matthew Bertucci 2026/10/09 for v0.5.1
 
 #include:iexec
 #include:fancyvrb
@@ -27,6 +27,7 @@ tiny
 log
 inputminted=%<language%>
 lstinputlisting
+snippet=#left,right,none
 #endkeyvals
 
 \docshotOptions{options%keyvals}
@@ -76,10 +77,8 @@ vspace=##L
 listparameters={%<code%>}
 #endkeyvals
 
-\docshotPrerequisite{file}
-\docshotAfter{command line}
-
 \begin{docshot}
+\begin{docshot}[options%keyvals]
 \end{docshot}
 
 #ifOption:lstinputlisting

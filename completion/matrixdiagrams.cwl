@@ -1,5 +1,5 @@
 # matrixdiagrams package
-# Matthew Bertucci 2026/09/04 for v1.2
+# Matthew Bertucci 2026/10/13 for v1.3
 
 #include:tikz
 #include:calc
@@ -18,6 +18,8 @@ roundedcorners=##L
 \matrixdiagram[scale]{content}
 \matrixdiagram{content}
 \mdBidiagLower
+\mdBidiagSpike{dir}
+\mdBidiagSpike[pos]{dir}
 \mdBidiagUpper
 \mdBlank
 \mdDiag

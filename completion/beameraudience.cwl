@@ -1,8 +1,8 @@
 # beameraudience package
 # Matthew Bertucci 2/1/2022 for v0.1
 
-#include:kvoptions 
-#include:cprotect 
+#include:kvoptions
+#include:cprotect
 #include:ifthen
 
 #keyvals:\usepackage/beameraudience#c

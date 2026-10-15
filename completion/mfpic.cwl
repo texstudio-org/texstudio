@@ -540,7 +540,7 @@ mfpreadlog
 \xscalepath{x,factor}
 \xslant{factor}
 \xslantpath{y,factor}
-\xyswap 
+\xyswap
 \xyswappath
 \yaxis#*
 \yaxis[length]#*

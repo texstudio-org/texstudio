@@ -19,7 +19,7 @@
 #include:tikzlibraryshapes.multipart
 #include:tikzlibrarygraphs
 #include:tikzlibraryexternal
-  
+
 \begin{kblock}#\pictureHighlight
 \end{kblock}
 
