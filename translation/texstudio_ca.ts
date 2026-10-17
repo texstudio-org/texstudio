@@ -2679,7 +2679,7 @@ This may lead to unwanted data transfer to the AI provider.
     <message>
         <location filename="../src/configdialog.ui" line="4247"/>
         <source> ms</source>
-        <translation>m</translation>
+        <translation>ms</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4263"/>
@@ -5613,7 +5613,7 @@ The wizard does not support command </source>
         <location filename="../src/latexcompleter.cpp" line="1504"/>
         <location filename="../src/latexcompleter.cpp" line="1514"/>
         <source>typical</source>
-        <translation type="unfinished"/>
+        <translation>típic</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1505"/>
@@ -5856,7 +5856,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2957"/>
         <source>Citation missing</source>
-        <translation type="unfinished"/>
+        <translation>Manca la citació</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2960"/>
@@ -7783,12 +7783,12 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4893"/>
         <source>Move cursor to next block</source>
-        <translation type="unfinished"/>
+        <translation>Mou el cursor al següent bloc</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4894"/>
         <source>Move cursor to previous block</source>
-        <translation type="unfinished"/>
+        <translation>Mou el cursor al bloc anterior</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4898"/>
@@ -7828,7 +7828,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4905"/>
         <source>Select to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Selecciona fins al primer caràcter de la línia</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4906"/>
@@ -7858,12 +7858,12 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4913"/>
         <source>Select to next block</source>
-        <translation type="unfinished"/>
+        <translation>Selecciona fins el següent bloc</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4914"/>
         <source>Select to previous block</source>
-        <translation type="unfinished"/>
+        <translation>Selecciona fins el bloc anterior</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4918"/>
@@ -8121,7 +8121,7 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>keyword</source>
-        <translation type="unfinished"/>
+        <translation>paraula clau</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="263"/>
@@ -8136,7 +8136,7 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>link</source>
-        <translation type="unfinished"/>
+        <translation>enllaç</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="266"/>
@@ -8191,7 +8191,7 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="276"/>
         <source>search</source>
-        <translation type="unfinished"/>
+        <translation>cerca</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="277"/>
@@ -8316,12 +8316,12 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="301"/>
         <source>structure</source>
-        <translation type="unfinished"/>
+        <translation>estructura</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="302"/>
         <source>current</source>
-        <translation type="unfinished"/>
+        <translation>actual</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="303"/>
@@ -8536,7 +8536,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="60"/>
         <source>Bold</source>
-        <translation type="unfinished"/>
+        <translation>Negreta</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="62"/>
@@ -8546,7 +8546,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="64"/>
         <source>Underline</source>
-        <translation type="unfinished"/>
+        <translation>Subratllat</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="66"/>
@@ -8815,7 +8815,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="629"/>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="634"/>
         <source>Count result</source>
-        <translation type="unfinished"/>
+        <translation>Recompte de resultats</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="629"/>
@@ -9114,7 +9114,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="50"/>
         <source>No data given</source>
-        <translation type="unfinished"/>
+        <translation>No s&apos;han proporcionat dades</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="53"/>
@@ -9665,12 +9665,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="293"/>
         <source>no error</source>
-        <translation type="unfinished"/>
+        <translation>sense errors</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="294"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"/>
+        <translation>entorn desconegut</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="295"/>
@@ -9725,7 +9725,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="305"/>
         <source>environment not closed</source>
-        <translation type="unfinished"/>
+        <translation>entorn no tancat</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="306"/>
@@ -11144,18 +11144,18 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1178"/>
         <source>Previous Warning</source>
-        <translation type="unfinished"/>
+        <translation>Advertència anterior</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1178"/>
         <location filename="../src/texstudio.cpp" line="1179"/>
         <source>No LaTeX warnings detected !</source>
-        <translation type="unfinished"/>
+        <translation>No s&apos;ha detectat cap advertència de LaTeX!</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1179"/>
         <source>Next Warning</source>
-        <translation type="unfinished"/>
+        <translation>Següent advertència</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1180"/>
@@ -11433,7 +11433,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1275"/>
         <source>Open External &amp;Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Obre &amp;terminal extern</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1277"/>
@@ -11659,7 +11659,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1340"/>
         <source>Math Assistant...</source>
-        <translation type="unfinished"/>
+        <translation>Assistent matemàtic...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1368"/>
@@ -11711,12 +11711,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1400"/>
         <source>List Of Open Documents</source>
-        <translation type="unfinished"/>
+        <translation>Llista de documents oberts</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1401"/>
         <source>List Of Hidden Documents</source>
-        <translation type="unfinished"/>
+        <translation>Llista de documents amagats</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1403"/>
@@ -11767,7 +11767,7 @@ template to edit individual files.</source>
         <location filename="../src/texstudio.cpp" line="1444"/>
         <location filename="../src/texstudio.cpp" line="1449"/>
         <source>Everything</source>
-        <translation type="unfinished"/>
+        <translation>Tot</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1445"/>
@@ -11844,7 +11844,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1476"/>
         <source>Full &amp;Screen</source>
-        <translation type="unfinished"/>
+        <translation>%Pantalla sencera</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1483"/>
@@ -11886,7 +11886,7 @@ template to edit individual files.</source>
         <location filename="../src/texstudio.cpp" line="1517"/>
         <source>Root Document</source>
         <comment>menu</comment>
-        <translation type="unfinished"/>
+        <translation>Document arrel</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1520"/>
@@ -11921,7 +11921,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1537"/>
         <source>Check LaTeX Installation</source>
-        <translation type="unfinished"/>
+        <translation>Comprova la instalació de LaTeX</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1538"/>
@@ -12001,7 +12001,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1876"/>
         <source>Insert encoding as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>Insereix la codificació com a comentari TeX</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1890"/>
@@ -12027,7 +12027,7 @@ template to edit individual files.</source>
         <location filename="../src/texstudio.cpp" line="1939"/>
         <source>Root</source>
         <comment>explicit root document</comment>
-        <translation type="unfinished"/>
+        <translation>Arrel</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1940"/>
@@ -12539,7 +12539,7 @@ Do you want to allow and run the new, overriding command?
         <location filename="../src/texstudio.cpp" line="8755"/>
         <location filename="../src/texstudio.cpp" line="8777"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"/>
+        <translation>Més enllà del fi del document</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="8758"/>
@@ -12968,7 +12968,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="../src/texstudio.cpp" line="13290"/>
         <location filename="../src/texstudio.cpp" line="13348"/>
         <source>Expand Subitems</source>
-        <translation type="unfinished"/>
+        <translation>Expandeix els subítems</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1011"/>
