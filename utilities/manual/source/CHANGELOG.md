@@ -4,10 +4,15 @@
 - fix help/check latex installation
 - allow setting line ending per script [#4667](https://github.com/texstudio-org/texstudio/issues/4667)
 - fix find usages with multiple entries in one line [#4672](https://github.com/texstudio-org/texstudio/issues/4672)
+- fix remove word/cmd/env (Alt+Del) removes the wrong environment in some cases [#4685](https://github.com/texstudio-org/texstudio/issues/4685)
 - fix compiling not rerunning [#4686](https://github.com/texstudio-org/texstudio/issues/4686)
+- Support double backslash as a newline for additional tabular-like environments [#4687](https://github.com/texstudio-org/texstudio/issues/4687)
+- fix QuickBuild processes (windowed pdf-viewer) do not end [#4688](https://github.com/texstudio-org/texstudio/issues/4688)
+- fix QuickBuild button (windowed pdf-viewer) remains enabled during an active Quick Build [#4690](https://github.com/texstudio-org/texstudio/issues/4690)
 - remove latex-l2tabu.cwl
-- disable fileexplorer updates when not visible
+- disable file explorer updates when not visible [#4700](https://github.com/texstudio-org/texstudio/issues/4700)
 - fix display of cached lines (typically disabled) [#4699](https://github.com/texstudio-org/texstudio/issues/4699)
+- make the zoom level of the pdf-viewer manually customizable [#4697](https://github.com/texstudio-org/texstudio/issues/4697)
 
 ## TeXstudio 4.9.8
 
@@ -41,12 +46,12 @@
 - fix update on structure pane [#4505](https://github.com/texstudio-org/texstudio/issues/4505)
 - fix math highlighting [#4508](https://github.com/texstudio-org/texstudio/issues/4508)
 - add panel for git
-- fix crashes [#4552](https://github.com/texstudio-org/texstudio/issues/4552),[#4545](https://github.com/texstudio-org/texstudio/issues/4545),[#4544](https://github.com/texstudio-org/texstudio/issues/4544)
+- fix crashes [#4552](https://github.com/texstudio-org/texstudio/issues/4552), [#4545](https://github.com/texstudio-org/texstudio/issues/4545), [#4544](https://github.com/texstudio-org/texstudio/issues/4544)
 
 ## TeXstudio 4.9.5
 
 - fix crash when setting explicit root doc [#4469](https://github.com/texstudio-org/texstudio/issues/4469)
-- improve handling collaboration with teamtype [#4454](https://github.com/texstudio-org/texstudio/issues/4454),[#4466](https://github.com/texstudio-org/texstudio/issues/4466)
+- improve handling collaboration with teamtype [#4454](https://github.com/texstudio-org/texstudio/issues/4454), [#4466](https://github.com/texstudio-org/texstudio/issues/4466)
 - workaround win11 style, invisible red background when text not found in searchpanel
 - keep folder structure of imported macros if more than one macro is imported [#4484](https://github.com/texstudio-org/texstudio/issues/4484)
 - highlight more tex symbol as keyword [#4465](https://github.com/texstudio-org/texstudio/issues/4465)
