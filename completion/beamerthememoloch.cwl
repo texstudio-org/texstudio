@@ -1,5 +1,5 @@
 # moloch beamertheme
-# Matthew Bertucci 2026/03/04 for v2.2.0
+# Matthew Bertucci 2026/10/16 for v2.3.0
 
 #include:etoolbox
 #include:pgfopts
@@ -12,6 +12,7 @@ titleformat plain=#regular,smallcaps,allsmallcaps,allcaps
 sectionpage=#none,simple,progressbar
 subsectionpage=#none,simple,progressbar
 standoutnumbering=#none,hide,show
+sectionpagenumbering=#none,show
 titlepage=#moloch,plain,split
 progressbar=#none,head,frametitle,foot
 progressbar linewidth=##L
@@ -37,6 +38,10 @@ mTitleseparatorFg#B
 mStandoutFg#B
 mStandoutBg#B
 mFootnoteFg#B
+mStandoutAlertedFg#B
+mStandoutAlertedBg#B
+mStandoutExampleFg#B
+mStandoutExampleBg#B
 
 mDarkBrown#B
 mDarkTeal#B
@@ -58,6 +63,10 @@ progressbar bg=#%color
 title separator=#%color
 standout fg=#%color
 standout bg=#%color
+standout alerted fg=#%color
+standout alerted bg=#%color
+standout example fg=#%color
+standout example bg=#%color
 light/alerted text=#%color
 light/example text=#%color
 light/normal text fg=#%color
@@ -69,6 +78,10 @@ light/progressbar bg=#%color
 light/title separator=#%color
 light/standout fg=#%color
 light/standout bg=#%color
+light/standout alerted fg=#%color
+light/standout alerted bg=#%color
+light/standout example fg=#%color
+light/standout example bg=#%color
 dark/alerted text=#%color
 dark/example text=#%color
 dark/normal text fg=#%color
@@ -80,6 +93,10 @@ dark/progressbar bg=#%color
 dark/title separator=#%color
 dark/standout fg=#%color
 dark/standout bg=#%color
+dark/standout alerted fg=#%color
+dark/standout alerted bg=#%color
+dark/standout example fg=#%color
+dark/standout example bg=#%color
 #endkeyvals
 
 \mitemover#*
