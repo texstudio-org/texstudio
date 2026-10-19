@@ -1676,6 +1676,7 @@
 <file>completion/fnspe.cwl</file>
 <file>completion/fnumprint.cwl</file>
 <file>completion/foekfont.cwl</file>
+<file>completion/folarrow.cwl</file>
 <file>completion/foliono.cwl</file>
 <file>completion/fonetika.cwl</file>
 <file>completion/fontawesome5.cwl</file>
@@ -1746,6 +1747,7 @@
 <file>completion/futurans.cwl</file>
 <file>completion/fvextra.cwl</file>
 <file>completion/fwlw.cwl</file>
+<file>completion/fxpicture.cwl</file>
 <file>completion/galois.cwl</file>
 <file>completion/gamebook.cwl</file>
 <file>completion/gamebooklib.cwl</file>
@@ -2349,6 +2351,7 @@
 <file>completion/luacas.cwl</file>
 <file>completion/luacensor.cwl</file>
 <file>completion/lua-check-hyphen.cwl</file>
+<file>completion/lua-font-config.cwl</file>
 <file>completion/lua-list-hyphen.cwl</file>
 <file>completion/luacode.cwl</file>
 <file>completion/luacolor.cwl</file>
