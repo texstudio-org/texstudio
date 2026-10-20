@@ -1,5 +1,5 @@
 # scrextend package
-# Matthew Bertucci 2025/06/03 for v3.44
+# Matthew Bertucci 2026/10/19 for v3.49.3
 
 #include:scrkbase
 #include:scrlogo
@@ -106,6 +106,3 @@ myheadings
 empty
 plain
 #endkeyvals
-
-# deprecated
-\ifthispageodd#S
