@@ -6450,7 +6450,7 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
 		return false;
 	}
     // disable buttons
-    const QStringList lstOfCompileCommands={BuildManager::CMD_COMPILE,BuildManager::CMD_QUICK,BuildManager::CMD_LATEX,BuildManager::CMD_PDFLATEX,BuildManager::CMD_XELATEX,BuildManager::CMD_LUALATEX};
+    const QStringList lstOfCompileCommands={BuildManager::CMD_COMPILE,BuildManager::CMD_QUICK,BuildManager::CMD_LATEX,BuildManager::CMD_PDFLATEX,BuildManager::CMD_XELATEX,BuildManager::CMD_LUALATEX,BuildManager::CMD_LATEXMK};
     if(lstOfCompileCommands.contains(commandline)){
         setBuildButtonsDisabled(true);
     }
