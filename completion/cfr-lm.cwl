@@ -1,5 +1,5 @@
 # cfr-lm package
-# Matthew Bertucci 2025/06/22 for v1.9
+# Matthew Bertucci 2026/10/21 for v2.0
 
 #include:svn-prov
 #include:fontenc
@@ -11,6 +11,21 @@ sf={%<options%>}
 tt={%<options%>}
 qt#true,false
 nomaths#true,false
+maths=#classic,lum,unicode-math,none
+#endkeyvals
+
+#keyvals:maths=lum
+#include:lum-lmodern
+#endkeyvals
+#keyvals:math=lum
+#include:lum-lmodern
+#endkeyvals
+
+#keyvals:maths=unicode-math
+#include:unicode-math
+#endkeyvals
+#keyvals:math=unicode-math
+#include:unicode-math
 #endkeyvals
 
 \regwidth#n

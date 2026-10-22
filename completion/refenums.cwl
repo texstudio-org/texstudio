@@ -1,5 +1,5 @@
 # refenums package
-# Matthew Bertucci 2026/10/19 for v2.0.0
+# Matthew Bertucci 2026/10/21 for v2.1.0
 
 #include:kvoptions
 #include:zref-clever
@@ -16,6 +16,7 @@ shorthands#true,false
 
 #keyvals:\setupRefEnum
 separator=%<text%>
+inline#true,false
 enclosing=%<name%>
 combined
 plural=%<text%>
