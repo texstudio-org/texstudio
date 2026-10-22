@@ -1700,6 +1700,7 @@
 <file>completion/footnotebackref.cwl</file>
 <file>completion/footnote.cwl</file>
 <file>completion/footnotehyper.cwl</file>
+<file>completion/footnotenosplit.cwl</file>
 <file>completion/footnoterange.cwl</file>
 <file>completion/forarray.cwl</file>
 <file>completion/foreign.cwl</file>

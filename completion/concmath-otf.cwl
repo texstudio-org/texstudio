@@ -1,5 +1,5 @@
 # concmath-otf package
-# Matthew Bertucci 2025/10/29 for v0.70
+# Matthew Bertucci 2026/10/22 for v0.77
 
 #include:iftex
 #include:unicode-math
@@ -50,6 +50,7 @@ Style=#leqslant,smaller,subsetneq,upint
 \gggtr#m
 \gtreqqslantless#m
 \gtreqslantless#m
+\gtrsimslant#m
 \gvertneqq#m
 \harrowextender#*m
 \intextender#*m
@@ -58,6 +59,7 @@ Style=#leqslant,smaller,subsetneq,upint
 \leqqslant#m
 \lesseqqslantgtr#m
 \lesseqslantgtr#m
+\lesssimslant#m
 \lgblkcircle#m
 \lgblksquare#m
 \lgwhtsquare#m
@@ -86,6 +88,7 @@ Style=#leqslant,smaller,subsetneq,upint
 \mscre#*m
 \mscrg#*m
 \mscro#*m
+\mupvarzero#*m
 \ngeqq#m
 \ngeqqslant#m
 \ngeqslant#m
@@ -95,9 +98,7 @@ Style=#leqslant,smaller,subsetneq,upint
 \npreceq#m
 \nshortmid#m
 \nshortparallel#m
-\nsubseteqq#m
 \nsucceq#m
-\nsupseteqq#m
 \ntriangleleft#m
 \ntriangleright#m
 \overrightarc{arg}#m
