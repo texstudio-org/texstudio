@@ -3707,7 +3707,11 @@ Examples:
                    </widget>
                   </item>
                   <item row="1" column="3">
-                   <widget class="QLineEdit" name="leAIAPIKey"/>
+                   <widget class="QLineEdit" name="leAIAPIKey">
+                    <property name="echoMode">
+                     <enum>QLineEdit::EchoMode::Password</enum>
+                    </property>
+                   </widget>
                   </item>
                   <item row="2" column="3">
                    <widget class="QLineEdit" name="leAIAPIURL">
