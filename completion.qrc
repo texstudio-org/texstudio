@@ -457,6 +457,7 @@
 <file>completion/bookmark.cwl</file>
 <file>completion/book-of-common-prayer.cwl</file>
 <file>completion/booktabs.cwl</file>
+<file>completion/boolalg.cwl</file>
 <file>completion/boolexpr.cwl</file>
 <file>completion/BOONDOX-cal.cwl</file>
 <file>completion/BOONDOX-calo.cwl</file>
@@ -3624,6 +3625,7 @@
 <file>completion/spacekern.cwl</file>
 <file>completion/spacingtricks.cwl</file>
 <file>completion/spalign.cwl</file>
+<file>completion/spanish-mathml-intent.cwl</file>
 <file>completion/sparklines.cwl</file>
 <file>completion/spark-otf.cwl</file>
 <file>completion/spbmark.cwl</file>
