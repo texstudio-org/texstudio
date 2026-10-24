@@ -1,7 +1,12 @@
 # tkz-graph package
-# Matthew Bertucci 9/17/2021 for v2.0
+# Matthew Bertucci 2026/10/24 for v2.20c
 
+#include:ifthen
 #include:tikz
+
+#keyvals:\usepackage/tkz-graph#c
+noshortnames
+#endkeyvals
 
 \Vertex{name}#/tikzpicture
 \Vertex[options%keyvals]{name}#/tikzpicture
@@ -68,47 +73,50 @@ unit=
 
 \Edge(vertex1)(vertex2)#/tikzpicture
 \Edge[options%keyvals](vertex1)(vertex2)#/tikzpicture
+\Edges(vertex1,vertex2,...)#/tikzpicture
+\Edges[options%keyvals](vertex1,vertex2,...)#/tikzpicture
 
-#keyvals:\Edge
-local
+#keyvals:\Edge,\Edges
 color=#%color
 lw=##L
+double=#%color
+dd=##L
 label=##l
 labeltext=
 labelcolor=#%color
 labelstyle=
 style=
+local#true,false
+->
+<-
+<->
+-
+arrow={%<spec%>}
 #endkeyvals
 
 \Loop(vertex)#/tikzpicture
 \Loop[options%keyvals](vertex)#/tikzpicture
+\grLoop(vertex)#*/tikzpicture
+\grLoop[options%keyvals](vertex)#*/tikzpicture
 
-#keyvals:\Loop
-color=#%color
-lw=##L
-label=##l
-labelstyle=
-style=
-#endkeyvals
-
-\Edges(vertex1,vertex2,...)#/tikzpicture
-\Edges[options%keyvals](vertex1,vertex2,...)#/tikzpicture
-
-#keyvals:\Loop
-color=#%color
-lw=##L
-label=##l
-labelstyle=
-style=
+#keyvals:\Loop,\grLoop
 dir=#EA,WE,NO,SO,NOEA,NOWE,SOEA,SOWE
-dist=##L
+color=#%color
+lw=##L
+label=##l
+labelstyle=
+style=
 #endkeyvals
 
 \GraphInit[options%keyvals]#/tikzpicture
+\GraphUnit#*
 
 #keyvals:\GraphInit
-vstyle=#Empty,Hasse,Simple,Classic,Normal,Shade,Dijkstra,Welsh,Art,Shade Art
+vstyle=#Empty,Hasse,Simple,Classic,Normal,Shade,Dijkstra,Welsh,Art,Shade Art,%tkzgraphstyle
+unit=%<number%>
 #endkeyvals
+
+\tkzDefGraphStyle{name%specialDef}{code}#s#%tkzgraphstyle
 
 \VertexInnerSep#*
 \VertexOuterSep#*

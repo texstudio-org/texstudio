@@ -1,5 +1,5 @@
 # tkz-berge package
-# Matthew Bertucci 9/17/2021 for v2.0
+# Matthew Bertucci 2026/10/24 for v2.20c
 
 #include:tkz-graph
 
@@ -126,6 +126,11 @@ size=
 color=#%color
 Math
 #endkeyvals
+
+\grHypercube{number of vertices}#/tikzpicture
+\grHypercube[options%keyvals]{number of vertices}#/tikzpicture
+\grTree{k}{depth}#/tikzpicture
+\grTree[options%keyvals]{k}{depth}#/tikzpicture
 
 \grAndrasfai#/tikzpicture
 \grBalaban#/tikzpicture
