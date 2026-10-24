@@ -1,5 +1,5 @@
 # mermaid package
-# Matthew Bertucci 2026/05/15 for v1.0c
+# Matthew Bertucci 2026/10/22 for v1.1
 
 #include:shellesc
 #include:graphicx
@@ -15,6 +15,7 @@ Renderer=%<renderer%>
 \end{mermaid}
 
 \MermaidRendererOptions{options%plain}
+\MermaidPdfFit
 \MermaidNoPdfFit
 \MermaidGraphicsOpts{options%keyvals}
 \MermaidAdjustBoxOpts{options%keyvals}

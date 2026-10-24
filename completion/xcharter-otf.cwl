@@ -1,5 +1,5 @@
 # xcharter-otf package
-# Matthew Bertucci 2026/08/27 for v0.75
+# Matthew Bertucci 2026/10/21 for v0.77
 
 #include:iftex
 #include:unicode-math
@@ -318,5 +318,5 @@ Scale=%<factor%>
 \mitsansvarrho#*m
 \mitsansvarpi#*m
 
-\XCottoksT#S
+\XCotScale#S
 \XCottoksM#S

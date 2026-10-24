@@ -1,5 +1,5 @@
 # scrbase package
-# Matthew Bertucci 2022/05/17 for v3.36
+# Matthew Bertucci 2026/10/19 for v3.50
 
 #include:scrlfile
 #include:keyval
@@ -67,7 +67,6 @@
 \FamilyOptions{family}{options list}#*
 \FamilyOption{family}{option}{value list}#*
 \FamilyUnknownKeyValue{family}{key%plain}{value}{value list}#*
-\FamilyElseValues#*
 \FamilyBoolKey{family}{key%plain}{switch name}#*
 \FamilyBoolKey[member]{family}{key%plain}{switch name}#*
 \FamilySetBool{family}{key%plain}{switch name}{value}#*
@@ -125,25 +124,4 @@
 \renewcaptionname{language list}{term%cmd}{definition}#*
 \renewcaptionname*{language list}{term%cmd}{definition}#*
 
-# deprecated
-\ifnotundefined#S
-\ifislengthprimitive#S
-\ifisdefchar#S
-\ifstr#S
-\ifstrstart#S
-\ifisdimen#S
-\ifisskip#S
-\ifiscount#S
-\ifisdimexpr#S
-\ifisglueexpr#S
-\ifisnumexpr#S
-\ifiscounter#S
-\ifisinteger#S
-\ifisdimension#S
-\ifisglue#S
-\ifnumber#S
-\ifintnumber#S
-\ifdimen#S
-\ifpdfoutput#S
-\ifpsoutput#S
-\ifdvioutput#S
+\ExpandArgsCS{spec}{csname}#*

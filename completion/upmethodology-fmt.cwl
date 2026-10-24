@@ -1,5 +1,5 @@
 # upmethodology-fmt package
-# Matthew Bertucci 2025/03/24 for release 2025/03/23
+# Matthew Bertucci 2026/10/23 for release 2026/04/10
 
 #include:upmethodology-p-common
 #include:titlesec
@@ -37,6 +37,7 @@ standardlists
 \textsup{text%plain}
 \textsub{text%plain}
 \Emph{text}
+emphemphcolor#B
 \trademark
 \regmark
 \smalltrade

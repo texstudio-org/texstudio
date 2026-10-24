@@ -1,5 +1,5 @@
 # pdfArticle class
-# Matthew Bertucci 1/18/2022 for v1.0
+# Matthew Bertucci 2026/10/21 for v1.1
 
 #include:class-extarticle
 #include:kvoptions
@@ -60,6 +60,7 @@ sansFontFeat={%<fontspec features%>}
 sansFont=%<font name%>
 monoFontFeat={%<fontspec features%>}
 monoFont=%<font name%>
+mathFont=%<font name%>
 paperSize=#a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper
 paperMode=#portrait,landscape
 tmargin=##L

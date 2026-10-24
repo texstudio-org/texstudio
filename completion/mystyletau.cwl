@@ -1,11 +1,12 @@
 # mystyletau package
-# Matthew Bertucci 2026/04/29 for v2.0
+# Matthew Bertucci 2026/10/22 for v2.1
 
 #include:iftex
-#include:fontspec
 #include:amsmath
+#include:amssymb
 
 \atau
 \vtau
 
 \mytaufont#S
+\pt{arg}#Sm

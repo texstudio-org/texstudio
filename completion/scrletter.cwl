@@ -1,5 +1,5 @@
 # scrletter package
-# Matthew Bertucci 2025/09/10 for v3.48
+# Matthew Bertucci 2026/10/21 for v3.49.3
 
 #include:scrkbase
 #include:scrextend
@@ -304,9 +304,3 @@ UScommercial9DW
 letter
 plain.letter
 #endkeyvals
-
-# deprecated
-\adrentry{last name}{first name}{address}{phone}{F1}{F2}{comment}{key%plain}#S
-\adrchar{initial letter}#S
-\ifkomavar#S
-\ifkomavarempty#S

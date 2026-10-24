@@ -1,11 +1,11 @@
 # pgfornament package
-# Matthew Bertucci 2/12/2022 for v1.2
+# Matthew Bertucci 2026/10/19 for v1.4
 
 #include:tikz
 #include:pgfopts
 
 #keyvals:\usepackage/pgfornament#c
-object=#vectorian,pgfhan
+object=#vectorian,pgfhan,celtic
 #endkeyvals
 
 \newpgfornamentfamily{family%keyvals}
@@ -15,6 +15,7 @@ object=#vectorian,pgfhan
 #keyvals:\newpgfornamentfamily,\begin{newfamily}
 pgfhan
 vectorian
+celtic
 #endkeyvals
 
 \pgfornament{ornament number}
@@ -50,7 +51,6 @@ anchor=%<anchor%>
 \ornamenttoanchor#*
 \ornamenttosymmetry#*
 \ornamentlen#*
-\nbo#S
-\pgfOrnamentsObject#*
+\pgfOrnamentsObject#S
 \OrnamentsFamily#*
-\SavedOrnamentsFamily#*
+\SavedOrnamentsFamily#S

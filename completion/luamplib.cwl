@@ -1,5 +1,5 @@
 # luamplib package
-# Matthew Bertucci 2026/09/30 for v2.44.0
+# Matthew Bertucci 2026/10/21 for v2.44.3
 
 #include:luatex
 
@@ -160,3 +160,5 @@ resources=%<PDF resources%>
 \mplibtmptoks{arg}#S
 \mplibtoPDF{pdfliteral}#S
 \usemplibgroupmain{arg}#S
+\mplibexternaloptions#S
+\usemplibgroupmainreally{arg}#S

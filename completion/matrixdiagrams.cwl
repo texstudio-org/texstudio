@@ -1,5 +1,5 @@
 # matrixdiagrams package
-# Matthew Bertucci 2026/10/13 for v1.3
+# Matthew Bertucci 2026/10/19 for v1.4
 
 #include:tikz
 #include:calc
@@ -11,6 +11,7 @@
 
 #keyvals:\usepackage/matrixdiagrams#c
 roundedcorners=##L
+parentheses#true,false
 #endkeyvals
 
 \matrixdiagram[scale][aspect][radius]{content}
@@ -27,6 +28,8 @@ roundedcorners=##L
 \mdDiagBandFrom{x1}{y1}{x2}{y2}
 \mdDiagBandNFrom{n}{x1}{y1}{x2}{y2}
 \mdDiagBandN{n}
+\mdDiagBidiagSpike{dir}
+\mdDiagBidiagSpike[pos]{dir}
 \mdDiagFrom{x1}{y1}{x2}{y2}
 \mdDiagLabel[pos][angle][fill]{content}
 \mdDiagLabel[pos][angle]{content}
@@ -37,6 +40,13 @@ roundedcorners=##L
 \mdH
 \mdHessenberg
 \mdHessenberg[color]
+\mdHessenbergLower
+\mdHessenbergLower[color]
+\mdHessenbergSpike{dir}
+\mdHessenbergSpike[pos]{dir}
+\mdHessenbergSpike[pos][color]{dir}
+\mdHessenbergUpper
+\mdHessenbergUpper[color]
 \mdHLine{y}
 \mdIdentity
 \mdLabel[fill]{x}{y}{text}

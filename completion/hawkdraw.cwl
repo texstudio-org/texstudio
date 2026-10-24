@@ -1,5 +1,5 @@
 # hawkdraw package
-# Matthew Bertucci 2026/10/13 for v0.10.0
+# Matthew Bertucci 2026/10/19 for v0.11.0
 
 #include:l3draw
 
@@ -13,10 +13,10 @@
 \begin{scope}[options%keyvals]
 \end{scope}
 
-\clip %<〈path spec〉%>;
-\clip[%<options%>] %<〈path spec〉%>;
-\fill %<〈path spec〉%>;
-\fill[%<options%>] %<〈path spec〉%>;
+\clip{path spec}
+\clip[options%keyvals]{path spec}
+\fill{path spec}
+\fill[options%keyvals]{path spec}
 \getfirstpoint
 \getfirstslope
 \getintersectioncircles[integer]{point1}{dimen1}{point2}{dimen2}
@@ -37,12 +37,13 @@
 \hawkdrawmap[options%keyvals]{code}
 \hawkdrawmap{code}
 \hawkdrawset{options%keyvals}
-\map {%<code%>};
-\map[%<options%>] {%<code%>};
-\node %<〈node spec〉%> {%<content%>};
-\node[%<options%>] %<〈node spec〉%> {%<content%>};
-\path %<〈path spec〉%>;
-\path[%<options%>] %<〈path spec〉%>;
-\point[%<options%>] ;
-\stroke %<〈path spec〉%>;
-\stroke[%<options%>] %<〈path spec〉%>;
+\map{code}
+\map[options%keyvals]{code}
+\node{content%text}
+\node[options%keyvals]{content%text}
+\path{path spec}
+\path[options%keyvals]{path spec}
+\point{name}
+\point[options%keyvals]{name}
+\stroke{path spec}
+\stroke[options%keyvals]{path spec}
