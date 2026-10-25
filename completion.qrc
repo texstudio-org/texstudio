@@ -1093,6 +1093,7 @@
 <file>completion/codedescribe.cwl</file>
 <file>completion/codehigh.cwl</file>
 <file>completion/codelisting.cwl</file>
+<file>completion/codemwe.cwl</file>
 <file>completion/codesection.cwl</file>
 <file>completion/coelacanth.cwl</file>
 <file>completion/coffeestains.cwl</file>
@@ -1319,6 +1320,7 @@
 <file>completion/doclicense.cwl</file>
 <file>completion/docmfp.cwl</file>
 <file>completion/docmute.cwl</file>
+<file>completion/docref.cwl</file>
 <file>completion/docshots.cwl</file>
 <file>completion/doctools.cwl</file>
 <file>completion/dogma.cwl</file>
@@ -4164,6 +4166,7 @@
 <file>completion/tkz-euclide.cwl</file>
 <file>completion/tkzexample.cwl</file>
 <file>completion/tkz-fct.cwl</file>
+<file>completion/tkz-fn.cwl</file>
 <file>completion/tkz-graph.cwl</file>
 <file>completion/tkz-kiviat.cwl</file>
 <file>completion/tkz-linknodes.cwl</file>
