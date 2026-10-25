@@ -1,7 +1,7 @@
 # orientation package
-# Matthew Bertucci 2/23/2022 for v1.0
+# Matthew Bertucci 2026/10/23 for v2.0
 
-#include:everypage
+#include:iftex
 
 \setportrait
 \setlandscape

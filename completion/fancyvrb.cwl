@@ -2,7 +2,7 @@
 # neeraavi 12 Apr 2007
 # muzimuzhi 15 Mar 2020, fancyvrb v3.5
 # muzimuzhi 25 Mar 2020
-# Matthew Bertucci 12 Aug 2022 for v4.5
+# Matthew Bertucci 21 Oct 2026 for v4.8
 
 #include:keyval
 
@@ -109,6 +109,7 @@ rulecolor=%<color cmd%>
 fillcolor=%<color cmd%>
 label=%<label text%>
 labelposition=#none,topline,bottomline,all
+numberstyle=%<commands%>
 numbers=#none,left,right
 numbersep=##L
 firstnumber=%<auto|last|<integer>%>

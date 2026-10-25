@@ -1,8 +1,7 @@
 # tkz-tab package
-# Matthew Bertucci 9/17/2021 for v2.12c
+# Matthew Bertucci 2026/10/22 for v2.13c
 
 #include:ifthen
-#include:xkeyval
 #include:tikz
 #include:tikzlibrarypatterns
 

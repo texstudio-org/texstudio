@@ -1,7 +1,9 @@
 # tkzexample package
-# Matthew Bertucci 2022/07/16 for v1.45c
+# Matthew Bertucci 2026/10/21 for v1.51
 
 #include:calc
+#include:xcolor
+#include:pgfkeys
 #include:mdframed
 #include:fancyvrb
 
@@ -20,7 +22,6 @@ code only
 width=##L
 code=#%color
 graphic=#%color
-overhang
 num
 numcolor=#%color
 numbkgcolor=#%color
@@ -37,6 +38,7 @@ inner top margin=##L
 inner bottom margin=##L
 line frame width=##L
 frame code=#%color
+break code=#auto,fill,always,never
 frame tex=#%color
 above skip=##L
 below skip=##L

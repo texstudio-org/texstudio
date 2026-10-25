@@ -457,6 +457,7 @@
 <file>completion/bookmark.cwl</file>
 <file>completion/book-of-common-prayer.cwl</file>
 <file>completion/booktabs.cwl</file>
+<file>completion/boolalg.cwl</file>
 <file>completion/boolexpr.cwl</file>
 <file>completion/BOONDOX-cal.cwl</file>
 <file>completion/BOONDOX-calo.cwl</file>
@@ -1676,6 +1677,7 @@
 <file>completion/fnspe.cwl</file>
 <file>completion/fnumprint.cwl</file>
 <file>completion/foekfont.cwl</file>
+<file>completion/folarrow.cwl</file>
 <file>completion/foliono.cwl</file>
 <file>completion/fonetika.cwl</file>
 <file>completion/fontawesome5.cwl</file>
@@ -1699,6 +1701,7 @@
 <file>completion/footnotebackref.cwl</file>
 <file>completion/footnote.cwl</file>
 <file>completion/footnotehyper.cwl</file>
+<file>completion/footnotenosplit.cwl</file>
 <file>completion/footnoterange.cwl</file>
 <file>completion/forarray.cwl</file>
 <file>completion/foreign.cwl</file>
@@ -1746,6 +1749,7 @@
 <file>completion/futurans.cwl</file>
 <file>completion/fvextra.cwl</file>
 <file>completion/fwlw.cwl</file>
+<file>completion/fxpicture.cwl</file>
 <file>completion/galois.cwl</file>
 <file>completion/gamebook.cwl</file>
 <file>completion/gamebooklib.cwl</file>
@@ -2349,6 +2353,7 @@
 <file>completion/luacas.cwl</file>
 <file>completion/luacensor.cwl</file>
 <file>completion/lua-check-hyphen.cwl</file>
+<file>completion/lua-font-config.cwl</file>
 <file>completion/lua-list-hyphen.cwl</file>
 <file>completion/luacode.cwl</file>
 <file>completion/luacolor.cwl</file>
@@ -3620,6 +3625,7 @@
 <file>completion/spacekern.cwl</file>
 <file>completion/spacingtricks.cwl</file>
 <file>completion/spalign.cwl</file>
+<file>completion/spanish-mathml-intent.cwl</file>
 <file>completion/sparklines.cwl</file>
 <file>completion/spark-otf.cwl</file>
 <file>completion/spbmark.cwl</file>

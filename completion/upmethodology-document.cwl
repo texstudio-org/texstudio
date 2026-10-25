@@ -1,5 +1,5 @@
 # upmethodology-document package
-# Matthew Bertucci 2022/04/21 for release 2022/02/10
+# Matthew Bertucci 2026/10/23 for release 2026/04/10
 
 #include:upmethodology-p-common
 #include:babel
@@ -81,6 +81,7 @@ english
 \setisbn{ISBN}
 \setissn{ISSN}
 \setdoi{DOI}
+watermarkcolor#B
 
 # from english option of babel
 \captionsenglish#*

@@ -1,5 +1,5 @@
 # scrlayer package
-# Matthew Bertucci 2023/07/08 for v3.41
+# Matthew Bertucci 2026/10/19 for v3.49.3
 
 #include:scrkbase
 #include:scrlfile
@@ -187,9 +187,3 @@ onforeground=%<code%>
 \toplevelpagestylefalse#*
 \BeforeSelectAnyPageStyle{code}#*
 \AfterSelectAnyPageStyle{code}#*
-
-# deprecated
-\scrlayerAddToInterface#S
-\scrlayerAddCsToInterface#S
-\scrlayerInitInterface#S
-\scrlayerOnAutoRemoveInterface#S

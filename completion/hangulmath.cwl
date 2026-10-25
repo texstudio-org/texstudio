@@ -1,5 +1,5 @@
 # hangulmath package
-# Matthew Bertucci 2026/10/13 for v0.5
+# Matthew Bertucci 2026/10/16 for v0.7
 
 #include:iftex
 #include:fontspec
@@ -21,6 +21,8 @@ sidebearing=%<em%>
 \hangulsum{symbol}#m
 \hangulint{symbol}#m
 \hangullim{symbol}#m
+
+\hangulsym{name}#m
 
 \aeh#m
 \ah#m
