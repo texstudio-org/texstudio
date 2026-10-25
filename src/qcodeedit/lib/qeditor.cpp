@@ -1462,7 +1462,7 @@ void QEditor::gotoLine()
 		// makes sense hiding this one if present...
 		m->sendPanelCommand("Search", "hide");
 		
-		m->sendPanelCommand("Goto", "show");
+		m->sendPanelCommand("Goto", "display");
 	} else {
 		QGotoLineDialog dlg(this);
 		

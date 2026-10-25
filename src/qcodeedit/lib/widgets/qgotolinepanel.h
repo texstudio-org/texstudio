@@ -42,7 +42,7 @@ class QCE_EXPORT QGotoLinePanel : public QPanel, private Ui::GotoLine
 		virtual QString type() const;
 		
 	public slots:
-		
+        void display();
 		
 	protected:
 		virtual bool forward(QMouseEvent *e);

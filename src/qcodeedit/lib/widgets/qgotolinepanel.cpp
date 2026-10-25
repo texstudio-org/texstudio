@@ -74,6 +74,14 @@ QString QGotoLinePanel::type() const
 	return "Goto";
 }
 
+void QGotoLinePanel::display()
+{
+    show();
+
+    spLine->setFocus();
+    spLine->selectAll();
+}
+
 /*!
 	\brief 
 */
