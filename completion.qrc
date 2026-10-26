@@ -2949,6 +2949,7 @@
 <file>completion/pgffor.cwl</file>
 <file>completion/pgffor-ext.cwl</file>
 <file>completion/pgfgantt.cwl</file>
+<file>completion/pgf-go.cwl</file>
 <file>completion/pgf-interference.cwl</file>
 <file>completion/pgfkeys.cwl</file>
 <file>completion/pgfkeysearch.cwl</file>
@@ -3560,6 +3561,7 @@
 <file>completion/showdim.cwl</file>
 <file>completion/showexpl.cwl</file>
 <file>completion/showframe.cwl</file>
+<file>completion/showhanmengrid.cwl</file>
 <file>completion/showhyphenation.cwl</file>
 <file>completion/showhyphens.cwl</file>
 <file>completion/showkerning.cwl</file>
@@ -3790,6 +3792,7 @@
 <file>completion/TangramTikz.cwl</file>
 <file>completion/tascmac.cwl</file>
 <file>completion/tasks.cwl</file>
+<file>completion/tcbpagefootnote.cwl</file>
 <file>completion/tcolorbox.cwl</file>
 <file>completion/tcolorboxlibraryall.cwl</file>
 <file>completion/tcolorboxlibrarybreakable.cwl</file>
