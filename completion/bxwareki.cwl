@@ -1,6 +1,9 @@
 # bxwareki package
 # Matthew Bertucci 2026/06/08 for v0.8
 
+#include:ltxcmds
+#include:infwarerr
+
 \warekisetdate{year}{month}{day}
 \warekisettoday
 \thewarekiyear#*
