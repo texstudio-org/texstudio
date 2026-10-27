@@ -1,5 +1,11 @@
 # pmboxdraw package
-# Matthew Bertucci 8/6/2021
+# Matthew Bertucci 2026/10/27 for v1.4
+
+#include:ltxcmds
+#include:kvsetkeys
+#include:kvdefinekeys
+#include:infwarerr
+#include:kvoptions
 
 \pmboxdrawbox{template}
 \pmboxdrawrulewidth{dimen%l}
@@ -54,3 +60,7 @@
 \textSFxxxviii
 \textshade
 \textupblock
+
+# not documented
+\pmboxdrawsetup{options%keyvals}#S
+\pmboxdrawUniRobust{arg}#S
