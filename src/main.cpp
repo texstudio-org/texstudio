@@ -219,7 +219,10 @@ int main(int argc, char **argv)
 			AllowSetForegroundWindowFunc asfw = (AllowSetForegroundWindowFunc) GetProcAddress(GetModuleHandleA("user32.dll"), "AllowSetForegroundWindow");
 			if (asfw) asfw(/*ASFW_ANY*/(DWORD)(-1));
 #endif
-			a.sendMessage(cmdLine.join("#!#"));
+			QStringList message = cmdLine;
+			const QByteArray activationToken = qgetenv("XDG_ACTIVATION_TOKEN");
+			if (!activationToken.isEmpty()) message.prepend("--xdg-activation-token=" + QString::fromLocal8Bit(activationToken));
+			a.sendMessage(message.join("#!#"));
 			return 0;
 		}
 	}

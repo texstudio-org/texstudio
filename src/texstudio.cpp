@@ -8230,9 +8230,15 @@ void Texstudio::generateAdditionalTranslations()
 
 void Texstudio::onOtherInstanceMessage(const QString &msg)   // Added slot for messages to the single instance
 {
+	QStringList args = msg.split("#!#");
+	const QString tokenPrefix = "--xdg-activation-token=";
+	if (!args.isEmpty() && args.first().startsWith(tokenPrefix)) {
+		// token handed over by the launcher of the second instance (Wayland focus stealing prevention)
+		qputenv("XDG_ACTIVATION_TOKEN", args.takeFirst().mid(tokenPrefix.length()).toLocal8Bit());
+	}
 	show();
 	activateWindow();
-	executeCommandLine(msg.split("#!#"), false);
+	executeCommandLine(args, false);
 }
 
 void Texstudio::setAutomaticRootDetection()
