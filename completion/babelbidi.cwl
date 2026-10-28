@@ -1,5 +1,5 @@
 # babelbidi package
-# Matthew Bertucci 2026/10/14 for v0.3.0
+# Matthew Bertucci 2026/10/26 for v0.4.0
 
 #include:iftex
 #include:xkeyval
@@ -21,6 +21,10 @@ rtl=%<language%>
 \end{LTR}
 \begin{latin}
 \end{latin}
+\begin{latinverbatim}#V
+\end{latinverbatim}
+\begin{latinverbatim*}#V
+\end{latinverbatim*}
 
 \fontfallback{language}{list of languages}
 \LRE{text}
@@ -29,6 +33,10 @@ rtl=%<language%>
 \RL{text}#*
 \latintoday
 \latinttfamily
+\latinverb|%<code%>|
+\latinverb{verbatimSymbol}#S
+\latinverb*|%<code%>|
+\latinverb*{verbatimSymbol}#S
 \lr{text}
 \rl{text}
 \setparLTR#*

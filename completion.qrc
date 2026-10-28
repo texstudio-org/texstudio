@@ -76,6 +76,7 @@
 <file>completion/algorithm.cwl</file>
 <file>completion/algorithmic.cwl</file>
 <file>completion/algorithmicx.cwl</file>
+<file>completion/algorithmlite.cwl</file>
 <file>completion/algpascal.cwl</file>
 <file>completion/algpseudocode.cwl</file>
 <file>completion/algpseudocodex.cwl</file>
