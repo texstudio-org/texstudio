@@ -8228,16 +8228,39 @@ void Texstudio::generateAdditionalTranslations()
     qDebug()<<"path:"<<fi.absoluteFilePath();
 }
 
+#ifdef TXS_WAYLAND_ACTIVATION
+#include <QtWaylandClient/private/qwaylandwindow_p.h>
+#include <QtWaylandClient/private/qwaylanddisplay_p.h>
+#include <QtWaylandClient/private/qwaylandxdgactivationv1_p.h>
+
+// raise the window using an xdg-activation-v1 token handed over by the launcher
+static bool activateWithXdgToken(QWindow *window, const QString &token)
+{
+	if (!window || token.isEmpty()) return false;
+	auto *waylandWindow = dynamic_cast<QtWaylandClient::QWaylandWindow *>(window->handle());
+	if (!waylandWindow || !waylandWindow->display() || !waylandWindow->display()->xdgActivation()) return false;
+	waylandWindow->display()->xdgActivation()->activate(token, waylandWindow->wlSurface());
+	return true;
+}
+#endif
+
 void Texstudio::onOtherInstanceMessage(const QString &msg)   // Added slot for messages to the single instance
 {
 	QStringList args = msg.split("#!#");
 	const QString tokenPrefix = "--xdg-activation-token=";
+	QString activationToken;
 	if (!args.isEmpty() && args.first().startsWith(tokenPrefix)) {
 		// token handed over by the launcher of the second instance (Wayland focus stealing prevention)
-		qputenv("XDG_ACTIVATION_TOKEN", args.takeFirst().mid(tokenPrefix.length()).toLocal8Bit());
+		activationToken = args.takeFirst().mid(tokenPrefix.length());
+		qputenv("XDG_ACTIVATION_TOKEN", activationToken.toLocal8Bit());
 	}
 	show();
 	activateWindow();
+#ifdef TXS_WAYLAND_ACTIVATION
+	if (!activationToken.isEmpty() && activateWithXdgToken(windowHandle(), activationToken)) {
+		qunsetenv("XDG_ACTIVATION_TOKEN"); // tokens are single use
+	}
+#endif
 	executeCommandLine(args, false);
 }
 
