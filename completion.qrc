@@ -1883,6 +1883,7 @@
 <file>completion/guitarchordschemes.cwl</file>
 <file>completion/guitar.cwl</file>
 <file>completion/guit.cwl</file>
+<file>completion/gyoudori.cwl</file>
 <file>completion/hackthefootline.cwl</file>
 <file>completion/hadith.cwl</file>
 <file>completion/halloweenmath.cwl</file>
@@ -2474,6 +2475,7 @@
 <file>completion/marginnote.cwl</file>
 <file>completion/markdown.cwl</file>
 <file>completion/marvosym.cwl</file>
+<file>completion/matchedsplit.cwl</file>
 <file>completion/mathabx.cwl</file>
 <file>completion/mathalfa.cwl</file>
 <file>completion/mathalpha.cwl</file>
@@ -2832,6 +2834,7 @@
 <file>completion/opacity-pro.cwl</file>
 <file>completion/opcit.cwl</file>
 <file>completion/opencolor.cwl</file>
+<file>completion/openglyph.cwl</file>
 <file>completion/opensans.cwl</file>
 <file>completion/oplotsymbl.cwl</file>
 <file>completion/optex.cwl</file>
@@ -3700,6 +3703,7 @@
 <file>completion/styledcmd.cwl</file>
 <file>completion/suanpan-l3.cwl</file>
 <file>completion/subcaption.cwl</file>
+<file>completion/subcaptionlite.cwl</file>
 <file>completion/subdepth.cwl</file>
 <file>completion/subdocs.cwl</file>
 <file>completion/subeqnarray.cwl</file>
@@ -3858,6 +3862,7 @@
 <file>completion/textcmds.cwl</file>
 <file>completion/textcomp.cwl</file>
 <file>completion/textcsc.cwl</file>
+<file>completion/textdate.cwl</file>
 <file>completion/textfit.cwl</file>
 <file>completion/textfrac.cwl</file>
 <file>completion/textglos.cwl</file>
