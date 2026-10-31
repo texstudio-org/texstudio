@@ -1669,6 +1669,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		float version = QSysInfo::productVersion().toFloat(&ok);
 		if (productType!="windows" || !ok || version < 11.0) {
 			availableStyles.removeAt(i);
+		} else {
+			availableStyles.insert(i + 1, "windows11 (highlight)");
 		}
 	}
 	confDlg->ui.comboBoxInterfaceStyle->addItems(availableStyles);
@@ -2926,7 +2928,18 @@ void ConfigManager::setInterfaceStyle()
         return;
     }
     if(!handled){
+        // windows11 variant with highlighted active tabs and dock titles
+        const bool win11Highlight = (newStyle=="windows11 (highlight)");
+        if (win11Highlight) newStyle = "windows11";
         if (!QStyleFactory::keys().contains(newStyle)) newStyle = defaultStyleName;
+        if (win11Highlight) {
+            qApp->setStyleSheet(
+                "QTabBar::tab:selected { background: palette(highlight); color: palette(highlighted-text); font-weight: bold; }"
+                "QTabBar::tab:!selected { background: palette(window); color: palette(window-text); }"
+                "QDockWidget::title { background: palette(highlight); color: palette(highlighted-text); padding: 3px; }");
+        } else {
+            qApp->setStyleSheet("");
+        }
 
         if (modernStyle) {
             ManhattanStyle *style = new ManhattanStyle(newStyle);
