@@ -527,7 +527,7 @@ jobs:
   macosxM1:
     name: Mac OS X (M1)
     if: true
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
       - name: Checkout
