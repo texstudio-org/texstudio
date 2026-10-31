@@ -1,5 +1,5 @@
 # tkz-doc class
-# Matthew Bertucci 2022/07/16 for v1.45c
+# Matthew Bertucci 2026/10/24 for v1.46c
 
 #include:class-scrartcl
 #include:tikz
@@ -24,6 +24,10 @@
 cadre
 #endkeyvals
 
+#ifOption:cadre
+#include:pgfornament
+#endif
+
 \begin{NewEnvBox}{envname}
 \end{NewEnvBox}
 \begin{NewMacroBox}{csname}{suffix}
@@ -41,19 +45,19 @@ cadre
 \filedate#S
 \fn{file}
 \Iaccent{csname}{accents}
-\Iarg{csname}{args}
 \IargEnv{envname}{args}
-\IargName{csname}{args}
 \IargNameEnv{envname}{args}
+\IargName{csname}{args}
+\Iarg{csname}{args}
 \Ienv{envname}
 \Ilib{library}
 \Imacro{csname}
-\Iopt{csname}{opts}
 \IoptEnv{envname}{opts}
-\IoptName{csname}{opts}
 \IoptNameEnv{envname}{opts}
-\Istyle{csname}{styles}
+\IoptName{csname}{opts}
+\Iopt{csname}{opts}
 \IstyleEnv{csname}{styles}
+\Istyle{csname}{styles}
 \LATEX
 \marg{arg}
 \meta{arg}
@@ -89,6 +93,7 @@ cadre
 \titleinframe#*
 \tkz
 \tkzAttention{text}{skip}{color}
+\tkzauthorofpack
 \tkzBomb
 \tkzbox#*
 \tkzcname{csname}
@@ -97,22 +102,29 @@ cadre
 \tkzHandBomb
 \tkzhname{csname}
 \tkzimp{text}
-\tkzname{text}
+\tkzmailofauthor
+\tkznamecollection
 \tkzNameDist{distribution}
 \tkzNameEnv{envname}
 \tkzNameMacro{cmd}
+\tkznameofpack
 \tkzNamePack{package}
 \tkzNameSys{os}
+\tkzname{text}
 \tkzSetUpColors[keyvals]
 \tkzsubf{arg1}{arg2}
 \tkzTitleFrame{text}
 \tkzTwoBomb
+\tkzurlauthor
+\tkzurlauthorcom
+\tkzversionofdoc
+\tkzversionofpack
 \TMline{csname}{text1}{text2}
 \TOenvline{opts}{text1}{text2}
 \TOline{args}{text1}{text2}
-\var{arg}
 \vara{arg}
 \varp{arg}
+\var{arg}
 
 #keyvals:\tkzSetUpColors
 background=#%color

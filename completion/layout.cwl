@@ -1,6 +1,6 @@
 # layout package
 # neeraavi 20 Mar 2007
-# Matthew Bertucci 11/2/2021 for v1.2e
+# Matthew Bertucci 2026/10/30 for v1.2f
 
 #keyvals:\usepackage/layout#c
 dutch
@@ -30,6 +30,7 @@ reals
 \MarginNotestext#*
 \oneinchtext#*
 \notshown#*
+\DiagramAlttext#*
 \LayOuttype{arg}#*
 \LayOutbs#*
 \ConvertToCount{arg1}{arg2}#*

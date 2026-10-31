@@ -1,7 +1,7 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
-# Matthew Bertucci 2026/06/01 release
+# Matthew Bertucci 2026/11/01 release
 
 #include:expl3-commands
 #include:tagpdf
@@ -126,11 +126,13 @@
 \DeclareRobustCommand{cmd}[args]{def}#*d
 \DeclareRobustCommand{cmd}{def}#*d
 \DeclareSizeFunction{name}{code}#*
+\DeclareStrongEmphSequence{font cmd list}#*
 \DeclareSymbolFont{sym-font}{encoding}{family}{series}{shape}#*
 \DeclareSymbolFontAlphabet{math-alph%cmd}{sym-font}#*d
 \DeclareTemplateCode{type}{template}{no. of args}{key bindings}{code}#*
 \DeclareTemplateCopy{type}{template2}{template1}#*
 \DeclareTemplateInterface{type}{template}{no. of args}{key list}#*
+\DeclareTemplateInterfaceEquivalents{type}{template}{deprecation date}{key list}#*
 \DeclareTextAccent{cmd}{encoding}{slot}#*d
 \DeclareTextAccentDefault{cmd}{encoding}#*
 \DeclareTextCommand{cmd}{encoding}[args][default]{definition}#*d
@@ -363,6 +365,7 @@
 \ResumeTagging{string}#*
 \ReverseBoolean#*
 \SaveLastSkip#*
+\SetCurrentKnownTemplateKeys{keyvals}#*
 \SetDefaultHookLabel{default label}#*
 \SetKeys[family]{keyvals}#*
 \SetKeys{keyvals}#*
@@ -819,6 +822,8 @@ check-tagging-status
 \showoverfull#*
 \sldefault#*
 \sscdefault#*
+\strongemforce#*
+\strongemreset#*
 \swdefault#*
 \symletters#*
 \symoperators#*

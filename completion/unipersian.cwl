@@ -1,34 +1,36 @@
 # unipersian package
-# Matthew Bertucci 2026/09/11 for v0.1.0
+# Matthew Bertucci 2026/10/29 for v0.3.0
 
 #include:iftex
 #include:xkeyval
-#include:babel
+#include:babelbidi
 #include:fontspec
 
 #keyvals:\usepackage/unipersian#c
-bidi=
+main=%<language%>
+englishprovide=
+persianprovide=
+encodings={%<list of encodings%>}
+# options passed to babelbidi
+bidi=#basic,bidi-r,default
 layout=
+fontcache#true,false
+code=%<language%>
+latin=%<language%>
+ltr=%<language%>
+rtl=%<language%>
 #endkeyvals
 
-\settextfont{font}
-\settextfont[font features%keyvals]{font}
-\setlatintextfont{font}
-\setlatintextfont[font features%keyvals]{font}
+\setpersiantextfont{font}
+\setpersiantextfont[font features%keyvals]{font}
 \setpersiansansfont{font}
 \setpersiansansfont[font features%keyvals]{font}
 \setpersianmonofont{font}
 \setpersianmonofont[font features%keyvals]{font}
-\setlatinsansfont{font}
-\setlatinsansfont[font features%keyvals]{font}
-\setlatinmonofont{font}
-\setlatinmonofont[font features%keyvals]{font}
 \defpersianfont{command}{font}#d
 \defpersianfont{command}[font features%keyvals]{font}#d
-\deflatinfont{command}{font}#d
-\deflatinfont{command}[font features%keyvals]{font}#d
 
-#keyvals:\settextfont,\setlatintextfont,\setpersiansansfont,\setpersianmonofont,\setlatinsansfont,\setlatinmonofont,\defpersianfont,\deflatinfont
+#keyvals:\setpersiantextfont,\setpersiansansfont,\setpersianmonofont,\defpersianfont
 Alternate=%<feature%>
 Annotation=
 AutoFakeBold=%<number%>
@@ -105,22 +107,8 @@ Renderer=#Node,Base,Harfbuzz,OpenType,AAT,Graphite
 %fontspecfeature
 #endkeyvals
 
-\begin{RTL}
-\end{RTL}
-\begin{LTR}
-\end{LTR}
-\begin{latin}
-\end{latin}
 \begin{persian}
 \end{persian}
-\begin{LTRitems}#*
-\end{LTRitems}#*
-\begin{RTLitems}#*
-\end{RTLitems}#*
-\begin{LTRbibitems}#*
-\end{LTRbibitems}#*
-\begin{RTLbibitems}#*
-\end{RTLbibitems}#*
 
 \Abjadnumeral{number}
 \abjadnumeral{number}
@@ -128,28 +116,11 @@ Renderer=#Node,Base,Harfbuzz,OpenType,AAT,Graphite
 \abjad{counter}
 \adadinumeral{number}
 \adadi{counter}
-\beginL#*
-\beginR#*
-\endL#*
-\endR#*
 \harfinumeral{number}
 \harfi{counter}
 \LatinAlphs#*
-\latintoday
-\latinttdefault#*
-\latinttfamily
-\LRE{text}
-\lr{text}
 \PersianAlphs#*
-\persianmainlanguage#*
 \persianttdefault#*
 \persianttfamily
-\resetlatinfont#*
-\RLE{text}
-\rl{text}
-\setparLTR#*
-\setparRTL#*
 \tartibinumeral{number}
 \tartibi{counter}
-\textlatintt{text}
-\textpersiantt{text}
