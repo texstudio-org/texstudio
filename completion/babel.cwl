@@ -1,6 +1,7 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2026/10/16 for v26.14
+# tbraun 4.11.2008
+# Matthew Bertucci 2026/10/29 for v26.15
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -51,7 +52,11 @@ nofiles
 #keyvals:\foreignlanguage,\begin{otherlanguage*},\otherlanguage*
 date
 captions
+#endkeyvals
+
+#keyvals:\foreignlanguage
 actualtext=%<text%>
+phoneme=%<phoneme%>
 #endkeyvals
 
 \babeltags{tag1=lang1,tag2=lang2,...}

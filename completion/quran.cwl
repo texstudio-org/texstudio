@@ -21,6 +21,7 @@ transfa
 transfr
 trans=#lt,de,en,fa,fr
 wordwise
+warsh
 #endkeyvals
 
 \quransurah

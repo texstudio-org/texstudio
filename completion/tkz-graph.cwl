@@ -1,113 +1,175 @@
 # tkz-graph package
-# Matthew Bertucci 9/17/2021 for v2.0
+# Matthew Bertucci 2026/10/24 for v2.20c
 
+#include:ifthen
 #include:tikz
 
-\Vertex{name}#/tikzpicture
-\Vertex[options%keyvals]{name}#/tikzpicture
-\Vertices{type}{vertex1,vertex2,...}#/tikzpicture
-\Vertices[options%keyvals]{type}{vertex1,vertex2,...}#/tikzpicture
-
-#keyvals:\Vertex,\Vertices
-x=
-y=
-a=
-d=
-Node
-position=
-dir=
-NoLabel
-LabelOut
-L=##l
-Math
-Ldist=##L
-Lpos=
+#keyvals:\usepackage/tkz-graph#c
+noshortnames
 #endkeyvals
 
-\EA(vertex1){vertex2}#/tikzpicture
-\EA[options%keyvals](vertex1){vertex2}#/tikzpicture
-\WE(vertex1){vertex2}#/tikzpicture
-\WE[options%keyvals](vertex1){vertex2}#/tikzpicture
-\NO(vertex1){vertex2}#/tikzpicture
-\NO[options%keyvals](vertex1){vertex2}#/tikzpicture
-\SO(vertex1){vertex2}#/tikzpicture
-\SO[options%keyvals](vertex1){vertex2}#/tikzpicture
-\NOEA(vertex1){vertex2}#/tikzpicture
-\NOEA[options%keyvals](vertex1){vertex2}#/tikzpicture
-\NOWE(vertex1){vertex2}#/tikzpicture
-\NOWE[options%keyvals](vertex1){vertex2}#/tikzpicture
-\SOEA(vertex1){vertex2}#/tikzpicture
-\SOEA[options%keyvals](vertex1){vertex2}#/tikzpicture
-\SOWE(vertex1){vertex2}#/tikzpicture
-\SOWE[options%keyvals](vertex1){vertex2}#/tikzpicture
+\Vertex{name}
+\Vertex[options%keyvals]{name}
+\Vertices{type}{vertex1,vertex2,...}
+\Vertices[options%keyvals]{type}{vertex1,vertex2,...}
 
-#keyvals:\EA,\WE,\NO,\SO,\NOEA,\NOWE,\SOEA,\SOWE
-x=
-y=
-a=
-d=
-Node
+\EA(vertex1){vertex2}
+\EA[options%keyvals](vertex1){vertex2}
+\WE(vertex1){vertex2}
+\WE[options%keyvals](vertex1){vertex2}
+\NO(vertex1){vertex2}
+\NO[options%keyvals](vertex1){vertex2}
+\SO(vertex1){vertex2}
+\SO[options%keyvals](vertex1){vertex2}
+\NOEA(vertex1){vertex2}
+\NOEA[options%keyvals](vertex1){vertex2}
+\NOWE(vertex1){vertex2}
+\NOWE[options%keyvals](vertex1){vertex2}
+\SOEA(vertex1){vertex2}
+\SOEA[options%keyvals](vertex1){vertex2}
+\SOWE(vertex1){vertex2}
+\SOWE[options%keyvals](vertex1){vertex2}
+
+#keyvals:\Vertex,\Vertices,\EA,\WE,\NO,\SO,\NOEA,\NOWE,\SOEA,\SOWE
+x=%<number%>
+y=%<number%>
+a=%<number%>
+d=%<number%>
+Node#true,false
 position=
+unit=%<number%>
 dir=
-NoLabel
-LabelOut
-L=
-Math
+style={%<TikZ keys%>}
+empty#true,false
+NoLabel#true,false
+LabelOut#true,false
+L=%<text%>
+Math#true,false
 Ldist=##L
-Lpos=
-unit=
+Lpos=%<degrees%>
 #endkeyvals
 
-\SetGraphUnit{number}#/tikzpicture
+#keyvals:\Vertices
+rotation=%<degrees%>
+clockwise#true,false
+#endkeyvals
 
-\SetVertexNoLabel#/tikzpicture
-\SetVertexMath#/tikzpicture
-\SetVertexLabel#/tikzpicture
-\SetVertexLabelOut#/tikzpicture
-\SetVertexLabelIn#/tikzpicture
+\SetGraphUnit{number}
 
-\Edge(vertex1)(vertex2)#/tikzpicture
-\Edge[options%keyvals](vertex1)(vertex2)#/tikzpicture
+\SetVertexNoLabel
+\SetVertexMath
+\SetVertexLabel
+\SetVertexLabelOut
+\SetVertexLabelIn
 
-#keyvals:\Edge
-local
+\Edge(vertex1)(vertex2)
+\Edge[options%keyvals](vertex1)(vertex2)
+\Edges(vertex1,vertex2,...)
+\Edges[options%keyvals](vertex1,vertex2,...)
+
+#keyvals:\Edge,\Edges
 color=#%color
 lw=##L
+double=#%color
+dd=##L
 label=##l
-labeltext=
+labeltext=#%color
 labelcolor=#%color
-labelstyle=
-style=
+labelstyle={%<TikZ keys%>}
+style={%<TikZ keys%>}
+local#true,false
+->
+<-
+<->
+-
+arrow={%<spec%>}
 #endkeyvals
 
-\Loop(vertex)#/tikzpicture
-\Loop[options%keyvals](vertex)#/tikzpicture
+\Loop(vertex)
+\Loop[options%keyvals](vertex)
+\grLoop(vertex)#*
+\grLoop[options%keyvals](vertex)#*
 
-#keyvals:\Loop
-color=#%color
-lw=##L
-label=##l
-labelstyle=
-style=
-#endkeyvals
-
-\Edges(vertex1,vertex2,...)#/tikzpicture
-\Edges[options%keyvals](vertex1,vertex2,...)#/tikzpicture
-
-#keyvals:\Loop
-color=#%color
-lw=##L
-label=##l
-labelstyle=
-style=
+#keyvals:\Loop,\grLoop
 dir=#EA,WE,NO,SO,NOEA,NOWE,SOEA,SOWE
-dist=##L
+color=#%color
+lw=##L
+label=##l
+labelstyle={%<TikZ keys%>}
+style={%<TikZ keys%>}
 #endkeyvals
 
-\GraphInit[options%keyvals]#/tikzpicture
+\GraphInit[options%keyvals]
+\GraphUnit#*
 
 #keyvals:\GraphInit
-vstyle=#Empty,Hasse,Simple,Classic,Normal,Shade,Dijkstra,Welsh,Art,Shade Art
+vstyle=#Empty,Hasse,Simple,Classic,Normal,Shade,Dijkstra,Welsh,Art,Shade Art,%tkzgraphstyle
+unit=%<number%>
+#endkeyvals
+
+\tkzDefGraphStyle{name%specialDef}{code}#s#%tkzgraphstyle
+
+\tkzSetUpGraph[options%keyvals]
+
+#keyvals:\tkzSetUpGraph
+vertex shape=%<shape%>
+vertex line width=##L
+vertex line=#%color
+vertex text=#%color
+vertex fill=#%color
+light fill=#%color
+dark fill=#%color
+ball color=#%color
+inner sep=##L
+outer sep=##L
+small size=##L
+medium size=##L
+big size=##L
+edge color=#%color
+edge width=##L
+edge fill=#%color
+art color=#%color
+double distance=##L
+label text=#%color
+label fill=#%color
+unit=%<number%>
+directed
+arrow tip=%<type%>
+#endkeyvals
+
+\tkzHighlightPath{list}
+\tkzHighlightPath[options%keyvals]{list}
+
+#keyvals:\tkzHighlightPath
+color=#%color
+lw=##L
+style={%<TikZ keys%>}
+cycle#true,false
+#endkeyvals
+
+\tkzAdjacencyMatrix#m
+\tkzAdjacencyMatrix[options%keyvals]#m
+
+#keyvals:\tkzAdjacencyMatrix
+directed#true,false
+order={%<list%>}
+#endkeyvals
+
+\tkzGraphFromMatrix{list of vertices}{matrix}
+\tkzGraphFromMatrix[options%keyvals]{list of vertices}{matrix}
+\grProbMatrix{list of states}{transition matrix}
+\grProbMatrix[options%keyvals]{list of states}{transition matrix}
+
+#keyvals:\tkzGraphFromMatrix,\grProbMatrix
+placed#true,false
+unit=%<number%>
+rotation=%<degrees%>
+clockwise#true,false
+directed#true,false
+weighted#true,false
+style={%<TikZ keys%>}
+bend=%<degrees%>
+loop distance=##L
 #endkeyvals
 
 \VertexInnerSep#*
@@ -130,71 +192,101 @@ vstyle=#Empty,Hasse,Simple,Classic,Normal,Shade,Dijkstra,Welsh,Art,Shade Art
 \EdgeDoubleDistance#*
 \EdgeLineWidth#*
 
-\SetVertexSimple#/tikzpicture
-\SetVertexSimple[options%keyvals]#/tikzpicture
+\SetVertexSimple[options%keyvals]
 
 #keyvals:\SetVertexSimple
-Shape=
+Shape=%<shape%>
 MinSize=##L
 LineWidth=##L
 LineColor=#%color
 FillColor=#%color
+InnerSep=##L
+OuterSep=##L
 #endkeyvals
 
-\SetVertexNormal[options%keyvals]#/tikzpicture
+\SetVertexNormal[options%keyvals]
 
 #keyvals:\SetVertexNormal
-color=#%color
-label=##l
-labelstyle=
-labeltext=#%color
-labelcolor=#%color
-style=
-lw=##L
-Shape=
+Shape=%<shape%>
+MinSize=##L
 LineWidth=##L
+LineColor=#%color
 FillColor=#%color
+TextColor=#%color
+InnerSep=##L
+OuterSep=##L
 #endkeyvals
 
-\SetUpVertex[options%keyvals]#/tikzpicture
+\SetVertexShade[options%keyvals]
+\SetVertexArt[options%keyvals]
+
+#keyvals:\SetVertexShade,\SetVertexArt
+Shape=%<shape%>
+MinSize=##L
+LineWidth=##L
+LineColor=#%color
+BallColor=#%color
+InnerSep=##L
+OuterSep=##L
+#endkeyvals
+
+\SetUpVertex[options%keyvals]
 
 #keyvals:\SetUpVertex
-Lpos=
+Lpos=%<degrees%>
 Ldist=##L
-style=
-NoLabel
-LabelOut
+Style={%<TikZ keys%>}
+NoLabel#true,false
+LabelOut#true,false
+Math#true,false
+Unit=%<number%>
+MinSize=##L
+LineWidth=##L
+LineColor=#%color
+FillColor=#%color
+TextColor=#%color
+InnerSep=##L
+OuterSep=##L
 #endkeyvals
 
-\SetUpEdge[options%keyvals]#/tikzpicture
+\SetUpEdge[options%keyvals]
 
 #keyvals:\SetUpEdge
 color=#%color
-label=##l
-labelstyle=
+lw=##L
+label=%<text%>
 labeltext=#%color
 labelcolor=#%color
-style=
-lw=##L
+labelstyle={%<TikZ keys%>}
+style={%<TikZ keys%>}
 #endkeyvals
 
-\SetGraphShadeColor{vertexcolor}{color1}{color2}#/tikzpicture
-\SetGraphArtColor{vertexcolor}{edgecolor}#/tikzpicture
-\SetGraphColor{vertexcolor}{edgecolor}#/tikzpicture
+\SetGraphShadeColor{ball color}{edge color}{double color}
+\SetGraphArtColor{ball color}{edge color}
+\SetGraphColor{fill color}{edge color}
 
-\grProb{left-vertex}{right-vertex}{toplabel}{bottomlabel}{leftlabel}{rightlabel}#/tikzpicture
-\grProb[options%keyvals]{left-vertex}{right-vertex}{toplabel}{bottomlabel}{leftlabel}{rightlabel}#/tikzpicture
-\grProbThree{right-vertex}{up-vertex}{down-vertex}{rr/ru/rd}{uu/ud/ur}{dd/dr/du}#/tikzpicture
-\grProbThree[options%keyvals]{right-vertex}{up-vertex}{down-vertex}{rr/ru/rd}{uu/ud/ur}{dd/dr/du}#/tikzpicture
+\SetVertexLabeledSmall
+\SetVertexNotLabeledSmall
+\SetVertexForPresentation{ball color}{edge color}{double color}
+
+\tkzSetUpColors[options%keyvals]
+
+#keyvals:\tkzSetUpColors
+background=#%color
+text=#%color
+#endkeyvals
+
+\grProb{left-vertex}{right-vertex}{toplabel%formula}{bottomlabel%formula}{leftlabel%formula}{rightlabel%formula}
+\grProb[options%keyvals]{left-vertex}{right-vertex}{toplabel%formula}{bottomlabel%formula}{leftlabel%formula}{rightlabel%formula}
+\grProbThree{right-vertex}{up-vertex}{down-vertex}{rr/ru/rd}{uu/ud/ur}{dd/dr/du}
+\grProbThree[options%keyvals]{right-vertex}{up-vertex}{down-vertex}{rr/ru/rd}{uu/ud/ur}{dd/dr/du}
 
 #keyvals:\grProb,\grProbThree
 unit=##L
-LposA=
-LposB=
+LposA=%<degrees%>
+LposB=%<degrees%>
 Ldist=##L
 LoopDist=##L
 #endkeyvals
 
-\AddVertexColor{color}{vertex1,vertex2,...}#/tikzpicture
-
-\SetVertexArt#*/tikzpicture
+\AddVertexColor{color}{vertex1,vertex2,...}

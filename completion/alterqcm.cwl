@@ -1,9 +1,8 @@
 # alterqcm package
-# Matthew Bertucci 9/17/2021 for v4.42c
+# Matthew Bertucci 2026/10/29 for v5.00c
 
-#include:xkeyval
+#include:pgfkeys
 #include:calc
-#include:ifthen
 #include:array
 #include:multirow
 #include:pifont
@@ -23,19 +22,19 @@ unknown
 \begin{alterqcm}[options%keyvals]
 \end{alterqcm}
 
-#keyvals:\begin{alterqcm}
+#keyvals:\begin{alterqcm},\AQset
 lq=##L
 pq=##L
-bonus=
-malus=
-numbreak=
-points=
-symb=
-corsymb=
-numstyle=
-propstyle=
+bonus=%<number%>
+malus=%<number%>
+numbreak=%<number%>
+points=%<number%>
+symb=%<symbol%>
+corsymb=%<symbol%>
+numstyle=%<command%>
+propstyle=%<command%>
 size=%<fontsize cmd%>
-afterpreskip=
+afterpreskip=##L
 long#true,false
 sep#true,false
 pre#true,false
@@ -48,7 +47,7 @@ correction#true,false
 alea#true,false
 tone=%<text%>
 ttwo=%<text%>
-language=#english,german,greek,italian,russian,chinese,unknown
+language=#french,english,german,greek,italian,russian,chinese,unknown
 transparent
 #endkeyvals
 
@@ -57,7 +56,7 @@ transparent
 
 #keyvals:\AQquestion
 pq=##L
-br=
+br={%<list%>}
 #endkeyvals
 
 \AQmessage{text}#/alterqcm
@@ -70,26 +69,24 @@ br=
 \AQannexe[options%keyvals]{start}{end}{number of props}
 
 #keyvals:\AQannexe
-VF
-propstyle=
+VF#true,false
+propstyle=%<command%>
 #endkeyvals
 
-\AQpoints{number}
-
+\altersquare
 \dingsquare
 \dingchecksquare
 
+\alterblacksquare#*
+\aqdepthadvance#*
+\aqfoottext#*
+\aqheightadvance#*
 \aqlabelforquest#*
 \aqlabelforrep#*
-\aqfoottext#*
-\nextrandom#*
-\setrannum{register}{min}{max}#*
-\points{points}#*
-\aqheightadvance#*
-\aqdepthadvance#*
+\AQpoints{number}#*
 \aqpretxt#*
 \aqpretxtVF#*
-\aqtextfortrue#*
+\AQset{options%keyvals}#*
 \aqtextforfalse#*
-\addtotoks{arg1}\to{arg2}#*
-\to{arg}#S
+\aqtextfortrue#*
+\points{points}#S

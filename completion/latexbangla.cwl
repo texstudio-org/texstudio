@@ -1,18 +1,26 @@
 # latexbangla package
-# Matthew Bertucci 2026/10/23 for v1.0
+# Matthew Bertucci 2026/10/26 for v2.0
 
 #include:xetex
 #include:iftex
 #include:fontspec
 #include:polyglossia
 #include:amstext
-#include:ucharclasses
 
 #keyvals:\usepackage/latexbangla#c
+language=#bangla,assamese
 banglamainfont=%<font name%>
 banglattfont=%<font name%>
 changecounternumbering#true,false
 #endkeyvals
+
+#ifOption:language=assamese
+#include:bengalidigits
+\assamesenumber{arg}#S
+\assamesenumerals{arg1}{arg2}#S
+\captionsassamese#S
+\dateassamese#S
+#endif
 
 \setbanglamainfont{font}
 \setbanglamainfont{font}[font features%keyvals]
@@ -26,10 +34,6 @@ changecounternumbering#true,false
 \setbanglamonofont{font}[font features%keyvals]
 \setbanglamonofont[font features%keyvals]{font}#*
 \setbanglamonofont[font features%keyvals]{font}[font features%keyvals]#S
-
-\bengalifont#*
-\bengalifontsf#*
-\bengalifonttt#*
 
 \numtobangla{number}
 \tobangla{counter}

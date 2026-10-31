@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2026/10/16 for v16.35.0
+# Matthew Bertucci 2026/10/30 for v16.36.0
 
 #include:iftex
 
@@ -1291,6 +1291,7 @@ h2database
 handshake
 handshakeprotocol
 happycow
+haproxy
 harbor
 harmonyos
 hashcat

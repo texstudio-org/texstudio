@@ -1,6 +1,9 @@
 # alphalph package
 # Matthew Bertucci 9/13/2021 for v2.6
 
+#include:infwarerr
+#include:intcalc
+
 \AlphAlph{number}
 \alphalph{number}
 \newalphalph{cmd}{symbols provider}{num of symbols}#d
