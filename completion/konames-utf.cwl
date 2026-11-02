@@ -1,5 +1,5 @@
 # konames-utf package
-# Matthew Bertucci 2022/05/03 for v1.7
+# Matthew Bertucci 2026/11/01 for v2.7
 
 \enclname#*
 \ccname#*
@@ -14,3 +14,4 @@
 \glossaryname#*
 \proofname#*
 \pagename#*
+\koPseudoSpaceskip#*
