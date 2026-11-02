@@ -1,5 +1,5 @@
 # enumext package
-# Matthew Bertucci 2025/07/09 for v1.6
+# Matthew Bertucci 2026/11/02 for v2.4
 
 #include:multicol
 
@@ -156,6 +156,7 @@ no-store
 #keyvals:\begin{enumext*},\begin{keyans*},\printkeyans*
 mini-right=%<content%>
 mini-right*=%<content%>
+item-break#true,false
 #endkeyvals
 
 #keyvals:\anskey,\begin{anskey*}
