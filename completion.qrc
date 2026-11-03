@@ -4172,6 +4172,7 @@
 <file>completion/tkz-berge.cwl</file>
 <file>completion/tkz-bernoulli.cwl</file>
 <file>completion/tkz-elements.cwl</file>
+<file>completion/tkz-elements-3d.cwl</file>
 <file>completion/tkz-euclide.cwl</file>
 <file>completion/tkzexample.cwl</file>
 <file>completion/tkz-fct.cwl</file>

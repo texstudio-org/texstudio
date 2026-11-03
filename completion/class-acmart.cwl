@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2025/06/03 for v2.18
+# Matthew Bertucci 2026/11/02 for v2.21
 
 #include:xkeyval
 #include:xstring
@@ -29,7 +29,6 @@
 #include:float
 #include:comment
 #include:fancyhdr
-#include:pifont
 
 #keyvals:\documentclass/acmart#c
 format=#manuscript,acmsmall,acmlarge,acmtog,sigconf,sigplan,acmengage,acmcp
@@ -425,6 +424,8 @@ nonamebreak=
 \noindentparagraph{title}#*L5
 \showeprint[prefix]{number}#*
 \showeprint{number}#*
+\showISBNx{number}#*
+\showISBNxiii{number}#*
 
 # from T1 option of fontenc
 \DH#n

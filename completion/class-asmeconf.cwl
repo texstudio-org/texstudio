@@ -1,5 +1,5 @@
 # asmeconf class
-# Matthew Bertucci 2026/01/12 for v1.46
+# Matthew Bertucci 2026/11/02 for v1.47
 
 #include:etoolbox
 #include:geometry
@@ -14,7 +14,6 @@
 # loads T1 option of fontenc
 #include:textcase
 #include:caption
-#include:subcaption
 #include:mathtools
 #include:babel
 #include:newtxtext
@@ -31,6 +30,7 @@
 balance
 colorlinks
 contractor
+nocaption
 nofontspec
 govt
 govtsome
@@ -1731,6 +1731,11 @@ SuppressWarning#true,false
 \versiondate#S
 \versionfootnote{text}
 \versionno#S
+\theSubFigure#S
+\subcaption{text}
+\begin{subfigure}{width}
+\begin{subfigure}[pos]{width}
+\end{subfigure}
 
 # from dvipsnames option of xcolor
 Apricot#B
