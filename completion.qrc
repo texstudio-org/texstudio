@@ -3299,6 +3299,7 @@
 <file>completion/pxjahyper-enc.cwl</file>
 <file>completion/pxjodel.cwl</file>
 <file>completion/pxmulticol.cwl</file>
+<file>completion/pxpgftate.cwl</file>
 <file>completion/pxpic.cwl</file>
 <file>completion/pxrubrica.cwl</file>
 <file>completion/pxtx-cal.cwl</file>
@@ -3536,6 +3537,7 @@
 <file>completion/seqsplit.cwl</file>
 <file>completion/serbian-lig.cwl</file>
 <file>completion/serto.cwl</file>
+<file>completion/sesameseeds.cwl</file>
 <file>completion/sesstime.cwl</file>
 <file>completion/setbuilder.cwl</file>
 <file>completion/setdeck.cwl</file>
