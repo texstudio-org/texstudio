@@ -126,7 +126,8 @@ void TxsTabWidget::updateStyle()
         QString inactive = baseStyle + " QTabBar {color: darkgrey;}";
         if (interfaceStyle == "windows11 (highlight)") {
             // selected tab of the inactive group must not look like the active one
-            inactive += " QTabBar::tab:selected {background: palette(window); color: darkgrey; font-weight: normal;}";
+            inactive += " QTabBar::tab:selected {background: palette(mid); font-weight: normal;}";
+            inactive += " QTabBar::tab:!selected {background: palette(window); color: darkgrey; font-weight: normal;}";
         }
         setStyleSheet(inactive);
     }
