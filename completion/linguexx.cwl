@@ -1,5 +1,5 @@
 # linguexx package
-# Matthew Bertucci 2026/10/06 for v1.4
+# Matthew Bertucci 2026/11/04 for v1.5
 
 #include:tikz
 #include:xspace
@@ -22,6 +22,7 @@ relreflinks
 \begin{exe}
 \end{exe}
 \begin{xlist}
+\begin{xlist}[options%keyvals]
 \end{xlist}
 \begin{xlista}
 \end{xlista}
@@ -39,6 +40,7 @@ relreflinks
 \begin{exe}
 \end{exe}
 \begin{xlist}
+\begin{xlist}[options%keyvals]
 \end{xlist}
 \begin{xlista}
 \end{xlista}
@@ -126,6 +128,7 @@ relreflinks
 \bg.
 \c.
 \cg.
+\CommonGloss
 \d.
 \DeclareJudgement[options%keyvals]{command}{mark}#Sd
 \DeclareJudgement{command}{mark}#Sd
@@ -139,7 +142,7 @@ relreflinks
 \eg.
 \endgl
 \ex.
-\Exalph{counter}#S
+\Exalph{counter}#*
 \exannot[spoken]{text}
 \ExAnnotColumn#*L
 \ExAnnotFit#*
@@ -153,11 +156,14 @@ relreflinks
 \Exindent#*L
 \Exlabelsep#*L
 \Exlabelwidth#*L
+\ExLatinAlph{counter}#*
 \ExLBr#*
 \ExParenRefs
 \ExRBr#*
 \Exredux#*L
-\Exroman{counter}#S
+\exrefcheck
+\exrefcheck[options%keyvals]
+\Exroman{counter}#*
 \ExSourceFont#*
 \exsource{text}
 \Extopsep#*L
@@ -170,10 +176,14 @@ relreflinks
 \gll
 \glll
 \gln
+\GlossMorphAlign
+\GlossMorphAlignOff
 \GlossPhantomAlign
 \GlossPhantomAlignOff
 \GlossPhantomChars{marks}
 \GlossPhantom{material}
+\GlossRTL
+\GlossRTLOff
 \GlossSep#*
 \GlossTierFont{n}{command}
 \GlossTierLang{tier}{code}
@@ -185,6 +195,7 @@ relreflinks
 \GlossTransSep#*L
 \GlossTransSide
 \GlossTransStyle#*
+\glscript{lang}{text}
 \glt
 \ifparens#S
 \jdg[spoken]{mark}

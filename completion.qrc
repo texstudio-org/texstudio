@@ -3940,6 +3940,7 @@
 <file>completion/tikzfill.hexagon.cwl</file>
 <file>completion/tikzfill.image.cwl</file>
 <file>completion/tikzfill.rhombus.cwl</file>
+<file>completion/tikzfins.cwl</file>
 <file>completion/tikz-imagelabels.cwl</file>
 <file>completion/tikzinclude.cwl</file>
 <file>completion/tikz-inet.cwl</file>
@@ -4138,6 +4139,7 @@
 <file>completion/tikzpfeile.cwl</file>
 <file>completion/tikzphysics.cwl</file>
 <file>completion/tikzpingus.cwl</file>
+<file>completion/tikzpizza.cwl</file>
 <file>completion/tikz-qtree.cwl</file>
 <file>completion/tikzquests.cwl</file>
 <file>completion/tikzrput.cwl</file>
