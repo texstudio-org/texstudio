@@ -1,5 +1,5 @@
 # babelbidi package
-# Matthew Bertucci 2026/10/29 for v0.4.1
+# Matthew Bertucci 2026/11/02 for v0.5.0
 
 #include:iftex
 #include:xkeyval
@@ -26,21 +26,40 @@ rtl=%<language%>
 \begin{latinverbatim*}#V
 \end{latinverbatim*}
 
+\autofootnoterule
 \fontfallback{language}{list of languages}
-\LRE{text}
-\LR{text}#*
-\RLE{text}
-\RL{text}#*
+\footnoterulewidth#L
+\hboxL#*
+\hboxR#*
 \latintoday
 \latinttfamily
-\latinverb|%<code%>|
-\latinverb{verbatimSymbol}#S
-\latinverb*|%<code%>|
 \latinverb*{verbatimSymbol}#S
+\latinverb*|%<code%>|
+\latinverb{verbatimSymbol}#S
+\latinverb|%<code%>|
+\leftfootnoterule
+\LRE{text}
 \lr{text}
+\LR{text}#*
+\LTRfootnote[number]{text}
+\LTRfootnote{text}
+\rightfootnoterule
+\RLE{text}
 \rl{text}
-\setparLTR#*
-\setparRTL#*
+\RL{text}#*
+\RTLfootnote[number]{text}
+\RTLfootnote{text}
+\setLR#*
+\setLTR
+\setRL#*
+\setRTL
+\textwidthfootnoterule
+\unsetLTR#*
+\unsetRTL#*
+\vboxL#*
+\vboxR#*
+\vtopL#*
+\vtopR#*
 
 \deflatinfont{command}[font features%keyvals]{font}#d
 \deflatinfont{command}{font}#d

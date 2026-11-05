@@ -1,4 +1,4 @@
-# robotkarol.cwl — Autovervollständigung für robotkarol.sty v3.10
+# robotkarol.cwl — Autovervollständigung für robotkarol.sty v4.0
 #include:tikz
 #include:listings
 #include:struktex
@@ -63,6 +63,8 @@ titel=%<Text%>
 hervorheben=%<Feldliste ab 1%>
 rahmen=#true,false
 hoehe=%<Ziegellagen%>
+export=%<Sammlung/Nummer%>
+aufgabentitel=%<Text%>
 #endkeyvals
 
 # Weltzeichen: > < ^ v Karol | . leer | Z Ziegel | 1–9 Stapel | M Marke
@@ -155,7 +157,7 @@ skalierung=%<Faktor%>
 \end{karolwelt}
 \begin{karolwelt}[keyvals]
 \end{karolwelt}
-#keyvals:\begin{karolwelt}
+#keyvals:\begin{karolwelt},\karolweltaus
 breite=%<Spalten%>
 laenge=%<Zeilen%>
 hoehe=%<Ziegellagen%>
@@ -168,6 +170,12 @@ hervorheben=%<x/y-Liste%>
 skalierung=%<Faktor%>
 titel=%<Text%>
 hinweis=%<Text%>
+quelle=%<Datei.json, Name oder Sammlung/Nummer%>
+aufgabe=%<Nummer%>
+export=%<Sammlung/Nummer%>
+erbt=%<Sammlung/Nummer%>
+exportkarol={%<x=…, y=…, richtung=…%>}
+aufgabentitel=%<Text%>
 #endkeyvals
 \karol[keyvals]
 \ziegel[keyvals]
@@ -221,4 +229,44 @@ rahmen
 hervorheben=%<x/y-Liste%>
 skalierung=%<Faktor%>
 hinweis=%<Text%>
+quelle=%<Datei.json, Name oder Sammlung/Nummer%>
+aufgabe=%<Nummer%>
+export=%<Sammlung/Nummer%>
+erbt=%<Sammlung/Nummer%>
+exportkarol={%<x=…, y=…, richtung=…%>}
+aufgabentitel=%<Text%>
+#endkeyvals
+
+# --- JSON-Schnittstelle zu Robot Karol Online (v4.0) ---
+# Quelle: Datei.json, Speichername aus \karoljsonlesen oder Sammlung/Nummer
+\karoljsonlesen{%<Datei.json%>}
+\karoljsonlesen[keyvals]{%<Datei.json%>}
+#keyvals:\karoljsonlesen#c
+name=%<Name%>
+#endkeyvals
+\karoljsontitel{%<Quelle%>}
+\karoljsonbeschreibung{%<Quelle%>}
+\karoljsonaufgabentitel{%<Quelle%>}{%<Nummer%>}
+\karoljsonanzahl{%<Quelle%>}
+# expandiert zu welt | frei | skript
+\karoljsonzielart{%<Quelle%>}{%<Nummer%>}
+\karolweltaus{%<Quelle%>}
+\karolweltaus[keyvals]{%<Quelle%>}
+\karolquelltext{%<Quelle%>}
+\karolquelltext[keyvals]{%<Quelle%>}
+\karolquelltextdatei{%<Quelle%>}{%<Datei.tex%>}
+\karolquelltextdatei[keyvals]{%<Quelle%>}{%<Datei.tex%>}
+#keyvals:\karolquelltext#c,\karolquelltextdatei#c
+kompakt
+kompakt#true,false
+aufgabe=%<Nummer%>
+#endkeyvals
+# schreibt am Dokumentende; Welten mit export=Sammlung/Nummer
+\karoljsonschreiben{%<Sammlung%>}{%<Datei.json%>}
+\karoljsonschreiben[keyvals]{%<Sammlung%>}{%<Datei.json%>}
+#keyvals:\karoljsonschreiben#c
+titel=%<Text%>
+beschreibung=%<Text%>
+programm=%<Datei.karol%>
+sprache=#blocks,karol
 #endkeyvals

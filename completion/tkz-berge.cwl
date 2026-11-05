@@ -1,7 +1,22 @@
 # tkz-berge package
-# Matthew Bertucci 2026/10/24 for v2.20c
+# Matthew Bertucci 2026/11/02 for v2.30c
 
 #include:tkz-graph
+
+#keyvals:\usepackage/tkz-berge#c
+lua
+3d
+#endkeyvals
+
+#ifOption:lua
+#include:luatex
+#endif
+#ifOption:3d
+#include:luatex
+#endif
+#ifOption:3D
+#include:luatex
+#endif
 
 \grEmptyPath{number of vertices}
 \grEmptyPath[options%keyvals]{number of vertices}

@@ -1,12 +1,24 @@
 # tkz-graph package
-# Matthew Bertucci 2026/10/24 for v2.20c
+# Matthew Bertucci 2026/11/02 for v2.30c
 
 #include:ifthen
 #include:tikz
 
 #keyvals:\usepackage/tkz-graph#c
 noshortnames
+lua
+3d
 #endkeyvals
+
+#ifOption:lua
+#include:luatex
+#endif
+#ifOption:3d
+#include:luatex
+#endif
+#ifOption:3D
+#include:luatex
+#endif
 
 \Vertex{name}
 \Vertex[options%keyvals]{name}

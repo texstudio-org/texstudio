@@ -1,10 +1,11 @@
 # concmath-otf package
-# Matthew Bertucci 2026/10/22 for v0.77
+# Matthew Bertucci 2026/11/02 for v0.78
 
 #include:iftex
 #include:unicode-math
 
 #keyvals:\usepackage/concmath-otf#c
+lum
 no-text
 tight
 loose
@@ -12,10 +13,12 @@ math-style=#ISO,TeX,french,upright
 bold-style=#ISO,TeX,upright
 nabla=#italic,upright,literal
 partial=#italic,upright,literal
+Numbers=
 CharacterVariant=%<number%>
 CharacterVariant={%<glyph num list%>:%<variety num%>}
 StylisticSet=#3,4,5,6
 Style=#leqslant,smaller,subsetneq,upint
+Scale=%<factor%>
 #endkeyvals
 
 # text or math mode commands
@@ -275,4 +278,5 @@ Style=#leqslant,smaller,subsetneq,upint
 \mitsansvarpi#*m
 
 # not documented
-\CCMtoks#*
+\CCMtoks#S
+\CCMScale#S

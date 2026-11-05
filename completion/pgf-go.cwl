@@ -1,8 +1,15 @@
 # pgf-go package
-# Matthew Bertucci 2026/10/26 for v0.2026.10.23
+# Matthew Bertucci 2026/11/02 for v0.2026.10.30
 
 #include:tikz
 #include:tikzlibrarypatterns
+#include:tikzlibrarypatterns.meta
+
+#keyvals:\usepackage/pgf-go#c
+kernel=#expl3,lua
+lang=%<language%>
+pages#true,false
+#endkeyvals
 
 # from pgf-go.sty
 \pgfgoset{options%keyvals}
@@ -13,6 +20,8 @@ pgfgo#B
 \begin{goban}
 \begin{goban}[options%keyvals]
 \end{goban}
+\pgfgostone
+\pgfgostone[options%keyvals]
 \pgfgoview{name}{part}
 \pgfgoview[options%keyvals]{name}{part}
 
@@ -70,6 +79,9 @@ wainwhite#B
 \pgfgoimport[options%keyvals]{file}
 
 # from pgf-go-sgf.sty
+\begin{pgfgosgf}{name}
+\begin{pgfgosgf}[options%keyvals]{name}
+\end{pgfgosgf}
 \pgfgodefinesgf{name}{file}
 \pgfgodefinesgf[options%keyvals]{name}{file}
 \sgf{file}

@@ -1,5 +1,5 @@
 # plantuml package
-# Matthew Bertucci 2026/07/01 for v0.7.0
+# Matthew Bertucci 2026/11/04 for v0.8.1
 
 #include:adjustbox
 #include:capt-of
@@ -42,15 +42,18 @@ float=%<spec%>
 \plantumlEmit#S
 \PlantUmlEnvReset#S
 \PlantUmlHash#S
+\PlantumlIfNotWindows{arg}#S
 \PlantUmlIODir#S
 \PlantUMLJobname#S
 \PlantUmlMode#S
+\PlantumlOutdirFromArgs{arg}#S
 \plantumlParseOpts{arg}#S
 \PlantUmlPreambleIO#S
 \PlantUmlPreambleMd5#S
 \PlantUmlPreambleName#S
 \PlantUmlProbeStream#S
 \plantumlResetOpts#S
+\PlantUmlResultDir#S
 \PlantUmlServer#S
 \PlantumlStripTrailingSlash#S
 \thePlantUmlFigureNumber#S

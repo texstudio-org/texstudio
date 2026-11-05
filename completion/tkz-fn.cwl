@@ -1,5 +1,5 @@
 # tkz-fn package
-# Matthew Bertucci 2026/10/24 for v1.00c
+# Matthew Bertucci 2026/11/04 for v1.01c
 
 #include:iftex
 #include:tikz
@@ -39,6 +39,8 @@ fr
 \tkzFnHLines[options%keyvals]{list}
 \tkzFnHLines{list}
 \tkzFnHLine{list}
+\tkzFnImplicit{expression%definition}
+\tkzFnImplicit[options%keyvals]{expression%definition}
 \tkzFnInit
 \tkzFnInit[options%keyvals]
 \tkzFnLabelPoint(point)
