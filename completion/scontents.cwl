@@ -1,5 +1,5 @@
 # scontents package
-# Matthew Bertucci 2026/06/02 for v2.7
+# Matthew Bertucci 2026/11/02 for v2.8
 
 \setupsc{options%keyvals}
 
@@ -15,6 +15,7 @@ overwrite#true,false
 width-tab=%<integer%>
 force-eol#true,false
 verb-font=%<font family%>
+remember={%<seq names%>}
 #endkeyvals
 
 \begin{scontents}
@@ -65,6 +66,9 @@ force-eol#true,false
 \foreachsc[options%keyvals]{seq name}
 
 #keyvals:\foreachsc
+getstored
+typestored
+meaningsc
 sep={%<code%>}
 step=%<integer%>
 start=%<integer%>
@@ -96,6 +100,7 @@ overwrite#true,false
 width-tab=%<integer%>
 typestored
 meaningsc
+getstored
 #endkeyvals
 
 \begin{verbatimsc}#V
@@ -103,6 +108,14 @@ meaningsc
 
 \countsc{seq name}
 \cleanseqsc{seq name}
+
+\scontents_count:n {%<⟨seq name⟩%>}#/%expl3
+\scontents_get:nnN {%<⟨seq name⟩%>} {%<⟨index⟩%>} %<⟨tl var⟩%>#/%expl3
+\scontents_if_exist:nF {%<⟨seq name⟩%>} {%<⟨false code⟩%>}#/%expl3
+\scontents_if_exist:nT {%<⟨seq name⟩%>} {%<⟨true code⟩%>}#/%expl3
+\scontents_if_exist:nTF {%<⟨seq name⟩%>} {%<⟨true code⟩%>} {%<⟨false code⟩%>}#/%expl3
+\scontents_if_exist_p:n {%<⟨seq name⟩%>}#/%expl3
+\scontents_map_inline:nn {%<⟨seq name⟩%>} {%<⟨inline function⟩%>}#/%expl3
 
 \ScontentsFileDate#S
 \ScontentsFileVersion#S

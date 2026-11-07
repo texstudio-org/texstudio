@@ -1,11 +1,12 @@
 # mismath package
-# Matthew Bertucci 2026/08/18 for v3.3
+# Matthew Bertucci 2026/11/02 for v3.4
 
 #include:amsmath
 #include:mathtools
 #include:esvect
 #include:mleftright
 #include:ifthen
+#include:iftex
 #include:etoolbox
 #include:xkeyval
 
@@ -56,15 +57,15 @@ alignedleftspaceyesifneg
 \ale*
 \cc
 \cc*
+\hot
+\hot*
 \QED
 \st
 \st*
-\stp
-\stp*
-\walog
-\Walog
-\walog*
-\Walog*
+\wlg
+\Wlg
+\wlg*
+\Wlg*
 \wma
 \Wma
 \wma*
@@ -167,7 +168,9 @@ alignedleftspaceyesifneg
 \Id#m
 \im#m
 \innerprod{arg1}{arg2}#m
-\integerint{arg}#m
+\innerprodsep#*
+\integerint{arg1}{arg2}#m
+\integerintsep#*
 \itpi#*m
 \K#m
 \lb#m

@@ -296,20 +296,14 @@ QRect QEditorAccessible::characterRect(int offset) const
     int line = 0, col = 0;
     lineColumnFromOffset(offset, &line, &col);
 
-    const QRectF docRect = ed->document()->lineRect(line);
-    if (!docRect.isValid())
-        return QRect();
-
-    // Use the editor's cursor-to-screen conversion: approximate by using the
-    // line rect translated by the horizontal scroll offset.
     const QDocumentLine docLine = ed->document()->line(line);
+    if (!docLine.isValid())
+        return QRect();
     const QPointF charPos = docLine.cursorToDocumentOffset(col);
 
-    qreal panelLeft = 0, panelTop = 0, temp = 0;
-    ed->getPanelMargins(&panelLeft, &panelTop, &temp, &temp);
-
-    const qreal x = panelLeft + charPos.x() - ed->horizontalScrollBar()->value();
-    const qreal y = panelTop  + docRect.top() - ed->verticalScrollBar()->value() * ed->document()->getLineSpacing();
+    // viewport coordinates: the viewport is already offset by the panel margins
+    const qreal x = charPos.x() - ed->horizontalOffset();
+    const qreal y = ed->document()->y(line) + charPos.y() - ed->verticalOffset();
 
     const QPoint globalOffset = ed->viewport()->mapToGlobal(QPoint(0, 0));
     return QRect(globalOffset.x() + qRound(x),

@@ -1,8 +1,19 @@
 # tkz-elements package
-# Matthew Bertucci 2026/10/13 for v6.00c
+# Matthew Bertucci 2026/11/02 for v6.10c
 
 #include:iftex
 #include:luatex
+
+#keyvals:\usepackage/tkz-elements
+3d
+#endkeyvals
+
+#ifOption:3d
+#include:tkz-elements-3d
+#endif
+#ifOption:3D
+#include:tkz-elements-3d
+#endif
 
 \tkzGetNodes
 \tkzDrawLuaEllipse(pt1,pt2,pt3)

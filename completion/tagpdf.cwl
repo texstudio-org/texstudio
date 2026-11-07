@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2026/09/21 for v1.0f
+# Matthew Bertucci 2026/10/31 for v1.0i
 
 #include:pdfmanagement
 
@@ -21,9 +21,10 @@ css-list-add={%<file1,file2,...%>}
 css-list-remove={%<file1,file2,...%>}
 role/mathml-tags#true,false
 role/new-tag=%<tag/role%>
-role/new-NS=%<name space%>
+role/new-NS=
 role/new-attribute={%<name%>}{%<content%>}
 role/new-attribute*={%<name%>}{%<content%>}
+role/user-NS=%<name space%>
 role/map-tags=#false,pdf
 debug/show
 debug/show=#para,paraOff,spaces,spacesOff

@@ -3299,6 +3299,7 @@
 <file>completion/pxjahyper-enc.cwl</file>
 <file>completion/pxjodel.cwl</file>
 <file>completion/pxmulticol.cwl</file>
+<file>completion/pxpgftate.cwl</file>
 <file>completion/pxpic.cwl</file>
 <file>completion/pxrubrica.cwl</file>
 <file>completion/pxtx-cal.cwl</file>
@@ -3536,6 +3537,7 @@
 <file>completion/seqsplit.cwl</file>
 <file>completion/serbian-lig.cwl</file>
 <file>completion/serto.cwl</file>
+<file>completion/sesameseeds.cwl</file>
 <file>completion/sesstime.cwl</file>
 <file>completion/setbuilder.cwl</file>
 <file>completion/setdeck.cwl</file>
@@ -3938,6 +3940,7 @@
 <file>completion/tikzfill.hexagon.cwl</file>
 <file>completion/tikzfill.image.cwl</file>
 <file>completion/tikzfill.rhombus.cwl</file>
+<file>completion/tikzfins.cwl</file>
 <file>completion/tikz-imagelabels.cwl</file>
 <file>completion/tikzinclude.cwl</file>
 <file>completion/tikz-inet.cwl</file>
@@ -4136,6 +4139,7 @@
 <file>completion/tikzpfeile.cwl</file>
 <file>completion/tikzphysics.cwl</file>
 <file>completion/tikzpingus.cwl</file>
+<file>completion/tikzpizza.cwl</file>
 <file>completion/tikz-qtree.cwl</file>
 <file>completion/tikzquests.cwl</file>
 <file>completion/tikzrput.cwl</file>
@@ -4172,6 +4176,7 @@
 <file>completion/tkz-berge.cwl</file>
 <file>completion/tkz-bernoulli.cwl</file>
 <file>completion/tkz-elements.cwl</file>
+<file>completion/tkz-elements-3d.cwl</file>
 <file>completion/tkz-euclide.cwl</file>
 <file>completion/tkzexample.cwl</file>
 <file>completion/tkz-fct.cwl</file>
