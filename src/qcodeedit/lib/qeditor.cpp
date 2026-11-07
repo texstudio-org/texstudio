@@ -2594,7 +2594,7 @@ void QEditor::paste()
 		insertFromMimeData(d);
 }
 
-static bool unindent(const QDocumentCursor& cur)
+static int unindentCount(const QDocumentCursor& cur)
 {
 	QDocumentLine beg(cur.line());
 	int r = 0, n = 0, t = QDocument::tabStop();
@@ -2610,6 +2610,15 @@ static bool unindent(const QDocumentCursor& cur)
 		++r;
 		txt.chop(1);
 	}
+
+	return r;
+}
+
+static bool unindent(const QDocumentCursor& cur, int maxRemove = -1)
+{
+	int r = unindentCount(cur);
+	if ( maxRemove >= 0 && r > maxRemove )
+		r = maxRemove;
 
 	if ( !r )
 		return false;
@@ -2755,12 +2764,24 @@ void QEditor::unindentSelection()
 	{
 		m_doc->beginMacro();
 
+		// remove the same number of characters for all cursors to keep them aligned
+		int maxRemove = -1;
 		if ( !protectedCursor(m_cursor) )
-			unindent(m_cursor);
+			maxRemove = unindentCount(m_cursor);
+		foreach ( const QDocumentCursor& m, m_mirrors ){
+			if ( !protectedCursor(m) ) {
+				int r = unindentCount(m);
+				if ( maxRemove < 0 || r < maxRemove )
+					maxRemove = r;
+			}
+		}
+
+		if ( !protectedCursor(m_cursor) )
+			unindent(m_cursor, maxRemove);
 
 		foreach ( const QDocumentCursor& m, m_mirrors ){
 			if ( !protectedCursor(m) )
-				unindent(m);
+				unindent(m, maxRemove);
 		}
 
 		m_doc->endMacro();
