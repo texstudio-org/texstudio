@@ -2481,6 +2481,7 @@
 <file>completion/mathalpha.cwl</file>
 <file>completion/mathastext.cwl</file>
 <file>completion/mathbbol.cwl</file>
+<file>completion/mathbb-one.cwl</file>
 <file>completion/mathcmd.cwl</file>
 <file>completion/mathcommand.cwl</file>
 <file>completion/mathcomp.cwl</file>
