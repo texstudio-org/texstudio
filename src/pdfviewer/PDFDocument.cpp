@@ -37,6 +37,7 @@
 #include "universalinputdialog.h"
 
 #include "configmanager.h"
+#include "buildmanager.h"
 #include "smallUsefulFunctions.h"
 #include "PDFDocument_config.h"
 #include "configmanagerinterface.h"
@@ -4439,6 +4440,12 @@ void PDFDocument::gotoAnnotation(const PDFAnnotation *ann)
 void PDFDocument::loadSyncData()
 {
 	scanner.load(curFileUnnormalized);
+	if (!scanner.isValid()) {
+		const QStringList dirs = BuildManager::resolvePaths(BuildManager::additionalSyncTeXPaths).split(";", Qt::SkipEmptyParts);
+		for (const QString &dir : dirs) {
+			if (scanner.load(curFileUnnormalized, dir.trimmed())) break;
+		}
+	}
 	if (!scanner.isValid())
 		statusBar()->showMessage(tr("No SyncTeX data available"), 3000);
 	else {

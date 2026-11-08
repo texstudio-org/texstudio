@@ -50,10 +50,11 @@ Scanner::Scanner(const QString &filename, QObject *parent) : QObject(parent), sc
 	load(filename);
 }
 
-bool Scanner::load(const QString &filename)
+bool Scanner::load(const QString &filename, const QString &buildDirectory)
 {
 	clear();
-    scanner = synctex_scanner_new_with_output_file(QFile::encodeName(filename).data(), nullptr, 1);
+	QByteArray buildDir = QFile::encodeName(buildDirectory);
+    scanner = synctex_scanner_new_with_output_file(QFile::encodeName(filename).data(), buildDir.isEmpty() ? nullptr : buildDir.data(), 1);
     return scanner != nullptr;
 }
 

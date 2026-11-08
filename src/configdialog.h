@@ -121,6 +121,7 @@ private slots:
 	void browsePathBib();
 	void browsePathImages();
 	void browsePathPdf();
+	void browsePathSyncTeX();
 	void browsePathCommands();
     void browseCollaborativeToolPath();
     void browseCollaborativeClientFolder();

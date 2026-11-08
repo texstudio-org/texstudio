@@ -479,6 +479,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 	connect(ui.pushButtonPathBib, SIGNAL(clicked()), this, SLOT(browsePathBib()));
 	connect(ui.pushButtonPathImages, SIGNAL(clicked()), this, SLOT(browsePathImages()));
 	connect(ui.pushButtonPathPdf, SIGNAL(clicked()), this, SLOT(browsePathPdf()));
+	connect(ui.pushButtonPathSyncTeX, SIGNAL(clicked()), this, SLOT(browsePathSyncTeX()));
 	connect(ui.pushButtonPathCommands, SIGNAL(clicked()), this, SLOT(browsePathCommands()));
 
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(editTextChanged(QString)), this, SLOT(comboBoxWithPathEdited(QString)));
@@ -943,6 +944,11 @@ void ConfigDialog::browsePathImages()
 void ConfigDialog::browsePathPdf()
 {
 	UtilsUi::browse(ui.lineEditPathPDF, tr("Search Path for PDFs"), "/", QDir::currentPath(), true);
+}
+
+void ConfigDialog::browsePathSyncTeX()
+{
+	UtilsUi::browse(ui.lineEditPathSyncTeX, tr("Search Path for SyncTeX Files"), "/", QDir::currentPath(), true);
 }
 
 void ConfigDialog::browsePathCommands()

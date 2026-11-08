@@ -12150,6 +12150,7 @@ void Texstudio::checkLatexInstall()
 	result += "    Command: " + buildManager.additionalSearchPaths + "\n";
 	result += "    Log: " + buildManager.additionalLogPaths + "\n";
 	result += "    Pdf: " + buildManager.additionalPdfPaths + "\n";
+	result += "    SyncTeX: " + buildManager.additionalSyncTeXPaths + "\n";
 
 	//fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
 	//m_languages->setLanguageFromName(currentEditor(), "Plain text");

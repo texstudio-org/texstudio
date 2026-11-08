@@ -128,7 +128,7 @@ public:
 	~Scanner();
 	Scanner(const QString &filename, QObject *parent = Q_NULLPTR);
 
-	bool load(const QString &filename);
+	bool load(const QString &filename, const QString &buildDirectory = QString());
 	void clear();
 	bool isValid() const { return scanner != NULL; }
 

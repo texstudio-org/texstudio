@@ -31,7 +31,7 @@ bool BuildManager::m_interpetCommandDefinitionInMagicComment = true;
 bool BuildManager::m_supportShellStyleLiteralQuotes = true;
 bool BuildManager::singleViewerInstance = false;
 QString BuildManager::autoRerunCommands;
-QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, BuildManager::additionalLogPaths;
+QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, BuildManager::additionalLogPaths, BuildManager::additionalSyncTeXPaths;
 
 // *INDENT-OFF* (astyle-config)
 

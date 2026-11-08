@@ -251,7 +251,7 @@ public:
 	static bool m_supportShellStyleLiteralQuotes;
 	static bool singleViewerInstance;
 	static QString autoRerunCommands;
-	static QString additionalSearchPaths, additionalLogPaths, additionalPdfPaths;
+	static QString additionalSearchPaths, additionalLogPaths, additionalPdfPaths, additionalSyncTeXPaths;
 
 	static QString findCompiledFile(const QString &compiledFilename, const QFileInfo &mainFile);
 	void addPreviewFileName(QString fn)

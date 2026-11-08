@@ -683,6 +683,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Search Paths", &BuildManager::additionalSearchPaths, defaultSearchPaths, &pseudoDialog->lineEditPathCommands);
 	registerOption("Tools/Log Paths", &BuildManager::additionalLogPaths, "", &pseudoDialog->lineEditPathLog);
 	registerOption("Tools/PDF Paths", &BuildManager::additionalPdfPaths, "", &pseudoDialog->lineEditPathPDF);
+	registerOption("Tools/SyncTeX Paths", &BuildManager::additionalSyncTeXPaths, "", &pseudoDialog->lineEditPathSyncTeX);
 
     //SVN/GIT
 	//registerOption("Tools/Auto Checkin after Save", &autoCheckinAfterSave, false, &pseudoDialog->cbAutoCheckin);
