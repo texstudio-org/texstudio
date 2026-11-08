@@ -1203,6 +1203,11 @@ Please change your configuration and define command lists only at &apos;Options 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="943"/>
+        <source>SyncTeX File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/configdialog.ui" line="994"/>
         <source>Log File</source>
         <translation type="unfinished"></translation>
@@ -3330,6 +3335,11 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="945"/>
         <source>Search Path for PDFs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.cpp" line="951"/>
+        <source>Search Path for SyncTeX Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
