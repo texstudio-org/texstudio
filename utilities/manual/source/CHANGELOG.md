@@ -3,6 +3,7 @@
 
 - mask API key like password in config dialog  [#4708](https://github.com/texstudio-org/texstudio/issues/4708)
 - refocus goto panel when already open [#4714](https://github.com/texstudio-org/texstudio/issues/4714)
+- fix hang for multiple run-away braces within the same argument [#4737](https://github.com/texstudio-org/texstudio/issues/4737)
 
 ## TeXstudio 4.9.9
 
