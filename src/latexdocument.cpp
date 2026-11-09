@@ -399,6 +399,7 @@ int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
 
     int stoppedAtLine=-1;
     TokenList l_tkFilter;
+    TokenList l_tkFiltered; // keep track of filtered tokens to avoid endless loops, see issue #4737. Applies when argument is split over several lines and multiple lines of the same argument run away.
     QDocumentLineHandle *lastHandle = line(lineNr - 1).handle();
     if (lastHandle) {
         oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
@@ -419,14 +420,21 @@ int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
             bool remainderChanged = Parsing::latexDetermineContexts2(line(i).handle(), oldRemainder, oldCommandStack, lp);
             bool leaveLoop=false;
             if(oldRemainder.size()>0){
-                for(int k=0;k<oldRemainder.size();++k){
+                for(int k=0;(l_tkFilter.size()||l_tkFiltered.size()) && k<oldRemainder.size();++k){
                     Token tk=oldRemainder.at(k);
                     int idx=l_tkFilter.indexOf(tk);
                     if(idx>=0){
                         oldRemainder.remove(k); // discard run-away argument
                         --k;
+                        l_tkFiltered.append(tk);
                         l_tkFilter.removeAt(idx);
                         leaveLoop=true;
+                    }else{
+                        int idx=l_tkFiltered.indexOf(tk);
+                        if(idx>=0){
+                            oldRemainder.remove(k); // discard run-away argument
+                            --k;
+                        }
                     }
                 }
                 if(leaveLoop){
