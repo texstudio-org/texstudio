@@ -1828,12 +1828,21 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &nam
     QMultiHash<QDocumentLineHandle *, int> result;
 	foreach (const LatexDocument *elem, getListOfDocs()) {
         QList<QDocumentLineHandle*>lst=elem->mRefHash.values(name);
+        QList<QDocumentLineHandle*>l_filterDuplicate; // issue #4738, if two references are in the same line, all of them get added twice
         foreach(QDocumentLineHandle *dlh, lst){
+            if(l_filterDuplicate.contains(dlh)) continue;
             QList<ReferencePair> rps = elem->mRefItem.values(dlh);
+            int cnt=0;
             foreach(const ReferencePair &rp, rps){
                 if(rp.name==name){
                     result.insert(dlh, rp.start);
+                    ++cnt;
                 }
+            }
+            if(cnt>1){
+                // multiple entries in the same line
+                // add dlh to filter list to avoid adding it twice
+                l_filterDuplicate << dlh;
             }
 		}
 	}
