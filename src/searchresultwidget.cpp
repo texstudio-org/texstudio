@@ -219,7 +219,13 @@ void SearchResultWidget::clickedSearchResult(const QModelIndex &index)
             // everything replaced, update to new search word (replacement text)
             // this is used for findUsage
             searchTextLabel->setText(query->replacementText());
-            updateSearch();
+            if(query->type()==tr("Label Search")){
+                LabelSearchQuery *labelQuery=qobject_cast<LabelSearchQuery*>(query);
+                LatexDocument *doc = labelQuery->doc();
+                query->run(doc);
+            }else{
+                updateSearch();
+            }
         }
     }else{
         // search in files

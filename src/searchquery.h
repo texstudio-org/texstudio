@@ -95,8 +95,10 @@ public:
     LabelSearchQuery(QString label,bool defintionOnly=false);
 	virtual void run(LatexDocument *doc);
 	virtual void replaceAll();
+    LatexDocument *doc() { return mDoc; }
 protected:
     bool mDefinitionOnly;
+    LatexDocument *mDoc=nullptr;
 };
 
 class SpecialDefSearchQuery : public SearchQuery {

@@ -288,6 +288,7 @@ LabelSearchQuery::LabelSearchQuery(QString label, bool defintionOnly) :
 void LabelSearchQuery::run(LatexDocument *doc)
 {
 	mModel->removeAllSearches();
+    mDoc=doc;
 	QString labelText = searchExpression();
 	QMultiHash<QDocumentLineHandle *, int> usages = doc->getLabels(labelText);
     if(!mDefinitionOnly){
