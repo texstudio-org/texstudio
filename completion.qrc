@@ -225,6 +225,7 @@
 <file>completion/axodraw2.cwl</file>
 <file>completion/babelbib.cwl</file>
 <file>completion/babelbidi.cwl</file>
+<file>completion/babelbidi-logos.cwl</file>
 <file>completion/babel.cwl</file>
 <file>completion/babyloniannum.cwl</file>
 <file>completion/background.cwl</file>
