@@ -157,17 +157,20 @@ bool Help::texdocAvailableRequest(const QString &package)
 }
 void Help::texdocAvailableRequestFinished(int,QProcess::ExitStatus status){
 
-    if(status!=QProcess::NormalExit) return; // texdoc --list failed
-
     ProcessX *proc=qobject_cast<ProcessX *>(sender());
+    if(!proc) return;
     QString *buffer=proc->getStdoutBuffer();
+    if(status!=QProcess::NormalExit){
+        delete buffer;
+        return; // texdoc --list failed
+    }
+
     QString cmdLine=proc->getCommandLine();
     int i=cmdLine.lastIndexOf(" ");
     QString package;
     if(i>-1){
         package=cmdLine.mid(i+1);
     }
-
 
     if(buffer==nullptr) return; // sanity check
 
