@@ -1094,6 +1094,7 @@
 <file>completion/codebox.cwl</file>
 <file>completion/codedescribe.cwl</file>
 <file>completion/codehigh.cwl</file>
+<file>completion/code-link.cwl</file>
 <file>completion/codelisting.cwl</file>
 <file>completion/codemwe.cwl</file>
 <file>completion/codesection.cwl</file>
@@ -2360,6 +2361,8 @@
 <file>completion/luabreakurl.cwl</file>
 <file>completion/luacas.cwl</file>
 <file>completion/luacensor.cwl</file>
+<file>completion/LuaCJK.cwl</file>
+<file>completion/LuaCJKfntef.cwl</file>
 <file>completion/lua-check-hyphen.cwl</file>
 <file>completion/lua-font-config.cwl</file>
 <file>completion/lua-list-hyphen.cwl</file>

@@ -1,5 +1,5 @@
 # babelbidi package
-# Matthew Bertucci 2026/11/02 for v1.0.0
+# Matthew Bertucci 2026/11/12 for v1.0.0
 
 #include:iftex
 #include:xkeyval
