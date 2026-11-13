@@ -7204,7 +7204,7 @@ introcite=#false,plain,label
 \mkonepagegrouped{text}#*
 #endif
 
-### biblatex-iso690 v0.4.1 ###
+### biblatex-iso690 v0.4.2 ###
 #ifOption:style=iso-alphabetic
 # loads iso.bbx
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
@@ -7212,12 +7212,15 @@ introcite=#false,plain,label
 spacecolon#true,false
 pagetotal#true,false
 shortnumeration#true,false
-thesisinfoinnotes#true,false
 articlepubinfo#true,false
 currentlang#true,false
 noenddot#true,false
+bibacrosc#true,false
+familynamesc#true,false
+givennamesfirst#true,false
 #endkeyvals
 # from iso.bbx
+#include:regexpatch
 \stdidentifierspunct#*
 \dateaddonpunct#*
 \numerationpunct#*
@@ -7235,6 +7238,11 @@ noenddot#true,false
 \mkmlpageprefix[pagination]{prefix}#*
 \addspcolon#*
 \mkopenendeddaterange#*
+\mkmultinamedelim#*
+\mkfinalnamedelim#*
+\mknamealias#*
+\mksortnamealias#*
+\mainlangbibstringcolon#*
 #endif
 
 #ifOption:style=iso-authortitle
@@ -7244,12 +7252,15 @@ noenddot#true,false
 spacecolon#true,false
 pagetotal#true,false
 shortnumeration#true,false
-thesisinfoinnotes#true,false
 articlepubinfo#true,false
 currentlang#true,false
 noenddot#true,false
+bibacrosc#true,false
+familynamesc#true,false
+givennamesfirst#true,false
 #endkeyvals
 # from iso.bbx
+#include:regexpatch
 \stdidentifierspunct#*
 \dateaddonpunct#*
 \numerationpunct#*
@@ -7267,6 +7278,11 @@ noenddot#true,false
 \mkmlpageprefix[pagination]{prefix}#*
 \addspcolon#*
 \mkopenendeddaterange#*
+\mkmultinamedelim#*
+\mkfinalnamedelim#*
+\mknamealias#*
+\mksortnamealias#*
+\mainlangbibstringcolon#*
 #endif
 
 #ifOption:style=iso-authoryear
@@ -7276,14 +7292,18 @@ noenddot#true,false
 spacecolon#true,false
 pagetotal#true,false
 shortnumeration#true,false
-thesisinfoinnotes#true,false
 articlepubinfo#true,false
 currentlang#true,false
 noenddot#true,false
+bibacrosc#true,false
+familynamesc#true,false
+givennamesfirst#true,false
 #endkeyvals
 # from iso-authoryear.bbx
 \ifdatehasyearonly{true}{false}#*
+\iforigdatehasyearonly{true}{false}#*
 # from iso.bbx
+#include:regexpatch
 \stdidentifierspunct#*
 \dateaddonpunct#*
 \numerationpunct#*
@@ -7301,6 +7321,11 @@ noenddot#true,false
 \mkmlpageprefix[pagination]{prefix}#*
 \addspcolon#*
 \mkopenendeddaterange#*
+\mkmultinamedelim#*
+\mkfinalnamedelim#*
+\mknamealias#*
+\mksortnamealias#*
+\mainlangbibstringcolon#*
 #endif
 
 #ifOption:style=iso-numeric
@@ -7310,12 +7335,15 @@ noenddot#true,false
 spacecolon#true,false
 pagetotal#true,false
 shortnumeration#true,false
-thesisinfoinnotes#true,false
 articlepubinfo#true,false
 currentlang#true,false
 noenddot#true,false
+bibacrosc#true,false
+familynamesc#true,false
+givennamesfirst#true,false
 #endkeyvals
 # from iso.bbx
+#include:regexpatch
 \stdidentifierspunct#*
 \dateaddonpunct#*
 \numerationpunct#*
@@ -7333,6 +7361,11 @@ noenddot#true,false
 \mkmlpageprefix[pagination]{prefix}#*
 \addspcolon#*
 \mkopenendeddaterange#*
+\mkmultinamedelim#*
+\mkfinalnamedelim#*
+\mknamealias#*
+\mksortnamealias#*
+\mainlangbibstringcolon#*
 #endif
 
 ### biblatex-juradiss v0.23 ###

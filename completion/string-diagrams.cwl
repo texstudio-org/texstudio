@@ -1,7 +1,9 @@
 # string-diagrams package
-# Matthew Bertucci 2023/06/13 for v0.2.0
+# Matthew Bertucci 2026/11/12 for v0.4.0
 
 #include:tikz
+#include:tikzlibraryfit
+#include:tikzlibraryquotes
 
 #keyvals:\node#c
 box
@@ -13,5 +15,9 @@ box ports=%<integer1%>/%<integer2%>/%<integer3%>/%<integer4%>
 dot
 #endkeyvals
 
-\wires{connectivity}{loose ends}
-\wires[TikZ keys]{connectivity}{loose ends}
+\wires{wires}
+\wires[TikZ keys]{wires}
+
+#keyvals:\begin{tikzpicture},\tikz,\tikzset,\begin{scope},\scoped
+wire flow=#north,south,east,west
+#endkeyvals

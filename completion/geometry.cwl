@@ -1,4 +1,4 @@
-# For geometry v5.9 (2020/01/02) by Hideo Umeki.
+# For geometry v6.1 (2026/11/03) by Hideo Umeki.
 # URL: https://ctan.org/pkg/geometry
 # Created by Brian Schubert (2021/08/03)
 
@@ -14,8 +14,8 @@
 
 ## Paper size (section 5.1) (not available for \newgeometry)
 #keyvals:\geometry,\usepackage/geometry#c
-paper=#a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper
-papername=#a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper
+paper=#a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,a7paper,a8paper,a9paper,a10paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,b7paper,b8paper,b9paper,b10paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6/c5paper,c6paper,c7paper/c6paper,c7paper,c8paper,c9paper,c10paper,dlpaper,e4paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,b7j,b8j,b9j,b10j,b11j,b12j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper
+papername=#a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,a7paper,a8paper,a9paper,a10paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,b7paper,b8paper,b9paper,b10paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6/c5paper,c6paper,c7paper/c6paper,c7paper,c8paper,c9paper,c10paper,dlpaper,e4paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,b7j,b8j,b9j,b10j,b11j,b12j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper
 a0paper
 a1paper
 a2paper
@@ -23,6 +23,10 @@ a3paper
 a4paper
 a5paper
 a6paper
+a7paper
+a8paper
+a9paper
+a10paper
 b0paper
 b1paper
 b2paper
@@ -30,13 +34,25 @@ b3paper
 b4paper
 b5paper
 b6paper
+b7paper
+b8paper
+b9paper
+b10paper
 c0paper
 c1paper
 c2paper
 c3paper
 c4paper
 c5paper
+c6/c5paper
 c6paper
+c7/c6paper
+c7paper
+c8paper
+c9paper
+c10paper
+dlpaper
+e4paper
 b0j
 b1j
 b2j
@@ -44,6 +60,12 @@ b3j
 b4j
 b5j
 b6j
+b7j
+b8j
+b9j
+b10j
+b11j
+b12j
 ansiapaper
 ansibpaper
 ansicpaper
@@ -63,7 +85,7 @@ portrait#true,false
 
 ## Layout size (section 5.2)
 #keyvals:\geometry,\newgeometry,\usepackage/geometry#c
-layout=#a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper
+layout=#a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,a7paper,a8paper,a9paper,a10paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,b7paper,b8paper,b9paper,b10paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6/c5paper,c6paper,c7paper/c6paper,c7paper,c8paper,c9paper,c10paper,dlpaper,e4paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,b7j,b8j,b9j,b10j,b11j,b12j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper
 layoutwidth=##L
 layoutheight=##L
 layoutsize=##L

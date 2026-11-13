@@ -1,5 +1,5 @@
 # xlistings package
-# Matthew Bertucci 2026/08/18 for v1.0.0
+# Matthew Bertucci 2026/11/11 for v1.1.1
 
 #include:kvoptions
 #include:etoolbox
@@ -8,6 +8,7 @@
 #include:listingsutf8
 #include:accsupp
 #include:lstautogobble
+#include:amsbsy
 
 #keyvals:\usepackage/xlistings#c
 print#true,false
@@ -44,6 +45,7 @@ style=%<style%>
 \xlsthlinfo
 \xlsthlwarning
 \xlsti[options%keyvals]{language}{code%definition}
+\xlstInlineLead{material}
 \xlsti{language}{code%definition}
 \xlstlangoverride{language}{options%keyvals}
 \xlstmintedwithlangbadge

@@ -1,5 +1,5 @@
 # etoc package
-# Matthew Bertucci 2026/05/06 for v1.2e
+# Matthew Bertucci 2026/11/11 for v1.2f
 
 #include:kvoptions
 #include:multicol
@@ -225,6 +225,17 @@ ouroboros#true,false
 ### Compatibility ###
 \etocnoprotrusion#*
 
+### Tagging ###
+\etoctaggingon#*
+\etoctaggingoff#*
+\etoctagginginlineoff#*
+\etoctagReference{arg}#*
+\etoctagLbl{arg}#*
+\etocthetocitembegintag#*
+\etocthetocitemendtag#*
+\etoctagstartTOCcontents#*
+\etoctagfinishTOCcontents#*
+
 ### not documented
 \etocclasslocalperhapsaddtotoc{arg}#S
 \etochyperlink#S
@@ -240,6 +251,7 @@ ouroboros#true,false
 \etocthetaggedpage#S
 \etoctocbibindstyle#S
 \etoctocloftlocalperhapsaddtotoc{arg}#S
+\etocthetaggedlink{arg}#S
 
 # deprecated
 \etocdefaultlines#S

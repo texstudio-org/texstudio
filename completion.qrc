@@ -225,6 +225,7 @@
 <file>completion/axodraw2.cwl</file>
 <file>completion/babelbib.cwl</file>
 <file>completion/babelbidi.cwl</file>
+<file>completion/babelbidi-logos.cwl</file>
 <file>completion/babel.cwl</file>
 <file>completion/babyloniannum.cwl</file>
 <file>completion/background.cwl</file>
@@ -1093,6 +1094,7 @@
 <file>completion/codebox.cwl</file>
 <file>completion/codedescribe.cwl</file>
 <file>completion/codehigh.cwl</file>
+<file>completion/code-link.cwl</file>
 <file>completion/codelisting.cwl</file>
 <file>completion/codemwe.cwl</file>
 <file>completion/codesection.cwl</file>
@@ -1663,6 +1665,7 @@
 <file>completion/floatpagestyle.cwl</file>
 <file>completion/floatrowbytocbasic.cwl</file>
 <file>completion/floatrow.cwl</file>
+<file>completion/florilegium.cwl</file>
 <file>completion/flowchart.cwl</file>
 <file>completion/flowfram.cwl</file>
 <file>completion/flowframtkutils.cwl</file>
@@ -1769,6 +1772,7 @@
 <file>completion/gckanbun.cwl</file>
 <file>completion/geist.cwl</file>
 <file>completion/geistmono.cwl</file>
+<file>completion/geistserif.cwl</file>
 <file>completion/gelasio.cwl</file>
 <file>completion/gelasiomath.cwl</file>
 <file>completion/genealogy-profiles.cwl</file>
@@ -2029,6 +2033,7 @@
 <file>completion/imfellEnglish.cwl</file>
 <file>completion/impnattypo.cwl</file>
 <file>completion/import.cwl</file>
+<file>completion/import-citation-cff.cwl</file>
 <file>completion/imprintmtshadow.cwl</file>
 <file>completion/imsart.cwl</file>
 <file>completion/incgraph.cwl</file>
@@ -2356,6 +2361,8 @@
 <file>completion/luabreakurl.cwl</file>
 <file>completion/luacas.cwl</file>
 <file>completion/luacensor.cwl</file>
+<file>completion/LuaCJK.cwl</file>
+<file>completion/LuaCJKfntef.cwl</file>
 <file>completion/lua-check-hyphen.cwl</file>
 <file>completion/lua-font-config.cwl</file>
 <file>completion/lua-list-hyphen.cwl</file>
@@ -2481,6 +2488,7 @@
 <file>completion/mathalpha.cwl</file>
 <file>completion/mathastext.cwl</file>
 <file>completion/mathbbol.cwl</file>
+<file>completion/mathbb-one.cwl</file>
 <file>completion/mathcmd.cwl</file>
 <file>completion/mathcommand.cwl</file>
 <file>completion/mathcomp.cwl</file>
