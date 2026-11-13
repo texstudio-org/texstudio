@@ -7030,6 +7030,8 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
                 m_LineCache.insert(dlh, pixmap);
             }else{
                 // remove current line from cache, because it has special background (alternate)
+                delete pixmap;
+                pixmap=nullptr;
                 m_LineCache.remove(dlh);
                 m_LineCacheAlternative.remove(dlh);
             }
