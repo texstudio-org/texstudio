@@ -6507,6 +6507,8 @@ bool Texstudio::runCommandAsync(const QString &commandline, const char * returnC
     proc->startCommand();
     if (!proc->waitForStarted(1000)) {
         setStatusMessageProcess(tr("Error") + " : " + tr("could not start the command"));
+        proc->deleteLater();
+        delete buffer;
         return false;
     }
     return true;
