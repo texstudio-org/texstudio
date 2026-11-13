@@ -1,5 +1,5 @@
 # chemfig package
-# Matthew Bertucci 2026/08/31 for v1.8
+# Matthew Bertucci 2026/11/11 for v1.83
 
 #include:simplekv
 #include:tikz
@@ -13,6 +13,8 @@
 chemfig style={%<TikZ keys%>}
 atom style={%<TikZ keys%>}
 bond join#true,false
+<> join angle=%<degrees%>
+-> join angle=%<degrees%>
 fixed length#true,false
 cram rectangle#true,false
 cram width=##L

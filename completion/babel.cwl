@@ -1,7 +1,7 @@
 # babel.sty
 # available from ctan
 # tbraun 4.11.2008
-# Matthew Bertucci 2026/10/29 for v26.15
+# Matthew Bertucci 2026/11/11 for v26.16
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -197,6 +197,7 @@ calendar=%<calendar%>
 calendar=%<calendar%>.%<variant%>
 casing=#yiwn,eszett,iota,nouv,uv
 interchar=%<interchar-list%>
+mathdigits
 #endkeyvals
 
 \localenumeral{style}{number}
@@ -1315,7 +1316,7 @@ select.encoding=#off
 #repl:"> »
 #endif
 
-### french.ldf v4.1b ###
+### french.ldf v4.1c ###
 #ifOption:french
 \frenchsetup{options%keyvals}
 \frenchbsetup{options%keyvals}#S
@@ -1352,7 +1353,7 @@ StandardLayout#true,false
 StandardLists#true,false
 StandardListSpacing#true,false
 SuppressWarning#true,false
-SwapFootnotes#true,false
+KernFootnotes#true,false
 ThinColonSpace#true,false
 ThinSpaceInFrenchNumbers#true,false
 TocPartFullName#true,false
@@ -1400,8 +1401,7 @@ UnicodeNoBreakSpaces#true,false
 \FBfnindent#*
 \FBfnmark#*
 \FBfnmarkspace#*
-\FBfnskip#*
-\FBfnswap=%<0 ou 1%>#*
+\FBfnpctskip#*
 \FBFrenchFootnotesfalse#S
 \FBFrenchFootnotestrue#S
 \FBFrenchSuperscriptsfalse#S
@@ -1440,8 +1440,8 @@ UnicodeNoBreakSpaces#true,false
 \FBStandardListstrue#S
 \FBsupR#*
 \FBsupS#*
-\FBSwapFootnotesfalse#S
-\FBSwapFootnotestrue#S
+\FBKernFootnotesfalse#S
+\FBKernFootnotestrue#S
 \FBtextellipsis#*
 \FBthickkern#*
 \FBthinspace#*
@@ -1508,7 +1508,7 @@ UnicodeNoBreakSpaces#true,false
 \ifFBStandardLists#S
 \ifFBStandardListSpacing#S
 \ifFBSuppressWarning#S
-\ifFBSwapFootnotes#S
+\ifFBKernFootnotes#S
 \ifFBThinColonSpace#S
 \ifFBThinSpaceInFrenchNumbers#S
 \ifFBTocPartNameFull#S

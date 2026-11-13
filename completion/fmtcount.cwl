@@ -1,5 +1,5 @@
 # fmtcount package
-# Matthew Bertucci 10/23/2021 for v3.07
+# Matthew Bertucci 2026/11/11 for v3.13
 
 #include:ifthen
 #include:xkeyval
@@ -145,4 +145,5 @@ ngermanb
 italian
 #endkeyvals
 
+\FCaliaslang{language1}{language2}#*
 \ProvidesFCLanguage{language}#*

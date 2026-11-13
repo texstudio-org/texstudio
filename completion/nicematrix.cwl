@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2026/10/07 for v7.12
+# Matthew Bertucci 2026/11/11 for v7.13
 
 #include:amsmath
 #include:array
@@ -159,6 +159,7 @@ ampersand-in-blocks
 create-blocks-in-col=%<integer%>
 default-line={%<keyvals%>}
 rules/fix-vertex
+overlap#true,false
 width-of-false=##L
 width-of-false +=##L
 width-of-false -=##L
@@ -346,6 +347,7 @@ shorten-end+=##L
 shorten=##L
 shorten+=##L
 inter=##L
+number-of-dots=%<integer%>
 line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed#c
 Vbrace
 #endkeyvals
@@ -401,6 +403,7 @@ xdots/shorten-start=##L
 xdots/shorten-end=##L
 xdots/shorten=##L
 xdots/inter=##L
+xdots/number-of-dots=%<integer%>
 xdots/line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed#c
 xdots/nullify
 #endkeyvals
