@@ -16,7 +16,7 @@ public:
 
 signals:
 	void texdocAvailableReply(const QString &package, bool available, QString errorMessage);
-    void runCommand(const QString &commandline, QString *output);
+    void runCommand(const QString &commandline, QSharedPointer<QString> output);
     void runCommandAsync(const QString &commandline, const char * returnCmd);
     void statusMessage(const QString &message);
 

@@ -442,13 +442,13 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     connect(collabManager,&CollaborationManager::hostServerSuccessfullyStarted,this,&Texstudio::hostServerSuccessfullyStarted);
 
     connect(&svn, &SVN::statusMessage, this, &Texstudio::setStatusMessageProcess);
-    connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
+    connect(&svn, SIGNAL(runCommand(QString,QSharedPointer<QString>)), this, SLOT(runCommandNoSpecialChars(QString,QSharedPointer<QString>)));
     connect(&git, &GIT::statusMessage, this, &Texstudio::setStatusMessageProcess);
-    connect(&git, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
+    connect(&git, SIGNAL(runCommand(QString,QSharedPointer<QString>)), this, SLOT(runCommandNoSpecialChars(QString,QSharedPointer<QString>)));
     connect(&git, SIGNAL(runCommandAsync(QString,const char*)), this, SLOT(runCommandAsync(QString,const char*)));
 
     connect(&help, &Help::statusMessage, this, &Texstudio::setStatusMessageProcess);
-    connect(&help, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
+    connect(&help, SIGNAL(runCommand(QString,QSharedPointer<QString>)), this, SLOT(runCommandNoSpecialChars(QString,QSharedPointer<QString>)));
     connect(&help, SIGNAL(runCommandAsync(QString,const char*)), this, SLOT(runCommandAsync(QString,const char*)));
 
     connect(qGuiApp,&QGuiApplication::paletteChanged,this,&Texstudio::paletteChanged);
@@ -6422,7 +6422,7 @@ void Texstudio::addMagicProgram()
 }
 
 ///////////////TOOLS////////////////////
-bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCodec *codecForBuffer, bool saveAll,bool blocking)
+bool Texstudio::runCommand(const QString &commandline, QSharedPointer<QString> buffer, QTextCodec *codecForBuffer, bool saveAll,bool blocking)
 {
     if(buildManager.busyRunningCommands()){
         setStatusMessageProcess(QString(" %1 ").arg(tr("A command is already running. Please wait until the current command stops.")));
@@ -6469,7 +6469,8 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
  * TODO: Maybe these kind of calls should be decoupled from the buildmanager altogether, or
  * this should become a separate method of the buildmanager.
  */
-bool Texstudio::runCommandNoSpecialChars(QString commandline, QString *buffer, QTextCodec *codecForBuffer) {
+bool Texstudio::runCommandNoSpecialChars(QString commandline, QSharedPointer<QString> buffer, QTextCodec *codecForBuffer)
+{
 	commandline.replace('@', "@@");
 	commandline.replace('%', "%%");
 	commandline.replace('?', "??");
@@ -6502,13 +6503,12 @@ bool Texstudio::runCommandAsync(const QString &commandline, const char * returnC
     setStatusMessageProcess(tr("  Running this command: ") + proc->getCommandLine());
     connect(proc, SIGNAL(finished(int,QProcess::ExitStatus)), obj, returnCMD);
     connect(proc, SIGNAL(finished(int,QProcess::ExitStatus)), proc, SLOT(deleteLater()));
-    QString *buffer=new QString();
+    QSharedPointer<QString> buffer=QSharedPointer<QString>(new QString());
     proc->setStdoutBuffer(buffer);
     proc->startCommand();
     if (!proc->waitForStarted(1000)) {
         setStatusMessageProcess(tr("Error") + " : " + tr("could not start the command"));
         proc->deleteLater();
-        delete buffer;
         return false;
     }
     return true;
@@ -6526,7 +6526,7 @@ bool Texstudio::runCommandAsync(const QString &commandline, const char * returnC
  * \param returnCmd
  * \return
  */
-bool Texstudio::runCommandAsyncFwd(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString *buffer, QString *errorMsg, QObject *returnObj, const char *returnCmd)
+bool Texstudio::runCommandAsyncFwd(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QSharedPointer<QString> buffer, QSharedPointer<QString> errorMsg, QObject *returnObj, const char *returnCmd)
 {
     // disable buttons
     if(unparsedCommandLine==BuildManager::CMD_COMPILE || unparsedCommandLine== BuildManager::CMD_QUICK){
@@ -10618,10 +10618,10 @@ QString Texstudio::getDiff(QString rev, QString old_rev)
         //GIT
         cmd = GIT::makeCmd("diff", old_revision + " " + new_revision + " " + SVN::quote(filename));
     }
-    QString buffer;
-    runCommandNoSpecialChars(cmd, &buffer, currentEditor()->getFileCodec());
+    QSharedPointer<QString> buffer=QSharedPointer<QString>(new QString());
+    runCommandNoSpecialChars(cmd, buffer, currentEditor()->getFileCodec());
 
-    return buffer;
+    return *buffer;
 }
 
 bool Texstudio::generateMirror(bool setCur)
@@ -11825,8 +11825,8 @@ void Texstudio::declareConflictResolved()
 	QString cmd = BuildManager::CMD_SVN;
 	cmd += " resolve --accept working \"" + fn + ("\"");
 	setStatusMessageProcess(QString(" svn resolve conflict "));
-	QString buffer;
-	runCommandNoSpecialChars(cmd, &buffer);
+    QSharedPointer<QString> buffer=QSharedPointer<QString>(new QString());
+    runCommandNoSpecialChars(cmd, buffer);
 	checkin(fn, "txs: commit after resolve");
 }
 /*!
@@ -12101,7 +12101,7 @@ void Texstudio::checkLatexInstall()
 	result+=QString("dpi: %1\n").arg(dpi);
 	// run pdflatex
 	setStatusMessageProcess(QString("check pdflatex"));
-	QString buffer;
+    QSharedPointer<QString> buffer=QSharedPointer<QString>(new QString());
 	// create result editor here in order to avoid empty editor
 	fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
 	m_languages->setLanguageFromName(currentEditor(), "Plain text");
@@ -12110,33 +12110,33 @@ void Texstudio::checkLatexInstall()
 	QString cmd = cmdInfo.getProgramName();
 	// where is pdflatex located
 #ifdef Q_OS_WIN
-    runCommand("where " + cmd, &buffer,nullptr,false,true);
-	result += "where pdflatex: " + buffer + "\n\n";
+    runCommand("where " + cmd, buffer,nullptr,false,true);
+    result += "where pdflatex: " + *buffer + "\n\n";
 #else
-    runCommand("which " + cmd, &buffer,nullptr,false,true);
-	result += "which pdflatex: " + buffer + "\n\n";
+    runCommand("which " + cmd, buffer,nullptr,false,true);
+    result += "which pdflatex: " + *buffer + "\n\n";
 #endif
-	buffer.clear();
+    buffer->clear();
 	cmd += " -version";
 	// run pdflatex
-    runCommand(cmd, &buffer,nullptr,false,true);
+    runCommand(cmd, buffer,nullptr,false,true);
 	result += "PDFLATEX: " + cmd + "\n";
-	result += buffer;
+    result += *buffer;
 	result += "\n\n";
 	// check env
 	result += "Environment variables:\n";
-	buffer.clear();
+    buffer->clear();
 #ifdef Q_OS_WIN
 	// TODO: it's not guaranteed that a process started with runCommand has the same environment
 	// currently that should be the case, as long as we don't start to change the environment in
 	// runCommand before execution.
 	// The equivalent to printenv on windows would be set. However this is not a program, but a
 	// command directly built into cmd.com, so we cannot directly use runCommand("set");
-	buffer = QProcessEnvironment::systemEnvironment().toStringList().join("\n");
+    *buffer = QProcessEnvironment::systemEnvironment().toStringList().join("\n");
 #else
-    runCommand("printenv", &buffer,nullptr,false,true);
+    runCommand("printenv", buffer,nullptr,false,true);
 #endif
-	result += buffer + "\n";
+    result += *buffer + "\n";
 
 	result += "\nTeXstudio:\n";
 	result += "Path        : " + QDir::toNativeSeparators(QCoreApplication::applicationFilePath()) + "\n";
@@ -12239,7 +12239,7 @@ void Texstudio::checkLanguageTool()
     QString result;
     // run java
     setStatusMessageProcess(QString("check java"));
-    QString buffer;
+    QSharedPointer<QString> buffer=QSharedPointer<QString>(new QString());
     // create result editor here in order to avoid empty editor
     fileNew(QFileInfo(QDir::temp(), tr("LT Report") + ".txt").absoluteFilePath());
     m_languages->setLanguageFromName(currentEditor(), "Plain text");
@@ -12248,13 +12248,13 @@ void Texstudio::checkLanguageTool()
 
     // where is pdflatex located
 #ifdef Q_OS_WIN
-    runCommand("where " + quoteSpaces(cmd), &buffer,nullptr,false,true);
-    result = "where java: " + buffer + "\n\n";
+    runCommand("where " + quoteSpaces(cmd), buffer,nullptr,false,true);
+    result = "where java: " + *buffer + "\n\n";
 #else
-    runCommand("which " + quoteSpaces(cmd), &buffer,nullptr,false,true);
-    result = "which java: " + buffer + "\n\n";
+    runCommand("which " + quoteSpaces(cmd), buffer,nullptr,false,true);
+    result = "which java: " + *buffer + "\n\n";
 #endif
-    buffer.clear();
+    buffer->clear();
     // run pdflatex
     QProcess *javaProcess = new QProcess();
 
@@ -12264,19 +12264,19 @@ void Texstudio::checkLanguageTool()
     int code=javaProcess->exitCode();
     switch (code) {
     case 0:
-        buffer=javaProcess->readAllStandardError();
+        *buffer=javaProcess->readAllStandardError();
         break;
     case -2:
-        buffer+=tr("process failed to start\n");
+        *buffer+=tr("process failed to start\n");
         break;
     default:
-        buffer+=tr("process crashed\n");
+        *buffer+=tr("process crashed\n");
         break;
     }
 
     delete javaProcess;
 
-    result += buffer;
+    result += *buffer;
     result += "\n";
 
     if (configManager.editorConfig->realtimeChecking){

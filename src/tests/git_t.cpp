@@ -66,7 +66,7 @@ void GitTest::basicFunctionality()
  * \param buffer
  * \return
  */
-bool GitTest::runCommand(QString commandline, QString *buffer) {
+bool GitTest::runCommand(QString commandline, QSharedPointer<QString> buffer) {
     commandline.replace('@', "@@");
     commandline.replace('%', "%%");
     commandline.replace('?', "??");

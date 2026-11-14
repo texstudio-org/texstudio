@@ -152,10 +152,10 @@ QString GIT::createRepositoryInFolder(QString folder)
  */
 QString GIT::runGit(QString action, QString args)
 {
-	QString output;
+    QSharedPointer<QString> output=QSharedPointer<QString>(new QString());
     emit statusMessage(QString(" GIT %1 ").arg(action));
-    emit runCommand(makeCmd(action, args), &output);
-	return output;
+    emit runCommand(makeCmd(action, args), output);
+    return *output;
 }
 
 /*!
@@ -410,10 +410,10 @@ QStringList GIT::getRepoLog(const QString &path, int maxEntries)
  */
 QString GIT::runGit(QString action,QString path, QString args)
 {
-    QString output;
+    QSharedPointer<QString> output=QSharedPointer<QString>(new QString());
     emit statusMessage(QString(" GIT %1 ").arg(action));
-    emit runCommand(makeCmd("-C "+path+" "+action, args), &output);
-    return output;
+    emit runCommand(makeCmd("-C "+path+" "+action, args), output);
+    return *output;
 }
 /*!
  * \brief run git asynchronously
@@ -438,10 +438,6 @@ void GIT::runGitAsync(QString action,QString path, QString args,QObject *obj,con
 
 void GIT::runGitAsyncFinished(int exitCode, QProcess::ExitStatus status)
 {
-    ProcessX *proc = qobject_cast<ProcessX*>(sender());
-    if(proc->getStdoutBuffer()!=nullptr){
-        delete proc->getStdoutBuffer();
-    }
     if(status==QProcess::NormalExit && exitCode==0){
         QMetaObject::invokeMethod(m_obj, m_gitAsyncSlot,Q_ARG(int,exitCode),Q_ARG(QProcess::ExitStatus,status));
     }

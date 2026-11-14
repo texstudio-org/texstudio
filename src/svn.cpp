@@ -116,10 +116,10 @@ void SVN::createRepository(QString filename)
  */
 QString SVN::runSvn(QString action, QString args)
 {
-	QString output;
+    QSharedPointer<QString> output=QSharedPointer<QString>(new QString());
 	emit statusMessage(QString(" svn %1 ").arg(action));
-	emit runCommand(makeCmd(action, args), &output);
-	return output;
+    emit runCommand(makeCmd(action, args), output);
+    return *output;
 }
 /*!
  * \brief run svnadmin
@@ -129,10 +129,10 @@ QString SVN::runSvn(QString action, QString args)
  */
 QString SVN::runSvnAdmin(QString action, QString args)
 {
-	QString output;
+    QSharedPointer<QString> output=QSharedPointer<QString>(new QString());
 	emit statusMessage(QString(" svn admin %1 ").arg(action));
-	emit runCommand(makeAdminCmd(action, args), &output);
-	return output;
+    emit runCommand(makeAdminCmd(action, args), output);
+    return *output;
 }
 
 

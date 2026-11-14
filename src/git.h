@@ -66,7 +66,7 @@ public slots:
     void runGitAsyncFinished(int exitCode, QProcess::ExitStatus status);
 
 signals:
-    void runCommand(const QString &commandline, QString *output);
+    void runCommand(const QString &commandline, QSharedPointer<QString> output);
     void runCommandAsync(const QString &commandline, const char * returnCmd);
     void statusMessage(const QString &message);
 

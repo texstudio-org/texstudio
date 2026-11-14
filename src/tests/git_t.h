@@ -13,11 +13,11 @@ class GitTest: public QObject
     Q_OBJECT
 public:
     GitTest(BuildManager* bm,bool executeTest): bm(bm), m_executeTests(executeTest){
-        connect(&git, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommand(QString,QString*)));
+        connect(&git, &GIT::runCommand, this, &GitTest::runCommand);
     }
 
 public slots:
-    bool runCommand(QString commandline,QString *buffer);
+    bool runCommand(QString commandline,QSharedPointer<QString> buffer);
 
 private slots:
     void basicFunctionality(void);

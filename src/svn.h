@@ -29,7 +29,7 @@ public:
     QString runSvnAdmin(QString action, QString args);
 
 signals:
-    void runCommand(const QString &commandline, QString *output);
+    void runCommand(const QString &commandline, QSharedPointer<QString> output);
     void statusMessage(const QString &message);
 
 };

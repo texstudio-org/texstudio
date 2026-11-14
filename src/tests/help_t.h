@@ -12,11 +12,11 @@ class HelpTest: public QObject{
 	Q_OBJECT
 public:
     HelpTest(BuildManager *bm) : bm(bm) {
-        connect(&help, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommand(QString,QString*)));
+        connect(&help, &Help::runCommand, this, &HelpTest::runCommand);
     }
 
 public slots:
-    bool runCommand(QString commandline,QString *buffer)
+    bool runCommand(QString commandline,QSharedPointer<QString> buffer)
     {
         commandline.replace('@', "@@");
         commandline.replace('%', "%%");

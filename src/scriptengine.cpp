@@ -675,7 +675,7 @@ ProcessX * scriptengine::system(const QString &commandline, const QString &worki
     QMetaObject::invokeMethod(reinterpret_cast<QObject *>(app), "connectSubCommand", Q_ARG(ProcessX *, p), Q_ARG(bool, true));
     if (!workingDirectory.isEmpty())
         p->setWorkingDirectory(workingDirectory);
-    QString *buffer=new QString;
+    QSharedPointer<QString> buffer=QSharedPointer<QString>(new QString);
     p->setStdoutBuffer(buffer);
     p->startCommand();
     p->waitForStarted();

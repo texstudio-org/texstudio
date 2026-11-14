@@ -527,11 +527,11 @@ private slots:
 	void endRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async);
 
 
-    bool runCommand(const QString &commandline, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr, bool saveAll=true, bool blocking=false);
-    bool runCommandNoSpecialChars(QString commandline, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr);
+    bool runCommand(const QString &commandline, QSharedPointer<QString> buffer = nullptr, QTextCodec * codecForBuffer = nullptr, bool saveAll=true, bool blocking=false);
+    bool runCommandNoSpecialChars(QString commandline, QSharedPointer<QString> buffer = nullptr, QTextCodec * codecForBuffer = nullptr);
 	void setStatusMessageProcess(const QString &message);
     bool runCommandAsync(const QString &commandline, const char *returnCMD);
-    bool runCommandAsyncFwd(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString *buffer = nullptr, QString *errorMsg = nullptr, QObject *returnObj=nullptr,const char * returnCmd = nullptr);
+    bool runCommandAsyncFwd(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QSharedPointer<QString> buffer = nullptr, QSharedPointer<QString> errorMsg = nullptr, QObject *returnObj=nullptr, const char * returnCmd = nullptr);
 protected slots:
 	void processNotification(const QString &message);
     void clearLogs();
