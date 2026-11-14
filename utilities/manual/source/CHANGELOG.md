@@ -5,6 +5,7 @@
 - refocus goto panel when already open [#4714](https://github.com/texstudio-org/texstudio/issues/4714)
 - fix hang for multiple run-away braces within the same argument [#4737](https://github.com/texstudio-org/texstudio/issues/4737)
 - fix memory leak on OSX [#4726](https://github.com/texstudio-org/texstudio/issues/4726)
+- search missing synctex files in pdf search path. Allows having tex/pdf in the same directory while synctex file stays in the build folder [#4742](https://github.com/texstudio-org/texstudio/pull/4742)
 
 ## TeXstudio 4.9.9
 
