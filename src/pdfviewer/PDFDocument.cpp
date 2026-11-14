@@ -37,6 +37,8 @@
 #include "universalinputdialog.h"
 
 #include "configmanager.h"
+#include "buildmanager.h"
+#include "findindirs.h"
 #include "smallUsefulFunctions.h"
 #include "PDFDocument_config.h"
 #include "configmanagerinterface.h"
@@ -4439,6 +4441,19 @@ void PDFDocument::gotoAnnotation(const PDFAnnotation *ann)
 void PDFDocument::loadSyncData()
 {
 	scanner.load(curFileUnnormalized);
+	if (!scanner.isValid() && !curFile.isEmpty()) {
+		// SyncTeX file may be in the additional PDF paths even if the PDF itself is elsewhere (e.g. latexmk -out2dir)
+		const QFileInfo pdfInfo(curFile);
+		FindInDirs findInDirs(true, false, pdfInfo.absolutePath());
+		findInDirs.loadDirs(BuildManager::resolvePaths(BuildManager::additionalPdfPaths));
+		QString syncFile = findInDirs.findAbsolute(pdfInfo.completeBaseName() + SYNCTEX_GZ_EXT);
+		if (syncFile.isEmpty())
+			syncFile = findInDirs.findAbsolute(pdfInfo.completeBaseName() + SYNCTEX_EXT);
+		if (!syncFile.isEmpty()) {
+			const QString dir = QFileInfo(syncFile).absolutePath();
+			scanner.load(QDir(dir).filePath(pdfInfo.completeBaseName() + ".pdf"));
+		}
+	}
 	if (!scanner.isValid())
 		statusBar()->showMessage(tr("No SyncTeX data available"), 3000);
 	else {
