@@ -271,6 +271,16 @@ if(TEXSTUDIO_BUILD_ADWAITA)
 endif()
 add_subdirectory(src/adwaita-qt)
 
+option(TEXSTUDIO_WAYLAND_ACTIVATION "Use xdg-activation-v1 to raise the window under Wayland (needs Qt6 WaylandClient private headers)" ON)
+if(TEXSTUDIO_WAYLAND_ACTIVATION AND UNIX AND NOT APPLE AND ${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    find_package(Qt6 COMPONENTS WaylandClient QUIET)
+    if(Qt6WaylandClient_FOUND AND TARGET Qt6::WaylandClientPrivate)
+        set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DTXS_WAYLAND_ACTIVATION)
+        set(TXS_WAYLAND_LIBS Qt6::WaylandClient Qt6::WaylandClientPrivate)
+        message(STATUS "Wayland xdg-activation support enabled")
+    endif()
+endif()
+
 option(TEXSTUDIO_ENABLE_TESTS "Enable/Disable internal tests" OFF)
 if(${TEXSTUDIO_ENABLE_TESTS})
 	message(STATUS "tests enabled.")
@@ -394,6 +404,7 @@ target_link_libraries(texstudio PRIVATE
     Qt${QT_VERSION_MAJOR}::Qml
     Qt${QT_VERSION_MAJOR}::Concurrent
     Qt${QT_VERSION_MAJOR}::UiTools
+    ${TXS_WAYLAND_LIBS}
 )
 if(NOT MSVC AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.16.0")
     target_precompile_headers(texstudio PUBLIC src/mostQtHeaders.h)
