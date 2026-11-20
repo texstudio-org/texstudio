@@ -815,9 +815,8 @@ void scriptengine::registerAsBackgroundScript(const QString &name)
 
 bool scriptengine::setTimeout(const QString &fun,const int timeout)
 {
-    QTimer *tm=new QTimer();
     QStringList parts=fun.split(" ");
-    tm->singleShot(timeout,this,std::bind(&scriptengine::runTimed,this,parts.value(1)));
+    QTimer::singleShot(timeout,this,std::bind(&scriptengine::runTimed,this,parts.value(1)));
 
     return true;
 }
