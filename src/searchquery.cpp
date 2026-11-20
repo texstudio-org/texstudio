@@ -393,7 +393,7 @@ void SpecialDefSearchQuery::replaceAll()
     foreach (SearchInfo search, searches) {
         LatexDocument *doc = qobject_cast<LatexDocument *>(search.doc.data());
         if (doc) {
-            QDocumentCursor *cur = new QDocumentCursor(doc);
+            QDocumentCursor cur = QDocumentCursor(doc);
             for(QDocumentLineHandle *dlh:search.lines){
                 // replace text in lines
                 TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
@@ -423,8 +423,8 @@ void SpecialDefSearchQuery::replaceAll()
                 if(replaced){
                     // use cursor to replace line text
                     int lineNr = doc->indexOf(dlh);
-                    cur->select(lineNr, 0, lineNr, dlh->length());
-                    cur->replaceSelectedText(lineText);
+                    cur.select(lineNr, 0, lineNr, dlh->length());
+                    cur.replaceSelectedText(lineText);
                 }
             }
         }
