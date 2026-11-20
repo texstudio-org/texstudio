@@ -2767,7 +2767,7 @@ void Texstudio::fileNewFromTemplate()
 	TemplateManager tmplMgr;
 	connectUnique(&tmplMgr, SIGNAL(editRequested(QString)), this, SLOT(templateEdit(QString)));
 
-	TemplateSelector *dialog = tmplMgr.createLatexTemplateDialog();
+    QScopedPointer<TemplateSelector> dialog(tmplMgr.createLatexTemplateDialog());
 	if (!dialog->exec()) return;
 
 	TemplateHandle th = dialog->selectedTemplate();
@@ -2834,7 +2834,6 @@ void Texstudio::fileNewFromTemplate()
 
 		emit infoNewFromTemplate();
 	}
-	delete dialog;
 }
 /*!
  * \brief insert table template
