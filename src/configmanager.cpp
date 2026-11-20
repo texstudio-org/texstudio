@@ -2943,7 +2943,11 @@ void ConfigManager::setInterfaceStyle()
 
         if (modernStyle) {
             ManhattanStyle *style = new ManhattanStyle(newStyle);
-            if (style->isValid()) QApplication::setStyle(style);
+            if (style->isValid()){
+                QApplication::setStyle(style);
+            }else{
+                delete style;
+            }
         } else{
             QApplication::setStyle(newStyle);
 #ifdef Q_OS_WIN32
