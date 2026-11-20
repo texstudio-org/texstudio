@@ -139,14 +139,22 @@ void UpdateChecker::parseData(const QByteArray &data)
             }
             if (type.isEmpty() || type.toLower() == "stable"){
                 Version v( ver, "stable", revision);
-                latestStableVersion = v;
+                if(!latestStableVersion.isValid() || v>latestStableVersion){
+                    latestStableVersion = v;
+                }
                 if (latestStableVersion.isValid())
                     emit dataParsed(latestStableVersion.versionNumber);
                 if (!latestDevVersion.isValid())
                     latestDevVersion = v;
                 if (!latestReleaseCandidateVersion.isValid())
                     latestReleaseCandidateVersion = v;
-                break; // all other versions are older, so abort after first release
+                if(latestStableVersion>v && v.isValid()){
+                    // only break when mayor version has changed
+                    int v_major = Version::parseVersionNumberToInt(v.versionNumber)>>16;
+                    int latest_major = Version::parseVersionNumberToInt(latestStableVersion.versionNumber)>>16;
+                    if(v_major<latest_major)
+                        break; // all other versions are older, so abort after first release
+                }
             }
         }
     }
