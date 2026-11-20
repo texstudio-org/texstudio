@@ -1,7 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.9.11
 
-- 
+- fix detection of newer txs versions online. Applies when sub-version numbers exceed 9
 
 ## TeXstudio 4.9.10
 
