@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.9.11
+
+- 
+
 ## TeXstudio 4.9.10
 
 - mask API key like password in config dialog  [#4708](https://github.com/texstudio-org/texstudio/issues/4708)
