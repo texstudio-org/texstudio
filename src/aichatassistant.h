@@ -7,11 +7,16 @@
 #include <QNetworkReply>
 #include <QJsonArray>
 #include "chatdelegate.h"
+#ifndef LLM_STREAM_NO_CURL
+#define LLM_STREAM_NO_CURL // SSE parser only, no libcurl
+#endif
+#include "llm/llm_stream.hpp"
 
 class AIChatAssistant : public QDialog
 {
     Q_OBJECT
 public:
+    static QString streamDeltaText(const std::string &eventData);
     explicit AIChatAssistant(QWidget *parent = nullptr);
     ~AIChatAssistant() override;
 
@@ -58,6 +63,7 @@ protected:
     QJsonArray ja_messages;
 
     QTimer *m_timer = nullptr;
+    llm::SseParser m_sse; // carries partial SSE lines/events between reads
 
     ConfigManager *config;
 
@@ -66,7 +72,7 @@ protected:
     void writeToFile(QString filename, QString content);
     QString makeJsonDoc() const;
     void updateConversationForChatview();
-    void updateStreamedConversation(const QString &allData);
+    void updateStreamedConversation(const QByteArray &data, bool endOfStream);
     QJsonArray makeFunctionsJsonArray() const;
     void handleToolCall(QJsonObject jo);
 

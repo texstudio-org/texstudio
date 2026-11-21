@@ -31,6 +31,7 @@
                 src/tests/testutil.cpp \
                 src/tests/latexdocument_t.cpp
 	HEADERS += \
+		src/tests/aichatassistant_t.h \
 		src/tests/execprogram_t.h \
 		src/tests/qsearchreplacepanel_t.h \
 		src/tests/updatechecker_t.h \
