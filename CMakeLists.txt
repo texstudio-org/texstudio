@@ -179,6 +179,9 @@ add_subdirectory(src/qcodeedit)
 # debughelper
 add_subdirectory(src/debug)
 
+# llm (SSE parser for the AI chat)
+add_subdirectory(src/llm)
+
 # latexparser
 add_subdirectory(src/latexparser)
 

@@ -7,9 +7,6 @@
 #include <QNetworkReply>
 #include <QJsonArray>
 #include "chatdelegate.h"
-#ifndef LLM_STREAM_NO_CURL
-#define LLM_STREAM_NO_CURL // SSE parser only, no libcurl
-#endif
 #include "llm/llm_stream.hpp"
 
 class AIChatAssistant : public QDialog
