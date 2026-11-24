@@ -179,6 +179,9 @@ add_subdirectory(src/qcodeedit)
 # debughelper
 add_subdirectory(src/debug)
 
+# llm (SSE parser for the AI chat)
+add_subdirectory(src/llm)
+
 # latexparser
 add_subdirectory(src/latexparser)
 
@@ -277,6 +280,7 @@ if(${TEXSTUDIO_ENABLE_TESTS})
 	find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Test REQUIRED)
         set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DTESTDATADIR="${CMAKE_CURRENT_SOURCE_DIR}/src/tests/testdata")
 	set(HEADER_FILES ${HEADER_FILES}
+		src/tests/aichatassistant_t.h
 		src/tests/buildmanager_t.h
 		src/tests/codesnippet_t.h
 		src/tests/encoding_t.h

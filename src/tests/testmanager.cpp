@@ -2,6 +2,7 @@
 #include "testmanager.h"
 //hel
 #include "smallUsefulFunctions_t.h"
+#include "aichatassistant_t.h"
 #include "latexparser_t.h"
 #include "latexparsing_t.h"
 #include "encoding_t.h"
@@ -104,6 +105,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
             << new HelpTest(buildManager)
             << new UserMacroTest()
             << new TexStudioTest(level==TL_ALL)
+            << new AIChatAssistantTest()
             << new GitTest(buildManager,level!=TL_AUTO);
 	bool allPassed=true;
 	if (level!=TL_ALL)

@@ -4,6 +4,7 @@ DEPENDPATH += $$PWD
 HEADERS += \
     $$PWD/aboutdialog.h \
     $$PWD/aichatassistant.h \
+    $$PWD/llm/llm_stream.hpp \
     $$PWD/aiquerystoragemodel.h \
     $$PWD/arraydialog.h \
     $$PWD/bibtexdialog.h \

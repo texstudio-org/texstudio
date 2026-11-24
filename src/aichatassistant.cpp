@@ -240,6 +240,7 @@ void AIChatAssistant::slotSend(bool fromToolCall)
     }
     if(config->ai_streamResults){
         dd["stream"] = true;
+        m_sse.reset();
         m_timer=new QTimer();
         m_timer->setInterval(100);
         connect(m_timer,&QTimer::timeout,this,&AIChatAssistant::slotUpdateResults);
@@ -282,12 +283,14 @@ void AIChatAssistant::slotSend(bool fromToolCall)
 
     dd["messages"]=ja_messages;
 
+    if(url.endsWith("/v1/messages")){
+        // anthropic compatible API, max_tokens is required
+        dd["max_tokens"]=config->ai_maxTokens;
+    }
     QJsonDocument jsonDoc(dd);
     QString data=jsonDoc.toJson();
     if(url.endsWith("/v1/messages")){
         // anthropic compatible API
-        dd["max_tokens"]=config->ai_maxTokens;
-
         QNetworkRequest request = QNetworkRequest(QUrl(url));
         request.setRawHeader("User-Agent", "TeXstudio Chat Assistant");
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -436,9 +439,8 @@ void AIChatAssistant::slotSearch()
 {
      if (!m_reply || m_reply->error() != QNetworkReply::NoError) return;
      QByteArray data=m_reply->readAll();
-     QString allData(data);
-     if(allData.startsWith("data: ")){
-         updateStreamedConversation(allData);
+     if(!data.isEmpty()){
+         updateStreamedConversation(data,false);
      }
 }
 /*!
@@ -476,10 +478,9 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
     }
     if (!nreply || nreply->error() != QNetworkReply::NoError) return;
     QByteArray data=nreply->readAll();
-    QString allData(data);
-    if(allData.isEmpty()) return; // work-around, seems to happen with mistral during multiple tool calls
-    if(allData.startsWith("data: ")){
-        updateStreamedConversation(allData);
+    if(data.isEmpty()) return; // work-around, seems to happen with mistral during multiple tool calls
+    if(nreply->header(QNetworkRequest::ContentTypeHeader).toString().startsWith("text/event-stream")){
+        updateStreamedConversation(data,true);
     }else{
         QJsonDocument doc=QJsonDocument::fromJson(data);
         QJsonObject obj=doc.object();
@@ -659,21 +660,18 @@ void AIChatAssistant::updateConversationForChatview()
 }
 /*!
  * \brief read streamed conversation and update textBrowser
- * \param allData
+ * \param data bytes read from the reply since the last call
+ * \param endOfStream true when the reply has finished
  */
-void AIChatAssistant::updateStreamedConversation(const QString &allData)
+void AIChatAssistant::updateStreamedConversation(const QByteArray &data, bool endOfStream)
 {
-    QStringList msgs=allData.split("data: ");
-    for(const QString &elem:qAsConst(msgs)){
-        QJsonDocument doc=QJsonDocument::fromJson(elem.toUtf8());
-        QJsonObject obj=doc.object();
-        QJsonArray arr=obj["choices"].toArray();
-        if(arr.size()>0){
-            QJsonObject ja_choice=arr[0].toObject();
-            QJsonObject jo_delta=ja_choice["delta"].toObject();
-            QString delta_text=jo_delta["content"].toString();
-            m_response+=delta_text;
-        }
+    // reads end anywhere, m_sse keeps a partial event until the next read completes it
+    const llm::SseCallback onEvent=[this](const llm::SseEvent &ev){
+        m_response+=streamDeltaText(ev.data);
+    };
+    m_sse.feed(std::string_view(data.constData(),static_cast<size_t>(data.size())),onEvent);
+    if(endOfStream){
+        m_sse.finish(onEvent);
     }
     // check if last message is a question
     // add a new message to conversation
@@ -687,6 +685,23 @@ void AIChatAssistant::updateStreamedConversation(const QString &allData)
     ja_message["content"]=m_response;
     ja_messages.append(ja_message);
     updateConversationForChatview();
+}
+/*!
+ * \brief text delta of one streamed event (openai or anthropic format)
+ */
+QString AIChatAssistant::streamDeltaText(const std::string &eventData)
+{
+    QJsonObject obj=QJsonDocument::fromJson(QByteArray::fromStdString(eventData)).object();
+    QJsonArray arr=obj["choices"].toArray();
+    if(arr.size()>0){
+        QJsonObject ja_choice=arr[0].toObject();
+        QJsonObject jo_delta=ja_choice["delta"].toObject();
+        return jo_delta["content"].toString();
+    }
+    if(obj["type"].toString()=="content_block_delta"){
+        return obj["delta"].toObject()["text"].toString();
+    }
+    return QString();
 }
 /*!
  * \brief generate json array with txs functions for AI provider
