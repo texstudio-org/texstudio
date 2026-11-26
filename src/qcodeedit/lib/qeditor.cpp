@@ -2784,7 +2784,12 @@ void QEditor::unindentSelection()
 
             // remove the same number of characters for all cursors to keep them aligned
             int maxRemove = -1;
-            maxRemove = unindentCount(m_cursor);
+            for ( int i = s.startLine; i <= s.endLine && maxRemove<=0; ++i ){
+                //use indentation of first encountered indented line as maximum number of characters to remove
+                //so inside indentation can be removed, see #4753. Seems to be standard behavior in other editors (like VS Code)
+                maxRemove = unindentCount(QDocumentCursor(m_doc, i));
+            }
+            if(maxRemove<=0) return; // nothing to do
 
 			m_doc->beginMacro();
 
