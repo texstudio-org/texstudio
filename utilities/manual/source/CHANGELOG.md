@@ -2,6 +2,7 @@
 ## TeXstudio 4.9.11
 
 - fix detection of newer txs versions online. Applies when sub-version numbers exceed 9
+- unindent selection internal lines even when first line is already unindented [#4753](https://github.com/texstudio-org/texstudio/issues/4753)
 
 ## TeXstudio 4.9.10
 
