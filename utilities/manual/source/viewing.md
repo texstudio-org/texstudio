@@ -156,6 +156,11 @@ The inline preview is started by selecting the interesting text and then pressin
 ![Context on Inline preview](images/preview_inline_context.webp)
 ```
 
+## Inline Preview with embedded pdf viewer
+
+The `Idefix/Preview Display Mode` allows to use `Embedded pdf viewer`.
+This shows previews of selection in the pdf viewer. Reverse search by ctrl+click on text in the pdf works here as well.
+
 ### Tooltip preview
 
 A tooltip is created when hovering over the delimiters like `$` of a formula.
