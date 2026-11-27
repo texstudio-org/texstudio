@@ -9337,55 +9337,55 @@ QList<int> Texstudio::findOccurencesApproximate(QString line, const QString &gue
 void Texstudio::syncFromViewer(const QString &fileName, int line, bool activate, const QString &guessedWord)
 {
     QWidget *w = focusWidget();
-	if (!activateEditorForFile(fileName, true, activate)) {
-		bool success = load(fileName);
-		if (!activate)
-			w->setFocus();  // restore focus
-		if (!success) return;
-	}
-	shrinkEmbeddedPDFViewer();
+    if (!activateEditorForFile(fileName, true, activate)) {
+        bool success = load(fileName);
+        if (!activate)
+            w->setFocus();  // restore focus
+        if (!success) return;
+    }
+    shrinkEmbeddedPDFViewer();
 
-	QDocumentLine l = currentEditorView()->document->lineFromLineSnapshot(line);
-	if (l.isValid()) {
-		int originalLineNumber = currentEditorView()->document->indexOf(l, line);
-		if (originalLineNumber >= 0) line = originalLineNumber;
-	}
+    QDocumentLine l = currentEditorView()->document->lineFromLineSnapshot(line);
+    if (l.isValid()) {
+        int originalLineNumber = currentEditorView()->document->indexOf(l, line);
+        if (originalLineNumber >= 0) line = originalLineNumber;
+    }
 
-	gotoLine(line, 0, nullptr, QEditor::Navigation, activate);
-	Q_ASSERT(currentEditor());
+    gotoLine(line, 0, nullptr, QEditor::Navigation, activate);
+    Q_ASSERT(currentEditor());
 
-	// guessedWord may appear multiple times -> we highlight them all
-	QList<int> columns = findOccurencesApproximate(currentEditor()->cursor().line().text(), guessedWord);
+    // guessedWord may appear multiple times -> we highlight them all
+    QList<int> columns = findOccurencesApproximate(currentEditor()->cursor().line().text(), guessedWord);
 
-	if (columns.isEmpty() || guessedWord.isEmpty()) {
-		// highlight complete line
-		QDocumentCursor highlight(currentEditor()->document(), line, 0);
-		highlight.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
-		currentEditorView()->temporaryHighlight(highlight);
-	} else {
-		// highlight all found positions
-		QDocumentCursor highlight(currentEditor()->document(), line, 0);
-		foreach (int col, columns) {
-			int cursorCol = col + guessedWord.length() / 2;
-			highlight.setColumnNumber(cursorCol);
-			highlight.movePosition(1, QDocumentCursor::StartOfWord, QDocumentCursor::MoveAnchor);
-			highlight.movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
-			if (!highlight.hasSelection()) { // fallback, if we are not at a word
-				highlight.setColumnNumber(cursorCol);
-				highlight.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
-				highlight.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-			}
-			currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(), cursorCol, false);
-			currentEditor()->ensureCursorVisible(QEditor::KeepSurrounding | QEditor::ExpandFold);
-			currentEditorView()->temporaryHighlight(highlight);
-		}
-	}
+    if (columns.isEmpty() || guessedWord.isEmpty()) {
+        // highlight complete line
+        QDocumentCursor highlight(currentEditor()->document(), line, 0);
+        highlight.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+        currentEditorView()->temporaryHighlight(highlight);
+    } else {
+        // highlight all found positions
+        QDocumentCursor highlight(currentEditor()->document(), line, 0);
+        foreach (int col, columns) {
+            int cursorCol = col + guessedWord.length() / 2;
+            highlight.setColumnNumber(cursorCol);
+            highlight.movePosition(1, QDocumentCursor::StartOfWord, QDocumentCursor::MoveAnchor);
+            highlight.movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
+            if (!highlight.hasSelection()) { // fallback, if we are not at a word
+                highlight.setColumnNumber(cursorCol);
+                highlight.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+                highlight.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+            }
+            currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(), cursorCol, false);
+            currentEditor()->ensureCursorVisible(QEditor::KeepSurrounding | QEditor::ExpandFold);
+            currentEditorView()->temporaryHighlight(highlight);
+        }
+    }
 
-	if (activate) {
-		raise();
-		show();
-		activateWindow();
-		if (isMinimized()) showNormal();
+    if (activate) {
+        raise();
+        show();
+        activateWindow();
+        if (isMinimized()) showNormal();
     }else{
         w->setFocus();  // restore focus
     }
