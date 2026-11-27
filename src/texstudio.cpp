@@ -9487,100 +9487,100 @@ void Texstudio::saveEditorCursorToHistory(LatexEditorView *edView)
 
 void Texstudio::previewLatex()
 {
-	if (!currentEditorView()) return;
+    if (!currentEditorView()) return;
     LatexEditorView *edView=currentEditorView();
     QEditor *editor=edView->editor;
 
-	// get selection
+    // get selection
     QDocumentCursor c = editor->cursor();
 
-	QDocumentCursor previewc;
-	if (c.hasSelection()) {
-		previewc = c; //X o riginalText = c.selectedText();
-	} else {
+    QDocumentCursor previewc;
+    if (c.hasSelection()) {
+        previewc = c; //X o riginalText = c.selectedText();
+    } else {
         if (edView->getLineRowforContexMenu()>=0) {
             c.moveTo(edView->getLineRowforContexMenu(), edView->getLineColforContexMenu());
         }
-		// math context
-		QSet<int> mathFormats = QSet<int>() << m_formats->id("numbers") << m_formats->id("math-keyword") << m_formats->id("align-ampersand");
-		QSet<int> lineEndFormats = QSet<int>() << m_formats->id("keyword") /* newline char */ << m_formats->id("comment");
-		mathFormats.remove(0); // keep only valid entries in list
-		lineEndFormats.remove(0);
+        // math context
+        QSet<int> mathFormats = QSet<int>() << m_formats->id("numbers") << m_formats->id("math-keyword") << m_formats->id("align-ampersand");
+        QSet<int> lineEndFormats = QSet<int>() << m_formats->id("keyword") /* newline char */ << m_formats->id("comment");
+        mathFormats.remove(0); // keep only valid entries in list
+        lineEndFormats.remove(0);
         previewc = edView->findFormatsBegin(c, mathFormats, lineEndFormats);
         previewc = edView->parenthizedTextSelection(previewc);
-	}
-	if (!previewc.hasSelection()) {
-		// special handling for cusor in the middle of \[ or \]
-		if (c.previousChar() == '\\' && (c.nextChar() == '[' || c.nextChar() == ']')) {
-			c.movePosition(1, QDocumentCursor::PreviousCharacter);
+    }
+    if (!previewc.hasSelection()) {
+        // special handling for cusor in the middle of \[ or \]
+        if (c.previousChar() == '\\' && (c.nextChar() == '[' || c.nextChar() == ']')) {
+            c.movePosition(1, QDocumentCursor::PreviousCharacter);
             previewc = edView->parenthizedTextSelection(c);
-		}
-	}
-        if (!previewc.hasSelection()) {
-            // in environment delimiter (\begin{env} or \end{env})
-            QString command;
-            Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
-            if (tk.type != Token::none)
-                command = tk.getText();
-            if (tk.type == Token::env || tk.type == Token::beginEnv ) {
-                TokenList tl = c.line().handle()->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-                tk=Parsing::getCommandTokenFromToken(tl,tk);
-                c.setColumnNumber(tk.start);
-                previewc = edView->parenthizedTextSelection(c);
-            }
-            if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
-                c.setColumnNumber(tk.start);
-                previewc = edView->parenthizedTextSelection(c);
-            }
         }
-        if (!previewc.hasSelection()) {
-            // already at parenthesis
-            previewc = edView->parenthizedTextSelection(editor->cursor());
+    }
+    if (!previewc.hasSelection()) {
+        // in environment delimiter (\begin{env} or \end{env})
+        QString command;
+        Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
+        if (tk.type != Token::none)
+            command = tk.getText();
+        if (tk.type == Token::env || tk.type == Token::beginEnv ) {
+            TokenList tl = c.line().handle()->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            tk=Parsing::getCommandTokenFromToken(tl,tk);
+            c.setColumnNumber(tk.start);
+            previewc = edView->parenthizedTextSelection(c);
         }
-	if (!previewc.hasSelection()) return;
+        if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
+            c.setColumnNumber(tk.start);
+            previewc = edView->parenthizedTextSelection(c);
+        }
+    }
+    if (!previewc.hasSelection()) {
+        // already at parenthesis
+        previewc = edView->parenthizedTextSelection(editor->cursor());
+    }
+    if (!previewc.hasSelection()) return;
 
-	showPreview(previewc, true);
+    showPreview(previewc, true);
 
 }
 
 void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &source)
 {
-	QPixmap pixmap;
+    QPixmap pixmap;
     qreal devPixelRatio = 1.0;
 
     devPixelRatio = devicePixelRatio();
 
-	double scale = configManager.segmentPreviewScalePercent / 100.;
-	double min = 0.2;
-	double max = 100;
-	scale = qMax(min, qMin(max, scale)) * devPixelRatio;
-	bool fromPDF = false;
+    double scale = configManager.segmentPreviewScalePercent / 100.;
+    double min = 0.2;
+    double max = 100;
+    scale = qMax(min, qMin(max, scale)) * devPixelRatio;
+    bool fromPDF = false;
 
 #ifndef NO_POPPLER_PREVIEW
-	fromPDF = imageFile.toLower().endsWith(".pdf");
-	if (fromPDF) {
-		// special treatment for pdf files (embedded pdf mode)
-		if (configManager.previewMode == ConfigManager::PM_EMBEDDED) {
-			runInternalCommand("txs:///view-pdf-internal", QFileInfo(imageFile), "--embedded");
-			if (currentEditorView())
-				currentEditorView()->setFocus();
-			return;
-		} else {
+    fromPDF = imageFile.toLower().endsWith(".pdf");
+    if (fromPDF) {
+        // special treatment for pdf files (embedded pdf mode)
+        if (configManager.previewMode == ConfigManager::PM_EMBEDDED) {
+            runInternalCommand("txs:///view-pdf-internal", QFileInfo(imageFile), "--embedded");
+            if (currentEditorView())
+                currentEditorView()->setFocus();
+            return;
+        } else {
             std::unique_ptr<Poppler::Document> document(Poppler::Document::load(imageFile));
             if (!document)
                 return;
             std::unique_ptr<Poppler::Page> page(document->page(0));
             if (!page)
                 return;
-			document->setRenderHint(Poppler::Document::Antialiasing);
-			document->setRenderHint(Poppler::Document::TextAntialiasing);
-			double c = 1.25;  // empirical correction factor because pdf images are smaller than dvipng images. TODO: is logicalDpiX correct?
+            document->setRenderHint(Poppler::Document::Antialiasing);
+            document->setRenderHint(Poppler::Document::TextAntialiasing);
+            double c = 1.25;  // empirical correction factor because pdf images are smaller than dvipng images. TODO: is logicalDpiX correct?
             pixmap = QPixmap::fromImage(page->renderToImage(qRound(scale*logicalDpiX() * c), qRound(scale*logicalDpiY() * c)));
             previewCache.insert(source.text,pixmap);
-		}
-	}
+        }
+    }
 #endif
-	if (!fromPDF) {
+    if (!fromPDF) {
         if(imageFile.isEmpty()){
             // cached
             previewCache.find(source.text,&pixmap);
@@ -9593,66 +9593,66 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
                 pixmap = pixmap.scaledToWidth(qRound(scale*pixmap.width()), Qt::SmoothTransformation);
             }
         }
-	}
+    }
 
     if (devPixelRatio > 1.01 || devPixelRatio<0.99) {
-		pixmap.setDevicePixelRatio(devPixelRatio);
-	}
+        pixmap.setDevicePixelRatio(devPixelRatio);
+    }
 
-	if (configManager.previewMode == ConfigManager::PM_BOTH ||
-	        configManager.previewMode == ConfigManager::PM_PANEL ||
-	        (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
-		outputView->showPage(outputView->PREVIEW_PAGE);
-		outputView->previewLatex(pixmap);
-	}
-	if (configManager.previewMode == ConfigManager::PM_BOTH ||
-	        configManager.previewMode == ConfigManager::PM_TOOLTIP ||
+    if (configManager.previewMode == ConfigManager::PM_BOTH ||
+            configManager.previewMode == ConfigManager::PM_PANEL ||
+            (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
+        outputView->showPage(outputView->PREVIEW_PAGE);
+        outputView->previewLatex(pixmap);
+    }
+    if (configManager.previewMode == ConfigManager::PM_BOTH ||
+            configManager.previewMode == ConfigManager::PM_TOOLTIP ||
             (source.atCursor && configManager.previewMode == ConfigManager::PM_INLINE)  || // respect preview setting, except for INLINE
-	        (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible()) ||
+            (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible()) ||
             (source.fromLine < 0 && !source.atCursor)) { // completer preview
         QPointF p;
-		if (source.atCursor)
-			p = currentEditorView()->getHoverPosistion();
-		else
+        if (source.atCursor)
+            p = currentEditorView()->getHoverPosistion();
+        else
             p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition().toPoint()));
 
-		QRect screen = QGuiApplication::primaryScreen()->geometry();
-		int w = pixmap.width();
-		if (w > screen.width()) w = screen.width() - 2;
+        QRect screen = QGuiApplication::primaryScreen()->geometry();
+        int w = pixmap.width();
+        if (w > screen.width()) w = screen.width() - 2;
         int w_calculated=qRound(1.0*w / devPixelRatio); //pixmap shown with reduced width to be pixel perfect again
-		if (!fromPDF) {
-                QToolTip::showText(p.toPoint(), QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w_calculated), nullptr);
-		} else {
-			QString text;
+        if (!fromPDF) {
+            QToolTip::showText(p.toPoint(), QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w_calculated), nullptr);
+        } else {
+            QString text;
 
             text = getImageAsText(pixmap, w_calculated);
 
-			if (completerPreview) {
-				completerPreview = false;
-				completer->showTooltip(text);
-			} else {
+            if (completerPreview) {
+                completerPreview = false;
+                completer->showTooltip(text);
+            } else {
                 QToolTip::showText(p.toPoint(), text, nullptr);
-			}
+            }
         }
         LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
-	}
-	if (configManager.previewMode == ConfigManager::PM_INLINE && source.fromLine >= 0) {
-		QDocument *doc = currentEditor()->document();
-		doc->setForceLineWrapCalculation(true);
-		int toLine = qBound(0, source.toLine, doc->lines() - 1);
-		for (int l = source.fromLine; l <= toLine; l++ )
-			if (doc->line(l).getCookie(QDocumentLine::PICTURE_COOKIE).isValid()) {
-				doc->line(l).removeCookie(QDocumentLine::PICTURE_COOKIE);
-				doc->line(l).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
-				doc->line(l).setFlag(QDocumentLine::LayoutDirty);
-				if (l != toLine) //must not adjust line toLine here, or will recalculate the document height without preview and scroll away if the preview is very height
-					doc->adjustWidth(l);
-			}
-		doc->line(toLine).setCookie(QDocumentLine::PICTURE_COOKIE, QVariant::fromValue<QPixmap>(pixmap));
-		doc->line(toLine).setFlag(QDocumentLine::LayoutDirty);
-		doc->adjustWidth(toLine);
+    }
+    if (configManager.previewMode == ConfigManager::PM_INLINE && source.fromLine >= 0) {
+        QDocument *doc = currentEditor()->document();
+        doc->setForceLineWrapCalculation(true);
+        int toLine = qBound(0, source.toLine, doc->lines() - 1);
+        for (int l = source.fromLine; l <= toLine; l++ )
+            if (doc->line(l).getCookie(QDocumentLine::PICTURE_COOKIE).isValid()) {
+                doc->line(l).removeCookie(QDocumentLine::PICTURE_COOKIE);
+                doc->line(l).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
+                doc->line(l).setFlag(QDocumentLine::LayoutDirty);
+                if (l != toLine) //must not adjust line toLine here, or will recalculate the document height without preview and scroll away if the preview is very height
+                    doc->adjustWidth(l);
+            }
+        doc->line(toLine).setCookie(QDocumentLine::PICTURE_COOKIE, QVariant::fromValue<QPixmap>(pixmap));
+        doc->line(toLine).setFlag(QDocumentLine::LayoutDirty);
+        doc->adjustWidth(toLine);
         currentEditorView()->updatePanels();
-	}
+    }
 }
 
 void Texstudio::clearPreview()
