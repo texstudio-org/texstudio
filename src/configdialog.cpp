@@ -779,7 +779,13 @@ void ConfigDialog::retrieveModels()
     }
     QNetworkRequest request(url);
     if(!key.isEmpty()){
-        request.setRawHeader("Authorization",QString("Bearer "+key).toUtf8());
+        // distinguish anthropic/openai
+        if(ui.cbAIProvider->currentIndex()==4){
+            request.setRawHeader("X-API-Key",key.toUtf8());
+            request.setRawHeader("anthropic-version", "2023-06-01");
+        }else{
+            request.setRawHeader("Authorization",QString("Bearer "+key).toUtf8());
+        }
     }
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     connect(manager,&QNetworkAccessManager::finished,this,&ConfigDialog::modelsRetrieved);
@@ -822,7 +828,10 @@ void ConfigDialog::modelsRetrieved(QNetworkReply *reply)
                 config->ai_knownModels=models;
             }
         }
-
+    }else{
+        // show reply
+        QString errorString = reply->errorString();
+        QMessageBox::warning(this, tr("Error retrieving models"), tr("Failed to retrieve models from the AI provider:\n%1").arg(errorString));
     }
     reply->deleteLater();
 }
