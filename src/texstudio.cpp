@@ -9710,224 +9710,224 @@ void Texstudio::clearPreview()
 
 void Texstudio::showImgPreview(const QString &fname)
 {
-	completerPreview = (sender() == completer); // completer needs signal as answer
-	QString imageName = fname;
-	QFileInfo fi(fname);
-	QString suffix;
-	QStringList suffixList;
-	suffixList << "jpg" << "jpeg" << "png" << "pdf";
-	if (fi.exists()) {
-		if (!suffixList.contains(fi.suffix()))
-			return;
-		suffix = fi.suffix();
-	}
+    completerPreview = (sender() == completer); // completer needs signal as answer
+    QString imageName = fname;
+    QFileInfo fi(fname);
+    QString suffix;
+    QStringList suffixList;
+    suffixList << "jpg" << "jpeg" << "png" << "pdf";
+    if (fi.exists()) {
+        if (!suffixList.contains(fi.suffix()))
+            return;
+        suffix = fi.suffix();
+    }
 
-	if (suffix.isEmpty()) {
-		foreach (QString elem, suffixList) {
-			imageName = fname + elem;
-			fi.setFile(imageName);
-			if (fi.exists()) {
-				suffix = elem;
-				break;
-			}
-		}
-	}
+    if (suffix.isEmpty()) {
+        foreach (QString elem, suffixList) {
+            imageName = fname + elem;
+            fi.setFile(imageName);
+            if (fi.exists()) {
+                suffix = elem;
+                break;
+            }
+        }
+    }
 
-	suffixList.clear();
-	suffixList << "jpg" << "jpeg" << "png";
-	if (suffixList.contains(suffix)) {
-		QPoint p;
-		//if(previewEquation)
-		p = currentEditorView()->getHoverPosistion();
-		//else
-		//    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
-		QRect screen = QGuiApplication::primaryScreen()->geometry();
-		QPixmap img(imageName);
-		int w = qMin(img.width(), configManager.editorConfig->maxImageTooltipWidth);
-		w = qMin(w, screen.width() - 8);
-		QString text = QString("<img src=\"" + imageName + "\" width=%1 />").arg(w);
-		if (completerPreview) {
-			completerPreview = false;
-			emit imgPreview(text);
-		} else {
-		        QToolTip::showText(p, text, nullptr);
-			LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
-		}
-	}
+    suffixList.clear();
+    suffixList << "jpg" << "jpeg" << "png";
+    if (suffixList.contains(suffix)) {
+        QPoint p;
+        //if(previewEquation)
+        p = currentEditorView()->getHoverPosistion();
+        //else
+        //    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+        QRect screen = QGuiApplication::primaryScreen()->geometry();
+        QPixmap img(imageName);
+        int w = qMin(img.width(), configManager.editorConfig->maxImageTooltipWidth);
+        w = qMin(w, screen.width() - 8);
+        QString text = QString("<img src=\"" + imageName + "\" width=%1 />").arg(w);
+        if (completerPreview) {
+            completerPreview = false;
+            emit imgPreview(text);
+        } else {
+            QToolTip::showText(p, text, nullptr);
+            LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
+        }
+    }
 #ifndef NO_POPPLER_PREVIEW
-	if (suffix == "pdf") {
-		//render pdf preview
-		PDFRenderManager *renderManager = new PDFRenderManager(this, 1);
-		PDFRenderManager::Error error = PDFRenderManager::NoError;
-		QSharedPointer<Poppler::Document> document = renderManager->loadDocument(imageName, error, "");
-		if (error == PDFRenderManager::NoError) {
-			renderManager->renderToImage(0, this, "showImgPreviewFinished", 20, 20, -1, -1, -1, -1, false, true);
-		} else {
-			delete renderManager;
-		}
-	}
+    if (suffix == "pdf") {
+        //render pdf preview
+        PDFRenderManager *renderManager = new PDFRenderManager(this, 1);
+        PDFRenderManager::Error error = PDFRenderManager::NoError;
+        QSharedPointer<Poppler::Document> document = renderManager->loadDocument(imageName, error, "");
+        if (error == PDFRenderManager::NoError) {
+            renderManager->renderToImage(0, this, "showImgPreviewFinished", 20, 20, -1, -1, -1, -1, false, true);
+        } else {
+            delete renderManager;
+        }
+    }
 #endif
 }
 
 void Texstudio::showImgPreviewFinished(const QPixmap &pm, int page)
 {
-	if (!currentEditorView()) return;
-	Q_UNUSED(page)
-	QPoint p;
-	//if(previewEquation)
-	p = currentEditorView()->getHoverPosistion();
-	//else
-	//    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
-	QRect screen = QGuiApplication::primaryScreen()->geometry();
-	int w = pm.width();
-	if (w > screen.width()) w = screen.width() - 2;
-	QString text;
-	text = getImageAsText(pm, w);
+    if (!currentEditorView()) return;
+    Q_UNUSED(page)
+    QPoint p;
+    //if(previewEquation)
+    p = currentEditorView()->getHoverPosistion();
+    //else
+    //    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+    QRect screen = QGuiApplication::primaryScreen()->geometry();
+    int w = pm.width();
+    if (w > screen.width()) w = screen.width() - 2;
+    QString text;
+    text = getImageAsText(pm, w);
 
-	if (completerPreview) {
-		emit imgPreview(text);
-	} else {
-	        QToolTip::showText(p, text, nullptr);
-		LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
-	}
+    if (completerPreview) {
+        emit imgPreview(text);
+    } else {
+        QToolTip::showText(p, text, nullptr);
+        LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
+    }
 #ifndef NO_POPPLER_PREVIEW
-	PDFRenderManager *renderManager = qobject_cast<PDFRenderManager *>(sender());
-	delete renderManager;
+    PDFRenderManager *renderManager = qobject_cast<PDFRenderManager *>(sender());
+    delete renderManager;
 #endif
 }
 
 void Texstudio::showPreview(const QString &text)
 {
-	completerPreview = (sender() == completer); // completer needs signal as answer
-	LatexEditorView *edView = getEditorViewFromFileName(documents.getCompileFileName()); //todo: temporary compi
-	if (!edView)
-		edView = currentEditorView();
-	if (!edView) return;
-	int m_endingLine = edView->editor->document()->findLineContaining("\\begin{document}", 0, Qt::CaseSensitive);
-	if (m_endingLine < 0) return; // can't create header
+    completerPreview = (sender() == completer); // completer needs signal as answer
+    LatexEditorView *edView = getEditorViewFromFileName(documents.getCompileFileName()); //todo: temporary compi
+    if (!edView)
+        edView = currentEditorView();
+    if (!edView) return;
+    int m_endingLine = edView->editor->document()->findLineContaining("\\begin{document}", 0, Qt::CaseSensitive);
+    if (m_endingLine < 0) return; // can't create header
     // use cache if available
     QPixmap pm;
     if(previewCache.find(text,&pm)){
         previewAvailable("",PreviewSource(text, -1, -1, true));
         return;
     }
-	QStringList header;
-	for (int l = 0; l < m_endingLine; l++)
-		header << edView->editor->document()->line(l).text();
-	QString atBeginDocument = "\n";
-	QString atEndDocument = "\n";
-	BuildManager::Dvi2PngMode dvi2pngModeDerived = buildManager.guessDvi2PngMode();
+    QStringList header;
+    for (int l = 0; l < m_endingLine; l++)
+        header << edView->editor->document()->line(l).text();
+    QString atBeginDocument = "\n";
+    QString atEndDocument = "\n";
+    BuildManager::Dvi2PngMode dvi2pngModeDerived = buildManager.guessDvi2PngMode();
     if (dvi2pngModeDerived>=BuildManager::DPM_EMBEDDED_PDF) {
-		header << "\\usepackage[active,tightpage]{preview}"
-		       << "\\usepackage{varwidth}";
-		atBeginDocument = "\n\\begin{preview}\\begin{varwidth}{\\linewidth}\n";
-		atEndDocument = "\n\\end{varwidth}\\end{preview}\n";
-	}
-	header << "\\pagestyle{empty}";
-	buildManager.preview(header.join("\n"), PreviewSource(text, -1, -1, true), documents.getCompileFileName(), edView->editor->document()->codec(), atBeginDocument, atEndDocument);
+        header << "\\usepackage[active,tightpage]{preview}"
+               << "\\usepackage{varwidth}";
+        atBeginDocument = "\n\\begin{preview}\\begin{varwidth}{\\linewidth}\n";
+        atEndDocument = "\n\\end{varwidth}\\end{preview}\n";
+    }
+    header << "\\pagestyle{empty}";
+    buildManager.preview(header.join("\n"), PreviewSource(text, -1, -1, true), documents.getCompileFileName(), edView->editor->document()->codec(), atBeginDocument, atEndDocument);
 }
 
 void Texstudio::showPreview(const QDocumentCursor &previewc)
 {
-	if (previewQueueOwner != currentEditorView())
-		previewQueue.clear();
-	previewQueueOwner = currentEditorView();
-	previewQueue.insert(previewc.lineNumber());
+    if (previewQueueOwner != currentEditorView())
+        previewQueue.clear();
+    previewQueueOwner = currentEditorView();
+    previewQueue.insert(previewc.lineNumber());
 
-	// mark region which is previewed, or update
-	int sid = previewc.document()->getFormatId("previewSelection");
-	if (sid)
-		updateEmphasizedRegion(previewc, sid);
+    // mark region which is previewed, or update
+    int sid = previewc.document()->getFormatId("previewSelection");
+    if (sid)
+        updateEmphasizedRegion(previewc, sid);
 
-	  previewDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
+    previewDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
     //QTimer::singleShot(qMax(40, configManager.autoPreviewDelay), this, SLOT(showPreviewQueue())); //slow down or it could create thousands of images
 }
 
 void Texstudio::showPreview(const QDocumentCursor &previewc, bool addToList)
 {
-	REQUIRE(currentEditor());
-	REQUIRE(previewc.document() == currentEditor()->document());
+    REQUIRE(currentEditor());
+    REQUIRE(previewc.document() == currentEditor()->document());
 
-	QString originalText = previewc.selectedText();
-	if (originalText == "") return;
-	// get document definitions
-	//preliminary code ...
-	const LatexDocument *rootDoc = documents.getRootDocumentForDoc();
-	if (!rootDoc) return;
-	QStringList header = makePreviewHeader(rootDoc);
-	if (header.isEmpty()) return;
-	QString atBeginDocument = "\n";
-	QString atEndDocument = "\n";
-	BuildManager::Dvi2PngMode dvi2pngModeDerived = buildManager.guessDvi2PngMode();
-	if (dvi2pngModeDerived>=BuildManager::DPM_EMBEDDED_PDF && configManager.previewMode != ConfigManager::PM_EMBEDDED) {
-		header << "\\usepackage[active,tightpage]{preview}"
-			<< "\\usepackage{varwidth}";
-		atBeginDocument = "\n\\begin{preview}\\begin{varwidth}{\\linewidth}\n";
-		atEndDocument = "\n\\end{varwidth}\\end{preview}\n";
-	}
-	header << "\\pagestyle{empty}";
-	PreviewSource ps(originalText, previewc.selectionStart().lineNumber(), previewc.selectionEnd().lineNumber(), false);
-	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), rootDoc->codec(), atBeginDocument, atEndDocument);
+    QString originalText = previewc.selectedText();
+    if (originalText == "") return;
+    // get document definitions
+    //preliminary code ...
+    const LatexDocument *rootDoc = documents.getRootDocumentForDoc();
+    if (!rootDoc) return;
+    QStringList header = makePreviewHeader(rootDoc);
+    if (header.isEmpty()) return;
+    QString atBeginDocument = "\n";
+    QString atEndDocument = "\n";
+    BuildManager::Dvi2PngMode dvi2pngModeDerived = buildManager.guessDvi2PngMode();
+    if (dvi2pngModeDerived>=BuildManager::DPM_EMBEDDED_PDF && configManager.previewMode != ConfigManager::PM_EMBEDDED) {
+        header << "\\usepackage[active,tightpage]{preview}"
+               << "\\usepackage{varwidth}";
+        atBeginDocument = "\n\\begin{preview}\\begin{varwidth}{\\linewidth}\n";
+        atEndDocument = "\n\\end{varwidth}\\end{preview}\n";
+    }
+    header << "\\pagestyle{empty}";
+    PreviewSource ps(originalText, previewc.selectionStart().lineNumber(), previewc.selectionEnd().lineNumber(), false);
+    buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), rootDoc->codec(), atBeginDocument, atEndDocument);
 
-	if (!addToList)
-		return;
+    if (!addToList)
+        return;
 
-	if (configManager.autoPreview == ConfigManager::AP_PREVIOUSLY) {
-		QList<QDocumentCursor> &clist = currentEditorView()->autoPreviewCursor;
-		int sid = previewc.document()->getFormatId("previewSelection");
-		for (int i = clist.size() - 1; i >= 0; i--)
-			if (clist[i].anchorLineNumber() <= ps.toLine &&
-			        clist[i].lineNumber()   >= ps.fromLine) {
-				if (sid > 0)
-					updateEmphasizedRegion(clist[i], -sid);
-				clist.removeAt(i);
-			}
+    if (configManager.autoPreview == ConfigManager::AP_PREVIOUSLY) {
+        QList<QDocumentCursor> &clist = currentEditorView()->autoPreviewCursor;
+        int sid = previewc.document()->getFormatId("previewSelection");
+        for (int i = clist.size() - 1; i >= 0; i--)
+            if (clist[i].anchorLineNumber() <= ps.toLine &&
+                    clist[i].lineNumber()   >= ps.fromLine) {
+                if (sid > 0)
+                    updateEmphasizedRegion(clist[i], -sid);
+                clist.removeAt(i);
+            }
 
-		QDocumentCursor ss = previewc.selectionStart();
-		QDocumentCursor se = previewc.selectionEnd();
-		QDocumentCursor c(ss, se);
-		c.setAutoUpdated(true);
-		currentEditorView()->autoPreviewCursor.insert(0, c);
-		// mark region
-		if (sid)
-			updateEmphasizedRegion(c, sid);
-	}
+        QDocumentCursor ss = previewc.selectionStart();
+        QDocumentCursor se = previewc.selectionEnd();
+        QDocumentCursor c(ss, se);
+        c.setAutoUpdated(true);
+        currentEditorView()->autoPreviewCursor.insert(0, c);
+        // mark region
+        if (sid)
+            updateEmphasizedRegion(c, sid);
+    }
 }
 
 QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
 {
-	LatexEditorView *edView = rootDoc->getEditorView();
+    LatexEditorView *edView = rootDoc->getEditorView();
     if (!edView){
         return QStringList();
     }
-	int m_endingLine = edView->editor->document()->findLineContaining("\\begin{document}", 0, Qt::CaseSensitive);
-	if (m_endingLine < 0) return QStringList(); // can't create header
-	QStringList header;
-	for (int l = 0; l < m_endingLine; l++) {
-		const QString &line = edView->editor->document()->line(l).text();
-		int start = line.indexOf("\\input{");
-		if (start < 0) {
-			header << line;
-		} else {
-			// rewrite input to absolute paths
-			QString newLine(line);
-			start += 7;  // behind curly brace of \\input{
-			int end = newLine.indexOf('}', start);
-			if (end >= 0) {
-				QString filename(newLine.mid(start, end - start));
-				QString absPath = documents.getAbsoluteFilePath(filename);
+    int m_endingLine = edView->editor->document()->findLineContaining("\\begin{document}", 0, Qt::CaseSensitive);
+    if (m_endingLine < 0) return QStringList(); // can't create header
+    QStringList header;
+    for (int l = 0; l < m_endingLine; l++) {
+        const QString &line = edView->editor->document()->line(l).text();
+        int start = line.indexOf("\\input{");
+        if (start < 0) {
+            header << line;
+        } else {
+            // rewrite input to absolute paths
+            QString newLine(line);
+            start += 7;  // behind curly brace of \\input{
+            int end = newLine.indexOf('}', start);
+            if (end >= 0) {
+                QString filename(newLine.mid(start, end - start));
+                QString absPath = documents.getAbsoluteFilePath(filename);
 #ifdef Q_OS_WIN
-				absPath.replace('\\', '/');  // make sure the path argumment to \input uses '/' as dir separator
+                absPath.replace('\\', '/');  // make sure the path argumment to \input uses '/' as dir separator
 #endif
-				if (absPath.contains(' ')) {
-					absPath = '"' + absPath + '"';
-				}
-				newLine.replace(start, end - start, absPath);
-			}
-			header << newLine;
-		}
-	}
-	return header;
+                if (absPath.contains(' ')) {
+                    absPath = '"' + absPath + '"';
+                }
+                newLine.replace(start, end - start, absPath);
+            }
+            header << newLine;
+        }
+    }
+    return header;
 }
 
 /*!
@@ -9939,19 +9939,19 @@ QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
  */
 void Texstudio::updateEmphasizedRegion(QDocumentCursor c, int sid)
 {
-	QDocument *doc = c.document();
-	QDocumentCursor ss = c.selectionStart();
-	QDocumentCursor se = c.selectionEnd();
-	for (int i = ss.anchorLineNumber(); i <= se.anchorLineNumber(); i++) {
-		int begin = i == ss.anchorLineNumber() ? ss.anchorColumnNumber() : 0;
-		int end = i == se.anchorLineNumber() ? se.anchorColumnNumber() : doc->line(i).length();
-		if (sid > 0) {
-			doc->line(i).clearOverlays(sid);
-			doc->line(i).addOverlay(QFormatRange(begin, end - begin, sid));
-		} else {
-			// remove overlay if sid <0 (removes -sid)
-			doc->line(i).clearOverlays(-sid);
-		}
+    QDocument *doc = c.document();
+    QDocumentCursor ss = c.selectionStart();
+    QDocumentCursor se = c.selectionEnd();
+    for (int i = ss.anchorLineNumber(); i <= se.anchorLineNumber(); i++) {
+        int begin = i == ss.anchorLineNumber() ? ss.anchorColumnNumber() : 0;
+        int end = i == se.anchorLineNumber() ? se.anchorColumnNumber() : doc->line(i).length();
+        if (sid > 0) {
+            doc->line(i).clearOverlays(sid);
+            doc->line(i).addOverlay(QFormatRange(begin, end - begin, sid));
+        } else {
+            // remove overlay if sid <0 (removes -sid)
+            doc->line(i).clearOverlays(-sid);
+        }
     }
 }
 /*!
