@@ -6537,6 +6537,9 @@ bool Texstudio::runCommandAsyncFwd(const QString &unparsedCommandLine, const QFi
 
 void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &options)
 {
+    // clear potential preview information from previous runs
+    embeddedPreviewFile.clear();
+    embeddedPreviewSource.text.clear();
 #ifndef NO_POPPLER_PREVIEW
     QStringList ol = BuildManager::splitOptions(options);
     QString pdfFile;
@@ -9337,8 +9340,31 @@ QList<int> Texstudio::findOccurencesApproximate(QString line, const QString &gue
 void Texstudio::syncFromViewer(const QString &fileName, int line, bool activate, const QString &guessedWord)
 {
     QWidget *w = focusWidget();
-    if (!activateEditorForFile(fileName, true, activate)) {
-        bool success = load(fileName);
+    QString fn=fileName;
+    if(!embeddedPreviewFile.isEmpty() && !embeddedPreviewSource.text.isEmpty()){
+        fn=embeddedPreviewFile;
+        QString firstLine=embeddedPreviewSource.text.section('\n',0,0);
+        // find line offset in tmp tex file
+        QFile tf(fileName);
+        if(tf.open(QIODevice::ReadOnly | QIODevice::Text)){
+            int embeddedPreviewLineOffset=-1;
+            int i=0;
+            QTextStream in(&tf);
+            while(!in.atEnd()){
+                QString l = in.readLine();
+                if(l==firstLine){
+                    embeddedPreviewLineOffset=i;
+                    break;
+                }
+                ++i;
+            }
+            if(embeddedPreviewLineOffset>=0){
+                line= line - embeddedPreviewLineOffset  + embeddedPreviewSource.fromLine;
+            }
+        }
+    }
+    if (!activateEditorForFile(fn, true, activate)) {
+        bool success = load(fn);
         if (!activate)
             w->setFocus();  // restore focus
         if (!success) return;
@@ -9562,8 +9588,12 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
         // special treatment for pdf files (embedded pdf mode)
         if (configManager.previewMode == ConfigManager::PM_EMBEDDED) {
             runInternalCommand("txs:///view-pdf-internal", QFileInfo(imageFile), "--embedded");
-            if (currentEditorView())
+            if (currentEditorView()){
                 currentEditorView()->setFocus();
+                // remember source view & position
+                embeddedPreviewSource=source;
+                embeddedPreviewFile=currentEditorView()->getDocument()->getFileName();
+            }
             return;
         } else {
             std::unique_ptr<Poppler::Document> document(Poppler::Document::load(imageFile));

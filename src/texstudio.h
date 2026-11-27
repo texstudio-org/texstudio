@@ -750,6 +750,8 @@ protected:
 
 	bool completerPreview;
     QPixmapCache previewCache;
+    PreviewSource embeddedPreviewSource;
+    QString embeddedPreviewFile;
 
     bool rememberFollowFromScroll,enlargedViewer;
 
