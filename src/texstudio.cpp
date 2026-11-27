@@ -6538,123 +6538,122 @@ bool Texstudio::runCommandAsyncFwd(const QString &unparsedCommandLine, const QFi
 void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &options)
 {
 #ifndef NO_POPPLER_PREVIEW
-	QStringList ol = BuildManager::splitOptions(options);
-	QString pdfFile;
-	for (int i = ol.size() - 1; i >= 0; i--) {
-		if (!ol[i].startsWith("-")) {
-			if (pdfFile.isNull()) pdfFile = dequoteStr(ol[i]);
-			ol.removeAt(i);
-		} else if (ol[i].startsWith("--")) ol[i] = ol[i].mid(2);
-		else ol[i] = ol[i].mid(1);
-	}
-	bool preserveExisting = ol.contains("preserve-existing");                  //completely ignore all existing internal viewers
-	bool preserveExistingEmbedded = ol.contains("preserve-existing-embedded"); //completely ignore all existing embedded internal viewers
-	bool preserveExistingWindowed = ol.contains("preserve-existing-windowed"); //completely ignore all existing windowed internal viewers
-	bool preserveDuplicates = ol.contains("preserve-duplicates");              //open the document only in one pdf viewer
-	bool embedded = ol.contains("embedded");                                   //if a new pdf viewer is opened, use the embedded mode
-	bool windowed = ol.contains("windowed");                                   //if a new pdf viewer is opened, use the windowed mode (default)
-	bool closeAll = ol.contains("close-all");                                  //close all existing viewers
-	bool closeEmbedded = closeAll || ol.contains("close-embedded");            //close all embedded existing viewer
-	bool closeWindowed = closeAll || ol.contains("close-windowed");            //close all windowed existing viewer
+    QStringList ol = BuildManager::splitOptions(options);
+    QString pdfFile;
+    for (int i = ol.size() - 1; i >= 0; i--) {
+        if (!ol[i].startsWith("-")) {
+            if (pdfFile.isNull()) pdfFile = dequoteStr(ol[i]);
+            ol.removeAt(i);
+        } else if (ol[i].startsWith("--")) ol[i] = ol[i].mid(2);
+        else ol[i] = ol[i].mid(1);
+    }
+    bool preserveExisting = ol.contains("preserve-existing");                  //completely ignore all existing internal viewers
+    bool preserveExistingEmbedded = ol.contains("preserve-existing-embedded"); //completely ignore all existing embedded internal viewers
+    bool preserveExistingWindowed = ol.contains("preserve-existing-windowed"); //completely ignore all existing windowed internal viewers
+    bool preserveDuplicates = ol.contains("preserve-duplicates");              //open the document only in one pdf viewer
+    bool embedded = ol.contains("embedded");                                   //if a new pdf viewer is opened, use the embedded mode
+    bool windowed = ol.contains("windowed");                                   //if a new pdf viewer is opened, use the windowed mode (default)
+    bool closeAll = ol.contains("close-all");                                  //close all existing viewers
+    bool closeEmbedded = closeAll || ol.contains("close-embedded");            //close all embedded existing viewer
+    bool closeWindowed = closeAll || ol.contains("close-windowed");            //close all windowed existing viewer
 
-	bool autoClose;
-	if (embedded) autoClose = ! ol.contains("no-auto-close");                  //Don't close the viewer, if the corresponding document is closed
-	else autoClose = ol.contains("auto-close");                                //Close the viewer, if the corresponding document is closed
+    bool autoClose;
+    if (embedded) autoClose = ! ol.contains("no-auto-close");                  //Don't close the viewer, if the corresponding document is closed
+    else autoClose = ol.contains("auto-close");                                //Close the viewer, if the corresponding document is closed
 
-	PDFDocument::DisplayFlags displayPolicy = PDFDocument::FocusWindowed | PDFDocument::Raise;
-	if (ol.contains("no-focus")) displayPolicy &= ~PDFDocument::Focus;
-	else if (ol.contains("focus")) displayPolicy |= PDFDocument::Focus;
-	if (ol.contains("no-foreground")) displayPolicy &= ~PDFDocument::Raise;
-	else if (ol.contains("foreground")) displayPolicy |= PDFDocument::Raise;
+    PDFDocument::DisplayFlags displayPolicy = PDFDocument::FocusWindowed | PDFDocument::Raise;
+    if (ol.contains("no-focus")) displayPolicy &= ~PDFDocument::Focus;
+    else if (ol.contains("focus")) displayPolicy |= PDFDocument::Focus;
+    if (ol.contains("no-foreground")) displayPolicy &= ~PDFDocument::Raise;
+    else if (ol.contains("foreground")) displayPolicy |= PDFDocument::Raise;
 
-	if (!(embedded || windowed || closeEmbedded || closeWindowed)) windowed = true; //default
+    if (!(embedded || windowed || closeEmbedded || closeWindowed)) windowed = true; //default
 
-	//embedded/windowed are mutual exclusive
-	//no viewer will be opened, if one already exist (unless it was closed by a explicitely given close command)
-
-
-	QList<PDFDocument *> oldPDFs = PDFDocument::documentList();
-
-	if (preserveExisting) oldPDFs.clear();
-	if (preserveExistingWindowed)
-		for (int i = oldPDFs.size() - 1; i >= 0; i--)
-			if (!oldPDFs[i]->embeddedMode)
-				oldPDFs.removeAt(i);
-	if (preserveExistingEmbedded)
-		for (int i = oldPDFs.size() - 1; i >= 0; i--)
-			if (oldPDFs[i]->embeddedMode)
-				oldPDFs.removeAt(i);
-	for (int i = oldPDFs.size() - 1; i >= 0; i--)
-		if (oldPDFs[i]->ignoreSynchronization())
-			oldPDFs.removeAt(i);
-
-	//if closing and opening is set, reuse the first document (reuse = optimization, so it does not close a viewer and creates an equal viewer afterwards)
-	PDFDocument *reuse = nullptr;
-	if ((embedded || windowed) && (closeEmbedded || closeWindowed) && !oldPDFs.isEmpty() ) {
-		for (int i = 0; i < oldPDFs.size(); i++)
-			if (oldPDFs[i]->embeddedMode == embedded) {
-				reuse = oldPDFs.takeAt(i);
-				break;
-			}
-	}
-
-	//close old
-	for (int i = oldPDFs.size() - 1; i >= 0; i--)
-		if ( (oldPDFs[i]->embeddedMode && closeEmbedded) ||
-		     (!oldPDFs[i]->embeddedMode && closeWindowed) ){
-		        oldPDFs[i]->close();
-			oldPDFs.removeAt(i);
-		}
+    //embedded/windowed are mutual exclusive
+    //no viewer will be opened, if one already exist (unless it was closed by a explicitely given close command)
 
 
-	//open new
-	if (!embedded && !windowed) return;
+    QList<PDFDocument *> oldPDFs = PDFDocument::documentList();
 
-	if (reuse) oldPDFs.insert(0, reuse);
-	if (oldPDFs.isEmpty()) {
-		PDFDocument *doc = qobject_cast<PDFDocument *>(newPdfPreviewer(embedded));
-		REQUIRE(doc);
-		doc->autoClose = autoClose;
-		oldPDFs << doc;
-                changePDFIconSize(configManager.guiPDFToolbarIconSize);
-	}
+    if (preserveExisting) oldPDFs.clear();
+    if (preserveExistingWindowed)
+        for (int i = oldPDFs.size() - 1; i >= 0; i--)
+            if (!oldPDFs[i]->embeddedMode)
+                oldPDFs.removeAt(i);
+    if (preserveExistingEmbedded)
+        for (int i = oldPDFs.size() - 1; i >= 0; i--)
+            if (oldPDFs[i]->embeddedMode)
+                oldPDFs.removeAt(i);
+    for (int i = oldPDFs.size() - 1; i >= 0; i--)
+        if (oldPDFs[i]->ignoreSynchronization())
+            oldPDFs.removeAt(i);
 
-	if (pdfFile.isNull()) {
-		pdfFile = master.completeBaseName() + ".pdf";
-	}
+    //if closing and opening is set, reuse the first document (reuse = optimization, so it does not close a viewer and creates an equal viewer afterwards)
+    PDFDocument *reuse = nullptr;
+    if ((embedded || windowed) && (closeEmbedded || closeWindowed) && !oldPDFs.isEmpty() ) {
+        for (int i = 0; i < oldPDFs.size(); i++)
+            if (oldPDFs[i]->embeddedMode == embedded) {
+                reuse = oldPDFs.takeAt(i);
+                break;
+            }
+    }
+
+    //close old
+    for (int i = oldPDFs.size() - 1; i >= 0; i--){
+        if ( (oldPDFs[i]->embeddedMode && closeEmbedded) ||
+             (!oldPDFs[i]->embeddedMode && closeWindowed) ){
+            oldPDFs[i]->close();
+            oldPDFs.removeAt(i);
+        }
+    }
+
+    //open new
+    if (!embedded && !windowed) return;
+
+    if (reuse) oldPDFs.insert(0, reuse);
+    if (oldPDFs.isEmpty()) {
+        PDFDocument *doc = qobject_cast<PDFDocument *>(newPdfPreviewer(embedded));
+        REQUIRE(doc);
+        doc->autoClose = autoClose;
+        oldPDFs << doc;
+        changePDFIconSize(configManager.guiPDFToolbarIconSize);
+    }
+
+    if (pdfFile.isNull()) {
+        pdfFile = master.completeBaseName() + ".pdf";
+    }
     if(!QFileInfo(pdfFile).isAbsolute() || !QFileInfo(pdfFile).isReadable()){
         pdfFile = buildManager.findCompiledFile(pdfFile, master); // don't search if file name is given as absolute path and exists
     }
-	int ln = 0;
-	int col = 0;
-	if (currentEditorView()) {
-		col = currentEditorView()->editor->cursor().columnNumber();
-		ln = currentEditorView()->editor->cursor().lineNumber();
-		int originalLineNumber = currentEditorView()->document->lineToLineSnapshotLineNumber(currentEditorView()->editor->cursor().line());
-		if (originalLineNumber >= 0) ln = originalLineNumber;
-	}
-	foreach (PDFDocument *viewer, oldPDFs) {
-		viewer->loadFile(pdfFile, master, displayPolicy);
-		int pg = viewer->syncFromSource(getCurrentFileName(), ln, col, displayPolicy);
-		viewer->fillRenderCache(pg);
+    int ln = 0;
+    int col = 0;
+    if (currentEditorView()) {
+        col = currentEditorView()->editor->cursor().columnNumber();
+        ln = currentEditorView()->editor->cursor().lineNumber();
+        int originalLineNumber = currentEditorView()->document->lineToLineSnapshotLineNumber(currentEditorView()->editor->cursor().line());
+        if (originalLineNumber >= 0) ln = originalLineNumber;
+    }
+    foreach (PDFDocument *viewer, oldPDFs) {
+        viewer->loadFile(pdfFile, master, displayPolicy);
+        int pg = viewer->syncFromSource(getCurrentFileName(), ln, col, displayPolicy);
+        viewer->fillRenderCache(pg);
         if (viewer->embeddedMode && configManager.viewerEnlarged) {
-			viewer->setStateEnlarged(true);
+            viewer->setStateEnlarged(true);
             centralVSplitter->hide();
-		}
-		if (preserveDuplicates) break;
-	}
-	setEnabledMenusEnlargeShrink(embedded && !configManager.viewerEnlarged, embedded && configManager.viewerEnlarged);
+        }
+        if (preserveDuplicates) break;
+    }
+    setEnabledMenusEnlargeShrink(embedded && !configManager.viewerEnlarged, embedded && configManager.viewerEnlarged);
 #if defined Q_OS_MAC
-	if (embedded)
-		setMenuBar(configManager.menuParentsBar);
+    if (embedded)
+        setMenuBar(configManager.menuParentsBar);
 #endif
 
 #else
-	Q_UNUSED(master)
-	Q_UNUSED(options)
-	UtilsUi::txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
+    Q_UNUSED(master)
+    Q_UNUSED(options)
+    UtilsUi::txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
 #endif
-
 }
 
 bool Texstudio::checkProgramPermission(const QString &program, const QString &cmdId, LatexDocument *master)
