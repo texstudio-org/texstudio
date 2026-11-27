@@ -222,6 +222,12 @@ void AIChatAssistant::slotSend(bool fromToolCall)
 
     QJsonObject dd;
     dd["model"]=config->ai_preferredModel;
+
+    if(url.endsWith("/v1/messages")){
+        // anthropic compatible API, max_tokens is required
+        dd["max_tokens"]=config->ai_maxTokens;
+    }
+
     if(config->ai_provider==1){
         // check if temperature is valid
         bool ok;
@@ -283,10 +289,6 @@ void AIChatAssistant::slotSend(bool fromToolCall)
 
     dd["messages"]=ja_messages;
 
-    if(url.endsWith("/v1/messages")){
-        // anthropic compatible API, max_tokens is required
-        dd["max_tokens"]=config->ai_maxTokens;
-    }
     QJsonDocument jsonDoc(dd);
     QString data=jsonDoc.toJson();
     if(url.endsWith("/v1/messages")){
@@ -295,8 +297,8 @@ void AIChatAssistant::slotSend(bool fromToolCall)
         request.setRawHeader("User-Agent", "TeXstudio Chat Assistant");
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
         request.setRawHeader("Accept", "application/json");
+        request.setRawHeader("x-api-key", QString("%1").arg(config->ai_apikey).toUtf8());
         request.setRawHeader("anthropic-version", "2023-06-01");
-        request.setRawHeader("X-Api-Key", QString("%1").arg(config->ai_apikey).toUtf8());
         m_reply = networkManager->post(request,data.toUtf8());
     }else{
         // openAI compatible API
