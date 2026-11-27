@@ -253,7 +253,8 @@ void AIChatAssistant::slotSend(bool fromToolCall)
     }
     if(config->ai_useFunctions){
         // advertise available tool calls
-        QJsonArray ja_functions=makeFunctionsJsonArray();
+        bool useOpenAIFormat=!url.endsWith("/v1/messages");
+        QJsonArray ja_functions=makeFunctionsJsonArray(useOpenAIFormat);
         dd["tools"]=ja_functions;
     }
     if(ja_messages.isEmpty() and !config->ai_systemPrompt.isEmpty()){
@@ -709,50 +710,101 @@ QString AIChatAssistant::streamDeltaText(const std::string &eventData)
  * \brief generate json array with txs functions for AI provider
  * \return
  */
-QJsonArray AIChatAssistant::makeFunctionsJsonArray() const
+QJsonArray AIChatAssistant::makeFunctionsJsonArray(bool opanAIFormat) const
 {
     QJsonArray ja_functions;
-    for(ToolFunction tf:m_toolFunctions){
-        QJsonObject jo_functionObject;
-        jo_functionObject["type"]="function";
-        QJsonObject jo_function;
-        jo_function["name"]=tf.name;
-        jo_function["description"]=tf.description;
-        QStringList requiredParameters;
-        if(tf.parameter.isEmpty()){
-            jo_function["parameters"]=QJsonObject{
-                {"type","object"},
-                {"properties",QJsonObject()}
-            };
-        }else{
-            QJsonObject jo_properties;
-            QStringList parameters=tf.parameter.split("\n");
-            foreach(const QString &param,parameters){
-                QStringList parts=param.split(":");
-                if(parts.size()==2){
-                    QString paramName=parts[0].trimmed();
-                    if(paramName.startsWith("*")){
-                        paramName=paramName.mid(1);
-                        requiredParameters.append(paramName);
+    if(opanAIFormat){
+        for(ToolFunction tf:m_toolFunctions){
+            QJsonObject jo_functionObject;
+            jo_functionObject["type"]="function";
+            QJsonObject jo_function;
+            jo_function["name"]=tf.name;
+            jo_function["description"]=tf.description;
+            QStringList requiredParameters;
+            if(tf.parameter.isEmpty()){
+                jo_function["parameters"]=QJsonObject{
+                    {"type","object"},
+                    {"properties",QJsonObject()}
+                };
+            }else{
+                QJsonObject jo_properties;
+                QStringList parameters=tf.parameter.split("\n");
+                foreach(const QString &param,parameters){
+                    QStringList parts=param.split(":");
+                    if(parts.size()==2){
+                        QString paramName=parts[0].trimmed();
+                        if(paramName.startsWith("*")){
+                            paramName=paramName.mid(1);
+                            requiredParameters.append(paramName);
+                        }
+                        QString paramDesc=parts[1].trimmed();
+                        jo_properties[paramName]=QJsonObject{
+                            {"type","string"},
+                            {"description",paramDesc}
+                        };
                     }
-                    QString paramDesc=parts[1].trimmed();
-                    jo_properties[paramName]=QJsonObject{
-                        {"type","string"},
-                        {"description",paramDesc}
+                }
+                QJsonObject jo_params=QJsonObject{
+                    {"type","object"},
+                    {"properties",jo_properties}
+                };
+                if(!requiredParameters.isEmpty()){
+                    jo_params["required"]=QJsonArray::fromStringList(requiredParameters);
+                }
+                jo_function["parameters"]=jo_params;
+            }
+            jo_functionObject["function"]=jo_function;
+            ja_functions.append(jo_functionObject);
+        }
+    }else{
+        // antrhopic format, only name and description
+        QJsonArray ja_functions;
+        for (const ToolFunction &tf : m_toolFunctions) {
+            QJsonObject jo_tool;
+            jo_tool["name"] = tf.name;
+            jo_tool["description"] = tf.description;
+
+            QJsonObject jo_properties;
+            QJsonArray ja_required;
+
+            if (!tf.parameter.isEmpty()) {
+                const QStringList lines = tf.parameter.split("\n", Qt::SkipEmptyParts);
+                for (const QString &line : lines) {
+                    // split only on the first ':' so descriptions may contain colons
+                    const int idx = line.indexOf(':');
+                    if (idx < 0)
+                        continue;
+
+                    QString paramName = line.left(idx).trimmed();
+                    const QString paramDesc = line.mid(idx + 1).trimmed();
+
+                    if (paramName.startsWith('*')) {
+                        paramName = paramName.mid(1).trimmed();
+                        ja_required.append(paramName);
+                    }
+                    if (paramName.isEmpty())
+                        continue;
+
+                    jo_properties[paramName] = QJsonObject{
+                        {"type", "string"},
+                        {"description", paramDesc}
                     };
                 }
             }
-            QJsonObject jo_params=QJsonObject{
-                {"type","object"},
-                {"properties",jo_properties}
+
+            QJsonObject jo_schema{
+                {"type", "object"},
+                {"properties", jo_properties}
             };
-            if(!requiredParameters.isEmpty()){
-                jo_params["required"]=QJsonArray::fromStringList(requiredParameters);
-            }
-            jo_function["parameters"]=jo_params;
+            if (!ja_required.isEmpty())
+                jo_schema["required"] = ja_required;
+
+            jo_tool["input_schema"] = jo_schema;
+            ja_functions.append(jo_tool);
         }
-        jo_functionObject["function"]=jo_function;
-        ja_functions.append(jo_functionObject);
+
+        // in the request body:
+        // requestBody["tools"] = ja_tools;
     }
 
     return ja_functions;

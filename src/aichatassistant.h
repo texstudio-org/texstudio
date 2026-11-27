@@ -70,7 +70,7 @@ protected:
     QString makeJsonDoc() const;
     void updateConversationForChatview();
     void updateStreamedConversation(const QByteArray &data, bool endOfStream);
-    QJsonArray makeFunctionsJsonArray() const;
+    QJsonArray makeFunctionsJsonArray(bool opanAIFormat=true) const;
     void handleToolCall(QJsonObject jo);
 
     void addMessage (const QString &text, Sender sender);
