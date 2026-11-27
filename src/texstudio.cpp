@@ -790,6 +790,20 @@ void Texstudio::setupDockWidgets()
     addTagList("beamer", getRealIconFile("beamer_R90"), tr("Beamer Commands"), "beamer_tags.xml");
     addTagList("xymatrix", getRealIconFile("xy_R90"), tr("XY Commands"), "xymatrix_tags.xml");
     addMacrosAsTagList();
+    if (!aiChatDockWidget) {
+        aiChatDlg = new AIChatAssistant(this);
+        aiChatDlg->clearConversation();
+        connect(aiChatDlg, &AIChatAssistant::insertText, this, &Texstudio::insertText);
+        connect(aiChatDlg, &AIChatAssistant::executeMacro, this, [this](const QString &script){ runScript(script); });
+
+        aiChatDockWidget = new QDockWidget(tr("AI Chat"), this);
+        aiChatDockWidget->setObjectName("aiChat");
+        aiChatDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+        aiChatDockWidget->setWidget(aiChatDlg);
+        connect(aiChatDockWidget, &QDockWidget::visibilityChanged, this, &Texstudio::updateAIChatVisibility);
+        addDockWidget(Qt::RightDockWidgetArea, aiChatDockWidget);
+        aiChatDockWidget->hide();
+    }
     m_firstDockWidget->raise(); // make sure on first run structure view is topmost
     // in case of hidden sidepanel, mark docks which are to be raised
     QStringList toRaise=docksToBeRaised.split("|");
@@ -1329,7 +1343,8 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "letter", tr("Quick &Letter..."), SLOT(quickLetter()));
 
     menu->addSeparator();
-    newManagedAction(menu, "aichat", tr("AI &Chat..."), SLOT(aiChat()));
+    QAction *aiChatAction = newManagedAction(menu, "aichat", tr("AI &Chat"), SLOT(toggleAIChat(bool)), QKeySequence(), "comment");
+    aiChatAction->setChecked(aiChatDockWidget && aiChatDockWidget->isVisible());
 
 	menu->addSeparator();
 	newManagedAction(menu, "tabular", tr("Quick &Tabular..."), SLOT(quickTabular()));
@@ -5960,23 +5975,27 @@ void Texstudio::aiChat(const QString queryText)
         QMessageBox::warning(this, tr("AI Chat"), tr("Please set the API key in the settings."));
         return;
     }
-    if(aiChatDlg==nullptr){
-        aiChatDlg = new AIChatAssistant(this);
-        aiChatDlg->setModal(false);
-        aiChatDlg->resize(1000,400);
-        connect(aiChatDlg,&AIChatAssistant::insertText,this,&Texstudio::insertText);
-        connect(aiChatDlg,&AIChatAssistant::executeMacro,this,[this](QString script){this->runScript(script);});
-    }
-
-    aiChatDlg->clearConversation();
-    if(!queryText.isEmpty()){
+    if (!aiChatDlg || !aiChatDockWidget) return;
+    if (!queryText.isEmpty()) {
+        aiChatDlg->clearConversation();
         aiChatDlg->setQueryText(queryText);
     }
-    aiChatDlg->show();
-    if(!queryText.isEmpty()){
-        // in case of preset query, execute query
+    aiChatDockWidget->show();
+    aiChatDockWidget->raise();
+    aiChatDlg->focusQuery();
+    if (!queryText.isEmpty()) {
         aiChatDlg->executeQuery();
     }
+}
+
+void Texstudio::toggleAIChat(bool visible)
+{
+    if (!visible) {
+        if (aiChatDockWidget) aiChatDockWidget->hide();
+        return;
+    }
+    aiChat();
+    updateAIChatVisibility(aiChatDockWidget && aiChatDockWidget->isVisible());
 }
 
 void Texstudio::quickTabbing()
@@ -12849,6 +12868,7 @@ void Texstudio::toggleDocks(bool visible)
     QList<QDockWidget*>tobeRaised;
     QStringList collectDocksToBeRaised;
     foreach(QDockWidget* dw,lst){
+        if (dw == aiChatDockWidget) continue;
         if(hiddenDocks.contains(dw->objectName())){
             dw->setVisible(false);
         }else{
@@ -12954,6 +12974,15 @@ void Texstudio::updateDockVisibility(bool visible)
         }
     }
 }
+
+void Texstudio::updateAIChatVisibility(bool visible)
+{
+    QAction *action = getManagedAction("main/wizards/aichat");
+    if (!action) return;
+    const QSignalBlocker blocker(action);
+    action->setChecked(visible);
+}
+
 /*!
  * \brief at start with old window set-up, all dock may be involuntarily be spread out (not tabified)
  * This is checked here.
@@ -12964,6 +12993,7 @@ bool Texstudio::checkDockSpread()
     QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(QString(),Qt::FindDirectChildrenOnly);
     QList<QDockWidget*>tabifiedWidgets;
     foreach(QDockWidget* dw,lst){
+        if (dw == aiChatDockWidget) continue;
         tabifiedWidgets.append(tabifiedDockWidgets(dw));
     }
     return tabifiedWidgets.isEmpty();

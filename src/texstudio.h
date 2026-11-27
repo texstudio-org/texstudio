@@ -501,6 +501,7 @@ protected slots:
 	void quickGraphics(const QString &graphicsFile = QString()); ///< start quick graphics wizard
 	void quickMath(); ///< start quick math wizard
     void aiChat(const QString queryText=""); ///< start ai chat assistant
+	void toggleAIChat(bool visible);
 
 	bool checkProgramPermission(const QString &program, const QString &cmdId, LatexDocument *master);
 	void runInternalPdfViewer(const QFileInfo &master, const QString &options);
@@ -721,6 +722,7 @@ protected:
 	QComboBox *cmbLog;
 
     AIChatAssistant *aiChatDlg = nullptr;
+    QDockWidget *aiChatDockWidget = nullptr;
 
 	QStringList m_columnCutBuffer;
 
@@ -795,6 +797,7 @@ public slots:
     void resetDocks();
     void toggleDockVisibility();
     void updateDockVisibility(bool visible);
+    void updateAIChatVisibility(bool visible);
     bool checkDockSpread();
 
 signals:

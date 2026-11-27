@@ -431,7 +431,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
 	managedToolBars.append(ManagedToolBar("Edit", QStringList() << "main/edit/undo" << "main/edit/redo" << "main/edit/copy" << "main/edit/cut" << "main/edit/paste"));
-	managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/quickbuild" << "main/tools/compile" << "main/tools/stopcompile" << "main/tools/view" << "main/tools/viewlog"));
+	managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/quickbuild" << "main/tools/compile" << "main/tools/stopcompile" << "main/tools/view" << "main/tools/viewlog" << "separator" << "main/wizards/aichat"));
 	managedToolBars.append(ManagedToolBar("Math", QStringList() << "tags/brackets/left" << "separator" << "tags/brackets/right"));
 	managedToolBars.append(ManagedToolBar("Format", QStringList() << "main/latex/sectioning" << "separator" << "main/latex/references" << "separator" << "main/latex/fontsizes"));
 	managedToolBars.append(ManagedToolBar("Table", QStringList() << "main/latex/tabularmanipulation/addRow" << "main/latex/tabularmanipulation/addColumn" << "main/latex/tabularmanipulation/pasteColumn" << "main/latex/tabularmanipulation/removeRow" << "main/latex/tabularmanipulation/removeColumn" << "main/latex/tabularmanipulation/cutColumn" << "main/latex/tabularmanipulation/alignColumns"));
