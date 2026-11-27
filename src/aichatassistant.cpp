@@ -10,7 +10,7 @@
 extern Texstudio *txsInstance;
 
 AIChatAssistant::AIChatAssistant(QWidget *parent)
-    : QDialog{parent}
+    : QWidget{parent}
 {
     config=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
 
@@ -92,9 +92,17 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     m_btOptions=new QToolButton();
     m_btOptions->setDefaultAction(m_actOptions);
 
+    QAction *actNewConversation = new QAction(this);
+    actNewConversation->setIcon(getRealIcon("document-new"));
+    actNewConversation->setToolTip(tr("New conversation"));
+    connect(actNewConversation, &QAction::triggered, this, &AIChatAssistant::clearConversation);
+    QToolButton *btNewConversation = new QToolButton();
+    btNewConversation->setDefaultAction(actNewConversation);
+
     auto *hlayout=new QHBoxLayout();
     hlayout->addWidget(leEntry);
     auto *vl=new QVBoxLayout();
+    vl->addWidget(btNewConversation,0,Qt::AlignTop);
     vl->addWidget(m_btSend,0,Qt::AlignTop);
     vl->addWidget(m_btInsert,0,Qt::AlignTop);
     auto *vspacer=new QSpacerItem(20,40,QSizePolicy::Minimum,QSizePolicy::Expanding);
@@ -142,6 +150,11 @@ AIChatAssistant::~AIChatAssistant()
 void AIChatAssistant::setQueryText(const QString &text)
 {
     leEntry->setText(text);
+}
+
+void AIChatAssistant::focusQuery()
+{
+    leEntry->setFocus();
 }
 /*!
  * \brief start a new conversation

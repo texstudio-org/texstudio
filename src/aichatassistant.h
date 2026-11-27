@@ -9,7 +9,7 @@
 #include "chatdelegate.h"
 #include "llm/llm_stream.hpp"
 
-class AIChatAssistant : public QDialog
+class AIChatAssistant : public QWidget
 {
     Q_OBJECT
 public:
@@ -18,6 +18,7 @@ public:
     ~AIChatAssistant() override;
 
     void setQueryText(const QString &text);
+    void focusQuery();
     void clearConversation();
     void executeQuery();
 
